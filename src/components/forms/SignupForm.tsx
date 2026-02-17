@@ -328,6 +328,82 @@ export default function SignupForm({ sponsorSlug, sponsorName }: SignupFormProps
           )}
         </div>
 
+        {/* Licensing Status Selection */}
+        <div className="border-2 border-gray-200 rounded-lg p-4 bg-gray-50">
+          <label className="block text-sm font-medium text-gray-900 mb-3">
+            Are you a licensed insurance agent? *
+          </label>
+          <div className="space-y-3">
+            {/* Licensed Option */}
+            <label
+              className={`flex items-start gap-3 p-4 border-2 rounded-lg cursor-pointer transition-all ${
+                errors.licensing_status ? 'border-red-300' : 'border-gray-300'
+              } hover:border-[#2B4C7E] hover:shadow-md has-[:checked]:border-[#2B4C7E] has-[:checked]:bg-blue-50 has-[:checked]:shadow-md`}
+            >
+              <input
+                {...register('licensing_status')}
+                type="radio"
+                value="licensed"
+                className="mt-1 w-4 h-4 text-[#2B4C7E] focus:ring-[#2B4C7E]"
+                disabled={isSubmitting}
+              />
+              <div className="flex-1">
+                <div className="flex items-center gap-2">
+                  <svg className="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      fillRule="evenodd"
+                      d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span className="font-semibold text-gray-900">Yes, I am licensed</span>
+                </div>
+                <p className="text-sm text-gray-600 mt-1 ml-7">
+                  I hold an active insurance license and will provide documentation. I'll have access to all features including license management, advanced commissions, and client tools.
+                </p>
+              </div>
+            </label>
+
+            {/* Non-Licensed Option */}
+            <label
+              className={`flex items-start gap-3 p-4 border-2 rounded-lg cursor-pointer transition-all ${
+                errors.licensing_status ? 'border-red-300' : 'border-gray-300'
+              } hover:border-[#2B4C7E] hover:shadow-md has-[:checked]:border-[#2B4C7E] has-[:checked]:bg-gray-100 has-[:checked]:shadow-md`}
+            >
+              <input
+                {...register('licensing_status')}
+                type="radio"
+                value="non_licensed"
+                className="mt-1 w-4 h-4 text-[#2B4C7E] focus:ring-[#2B4C7E]"
+                disabled={isSubmitting}
+              />
+              <div className="flex-1">
+                <div className="flex items-center gap-2">
+                  <svg className="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      fillRule="evenodd"
+                      d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span className="font-semibold text-gray-900">No, I am not licensed</span>
+                </div>
+                <p className="text-sm text-gray-600 mt-1 ml-7">
+                  I will participate in referral and team-building activities. I'll have access to training materials, marketing tools, and team management features.
+                </p>
+              </div>
+            </label>
+          </div>
+
+          {errors.licensing_status && (
+            <p className="mt-2 text-sm text-red-600 font-medium">{errors.licensing_status.message}</p>
+          )}
+
+          <p className="mt-3 text-xs text-gray-500 italic">
+            💡 This selection determines which features and tools will be available in your dashboard. This can only be changed by an administrator later.
+          </p>
+        </div>
+
         {/* Submit Error */}
         {submitError && (
           <div className="p-4 bg-red-50 border border-red-200 rounded-lg">

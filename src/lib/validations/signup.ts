@@ -111,6 +111,8 @@ export const signupSchema = z.object({
     .or(z.literal('')),
 
   sponsor_slug: z.string().optional(),
+
+  licensing_status: z.enum(['licensed', 'non_licensed']),
 });
 
 /**

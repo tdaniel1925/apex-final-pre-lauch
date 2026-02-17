@@ -14,19 +14,20 @@ import type { ApiResponse, Distributor } from '@/lib/types';
 
 /**
  * POST /api/signup
- * 
+ *
  * Creates a new distributor account
- * 
+ *
  * Body:
  *   - first_name: string
  *   - last_name: string
  *   - email: string
  *   - password: string
  *   - slug: string
+ *   - licensing_status: 'licensed' | 'non_licensed'
  *   - company_name?: string
  *   - phone?: string
  *   - sponsor_slug?: string
- * 
+ *
  * Response:
  *   - distributor: Distributor object
  *   - message: Success message
@@ -144,6 +145,8 @@ export async function POST(request: NextRequest) {
         matrix_depth: placement.matrix_depth,
         is_master: false,
         profile_complete: false,
+        licensing_status: data.licensing_status,
+        licensing_status_set_at: new Date().toISOString(),
       })
       .select()
       .single();
