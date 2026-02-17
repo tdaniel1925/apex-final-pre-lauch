@@ -11,6 +11,7 @@ import type { Distributor } from '@/lib/types';
 import SponsorLineage from './SponsorLineage';
 import PersonalDownline from './PersonalDownline';
 import MatrixChildren from './MatrixChildren';
+import TeamStatistics from './TeamStatistics';
 
 interface DistributorDetailViewProps {
   distributor: Distributor;
@@ -348,6 +349,9 @@ export default function DistributorDetailView({
 
           {/* Matrix Children */}
           <MatrixChildren distributorId={initialDistributor.id} />
+
+          {/* Team Statistics */}
+          <TeamStatistics distributorId={initialDistributor.id} />
 
           {/* Status */}
           <div className="bg-white rounded-lg shadow p-3">
