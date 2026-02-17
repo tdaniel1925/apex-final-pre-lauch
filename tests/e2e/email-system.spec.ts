@@ -98,7 +98,7 @@ test.describe('Email Nurture Campaign System', () => {
 
     test('should generate email with AI (requires API key)', async ({ page }) => {
       // Skip if no API key
-      test.skip(!process.env.ANTHROPIC_API_KEY, 'ANTHROPIC_API_KEY not set');
+      test.skip(!process.env.OPENAI_API_KEY, 'OPENAI_API_KEY not set');
 
       // Open create modal
       await page.click('button:has-text("Create Template")');

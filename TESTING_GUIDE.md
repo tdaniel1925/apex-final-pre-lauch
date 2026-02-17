@@ -29,8 +29,9 @@ npm install
 # Required for email sending tests
 RESEND_API_KEY=re_DjMiknb1_T8MdjYu6hBvdpCbbxeZeKi7A
 
-# Required for AI generation tests
-ANTHROPIC_API_KEY=your_anthropic_key_here
+# Required for AI generation tests (GPT-4)
+# See .env.local.example for your key
+OPENAI_API_KEY=your_openai_key_here
 
 # For E2E tests
 NEXT_PUBLIC_APP_URL=http://localhost:3050
@@ -263,9 +264,9 @@ Add these to your `package.json` scripts:
 
 ### AI Generation Tests Skipped?
 
-**"ANTHROPIC_API_KEY not set" - Test skipped**
+**"OPENAI_API_KEY not set" - Test skipped**
 - This is expected if you haven't added the API key yet
-- Add `ANTHROPIC_API_KEY=your_key` to `.env.local`
+- Add `OPENAI_API_KEY=your_key` to `.env.local`
 - Re-run tests
 
 ### Email Sending Tests Skipped?
@@ -308,7 +309,7 @@ Before going live, run this checklist:
 
 ### 5. Environment
 - [ ] `RESEND_API_KEY` set in production
-- [ ] `ANTHROPIC_API_KEY` set in production
+- [ ] `OPENAI_API_KEY` set in production (GPT-4)
 - [ ] `NEXT_PUBLIC_APP_URL` points to production domain
 
 ---

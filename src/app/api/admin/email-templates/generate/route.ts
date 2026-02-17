@@ -111,12 +111,13 @@ ${variableList}
 7. Add a preview text (1 sentence summary shown in inbox preview)
 8. Focus on value and next steps
 
-**Return Format:** JSON object with this structure:
+**IMPORTANT - Return Format:**
+You MUST return ONLY a valid JSON object with this EXACT structure (no markdown, no code blocks, just raw JSON):
 {
   "subject": "Engaging subject line with {first_name} if appropriate",
   "preview_text": "One sentence preview text",
   "body": "Full HTML email body with inline styles",
-  "variables_used": ["first_name", "dashboard_link", etc.],
+  "variables_used": ["first_name", "dashboard_link", "etc"],
   "reasoning": "Brief explanation of why you made these choices"
 }
 
@@ -132,32 +133,36 @@ ${variableList}
 
 Generate the email now:`;
 
-    // Call Claude API
-    const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
+    // Call OpenAI API
+    const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
-    if (!ANTHROPIC_API_KEY) {
+    if (!OPENAI_API_KEY) {
       return NextResponse.json(
         {
           success: false,
           error: 'Configuration error',
-          message: 'AI service not configured. Please add ANTHROPIC_API_KEY to environment variables.',
+          message: 'AI service not configured. Please add OPENAI_API_KEY to environment variables.',
         } as ApiResponse,
         { status: 500 }
       );
     }
 
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': ANTHROPIC_API_KEY,
-        'anthropic-version': '2023-06-01',
+        'Authorization': `Bearer ${OPENAI_API_KEY}`,
       },
       body: JSON.stringify({
-        model: 'claude-3-5-sonnet-20241022',
+        model: 'gpt-4o',
         max_tokens: 2048,
-        system: systemPrompt,
+        temperature: 0.7,
+        response_format: { type: 'json_object' },
         messages: [
+          {
+            role: 'system',
+            content: systemPrompt,
+          },
           {
             role: 'user',
             content: userPrompt,
@@ -168,7 +173,7 @@ Generate the email now:`;
 
     if (!response.ok) {
       const error = await response.json();
-      console.error('Claude API error:', error);
+      console.error('OpenAI API error:', error);
       return NextResponse.json(
         {
           success: false,
@@ -180,7 +185,7 @@ Generate the email now:`;
     }
 
     const data = await response.json();
-    const aiResponse = data.content[0].text;
+    const aiResponse = data.choices[0].message.content;
 
     // Parse JSON response from Claude
     let generated: AIEmailGenerationResponse;

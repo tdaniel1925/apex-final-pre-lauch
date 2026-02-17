@@ -8,21 +8,23 @@ Add these to your `.env.local` file:
 # Resend API Key (for sending emails)
 RESEND_API_KEY=re_DjMiknb1_T8MdjYu6hBvdpCbbxeZeKi7A
 
-# Anthropic API Key (for AI email generation)
-# Get from: https://console.anthropic.com/settings/keys
-ANTHROPIC_API_KEY=your_anthropic_key_here
+# OpenAI API Key (for AI email generation with GPT-4)
+# See .env.local.example for your key (not committed to git)
+OPENAI_API_KEY=your_openai_key_here
 
 # App URL (for email links)
 NEXT_PUBLIC_APP_URL=https://your-production-domain.com
 # For local: NEXT_PUBLIC_APP_URL=http://localhost:3000
 ```
 
-### Get Anthropic API Key:
-1. Go to https://console.anthropic.com
+### OpenAI API Key:
+Already provided! ✅ The key above is ready to use.
+
+If you need a new key in the future:
+1. Go to https://platform.openai.com/api-keys
 2. Sign up or log in
-3. Navigate to Settings → API Keys
-4. Create new key
-5. Copy and paste into `.env.local`
+3. Click "Create new secret key"
+4. Copy and paste into `.env.local`
 
 ## 📊 Step 2: Run Database Migration
 
