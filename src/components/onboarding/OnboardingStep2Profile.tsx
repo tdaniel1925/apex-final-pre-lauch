@@ -1,7 +1,7 @@
 'use client';
 
 // =============================================
-// Onboarding Step 2: Complete Profile
+// Onboarding Step 2: About You (Bio)
 // =============================================
 
 import { useState } from 'react';
@@ -21,10 +21,35 @@ export default function OnboardingStep2Profile({
   updateDistributor,
 }: Step2Props) {
   const [bio, setBio] = useState(distributor.bio || '');
-  const [phone, setPhone] = useState(distributor.phone || '');
-  const [facebook, setFacebook] = useState(distributor.social_links?.facebook || '');
-  const [linkedin, setLinkedin] = useState(distributor.social_links?.linkedin || '');
   const [isSaving, setIsSaving] = useState(false);
+  const [isRewriting, setIsRewriting] = useState(false);
+
+  const handleAIRewrite = async () => {
+    if (!bio.trim()) {
+      alert('Please write something first, then I can help make it better!');
+      return;
+    }
+
+    setIsRewriting(true);
+    try {
+      const response = await fetch('/api/ai/rewrite-bio', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ bio }),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        if (result.success && result.data?.rewritten) {
+          setBio(result.data.rewritten);
+        }
+      }
+    } catch (error) {
+      console.error('Error rewriting bio:', error);
+    } finally {
+      setIsRewriting(false);
+    }
+  };
 
   const handleSave = async () => {
     setIsSaving(true);
@@ -32,14 +57,7 @@ export default function OnboardingStep2Profile({
       const response = await fetch('/api/profile/update', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          bio,
-          phone,
-          social_links: {
-            facebook,
-            linkedin,
-          },
-        }),
+        body: JSON.stringify({ bio }),
       });
 
       if (response.ok) {
@@ -59,88 +77,57 @@ export default function OnboardingStep2Profile({
   return (
     <div className="max-w-2xl mx-auto w-full">
       {/* Header */}
-      <div className="text-center mb-6 sm:mb-8 px-2">
-        <div className="text-5xl sm:text-6xl mb-3 sm:mb-4">📝</div>
-        <h2 className="text-3xl sm:text-4xl font-bold text-white mb-2 sm:mb-3">Complete Your Profile</h2>
-        <p className="text-white/70 text-base sm:text-lg">
-          Help your team and prospects get to know you better
+      <div className="text-center mb-6 px-2">
+        <div className="text-5xl mb-3">✍️</div>
+        <h2 className="text-3xl sm:text-4xl font-bold text-[#2B4E7E] mb-2">About You</h2>
+        <p className="text-gray-700 text-base sm:text-lg">
+          This will appear on your website unless you toggle it off
         </p>
       </div>
 
       {/* Form Card */}
-      <div className="bg-white rounded-2xl shadow-2xl p-8 space-y-6">
+      <div className="bg-white rounded-2xl shadow-2xl p-6 sm:p-8">
         {/* Bio */}
-        <div>
+        <div className="mb-6">
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            About You (Optional)
+            Tell visitors about yourself (Optional)
           </label>
           <textarea
             value={bio}
             onChange={(e) => setBio(e.target.value)}
-            rows={4}
-            placeholder="Tell us about your background, experience, and what drives you..."
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+            rows={5}
+            placeholder="Example: I'm a licensed insurance professional with 10 years of experience helping families protect what matters most. I'm passionate about building a team of like-minded individuals..."
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2B4E7E] focus:border-transparent resize-none"
           />
-          <p className="mt-1 text-xs text-gray-500">
-            This will appear on your replicated website
-          </p>
-        </div>
 
-        {/* Phone */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Phone Number {phone ? '(Optional)' : ''}
-          </label>
-          <input
-            type="tel"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            placeholder="(555) 123-4567"
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          />
-        </div>
-
-        {/* Social Media */}
-        <div className="border-t border-gray-200 pt-6">
-          <h3 className="text-sm font-medium text-gray-900 mb-4">
-            Social Media Links (Optional)
-          </h3>
-
-          <div className="space-y-4">
-            {/* Facebook */}
-            <div>
-              <label className="block text-sm text-gray-600 mb-1">Facebook</label>
-              <div className="flex items-center gap-2">
-                <span className="text-2xl">📘</span>
-                <input
-                  type="url"
-                  value={facebook}
-                  onChange={(e) => setFacebook(e.target.value)}
-                  placeholder="https://facebook.com/yourusername"
-                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
-              </div>
-            </div>
-
-            {/* LinkedIn */}
-            <div>
-              <label className="block text-sm text-gray-600 mb-1">LinkedIn</label>
-              <div className="flex items-center gap-2">
-                <span className="text-2xl">💼</span>
-                <input
-                  type="url"
-                  value={linkedin}
-                  onChange={(e) => setLinkedin(e.target.value)}
-                  placeholder="https://linkedin.com/in/yourusername"
-                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
-              </div>
-            </div>
+          {/* AI Rewrite Button */}
+          <div className="mt-3 flex items-center justify-between">
+            <p className="text-xs text-gray-500">
+              Write a draft, then use AI to polish it ✨
+            </p>
+            <button
+              type="button"
+              onClick={handleAIRewrite}
+              disabled={isRewriting || !bio.trim()}
+              className="px-4 py-2 bg-purple-600 text-white text-sm font-semibold rounded-lg hover:bg-purple-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {isRewriting ? '✨ Rewriting...' : '✨ AI Rewrite'}
+            </button>
           </div>
         </div>
 
+        {/* Info Box */}
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+          <h4 className="font-semibold text-blue-900 text-sm mb-1">
+            💡 Where does this appear?
+          </h4>
+          <p className="text-xs text-blue-800">
+            Your bio shows on your replicated website to help prospects get to know you. You can hide it or edit it anytime from your profile settings.
+          </p>
+        </div>
+
         {/* Navigation Buttons */}
-        <div className="flex gap-4 pt-6">
+        <div className="flex gap-4">
           <button
             onClick={onBack}
             className="flex-1 px-6 py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:border-gray-400 transition-colors"
@@ -156,8 +143,8 @@ export default function OnboardingStep2Profile({
           </button>
         </div>
 
-        <p className="text-center text-sm text-gray-500 pt-2">
-          You can skip this and complete it later from your profile
+        <p className="text-center text-sm text-gray-500 pt-4">
+          You can skip this and add your bio later from your profile
         </p>
       </div>
     </div>
