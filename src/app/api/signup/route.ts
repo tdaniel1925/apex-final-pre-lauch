@@ -10,6 +10,7 @@ import { createServiceClient } from '@/lib/supabase/service';
 import { signupSchema } from '@/lib/validations/signup';
 import { findMatrixPlacement } from '@/lib/matrix/placement';
 import { checkSlugAvailability } from '@/lib/utils/slug';
+import { enrollInCampaign } from '@/lib/email/campaign-service';
 import type { ApiResponse, Distributor } from '@/lib/types';
 
 /**
@@ -153,7 +154,7 @@ export async function POST(request: NextRequest) {
 
     if (distributorError || !distributor) {
       console.error('Distributor creation error:', distributorError);
-      
+
       // Rollback: Delete auth user if distributor creation failed
       await serviceClient.auth.admin.deleteUser(authData.user.id);
 
@@ -167,7 +168,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Step 8: Return success
+    // Step 8: Enroll in email campaign and send welcome email
+    const enrollResult = await enrollInCampaign(distributor as Distributor);
+
+    if (!enrollResult.success) {
+      // Log error but don't fail signup - email can be sent manually later
+      console.error('Email campaign enrollment failed:', enrollResult.error);
+    }
+
+    // Step 9: Return success
     return NextResponse.json(
       {
         success: true,
