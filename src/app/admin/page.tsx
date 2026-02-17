@@ -20,17 +20,10 @@ export default async function AdminDashboardPage() {
     .from('distributors')
     .select('*', { count: 'exact', head: true });
 
-  // Get active distributors
-  const { count: activeDistributors } = await serviceClient
-    .from('distributors')
-    .select('*', { count: 'exact', head: true })
-    .eq('status', 'active');
-
-  // Get suspended distributors
-  const { count: suspendedDistributors } = await serviceClient
-    .from('distributors')
-    .select('*', { count: 'exact', head: true })
-    .eq('status', 'suspended');
+  // Active/suspended tracking will be added in Stage 2
+  // For now, assume all distributors are active
+  const activeDistributors = totalDistributors;
+  const suspendedDistributors = 0;
 
   // Get new signups today
   const today = new Date();
@@ -76,7 +69,7 @@ export default async function AdminDashboardPage() {
   // Get recent distributors
   const { data: recentDistributors } = await serviceClient
     .from('distributors')
-    .select('id, first_name, last_name, email, slug, created_at, matrix_position, status')
+    .select('id, first_name, last_name, email, slug, created_at, matrix_position')
     .order('created_at', { ascending: false })
     .limit(10);
 
@@ -188,9 +181,6 @@ export default async function AdminDashboardPage() {
                     Position
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Status
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Joined
                   </th>
                 </tr>
@@ -213,19 +203,6 @@ export default async function AdminDashboardPage() {
                       <div className="text-sm font-semibold text-blue-600">
                         #{dist.matrix_position}
                       </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <span
-                        className={`px-2 py-1 text-xs font-semibold rounded-full ${
-                          dist.status === 'active'
-                            ? 'bg-green-100 text-green-800'
-                            : dist.status === 'suspended'
-                            ? 'bg-red-100 text-red-800'
-                            : 'bg-gray-100 text-gray-800'
-                        }`}
-                      >
-                        {dist.status || 'active'}
-                      </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-500">
