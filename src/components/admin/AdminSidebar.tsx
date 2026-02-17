@@ -15,7 +15,7 @@ export default function AdminSidebar() {
       name: 'Dashboard',
       href: '/admin',
       icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -29,7 +29,7 @@ export default function AdminSidebar() {
       name: 'Distributors',
       href: '/admin/distributors',
       icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -43,7 +43,7 @@ export default function AdminSidebar() {
       name: 'Genealogy Tree',
       href: '/admin/genealogy',
       icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -57,7 +57,7 @@ export default function AdminSidebar() {
       name: 'Matrix View',
       href: '/admin/matrix',
       icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -71,7 +71,7 @@ export default function AdminSidebar() {
       name: 'Commissions',
       href: '/admin/commissions',
       icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -85,7 +85,7 @@ export default function AdminSidebar() {
       name: 'Reports',
       href: '/admin/reports',
       icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -99,7 +99,7 @@ export default function AdminSidebar() {
       name: 'Activity Log',
       href: '/admin/activity',
       icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -113,7 +113,7 @@ export default function AdminSidebar() {
       name: 'Settings',
       href: '/admin/settings',
       icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -132,38 +132,40 @@ export default function AdminSidebar() {
   ];
 
   return (
-    <aside className="w-64 bg-gray-900 text-white min-h-screen flex flex-col">
-      <div className="p-6 flex-1">
+    <aside className="w-52 bg-gray-900 text-white min-h-screen flex flex-col">
+      <div className="p-3 flex-1">
         {/* Admin Portal Header */}
-        <div className="mb-8">
-          <div className="text-center mb-4">
+        <div className="mb-4">
+          <div className="text-center mb-2">
             <img
               src="/apex-logo.png"
               alt="Apex Affinity Group"
-              className="h-16 w-auto mx-auto mb-2"
+              className="h-12 w-auto mx-auto mb-1"
             />
           </div>
-          <div className="bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full text-center">
+          <div className="bg-blue-600 text-white text-[10px] font-semibold px-2 py-0.5 rounded-full text-center">
             ADMIN PORTAL
           </div>
         </div>
 
         {/* Navigation */}
-        <nav className="space-y-1">
+        <nav className="space-y-0.5">
           {navigation.map((item) => {
             const isActive = pathname === item.href;
             return (
               <Link
                 key={item.name}
                 href={item.href}
-                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+                className={`flex items-center gap-2 px-3 py-2 rounded-md transition-colors ${
                   isActive
                     ? 'bg-blue-600 text-white'
                     : 'text-gray-300 hover:bg-gray-800 hover:text-white'
                 }`}
               >
-                {item.icon}
-                <span className="font-medium text-sm">{item.name}</span>
+                <div className="w-4 h-4">
+                  {item.icon}
+                </div>
+                <span className="font-medium text-xs">{item.name}</span>
               </Link>
             );
           })}
@@ -171,12 +173,12 @@ export default function AdminSidebar() {
       </div>
 
       {/* Bottom Actions */}
-      <div className="p-6 border-t border-gray-800">
+      <div className="p-3 border-t border-gray-800">
         <Link
           href="/dashboard"
-          className="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-gray-800 hover:text-white rounded-lg transition-colors mb-2"
+          className="flex items-center gap-2 px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-white rounded-md transition-colors mb-1"
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -184,15 +186,15 @@ export default function AdminSidebar() {
               d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
             />
           </svg>
-          <span className="font-medium text-sm">User Dashboard</span>
+          <span className="font-medium text-xs">User Dashboard</span>
         </Link>
 
         <form action="/api/auth/signout" method="post">
           <button
             type="submit"
-            className="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-gray-800 hover:text-white rounded-lg transition-colors w-full"
+            className="flex items-center gap-2 px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-white rounded-md transition-colors w-full"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -200,7 +202,7 @@ export default function AdminSidebar() {
                 d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
               />
             </svg>
-            <span className="font-medium text-sm">Sign Out</span>
+            <span className="font-medium text-xs">Sign Out</span>
           </button>
         </form>
       </div>

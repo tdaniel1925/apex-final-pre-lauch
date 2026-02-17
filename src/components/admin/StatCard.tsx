@@ -36,28 +36,30 @@ export default function StatCard({
   color = 'blue',
 }: StatCardProps) {
   return (
-    <div className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
+    <div className="bg-white rounded-lg shadow p-3 hover:shadow-md transition-shadow">
       <div className="flex items-center justify-between">
         <div className="flex-1">
-          <p className="text-sm text-gray-600 mb-1">{title}</p>
-          <p className="text-3xl font-bold text-gray-900">{value}</p>
-          {subtitle && <p className="text-xs text-gray-500 mt-1">{subtitle}</p>}
+          <p className="text-xs text-gray-600 mb-0.5">{title}</p>
+          <p className="text-xl font-bold text-gray-900">{value}</p>
+          {subtitle && <p className="text-[10px] text-gray-500 mt-0.5">{subtitle}</p>}
           {trend && (
-            <div className="mt-2 flex items-center gap-1">
+            <div className="mt-1 flex items-center gap-1">
               <span
-                className={`text-sm font-semibold ${
+                className={`text-xs font-semibold ${
                   trend.isPositive ? 'text-green-600' : 'text-red-600'
                 }`}
               >
                 {trend.isPositive ? '↑' : '↓'} {Math.abs(trend.value)}%
               </span>
-              <span className="text-xs text-gray-500">{trend.label}</span>
+              <span className="text-[10px] text-gray-500">{trend.label}</span>
             </div>
           )}
         </div>
         {icon && (
-          <div className={`w-12 h-12 rounded-full flex items-center justify-center ${colorClasses[color]}`}>
-            {icon}
+          <div className={`w-9 h-9 rounded-full flex items-center justify-center ${colorClasses[color]}`}>
+            <div className="w-5 h-5">
+              {icon}
+            </div>
           </div>
         )}
       </div>

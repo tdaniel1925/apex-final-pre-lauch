@@ -75,19 +75,19 @@ export default async function AdminDashboardPage() {
     .limit(10);
 
   return (
-    <div className="p-8">
+    <div className="p-4">
       {/* Welcome Header */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">
+      <div className="mb-4">
+        <h1 className="text-2xl font-bold text-gray-900">
           Admin Dashboard
         </h1>
-        <p className="text-gray-600 mt-1">
+        <p className="text-sm text-gray-600 mt-0.5">
           Welcome back, {distributor.first_name}! Here&apos;s your system overview.
         </p>
       </div>
 
       {/* Key Metrics Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
         <StatCard
           title="Total Distributors"
           value={totalDistributors || 0}
@@ -158,10 +158,10 @@ export default async function AdminDashboardPage() {
       </div>
 
       {/* Recent Distributors */}
-      <div className="bg-white rounded-xl shadow-md overflow-hidden mb-8">
-        <div className="p-6 border-b border-gray-200">
-          <h2 className="text-xl font-bold text-gray-900">Recent Signups</h2>
-          <p className="text-sm text-gray-600 mt-1">Latest 10 distributors</p>
+      <div className="bg-white rounded-lg shadow overflow-hidden mb-4">
+        <div className="p-3 border-b border-gray-200">
+          <h2 className="text-lg font-bold text-gray-900">Recent Signups</h2>
+          <p className="text-xs text-gray-600 mt-0.5">Latest 10 distributors</p>
         </div>
 
         {recentDistributors && recentDistributors.length > 0 ? (
@@ -169,19 +169,19 @@ export default async function AdminDashboardPage() {
             <table className="w-full">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
                     Name
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
                     Email
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
                     Username
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
                     Position
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
                     Joined
                   </th>
                 </tr>
@@ -189,24 +189,24 @@ export default async function AdminDashboardPage() {
               <tbody className="bg-white divide-y divide-gray-200">
                 {recentDistributors.map((dist) => (
                   <tr key={dist.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm font-medium text-gray-900">
+                    <td className="px-3 py-2 whitespace-nowrap">
+                      <div className="text-xs font-medium text-gray-900">
                         {dist.first_name} {dist.last_name}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-500">{dist.email}</div>
+                    <td className="px-3 py-2 whitespace-nowrap">
+                      <div className="text-xs text-gray-500">{dist.email}</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900">@{dist.slug}</div>
+                    <td className="px-3 py-2 whitespace-nowrap">
+                      <div className="text-xs text-gray-900">@{dist.slug}</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm font-semibold text-blue-600">
+                    <td className="px-3 py-2 whitespace-nowrap">
+                      <div className="text-xs font-semibold text-blue-600">
                         #{dist.matrix_position}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-500">
+                    <td className="px-3 py-2 whitespace-nowrap">
+                      <div className="text-xs text-gray-500">
                         {new Date(dist.created_at).toLocaleDateString()}
                       </div>
                     </td>
@@ -216,21 +216,21 @@ export default async function AdminDashboardPage() {
             </table>
           </div>
         ) : (
-          <div className="p-12 text-center text-gray-500">
+          <div className="p-6 text-center text-gray-500 text-sm">
             No distributors found
           </div>
         )}
       </div>
 
       {/* Quick Actions */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         <a
           href="/admin/distributors"
-          className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow cursor-pointer"
+          className="bg-white rounded-lg shadow p-4 hover:shadow-lg transition-shadow cursor-pointer"
         >
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -240,19 +240,19 @@ export default async function AdminDashboardPage() {
               </svg>
             </div>
             <div>
-              <h3 className="font-semibold text-gray-900">Manage Distributors</h3>
-              <p className="text-sm text-gray-600">View, edit, and manage users</p>
+              <h3 className="text-sm font-semibold text-gray-900">Manage Distributors</h3>
+              <p className="text-xs text-gray-600">View, edit, and manage users</p>
             </div>
           </div>
         </a>
 
         <a
           href="/admin/genealogy"
-          className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow cursor-pointer"
+          className="bg-white rounded-lg shadow p-4 hover:shadow-lg transition-shadow cursor-pointer"
         >
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -262,19 +262,19 @@ export default async function AdminDashboardPage() {
               </svg>
             </div>
             <div>
-              <h3 className="font-semibold text-gray-900">View Genealogy</h3>
-              <p className="text-sm text-gray-600">Visualize network structure</p>
+              <h3 className="text-sm font-semibold text-gray-900">View Genealogy</h3>
+              <p className="text-xs text-gray-600">Visualize network structure</p>
             </div>
           </div>
         </a>
 
         <a
           href="/admin/reports"
-          className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow cursor-pointer"
+          className="bg-white rounded-lg shadow p-4 hover:shadow-lg transition-shadow cursor-pointer"
         >
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -284,8 +284,8 @@ export default async function AdminDashboardPage() {
               </svg>
             </div>
             <div>
-              <h3 className="font-semibold text-gray-900">Generate Reports</h3>
-              <p className="text-sm text-gray-600">View analytics and insights</p>
+              <h3 className="text-sm font-semibold text-gray-900">Generate Reports</h3>
+              <p className="text-xs text-gray-600">View analytics and insights</p>
             </div>
           </div>
         </a>

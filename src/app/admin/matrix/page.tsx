@@ -27,7 +27,7 @@ export default async function MatrixPage({ searchParams }: PageProps) {
   const levelData = await getMatrixLevel(selectedLevel);
 
   return (
-    <div className="p-8">
+    <div className="p-4">
       <MatrixView stats={stats} initialLevel={selectedLevel} initialLevelData={levelData} />
     </div>
   );
