@@ -43,7 +43,13 @@ export async function createClient() {
         },
         set(name: string, value: string, options: any) {
           try {
-            cookieStore.set({ name, value, ...options });
+            cookieStore.set({
+              name,
+              value,
+              ...options,
+              sameSite: 'lax',
+              secure: process.env.NODE_ENV === 'production',
+            });
           } catch (error) {
             // Server component - cookie setting may fail
             // This is expected and safe to ignore
@@ -51,7 +57,13 @@ export async function createClient() {
         },
         remove(name: string, options: any) {
           try {
-            cookieStore.set({ name, value: '', ...options });
+            cookieStore.set({
+              name,
+              value: '',
+              ...options,
+              sameSite: 'lax',
+              secure: process.env.NODE_ENV === 'production',
+            });
           } catch (error) {
             // Server component - cookie removal may fail
             // This is expected and safe to ignore
