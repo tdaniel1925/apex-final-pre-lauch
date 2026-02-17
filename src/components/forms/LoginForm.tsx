@@ -4,87 +4,44 @@
 // Login Form Component
 // =============================================
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-
-const loginSchema = z.object({
-  email: z
-    .string()
-    .min(1, 'Email is required')
-    .email('Please enter a valid email address')
-    .toLowerCase()
-    .trim(),
-  password: z.string().min(1, 'Password is required'),
-});
-
-type LoginFormData = z.infer<typeof loginSchema>;
+import { useState, useTransition } from 'react';
+import { loginAction } from '@/app/login/actions';
 
 export default function LoginForm() {
-  const router = useRouter();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [isPending, startTransition] = useTransition();
+  const [error, setError] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginFormData>({
-    resolver: zodResolver(loginSchema),
-  });
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setError(null);
 
-  const onSubmit = async (data: LoginFormData) => {
-    setIsSubmitting(true);
-    setSubmitError(null);
+    const formData = new FormData(e.currentTarget);
 
-    try {
-      const response = await fetch('/api/auth/signin', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-
-      const result = await response.json();
-
-      if (!response.ok || !result.success) {
-        setSubmitError(result.message || 'Sign in failed. Please check your credentials.');
-        return;
+    startTransition(async () => {
+      const result = await loginAction(formData);
+      if (result?.error) {
+        setError(result.error);
       }
-
-      // Success - redirect to dashboard
-      router.push('/dashboard');
-      router.refresh();
-    } catch (error) {
-      console.error('Login error:', error);
-      setSubmitError('An unexpected error occurred. Please try again.');
-    } finally {
-      setIsSubmitting(false);
-    }
+    });
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6">
       {/* Email */}
       <div>
         <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
           Email
         </label>
         <input
-          {...register('email')}
           type="email"
           id="email"
+          name="email"
+          required
           autoComplete="email"
-          className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent ${
-            errors.email ? 'border-red-500' : 'border-gray-300'
-          }`}
-          disabled={isSubmitting}
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+          disabled={isPending}
         />
-        {errors.email && (
-          <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
-        )}
       </div>
 
       {/* Password */}
@@ -94,14 +51,13 @@ export default function LoginForm() {
         </label>
         <div className="relative">
           <input
-            {...register('password')}
             type={showPassword ? 'text' : 'password'}
             id="password"
+            name="password"
+            required
             autoComplete="current-password"
-            className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent ${
-              errors.password ? 'border-red-500' : 'border-gray-300'
-            }`}
-            disabled={isSubmitting}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+            disabled={isPending}
           />
           <button
             type="button"
@@ -111,9 +67,6 @@ export default function LoginForm() {
             {showPassword ? 'Hide' : 'Show'}
           </button>
         </div>
-        {errors.password && (
-          <p className="mt-1 text-sm text-red-600">{errors.password.message}</p>
-        )}
       </div>
 
       {/* Forgot Password Link */}
@@ -127,19 +80,19 @@ export default function LoginForm() {
       </div>
 
       {/* Submit Error */}
-      {submitError && (
+      {error && (
         <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-          <p className="text-sm text-red-800">{submitError}</p>
+          <p className="text-sm text-red-800">{error}</p>
         </div>
       )}
 
       {/* Submit Button */}
       <button
         type="submit"
-        disabled={isSubmitting}
+        disabled={isPending}
         className="w-full py-3 px-6 bg-gradient-to-r from-[#2B4C7E] to-[#1a2c4e] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        {isSubmitting ? (
+        {isPending ? (
           <span className="flex items-center justify-center gap-2">
             <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
             Signing In...
