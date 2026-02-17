@@ -62,7 +62,7 @@ export default function Sidebar() {
   return (
     <aside className="w-64 bg-white border-r border-gray-200 min-h-screen">
       <div className="p-6">
-        <img src="/apex-logo.png" alt="Apex Affinity Group" className="h-12 w-auto mb-8" />
+        <img src="/apex-logo.png" alt="Apex Affinity Group" className="h-20 w-auto mx-auto mb-8" />
 
         <nav className="space-y-1">
           {navigation.map((item) => {
