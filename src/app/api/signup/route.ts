@@ -6,6 +6,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
+import { createServiceClient } from '@/lib/supabase/service';
 import { signupSchema } from '@/lib/validations/signup';
 import { findMatrixPlacement } from '@/lib/matrix/placement';
 import { checkSlugAvailability } from '@/lib/utils/slug';
@@ -125,8 +126,9 @@ export async function POST(request: NextRequest) {
     // Step 6: Find matrix placement
     const placement = await findMatrixPlacement(sponsorId);
 
-    // Step 7: Create distributor record
-    const { data: distributor, error: distributorError } = await supabase
+    // Step 7: Create distributor record (use service client to bypass RLS)
+    const serviceClient = createServiceClient();
+    const { data: distributor, error: distributorError } = await serviceClient
       .from('distributors')
       .insert({
         auth_user_id: authData.user.id,
@@ -150,7 +152,7 @@ export async function POST(request: NextRequest) {
       console.error('Distributor creation error:', distributorError);
       
       // Rollback: Delete auth user if distributor creation failed
-      await supabase.auth.admin.deleteUser(authData.user.id);
+      await serviceClient.auth.admin.deleteUser(authData.user.id);
 
       return NextResponse.json(
         {
