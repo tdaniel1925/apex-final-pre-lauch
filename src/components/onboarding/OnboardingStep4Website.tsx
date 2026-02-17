@@ -31,98 +31,71 @@ export default function OnboardingStep4Website({
   return (
     <div className="max-w-3xl mx-auto w-full">
       {/* Header */}
-      <div className="text-center mb-6 sm:mb-8 px-2">
-        <div className="text-5xl sm:text-6xl mb-3 sm:mb-4">🌐</div>
-        <h2 className="text-3xl sm:text-4xl font-bold text-white mb-2 sm:mb-3">Your Personal Website</h2>
-        <p className="text-white/70 text-base sm:text-lg">
-          Every member gets their own branded landing page to share with prospects
+      <div className="text-center mb-4 px-2">
+        <div className="text-5xl mb-2">🌐</div>
+        <h2 className="text-3xl sm:text-4xl font-bold text-[#2B4E7E] mb-2">Your Personal Website</h2>
+        <p className="text-gray-700 text-base sm:text-lg">
+          Share this link to invite prospects to join your team
         </p>
       </div>
 
       {/* Content Card */}
-      <div className="bg-white rounded-2xl shadow-2xl p-8">
+      <div className="bg-white rounded-2xl shadow-2xl p-6 sm:p-8">
         {/* Website URL Display */}
-        <div className="mb-6 sm:mb-8">
-          <label className="block text-sm font-medium text-gray-700 mb-3">
-            Your Unique Website URL:
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Your Website Link:
           </label>
-          <div className="flex flex-col sm:flex-row gap-3">
-            <div className="flex-1 px-3 sm:px-4 py-3 bg-gray-50 border-2 border-blue-500 rounded-lg font-mono text-sm sm:text-base text-blue-600 truncate">
+          <div className="flex flex-col sm:flex-row gap-2">
+            <div className="flex-1 px-3 py-2 bg-gray-50 border-2 border-[#2B4E7E] rounded-lg font-mono text-sm text-[#2B4E7E] truncate">
               {websiteUrl}
             </div>
             <button
               onClick={handleCopy}
-              className="px-6 py-3 bg-[#2B4E7E] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity whitespace-nowrap"
+              className="px-6 py-2 bg-[#2B4E7E] text-white font-semibold rounded-lg hover:bg-[#1a3a5f] transition-colors whitespace-nowrap"
             >
               {copied ? '✓ Copied!' : 'Copy Link'}
             </button>
           </div>
         </div>
 
-        {/* Preview Section */}
-        <div className="mb-8">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">
-            Preview Your Website:
-          </h3>
-          <div className="border-2 border-gray-300 rounded-lg overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 p-8 min-h-[300px]">
-            {/* Mini Website Preview */}
-            <div className="max-w-md mx-auto text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-[#2B4E7E] to-[#DC2626] rounded-full mx-auto mb-4 flex items-center justify-center text-2xl text-white font-bold">
-                {distributor.first_name[0]}{distributor.last_name[0]}
-              </div>
-              <h4 className="text-2xl font-bold text-gray-900 mb-2">
-                Join {distributor.first_name}'s Team
-              </h4>
-              <p className="text-gray-600 mb-4">at Apex Affinity Group</p>
-              <div className="inline-block px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
-                {distributor.licensing_status === 'licensed' ? '📋 Licensed Agent' : '🤝 Distributor'}
-              </div>
-              <div className="mt-6 space-y-2">
-                <div className="h-10 bg-blue-600 rounded-lg" />
-                <div className="h-10 bg-white border-2 border-blue-600 rounded-lg" />
-              </div>
-              <p className="mt-6 text-xs text-gray-500">
-                ↑ This is a simplified preview. Click "Visit Website" to see the full page.
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-4 text-center">
+        {/* Live Preview */}
+        <div className="mb-4">
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="text-sm font-semibold text-gray-900">Preview:</h3>
             <a
               href={websiteUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium"
+              className="text-xs text-[#2B4E7E] hover:underline font-medium"
             >
-              Visit Your Full Website
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
+              Visit Full Site →
             </a>
+          </div>
+
+          {/* Actual iframe preview */}
+          <div className="border-2 border-gray-300 rounded-lg overflow-hidden bg-white">
+            <iframe
+              src={websiteUrl}
+              className="w-full h-[400px]"
+              title="Website Preview"
+              sandbox="allow-same-origin"
+            />
           </div>
         </div>
 
-        {/* How to Use */}
-        <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
-          <h4 className="font-semibold text-green-900 mb-3">💡 How to Use Your Website:</h4>
-          <ul className="text-sm text-green-800 space-y-2">
-            <li className="flex items-start gap-2">
-              <span className="font-bold">1.</span>
-              <span>Share this link on social media, email, or text messages</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="font-bold">2.</span>
-              <span>When prospects visit and sign up, they're automatically placed under you</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="font-bold">3.</span>
-              <span>Track your referrals and team growth in your dashboard</span>
-            </li>
+        {/* Quick Tips */}
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+          <h4 className="font-semibold text-blue-900 text-sm mb-2">💡 Quick Tips:</h4>
+          <ul className="text-xs text-blue-800 space-y-1">
+            <li>• Share your link on social media and email</li>
+            <li>• New signups are automatically placed in your team</li>
+            <li>• Track your growth in the dashboard</li>
           </ul>
         </div>
 
         {/* Navigation Buttons */}
-        <div className="flex gap-4 pt-6 border-t border-gray-200">
+        <div className="flex gap-4">
           <button
             onClick={onBack}
             className="flex-1 px-6 py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:border-gray-400 transition-colors"
@@ -131,7 +104,7 @@ export default function OnboardingStep4Website({
           </button>
           <button
             onClick={onNext}
-            className="flex-1 px-6 py-3 bg-[#2B4E7E] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity"
+            className="flex-1 px-6 py-3 bg-[#2B4E7E] text-white font-semibold rounded-lg hover:bg-[#1a3a5f] transition-colors"
           >
             Continue →
           </button>
