@@ -9,7 +9,6 @@ import { useRouter } from 'next/navigation';
 import type { Distributor } from '@/lib/types';
 import OnboardingStep1Welcome from './OnboardingStep1Welcome';
 import OnboardingStep2Profile from './OnboardingStep2Profile';
-import OnboardingStep3Licensing from './OnboardingStep3Licensing';
 import OnboardingStep4Website from './OnboardingStep4Website';
 import OnboardingStep5Team from './OnboardingStep5Team';
 import OnboardingStep6NextSteps from './OnboardingStep6NextSteps';
@@ -25,7 +24,7 @@ export default function OnboardingModal({ distributor, onComplete }: OnboardingM
   const [isSaving, setIsSaving] = useState(false);
   const [distributorData, setDistributorData] = useState(distributor);
 
-  const totalSteps = 6;
+  const totalSteps = 5;
 
   // Save progress to database
   const saveProgress = async (step: number, completed: boolean = false) => {
@@ -115,12 +114,10 @@ export default function OnboardingModal({ distributor, onComplete }: OnboardingM
       case 2:
         return <OnboardingStep2Profile {...stepProps} />;
       case 3:
-        return <OnboardingStep3Licensing {...stepProps} />;
-      case 4:
         return <OnboardingStep4Website {...stepProps} />;
-      case 5:
+      case 4:
         return <OnboardingStep5Team {...stepProps} />;
-      case 6:
+      case 5:
         return <OnboardingStep6NextSteps {...stepProps} />;
       default:
         return <OnboardingStep1Welcome {...stepProps} />;
