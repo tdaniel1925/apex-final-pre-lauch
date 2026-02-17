@@ -12,6 +12,7 @@ import SponsorLineage from './SponsorLineage';
 import PersonalDownline from './PersonalDownline';
 import MatrixChildren from './MatrixChildren';
 import TeamStatistics from './TeamStatistics';
+import MatrixPositionManager from './MatrixPositionManager';
 
 interface DistributorDetailViewProps {
   distributor: Distributor;
@@ -402,28 +403,8 @@ export default function DistributorDetailView({
             </div>
           </div>
 
-          {/* Matrix Info */}
-          <div className="bg-white rounded-lg shadow p-3">
-            <h2 className="text-lg font-bold text-gray-900 mb-4">Matrix Information</h2>
-            <div className="space-y-3">
-              <div>
-                <p className="text-sm text-gray-600">Position</p>
-                <p className="text-lg font-semibold text-blue-600">
-                  #{initialDistributor.matrix_position || 'N/A'}
-                </p>
-              </div>
-              <div>
-                <p className="text-sm text-gray-600">Level</p>
-                <p className="text-lg font-semibold">{initialDistributor.matrix_depth || 0}</p>
-              </div>
-              <div>
-                <p className="text-sm text-gray-600">Master Account</p>
-                <p className="text-lg font-semibold">
-                  {initialDistributor.is_master ? 'Yes' : 'No'}
-                </p>
-              </div>
-            </div>
-          </div>
+          {/* Matrix Position Management */}
+          <MatrixPositionManager distributor={initialDistributor} />
 
           {/* Metadata */}
           <div className="bg-white rounded-lg shadow p-3">
