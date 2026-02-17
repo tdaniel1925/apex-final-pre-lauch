@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import type { Distributor } from '@/lib/types';
 import SponsorLineage from './SponsorLineage';
+import PersonalDownline from './PersonalDownline';
 
 interface DistributorDetailViewProps {
   distributor: Distributor;
@@ -340,6 +341,9 @@ export default function DistributorDetailView({
             distributorId={initialDistributor.id}
             distributorName={`${initialDistributor.first_name} ${initialDistributor.last_name}`}
           />
+
+          {/* Personal Downline */}
+          <PersonalDownline distributorId={initialDistributor.id} />
 
           {/* Status */}
           <div className="bg-white rounded-lg shadow p-3">
