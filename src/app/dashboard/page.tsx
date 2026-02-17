@@ -5,6 +5,7 @@
 
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
+import { createServiceClient } from '@/lib/supabase/service';
 import type { Distributor } from '@/lib/types';
 
 export const metadata = {
@@ -18,14 +19,15 @@ export default async function DashboardPage() {
   // Check if user is authenticated
   const {
     data: { user },
-  } = await supabase.auth.getUser();
+  } = await serviceClient.auth.getUser();
 
   if (!user) {
     redirect('/login');
   }
 
-  // Get distributor data
-  const { data: distributor, error } = await supabase
+  // Get distributor data (use service client to bypass RLS)
+  const serviceClient = createServiceClient();
+  const { data: distributor, error } = await serviceClient
     .from('distributors')
     .select('*')
     .eq('auth_user_id', user.id)
@@ -41,7 +43,7 @@ export default async function DashboardPage() {
   // Get matrix parent info
   let parentName = 'Direct under Master';
   if (dist.matrix_parent_id) {
-    const { data: parent } = await supabase
+    const { data: parent } = await serviceClient
       .from('distributors')
       .select('first_name, last_name, slug')
       .eq('id', dist.matrix_parent_id)
@@ -55,7 +57,7 @@ export default async function DashboardPage() {
   // Get sponsor info
   let sponsorName = 'None';
   if (dist.sponsor_id) {
-    const { data: sponsor } = await supabase
+    const { data: sponsor } = await serviceClient
       .from('distributors')
       .select('first_name, last_name, slug')
       .eq('id', dist.sponsor_id)
@@ -67,13 +69,13 @@ export default async function DashboardPage() {
   }
 
   // Count direct referrals
-  const { count: referralCount } = await supabase
+  const { count: referralCount } = await serviceClient
     .from('distributors')
     .select('*', { count: 'exact', head: true })
     .eq('sponsor_id', dist.id);
 
   // Count matrix children
-  const { count: childrenCount } = await supabase
+  const { count: childrenCount } = await serviceClient
     .from('distributors')
     .select('*', { count: 'exact', head: true })
     .eq('matrix_parent_id', dist.id);
