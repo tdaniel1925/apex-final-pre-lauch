@@ -1,25 +1,25 @@
 'use client';
 
 // =============================================
-// Onboarding Step 2: About You (Bio)
+// Onboarding Step 3: About You (Bio)
 // =============================================
 
 import { useState } from 'react';
 import type { Distributor } from '@/lib/types';
 
-interface Step2Props {
+interface Step3Props {
   distributor: Distributor;
   onNext: () => void;
   onBack: () => void;
   updateDistributor: (updates: Partial<Distributor>) => void;
 }
 
-export default function OnboardingStep2Profile({
+export default function OnboardingStep3Profile({
   distributor,
   onNext,
   onBack,
   updateDistributor,
-}: Step2Props) {
+}: Step3Props) {
   const [bio, setBio] = useState(distributor.bio || '');
   const [isSaving, setIsSaving] = useState(false);
   const [isRewriting, setIsRewriting] = useState(false);
@@ -78,7 +78,6 @@ export default function OnboardingStep2Profile({
     <div className="max-w-2xl mx-auto w-full">
       {/* Header */}
       <div className="text-center mb-6 px-2">
-        <div className="text-5xl mb-3">✍️</div>
         <h2 className="text-3xl sm:text-4xl font-bold text-[#2B4E7E] mb-2">About You</h2>
         <p className="text-gray-700 text-base sm:text-lg">
           This will appear on your website unless you toggle it off

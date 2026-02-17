@@ -1,25 +1,25 @@
 'use client';
 
 // =============================================
-// Onboarding Step 5: Build Your Team
+// Onboarding Step 4: Build Your Team
 // =============================================
 
 import { useState } from 'react';
 import type { Distributor } from '@/lib/types';
 
-interface Step5Props {
+interface Step4Props {
   distributor: Distributor;
   onNext: () => void;
   onBack: () => void;
   updateDistributor: (updates: Partial<Distributor>) => void;
 }
 
-export default function OnboardingStep5Team({ distributor, onNext, onBack }: Step5Props) {
+export default function OnboardingStep4Team({ distributor, onNext, onBack }: Step4Props) {
   const [copied, setCopied] = useState(false);
-  const referralUrl = `${process.env.NEXT_PUBLIC_SITE_URL || 'https://theapexway.net'}/signup?ref=${distributor.slug}`;
+  const websiteUrl = `${process.env.NEXT_PUBLIC_SITE_URL || 'https://theapexway.net'}/${distributor.slug}`;
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(referralUrl);
+    navigator.clipboard.writeText(websiteUrl);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -28,23 +28,22 @@ export default function OnboardingStep5Team({ distributor, onNext, onBack }: Ste
     <div className="max-w-3xl mx-auto w-full">
       {/* Header */}
       <div className="text-center mb-6 sm:mb-8 px-2">
-        <div className="text-5xl sm:text-6xl mb-3 sm:mb-4">👥</div>
-        <h2 className="text-3xl sm:text-4xl font-bold text-white mb-2 sm:mb-3">Build Your Team</h2>
-        <p className="text-white/70 text-base sm:text-lg">
-          Your success grows with your team's success - let's get you started
+        <h2 className="text-3xl sm:text-4xl font-bold text-[#2B4E7E] mb-2 sm:mb-3">Your Personal Website</h2>
+        <p className="text-gray-700 text-base sm:text-lg">
+          Share this link to invite prospects to join your team
         </p>
       </div>
 
       {/* Content Card */}
       <div className="bg-white rounded-2xl shadow-2xl p-8">
-        {/* Referral Link Section */}
+        {/* Website Link Section */}
         <div className="mb-6 sm:mb-8">
           <h3 className="text-lg font-semibold text-gray-900 mb-3">
-            Your Referral Link:
+            Your Website Link:
           </h3>
           <div className="flex flex-col sm:flex-row gap-3 mb-2">
-            <div className="flex-1 px-3 sm:px-4 py-3 bg-gray-50 border-2 border-green-500 rounded-lg font-mono text-xs sm:text-sm text-green-600 truncate">
-              {referralUrl}
+            <div className="flex-1 px-3 sm:px-4 py-3 bg-gray-50 border-2 border-[#2B4E7E] rounded-lg font-mono text-xs sm:text-sm text-[#2B4E7E] truncate">
+              {websiteUrl}
             </div>
             <button
               onClick={handleCopy}
@@ -54,48 +53,80 @@ export default function OnboardingStep5Team({ distributor, onNext, onBack }: Ste
             </button>
           </div>
           <p className="text-sm text-gray-600">
-            When someone signs up using this link, they're automatically placed in your team
+            When someone signs up through your website, they're automatically placed in your team
           </p>
         </div>
 
         {/* Matrix Visualization */}
         <div className="mb-8">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">
-            How the Matrix System Works:
+            How the 5×7 Forced Matrix Works:
           </h3>
-          <div className="bg-gradient-to-br from-blue-50 to-green-50 border-2 border-blue-200 rounded-lg p-6">
-            {/* Simple Matrix Diagram */}
-            <div className="flex flex-col items-center">
+          <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-6">
+            {/* 5x7 Matrix Diagram */}
+            <div className="flex flex-col items-center mb-6">
               {/* Level 1 - You */}
-              <div className="mb-4">
-                <div className="w-20 h-20 bg-gradient-to-br from-[#2B4E7E] to-[#DC2626] rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
+              <div className="mb-3">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-[#2B4E7E] rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-lg shadow-lg">
                   YOU
                 </div>
+                <div className="text-xs text-center text-gray-600 mt-1">Level 1</div>
               </div>
 
-              {/* Level 2 - Direct */}
-              <div className="flex gap-4 mb-4">
-                {[1, 2, 3].map((i) => (
+              {/* Level 2 - 5 positions */}
+              <div className="flex gap-2 sm:gap-3 mb-3">
+                {[1, 2, 3, 4, 5].map((i) => (
                   <div key={i} className="flex flex-col items-center">
-                    <div className="w-2 h-8 bg-blue-300" />
-                    <div className="w-16 h-16 bg-white border-2 border-dashed border-gray-400 rounded-full flex items-center justify-center text-gray-400 font-medium shadow">
-                      Empty
-                    </div>
+                    <div className="w-1 h-4 bg-blue-300" />
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white border-2 border-dashed border-[#2B4E7E] rounded-full flex items-center justify-center text-gray-400 text-xs font-medium shadow" />
                   </div>
                 ))}
               </div>
 
-              {/* Level 3 - Team */}
-              <div className="flex gap-2">
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => (
-                  <div key={i} className="w-8 h-8 bg-gray-200 rounded-full" />
+              {/* Level 3 - 25 positions (showing sample) */}
+              <div className="flex gap-1 mb-3">
+                {[...Array(15)].map((_, i) => (
+                  <div key={i} className="w-6 h-6 sm:w-7 sm:h-7 bg-gray-200 rounded-full" />
+                ))}
+                <div className="w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center text-gray-500 font-bold">...</div>
+              </div>
+
+              {/* Levels 4-7 represented as rows */}
+              <div className="space-y-2 w-full">
+                {[
+                  { level: 4, count: 125 },
+                  { level: 5, count: 625 },
+                  { level: 6, count: 3125 },
+                  { level: 7, count: 15625 },
+                ].map((item) => (
+                  <div key={item.level} className="flex items-center justify-between bg-white rounded px-3 py-1.5 text-xs">
+                    <span className="text-gray-600">Level {item.level}</span>
+                    <span className="font-semibold text-[#2B4E7E]">{item.count.toLocaleString()} positions</span>
+                  </div>
                 ))}
               </div>
             </div>
 
-            <p className="text-sm text-gray-700 text-center mt-4">
-              Each person can have up to 3 direct members, creating exponential growth potential
-            </p>
+            <div className="space-y-3 text-sm">
+              <div className="flex items-start gap-2">
+                <div className="text-lg">✅</div>
+                <p className="text-gray-700">
+                  <strong className="text-[#2B4E7E]">Unlimited Direct Enrollees:</strong> You can personally recruit as many people as you want
+                </p>
+              </div>
+              <div className="flex items-start gap-2">
+                <div className="text-lg">🎁</div>
+                <p className="text-gray-700">
+                  <strong className="text-[#2B4E7E]">Spillover Benefit:</strong> When your upline sponsors more than 5 people, the extras automatically "spill over" into your matrix
+                </p>
+              </div>
+              <div className="flex items-start gap-2">
+                <div className="text-lg">💪</div>
+                <p className="text-gray-700">
+                  <strong className="text-[#2B4E7E]">Team Effort Pays Off:</strong> Your upline's hard work helps fill your team, and your work helps fill your downline's teams
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -120,7 +151,7 @@ export default function OnboardingStep5Team({ distributor, onNext, onBack }: Ste
               <div>
                 <h4 className="font-semibold text-green-900">Share Your Story</h4>
                 <p className="text-sm text-green-800">
-                  Tell them why you joined and share your website or referral link
+                  Tell them why you joined and share your personal website link
                 </p>
               </div>
             </div>
@@ -138,7 +169,7 @@ export default function OnboardingStep5Team({ distributor, onNext, onBack }: Ste
         </div>
 
         {/* Earnings Potential */}
-        <div className="bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-300 rounded-lg p-6 mb-6">
+        <div className="bg-yellow-50 border-2 border-yellow-300 rounded-lg p-6 mb-6">
           <div className="flex items-center gap-3 mb-2">
             <div className="text-3xl">💰</div>
             <h4 className="text-lg font-bold text-orange-900">Earnings Potential</h4>

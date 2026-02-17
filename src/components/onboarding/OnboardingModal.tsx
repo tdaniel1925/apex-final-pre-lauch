@@ -8,10 +8,10 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import type { Distributor } from '@/lib/types';
 import OnboardingStep1Welcome from './OnboardingStep1Welcome';
-import OnboardingStep2Profile from './OnboardingStep2Profile';
-import OnboardingStep4Website from './OnboardingStep4Website';
-import OnboardingStep5Team from './OnboardingStep5Team';
-import OnboardingStep6NextSteps from './OnboardingStep6NextSteps';
+import OnboardingStep2Photo from './OnboardingStep2Photo';
+import OnboardingStep3Profile from './OnboardingStep3Profile';
+import OnboardingStep4Team from './OnboardingStep4Team';
+import OnboardingStep5NextSteps from './OnboardingStep5NextSteps';
 
 interface OnboardingModalProps {
   distributor: Distributor;
@@ -112,13 +112,13 @@ export default function OnboardingModal({ distributor, onComplete }: OnboardingM
       case 1:
         return <OnboardingStep1Welcome {...stepProps} />;
       case 2:
-        return <OnboardingStep2Profile {...stepProps} />;
+        return <OnboardingStep2Photo {...stepProps} />;
       case 3:
-        return <OnboardingStep4Website {...stepProps} />;
+        return <OnboardingStep3Profile {...stepProps} />;
       case 4:
-        return <OnboardingStep5Team {...stepProps} />;
+        return <OnboardingStep4Team {...stepProps} />;
       case 5:
-        return <OnboardingStep6NextSteps {...stepProps} />;
+        return <OnboardingStep5NextSteps {...stepProps} />;
       default:
         return <OnboardingStep1Welcome {...stepProps} />;
     }

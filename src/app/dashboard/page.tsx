@@ -91,7 +91,7 @@ export default async function DashboardPage() {
   const matrixChildren = (matrixChildrenData || []) as Distributor[];
   const childrenCount = matrixChildren.length;
 
-  const referralLink = `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3050'}/signup?ref=${dist.slug}`;
+  const referralLink = `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3050'}/${dist.slug}`;
 
   return (
     <DashboardClient distributor={dist}>
@@ -99,7 +99,7 @@ export default async function DashboardPage() {
       {/* Welcome Header */}
       <div className="mb-4">
         <h1 className="text-2xl font-bold text-gray-900">
-          Welcome back, {dist.first_name}!
+          It's good to see you, {dist.first_name}!
         </h1>
         <p className="text-sm text-gray-600 mt-1">@{dist.slug}</p>
       </div>

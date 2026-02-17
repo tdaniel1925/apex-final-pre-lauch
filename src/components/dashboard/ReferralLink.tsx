@@ -20,10 +20,10 @@ export default function ReferralLink({ referralLink }: ReferralLinkProps) {
   };
 
   return (
-    <div className="bg-gradient-to-r from-[#2B4C7E] to-[#1a2c4e] rounded-xl shadow-md p-6 text-white">
-      <h2 className="text-xl font-bold mb-4">Your Referral Link</h2>
+    <div className="bg-[#2B4E7E] rounded-xl shadow-md p-6 text-white">
+      <h2 className="text-xl font-bold mb-4">Your Replicated Site</h2>
       <p className="text-sm opacity-90 mb-4">
-        Share this link to invite new distributors to join your team
+        Share this link to invite prospects to join your team
       </p>
       <div className="flex gap-2">
         <input
