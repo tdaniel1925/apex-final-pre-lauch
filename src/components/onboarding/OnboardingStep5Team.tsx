@@ -27,10 +27,10 @@ export default function OnboardingStep5Team({ distributor, onNext, onBack }: Ste
   return (
     <div className="max-w-3xl mx-auto w-full">
       {/* Header */}
-      <div className="text-center mb-8">
-        <div className="text-6xl mb-4">👥</div>
-        <h2 className="text-4xl font-bold text-white mb-3">Build Your Team</h2>
-        <p className="text-white/70 text-lg">
+      <div className="text-center mb-6 sm:mb-8 px-2">
+        <div className="text-5xl sm:text-6xl mb-3 sm:mb-4">👥</div>
+        <h2 className="text-3xl sm:text-4xl font-bold text-white mb-2 sm:mb-3">Build Your Team</h2>
+        <p className="text-white/70 text-base sm:text-lg">
           Your success grows with your team's success - let's get you started
         </p>
       </div>
@@ -38,19 +38,19 @@ export default function OnboardingStep5Team({ distributor, onNext, onBack }: Ste
       {/* Content Card */}
       <div className="bg-white rounded-2xl shadow-2xl p-8">
         {/* Referral Link Section */}
-        <div className="mb-8">
+        <div className="mb-6 sm:mb-8">
           <h3 className="text-lg font-semibold text-gray-900 mb-3">
             Your Referral Link:
           </h3>
-          <div className="flex gap-3 mb-2">
-            <div className="flex-1 px-4 py-3 bg-gray-50 border-2 border-green-500 rounded-lg font-mono text-sm text-green-600 truncate">
+          <div className="flex flex-col sm:flex-row gap-3 mb-2">
+            <div className="flex-1 px-3 sm:px-4 py-3 bg-gray-50 border-2 border-green-500 rounded-lg font-mono text-xs sm:text-sm text-green-600 truncate">
               {referralUrl}
             </div>
             <button
               onClick={handleCopy}
-              className="px-6 py-3 bg-gradient-to-r from-blue-500 to-green-500 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity"
+              className="px-6 py-3 bg-gradient-to-r from-blue-500 to-green-500 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity whitespace-nowrap"
             >
-              {copied ? '✓ Copied!' : 'Copy'}
+              {copied ? '✓ Copied!' : 'Copy Link'}
             </button>
           </div>
           <p className="text-sm text-gray-600">

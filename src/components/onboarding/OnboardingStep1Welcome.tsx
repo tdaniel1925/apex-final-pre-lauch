@@ -15,18 +15,18 @@ interface Step1Props {
 
 export default function OnboardingStep1Welcome({ distributor, onNext }: Step1Props) {
   return (
-    <div className="max-w-2xl mx-auto text-center">
+    <div className="max-w-2xl mx-auto text-center w-full">
       {/* Celebration Icon */}
-      <div className="mb-8 animate-bounce">
-        <div className="text-8xl">🎉</div>
+      <div className="mb-6 sm:mb-8 animate-bounce">
+        <div className="text-6xl sm:text-8xl">🎉</div>
       </div>
 
       {/* Welcome Message */}
-      <h1 className="text-5xl font-bold text-white mb-4">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4 px-2">
         Welcome to Apex Affinity Group, {distributor.first_name}!
       </h1>
 
-      <p className="text-xl text-white/80 mb-8">
+      <p className="text-base sm:text-lg md:text-xl text-white/80 mb-6 sm:mb-8 px-2">
         You've just joined the premier insurance marketing organization. Let's get your account
         set up so you can start building your business right away.
       </p>

@@ -128,8 +128,8 @@ export default function OnboardingModal({ distributor, onComplete }: OnboardingM
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-gradient-to-br from-[#2B4C7E] via-[#1a2c4e] to-gray-900 overflow-y-auto">
-      {/* Progress Bar */}
+    <div className="fixed inset-0 z-50 bg-gradient-to-br from-[#2B4C7E] via-[#1a2c4e] to-gray-900">
+      {/* Progress Bar - Fixed at top */}
       <div className="fixed top-0 left-0 right-0 h-2 bg-gray-800 z-50">
         <div
           className="h-full bg-gradient-to-r from-blue-500 to-green-500 transition-all duration-500"
@@ -137,25 +137,28 @@ export default function OnboardingModal({ distributor, onComplete }: OnboardingM
         />
       </div>
 
-      {/* Skip Button */}
-      <div className="absolute top-6 right-6 z-50">
+      {/* Header Bar - Fixed at top */}
+      <div className="fixed top-2 left-0 right-0 z-40 flex items-center justify-between px-4 sm:px-6 py-4">
+        {/* Step Indicator */}
+        <div className="text-white/70 text-xs sm:text-sm font-medium">
+          Step {currentStep} of {totalSteps}
+        </div>
+
+        {/* Skip Button */}
         <button
           onClick={handleSkip}
           disabled={isSaving}
-          className="text-white/70 hover:text-white text-sm font-medium transition-colors"
+          className="text-white/70 hover:text-white text-xs sm:text-sm font-medium transition-colors"
         >
           Skip for now
         </button>
       </div>
 
-      {/* Step Indicator */}
-      <div className="absolute top-6 left-6 z-50 text-white/70 text-sm font-medium">
-        Step {currentStep} of {totalSteps}
-      </div>
-
-      {/* Step Content */}
-      <div className="min-h-screen flex items-center justify-center p-4">
-        {renderStep()}
+      {/* Scrollable Content Area */}
+      <div className="h-full w-full overflow-y-auto pt-16 pb-8 px-4">
+        <div className="flex items-center justify-center min-h-[calc(100vh-8rem)]">
+          {renderStep()}
+        </div>
       </div>
     </div>
   );

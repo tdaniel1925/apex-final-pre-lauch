@@ -24,12 +24,12 @@ export default function OnboardingStep3Licensing({
   return (
     <div className="max-w-2xl mx-auto w-full">
       {/* Header */}
-      <div className="text-center mb-8">
-        <div className="text-6xl mb-4">{isLicensed ? '📋' : '🤝'}</div>
-        <h2 className="text-4xl font-bold text-white mb-3">
+      <div className="text-center mb-6 sm:mb-8 px-2">
+        <div className="text-5xl sm:text-6xl mb-3 sm:mb-4">{isLicensed ? '📋' : '🤝'}</div>
+        <h2 className="text-3xl sm:text-4xl font-bold text-white mb-2 sm:mb-3">
           {isLicensed ? 'License Verification' : 'Your Role at Apex'}
         </h2>
-        <p className="text-white/70 text-lg">
+        <p className="text-white/70 text-base sm:text-lg">
           {isLicensed
             ? 'As a licensed agent, you have access to advanced features'
             : 'As a non-licensed distributor, you focus on team building and referrals'}

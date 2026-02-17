@@ -31,10 +31,10 @@ export default function OnboardingStep4Website({
   return (
     <div className="max-w-3xl mx-auto w-full">
       {/* Header */}
-      <div className="text-center mb-8">
-        <div className="text-6xl mb-4">🌐</div>
-        <h2 className="text-4xl font-bold text-white mb-3">Your Personal Website</h2>
-        <p className="text-white/70 text-lg">
+      <div className="text-center mb-6 sm:mb-8 px-2">
+        <div className="text-5xl sm:text-6xl mb-3 sm:mb-4">🌐</div>
+        <h2 className="text-3xl sm:text-4xl font-bold text-white mb-2 sm:mb-3">Your Personal Website</h2>
+        <p className="text-white/70 text-base sm:text-lg">
           Every member gets their own branded landing page to share with prospects
         </p>
       </div>
@@ -42,19 +42,19 @@ export default function OnboardingStep4Website({
       {/* Content Card */}
       <div className="bg-white rounded-2xl shadow-2xl p-8">
         {/* Website URL Display */}
-        <div className="mb-8">
+        <div className="mb-6 sm:mb-8">
           <label className="block text-sm font-medium text-gray-700 mb-3">
             Your Unique Website URL:
           </label>
-          <div className="flex gap-3">
-            <div className="flex-1 px-4 py-3 bg-gray-50 border-2 border-blue-500 rounded-lg font-mono text-blue-600 truncate">
+          <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex-1 px-3 sm:px-4 py-3 bg-gray-50 border-2 border-blue-500 rounded-lg font-mono text-sm sm:text-base text-blue-600 truncate">
               {websiteUrl}
             </div>
             <button
               onClick={handleCopy}
-              className="px-6 py-3 bg-gradient-to-r from-blue-500 to-green-500 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity"
+              className="px-6 py-3 bg-gradient-to-r from-blue-500 to-green-500 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity whitespace-nowrap"
             >
-              {copied ? '✓ Copied!' : 'Copy'}
+              {copied ? '✓ Copied!' : 'Copy Link'}
             </button>
           </div>
         </div>
