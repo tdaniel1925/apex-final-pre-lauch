@@ -22,14 +22,14 @@ export interface MatrixLevelData {
 }
 
 export interface MatrixStats {
-  totalPositions: number;
-  filledPositions: number;
-  availablePositions: number;
-  maxDepth: number;
-  byLevel: Array<{
+  total_positions: number;
+  filled_positions: number;
+  available_positions: number;
+  max_depth: number;
+  by_level: Array<{
     level: number;
     count: number;
-    activeCount: number;
+    active_count: number;
   }>;
 }
 

@@ -41,19 +41,19 @@ export default function MatrixView({ stats, initialLevel, initialLevelData }: Ma
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
         <div className="bg-white rounded-lg shadow p-6">
           <p className="text-sm text-gray-600 mb-1">Total Positions</p>
-          <p className="text-2xl font-bold text-gray-900">{stats.totalPositions}</p>
+          <p className="text-2xl font-bold text-gray-900">{stats.total_positions}</p>
         </div>
         <div className="bg-white rounded-lg shadow p-6">
           <p className="text-sm text-gray-600 mb-1">Filled Positions</p>
-          <p className="text-2xl font-bold text-green-600">{stats.filledPositions}</p>
+          <p className="text-2xl font-bold text-green-600">{stats.filled_positions}</p>
         </div>
         <div className="bg-white rounded-lg shadow p-6">
           <p className="text-sm text-gray-600 mb-1">Available Slots</p>
-          <p className="text-2xl font-bold text-blue-600">{stats.availablePositions}</p>
+          <p className="text-2xl font-bold text-blue-600">{stats.available_positions}</p>
         </div>
         <div className="bg-white rounded-lg shadow p-6">
           <p className="text-sm text-gray-600 mb-1">Max Depth</p>
-          <p className="text-2xl font-bold text-purple-600">{stats.maxDepth}</p>
+          <p className="text-2xl font-bold text-purple-600">{stats.max_depth}</p>
         </div>
       </div>
 
@@ -62,7 +62,7 @@ export default function MatrixView({ stats, initialLevel, initialLevelData }: Ma
         <h2 className="text-xl font-bold text-gray-900 mb-4">Select Matrix Level</h2>
         <div className="flex gap-2 flex-wrap">
           {[0, 1, 2, 3, 4, 5, 6, 7].map((level) => {
-            const levelStats = stats.byLevel?.find((l) => l.level === level);
+            const levelStats = stats.by_level?.find((l) => l.level === level);
             const capacity = Math.pow(5, level);
             const filled = levelStats?.count || 0;
 
