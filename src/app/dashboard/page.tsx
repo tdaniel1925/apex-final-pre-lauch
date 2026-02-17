@@ -8,6 +8,7 @@ import { createClient } from '@/lib/supabase/server';
 import { createServiceClient } from '@/lib/supabase/service';
 import ReferralLink from '@/components/dashboard/ReferralLink';
 import TeamStatisticsUser from '@/components/dashboard/TeamStatisticsUser';
+import DashboardClient from '@/components/dashboard/DashboardClient';
 import type { Distributor } from '@/lib/types';
 
 export const metadata = {
@@ -93,7 +94,8 @@ export default async function DashboardPage() {
   const referralLink = `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3050'}/signup?ref=${dist.slug}`;
 
   return (
-    <div className="p-4">
+    <DashboardClient distributor={dist}>
+      <div className="p-4">
       {/* Welcome Header */}
       <div className="mb-4">
         <h1 className="text-2xl font-bold text-gray-900">
@@ -199,5 +201,6 @@ export default async function DashboardPage() {
         </div>
       </div>
     </div>
+    </DashboardClient>
   );
 }

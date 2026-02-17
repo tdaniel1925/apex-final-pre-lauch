@@ -56,6 +56,21 @@ export interface Distributor {
   licensing_verified_at: string | null;
   licensing_verified_by: string | null;
 
+  // Onboarding Tracking
+  onboarding_completed: boolean;
+  onboarding_step: number;
+  onboarding_completed_at: string | null;
+
+  // Extended Profile Fields
+  profile_photo_url: string | null;
+  bio: string | null;
+  social_links: {
+    facebook?: string;
+    linkedin?: string;
+    twitter?: string;
+    instagram?: string;
+  } | null;
+
   // Timestamps (ISO 8601 strings from Supabase)
   created_at: string;
   updated_at: string;
