@@ -8,6 +8,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import type { Distributor } from '@/lib/types';
+import SponsorLineage from './SponsorLineage';
 
 interface DistributorDetailViewProps {
   distributor: Distributor;
@@ -133,24 +134,24 @@ export default function DistributorDetailView({
   return (
     <div>
       {/* Header */}
-      <div className="mb-8 flex items-center justify-between">
+      <div className="mb-4 flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">
+          <h1 className="text-2xl font-bold text-gray-900">
             {initialDistributor.first_name} {initialDistributor.last_name}
           </h1>
-          <p className="text-gray-600 mt-1">@{initialDistributor.slug}</p>
+          <p className="text-sm text-gray-600 mt-0.5">@{initialDistributor.slug}</p>
         </div>
-        <div className="flex gap-3">
+        <div className="flex gap-2">
           <button
             onClick={() => router.push('/admin/distributors')}
-            className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+            className="px-3 py-1.5 border border-gray-300 text-sm rounded-md hover:bg-gray-50"
           >
             Back to List
           </button>
           {!isEditing ? (
             <button
               onClick={() => setIsEditing(true)}
-              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              className="px-4 py-1.5 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700"
             >
               Edit
             </button>
@@ -161,7 +162,7 @@ export default function DistributorDetailView({
                   setIsEditing(false);
                   setError(null);
                 }}
-                className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+                className="px-3 py-1.5 border border-gray-300 text-sm rounded-md hover:bg-gray-50"
                 disabled={isSaving}
               >
                 Cancel
@@ -169,7 +170,7 @@ export default function DistributorDetailView({
               <button
                 onClick={handleSave}
                 disabled={isSaving}
-                className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50"
+                className="px-4 py-1.5 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 disabled:opacity-50"
               >
                 {isSaving ? 'Saving...' : 'Save Changes'}
               </button>
@@ -180,25 +181,25 @@ export default function DistributorDetailView({
 
       {/* Messages */}
       {error && (
-        <div className="mb-6 bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg">
+        <div className="mb-3 bg-red-50 border border-red-200 text-red-800 px-3 py-2 rounded-md text-sm">
           {error}
         </div>
       )}
       {success && (
-        <div className="mb-6 bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg">
+        <div className="mb-3 bg-green-50 border border-green-200 text-green-800 px-3 py-2 rounded-md text-sm">
           {success}
         </div>
       )}
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Main Info */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-3">
           {/* Personal Information */}
-          <div className="bg-white rounded-xl shadow-md p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4">Personal Information</h2>
-            <div className="grid grid-cols-2 gap-4">
+          <div className="bg-white rounded-lg shadow p-3">
+            <h2 className="text-lg font-bold text-gray-900 mb-2">Personal Information</h2>
+            <div className="grid grid-cols-2 gap-2">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-xs font-medium text-gray-700 mb-0.5">
                   First Name *
                 </label>
                 <input
@@ -208,11 +209,11 @@ export default function DistributorDetailView({
                     setFormData({ ...formData, first_name: e.target.value })
                   }
                   disabled={!isEditing}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md disabled:bg-gray-50"
+                  className="w-full px-2 py-1.5 text-sm border border-gray-300 rounded-md disabled:bg-gray-50"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-xs font-medium text-gray-700 mb-0.5">
                   Last Name *
                 </label>
                 <input
@@ -222,33 +223,33 @@ export default function DistributorDetailView({
                     setFormData({ ...formData, last_name: e.target.value })
                   }
                   disabled={!isEditing}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md disabled:bg-gray-50"
+                  className="w-full px-2 py-1.5 text-sm border border-gray-300 rounded-md disabled:bg-gray-50"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-xs font-medium text-gray-700 mb-0.5">
                   Email *
                 </label>
                 <input
                   type="email"
                   value={formData.email}
                   disabled
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50"
+                  className="w-full px-2 py-1.5 text-sm border border-gray-300 rounded-md bg-gray-50"
                 />
                 <p className="text-xs text-gray-500 mt-1">Email cannot be changed</p>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                <label className="block text-xs font-medium text-gray-700 mb-0.5">Phone</label>
                 <input
                   type="tel"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   disabled={!isEditing}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md disabled:bg-gray-50"
+                  className="w-full px-2 py-1.5 text-sm border border-gray-300 rounded-md disabled:bg-gray-50"
                 />
               </div>
               <div className="col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-xs font-medium text-gray-700 mb-0.5">
                   Company Name
                 </label>
                 <input
@@ -258,18 +259,18 @@ export default function DistributorDetailView({
                     setFormData({ ...formData, company_name: e.target.value })
                   }
                   disabled={!isEditing}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md disabled:bg-gray-50"
+                  className="w-full px-2 py-1.5 text-sm border border-gray-300 rounded-md disabled:bg-gray-50"
                 />
               </div>
             </div>
           </div>
 
           {/* Address */}
-          <div className="bg-white rounded-xl shadow-md p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4">Address</h2>
-            <div className="space-y-4">
+          <div className="bg-white rounded-lg shadow p-3">
+            <h2 className="text-lg font-bold text-gray-900 mb-2">Address</h2>
+            <div className="space-y-2">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-xs font-medium text-gray-700 mb-0.5">
                   Address Line 1
                 </label>
                 <input
@@ -279,11 +280,11 @@ export default function DistributorDetailView({
                     setFormData({ ...formData, address_line1: e.target.value })
                   }
                   disabled={!isEditing}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md disabled:bg-gray-50"
+                  className="w-full px-2 py-1.5 text-sm border border-gray-300 rounded-md disabled:bg-gray-50"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-xs font-medium text-gray-700 mb-0.5">
                   Address Line 2
                 </label>
                 <input
@@ -293,38 +294,38 @@ export default function DistributorDetailView({
                     setFormData({ ...formData, address_line2: e.target.value })
                   }
                   disabled={!isEditing}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md disabled:bg-gray-50"
+                  className="w-full px-2 py-1.5 text-sm border border-gray-300 rounded-md disabled:bg-gray-50"
                 />
               </div>
               <div className="grid grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">City</label>
+                  <label className="block text-xs font-medium text-gray-700 mb-0.5">City</label>
                   <input
                     type="text"
                     value={formData.city}
                     onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                     disabled={!isEditing}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md disabled:bg-gray-50"
+                    className="w-full px-2 py-1.5 text-sm border border-gray-300 rounded-md disabled:bg-gray-50"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">State</label>
+                  <label className="block text-xs font-medium text-gray-700 mb-0.5">State</label>
                   <input
                     type="text"
                     value={formData.state}
                     onChange={(e) => setFormData({ ...formData, state: e.target.value })}
                     disabled={!isEditing}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md disabled:bg-gray-50"
+                    className="w-full px-2 py-1.5 text-sm border border-gray-300 rounded-md disabled:bg-gray-50"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">ZIP</label>
+                  <label className="block text-xs font-medium text-gray-700 mb-0.5">ZIP</label>
                   <input
                     type="text"
                     value={formData.zip}
                     onChange={(e) => setFormData({ ...formData, zip: e.target.value })}
                     disabled={!isEditing}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md disabled:bg-gray-50"
+                    className="w-full px-2 py-1.5 text-sm border border-gray-300 rounded-md disabled:bg-gray-50"
                   />
                 </div>
               </div>
@@ -333,9 +334,15 @@ export default function DistributorDetailView({
         </div>
 
         {/* Sidebar */}
-        <div className="space-y-6">
+        <div className="space-y-3">
+          {/* Sponsor Lineage */}
+          <SponsorLineage
+            distributorId={initialDistributor.id}
+            distributorName={`${initialDistributor.first_name} ${initialDistributor.last_name}`}
+          />
+
           {/* Status */}
-          <div className="bg-white rounded-xl shadow-md p-6">
+          <div className="bg-white rounded-lg shadow p-3">
             <h2 className="text-lg font-bold text-gray-900 mb-4">Status</h2>
             <div className="space-y-3">
               <div>
@@ -384,7 +391,7 @@ export default function DistributorDetailView({
           </div>
 
           {/* Matrix Info */}
-          <div className="bg-white rounded-xl shadow-md p-6">
+          <div className="bg-white rounded-lg shadow p-3">
             <h2 className="text-lg font-bold text-gray-900 mb-4">Matrix Information</h2>
             <div className="space-y-3">
               <div>
@@ -407,7 +414,7 @@ export default function DistributorDetailView({
           </div>
 
           {/* Metadata */}
-          <div className="bg-white rounded-xl shadow-md p-6">
+          <div className="bg-white rounded-lg shadow p-3">
             <h2 className="text-lg font-bold text-gray-900 mb-4">Account Info</h2>
             <div className="space-y-3 text-sm">
               <div>

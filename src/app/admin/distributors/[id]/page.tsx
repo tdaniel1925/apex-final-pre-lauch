@@ -29,7 +29,7 @@ export default async function DistributorDetailPage({ params }: PageProps) {
   }
 
   return (
-    <div className="p-8">
+    <div className="p-4">
       <DistributorDetailView distributor={distributor} />
     </div>
   );
