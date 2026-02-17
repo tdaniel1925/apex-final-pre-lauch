@@ -49,6 +49,13 @@ export interface Distributor {
   deleted_at?: string | null;
   deleted_by?: string | null;
 
+  // Licensing Status Fields (Feature Gating System)
+  licensing_status: 'licensed' | 'non_licensed';
+  licensing_status_set_at: string | null;
+  licensing_verified: boolean;
+  licensing_verified_at: string | null;
+  licensing_verified_by: string | null;
+
   // Timestamps (ISO 8601 strings from Supabase)
   created_at: string;
   updated_at: string;
