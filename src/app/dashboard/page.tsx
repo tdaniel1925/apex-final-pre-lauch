@@ -84,34 +84,14 @@ export default async function DashboardPage() {
   const referralLink = `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3050'}/signup?ref=${dist.slug}`;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <img src="/apex-logo.png" alt="Apex Affinity Group" className="h-12 w-auto" />
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900">
-                  Welcome, {dist.first_name}!
-                </h1>
-                <p className="text-sm text-gray-600">@{dist.slug}</p>
-              </div>
-            </div>
-            <form action="/api/auth/signout" method="post">
-              <button
-                type="submit"
-                className="px-4 py-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
-              >
-                Sign Out
-              </button>
-            </form>
-          </div>
-        </div>
-      </header>
-
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="p-8">
+      {/* Welcome Header */}
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold text-gray-900">
+          Welcome back, {dist.first_name}!
+        </h1>
+        <p className="text-gray-600 mt-1">@{dist.slug}</p>
+      </div>
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {/* Matrix Position */}
@@ -196,9 +176,8 @@ export default async function DashboardPage() {
           </div>
         </div>
 
-        {/* Referral Link Card */}
-        <ReferralLink referralLink={referralLink} />
-      </main>
+      {/* Referral Link Card */}
+      <ReferralLink referralLink={referralLink} />
     </div>
   );
 }
