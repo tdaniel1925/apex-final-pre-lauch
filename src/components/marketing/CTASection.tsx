@@ -18,7 +18,7 @@ export default function CTASection() {
               size="lg"
               className="bg-white text-[#2B4C7E] hover:bg-white/90 px-8 py-6 text-lg font-semibold"
             >
-              <Link href="/join">Join Our Team</Link>
+              <Link href="/signup">Join Our Team</Link>
             </Button>
             <Button
               asChild

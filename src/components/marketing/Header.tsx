@@ -63,7 +63,7 @@ export default function Header() {
               asChild
               className="bg-[#DC2626] hover:bg-[#2B4C7E] text-white px-6 py-2 rounded-md transition-colors"
             >
-              <Link href="/join">Join Our Team</Link>
+              <Link href="/signup">Join Our Team</Link>
             </Button>
           </div>
 
@@ -124,7 +124,7 @@ export default function Header() {
                 asChild
                 className="bg-[#DC2626] hover:bg-[#2B4C7E] text-white w-full"
               >
-                <Link href="/join">Join Our Team</Link>
+                <Link href="/signup">Join Our Team</Link>
               </Button>
             </div>
           </div>
