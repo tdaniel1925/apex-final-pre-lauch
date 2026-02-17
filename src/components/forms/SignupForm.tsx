@@ -400,7 +400,7 @@ export default function SignupForm({ sponsorSlug, sponsorName }: SignupFormProps
           )}
 
           <p className="mt-3 text-xs text-gray-500 italic">
-            💡 This selection determines which features and tools will be available in your dashboard. This can only be changed by an administrator later.
+            💡 This selection determines which features and tools will be available in your dashboard. You can change this later from your profile settings.
           </p>
         </div>
 
