@@ -4,6 +4,7 @@
 // =============================================
 
 import { createClient } from '@/lib/supabase/server';
+import { createServiceClient } from '@/lib/supabase/service';
 import type { Distributor } from '@/lib/types';
 
 /**
@@ -31,7 +32,8 @@ export interface MatrixPlacement {
 export async function findMatrixPlacement(
   sponsorId: string | null = null
 ): Promise<MatrixPlacement> {
-  const supabase = await createClient();
+  // Use service client to bypass RLS for placement algorithm
+  const supabase = createServiceClient();
 
   try {
     // Call the PostgreSQL function via RPC
