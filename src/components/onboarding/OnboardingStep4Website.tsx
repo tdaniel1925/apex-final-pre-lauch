@@ -52,7 +52,7 @@ export default function OnboardingStep4Website({
             </div>
             <button
               onClick={handleCopy}
-              className="px-6 py-3 bg-gradient-to-r from-blue-500 to-green-500 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity whitespace-nowrap"
+              className="px-6 py-3 bg-gradient-to-r from-[#2B4E7E] to-[#DC2626] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity whitespace-nowrap"
             >
               {copied ? '✓ Copied!' : 'Copy Link'}
             </button>
@@ -67,7 +67,7 @@ export default function OnboardingStep4Website({
           <div className="border-2 border-gray-300 rounded-lg overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 p-8 min-h-[300px]">
             {/* Mini Website Preview */}
             <div className="max-w-md mx-auto text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-green-500 rounded-full mx-auto mb-4 flex items-center justify-center text-2xl text-white font-bold">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#2B4E7E] to-[#DC2626] rounded-full mx-auto mb-4 flex items-center justify-center text-2xl text-white font-bold">
                 {distributor.first_name[0]}{distributor.last_name[0]}
               </div>
               <h4 className="text-2xl font-bold text-gray-900 mb-2">
@@ -131,7 +131,7 @@ export default function OnboardingStep4Website({
           </button>
           <button
             onClick={onNext}
-            className="flex-1 px-6 py-3 bg-gradient-to-r from-blue-500 to-green-500 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity"
+            className="flex-1 px-6 py-3 bg-gradient-to-r from-[#2B4E7E] to-[#DC2626] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity"
           >
             Continue →
           </button>

@@ -128,35 +128,40 @@ export default function OnboardingModal({ distributor, onComplete }: OnboardingM
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-gradient-to-br from-[#2B4C7E] via-[#1a2c4e] to-gray-900">
+    <div className="fixed inset-0 z-50 bg-white overflow-hidden">
       {/* Progress Bar - Fixed at top */}
-      <div className="fixed top-0 left-0 right-0 h-2 bg-gray-800 z-50">
+      <div className="fixed top-0 left-0 right-0 h-1.5 bg-gray-200 z-50">
         <div
-          className="h-full bg-gradient-to-r from-blue-500 to-green-500 transition-all duration-500"
+          className="h-full bg-gradient-to-r from-[#2B4E7E] to-[#DC2626] transition-all duration-500"
           style={{ width: `${(currentStep / totalSteps) * 100}%` }}
         />
       </div>
 
       {/* Header Bar - Fixed at top */}
-      <div className="fixed top-2 left-0 right-0 z-40 flex items-center justify-between px-4 sm:px-6 py-4">
-        {/* Step Indicator */}
-        <div className="text-white/70 text-xs sm:text-sm font-medium">
-          Step {currentStep} of {totalSteps}
-        </div>
+      <div className="fixed top-1.5 left-0 right-0 z-40 bg-white border-b border-gray-200">
+        <div className="flex items-center justify-between px-4 sm:px-6 py-3">
+          {/* Logo */}
+          <img src="/apex-logo-full.png" alt="Apex Affinity Group" className="h-8 sm:h-10" />
 
-        {/* Skip Button */}
-        <button
-          onClick={handleSkip}
-          disabled={isSaving}
-          className="text-white/70 hover:text-white text-xs sm:text-sm font-medium transition-colors"
-        >
-          Skip for now
-        </button>
+          {/* Step Indicator & Skip */}
+          <div className="flex items-center gap-4">
+            <span className="text-gray-600 text-xs sm:text-sm font-medium">
+              Step {currentStep} of {totalSteps}
+            </span>
+            <button
+              onClick={handleSkip}
+              disabled={isSaving}
+              className="text-gray-500 hover:text-[#2B4E7E] text-xs sm:text-sm font-medium transition-colors"
+            >
+              Skip for now
+            </button>
+          </div>
+        </div>
       </div>
 
-      {/* Scrollable Content Area */}
-      <div className="h-full w-full overflow-y-auto pt-16 pb-8 px-4">
-        <div className="flex items-center justify-center min-h-[calc(100vh-8rem)]">
+      {/* Content Area - No scrolling, content fits in viewport */}
+      <div className="h-full w-full pt-[72px] px-4 pb-4 overflow-hidden">
+        <div className="h-full flex items-center justify-center">
           {renderStep()}
         </div>
       </div>

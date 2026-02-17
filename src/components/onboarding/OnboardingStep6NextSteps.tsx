@@ -44,7 +44,7 @@ export default function OnboardingStep6NextSteps({ distributor, onNext, onBack }
       {/* Content Card */}
       <div className="bg-white rounded-2xl shadow-2xl p-8">
         {/* Success Message */}
-        <div className="bg-gradient-to-r from-blue-500 to-green-500 text-white rounded-lg p-6 mb-8">
+        <div className="bg-gradient-to-r from-[#2B4E7E] to-[#DC2626] text-white rounded-lg p-6 mb-8">
           <h3 className="text-xl font-bold mb-2">
             🎉 Welcome to the Team, {distributor.first_name}!
           </h3>
@@ -210,7 +210,7 @@ export default function OnboardingStep6NextSteps({ distributor, onNext, onBack }
           </button>
           <button
             onClick={onNext}
-            className="flex-1 px-6 py-3 bg-gradient-to-r from-blue-500 to-green-500 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity shadow-lg"
+            className="flex-1 px-6 py-3 bg-gradient-to-r from-[#2B4E7E] to-[#DC2626] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity shadow-lg"
           >
             Take Me to Dashboard! 🎉
           </button>
