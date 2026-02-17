@@ -13,6 +13,7 @@ import PersonalDownline from './PersonalDownline';
 import MatrixChildren from './MatrixChildren';
 import TeamStatistics from './TeamStatistics';
 import MatrixPositionManager from './MatrixPositionManager';
+import { LicensingStatusBadge } from '@/components/common';
 
 interface DistributorDetailViewProps {
   distributor: Distributor;
@@ -26,6 +27,8 @@ export default function DistributorDetailView({
   const [isSaving, setIsSaving] = useState(false);
   const [showSuspendModal, setShowSuspendModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showLicenseStatusModal, setShowLicenseStatusModal] = useState(false);
+  const [isVerifyingLicense, setIsVerifyingLicense] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
 
@@ -117,6 +120,56 @@ export default function DistributorDetailView({
       }
 
       router.push('/admin/distributors');
+    } catch (err: any) {
+      setError(err.message);
+    }
+  };
+
+  const handleVerifyLicense = async () => {
+    setIsVerifyingLicense(true);
+    setError(null);
+    setSuccess(null);
+
+    try {
+      const response = await fetch(`/api/admin/distributors/${initialDistributor.id}/licensing-status`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'verify' }),
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || 'Failed to verify license');
+      }
+
+      setSuccess('License verified successfully');
+      router.refresh();
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setIsVerifyingLicense(false);
+    }
+  };
+
+  const handleChangeLicensingStatus = async (newStatus: 'licensed' | 'non_licensed') => {
+    setError(null);
+    setSuccess(null);
+
+    try {
+      const response = await fetch(`/api/admin/distributors/${initialDistributor.id}/licensing-status`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'change_status', licensing_status: newStatus }),
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || 'Failed to change licensing status');
+      }
+
+      setSuccess('Licensing status updated successfully');
+      setShowLicenseStatusModal(false);
+      router.refresh();
     } catch (err: any) {
       setError(err.message);
     }
@@ -354,6 +407,74 @@ export default function DistributorDetailView({
           {/* Team Statistics */}
           <TeamStatistics distributorId={initialDistributor.id} />
 
+          {/* Licensing Status */}
+          <div className="bg-white rounded-lg shadow p-3">
+            <h2 className="text-lg font-bold text-gray-900 mb-3">Licensing Status</h2>
+            <div className="space-y-3">
+              {/* Current Status Badge */}
+              <div>
+                <p className="text-xs text-gray-600 mb-2">Current Status</p>
+                <LicensingStatusBadge
+                  status={initialDistributor.licensing_status}
+                  verified={initialDistributor.licensing_verified}
+                  size="md"
+                />
+              </div>
+
+              {/* Status Details */}
+              <div className="pt-2 space-y-2 text-sm">
+                {initialDistributor.licensing_status_set_at && (
+                  <div>
+                    <p className="text-xs text-gray-600">Status Set</p>
+                    <p className="text-gray-900">
+                      {new Date(initialDistributor.licensing_status_set_at).toLocaleDateString()}
+                    </p>
+                  </div>
+                )}
+
+                {initialDistributor.licensing_verified && initialDistributor.licensing_verified_at && (
+                  <div>
+                    <p className="text-xs text-gray-600">Verified On</p>
+                    <p className="text-gray-900">
+                      {new Date(initialDistributor.licensing_verified_at).toLocaleDateString()}
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              {/* Action Buttons */}
+              <div className="pt-3 space-y-2">
+                {/* Verify Button - Only show for licensed users who aren't verified */}
+                {initialDistributor.licensing_status === 'licensed' && !initialDistributor.licensing_verified && (
+                  <button
+                    onClick={handleVerifyLicense}
+                    disabled={isVerifyingLicense}
+                    className="w-full px-4 py-2 bg-green-600 text-white text-sm rounded-lg hover:bg-green-700 disabled:opacity-50"
+                  >
+                    {isVerifyingLicense ? 'Verifying...' : '✓ Verify License'}
+                  </button>
+                )}
+
+                {/* Change Status Button */}
+                <button
+                  onClick={() => setShowLicenseStatusModal(true)}
+                  className="w-full px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700"
+                >
+                  Change Licensing Status
+                </button>
+              </div>
+
+              {/* Help Text */}
+              <div className="pt-2 border-t border-gray-200">
+                <p className="text-xs text-gray-500">
+                  {initialDistributor.licensing_status === 'licensed'
+                    ? 'Licensed agents have access to insurance features and advanced tools.'
+                    : 'Non-licensed distributors have access to team building and marketing tools.'}
+                </p>
+              </div>
+            </div>
+          </div>
+
           {/* Status */}
           <div className="bg-white rounded-lg shadow p-3">
             <h2 className="text-lg font-bold text-gray-900 mb-4">Status</h2>
@@ -449,6 +570,16 @@ export default function DistributorDetailView({
           distributorName={`${initialDistributor.first_name} ${initialDistributor.last_name}`}
         />
       )}
+
+      {/* Licensing Status Modal */}
+      {showLicenseStatusModal && (
+        <LicensingStatusModal
+          onClose={() => setShowLicenseStatusModal(false)}
+          onConfirm={handleChangeLicensingStatus}
+          currentStatus={initialDistributor.licensing_status}
+          distributorName={`${initialDistributor.first_name} ${initialDistributor.last_name}`}
+        />
+      )}
     </div>
   );
 }
@@ -531,6 +662,114 @@ function DeleteModal({
             className="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
           >
             Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Licensing Status Modal Component
+function LicensingStatusModal({
+  onClose,
+  onConfirm,
+  currentStatus,
+  distributorName,
+}: {
+  onClose: () => void;
+  onConfirm: (newStatus: 'licensed' | 'non_licensed') => void;
+  currentStatus: 'licensed' | 'non_licensed';
+  distributorName: string;
+}) {
+  const [selectedStatus, setSelectedStatus] = useState<'licensed' | 'non_licensed'>(currentStatus);
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+        <h3 className="text-xl font-bold text-gray-900 mb-4">Change Licensing Status</h3>
+        <p className="text-gray-600 mb-4">
+          Update the licensing status for <strong>{distributorName}</strong>. This will affect
+          which features they can access in their dashboard.
+        </p>
+
+        <div className="space-y-3 mb-6">
+          {/* Licensed Option */}
+          <label className="flex items-start gap-3 p-3 border-2 rounded-lg cursor-pointer hover:border-blue-600 has-[:checked]:border-blue-600 has-[:checked]:bg-blue-50">
+            <input
+              type="radio"
+              name="licensing_status"
+              value="licensed"
+              checked={selectedStatus === 'licensed'}
+              onChange={(e) => setSelectedStatus(e.target.value as 'licensed' | 'non_licensed')}
+              className="mt-1 w-4 h-4 text-blue-600"
+            />
+            <div className="flex-1">
+              <div className="flex items-center gap-2">
+                <svg className="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    fillRule="evenodd"
+                    d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                <span className="font-semibold text-gray-900">Licensed Agent</span>
+              </div>
+              <p className="text-sm text-gray-600 mt-1">
+                Full access to insurance features, advanced commissions, and client tools.
+              </p>
+            </div>
+          </label>
+
+          {/* Non-Licensed Option */}
+          <label className="flex items-start gap-3 p-3 border-2 rounded-lg cursor-pointer hover:border-blue-600 has-[:checked]:border-blue-600 has-[:checked]:bg-blue-50">
+            <input
+              type="radio"
+              name="licensing_status"
+              value="non_licensed"
+              checked={selectedStatus === 'non_licensed'}
+              onChange={(e) => setSelectedStatus(e.target.value as 'licensed' | 'non_licensed')}
+              className="mt-1 w-4 h-4 text-blue-600"
+            />
+            <div className="flex-1">
+              <div className="flex items-center gap-2">
+                <svg className="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    fillRule="evenodd"
+                    d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                <span className="font-semibold text-gray-900">Non-Licensed</span>
+              </div>
+              <p className="text-sm text-gray-600 mt-1">
+                Access to team building, marketing tools, and referral features.
+              </p>
+            </div>
+          </label>
+        </div>
+
+        {currentStatus !== selectedStatus && (
+          <div className="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+            <p className="text-sm text-yellow-800">
+              ⚠️ Changing the licensing status will immediately affect the distributor's dashboard
+              access and available features.
+            </p>
+          </div>
+        )}
+
+        <div className="flex gap-3 justify-end">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={() => onConfirm(selectedStatus)}
+            disabled={currentStatus === selectedStatus}
+            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
+          >
+            Update Status
           </button>
         </div>
       </div>
