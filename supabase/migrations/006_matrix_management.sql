@@ -160,7 +160,7 @@ BEGIN
       UNION
       SELECT d.id
       FROM distributors d
-      INNER JOIN descendants desc ON d.matrix_parent_id = desc.id
+      INNER JOIN descendants d_desc ON d.matrix_parent_id = d_desc.id
     )
     SELECT 1 FROM descendants WHERE id = new_parent_id
   ) THEN
