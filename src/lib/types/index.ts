@@ -40,6 +40,15 @@ export interface Distributor {
   state: string | null;
   zip: string | null;
 
+  // Admin/Status Fields (Stage 2)
+  status?: string | null; // 'active', 'suspended', 'deleted'
+  admin_role?: string | null; // 'super_admin', 'admin', 'support', 'viewer'
+  suspended_at?: string | null;
+  suspended_by?: string | null;
+  suspension_reason?: string | null;
+  deleted_at?: string | null;
+  deleted_by?: string | null;
+
   // Timestamps (ISO 8601 strings from Supabase)
   created_at: string;
   updated_at: string;
