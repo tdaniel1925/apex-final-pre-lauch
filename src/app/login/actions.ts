@@ -4,6 +4,7 @@
 // Login Server Actions
 // =============================================
 
+import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 
@@ -25,6 +26,9 @@ export async function loginAction(formData: FormData) {
   if (error) {
     return { error: 'Invalid email or password' };
   }
+
+  // Revalidate to ensure session is recognized
+  revalidatePath('/', 'layout');
 
   redirect('/dashboard');
 }
