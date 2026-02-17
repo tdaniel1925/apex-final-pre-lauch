@@ -19,7 +19,7 @@ export default async function DashboardPage() {
   // Check if user is authenticated
   const {
     data: { user },
-  } = await serviceClient.auth.getUser();
+  } = await supabase.auth.getUser();
 
   if (!user) {
     redirect('/login');
