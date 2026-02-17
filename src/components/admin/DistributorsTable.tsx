@@ -5,7 +5,7 @@
 // Displays distributors with search, filters, and actions
 // =============================================
 
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import type { Distributor } from '@/lib/types';
 
@@ -27,23 +27,39 @@ export default function DistributorsTable({
   const router = useRouter();
   const [search, setSearch] = useState(initialSearch);
   const [status, setStatus] = useState(initialStatus);
+  const [isSearching, setIsSearching] = useState(false);
+
+  // Debounced search effect
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      // Only trigger search if search value has changed from initial
+      if (search !== initialSearch) {
+        performSearch(search, status);
+      }
+    }, 500); // 500ms debounce
+
+    return () => clearTimeout(timeoutId);
+  }, [search]); // Only watch search input
+
+  const performSearch = useCallback((searchTerm: string, statusFilter: string) => {
+    setIsSearching(true);
+    const params = new URLSearchParams();
+    if (searchTerm) params.set('search', searchTerm);
+    if (statusFilter !== 'all') params.set('status', statusFilter);
+    router.push(`/admin/distributors?${params.toString()}`);
+    router.refresh();
+    // Reset loading after a short delay to show feedback
+    setTimeout(() => setIsSearching(false), 300);
+  }, [router]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    const params = new URLSearchParams();
-    if (search) params.set('search', search);
-    if (status !== 'all') params.set('status', status);
-    router.push(`/admin/distributors?${params.toString()}`);
-    router.refresh();
+    performSearch(search, status);
   };
 
   const handleStatusChange = (newStatus: string) => {
     setStatus(newStatus);
-    const params = new URLSearchParams();
-    if (search) params.set('search', search);
-    if (newStatus !== 'all') params.set('status', newStatus);
-    router.push(`/admin/distributors?${params.toString()}`);
-    router.refresh();
+    performSearch(search, newStatus);
   };
 
   const handlePageChange = (page: number) => {
@@ -73,36 +89,71 @@ export default function DistributorsTable({
       <div className="p-6 border-b border-gray-200">
         <div className="flex gap-4">
           {/* Search */}
-          <form onSubmit={handleSearch} className="flex-1">
+          <form onSubmit={handleSearch} className="flex-1 relative">
             <input
               type="text"
               placeholder="Search by name, email, or username..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
+            {isSearching && (
+              <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                <svg
+                  className="animate-spin h-5 w-5 text-blue-600"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+              </div>
+            )}
+            {!isSearching && search && (
+              <button
+                type="button"
+                onClick={() => {
+                  setSearch('');
+                  performSearch('', status);
+                }}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            )}
           </form>
 
           {/* Status Filter */}
           <select
             value={status}
             onChange={(e) => handleStatusChange(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent min-w-[140px]"
           >
             <option value="all">All Status</option>
             <option value="active">Active</option>
             <option value="suspended">Suspended</option>
             <option value="deleted">Deleted</option>
           </select>
-
-          {/* Search Button */}
-          <button
-            onClick={handleSearch}
-            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            Search
-          </button>
         </div>
+        {search && (
+          <p className="text-sm text-gray-600 mt-2">
+            Searching for &quot;{search}&quot;...
+          </p>
+        )}
       </div>
 
       {/* Table */}
