@@ -52,10 +52,11 @@ export default async function AdminDashboardPage() {
   // Get matrix statistics
   const { data: matrixStats } = await serviceClient.rpc('get_matrix_stats').single();
 
-  // Get max depth
+  // Get max depth (excluding null values)
   const { data: maxDepthResult } = await serviceClient
     .from('distributors')
     .select('matrix_depth')
+    .not('matrix_depth', 'is', null)
     .order('matrix_depth', { ascending: false })
     .limit(1)
     .single();
