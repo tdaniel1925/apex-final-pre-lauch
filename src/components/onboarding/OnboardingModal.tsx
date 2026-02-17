@@ -159,9 +159,9 @@ export default function OnboardingModal({ distributor, onComplete }: OnboardingM
         </div>
       </div>
 
-      {/* Content Area - No scrolling, content fits in viewport */}
-      <div className="h-full w-full pt-[72px] px-4 pb-4 overflow-hidden">
-        <div className="h-full flex items-center justify-center">
+      {/* Content Area - Scrollable when needed */}
+      <div className="h-full w-full pt-[72px] px-4 pb-4 overflow-y-auto">
+        <div className="min-h-full flex items-center justify-center py-4">
           {renderStep()}
         </div>
       </div>
