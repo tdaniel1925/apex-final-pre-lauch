@@ -53,22 +53,13 @@ export default function OnboardingStep1Welcome({ distributor, onNext }: Step1Pro
         </div>
       </div>
 
-      {/* Time Estimate & CTA */}
-      <div className="flex flex-col items-center gap-4">
-        <div className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 inline-block">
-          <p className="text-gray-700 text-sm">
-            ⏱️ This setup takes about <span className="font-semibold text-[#2B4E7E]">3 minutes</span>
-          </p>
-        </div>
-
-        {/* CTA Button - Apex Colors */}
-        <button
-          onClick={onNext}
-          className="px-8 py-3 bg-[#2B4E7E] text-white text-lg font-semibold rounded-lg hover:shadow-lg transition-shadow"
-        >
-          Let's Get Started →
-        </button>
-      </div>
+      {/* CTA Button */}
+      <button
+        onClick={onNext}
+        className="px-8 py-3 bg-[#2B4E7E] text-white text-lg font-semibold rounded-lg hover:shadow-lg transition-shadow"
+      >
+        Let's Get Started →
+      </button>
     </div>
   );
 }
