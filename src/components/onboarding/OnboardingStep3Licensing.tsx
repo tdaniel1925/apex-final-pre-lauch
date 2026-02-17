@@ -145,7 +145,7 @@ export default function OnboardingStep3Licensing({
           </button>
           <button
             onClick={onNext}
-            className="flex-1 px-6 py-3 bg-gradient-to-r from-[#2B4E7E] to-[#DC2626] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity"
+            className="flex-1 px-6 py-3 bg-[#2B4E7E] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity"
           >
             Continue →
           </button>

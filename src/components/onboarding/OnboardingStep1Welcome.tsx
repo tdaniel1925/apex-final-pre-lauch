@@ -64,7 +64,7 @@ export default function OnboardingStep1Welcome({ distributor, onNext }: Step1Pro
         {/* CTA Button - Apex Colors */}
         <button
           onClick={onNext}
-          className="px-8 py-3 bg-gradient-to-r from-[#2B4E7E] to-[#DC2626] text-white text-lg font-semibold rounded-lg hover:shadow-lg transition-shadow"
+          className="px-8 py-3 bg-[#2B4E7E] text-white text-lg font-semibold rounded-lg hover:shadow-lg transition-shadow"
         >
           Let's Get Started →
         </button>

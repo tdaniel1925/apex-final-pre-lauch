@@ -132,7 +132,7 @@ export default function OnboardingModal({ distributor, onComplete }: OnboardingM
       {/* Progress Bar - Fixed at top */}
       <div className="fixed top-0 left-0 right-0 h-1.5 bg-gray-200 z-50">
         <div
-          className="h-full bg-gradient-to-r from-[#2B4E7E] to-[#DC2626] transition-all duration-500"
+          className="h-full bg-[#2B4E7E] transition-all duration-500"
           style={{ width: `${(currentStep / totalSteps) * 100}%` }}
         />
       </div>
