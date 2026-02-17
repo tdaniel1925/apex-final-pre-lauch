@@ -34,6 +34,7 @@ export default function DistributorsTable({
     if (search) params.set('search', search);
     if (status !== 'all') params.set('status', status);
     router.push(`/admin/distributors?${params.toString()}`);
+    router.refresh();
   };
 
   const handleStatusChange = (newStatus: string) => {
@@ -42,6 +43,7 @@ export default function DistributorsTable({
     if (search) params.set('search', search);
     if (newStatus !== 'all') params.set('status', newStatus);
     router.push(`/admin/distributors?${params.toString()}`);
+    router.refresh();
   };
 
   const handlePageChange = (page: number) => {

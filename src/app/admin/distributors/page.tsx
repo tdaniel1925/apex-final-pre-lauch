@@ -13,19 +13,20 @@ export const metadata = {
 };
 
 interface PageProps {
-  searchParams: {
+  searchParams: Promise<{
     page?: string;
     search?: string;
     status?: string;
-  };
+  }>;
 }
 
 export default async function DistributorsPage({ searchParams }: PageProps) {
   await requireAdmin();
 
-  const page = parseInt(searchParams.page || '1');
-  const search = searchParams.search || '';
-  const status = (searchParams.status as any) || 'all';
+  const params = await searchParams;
+  const page = parseInt(params.page || '1');
+  const search = params.search || '';
+  const status = (params.status as any) || 'all';
 
   const result = await getDistributors(
     { search, status },
