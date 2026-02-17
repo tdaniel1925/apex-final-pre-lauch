@@ -59,10 +59,10 @@ export default function OnboardingStep4Website({
           </div>
         </div>
 
-        {/* Live Preview */}
+        {/* Preview */}
         <div className="mb-4">
           <div className="flex items-center justify-between mb-2">
-            <h3 className="text-sm font-semibold text-gray-900">Preview:</h3>
+            <h3 className="text-sm font-semibold text-gray-900">Your Website Preview:</h3>
             <a
               href={websiteUrl}
               target="_blank"
@@ -73,14 +73,42 @@ export default function OnboardingStep4Website({
             </a>
           </div>
 
-          {/* Actual iframe preview */}
-          <div className="border-2 border-gray-300 rounded-lg overflow-hidden bg-white">
-            <iframe
-              src={websiteUrl}
-              className="w-full h-[400px]"
-              title="Website Preview"
-              sandbox="allow-same-origin"
-            />
+          {/* Visual Preview */}
+          <div className="border-2 border-gray-300 rounded-lg overflow-hidden bg-gradient-to-br from-gray-50 to-white p-6">
+            <div className="text-center space-y-4">
+              {/* Avatar */}
+              <div className="w-20 h-20 bg-[#2B4E7E] rounded-full mx-auto flex items-center justify-center text-3xl text-white font-bold">
+                {distributor.first_name[0]}{distributor.last_name[0]}
+              </div>
+
+              {/* Headline */}
+              <div>
+                <h4 className="text-2xl font-bold text-[#2B4E7E] mb-1">
+                  Join {distributor.first_name}'s Team
+                </h4>
+                <p className="text-gray-600">at Apex Affinity Group</p>
+              </div>
+
+              {/* Badge */}
+              <div className="inline-block px-4 py-2 bg-blue-100 text-[#2B4E7E] rounded-full text-sm font-semibold">
+                {distributor.licensing_status === 'licensed' ? '📋 Licensed Agent' : '🤝 Distributor'}
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="space-y-2 max-w-xs mx-auto">
+                <div className="h-12 bg-[#2B4E7E] rounded-lg flex items-center justify-center text-white font-semibold">
+                  Join My Team
+                </div>
+                <div className="h-12 bg-white border-2 border-[#2B4E7E] rounded-lg flex items-center justify-center text-[#2B4E7E] font-semibold">
+                  Contact {distributor.first_name}
+                </div>
+              </div>
+
+              {/* Note */}
+              <p className="text-xs text-gray-500 pt-2">
+                👆 Preview of your personalized landing page
+              </p>
+            </div>
           </div>
         </div>
 
