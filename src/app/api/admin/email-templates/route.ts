@@ -38,8 +38,9 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Check if user is admin
-    const { data: admin } = await supabase
+    // Check if user is admin (use service client to bypass RLS)
+    const serviceClient = createServiceClient();
+    const { data: admin } = await serviceClient
       .from('distributors')
       .select('is_master')
       .eq('auth_user_id', user.id)
@@ -62,7 +63,6 @@ export async function GET(request: NextRequest) {
     const activeOnly = searchParams.get('active_only') === 'true';
 
     // Build query
-    const serviceClient = createServiceClient();
     let query = serviceClient.from('email_templates').select('*').order('sequence_order', { ascending: true });
 
     if (licensingStatus && licensingStatus !== 'all') {
@@ -135,8 +135,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Check if user is admin and get distributor ID
-    const { data: admin } = await supabase
+    // Check if user is admin and get distributor ID (use service client to bypass RLS)
+    const serviceClient = createServiceClient();
+    const { data: admin } = await serviceClient
       .from('distributors')
       .select('id, is_master')
       .eq('auth_user_id', user.id)
@@ -181,7 +182,6 @@ export async function POST(request: NextRequest) {
       .replace(/^_+|_+$/g, '');
 
     // Create template
-    const serviceClient = createServiceClient();
     const { data: template, error } = await serviceClient
       .from('email_templates')
       .insert({

@@ -6,6 +6,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
+import { createServiceClient } from '@/lib/supabase/service';
 import { getAvailableVariables } from '@/lib/email/template-variables';
 import type { ApiResponse } from '@/lib/types';
 import type { AIEmailGenerationRequest, AIEmailGenerationResponse } from '@/lib/types/email';
@@ -40,8 +41,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Check if user is admin
-    const { data: admin } = await supabase
+    // Check if user is admin (use service client to bypass RLS)
+    const serviceClient = createServiceClient();
+    const { data: admin } = await serviceClient
       .from('distributors')
       .select('is_master')
       .eq('auth_user_id', user.id)

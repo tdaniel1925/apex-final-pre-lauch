@@ -42,8 +42,9 @@ export async function PATCH(request: NextRequest, context: RouteContext) {
       );
     }
 
-    // Check if user is admin
-    const { data: admin } = await supabase
+    // Check if user is admin (use service client to bypass RLS)
+    const serviceClient = createServiceClient();
+    const { data: admin } = await serviceClient
       .from('distributors')
       .select('is_master')
       .eq('auth_user_id', user.id)
@@ -77,7 +78,6 @@ export async function PATCH(request: NextRequest, context: RouteContext) {
     if (body.is_active !== undefined) updateData.is_active = body.is_active;
 
     // Update template
-    const serviceClient = createServiceClient();
     const { data: template, error } = await serviceClient
       .from('email_templates')
       .update(updateData)
@@ -145,8 +145,9 @@ export async function DELETE(request: NextRequest, context: RouteContext) {
       );
     }
 
-    // Check if user is admin
-    const { data: admin } = await supabase
+    // Check if user is admin (use service client to bypass RLS)
+    const serviceClient = createServiceClient();
+    const { data: admin } = await serviceClient
       .from('distributors')
       .select('is_master')
       .eq('auth_user_id', user.id)
@@ -164,7 +165,6 @@ export async function DELETE(request: NextRequest, context: RouteContext) {
     }
 
     // Delete template
-    const serviceClient = createServiceClient();
     const { error } = await serviceClient.from('email_templates').delete().eq('id', id);
 
     if (error) {
