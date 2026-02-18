@@ -53,109 +53,164 @@ export default function ReplicatedSite({ distributor }: ReplicatedSiteProps) {
       </header>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#2B4C7E] via-[#1a2c4e] to-[#0d1829] text-white">
-        <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left: Content */}
-            <div>
-              <div className="inline-flex items-center gap-2 mb-6">
-                <LicensingStatusBadge
-                  status={distributor.licensing_status}
-                  verified={distributor.licensing_verified}
-                  size="md"
-                />
-              </div>
+      <section className="relative h-screen flex items-center bg-gradient-to-br from-[#1a2c4e] via-[#2B4C7E] to-[#3d5a7f] overflow-hidden">
+        {/* Subtle Pattern Overlay */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0)',
+            backgroundSize: '40px 40px'
+          }} />
+        </div>
 
-              <h1 className="text-4xl sm:text-5xl font-bold mb-6 leading-tight">
-                Build Your Insurance Business with{' '}
-                <span className="text-blue-300">{distributor.first_name} {distributor.last_name}</span>
-              </h1>
-
-              <p className="text-xl text-blue-100 mb-8">
-                Start earning immediately with ancillary products, then scale to full insurance sales. Access multiple carriers, AI-powered tools, and earn from both your sales and your team's growth. 100% free to join.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a
-                  href={signupUrl}
-                  className="inline-flex items-center justify-center px-8 py-4 bg-white text-[#2B4C7E] font-bold rounded-lg hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
-                >
-                  Join My Team →
-                </a>
-                <button
-                  onClick={handleCopyEmail}
-                  className="inline-flex items-center justify-center px-8 py-4 bg-white/10 text-white font-semibold rounded-lg hover:bg-white/20 transition-all border-2 border-white/20"
-                >
-                  {copiedEmail ? '✓ Email Copied!' : `Contact ${distributor.first_name}`}
-                </button>
-              </div>
-
-              {distributor.company_name && (
-                <p className="mt-8 text-sm text-blue-200">
-                  {distributor.company_name}
-                </p>
-              )}
-            </div>
-
-            {/* Right: Stats Card */}
-            <div className="hidden lg:block">
-              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
-                <h3 className="text-2xl font-bold mb-6">Why Join {distributor.first_name}'s Team?</h3>
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 bg-green-400 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-1">Start Earning Day 1</h4>
-                      <p className="text-sm text-blue-100">Sell ancillary products immediately - no license required</p>
-                    </div>
+        {/* Content */}
+        <div className="relative z-10 mt-20 h-full flex items-center">
+          <div className="container mx-auto px-4 py-8">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+              {/* Hero Content */}
+              <div className="lg:col-span-7">
+                <div className="space-y-3 lg:space-y-4">
+                  <div className="inline-flex items-center gap-2">
+                    <span className="inline-block text-[#DC2626] font-semibold text-xs md:text-sm tracking-wide uppercase">
+                      Join {distributor.first_name}'s Team
+                    </span>
+                    <LicensingStatusBadge
+                      status={distributor.licensing_status}
+                      verified={distributor.licensing_verified}
+                      size="sm"
+                    />
                   </div>
 
-                  <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 bg-blue-400 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-1">$0 to Join</h4>
-                      <p className="text-sm text-blue-100">No fees, no monthly dues, no hidden costs</p>
-                    </div>
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight">
+                    Build Your Insurance Business with {distributor.first_name}
+                  </h1>
+
+                  <p className="text-base md:text-lg text-white/90 leading-snug pr-4 lg:pr-12">
+                    Start earning immediately with ancillary products, then scale to full insurance sales. Access multiple carriers, AI-powered tools, and earn from both your sales and your team's growth. 100% free to join.
+                  </p>
+
+                  <div className="flex flex-col sm:flex-row gap-3 pt-3 lg:pt-4">
+                    <a
+                      href={signupUrl}
+                      className="inline-flex items-center justify-center bg-[#DC2626] hover:bg-gradient-to-r hover:from-[#DC2626] hover:to-[#B91C1C] text-white px-5 py-3 lg:px-7 lg:py-4 text-sm lg:text-base font-bold rounded-lg transition-all shadow-lg"
+                    >
+                      Join {distributor.first_name}'s Team →
+                    </a>
+                    <button
+                      onClick={handleCopyEmail}
+                      className="inline-flex items-center justify-center border-2 border-white text-white hover:bg-white hover:text-[#2B4C7E] px-5 py-3 lg:px-7 lg:py-4 text-sm lg:text-base font-semibold rounded-lg transition-all"
+                    >
+                      {copiedEmail ? '✓ Email Copied!' : `Contact ${distributor.first_name}`}
+                    </button>
                   </div>
 
-                  <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 bg-purple-400 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-1">Own Your Business</h4>
-                      <p className="text-sm text-blue-100">100% book ownership - your clients forever</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 bg-yellow-400 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-1">Personal Mentorship</h4>
-                      <p className="text-sm text-blue-100">{distributor.first_name} will personally guide you</p>
-                    </div>
-                  </div>
+                  {distributor.company_name && (
+                    <p className="text-sm text-white/80 pt-2">
+                      {distributor.company_name}
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
           </div>
+
+          {/* Video Box - Extended to Right Edge */}
+          <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-[45%] max-w-2xl">
+            <div className="bg-white rounded-3xl rounded-r-none overflow-hidden shadow-2xl">
+              <div className="relative aspect-square">
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-full object-cover"
+                >
+                  <source src="/videos/flag-waving.mp4" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile Video */}
+          <div className="lg:hidden container mx-auto px-4 mt-8">
+            <div className="bg-white rounded-3xl overflow-hidden shadow-2xl max-w-md mx-auto">
+              <div className="relative aspect-square">
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-full object-cover"
+                >
+                  <source src="/videos/flag-waving.mp4" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll Indicator - Hidden on mobile */}
+        <div className="hidden md:block absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2">
+            <div className="w-1 h-3 bg-white/50 rounded-full animate-bounce" />
+          </div>
         </div>
       </section>
+
+      {/* Why Join Section - Moved Below Hero */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Why Join {distributor.first_name}'s Team?
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <h3 className="font-bold text-gray-900 mb-2">Start Earning Day 1</h3>
+              <p className="text-sm text-gray-600">Sell ancillary products immediately - no license required</p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="font-bold text-gray-900 mb-2">$0 to Join</h3>
+              <p className="text-sm text-gray-600">No fees, no monthly dues, no hidden costs</p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <h3 className="font-bold text-gray-900 mb-2">Own Your Business</h3>
+              <p className="text-sm text-gray-600">100% book ownership - your clients forever</p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-yellow-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+              <h3 className="font-bold text-gray-900 mb-2">Personal Mentorship</h3>
+              <p className="text-sm text-gray-600">{distributor.first_name} will personally guide you</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Original Stats Card Content - Now Removed Since We Moved It */}
+      {/* The content was integrated into the new "Why Join Section" above */}
+
 
       {/* What You Get Section */}
       <section className="py-16 bg-white">
