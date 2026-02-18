@@ -23,7 +23,7 @@ export async function sendEmail({
   to,
   subject,
   html,
-  from = 'Apex Affinity Group <noreply@apexaffinitygroup.com>',
+  from = 'Apex Affinity Group <noreply@theapexway.net>',
 }: SendEmailParams): Promise<SendEmailResponse> {
   try {
     const RESEND_API_KEY = process.env.RESEND_API_KEY;

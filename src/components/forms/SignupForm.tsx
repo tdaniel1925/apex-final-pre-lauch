@@ -114,8 +114,8 @@ export default function SignupForm({ sponsorSlug, sponsorName }: SignupFormProps
         return;
       }
 
-      // Success - redirect to dashboard
-      router.push('/dashboard');
+      // Success - redirect to welcome page
+      router.push('/welcome');
     } catch (error) {
       console.error('Signup error:', error);
       setSubmitError('An unexpected error occurred. Please try again.');

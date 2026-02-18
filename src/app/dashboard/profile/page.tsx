@@ -9,6 +9,7 @@ import { createServiceClient } from '@/lib/supabase/service';
 import ProfileForm from '@/components/dashboard/ProfileForm';
 import { DistributorProvider } from '@/contexts/DistributorContext';
 import LicensingStatusManager from '@/components/dashboard/LicensingStatusManager';
+import ResendWelcomeButton from '@/components/dashboard/ResendWelcomeButton';
 import type { Distributor } from '@/lib/types';
 
 export const metadata = {
@@ -51,6 +52,15 @@ export default async function ProfilePage() {
         </div>
 
         <div className="max-w-3xl space-y-3">
+          {/* Resend Welcome Email */}
+          <div className="bg-white rounded-lg shadow p-4">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Welcome Email</h2>
+            <p className="text-sm text-gray-600 mb-3">
+              Didn't receive your welcome email? Resend it to your inbox.
+            </p>
+            <ResendWelcomeButton variant="user" />
+          </div>
+
           {/* Licensing Status Section */}
           <LicensingStatusManager distributor={dist} />
 

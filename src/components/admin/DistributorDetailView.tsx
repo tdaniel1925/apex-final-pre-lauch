@@ -14,6 +14,7 @@ import MatrixChildren from './MatrixChildren';
 import TeamStatistics from './TeamStatistics';
 import MatrixPositionManager from './MatrixPositionManager';
 import { LicensingStatusBadge } from '@/components/common';
+import ResendWelcomeButton from '@/components/dashboard/ResendWelcomeButton';
 
 interface DistributorDetailViewProps {
   distributor: Distributor;
@@ -198,13 +199,14 @@ export default function DistributorDetailView({
           </h1>
           <p className="text-sm text-gray-600 mt-0.5">@{initialDistributor.slug}</p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           <button
             onClick={() => router.push('/admin/distributors')}
             className="px-3 py-1.5 border border-gray-300 text-sm rounded-md hover:bg-gray-50"
           >
             Back to List
           </button>
+          <ResendWelcomeButton variant="admin" distributorId={initialDistributor.id} />
           {!isEditing ? (
             <button
               onClick={() => setIsEditing(true)}

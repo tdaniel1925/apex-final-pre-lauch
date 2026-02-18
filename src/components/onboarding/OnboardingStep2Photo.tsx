@@ -214,6 +214,29 @@ export default function OnboardingStep2Photo({
         if (result.data) {
           updateDistributor(result.data);
         }
+
+        // If photo failed quality check, send alert email to admin
+        if (qualityCheck && !qualityCheck.passed) {
+          console.log('⚠️ Photo failed quality check, sending alert to admin...');
+          try {
+            await fetch('/api/alerts/photo-warning', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                distributorId: distributor.id,
+                distributorName: `${distributor.first_name} ${distributor.last_name}`,
+                distributorEmail: distributor.email,
+                issues: qualityCheck.issues || [],
+                photoUrl: result.data?.profile_photo_url || croppedImage,
+              }),
+            });
+            console.log('✅ Alert email sent successfully');
+          } catch (alertError) {
+            // Don't block the user if alert fails, just log it
+            console.error('Failed to send alert email:', alertError);
+          }
+        }
+
         onNext();
       } else {
         console.error('Upload failed:', result.message);
@@ -381,6 +404,9 @@ export default function OnboardingStep2Photo({
                     </ul>
                     <p className="mt-3 text-xs text-yellow-900 font-semibold">
                       💡 Try using the <span className="text-purple-600">AI Enhance</span> button above to improve picture quality!
+                    </p>
+                    <p className="mt-2 text-xs text-yellow-800 italic">
+                      You can still continue with this photo, but it will be reviewed by our team for quality.
                     </p>
                   </>
                 )}
