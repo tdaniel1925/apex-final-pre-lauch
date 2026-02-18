@@ -153,13 +153,16 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
 
           <div className="container" style={{position: 'relative', zIndex: 2}}>
             <div className="row align-items-start">
-              <div className="col-xl-8">
+              <div className={distributor.slug === 'apex' ? 'col-xl-12' : 'col-xl-8'}>
                 {/* Hero Content Start */}
                 <div className="hero-content">
                   {/* Section Title Start */}
                   <div className="section-title">
                     <span className="section-sub-title wow fadeInUp">
-                      Build Financial Freedom with {distributor.first_name} {distributor.last_name}
+                      {distributor.slug === 'apex'
+                        ? 'Build Financial Freedom with Apex Affinity Group'
+                        : `Build Financial Freedom with ${distributor.first_name} ${distributor.last_name}`
+                      }
                     </span>
                     <h1 className="text-anime-style-3" data-cursor="-opaque">
                       Start Earning Day One. Build Insurance Wealth for Life.
@@ -173,58 +176,61 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                 {/* Hero Content End */}
               </div>
 
-              <div className="col-xl-4">
-                {/* Hero Info Box Start */}
-                <div className="hero-info-box wow fadeInUp" data-wow-delay="0.2s" style={{border: '5px solid #ffffff', padding: '0'}}>
-                  {/* Hero Info Image Box Start */}
-                  <div className="hero-info-image-box">
-                    {/* Hero Info Image Start */}
-                    <div className="hero-info-image">
-                      <figure>
-                        {/* Show distributor photo if available, otherwise Apex logo */}
-                        <img
-                          src={distributor.profile_photo_url || '/apex-logo-full.png'}
-                          alt={`${distributor.first_name} ${distributor.last_name}`}
-                          style={{
-                            width: '100%',
-                            height: '100%',
-                            objectFit: 'cover',
-                            objectPosition: 'top center',
-                            borderRadius: distributor.profile_photo_url ? '0' : '0'
-                          }}
-                        />
-                      </figure>
+              {/* Only show contact card on replicated sites, not generic homepage */}
+              {distributor.slug !== 'apex' && (
+                <div className="col-xl-4">
+                  {/* Hero Info Box Start */}
+                  <div className="hero-info-box wow fadeInUp" data-wow-delay="0.2s" style={{border: '5px solid #ffffff', padding: '0'}}>
+                    {/* Hero Info Image Box Start */}
+                    <div className="hero-info-image-box">
+                      {/* Hero Info Image Start */}
+                      <div className="hero-info-image">
+                        <figure>
+                          {/* Show distributor photo if available, otherwise Apex logo */}
+                          <img
+                            src={distributor.profile_photo_url || '/apex-logo-full.png'}
+                            alt={`${distributor.first_name} ${distributor.last_name}`}
+                            style={{
+                              width: '100%',
+                              height: '100%',
+                              objectFit: 'cover',
+                              objectPosition: 'top center',
+                              borderRadius: distributor.profile_photo_url ? '0' : '0'
+                            }}
+                          />
+                        </figure>
+                      </div>
+                      {/* Hero Info Image End */}
                     </div>
-                    {/* Hero Info Image End */}
-                  </div>
-                  {/* Hero Info Image Box End */}
+                    {/* Hero Info Image Box End */}
 
-                  {/* Hero Info Box Content Start */}
-                  <div className="hero-info-box-content">
-                    <h2 style={{textTransform: 'capitalize'}}>{distributor.first_name} {distributor.last_name}</h2>
-                    <div style={{marginTop: '10px'}}>
-                      {distributor.phone && (
-                        <p style={{margin: '5px 0'}}>
-                          <i className="fa-solid fa-phone" style={{marginRight: '8px', color: '#ffffff'}}></i>
-                          <a href={`tel:${distributor.phone}`} style={{color: '#ffffff', textDecoration: 'none'}}>
-                            {distributor.phone.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')}
-                          </a>
-                        </p>
-                      )}
-                      {distributor.email && (
-                        <p style={{margin: '5px 0'}}>
-                          <i className="fa-solid fa-envelope" style={{marginRight: '8px', color: '#ffffff'}}></i>
-                          <a href={`mailto:${distributor.email}`} style={{color: '#ffffff', textDecoration: 'none'}}>
-                            {distributor.email}
-                          </a>
-                        </p>
-                      )}
+                    {/* Hero Info Box Content Start */}
+                    <div className="hero-info-box-content">
+                      <h2 style={{textTransform: 'capitalize'}}>{distributor.first_name} {distributor.last_name}</h2>
+                      <div style={{marginTop: '10px'}}>
+                        {distributor.phone && (
+                          <p style={{margin: '5px 0'}}>
+                            <i className="fa-solid fa-phone" style={{marginRight: '8px', color: '#ffffff'}}></i>
+                            <a href={`tel:${distributor.phone}`} style={{color: '#ffffff', textDecoration: 'none'}}>
+                              {distributor.phone.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')}
+                            </a>
+                          </p>
+                        )}
+                        {distributor.email && (
+                          <p style={{margin: '5px 0'}}>
+                            <i className="fa-solid fa-envelope" style={{marginRight: '8px', color: '#ffffff'}}></i>
+                            <a href={`mailto:${distributor.email}`} style={{color: '#ffffff', textDecoration: 'none'}}>
+                              {distributor.email}
+                            </a>
+                          </p>
+                        )}
+                      </div>
                     </div>
+                    {/* Hero Info Box Content End */}
                   </div>
-                  {/* Hero Info Box Content End */}
+                  {/* Hero Info Box End */}
                 </div>
-                {/* Hero Info Box End */}
-              </div>
+              )}
             </div>
           </div>
         </div>
