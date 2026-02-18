@@ -41,35 +41,19 @@ export default async function PulseFollowPage() {
         </div>
       </div>
 
-      {/* Hero */}
-      <div className="bg-gradient-to-br from-blue-600 to-blue-700 text-white py-16">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <div className="text-6xl mb-4">📧</div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            PulseFollow — Smart Drip Engine
-          </h1>
-          <p className="text-xl md:text-2xl text-blue-100 mb-8">
-            Set it once. Nurture leads 24/7. Never miss a follow-up again.
-          </p>
-
-          <div className="mb-8">
-            <p className="text-sm text-blue-200 mb-4">Coming in:</p>
-            <CountdownTimer targetDate={launchDate} size="md" />
-          </div>
-
-          <div className="flex gap-4 justify-center">
-            <Link
-              href="#preview"
-              className="px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-colors"
-            >
-              See How It Works
-            </Link>
-            <Link
-              href="#pricing"
-              className="px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-400 transition-colors border-2 border-white"
-            >
-              View Pricing
-            </Link>
+      {/* Simple Header */}
+      <div className="bg-white border-b border-gray-200 py-6">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <div className="flex items-center gap-3 mb-2">
+                <h1 className="text-3xl font-bold text-gray-900">📧 PulseFollow</h1>
+                <span className="px-3 py-1 bg-blue-100 text-blue-700 text-sm font-semibold rounded-full">
+                  Coming Soon
+                </span>
+              </div>
+              <p className="text-gray-600">Smart Drip Engine — Set it once. Nurture leads 24/7.</p>
+            </div>
           </div>
         </div>
       </div>

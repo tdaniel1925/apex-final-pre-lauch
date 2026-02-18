@@ -34,19 +34,19 @@ export default async function PulseInsightPage() {
         </div>
       </div>
 
-      <div className="bg-gradient-to-br from-indigo-600 to-indigo-700 text-white py-16">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <div className="text-6xl mb-4">📊</div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">PulseInsight — SmartOffice Intelligence</h1>
-          <p className="text-xl md:text-2xl text-indigo-100 mb-4">
-            Turn ugly SmartOffice spreadsheets into beautiful dashboards.
-          </p>
-          <p className="text-lg text-indigo-200 mb-8">
-            Ask your data questions in plain English and get instant answers.
-          </p>
-          <div className="mb-8">
-            <p className="text-sm text-indigo-200 mb-4">Coming in:</p>
-            <CountdownTimer targetDate={launchDate} size="md" />
+      {/* Simple Header */}
+      <div className="bg-white border-b border-gray-200 py-6">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <div className="flex items-center gap-3 mb-2">
+                <h1 className="text-3xl font-bold text-gray-900">📊 PulseInsight</h1>
+                <span className="px-3 py-1 bg-indigo-100 text-indigo-700 text-sm font-semibold rounded-full">
+                  Coming Soon
+                </span>
+              </div>
+              <p className="text-gray-600">SmartOffice Intelligence — Turn ugly spreadsheets into beautiful dashboards with AI chat</p>
+            </div>
           </div>
         </div>
       </div>

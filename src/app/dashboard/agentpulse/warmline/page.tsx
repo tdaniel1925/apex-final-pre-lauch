@@ -34,22 +34,22 @@ export default async function WarmLinePage() {
         </div>
       </div>
 
-      <div className="bg-gradient-to-br from-pink-600 to-pink-700 text-white py-16">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <div className="text-6xl mb-4">📞</div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">WarmLine — AI Voice Agent</h1>
-          <p className="text-xl md:text-2xl text-pink-100 mb-4">
-            Your AI assistant makes 50 calls while you have coffee.
-          </p>
-          <p className="text-lg text-pink-200 mb-8">
-            You only talk to the hot leads.
-          </p>
-          <div className="mb-8">
-            <p className="text-sm text-pink-200 mb-4">Coming in:</p>
-            <CountdownTimer targetDate={launchDate} size="md" />
-          </div>
-          <div className="inline-block px-4 py-2 bg-pink-500 border-2 border-white rounded-lg font-semibold">
-            Elite Tier Only — $199/mo
+      {/* Simple Header */}
+      <div className="bg-white border-b border-gray-200 py-6">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <div className="flex items-center gap-3 mb-2">
+                <h1 className="text-3xl font-bold text-gray-900">📞 WarmLine</h1>
+                <span className="px-3 py-1 bg-pink-100 text-pink-700 text-sm font-semibold rounded-full">
+                  Coming Soon
+                </span>
+                <span className="px-3 py-1 bg-purple-600 text-white text-sm font-semibold rounded-full">
+                  Elite Tier Only
+                </span>
+              </div>
+              <p className="text-gray-600">AI Voice Agent — AI makes 50 calls while you focus on hot leads</p>
+            </div>
           </div>
         </div>
       </div>

@@ -34,16 +34,19 @@ export default async function LeadLoopPage() {
         </div>
       </div>
 
-      <div className="bg-gradient-to-br from-orange-600 to-orange-700 text-white py-16">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <div className="text-6xl mb-4">🔁</div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">LeadLoop — Referral & Review Automation</h1>
-          <p className="text-xl md:text-2xl text-orange-100 mb-8">
-            Turn every closed client into a 5-star reviewer and referral source. Automatically.
-          </p>
-          <div className="mb-8">
-            <p className="text-sm text-orange-200 mb-4">Coming in:</p>
-            <CountdownTimer targetDate={launchDate} size="md" />
+      {/* Simple Header */}
+      <div className="bg-white border-b border-gray-200 py-6">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <div className="flex items-center gap-3 mb-2">
+                <h1 className="text-3xl font-bold text-gray-900">🔁 LeadLoop</h1>
+                <span className="px-3 py-1 bg-orange-100 text-orange-700 text-sm font-semibold rounded-full">
+                  Coming Soon
+                </span>
+              </div>
+              <p className="text-gray-600">Referral & Review Automation — Turn every client into a reviewer and referral source</p>
+            </div>
           </div>
         </div>
       </div>

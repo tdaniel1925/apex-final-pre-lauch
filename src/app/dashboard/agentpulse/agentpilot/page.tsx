@@ -35,25 +35,19 @@ export default async function AgentPilotPage() {
         </div>
       </div>
 
-      {/* Hero */}
-      <div className="bg-gradient-to-br from-purple-600 to-purple-700 text-white py-16">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <div className="text-6xl mb-4">🤖</div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">AgentPilot — AI Daily Action List</h1>
-          <p className="text-xl md:text-2xl text-purple-100 mb-8">
-            Your AI assistant tells you who to call, when, and writes the perfect message for you.
-          </p>
-          <div className="mb-8">
-            <p className="text-sm text-purple-200 mb-4">Coming in:</p>
-            <CountdownTimer targetDate={launchDate} size="md" />
-          </div>
-          <div className="flex gap-4 justify-center">
-            <Link href="#preview" className="px-6 py-3 bg-white text-purple-600 font-semibold rounded-lg hover:bg-purple-50 transition-colors">
-              See How It Works
-            </Link>
-            <Link href="#pricing" className="px-6 py-3 bg-purple-500 text-white font-semibold rounded-lg hover:bg-purple-400 transition-colors border-2 border-white">
-              View Pricing
-            </Link>
+      {/* Simple Header */}
+      <div className="bg-white border-b border-gray-200 py-6">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <div className="flex items-center gap-3 mb-2">
+                <h1 className="text-3xl font-bold text-gray-900">🤖 AgentPilot</h1>
+                <span className="px-3 py-1 bg-purple-100 text-purple-700 text-sm font-semibold rounded-full">
+                  Coming Soon
+                </span>
+              </div>
+              <p className="text-gray-600">AI Daily Action List — Your AI tells you who to call and writes the message</p>
+            </div>
           </div>
         </div>
       </div>

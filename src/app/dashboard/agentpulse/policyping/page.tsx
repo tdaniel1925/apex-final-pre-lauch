@@ -34,17 +34,19 @@ export default async function PolicyPingPage() {
         </div>
       </div>
 
-      {/* Hero */}
-      <div className="bg-gradient-to-br from-green-600 to-green-700 text-white py-16">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <div className="text-6xl mb-4">🔔</div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">PolicyPing — Renewal & Cross-Sell Radar</h1>
-          <p className="text-xl md:text-2xl text-green-100 mb-8">
-            Never lose a renewal. Never miss a cross-sell. Your revenue protection system.
-          </p>
-          <div className="mb-8">
-            <p className="text-sm text-green-200 mb-4">Coming in:</p>
-            <CountdownTimer targetDate={launchDate} size="md" />
+      {/* Simple Header */}
+      <div className="bg-white border-b border-gray-200 py-6">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <div className="flex items-center gap-3 mb-2">
+                <h1 className="text-3xl font-bold text-gray-900">🔔 PolicyPing</h1>
+                <span className="px-3 py-1 bg-green-100 text-green-700 text-sm font-semibold rounded-full">
+                  Coming Soon
+                </span>
+              </div>
+              <p className="text-gray-600">Renewal & Cross-Sell Radar — Never lose a renewal or miss a cross-sell</p>
+            </div>
           </div>
         </div>
       </div>
