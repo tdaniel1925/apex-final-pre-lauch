@@ -19,7 +19,8 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [pricingToggle, setPricingToggle] = useState(false);
-  const signupUrl = `/signup?ref=${distributor.slug}`;
+  // For generic homepage (slug='apex'), don't add ref parameter
+  const signupUrl = distributor.slug === 'apex' ? '/signup' : `/signup?ref=${distributor.slug}`;
 
   useEffect(() => {
     setMounted(true);
