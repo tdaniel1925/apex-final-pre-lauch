@@ -143,9 +143,8 @@ CREATE POLICY email_templates_admin_all ON email_templates
   TO authenticated
   USING (
     EXISTS (
-      SELECT 1 FROM distributors
-      WHERE distributors.auth_user_id = auth.uid()
-      AND distributors.is_master = true
+      SELECT 1 FROM admins
+      WHERE admins.auth_user_id = auth.uid()
     )
   );
 
@@ -168,9 +167,8 @@ CREATE POLICY email_campaigns_admin_all ON email_campaigns
   TO authenticated
   USING (
     EXISTS (
-      SELECT 1 FROM distributors
-      WHERE distributors.auth_user_id = auth.uid()
-      AND distributors.is_master = true
+      SELECT 1 FROM admins
+      WHERE admins.auth_user_id = auth.uid()
     )
   );
 
@@ -193,9 +191,8 @@ CREATE POLICY email_sends_admin_all ON email_sends
   TO authenticated
   USING (
     EXISTS (
-      SELECT 1 FROM distributors
-      WHERE distributors.auth_user_id = auth.uid()
-      AND distributors.is_master = true
+      SELECT 1 FROM admins
+      WHERE admins.auth_user_id = auth.uid()
     )
   );
 
@@ -221,7 +218,7 @@ INSERT INTO email_templates (
   'Welcome - Licensed Agent',
   'Welcome email for newly registered licensed insurance agents',
   'Welcome to Apex Affinity Group, {first_name}! 🎉',
-  '<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+  $$<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
     <h2 style="color: #2B4C7E;">Welcome aboard, {first_name}!</h2>
 
     <p>We're thrilled to have you join Apex Affinity Group as a Licensed Agent. You're about to embark on an exciting journey with unlimited earning potential.</p>
@@ -246,7 +243,7 @@ INSERT INTO email_templates (
     <p>Questions? Reply to this email anytime—we're here to help!</p>
 
     <p style="margin-top: 30px;">To your success,<br><strong>The Apex Affinity Group Team</strong></p>
-  </div>',
+  </div>$$,
   'Welcome to Apex! Let''s get your license verified and start building.',
   'licensed',
   0,
@@ -273,7 +270,7 @@ INSERT INTO email_templates (
   'Welcome - Non-Licensed Distributor',
   'Welcome email for newly registered non-licensed distributors',
   'Welcome to Apex Affinity Group, {first_name}! 🎉',
-  '<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+  $$<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
     <h2 style="color: #2B4C7E;">Welcome aboard, {first_name}!</h2>
 
     <p>We're excited to have you join Apex Affinity Group! You're now part of a growing network of entrepreneurs building successful referral businesses.</p>
@@ -299,7 +296,7 @@ INSERT INTO email_templates (
     <p>Questions? Reply to this email anytime.</p>
 
     <p style="margin-top: 30px;">Here's to your success,<br><strong>The Apex Affinity Group Team</strong></p>
-  </div>',
+  </div>$$,
   'Welcome to Apex! Your referral journey starts now.',
   'non_licensed',
   0,
