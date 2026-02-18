@@ -213,13 +213,13 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
 
                   <div className="about-image wow fadeInUp" data-wow-delay="0.25s">
                     <figure className="image-anime reveal">
-                      <img src="/optive/images/about-us-img-1.jpg" alt="" />
+                      <img src="/optive/images/about-us-image-1-royal.jpg" alt="" />
                     </figure>
                   </div>
 
                   <div className="about-image wow fadeInUp" data-wow-delay="0.5s">
                     <figure className="image-anime reveal">
-                      <img src="/optive/images/about-us-img-2.jpg" alt="" />
+                      <img src="/optive/images/about-us-image-2-royal.jpg" alt="" />
                     </figure>
                   </div>
                 </div>
@@ -448,22 +448,21 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
       </div>
 
       {/* Load Optive JS Files - Exactly as in template */}
-      <Script src="/optive/js/jquery-3.6.3.min.js" strategy="afterInteractive" />
+      <Script src="/optive/js/jquery-3.7.1.min.js" strategy="afterInteractive" />
       <Script src="/optive/js/bootstrap.min.js" strategy="afterInteractive" />
       <Script src="/optive/js/jquery.slicknav.js" strategy="afterInteractive" />
       <Script src="/optive/js/swiper-bundle.min.js" strategy="afterInteractive" />
       <Script src="/optive/js/jquery.waypoints.min.js" strategy="afterInteractive" />
       <Script src="/optive/js/jquery.counterup.min.js" strategy="afterInteractive" />
       <Script src="/optive/js/jquery.magnific-popup.min.js" strategy="afterInteractive" />
-      <Script src="/optive/js/SmoothScroll.min.js" strategy="afterInteractive" />
-      <Script src="/optive/js/parallax.min.js" strategy="afterInteractive" />
+      <Script src="/optive/js/SmoothScroll.js" strategy="afterInteractive" />
+      <Script src="/optive/js/parallaxie.js" strategy="afterInteractive" />
       <Script src="/optive/js/gsap.min.js" strategy="afterInteractive" />
       <Script src="/optive/js/ScrollTrigger.min.js" strategy="afterInteractive" />
-      <Script src="/optive/js/ScrollToPlugin.min.js" strategy="afterInteractive" />
       <Script src="/optive/js/SplitText.min.js" strategy="afterInteractive" />
       <Script src="/optive/js/wow.min.js" strategy="afterInteractive" />
-      <Script src="/optive/js/mousecursor.js" strategy="afterInteractive" />
-      <Script src="/optive/js/custom.js" strategy="afterInteractive" />
+      <Script src="/optive/js/magiccursor.js" strategy="afterInteractive" />
+      <Script src="/optive/js/function.js" strategy="afterInteractive" />
     </>
   );
 }
