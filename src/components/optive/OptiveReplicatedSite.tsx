@@ -253,6 +253,138 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
         </div>
         {/* About US Section End */}
 
+        {/* Dual Audience Comparison Section Start */}
+        <div className="our-pricing" style={{background: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)'}}>
+          <div className="container">
+            <div className="row section-row">
+              <div className="col-lg-12">
+                {/* Section Title Start */}
+                <div className="section-title section-title-center">
+                  <span className="section-sub-title wow fadeInUp">Find Your Path</span>
+                  <h2 className="text-anime-style-3" data-cursor="-opaque">Whether You're Brand New or Already Licensed</h2>
+                  <p className="wow fadeInUp" data-wow-delay="0.2s">Apex Affinity Group provides the perfect opportunity for everyone. Start earning immediately as a beginner, or maximize your potential as a licensed professional. Both paths lead to financial freedom.</p>
+                </div>
+                {/* Section Title End */}
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col-lg-12">
+                {/* Comparison Cards Box Start */}
+                <div className="our-pricing-box wow fadeInUp" data-wow-delay="0.4s">
+                  <div className="pricing-tab-item" style={{ display: 'block' }}>
+                    <div className="row">
+                      {/* NEW TO INSURANCE CARD */}
+                      <div className="col-xl-6 col-md-6">
+                        <div className="pricing-item" style={{border: '3px solid #2B4C7E'}}>
+                          {/* Icon Box Start */}
+                          <div className="icon-box">
+                            <i className="fa-solid fa-graduation-cap" style={{fontSize: '48px', color: '#2B4C7E'}}></i>
+                          </div>
+                          {/* Icon Box End */}
+
+                          {/* Pricing Item Content Start */}
+                          <div className="pricing-item-content">
+                            <h2>New to Insurance</h2>
+                            <p>Perfect for beginners ready to build wealth</p>
+                            <h3>Start<sub>Day 1</sub></h3>
+                          </div>
+                          {/* Pricing Item Content End */}
+
+                          {/* Pricing Item List Start */}
+                          <div className="pricing-item-list">
+                            <h3>What You Get:</h3>
+                            <ul>
+                              <li><i className="fa-solid fa-check" style={{color: '#28a745'}}></i> No License Required to Start</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#28a745'}}></i> Earn Immediately with Ancillary Products</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#28a745'}}></i> Free Training & Licensing Support</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#28a745'}}></i> AI-Powered CRM & Lead Tools</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#28a745'}}></i> 1-on-1 Mentorship from {distributor.first_name}</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#28a745'}}></i> Path to Full Insurance Sales</li>
+                            </ul>
+                          </div>
+                          {/* Pricing Item List End */}
+
+                          {/* Pricing Item Button Start */}
+                          <div className="pricing-item-btn">
+                            <a href={signupUrl} className="btn-default">Start Your Journey</a>
+                          </div>
+                          {/* Pricing Item Button End */}
+                        </div>
+                      </div>
+
+                      {/* LICENSED AGENTS CARD */}
+                      <div className="col-xl-6 col-md-6">
+                        <div className="pricing-item pricing-item-popular" style={{border: '3px solid #2B4C7E', position: 'relative'}}>
+                          {/* Popular Badge */}
+                          <div style={{
+                            position: 'absolute',
+                            top: '-15px',
+                            right: '20px',
+                            background: '#28a745',
+                            color: '#fff',
+                            padding: '5px 20px',
+                            borderRadius: '20px',
+                            fontWeight: 'bold',
+                            fontSize: '12px'
+                          }}>SCALE FASTER</div>
+
+                          {/* Icon Box Start */}
+                          <div className="icon-box">
+                            <i className="fa-solid fa-briefcase" style={{fontSize: '48px', color: '#2B4C7E'}}></i>
+                          </div>
+                          {/* Icon Box End */}
+
+                          {/* Pricing Item Content Start */}
+                          <div className="pricing-item-content">
+                            <h2>Licensed Agents</h2>
+                            <p>Maximize earnings with premium contracts</p>
+                            <h3>Unlimited<sub>Potential</sub></h3>
+                          </div>
+                          {/* Pricing Item Content End */}
+
+                          {/* Pricing Item List Start */}
+                          <div className="pricing-item-list">
+                            <h3>What You Get:</h3>
+                            <ul>
+                              <li><i className="fa-solid fa-check" style={{color: '#28a745'}}></i> 100% Ownership of Your Book</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#28a745'}}></i> Higher Commission Contracts</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#28a745'}}></i> Advanced Sales Training</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#28a745'}}></i> Lead Generation System</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#28a745'}}></i> Team Building Opportunities</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#28a745'}}></i> Multiple Carrier Appointments</li>
+                            </ul>
+                          </div>
+                          {/* Pricing Item List End */}
+
+                          {/* Pricing Item Button Start */}
+                          <div className="pricing-item-btn">
+                            <a href={signupUrl} className="btn-default">Join {distributor.first_name}'s Team</a>
+                          </div>
+                          {/* Pricing Item Button End */}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Shared Benefits List Start */}
+                  <div className="pricing-benefit-list wow fadeInUp" data-wow-delay="0.2s" style={{marginTop: '40px'}}>
+                    <h3 style={{textAlign: 'center', marginBottom: '20px', color: '#2B4C7E', fontSize: '24px'}}>Everyone Gets These Benefits:</h3>
+                    <ul style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '30px'}}>
+                      <li><img src="/optive/images/icon-pricing-benefit-1.svg" alt="" />$0 to join, no monthly fees</li>
+                      <li><img src="/optive/images/icon-pricing-benefit-2.svg" alt="" />AI-powered CRM included free</li>
+                      <li><img src="/optive/images/icon-pricing-benefit-3.svg" alt="" />Full training & support</li>
+                      <li><img src="/optive/images/icon-pricing-benefit-1.svg" alt="" />Team development bonuses</li>
+                    </ul>
+                  </div>
+                  {/* Shared Benefits List End */}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* Dual Audience Comparison Section End */}
+
         {/* Our Services Section Start */}
         <div id="services" className="our-services">
           <div className="container">
