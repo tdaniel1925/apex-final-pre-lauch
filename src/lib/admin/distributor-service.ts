@@ -342,6 +342,58 @@ export async function deleteDistributor(
 }
 
 /**
+ * Permanently delete distributor from database (HARD DELETE)
+ * Use with caution - this cannot be undone!
+ */
+export async function permanentlyDeleteDistributor(
+  id: string,
+  adminId: string
+): Promise<{ success: boolean; error?: string; downlineCount?: number }> {
+  const serviceClient = createServiceClient();
+
+  // First, check if they have any downline
+  const { data: downline, error: downlineError } = await serviceClient
+    .from('distributors')
+    .select('id')
+    .eq('sponsor_id', id);
+
+  if (downlineError) {
+    console.error('Error checking downline:', downlineError);
+    return { success: false, error: 'Failed to check downline' };
+  }
+
+  if (downline && downline.length > 0) {
+    return {
+      success: false,
+      error: `Cannot delete: This distributor has ${downline.length} people in their downline. Please reassign or delete them first.`,
+      downlineCount: downline.length,
+    };
+  }
+
+  // Log activity BEFORE deletion (since we won't be able to after)
+  await logAdminActivity({
+    adminId,
+    action: AdminActions.DISTRIBUTOR_DELETE,
+    targetType: 'distributor',
+    targetId: id,
+    details: { permanent: true },
+  });
+
+  // Permanently delete from database
+  const { error } = await serviceClient
+    .from('distributors')
+    .delete()
+    .eq('id', id);
+
+  if (error) {
+    console.error('Error permanently deleting distributor:', error);
+    return { success: false, error: 'Failed to permanently delete distributor' };
+  }
+
+  return { success: true };
+}
+
+/**
  * Get distributor statistics
  */
 export async function getDistributorStats() {

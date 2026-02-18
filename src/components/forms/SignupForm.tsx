@@ -128,9 +128,9 @@ export default function SignupForm({ sponsorSlug, sponsorName }: SignupFormProps
     <div className="w-full max-w-2xl mx-auto">
       {/* Sponsor Banner */}
       {sponsorName && (
-        <div className="mb-8 p-4 bg-gradient-to-r from-[#2B4C7E] to-[#1a2c4e] text-white rounded-lg text-center">
-          <p className="text-sm opacity-90">You've been invited by</p>
-          <p className="text-xl font-semibold mt-1">{sponsorName}</p>
+        <div className="mb-8 px-6 bg-gradient-to-r from-[#2B4C7E] to-[#1a2c4e] text-white rounded-lg text-center" style={{paddingTop: '20px', paddingBottom: '20px'}}>
+          <p className="text-sm opacity-90" style={{margin: 0, marginBottom: '4px'}}>You've been invited by</p>
+          <p className="text-5xl font-bold leading-tight" style={{margin: 0, lineHeight: '1.1'}}>{sponsorName}</p>
         </div>
       )}
 
