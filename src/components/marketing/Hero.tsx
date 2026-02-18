@@ -51,8 +51,8 @@ export default function Hero() {
         </div>
 
         {/* Video Box - Extended to Right Edge */}
-        <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-[45%] max-w-2xl pr-8">
-          <div className="bg-white rounded-3xl overflow-hidden shadow-2xl">
+        <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-[45%] max-w-2xl">
+          <div className="bg-white rounded-3xl rounded-r-none overflow-hidden shadow-2xl">
             <div className="relative aspect-square">
               <video
                 autoPlay
