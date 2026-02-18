@@ -68,14 +68,12 @@ export default function ReplicatedSite({ distributor }: ReplicatedSiteProps) {
               </div>
 
               <h1 className="text-4xl sm:text-5xl font-bold mb-6 leading-tight">
-                Join {distributor.first_name}'s Team at{' '}
-                <span className="text-blue-300">Apex Affinity Group</span>
+                Build Your Insurance Business with{' '}
+                <span className="text-blue-300">{distributor.first_name} {distributor.last_name}</span>
               </h1>
 
               <p className="text-xl text-blue-100 mb-8">
-                {isLicensed
-                  ? 'Build your insurance business with a proven system, cutting-edge technology, and unlimited earning potential.'
-                  : 'Join a thriving network of entrepreneurs building successful referral businesses with industry-leading support.'}
+                Start earning immediately with ancillary products, then scale to full insurance sales. Access multiple carriers, AI-powered tools, and earn from both your sales and your team's growth. 100% free to join.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
@@ -103,53 +101,53 @@ export default function ReplicatedSite({ distributor }: ReplicatedSiteProps) {
             {/* Right: Stats Card */}
             <div className="hidden lg:block">
               <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
-                <h3 className="text-2xl font-bold mb-6">Why Join Our Team?</h3>
+                <h3 className="text-2xl font-bold mb-6">Why Join {distributor.first_name}'s Team?</h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 bg-blue-400 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <div className="w-10 h-10 bg-green-400 rounded-lg flex items-center justify-center flex-shrink-0">
                       <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                       </svg>
                     </div>
                     <div>
-                      <h4 className="font-semibold mb-1">Proven System</h4>
-                      <p className="text-sm text-blue-100">Follow our step-by-step blueprint for success</p>
+                      <h4 className="font-semibold mb-1">Start Earning Day 1</h4>
+                      <p className="text-sm text-blue-100">Sell ancillary products immediately - no license required</p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 bg-green-400 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <div className="w-10 h-10 bg-blue-400 rounded-lg flex items-center justify-center flex-shrink-0">
                       <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
                     <div>
-                      <h4 className="font-semibold mb-1">Unlimited Earning</h4>
-                      <p className="text-sm text-blue-100">Your income grows with your team</p>
+                      <h4 className="font-semibold mb-1">$0 to Join</h4>
+                      <p className="text-sm text-blue-100">No fees, no monthly dues, no hidden costs</p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-3">
                     <div className="w-10 h-10 bg-purple-400 rounded-lg flex items-center justify-center flex-shrink-0">
                       <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                       </svg>
                     </div>
                     <div>
-                      <h4 className="font-semibold mb-1">Personal Mentorship</h4>
-                      <p className="text-sm text-blue-100">I'll personally guide your journey</p>
+                      <h4 className="font-semibold mb-1">Own Your Business</h4>
+                      <p className="text-sm text-blue-100">100% book ownership - your clients forever</p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-3">
                     <div className="w-10 h-10 bg-yellow-400 rounded-lg flex items-center justify-center flex-shrink-0">
                       <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                       </svg>
                     </div>
                     <div>
-                      <h4 className="font-semibold mb-1">Training & Tools</h4>
-                      <p className="text-sm text-blue-100">Access world-class resources and support</p>
+                      <h4 className="font-semibold mb-1">Personal Mentorship</h4>
+                      <p className="text-sm text-blue-100">{distributor.first_name} will personally guide you</p>
                     </div>
                   </div>
                 </div>
@@ -164,83 +162,44 @@ export default function ReplicatedSite({ distributor }: ReplicatedSiteProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              What You Get When You Join
+              What You Get When You Join {distributor.first_name}'s Team
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Everything you need to build a successful {isLicensed ? 'insurance' : 'referral'} business
+              Everything you need to start earning immediately and build a successful insurance business
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {isLicensed ? (
-              // Benefits for Licensed Agents
-              <>
-                <FeatureCard
-                  icon="📋"
-                  title="License Management"
-                  description="Simple license verification and compliance tracking"
-                />
-                <FeatureCard
-                  icon="💰"
-                  title="Advanced Commissions"
-                  description="Competitive commission structure with team bonuses"
-                />
-                <FeatureCard
-                  icon="🎯"
-                  title="Lead Generation"
-                  description="Access proven lead generation strategies and tools"
-                />
-                <FeatureCard
-                  icon="📊"
-                  title="Business Dashboard"
-                  description="Track your sales, team growth, and earnings in real-time"
-                />
-                <FeatureCard
-                  icon="🎓"
-                  title="Elite Training"
-                  description="Exclusive training from top insurance professionals"
-                />
-                <FeatureCard
-                  icon="🤝"
-                  title="Team Building"
-                  description="Build and manage your own team of agents"
-                />
-              </>
-            ) : (
-              // Benefits for Non-Licensed Distributors
-              <>
-                <FeatureCard
-                  icon="🔗"
-                  title="Your Referral Link"
-                  description="Simple sharing system to grow your network"
-                />
-                <FeatureCard
-                  icon="💰"
-                  title="Referral Income"
-                  description="Earn from your direct referrals and team growth"
-                />
-                <FeatureCard
-                  icon="📱"
-                  title="Marketing Materials"
-                  description="Professional tools to promote your business"
-                />
-                <FeatureCard
-                  icon="📊"
-                  title="Team Dashboard"
-                  description="Track your network and earnings in one place"
-                />
-                <FeatureCard
-                  icon="🎓"
-                  title="Success Training"
-                  description="Learn proven strategies for network building"
-                />
-                <FeatureCard
-                  icon="🌟"
-                  title="This Website"
-                  description="Get your own personalized landing page like this one"
-                />
-              </>
-            )}
+            <FeatureCard
+              icon="⚡"
+              title="Start Earning Immediately"
+              description="Sell telemedicine, roadside assistance, identity theft protection, legal services - no license required"
+            />
+            <FeatureCard
+              icon="💰"
+              title="100% Book Ownership"
+              description="You own your clients and renewals forever. Your business, your asset."
+            />
+            <FeatureCard
+              icon="🎓"
+              title="Full Licensing Support"
+              description="When ready, we guide you through getting licensed to sell insurance products"
+            />
+            <FeatureCard
+              icon="🤖"
+              title="AI-Powered CRM"
+              description="Automated follow-ups, lead tracking, and sales tools included free"
+            />
+            <FeatureCard
+              icon="📊"
+              title="Real-Time Dashboard"
+              description="Track your sales, team growth, and earnings all in one place"
+            />
+            <FeatureCard
+              icon="🤝"
+              title="Dual Income Streams"
+              description="Earn from your direct sales plus team development bonuses"
+            />
           </div>
         </div>
       </section>
@@ -273,14 +232,10 @@ export default function ReplicatedSite({ distributor }: ReplicatedSiteProps) {
 
             <div className="prose prose-lg max-w-none text-center">
               <p className="text-gray-700">
-                I'm excited to help you start your journey with Apex Affinity Group. Whether you're
-                {isLicensed
-                  ? ' a licensed insurance professional looking to grow your business'
-                  : ' looking to build a successful referral business'}
-                , I'll be here to support you every step of the way.
+                I'm excited to help you start your journey with Apex Affinity Group. You can start earning immediately selling ancillary products (no license needed), and when you're ready, I'll guide you through getting licensed to sell insurance.
               </p>
               <p className="text-gray-700 mt-4">
-                Click the button below to join my team and let's build your success together!
+                The best part? It's 100% free to join, you'll own your entire book of business, and you can earn from both your sales and team development. Let's build your success together!
               </p>
             </div>
 
@@ -320,9 +275,9 @@ export default function ReplicatedSite({ distributor }: ReplicatedSiteProps) {
       {/* Final CTA */}
       <section className="py-16 bg-gradient-to-r from-[#2B4C7E] to-[#1a2c4e] text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">Ready to Get Started?</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4">Ready to Build Your Business?</h2>
           <p className="text-xl text-blue-100 mb-8">
-            Join thousands of successful distributors building their future with Apex Affinity Group
+            Start earning within 24 hours. No license needed. 100% free to join.
           </p>
           <a
             href={signupUrl}
@@ -331,7 +286,7 @@ export default function ReplicatedSite({ distributor }: ReplicatedSiteProps) {
             Join {distributor.first_name}'s Team →
           </a>
           <p className="mt-6 text-sm text-blue-200">
-            Free to join • No credit card required • Start earning immediately
+            Free to join • Own your business 100% • Earn from sales + team bonuses
           </p>
         </div>
       </section>
