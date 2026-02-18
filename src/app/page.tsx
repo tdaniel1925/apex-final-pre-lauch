@@ -4,6 +4,7 @@ import StatsSection from '@/components/marketing/StatsSection';
 import ChooseYourPath from '@/components/marketing/ChooseYourPath';
 import GettingStarted from '@/components/marketing/GettingStarted';
 import Testimonials from '@/components/marketing/Testimonials';
+import FAQ from '@/components/marketing/FAQ';
 import CTASection from '@/components/marketing/CTASection';
 import Footer from '@/components/marketing/Footer';
 
@@ -16,6 +17,7 @@ export default function Home() {
       <ChooseYourPath />
       <GettingStarted />
       <Testimonials />
+      <FAQ />
       <CTASection />
       <Footer />
     </div>

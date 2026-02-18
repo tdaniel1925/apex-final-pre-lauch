@@ -25,10 +25,10 @@ export default function Hero() {
                   The Apex Way
                 </span>
                 <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight">
-                  More Carriers. Better Technology. Higher Commissions.
+                  Build Your Insurance Business Your Way
                 </h1>
                 <p className="text-base md:text-lg text-white/90 leading-snug pr-4 lg:pr-12">
-                  Join 1,247+ agents with access to 7 premier carriers, up to 100% commissions, AI-powered CRM, and a 6-generation team override structure. Free to join.
+                  Start earning immediately with ancillary products, then scale to full insurance sales. Access multiple carriers, AI-powered tools, and earn from both your sales and your team's growth. 100% free to join.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 pt-3 lg:pt-4">
                   <Button

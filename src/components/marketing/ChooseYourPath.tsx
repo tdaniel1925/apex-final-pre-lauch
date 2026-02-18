@@ -44,7 +44,7 @@ export default function ChooseYourPath() {
 
             {/* Subtitle */}
             <p className="text-[#4B5563] text-center mb-8 leading-relaxed">
-              Start your career with complete support from day one. We'll guide you through licensing, training, and your first sales.
+              Start earning today with ancillary products while we guide you through licensing, training, and building your insurance business.
             </p>
 
             {/* Features List */}
@@ -56,8 +56,20 @@ export default function ChooseYourPath() {
                   </svg>
                 </div>
                 <div>
+                  <p className="font-semibold text-[#2B4C7E]">Start Earning Immediately</p>
+                  <p className="text-sm text-[#4B5563]">Sell telemedicine, roadside assistance, and identity theft protection before licensing</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 bg-[#DC2626] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div>
                   <p className="font-semibold text-[#2B4C7E]">Full Licensing Support</p>
-                  <p className="text-sm text-[#4B5563]">We guide you through every step of getting licensed</p>
+                  <p className="text-sm text-[#4B5563]">We guide you through every step of getting licensed in your state</p>
                 </div>
               </div>
 
@@ -69,7 +81,7 @@ export default function ChooseYourPath() {
                 </div>
                 <div>
                   <p className="font-semibold text-[#2B4C7E]">Comprehensive Training</p>
-                  <p className="text-sm text-[#4B5563]">Learn our proven sales system from top performers</p>
+                  <p className="text-sm text-[#4B5563]">Sales techniques, product knowledge, and business building skills</p>
                 </div>
               </div>
 
@@ -81,19 +93,7 @@ export default function ChooseYourPath() {
                 </div>
                 <div>
                   <p className="font-semibold text-[#2B4C7E]">Personal Mentor</p>
-                  <p className="text-sm text-[#4B5563]">Direct access to experienced leaders for guidance</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-[#DC2626] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                <div>
-                  <p className="font-semibold text-[#2B4C7E]">Matrix Spillover Income</p>
-                  <p className="text-sm text-[#4B5563]">Benefit from our 5×7 forced matrix system</p>
+                  <p className="text-sm text-[#4B5563]">One-on-one guidance from experienced agents in your upline</p>
                 </div>
               </div>
             </div>
@@ -170,8 +170,8 @@ export default function ChooseYourPath() {
                   </svg>
                 </div>
                 <div>
-                  <p className="font-semibold text-[#2B4C7E]">6-Generation Overrides</p>
-                  <p className="text-sm text-[#4B5563]">Build passive income through team growth</p>
+                  <p className="font-semibold text-[#2B4C7E]">Team Development Bonuses</p>
+                  <p className="text-sm text-[#4B5563]">Earn additional income when you help others succeed</p>
                 </div>
               </div>
             </div>

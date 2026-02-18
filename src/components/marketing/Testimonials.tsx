@@ -5,25 +5,25 @@ import Image from 'next/image';
 export default function Testimonials() {
   const testimonials = [
     {
-      name: 'Bill Propper',
-      role: 'CEO, Apex Affinity Group',
+      name: 'New Agent',
+      role: 'First 90 Days',
       image: '/images/author-1.jpg',
       rating: 5,
-      text: 'Our 5×7 forced matrix system creates true wealth-building opportunities. When your team succeeds, you succeed - it\'s that simple.'
+      text: 'Started earning within 24 hours selling ancillary products while studying for my license. The training and support made everything clear and simple.'
     },
     {
-      name: 'Darrell Wolfe',
-      role: 'Top Distributor',
+      name: 'Licensed Agent',
+      role: 'Switched from Captive',
       image: '/images/author-2.jpg',
       rating: 5,
-      text: 'The matrix spillover benefits are incredible. I\'ve seen agents build substantial passive income streams through the 6-generation override structure.'
+      text: 'Went from 50% commissions and zero ownership to 100% commissions and owning my book. Plus I can build a team and earn from their success - game changer.'
     },
     {
-      name: 'Johnathon Bunch',
-      role: 'Senior Leader',
+      name: 'Team Builder',
+      role: 'Building for 2 Years',
       image: '/images/author-3.jpg',
       rating: 5,
-      text: 'This organization is built on integrity and helping agents achieve financial freedom. The support and training are second to none.'
+      text: 'Love that I can focus on both selling insurance and helping others succeed. Two income streams from one business, and I own all my clients forever.'
     }
   ];
 

@@ -1,24 +1,24 @@
 export default function StatsSection() {
   const stats = [
     {
-      label: 'Active Members',
-      value: '1,247+',
-      description: 'Agents building their business with Apex across multiple countries'
+      label: 'Time to Start',
+      value: '24hrs',
+      description: 'Begin earning with ancillary products while getting licensed'
     },
     {
-      label: 'Years Track Record',
-      value: '5',
-      description: 'Proven system helping agents achieve financial success'
+      label: 'Upfront Cost',
+      value: '$0',
+      description: 'No joining fees, no monthly dues, no hidden charges'
     },
     {
-      label: 'Countries',
-      value: '12',
-      description: 'International presence with agents worldwide'
-    },
-    {
-      label: 'Commission Rate',
+      label: 'Book Ownership',
       value: '100%',
-      description: 'Top earners receiving maximum commission payouts'
+      description: 'You own your clients and renewals forever'
+    },
+    {
+      label: 'Income Streams',
+      value: '2',
+      description: 'Earn from your sales plus team development bonuses'
     }
   ];
 
@@ -58,18 +58,17 @@ export default function StatsSection() {
         <div className="mt-12 bg-white rounded-2xl p-8 shadow-sm border border-[#2B4C7E]/10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <p className="text-lg text-[#4B5563] text-center md:text-left">
-              Join our growing network of successful insurance professionals building financial freedom.
+              Join our growing network of insurance professionals building financial freedom through direct sales and team development.
             </p>
             <div className="flex items-center gap-4 shrink-0">
-              <span className="text-3xl font-bold text-[#2B4C7E]">4.9/5</span>
               <div className="flex gap-1 text-[#DC2626]">
                 {[...Array(5)].map((_, i) => (
-                  <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                  <svg key={i} className="w-6 h-6 fill-current" viewBox="0 0 20 20">
                     <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                   </svg>
                 ))}
               </div>
-              <span className="text-[#4B5563] whitespace-nowrap">Based on 4200 Reviews</span>
+              <span className="text-[#4B5563] font-semibold">Trusted by Agents Nationwide</span>
             </div>
           </div>
         </div>
