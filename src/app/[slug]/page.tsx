@@ -7,7 +7,7 @@
 import { notFound, redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import type { Distributor } from '@/lib/types';
-import ReplicatedSite from '@/components/replicated/ReplicatedSite';
+import OptiveReplicatedSite from '@/components/optive/OptiveReplicatedSite';
 
 interface PageProps {
   params: Promise<{
@@ -111,6 +111,6 @@ export default async function DistributorPage({ params }: PageProps) {
     );
   }
 
-  // Render replicated site
-  return <ReplicatedSite distributor={dist} />;
+  // Render Optive replicated site
+  return <OptiveReplicatedSite distributor={dist} />;
 }
