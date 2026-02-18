@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
       if (!parentId) {
         return NextResponse.json({ error: 'Parent ID required for move' }, { status: 400 });
       }
-      const result = await moveDistributor(distributorId, parentId, admin.distributor.id);
+      const result = await moveDistributor(distributorId, parentId, admin.admin.id);
       if (!result.success) {
         return NextResponse.json({ error: result.error }, { status: 400 });
       }
@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
 
     if (action === 'lock' || action === 'unlock') {
       const lock = action === 'lock';
-      const result = await togglePositionLock(distributorId, admin.distributor.id, lock);
+      const result = await togglePositionLock(distributorId, admin.admin.id, lock);
       if (!result.success) {
         return NextResponse.json({ error: result.error }, { status: 400 });
       }
@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
     if (!parentId) {
       return NextResponse.json({ error: 'Parent ID required' }, { status: 400 });
     }
-    const result = await placeDistributor(distributorId, parentId, admin.distributor.id);
+    const result = await placeDistributor(distributorId, parentId, admin.admin.id);
     if (!result.success) {
       return NextResponse.json({ error: result.error }, { status: 400 });
     }

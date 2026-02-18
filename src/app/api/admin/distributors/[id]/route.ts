@@ -49,7 +49,7 @@ export async function PATCH(
   try {
     const { id } = await params;
     const body = await request.json();
-    const result = await updateDistributor(id, body, admin.distributor.id);
+    const result = await updateDistributor(id, body, admin.admin.id);
 
     if (!result.success) {
       return NextResponse.json({ error: result.error }, { status: 400 });
@@ -74,7 +74,7 @@ export async function DELETE(
 
   try {
     const { id } = await params;
-    const result = await deleteDistributor(id, admin.distributor.id);
+    const result = await deleteDistributor(id, admin.admin.id);
 
     if (!result.success) {
       return NextResponse.json({ error: result.error }, { status: 400 });

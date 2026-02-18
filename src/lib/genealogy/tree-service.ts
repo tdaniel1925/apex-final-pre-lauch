@@ -170,13 +170,15 @@ export async function getUplinePath(
   let currentId: string | null = distributorId;
 
   while (currentId) {
-    const { data: distributor } = await supabase
+    const { data: distributorData } = await supabase
       .from('distributors')
       .select('*')
       .eq('id', currentId)
       .single();
 
-    if (!distributor) break;
+    if (!distributorData) break;
+
+    const distributor = distributorData as Distributor;
 
     path.unshift(distributor as Distributor);
     currentId = (distributor as Distributor).sponsor_id;

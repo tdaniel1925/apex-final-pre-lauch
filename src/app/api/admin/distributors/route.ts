@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const body = await request.json();
-    const result = await createDistributor(body, admin.distributor.id);
+    const result = await createDistributor(body, admin.admin.id);
 
     if (!result.success) {
       return NextResponse.json({ error: result.error }, { status: 400 });

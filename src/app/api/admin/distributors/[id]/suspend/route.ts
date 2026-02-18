@@ -26,7 +26,7 @@ export async function POST(
       return NextResponse.json({ error: 'Suspension reason is required' }, { status: 400 });
     }
 
-    const result = await suspendDistributor(id, reason, admin.distributor.id);
+    const result = await suspendDistributor(id, reason, admin.admin.id);
 
     if (!result.success) {
       return NextResponse.json({ error: result.error }, { status: 400 });
@@ -51,7 +51,7 @@ export async function DELETE(
 
   try {
     const { id } = await params;
-    const result = await activateDistributor(id, admin.distributor.id);
+    const result = await activateDistributor(id, admin.admin.id);
 
     if (!result.success) {
       return NextResponse.json({ error: result.error }, { status: 400 });
