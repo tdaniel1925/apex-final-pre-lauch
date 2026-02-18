@@ -285,12 +285,12 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                           <div className="pricing-item-list">
                             <h3>What You Get:</h3>
                             <ul>
-                              <li><i className="fa-solid fa-check" style={{color: '#28a745'}}></i> No License Required to Start</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#28a745'}}></i> Earn Immediately with Ancillary Products</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#28a745'}}></i> Free Training & Licensing Support</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#28a745'}}></i> AI-Powered CRM & Lead Tools</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#28a745'}}></i> 1-on-1 Mentorship from {distributor.first_name}</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#28a745'}}></i> Path to Full Insurance Sales</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> No License Required to Start</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Earn Immediately with Ancillary Products</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Free Training & Licensing Support</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> AI-Powered CRM & Lead Tools</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> 1-on-1 Mentorship from {distributor.first_name}</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Path to Full Insurance Sales</li>
                             </ul>
                           </div>
                           {/* Pricing Item List End */}
@@ -315,7 +315,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                             position: 'absolute',
                             top: '-15px',
                             right: '20px',
-                            background: '#28a745',
+                            background: '#2B4C7E',
                             color: '#fff',
                             padding: '5px 20px',
                             borderRadius: '20px',
@@ -341,12 +341,12 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                           <div className="pricing-item-list">
                             <h3>What You Get:</h3>
                             <ul>
-                              <li><i className="fa-solid fa-check" style={{color: '#28a745'}}></i> 100% Ownership of Your Book</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#28a745'}}></i> Higher Commission Contracts</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#28a745'}}></i> Advanced Sales Training</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#28a745'}}></i> Lead Generation System</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#28a745'}}></i> Team Building Opportunities</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#28a745'}}></i> Multiple Carrier Appointments</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> 100% Ownership of Your Book</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Higher Commission Contracts</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Advanced Sales Training</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Lead Generation System</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Team Building Opportunities</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Multiple Carrier Appointments</li>
                             </ul>
                           </div>
                           {/* Pricing Item List End */}
