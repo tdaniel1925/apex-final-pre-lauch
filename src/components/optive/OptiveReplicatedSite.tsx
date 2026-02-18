@@ -63,7 +63,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
               <div className="container">
                 {/* Logo Start */}
                 <a className="navbar-brand" href={`/optive/${distributor.slug}`}>
-                  <img src="/apex-logo-full.png" alt="Apex Affinity Group" style={{height: '50px'}} />
+                  <img src="/apex-logo-full.png" alt="Apex Affinity Group" style={{height: '80px'}} />
                 </a>
                 {/* Logo End */}
 
@@ -102,10 +102,20 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
             <video autoPlay muted loop id="herovideo">
               <source src="/videos/flag-waving.mp4" type="video/mp4" />
             </video>
+            {/* Dark Blue Overlay for Text Contrast */}
+            <div style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              backgroundColor: 'rgba(43, 76, 126, 0.7)',
+              zIndex: 1
+            }}></div>
           </div>
           {/* Video End */}
 
-          <div className="container">
+          <div className="container" style={{position: 'relative', zIndex: 2}}>
             <div className="row align-items-end">
               <div className="col-xl-8">
                 {/* Hero Content Start */}
@@ -156,75 +166,6 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
         </div>
         {/* Hero Section End */}
 
-        {/* Company Slider Start */}
-        <div className="company-slider">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-12">
-                {/* Company Slider Box Start */}
-                <div className="company-slider-box wow fadeInUp">
-                  {/* Company Slider Title Start */}
-                  <div className="company-slider-title">
-                    <h3>Why Agents Choose Apex Affinity Group</h3>
-                  </div>
-                  {/* Company Slider Title End */}
-
-                  {/* Company Support Slider Start */}
-                  <div className="company-supports-slider">
-                    <div className="swiper">
-                      <div className="swiper-wrapper">
-                        {/* Value Prop 1 */}
-                        <div className="swiper-slide">
-                          <div className="company-supports-logo">
-                            <p style={{color: '#fff', fontSize: '18px', fontWeight: '600'}}>✓ $0 to Join</p>
-                          </div>
-                        </div>
-
-                        {/* Value Prop 2 */}
-                        <div className="swiper-slide">
-                          <div className="company-supports-logo">
-                            <p style={{color: '#fff', fontSize: '18px', fontWeight: '600'}}>✓ 100% Book Ownership</p>
-                          </div>
-                        </div>
-
-                        {/* Value Prop 3 */}
-                        <div className="swiper-slide">
-                          <div className="company-supports-logo">
-                            <p style={{color: '#fff', fontSize: '18px', fontWeight: '600'}}>✓ Dual Income Streams</p>
-                          </div>
-                        </div>
-
-                        {/* Value Prop 4 */}
-                        <div className="swiper-slide">
-                          <div className="company-supports-logo">
-                            <p style={{color: '#fff', fontSize: '18px', fontWeight: '600'}}>✓ AI-Powered CRM</p>
-                          </div>
-                        </div>
-
-                        {/* Value Prop 5 */}
-                        <div className="swiper-slide">
-                          <div className="company-supports-logo">
-                            <p style={{color: '#fff', fontSize: '18px', fontWeight: '600'}}>✓ Team Growth Bonuses</p>
-                          </div>
-                        </div>
-
-                        {/* Value Prop 6 */}
-                        <div className="swiper-slide">
-                          <div className="company-supports-logo">
-                            <p style={{color: '#fff', fontSize: '18px', fontWeight: '600'}}>✓ Start Earning Day 1</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {/* Company Support Slider End */}
-                </div>
-                {/* Company Slider Box End */}
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* Company Slider End */}
 
         {/* About US Section Start */}
         <div className="about-us">
@@ -291,17 +232,6 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                 {/* Section Footer Text Start */}
                 <div className="section-footer-text wow fadeInUp" data-wow-delay="0.4s">
                   <p>Join our team and help weave innovation, quality, and success together nationwide.</p>
-                  <ul>
-                    <li><span className="counter">4.9</span>/5</li>
-                    <li>
-                      <i className="fa-solid fa-star"></i>
-                      <i className="fa-solid fa-star"></i>
-                      <i className="fa-solid fa-star"></i>
-                      <i className="fa-solid fa-star"></i>
-                      <i className="fa-solid fa-star"></i>
-                    </li>
-                    <li>Our 4200 Review</li>
-                  </ul>
                 </div>
                 {/* Section Footer Text End */}
               </div>
