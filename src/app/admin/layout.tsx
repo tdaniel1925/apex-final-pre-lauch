@@ -17,16 +17,16 @@ export default async function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { distributor } = await requireAdmin();
+  const { admin } = await requireAdmin();
 
   // Log admin portal access
   await logAdminActivity({
-    adminId: distributor.id,
+    adminId: admin.id,
     action: AdminActions.SYSTEM_LOGIN,
     targetType: 'system',
     details: {
-      admin_name: `${distributor.first_name} ${distributor.last_name}`,
-      admin_role: distributor.admin_role || 'master',
+      admin_name: `${admin.first_name} ${admin.last_name}`,
+      admin_role: admin.role,
     },
   });
 

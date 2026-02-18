@@ -41,12 +41,12 @@ export async function GET(request: NextRequest) {
     // Check if user is admin (use service client to bypass RLS)
     const serviceClient = createServiceClient();
     const { data: admin } = await serviceClient
-      .from('distributors')
-      .select('is_master')
+      .from('admins')
+      .select('id')
       .eq('auth_user_id', user.id)
       .single();
 
-    if (!admin || !admin.is_master) {
+    if (!admin) {
       return NextResponse.json(
         {
           success: false,
@@ -135,15 +135,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Check if user is admin and get distributor ID (use service client to bypass RLS)
+    // Check if user is admin (use service client to bypass RLS)
     const serviceClient = createServiceClient();
     const { data: admin } = await serviceClient
-      .from('distributors')
-      .select('id, is_master')
+      .from('admins')
+      .select('id')
       .eq('auth_user_id', user.id)
       .single();
 
-    if (!admin || !admin.is_master) {
+    if (!admin) {
       return NextResponse.json(
         {
           success: false,

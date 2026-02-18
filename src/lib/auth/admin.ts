@@ -9,14 +9,14 @@ import { redirect } from 'next/navigation';
 
 export type AdminRole = 'super_admin' | 'admin' | 'support' | 'viewer';
 
-export interface AdminDistributor {
+export interface Admin {
   id: string;
   auth_user_id: string;
   email: string;
   first_name: string;
   last_name: string;
-  is_master: boolean;
-  admin_role: AdminRole | null;
+  role: AdminRole;
+  is_active: boolean;
 }
 
 export interface AdminContext {
@@ -24,14 +24,14 @@ export interface AdminContext {
     id: string;
     email: string;
   };
-  distributor: AdminDistributor;
+  admin: Admin;
 }
 
 /**
  * Requires admin authentication for a route
  * Redirects to login if not authenticated
  * Redirects to dashboard if not an admin
- * Returns admin context with user and distributor info
+ * Returns admin context with user and admin info
  */
 export async function requireAdmin(): Promise<AdminContext> {
   const supabase = await createClient();
@@ -45,16 +45,16 @@ export async function requireAdmin(): Promise<AdminContext> {
     redirect('/login');
   }
 
-  // Get distributor data with service client
+  // Check if user is an admin (use service client to bypass RLS)
   const serviceClient = createServiceClient();
-  const { data: distributor } = await serviceClient
-    .from('distributors')
-    .select('id, auth_user_id, email, first_name, last_name, is_master, admin_role')
+  const { data: admin } = await serviceClient
+    .from('admins')
+    .select('*')
     .eq('auth_user_id', user.id)
     .single();
 
-  // Check if user has admin access
-  if (!distributor?.is_master && !distributor?.admin_role) {
+  // If not admin, redirect to dashboard (they might be a distributor)
+  if (!admin) {
     redirect('/dashboard');
   }
 
@@ -63,7 +63,7 @@ export async function requireAdmin(): Promise<AdminContext> {
       id: user.id,
       email: user.email!,
     },
-    distributor: distributor as AdminDistributor,
+    admin: admin as Admin,
   };
 }
 
@@ -71,12 +71,9 @@ export async function requireAdmin(): Promise<AdminContext> {
  * Checks if user has a specific admin role or higher
  */
 export function hasAdminRole(
-  distributor: AdminDistributor,
+  admin: Admin,
   requiredRole: AdminRole
 ): boolean {
-  // Master user has all permissions
-  if (distributor.is_master) return true;
-
   const roleHierarchy: Record<AdminRole, number> = {
     super_admin: 4,
     admin: 3,
@@ -84,9 +81,7 @@ export function hasAdminRole(
     viewer: 1,
   };
 
-  const userRoleLevel = distributor.admin_role
-    ? roleHierarchy[distributor.admin_role]
-    : 0;
+  const userRoleLevel = roleHierarchy[admin.role] || 0;
   const requiredRoleLevel = roleHierarchy[requiredRole];
 
   return userRoleLevel >= requiredRoleLevel;
@@ -105,13 +100,13 @@ export async function getAdminUser(): Promise<AdminContext | null> {
   if (!user) return null;
 
   const serviceClient = createServiceClient();
-  const { data: distributor } = await serviceClient
-    .from('distributors')
-    .select('id, auth_user_id, email, first_name, last_name, is_master, admin_role')
+  const { data: admin } = await serviceClient
+    .from('admins')
+    .select('*')
     .eq('auth_user_id', user.id)
     .single();
 
-  if (!distributor?.is_master && !distributor?.admin_role) {
+  if (!admin) {
     return null;
   }
 
@@ -120,6 +115,6 @@ export async function getAdminUser(): Promise<AdminContext | null> {
       id: user.id,
       email: user.email!,
     },
-    distributor: distributor as AdminDistributor,
+    admin: admin as Admin,
   };
 }

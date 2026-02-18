@@ -12,7 +12,7 @@ export const metadata = {
 };
 
 export default async function AdminDashboardPage() {
-  const { distributor } = await requireAdmin();
+  const { admin } = await requireAdmin();
   const serviceClient = createServiceClient();
 
   // Get total distributors
@@ -82,7 +82,7 @@ export default async function AdminDashboardPage() {
           Admin Dashboard
         </h1>
         <p className="text-sm text-gray-600 mt-0.5">
-          Welcome back, {distributor.first_name}! Here&apos;s your system overview.
+          Welcome back, {admin.first_name}! Here&apos;s your system overview.
         </p>
       </div>
 

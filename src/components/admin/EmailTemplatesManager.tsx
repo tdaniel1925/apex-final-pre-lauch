@@ -83,6 +83,27 @@ export default function EmailTemplatesManager() {
     loadTemplates();
   };
 
+  const handleTestEmail = async () => {
+    try {
+      setMessage(null);
+      const response = await fetch('/api/admin/test-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({}),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setMessage({ type: 'success', text: data.message || 'Test email sent! Check your inbox.' });
+      } else {
+        setMessage({ type: 'error', text: data.message || 'Failed to send test email' });
+      }
+    } catch (error) {
+      setMessage({ type: 'error', text: 'Failed to send test email' });
+    }
+  };
+
   return (
     <div>
       {/* Message */}
@@ -113,13 +134,22 @@ export default function EmailTemplatesManager() {
           </select>
         </div>
 
-        <button
-          onClick={() => setShowCreateModal(true)}
-          className="px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 flex items-center gap-2"
-        >
-          <span className="text-lg">+</span>
-          Create Template
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={handleTestEmail}
+            disabled={loading}
+            className="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 flex items-center gap-2"
+          >
+            Send Test Email
+          </button>
+          <button
+            onClick={() => setShowCreateModal(true)}
+            className="px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 flex items-center gap-2"
+          >
+            <span className="text-lg">+</span>
+            Create Template
+          </button>
+        </div>
       </div>
 
       {/* Templates List */}

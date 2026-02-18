@@ -27,7 +27,7 @@ export async function middleware(request: NextRequest) {
             value,
             ...options,
             sameSite: 'lax',
-            secure: true,
+            secure: process.env.NODE_ENV === 'production',
           });
         },
         remove(name: string, options: any) {
@@ -36,7 +36,7 @@ export async function middleware(request: NextRequest) {
             value: '',
             ...options,
             sameSite: 'lax',
-            secure: true,
+            secure: process.env.NODE_ENV === 'production',
           });
         },
       },
