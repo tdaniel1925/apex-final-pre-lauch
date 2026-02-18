@@ -158,7 +158,17 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                     {/* Hero Info Image Start */}
                     <div className="hero-info-image">
                       <figure>
-                        <img src="/optive/images/hero-info-image.jpg" alt="" />
+                        {/* Show distributor photo if available, otherwise Apex logo */}
+                        <img
+                          src={distributor.profile_photo_url || '/apex-logo-full.png'}
+                          alt={`${distributor.first_name} ${distributor.last_name}`}
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                            borderRadius: distributor.profile_photo_url ? '0' : '0'
+                          }}
+                        />
                       </figure>
                     </div>
                     {/* Hero Info Image End */}
@@ -167,8 +177,10 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
 
                   {/* Hero Info Box Content Start */}
                   <div className="hero-info-box-content">
-                    <h2>$0 to Start</h2>
-                    <p>Begin earning immediately with ancillary products while you get licensed. Zero joining fees, zero monthly dues.</p>
+                    <h2>{distributor.first_name} {distributor.last_name}</h2>
+                    <p>
+                      {distributor.bio || `${distributor.licensing_status === 'licensed' ? 'Licensed Insurance Professional' : 'Insurance Business Builder'} ready to help you achieve financial freedom.`}
+                    </p>
                   </div>
                   {/* Hero Info Box Content End */}
                 </div>
