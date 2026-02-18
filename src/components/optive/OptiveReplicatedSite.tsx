@@ -78,6 +78,64 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
         </div>
         {/* Preloader End */}
 
+        {/* Header Start */}
+        <header className="main-header">
+          <div className="header-sticky">
+            <nav className="navbar navbar-expand-lg">
+              <div className="container">
+                {/* Logo Start */}
+                <a className="navbar-brand" href="/">
+                  <img src="/apex-logo-full.png" alt="Apex Affinity Group" style={{height: '80px'}} />
+                </a>
+                {/* Logo End */}
+
+                {/* Navbar Toggler for Mobile */}
+                <button
+                  className="navbar-toggler"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#navbarNav"
+                  aria-controls="navbarNav"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                >
+                  <span className="navbar-toggler-icon"></span>
+                </button>
+
+                {/* Main Menu Start */}
+                <div className="navbar-collapse main-menu" id="navbarNav" style={{display: 'flex'}}>
+                  <div className="nav-menu-wrapper">
+                    <ul className="navbar-nav mr-auto" id="menu">
+                      <li className="nav-item"><a className="nav-link" href="#home">Home</a></li>
+                      <li className="nav-item"><a className="nav-link" href="#newcomers">Newcomers & Licensed</a></li>
+                      <li className="nav-item"><a className="nav-link" href="#faq">FAQs</a></li>
+                      <li className="nav-item"><a className="nav-link" href="#contact">Contact</a></li>
+                    </ul>
+                  </div>
+
+                  {/* Header Btn Start */}
+                  <div className="header-btn">
+                    {distributor.slug === 'apex' ? (
+                      <button className="btn-default" style={{background: '#6b7280', backgroundColor: '#6b7280', backgroundImage: 'none', borderColor: '#6b7280', cursor: 'not-allowed'}}>
+                        Coming Soon
+                      </button>
+                    ) : (
+                      <a href={signupUrl} className="btn-default" style={{background: '#2B4C7E', backgroundColor: '#2B4C7E', backgroundImage: 'none', borderColor: '#2B4C7E'}}>
+                        Join My Team
+                      </a>
+                    )}
+                  </div>
+                  {/* Header Btn End */}
+                </div>
+                {/* Main Menu End */}
+                <div className="navbar-toggle"></div>
+              </div>
+            </nav>
+            <div className="responsive-menu"></div>
+          </div>
+        </header>
+        {/* Header End */}
+
         {/* Hero Section Start */}
         <div className="hero hero-video dark-section">
           {/* Video Start - USING FLAG VIDEO */}
@@ -239,7 +297,11 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
 
                           {/* Pricing Item Button Start */}
                           <div className="pricing-item-btn">
-                            <a href={signupUrl} className="btn-default">Start Your Journey</a>
+                            {distributor.slug === 'apex' ? (
+                              <button className="btn-default" style={{cursor: 'not-allowed', opacity: 0.7}}>Coming Soon</button>
+                            ) : (
+                              <a href={signupUrl} className="btn-default">Start Your Journey</a>
+                            )}
                           </div>
                           {/* Pricing Item Button End */}
                         </div>
@@ -291,7 +353,11 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
 
                           {/* Pricing Item Button Start */}
                           <div className="pricing-item-btn">
-                            <a href={signupUrl} className="btn-default">Join {distributor.first_name}'s Team</a>
+                            {distributor.slug === 'apex' ? (
+                              <button className="btn-default" style={{cursor: 'not-allowed', opacity: 0.7}}>Coming Soon</button>
+                            ) : (
+                              <a href={signupUrl} className="btn-default">Join {distributor.first_name}'s Team</a>
+                            )}
                           </div>
                           {/* Pricing Item Button End */}
                         </div>
