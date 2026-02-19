@@ -15,6 +15,8 @@ interface Props {
 
 const LAUNCH_DATE = new Date('2026-02-24T02:00:00Z');
 const WEBINAR_LINK = 'https://events.teams.microsoft.com/event/599e6f14-a298-4986-be33-64031f51f37f@8db46c49-b9d5-4f6b-948b-b99f34520af8';
+// Webinar button unlocks Monday Feb 23 at 6:00 PM ET (23:00 UTC)
+const WEBINAR_ACTIVE_DATE = new Date('2026-02-23T23:00:00Z');
 
 function pad(n: number) {
   return String(n).padStart(2, '0');
@@ -25,6 +27,7 @@ export default function WaitlistScreen({ sponsorSlug, sponsorName }: Props) {
   const backUrl = sponsorSlug ? `/${sponsorSlug}` : '/';
 
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [webinarActive, setWebinarActive] = useState(false);
   const [email, setEmail] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [status, setStatus] = useState<'idle' | 'success' | 'duplicate' | 'error'>('idle');
@@ -32,14 +35,18 @@ export default function WaitlistScreen({ sponsorSlug, sponsorName }: Props) {
 
   useEffect(() => {
     const tick = () => {
-      const diff = LAUNCH_DATE.getTime() - Date.now();
-      if (diff <= 0) { setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 }); return; }
-      setTimeLeft({
-        days: Math.floor(diff / 86400000),
-        hours: Math.floor((diff % 86400000) / 3600000),
-        minutes: Math.floor((diff % 3600000) / 60000),
-        seconds: Math.floor((diff % 60000) / 1000),
-      });
+      const now  = Date.now();
+      const diff = LAUNCH_DATE.getTime() - now;
+      if (diff <= 0) { setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 }); }
+      else {
+        setTimeLeft({
+          days: Math.floor(diff / 86400000),
+          hours: Math.floor((diff % 86400000) / 3600000),
+          minutes: Math.floor((diff % 3600000) / 60000),
+          seconds: Math.floor((diff % 60000) / 1000),
+        });
+      }
+      setWebinarActive(now >= WEBINAR_ACTIVE_DATE.getTime());
     };
     tick();
     const id = setInterval(tick, 1000);
@@ -139,20 +146,26 @@ export default function WaitlistScreen({ sponsorSlug, sponsorName }: Props) {
         </div>
 
         {/* Webinar button */}
-        {WEBINAR_LINK ? (
+        {webinarActive ? (
           <a
             href={WEBINAR_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full max-w-sm bg-white text-[#2B4C7E] font-bold py-2.5 px-6 rounded-xl text-sm hover:bg-blue-50 transition-colors mb-4"
+            className="w-full max-w-sm bg-white text-[#2B4C7E] font-bold py-2.5 px-6 rounded-xl text-sm hover:bg-blue-50 transition-colors mb-1 text-center block"
           >
             Join the Pre-Launch Webinar →
           </a>
         ) : (
-          <div className="w-full max-w-sm bg-white/10 border border-white/20 text-white/50 font-medium py-2.5 px-6 rounded-xl text-xs mb-4 cursor-default">
-            Webinar link coming soon
+          <div className="w-full max-w-sm mb-1">
+            <div className="bg-white/10 border border-white/20 text-white/40 font-medium py-2.5 px-6 rounded-xl text-sm cursor-not-allowed text-center">
+              Join the Pre-Launch Webinar →
+            </div>
+            <p className="text-blue-300/70 text-xs text-center mt-1.5">
+              🔒 Link unlocks <strong className="text-blue-200">Monday, Feb 23 at 6:00 PM ET</strong>
+            </p>
           </div>
         )}
+        <div className="mb-3" />
 
         {/* Divider */}
         <div className="flex items-center gap-2 w-full max-w-sm mb-4">
