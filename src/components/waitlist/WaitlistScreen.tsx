@@ -98,8 +98,7 @@ export default function WaitlistScreen({ sponsorSlug, sponsorName }: Props) {
           We're Almost<br />Ready to Roll!
         </h1>
         <p className="text-blue-200 text-sm text-center leading-relaxed">
-          {sponsorName ? `${sponsorName} invited you to join their team.` : 'And trust us — so are we.'}{' '}
-          Signups officially open after our exclusive Pre-Launch Webinar on{' '}
+          And trust us — we know you are too! Signups officially open after our exclusive Pre-Launch Webinar on{' '}
           <strong className="text-white">Monday, February 23rd at 9:00 PM ET.</strong>
         </p>
       </div>
@@ -112,7 +111,7 @@ export default function WaitlistScreen({ sponsorSlug, sponsorName }: Props) {
           <img src="/apex-logo-white.png" alt="Apex Affinity Group" className="w-24 h-auto mb-3 object-contain" />
           <h1 className="text-xl font-bold text-white leading-tight mb-1">We're Almost Ready to Roll!</h1>
           <p className="text-blue-200 text-xs leading-relaxed max-w-xs">
-            {sponsorName ? `${sponsorName} invited you.` : 'Signups open after our webinar —'}{' '}
+            And trust us — we know you are too! Signups open after our webinar —{' '}
             <strong className="text-white">Feb 23 at 9PM ET.</strong>
           </p>
         </div>
