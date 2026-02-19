@@ -8,7 +8,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 import { createServiceClient } from '@/lib/supabase/service';
 import { signupSchema } from '@/lib/validations/signup';
-import { findMatrixPlacement } from '@/lib/matrix/placement';
 import { checkSlugAvailability } from '@/lib/utils/slug';
 import { enrollInCampaign } from '@/lib/email/campaign-service';
 import type { ApiResponse, Distributor } from '@/lib/types';
@@ -33,6 +32,10 @@ import type { ApiResponse, Distributor } from '@/lib/types';
  *   - distributor: Distributor object
  *   - message: Success message
  */
+// Max signups per IP per window
+const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_WINDOW_MINUTES = 15;
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -52,6 +55,47 @@ export async function POST(request: NextRequest) {
 
     const data = validationResult.data;
     const supabase = await createClient();
+    const serviceClient = createServiceClient();
+
+    // Step 1b: Rate limiting — max 5 signups per IP per 15 minutes
+    const ip =
+      request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+      request.headers.get('x-real-ip') ||
+      'unknown';
+
+    if (ip !== 'unknown') {
+      const windowStart = new Date(
+        Date.now() - RATE_LIMIT_WINDOW_MINUTES * 60 * 1000
+      ).toISOString();
+
+      const { count: recentAttempts } = await serviceClient
+        .from('signup_rate_limits')
+        .select('*', { count: 'exact', head: true })
+        .eq('ip_address', ip)
+        .gte('created_at', windowStart);
+
+      if ((recentAttempts || 0) >= RATE_LIMIT_MAX) {
+        return NextResponse.json(
+          {
+            success: false,
+            error: 'Too many requests',
+            message: 'Too many signup attempts. Please try again in 15 minutes.',
+          } as ApiResponse,
+          { status: 429 }
+        );
+      }
+
+      // Record this attempt
+      await serviceClient
+        .from('signup_rate_limits')
+        .insert({ ip_address: ip });
+
+      // Cleanup old entries (keep table lean)
+      await serviceClient
+        .from('signup_rate_limits')
+        .delete()
+        .lt('created_at', new Date(Date.now() - 60 * 60 * 1000).toISOString());
+    }
 
     // Step 2: Check if email already exists
     const { data: existingEmail } = await supabase
@@ -125,32 +169,25 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Step 6: Find matrix placement
-    const placement = await findMatrixPlacement(sponsorId);
+    // Step 6 + 7: Atomically find placement AND insert distributor in one
+    // PostgreSQL transaction with advisory lock — eliminates race condition
+    const { data: distributorRows, error: distributorError } = await serviceClient.rpc(
+      'create_distributor_atomic',
+      {
+        p_auth_user_id: authData.user.id,
+        p_first_name: data.first_name,
+        p_last_name: data.last_name,
+        p_email: data.email,
+        p_slug: data.slug,
+        p_company_name: data.company_name || null,
+        p_phone: data.phone || null,
+        p_sponsor_id: sponsorId,
+        p_licensing_status: data.licensing_status,
+        p_licensing_status_set_at: new Date().toISOString(),
+      }
+    );
 
-    // Step 7: Create distributor record (use service client to bypass RLS)
-    const serviceClient = createServiceClient();
-    const { data: distributor, error: distributorError } = await serviceClient
-      .from('distributors')
-      .insert({
-        auth_user_id: authData.user.id,
-        first_name: data.first_name,
-        last_name: data.last_name,
-        email: data.email,
-        slug: data.slug,
-        company_name: data.company_name || null,
-        phone: data.phone || null,
-        sponsor_id: sponsorId,
-        matrix_parent_id: placement.parent_id,
-        matrix_position: placement.matrix_position,
-        matrix_depth: placement.matrix_depth,
-        is_master: false,
-        profile_complete: false,
-        licensing_status: data.licensing_status,
-        licensing_status_set_at: new Date().toISOString(),
-      })
-      .select()
-      .single();
+    const distributor = Array.isArray(distributorRows) ? distributorRows[0] : distributorRows;
 
     if (distributorError || !distributor) {
       console.error('Distributor creation error:', distributorError);
@@ -183,9 +220,9 @@ export async function POST(request: NextRequest) {
         data: {
           distributor: distributor as Distributor,
           matrix_placement: {
-            parent_id: placement.parent_id,
-            position: placement.matrix_position,
-            depth: placement.matrix_depth,
+            parent_id: distributor.matrix_parent_id,
+            position: distributor.matrix_position,
+            depth: distributor.matrix_depth,
           },
         },
         message: 'Account created successfully! Welcome to Apex Affinity Group.',
