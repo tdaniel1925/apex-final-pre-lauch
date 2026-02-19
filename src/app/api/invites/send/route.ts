@@ -179,7 +179,7 @@ export async function POST(req: Request) {
     const results = await Promise.allSettled(
       valid.map(r =>
         resend.emails.send({
-          from:    `${senderName} via Apex Affinity Group <noreply@theapexway.net>`,
+          from:    `${senderName} via Apex Affinity Group <theapex@theapexway.net>`,
           replyTo: senderEmail,
           to:      r.email.trim(),
           subject: `${senderName} invited you: VIP First Look — Apex Affinity Group 🚀`,
