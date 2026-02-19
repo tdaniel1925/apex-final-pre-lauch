@@ -88,7 +88,7 @@ export default function AboutPage() {
                   Not Just Insurance.<br />Insurance Elevated.
                 </h2>
                 <p style={{ fontSize: '17px', color: '#4b5563', lineHeight: '1.8', marginBottom: '20px' }}>
-                  Apex Affinity Group is both an insurance company and a professional services platform. We carry a world-class portfolio of life insurance, health coverage, annuities, and ancillary protection products — and our agents bring those solutions to clients every single day.
+                  Apex Affinity Group is both an insurance company and a professional services platform. We carry a world-class portfolio of life insurance, annuities, and ancillary protection products — and our agents bring those solutions to clients every single day.
                 </p>
                 <p style={{ fontSize: '17px', color: '#4b5563', lineHeight: '1.8', marginBottom: '20px' }}>
                   But we didn't stop there. We were founded on a simple belief: the insurance industry works best when agents are genuinely equipped to serve — not just recruited and left to figure it out. So we built the infrastructure around our products to match: AI-powered tools, structured training, strong carrier relationships, compliance support, and a community of professionals invested in each other's growth.
@@ -252,7 +252,6 @@ export default function AboutPage() {
             <div className="row wow fadeInUp" data-wow-delay="0.3s">
               {[
                 { icon: 'fa-heart-pulse', title: 'Life Insurance', desc: 'Term, whole life, IUL, and final expense — protection for every family, every budget, every stage.' },
-                { icon: 'fa-shield-halved', title: 'Health & Medicare', desc: 'Individual health plans, Medicare supplement and advantage options, and supplemental health coverage.' },
                 { icon: 'fa-piggy-bank', title: 'Annuities', desc: 'Fixed and indexed annuities for clients building toward retirement or securing guaranteed income.' },
                 { icon: 'fa-briefcase-medical', title: 'Ancillary Protection', desc: 'Telemedicine, ID theft protection, legal services, and roadside assistance — protection for everyday life.' },
               ].map((cat, i) => (

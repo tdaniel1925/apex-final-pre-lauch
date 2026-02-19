@@ -435,7 +435,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                     </div>
                     <div className="process-step-item-content">
                       <h3>Carrier Access & Top-Tier Contracts</h3>
-                      <p>Sell the industry's best life insurance, health, annuity, and ancillary products through appointments with top-rated carriers — and keep 100% ownership of every client you serve.</p>
+                      <p>Sell the industry's best life insurance, annuity, and ancillary products through appointments with top-rated carriers — and keep 100% ownership of every client you serve.</p>
                       <ul>
                         <li>Multiple carrier appointments across all major product lines</li>
                         <li>100% book of business ownership — always yours, always</li>
@@ -459,7 +459,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                 <div className="section-title section-title-center">
                   <span className="section-sub-title wow fadeInUp">What You Can Offer Your Clients</span>
                   <h2 className="text-anime-style-3" data-cursor="-opaque">World-Class Products. Real Client Solutions.</h2>
-                  <p className="wow fadeInUp" data-wow-delay="0.2s">Every Apex agent is appointed to offer a comprehensive lineup of insurance and protection products — so you always have the right solution for every client at every stage of life. Better products. Better coverage. Better outcomes.</p>
+                  <p className="wow fadeInUp" data-wow-delay="0.2s">Every Apex agent is appointed to offer life insurance, annuity, and ancillary protection products — so you always have the right solution for every client at every stage of life.</p>
                 </div>
               </div>
             </div>
@@ -470,12 +470,6 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   title: 'Life Insurance',
                   desc: 'Protect what matters most.',
                   items: ['Term Life Insurance', 'Whole Life Insurance', 'Indexed Universal Life (IUL)', 'Final Expense Coverage'],
-                },
-                {
-                  icon: 'fa-shield-halved',
-                  title: 'Health & Medicare',
-                  desc: 'Coverage for every stage of life.',
-                  items: ['Individual & Family Health Plans', 'Medicare Supplement Plans', 'Medicare Advantage', 'Supplemental Health'],
                 },
                 {
                   icon: 'fa-piggy-bank',
@@ -574,7 +568,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                     </h2>
                     <div id="collapse1" className="accordion-collapse collapse" role="region" aria-labelledby="heading1" data-bs-parent="#accordion">
                       <div style={{backgroundColor: 'white', padding: '20px'}}>
-                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>Apex Affinity Group is both — an insurance company and a professional services platform. On one side, we offer a world-class product portfolio: life insurance, health and Medicare coverage, annuities, and ancillary protection products that our agents bring to their clients every day. On the other side, we provide everything an agent needs to do that well: AI-powered tools, structured training, career mentorship, carrier access, and a professional community. You sell real insurance. We make sure you have everything you need to do it at the highest level.</div>
+                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>Apex Affinity Group is both — an insurance company and a professional services platform. On one side, we offer a world-class product portfolio: life insurance, annuities, and ancillary protection products that our agents bring to their clients every day. On the other side, we provide everything an agent needs to do that well: AI-powered tools, structured training, career mentorship, carrier access, and a professional community. You sell real insurance. We make sure you have everything you need to do it at the highest level.</div>
                       </div>
                     </div>
                   </div>

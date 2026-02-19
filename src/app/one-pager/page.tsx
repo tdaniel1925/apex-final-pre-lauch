@@ -323,7 +323,7 @@ export default function OnePagerPage() {
         <div className="op-section">
           <h2>Who We Are</h2>
           <p>
-            Apex Affinity Group is both an insurance company and a professional services platform. We carry a world-class product portfolio — life insurance, health coverage, annuities, and ancillary protection — and our agents bring those solutions to clients every day. We then wrap that with everything agents need to do it well: AI-powered tools, structured training, strong carrier contracts, and a community of professionals invested in each other. You sell real insurance. We make sure you have everything you need to do it at the highest level.
+            Apex Affinity Group is both an insurance company and a professional services platform. We carry a world-class product portfolio — life insurance, annuities, and ancillary protection — and our agents bring those solutions to clients every day. We then wrap that with everything agents need to do it well: AI-powered tools, structured training, strong carrier contracts, and a community of professionals invested in each other. You sell real insurance. We make sure you have everything you need to do it at the highest level.
           </p>
         </div>
 
@@ -357,10 +357,9 @@ export default function OnePagerPage() {
         {/* ── PRODUCTS ── */}
         <div className="op-section" style={{ background: '#f0f5ff' }}>
           <h2>Our Product Portfolio</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '10px', marginTop: '8px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '10px', marginTop: '8px' }}>
             {[
               { icon: 'fa-heart-pulse', title: 'Life Insurance', items: ['Term Life', 'Whole Life', 'IUL', 'Final Expense'] },
-              { icon: 'fa-shield-halved', title: 'Health & Medicare', items: ['Individual Plans', 'Med Supplement', 'Med Advantage', 'Supplemental'] },
               { icon: 'fa-piggy-bank', title: 'Annuities', items: ['Fixed Annuities', 'Indexed Annuities', 'Retirement Income', 'Wealth Building'] },
               { icon: 'fa-briefcase-medical', title: 'Ancillary', items: ['Telemedicine', 'ID Theft Protection', 'Legal Services', 'Roadside Assist'] },
             ].map((cat, i) => (
@@ -418,7 +417,7 @@ export default function OnePagerPage() {
           <h2>What You Get with Apex</h2>
           <div className="op-benefits">
             {[
-              { icon: 'fa-check-circle', title: 'Multi-Carrier Access', desc: 'Direct contracts with top-rated life, health, and annuity carriers — more options for your clients, better compensation for you.' },
+              { icon: 'fa-check-circle', title: 'Multi-Carrier Access', desc: 'Direct contracts with top-rated life and annuity carriers — more options for your clients, better compensation for you.' },
               { icon: 'fa-check-circle', title: 'AI-Powered Agent Tools', desc: 'The AgentPulse suite: calling, lead management, follow-up, analytics, and AI coaching — all in one platform.' },
               { icon: 'fa-check-circle', title: 'Training & Mentorship', desc: "Live webinars, on-demand video library, and 1:1 mentorship from agents who've built the kind of business you're building." },
               { icon: 'fa-check-circle', title: 'Compliance Support', desc: 'Stay compliant without the headache. We keep you current on regulations, E&O guidance, and carrier-specific requirements.' },
