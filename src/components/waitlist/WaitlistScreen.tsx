@@ -14,7 +14,7 @@ interface Props {
 }
 
 const LAUNCH_DATE = new Date('2026-02-24T02:00:00Z');
-const WEBINAR_LINK = ''; // Admin: drop the webinar URL here when ready
+const WEBINAR_LINK = 'https://events.teams.microsoft.com/event/599e6f14-a298-4986-be33-64031f51f37f@8db46c49-b9d5-4f6b-948b-b99f34520af8';
 
 function pad(n: number) {
   return String(n).padStart(2, '0');
