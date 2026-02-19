@@ -152,7 +152,7 @@ export default function AdminSidebar() {
         <div className="mb-4">
           <div className="text-center mb-2">
             <img
-              src="/apex-logo.png"
+              src="/apex-logo-white.png"
               alt="Apex Affinity Group"
               className="h-12 w-auto mx-auto mb-1"
             />

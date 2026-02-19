@@ -60,9 +60,9 @@ export default function Sidebar() {
   ];
 
   return (
-    <aside className="w-52 bg-white border-r border-gray-200 min-h-screen">
-      <div className="p-3">
-        <img src="/apex-logo.png" alt="Apex Affinity Group" className="h-14 w-auto mx-auto mb-4" />
+    <aside className="w-52 bg-gray-900 text-white min-h-screen flex flex-col">
+      <div className="p-3 flex-1">
+        <img src="/apex-logo-white.png" alt="Apex Affinity Group" className="h-14 w-auto mx-auto mb-4" />
 
         <nav className="space-y-0.5">
           {navigation.map((item) => {
@@ -74,7 +74,7 @@ export default function Sidebar() {
                 className={`flex items-center gap-2 px-3 py-2 rounded-md transition-colors ${
                   isActive
                     ? 'bg-[#2B4C7E] text-white'
-                    : 'text-gray-700 hover:bg-gray-100'
+                    : 'text-gray-300 hover:bg-gray-800 hover:text-white'
                 }`}
               >
                 <div className="w-4 h-4">
@@ -88,11 +88,11 @@ export default function Sidebar() {
       </div>
 
       {/* Sign Out at bottom */}
-      <div className="absolute bottom-0 w-52 p-3 border-t border-gray-200">
+      <div className="p-3 border-t border-gray-800">
         <form action="/api/auth/signout" method="post">
           <button
             type="submit"
-            className="flex items-center gap-2 px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md transition-colors w-full"
+            className="flex items-center gap-2 px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-white rounded-md transition-colors w-full"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
