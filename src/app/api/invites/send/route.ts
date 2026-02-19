@@ -92,11 +92,11 @@ function vipEmailHtml(recipientName: string, senderName: string, senderEmail: st
             <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px;">
               <tr>
                 <td style="width:48px;vertical-align:top;padding-top:2px;">
-                  <div style="width:40px;height:40px;background:#eff6ff;border-radius:10px;text-align:center;line-height:40px;font-size:20px;">🏢</div>
+                  <div style="width:40px;height:40px;background:#eff6ff;border-radius:10px;text-align:center;line-height:40px;font-size:20px;">📅</div>
                 </td>
                 <td style="padding-left:14px;">
-                  <p style="margin:0 0 3px;font-size:15px;font-weight:800;color:#1a2f50;">Office Launch — Mid-March</p>
-                  <p style="margin:0;font-size:14px;color:#6b7280;line-height:1.6;">Our official office launch event is coming in mid-March. Details dropping soon — you'll want to be there.</p>
+                  <p style="margin:0 0 3px;font-size:15px;font-weight:800;color:#1a2f50;">More Events Coming</p>
+                  <p style="margin:0;font-size:14px;color:#6b7280;line-height:1.6;">An official online launch session and agent training are on the way. Details will be announced — stay tuned.</p>
                 </td>
               </tr>
             </table>

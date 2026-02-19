@@ -82,7 +82,7 @@ export default function InviteForm() {
         <img src="/apex-logo-full.png" alt="Apex Affinity Group" className="h-16 w-auto mx-auto mb-5" />
         <h1 className="text-2xl font-bold text-gray-900 mb-1">Send VIP First-Look Invites</h1>
         <p className="text-gray-500 text-sm max-w-lg mx-auto">
-          Personally invite up to 10 guests to our pre-launch webinar, site launch, and upcoming office event — all in one send.
+          Personally invite up to 10 guests to our site launch and pre-launch webinar — more events to be announced soon.
         </p>
       </div>
 
@@ -90,9 +90,9 @@ export default function InviteForm() {
       <div className="max-w-2xl mx-auto px-4 pt-6 pb-2">
         <div className="grid grid-cols-3 gap-3">
           {[
-            { icon: 'fa-desktop',    title: 'Site Launch',        desc: 'First access when signups open' },
-            { icon: 'fa-microphone', title: 'Webinar — Feb 23',   desc: 'Monday at 9:00 PM ET, live on Teams' },
-            { icon: 'fa-building',   title: 'Office Launch',       desc: 'In-person event, mid-March' },
+            { icon: 'fa-desktop',    title: 'Site Launch',       desc: 'First to sign up when we go live' },
+            { icon: 'fa-microphone', title: 'Webinar — Feb 23',  desc: 'Mon Feb 23 · 9 PM ET · Teams' },
+            { icon: 'fa-calendar',   title: 'More Events Soon',  desc: 'Online sessions TBA — stay tuned' },
           ].map((ev, i) => (
             <div key={i} className="bg-blue-50 border border-blue-100 rounded-xl p-3 text-center">
               <div className="flex items-center justify-center w-10 h-10 rounded-full mx-auto mb-2" style={{ background: '#2B4C7E' }}>
