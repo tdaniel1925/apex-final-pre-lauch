@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
 
       try {
         await resend.emails.send({
-          from: 'Apex Affinity Group <no-reply@reachtheapex.net>',
+          from: 'Apex Affinity Group <no-reply@theapexway.net>',
           to: entry.email,
           subject,
           html,

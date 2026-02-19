@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
 
     // Send alert email to admin
     const emailResult = await resend.emails.send({
-      from: 'Apex Alerts <alerts@reachtheapex.net>',
+      from: 'Apex Alerts <alerts@theapexway.net>',
       to: 'tdaniel@btotmakers.ai',
       subject: `⚠️ Photo Warning Alert - ${distributorName}`,
       html: `
