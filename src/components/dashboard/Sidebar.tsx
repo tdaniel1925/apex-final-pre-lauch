@@ -2,13 +2,17 @@
 
 // =============================================
 // Dashboard Sidebar Navigation
+// Desktop: fixed left sidebar
+// Mobile: top bar + slide-in drawer
 // =============================================
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useState } from 'react';
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const navigation = [
     {
@@ -68,36 +72,30 @@ export default function Sidebar() {
     },
   ];
 
-  return (
-    <aside className="w-52 bg-gray-900 text-white min-h-screen flex flex-col">
-      <div className="p-3 flex-1">
-        <img src="/apex-logo-white.png" alt="Apex Affinity Group" className="h-14 w-auto mx-auto mb-4" />
+  const NavLinks = ({ onNavigate }: { onNavigate?: () => void }) => (
+    <>
+      <nav className="space-y-0.5">
+        {navigation.map((item) => {
+          const isActive = pathname === item.href;
+          return (
+            <Link
+              key={item.name}
+              href={item.href}
+              onClick={onNavigate}
+              className={`flex items-center gap-2 px-3 py-2 rounded-md transition-colors ${
+                isActive
+                  ? 'bg-[#2B4C7E] text-white'
+                  : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+              }`}
+            >
+              <div className="w-4 h-4">{item.icon}</div>
+              <span className="font-medium text-xs">{item.name}</span>
+            </Link>
+          );
+        })}
+      </nav>
 
-        <nav className="space-y-0.5">
-          {navigation.map((item) => {
-            const isActive = pathname === item.href;
-            return (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`flex items-center gap-2 px-3 py-2 rounded-md transition-colors ${
-                  isActive
-                    ? 'bg-[#2B4C7E] text-white'
-                    : 'text-gray-300 hover:bg-gray-800 hover:text-white'
-                }`}
-              >
-                <div className="w-4 h-4">
-                  {item.icon}
-                </div>
-                <span className="font-medium text-xs">{item.name}</span>
-              </Link>
-            );
-          })}
-        </nav>
-      </div>
-
-      {/* Sign Out at bottom */}
-      <div className="p-3 border-t border-gray-800">
+      <div className="mt-auto pt-3 border-t border-gray-800">
         <form action="/api/auth/signout" method="post">
           <button
             type="submit"
@@ -110,6 +108,59 @@ export default function Sidebar() {
           </button>
         </form>
       </div>
-    </aside>
+    </>
+  );
+
+  return (
+    <>
+      {/* ===== DESKTOP SIDEBAR ===== */}
+      <aside className="hidden md:flex w-52 bg-gray-900 text-white min-h-screen flex-col shrink-0">
+        <div className="p-3 flex flex-col flex-1">
+          <img src="/apex-logo-white.png" alt="Apex Affinity Group" className="h-14 w-auto mx-auto mb-4" />
+          <NavLinks />
+        </div>
+      </aside>
+
+      {/* ===== MOBILE TOP BAR ===== */}
+      <div className="md:hidden fixed top-0 left-0 right-0 z-40 h-14 bg-gray-900 flex items-center justify-between px-4 shadow-lg">
+        <img src="/apex-logo-white.png" alt="Apex Affinity Group" className="h-8 w-auto" />
+        <button
+          onClick={() => setMobileOpen(true)}
+          className="text-white p-1.5 rounded-md hover:bg-gray-800 transition-colors"
+          aria-label="Open menu"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+      {/* ===== MOBILE DRAWER OVERLAY ===== */}
+      {mobileOpen && (
+        <div className="md:hidden fixed inset-0 z-50 flex">
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-black/60"
+            onClick={() => setMobileOpen(false)}
+          />
+          {/* Drawer */}
+          <div className="relative w-64 bg-gray-900 text-white flex flex-col p-3 shadow-2xl">
+            <div className="flex items-center justify-between mb-4">
+              <img src="/apex-logo-white.png" alt="Apex Affinity Group" className="h-10 w-auto" />
+              <button
+                onClick={() => setMobileOpen(false)}
+                className="text-gray-400 hover:text-white p-1 rounded-md hover:bg-gray-800"
+                aria-label="Close menu"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <NavLinks onNavigate={() => setMobileOpen(false)} />
+          </div>
+        </div>
+      )}
+    </>
   );
 }

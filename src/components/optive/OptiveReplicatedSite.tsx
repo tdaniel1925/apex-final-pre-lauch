@@ -103,7 +103,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                 </button>
 
                 {/* Main Menu Start */}
-                <div className="navbar-collapse main-menu" id="navbarNav" style={{display: 'flex'}}>
+                <div className="navbar-collapse main-menu" id="navbarNav">
                   <div className="nav-menu-wrapper">
                     <ul className="navbar-nav mr-auto" id="menu">
                       <li className="nav-item"><a className="nav-link" href="#home">Home</a></li>
