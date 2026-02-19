@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   title: "Apex Affinity Group - Distributor Network",
   description: "Join Apex Affinity Group's distributor network and build your business",
   icons: {
-    icon: "/apex-star.png",
-    shortcut: "/apex-star.png",
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
     apple: "/apex-star.png",
   },
 };
