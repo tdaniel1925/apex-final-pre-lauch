@@ -70,7 +70,7 @@ export default async function AdminDashboardPage() {
   // Get recent distributors
   const { data: recentDistributors } = await serviceClient
     .from('distributors')
-    .select('id, first_name, last_name, email, slug, created_at, matrix_position')
+    .select('id, first_name, last_name, email, slug, created_at, matrix_position, rep_number')
     .order('created_at', { ascending: false })
     .limit(10);
 
@@ -202,7 +202,7 @@ export default async function AdminDashboardPage() {
                     </td>
                     <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-xs font-semibold text-blue-600">
-                        #{dist.matrix_position}
+                        Rep #{dist.rep_number ?? 'N/A'}
                       </div>
                     </td>
                     <td className="px-3 py-2 whitespace-nowrap">

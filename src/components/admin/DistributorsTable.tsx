@@ -211,7 +211,7 @@ export default function DistributorsTable({
                     <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-xs">
                         <span className="font-semibold text-blue-600">
-                          #{dist.matrix_position || 'N/A'}
+                          Rep #{dist.rep_number ?? 'N/A'}
                         </span>
                         <span className="text-gray-500 ml-1">
                           L{dist.matrix_depth || 0}

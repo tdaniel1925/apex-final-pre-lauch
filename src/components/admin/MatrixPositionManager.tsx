@@ -210,9 +210,9 @@ export default function MatrixPositionManager({ distributor }: MatrixPositionMan
             <p className="text-[10px] text-blue-600 font-semibold mb-1">Current Placement</p>
             <div className="space-y-1 text-xs">
               <div className="flex justify-between">
-                <span className="text-gray-600">Position:</span>
+                <span className="text-gray-600">Rep Number:</span>
                 <span className="font-semibold text-blue-900">
-                  #{distributor.matrix_position || 'N/A'}
+                  Rep #{distributor.rep_number ?? 'N/A'}
                 </span>
               </div>
               <div className="flex justify-between">

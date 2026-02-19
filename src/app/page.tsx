@@ -36,6 +36,7 @@ export default function Home() {
     onboarding_step: 5,
     onboarding_completed_at: null,
     is_master: false,
+    rep_number: null,
     profile_complete: true,
     sponsor_id: null,
     matrix_position: null,

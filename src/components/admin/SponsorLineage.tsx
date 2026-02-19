@@ -174,9 +174,9 @@ export default function SponsorLineage({ distributorId, distributorName }: Spons
                 <p className="text-xs text-gray-900 truncate">{directSponsor.email}</p>
               </div>
               <div>
-                <p className="text-[10px] text-gray-600">Matrix Position</p>
+                <p className="text-[10px] text-gray-600">Rep Number</p>
                 <p className="text-xs font-semibold text-blue-600">
-                  #{directSponsor.matrix_position || 'N/A'}
+                  Rep #{directSponsor.rep_number ?? 'N/A'}
                 </p>
               </div>
             </div>

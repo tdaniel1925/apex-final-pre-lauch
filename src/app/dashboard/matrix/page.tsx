@@ -99,8 +99,8 @@ export default async function MatrixPage() {
           {/* Matrix Stats */}
           <div className="grid grid-cols-2 gap-2">
             <div className="bg-white rounded-lg shadow p-3">
-              <p className="text-xs text-gray-600 mb-0.5">Your Position</p>
-              <p className="text-2xl font-bold text-[#2B4C7E]">#{dist.matrix_position}</p>
+              <p className="text-xs text-gray-600 mb-0.5">Your Rep #</p>
+              <p className="text-2xl font-bold text-[#2B4C7E]">#{dist.rep_number ?? 'N/A'}</p>
             </div>
 
             <div className="bg-white rounded-lg shadow p-3">

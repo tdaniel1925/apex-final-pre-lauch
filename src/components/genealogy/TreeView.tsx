@@ -91,7 +91,7 @@ function TreeNodeComponent({
 
       {/* Additional Info */}
       <div className="flex gap-3 mt-2 text-xs text-gray-500">
-        <span>Pos: #{node.distributor.matrix_position || 'N/A'}</span>
+        <span>Rep #{node.distributor.rep_number ?? 'N/A'}</span>
         <span>Joined: {new Date(node.distributor.created_at).toLocaleDateString()}</span>
       </div>
     </>

@@ -212,7 +212,7 @@ export default function PersonalTeam({ recruits }: PersonalTeamProps) {
                       <td className="px-3 py-2">
                         <div className="text-xs">
                           <span className="font-semibold text-[#2B4C7E]">
-                            #{member.matrix_position || 'N/A'}
+                            Rep #{member.rep_number ?? 'N/A'}
                           </span>
                           <span className="text-gray-500 ml-1">L{member.matrix_depth || 0}</span>
                         </div>

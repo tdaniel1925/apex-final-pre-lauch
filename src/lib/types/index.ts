@@ -27,6 +27,7 @@ export interface Distributor {
   matrix_parent_id: string | null;
   matrix_position: number | null;
   matrix_depth: number;
+  rep_number: number | null;
 
   // Flags
   is_master: boolean;

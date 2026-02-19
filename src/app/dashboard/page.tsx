@@ -113,9 +113,9 @@ export default async function DashboardPage() {
             <div className="bg-white rounded-lg shadow p-3">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs text-gray-600 mb-0.5">Matrix Position</p>
+                  <p className="text-xs text-gray-600 mb-0.5">Rep Number</p>
                   <p className="text-2xl font-bold text-[#2B4C7E]">
-                    #{dist.matrix_position}
+                    #{dist.rep_number ?? 'N/A'}
                   </p>
                 </div>
                 <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">

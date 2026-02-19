@@ -167,9 +167,9 @@ export default function MatrixView({ stats, initialLevel, initialLevelData }: Ma
 
                   <div className="space-y-1 text-xs">
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Pos:</span>
+                      <span className="text-gray-600">Rep #:</span>
                       <span className="font-semibold text-blue-600">
-                        #{distributor.matrix_position}
+                        {distributor.rep_number ?? 'N/A'}
                       </span>
                     </div>
                     <div className="flex justify-between">
@@ -239,9 +239,9 @@ export default function MatrixView({ stats, initialLevel, initialLevelData }: Ma
                   <p className="text-sm font-medium">{selectedDistributor.company_name || 'N/A'}</p>
                 </div>
                 <div>
-                  <p className="text-xs text-gray-600">Matrix Position</p>
+                  <p className="text-xs text-gray-600">Rep Number</p>
                   <p className="text-sm font-medium text-blue-600">
-                    #{selectedDistributor.matrix_position}
+                    #{selectedDistributor.rep_number ?? 'N/A'}
                   </p>
                 </div>
                 <div>
