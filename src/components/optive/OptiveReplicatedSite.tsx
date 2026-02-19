@@ -115,15 +115,9 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
 
                   {/* Header Btn Start */}
                   <div className="header-btn">
-                    {distributor.slug === 'apex' ? (
-                      <button className="btn-default" style={{background: '#6b7280', backgroundColor: '#6b7280', backgroundImage: 'none', borderColor: '#6b7280', cursor: 'not-allowed'}}>
-                        Coming Soon
-                      </button>
-                    ) : (
-                      <a href={signupUrl} className="btn-default" style={{background: '#2B4C7E', backgroundColor: '#2B4C7E', backgroundImage: 'none', borderColor: '#2B4C7E'}}>
-                        Join My Team
-                      </a>
-                    )}
+                    <a href={signupUrl} className="btn-default" style={{background: '#2B4C7E', backgroundColor: '#2B4C7E', backgroundImage: 'none', borderColor: '#2B4C7E'}}>
+                      {distributor.slug === 'apex' ? 'Join the Waitlist' : 'Join My Team'}
+                    </a>
                   </div>
                   {/* Header Btn End */}
                 </div>
@@ -297,11 +291,9 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
 
                           {/* Pricing Item Button Start */}
                           <div className="pricing-item-btn">
-                            {distributor.slug === 'apex' ? (
-                              <button className="btn-default" style={{cursor: 'not-allowed', opacity: 0.7}}>Coming Soon</button>
-                            ) : (
-                              <a href={signupUrl} className="btn-default">Start Your Journey</a>
-                            )}
+                            <a href={signupUrl} className="btn-default">
+                              {distributor.slug === 'apex' ? 'Join the Waitlist' : 'Start Your Journey'}
+                            </a>
                           </div>
                           {/* Pricing Item Button End */}
                         </div>
@@ -353,11 +345,9 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
 
                           {/* Pricing Item Button Start */}
                           <div className="pricing-item-btn">
-                            {distributor.slug === 'apex' ? (
-                              <button className="btn-default" style={{cursor: 'not-allowed', opacity: 0.7}}>Coming Soon</button>
-                            ) : (
-                              <a href={signupUrl} className="btn-default">Join {distributor.first_name}'s Team</a>
-                            )}
+                            <a href={signupUrl} className="btn-default">
+                              {distributor.slug === 'apex' ? 'Join the Waitlist' : `Join ${distributor.first_name}'s Team`}
+                            </a>
                           </div>
                           {/* Pricing Item Button End */}
                         </div>

@@ -2,8 +2,7 @@
 
 // =============================================
 // Pre-Launch Waitlist Screen
-// Blue countdown + email capture shown on /signup
-// until launch date
+// 2-panel: logo/headline left, form/countdown right
 // =============================================
 
 import { useState, useEffect } from 'react';
@@ -79,46 +78,68 @@ export default function WaitlistScreen({ sponsorSlug, sponsorName }: Props) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-y-auto"
+    <div
+      className="fixed inset-0 z-50 flex overflow-hidden"
       style={{ background: 'linear-gradient(135deg, #1a2f50 0%, #2B4C7E 50%, #1a3a6b 100%)' }}
     >
       {/* Animated background rings */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-white/5 animate-ping" style={{ animationDuration: '4s' }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full border border-white/5 animate-ping" style={{ animationDuration: '6s' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full border border-white/5 animate-ping" style={{ animationDuration: '4s' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] rounded-full border border-white/5 animate-ping" style={{ animationDuration: '6s' }} />
       </div>
 
       {/* Close button */}
       <button
         onClick={() => router.push(backUrl)}
-        className="absolute top-5 right-5 text-white/60 hover:text-white transition-colors text-sm flex items-center gap-1.5 bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-full"
+        className="absolute top-5 right-5 z-20 text-white/60 hover:text-white transition-colors text-sm flex items-center gap-1.5 bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-full"
       >
         ← Back to site
       </button>
 
-      <div className="relative z-10 flex flex-col items-center text-center px-6 py-16 max-w-xl w-full">
-
-        {/* Logo */}
+      {/* ===== LEFT PANEL ===== */}
+      <div className="relative z-10 hidden md:flex flex-col items-center justify-center w-2/5 px-12 border-r border-white/10">
         <img
           src="/apex-logo-white.png"
           alt="Apex Affinity Group"
-          className="h-16 w-auto mb-10"
+          className="w-48 h-auto mb-8 object-contain"
         />
-
-        {/* Headline */}
-        <h1 className="text-3xl sm:text-4xl font-bold text-white mb-3 leading-tight">
-          We're Almost Ready to Roll!
+        <h1 className="text-4xl font-bold text-white text-center leading-tight mb-4">
+          We're Almost<br />Ready to Roll!
         </h1>
-        <p className="text-blue-200 text-base mb-8 leading-relaxed">
+        <p className="text-blue-200 text-base text-center leading-relaxed">
           {sponsorName
             ? `${sponsorName} invited you to join their team.`
             : 'And trust us — so are we.'}{' '}
           Signups officially open after our exclusive Pre-Launch Webinar on{' '}
           <strong className="text-white">Monday, February 23rd at 9:00 PM ET.</strong>
         </p>
+      </div>
+
+      {/* ===== RIGHT PANEL ===== */}
+      <div className="relative z-10 flex flex-col items-center justify-center flex-1 overflow-y-auto px-8 py-16 text-center">
+
+        {/* Logo (mobile only) */}
+        <img
+          src="/apex-logo-white.png"
+          alt="Apex Affinity Group"
+          className="md:hidden w-32 h-auto mb-6 object-contain"
+        />
+
+        {/* Headline (mobile only) */}
+        <div className="md:hidden mb-6">
+          <h1 className="text-2xl font-bold text-white leading-tight mb-2">
+            We're Almost Ready to Roll!
+          </h1>
+          <p className="text-blue-200 text-sm leading-relaxed">
+            {sponsorName
+              ? `${sponsorName} invited you to join their team.`
+              : 'And trust us — so are we.'}{' '}
+            Signups open <strong className="text-white">Feb 23 at 9PM ET.</strong>
+          </p>
+        </div>
 
         {/* Countdown */}
-        <div className="flex items-end gap-3 sm:gap-5 mb-10">
+        <div className="flex items-end gap-3 sm:gap-5 mb-8">
           {[
             { value: timeLeft.days, label: 'Days' },
             { value: timeLeft.hours, label: 'Hours' },
@@ -145,26 +166,26 @@ export default function WaitlistScreen({ sponsorSlug, sponsorName }: Props) {
             href={WEBINAR_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full bg-white text-[#2B4C7E] font-bold py-3 px-6 rounded-xl text-base hover:bg-blue-50 transition-colors mb-6"
+            className="w-full max-w-sm bg-white text-[#2B4C7E] font-bold py-3 px-6 rounded-xl text-base hover:bg-blue-50 transition-colors mb-6"
           >
             Join the Pre-Launch Webinar →
           </a>
         ) : (
-          <div className="w-full bg-white/10 border border-white/20 text-white/50 font-medium py-3 px-6 rounded-xl text-sm mb-6 cursor-default">
+          <div className="w-full max-w-sm bg-white/10 border border-white/20 text-white/50 font-medium py-3 px-6 rounded-xl text-sm mb-6 cursor-default">
             Webinar link coming soon
           </div>
         )}
 
         {/* Divider */}
-        <div className="flex items-center gap-3 w-full mb-6">
+        <div className="flex items-center gap-3 w-full max-w-sm mb-6">
           <div className="flex-1 h-px bg-white/20" />
-          <span className="text-blue-300 text-xs uppercase tracking-widest">Get notified when we launch</span>
+          <span className="text-blue-300 text-xs uppercase tracking-widest whitespace-nowrap">Get notified at launch</span>
           <div className="flex-1 h-px bg-white/20" />
         </div>
 
         {/* Email capture */}
         {status === 'success' ? (
-          <div className="w-full bg-green-500/20 border border-green-400/30 rounded-xl p-5 text-center">
+          <div className="w-full max-w-sm bg-green-500/20 border border-green-400/30 rounded-xl p-5 text-center">
             <div className="text-2xl mb-2">🎉</div>
             <p className="text-white font-semibold">You're on the list!</p>
             <p className="text-blue-200 text-sm mt-1">
@@ -172,14 +193,14 @@ export default function WaitlistScreen({ sponsorSlug, sponsorName }: Props) {
             </p>
           </div>
         ) : status === 'duplicate' ? (
-          <div className="w-full bg-blue-500/20 border border-blue-400/30 rounded-xl p-5 text-center">
+          <div className="w-full max-w-sm bg-blue-500/20 border border-blue-400/30 rounded-xl p-5 text-center">
             <p className="text-white font-semibold">You're already on the list!</p>
             <p className="text-blue-200 text-sm mt-1">
               We'll email you as soon as signups go live. Stay tuned!
             </p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="w-full flex flex-col sm:flex-row gap-3">
+          <form onSubmit={handleSubmit} className="w-full max-w-sm flex flex-col sm:flex-row gap-3">
             <input
               type="email"
               value={email}
