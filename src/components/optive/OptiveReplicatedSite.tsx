@@ -166,7 +166,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                       }
                     </span>
                     <h1 className="text-anime-style-3" data-cursor="-opaque">
-                      Aspiring. Growing. Established. You Belong Here.
+                      Aspiring. Growing. Established.<br />You Belong Here.
                     </h1>
                     <p className="wow fadeInUp" data-wow-delay="0.1s" style={{color: '#fff', fontSize: '18px', marginTop: '20px', maxWidth: '680px'}}>
                       Whether you're just starting out, building your career, or a seasoned professional ready to scale — Apex Affinity Group is your home. We give your clients world-class life insurance and protection products. We give you the tools, training, and community to sell them with confidence. Both sides of the equation, fully covered.
