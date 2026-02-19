@@ -88,13 +88,13 @@ export default function AboutPage() {
                   Not Just Insurance.<br />Insurance Elevated.
                 </h2>
                 <p style={{ fontSize: '17px', color: '#4b5563', lineHeight: '1.8', marginBottom: '20px' }}>
-                  Apex Affinity Group is a professional services platform for insurance agents. We were founded on a simple belief: the insurance industry works best when agents are genuinely equipped to serve — not just recruited and left to figure it out.
+                  Apex Affinity Group is both an insurance company and a professional services platform. We carry a world-class portfolio of life insurance, health coverage, annuities, and ancillary protection products — and our agents bring those solutions to clients every single day.
                 </p>
                 <p style={{ fontSize: '17px', color: '#4b5563', lineHeight: '1.8', marginBottom: '20px' }}>
-                  We provide every member — aspiring, growing, or established — with AI-powered tools, world-class training, strong carrier relationships, compliance support, and a community of professionals invested in each other's success.
+                  But we didn't stop there. We were founded on a simple belief: the insurance industry works best when agents are genuinely equipped to serve — not just recruited and left to figure it out. So we built the infrastructure around our products to match: AI-powered tools, structured training, strong carrier relationships, compliance support, and a community of professionals invested in each other's growth.
                 </p>
                 <p style={{ fontSize: '17px', color: '#4b5563', lineHeight: '1.8' }}>
-                  <strong style={{ color: '#2B4C7E' }}>The result?</strong> Better-equipped agents who serve better clients — and better-served clients who build stronger communities. That chain reaction is the whole point.
+                  <strong style={{ color: '#2B4C7E' }}>The result?</strong> Agents who sell world-class products with world-class support — and clients who are better protected because of it.
                 </p>
               </div>
             </div>
@@ -235,8 +235,43 @@ export default function AboutPage() {
           </div>
         </div>
 
+        {/* ── PRODUCT PORTFOLIO ── */}
+        <div style={{ background: '#fff', padding: '80px 0' }}>
+          <div className="container">
+            <div className="row section-row">
+              <div className="col-lg-12">
+                <div className="section-title section-title-center">
+                  <span className="section-sub-title wow fadeInUp" style={{ display: 'block', marginBottom: '12px' }}>What Our Agents Offer</span>
+                  <h2 className="text-anime-style-3" style={{ color: '#1a2f50' }}>World-Class Products for Every Client</h2>
+                  <p className="wow fadeInUp" data-wow-delay="0.2s">
+                    Apex agents don't just have support — they have a product portfolio built to cover clients at every stage of life. From protecting families with life insurance to planning retirements with annuities, our agents have a real solution for every real need.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="row wow fadeInUp" data-wow-delay="0.3s">
+              {[
+                { icon: 'fa-heart-pulse', title: 'Life Insurance', desc: 'Term, whole life, IUL, and final expense — protection for every family, every budget, every stage.' },
+                { icon: 'fa-shield-halved', title: 'Health & Medicare', desc: 'Individual health plans, Medicare supplement and advantage options, and supplemental health coverage.' },
+                { icon: 'fa-piggy-bank', title: 'Annuities', desc: 'Fixed and indexed annuities for clients building toward retirement or securing guaranteed income.' },
+                { icon: 'fa-briefcase-medical', title: 'Ancillary Protection', desc: 'Telemedicine, ID theft protection, legal services, and roadside assistance — protection for everyday life.' },
+              ].map((cat, i) => (
+                <div key={i} className="col-lg-3 col-md-6" style={{ marginBottom: '24px' }}>
+                  <div style={{ background: '#f8faff', border: '2px solid #dbeafe', borderRadius: '14px', padding: '28px 22px', height: '100%', textAlign: 'center' }}>
+                    <div style={{ width: '60px', height: '60px', background: '#2B4C7E', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
+                      <i className={`fa-solid ${cat.icon}`} style={{ fontSize: '24px', color: '#fff' }}></i>
+                    </div>
+                    <h4 style={{ fontSize: '18px', fontWeight: 800, color: '#1a2f50', marginBottom: '10px' }}>{cat.title}</h4>
+                    <p style={{ fontSize: '14px', color: '#4b5563', lineHeight: '1.7', margin: 0 }}>{cat.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
         {/* ── CTA ── */}
-        <div style={{ background: '#fff', padding: '80px 0', textAlign: 'center' }}>
+        <div style={{ background: '#f8faff', padding: '80px 0', textAlign: 'center' }}>
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-lg-8 wow fadeInUp">

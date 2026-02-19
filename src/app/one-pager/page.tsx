@@ -306,24 +306,24 @@ export default function OnePagerPage() {
         {/* ── HEADER ── */}
         <div className="op-header">
           <div className="op-header-logo">
-            <img src="/apex-logo-full.png" alt="Apex Affinity Group" />
+            <img src="/apex-logo-white.png" alt="Apex Affinity Group" />
           </div>
           <div className="op-header-copy" style={{ textAlign: 'right' }}>
             <h1>Where Insurance Professionals Come Home.</h1>
-            <p>Aspiring · Growing · Established — Every stage. One platform. One community.</p>
+            <p>Aspiring · Growing · Established — World-class products. World-class support. One home.</p>
           </div>
         </div>
 
         {/* ── PULL QUOTE ── */}
         <div className="op-tagline">
-          "We're not just another IMO. We're the professional home your insurance career has been missing."
+          "We give your clients world-class insurance products. We give you everything you need to sell them at the highest level."
         </div>
 
         {/* ── WHO WE ARE ── */}
         <div className="op-section">
           <h2>Who We Are</h2>
           <p>
-            Apex Affinity Group is a full-service professional platform for insurance agents at every career stage. We provide AI-powered productivity tools, structured training and mentorship, multi-carrier contract access, compliance support, and a community of professionals invested in each other's growth. Whether you're just exploring the industry or you've been in the field for decades, Apex is built to be your home — not just your upline.
+            Apex Affinity Group is both an insurance company and a professional services platform. We carry a world-class product portfolio — life insurance, health coverage, annuities, and ancillary protection — and our agents bring those solutions to clients every day. We then wrap that with everything agents need to do it well: AI-powered tools, structured training, strong carrier contracts, and a community of professionals invested in each other. You sell real insurance. We make sure you have everything you need to do it at the highest level.
           </p>
         </div>
 
@@ -352,6 +352,29 @@ export default function OnePagerPage() {
           <p style={{ marginTop: '14px', textAlign: 'center', color: '#6b7280', fontSize: '12px', fontStyle: 'italic' }}>
             Every tool we build and every training we run flows toward one end: a stronger insurance community.
           </p>
+        </div>
+
+        {/* ── PRODUCTS ── */}
+        <div className="op-section" style={{ background: '#f0f5ff' }}>
+          <h2>Our Product Portfolio</h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '10px', marginTop: '8px' }}>
+            {[
+              { icon: 'fa-heart-pulse', title: 'Life Insurance', items: ['Term Life', 'Whole Life', 'IUL', 'Final Expense'] },
+              { icon: 'fa-shield-halved', title: 'Health & Medicare', items: ['Individual Plans', 'Med Supplement', 'Med Advantage', 'Supplemental'] },
+              { icon: 'fa-piggy-bank', title: 'Annuities', items: ['Fixed Annuities', 'Indexed Annuities', 'Retirement Income', 'Wealth Building'] },
+              { icon: 'fa-briefcase-medical', title: 'Ancillary', items: ['Telemedicine', 'ID Theft Protection', 'Legal Services', 'Roadside Assist'] },
+            ].map((cat, i) => (
+              <div key={i} style={{ background: '#fff', border: '1.5px solid #dbeafe', borderRadius: '8px', padding: '12px 10px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                  <i className={`fa-solid ${cat.icon}`} style={{ fontSize: '14px', color: '#2B4C7E' }}></i>
+                  <strong style={{ fontSize: '12px', color: '#1a2f50' }}>{cat.title}</strong>
+                </div>
+                {cat.items.map((item, j) => (
+                  <p key={j} style={{ fontSize: '11px', color: '#4b5563', margin: '0 0 2px', paddingLeft: '6px' }}>· {item}</p>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* ── 3 PILLARS ── */}

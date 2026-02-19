@@ -108,7 +108,8 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                     <ul className="navbar-nav mr-auto" id="menu">
                       <li className="nav-item"><a className="nav-link" href="#home">Home</a></li>
                       <li className="nav-item"><a className="nav-link" href="#journey">Your Journey</a></li>
-                      <li className="nav-item"><a className="nav-link" href="#services">Our Services</a></li>
+                      <li className="nav-item"><a className="nav-link" href="#products">Products</a></li>
+                      <li className="nav-item"><a className="nav-link" href="#services">Services</a></li>
                       <li className="nav-item"><a className="nav-link" href="#faq">FAQs</a></li>
                       <li className="nav-item"><a className="nav-link" href="#contact">Contact</a></li>
                     </ul>
@@ -168,7 +169,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                       Aspiring. Growing. Established. You Belong Here.
                     </h1>
                     <p className="wow fadeInUp" data-wow-delay="0.1s" style={{color: '#fff', fontSize: '18px', marginTop: '20px', maxWidth: '680px'}}>
-                      Whether you're just starting out, building your career, or a seasoned professional ready to scale — Apex Affinity Group is your home. We're not just insurance. We're a full suite of services built to help every agent better serve their clients, grow their practice, and strengthen their community.
+                      Whether you're just starting out, building your career, or a seasoned professional ready to scale — Apex Affinity Group is your home. We give your clients world-class life insurance and protection products. We give you the tools, training, and community to sell them with confidence. Both sides of the equation, fully covered.
                     </p>
                   </div>
                   {/* Section Title End */}
@@ -433,11 +434,11 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                       </div>
                     </div>
                     <div className="process-step-item-content">
-                      <h3>Carrier Access & Compliance Support</h3>
-                      <p>Access top-tier carrier appointments and the compliance support you need to serve your clients with confidence — no matter what product or market you're in.</p>
+                      <h3>Carrier Access & Top-Tier Contracts</h3>
+                      <p>Sell the industry's best life insurance, health, annuity, and ancillary products through appointments with top-rated carriers — and keep 100% ownership of every client you serve.</p>
                       <ul>
-                        <li>Multiple carrier appointments across product lines</li>
-                        <li>100% ownership of your book of business, always</li>
+                        <li>Multiple carrier appointments across all major product lines</li>
+                        <li>100% book of business ownership — always yours, always</li>
                       </ul>
                     </div>
                   </div>
@@ -448,6 +449,76 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
           </div>
         </div>
         {/* Our Services Section End */}
+
+
+        {/* Product Portfolio Section Start */}
+        <div style={{background: '#f0f5ff', padding: '80px 0'}} id="products">
+          <div className="container">
+            <div className="row section-row">
+              <div className="col-lg-12">
+                <div className="section-title section-title-center">
+                  <span className="section-sub-title wow fadeInUp">What You Can Offer Your Clients</span>
+                  <h2 className="text-anime-style-3" data-cursor="-opaque">World-Class Products. Real Client Solutions.</h2>
+                  <p className="wow fadeInUp" data-wow-delay="0.2s">Every Apex agent is appointed to offer a comprehensive lineup of insurance and protection products — so you always have the right solution for every client at every stage of life. Better products. Better coverage. Better outcomes.</p>
+                </div>
+              </div>
+            </div>
+            <div className="row wow fadeInUp" data-wow-delay="0.3s">
+              {[
+                {
+                  icon: 'fa-heart-pulse',
+                  title: 'Life Insurance',
+                  desc: 'Protect what matters most.',
+                  items: ['Term Life Insurance', 'Whole Life Insurance', 'Indexed Universal Life (IUL)', 'Final Expense Coverage'],
+                },
+                {
+                  icon: 'fa-shield-halved',
+                  title: 'Health & Medicare',
+                  desc: 'Coverage for every stage of life.',
+                  items: ['Individual & Family Health Plans', 'Medicare Supplement Plans', 'Medicare Advantage', 'Supplemental Health'],
+                },
+                {
+                  icon: 'fa-piggy-bank',
+                  title: 'Annuities',
+                  desc: 'Secure retirement income strategies.',
+                  items: ['Fixed Annuities', 'Indexed Annuities', 'Retirement Income Planning', 'Wealth Accumulation'],
+                },
+                {
+                  icon: 'fa-briefcase-medical',
+                  title: 'Ancillary Protection',
+                  desc: 'Essential everyday protection products.',
+                  items: ['Telemedicine Access', 'ID Theft Protection', 'Legal Services Plan', 'Roadside Assistance'],
+                },
+              ].map((cat, i) => (
+                <div key={i} className="col-lg-3 col-md-6" style={{marginBottom: '24px'}}>
+                  <div style={{background: '#fff', border: '2px solid #dbeafe', borderRadius: '14px', padding: '28px 22px', height: '100%'}}>
+                    <div style={{width: '56px', height: '56px', background: '#2B4C7E', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px'}}>
+                      <i className={`fa-solid ${cat.icon}`} style={{fontSize: '24px', color: '#fff'}}></i>
+                    </div>
+                    <h4 style={{fontSize: '18px', fontWeight: 800, color: '#1a2f50', marginBottom: '4px'}}>{cat.title}</h4>
+                    <p style={{fontSize: '13px', color: '#2B4C7E', fontWeight: 600, marginBottom: '14px'}}>{cat.desc}</p>
+                    <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
+                      {cat.items.map((item, j) => (
+                        <li key={j} style={{fontSize: '14px', color: '#4b5563', lineHeight: '1.8', paddingLeft: '18px', position: 'relative'}}>
+                          <i className="fa-solid fa-check" style={{position: 'absolute', left: 0, top: '6px', fontSize: '10px', color: '#2B4C7E'}}></i>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="row">
+              <div className="col-12 text-center wow fadeInUp" style={{marginTop: '16px'}}>
+                <p style={{fontSize: '15px', color: '#4b5563', fontStyle: 'italic'}}>
+                  Multiple carrier appointments mean you always have a competitive option — never stuck with one solution.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* Product Portfolio Section End */}
 
 
         {/* Mission / Community Impact Section Start */}
@@ -503,7 +574,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                     </h2>
                     <div id="collapse1" className="accordion-collapse collapse" role="region" aria-labelledby="heading1" data-bs-parent="#accordion">
                       <div style={{backgroundColor: 'white', padding: '20px'}}>
-                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>Apex Affinity Group is a professional home for insurance agents at every stage — aspiring, growing, and established. We're not just an insurance opportunity; we're an insurance services platform. We provide the tools, training, carrier relationships, and community that help agents serve their clients better and build practices they're proud of. When agents are well-supported, their clients are better protected — and that's good for everyone.</div>
+                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>Apex Affinity Group is both — an insurance company and a professional services platform. On one side, we offer a world-class product portfolio: life insurance, health and Medicare coverage, annuities, and ancillary protection products that our agents bring to their clients every day. On the other side, we provide everything an agent needs to do that well: AI-powered tools, structured training, career mentorship, carrier access, and a professional community. You sell real insurance. We make sure you have everything you need to do it at the highest level.</div>
                       </div>
                     </div>
                   </div>
