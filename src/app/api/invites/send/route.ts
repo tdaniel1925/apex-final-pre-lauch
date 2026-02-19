@@ -122,7 +122,7 @@ function vipEmailHtml(recipientName: string, senderName: string, senderEmail: st
             <hr style="border:none;border-top:1px solid #e5e7eb;margin:0 0 24px;" />
 
             <p style="margin:0;font-size:14px;color:#6b7280;line-height:1.7;">
-              Questions? Reply directly to this email or reach out to <strong>${senderName}</strong> at <a href="mailto:${senderEmail}" style="color:#2B4C7E;">${senderEmail}</a>.
+              Questions? Just reply directly to this email — <strong>${senderName}</strong> will get back to you.
             </p>
 
           </td>
