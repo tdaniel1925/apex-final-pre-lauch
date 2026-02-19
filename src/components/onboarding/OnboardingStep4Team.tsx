@@ -16,7 +16,7 @@ interface Step4Props {
 
 export default function OnboardingStep4Team({ distributor, onNext, onBack }: Step4Props) {
   const [copied, setCopied] = useState(false);
-  const websiteUrl = `${process.env.NEXT_PUBLIC_SITE_URL || 'https://theapexway.net'}/${distributor.slug}`;
+  const websiteUrl = `${process.env.NEXT_PUBLIC_SITE_URL || 'https://reachtheapex.net'}/${distributor.slug}`;
 
   const handleCopy = () => {
     navigator.clipboard.writeText(websiteUrl);

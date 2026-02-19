@@ -10,7 +10,7 @@
 export function getEmailLogoUrl(): string {
   // Always use production URL for emails
   // Email clients can't access localhost, and base64 encoding makes emails too large
-  const productionUrl = 'https://theapexway.net';
+  const productionUrl = 'https://reachtheapex.net';
 
   // For development, you can temporarily use a public image hosting service
   // like Imgur, Cloudinary, or upload to your domain

@@ -33,7 +33,7 @@ async function testEmail() {
                 <!-- Logo Header -->
                 <tr>
                   <td style="padding: 40px 40px 20px; text-align: center; background-color: #ffffff; border-radius: 8px 8px 0 0;">
-                    <img src="https://theapexway.net/apex-logo-email.png" alt="Apex Affinity Group" style="max-width: 250px; height: auto; display: block; margin: 0 auto;" />
+                    <img src="https://reachtheapex.net/apex-logo-email.png" alt="Apex Affinity Group" style="max-width: 250px; height: auto; display: block; margin: 0 auto;" />
                   </td>
                 </tr>
 
@@ -53,10 +53,10 @@ async function testEmail() {
                     </p>
 
                     <ul style="margin: 0 0 24px; padding-left: 24px; font-size: 16px; line-height: 1.8; color: #555555;">
-                      <li><strong>From:</strong> Apex Affinity Group &lt;noreply@theapexway.net&gt;</li>
+                      <li><strong>From:</strong> Apex Affinity Group &lt;noreply@reachtheapex.net&gt;</li>
                       <li><strong>To:</strong> tdaniel@botmakers.ai</li>
                       <li><strong>Provider:</strong> Resend</li>
-                      <li><strong>Domain:</strong> theapexway.net (verified)</li>
+                      <li><strong>Domain:</strong> reachtheapex.net (verified)</li>
                     </ul>
 
                     <div style="background: #f0f9ff; border-left: 4px solid #2B4C7E; padding: 16px; margin: 24px 0;">

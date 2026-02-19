@@ -270,7 +270,7 @@ export default function SignupForm({ sponsorSlug, sponsorName }: SignupFormProps
             )}
           </div>
           <p className="mt-1 text-xs text-gray-500">
-            theapexway.net/{watchSlug || 'your-username'}
+            reachtheapex.net/{watchSlug || 'your-username'}
           </p>
           {errors.slug && (
             <p className="mt-1 text-sm text-red-600">{errors.slug.message}</p>

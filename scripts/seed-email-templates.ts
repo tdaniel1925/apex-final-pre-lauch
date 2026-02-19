@@ -22,7 +22,7 @@ const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
 const emailTemplate = (licensingStatus: 'licensed' | 'non_licensed') => {
   // Use production URL for logo so it displays in emails
-  const logoUrl = 'https://theapexway.net/apex-logo-email.png';
+  const logoUrl = 'https://reachtheapex.net/apex-logo-email.png';
 
   return `
 <!DOCTYPE html>
@@ -87,7 +87,7 @@ const emailTemplate = (licensingStatus: 'licensed' | 'non_licensed') => {
               </p>
               <p style="margin: 8px 0 0; font-size: 16px;">
                 <a href="${process.env.NEXT_PUBLIC_APP_URL}/{{slug}}" style="color: #2B4C7E; text-decoration: none; font-weight: bold;">
-                  ${process.env.NEXT_PUBLIC_APP_URL || 'https://theapexway.net'}/{{slug}}
+                  ${process.env.NEXT_PUBLIC_APP_URL || 'https://reachtheapex.net'}/{{slug}}
                 </a>
               </p>
 
@@ -113,7 +113,7 @@ const emailTemplate = (licensingStatus: 'licensed' | 'non_licensed') => {
 
               <p style="margin: 16px 0 0; font-size: 11px; line-height: 1.5; color: #9ca3af; text-align: center;">
                 You received this email because you created an account with Apex Affinity Group.<br>
-                If you believe you received this email in error, please contact us at support@theapexway.net
+                If you believe you received this email in error, please contact us at support@reachtheapex.net
               </p>
 
               <p style="margin: 12px 0 0; font-size: 11px; line-height: 1.5; color: #9ca3af; text-align: center;">

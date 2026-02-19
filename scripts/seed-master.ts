@@ -54,7 +54,7 @@ async function seedMasterDistributor() {
       console.log(`   Email: ${existing.email}`);
       console.log(`   Slug: ${existing.slug}`);
       console.log(`   ID: ${existing.id}`);
-      console.log(`   Landing Page: https://theapexway.net/${existing.slug}`);
+      console.log(`   Landing Page: https://reachtheapex.net/${existing.slug}`);
       console.log('\n✨ Seeding skipped (master already exists)');
       process.exit(0);
     }
@@ -93,7 +93,7 @@ async function seedMasterDistributor() {
     console.log(`   ID: ${data.id}`);
     console.log(`   Matrix Depth: ${data.matrix_depth} (root)`);
     console.log(`   Is Master: ${data.is_master}`);
-    console.log(`   Landing Page: https://theapexway.net/${data.slug}`);
+    console.log(`   Landing Page: https://reachtheapex.net/${data.slug}`);
     console.log(`   Created: ${data.created_at}`);
   } catch (error) {
     console.error('❌ Unexpected error:', error);
