@@ -107,7 +107,8 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   <div className="nav-menu-wrapper">
                     <ul className="navbar-nav mr-auto" id="menu">
                       <li className="nav-item"><a className="nav-link" href="#home">Home</a></li>
-                      <li className="nav-item"><a className="nav-link" href="#newcomers">Newcomers & Licensed</a></li>
+                      <li className="nav-item"><a className="nav-link" href="#journey">Your Journey</a></li>
+                      <li className="nav-item"><a className="nav-link" href="#services">Our Services</a></li>
                       <li className="nav-item"><a className="nav-link" href="#faq">FAQs</a></li>
                       <li className="nav-item"><a className="nav-link" href="#contact">Contact</a></li>
                     </ul>
@@ -159,15 +160,15 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   <div className="section-title">
                     <span className="section-sub-title wow fadeInUp">
                       {distributor.slug === 'apex'
-                        ? 'Build Financial Freedom with Apex Affinity Group'
-                        : `Build Financial Freedom with ${distributor.first_name} ${distributor.last_name}`
+                        ? 'Where Insurance Professionals Come Home'
+                        : `Your Professional Home — with ${distributor.first_name} ${distributor.last_name}`
                       }
                     </span>
                     <h1 className="text-anime-style-3" data-cursor="-opaque">
-                      Start Earning Day One. Build Insurance Wealth for Life.
+                      Aspiring. Growing. Established. You Belong Here.
                     </h1>
-                    <p className="wow fadeInUp" data-wow-delay="0.1s" style={{color: '#fff', fontSize: '18px', marginTop: '20px', maxWidth: '600px'}}>
-                      No license required to start. No upfront costs. Own your book. Build dual income streams with ancillary products and insurance sales.
+                    <p className="wow fadeInUp" data-wow-delay="0.1s" style={{color: '#fff', fontSize: '18px', marginTop: '20px', maxWidth: '680px'}}>
+                      Whether you're just starting out, building your career, or a seasoned professional ready to scale — Apex Affinity Group is your home. We're not just insurance. We're a full suite of services built to help every agent better serve their clients, grow their practice, and strengthen their community.
                     </p>
                   </div>
                   {/* Section Title End */}
@@ -237,276 +238,242 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
 
 
 
-        {/* Dual Audience Comparison Section Start */}
+        {/* Your Journey — 3 Pillars Section Start */}
         <div className="our-pricing" style={{background: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)'}}>
           <div className="container">
             <div className="row section-row">
               <div className="col-lg-12">
-                {/* Section Title Start */}
                 <div className="section-title section-title-center">
-                  <span className="section-sub-title wow fadeInUp" id="newcomers">Find Your Path</span>
-                  <h2 className="text-anime-style-3" data-cursor="-opaque">Whether You're Brand New or Already Licensed</h2>
-                  <p className="wow fadeInUp" data-wow-delay="0.2s">Apex Affinity Group provides the perfect opportunity for everyone. Start earning immediately as a beginner, or maximize your potential as a licensed professional. Both paths lead to financial freedom.</p>
+                  <span className="section-sub-title wow fadeInUp" id="journey">Every Stage. One Home.</span>
+                  <h2 className="text-anime-style-3" data-cursor="-opaque">No Matter Where You Are, Apex Meets You There</h2>
+                  <p className="wow fadeInUp" data-wow-delay="0.2s">Apex Affinity Group was built for insurance professionals at every stage of their journey. Whether you're just exploring, actively building, or a seasoned veteran — we have the tools, support, and community to take you further.</p>
                 </div>
-                {/* Section Title End */}
               </div>
             </div>
 
             <div className="row">
               <div className="col-lg-12">
-                {/* Comparison Cards Box Start */}
                 <div className="our-pricing-box wow fadeInUp" data-wow-delay="0.4s">
                   <div className="pricing-tab-item" style={{ display: 'block' }}>
                     <div className="row">
-                      {/* NEW TO INSURANCE CARD */}
-                      <div className="col-xl-6 col-md-6">
-                        <div className="pricing-item" style={{border: '3px solid #2B4C7E'}}>
-                          {/* Icon Box Start */}
+
+                      {/* ASPIRING CARD */}
+                      <div className="col-xl-4 col-md-6" style={{marginBottom: '20px'}}>
+                        <div className="pricing-item" style={{border: '3px solid #2B4C7E', height: '100%'}}>
                           <div className="icon-box">
-                            <i className="fa-solid fa-graduation-cap" style={{fontSize: '48px', color: '#2B4C7E'}}></i>
+                            <i className="fa-solid fa-seedling" style={{fontSize: '48px', color: '#2B4C7E'}}></i>
                           </div>
-                          {/* Icon Box End */}
-
-                          {/* Pricing Item Content Start */}
                           <div className="pricing-item-content">
-                            <h2>New to Insurance</h2>
-                            <p>Perfect for beginners ready to build wealth</p>
-                            <h3>Start <sub>Day 1</sub></h3>
+                            <h2>Aspiring</h2>
+                            <p>Curious about insurance. No license yet.</p>
+                            <h3>Start <sub>From Zero</sub></h3>
                           </div>
-                          {/* Pricing Item Content End */}
-
-                          {/* Pricing Item List Start */}
                           <div className="pricing-item-list">
                             <h3>What You Get:</h3>
                             <ul>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> No License Required to Start</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Earn Immediately with Ancillary Products</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Free Training & Licensing Support</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> AI-Powered CRM & Lead Tools</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> 1-on-1 Mentorship from {distributor.first_name}</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Path to Full Insurance Sales</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> No License Needed to Start</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Earn Day One with Ancillary Products</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Free Licensing Guidance & Study Support</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> AI-Powered CRM from Day One</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> 1-on-1 Mentorship &amp; Onboarding</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Built-in Path to Full Insurance Sales</li>
                             </ul>
                           </div>
-                          {/* Pricing Item List End */}
-
-                          {/* Pricing Item Button Start */}
                           <div className="pricing-item-btn">
                             <a href={signupUrl} className="btn-default">
                               {distributor.slug === 'apex' ? 'Join the Waitlist' : 'Start Your Journey'}
                             </a>
                           </div>
-                          {/* Pricing Item Button End */}
                         </div>
                       </div>
 
-                      {/* LICENSED AGENTS CARD */}
-                      <div className="col-xl-6 col-md-6">
-                        <div className="pricing-item pricing-item-popular" style={{border: '3px solid #2B4C7E', position: 'relative'}}>
-                          {/* Popular Badge */}
+                      {/* GROWING CARD */}
+                      <div className="col-xl-4 col-md-6" style={{marginBottom: '20px'}}>
+                        <div className="pricing-item pricing-item-popular" style={{border: '3px solid #2B4C7E', position: 'relative', height: '100%'}}>
                           <div style={{
-                            position: 'absolute',
-                            top: '-15px',
-                            right: '20px',
-                            background: '#2B4C7E',
-                            color: '#fff',
-                            padding: '5px 20px',
-                            borderRadius: '20px',
-                            fontWeight: 'bold',
-                            fontSize: '12px'
-                          }}>SCALE FASTER</div>
-
-                          {/* Icon Box Start */}
+                            position: 'absolute', top: '-15px', right: '20px',
+                            background: '#2B4C7E', color: '#fff',
+                            padding: '5px 20px', borderRadius: '20px',
+                            fontWeight: 'bold', fontSize: '12px'
+                          }}>MOST COMMON</div>
                           <div className="icon-box">
-                            <i className="fa-solid fa-briefcase" style={{fontSize: '48px', color: '#2B4C7E'}}></i>
+                            <i className="fa-solid fa-chart-line" style={{fontSize: '48px', color: '#2B4C7E'}}></i>
                           </div>
-                          {/* Icon Box End */}
-
-                          {/* Pricing Item Content Start */}
                           <div className="pricing-item-content">
-                            <h2>Licensed Agents</h2>
-                            <p>Maximize earnings with premium contracts</p>
-                            <h3>Unlimited <sub>Potential</sub></h3>
+                            <h2>Growing</h2>
+                            <p>Licensed and building. Ready for more.</p>
+                            <h3>Level <sub>Up Now</sub></h3>
                           </div>
-                          {/* Pricing Item Content End */}
-
-                          {/* Pricing Item List Start */}
                           <div className="pricing-item-list">
                             <h3>What You Get:</h3>
                             <ul>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> 100% Ownership of Your Book</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Higher Commission Contracts</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Advanced Sales Training</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Lead Generation System</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Team Building Opportunities</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Multiple Carrier Appointments</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Stronger Carrier Contracts</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Sales Training Podcast &amp; Live Calls</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Lead Generation &amp; Client Management Tools</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Compliance &amp; Product Support</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Peer Community &amp; Accountability</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> 100% Book of Business Ownership</li>
                             </ul>
                           </div>
-                          {/* Pricing Item List End */}
-
-                          {/* Pricing Item Button Start */}
                           <div className="pricing-item-btn">
                             <a href={signupUrl} className="btn-default">
-                              {distributor.slug === 'apex' ? 'Join the Waitlist' : `Join ${distributor.first_name}'s Team`}
+                              {distributor.slug === 'apex' ? 'Join the Waitlist' : 'Grow With Us'}
                             </a>
                           </div>
-                          {/* Pricing Item Button End */}
                         </div>
                       </div>
+
+                      {/* ESTABLISHED CARD */}
+                      <div className="col-xl-4 col-md-6" style={{marginBottom: '20px'}}>
+                        <div className="pricing-item" style={{border: '3px solid #2B4C7E', height: '100%'}}>
+                          <div className="icon-box">
+                            <i className="fa-solid fa-award" style={{fontSize: '48px', color: '#2B4C7E'}}></i>
+                          </div>
+                          <div className="pricing-item-content">
+                            <h2>Established</h2>
+                            <p>Seasoned pro. Time to serve at a higher level.</p>
+                            <h3>Unlimited <sub>Potential</sub></h3>
+                          </div>
+                          <div className="pricing-item-list">
+                            <h3>What You Get:</h3>
+                            <ul>
+                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Top-Tier Commission Contracts</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Multiple Carrier Appointments</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Team Building &amp; Residual Income</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Advanced CRM &amp; Automation Tools</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Leadership &amp; Mentorship Opportunities</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Replicated Site &amp; Personal Brand Tools</li>
+                            </ul>
+                          </div>
+                          <div className="pricing-item-btn">
+                            <a href={signupUrl} className="btn-default">
+                              {distributor.slug === 'apex' ? 'Join the Waitlist' : `Join ${distributor.first_name}'s Network`}
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+
                     </div>
                   </div>
 
-                  {/* Shared Benefits List Start */}
+                  {/* Universal Benefits */}
                   <div className="pricing-benefit-list wow fadeInUp" data-wow-delay="0.2s" style={{marginTop: '40px'}}>
-                    <h3 style={{textAlign: 'center', marginBottom: '20px', color: '#2B4C7E', fontSize: '24px'}}>Everyone Gets These Benefits:</h3>
+                    <h3 style={{textAlign: 'center', marginBottom: '20px', color: '#2B4C7E', fontSize: '24px'}}>Every Member Gets These From Day One:</h3>
                     <ul style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '30px'}}>
                       <li><img src="/optive/images/icon-pricing-benefit-1.svg" alt="" />$0 to join, no monthly fees</li>
                       <li><img src="/optive/images/icon-pricing-benefit-2.svg" alt="" />AI-powered CRM included free</li>
-                      <li><img src="/optive/images/icon-pricing-benefit-3.svg" alt="" />Full training & support</li>
-                      <li><img src="/optive/images/icon-pricing-benefit-1.svg" alt="" />Team development bonuses</li>
+                      <li><img src="/optive/images/icon-pricing-benefit-3.svg" alt="" />Training podcast &amp; live calls</li>
+                      <li><img src="/optive/images/icon-pricing-benefit-1.svg" alt="" />100% book of business ownership</li>
                     </ul>
                   </div>
-                  {/* Shared Benefits List End */}
                 </div>
               </div>
             </div>
           </div>
         </div>
-        {/* Dual Audience Comparison Section End */}
+        {/* Your Journey — 3 Pillars Section End */}
 
 
-        {/* Our Process Section Start */}
+        {/* Our Services Section Start */}
         <div className="our-process">
           <div className="container">
             <div className="row section-row">
               <div className="col-lg-12">
-                {/* Section Title Start */}
                 <div className="section-title section-title-center">
-                  <span className="section-sub-title wow fadeInUp" id="process">Get Started Today</span>
-                  <h2 className="text-anime-style-3" data-cursor="-opaque">Three Simple Steps to Financial Freedom</h2>
-                  <p className="wow fadeInUp" data-wow-delay="0.2s">Getting started with Apex is incredibly simple. No complex paperwork, no waiting periods, no barriers. Follow these three steps and you could be earning within days.</p>
+                  <span className="section-sub-title wow fadeInUp" id="services">What We Offer</span>
+                  <h2 className="text-anime-style-3" data-cursor="-opaque">The Tools That Help You Serve Better</h2>
+                  <p className="wow fadeInUp" data-wow-delay="0.2s">At Apex, we believe a well-equipped agent is a better agent — and a better agent means better-protected clients and stronger communities. Everything we provide is designed to help you serve at a higher level.</p>
                 </div>
-                {/* Section Title End */}
               </div>
             </div>
 
             <div className="row">
               <div className="col-lg-12">
-                {/* Process Steps Item List Start */}
                 <div className="process-steps-item-list">
-                  {/* Process Step Item Start */}
+
                   <div className="process-step-item box-1 wow fadeInUp">
-                    {/* Process Step Item Header Start */}
                     <div className="process-step-item-header">
-                      <div className="process-step-item-no">
-                        <h2>01.</h2>
-                      </div>
+                      <div className="process-step-item-no"><h2>01.</h2></div>
                       <div className="process-step-item-image">
-                        <figure>
-                          <img src="/optive/images/process-step-item-image-1.jpg" alt="" />
-                        </figure>
+                        <figure><img src="/optive/images/process-step-item-image-1.jpg" alt="" /></figure>
                       </div>
                     </div>
-                    {/* Process Step Item Header End */}
-
-                    {/* Process Step Item Content Start */}
                     <div className="process-step-item-content">
-                      <h3>Sign Up & Get Onboarded</h3>
-                      <p>Complete your free registration and attend our comprehensive onboarding session.</p>
+                      <h3>AI-Powered Tools & CRM</h3>
+                      <p>Technology that works as hard as you do — automating follow-ups, managing your pipeline, and keeping you focused on what matters most: your clients.</p>
                       <ul>
-                        <li>Zero cost to join, no credit card required</li>
-                        <li>Immediate access to our AI-powered CRM</li>
+                        <li>Smart lead management and automated nurturing</li>
+                        <li>Your own replicated website from day one</li>
                       </ul>
                     </div>
-                    {/* Process Step Item Content End */}
                   </div>
-                  {/* Process Step Item End */}
 
-                  {/* Process Step Item Start */}
                   <div className="process-step-item box-2 wow fadeInUp" data-wow-delay="0.2s">
-                    {/* Process Step Item Header Start */}
                     <div className="process-step-item-header">
-                      <div className="process-step-item-no">
-                        <h2>02.</h2>
-                      </div>
+                      <div className="process-step-item-no"><h2>02.</h2></div>
                       <div className="process-step-item-image">
-                        <figure>
-                          <img src="/optive/images/process-step-item-image-2.jpg" alt="" />
-                        </figure>
+                        <figure><img src="/optive/images/process-step-item-image-2.jpg" alt="" /></figure>
                       </div>
                     </div>
-                    {/* Process Step Item Header End */}
-
-                    {/* Process Step Item Content Start */}
                     <div className="process-step-item-content">
-                      <h3>Start Earning Immediately</h3>
-                      <p>Begin selling ancillary products right away while pursuing your insurance license.</p>
+                      <h3>Training, Mentorship & Community</h3>
+                      <p>You're never figuring it out alone. From our AI-powered sales training podcast to live calls and 1-on-1 mentorship, Apex keeps you sharp and supported.</p>
                       <ul>
-                        <li>Earn commissions on day one with ancillary products</li>
-                        <li>We guide you through licensing at your own pace</li>
+                        <li>Weekly live training calls and sales coaching</li>
+                        <li>A peer community that lifts every member up</li>
                       </ul>
                     </div>
-                    {/* Process Step Item Content End */}
                   </div>
-                  {/* Process Step Item End */}
 
-                  {/* Process Step Item Start */}
                   <div className="process-step-item box-3 wow fadeInUp" data-wow-delay="0.4s">
-                    {/* Process Step Item Header Start */}
                     <div className="process-step-item-header">
-                      <div className="process-step-item-no">
-                        <h2>03.</h2>
-                      </div>
+                      <div className="process-step-item-no"><h2>03.</h2></div>
                       <div className="process-step-item-image">
-                        <figure>
-                          <img src="/optive/images/process-step-item-image-3.jpg" alt="" />
-                        </figure>
+                        <figure><img src="/optive/images/process-step-item-image-3.jpg" alt="" /></figure>
                       </div>
                     </div>
-                    {/* Process Step Item Header End */}
-
-                    {/* Process Step Item Content Start */}
                     <div className="process-step-item-content">
-                      <h3>Scale Your Business</h3>
-                      <p>Build your client base, get licensed, and optionally develop a team for passive income.</p>
+                      <h3>Carrier Access & Compliance Support</h3>
+                      <p>Access top-tier carrier appointments and the compliance support you need to serve your clients with confidence — no matter what product or market you're in.</p>
                       <ul>
-                        <li>100% ownership of your growing book of business</li>
-                        <li>Team building bonuses as you help others succeed</li>
+                        <li>Multiple carrier appointments across product lines</li>
+                        <li>100% ownership of your book of business, always</li>
                       </ul>
                     </div>
-                    {/* Process Step Item Content End */}
                   </div>
-                  {/* Process Step Item End */}
-                </div>
-                {/* Process Steps Item List End */}
-              </div>
 
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        {/* Our Process Section End */}
+        {/* Our Services Section End */}
 
 
-        {/* Our Expert Solutions Section Start */}
+        {/* Mission / Community Impact Section Start */}
         <div className="our-expert-solution">
-          {/* Our Expert Solutions Box Start */}
-          <div className="our-expert-solution-box dark-section" style={{paddingTop: '60px', paddingBottom: '60px'}}>
+          <div className="our-expert-solution-box dark-section" style={{paddingTop: '70px', paddingBottom: '70px'}}>
             <div className="container">
               <div className="row section-row" style={{marginBottom: 0}}>
                 <div className="col-lg-12">
-                  {/* Section Title Start */}
                   <div className="section-title section-title-center" style={{marginBottom: 0}}>
-                    <span className="section-sub-title wow fadeInUp">Your Path to Success</span>
-                    <h2 className="text-anime-style-3" data-cursor="-opaque">Technology Meets Opportunity</h2>
-                    <p className="wow fadeInUp" data-wow-delay="0.2s">Success in the life insurance business today requires more than hard work—it demands smart tools and real opportunity. With cutting-edge AI-powered CRM technology automating your follow-ups, lead nurturing, and client management, you can focus on what matters: building relationships and closing sales. Combined with true book ownership, dual income streams from day one, and comprehensive training, you have everything needed to build a sustainable, profitable insurance business on your own terms.</p>
+                    <span className="section-sub-title wow fadeInUp">Why It Matters</span>
+                    <h2 className="text-anime-style-3" data-cursor="-opaque">Better Agents. Better Service. Stronger Communities.</h2>
+                    <p className="wow fadeInUp" data-wow-delay="0.2s" style={{maxWidth: '800px', margin: '0 auto'}}>
+                      When agents are properly equipped, trained, and supported — they show up differently for their clients. They close coverage gaps that could devastate families. They build trust that lasts decades. They become pillars in their communities. That's the real mission behind everything Apex Affinity Group does. We invest in you so you can invest in the people who need you most.
+                    </p>
+                    <div className="wow fadeInUp" data-wow-delay="0.4s" style={{marginTop: '40px', display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap'}}>
+                      <a href={signupUrl} className="btn-default" style={{background: '#ffffff', color: '#2B4C7E', borderColor: '#ffffff'}}>
+                        {distributor.slug === 'apex' ? 'Join the Waitlist' : 'Join the Mission'}
+                      </a>
+                    </div>
                   </div>
-                  {/* Section Title End */}
                 </div>
               </div>
             </div>
           </div>
-          {/* Our Expert Solutions Box End */}
         </div>
-        {/* Our Expert Solutions Section End */}
+        {/* Mission / Community Impact Section End */}
 
         {/* Our Faqs Section Start */}
         <div className="our-faqs">
@@ -516,8 +483,8 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                 {/* Section Title Start */}
                 <div className="section-title section-title-center">
                   <span className="section-sub-title wow fadeInUp" id="faq">Frequently Asked Questions</span>
-                  <h2 className="text-anime-style-3" data-cursor="-opaque">Everything You Need to Know</h2>
-                  <p className="wow fadeInUp" data-wow-delay="0.2s">We believe in complete transparency. Here are honest answers to the most common questions about joining Apex Affinity Group and building your insurance business.</p>
+                  <h2 className="text-anime-style-3" data-cursor="-opaque">Real Answers. No Runaround.</h2>
+                  <p className="wow fadeInUp" data-wow-delay="0.2s">We believe transparency builds trust. Here are honest answers to the questions we hear most from insurance professionals considering Apex as their professional home.</p>
                 </div>
                 {/* Section Title End */}
               </div>
@@ -531,12 +498,12 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   <div className="accordion-item wow fadeInUp">
                     <h2 className="accordion-header" id="heading1">
                       <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
-                        Q1. Is there really no cost to join Apex?
+                        Q1. What exactly is Apex Affinity Group?
                       </button>
                     </h2>
                     <div id="collapse1" className="accordion-collapse collapse" role="region" aria-labelledby="heading1" data-bs-parent="#accordion">
                       <div style={{backgroundColor: 'white', padding: '20px'}}>
-                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>Absolutely zero. No joining fees, no monthly dues, no hidden costs. You can sign up today and start earning immediately with ancillary products before investing a single dollar. We only succeed when you succeed.</div>
+                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>Apex Affinity Group is a professional home for insurance agents at every stage — aspiring, growing, and established. We're not just an insurance opportunity; we're an insurance services platform. We provide the tools, training, carrier relationships, and community that help agents serve their clients better and build practices they're proud of. When agents are well-supported, their clients are better protected — and that's good for everyone.</div>
                       </div>
                     </div>
                   </div>
@@ -546,12 +513,12 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   <div className="accordion-item wow fadeInUp" data-wow-delay="0.2s">
                     <h2 className="accordion-header" id="heading2">
                       <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
-                        Q2. Do I need an insurance license to get started?
+                        Q2. Do I need an insurance license to join?
                       </button>
                     </h2>
                     <div id="collapse2" className="accordion-collapse collapse" role="region" aria-labelledby="heading2" data-bs-parent="#accordion">
                       <div style={{backgroundColor: 'white', padding: '20px'}}>
-                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>No! You can start earning immediately with our ancillary products (telemedicine, roadside assistance, ID theft protection, legal services) with no license required. We'll support you through the licensing process at your own pace when you're ready to sell insurance.</div>
+                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>No license is required to get started. You can begin earning immediately with our ancillary product line — telemedicine, roadside assistance, ID theft protection, and legal services — while we guide you through the licensing process at your own pace. For already-licensed agents, you plug directly into stronger contracts, better tools, and a supportive professional community.</div>
                       </div>
                     </div>
                   </div>
@@ -561,12 +528,12 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   <div className="accordion-item wow fadeInUp" data-wow-delay="0.4s">
                     <h2 className="accordion-header" id="heading3">
                       <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
-                        Q3. What does "100% book ownership" mean?
+                        Q3. I'm already a licensed agent. Why would I join Apex?
                       </button>
                     </h2>
                     <div id="collapse3" className="accordion-collapse collapse show" role="region" aria-labelledby="heading3" data-bs-parent="#accordion">
                       <div style={{backgroundColor: 'white', padding: '20px'}}>
-                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>Unlike traditional agencies, you retain complete ownership of all client relationships and policies you write. If you ever leave Apex, your book comes with you. You're building equity in your own business, not someone else's. This is generational wealth, not just a paycheck.</div>
+                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>Seasoned agents join Apex because we give them what they've been missing: better carrier contracts, AI-powered client management tools, a supportive professional community, and the ability to build residual income through team development — all while keeping 100% ownership of their book of business. It's the infrastructure of a large agency without giving up your independence.</div>
                       </div>
                     </div>
                   </div>
@@ -576,12 +543,12 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   <div className="accordion-item wow fadeInUp" data-wow-delay="0.6s">
                     <h2 className="accordion-header" id="heading4">
                       <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
-                        Q4. How much can I realistically earn?
+                        Q4. What does "insurance services" mean — are you different from a typical agency?
                       </button>
                     </h2>
                     <div id="collapse4" className="accordion-collapse collapse" role="region" aria-labelledby="heading4" data-bs-parent="#accordion">
                       <div style={{backgroundColor: 'white', padding: '20px'}}>
-                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>Your income potential is truly unlimited. Our top agents earn six figures annually, but your results depend on your effort and dedication. Most new agents earn $2,000-$5,000/month within their first 90 days with ancillary products alone. Once licensed, insurance sales can add $5,000-$15,000+ monthly.</div>
+                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>Yes — significantly. A traditional agency focuses on recruiting agents to sell their products. Apex focuses on serving agents with the resources they need to build better practices. We provide technology, training, carrier access, compliance support, and community — because we believe the best way to grow is to make every agent we work with genuinely excellent at what they do. Better agents serve better. It's that simple.</div>
                       </div>
                     </div>
                   </div>
@@ -591,12 +558,12 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   <div className="accordion-item wow fadeInUp" data-wow-delay="0.8s">
                     <h2 className="accordion-header" id="heading5">
                       <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
-                        Q5. What training and support do you provide?
+                        Q5. What training and support does Apex actually provide?
                       </button>
                     </h2>
                     <div id="collapse5" className="accordion-collapse collapse" role="region" aria-labelledby="heading5" data-bs-parent="#accordion">
                       <div style={{backgroundColor: 'white', padding: '20px'}}>
-                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>We provide comprehensive onboarding, weekly live training calls, one-on-one mentorship, an AI-powered CRM with automated lead nurturing, product training for all insurance types, sales scripts and presentations, and ongoing support from {distributor.first_name} and the entire Apex team.</div>
+                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>From day one, you get access to comprehensive onboarding, an AI-powered sales training podcast, weekly live training calls, 1-on-1 mentorship, an AI-powered CRM with automated lead nurturing, product training across all insurance types, and ongoing support from {distributor.slug === 'apex' ? 'the Apex team' : `${distributor.first_name} and the entire Apex team`}. We're invested in your success because your success is our mission.</div>
                       </div>
                     </div>
                   </div>
@@ -606,12 +573,12 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   <div className="accordion-item wow fadeInUp" data-wow-delay="1s">
                     <h2 className="accordion-header" id="heading6">
                       <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
-                        Q6. Can I do this part-time?
+                        Q6. Is there a cost to join, and what's the commitment?
                       </button>
                     </h2>
                     <div id="collapse6" className="accordion-collapse collapse" role="region" aria-labelledby="heading6" data-bs-parent="#accordion">
                       <div style={{backgroundColor: 'white', padding: '20px'}}>
-                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>Absolutely! Many of our successful agents started part-time while keeping their day jobs. You control your schedule completely. Some agents work evenings and weekends, building their business until it replaces their full-time income. There's no minimum hour requirement.</div>
+                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>Zero cost to join. No monthly fees, no hidden dues, no minimum production requirements. Apex is your professional home — and a home doesn't charge you rent to belong. Many agents start part-time while keeping their current role, building at their own pace until Apex becomes their primary focus. You control your schedule, your growth, and your business.</div>
                       </div>
                     </div>
                   </div>
