@@ -13,7 +13,7 @@ interface Recipient {
   email: string;
 }
 
-function vipEmailHtml(recipientName: string, senderName: string, senderEmail: string): string {
+function vipEmailHtml(recipientName: string, senderName: string): string {
   const firstName = recipientName.split(' ')[0];
   const webinarLink = 'https://events.teams.microsoft.com/event/599e6f14-a298-4986-be33-64031f51f37f@8db46c49-b9d5-4f6b-948b-b99f34520af8';
   const waitlistLink = 'https://theapexway.net/signup';
@@ -152,15 +152,14 @@ function vipEmailHtml(recipientName: string, senderName: string, senderEmail: st
 
 export async function POST(req: Request) {
   try {
-    const { senderName, senderEmail, recipients } = await req.json() as {
-      senderName:  string;
-      senderEmail: string;
-      recipients:  Recipient[];
+    const { senderName, recipients } = await req.json() as {
+      senderName: string;
+      recipients: Recipient[];
     };
 
     // Validate
-    if (!senderName?.trim() || !senderEmail?.trim()) {
-      return NextResponse.json({ error: 'Sender name and email are required.' }, { status: 400 });
+    if (!senderName?.trim()) {
+      return NextResponse.json({ error: 'Sender name is required.' }, { status: 400 });
     }
     if (!Array.isArray(recipients) || recipients.length === 0) {
       return NextResponse.json({ error: 'At least one recipient is required.' }, { status: 400 });
@@ -180,10 +179,9 @@ export async function POST(req: Request) {
       valid.map(r =>
         resend.emails.send({
           from:    `${senderName} via Apex Affinity Group <theapex@theapexway.net>`,
-          replyTo: senderEmail,
           to:      r.email.trim(),
           subject: `${senderName} invited you: VIP First Look — Apex Affinity Group 🚀`,
-          html:    vipEmailHtml(r.name.trim(), senderName.trim(), senderEmail.trim()),
+          html:    vipEmailHtml(r.name.trim(), senderName.trim()),
         })
       )
     );

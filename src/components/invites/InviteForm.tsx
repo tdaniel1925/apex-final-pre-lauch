@@ -11,8 +11,7 @@ interface Recipient { name: string; email: string; }
 const empty = (): Recipient => ({ name: '', email: '' });
 
 export default function InviteForm() {
-  const [senderName,  setSenderName]  = useState('');
-  const [senderEmail, setSenderEmail] = useState('');
+  const [senderName, setSenderName] = useState('');
   const [recipients,  setRecipients]  = useState<Recipient[]>(
     Array.from({ length: 10 }, empty)
   );
@@ -36,7 +35,7 @@ export default function InviteForm() {
       const res  = await fetch('/api/invites/send', {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify({ senderName, senderEmail, recipients }),
+        body:    JSON.stringify({ senderName, recipients }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? 'Failed to send');
@@ -63,7 +62,7 @@ export default function InviteForm() {
             {sentCount} VIP invite{sentCount !== 1 ? 's' : ''} sent successfully. Your guests will receive a personalized email with all the details.
           </p>
           <button
-            onClick={() => { setStatus('idle'); setSenderName(''); setSenderEmail(''); setRecipients(Array.from({ length: 10 }, empty)); }}
+            onClick={() => { setStatus('idle'); setSenderName(''); setRecipients(Array.from({ length: 10 }, empty)); }}
             className="text-sm font-semibold text-white px-6 py-2.5 rounded-xl"
             style={{ background: '#2B4C7E' }}
           >
@@ -110,31 +109,18 @@ export default function InviteForm() {
         {/* Sender info */}
         <div className="bg-gray-50 border border-gray-200 rounded-2xl p-5">
           <h2 className="text-sm font-bold text-gray-700 uppercase tracking-wide mb-4">
-            Your Info — Who's Sending These Invites
+            Your Name — Who's Sending These Invites
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div>
-              <label className="block text-xs font-medium text-gray-600 mb-1">Your Full Name</label>
-              <input
-                type="text"
-                value={senderName}
-                onChange={e => setSenderName(e.target.value)}
-                required
-                placeholder="Jane Smith"
-                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-200 bg-white"
-              />
-            </div>
-            <div>
-              <label className="block text-xs font-medium text-gray-600 mb-1">Your Email Address</label>
-              <input
-                type="email"
-                value={senderEmail}
-                onChange={e => setSenderEmail(e.target.value)}
-                required
-                placeholder="jane@example.com"
-                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-200 bg-white"
-              />
-            </div>
+          <div>
+            <label className="block text-xs font-medium text-gray-600 mb-1">Your Full Name</label>
+            <input
+              type="text"
+              value={senderName}
+              onChange={e => setSenderName(e.target.value)}
+              required
+              placeholder="Jane Smith"
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-200 bg-white"
+            />
           </div>
         </div>
 
