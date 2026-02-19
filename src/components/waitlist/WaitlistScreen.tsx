@@ -100,7 +100,7 @@ export default function WaitlistScreen({ sponsorSlug, sponsorName }: Props) {
 
       {/* ===== LEFT PANEL — desktop only ===== */}
       <div className="relative z-10 hidden md:flex flex-col items-center justify-center w-2/5 px-10 border-r border-white/10 shrink-0">
-        <img src="/apex-logo-white.png" alt="Apex Affinity Group" className="w-40 h-auto mb-6 object-contain" />
+        <img src="/apex-logo-white.png" alt="Apex Affinity Group" className="w-64 h-auto mb-6 object-contain" />
         <h1 className="text-3xl font-bold text-white text-center leading-tight mb-3">
           We're Almost<br />Ready to Roll!
         </h1>
@@ -115,7 +115,7 @@ export default function WaitlistScreen({ sponsorSlug, sponsorName }: Props) {
 
         {/* Logo + headline — mobile only */}
         <div className="md:hidden flex flex-col items-center mb-4">
-          <img src="/apex-logo-white.png" alt="Apex Affinity Group" className="w-24 h-auto mb-3 object-contain" />
+          <img src="/apex-logo-white.png" alt="Apex Affinity Group" className="w-36 h-auto mb-3 object-contain" />
           <h1 className="text-xl font-bold text-white leading-tight mb-1">We're Almost Ready to Roll!</h1>
           <p className="text-blue-200 text-xs leading-relaxed max-w-xs">
             And trust us — we know you are too! Signups open after our webinar —{' '}
