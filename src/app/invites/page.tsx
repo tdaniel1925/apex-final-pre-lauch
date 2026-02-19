@@ -5,5 +5,10 @@ export const metadata = {
 };
 
 export default function InvitesPage() {
-  return <InviteForm />;
+  return (
+    <>
+      <link href="/optive/css/all.min.css" rel="stylesheet" />
+      <InviteForm />
+    </>
+  );
 }

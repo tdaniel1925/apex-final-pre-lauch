@@ -55,7 +55,9 @@ export default function InviteForm() {
       <div className="min-h-screen bg-white flex flex-col items-center justify-center px-4">
         <img src="/apex-logo-full.png" alt="Apex Affinity Group" className="h-16 w-auto mb-8" />
         <div className="max-w-md w-full text-center bg-green-50 border border-green-200 rounded-2xl p-10">
-          <div className="text-5xl mb-4">🎉</div>
+          <div className="flex items-center justify-center w-16 h-16 rounded-full mx-auto mb-4" style={{ background: '#2B4C7E' }}>
+              <i className="fa-solid fa-paper-plane" style={{ fontSize: '28px', color: '#fff' }}></i>
+            </div>
           <h2 className="text-2xl font-bold text-gray-800 mb-2">Invites Sent!</h2>
           <p className="text-gray-600 text-sm mb-6">
             {sentCount} VIP invite{sentCount !== 1 ? 's' : ''} sent successfully. Your guests will receive a personalized email with all the details.
@@ -88,12 +90,14 @@ export default function InviteForm() {
       <div className="max-w-2xl mx-auto px-4 pt-6 pb-2">
         <div className="grid grid-cols-3 gap-3">
           {[
-            { emoji: '🖥️', title: 'Site Launch',        desc: 'First access when signups open' },
-            { emoji: '🎙️', title: 'Webinar — Feb 23',   desc: 'Monday at 9:00 PM ET, live on Teams' },
-            { emoji: '🏢', title: 'Office Launch',       desc: 'In-person event, mid-March' },
+            { icon: 'fa-desktop',    title: 'Site Launch',        desc: 'First access when signups open' },
+            { icon: 'fa-microphone', title: 'Webinar — Feb 23',   desc: 'Monday at 9:00 PM ET, live on Teams' },
+            { icon: 'fa-building',   title: 'Office Launch',       desc: 'In-person event, mid-March' },
           ].map((ev, i) => (
             <div key={i} className="bg-blue-50 border border-blue-100 rounded-xl p-3 text-center">
-              <div className="text-2xl mb-1">{ev.emoji}</div>
+              <div className="flex items-center justify-center w-10 h-10 rounded-full mx-auto mb-2" style={{ background: '#2B4C7E' }}>
+                <i className={`fa-solid ${ev.icon}`} style={{ fontSize: '18px', color: '#fff' }}></i>
+              </div>
               <p className="text-xs font-bold text-gray-800 mb-0.5">{ev.title}</p>
               <p className="text-xs text-gray-500">{ev.desc}</p>
             </div>
