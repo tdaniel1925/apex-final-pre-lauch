@@ -19,6 +19,11 @@ const monaSans = Public_Sans({
 export const metadata: Metadata = {
   title: "Apex Affinity Group - Distributor Network",
   description: "Join Apex Affinity Group's distributor network and build your business",
+  icons: {
+    icon: "/apex-star.png",
+    shortcut: "/apex-star.png",
+    apple: "/apex-star.png",
+  },
 };
 
 export default function RootLayout({
