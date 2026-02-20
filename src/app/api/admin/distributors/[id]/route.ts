@@ -4,7 +4,7 @@
 // =============================================
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getAdminUser } from '@/lib/auth/admin';
+import { getAdminUser, hasAdminRole } from '@/lib/auth/admin';
 import {
   getDistributorById,
   updateDistributor,
@@ -62,7 +62,7 @@ export async function PATCH(
   }
 }
 
-// DELETE /api/admin/distributors/[id] - Soft delete distributor
+// DELETE /api/admin/distributors/[id] - Soft delete distributor (Super Admin only)
 export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -70,6 +70,11 @@ export async function DELETE(
   const admin = await getAdminUser();
   if (!admin) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  // Only super admins can delete accounts
+  if (!hasAdminRole(admin.admin, 'super_admin')) {
+    return NextResponse.json({ error: 'Only super admins can delete accounts' }, { status: 403 });
   }
 
   try {

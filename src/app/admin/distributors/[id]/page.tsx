@@ -19,7 +19,7 @@ interface PageProps {
 }
 
 export default async function DistributorDetailPage({ params }: PageProps) {
-  await requireAdmin();
+  const adminContext = await requireAdmin();
 
   const { id } = await params;
   const distributor = await getDistributorById(id);
@@ -30,7 +30,7 @@ export default async function DistributorDetailPage({ params }: PageProps) {
 
   return (
     <div className="p-4">
-      <DistributorDetailView distributor={distributor} />
+      <DistributorDetailView distributor={distributor} currentAdminRole={adminContext.admin.role} />
     </div>
   );
 }

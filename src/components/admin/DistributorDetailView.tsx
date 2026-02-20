@@ -8,6 +8,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import type { Distributor } from '@/lib/types';
+import type { AdminRole } from '@/lib/auth/admin';
 import SponsorLineage from './SponsorLineage';
 import PersonalDownline from './PersonalDownline';
 import MatrixChildren from './MatrixChildren';
@@ -18,10 +19,12 @@ import ResendWelcomeButton from '@/components/dashboard/ResendWelcomeButton';
 
 interface DistributorDetailViewProps {
   distributor: Distributor;
+  currentAdminRole: AdminRole;
 }
 
 export default function DistributorDetailView({
   distributor: initialDistributor,
+  currentAdminRole,
 }: DistributorDetailViewProps) {
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
@@ -514,7 +517,8 @@ export default function DistributorDetailView({
                     Activate Account
                   </button>
                 )}
-                {initialDistributor.status !== 'deleted' && (
+                {/* Only super admins can delete accounts */}
+                {initialDistributor.status !== 'deleted' && currentAdminRole === 'super_admin' && (
                   <button
                     onClick={() => setShowDeleteModal(true)}
                     className="w-full px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700"
