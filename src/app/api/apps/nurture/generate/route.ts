@@ -1,7 +1,7 @@
 // =============================================
 // POST /api/apps/nurture/generate
-// Claude Haiku generates a personalized nurture
-// email sequence for a given prospect
+// OpenAI GPT-4o-mini generates a personalized
+// nurture email sequence for a given prospect
 // =============================================
 
 import { NextResponse } from 'next/server';
@@ -32,7 +32,7 @@ export async function POST(req: Request) {
 
     const count = Math.min(Math.max(emailCount ?? 2, 2), 4);
 
-    const apiKey = process.env.ANTHROPIC_API_KEY;
+    const apiKey = process.env.OPENAI_API_KEY;
     if (!apiKey) return NextResponse.json({ error: 'AI not configured.' }, { status: 500 });
 
     // Build the email plan descriptions
@@ -69,15 +69,14 @@ Return ONLY a valid JSON array — no markdown, no explanation, nothing else:
   { "subject": "...", "body": "..." }
 ]`;
 
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01',
-        'content-type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'claude-haiku-4-5-20251001',
+        model: 'gpt-4o-mini',
         max_tokens: 2048,
         messages: [{ role: 'user', content: prompt }],
       }),
@@ -85,12 +84,12 @@ Return ONLY a valid JSON array — no markdown, no explanation, nothing else:
 
     if (!response.ok) {
       const err = await response.text();
-      console.error('Anthropic API error:', err);
+      console.error('OpenAI API error:', err);
       throw new Error('AI generation failed');
     }
 
     const data = await response.json();
-    const text = data.content[0].text.trim()
+    const text = (data.choices[0].message.content as string).trim()
       .replace(/^```json\s*/i, '')
       .replace(/```\s*$/i, '')
       .trim();
