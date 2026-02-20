@@ -463,7 +463,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                 </div>
               </div>
             </div>
-            <div className="row wow fadeInUp" data-wow-delay="0.3s">
+            <div className="row justify-content-center wow fadeInUp" data-wow-delay="0.3s">
               {[
                 {
                   icon: 'fa-heart-pulse',
@@ -519,7 +519,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
           <div className="container">
             <div className="row section-row">
               <div className="col-lg-12">
-                <div className="section-title section-title-center" style={{marginBottom: '24px'}}>
+                <div className="section-title section-title-center" style={{marginBottom: '-25px'}}>
                   <span className="section-sub-title wow fadeInUp" style={{display: 'block', color: '#fff'}}>The Technology</span>
                   <h2 className="text-anime-style-3" style={{color: '#fff'}}>Introducing AgentPulse</h2>
                   <p className="wow fadeInUp" data-wow-delay="0.2s" style={{color: '#93c5fd'}}>
