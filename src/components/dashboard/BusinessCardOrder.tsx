@@ -87,54 +87,98 @@ export default function BusinessCardOrder({ distributor }: Props) {
         {/* Front of card */}
         <div className="flex flex-col sm:flex-row gap-4">
           <div style={{
-            width: '320px',
-            height: '180px',
-            background: 'linear-gradient(135deg, #1a2f50 0%, #2B4C7E 100%)',
+            width: '350px',
+            height: '200px',
+            backgroundImage: 'url(/business-card-front.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
             borderRadius: '12px',
-            padding: '24px',
+            padding: '0',
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'space-between',
-            boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
+            justifyContent: 'flex-end',
+            boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
             flexShrink: 0,
+            position: 'relative',
+            overflow: 'hidden',
           }}>
-            {/* Top row: logo area */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <img src="/apex-star.png" alt="Apex" style={{ height: '32px', width: 'auto', opacity: 0.9 }} />
+            {/* Bottom section with PHONE and WEB */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              padding: '16px 20px',
+              gap: '20px',
+            }}>
+              {/* PHONE section */}
               <div>
-                <div style={{ color: '#fff', fontWeight: 800, fontSize: '11px', letterSpacing: '1px' }}>APEX AFFINITY GROUP</div>
-                <div style={{ color: '#93c5fd', fontSize: '9px', letterSpacing: '0.5px' }}>Insurance Services</div>
+                <div style={{
+                  color: '#DC143C',
+                  fontWeight: 700,
+                  fontSize: '11px',
+                  letterSpacing: '0.5px',
+                  marginBottom: '4px',
+                }}>PHONE</div>
+                <div style={{ color: '#2B4C7E', fontSize: '10px', fontWeight: 600, lineHeight: '1.4' }}>
+                  {distributor.phone || '(XXX) XXX-XXXX'}
+                </div>
+              </div>
+
+              {/* WEB section */}
+              <div style={{ textAlign: 'right' }}>
+                <div style={{
+                  color: '#DC143C',
+                  fontWeight: 700,
+                  fontSize: '11px',
+                  letterSpacing: '0.5px',
+                  marginBottom: '4px',
+                }}>WEB</div>
+                <div style={{ color: '#2B4C7E', fontSize: '10px', fontWeight: 600, lineHeight: '1.4' }}>
+                  {website}
+                </div>
               </div>
             </div>
-            {/* Bottom: contact info */}
-            <div>
-              <div style={{ color: '#fff', fontWeight: 700, fontSize: '16px', marginBottom: '2px' }}>{fullName}</div>
-              <div style={{ color: '#93c5fd', fontSize: '10px', marginBottom: '8px' }}>Insurance Agent</div>
-              <div style={{ color: '#c7d9f5', fontSize: '9px', lineHeight: '1.7' }}>
-                {distributor.phone && <div>{distributor.phone}</div>}
-                <div>{distributor.email}</div>
-                <div>{website}</div>
-              </div>
+
+            {/* Center area for name and title */}
+            <div style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              textAlign: 'center',
+              width: '100%',
+              padding: '0 20px',
+            }}>
+              <div style={{
+                color: '#2B4C7E',
+                fontWeight: 800,
+                fontSize: '18px',
+                marginBottom: '4px',
+                textTransform: 'uppercase',
+              }}>{fullName}</div>
+              <div style={{
+                color: '#DC143C',
+                fontSize: '11px',
+                fontWeight: 600,
+                letterSpacing: '0.5px',
+              }}>Insurance Agent</div>
             </div>
           </div>
 
           {/* Back of card */}
           <div style={{
-            width: '320px',
-            height: '180px',
-            background: '#1a2f50',
+            width: '350px',
+            height: '200px',
+            backgroundImage: 'url(/business-card-back.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
             borderRadius: '12px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             flexShrink: 0,
-            boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
+            boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
           }}>
-            <div style={{ textAlign: 'center' }}>
-              <img src="/apex-star.png" alt="Apex" style={{ height: '48px', width: 'auto', opacity: 0.5, marginBottom: '8px' }} />
-              <div style={{ color: '#4b7ab8', fontSize: '9px', letterSpacing: '2px', textTransform: 'uppercase' }}>Apex Affinity Group</div>
-              <div style={{ color: '#2B4C7E', fontSize: '9px' }}>theapexway.net</div>
-            </div>
+            {/* The back image already has the design, no overlay needed */}
           </div>
         </div>
 
