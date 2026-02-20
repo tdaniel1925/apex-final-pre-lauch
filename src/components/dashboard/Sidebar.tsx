@@ -159,6 +159,23 @@ export default function Sidebar() {
             <span className="font-medium text-xs">PolicyPing</span>
             <span className="ml-auto text-xs px-1.5 py-0.5 rounded-full bg-blue-500/20 text-blue-300 font-bold">Demo</span>
           </Link>
+          <Link
+            href="/dashboard/apps/nurture"
+            onClick={onNavigate}
+            className={`flex items-center gap-2 px-3 py-2 rounded-md transition-colors ${
+              pathname.startsWith('/dashboard/apps/nurture')
+                ? 'bg-[#2B4C7E] text-white'
+                : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+            }`}
+          >
+            <div className="w-4 h-4">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <span className="font-medium text-xs">Nurture</span>
+            <span className="ml-auto text-xs px-1.5 py-0.5 rounded-full bg-purple-500/30 text-purple-300 font-bold">AI</span>
+          </Link>
         </nav>
       </div>
 
