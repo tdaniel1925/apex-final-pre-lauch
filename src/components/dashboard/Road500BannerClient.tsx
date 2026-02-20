@@ -6,9 +6,11 @@
 // ============================================================
 
 interface Props {
-  totalAgents:    number;
-  personalRecruit: number;
-  goal:           number;
+  totalAgents:       number;
+  personalRecruit:   number;
+  goal:              number;
+  topRecruiterName:  string | null;
+  topRecruiterCount: number;
 }
 
 const MILESTONES = [
@@ -18,7 +20,7 @@ const MILESTONES = [
   { value: 500, label: '🏆 Goal' },
 ];
 
-export default function Road500BannerClient({ totalAgents, personalRecruit, goal }: Props) {
+export default function Road500BannerClient({ totalAgents, personalRecruit, goal, topRecruiterName, topRecruiterCount }: Props) {
   const pct         = Math.min((totalAgents / goal) * 100, 100);
   const remaining   = Math.max(goal - totalAgents, 0);
   const youPct      = Math.min((personalRecruit / goal) * 100, 100);
@@ -202,6 +204,11 @@ export default function Road500BannerClient({ totalAgents, personalRecruit, goal
           <div style={{ fontSize: '12px', color: '#7c3aed' }}>
             <strong style={{ color: '#7c3aed' }}>■</strong> You've personally brought in <strong>{personalRecruit}</strong> agent{personalRecruit !== 1 ? 's' : ''}
           </div>
+          {topRecruiterName && topRecruiterCount > 0 && (
+            <div style={{ fontSize: '12px', color: '#059669' }}>
+              🏆 <strong>{topRecruiterName}</strong> leads with <strong>{topRecruiterCount}</strong> recruit{topRecruiterCount !== 1 ? 's' : ''}
+            </div>
+          )}
         </div>
       </div>
     </>
