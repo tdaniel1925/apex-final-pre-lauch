@@ -136,7 +136,8 @@ describe('Email Template Variable System', () => {
       const text = 'Hello {first_name}!';
       const variables = {};
       const result = replaceTemplateVariables(text, variables);
-      expect(result).toBe('Hello !');
+      // Variables not in the object should remain unchanged for easier debugging
+      expect(result).toBe('Hello {first_name}!');
     });
 
     it('should not replace non-variable curly braces', () => {
