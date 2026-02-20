@@ -485,16 +485,15 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                 },
               ].map((cat, i) => (
                 <div key={i} className="col-lg-3 col-md-6" style={{marginBottom: '24px'}}>
-                  <div style={{background: '#fff', border: '2px solid #dbeafe', borderRadius: '14px', padding: '28px 22px', height: '100%'}}>
-                    <div style={{width: '56px', height: '56px', background: '#2B4C7E', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px'}}>
+                  <div style={{background: '#fff', border: '2px solid #dbeafe', borderRadius: '14px', padding: '28px 22px', height: '100%', textAlign: 'center'}}>
+                    <div style={{width: '56px', height: '56px', background: '#2B4C7E', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px', margin: '0 auto 16px'}}>
                       <i className={`fa-solid ${cat.icon}`} style={{fontSize: '24px', color: '#fff'}}></i>
                     </div>
                     <h4 style={{fontSize: '18px', fontWeight: 800, color: '#1a2f50', marginBottom: '4px'}}>{cat.title}</h4>
                     <p style={{fontSize: '13px', color: '#2B4C7E', fontWeight: 600, marginBottom: '14px'}}>{cat.desc}</p>
                     <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
                       {cat.items.map((item, j) => (
-                        <li key={j} style={{fontSize: '14px', color: '#4b5563', lineHeight: '1.8', paddingLeft: '18px', position: 'relative'}}>
-                          <i className="fa-solid fa-check" style={{position: 'absolute', left: 0, top: '6px', fontSize: '10px', color: '#2B4C7E'}}></i>
+                        <li key={j} style={{fontSize: '14px', color: '#4b5563', lineHeight: '1.8'}}>
                           {item}
                         </li>
                       ))}
