@@ -24,7 +24,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Prospect name and situation are required.' }, { status: 400 });
     }
 
-    const apiKey = process.env.ANTHROPIC_API_KEY;
+    const apiKey = process.env.OPENAI_API_KEY;
     if (!apiKey) {
       return NextResponse.json({ error: 'AI not configured.' }, { status: 500 });
     }
@@ -69,28 +69,37 @@ Rules:
 - Day 3 email: provide brief value (one insight or tip related to ${product})
 - Day 7 text: quick friendly nudge, very brief`;
 
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01',
-        'content-type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'claude-haiku-4-5-20251001',
+        model: 'gpt-4o-mini',
+        messages: [
+          {
+            role: 'system',
+            content: 'You are a professional insurance sales coach. Always return valid JSON only, no markdown formatting.'
+          },
+          {
+            role: 'user',
+            content: prompt
+          }
+        ],
+        temperature: 0.7,
         max_tokens: 1024,
-        messages: [{ role: 'user', content: prompt }],
       }),
     });
 
     if (!response.ok) {
       const err = await response.text();
-      console.error('Anthropic API error:', err);
+      console.error('OpenAI API error:', err);
       throw new Error('AI generation failed');
     }
 
     const data = await response.json();
-    const text = data.content[0].text.trim();
+    const text = data.choices[0].message.content.trim();
 
     // Parse JSON — strip any accidental markdown fences
     const clean = text.replace(/^```json\s*/i, '').replace(/```\s*$/i, '').trim();
