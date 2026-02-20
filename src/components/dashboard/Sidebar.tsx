@@ -104,6 +104,30 @@ export default function Sidebar() {
         })}
       </nav>
 
+      {/* Apps Section */}
+      <div className="mt-4">
+        <p className="text-xs font-bold text-gray-500 uppercase tracking-wider px-3 mb-1.5">Apps</p>
+        <nav className="space-y-0.5">
+          <Link
+            href="/dashboard/apps/leadloop"
+            onClick={onNavigate}
+            className={`flex items-center gap-2 px-3 py-2 rounded-md transition-colors ${
+              pathname.startsWith('/dashboard/apps/leadloop')
+                ? 'bg-[#2B4C7E] text-white'
+                : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+            }`}
+          >
+            <div className="w-4 h-4">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+              </svg>
+            </div>
+            <span className="font-medium text-xs">LeadLoop</span>
+            <span className="ml-auto text-xs px-1.5 py-0.5 rounded-full bg-blue-500/20 text-blue-300 font-bold">Demo</span>
+          </Link>
+        </nav>
+      </div>
+
       <div className="mt-auto pt-3 border-t border-gray-800">
         <form action="/api/auth/signout" method="post">
           <button

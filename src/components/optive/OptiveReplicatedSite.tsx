@@ -519,7 +519,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
           <div className="container">
             <div className="row section-row">
               <div className="col-lg-12">
-                <div className="section-title section-title-center" style={{marginBottom: '-25px'}}>
+                <div className="section-title section-title-center" style={{marginBottom: '24px'}}>
                   <span className="section-sub-title wow fadeInUp" style={{display: 'block', color: '#fff'}}>The Technology</span>
                   <h2 className="text-anime-style-3" style={{color: '#fff'}}>Introducing AgentPulse</h2>
                   <p className="wow fadeInUp" data-wow-delay="0.2s" style={{color: '#93c5fd'}}>
@@ -621,7 +621,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
 
         {/* Mission / Community Impact Section Start */}
         <div className="our-expert-solution">
-          <div className="our-expert-solution-box dark-section" style={{paddingTop: '70px', paddingBottom: '70px'}}>
+          <div className="our-expert-solution-box dark-section" style={{padding: '80px 0'}}>
             <div className="container">
               <div className="row section-row" style={{marginBottom: 0}}>
                 <div className="col-lg-12">
@@ -849,6 +849,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
       <Script src="/optive/js/ScrollTrigger.min.js" strategy="afterInteractive" />
       <Script src="/optive/js/SplitText.min.js" strategy="afterInteractive" />
       <Script src="/optive/js/wow.min.js" strategy="afterInteractive" />
+      <Script src="/optive/js/validator.min.js" strategy="afterInteractive" />
       <Script src="/optive/js/magiccursor.js" strategy="afterInteractive" />
       <Script src="/optive/js/function.js" strategy="afterInteractive" />
 
