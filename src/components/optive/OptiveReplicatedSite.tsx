@@ -519,11 +519,11 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
           <div className="container">
             <div className="row section-row">
               <div className="col-lg-12">
-                <div className="section-title section-title-center" style={{marginBottom: '50px'}}>
-                  <span className="section-sub-title wow fadeInUp" style={{display: 'block'}}>The Technology</span>
+                <div className="section-title section-title-center" style={{marginBottom: '24px'}}>
+                  <span className="section-sub-title wow fadeInUp" style={{display: 'block', color: '#fff'}}>The Technology</span>
                   <h2 className="text-anime-style-3" style={{color: '#fff'}}>Introducing AgentPulse</h2>
                   <p className="wow fadeInUp" data-wow-delay="0.2s" style={{color: '#93c5fd'}}>
-                    A full suite of AI-powered tools built exclusively for insurance professionals — in development and launching with the platform. Everything you need to sell more, serve better, and run a practice you're proud of.
+                    A full suite of AI-powered tools built exclusively for insurance professionals. Everything you need to sell more, serve better, and run a practice you're proud of.
                   </p>
                 </div>
               </div>
