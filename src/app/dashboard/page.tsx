@@ -16,6 +16,9 @@ export const metadata = {
   description: 'Distributor dashboard',
 };
 
+// Enable caching for 60 seconds
+export const revalidate = 60;
+
 export default async function DashboardPage() {
   const supabase = await createClient();
 
@@ -30,6 +33,8 @@ export default async function DashboardPage() {
 
   // Get distributor data (use service client to bypass RLS)
   const serviceClient = createServiceClient();
+
+  // Fetch distributor first
   const { data: distributor, error } = await serviceClient
     .from('distributors')
     .select('*')
@@ -43,52 +48,57 @@ export default async function DashboardPage() {
 
   const dist = distributor as Distributor;
 
-  // Get matrix parent info
-  let parentName = 'Direct under Master';
-  if (dist.matrix_parent_id) {
-    const { data: parent } = await serviceClient
+  // OPTIMIZATION: Run all queries in parallel instead of sequential
+  const [parentData, sponsorData, directReferrals, matrixChildrenData] = await Promise.all([
+    // Get matrix parent info (only needed fields)
+    dist.matrix_parent_id
+      ? serviceClient
+          .from('distributors')
+          .select('first_name, last_name, slug')
+          .eq('id', dist.matrix_parent_id)
+          .single()
+      : Promise.resolve({ data: null }),
+
+    // Get sponsor info (only needed fields)
+    dist.sponsor_id
+      ? serviceClient
+          .from('distributors')
+          .select('first_name, last_name, slug')
+          .eq('id', dist.sponsor_id)
+          .single()
+      : Promise.resolve({ data: null }),
+
+    // Get direct referrals (only needed fields for statistics)
+    serviceClient
       .from('distributors')
-      .select('first_name, last_name, slug')
-      .eq('id', dist.matrix_parent_id)
-      .single();
+      .select('id, first_name, last_name, created_at, licensing_status, matrix_depth')
+      .eq('sponsor_id', dist.id)
+      .order('created_at', { ascending: false }),
 
-    if (parent) {
-      parentName = `${parent.first_name} ${parent.last_name}`;
-    }
-  }
-
-  // Get sponsor info
-  let sponsorName = 'None';
-  if (dist.sponsor_id) {
-    const { data: sponsor } = await serviceClient
+    // Get matrix children (only needed fields for statistics)
+    serviceClient
       .from('distributors')
-      .select('first_name, last_name, slug')
-      .eq('id', dist.sponsor_id)
-      .single();
+      .select('id, first_name, last_name, created_at, licensing_status, matrix_position')
+      .eq('matrix_parent_id', dist.id)
+      .order('matrix_position', { ascending: true }),
+  ]);
 
-    if (sponsor) {
-      sponsorName = `${sponsor.first_name} ${sponsor.last_name}`;
-    }
-  }
+  // Process parent name
+  const parentName = parentData.data
+    ? `${parentData.data.first_name} ${parentData.data.last_name}`
+    : 'Direct under Master';
 
-  // Get direct referrals (full data for statistics)
-  const { data: directReferrals } = await serviceClient
-    .from('distributors')
-    .select('*')
-    .eq('sponsor_id', dist.id)
-    .order('created_at', { ascending: false });
+  // Process sponsor name
+  const sponsorName = sponsorData.data
+    ? `${sponsorData.data.first_name} ${sponsorData.data.last_name}`
+    : 'None';
 
-  const recruits = (directReferrals || []) as Distributor[];
+  // Process referrals
+  const recruits = (directReferrals.data || []) as Distributor[];
   const referralCount = recruits.length;
 
-  // Get matrix children (full data for statistics)
-  const { data: matrixChildrenData } = await serviceClient
-    .from('distributors')
-    .select('*')
-    .eq('matrix_parent_id', dist.id)
-    .order('matrix_position', { ascending: true });
-
-  const matrixChildren = (matrixChildrenData || []) as Distributor[];
+  // Process matrix children
+  const matrixChildren = (matrixChildrenData.data || []) as Distributor[];
   const childrenCount = matrixChildren.length;
 
   const referralLink = `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3050'}/${dist.slug}`;

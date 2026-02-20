@@ -5,7 +5,6 @@
 
 import { requireAdmin } from '@/lib/auth/admin';
 import AdminSidebar from '@/components/admin/AdminSidebar';
-import { logAdminActivity, AdminActions } from '@/lib/admin/activity-logger';
 
 export const metadata = {
   title: 'Admin Portal - Apex Affinity Group',
@@ -19,16 +18,8 @@ export default async function AdminLayout({
 }) {
   const { admin } = await requireAdmin();
 
-  // Log admin portal access
-  await logAdminActivity({
-    adminId: admin.id,
-    action: AdminActions.SYSTEM_LOGIN,
-    targetType: 'system',
-    details: {
-      admin_name: `${admin.first_name} ${admin.last_name}`,
-      admin_role: admin.role,
-    },
-  });
+  // Note: Removed admin portal access logging from layout for performance
+  // Only log significant actions (create, update, delete) in specific routes
 
   return (
     <div className="flex min-h-screen bg-gray-50">

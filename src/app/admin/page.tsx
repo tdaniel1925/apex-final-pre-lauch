@@ -11,68 +11,83 @@ export const metadata = {
   title: 'Admin Dashboard - Apex Affinity Group',
 };
 
+// Enable caching for 30 seconds (shorter for admin due to more frequent updates)
+export const revalidate = 30;
+
 export default async function AdminDashboardPage() {
   const { admin } = await requireAdmin();
   const serviceClient = createServiceClient();
 
-  // Get total distributors
-  const { count: totalDistributors } = await serviceClient
-    .from('distributors')
-    .select('*', { count: 'exact', head: true });
-
-  // Active/suspended tracking will be added in Stage 2
-  // For now, assume all distributors are active
-  const activeDistributors = totalDistributors;
-  const suspendedDistributors = 0;
-
-  // Get new signups today
+  // Calculate date ranges once
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-  const { count: newToday } = await serviceClient
-    .from('distributors')
-    .select('*', { count: 'exact', head: true })
-    .gte('created_at', today.toISOString());
-
-  // Get new signups this week
   const weekAgo = new Date();
   weekAgo.setDate(weekAgo.getDate() - 7);
-  const { count: newThisWeek } = await serviceClient
-    .from('distributors')
-    .select('*', { count: 'exact', head: true })
-    .gte('created_at', weekAgo.toISOString());
-
-  // Get new signups this month
   const monthAgo = new Date();
   monthAgo.setMonth(monthAgo.getMonth() - 1);
-  const { count: newThisMonth } = await serviceClient
-    .from('distributors')
-    .select('*', { count: 'exact', head: true })
-    .gte('created_at', monthAgo.toISOString());
 
-  // Get matrix statistics
-  const { data: matrixStats } = await serviceClient.rpc('get_matrix_stats').single();
+  // OPTIMIZATION: Run all queries in parallel
+  const [
+    totalDistributorsResult,
+    newTodayResult,
+    newThisWeekResult,
+    newThisMonthResult,
+    maxDepthResult,
+    avgDepthResult,
+    recentDistributors,
+  ] = await Promise.all([
+    // Get total distributors count
+    serviceClient
+      .from('distributors')
+      .select('*', { count: 'exact', head: true }),
 
-  // Get max depth (excluding null values)
-  const { data: maxDepthResult } = await serviceClient
-    .from('distributors')
-    .select('matrix_depth')
-    .not('matrix_depth', 'is', null)
-    .order('matrix_depth', { ascending: false })
-    .limit(1)
-    .single();
+    // Get new signups today
+    serviceClient
+      .from('distributors')
+      .select('*', { count: 'exact', head: true })
+      .gte('created_at', today.toISOString()),
 
-  const maxDepth = maxDepthResult?.matrix_depth || 0;
+    // Get new signups this week
+    serviceClient
+      .from('distributors')
+      .select('*', { count: 'exact', head: true })
+      .gte('created_at', weekAgo.toISOString()),
 
-  // Get average depth
-  const { data: avgDepthResult } = await serviceClient.rpc('avg_matrix_depth').single();
-  const avgDepth = avgDepthResult ? Math.round(Number(avgDepthResult) * 10) / 10 : 0;
+    // Get new signups this month
+    serviceClient
+      .from('distributors')
+      .select('*', { count: 'exact', head: true })
+      .gte('created_at', monthAgo.toISOString()),
 
-  // Get recent distributors
-  const { data: recentDistributors } = await serviceClient
-    .from('distributors')
-    .select('id, first_name, last_name, email, slug, created_at, matrix_position, rep_number')
-    .order('created_at', { ascending: false })
-    .limit(10);
+    // Get max depth (excluding null values)
+    serviceClient
+      .from('distributors')
+      .select('matrix_depth')
+      .not('matrix_depth', 'is', null)
+      .order('matrix_depth', { ascending: false })
+      .limit(1)
+      .maybeSingle(),
+
+    // Get average depth
+    serviceClient.rpc('avg_matrix_depth').maybeSingle(),
+
+    // Get recent distributors (only needed fields)
+    serviceClient
+      .from('distributors')
+      .select('id, first_name, last_name, email, slug, created_at, matrix_position, rep_number')
+      .order('created_at', { ascending: false })
+      .limit(10),
+  ]);
+
+  // Process results
+  const totalDistributors = totalDistributorsResult.count || 0;
+  const activeDistributors = totalDistributors; // Will be updated in Stage 2
+  const suspendedDistributors = 0;
+  const newToday = newTodayResult.count || 0;
+  const newThisWeek = newThisWeekResult.count || 0;
+  const newThisMonth = newThisMonthResult.count || 0;
+  const maxDepth = maxDepthResult.data?.matrix_depth || 0;
+  const avgDepth = avgDepthResult.data ? Math.round(Number(avgDepthResult.data) * 10) / 10 : 0;
 
   return (
     <div className="p-4">
@@ -164,7 +179,7 @@ export default async function AdminDashboardPage() {
           <p className="text-xs text-gray-600 mt-0.5">Latest 10 distributors</p>
         </div>
 
-        {recentDistributors && recentDistributors.length > 0 ? (
+        {recentDistributors.data && recentDistributors.data.length > 0 ? (
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead className="bg-gray-50">
@@ -187,7 +202,7 @@ export default async function AdminDashboardPage() {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {recentDistributors.map((dist) => (
+                {recentDistributors.data!.map((dist) => (
                   <tr key={dist.id} className="hover:bg-gray-50">
                     <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-xs font-medium text-gray-900">
