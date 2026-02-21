@@ -47,6 +47,7 @@ export async function createClient() {
               name,
               value,
               ...options,
+              domain: process.env.NODE_ENV === 'production' ? '.reachtheapex.net' : undefined,
               sameSite: 'lax',
               secure: process.env.NODE_ENV === 'production',
             });
@@ -61,6 +62,7 @@ export async function createClient() {
               name,
               value: '',
               ...options,
+              domain: process.env.NODE_ENV === 'production' ? '.reachtheapex.net' : undefined,
               sameSite: 'lax',
               secure: process.env.NODE_ENV === 'production',
             });
