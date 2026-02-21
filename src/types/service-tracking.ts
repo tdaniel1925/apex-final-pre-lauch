@@ -3,7 +3,7 @@
 // TypeScript definitions for cost tracking system
 // =============================================
 
-export type ServiceName = 'openai' | 'anthropic' | 'redis' | 'resend';
+export type ServiceName = 'openai' | 'anthropic' | 'redis' | 'resend' | 'vercel' | 'supabase';
 export type ServiceCategory = 'ai' | 'infrastructure' | 'email' | 'storage';
 export type PricingType = 'per_token' | 'per_request' | 'per_email' | 'per_gb';
 export type TriggeredBy = 'user' | 'admin' | 'system' | 'cron';
