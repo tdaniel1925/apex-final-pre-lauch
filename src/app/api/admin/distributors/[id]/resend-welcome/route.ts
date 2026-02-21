@@ -7,6 +7,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getAdminUser } from '@/lib/auth/admin';
 import { createServiceClient } from '@/lib/supabase/service';
 import { sendCampaignEmail } from '@/lib/email/campaign-service';
+import { emailRateLimit, checkRateLimit } from '@/lib/rate-limit';
 import type { Distributor } from '@/lib/types';
 import type { EmailTemplate } from '@/lib/types/email';
 
@@ -14,9 +15,15 @@ export async function POST(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const admin = await getAdminUser();
-  if (!admin) {
+  const adminContext = await getAdminUser();
+  if (!adminContext) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  // Rate limit: 5 emails per hour per admin (prevents spam/abuse)
+  const rateLimitResponse = await checkRateLimit(emailRateLimit, adminContext.admin.id);
+  if (rateLimitResponse) {
+    return rateLimitResponse;
   }
 
   try {
