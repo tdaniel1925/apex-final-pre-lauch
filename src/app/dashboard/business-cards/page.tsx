@@ -26,6 +26,13 @@ export default async function BusinessCardsPage() {
 
   if (!distributor) redirect('/login');
 
+  // Load active templates from database
+  const { data: templates } = await serviceClient
+    .from('business_card_templates')
+    .select('*')
+    .eq('is_active', true)
+    .order('sort_order', { ascending: true });
+
   return (
     <div className="p-4 md:p-8">
       <div className="mb-8 text-center">
@@ -35,7 +42,10 @@ export default async function BusinessCardsPage() {
         </p>
       </div>
 
-      <BusinessCardDesigner distributor={distributor} />
+      <BusinessCardDesigner
+        distributor={distributor}
+        templates={templates || []}
+      />
     </div>
   );
 }

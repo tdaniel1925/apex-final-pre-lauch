@@ -31,6 +31,32 @@ export interface CardTemplate {
 
 export const CARD_TEMPLATES: CardTemplate[] = [
   {
+    id: 'apex-official',
+    name: 'Apex Official',
+    description: 'Official Apex Affinity Group branded design',
+    preview: '/biz cards/1.png',
+    layout: {
+      namePosition: 'center',
+      nameAlign: 'center',
+      titlePosition: 'below-name',
+      contactLayout: 'grid',
+      logoPosition: 'top-left',
+    },
+    colors: {
+      background: '#F5F5F7', // Light gray to match the card
+      nameColor: '#2B4C7E', // Navy blue
+      titleColor: '#E9546B', // Pink/salmon accent
+      contactColor: '#2B4C7E',
+      accentColor: '#E9546B',
+    },
+    fonts: {
+      nameSize: 22,
+      nameWeight: 700,
+      titleSize: 11,
+      contactSize: 9,
+    },
+  },
+  {
     id: 'classic-center',
     name: 'Classic Center',
     description: 'Clean centered design, perfect for any name length',

@@ -9,7 +9,35 @@ import { useState, useEffect, useRef } from 'react';
 import QRCode from 'qrcode';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
-import { CARD_TEMPLATES, TITLE_OPTIONS, CardTemplate } from '@/lib/business-card-templates';
+import { TITLE_OPTIONS } from '@/lib/business-card-templates';
+
+interface DbTemplate {
+  id: string;
+  name: string;
+  description: string | null;
+  preview_front_url: string | null;
+  preview_back_url: string | null;
+  layout_config: {
+    namePosition: string;
+    nameAlign: string;
+    titlePosition: string;
+    contactLayout: string;
+    logoPosition: string;
+  };
+  colors: {
+    background: string;
+    nameColor: string;
+    titleColor: string;
+    contactColor: string;
+    accentColor: string;
+  };
+  fonts: {
+    nameSize: number;
+    nameWeight: number;
+    titleSize: number;
+    contactSize: number;
+  };
+}
 
 interface Props {
   distributor: {
@@ -19,13 +47,42 @@ interface Props {
     phone: string | null;
     slug: string;
   };
+  templates: DbTemplate[];
 }
 
 type Step = 'template' | 'design' | 'order';
 
-export default function BusinessCardDesigner({ distributor }: Props) {
+export default function BusinessCardDesigner({ distributor, templates }: Props) {
   const [step, setStep] = useState<Step>('template');
-  const [selectedTemplate, setSelectedTemplate] = useState<CardTemplate>(CARD_TEMPLATES[0]);
+  const [selectedTemplate, setSelectedTemplate] = useState<DbTemplate>(
+    templates[0] || {
+      id: 'default',
+      name: 'Default',
+      description: 'Default template',
+      preview_front_url: null,
+      preview_back_url: null,
+      layout_config: {
+        namePosition: 'center',
+        nameAlign: 'center',
+        titlePosition: 'below-name',
+        contactLayout: 'grid',
+        logoPosition: 'top-left',
+      },
+      colors: {
+        background: '#F5F5F7',
+        nameColor: '#2B4C7E',
+        titleColor: '#E9546B',
+        contactColor: '#2B4C7E',
+        accentColor: '#E9546B',
+      },
+      fonts: {
+        nameSize: 22,
+        nameWeight: 700,
+        titleSize: 11,
+        contactSize: 9,
+      },
+    }
+  );
 
   // Form fields
   const [name, setName] = useState(`${distributor.first_name} ${distributor.last_name}`);
@@ -111,7 +168,7 @@ export default function BusinessCardDesigner({ distributor }: Props) {
           </div>
 
           <div className="grid md:grid-cols-3 gap-4 mb-8">
-            {CARD_TEMPLATES.map((template) => (
+            {templates.map((template) => (
               <button
                 key={template.id}
                 onClick={() => {
@@ -122,9 +179,19 @@ export default function BusinessCardDesigner({ distributor }: Props) {
                   selectedTemplate.id === template.id ? 'border-[#2B4C7E] ring-2 ring-blue-200' : 'border-gray-200'
                 }`}
               >
-                <div className="aspect-[3.5/2] bg-gray-100 rounded-lg mb-3 flex items-center justify-center text-gray-400">
-                  {template.name}
-                </div>
+                {template.preview_front_url ? (
+                  <div className="aspect-[3.5/2] bg-gray-100 rounded-lg mb-3 overflow-hidden">
+                    <img
+                      src={template.preview_front_url}
+                      alt={template.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div className="aspect-[3.5/2] bg-gray-100 rounded-lg mb-3 flex items-center justify-center text-gray-400">
+                    {template.name}
+                  </div>
+                )}
                 <h3 className="font-bold text-gray-900 mb-1">{template.name}</h3>
                 <p className="text-sm text-gray-600">{template.description}</p>
                 <div className="mt-3 text-sm font-semibold text-[#2B4C7E] group-hover:underline">
@@ -438,7 +505,9 @@ export default function BusinessCardDesigner({ distributor }: Props) {
                     style={{
                       width: '350px',
                       height: '200px',
-                      backgroundImage: 'url(/business-card-back.png)',
+                      backgroundImage: selectedTemplate.preview_back_url
+                        ? `url(${selectedTemplate.preview_back_url})`
+                        : 'linear-gradient(135deg, #2B4C7E 0%, #567EBB 100%)',
                       backgroundSize: 'cover',
                       backgroundPosition: 'center',
                       borderRadius: '12px',
