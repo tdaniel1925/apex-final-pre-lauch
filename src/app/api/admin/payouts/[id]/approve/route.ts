@@ -10,9 +10,10 @@ import { createClient } from '@/lib/supabase/server';
 // POST /api/admin/payouts/[id]/approve
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const params = await context.params;
     const adminUser = await requireAdmin();
     const supabase = createServiceClient();
 

@@ -9,9 +9,10 @@ import { requireAdmin } from '@/lib/auth/admin';
 // PATCH /api/admin/products/[id] - Update product
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const params = await context.params;
     await requireAdmin();
 
     const body = await request.json();
@@ -101,9 +102,10 @@ export async function PATCH(
 // DELETE /api/admin/products/[id] - Delete product
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const params = await context.params;
     await requireAdmin();
 
     const supabase = createServiceClient();

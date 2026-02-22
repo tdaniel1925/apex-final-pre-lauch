@@ -10,9 +10,10 @@ import { requireAdmin } from '@/lib/auth/admin';
 // POST /api/admin/payouts/[id]/generate-ach
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const params = await context.params;
     await requireAdmin();
 
     const supabase = createServiceClient();
