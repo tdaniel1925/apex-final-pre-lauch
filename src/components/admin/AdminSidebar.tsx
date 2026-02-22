@@ -236,7 +236,11 @@ export default function AdminSidebar() {
           <span className="font-medium text-xs">User Dashboard</span>
         </Link>
 
-        <form action="/api/auth/signout" method="post">
+        <form action={async () => {
+          'use server';
+          const { signOut } = await import('@/app/actions/auth');
+          await signOut();
+        }}>
           <button
             type="submit"
             className="flex items-center gap-2 px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-white rounded-md transition-colors w-full"
