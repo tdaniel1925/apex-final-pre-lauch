@@ -772,7 +772,7 @@ CREATE POLICY "Distributors manage own bank account"
 -- Payout batches: Admins only
 CREATE POLICY "Admins manage payout batches"
   ON payout_batches FOR ALL
-  USING (EXISTS (SELECT 1 FROM admins WHERE user_id = auth.uid()));
+  USING (EXISTS (SELECT 1 FROM admins WHERE auth_user_id = auth.uid()));
 
 -- =============================================
 -- 20. COMMENTS

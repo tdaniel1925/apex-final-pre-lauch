@@ -20,7 +20,7 @@ SELECT
   5500,  -- $55/mo
   40,
   TRUE,
-  'month',
+  'monthly',
   TRUE,
   TRUE,
   1
@@ -36,7 +36,7 @@ SELECT
   4800,  -- $48/mo
   35,
   TRUE,
-  'month',
+  'monthly',
   TRUE,
   TRUE,
   2
@@ -52,7 +52,7 @@ SELECT
   4100,  -- $41/mo
   30,
   TRUE,
-  'month',
+  'monthly',
   TRUE,
   TRUE,
   3
@@ -68,7 +68,7 @@ SELECT
   6900,  -- $69/mo
   50,
   TRUE,
-  'month',
+  'monthly',
   TRUE,
   TRUE,
   4
@@ -84,7 +84,7 @@ SELECT
   4800,  -- $48/mo
   35,
   TRUE,
-  'month',
+  'monthly',
   TRUE,
   TRUE,
   5
@@ -100,7 +100,7 @@ SELECT
   3400,  -- $34/mo
   25,
   TRUE,
-  'month',
+  'monthly',
   TRUE,
   TRUE,
   6
@@ -120,7 +120,7 @@ SELECT
   8300,   -- $83/mo
   60,
   TRUE,
-  'month',
+  'monthly',
   TRUE,
   TRUE,
   11
@@ -136,7 +136,7 @@ SELECT
   13900,  -- $139/mo
   100,
   TRUE,
-  'month',
+  'monthly',
   TRUE,
   TRUE,
   12
@@ -152,7 +152,7 @@ SELECT
   20900,  -- $209/mo
   150,
   TRUE,
-  'month',
+  'monthly',
   TRUE,
   TRUE,
   13
@@ -168,7 +168,7 @@ SELECT
   209000,  -- $2,090/yr
   150,     -- BV per month
   TRUE,
-  'year',
+  'annual',
   TRUE,
   TRUE,
   14
@@ -315,7 +315,7 @@ SELECT
   'Financial Literacy 101',
   'financial-literacy-101',
   'Introduction to personal finance fundamentals',
-  (SELECT id FROM product_categories WHERE slug = 'financial-education'),
+  (SELECT id FROM product_categories WHERE slug = 'education'),
   9900,  -- $99
   6900,  -- $69
   50,
@@ -331,7 +331,7 @@ SELECT
   'Budgeting Mastery',
   'budgeting-mastery',
   'Learn to create and maintain a bulletproof budget',
-  (SELECT id FROM product_categories WHERE slug = 'financial-education'),
+  (SELECT id FROM product_categories WHERE slug = 'education'),
   7900,  -- $79
   5500,  -- $55
   40,
@@ -347,7 +347,7 @@ SELECT
   'Debt Freedom Blueprint',
   'debt-freedom-blueprint',
   'Step-by-step system to eliminate debt strategically',
-  (SELECT id FROM product_categories WHERE slug = 'financial-education'),
+  (SELECT id FROM product_categories WHERE slug = 'education'),
   14900,  -- $149
   10400,  -- $104
   75,
@@ -363,7 +363,7 @@ SELECT
   'Investing for Beginners',
   'investing-beginners',
   'Start your investment journey with confidence',
-  (SELECT id FROM product_categories WHERE slug = 'financial-education'),
+  (SELECT id FROM product_categories WHERE slug = 'education'),
   19900,  -- $199
   13900,  -- $139
   100,
@@ -379,7 +379,7 @@ SELECT
   'Retirement Planning Essentials',
   'retirement-planning',
   'Build a secure retirement plan that works',
-  (SELECT id FROM product_categories WHERE slug = 'financial-education'),
+  (SELECT id FROM product_categories WHERE slug = 'education'),
   24900,  -- $249
   17400,  -- $174
   125,
@@ -395,7 +395,7 @@ SELECT
   'Tax Optimization Strategies',
   'tax-optimization',
   'Legal strategies to minimize your tax burden',
-  (SELECT id FROM product_categories WHERE slug = 'financial-education'),
+  (SELECT id FROM product_categories WHERE slug = 'education'),
   29900,  -- $299
   20900,  -- $209
   150,
@@ -411,7 +411,7 @@ SELECT
   'Real Estate Investing Fundamentals',
   'real-estate-investing',
   'Build wealth through strategic real estate investment',
-  (SELECT id FROM product_categories WHERE slug = 'financial-education'),
+  (SELECT id FROM product_categories WHERE slug = 'education'),
   39900,  -- $399
   27900,  -- $279
   200,
@@ -427,7 +427,7 @@ SELECT
   'Business Finance for Entrepreneurs',
   'business-finance',
   'Master business finance and grow your company',
-  (SELECT id FROM product_categories WHERE slug = 'financial-education'),
+  (SELECT id FROM product_categories WHERE slug = 'education'),
   34900,  -- $349
   24400,  -- $244
   175,
@@ -443,7 +443,7 @@ SELECT
   'Wealth Building Masterclass',
   'wealth-building',
   'Comprehensive wealth creation and preservation strategies',
-  (SELECT id FROM product_categories WHERE slug = 'financial-education'),
+  (SELECT id FROM product_categories WHERE slug = 'education'),
   49900,  -- $499
   34900,  -- $349
   250,
@@ -459,7 +459,7 @@ SELECT
   'Financial Freedom Academy',
   'financial-freedom-academy',
   'Complete financial education program with lifetime access',
-  (SELECT id FROM product_categories WHERE slug = 'financial-education'),
+  (SELECT id FROM product_categories WHERE slug = 'education'),
   99900,  -- $999
   69900,  -- $699
   500,
@@ -484,7 +484,7 @@ SELECT
   9700,   -- $97/mo
   70,
   TRUE,
-  'month',
+  'monthly',
   TRUE,
   TRUE,
   51
@@ -500,7 +500,7 @@ SELECT
   16000,  -- $160/mo
   115,
   TRUE,
-  'month',
+  'monthly',
   TRUE,
   TRUE,
   52
@@ -516,7 +516,7 @@ SELECT
   24400,  -- $244/mo
   175,
   TRUE,
-  'month',
+  'monthly',
   TRUE,
   TRUE,
   53
@@ -548,7 +548,7 @@ SELECT
   41900,  -- $419/mo
   300,
   TRUE,
-  'month',
+  'monthly',
   TRUE,
   TRUE,
   55

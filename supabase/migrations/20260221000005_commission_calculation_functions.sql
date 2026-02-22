@@ -388,6 +388,9 @@ DECLARE
   v_current_rank TEXT;
   v_count INTEGER := 0;
   v_level INTEGER;
+  v_temp_bv INTEGER;
+  v_temp_rate DECIMAL;
+  v_temp_commission INTEGER;
 BEGIN
   FOR v_distributor IN
     SELECT * FROM distributors
@@ -403,16 +406,20 @@ BEGIN
     FOR v_level IN 1..7 LOOP
       -- Get BV from all positions at this level
       -- (Simplified - actual implementation needs compression logic)
-      SELECT COALESCE(SUM(bv.personal_bv), 0) INTO v_level_bv[v_level]
+      SELECT COALESCE(SUM(bv.personal_bv), 0) INTO v_temp_bv
       FROM distributors d
       JOIN bv_snapshots bv ON bv.distributor_id = d.id
       WHERE d.matrix_depth = v_distributor.matrix_depth + v_level
         AND bv.month_year = p_month_year
         AND bv.is_active = TRUE;
 
-      v_level_rate[v_level] := get_matrix_rate(v_current_rank, v_level);
-      v_level_commission[v_level] := (v_level_bv[v_level] * v_level_rate[v_level] * 100)::INTEGER;
-      v_total_commission := v_total_commission + v_level_commission[v_level];
+      v_temp_rate := get_matrix_rate(v_current_rank, v_level);
+      v_temp_commission := (v_temp_bv * v_temp_rate * 100)::INTEGER;
+
+      v_level_bv[v_level] := v_temp_bv;
+      v_level_rate[v_level] := v_temp_rate;
+      v_level_commission[v_level] := v_temp_commission;
+      v_total_commission := v_total_commission + v_temp_commission;
     END LOOP;
 
     -- Insert commission record
@@ -1342,7 +1349,8 @@ BEGIN
 
   -- Step 1: Snapshot BV
   INSERT INTO bv_snapshots (distributor_id, month_year, personal_bv, group_bv, is_active)
-  SELECT * FROM snapshot_monthly_bv(p_month_year);
+  SELECT distributor_id, p_month_year, personal_bv, group_bv, is_active
+  FROM snapshot_monthly_bv(p_month_year);
 
   GET DIAGNOSTICS v_bv_count = ROW_COUNT;
 

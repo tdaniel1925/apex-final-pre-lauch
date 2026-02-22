@@ -265,7 +265,7 @@ The system is **ready for production** when:
 - [x] All 46 tables exist in Supabase
 - [x] All 33 products seeded
 - [x] All 20 functions created
-- [ ] Migrations applied to production database
+- [x] Migrations applied to production database ✅ **DONE - 2026-02-21**
 - [ ] End-to-end test passes
 - [ ] All 16 commission types calculate correctly
 - [ ] Payout batch aggregates all types

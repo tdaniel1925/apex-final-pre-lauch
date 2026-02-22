@@ -1,0 +1,81 @@
+Initialising login role...
+Connecting to remote database...
+Do you want to push these migrations to the remote database?
+ • 001_create_distributors.sql
+ • 002_matrix_placement_function.sql
+ • 003_fix_rls_policies.sql
+ • 004_admin_portal_foundation.sql
+ • 005_distributor_management.sql
+ • 006_matrix_management.sql
+ • 010_training_audio.sql
+ • 011_training_rls.sql
+ • 012_atomic_signup.sql
+ • 013_waitlist.sql
+ • 014_rep_number.sql
+ • 015_business_card_orders.sql
+ • 20240220000000_add_licensing_status.sql
+ • 20240220000000_fix_distributor_rls_recursion.sql
+ • 20240220000001_add_licensing_status_fixed.sql
+ • 20240220000001_simple_rls_fix.sql
+ • 20240221000000_add_email_nurture_system.sql
+ • 20240222000000_add_onboarding_tracking.sql
+ • 20250220000000_create_training_system.sql
+ • 20250220000001_add_performance_indexes.sql
+ • 20250221000000_create_service_usage_tracking.sql
+ • 20250221000001_add_platform_services.sql
+ • 20260218000000_create_admins_table.sql
+ • 20260219000000_nurture_campaigns.sql
+ • 20260221000002_business_center_system.sql
+ • 20260221000003_products_and_orders.sql
+ • 20260221000004_commission_engine_core.sql
+ • 20260221000005_commission_calculation_functions.sql
+ • 20260221000006_seed_products.sql
+
+ [Y/n] y
+Applying migration 001_create_distributors.sql...
+NOTICE (42710): extension "uuid-ossp" already exists, skipping
+ERROR: relation "distributors" already exists (SQLSTATE 42P07)                   
+At statement: 1                                                                  
+-- =============================================                                 
+-- 1. CREATE DISTRIBUTORS TABLE                                                  
+-- =============================================                                 
+                                                                                 
+CREATE TABLE distributors (                                                      
+  -- Primary Key                                                                 
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),                                
+                                                                                 
+  -- Authentication Link                                                         
+  auth_user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE UNIQUE,          
+                                                                                 
+  -- Personal Information                                                        
+  first_name VARCHAR(100) NOT NULL,                                              
+  last_name VARCHAR(100) NOT NULL,                                               
+  company_name VARCHAR(200),                                                     
+  email VARCHAR(255) UNIQUE NOT NULL,                                            
+                                                                                 
+  -- URL Slug (for personalized landing pages)                                   
+  slug VARCHAR(50) UNIQUE NOT NULL,                                              
+                                                                                 
+  -- MLM Structure                                                               
+  sponsor_id UUID REFERENCES distributors(id) ON DELETE SET NULL,                
+  matrix_parent_id UUID REFERENCES distributors(id) ON DELETE SET NULL,          
+  matrix_position INTEGER CHECK (matrix_position >= 1 AND matrix_position <= 5), 
+  matrix_depth INTEGER DEFAULT 0 CHECK (matrix_depth >= 0 AND matrix_depth <= 7),
+                                                                                 
+  -- Flags                                                                       
+  is_master BOOLEAN DEFAULT false,                                               
+  profile_complete BOOLEAN DEFAULT false,                                        
+                                                                                 
+  -- Profile Completion Fields (nullable until filled)                           
+  phone VARCHAR(20),                                                             
+  address_line1 VARCHAR(255),                                                    
+  address_line2 VARCHAR(255),                                                    
+  city VARCHAR(100),                                                             
+  state VARCHAR(50),                                                             
+  zip VARCHAR(20),                                                               
+                                                                                 
+  -- Timestamps                                                                  
+  created_at TIMESTAMPTZ DEFAULT NOW(),                                          
+  updated_at TIMESTAMPTZ DEFAULT NOW()                                           
+)                                                                                
+Try rerunning the command with --debug to troubleshoot the error.

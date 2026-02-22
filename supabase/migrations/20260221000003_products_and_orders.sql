@@ -440,7 +440,7 @@ CREATE POLICY "Admins can manage products"
   ON products FOR ALL
   USING (
     EXISTS (
-      SELECT 1 FROM admins WHERE user_id = auth.uid()
+      SELECT 1 FROM admins WHERE auth_user_id = auth.uid()
     )
   );
 
