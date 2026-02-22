@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 // ============================================================
 // Road500BannerClient — animated progress bar toward 500 agents
 // Receives server-fetched counts, renders colorful thermometer
@@ -55,14 +57,23 @@ export default function Road500BannerClient({ totalAgents, personalRecruit, goal
           animation: stripe-move 0.8s linear infinite;
           transition: width 1.2s cubic-bezier(.4,0,.2,1);
         }
+        .road500-banner {
+          cursor: pointer;
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .road500-banner:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
       `}</style>
 
-      <div style={{
+      <Link href="/dashboard/road-to-500" className="road500-banner block" style={{
         background: 'linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%)',
         border: '1.5px solid #fde68a',
         borderRadius: '16px',
         padding: '20px 24px 16px',
         marginBottom: '0',
+        textDecoration: 'none',
       }}>
 
         {/* Top row */}
@@ -210,7 +221,7 @@ export default function Road500BannerClient({ totalAgents, personalRecruit, goal
             </div>
           )}
         </div>
-      </div>
+      </Link>
     </>
   );
 }
