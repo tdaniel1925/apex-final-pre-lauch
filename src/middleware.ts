@@ -1,12 +1,12 @@
 // =============================================
-// Next.js Proxy (Next.js 16+)
+// Next.js Middleware
 // Refreshes Supabase auth session
 // =============================================
 
 import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 
-export async function proxy(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   let response = NextResponse.next({
     request: {
       headers: request.headers,
@@ -72,8 +72,8 @@ export async function proxy(request: NextRequest) {
     // Refresh session
     await supabase.auth.getUser();
   } catch (error) {
-    // If proxy fails, continue without auth refresh
-    console.error('Proxy error:', error);
+    // If middleware fails, continue without auth refresh
+    console.error('Middleware error:', error);
   }
 
   return response;
