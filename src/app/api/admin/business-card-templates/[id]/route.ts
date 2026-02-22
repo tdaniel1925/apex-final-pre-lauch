@@ -77,25 +77,13 @@ export async function DELETE(
 ) {
   try {
     const params = await context.params;
-    const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const adminContext = await getAdminUser();
 
-    if (!user) {
+    if (!adminContext) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const serviceClient = createServiceClient();
-
-    // Verify admin role
-    const { data: distributor } = await serviceClient
-      .from('distributors')
-      .select('role')
-      .eq('auth_user_id', user.id)
-      .single();
-
-    if (!distributor || distributor.role !== 'admin') {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
-    }
 
     // Don't allow deleting the default template
     const { data: template } = await serviceClient
