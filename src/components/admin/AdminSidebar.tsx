@@ -179,23 +179,22 @@ export default function AdminSidebar() {
 
   return (
     <aside className="w-52 bg-gray-900 text-white min-h-screen flex flex-col">
-      {/* Scrollable Content Area */}
-      <div className="flex-1 overflow-y-auto p-3">
-        {/* Admin Portal Header */}
-        <div className="mb-4">
-          <div className="text-center mb-2">
-            <img
-              src="/apex-logo-white.png"
-              alt="Apex Affinity Group"
-              className="h-12 w-auto mx-auto mb-1"
-            />
-          </div>
-          <div className="bg-blue-600 text-white text-[10px] font-semibold px-2 py-0.5 rounded-full text-center">
-            ADMIN PORTAL
-          </div>
+      {/* Admin Portal Header */}
+      <div className="p-3">
+        <div className="text-center mb-2">
+          <img
+            src="/apex-logo-white.png"
+            alt="Apex Affinity Group"
+            className="h-12 w-auto mx-auto mb-1"
+          />
         </div>
+        <div className="bg-blue-600 text-white text-[10px] font-semibold px-2 py-0.5 rounded-full text-center">
+          ADMIN PORTAL
+        </div>
+      </div>
 
-        {/* Navigation */}
+      {/* Scrollable Navigation Area */}
+      <div className="flex-1 overflow-y-auto px-3">
         <nav className="space-y-0.5">
           {navigation.map((item) => {
             const isActive = pathname === item.href;

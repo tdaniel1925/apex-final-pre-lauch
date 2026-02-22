@@ -215,8 +215,10 @@ export default function Sidebar() {
     <>
       {/* ===== DESKTOP SIDEBAR ===== */}
       <aside className="hidden md:flex w-52 bg-gray-900 text-white min-h-screen flex-col shrink-0">
-        <div className="p-3 flex flex-col flex-1">
+        <div className="p-3">
           <img src="/apex-logo-white.png" alt="Apex Affinity Group" className="h-14 w-auto mx-auto mb-4" />
+        </div>
+        <div className="flex flex-col flex-1 px-3 pb-3 overflow-hidden">
           <NavLinks />
         </div>
       </aside>
@@ -244,8 +246,8 @@ export default function Sidebar() {
             onClick={() => setMobileOpen(false)}
           />
           {/* Drawer */}
-          <div className="relative w-64 bg-gray-900 text-white flex flex-col p-3 shadow-2xl">
-            <div className="flex items-center justify-between mb-4">
+          <div className="relative w-64 bg-gray-900 text-white flex flex-col shadow-2xl">
+            <div className="flex items-center justify-between p-3 mb-4">
               <img src="/apex-logo-white.png" alt="Apex Affinity Group" className="h-10 w-auto" />
               <button
                 onClick={() => setMobileOpen(false)}
@@ -257,7 +259,9 @@ export default function Sidebar() {
                 </svg>
               </button>
             </div>
-            <NavLinks onNavigate={() => setMobileOpen(false)} />
+            <div className="flex flex-col flex-1 px-3 pb-3 overflow-hidden">
+              <NavLinks onNavigate={() => setMobileOpen(false)} />
+            </div>
           </div>
         </div>
       )}
