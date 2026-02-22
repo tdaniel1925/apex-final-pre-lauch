@@ -92,31 +92,32 @@ export default function Sidebar() {
 
   const NavLinks = ({ onNavigate }: { onNavigate?: () => void }) => (
     <>
-      <nav className="space-y-0.5">
-        {navigation.map((item) => {
-          const isActive = pathname === item.href;
-          return (
-            <Link
-              key={item.name}
-              href={item.href}
-              onClick={onNavigate}
-              className={`flex items-center gap-2 px-3 py-2 rounded-md transition-colors ${
-                isActive
-                  ? 'bg-[#2B4C7E] text-white'
-                  : 'text-gray-300 hover:bg-gray-800 hover:text-white'
-              }`}
-            >
-              <div className="w-4 h-4">{item.icon}</div>
-              <span className="font-medium text-xs">{item.name}</span>
-            </Link>
-          );
-        })}
-      </nav>
-
-      {/* Apps Section */}
-      <div className="mt-4">
-        <p className="text-xs font-bold text-gray-500 uppercase tracking-wider px-3 mb-1.5">Apps</p>
+      <div className="flex-1 overflow-y-auto">
         <nav className="space-y-0.5">
+          {navigation.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <Link
+                key={item.name}
+                href={item.href}
+                onClick={onNavigate}
+                className={`flex items-center gap-2 px-3 py-2 rounded-md transition-colors ${
+                  isActive
+                    ? 'bg-[#2B4C7E] text-white'
+                    : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                }`}
+              >
+                <div className="w-4 h-4">{item.icon}</div>
+                <span className="font-medium text-xs">{item.name}</span>
+              </Link>
+            );
+          })}
+        </nav>
+
+        {/* Apps Section */}
+        <div className="mt-4">
+          <p className="text-xs font-bold text-gray-500 uppercase tracking-wider px-3 mb-1.5">Apps</p>
+          <nav className="space-y-0.5">
           <Link
             href="/dashboard/apps/leadloop"
             onClick={onNavigate}
@@ -186,9 +187,11 @@ export default function Sidebar() {
             <span className="ml-auto text-xs px-1.5 py-0.5 rounded-full bg-purple-500/30 text-purple-300 font-bold">AI</span>
           </Link>
         </nav>
+        </div>
       </div>
 
-      <div className="mt-auto pt-3 border-t border-gray-800">
+      {/* Sticky Sign Out Button */}
+      <div className="flex-shrink-0 pt-3 border-t border-gray-800 bg-gray-900">
         <form action="/api/auth/signout" method="post">
           <button
             type="submit"

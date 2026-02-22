@@ -170,7 +170,8 @@ export default function AdminSidebar() {
 
   return (
     <aside className="w-52 bg-gray-900 text-white min-h-screen flex flex-col">
-      <div className="p-3 flex-1">
+      {/* Scrollable Content Area */}
+      <div className="flex-1 overflow-y-auto p-3">
         {/* Admin Portal Header */}
         <div className="mb-4">
           <div className="text-center mb-2">
@@ -209,8 +210,8 @@ export default function AdminSidebar() {
         </nav>
       </div>
 
-      {/* Bottom Actions */}
-      <div className="p-3 border-t border-gray-800">
+      {/* Sticky Bottom Actions */}
+      <div className="flex-shrink-0 p-3 border-t border-gray-800 bg-gray-900">
         <Link
           href="/dashboard"
           className="flex items-center gap-2 px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-white rounded-md transition-colors mb-1"
