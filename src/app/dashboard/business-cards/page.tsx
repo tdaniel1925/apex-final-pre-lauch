@@ -1,12 +1,12 @@
 // ============================================================
 // Business Cards — Rep Dashboard
-// Order custom Apex business cards via Printful
+// Professional card designer with live preview
 // ============================================================
 
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { createServiceClient } from '@/lib/supabase/service';
-import BusinessCardOrder from '@/components/dashboard/BusinessCardOrder';
+import BusinessCardDesigner from '@/components/dashboard/BusinessCardDesigner';
 
 export const metadata = {
   title: 'Business Cards — Apex Affinity Group',
@@ -28,14 +28,14 @@ export default async function BusinessCardsPage() {
 
   return (
     <div className="p-4 md:p-8">
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">Business Cards</h1>
-        <p className="text-sm text-gray-500 mt-1">
-          Order professional Apex-branded business cards printed and shipped directly to you.
+      <div className="mb-8 text-center">
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Business Card Designer</h1>
+        <p className="text-gray-600">
+          Create professional Apex-branded business cards with our live designer
         </p>
       </div>
 
-      <BusinessCardOrder distributor={distributor} />
+      <BusinessCardDesigner distributor={distributor} />
     </div>
   );
 }
