@@ -388,7 +388,7 @@ export default function BusinessCardDesigner({ distributor, templates }: Props) 
                       top: '50%',
                       left: '50%',
                       transform: 'translate(-50%, -50%)',
-                      textAlign: selectedTemplate.layout.nameAlign,
+                      textAlign: selectedTemplate.layout_config.nameAlign as 'left' | 'center' | 'right',
                       width: '90%',
                       maxWidth: '300px',
                     }}>
