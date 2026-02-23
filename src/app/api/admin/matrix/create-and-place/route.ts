@@ -65,7 +65,18 @@ export async function POST(request: Request) {
       );
     }
 
-    // Step 3: Create auth user with temporary password
+    // Step 3: Check for and clean up any orphaned auth user with this email
+    const { data: { users: existingAuthUsers } } = await serviceClient.auth.admin.listUsers();
+    const orphanedAuthUser = existingAuthUsers.find(
+      u => u.email?.toLowerCase() === email.toLowerCase().trim()
+    );
+
+    if (orphanedAuthUser) {
+      console.log(`Found orphaned auth user for ${email}, cleaning up...`);
+      await serviceClient.auth.admin.deleteUser(orphanedAuthUser.id);
+    }
+
+    // Step 4: Create auth user with temporary password
     // Admin will need to reset password or send welcome email with reset link
     const temporaryPassword = `Apex${Date.now()}!`;
 
@@ -88,11 +99,11 @@ export async function POST(request: Request) {
       );
     }
 
-    // Step 4: Get next rep number
+    // Step 5: Get next rep number
     const { data: repNumberData } = await serviceClient.rpc('get_next_rep_number');
     const repNumber = repNumberData || 1;
 
-    // Step 5: Create distributor record (without matrix placement yet)
+    // Step 6: Create distributor record (without matrix placement yet)
     const { data: distributor, error: distributorError } = await serviceClient
       .from('distributors')
       .insert({
@@ -138,7 +149,7 @@ export async function POST(request: Request) {
       );
     }
 
-    // Step 6: Place distributor in matrix under specified parent
+    // Step 7: Place distributor in matrix under specified parent
     const placementResult = await placeDistributor(distributor.id, parentId, admin.admin.id);
 
     if (!placementResult.success) {
@@ -152,7 +163,7 @@ export async function POST(request: Request) {
       );
     }
 
-    // Step 7: Enroll in email campaign with temporary password (optional, don't fail if this fails)
+    // Step 8: Enroll in email campaign with temporary password (optional, don't fail if this fails)
     const enrollResult = await enrollInCampaign(distributor as Distributor, {
       temporaryPassword,
     });
