@@ -50,6 +50,9 @@ export default function TemplateManager({ templates }: Props) {
     templates[0] || null
   );
   const [saving, setSaving] = useState(false);
+  const [activeTab, setActiveTab] = useState<'settings' | 'visual'>('settings');
+  const [dragging, setDragging] = useState<string | null>(null);
+  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
 
   const handleSave = async () => {
     if (!editedTemplate) return;
@@ -108,6 +111,42 @@ export default function TemplateManager({ templates }: Props) {
     });
   };
 
+  const handleMouseDown = (e: React.MouseEvent, element: string) => {
+    const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+    setDragging(element);
+    setDragOffset({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!dragging || !editedTemplate) return;
+
+    const canvas = e.currentTarget as HTMLElement;
+    const rect = canvas.getBoundingClientRect();
+
+    const x = ((e.clientX - rect.left - dragOffset.x) / rect.width) * 100;
+    const y = ((e.clientY - rect.top - dragOffset.y) / rect.height) * 100;
+
+    // Clamp values between 0 and 100
+    const clampedX = Math.max(0, Math.min(100, x));
+    const clampedY = Math.max(0, Math.min(100, y));
+
+    setEditedTemplate({
+      ...editedTemplate,
+      layout_config: {
+        ...editedTemplate.layout_config,
+        [`${dragging}X`]: clampedX,
+        [`${dragging}Y`]: clampedY,
+      },
+    });
+  };
+
+  const handleMouseUp = () => {
+    setDragging(null);
+  };
+
   if (!editedTemplate) {
     return (
       <div className="text-center py-12 text-gray-500">
@@ -157,8 +196,36 @@ export default function TemplateManager({ templates }: Props) {
 
       {/* Middle: Configuration Editor */}
       <div className="lg:col-span-1 space-y-4">
-        {/* Basic Info */}
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+        {/* Tabs */}
+        <div className="bg-white rounded-xl border border-gray-200">
+          <div className="flex border-b border-gray-200">
+            <button
+              onClick={() => setActiveTab('settings')}
+              className={`flex-1 px-4 py-3 text-sm font-semibold transition-colors ${
+                activeTab === 'settings'
+                  ? 'text-blue-600 border-b-2 border-blue-600'
+                  : 'text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              Settings
+            </button>
+            <button
+              onClick={() => setActiveTab('visual')}
+              className={`flex-1 px-4 py-3 text-sm font-semibold transition-colors ${
+                activeTab === 'visual'
+                  ? 'text-blue-600 border-b-2 border-blue-600'
+                  : 'text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              Visual Editor
+            </button>
+          </div>
+        </div>
+
+        {activeTab === 'settings' && (
+          <>
+            {/* Basic Info */}
+            <div className="bg-white rounded-xl border border-gray-200 p-4">
           <h3 className="font-bold text-gray-900 mb-4">Basic Info</h3>
 
           <div className="space-y-3">
@@ -329,6 +396,140 @@ export default function TemplateManager({ templates }: Props) {
         >
           {saving ? 'Saving...' : 'Save Template'}
         </button>
+          </>
+        )}
+
+        {activeTab === 'visual' && (
+          <div className="bg-white rounded-xl border border-gray-200 p-4">
+            <h3 className="font-bold text-gray-900 mb-4">Drag Elements to Position</h3>
+            <p className="text-sm text-gray-600 mb-4">
+              Click and drag elements below to position them on the card
+            </p>
+
+            {/* Visual Canvas */}
+            <div
+              className="relative bg-gray-100 rounded-lg border-2 border-gray-300 cursor-move select-none"
+              style={{
+                width: '100%',
+                aspectRatio: '3.5 / 2',
+                backgroundImage: editedTemplate.preview_front_url
+                  ? `url(${editedTemplate.preview_front_url})`
+                  : editedTemplate.colors.background,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+              onMouseMove={handleMouseMove}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={handleMouseUp}
+            >
+              {/* Name Element */}
+              <div
+                className={`absolute cursor-grab active:cursor-grabbing ${
+                  dragging === 'name' ? 'ring-2 ring-blue-500' : ''
+                }`}
+                style={{
+                  left: `${(editedTemplate.layout_config as any).nameX || 50}%`,
+                  top: `${(editedTemplate.layout_config as any).nameY || 50}%`,
+                  transform: 'translate(-50%, -50%)',
+                  fontSize: `${editedTemplate.fonts.nameSize * 0.5}px`,
+                  fontWeight: editedTemplate.fonts.nameWeight,
+                  color: editedTemplate.colors.nameColor,
+                  textAlign: editedTemplate.layout_config.nameAlign as any,
+                  padding: '8px',
+                  backgroundColor: dragging === 'name' ? 'rgba(59, 130, 246, 0.1)' : 'transparent',
+                  borderRadius: '4px',
+                }}
+                onMouseDown={(e) => handleMouseDown(e, 'name')}
+              >
+                John Doe
+              </div>
+
+              {/* Title Element */}
+              <div
+                className={`absolute cursor-grab active:cursor-grabbing ${
+                  dragging === 'title' ? 'ring-2 ring-blue-500' : ''
+                }`}
+                style={{
+                  left: `${(editedTemplate.layout_config as any).titleX || 50}%`,
+                  top: `${(editedTemplate.layout_config as any).titleY || 60}%`,
+                  transform: 'translate(-50%, -50%)',
+                  fontSize: `${editedTemplate.fonts.titleSize * 0.5}px`,
+                  color: editedTemplate.colors.titleColor,
+                  padding: '8px',
+                  backgroundColor: dragging === 'title' ? 'rgba(59, 130, 246, 0.1)' : 'transparent',
+                  borderRadius: '4px',
+                }}
+                onMouseDown={(e) => handleMouseDown(e, 'title')}
+              >
+                Insurance Agent
+              </div>
+
+              {/* Contact Element */}
+              <div
+                className={`absolute cursor-grab active:cursor-grabbing ${
+                  dragging === 'contact' ? 'ring-2 ring-blue-500' : ''
+                }`}
+                style={{
+                  left: `${(editedTemplate.layout_config as any).contactX || 50}%`,
+                  top: `${(editedTemplate.layout_config as any).contactY || 70}%`,
+                  transform: 'translate(-50%, -50%)',
+                  fontSize: `${editedTemplate.fonts.contactSize * 0.5}px`,
+                  color: editedTemplate.colors.contactColor,
+                  padding: '8px',
+                  backgroundColor: dragging === 'contact' ? 'rgba(59, 130, 246, 0.1)' : 'transparent',
+                  borderRadius: '4px',
+                }}
+                onMouseDown={(e) => handleMouseDown(e, 'contact')}
+              >
+                (555) 123-4567 • john@example.com
+              </div>
+            </div>
+
+            <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+              <p className="text-xs text-blue-800">
+                <strong>Tip:</strong> Elements will snap to percentage-based positions for responsive design.
+                Positions are saved automatically when you click "Save Template" below.
+              </p>
+            </div>
+
+            {/* Position Display */}
+            <div className="mt-4 grid grid-cols-3 gap-3">
+              <div className="bg-gray-50 p-3 rounded border border-gray-200">
+                <div className="text-xs font-semibold text-gray-700 mb-1">Name</div>
+                <div className="text-xs text-gray-600">
+                  X: {((editedTemplate.layout_config as any).nameX || 50).toFixed(1)}%
+                  <br />
+                  Y: {((editedTemplate.layout_config as any).nameY || 50).toFixed(1)}%
+                </div>
+              </div>
+              <div className="bg-gray-50 p-3 rounded border border-gray-200">
+                <div className="text-xs font-semibold text-gray-700 mb-1">Title</div>
+                <div className="text-xs text-gray-600">
+                  X: {((editedTemplate.layout_config as any).titleX || 50).toFixed(1)}%
+                  <br />
+                  Y: {((editedTemplate.layout_config as any).titleY || 60).toFixed(1)}%
+                </div>
+              </div>
+              <div className="bg-gray-50 p-3 rounded border border-gray-200">
+                <div className="text-xs font-semibold text-gray-700 mb-1">Contact</div>
+                <div className="text-xs text-gray-600">
+                  X: {((editedTemplate.layout_config as any).contactX || 50).toFixed(1)}%
+                  <br />
+                  Y: {((editedTemplate.layout_config as any).contactY || 70).toFixed(1)}%
+                </div>
+              </div>
+            </div>
+
+            {/* Save Button */}
+            <button
+              onClick={handleSave}
+              disabled={saving}
+              className="w-full mt-4 bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:bg-gray-400"
+            >
+              {saving ? 'Saving...' : 'Save Template'}
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Right: Live Preview */}
