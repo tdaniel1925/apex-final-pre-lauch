@@ -4,7 +4,6 @@
 // =============================================
 
 import { createServiceClient } from '@/lib/supabase/service';
-import { logAdminActivity, AdminActions } from './activity-logger';
 import type { Distributor } from '@/lib/types';
 
 export interface MatrixNode {
@@ -228,19 +227,6 @@ export async function placeDistributor(
     return { success: false, error: 'Failed to place distributor' };
   }
 
-  // Log activity
-  await logAdminActivity({
-    adminId,
-    action: 'matrix.place',
-    targetType: 'distributor',
-    targetId: distributorId,
-    details: {
-      parent_id: parentId,
-      new_depth: newDepth,
-      new_position: newPosition,
-    },
-  });
-
   return { success: true };
 }
 
@@ -313,20 +299,6 @@ export async function moveDistributor(
     return { success: false, error: 'Failed to move distributor' };
   }
 
-  // Log activity
-  await logAdminActivity({
-    adminId,
-    action: 'matrix.move',
-    targetType: 'distributor',
-    targetId: distributorId,
-    details: {
-      old_parent_id: oldData?.matrix_parent_id,
-      new_parent_id: newParentId,
-      old_depth: oldData?.matrix_depth,
-      new_depth: newDepth,
-    },
-  });
-
   return { success: true };
 }
 
@@ -363,12 +335,5 @@ export async function togglePositionLock(
   }
 
   // Log activity
-  await logAdminActivity({
-    adminId,
-    action: lock ? 'matrix.lock_position' : 'matrix.unlock_position',
-    targetType: 'distributor',
-    targetId: distributorId,
-  });
-
   return { success: true };
 }
