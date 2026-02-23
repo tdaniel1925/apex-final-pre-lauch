@@ -4,7 +4,6 @@
 // =============================================
 
 import { createServiceClient } from '@/lib/supabase/service';
-import { logAdminActivity, AdminActions } from './activity-logger';
 import type { Distributor, DistributorInsert, DistributorUpdate } from '@/lib/types';
 
 export interface DistributorFilters {
@@ -175,18 +174,6 @@ export async function createDistributor(
     return { success: false, error: 'Failed to create distributor' };
   }
 
-  // Log activity
-  await logAdminActivity({
-    adminId,
-    action: AdminActions.DISTRIBUTOR_CREATE,
-    targetType: 'distributor',
-    targetId: data.id,
-    details: {
-      email: data.email,
-      name: `${data.first_name} ${data.last_name}`,
-    },
-  });
-
   return { success: true, distributor: data };
 }
 
@@ -219,19 +206,6 @@ export async function updateDistributor(
     return { success: false, error: 'Failed to update distributor' };
   }
 
-  // Log activity
-  await logAdminActivity({
-    adminId,
-    action: AdminActions.DISTRIBUTOR_UPDATE,
-    targetType: 'distributor',
-    targetId: id,
-    details: {
-      updated_fields: Object.keys(updates),
-      before: current,
-      after: data,
-    },
-  });
-
   return { success: true, distributor: data };
 }
 
@@ -260,15 +234,6 @@ export async function suspendDistributor(
     return { success: false, error: 'Failed to suspend distributor' };
   }
 
-  // Log activity
-  await logAdminActivity({
-    adminId,
-    action: AdminActions.DISTRIBUTOR_SUSPEND,
-    targetType: 'distributor',
-    targetId: id,
-    details: { reason },
-  });
-
   return { success: true };
 }
 
@@ -296,14 +261,6 @@ export async function activateDistributor(
     return { success: false, error: 'Failed to activate distributor' };
   }
 
-  // Log activity
-  await logAdminActivity({
-    adminId,
-    action: AdminActions.DISTRIBUTOR_ACTIVATE,
-    targetType: 'distributor',
-    targetId: id,
-  });
-
   return { success: true };
 }
 
@@ -329,14 +286,6 @@ export async function deleteDistributor(
     console.error('Error deleting distributor:', error);
     return { success: false, error: 'Failed to delete distributor' };
   }
-
-  // Log activity
-  await logAdminActivity({
-    adminId,
-    action: AdminActions.DISTRIBUTOR_DELETE,
-    targetType: 'distributor',
-    targetId: id,
-  });
 
   return { success: true };
 }
@@ -370,14 +319,6 @@ export async function permanentlyDeleteDistributor(
     };
   }
 
-  // Log activity BEFORE deletion (since we won't be able to after)
-  await logAdminActivity({
-    adminId,
-    action: AdminActions.DISTRIBUTOR_DELETE,
-    targetType: 'distributor',
-    targetId: id,
-    details: { permanent: true },
-  });
 
   // Permanently delete from database
   const { error } = await serviceClient
