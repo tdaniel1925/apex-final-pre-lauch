@@ -385,8 +385,8 @@ export default function BusinessCardDesigner({ distributor, templates }: Props) 
                     {/* Name - Auto-sized */}
                     <div style={{
                       position: 'absolute',
-                      top: '50%',
-                      left: '50%',
+                      top: `${(selectedTemplate.layout_config as any).nameY || 50}%`,
+                      left: `${(selectedTemplate.layout_config as any).nameX || 50}%`,
                       transform: 'translate(-50%, -50%)',
                       textAlign: selectedTemplate.layout_config.nameAlign as 'left' | 'center' | 'right',
                       width: '90%',
@@ -427,9 +427,10 @@ export default function BusinessCardDesigner({ distributor, templates }: Props) 
                     {/* Contact Info */}
                     <div style={{
                       position: 'absolute',
-                      bottom: '16px',
-                      left: '16px',
-                      right: '16px',
+                      top: `${(selectedTemplate.layout_config as any).contactY || 85}%`,
+                      left: `${(selectedTemplate.layout_config as any).contactX || 50}%`,
+                      transform: 'translate(-50%, -50%)',
+                      width: 'calc(100% - 32px)',
                       display: 'grid',
                       gridTemplateColumns: includeQR ? '1fr auto' : '1fr 1fr',
                       gap: '12px',
