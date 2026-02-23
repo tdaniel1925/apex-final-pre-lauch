@@ -16,6 +16,9 @@ import TeamStatistics from './TeamStatistics';
 import MatrixPositionManager from './MatrixPositionManager';
 import { LicensingStatusBadge } from '@/components/common';
 import ResendWelcomeButton from '@/components/dashboard/ResendWelcomeButton';
+import NotesPanel from './NotesPanel';
+import ActivityLogPanel from './ActivityLogPanel';
+import PasswordResetModal from './PasswordResetModal';
 
 interface DistributorDetailViewProps {
   distributor: Distributor;
@@ -32,6 +35,7 @@ export default function DistributorDetailView({
   const [showSuspendModal, setShowSuspendModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showLicenseStatusModal, setShowLicenseStatusModal] = useState(false);
+  const [showPasswordResetModal, setShowPasswordResetModal] = useState(false);
   const [isVerifyingLicense, setIsVerifyingLicense] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
@@ -210,6 +214,12 @@ export default function DistributorDetailView({
             Back to List
           </button>
           <ResendWelcomeButton variant="admin" distributorId={initialDistributor.id} />
+          <button
+            onClick={() => setShowPasswordResetModal(true)}
+            className="px-3 py-1.5 bg-orange-600 text-white text-sm rounded-md hover:bg-orange-700"
+          >
+            Reset Password
+          </button>
           {!isEditing ? (
             <button
               onClick={() => setIsEditing(true)}
@@ -558,6 +568,15 @@ export default function DistributorDetailView({
             </div>
           </div>
         </div>
+
+        {/* Sidebar */}
+        <div className="lg:col-span-1 space-y-3">
+          {/* Admin Notes */}
+          <NotesPanel distributorId={initialDistributor.id} currentAdminRole={currentAdminRole} />
+
+          {/* Activity Log */}
+          <ActivityLogPanel distributorId={initialDistributor.id} />
+        </div>
       </div>
 
       {/* Suspend Modal */}
@@ -584,6 +603,16 @@ export default function DistributorDetailView({
           onConfirm={handleChangeLicensingStatus}
           currentStatus={initialDistributor.licensing_status}
           distributorName={`${initialDistributor.first_name} ${initialDistributor.last_name}`}
+        />
+      )}
+
+      {/* Password Reset Modal */}
+      {showPasswordResetModal && (
+        <PasswordResetModal
+          distributorId={initialDistributor.id}
+          distributorName={`${initialDistributor.first_name} ${initialDistributor.last_name}`}
+          distributorEmail={initialDistributor.email}
+          onClose={() => setShowPasswordResetModal(false)}
         />
       )}
     </div>
