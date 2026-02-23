@@ -72,7 +72,7 @@ CREATE POLICY "Admins can view all prospects"
   USING (
     EXISTS (
       SELECT 1 FROM public.admins
-      WHERE admins.user_id = auth.uid()
+      WHERE admins.auth_user_id = auth.uid()
     )
   );
 
@@ -84,7 +84,7 @@ CREATE POLICY "Admins can update prospects"
   USING (
     EXISTS (
       SELECT 1 FROM public.admins
-      WHERE admins.user_id = auth.uid()
+      WHERE admins.auth_user_id = auth.uid()
     )
   );
 
@@ -96,7 +96,7 @@ CREATE POLICY "Admins can delete prospects"
   USING (
     EXISTS (
       SELECT 1 FROM public.admins
-      WHERE admins.user_id = auth.uid()
+      WHERE admins.auth_user_id = auth.uid()
     )
   );
 
