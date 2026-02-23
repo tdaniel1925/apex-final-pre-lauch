@@ -1,0 +1,143 @@
+// =============================================
+// Reminder Email Template
+// Friendly reminder about webinar and signup times
+// =============================================
+
+const BASE_URL = 'https://reachtheapex.net';
+
+export function buildReminderEmail(recipientName: string, senderName: string) {
+  const firstName = recipientName.split(' ')[0];
+  const webinarLink = 'https://events.teams.microsoft.com/event/599e6f14-a298-4986-be33-64031f51f37f@8db46c49-b9d5-4f6b-948b-b99f34520af8';
+  const waitlistLink = `${BASE_URL}/signup`;
+
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quick Reminder — Apex Launch Schedule</title>
+</head>
+<body style="margin:0;padding:0;background:#f4f6fb;font-family:'Helvetica Neue',Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f6fb;padding:32px 16px;">
+    <tr><td align="center">
+      <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08);">
+
+        <!-- HEADER -->
+        <tr>
+          <td style="background:linear-gradient(135deg,#1a2f50 0%,#2B4C7E 100%);padding:36px 40px;text-align:center;">
+            <img src="https://reachtheapex.net/apex-logo-white.png" alt="Apex Affinity Group" style="height:90px;width:auto;" />
+            <div style="margin-top:16px;display:inline-block;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:999px;padding:5px 18px;">
+              <span style="color:#93c5fd;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;">📅 Quick Reminder</span>
+            </div>
+          </td>
+        </tr>
+
+        <!-- BODY -->
+        <tr>
+          <td style="padding:40px 40px 32px;">
+
+            <p style="margin:0 0 20px;font-size:17px;color:#374151;line-height:1.6;">
+              Hi <strong>${firstName}</strong>,
+            </p>
+
+            <p style="margin:0 0 20px;font-size:16px;color:#374151;line-height:1.7;">
+              Just wanted to make sure you have the right times for our upcoming launch events! Here's the complete schedule:
+            </p>
+
+            <!-- DIVIDER -->
+            <hr style="border:none;border-top:1px solid #e5e7eb;margin:0 0 28px;" />
+
+            <!-- THE SCHEDULE -->
+            <p style="margin:0 0 20px;font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#2B4C7E;">Mark Your Calendar</p>
+
+            <!-- Event 1: Webinar -->
+            <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:20px;background:#eff6ff;border-radius:12px;padding:20px;">
+              <tr>
+                <td style="width:56px;vertical-align:top;padding-top:4px;">
+                  <div style="width:48px;height:48px;background:#2B4C7E;border-radius:12px;text-align:center;line-height:48px;font-size:24px;">🎙️</div>
+                </td>
+                <td style="padding-left:16px;">
+                  <p style="margin:0 0 6px;font-size:18px;font-weight:800;color:#1a2f50;">Pre-Launch Webinar</p>
+                  <p style="margin:0 0 8px;font-size:16px;font-weight:700;color:#2B4C7E;">Monday, February 23rd at 6:30 PM Central</p>
+                  <p style="margin:0;font-size:14px;color:#6b7280;line-height:1.6;">Join us live for a complete walkthrough of the platform, our product lineup, compensation plan, and how to get started. This is the official kickoff!</p>
+                  <div style="margin-top:12px;">
+                    <a href="${webinarLink}" style="display:inline-block;background:#2B4C7E;color:#ffffff;font-weight:700;font-size:14px;text-decoration:none;padding:10px 24px;border-radius:8px;">
+                      Join Webinar →
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            </table>
+
+            <!-- Event 2: Signups -->
+            <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px;background:#f0fdf4;border-radius:12px;padding:20px;">
+              <tr>
+                <td style="width:56px;vertical-align:top;padding-top:4px;">
+                  <div style="width:48px;height:48px;background:#16a34a;border-radius:12px;text-align:center;line-height:48px;font-size:24px;">🚀</div>
+                </td>
+                <td style="padding-left:16px;">
+                  <p style="margin:0 0 6px;font-size:18px;font-weight:800;color:#1a2f50;">Signups Open!</p>
+                  <p style="margin:0 0 8px;font-size:16px;font-weight:700;color:#16a34a;">Monday, February 23rd at 9:00 PM Central</p>
+                  <p style="margin:0;font-size:14px;color:#6b7280;line-height:1.6;">Immediately following the webinar, the platform officially opens for signups. Be among the first to claim your spot in the matrix!</p>
+                  <div style="margin-top:12px;">
+                    <a href="${waitlistLink}" style="display:inline-block;background:#ffffff;color:#16a34a;font-weight:700;font-size:14px;text-decoration:none;padding:10px 24px;border-radius:8px;border:2px solid #16a34a;">
+                      Join Waitlist →
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            </table>
+
+            <!-- Timeline visual -->
+            <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:32px;background:#fef3c7;border-radius:12px;padding:16px 20px;">
+              <tr>
+                <td>
+                  <p style="margin:0 0 8px;font-size:13px;font-weight:800;color:#92400e;text-transform:uppercase;letter-spacing:1px;">⏰ Same Evening Timeline</p>
+                  <p style="margin:0;font-size:14px;color:#78350f;line-height:1.7;">
+                    <strong style="color:#92400e;">6:30 PM Central</strong> → Webinar starts<br/>
+                    <strong style="color:#92400e;">~8:00 PM Central</strong> → Webinar ends<br/>
+                    <strong style="color:#92400e;">9:00 PM Central</strong> → Signups open!
+                  </p>
+                </td>
+              </tr>
+            </table>
+
+            <p style="margin:0 0 24px;font-size:16px;color:#374151;line-height:1.7;">
+              <strong>${senderName}</strong> wanted to make sure you're all set for these important dates. We're excited to see you there!
+            </p>
+
+            <hr style="border:none;border-top:1px solid #e5e7eb;margin:0 0 24px;" />
+
+            <p style="margin:0;font-size:14px;color:#6b7280;line-height:1.7;">
+              Questions? Just reply directly to this email — <strong>${senderName}</strong> will get back to you.
+            </p>
+
+          </td>
+        </tr>
+
+        <!-- FOOTER -->
+        <tr>
+          <td style="background:#f9fafb;border-top:1px solid #e5e7eb;padding:24px 40px;text-align:center;">
+            <p style="margin:0 0 6px;font-size:12px;color:#9ca3af;">
+              This is a friendly reminder from <strong>${senderName}</strong> about your VIP invite to Apex Affinity Group.
+            </p>
+            <p style="margin:0 0 6px;font-size:12px;color:#9ca3af;">
+              <strong>Apex Affinity Group</strong> &nbsp;·&nbsp; 1600 Highway 6, Ste 400, Sugar Land, TX 77478
+            </p>
+            <p style="margin:0;font-size:12px;">
+              <a href="${BASE_URL}" style="color:#2B4C7E;text-decoration:none;font-weight:600;">Visit theapexway.net</a>
+            </p>
+          </td>
+        </tr>
+
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`;
+
+  return {
+    subject: `Quick Reminder: Apex Launch Schedule 📅`,
+    html,
+  };
+}
