@@ -265,7 +265,7 @@ export default async function LeadLoopPage() {
                 <p className="text-sm text-gray-600 mb-4">per month</p>
                 <p className="text-sm text-gray-700">Review requests only</p>
               </div>
-              <div className="bg-orange-600 text-white rounded-lg p-6 -m-2">
+              <div className="bg-orange-600 text-white text-white rounded-lg p-6 -m-2">
                 <div className="inline-block px-3 py-1 bg-white text-orange-600 text-xs font-bold rounded mb-2">
                   RECOMMENDED
                 </div>
@@ -285,7 +285,7 @@ export default async function LeadLoopPage() {
         </div>
       </div>
 
-      <div className="bg-gray-900 text-white py-16">
+      <div className="bg-gray-900 text-white text-white py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Start Building Your Referral Engine</h2>
           <p className="text-lg text-orange-100 mb-8">

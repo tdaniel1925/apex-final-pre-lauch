@@ -49,7 +49,7 @@ export default async function MatrixCommissionsPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-purple-600 text-white py-12">
+      <div className="bg-purple-600 text-white text-white py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
             href="/dashboard/compensation"
@@ -305,7 +305,7 @@ export default async function MatrixCommissionsPage() {
         {/* Next Steps */}
         <section className="bg-gradient-to-r from-[#2B4C7E] to-[#567EBB] text-white rounded-lg p-8 text-center">
           <h2 className="text-2xl font-bold mb-4">Ready to Build Your Matrix?</h2>
-          <p className="mb-6 text-blue-100">
+          <p className="mb-6 text-blue-200">
             The best time to start building was yesterday. The second best time is right now!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

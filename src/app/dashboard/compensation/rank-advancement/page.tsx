@@ -60,7 +60,7 @@ export default async function RankAdvancementPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="bg-red-600 text-white py-12">
+      <div className="bg-red-600 text-white text-white py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link href="/dashboard/compensation" className="inline-flex items-center text-red-200 hover:text-white mb-4 transition-colors">
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -286,7 +286,7 @@ export default async function RankAdvancementPage() {
 
         <section className="bg-gradient-to-r from-[#2B4C7E] to-[#567EBB] text-white rounded-lg p-8 text-center">
           <h2 className="text-2xl font-bold mb-4">Ready to Advance Your Rank?</h2>
-          <p className="mb-6 text-blue-100">
+          <p className="mb-6 text-blue-200">
             Build your team, hit the next rank, and celebrate with a bonus check!
           </p>
           <Link

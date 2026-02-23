@@ -79,7 +79,7 @@ export default async function AgentPilotPage() {
           </div>
         </div>
 
-        <div className="bg-purple-700 text-white rounded-lg p-8 text-center">
+        <div className="bg-purple-700 text-white text-white rounded-lg p-8 text-center">
           <h3 className="text-2xl font-bold mb-3">AgentPilot solves this in 3 seconds every morning.</h3>
           <p className="text-purple-100">AI analyzes your entire pipeline and gives you a perfect action plan.</p>
         </div>
@@ -312,7 +312,7 @@ export default async function AgentPilotPage() {
                 <p className="text-sm text-gray-600 mb-3">Basic rule-based reminders</p>
                 <div className="text-3xl font-bold text-gray-400">Limited</div>
               </div>
-              <div className="bg-purple-600 text-white rounded-lg p-6 -m-2">
+              <div className="bg-purple-600 text-white text-white rounded-lg p-6 -m-2">
                 <div className="inline-block px-3 py-1 bg-white text-purple-600 text-xs font-bold rounded mb-2">
                   RECOMMENDED
                 </div>
@@ -339,7 +339,7 @@ export default async function AgentPilotPage() {
       </div>
 
       {/* CTA */}
-      <div className="bg-gray-900 text-white py-16">
+      <div className="bg-gray-900 text-white text-white py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Get Early Access to AgentPilot</h2>
           <p className="text-lg text-purple-100 mb-8">

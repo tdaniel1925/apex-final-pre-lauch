@@ -156,7 +156,7 @@ export default async function GlossaryPage() {
             Back to Compensation Plan
           </Link>
           <h1 className="text-4xl font-bold mb-4">📖 Compensation Plan Glossary</h1>
-          <p className="text-xl text-blue-100">
+          <p className="text-xl text-blue-200">
             Simple explanations of all the terms you'll see in our compensation plan. No jargon, just clear definitions.
           </p>
         </div>

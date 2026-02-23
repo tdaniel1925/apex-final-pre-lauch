@@ -40,7 +40,7 @@ export default async function InfinityBonusPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="bg-indigo-600 text-white py-12">
+      <div className="bg-indigo-600 text-white text-white py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link href="/dashboard/compensation" className="inline-flex items-center text-indigo-200 hover:text-white mb-4 transition-colors">
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -132,7 +132,7 @@ export default async function InfinityBonusPage() {
           <h2 className="text-2xl font-bold mb-4">
             {isQualified ? 'You Qualify for Infinity!' : 'Reach Diamond to Unlock Infinity'}
           </h2>
-          <p className="mb-6 text-blue-100">
+          <p className="mb-6 text-blue-200">
             {isQualified
               ? 'Keep building depth and watch your Infinity commissions grow!'
               : 'Focus on building your team to 50,000 GBV to unlock this powerful bonus.'}

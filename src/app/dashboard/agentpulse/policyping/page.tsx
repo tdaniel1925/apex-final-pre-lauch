@@ -247,7 +247,7 @@ export default async function PolicyPingPage() {
                   <li className="text-gray-400">✗ Cross-sell radar</li>
                 </ul>
               </div>
-              <div className="bg-green-600 text-white rounded-lg p-6 -m-2">
+              <div className="bg-green-600 text-white text-white rounded-lg p-6 -m-2">
                 <div className="inline-block px-3 py-1 bg-white text-green-600 text-xs font-bold rounded mb-2">
                   RECOMMENDED
                 </div>
@@ -277,7 +277,7 @@ export default async function PolicyPingPage() {
       </div>
 
       {/* CTA */}
-      <div className="bg-gray-900 text-white py-16">
+      <div className="bg-gray-900 text-white text-white py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Never Lose a Renewal Again</h2>
           <p className="text-lg text-green-100 mb-8">

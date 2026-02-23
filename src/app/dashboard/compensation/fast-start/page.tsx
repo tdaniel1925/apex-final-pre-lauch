@@ -53,7 +53,7 @@ export default async function FastStartPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="bg-orange-600 text-white py-12">
+      <div className="bg-orange-600 text-white text-white py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link href="/dashboard/compensation" className="inline-flex items-center text-orange-200 hover:text-white mb-4 transition-colors">
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -115,7 +115,7 @@ export default async function FastStartPage() {
           <h2 className="text-2xl font-bold text-gray-900 mb-6">How It Works (Super Simple!)</h2>
 
           <div className="grid md:grid-cols-3 gap-4">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 text-center border-2 border-blue-300">
+            <div className="bg-gradient-to-br blue-50 rounded-lg p-6 text-center border-2 border-blue-300">
               <div className="text-4xl mb-3">1️⃣</div>
               <div className="font-bold text-gray-900 mb-2">You Join</div>
               <div className="text-sm text-gray-700">Become a distributor</div>
@@ -248,7 +248,7 @@ export default async function FastStartPage() {
           <h2 className="text-2xl font-bold mb-4">
             {isEligible ? 'You Still Have Time!' : 'Help Others Earn Fast Start!'}
           </h2>
-          <p className="mb-6 text-blue-100">
+          <p className="mb-6 text-blue-200">
             {isEligible
               ? `You have ${daysRemaining} days left to earn Fast Start bonuses. Start sharing your link!`
               : 'Even though your Fast Start period is over, you can help your new team members earn theirs!'}

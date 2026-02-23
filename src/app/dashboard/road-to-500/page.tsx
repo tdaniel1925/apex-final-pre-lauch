@@ -208,7 +208,7 @@ export default async function RoadTo500Page() {
         </section>
 
         {/* Your Personal Stats */}
-        <section className="bg-purple-600 text-white rounded-lg shadow-md p-8">
+        <section className="bg-purple-600 text-white text-white rounded-lg shadow-md p-8">
           <h2 className="text-3xl font-bold mb-6">Your Contribution</h2>
           <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-white/10 backdrop-blur rounded-lg p-6 text-center">
@@ -317,7 +317,7 @@ export default async function RoadTo500Page() {
         {/* CTA */}
         <section className="bg-gradient-to-r from-[#2B4C7E] to-[#567EBB] text-white rounded-lg p-8 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Help Us Reach 500?</h2>
-          <p className="text-xl text-blue-100 mb-6">
+          <p className="text-xl text-blue-200 mb-6">
             Every agent you bring in gets us one step closer to our goal. Let's build this movement together!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

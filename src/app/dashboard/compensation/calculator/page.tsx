@@ -83,7 +83,7 @@ export default function EarningsCalculatorPage() {
             <div className="text-6xl">💰</div>
             <div>
               <h1 className="text-4xl font-bold">Earnings Calculator</h1>
-              <p className="text-xl text-blue-100 mt-2">See your potential monthly income</p>
+              <p className="text-xl text-blue-200 mt-2">See your potential monthly income</p>
             </div>
           </div>
         </div>
@@ -337,7 +337,7 @@ export default function EarningsCalculatorPage() {
             {/* CTA */}
             <div className="bg-gradient-to-r from-[#2B4C7E] to-[#567EBB] text-white rounded-lg p-6 text-center">
               <h3 className="text-xl font-bold mb-3">Ready to Make This Your Reality?</h3>
-              <p className="text-blue-100 mb-4">
+              <p className="text-blue-200 mb-4">
                 Start building your team today and watch your income grow!
               </p>
               <Link

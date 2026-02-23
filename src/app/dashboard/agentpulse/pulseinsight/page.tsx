@@ -109,7 +109,7 @@ export default async function PulseInsightPage() {
               </div>
 
               <div className="grid grid-cols-3 gap-4">
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 text-center">
+                <div className="bg-gradient-to-br blue-50 rounded-lg p-4 text-center">
                   <div className="text-2xl font-bold text-blue-700">57</div>
                   <div className="text-xs text-gray-700">Carriers</div>
                 </div>
@@ -324,7 +324,7 @@ export default async function PulseInsightPage() {
                 <li className="text-gray-400">✗ AI chat</li>
               </ul>
             </div>
-            <div className="bg-indigo-600 text-white rounded-lg p-6 -m-2">
+            <div className="bg-indigo-600 text-white text-white rounded-lg p-6 -m-2">
               <div className="inline-block px-3 py-1 bg-white text-indigo-600 text-xs font-bold rounded mb-2">
                 RECOMMENDED
               </div>

@@ -66,7 +66,7 @@ export default async function RetailCommissionsPage() {
             <div className="text-6xl">🛍️</div>
             <div>
               <h1 className="text-4xl font-bold">Retail Commissions</h1>
-              <p className="text-xl text-blue-100 mt-2">Earn 30% profit on every customer sale</p>
+              <p className="text-xl text-blue-200 mt-2">Earn 30% profit on every customer sale</p>
             </div>
           </div>
         </div>
@@ -115,7 +115,7 @@ export default async function RetailCommissionsPage() {
           <h2 className="text-2xl font-bold text-gray-900 mb-6">How It Works</h2>
 
           {/* Visual Diagram */}
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-8 mb-6">
+          <div className="bg-gradient-to-br blue-50 rounded-lg p-8 mb-6">
             <div className="flex items-center justify-between max-w-2xl mx-auto">
               {/* Customer */}
               <div className="text-center">
@@ -288,7 +288,7 @@ export default async function RetailCommissionsPage() {
         {/* Next Steps */}
         <section className="bg-gradient-to-r from-[#2B4C7E] to-[#567EBB] text-white rounded-lg p-8 text-center">
           <h2 className="text-2xl font-bold mb-4">Ready to Start Earning Retail Commissions?</h2>
-          <p className="mb-6 text-blue-100">
+          <p className="mb-6 text-blue-200">
             Share your referral link with friends, family, and on social media!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
