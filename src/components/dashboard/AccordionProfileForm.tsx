@@ -7,6 +7,7 @@
 
 import { useState } from 'react';
 import type { Distributor } from '@/lib/types';
+import ProfilePhotoCropper from './ProfilePhotoCropper';
 
 interface AccordionProfileFormProps {
   distributor: Distributor;
@@ -19,6 +20,7 @@ export default function AccordionProfileForm({ distributor, userEmail }: Accordi
   const [openSection, setOpenSection] = useState<Section | null>('personal');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+  const [profilePhotoUrl, setProfilePhotoUrl] = useState<string | null>(distributor.profile_photo_url);
 
   const toggleSection = (section: Section) => {
     setOpenSection(openSection === section ? null : section);
@@ -109,6 +111,17 @@ export default function AccordionProfileForm({ distributor, userEmail }: Accordi
   return (
     <form onSubmit={handleSubmit} className="space-y-0">
       <div className="bg-white rounded-lg shadow overflow-hidden">
+
+        {/* Profile Photo */}
+        <div className="p-6 bg-white border-b border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            📸 <span>Profile Photo</span>
+          </h3>
+          <ProfilePhotoCropper
+            currentPhotoUrl={profilePhotoUrl}
+            onPhotoUpdate={(url) => setProfilePhotoUrl(url)}
+          />
+        </div>
 
         {/* Personal Information */}
         <SectionHeader

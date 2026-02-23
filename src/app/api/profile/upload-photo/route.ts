@@ -25,20 +25,36 @@ export async function POST(request: NextRequest) {
     }
 
     const formData = await request.formData();
-    const photo = formData.get('photo') as File;
+    const file = formData.get('file') as File;
 
-    if (!photo) {
+    if (!file) {
       return NextResponse.json(
-        { success: false, message: 'No photo provided' } as ApiResponse,
+        { success: false, message: 'No file provided' } as ApiResponse,
+        { status: 400 }
+      );
+    }
+
+    // Validate file type
+    if (!file.type.startsWith('image/')) {
+      return NextResponse.json(
+        { success: false, message: 'File must be an image' } as ApiResponse,
+        { status: 400 }
+      );
+    }
+
+    // Validate file size (5MB max)
+    if (file.size > 5 * 1024 * 1024) {
+      return NextResponse.json(
+        { success: false, message: 'File size must be less than 5MB' } as ApiResponse,
         { status: 400 }
       );
     }
 
     // Convert photo to base64 data URL
-    const arrayBuffer = await photo.arrayBuffer();
+    const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
     const base64 = buffer.toString('base64');
-    const dataUrl = `data:${photo.type};base64,${base64}`;
+    const dataUrl = `data:${file.type};base64,${base64}`;
 
     // Update distributor record with data URL
     const serviceClient = createServiceClient();
