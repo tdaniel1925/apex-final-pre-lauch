@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import type { Distributor } from '@/lib/types';
 import type { MatrixStats, MatrixLevelData } from '@/lib/admin/matrix-manager';
+import AddRepModal from './AddRepModal';
 
 interface MatrixViewProps {
   stats: MatrixStats;
@@ -20,6 +21,7 @@ export default function MatrixView({ stats, initialLevel, initialLevelData }: Ma
   const router = useRouter();
   const [selectedLevel, setSelectedLevel] = useState(initialLevel);
   const [selectedDistributor, setSelectedDistributor] = useState<Distributor | null>(null);
+  const [showAddRepModal, setShowAddRepModal] = useState(false);
 
   const handleLevelChange = (level: number) => {
     setSelectedLevel(level);
@@ -29,12 +31,33 @@ export default function MatrixView({ stats, initialLevel, initialLevelData }: Ma
   const maxCapacity = Math.pow(5, selectedLevel);
   const fillPercentage = (initialLevelData.filledPositions / maxCapacity) * 100;
 
+  const handleAddRepSuccess = () => {
+    // Refresh the page to show updated matrix
+    router.refresh();
+  };
+
   return (
     <div>
       {/* Header */}
-      <div className="mb-4">
-        <h1 className="text-2xl font-bold text-gray-900">Matrix Management</h1>
-        <p className="text-sm text-gray-600 mt-0.5">5×7 Forced Matrix Visualization</p>
+      <div className="mb-4 flex items-start justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900">Matrix Management</h1>
+          <p className="text-sm text-gray-600 mt-0.5">5×7 Forced Matrix Visualization</p>
+        </div>
+        <button
+          onClick={() => setShowAddRepModal(true)}
+          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 flex items-center gap-2 font-medium"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 4v16m8-8H4"
+            />
+          </svg>
+          Add Rep
+        </button>
       </div>
 
       {/* Overall Stats */}
@@ -278,6 +301,13 @@ export default function MatrixView({ stats, initialLevel, initialLevelData }: Ma
           </div>
         </div>
       )}
+
+      {/* Add Rep Modal */}
+      <AddRepModal
+        isOpen={showAddRepModal}
+        onClose={() => setShowAddRepModal(false)}
+        onSuccess={handleAddRepSuccess}
+      />
     </div>
   );
 }

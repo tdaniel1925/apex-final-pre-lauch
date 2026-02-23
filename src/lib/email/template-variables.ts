@@ -22,6 +22,8 @@ interface TemplateVariables {
   signup_date?: string;
   days_since_signup?: string;
   unsubscribe_link?: string;
+  temporary_password?: string;
+  temporary_password_notice?: string;
 }
 
 /**
@@ -40,7 +42,10 @@ function getBaseUrl(): string {
 /**
  * Build variables object from distributor data
  */
-export function buildTemplateVariables(distributor: Distributor): TemplateVariables {
+export function buildTemplateVariables(
+  distributor: Distributor,
+  extraVariables?: Partial<TemplateVariables>
+): TemplateVariables {
   const baseUrl = getBaseUrl();
 
   // Calculate days since signup
@@ -53,6 +58,21 @@ export function buildTemplateVariables(distributor: Distributor): TemplateVariab
   // Format licensing status for display
   const licensingStatusDisplay =
     distributor.licensing_status === 'licensed' ? 'Licensed Agent' : 'Non-Licensed Distributor';
+
+  // Build temporary password notice if provided
+  const temporaryPasswordNotice = extraVariables?.temporary_password
+    ? `<div style="margin: 24px 0; padding: 20px; background: #FEF3C7; border-left: 4px solid #F59E0B; border-radius: 8px;">
+         <p style="margin: 0 0 8px; font-weight: 700; color: #92400E; font-size: 14px;">
+           ⚠️ Admin Created Account
+         </p>
+         <p style="margin: 0 0 12px; color: #78350F; font-size: 13px;">
+           An administrator created your account. Please use this temporary password to log in, then change it immediately in your profile settings.
+         </p>
+         <p style="margin: 0; font-family: monospace; font-size: 16px; font-weight: 700; color: #92400E;">
+           ${extraVariables.temporary_password}
+         </p>
+       </div>`
+    : '';
 
   return {
     first_name: distributor.first_name,
@@ -79,6 +99,8 @@ export function buildTemplateVariables(distributor: Distributor): TemplateVariab
     }),
     days_since_signup: daysSinceSignup.toString(),
     unsubscribe_link: `${baseUrl}/api/email/unsubscribe?id=${distributor.id}`, // Future endpoint
+    temporary_password: extraVariables?.temporary_password || '',
+    temporary_password_notice: temporaryPasswordNotice,
   };
 }
 
@@ -100,11 +122,15 @@ export function replaceTemplateVariables(text: string, variables: TemplateVariab
 /**
  * Render email template with distributor data
  */
-export function renderEmailTemplate(template: { subject: string; body: string }, distributor: Distributor): {
+export function renderEmailTemplate(
+  template: { subject: string; body: string },
+  distributor: Distributor,
+  extraVariables?: Partial<TemplateVariables>
+): {
   subject: string;
   body: string;
 } {
-  const variables = buildTemplateVariables(distributor);
+  const variables = buildTemplateVariables(distributor, extraVariables);
 
   return {
     subject: replaceTemplateVariables(template.subject, variables),
@@ -164,6 +190,16 @@ export function getAvailableVariables(): Array<{ key: string; description: strin
       key: 'unsubscribe_link',
       description: 'Unsubscribe link',
       example: 'https://app.apexaffinity.com/api/email/unsubscribe',
+    },
+    {
+      key: 'temporary_password',
+      description: 'Temporary password (admin-created accounts only)',
+      example: 'Apex1234567890!',
+    },
+    {
+      key: 'temporary_password_notice',
+      description: 'Formatted notice box with temp password (HTML)',
+      example: '<div style="...">...</div>',
     },
   ];
 }

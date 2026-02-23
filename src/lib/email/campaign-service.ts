@@ -13,7 +13,10 @@ import type { EmailTemplate } from '@/lib/types/email';
  * Enroll distributor in email campaign
  * Called when a user signs up
  */
-export async function enrollInCampaign(distributor: Distributor): Promise<{
+export async function enrollInCampaign(
+  distributor: Distributor,
+  options?: { temporaryPassword?: string }
+): Promise<{
   success: boolean;
   error?: string;
 }> {
@@ -53,8 +56,13 @@ export async function enrollInCampaign(distributor: Distributor): Promise<{
       return { success: false, error: 'Welcome email template not found' };
     }
 
-    // Send welcome email
-    const sendResult = await sendCampaignEmail(distributor, template, campaign.id);
+    // Send welcome email (with temporary password if provided)
+    const sendResult = await sendCampaignEmail(
+      distributor,
+      template,
+      campaign.id,
+      options?.temporaryPassword ? { temporary_password: options.temporaryPassword } : undefined
+    );
 
     if (!sendResult.success) {
       return sendResult;
@@ -111,7 +119,8 @@ export async function enrollInCampaign(distributor: Distributor): Promise<{
 export async function sendCampaignEmail(
   distributor: Distributor,
   template: EmailTemplate,
-  campaignId: string
+  campaignId: string,
+  extraVariables?: { temporary_password?: string }
 ): Promise<{
   success: boolean;
   error?: string;
@@ -120,13 +129,14 @@ export async function sendCampaignEmail(
   try {
     const serviceClient = createServiceClient();
 
-    // Render email with distributor variables
+    // Render email with distributor variables (including temporary password if provided)
     const rendered = renderEmailTemplate(
       {
         subject: template.subject,
         body: template.body,
       },
-      distributor
+      distributor,
+      extraVariables
     );
 
     // Send email via Resend

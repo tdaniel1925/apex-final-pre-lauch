@@ -188,9 +188,9 @@ export default function AdminSidebar() {
   ];
 
   return (
-    <aside className="w-52 bg-gray-900 text-white min-h-screen flex flex-col">
+    <aside className="w-52 bg-gray-900 text-white h-screen sticky top-0 flex flex-col">
       {/* Admin Portal Header */}
-      <div className="p-3">
+      <div className="flex-shrink-0 p-3">
         <div className="text-center mb-2">
           <img
             src="/apex-logo-white.png"

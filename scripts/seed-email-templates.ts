@@ -57,6 +57,8 @@ const emailTemplate = (licensingStatus: 'licensed' | 'non_licensed') => {
                 We're thrilled to have you join our team! Your journey to building a successful insurance business starts now.
               </p>
 
+              {temporary_password_notice}
+
               <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.6; color: #555555;">
                 Here's what you can do next:
               </p>
@@ -153,7 +155,7 @@ async function seedEmailTemplates() {
         sequence_order: 0,
         delay_days: 0,
         is_active: true,
-        variables_used: ['first_name', 'slug'],
+        variables_used: ['first_name', 'slug', 'temporary_password_notice'],
       })
       .select()
       .single();
@@ -179,7 +181,7 @@ async function seedEmailTemplates() {
         sequence_order: 0,
         delay_days: 0,
         is_active: true,
-        variables_used: ['first_name', 'slug'],
+        variables_used: ['first_name', 'slug', 'temporary_password_notice'],
       })
       .select()
       .single();
