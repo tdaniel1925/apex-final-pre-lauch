@@ -6,7 +6,7 @@
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { createServiceClient } from '@/lib/supabase/service';
-import BusinessCardDesigner from '@/components/dashboard/BusinessCardDesigner';
+import CardDesignerForm from '@/components/dashboard/CardDesignerForm';
 import Link from 'next/link';
 
 export const metadata = {
@@ -49,14 +49,7 @@ export default async function BusinessCardsPage() {
         </Link>
       </div>
 
-      <div className="mb-8 text-center">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Business Card Designer</h1>
-        <p className="text-gray-600">
-          Create professional Apex-branded business cards with our live designer
-        </p>
-      </div>
-
-      <BusinessCardDesigner
+      <CardDesignerForm
         distributor={distributor}
         templates={templates || []}
       />

@@ -119,23 +119,58 @@ export default function CanvasBuilder({ templates }: Props) {
   };
 
   // Add image element
-  const addImage = () => {
-    const url = prompt('Enter image URL:');
-    if (!url) return;
+  const addImage = async () => {
+    // Create file input
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/png,image/jpeg,image/jpg,image/svg+xml';
 
-    const newElement: CardElement = {
-      id: `elem_${Date.now()}`,
-      type: 'image',
-      field: null,
-      content: url,
-      x: 50,
-      y: 50,
-      width: 100,
-      height: 100,
-      zIndex: elements.length,
+    input.onchange = async (e) => {
+      const file = (e.target as HTMLInputElement).files?.[0];
+      if (!file) return;
+
+      // Check file size (10MB max)
+      if (file.size > 10 * 1024 * 1024) {
+        alert('File too large. Maximum size is 10MB');
+        return;
+      }
+
+      // Upload file
+      const formData = new FormData();
+      formData.append('file', file);
+
+      try {
+        const response = await fetch('/api/admin/upload-template-asset', {
+          method: 'POST',
+          body: formData,
+        });
+
+        if (!response.ok) {
+          throw new Error('Upload failed');
+        }
+
+        const { url } = await response.json();
+
+        const newElement: CardElement = {
+          id: `elem_${Date.now()}`,
+          type: 'image',
+          field: null,
+          content: url,
+          x: 50,
+          y: 50,
+          width: 100,
+          height: 100,
+          zIndex: elements.length,
+        };
+        setElements([...elements, newElement]);
+        setSelectedElement(newElement.id);
+      } catch (error) {
+        console.error('Upload error:', error);
+        alert('Failed to upload image');
+      }
     };
-    setElements([...elements, newElement]);
-    setSelectedElement(newElement.id);
+
+    input.click();
   };
 
   // Update element property
