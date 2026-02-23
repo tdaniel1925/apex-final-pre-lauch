@@ -30,6 +30,10 @@ export async function PATCH(
       layout_config,
       colors,
       fonts,
+      front_elements,
+      back_elements,
+      required_fields,
+      optional_fields,
     } = body;
 
     // If setting as default, unset other defaults first
@@ -40,18 +44,24 @@ export async function PATCH(
         .neq('id', params.id);
     }
 
+    // Build update object (only include provided fields)
+    const updateData: any = {};
+    if (name !== undefined) updateData.name = name;
+    if (description !== undefined) updateData.description = description;
+    if (is_active !== undefined) updateData.is_active = is_active;
+    if (is_default !== undefined) updateData.is_default = is_default;
+    if (layout_config !== undefined) updateData.layout_config = layout_config;
+    if (colors !== undefined) updateData.colors = colors;
+    if (fonts !== undefined) updateData.fonts = fonts;
+    if (front_elements !== undefined) updateData.front_elements = front_elements;
+    if (back_elements !== undefined) updateData.back_elements = back_elements;
+    if (required_fields !== undefined) updateData.required_fields = required_fields;
+    if (optional_fields !== undefined) updateData.optional_fields = optional_fields;
+
     // Update the template
-    const { data, error } = await serviceClient
+    const { data, error} = await serviceClient
       .from('business_card_templates')
-      .update({
-        name,
-        description,
-        is_active,
-        is_default,
-        layout_config,
-        colors,
-        fonts,
-      })
+      .update(updateData)
       .eq('id', params.id)
       .select()
       .single();

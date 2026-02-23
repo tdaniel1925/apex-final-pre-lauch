@@ -5,7 +5,7 @@
 
 import { requireAdmin } from '@/lib/auth/admin';
 import { createServiceClient } from '@/lib/supabase/service';
-import TemplateManager from '@/components/admin/TemplateManager';
+import CanvasBuilder from '@/components/admin/CanvasBuilder';
 import Link from 'next/link';
 
 export const metadata = {
@@ -40,14 +40,14 @@ export default async function BusinessCardTemplatesPage() {
 
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">
-          Business Card Templates
+          Business Card Template Builder
         </h1>
         <p className="text-gray-600">
-          Manage template designs, colors, fonts, and layout configurations
+          Design professional business card templates with our canvas-based builder
         </p>
       </div>
 
-      <TemplateManager templates={templates || []} />
+      <CanvasBuilder templates={templates || []} />
     </div>
   );
 }
