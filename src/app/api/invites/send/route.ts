@@ -69,8 +69,8 @@ function vipEmailHtml(recipientName: string, senderName: string): string {
                   <div style="width:40px;height:40px;background:#eff6ff;border-radius:10px;text-align:center;line-height:40px;font-size:20px;">🖥️</div>
                 </td>
                 <td style="padding-left:14px;">
-                  <p style="margin:0 0 3px;font-size:15px;font-weight:800;color:#1a2f50;">The Site Goes Live</p>
-                  <p style="margin:0;font-size:14px;color:#6b7280;line-height:1.6;">The Apex Affinity Group platform officially opens following our pre-launch webinar. Be among the first to sign up.</p>
+                  <p style="margin:0 0 3px;font-size:15px;font-weight:800;color:#1a2f50;">Signups Open — Monday, Feb 23 at 9:00 PM Central</p>
+                  <p style="margin:0;font-size:14px;color:#6b7280;line-height:1.6;">The Apex Affinity Group platform officially opens at 9:00 PM Central, immediately following our pre-launch webinar. Be among the first to sign up.</p>
                 </td>
               </tr>
             </table>
@@ -82,7 +82,7 @@ function vipEmailHtml(recipientName: string, senderName: string): string {
                   <div style="width:40px;height:40px;background:#eff6ff;border-radius:10px;text-align:center;line-height:40px;font-size:20px;">🎙️</div>
                 </td>
                 <td style="padding-left:14px;">
-                  <p style="margin:0 0 3px;font-size:15px;font-weight:800;color:#1a2f50;">Pre-Launch Webinar — Monday, Feb 23 at 9:00 PM ET</p>
+                  <p style="margin:0 0 3px;font-size:15px;font-weight:800;color:#1a2f50;">Pre-Launch Webinar — Monday, Feb 23 at 6:30 PM Central</p>
                   <p style="margin:0;font-size:14px;color:#6b7280;line-height:1.6;">Join us live for a full walkthrough of the platform, our product lineup, and how to get started. This is the official kickoff.</p>
                 </td>
               </tr>
