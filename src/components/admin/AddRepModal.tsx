@@ -21,6 +21,11 @@ export default function AddRepModal({ isOpen, onClose, onSuccess }: AddRepModalP
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+  const [temporaryPassword, setTemporaryPassword] = useState<string | null>(null);
+  const [emailStatus, setEmailStatus] = useState<{
+    status: 'sent' | 'failed';
+    message: string;
+  } | null>(null);
 
   // Tab 1: Create new rep state
   const [newRepForm, setNewRepForm] = useState({
@@ -96,11 +101,12 @@ export default function AddRepModal({ isOpen, onClose, onSuccess }: AddRepModalP
 
       if (data.success) {
         setSuccess('Rep created and placed successfully!');
-        setTimeout(() => {
-          onSuccess();
-          onClose();
-          resetForm();
-        }, 1500);
+        setTemporaryPassword(data.data.temporaryPassword);
+        setEmailStatus({
+          status: data.data.emailStatus,
+          message: data.data.emailMessage,
+        });
+        // Keep modal open longer to show credentials
       } else {
         setError(data.error || 'Failed to create rep');
       }
@@ -159,6 +165,8 @@ export default function AddRepModal({ isOpen, onClose, onSuccess }: AddRepModalP
     setParentIdForPlacement('');
     setError(null);
     setSuccess(null);
+    setTemporaryPassword(null);
+    setEmailStatus(null);
   };
 
   const handleClose = () => {
@@ -243,8 +251,105 @@ export default function AddRepModal({ isOpen, onClose, onSuccess }: AddRepModalP
         )}
 
         {success && (
-          <div className="mx-4 mt-4 p-3 bg-green-50 border border-green-200 rounded-md">
-            <p className="text-sm text-green-800">{success}</p>
+          <div className="mx-4 mt-4 p-4 bg-green-50 border border-green-200 rounded-md space-y-3">
+            <p className="text-sm font-semibold text-green-800">{success}</p>
+
+            {/* Temporary Password */}
+            {temporaryPassword && (
+              <div className="bg-white p-3 rounded border border-green-300">
+                <p className="text-xs font-medium text-gray-700 mb-1">
+                  Temporary Password (share with rep):
+                </p>
+                <div className="flex items-center gap-2">
+                  <code className="flex-1 px-3 py-2 bg-gray-50 border border-gray-300 rounded text-sm font-mono">
+                    {temporaryPassword}
+                  </code>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      navigator.clipboard.writeText(temporaryPassword);
+                      alert('Password copied to clipboard!');
+                    }}
+                    className="px-3 py-2 bg-gray-200 hover:bg-gray-300 rounded text-xs font-medium"
+                  >
+                    Copy
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Email Status */}
+            {emailStatus && (
+              <div
+                className={`p-3 rounded border ${
+                  emailStatus.status === 'sent'
+                    ? 'bg-blue-50 border-blue-300'
+                    : 'bg-yellow-50 border-yellow-300'
+                }`}
+              >
+                <div className="flex items-start gap-2">
+                  {emailStatus.status === 'sent' ? (
+                    <svg
+                      className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                    </svg>
+                  ) : (
+                    <svg
+                      className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  )}
+                  <div className="flex-1">
+                    <p
+                      className={`text-sm font-medium ${
+                        emailStatus.status === 'sent' ? 'text-blue-800' : 'text-yellow-800'
+                      }`}
+                    >
+                      {emailStatus.status === 'sent'
+                        ? '✓ Welcome email sent'
+                        : '⚠ Welcome email not sent'}
+                    </p>
+                    <p
+                      className={`text-xs mt-1 ${
+                        emailStatus.status === 'sent' ? 'text-blue-700' : 'text-yellow-700'
+                      }`}
+                    >
+                      {emailStatus.message}
+                    </p>
+                    {emailStatus.status === 'failed' && (
+                      <p className="text-xs mt-2 text-yellow-800 font-medium">
+                        💡 Make sure to share the temporary password above with the rep manually.
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Continue Button */}
+            <div className="pt-2">
+              <button
+                onClick={() => {
+                  onSuccess();
+                  onClose();
+                  resetForm();
+                }}
+                className="w-full px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded-md transition-colors"
+              >
+                Done
+              </button>
+            </div>
           </div>
         )}
 

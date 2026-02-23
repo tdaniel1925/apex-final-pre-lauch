@@ -201,12 +201,20 @@ export async function POST(request: Request) {
     }
 
     // Step 8: Enroll in email campaign with temporary password (optional, don't fail if this fails)
+    console.log(`Attempting to send welcome email to ${distributor.email}...`);
     const enrollResult = await enrollInCampaign(distributor as Distributor, {
       temporaryPassword,
     });
 
+    let emailStatus = 'sent';
+    let emailMessage = 'Welcome email sent successfully';
+
     if (!enrollResult.success) {
       console.error('Email campaign enrollment failed:', enrollResult.error);
+      emailStatus = 'failed';
+      emailMessage = enrollResult.error || 'Failed to send welcome email';
+    } else {
+      console.log(`Welcome email sent successfully to ${distributor.email}`);
     }
 
     return NextResponse.json({
@@ -215,6 +223,8 @@ export async function POST(request: Request) {
       data: {
         distributor,
         temporaryPassword, // Return so admin can share with rep
+        emailStatus, // 'sent' or 'failed'
+        emailMessage, // Details about email sending
       },
     });
   } catch (error) {

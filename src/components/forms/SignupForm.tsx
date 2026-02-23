@@ -114,8 +114,16 @@ export default function SignupForm({ sponsorSlug, sponsorName }: SignupFormProps
         return;
       }
 
-      // Success - redirect to welcome page
-      router.push('/welcome');
+      // Success - store credentials in sessionStorage and redirect to credentials confirmation
+      sessionStorage.setItem(
+        'signup_credentials',
+        JSON.stringify({
+          username: data.slug,
+          password: data.password,
+          email: data.email,
+        })
+      );
+      router.push('/signup/credentials');
     } catch (error) {
       console.error('Signup error:', error);
       setSubmitError('An unexpected error occurred. Please try again.');
