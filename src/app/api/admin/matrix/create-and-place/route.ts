@@ -77,8 +77,13 @@ export async function POST(request: Request) {
 
     if (authError || !authData.user) {
       console.error('Auth error:', authError);
+      console.error('Auth error details:', JSON.stringify(authError, null, 2));
       return NextResponse.json(
-        { success: false, error: 'Failed to create auth account' },
+        {
+          success: false,
+          error: `Failed to create auth account: ${authError?.message || 'Unknown error'}`,
+          details: authError
+        },
         { status: 500 }
       );
     }
@@ -118,12 +123,17 @@ export async function POST(request: Request) {
 
     if (distributorError || !distributor) {
       console.error('Distributor creation error:', distributorError);
+      console.error('Distributor error details:', JSON.stringify(distributorError, null, 2));
 
       // Rollback: Delete auth user
       await serviceClient.auth.admin.deleteUser(authData.user.id);
 
       return NextResponse.json(
-        { success: false, error: 'Failed to create distributor record' },
+        {
+          success: false,
+          error: `Failed to create distributor record: ${distributorError?.message || 'Unknown error'}`,
+          details: distributorError
+        },
         { status: 500 }
       );
     }
