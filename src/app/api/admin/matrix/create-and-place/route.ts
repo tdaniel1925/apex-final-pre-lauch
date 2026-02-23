@@ -102,7 +102,16 @@ export async function POST(request: Request) {
         status: 'active',
         licensing_status: 'non_licensed', // Default, admin can change later
         licensing_status_set_at: new Date().toISOString(),
-        created_by_admin: true,
+        // ACH/Banking fields (null by default, distributor fills in profile)
+        bank_name: null,
+        bank_routing_number: null,
+        bank_account_number: null,
+        bank_account_type: null,
+        tax_id: null,
+        tax_id_type: null,
+        date_of_birth: null,
+        ach_verified: false,
+        ach_verified_at: null,
       })
       .select()
       .single();
