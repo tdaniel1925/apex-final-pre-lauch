@@ -9,6 +9,7 @@ import { createServiceClient } from '@/lib/supabase/service';
 import ReferralLink from '@/components/dashboard/ReferralLink';
 import TeamStatisticsUser from '@/components/dashboard/TeamStatisticsUser';
 import DashboardClient from '@/components/dashboard/DashboardClient';
+import Road500Banner from '@/components/dashboard/Road500Banner';
 import type { Distributor } from '@/lib/types';
 
 export const metadata = {
@@ -105,6 +106,7 @@ export default async function DashboardPage() {
 
   return (
     <DashboardClient distributor={dist}>
+      <Road500Banner />
       <div className="p-4">
       {/* Welcome Header */}
       <div className="mb-4">
