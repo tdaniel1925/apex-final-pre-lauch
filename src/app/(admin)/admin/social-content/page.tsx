@@ -3,8 +3,7 @@
 // Manage social media graphics and templates
 // ============================================================
 
-import { redirect } from 'next/navigation';
-import { createClient } from '@/lib/supabase/server';
+import { requireAdmin } from '@/lib/auth/admin';
 import { createServiceClient } from '@/lib/supabase/service';
 import SocialContentManager from '@/components/admin/SocialContentManager';
 import Link from 'next/link';
@@ -14,23 +13,9 @@ export const metadata = {
 };
 
 export default async function SocialContentPage() {
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-
-  if (!user) redirect('/login');
+  await requireAdmin();
 
   const serviceClient = createServiceClient();
-
-  // Check admin role
-  const { data: distributor } = await serviceClient
-    .from('distributors')
-    .select('role')
-    .eq('auth_user_id', user.id)
-    .single();
-
-  if (!distributor || distributor.role !== 'admin') {
-    redirect('/dashboard');
-  }
 
   // Load all social content
   const { data: content } = await serviceClient

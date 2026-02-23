@@ -33,9 +33,8 @@ CREATE POLICY "Admins can manage social content"
   TO authenticated
   USING (
     EXISTS (
-      SELECT 1 FROM distributors
-      WHERE distributors.auth_user_id = auth.uid()
-      AND distributors.role = 'admin'
+      SELECT 1 FROM admins
+      WHERE admins.auth_user_id = auth.uid()
     )
   );
 
