@@ -290,20 +290,20 @@ export default function ActivityLogPanel({ distributorId }: ActivityLogPanelProp
                           {expandedActivity === activity.id && (
                             <div className="mt-2 p-2 bg-white rounded border border-gray-200 text-xs">
                               <p className="font-semibold text-gray-700 mb-2">Changed fields:</p>
-                              {activity.changes.fields.map((field) => (
+                              {activity.changes?.fields.map((field) => (
                                 <div key={field} className="mb-2 pb-2 border-b border-gray-100 last:border-0">
                                   <p className="font-medium text-gray-900 mb-1">{field}</p>
                                   <div className="grid grid-cols-2 gap-2">
                                     <div>
                                       <p className="text-gray-600 mb-0.5">Before:</p>
                                       <p className="text-red-700 bg-red-50 px-2 py-1 rounded">
-                                        {JSON.stringify(activity.changes.before[field]) || 'N/A'}
+                                        {JSON.stringify(activity.changes?.before[field]) || 'N/A'}
                                       </p>
                                     </div>
                                     <div>
                                       <p className="text-gray-600 mb-0.5">After:</p>
                                       <p className="text-green-700 bg-green-50 px-2 py-1 rounded">
-                                        {JSON.stringify(activity.changes.after[field]) || 'N/A'}
+                                        {JSON.stringify(activity.changes?.after[field]) || 'N/A'}
                                       </p>
                                     </div>
                                   </div>
