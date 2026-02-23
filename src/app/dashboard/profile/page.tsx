@@ -6,7 +6,7 @@
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { createServiceClient } from '@/lib/supabase/service';
-import ProfileForm from '@/components/dashboard/ProfileForm';
+import AccordionProfileForm from '@/components/dashboard/AccordionProfileForm';
 import { DistributorProvider } from '@/contexts/DistributorContext';
 import LicensingStatusManager from '@/components/dashboard/LicensingStatusManager';
 import ResendWelcomeButton from '@/components/dashboard/ResendWelcomeButton';
@@ -65,7 +65,7 @@ export default async function ProfilePage() {
           <LicensingStatusManager distributor={dist} />
 
           {/* Profile Form */}
-          <ProfileForm distributor={dist} userEmail={user.email!} />
+          <AccordionProfileForm distributor={dist} userEmail={user.email!} />
         </div>
       </div>
     </DistributorProvider>

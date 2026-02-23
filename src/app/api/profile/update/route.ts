@@ -29,15 +29,31 @@ export async function POST(request: Request) {
     // Build update object with only provided fields
     const updateData: any = {};
 
+    // Personal Information
     if (data.first_name) updateData.first_name = data.first_name;
     if (data.last_name) updateData.last_name = data.last_name;
     if (data.company_name !== undefined) updateData.company_name = data.company_name || null;
     if (data.phone !== undefined) updateData.phone = data.phone || null;
+
+    // Address
     if (data.address_line1 !== undefined) updateData.address_line1 = data.address_line1 || null;
     if (data.address_line2 !== undefined) updateData.address_line2 = data.address_line2 || null;
     if (data.city !== undefined) updateData.city = data.city || null;
     if (data.state !== undefined) updateData.state = data.state || null;
     if (data.zip !== undefined) updateData.zip = data.zip || null;
+
+    // Banking/ACH Information
+    if (data.bank_name !== undefined) updateData.bank_name = data.bank_name || null;
+    if (data.bank_routing_number !== undefined) updateData.bank_routing_number = data.bank_routing_number || null;
+    if (data.bank_account_number !== undefined) updateData.bank_account_number = data.bank_account_number || null;
+    if (data.bank_account_type !== undefined) updateData.bank_account_type = data.bank_account_type || null;
+
+    // Tax Information
+    if (data.tax_id !== undefined) updateData.tax_id = data.tax_id || null;
+    if (data.tax_id_type !== undefined) updateData.tax_id_type = data.tax_id_type || null;
+    if (data.date_of_birth !== undefined) updateData.date_of_birth = data.date_of_birth || null;
+
+    // Extended Profile
     if (data.bio !== undefined) updateData.bio = data.bio || null;
     if (data.social_links !== undefined) updateData.social_links = data.social_links || null;
 

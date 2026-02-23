@@ -41,6 +41,19 @@ export interface Distributor {
   state: string | null;
   zip: string | null;
 
+  // Banking/ACH Information (for commission payouts)
+  bank_name: string | null;
+  bank_routing_number: string | null;
+  bank_account_number: string | null;
+  bank_account_type: 'checking' | 'savings' | null;
+  ach_verified: boolean;
+  ach_verified_at: string | null;
+
+  // Tax Information
+  tax_id: string | null; // SSN or EIN (encrypted/masked)
+  tax_id_type: 'ssn' | 'ein' | null;
+  date_of_birth: string | null; // YYYY-MM-DD format
+
   // Admin/Status Fields (Stage 2)
   status?: string | null; // 'active', 'suspended', 'deleted'
   admin_role?: string | null; // 'super_admin', 'admin', 'support', 'viewer'
