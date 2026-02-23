@@ -1,96 +1,199 @@
 // =============================================
-// Admin Activity Logger
-// Logs all admin actions for audit trail
+// Admin Activity Logger Service
+// Centralized logging for all admin actions
 // =============================================
 
 import { createServiceClient } from '@/lib/supabase/service';
 
-export type ActivityTargetType = 'distributor' | 'commission' | 'system' | 'settings' | 'report';
-
-export interface LogActivityParams {
+export interface LogAdminActivityParams {
   adminId: string;
-  action: string;
-  targetType?: ActivityTargetType;
-  targetId?: string;
-  details?: Record<string, any>;
+  adminEmail: string;
+  adminName: string;
+  distributorId?: string;
+  distributorName?: string;
+  actionType: string;
+  actionDescription: string;
+  changes?: {
+    before: Record<string, any>;
+    after: Record<string, any>;
+    fields: string[];
+  };
   ipAddress?: string;
   userAgent?: string;
 }
 
 /**
- * Logs an admin action to the activity log
+ * Log an admin action to the activity log
+ * This creates an immutable audit trail
  */
-export async function logAdminActivity(params: LogActivityParams): Promise<void> {
+export async function logAdminActivity(
+  params: LogAdminActivityParams
+): Promise<{ success: boolean; logId?: string; error?: string }> {
   try {
     const serviceClient = createServiceClient();
 
-    await serviceClient.from('admin_activity_log').insert({
-      admin_id: params.adminId,
-      action: params.action,
-      target_type: params.targetType,
-      target_id: params.targetId,
-      details: params.details,
-      ip_address: params.ipAddress,
-      user_agent: params.userAgent,
+    // Use the database function for consistency
+    const { data, error } = await serviceClient.rpc('log_admin_activity', {
+      p_admin_id: params.adminId,
+      p_admin_email: params.adminEmail,
+      p_admin_name: params.adminName,
+      p_distributor_id: params.distributorId || null,
+      p_distributor_name: params.distributorName || null,
+      p_action_type: params.actionType,
+      p_action_description: params.actionDescription,
+      p_changes: params.changes ? JSON.stringify(params.changes) : null,
+      p_ip_address: params.ipAddress || null,
+      p_user_agent: params.userAgent || null,
     });
+
+    if (error) {
+      console.error('Failed to log admin activity:', error);
+      return { success: false, error: error.message };
+    }
+
+    return { success: true, logId: data };
   } catch (error) {
-    // Log error but don't throw - activity logging shouldn't break functionality
-    console.error('Failed to log admin activity:', error);
+    console.error('Activity logging error:', error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Unknown error',
+    };
   }
 }
 
 /**
- * Common admin actions for consistent logging
+ * Get activity logs for a specific distributor
  */
-export const AdminActions = {
-  // Distributor actions
-  DISTRIBUTOR_CREATE: 'distributor.create',
-  DISTRIBUTOR_UPDATE: 'distributor.update',
-  DISTRIBUTOR_DELETE: 'distributor.delete',
-  DISTRIBUTOR_SUSPEND: 'distributor.suspend',
-  DISTRIBUTOR_ACTIVATE: 'distributor.activate',
-  DISTRIBUTOR_VIEW: 'distributor.view',
+export async function getDistributorActivity(
+  distributorId: string,
+  options: {
+    page?: number;
+    pageSize?: number;
+    actionType?: string;
+  } = {}
+): Promise<{
+  success: boolean;
+  activities?: any[];
+  total?: number;
+  error?: string;
+}> {
+  try {
+    const serviceClient = createServiceClient();
+    const { page = 1, pageSize = 20, actionType } = options;
+    const offset = (page - 1) * pageSize;
 
-  // Commission actions
-  COMMISSION_APPROVE: 'commission.approve',
-  COMMISSION_REJECT: 'commission.reject',
-  COMMISSION_CREATE: 'commission.create',
-  COMMISSION_UPDATE: 'commission.update',
-  COMMISSION_PAYOUT: 'commission.payout',
+    // Build query
+    let query = serviceClient
+      .from('admin_activity_log')
+      .select('*', { count: 'exact' })
+      .eq('distributor_id', distributorId)
+      .order('created_at', { ascending: false })
+      .range(offset, offset + pageSize - 1);
 
-  // System actions
-  SYSTEM_LOGIN: 'system.login',
-  SYSTEM_LOGOUT: 'system.logout',
-  SYSTEM_SETTINGS_UPDATE: 'system.settings.update',
-  SYSTEM_BACKUP: 'system.backup',
-  SYSTEM_RESTORE: 'system.restore',
+    // Filter by action type if provided
+    if (actionType) {
+      query = query.eq('action_type', actionType);
+    }
 
-  // Report actions
-  REPORT_GENERATE: 'report.generate',
-  REPORT_EXPORT: 'report.export',
-  REPORT_VIEW: 'report.view',
+    const { data, error, count } = await query;
 
-  // Bulk actions
-  BULK_IMPORT: 'bulk.import',
-  BULK_EXPORT: 'bulk.export',
-  BULK_UPDATE: 'bulk.update',
-  BULK_EMAIL: 'bulk.email',
-} as const;
+    if (error) {
+      console.error('Failed to get distributor activity:', error);
+      return { success: false, error: error.message };
+    }
 
-/**
- * Helper to extract IP address from request headers
- */
-export function getIpAddress(headers: Headers): string | undefined {
-  return (
-    headers.get('x-forwarded-for')?.split(',')[0] ||
-    headers.get('x-real-ip') ||
-    undefined
-  );
+    return {
+      success: true,
+      activities: data || [],
+      total: count || 0,
+    };
+  } catch (error) {
+    console.error('Get distributor activity error:', error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Unknown error',
+    };
+  }
 }
 
 /**
- * Helper to get user agent from request headers
+ * Get recent activity across all distributors
  */
-export function getUserAgent(headers: Headers): string | undefined {
-  return headers.get('user-agent') || undefined;
+export async function getRecentActivity(
+  limit: number = 50
+): Promise<{
+  success: boolean;
+  activities?: any[];
+  error?: string;
+}> {
+  try {
+    const serviceClient = createServiceClient();
+
+    const { data, error } = await serviceClient
+      .from('admin_recent_activity')
+      .select('*')
+      .limit(limit);
+
+    if (error) {
+      console.error('Failed to get recent activity:', error);
+      return { success: false, error: error.message };
+    }
+
+    return {
+      success: true,
+      activities: data || [],
+    };
+  } catch (error) {
+    console.error('Get recent activity error:', error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Unknown error',
+    };
+  }
+}
+
+/**
+ * Get activity logs by admin
+ */
+export async function getAdminActivity(
+  adminId: string,
+  options: {
+    page?: number;
+    pageSize?: number;
+  } = {}
+): Promise<{
+  success: boolean;
+  activities?: any[];
+  total?: number;
+  error?: string;
+}> {
+  try {
+    const serviceClient = createServiceClient();
+    const { page = 1, pageSize = 20 } = options;
+    const offset = (page - 1) * pageSize;
+
+    const { data, error, count } = await serviceClient
+      .from('admin_activity_log')
+      .select('*', { count: 'exact' })
+      .eq('admin_id', adminId)
+      .order('created_at', { ascending: false })
+      .range(offset, offset + pageSize - 1);
+
+    if (error) {
+      console.error('Failed to get admin activity:', error);
+      return { success: false, error: error.message };
+    }
+
+    return {
+      success: true,
+      activities: data || [],
+      total: count || 0,
+    };
+  } catch (error) {
+    console.error('Get admin activity error:', error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Unknown error',
+    };
+  }
 }
