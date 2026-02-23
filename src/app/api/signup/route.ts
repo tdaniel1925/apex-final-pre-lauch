@@ -163,6 +163,39 @@ export async function POST(request: NextRequest) {
     });
 
     if (authError || !authData.user) {
+      // Handle case where auth user exists but no distributor (orphaned auth user)
+      if (authError?.message?.includes('already registered') || authError?.code === 'user_already_exists') {
+        // Try to find if distributor exists
+        const { data: existingDist } = await supabase
+          .from('distributors')
+          .select('id')
+          .eq('email', data.email)
+          .single();
+
+        if (!existingDist) {
+          // Auth user exists but no distributor - orphaned account, clean it up
+          console.log('Cleaning up orphaned auth user for email:', data.email);
+
+          // Get the auth user ID to delete
+          const { data: { users } } = await serviceClient.auth.admin.listUsers();
+          const orphanedUser = users?.find(u => u.email === data.email);
+
+          if (orphanedUser) {
+            await serviceClient.auth.admin.deleteUser(orphanedUser.id);
+            console.log('Deleted orphaned auth user, please try signing up again');
+          }
+
+          return NextResponse.json(
+            {
+              success: false,
+              error: 'Account cleanup required',
+              message: 'An incomplete signup was detected and cleaned up. Please try again.',
+            } as ApiResponse,
+            { status: 409 }
+          );
+        }
+      }
+
       console.error('Auth error:', authError);
       return NextResponse.json(
         {
