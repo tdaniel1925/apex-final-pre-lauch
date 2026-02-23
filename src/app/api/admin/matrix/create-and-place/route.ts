@@ -103,6 +103,36 @@ export async function POST(request: Request) {
     const { data: repNumberData } = await serviceClient.rpc('get_next_rep_number');
     const repNumber = repNumberData || 1;
 
+    // Step 5.5: Generate unique affiliate code (8-char uppercase random string)
+    const generateAffiliateCode = () => {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      let code = '';
+      for (let i = 0; i < 8; i++) {
+        code += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return code;
+    };
+
+    let affiliateCode = generateAffiliateCode();
+
+    // Ensure uniqueness
+    let codeExists = true;
+    let attempts = 0;
+    while (codeExists && attempts < 10) {
+      const { data: existing } = await serviceClient
+        .from('distributors')
+        .select('affiliate_code')
+        .eq('affiliate_code', affiliateCode)
+        .single();
+
+      if (!existing) {
+        codeExists = false;
+      } else {
+        affiliateCode = generateAffiliateCode();
+        attempts++;
+      }
+    }
+
     // Step 6: Create distributor record (without matrix placement yet)
     const { data: distributor, error: distributorError } = await serviceClient
       .from('distributors')
@@ -115,6 +145,7 @@ export async function POST(request: Request) {
         phone: phone?.trim() || null,
         company_name: companyName?.trim() || null,
         rep_number: repNumber,
+        affiliate_code: affiliateCode,
         status: 'active',
         licensing_status: 'non_licensed', // Default, admin can change later
         licensing_status_set_at: new Date().toISOString(),

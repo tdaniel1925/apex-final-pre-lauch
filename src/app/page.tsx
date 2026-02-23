@@ -10,6 +10,7 @@ export default function Home() {
     first_name: 'Your',
     last_name: 'Success',
     slug: 'apex',
+    affiliate_code: 'APEX0000',
     phone: '281-600-4000',
     company_name: 'Apex Affinity Group',
     bio: 'Join our team of successful insurance professionals. Build your business with proven systems, unlimited earning potential, and comprehensive support. No experience required - we provide complete training and resources.',

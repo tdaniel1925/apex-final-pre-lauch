@@ -22,6 +22,9 @@ export interface Distributor {
   // URL Slug (for personalized landing pages)
   slug: string;
 
+  // Affiliate tracking code (8-char unique code)
+  affiliate_code: string;
+
   // MLM Structure
   sponsor_id: string | null;
   matrix_parent_id: string | null;
