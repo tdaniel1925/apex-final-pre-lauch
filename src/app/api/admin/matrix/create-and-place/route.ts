@@ -99,9 +99,15 @@ export async function POST(request: Request) {
       );
     }
 
-    // Step 5: Get next rep number
-    const { data: repNumberData } = await serviceClient.rpc('get_next_rep_number');
-    const repNumber = repNumberData || 1;
+    // Step 5: Get next rep number (find max and add 1)
+    const { data: maxRepData } = await serviceClient
+      .from('distributors')
+      .select('rep_number')
+      .order('rep_number', { ascending: false })
+      .limit(1)
+      .single();
+
+    const repNumber = (maxRepData?.rep_number || 0) + 1;
 
     // Step 5.5: Generate unique affiliate code (8-char uppercase random string)
     const generateAffiliateCode = () => {
