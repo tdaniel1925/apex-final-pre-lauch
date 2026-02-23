@@ -172,7 +172,7 @@ export default async function PolicyPingPage() {
       </div>
 
       {/* Cross-Sell Rules */}
-      <div className="bg-gradient-to-br from-green-50 to-white py-16">
+      <div className="bg-green-50 py-16">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-gray-900 text-center mb-4">Built-In Cross-Sell Rules</h2>
           <p className="text-center text-gray-600 mb-12">PolicyPing automatically detects coverage gaps</p>
@@ -217,7 +217,7 @@ export default async function PolicyPingPage() {
         <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">Real Results</h2>
         <div className="bg-white rounded-lg shadow-lg p-8 border-l-4 border-green-600">
           <div className="flex items-start gap-4">
-            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center text-white font-bold text-2xl flex-shrink-0">
+            <div className="w-16 h-16 rounded-full bg-green-600 flex items-center justify-center text-white font-bold text-2xl flex-shrink-0">
               JP
             </div>
             <div>
@@ -277,7 +277,7 @@ export default async function PolicyPingPage() {
       </div>
 
       {/* CTA */}
-      <div className="bg-gradient-to-br from-gray-900 to-green-700 text-white py-16">
+      <div className="bg-gray-900 text-white py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Never Lose a Renewal Again</h2>
           <p className="text-lg text-green-100 mb-8">

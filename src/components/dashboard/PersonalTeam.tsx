@@ -84,17 +84,17 @@ export default function PersonalTeam({ recruits }: PersonalTeamProps) {
     <div>
       {/* Statistics Cards */}
       <div className="grid grid-cols-3 gap-3 mb-4">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-lg p-3 text-center">
-          <p className="text-xs text-blue-600 font-medium mb-0.5">Total Recruits</p>
-          <p className="text-2xl font-bold text-blue-900">{statistics.total}</p>
+        <div className="bg-white border border-gray-300 rounded-lg p-3 text-center shadow-sm">
+          <p className="text-xs text-gray-500 font-semibold uppercase tracking-wide mb-1">Total Recruits</p>
+          <p className="text-2xl font-bold text-gray-900">{statistics.total}</p>
         </div>
-        <div className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-lg p-3 text-center">
-          <p className="text-xs text-green-600 font-medium mb-0.5">Active</p>
-          <p className="text-2xl font-bold text-green-900">{statistics.active}</p>
+        <div className="bg-white border border-gray-300 rounded-lg p-3 text-center shadow-sm">
+          <p className="text-xs text-gray-500 font-semibold uppercase tracking-wide mb-1">Active</p>
+          <p className="text-2xl font-bold text-green-600">{statistics.active}</p>
         </div>
-        <div className="bg-gradient-to-br from-red-50 to-red-100 border border-red-200 rounded-lg p-3 text-center">
-          <p className="text-xs text-red-600 font-medium mb-0.5">Suspended</p>
-          <p className="text-2xl font-bold text-red-900">{statistics.suspended}</p>
+        <div className="bg-white border border-gray-300 rounded-lg p-3 text-center shadow-sm">
+          <p className="text-xs text-gray-500 font-semibold uppercase tracking-wide mb-1">Suspended</p>
+          <p className="text-2xl font-bold text-red-600">{statistics.suspended}</p>
         </div>
       </div>
 
@@ -194,7 +194,7 @@ export default function PersonalTeam({ recruits }: PersonalTeamProps) {
                     <tr key={member.id} className="hover:bg-gray-50">
                       <td className="px-3 py-2">
                         <div className="flex items-center gap-2">
-                          <div className="w-6 h-6 bg-gradient-to-br from-[#2B4C7E] to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-[10px] flex-shrink-0">
+                          <div className="w-6 h-6 bg-[#2B4C7E] rounded-full flex items-center justify-center text-white font-bold text-[10px] flex-shrink-0">
                             {member.first_name.charAt(0)}
                             {member.last_name.charAt(0)}
                           </div>

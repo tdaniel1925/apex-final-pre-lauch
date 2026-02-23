@@ -27,7 +27,7 @@ export default function SponsorLineageUser({ sponsorPath, currentUser }: Sponsor
       </div>
 
       {/* Breadcrumb Path */}
-      <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-2 mb-2">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-2 mb-2">
         <div className="flex items-center flex-wrap gap-1">
           {sponsorPath.map((sponsor, index) => (
             <div key={sponsor.id} className="flex items-center">
@@ -72,8 +72,8 @@ export default function SponsorLineageUser({ sponsorPath, currentUser }: Sponsor
           </svg>
 
           {/* Current User (You) */}
-          <div className="inline-flex items-center gap-1 bg-gradient-to-r from-green-100 to-green-200 border border-green-300 rounded px-1.5 py-0.5">
-            <div className="w-4 h-4 bg-gradient-to-br from-green-600 to-green-700 rounded-full flex items-center justify-center flex-shrink-0">
+          <div className="inline-flex items-center gap-1 bg-green-200 border border-green-300 rounded px-1.5 py-0.5">
+            <div className="w-4 h-4 bg-green-700 rounded-full flex items-center justify-center flex-shrink-0">
               <span className="text-[8px] font-bold text-white">
                 {currentUser.first_name.charAt(0)}
                 {currentUser.last_name.charAt(0)}
@@ -88,10 +88,10 @@ export default function SponsorLineageUser({ sponsorPath, currentUser }: Sponsor
 
       {/* Direct Sponsor Card */}
       {sponsorPath.length > 0 && (
-        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 border border-indigo-200 rounded-lg p-2">
+        <div className="bg-indigo-100 border border-indigo-200 rounded-lg p-2">
           <p className="text-[10px] text-indigo-600 font-semibold mb-1">Your Direct Sponsor</p>
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
+            <div className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
               <span className="text-[10px] font-bold text-white">
                 {sponsorPath[sponsorPath.length - 1].first_name.charAt(0)}
                 {sponsorPath[sponsorPath.length - 1].last_name.charAt(0)}

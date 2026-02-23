@@ -87,7 +87,7 @@ export default function MatrixChildrenUser({ children }: MatrixChildrenUserProps
               </div>
             ) : (
               // Filled Slot
-              <div className="border-2 border-[#2B4C7E]/30 rounded-lg p-2 bg-gradient-to-br from-blue-50 to-purple-50 hover:border-[#2B4C7E] hover:shadow-md transition-all">
+              <div className="border-2 border-[#2B4C7E]/30 rounded-lg p-2 bg-purple-50 hover:border-[#2B4C7E] hover:shadow-md transition-all">
                 <div className="text-center">
                   {/* Position Badge */}
                   <div className="absolute -top-1 -right-1 w-4 h-4 bg-[#2B4C7E] rounded-full flex items-center justify-center">

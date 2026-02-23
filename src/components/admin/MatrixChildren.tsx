@@ -114,7 +114,7 @@ export default function MatrixChildren({ distributorId }: MatrixChildrenProps) {
       <div className="mb-3">
         <div className="bg-gray-200 rounded-full h-2">
           <div
-            className="bg-gradient-to-r from-blue-600 to-purple-600 h-2 rounded-full transition-all"
+            className="bg-blue-600 h-2 rounded-full transition-all"
             style={{ width: `${statistics.fillPercentage}%` }}
           />
         </div>
@@ -138,7 +138,7 @@ export default function MatrixChildren({ distributorId }: MatrixChildrenProps) {
               // Filled Slot
               <div
                 onClick={() => router.push(`/admin/distributors/${slot.distributor!.id}`)}
-                className="border-2 border-blue-200 rounded-lg p-2 bg-gradient-to-br from-blue-50 to-purple-50 hover:border-blue-400 hover:shadow-md transition-all cursor-pointer"
+                className="border-2 border-blue-200 rounded-lg p-2 bg-purple-50 hover:border-blue-400 hover:shadow-md transition-all cursor-pointer"
               >
                 <div className="text-center">
                   {/* Position Badge */}
@@ -147,7 +147,7 @@ export default function MatrixChildren({ distributorId }: MatrixChildrenProps) {
                   </div>
 
                   {/* Avatar */}
-                  <div className="w-8 h-8 mx-auto bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center mb-1">
+                  <div className="w-8 h-8 mx-auto bg-purple-600 rounded-full flex items-center justify-center mb-1">
                     <span className="text-[10px] font-bold text-white">
                       {slot.distributor!.first_name.charAt(0)}
                       {slot.distributor!.last_name.charAt(0)}

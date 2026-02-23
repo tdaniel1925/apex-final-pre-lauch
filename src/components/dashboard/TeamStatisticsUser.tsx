@@ -66,23 +66,23 @@ export default function TeamStatisticsUser({ recruits, matrixChildren }: TeamSta
 
       {/* Overview Stats */}
       <div className="grid grid-cols-3 gap-2 mb-3">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-lg p-2 text-center">
+        <div className="bg-blue-100 border border-blue-200 rounded-lg p-2 text-center">
           <p className="text-[10px] text-blue-600 font-medium mb-0.5">Total Team</p>
           <p className="text-xl font-bold text-blue-900">{total}</p>
         </div>
-        <div className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-lg p-2 text-center">
+        <div className="bg-green-100 border border-green-200 rounded-lg p-2 text-center">
           <p className="text-[10px] text-green-600 font-medium mb-0.5">Active</p>
           <p className="text-xl font-bold text-green-900">{active}</p>
           <p className="text-[8px] text-green-600 font-medium">{activePercentage}%</p>
         </div>
-        <div className="bg-gradient-to-br from-red-50 to-red-100 border border-red-200 rounded-lg p-2 text-center">
+        <div className="bg-red-100 border border-red-200 rounded-lg p-2 text-center">
           <p className="text-[10px] text-red-600 font-medium mb-0.5">Suspended</p>
           <p className="text-xl font-bold text-red-900">{suspended}</p>
         </div>
       </div>
 
       {/* Growth Metrics */}
-      <div className="bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 rounded-lg p-2 mb-3">
+      <div className="bg-purple-100 border border-purple-200 rounded-lg p-2 mb-3">
         <p className="text-[10px] text-purple-600 font-semibold mb-2">Growth Metrics</p>
         <div className="grid grid-cols-2 gap-2">
           <div className="bg-white/60 rounded p-2 text-center">
@@ -99,7 +99,7 @@ export default function TeamStatisticsUser({ recruits, matrixChildren }: TeamSta
       {/* Matrix & Depth Stats */}
       <div className="grid grid-cols-2 gap-2 mb-3">
         {/* Matrix Fill */}
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200 rounded-lg p-2">
+        <div className="bg-orange-100 border border-orange-200 rounded-lg p-2">
           <p className="text-[10px] text-orange-600 font-semibold mb-1">Matrix Fill</p>
           <div className="flex items-end justify-between">
             <div>
@@ -115,7 +115,7 @@ export default function TeamStatisticsUser({ recruits, matrixChildren }: TeamSta
         </div>
 
         {/* Team Depth */}
-        <div className="bg-gradient-to-br from-teal-50 to-teal-100 border border-teal-200 rounded-lg p-2">
+        <div className="bg-teal-100 border border-teal-200 rounded-lg p-2">
           <p className="text-[10px] text-teal-600 font-semibold mb-1">Team Depth</p>
           <div className="flex items-end justify-between">
             <div>
@@ -137,10 +137,10 @@ export default function TeamStatisticsUser({ recruits, matrixChildren }: TeamSta
 
       {/* Most Recent Recruit */}
       {mostRecent && (
-        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 border border-indigo-200 rounded-lg p-2">
+        <div className="bg-indigo-100 border border-indigo-200 rounded-lg p-2">
           <p className="text-[10px] text-indigo-600 font-semibold mb-1">Most Recent Recruit</p>
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
+            <div className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
               <span className="text-[10px] font-bold text-white">
                 {mostRecent.first_name.charAt(0)}
                 {mostRecent.last_name.charAt(0)}

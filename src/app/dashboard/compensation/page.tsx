@@ -184,7 +184,7 @@ export default function CompensationOverviewPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-gradient-to-r from-[#2B4C7E] to-[#567EBB] text-white">
+      <div className="bg-[#2B4C7E] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <h1 className="text-4xl font-bold mb-4">Compensation Plan</h1>
           <p className="text-xl text-blue-100 max-w-3xl">
@@ -380,7 +380,7 @@ export default function CompensationOverviewPage() {
       </div>
 
       {/* CTA Section */}
-      <div className="bg-gradient-to-r from-[#2B4C7E] to-[#567EBB] text-white py-16 mt-8">
+      <div className="bg-[#2B4C7E] text-white py-16 mt-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Start Earning?</h2>
           <p className="text-xl text-blue-100 mb-8">

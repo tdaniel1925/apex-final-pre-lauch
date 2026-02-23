@@ -137,9 +137,9 @@ export default function SponsorLineage({ distributorId, distributorName }: Spons
       {directSponsor && (
         <div className="border-t border-gray-200 pt-3">
           <p className="text-xs text-gray-600 mb-1.5">Direct Sponsor:</p>
-          <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-3">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
+              <div className="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
                 {directSponsor.first_name.charAt(0)}
                 {directSponsor.last_name.charAt(0)}
               </div>

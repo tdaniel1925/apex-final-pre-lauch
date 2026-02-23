@@ -68,9 +68,9 @@ export default function Road500BannerClient({ totalAgents, personalRecruit, goal
       `}</style>
 
       <Link href="/dashboard/road-to-500" className="road500-banner block" style={{
-        background: 'linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%)',
-        border: '1.5px solid #fde68a',
-        borderRadius: '16px',
+        background: '#fef3c7',
+        border: '2px solid #fde68a',
+        borderRadius: '12px',
         padding: '20px 24px 16px',
         marginBottom: '0',
         textDecoration: 'none',

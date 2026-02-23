@@ -154,7 +154,7 @@ export default async function RoadTo500Page() {
             to <strong>500 active agents</strong>. This isn't just about numbers - it's about building a powerful
             community of insurance professionals who support each other and grow together.
           </p>
-          <div className="bg-gradient-to-r from-yellow-50 to-orange-50 border-l-4 border-orange-500 p-6 rounded-r">
+          <div className="bg-yellow-50 border-l-4 border-orange-500 p-6 rounded-r">
             <h3 className="font-bold text-gray-900 mb-2">Why 500 Matters:</h3>
             <ul className="space-y-2 text-gray-700">
               <li className="flex items-start gap-2">
@@ -208,7 +208,7 @@ export default async function RoadTo500Page() {
         </section>
 
         {/* Your Personal Stats */}
-        <section className="bg-gradient-to-r from-purple-500 to-indigo-600 text-white rounded-lg shadow-md p-8">
+        <section className="bg-purple-600 text-white rounded-lg shadow-md p-8">
           <h2 className="text-3xl font-bold mb-6">Your Contribution</h2>
           <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-white/10 backdrop-blur rounded-lg p-6 text-center">

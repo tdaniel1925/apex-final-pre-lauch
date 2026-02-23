@@ -176,7 +176,7 @@ export default function MatrixView({ stats, initialLevel, initialLevelData }: Ma
                   }`}
                 >
                   <div className="flex items-center gap-2 mb-2">
-                    <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xs">
+                    <div className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xs">
                       {distributor.first_name.charAt(0)}
                       {distributor.last_name.charAt(0)}
                     </div>

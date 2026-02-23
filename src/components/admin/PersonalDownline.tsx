@@ -122,15 +122,15 @@ export default function PersonalDownline({ distributorId }: PersonalDownlineProp
 
       {/* Statistics Cards */}
       <div className="grid grid-cols-3 gap-2 mb-3">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-lg p-2 text-center">
+        <div className="bg-blue-100 border border-blue-200 rounded-lg p-2 text-center">
           <p className="text-[10px] text-blue-600 font-medium mb-0.5">Total</p>
           <p className="text-xl font-bold text-blue-900">{statistics.total}</p>
         </div>
-        <div className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-lg p-2 text-center">
+        <div className="bg-green-100 border border-green-200 rounded-lg p-2 text-center">
           <p className="text-[10px] text-green-600 font-medium mb-0.5">Active</p>
           <p className="text-xl font-bold text-green-900">{statistics.active}</p>
         </div>
-        <div className="bg-gradient-to-br from-red-50 to-red-100 border border-red-200 rounded-lg p-2 text-center">
+        <div className="bg-red-100 border border-red-200 rounded-lg p-2 text-center">
           <p className="text-[10px] text-red-600 font-medium mb-0.5">Suspended</p>
           <p className="text-xl font-bold text-red-900">{statistics.suspended}</p>
         </div>
@@ -219,7 +219,7 @@ export default function PersonalDownline({ distributorId }: PersonalDownlineProp
                   >
                     <td className="px-2 py-1.5">
                       <div className="flex items-center gap-1.5">
-                        <div className="w-6 h-6 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-[10px] flex-shrink-0">
+                        <div className="w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-[10px] flex-shrink-0">
                           {dist.first_name.charAt(0)}
                           {dist.last_name.charAt(0)}
                         </div>

@@ -85,7 +85,7 @@ export default function SocialMediaHub({ content, distributor }: SocialMediaHubP
       )}
 
       {/* Usage Tips */}
-      <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-6">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
         <h2 className="text-lg font-semibold text-gray-900 mb-3">🚀 How to Maximize Your Social Media Impact</h2>
         <div className="grid md:grid-cols-2 gap-4 text-sm text-gray-700">
           <div>

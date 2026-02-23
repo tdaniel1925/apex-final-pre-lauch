@@ -24,7 +24,7 @@ export default async function VacationBonusPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="bg-gradient-to-r from-violet-500 to-violet-600 text-white py-12">
+      <div className="bg-violet-600 text-white py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link href="/dashboard/compensation" className="inline-flex items-center text-violet-200 hover:text-white mb-4 transition-colors">
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

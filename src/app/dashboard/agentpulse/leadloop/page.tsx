@@ -52,7 +52,7 @@ export default async function LeadLoopPage() {
       </div>
 
       <div className="max-w-4xl mx-auto px-4 py-16">
-        <div className="bg-gradient-to-r from-orange-100 to-yellow-100 border-2 border-orange-300 rounded-lg p-8 text-center mb-12">
+        <div className="bg-orange-100 border-2 border-orange-300 rounded-lg p-8 text-center mb-12">
           <h2 className="text-2xl font-bold text-gray-900 mb-3">The Best Leads Come From Referrals</h2>
           <p className="text-lg text-gray-800">
             But 94% of agents never systematically ask for them.
@@ -70,7 +70,7 @@ export default async function LeadLoopPage() {
           <p className="text-center text-gray-600 mb-12">You close a policy → LeadLoop takes over</p>
 
           <div className="max-w-3xl mx-auto space-y-6">
-            <div className="bg-gradient-to-r from-green-50 to-green-100 border-l-4 border-green-500 p-6 rounded-lg">
+            <div className="bg-green-50 border-l-4 border-green-500 p-6 rounded-lg">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">
                   Day 0
@@ -84,7 +84,7 @@ export default async function LeadLoopPage() {
               </div>
             </div>
 
-            <div className="bg-gradient-to-r from-blue-50 to-blue-100 border-l-4 border-blue-500 p-6 rounded-lg">
+            <div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-lg">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">
                   Day 3
@@ -109,7 +109,7 @@ export default async function LeadLoopPage() {
               </div>
             </div>
 
-            <div className="bg-gradient-to-r from-purple-50 to-purple-100 border-l-4 border-purple-500 p-6 rounded-lg">
+            <div className="bg-purple-50 border-l-4 border-purple-500 p-6 rounded-lg">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-purple-500 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">
                   Day 14
@@ -129,7 +129,7 @@ export default async function LeadLoopPage() {
               </div>
             </div>
 
-            <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 border-l-4 border-yellow-500 p-6 rounded-lg">
+            <div className="bg-yellow-50 border-l-4 border-yellow-500 p-6 rounded-lg">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-yellow-500 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">
                   Day 30
@@ -143,7 +143,7 @@ export default async function LeadLoopPage() {
               </div>
             </div>
 
-            <div className="bg-gradient-to-r from-orange-50 to-orange-100 border-l-4 border-orange-500 p-6 rounded-lg">
+            <div className="bg-orange-50 border-l-4 border-orange-500 p-6 rounded-lg">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-orange-500 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">
                   Day 90
@@ -160,7 +160,7 @@ export default async function LeadLoopPage() {
         </div>
       </div>
 
-      <div className="bg-gradient-to-br from-orange-50 to-white py-16">
+      <div className="bg-orange-50 py-16">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">Tracking Dashboards</h2>
 
@@ -200,7 +200,7 @@ export default async function LeadLoopPage() {
             <div className="bg-white rounded-lg shadow-lg p-6 border-2 border-purple-200">
               <h3 className="font-bold text-gray-900 mb-4">🏆 Referral Leaderboard</h3>
               <div className="space-y-3">
-                <div className="flex items-center justify-between p-3 bg-gradient-to-r from-yellow-50 to-yellow-100 rounded border-l-4 border-yellow-500">
+                <div className="flex items-center justify-between p-3 bg-yellow-50 rounded border-l-4 border-yellow-500">
                   <div>
                     <div className="font-bold text-gray-900">1. Sarah Johnson</div>
                     <div className="text-xs text-gray-600">5 referrals sent</div>
@@ -210,7 +210,7 @@ export default async function LeadLoopPage() {
                     <div className="text-xs text-gray-600">$3,400 premium</div>
                   </div>
                 </div>
-                <div className="flex items-center justify-between p-3 bg-gradient-to-r from-gray-50 to-gray-100 rounded border-l-4 border-gray-400">
+                <div className="flex items-center justify-between p-3 bg-gray-50 rounded border-l-4 border-gray-400">
                   <div>
                     <div className="font-bold text-gray-900">2. Mike Torres</div>
                     <div className="text-xs text-gray-600">3 referrals sent</div>
@@ -220,7 +220,7 @@ export default async function LeadLoopPage() {
                     <div className="text-xs text-gray-600">$1,850 premium</div>
                   </div>
                 </div>
-                <div className="flex items-center justify-between p-3 bg-gradient-to-r from-orange-50 to-orange-100 rounded border-l-4 border-orange-400">
+                <div className="flex items-center justify-between p-3 bg-orange-50 rounded border-l-4 border-orange-400">
                   <div>
                     <div className="font-bold text-gray-900">3. Jennifer Lee</div>
                     <div className="text-xs text-gray-600">2 referrals sent</div>
@@ -240,7 +240,7 @@ export default async function LeadLoopPage() {
         <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">Real Success Story</h2>
         <div className="bg-white rounded-lg shadow-lg p-8 border-l-4 border-orange-600">
           <div className="flex items-start gap-4">
-            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white font-bold text-2xl flex-shrink-0">
+            <div className="w-16 h-16 rounded-full bg-orange-600 flex items-center justify-center text-white font-bold text-2xl flex-shrink-0">
               MT
             </div>
             <div>
@@ -285,7 +285,7 @@ export default async function LeadLoopPage() {
         </div>
       </div>
 
-      <div className="bg-gradient-to-br from-gray-900 to-orange-700 text-white py-16">
+      <div className="bg-gray-900 text-white py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Start Building Your Referral Engine</h2>
           <p className="text-lg text-orange-100 mb-8">

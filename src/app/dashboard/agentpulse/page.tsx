@@ -38,7 +38,7 @@ export default async function AgentPulsePage() {
       description:
         'Automatically send personalized email and SMS sequences to your leads. Set it once, nurture leads 24/7 while you focus on selling.',
       href: '/dashboard/agentpulse/pulsefollow',
-      gradient: 'bg-gradient-to-r from-blue-500 to-blue-600',
+      gradient: 'bg-blue-600',
     },
     {
       icon: '🤖',
@@ -47,7 +47,7 @@ export default async function AgentPulsePage() {
       description:
         'Every morning, AI analyzes your pipeline and gives you a prioritized to-do list with pre-written messages ready to send in one click.',
       href: '/dashboard/agentpulse/agentpilot',
-      gradient: 'bg-gradient-to-r from-purple-500 to-purple-600',
+      gradient: 'bg-purple-600',
     },
     {
       icon: '🔔',
@@ -56,7 +56,7 @@ export default async function AgentPulsePage() {
       description:
         'Never lose a renewal again. Tracks all policy expirations and automatically detects cross-sell opportunities your clients are missing.',
       href: '/dashboard/agentpulse/policyping',
-      gradient: 'bg-gradient-to-r from-green-500 to-green-600',
+      gradient: 'bg-green-600',
     },
     {
       icon: '🔁',
@@ -65,7 +65,7 @@ export default async function AgentPulsePage() {
       description:
         'Turn every closed client into a 5-star reviewer and referral source. Automatically handles thank-yous, review requests, and referral asks.',
       href: '/dashboard/agentpulse/leadloop',
-      gradient: 'bg-gradient-to-r from-orange-500 to-orange-600',
+      gradient: 'bg-orange-600',
     },
     {
       icon: '📞',
@@ -74,7 +74,7 @@ export default async function AgentPulsePage() {
       description:
         'Your AI assistant makes follow-up calls while you have coffee. Identifies interested leads and books them on your calendar automatically.',
       href: '/dashboard/agentpulse/warmline',
-      gradient: 'bg-gradient-to-r from-pink-500 to-pink-600',
+      gradient: 'bg-pink-600',
     },
     {
       icon: '📊',
@@ -83,7 +83,7 @@ export default async function AgentPulsePage() {
       description:
         'Turn ugly SmartOffice spreadsheets into beautiful dashboards with AI insights. Ask your data questions in plain English and get instant answers.',
       href: '/dashboard/agentpulse/pulseinsight',
-      gradient: 'bg-gradient-to-r from-indigo-500 to-indigo-600',
+      gradient: 'bg-indigo-600',
     },
   ];
 
@@ -146,7 +146,7 @@ export default async function AgentPulsePage() {
       </div>
 
       {/* Commission Section */}
-      <div className="bg-gradient-to-br from-gray-50 to-blue-50 py-16">
+      <div className="bg-blue-50 py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
             Earn Commissions Through Your 5x7 Matrix
@@ -261,7 +261,7 @@ export default async function AgentPulsePage() {
       </div>
 
       {/* Final CTA */}
-      <div className="bg-gradient-to-br from-[#2B4C7E] to-[#1e3555] text-white py-16">
+      <div className="bg-[#2B4C7E] text-white py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Don't Miss the Launch</h2>
           <p className="text-lg text-blue-100 mb-8">

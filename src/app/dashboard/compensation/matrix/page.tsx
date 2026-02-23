@@ -49,7 +49,7 @@ export default async function MatrixCommissionsPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-gradient-to-r from-purple-500 to-purple-600 text-white py-12">
+      <div className="bg-purple-600 text-white py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
             href="/dashboard/compensation"

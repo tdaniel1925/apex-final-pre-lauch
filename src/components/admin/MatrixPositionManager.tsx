@@ -206,7 +206,7 @@ export default function MatrixPositionManager({ distributor }: MatrixPositionMan
       {/* Current Status */}
       {!isEditing && (
         <div className="mt-3 pt-3 border-t border-gray-200">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-lg p-2">
+          <div className="bg-blue-100 border border-blue-200 rounded-lg p-2">
             <p className="text-[10px] text-blue-600 font-semibold mb-1">Current Placement</p>
             <div className="space-y-1 text-xs">
               <div className="flex justify-between">

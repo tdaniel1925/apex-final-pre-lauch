@@ -79,7 +79,7 @@ export default async function AgentPilotPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-600 to-purple-700 text-white rounded-lg p-8 text-center">
+        <div className="bg-purple-700 text-white rounded-lg p-8 text-center">
           <h3 className="text-2xl font-bold mb-3">AgentPilot solves this in 3 seconds every morning.</h3>
           <p className="text-purple-100">AI analyzes your entire pipeline and gives you a perfect action plan.</p>
         </div>
@@ -244,7 +244,7 @@ export default async function AgentPilotPage() {
       </div>
 
       {/* Key Features */}
-      <div className="bg-gradient-to-br from-purple-50 to-white py-16">
+      <div className="bg-purple-50 py-16">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">Key Features</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -287,7 +287,7 @@ export default async function AgentPilotPage() {
         <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">Real Results</h2>
         <div className="bg-white rounded-lg shadow-lg p-8 border-l-4 border-purple-600">
           <div className="flex items-start gap-4">
-            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center text-white font-bold text-2xl flex-shrink-0">
+            <div className="w-16 h-16 rounded-full bg-purple-600 flex items-center justify-center text-white font-bold text-2xl flex-shrink-0">
               MJ
             </div>
             <div>
@@ -339,7 +339,7 @@ export default async function AgentPilotPage() {
       </div>
 
       {/* CTA */}
-      <div className="bg-gradient-to-br from-gray-900 to-purple-700 text-white py-16">
+      <div className="bg-gray-900 text-white py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Get Early Access to AgentPilot</h2>
           <p className="text-lg text-purple-100 mb-8">
