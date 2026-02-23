@@ -25,12 +25,28 @@ interface Prospect {
   converted_to_distributor_id: string | null;
 }
 
+interface Distributor {
+  id: string;
+  first_name: string;
+  last_name: string;
+  slug: string;
+}
+
 export default function ProspectsPage() {
   const [prospects, setProspects] = useState<Prospect[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
+
+  // Convert modal state
+  const [showConvertModal, setShowConvertModal] = useState(false);
+  const [selectedProspect, setSelectedProspect] = useState<Prospect | null>(null);
+  const [convertUsername, setConvertUsername] = useState('');
+  const [convertSponsorId, setConvertSponsorId] = useState('');
+  const [distributors, setDistributors] = useState<Distributor[]>([]);
+  const [isConverting, setIsConverting] = useState(false);
+  const [convertError, setConvertError] = useState<string | null>(null);
 
   useEffect(() => {
     fetchProspects();
@@ -141,6 +157,75 @@ export default function ProspectsPage() {
     } catch (err: any) {
       console.error('Error deleting prospect:', err);
       alert('Failed to delete prospect');
+    }
+  };
+
+  const handleOpenConvertModal = async (prospect: Prospect) => {
+    setSelectedProspect(prospect);
+    setConvertUsername('');
+    setConvertSponsorId('');
+    setConvertError(null);
+    setShowConvertModal(true);
+
+    // Load distributors for sponsor selection
+    try {
+      const { createClient } = await import('@/lib/supabase/client');
+      const supabase = createClient();
+
+      const { data } = await supabase
+        .from('distributors')
+        .select('id, first_name, last_name, slug')
+        .eq('status', 'active')
+        .order('first_name', { ascending: true })
+        .limit(100);
+
+      setDistributors(data || []);
+    } catch (err) {
+      console.error('Error loading distributors:', err);
+    }
+  };
+
+  const handleConvert = async () => {
+    if (!selectedProspect || !convertUsername || !convertSponsorId) {
+      setConvertError('Please fill in all required fields');
+      return;
+    }
+
+    try {
+      setIsConverting(true);
+      setConvertError(null);
+
+      const response = await fetch(`/api/admin/prospects/${selectedProspect.id}/convert`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: convertUsername,
+          sponsorId: convertSponsorId,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || 'Failed to convert');
+      }
+
+      // Update local state
+      setProspects(prospects.map(p =>
+        p.id === selectedProspect.id
+          ? { ...p, status: 'converted', converted_to_distributor_id: data.distributor.id }
+          : p
+      ));
+
+      setShowConvertModal(false);
+      alert(`Successfully converted ${selectedProspect.first_name} ${selectedProspect.last_name} to distributor!`);
+    } catch (err: any) {
+      console.error('Error converting prospect:', err);
+      setConvertError(err.message || 'Failed to convert prospect');
+    } finally {
+      setIsConverting(false);
     }
   };
 
@@ -292,23 +377,34 @@ export default function ProspectsPage() {
                       {formatDate(prospect.created_at)}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm">
-                      <select
-                        value={prospect.status}
-                        onChange={(e) => handleStatusChange(prospect.id, e.target.value)}
-                        className="mr-2 px-2 py-1 border border-gray-300 rounded text-xs"
-                      >
-                        <option value="new">New</option>
-                        <option value="contacted">Contacted</option>
-                        <option value="qualified">Qualified</option>
-                        <option value="converted">Converted</option>
-                        <option value="declined">Declined</option>
-                      </select>
-                      <button
-                        onClick={() => handleDelete(prospect.id)}
-                        className="text-red-600 hover:text-red-800 text-xs"
-                      >
-                        Delete
-                      </button>
+                      <div className="flex items-center gap-2">
+                        <select
+                          value={prospect.status}
+                          onChange={(e) => handleStatusChange(prospect.id, e.target.value)}
+                          className="px-2 py-1 border border-gray-300 rounded text-xs"
+                          disabled={prospect.status === 'converted'}
+                        >
+                          <option value="new">New</option>
+                          <option value="contacted">Contacted</option>
+                          <option value="qualified">Qualified</option>
+                          <option value="converted">Converted</option>
+                          <option value="declined">Declined</option>
+                        </select>
+                        {prospect.status !== 'converted' && (
+                          <button
+                            onClick={() => handleOpenConvertModal(prospect)}
+                            className="px-2 py-1 bg-green-600 text-white rounded text-xs hover:bg-green-700"
+                          >
+                            Convert
+                          </button>
+                        )}
+                        <button
+                          onClick={() => handleDelete(prospect.id)}
+                          className="text-red-600 hover:text-red-800 text-xs"
+                        >
+                          Delete
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))
@@ -317,6 +413,90 @@ export default function ProspectsPage() {
           </table>
         </div>
       </div>
+
+      {/* Convert to Distributor Modal */}
+      {showConvertModal && selectedProspect && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+          <div className="bg-white rounded-lg shadow-xl p-6 max-w-md w-full mx-4">
+            <h2 className="text-xl font-bold text-gray-900 mb-4">
+              Convert to Distributor
+            </h2>
+
+            <div className="mb-4 p-3 bg-gray-50 rounded">
+              <p className="text-sm text-gray-600">Converting:</p>
+              <p className="font-medium text-gray-900">
+                {selectedProspect.first_name} {selectedProspect.last_name}
+              </p>
+              <p className="text-sm text-gray-600">{selectedProspect.email}</p>
+            </div>
+
+            {convertError && (
+              <div className="mb-4 bg-red-50 border border-red-200 text-red-800 px-3 py-2 rounded text-sm">
+                {convertError}
+              </div>
+            )}
+
+            <div className="space-y-4">
+              <div>
+                <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">
+                  Username * <span className="text-xs text-gray-500">(distributor login)</span>
+                </label>
+                <input
+                  type="text"
+                  id="username"
+                  value={convertUsername}
+                  onChange={(e) => setConvertUsername(e.target.value)}
+                  placeholder="e.g., johndoe"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                  disabled={isConverting}
+                />
+              </div>
+
+              <div>
+                <label htmlFor="sponsor" className="block text-sm font-medium text-gray-700 mb-1">
+                  Sponsor *
+                </label>
+                <select
+                  id="sponsor"
+                  value={convertSponsorId}
+                  onChange={(e) => setConvertSponsorId(e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                  disabled={isConverting}
+                >
+                  <option value="">Select a sponsor...</option>
+                  {distributors.map((dist) => (
+                    <option key={dist.id} value={dist.id}>
+                      {dist.first_name} {dist.last_name} ({dist.slug})
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="text-xs text-gray-500">
+                <p>Note: The new distributor will be placed in the matrix under the selected sponsor.</p>
+                <p className="mt-1">They will need to set their password using the "Forgot Password" link.</p>
+              </div>
+            </div>
+
+            <div className="flex gap-2 mt-6">
+              <button
+                onClick={handleConvert}
+                disabled={isConverting || !convertUsername || !convertSponsorId}
+                className="flex-1 bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isConverting ? 'Converting...' : 'Convert to Distributor'}
+              </button>
+              <button
+                onClick={() => setShowConvertModal(false)}
+                disabled={isConverting}
+                className="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
