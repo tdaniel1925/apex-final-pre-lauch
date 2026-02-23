@@ -10,6 +10,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { signOut } from '@/app/actions/auth';
+import AgentPulseSidebarBanner from '@/components/agentpulse/AgentPulseSidebarBanner';
 
 export default function Sidebar() {
   const pathname = usePathname();
@@ -199,6 +200,9 @@ export default function Sidebar() {
         </nav>
         </div>
       </div>
+
+      {/* AgentPulse Banner */}
+      <AgentPulseSidebarBanner />
 
       {/* Sticky Sign Out Button */}
       <div className="flex-shrink-0 pt-3 border-t border-gray-800 bg-gray-900">
