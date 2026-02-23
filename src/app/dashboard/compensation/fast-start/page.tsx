@@ -248,7 +248,7 @@ export default async function FastStartPage() {
           <h2 className="text-2xl font-bold mb-4">
             {isEligible ? 'You Still Have Time!' : 'Help Others Earn Fast Start!'}
           </h2>
-          <p className="mb-6 text-blue-200">
+          <p className="mb-6 text-white">
             {isEligible
               ? `You have ${daysRemaining} days left to earn Fast Start bonuses. Start sharing your link!`
               : 'Even though your Fast Start period is over, you can help your new team members earn theirs!'}

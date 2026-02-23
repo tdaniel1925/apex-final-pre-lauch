@@ -187,7 +187,7 @@ export default function CompensationOverviewPage() {
       <div className="bg-[#2B4C7E] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <h1 className="text-4xl font-bold mb-4">Compensation Plan</h1>
-          <p className="text-xl text-blue-200 max-w-3xl">
+          <p className="text-xl text-white max-w-3xl">
             Welcome to one of the most generous compensation plans in the industry. Here's how you can earn with Apex Affinity Group.
           </p>
           <div className="mt-6 flex flex-wrap gap-4">
@@ -383,7 +383,7 @@ export default function CompensationOverviewPage() {
       <div className="bg-[#2B4C7E] text-white py-16 mt-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Start Earning?</h2>
-          <p className="text-xl text-blue-200 mb-8">
+          <p className="text-xl text-white mb-8">
             Use our calculator to see how much you could earn, or dive into each commission type to learn more.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

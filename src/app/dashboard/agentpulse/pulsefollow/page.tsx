@@ -440,7 +440,7 @@ export default async function PulseFollowPage() {
       <div className="bg-gradient-to-br from-gray-900 to-[#2B4C7E] text-white py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Sell PulseFollow & Earn</h2>
-          <p className="text-lg text-blue-200 mb-8">
+          <p className="text-lg text-white mb-8">
             Every AgentPulse subscription you sell flows through your 5x7 matrix with full
             overrides. Use it for your business AND earn monthly residuals.
           </p>

@@ -154,7 +154,7 @@ export default async function CarBonusPage() {
 
         <section className="bg-gradient-to-r from-[#2B4C7E] to-[#567EBB] text-white rounded-lg p-8 text-center">
           <h2 className="text-2xl font-bold mb-4">Ready to Drive Your Dream Car?</h2>
-          <p className="mb-6 text-blue-200">Build your team to Platinum and claim your car bonus!</p>
+          <p className="mb-6 text-white">Build your team to Platinum and claim your car bonus!</p>
           <Link
             href="/dashboard/team"
             className="bg-white text-[#2B4C7E] px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors inline-block"

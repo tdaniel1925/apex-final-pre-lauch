@@ -264,7 +264,7 @@ export default async function AgentPulsePage() {
       <div className="bg-[#2B4C7E] text-white py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Don't Miss the Launch</h2>
-          <p className="text-lg text-blue-200 mb-8">
+          <p className="text-lg text-white mb-8">
             Be among the first to get AgentPulse when it goes live February 28th.
             <br />
             Waitlist members get 50% off their first month.

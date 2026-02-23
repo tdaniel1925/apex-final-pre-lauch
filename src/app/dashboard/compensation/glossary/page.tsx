@@ -148,7 +148,7 @@ export default async function GlossaryPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
             href="/dashboard/compensation"
-            className="inline-flex items-center text-blue-200 hover:text-white mb-4 transition-colors"
+            className="inline-flex items-center text-white hover:text-white mb-4 transition-colors"
           >
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -156,7 +156,7 @@ export default async function GlossaryPage() {
             Back to Compensation Plan
           </Link>
           <h1 className="text-4xl font-bold mb-4">📖 Compensation Plan Glossary</h1>
-          <p className="text-xl text-blue-200">
+          <p className="text-xl text-white">
             Simple explanations of all the terms you'll see in our compensation plan. No jargon, just clear definitions.
           </p>
         </div>

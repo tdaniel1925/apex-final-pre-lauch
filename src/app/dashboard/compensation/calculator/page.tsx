@@ -72,7 +72,7 @@ export default function EarningsCalculatorPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
             href="/dashboard/compensation"
-            className="inline-flex items-center text-blue-200 hover:text-white mb-4 transition-colors"
+            className="inline-flex items-center text-white hover:text-white mb-4 transition-colors"
           >
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -83,7 +83,7 @@ export default function EarningsCalculatorPage() {
             <div className="text-6xl">💰</div>
             <div>
               <h1 className="text-4xl font-bold">Earnings Calculator</h1>
-              <p className="text-xl text-blue-200 mt-2">See your potential monthly income</p>
+              <p className="text-xl text-white mt-2">See your potential monthly income</p>
             </div>
           </div>
         </div>
@@ -337,7 +337,7 @@ export default function EarningsCalculatorPage() {
             {/* CTA */}
             <div className="bg-gradient-to-r from-[#2B4C7E] to-[#567EBB] text-white rounded-lg p-6 text-center">
               <h3 className="text-xl font-bold mb-3">Ready to Make This Your Reality?</h3>
-              <p className="text-blue-200 mb-4">
+              <p className="text-white mb-4">
                 Start building your team today and watch your income grow!
               </p>
               <Link

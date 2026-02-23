@@ -125,7 +125,7 @@ export default async function CustomerRetentionPage() {
 
         <section className="bg-gradient-to-r from-[#2B4C7E] to-[#567EBB] text-white rounded-lg p-8 text-center">
           <h2 className="text-2xl font-bold mb-4">Build a Base of Loyal Customers!</h2>
-          <p className="mb-6 text-blue-200">
+          <p className="mb-6 text-white">
             Focus on customer service and watch retention bonuses add up!
           </p>
           <Link

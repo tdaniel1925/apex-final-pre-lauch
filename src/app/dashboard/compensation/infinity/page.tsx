@@ -132,7 +132,7 @@ export default async function InfinityBonusPage() {
           <h2 className="text-2xl font-bold mb-4">
             {isQualified ? 'You Qualify for Infinity!' : 'Reach Diamond to Unlock Infinity'}
           </h2>
-          <p className="mb-6 text-blue-200">
+          <p className="mb-6 text-white">
             {isQualified
               ? 'Keep building depth and watch your Infinity commissions grow!'
               : 'Focus on building your team to 50,000 GBV to unlock this powerful bonus.'}

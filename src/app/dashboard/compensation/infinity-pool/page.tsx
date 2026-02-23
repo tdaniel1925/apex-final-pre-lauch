@@ -184,7 +184,7 @@ export default async function InfinityPoolPage() {
           <h2 className="text-2xl font-bold mb-4">
             {isQualified ? 'Welcome to the Infinity Pool!' : 'Build to Crown Diamond and Join the Elite!'}
           </h2>
-          <p className="mb-6 text-blue-200">
+          <p className="mb-6 text-white">
             {isQualified
               ? "You're sharing in company profits. Keep building and watch your share grow!"
               : "The Infinity Pool is the ultimate goal. Start building your empire today!"}

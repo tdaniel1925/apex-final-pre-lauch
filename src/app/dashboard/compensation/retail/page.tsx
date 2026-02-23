@@ -55,7 +55,7 @@ export default async function RetailCommissionsPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
             href="/dashboard/compensation"
-            className="inline-flex items-center text-blue-200 hover:text-white mb-4 transition-colors"
+            className="inline-flex items-center text-white hover:text-white mb-4 transition-colors"
           >
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -66,7 +66,7 @@ export default async function RetailCommissionsPage() {
             <div className="text-6xl">🛍️</div>
             <div>
               <h1 className="text-4xl font-bold">Retail Commissions</h1>
-              <p className="text-xl text-blue-200 mt-2">Earn 30% profit on every customer sale</p>
+              <p className="text-xl text-white mt-2">Earn 30% profit on every customer sale</p>
             </div>
           </div>
         </div>
@@ -288,7 +288,7 @@ export default async function RetailCommissionsPage() {
         {/* Next Steps */}
         <section className="bg-gradient-to-r from-[#2B4C7E] to-[#567EBB] text-white rounded-lg p-8 text-center">
           <h2 className="text-2xl font-bold mb-4">Ready to Start Earning Retail Commissions?</h2>
-          <p className="mb-6 text-blue-200">
+          <p className="mb-6 text-white">
             Share your referral link with friends, family, and on social media!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

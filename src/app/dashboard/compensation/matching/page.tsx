@@ -247,7 +247,7 @@ export default async function MatchingBonusesPage() {
 
         <section className="bg-gradient-to-r from-[#2B4C7E] to-[#567EBB] text-white rounded-lg p-8 text-center">
           <h2 className="text-2xl font-bold mb-4">Want to Earn Matching Bonuses?</h2>
-          <p className="mb-6 text-blue-200">
+          <p className="mb-6 text-white">
             Focus on training your personal enrollments to become leaders!
           </p>
           <Link
