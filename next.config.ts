@@ -69,6 +69,11 @@ const nextConfig: NextConfig = {
     // Optimize package imports
     optimizePackageImports: ['lucide-react'],
   },
+
+  // Turbopack configuration (Next.js 16)
+  turbopack: {
+    root: __dirname,
+  },
 };
 
 export default nextConfig;
