@@ -58,43 +58,48 @@ export async function POST(request: NextRequest) {
     const serviceClient = createServiceClient();
 
     // Step 1b: Rate limiting — max 5 signups per IP per 15 minutes
-    const ip =
-      request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
-      request.headers.get('x-real-ip') ||
-      'unknown';
+    // DISABLED in development environment for testing
+    const isDevelopment = process.env.NODE_ENV === 'development';
 
-    if (ip !== 'unknown') {
-      const windowStart = new Date(
-        Date.now() - RATE_LIMIT_WINDOW_MINUTES * 60 * 1000
-      ).toISOString();
+    if (!isDevelopment) {
+      const ip =
+        request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+        request.headers.get('x-real-ip') ||
+        'unknown';
 
-      const { count: recentAttempts } = await serviceClient
-        .from('signup_rate_limits')
-        .select('*', { count: 'exact', head: true })
-        .eq('ip_address', ip)
-        .gte('created_at', windowStart);
+      if (ip !== 'unknown') {
+        const windowStart = new Date(
+          Date.now() - RATE_LIMIT_WINDOW_MINUTES * 60 * 1000
+        ).toISOString();
 
-      if ((recentAttempts || 0) >= RATE_LIMIT_MAX) {
-        return NextResponse.json(
-          {
-            success: false,
-            error: 'Too many requests',
-            message: 'Too many signup attempts. Please try again in 15 minutes.',
-          } as ApiResponse,
-          { status: 429 }
-        );
+        const { count: recentAttempts } = await serviceClient
+          .from('signup_rate_limits')
+          .select('*', { count: 'exact', head: true })
+          .eq('ip_address', ip)
+          .gte('created_at', windowStart);
+
+        if ((recentAttempts || 0) >= RATE_LIMIT_MAX) {
+          return NextResponse.json(
+            {
+              success: false,
+              error: 'Too many requests',
+              message: 'Too many signup attempts. Please try again in 15 minutes.',
+            } as ApiResponse,
+            { status: 429 }
+          );
+        }
+
+        // Record this attempt
+        await serviceClient
+          .from('signup_rate_limits')
+          .insert({ ip_address: ip });
+
+        // Cleanup old entries (keep table lean)
+        await serviceClient
+          .from('signup_rate_limits')
+          .delete()
+          .lt('created_at', new Date(Date.now() - 60 * 60 * 1000).toISOString());
       }
-
-      // Record this attempt
-      await serviceClient
-        .from('signup_rate_limits')
-        .insert({ ip_address: ip });
-
-      // Cleanup old entries (keep table lean)
-      await serviceClient
-        .from('signup_rate_limits')
-        .delete()
-        .lt('created_at', new Date(Date.now() - 60 * 60 * 1000).toISOString());
     }
 
     // Step 2: Check if email already exists
@@ -128,8 +133,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Step 4: Look up sponsor if provided
+    // Step 4: Look up sponsor if provided, otherwise use master distributor
     let sponsorId: string | null = null;
+
     if (data.sponsor_slug) {
       const { data: sponsor } = await supabase
         .from('distributors')
@@ -149,6 +155,18 @@ export async function POST(request: NextRequest) {
       }
 
       sponsorId = sponsor.id;
+    } else {
+      // No sponsor provided - assign to master distributor (apex-vision)
+      const { data: masterDistributor } = await supabase
+        .from('distributors')
+        .select('id')
+        .eq('is_master', true)
+        .single();
+
+      if (masterDistributor) {
+        sponsorId = masterDistributor.id;
+        console.log('No sponsor provided - assigning to master distributor:', masterDistributor.id);
+      }
     }
 
     // Step 5: Create auth user
@@ -158,6 +176,39 @@ export async function POST(request: NextRequest) {
     });
 
     if (authError || !authData.user) {
+      // Handle case where auth user exists but no distributor (orphaned auth user)
+      if (authError?.message?.includes('already registered') || authError?.code === 'user_already_exists') {
+        // Try to find if distributor exists
+        const { data: existingDist } = await supabase
+          .from('distributors')
+          .select('id')
+          .eq('email', data.email)
+          .single();
+
+        if (!existingDist) {
+          // Auth user exists but no distributor - orphaned account, clean it up
+          console.log('Cleaning up orphaned auth user for email:', data.email);
+
+          // Get the auth user ID to delete
+          const { data: { users } } = await serviceClient.auth.admin.listUsers();
+          const orphanedUser = users?.find(u => u.email === data.email);
+
+          if (orphanedUser) {
+            await serviceClient.auth.admin.deleteUser(orphanedUser.id);
+            console.log('Deleted orphaned auth user, please try signing up again');
+          }
+
+          return NextResponse.json(
+            {
+              success: false,
+              error: 'Account cleanup required',
+              message: 'An incomplete signup was detected and cleaned up. Please try again.',
+            } as ApiResponse,
+            { status: 409 }
+          );
+        }
+      }
+
       console.error('Auth error:', authError);
       return NextResponse.json(
         {

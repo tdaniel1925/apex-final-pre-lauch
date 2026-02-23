@@ -12,6 +12,9 @@ import WaitlistScreen from '@/components/waitlist/WaitlistScreen';
 // Monday February 23, 2026 at 9:00 PM Eastern = Feb 24 02:00 UTC
 const LAUNCH_DATE = new Date('2026-02-24T02:00:00Z');
 
+// In development, always allow signups (bypass waitlist)
+const isDevelopment = process.env.NODE_ENV === 'development';
+
 interface SignupPageProps {
   searchParams: Promise<{ ref?: string }>;
 }
@@ -40,10 +43,10 @@ async function SignupContent({ searchParams }: SignupPageProps) {
     }
   }
 
-  // Show waitlist screen until launch date
+  // Show waitlist screen until launch date (unless in development mode)
   const isBeforeLaunch = new Date() < LAUNCH_DATE;
 
-  if (isBeforeLaunch) {
+  if (isBeforeLaunch && !isDevelopment) {
     return (
       <WaitlistScreen sponsorSlug={sponsorSlug} sponsorName={sponsorName} />
     );
