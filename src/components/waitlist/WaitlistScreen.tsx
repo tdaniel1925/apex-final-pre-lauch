@@ -13,10 +13,10 @@ interface Props {
   sponsorName?: string;
 }
 
-const LAUNCH_DATE = new Date('2026-02-24T02:00:00Z');
+const LAUNCH_DATE = new Date('2026-02-24T03:00:00Z'); // 9:00 PM Central on Feb 23
 const WEBINAR_LINK = 'https://events.teams.microsoft.com/event/599e6f14-a298-4986-be33-64031f51f37f@8db46c49-b9d5-4f6b-948b-b99f34520af8';
-// Webinar button unlocks Monday Feb 23 at 6:00 PM ET (23:00 UTC)
-const WEBINAR_ACTIVE_DATE = new Date('2026-02-23T23:00:00Z');
+// Webinar button unlocks Monday Feb 23 at 6:30 PM Central (00:30 UTC on Feb 24)
+const WEBINAR_ACTIVE_DATE = new Date('2026-02-24T00:30:00Z');
 
 function pad(n: number) {
   return String(n).padStart(2, '0');
@@ -105,8 +105,10 @@ export default function WaitlistScreen({ sponsorSlug, sponsorName }: Props) {
           We're Almost<br />Ready to Roll!
         </h1>
         <p className="text-blue-200 text-sm text-center leading-relaxed">
-          And trust us — we know you are too! Signups officially open after our exclusive Pre-Launch Webinar on{' '}
-          <strong className="text-white">Monday, February 23rd at 9:00 PM ET.</strong>
+          And trust us — we know you are too! Join us for our exclusive Pre-Launch Webinar on{' '}
+          <strong className="text-white">Monday, February 23rd at 6:30 PM Central.</strong>
+          <br />
+          Signups open immediately after at <strong className="text-white">9:00 PM Central!</strong>
         </p>
       </div>
 
@@ -118,8 +120,9 @@ export default function WaitlistScreen({ sponsorSlug, sponsorName }: Props) {
           <img src="/apex-logo-white.png" alt="Apex Affinity Group" className="w-36 h-auto mb-3 object-contain" />
           <h1 className="text-xl font-bold text-white leading-tight mb-1">We're Almost Ready to Roll!</h1>
           <p className="text-blue-200 text-xs leading-relaxed max-w-xs">
-            And trust us — we know you are too! Signups open after our webinar —{' '}
-            <strong className="text-white">Feb 23 at 9PM ET.</strong>
+            And trust us — we know you are too! Webinar starts{' '}
+            <strong className="text-white">Feb 23 at 6:30 PM Central</strong>, signups open at{' '}
+            <strong className="text-white">9:00 PM Central!</strong>
           </p>
         </div>
 
@@ -161,7 +164,7 @@ export default function WaitlistScreen({ sponsorSlug, sponsorName }: Props) {
               Join the Pre-Launch Webinar →
             </div>
             <p className="text-blue-300/70 text-xs text-center mt-1.5">
-              🔒 Link unlocks <strong className="text-blue-200">Monday, Feb 23 at 6:00 PM ET</strong>
+              🔒 Link unlocks <strong className="text-blue-200">Monday, Feb 23 at 6:30 PM Central</strong>
             </p>
           </div>
         )}
