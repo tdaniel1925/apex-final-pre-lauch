@@ -133,8 +133,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Step 4: Look up sponsor if provided
+    // Step 4: Look up sponsor if provided, otherwise use master distributor
     let sponsorId: string | null = null;
+
     if (data.sponsor_slug) {
       const { data: sponsor } = await supabase
         .from('distributors')
@@ -154,6 +155,18 @@ export async function POST(request: NextRequest) {
       }
 
       sponsorId = sponsor.id;
+    } else {
+      // No sponsor provided - assign to master distributor (apex-vision)
+      const { data: masterDistributor } = await supabase
+        .from('distributors')
+        .select('id')
+        .eq('is_master', true)
+        .single();
+
+      if (masterDistributor) {
+        sponsorId = masterDistributor.id;
+        console.log('No sponsor provided - assigning to master distributor:', masterDistributor.id);
+      }
     }
 
     // Step 5: Create auth user

@@ -1,31 +1,5 @@
--- =============================================
--- Atomic Matrix Placement + Rate Limiting
--- Fixes race condition on concurrent signups
--- =============================================
-
--- =============================================
--- 1. RATE LIMITING TABLE
--- Tracks signup attempts per IP address
--- =============================================
-
-CREATE TABLE IF NOT EXISTS signup_rate_limits (
-  ip_address TEXT NOT NULL,
-  created_at TIMESTAMPTZ DEFAULT NOW()
-);
-
-CREATE INDEX idx_rate_limits_ip_time
-  ON signup_rate_limits(ip_address, created_at DESC);
-
--- Auto-cleanup: remove entries older than 1 hour via scheduled function
--- (we handle this inline in the rate check query)
-
--- =============================================
--- 2. ATOMIC PLACEMENT + INSERT FUNCTION
--- Uses advisory lock to serialize all matrix
--- placements, eliminating the race condition.
--- The lock is released automatically when the
--- transaction (function call) completes.
--- =============================================
+-- Fix: Add affiliate_code generation to create_distributor_atomic function
+-- Run this in Supabase SQL Editor
 
 CREATE OR REPLACE FUNCTION create_distributor_atomic(
   p_auth_user_id    UUID,
@@ -48,11 +22,9 @@ DECLARE
   v_distributor     distributors;
 BEGIN
   -- Acquire session-level advisory lock on a fixed key.
-  -- This serializes ALL concurrent matrix placements so no
-  -- two requests can ever select the same open slot.
   PERFORM pg_advisory_xact_lock(987654321);
 
-  -- Find the next available slot (BFS, see migration 002)
+  -- Find the next available slot
   SELECT * INTO v_placement
   FROM find_matrix_placement(p_sponsor_id);
 
@@ -101,4 +73,5 @@ $$;
 
 COMMENT ON FUNCTION create_distributor_atomic IS
 'Atomically finds next matrix slot and inserts distributor in one
-transaction. Advisory lock prevents concurrent race conditions.';
+transaction. Advisory lock prevents concurrent race conditions.
+Now generates affiliate_code from slug.';
