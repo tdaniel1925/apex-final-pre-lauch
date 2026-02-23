@@ -25,10 +25,11 @@ export default function PasswordResetModal({
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [sendNotification, setSendNotification] = useState(true);
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(true); // Changed to true by default
   const [isResetting, setIsResetting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
 
   const generatePassword = () => {
     // Generate a secure random password
@@ -40,6 +41,18 @@ export default function PasswordResetModal({
     }
     setNewPassword(password);
     setConfirmPassword(password);
+    setShowPassword(true); // Auto-show when generated
+    setCopied(false); // Reset copied state
+  };
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(newPassword);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
   };
 
   const handleReset = async () => {
@@ -154,81 +167,18 @@ export default function PasswordResetModal({
           <div className="space-y-4">
             {/* Distributor Info */}
             <div className="p-3 bg-gray-50 rounded-lg">
-              <p className="text-xs text-gray-600 mb-1">Account</p>
-              <p className="text-sm font-medium text-gray-900">{distributorEmail}</p>
+              <p className="text-xs text-gray-600 mb-1">Resetting password for</p>
+              <p className="text-sm font-semibold text-gray-900">{distributorName}</p>
+              <p className="text-xs text-gray-600 mt-0.5">{distributorEmail}</p>
             </div>
 
-            {/* New Password */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                New Password
-                <span className="text-red-600 ml-1">*</span>
-              </label>
-              <div className="relative">
-                <input
-                  type={showPassword ? 'text' : 'password'}
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg pr-10"
-                  placeholder="Enter new password"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-600 hover:text-gray-900"
-                >
-                  {showPassword ? (
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"
-                      />
-                    </svg>
-                  ) : (
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                      />
-                    </svg>
-                  )}
-                </button>
-              </div>
-              <p className="text-xs text-gray-500 mt-1">Minimum 8 characters</p>
-            </div>
-
-            {/* Confirm Password */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Confirm Password
-                <span className="text-red-600 ml-1">*</span>
-              </label>
-              <input
-                type={showPassword ? 'text' : 'password'}
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-                placeholder="Confirm new password"
-              />
-            </div>
-
-            {/* Generate Password Button */}
+            {/* Generate Password Button - PROMINENT */}
             <button
               type="button"
               onClick={generatePassword}
-              className="w-full px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 flex items-center justify-center gap-2"
+              className="w-full px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold flex items-center justify-center gap-2 text-base shadow-sm"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -238,6 +188,141 @@ export default function PasswordResetModal({
               </svg>
               Generate Secure Password
             </button>
+
+            {/* Password Display with Copy Button */}
+            {newPassword && (
+              <div className="p-4 bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-lg">
+                <div className="flex items-center justify-between mb-2">
+                  <label className="text-sm font-semibold text-gray-900">New Password</label>
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="text-gray-600 hover:text-gray-900 text-xs"
+                  >
+                    {showPassword ? 'Hide' : 'Show'}
+                  </button>
+                </div>
+                <div className="flex gap-2">
+                  <div className="flex-1 px-4 py-3 bg-white border border-gray-300 rounded-lg font-mono text-lg font-semibold text-gray-900 break-all">
+                    {showPassword ? newPassword : '••••••••••••'}
+                  </div>
+                  <button
+                    type="button"
+                    onClick={copyToClipboard}
+                    className={`px-4 py-3 rounded-lg font-semibold flex items-center gap-2 transition-colors ${
+                      copied
+                        ? 'bg-green-600 text-white'
+                        : 'bg-blue-600 text-white hover:bg-blue-700'
+                    }`}
+                  >
+                    {copied ? (
+                      <>
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M5 13l4 4L19 7"
+                          />
+                        </svg>
+                        Copied!
+                      </>
+                    ) : (
+                      <>
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                          />
+                        </svg>
+                        Copy
+                      </>
+                    )}
+                  </button>
+                </div>
+                <p className="text-xs text-gray-600 mt-2">
+                  💡 Click "Copy" to securely share this password with the distributor
+                </p>
+              </div>
+            )}
+
+            {/* Manual Entry (Optional) */}
+            {!newPassword && (
+              <>
+                <div className="relative">
+                  <div className="absolute inset-0 flex items-center">
+                    <div className="w-full border-t border-gray-200"></div>
+                  </div>
+                  <div className="relative flex justify-center text-xs">
+                    <span className="px-2 bg-white text-gray-500">Or enter manually</span>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    New Password
+                  </label>
+                  <div className="relative">
+                    <input
+                      type={showPassword ? 'text' : 'password'}
+                      value={newPassword}
+                      onChange={(e) => {
+                        setNewPassword(e.target.value);
+                        setConfirmPassword(''); // Reset confirm when manually typing
+                      }}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg pr-10"
+                      placeholder="Enter new password (min 8 characters)"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-600 hover:text-gray-900"
+                    >
+                      {showPassword ? (
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"
+                          />
+                        </svg>
+                      ) : (
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                          />
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                          />
+                        </svg>
+                      )}
+                    </button>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Confirm Password
+                  </label>
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                    placeholder="Confirm new password"
+                  />
+                </div>
+              </>
+            )}
 
             {/* Send Notification */}
             <div className="flex items-start gap-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
@@ -258,13 +343,22 @@ export default function PasswordResetModal({
               </div>
             </div>
 
-            {/* Warning */}
-            <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
-              <p className="text-xs text-yellow-800">
-                � <span className="font-semibold">Warning:</span> This will immediately change the distributor's
-                password. They will need to use the new password to log in. This action will be logged in the
-                admin activity log.
-              </p>
+            {/* Critical Warning */}
+            <div className="p-4 bg-red-50 border-2 border-red-300 rounded-lg space-y-2">
+              <div className="flex items-start gap-2">
+                <svg className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                </svg>
+                <div className="flex-1">
+                  <p className="text-sm font-bold text-red-900">IMPORTANT - Read Before Proceeding</p>
+                  <ul className="mt-2 text-xs text-red-800 space-y-1 list-disc list-inside">
+                    <li><span className="font-semibold">Password will NOT be shown again</span> after closing this modal</li>
+                    <li>Make sure to <span className="font-semibold">copy the password</span> before clicking "Reset Password"</li>
+                    <li>The distributor's current password will be <span className="font-semibold">immediately invalidated</span></li>
+                    <li>This action is <span className="font-semibold">logged in the audit trail</span></li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
