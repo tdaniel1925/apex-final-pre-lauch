@@ -58,43 +58,48 @@ export async function POST(request: NextRequest) {
     const serviceClient = createServiceClient();
 
     // Step 1b: Rate limiting — max 5 signups per IP per 15 minutes
-    const ip =
-      request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
-      request.headers.get('x-real-ip') ||
-      'unknown';
+    // DISABLED in development environment for testing
+    const isDevelopment = process.env.NODE_ENV === 'development';
 
-    if (ip !== 'unknown') {
-      const windowStart = new Date(
-        Date.now() - RATE_LIMIT_WINDOW_MINUTES * 60 * 1000
-      ).toISOString();
+    if (!isDevelopment) {
+      const ip =
+        request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+        request.headers.get('x-real-ip') ||
+        'unknown';
 
-      const { count: recentAttempts } = await serviceClient
-        .from('signup_rate_limits')
-        .select('*', { count: 'exact', head: true })
-        .eq('ip_address', ip)
-        .gte('created_at', windowStart);
+      if (ip !== 'unknown') {
+        const windowStart = new Date(
+          Date.now() - RATE_LIMIT_WINDOW_MINUTES * 60 * 1000
+        ).toISOString();
 
-      if ((recentAttempts || 0) >= RATE_LIMIT_MAX) {
-        return NextResponse.json(
-          {
-            success: false,
-            error: 'Too many requests',
-            message: 'Too many signup attempts. Please try again in 15 minutes.',
-          } as ApiResponse,
-          { status: 429 }
-        );
+        const { count: recentAttempts } = await serviceClient
+          .from('signup_rate_limits')
+          .select('*', { count: 'exact', head: true })
+          .eq('ip_address', ip)
+          .gte('created_at', windowStart);
+
+        if ((recentAttempts || 0) >= RATE_LIMIT_MAX) {
+          return NextResponse.json(
+            {
+              success: false,
+              error: 'Too many requests',
+              message: 'Too many signup attempts. Please try again in 15 minutes.',
+            } as ApiResponse,
+            { status: 429 }
+          );
+        }
+
+        // Record this attempt
+        await serviceClient
+          .from('signup_rate_limits')
+          .insert({ ip_address: ip });
+
+        // Cleanup old entries (keep table lean)
+        await serviceClient
+          .from('signup_rate_limits')
+          .delete()
+          .lt('created_at', new Date(Date.now() - 60 * 60 * 1000).toISOString());
       }
-
-      // Record this attempt
-      await serviceClient
-        .from('signup_rate_limits')
-        .insert({ ip_address: ip });
-
-      // Cleanup old entries (keep table lean)
-      await serviceClient
-        .from('signup_rate_limits')
-        .delete()
-        .lt('created_at', new Date(Date.now() - 60 * 60 * 1000).toISOString());
     }
 
     // Step 2: Check if email already exists
