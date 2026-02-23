@@ -5,6 +5,23 @@
 
 import { createServiceClient } from '@/lib/supabase/service';
 
+// Admin action types enum
+export const AdminActions = {
+  DISTRIBUTOR_CREATE: 'distributor_create',
+  DISTRIBUTOR_UPDATE: 'distributor_update',
+  DISTRIBUTOR_SUSPEND: 'distributor_suspend',
+  DISTRIBUTOR_ACTIVATE: 'distributor_activate',
+  DISTRIBUTOR_DELETE: 'distributor_delete',
+  NOTE_CREATE: 'note_added',
+  NOTE_UPDATE: 'note_updated',
+  NOTE_DELETE: 'note_deleted',
+  PASSWORD_RESET: 'password_reset',
+  PROFILE_UPDATE: 'profile_updated',
+  STATUS_CHANGE: 'status_changed',
+} as const;
+
+export type AdminAction = typeof AdminActions[keyof typeof AdminActions];
+
 export interface LogAdminActivityParams {
   adminId: string;
   adminEmail: string;

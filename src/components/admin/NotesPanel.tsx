@@ -509,7 +509,7 @@ export default function NotesPanel({ distributorId, currentAdminRole }: NotesPan
                       {/* Pinned Badge */}
                       {note.is_pinned && (
                         <span className="px-2 py-0.5 text-xs bg-blue-600 text-white rounded">
-                          =� Pinned
+                          📌 Pinned
                         </span>
                       )}
 
@@ -536,7 +536,7 @@ export default function NotesPanel({ distributorId, currentAdminRole }: NotesPan
                       {/* Resolved Badge */}
                       {note.is_resolved && (
                         <span className="px-2 py-0.5 text-xs bg-green-100 text-green-800 rounded">
-                           Resolved
+                          ✅ Resolved
                         </span>
                       )}
                     </div>
@@ -582,14 +582,14 @@ export default function NotesPanel({ distributorId, currentAdminRole }: NotesPan
                   {/* Follow-up Date */}
                   {note.follow_up_date && !note.is_resolved && (
                     <div className="mb-2 p-2 bg-yellow-50 border border-yellow-200 rounded text-xs text-yellow-800">
-                      =� Follow up by: {formatDate(note.follow_up_date)}
+                      📅 Follow up by: {formatDate(note.follow_up_date)}
                     </div>
                   )}
 
                   {/* Meta Info */}
                   <div className="flex items-center justify-between text-xs text-gray-500 pt-2 border-t border-gray-200">
                     <span>
-                      by {note.admin_name} " {formatDateTime(note.created_at)}
+                      by {note.admin_name} • {formatDateTime(note.created_at)}
                     </span>
                     {note.updated_at !== note.created_at && (
                       <span className="italic">Edited</span>

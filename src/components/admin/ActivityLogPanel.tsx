@@ -104,25 +104,25 @@ export default function ActivityLogPanel({ distributorId }: ActivityLogPanelProp
   const getActionIcon = (actionType: string) => {
     switch (actionType) {
       case 'password_reset':
-        return '=';
+        return '🔑';
       case 'note_added':
-        return '=�';
+        return '📝';
       case 'note_updated':
-        return '';
+        return '✏️';
       case 'note_deleted':
-        return '=�';
+        return '🗑️';
       case 'status_changed':
-        return '=';
+        return '🔄';
       case 'suspended':
-        return '=�';
+        return '⚠️';
       case 'activated':
-        return '';
+        return '✅';
       case 'deleted':
-        return 'L';
+        return '❌';
       case 'profile_updated':
-        return '=d';
+        return '👤';
       default:
-        return '=�';
+        return '📋';
     }
   };
 
