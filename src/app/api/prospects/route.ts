@@ -6,6 +6,10 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase/service';
 import { z } from 'zod';
+import { Resend } from 'resend';
+import ProspectWelcomeEmail from '@/emails/ProspectWelcomeEmail';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const prospectSchema = z.object({
   firstName: z.string().min(1, 'First name is required'),
@@ -81,6 +85,22 @@ export async function POST(request: Request) {
         { success: false, error: 'Failed to submit sign-up. Please try again.' },
         { status: 500 }
       );
+    }
+
+    // Send welcome email
+    try {
+      await resend.emails.send({
+        from: 'Apex Affinity Group <noreply@theapexway.net>',
+        to: [data.email],
+        subject: 'Welcome to the Apex Family!',
+        react: ProspectWelcomeEmail({
+          firstName: data.firstName,
+          lastName: data.lastName,
+        }),
+      });
+    } catch (emailError) {
+      // Log email error but don't fail the signup
+      console.error('Error sending welcome email:', emailError);
     }
 
     return NextResponse.json({
