@@ -99,7 +99,7 @@ export async function GET() {
 
     const { data, error } = await resend.emails.send({
       from: 'Apex Affinity Group <aag@theapexway.net>',
-      to: ['trenttdaniel@gmail.com'],
+      to: ['tdaniel@botmakers.ai'],
       subject: 'Welcome to the Apex Family! (Test Email)',
       html: htmlContent,
     });
@@ -114,7 +114,7 @@ export async function GET() {
 
     return NextResponse.json({
       success: true,
-      message: 'Test email sent successfully to trenttdaniel@gmail.com',
+      message: 'Test email sent successfully to tdaniel@botmakers.ai',
       emailId: data?.id,
     });
   } catch (error: any) {
