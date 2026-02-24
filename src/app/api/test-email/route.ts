@@ -98,7 +98,7 @@ export async function GET() {
     `;
 
     const { data, error } = await resend.emails.send({
-      from: 'Apex Affinity Group <noreply@theapexway.net>',
+      from: 'Apex Affinity Group <aag@theapexway.net>',
       to: ['trenttdaniel@gmail.com'],
       subject: 'Welcome to the Apex Family! (Test Email)',
       html: htmlContent,

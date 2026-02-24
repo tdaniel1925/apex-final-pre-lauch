@@ -90,7 +90,7 @@ export async function POST(request: Request) {
     // Send welcome email
     try {
       await resend.emails.send({
-        from: 'Apex Affinity Group <noreply@theapexway.net>',
+        from: 'Apex Affinity Group <aag@theapexway.net>',
         to: [data.email],
         subject: 'Welcome to the Apex Family!',
         react: ProspectWelcomeEmail({
