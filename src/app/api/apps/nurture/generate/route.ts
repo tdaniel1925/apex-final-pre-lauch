@@ -83,9 +83,23 @@ Return ONLY a valid JSON array — no markdown, no explanation, nothing else:
     });
 
     if (!response.ok) {
-      const err = await response.text();
-      console.error('OpenAI API error:', err);
-      throw new Error('AI generation failed');
+      const errText = await response.text();
+      console.error('OpenAI API error:', errText);
+
+      // Parse the error to show a helpful message
+      let errorMessage = 'AI generation failed';
+      try {
+        const errData = JSON.parse(errText);
+        if (errData.error?.message) {
+          errorMessage = `OpenAI Error: ${errData.error.message}`;
+        } else {
+          errorMessage = `OpenAI Error (${response.status}): ${errText.substring(0, 200)}`;
+        }
+      } catch {
+        errorMessage = `OpenAI Error (${response.status}): ${errText.substring(0, 200)}`;
+      }
+
+      throw new Error(errorMessage);
     }
 
     const data = await response.json();
