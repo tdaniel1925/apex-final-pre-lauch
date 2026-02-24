@@ -118,7 +118,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   {/* Header Btn Start */}
                   <div className="header-btn">
                     <a href={signupUrl} className="btn-default" style={{background: '#2B4C7E', backgroundColor: '#2B4C7E', backgroundImage: 'none', borderColor: '#2B4C7E'}}>
-                      {distributor.slug === 'apex' ? "Let's Get Started" : 'Join My Team'}
+                      {distributor.slug === 'apex' ? 'Get Started' : 'Join My Team'}
                     </a>
                   </div>
                   {/* Header Btn End */}
@@ -282,7 +282,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                           </div>
                           <div className="pricing-item-btn">
                             <a href={signupUrl} className="btn-default">
-                              {distributor.slug === 'apex' ? "Let's Get Started" : 'Start Your Journey'}
+                              {distributor.slug === 'apex' ? 'Get Started' : 'Start Your Journey'}
                             </a>
                           </div>
                         </div>
@@ -318,7 +318,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                           </div>
                           <div className="pricing-item-btn">
                             <a href={signupUrl} className="btn-default">
-                              {distributor.slug === 'apex' ? "Let's Get Started" : 'Grow With Us'}
+                              {distributor.slug === 'apex' ? 'Get Started' : 'Grow With Us'}
                             </a>
                           </div>
                         </div>
@@ -348,7 +348,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                           </div>
                           <div className="pricing-item-btn">
                             <a href={signupUrl} className="btn-default">
-                              {distributor.slug === 'apex' ? "Let's Get Started" : `Join ${distributor.first_name}'s Network`}
+                              {distributor.slug === 'apex' ? 'Get Started' : `Join ${distributor.first_name}'s Network`}
                             </a>
                           </div>
                         </div>
@@ -633,7 +633,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                     </p>
                     <div className="wow fadeInUp" data-wow-delay="0.4s" style={{marginTop: '40px', display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap'}}>
                       <a href={signupUrl} className="btn-default" style={{background: '#ffffff', color: '#2B4C7E', borderColor: '#ffffff'}}>
-                        {distributor.slug === 'apex' ? "Let's Get Started" : 'Join the Mission'}
+                        {distributor.slug === 'apex' ? 'Get Started' : 'Join the Mission'}
                       </a>
                     </div>
                   </div>
