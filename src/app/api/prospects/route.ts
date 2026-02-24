@@ -11,6 +11,52 @@ import ProspectWelcomeEmail from '@/emails/ProspectWelcomeEmail';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+// GET /api/prospects
+// Get all prospects with optional date filtering
+export async function GET(request: Request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const today = searchParams.get('today');
+
+    const serviceClient = createServiceClient();
+
+    let query = serviceClient
+      .from('prospects')
+      .select('*', { count: 'exact' })
+      .order('created_at', { ascending: false });
+
+    // Filter by today if requested
+    if (today === 'true') {
+      const todayStart = new Date();
+      todayStart.setHours(0, 0, 0, 0);
+
+      query = query.gte('created_at', todayStart.toISOString());
+    }
+
+    const { data: prospects, error, count } = await query;
+
+    if (error) {
+      console.error('Error fetching prospects:', error);
+      return NextResponse.json(
+        { success: false, error: 'Failed to fetch prospects' },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json({
+      success: true,
+      count: count || 0,
+      prospects: prospects || [],
+    });
+  } catch (error) {
+    console.error('Error in GET prospects API:', error);
+    return NextResponse.json(
+      { success: false, error: 'Internal server error' },
+      { status: 500 }
+    );
+  }
+}
+
 const prospectSchema = z.object({
   firstName: z.string().min(1, 'First name is required'),
   lastName: z.string().min(1, 'Last name is required'),

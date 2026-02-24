@@ -15,7 +15,7 @@ interface StatCardProps {
     label: string;
     isPositive?: boolean;
   };
-  color?: 'blue' | 'green' | 'purple' | 'orange' | 'red' | 'gray';
+  color?: 'blue' | 'green' | 'purple' | 'orange' | 'red' | 'gray' | 'teal';
 }
 
 const colorClasses = {
@@ -25,6 +25,7 @@ const colorClasses = {
   orange: 'bg-orange-100 text-orange-600',
   red: 'bg-red-100 text-red-600',
   gray: 'bg-gray-100 text-gray-600',
+  teal: 'bg-teal-100 text-teal-600',
 };
 
 export default function StatCard({

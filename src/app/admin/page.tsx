@@ -35,6 +35,8 @@ export default async function AdminDashboardPage() {
     maxDepthResult,
     avgDepthResult,
     recentDistributors,
+    totalProspectsResult,
+    newProspectsResult,
   ] = await Promise.all([
     // Get total distributors count
     serviceClient
@@ -77,6 +79,17 @@ export default async function AdminDashboardPage() {
       .select('id, first_name, last_name, email, slug, created_at, matrix_position, rep_number')
       .order('created_at', { ascending: false })
       .limit(10),
+
+    // Get total prospects count
+    serviceClient
+      .from('prospects')
+      .select('*', { count: 'exact', head: true }),
+
+    // Get new prospects today
+    serviceClient
+      .from('prospects')
+      .select('*', { count: 'exact', head: true })
+      .gte('created_at', today.toISOString()),
   ]);
 
   // Process results
@@ -88,6 +101,8 @@ export default async function AdminDashboardPage() {
   const newThisMonth = newThisMonthResult.count || 0;
   const maxDepth = maxDepthResult.data?.matrix_depth || 0;
   const avgDepth = avgDepthResult.data ? Math.round(Number(avgDepthResult.data) * 10) / 10 : 0;
+  const totalProspects = totalProspectsResult.count || 0;
+  const newProspectsToday = newProspectsResult.count || 0;
 
   return (
     <div className="p-4">
@@ -102,7 +117,7 @@ export default async function AdminDashboardPage() {
       </div>
 
       {/* Key Metrics Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3 mb-4">
         <StatCard
           title="Total Distributors"
           value={totalDistributors || 0}
@@ -118,6 +133,23 @@ export default async function AdminDashboardPage() {
             </svg>
           }
           color="blue"
+        />
+
+        <StatCard
+          title="Prospects"
+          value={totalProspects || 0}
+          subtitle={`${newProspectsToday || 0} signed up today`}
+          icon={
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+              />
+            </svg>
+          }
+          color="teal"
         />
 
         <StatCard
@@ -238,7 +270,7 @@ export default async function AdminDashboardPage() {
       </div>
 
       {/* Quick Actions */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3">
         <a
           href="/admin/distributors"
           className="bg-white rounded-lg shadow p-4 hover:shadow-lg transition-shadow cursor-pointer"
@@ -257,6 +289,28 @@ export default async function AdminDashboardPage() {
             <div>
               <h3 className="text-sm font-semibold text-gray-900">Manage Distributors</h3>
               <p className="text-xs text-gray-600">View, edit, and manage users</p>
+            </div>
+          </div>
+        </a>
+
+        <a
+          href="/admin/prospects"
+          className="bg-white rounded-lg shadow p-4 hover:shadow-lg transition-shadow cursor-pointer"
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-gray-900">Manage Prospects</h3>
+              <p className="text-xs text-gray-600">View and manage signups</p>
             </div>
           </div>
         </a>
