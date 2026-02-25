@@ -49,15 +49,27 @@ export async function getMatrixTree(rootId?: string): Promise<MatrixNode | null>
       .single();
     root = data;
   } else {
-    // Get master as root
-    const { data } = await serviceClient
+    // Get master as root - prioritize Level 0A if it exists
+    const { data: level0A } = await serviceClient
       .from('distributors')
       .select('*')
-      .eq('is_master', true)
-      .order('created_at', { ascending: true })
+      .eq('matrix_depth', -1)
       .limit(1)
       .single();
-    root = data;
+
+    if (level0A) {
+      root = level0A;
+    } else {
+      // Fall back to regular master (Apex Vision)
+      const { data } = await serviceClient
+        .from('distributors')
+        .select('*')
+        .eq('is_master', true)
+        .order('created_at', { ascending: true })
+        .limit(1)
+        .single();
+      root = data;
+    }
   }
 
   if (!root) return null;

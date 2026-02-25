@@ -37,6 +37,7 @@ export default async function AdminDashboardPage() {
     recentDistributors,
     totalProspectsResult,
     newProspectsResult,
+    level0AResult,
   ] = await Promise.all([
     // Get total distributors count
     serviceClient
@@ -90,6 +91,14 @@ export default async function AdminDashboardPage() {
       .from('prospects')
       .select('*', { count: 'exact', head: true })
       .gte('created_at', today.toISOString()),
+
+    // Get Level 0A (Apex Affinity Team) if it exists
+    serviceClient
+      .from('distributors')
+      .select('id, first_name, last_name, slug')
+      .eq('matrix_depth', -1)
+      .limit(1)
+      .maybeSingle(),
   ]);
 
   // Process results
@@ -103,6 +112,7 @@ export default async function AdminDashboardPage() {
   const avgDepth = avgDepthResult.data ? Math.round(Number(avgDepthResult.data) * 10) / 10 : 0;
   const totalProspects = totalProspectsResult.count || 0;
   const newProspectsToday = newProspectsResult.count || 0;
+  const level0A = level0AResult.data;
 
   return (
     <div className="p-4">
@@ -115,6 +125,43 @@ export default async function AdminDashboardPage() {
           Welcome back, {admin.first_name}! Here&apos;s your system overview.
         </p>
       </div>
+
+      {/* Level 0A Banner - Apex Affinity Team */}
+      {level0A && (
+        <div className="mb-4">
+          <a
+            href={`/admin/distributors/${level0A.id}`}
+            className="block bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg shadow-lg p-4 hover:shadow-xl transition-all cursor-pointer"
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
+                  <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                </div>
+                <div>
+                  <h2 className="text-xl font-bold text-white">
+                    🏆 {level0A.first_name} {level0A.last_name}
+                  </h2>
+                  <p className="text-sm text-blue-100">
+                    Level 0A - Corporate Override & Bonus Position
+                  </p>
+                  <p className="text-xs text-blue-200 mt-0.5">
+                    All commissions, overrides, and always bonus qualified
+                  </p>
+                </div>
+              </div>
+              <div className="hidden md:flex items-center gap-2 text-white">
+                <span className="text-sm font-medium">View Organization</span>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </div>
+          </a>
+        </div>
+      )}
 
       {/* Key Metrics Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3 mb-4">
