@@ -131,7 +131,7 @@ export async function getOrganizationEnrollees(
   // Get direct enrollees
   const { data: directEnrollees, error } = await serviceClient
     .from('distributors')
-    .select('id, first_name, last_name, email, slug, created_at, status')
+    .select('id, first_name, last_name, email')
     .eq('sponsor_id', distributorId)
     .neq('status', 'deleted')
     .order('created_at', { ascending: false });
@@ -143,7 +143,10 @@ export async function getOrganizationEnrollees(
 
   // Start with direct enrollees
   const allEnrollees = directEnrollees.map((e) => ({
-    ...e,
+    id: e.id,
+    first_name: e.first_name,
+    last_name: e.last_name,
+    email: e.email,
     level: level + 1,
   }));
 
