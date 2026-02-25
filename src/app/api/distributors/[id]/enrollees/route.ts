@@ -15,10 +15,10 @@ import {
 // Get enrollee statistics for a distributor
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = params;
+    const { id } = await params;
     const { searchParams } = new URL(request.url);
     const includeList = searchParams.get('includeList') === 'true';
 
