@@ -41,8 +41,8 @@ export async function GET(
     const stats = await getEnrolleeStats(id);
 
     // Optionally include full lists
-    let personalEnrolleesList = [];
-    let organizationEnrolleesList = [];
+    let personalEnrolleesList: any[] = [];
+    let organizationEnrolleesList: any[] = [];
 
     if (includeList) {
       [personalEnrolleesList, organizationEnrolleesList] = await Promise.all([
