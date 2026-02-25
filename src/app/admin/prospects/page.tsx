@@ -57,21 +57,14 @@ export default function ProspectsPage() {
       setIsLoading(true);
       setError(null);
 
-      // For now, we'll fetch directly from Supabase
-      // In production, you'd want an API route for this
-      const { createClient } = await import('@/lib/supabase/client');
-      const supabase = createClient();
+      const response = await fetch('/api/admin/prospects');
+      const result = await response.json();
 
-      const { data, error: fetchError } = await supabase
-        .from('prospects')
-        .select('*')
-        .order('created_at', { ascending: false });
-
-      if (fetchError) {
-        throw new Error(fetchError.message);
+      if (!response.ok || !result.success) {
+        throw new Error(result.error || 'Failed to load prospects');
       }
 
-      setProspects(data || []);
+      setProspects(result.prospects || []);
     } catch (err: any) {
       console.error('Error fetching prospects:', err);
       setError(err.message || 'Failed to load prospects');
