@@ -101,6 +101,8 @@ export interface DistributorWithStats extends Distributor {
   downline_count: number;
   personal_sponsors_count: number;
   available_slots: number;
+  personal_enrollees_count: number; // Direct recruits (via sponsor_id)
+  organization_enrollees_count: number; // All downline (recursive via sponsor_id)
 }
 
 /**

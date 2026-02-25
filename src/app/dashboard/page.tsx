@@ -11,6 +11,7 @@ import TeamStatisticsUser from '@/components/dashboard/TeamStatisticsUser';
 import DashboardClient from '@/components/dashboard/DashboardClient';
 import Road500Banner from '@/components/dashboard/Road500Banner';
 import type { Distributor } from '@/lib/types';
+import { getEnrolleeStats } from '@/lib/enrollees/enrollee-counter';
 
 export const metadata = {
   title: 'Dashboard - Apex Affinity Group',
@@ -50,7 +51,7 @@ export default async function DashboardPage() {
   const dist = distributor as Distributor;
 
   // OPTIMIZATION: Run all queries in parallel instead of sequential
-  const [parentData, sponsorData, directReferrals, matrixChildrenData] = await Promise.all([
+  const [parentData, sponsorData, directReferrals, matrixChildrenData, enrolleeStats] = await Promise.all([
     // Get matrix parent info (only needed fields)
     dist.matrix_parent_id
       ? serviceClient
@@ -82,6 +83,9 @@ export default async function DashboardPage() {
       .select('id, first_name, last_name, created_at, licensing_status, matrix_position')
       .eq('matrix_parent_id', dist.id)
       .order('matrix_position', { ascending: true }),
+
+    // Get enrollee statistics
+    getEnrolleeStats(dist.id),
   ]);
 
   // Process parent name
@@ -120,8 +124,8 @@ export default async function DashboardPage() {
         {/* Left Column - Stats */}
         <div className="lg:col-span-2 space-y-3">
           {/* Stats Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-            {/* Matrix Position */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
+            {/* Rep Number */}
             <div className="bg-white rounded-lg shadow p-3">
               <div className="flex items-center justify-between">
                 <div>
@@ -139,12 +143,12 @@ export default async function DashboardPage() {
               <p className="text-[10px] text-gray-500 mt-1">Level {dist.matrix_depth}</p>
             </div>
 
-            {/* Direct Referrals */}
+            {/* Personal Enrollees */}
             <div className="bg-white rounded-lg shadow p-3">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs text-gray-600 mb-0.5">Direct Referrals</p>
-                  <p className="text-2xl font-bold text-[#2B4C7E]">{referralCount || 0}</p>
+                  <p className="text-xs text-gray-600 mb-0.5">Personal Enrollees</p>
+                  <p className="text-2xl font-bold text-[#2B4C7E]">{enrolleeStats.personalEnrollees || 0}</p>
                 </div>
                 <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
                   <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -152,7 +156,23 @@ export default async function DashboardPage() {
                   </svg>
                 </div>
               </div>
-              <p className="text-[10px] text-gray-500 mt-1">People you invited</p>
+              <p className="text-[10px] text-gray-500 mt-1">You personally signed up</p>
+            </div>
+
+            {/* Organization Enrollees */}
+            <div className="bg-white rounded-lg shadow p-3">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-xs text-gray-600 mb-0.5">Organization Enrollees</p>
+                  <p className="text-2xl font-bold text-[#2B4C7E]">{enrolleeStats.organizationEnrollees || 0}</p>
+                </div>
+                <div className="w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center">
+                  <svg className="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                </div>
+              </div>
+              <p className="text-[10px] text-gray-500 mt-1">All downline enrollees</p>
             </div>
 
             {/* Matrix Children */}

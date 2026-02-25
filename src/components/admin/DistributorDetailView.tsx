@@ -13,6 +13,7 @@ import SponsorLineage from './SponsorLineage';
 import PersonalDownline from './PersonalDownline';
 import MatrixChildren from './MatrixChildren';
 import TeamStatistics from './TeamStatistics';
+import EnrolleeStats from './EnrolleeStats';
 import MatrixPositionManager from './MatrixPositionManager';
 import { LicensingStatusBadge } from '@/components/common';
 import ResendWelcomeButton from '@/components/dashboard/ResendWelcomeButton';
@@ -421,6 +422,9 @@ export default function DistributorDetailView({
 
           {/* Team Statistics */}
           <TeamStatistics distributorId={initialDistributor.id} />
+
+          {/* Enrollee Statistics */}
+          <EnrolleeStats distributorId={initialDistributor.id} />
 
           {/* Licensing Status */}
           <div className="bg-white rounded-lg shadow p-3">
