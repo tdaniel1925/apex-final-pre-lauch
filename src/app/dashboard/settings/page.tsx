@@ -5,7 +5,9 @@
 
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
+import { createServiceClient } from '@/lib/supabase/service';
 import PasswordChangeForm from '@/components/dashboard/PasswordChangeForm';
+import SlugChangeForm from '@/components/dashboard/SlugChangeForm';
 
 export const metadata = {
   title: 'Settings - Apex Affinity Group',
@@ -23,6 +25,16 @@ export default async function SettingsPage() {
   if (!user) {
     redirect('/login');
   }
+
+  // Get distributor info
+  const serviceClient = createServiceClient();
+  const { data: distributor } = await serviceClient
+    .from('distributors')
+    .select('slug')
+    .eq('auth_user_id', user.id)
+    .single();
+
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://reachtheapex.net';
 
   return (
     <div className="p-8">
@@ -54,6 +66,14 @@ export default async function SettingsPage() {
           <h2 className="text-lg font-semibold text-gray-900 mb-4">Change Password</h2>
           <PasswordChangeForm />
         </div>
+
+        {/* Username & Replicated Website */}
+        {distributor?.slug && (
+          <div className="bg-white rounded-lg shadow p-6">
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">Username & Replicated Website</h2>
+            <SlugChangeForm currentSlug={distributor.slug} siteUrl={siteUrl} />
+          </div>
+        )}
 
         {/* Notifications (placeholder for future) */}
         <div className="bg-white rounded-lg shadow p-6">

@@ -1,13 +1,13 @@
 // =============================================
 // Public Sign-Up Page
-// For prospects to register interest
+// Full distributor registration (defaults to Apex Vision sponsor)
 // =============================================
 
-import ProspectSignupForm from '@/components/forms/ProspectSignupForm';
+import SignupForm from '@/components/forms/SignupForm';
 
 export const metadata = {
   title: 'Sign Up - Apex Affinity Group',
-  description: 'Join Apex Affinity Group - Register your interest',
+  description: 'Join Apex Affinity Group - Create your distributor account',
 };
 
 export default function SignupPage() {
@@ -29,13 +29,13 @@ export default function SignupPage() {
             Join Apex Affinity Group
           </h1>
           <p className="text-gray-600">
-            Register your interest and we'll be in touch within 48 hours
+            Create your distributor account and start building your business
           </p>
         </div>
 
         {/* Form Container */}
         <div className="bg-white rounded-2xl shadow-xl p-8">
-          <ProspectSignupForm />
+          <SignupForm sponsorName="Apex Vision" />
         </div>
 
         {/* Sign In Link */}
