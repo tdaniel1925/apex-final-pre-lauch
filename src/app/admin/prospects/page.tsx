@@ -112,15 +112,17 @@ export default function ProspectsPage() {
 
   const handleStatusChange = async (prospectId: string, newStatus: string) => {
     try {
-      const { createClient } = await import('@/lib/supabase/client');
-      const supabase = createClient();
+      const response = await fetch(`/api/admin/prospects/${prospectId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus }),
+      });
 
-      const { error } = await supabase
-        .from('prospects')
-        .update({ status: newStatus })
-        .eq('id', prospectId);
+      const result = await response.json();
 
-      if (error) throw error;
+      if (!response.ok || !result.success) {
+        throw new Error(result.error || 'Failed to update status');
+      }
 
       // Update local state
       setProspects(prospects.map(p =>
@@ -136,15 +138,15 @@ export default function ProspectsPage() {
     if (!confirm('Are you sure you want to delete this prospect?')) return;
 
     try {
-      const { createClient } = await import('@/lib/supabase/client');
-      const supabase = createClient();
+      const response = await fetch(`/api/admin/prospects/${prospectId}`, {
+        method: 'DELETE',
+      });
 
-      const { error } = await supabase
-        .from('prospects')
-        .delete()
-        .eq('id', prospectId);
+      const result = await response.json();
 
-      if (error) throw error;
+      if (!response.ok || !result.success) {
+        throw new Error(result.error || 'Failed to delete prospect');
+      }
 
       setProspects(prospects.filter(p => p.id !== prospectId));
     } catch (err: any) {
