@@ -154,7 +154,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
 
           <div className="container" style={{position: 'relative', zIndex: 2}}>
             <div className="row align-items-start">
-              <div className={distributor.slug === 'apex' ? 'col-xl-12' : 'col-xl-8'}>
+              <div className="col-xl-12">
                 {/* Hero Content Start */}
                 <div className="hero-content">
                   {/* Section Title Start */}
@@ -176,62 +176,6 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                 </div>
                 {/* Hero Content End */}
               </div>
-
-              {/* Only show contact card on replicated sites, not generic homepage */}
-              {distributor.slug !== 'apex' && (
-                <div className="col-xl-4">
-                  {/* Hero Info Box Start */}
-                  <div className="hero-info-box wow fadeInUp" data-wow-delay="0.2s" style={{border: '5px solid #ffffff', padding: '0'}}>
-                    {/* Hero Info Image Box Start */}
-                    <div className="hero-info-image-box">
-                      {/* Hero Info Image Start */}
-                      <div className="hero-info-image">
-                        <figure>
-                          {/* Show distributor photo if available, otherwise Apex logo */}
-                          <img
-                            src={distributor.profile_photo_url || '/apex-logo-full.png'}
-                            alt={`${distributor.first_name} ${distributor.last_name}`}
-                            style={{
-                              width: '100%',
-                              height: '100%',
-                              objectFit: 'cover',
-                              objectPosition: 'top center',
-                              borderRadius: distributor.profile_photo_url ? '0' : '0'
-                            }}
-                          />
-                        </figure>
-                      </div>
-                      {/* Hero Info Image End */}
-                    </div>
-                    {/* Hero Info Image Box End */}
-
-                    {/* Hero Info Box Content Start */}
-                    <div className="hero-info-box-content">
-                      <h2 style={{textTransform: 'capitalize'}}>{distributor.first_name} {distributor.last_name}</h2>
-                      <div style={{marginTop: '10px'}}>
-                        {distributor.phone && (
-                          <p style={{margin: '5px 0'}}>
-                            <i className="fa-solid fa-phone" style={{marginRight: '8px', color: '#ffffff'}}></i>
-                            <a href={`tel:${distributor.phone}`} style={{color: '#ffffff', textDecoration: 'none'}}>
-                              {distributor.phone.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')}
-                            </a>
-                          </p>
-                        )}
-                        {distributor.email && (
-                          <p style={{margin: '5px 0'}}>
-                            <i className="fa-solid fa-envelope" style={{marginRight: '8px', color: '#ffffff'}}></i>
-                            <a href={`mailto:${distributor.email}`} style={{color: '#ffffff', textDecoration: 'none'}}>
-                              {distributor.email}
-                            </a>
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                    {/* Hero Info Box Content End */}
-                  </div>
-                  {/* Hero Info Box End */}
-                </div>
-              )}
             </div>
           </div>
         </div>
@@ -512,112 +456,6 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
           </div>
         </div>
         {/* Product Portfolio Section End */}
-
-
-        {/* AgentPulse Suite Section Start */}
-        <div style={{background: '#1a2f50', padding: '80px 0'}}>
-          <div className="container">
-            <div className="row section-row">
-              <div className="col-lg-12">
-                <div className="section-title section-title-center" style={{marginBottom: '24px'}}>
-                  <span className="section-sub-title wow fadeInUp" style={{display: 'block', color: '#fff'}}>The Technology</span>
-                  <h2 className="text-anime-style-3" style={{color: '#fff'}}>Introducing AgentPulse</h2>
-                  <p className="wow fadeInUp" data-wow-delay="0.2s" style={{color: '#93c5fd'}}>
-                    A full suite of AI-powered tools built exclusively for insurance professionals. Everything you need to sell more, serve better, and run a practice you're proud of.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="row wow fadeInUp" data-wow-delay="0.3s">
-              {[
-                {
-                  icon: 'fa-phone-volume',
-                  name: 'WarmLine',
-                  tag: 'Calling',
-                  desc: 'Smart warm calling that surfaces full prospect intel before you dial — so every conversation starts with confidence, not cold air.',
-                },
-                {
-                  icon: 'fa-rotate',
-                  name: 'LeadLoop',
-                  tag: 'Pipeline',
-                  desc: 'Intelligent lead management that keeps your pipeline organized, staged, and always moving. No lead falls through the cracks.',
-                },
-                {
-                  icon: 'fa-chart-bar',
-                  name: 'PulseInsight',
-                  tag: 'Analytics',
-                  desc: 'Real-time dashboards on your business — conversions, pipeline health, team production, and revenue trends at a glance.',
-                },
-                {
-                  icon: 'fa-robot',
-                  name: 'AgentPilot',
-                  tag: 'AI Coaching',
-                  desc: 'Your AI sales co-pilot — objection handling, presentation prep, and next-step guidance on every deal, every time.',
-                },
-                {
-                  icon: 'fa-paper-plane',
-                  name: 'PulseFollow',
-                  tag: 'Follow-Up',
-                  desc: 'Automated, personalized follow-up sequences that run in the background so no prospect ever goes cold.',
-                },
-                {
-                  icon: 'fa-bell',
-                  name: 'PolicyPing',
-                  tag: 'Retention',
-                  desc: 'Full policy lifecycle tracking — renewals, lapses, anniversaries — so you are always proactive and never reactive.',
-                },
-              ].map((tool, i) => (
-                <div key={i} className="col-lg-4 col-md-6" style={{marginBottom: '24px'}}>
-                  <div style={{
-                    background: 'rgba(255,255,255,0.06)',
-                    border: '1px solid rgba(255,255,255,0.12)',
-                    borderRadius: '16px',
-                    padding: '30px 26px',
-                    height: '100%',
-                    transition: 'background 0.2s',
-                  }}>
-                    <div style={{display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '16px'}}>
-                      <div style={{
-                        width: '50px', height: '50px',
-                        background: 'linear-gradient(135deg, #2B4C7E, #1a3a6b)',
-                        borderRadius: '12px',
-                        display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        flexShrink: 0,
-                        border: '1px solid rgba(255,255,255,0.15)',
-                      }}>
-                        <i className={`fa-solid ${tool.icon}`} style={{fontSize: '20px', color: '#93c5fd'}}></i>
-                      </div>
-                      <div>
-                        <h4 style={{margin: 0, fontSize: '19px', fontWeight: 800, color: '#fff'}}>{tool.name}</h4>
-                        <span style={{
-                          fontSize: '10px', fontWeight: 700, textTransform: 'uppercase',
-                          letterSpacing: '1px', color: '#60a5fa',
-                        }}>{tool.tag}</span>
-                      </div>
-                    </div>
-                    <p style={{margin: 0, fontSize: '14px', color: '#93c5fd', lineHeight: '1.75'}}>{tool.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="text-center wow fadeInUp" data-wow-delay="0.4s" style={{marginTop: '40px'}}>
-              <div style={{
-                display: 'inline-block',
-                background: 'rgba(255,255,255,0.08)',
-                border: '1px solid rgba(255,255,255,0.15)',
-                borderRadius: '999px',
-                padding: '10px 28px',
-                color: '#c7d9f5',
-                fontSize: '14px',
-                fontStyle: 'italic',
-              }}>
-                🚀 AgentPulse launches with the platform — join the waitlist to be first in.
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* AgentPulse Suite Section End */}
-
 
         {/* Mission / Community Impact Section Start */}
         <div className="our-expert-solution">
