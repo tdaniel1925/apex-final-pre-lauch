@@ -2,33 +2,54 @@
 
 // =============================================
 // Reset Password Form Component
+// Custom token-based password reset
 // =============================================
 
 import { useState, useTransition, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { createClient } from '@/lib/supabase/client';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 export default function ResetPasswordForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [tokenValid, setTokenValid] = useState<boolean | null>(null);
+  const [token, setToken] = useState<string | null>(null);
 
   useEffect(() => {
-    // Check if there's a valid session from the reset link
-    const checkSession = async () => {
-      const supabase = createClient();
-      const { data: { session } } = await supabase.auth.getSession();
-      
-      if (!session) {
-        setError('Invalid or expired reset link. Please request a new one.');
+    // Get token from URL
+    const tokenParam = searchParams.get('token');
+    setToken(tokenParam);
+
+    if (!tokenParam) {
+      setError('No reset token provided. Please request a new password reset link.');
+      setTokenValid(false);
+      return;
+    }
+
+    // Verify token
+    const verifyToken = async () => {
+      try {
+        const response = await fetch(`/api/auth/reset-password?token=${tokenParam}`);
+        const data = await response.json();
+
+        if (data.valid) {
+          setTokenValid(true);
+        } else {
+          setError(data.error || 'Invalid or expired reset link');
+          setTokenValid(false);
+        }
+      } catch (err) {
+        setError('Failed to verify reset link. Please try again.');
+        setTokenValid(false);
       }
     };
 
-    checkSession();
-  }, []);
+    verifyToken();
+  }, [searchParams]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -49,17 +70,23 @@ export default function ResetPasswordForm() {
       return;
     }
 
+    if (!token) {
+      setError('Invalid reset token');
+      return;
+    }
+
     startTransition(async () => {
       try {
-        const supabase = createClient();
-
-        // Update the password
-        const { error: updateError } = await supabase.auth.updateUser({
-          password: password,
+        const response = await fetch('/api/auth/reset-password', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token, password }),
         });
 
-        if (updateError) {
-          setError(updateError.message);
+        const data = await response.json();
+
+        if (!response.ok) {
+          setError(data.error || 'Failed to reset password');
           return;
         }
 
@@ -75,6 +102,37 @@ export default function ResetPasswordForm() {
       }
     });
   };
+
+  // Show loading while checking token
+  if (tokenValid === null) {
+    return (
+      <div className="text-center py-12">
+        <div className="w-16 h-16 border-4 border-[#2B4C7E] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+        <p className="text-gray-600">Verifying reset link...</p>
+      </div>
+    );
+  }
+
+  // Show error if token is invalid
+  if (tokenValid === false) {
+    return (
+      <div className="text-center">
+        <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </div>
+        <h3 className="text-xl font-bold text-gray-900 mb-2">Invalid Reset Link</h3>
+        <p className="text-gray-600 mb-6">{error}</p>
+        <a
+          href="/forgot-password"
+          className="inline-block px-6 py-3 bg-[#2B4C7E] text-white rounded-lg hover:bg-[#1a2c4e] transition-colors"
+        >
+          Request New Reset Link
+        </a>
+      </div>
+    );
+  }
 
   if (success) {
     return (
