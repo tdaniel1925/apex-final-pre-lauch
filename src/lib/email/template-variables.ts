@@ -112,8 +112,10 @@ export function replaceTemplateVariables(text: string, variables: TemplateVariab
 
   // Replace each variable
   Object.entries(variables).forEach(([key, value]) => {
-    const placeholder = `{${key}}`;
-    result = result.replace(new RegExp(placeholder, 'g'), value || '');
+    // Escape curly braces for regex (they are special characters)
+    const placeholder = `\\{${key}\\}`;
+    const regex = new RegExp(placeholder, 'g');
+    result = result.replace(regex, value || '');
   });
 
   return result;
