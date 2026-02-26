@@ -10,6 +10,7 @@ interface TemplateVariables {
   last_name?: string;
   email?: string;
   company_name?: string;
+  slug?: string;
   licensing_status?: string;
   licensing_status_badge?: string;
   dashboard_link?: string;
@@ -79,6 +80,7 @@ export function buildTemplateVariables(
     last_name: distributor.last_name,
     email: distributor.email,
     company_name: distributor.company_name || '',
+    slug: distributor.slug,
     licensing_status: licensingStatusDisplay,
     licensing_status_badge: `<span style="background: ${
       distributor.licensing_status === 'licensed' ? '#DBEAFE' : '#F3F4F6'
