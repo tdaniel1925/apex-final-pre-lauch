@@ -86,8 +86,11 @@ export default function MatrixChildrenUser({ children }: MatrixChildrenUserProps
                 </div>
               </div>
             ) : (
-              // Filled Slot
-              <div className="border-2 border-[#2B4C7E]/30 rounded-lg p-2 bg-purple-50 hover:border-[#2B4C7E] hover:shadow-md transition-all">
+              // Filled Slot - Clickable to drill down
+              <a
+                href={`/dashboard/matrix/${slot.distributor!.id}`}
+                className="block border-2 border-[#2B4C7E]/30 rounded-lg p-2 bg-purple-50 hover:border-[#2B4C7E] hover:shadow-md transition-all cursor-pointer"
+              >
                 <div className="text-center">
                   {/* Position Badge */}
                   <div className="absolute -top-1 -right-1 w-4 h-4 bg-[#2B4C7E] rounded-full flex items-center justify-center">
@@ -120,8 +123,15 @@ export default function MatrixChildrenUser({ children }: MatrixChildrenUserProps
                   >
                     {slot.distributor!.status || 'active'}
                   </span>
+
+                  {/* Drill Down Indicator */}
+                  <div className="mt-1">
+                    <span className="text-[8px] text-[#2B4C7E] font-semibold">
+                      View Matrix →
+                    </span>
+                  </div>
                 </div>
-              </div>
+              </a>
             )}
           </div>
         ))}
