@@ -10,6 +10,7 @@ import ReferralLink from '@/components/dashboard/ReferralLink';
 import TeamStatisticsUser from '@/components/dashboard/TeamStatisticsUser';
 import DashboardClient from '@/components/dashboard/DashboardClient';
 import Road500Banner from '@/components/dashboard/Road500Banner';
+import ActivityFeed from '@/components/dashboard/ActivityFeed';
 import type { Distributor } from '@/lib/types';
 import { getEnrolleeStats } from '@/lib/enrollees/enrollee-counter';
 
@@ -231,6 +232,11 @@ export default async function DashboardPage() {
         <div>
           <TeamStatisticsUser recruits={recruits} matrixChildren={matrixChildren} />
         </div>
+      </div>
+
+      {/* Activity Feed - Full Width */}
+      <div className="mt-4">
+        <ActivityFeed />
       </div>
     </div>
     </DashboardClient>
