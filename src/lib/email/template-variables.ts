@@ -16,6 +16,7 @@ interface TemplateVariables {
   dashboard_link?: string;
   profile_link?: string;
   referral_link?: string;
+  replicated_site_link?: string;
   team_link?: string;
   matrix_link?: string;
   sponsor_name?: string;
@@ -93,6 +94,7 @@ export function buildTemplateVariables(
     dashboard_link: `${baseUrl}/dashboard`,
     profile_link: `${baseUrl}/dashboard/profile`,
     referral_link: `${baseUrl}/signup?ref=${distributor.slug}`,
+    replicated_site_link: `${baseUrl}/${distributor.slug}`,
     team_link: `${baseUrl}/dashboard/team`,
     matrix_link: `${baseUrl}/dashboard/matrix`,
     sponsor_name: '', // Will be populated if sponsor info is passed

@@ -10,6 +10,7 @@
 import { useState, useEffect } from 'react';
 import type { Distributor } from '@/lib/types';
 import Script from 'next/script';
+import { formatPhoneNumber } from '@/lib/utils/format-phone';
 
 interface OptiveReplicatedSiteProps {
   distributor: Distributor;
@@ -598,6 +599,122 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
           </div>
         </div>
         {/* Our Faqs Section End */}
+
+        {/* Your Agent Contact Section Start */}
+        {distributor.slug !== 'apex' && (
+          <div className="contact-agent-section" style={{background: '#f8f9fa', padding: '60px 0'}}>
+            <div className="container">
+              <div className="row section-row">
+                <div className="col-lg-12">
+                  <div className="section-title section-title-center">
+                    <span className="section-sub-title wow fadeInUp">Your Agent</span>
+                    <h2 className="text-anime-style-3" data-cursor="-opaque">
+                      {distributor.first_name} {distributor.last_name}
+                    </h2>
+                    {distributor.company_name && (
+                      <p className="wow fadeInUp" data-wow-delay="0.1s" style={{fontSize: '18px', fontWeight: 600, color: '#2B4C7E'}}>
+                        {distributor.company_name}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              <div className="row justify-content-center">
+                <div className="col-lg-8 col-xl-6">
+                  <div className="wow fadeInUp" data-wow-delay="0.2s">
+                    {distributor.profile_photo_url ? (
+                      /* Show photo if available */
+                      <div style={{textAlign: 'center', marginBottom: '30px'}}>
+                        <img
+                          src={distributor.profile_photo_url}
+                          alt={`${distributor.first_name} ${distributor.last_name}`}
+                          style={{
+                            width: '200px',
+                            height: '200px',
+                            borderRadius: '50%',
+                            objectFit: 'cover',
+                            border: '4px solid #2B4C7E',
+                            boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+                          }}
+                        />
+                      </div>
+                    ) : null}
+
+                    {/* Contact Box */}
+                    <div style={{
+                      background: '#ffffff',
+                      border: '2px solid #dbeafe',
+                      borderRadius: '12px',
+                      padding: '32px',
+                      textAlign: 'center'
+                    }}>
+                      {distributor.bio && (
+                        <p style={{fontSize: '16px', color: '#4b5563', lineHeight: '1.8', marginBottom: '24px'}}>
+                          {distributor.bio}
+                        </p>
+                      )}
+
+                      <div style={{display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'center'}}>
+                        {/* Email */}
+                        <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
+                          <div style={{
+                            width: '40px',
+                            height: '40px',
+                            background: '#2B4C7E',
+                            borderRadius: '50%',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                          }}>
+                            <i className="fa-solid fa-envelope" style={{color: '#fff', fontSize: '18px'}}></i>
+                          </div>
+                          <a
+                            href={`mailto:${distributor.email}`}
+                            style={{fontSize: '16px', color: '#2B4C7E', fontWeight: 600, textDecoration: 'none'}}
+                          >
+                            {distributor.email}
+                          </a>
+                        </div>
+
+                        {/* Phone */}
+                        {distributor.phone && (
+                          <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
+                            <div style={{
+                              width: '40px',
+                              height: '40px',
+                              background: '#2B4C7E',
+                              borderRadius: '50%',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center'
+                            }}>
+                              <i className="fa-solid fa-phone" style={{color: '#fff', fontSize: '18px'}}></i>
+                            </div>
+                            <a
+                              href={`tel:${distributor.phone}`}
+                              style={{fontSize: '16px', color: '#2B4C7E', fontWeight: 600, textDecoration: 'none'}}
+                            >
+                              {formatPhoneNumber(distributor.phone)}
+                            </a>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* CTA Button */}
+                      <div style={{marginTop: '32px'}}>
+                        <a href={signupUrl} className="btn-default" style={{background: '#2B4C7E', borderColor: '#2B4C7E'}}>
+                          Join {distributor.first_name}'s Team
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+        {/* Your Agent Contact Section End */}
 
         {/* Main Footer End */}
         <footer className="main-footer dark-section" id="contact" style={{paddingTop: '50px'}}>
