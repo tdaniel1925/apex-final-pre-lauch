@@ -201,7 +201,7 @@ export default function OnboardingStep2Photo({
     setIsUploading(true);
     try {
       const formData = new FormData();
-      formData.append('photo', selectedFile);
+      formData.append('file', selectedFile);
 
       const response = await fetch('/api/profile/upload-photo', {
         method: 'POST',
