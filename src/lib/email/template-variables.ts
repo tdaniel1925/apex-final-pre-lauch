@@ -31,6 +31,9 @@ interface TemplateVariables {
  * Get base URL for links
  */
 function getBaseUrl(): string {
+  if (process.env.NEXT_PUBLIC_SITE_URL) {
+    return process.env.NEXT_PUBLIC_SITE_URL;
+  }
   if (process.env.NEXT_PUBLIC_APP_URL) {
     return process.env.NEXT_PUBLIC_APP_URL;
   }
