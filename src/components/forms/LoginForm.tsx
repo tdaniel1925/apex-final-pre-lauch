@@ -73,9 +73,9 @@ export default function LoginForm() {
       <div className="flex justify-end">
         <a
           href="/forgot-password"
-          className="text-sm text-[#2B4C7E] hover:underline"
+          className="text-sm text-gray-600 hover:text-[#2B4C7E]"
         >
-          Forgot password?
+          Password not working? <span className="text-[#2B4C7E] font-medium hover:underline">Reset it here</span>
         </a>
       </div>
 

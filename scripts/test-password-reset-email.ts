@@ -1,61 +1,15 @@
-// =============================================
-// Forgot Password API Route
-// Send password reset email
-// =============================================
-
-import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase/server';
-import { createServiceClient } from '@/lib/supabase/service';
+// Test password reset email (sends to tdaniel@botmakers.ai only)
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function POST(request: NextRequest) {
-  try {
-    const { email } = await request.json();
+async function testPasswordResetEmail() {
+  console.log('📧 Testing password reset email...\n');
 
-    if (!email) {
-      return NextResponse.json(
-        { error: 'Email is required' },
-        { status: 400 }
-      );
-    }
+  const testEmail = 'tdaniel@botmakers.ai';
+  const resetLink = `https://reachtheapex.net/reset-password`;
 
-    // Check if user exists (using service client to bypass RLS)
-    const serviceClient = createServiceClient();
-    const { data: distributor } = await serviceClient
-      .from('distributors')
-      .select('id, first_name, email')
-      .eq('email', email.toLowerCase())
-      .single();
-
-    // For security, always return success even if user doesn't exist
-    // This prevents email enumeration attacks
-    if (!distributor) {
-      return NextResponse.json({
-        success: true,
-        message: 'If an account exists, a reset link has been sent'
-      });
-    }
-
-    // Generate password reset token using Supabase Auth
-    const supabase = await createClient();
-    const { error: resetError } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3050'}/reset-password`,
-    });
-
-    if (resetError) {
-      console.error('Error generating reset token:', resetError);
-      return NextResponse.json(
-        { error: 'Failed to send reset email' },
-        { status: 500 }
-      );
-    }
-
-    // Send password reset email
-    const resetLink = `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3050'}/reset-password`;
-
-    const emailHtml = `
+  const emailHtml = `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,7 +22,7 @@ export async function POST(request: NextRequest) {
     <tr>
       <td style="padding: 40px 20px;">
         <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="margin: 0 auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-          
+
           <!-- Logo Header -->
           <tr>
             <td style="padding: 40px 40px 20px; text-align: center; background-color: #ffffff; border-radius: 8px 8px 0 0;">
@@ -84,7 +38,7 @@ export async function POST(request: NextRequest) {
               </h1>
 
               <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.6; color: #555555;">
-                Hi ${distributor.first_name},
+                Hi Test User,
               </p>
 
               <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.6; color: #555555;">
@@ -138,25 +92,35 @@ export async function POST(request: NextRequest) {
   </table>
 </body>
 </html>
-    `;
+  `;
 
-    await resend.emails.send({
+  try {
+    const { data, error } = await resend.emails.send({
       from: 'Apex Affinity Group <aag@theapexway.net>',
-      to: [email],
+      to: [testEmail],
       subject: 'Reset Your Password - Apex Affinity Group',
       html: emailHtml,
     });
 
-    return NextResponse.json({
-      success: true,
-      message: 'Password reset email sent successfully'
-    });
+    if (error) {
+      console.error('❌ Error sending email:', error);
+      return;
+    }
+
+    console.log('✅ Test email sent successfully!');
+    console.log('   To:', testEmail);
+    console.log('   Email ID:', data?.id);
+    console.log('   Reset Link:', resetLink);
 
   } catch (error) {
-    console.error('Forgot password error:', error);
-    return NextResponse.json(
-      { error: 'Failed to process request' },
-      { status: 500 }
-    );
+    console.error('❌ Error:', error);
   }
 }
+
+testPasswordResetEmail().then(() => {
+  console.log('\n✅ Test complete');
+  process.exit(0);
+}).catch((error) => {
+  console.error('\n❌ Error:', error);
+  process.exit(1);
+});
