@@ -2,12 +2,17 @@
 // Reset Password Page
 // =============================================
 
+import { Suspense } from 'react';
 import ResetPasswordForm from '@/components/forms/ResetPasswordForm';
 
 export const metadata = {
   title: 'Reset Password - Apex Affinity Group',
   description: 'Create a new password',
 };
+
+function ResetPasswordFormWrapper() {
+  return <ResetPasswordForm />;
+}
 
 export default function ResetPasswordPage() {
   return (
@@ -34,7 +39,14 @@ export default function ResetPasswordPage() {
 
         {/* Form Container */}
         <div className="bg-white rounded-2xl shadow-xl p-8">
-          <ResetPasswordForm />
+          <Suspense fallback={
+            <div className="text-center py-12">
+              <div className="w-16 h-16 border-4 border-[#2B4C7E] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+              <p className="text-gray-600">Loading...</p>
+            </div>
+          }>
+            <ResetPasswordFormWrapper />
+          </Suspense>
         </div>
 
         {/* Back to Login Link */}
