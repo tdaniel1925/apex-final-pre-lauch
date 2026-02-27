@@ -117,7 +117,7 @@ async function sendTestResetEmail() {
 
   try {
     const { data, error } = await resend.emails.send({
-      from: 'Apex Affinity Group <aag@theapexway.net>',
+      from: 'Apex Affinity Group <theapex@theapexway.net>',
       to: ['tdaniel@botmakers.ai'],
       subject: 'Reset Your Password - Apex Affinity Group',
       html: emailHtml,
@@ -130,7 +130,7 @@ async function sendTestResetEmail() {
 
     console.log('✅ Test email sent successfully!');
     console.log('   To: tdaniel@botmakers.ai');
-    console.log('   From: Apex Affinity Group <aag@theapexway.net>');
+    console.log('   From: Apex Affinity Group <theapex@theapexway.net>');
     console.log('   Email ID:', data?.id);
     console.log('\n📧 Check your inbox for the Apex-branded password reset email!');
     console.log('\n⚠️  Note: This is a test token - it won\'t actually work to reset password.');

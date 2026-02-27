@@ -152,7 +152,7 @@ export async function POST(request: NextRequest) {
 
     // Send email via Resend
     const { error: emailError } = await resend.emails.send({
-      from: 'Apex Affinity Group <aag@theapexway.net>',
+      from: 'Apex Affinity Group <theapex@theapexway.net>',
       to: [email],
       subject: 'Reset Your Password - Apex Affinity Group',
       html: emailHtml,

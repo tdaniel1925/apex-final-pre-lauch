@@ -58,7 +58,7 @@ async function testWelcomeEmail() {
 
   try {
     const { data, error } = await resend.emails.send({
-      from: 'Apex Affinity Group <aag@theapexway.net>',
+      from: 'Apex Affinity Group <theapex@theapexway.net>',
       to: ['tdaniel@botmakers.ai'],
       subject: renderedEmail.subject,
       html: renderedEmail.body,

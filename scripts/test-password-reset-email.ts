@@ -96,7 +96,7 @@ async function testPasswordResetEmail() {
 
   try {
     const { data, error } = await resend.emails.send({
-      from: 'Apex Affinity Group <aag@theapexway.net>',
+      from: 'Apex Affinity Group <theapex@theapexway.net>',
       to: [testEmail],
       subject: 'Reset Your Password - Apex Affinity Group',
       html: emailHtml,

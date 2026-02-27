@@ -47,7 +47,7 @@ async function sendWelcomeEmailsToAll() {
 
       // Send the email
       const { error: sendError } = await resend.emails.send({
-        from: 'Apex Affinity Group <aag@theapexway.net>',
+        from: 'Apex Affinity Group <theapex@theapexway.net>',
         to: [distributor.email],
         subject: renderedEmail.subject,
         html: renderedEmail.body,

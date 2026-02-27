@@ -36,6 +36,14 @@ export default function ResetPasswordForm() {
         const response = await fetch(`/api/auth/reset-password?token=${tokenParam}`);
         const data = await response.json();
 
+        // Handle rate limiting
+        if (response.status === 429) {
+          const resetTime = data.reset ? new Date(data.reset).toLocaleTimeString() : 'later';
+          setError(`Too many attempts. Please try again at ${resetTime}.`);
+          setTokenValid(false);
+          return;
+        }
+
         if (data.valid) {
           setTokenValid(true);
         } else {
@@ -86,7 +94,13 @@ export default function ResetPasswordForm() {
         const data = await response.json();
 
         if (!response.ok) {
-          setError(data.error || 'Failed to reset password');
+          // Handle rate limit errors with better messaging
+          if (response.status === 429) {
+            const resetTime = data.reset ? new Date(data.reset).toLocaleTimeString() : 'later';
+            setError(`Too many password reset attempts. Please try again at ${resetTime}.`);
+          } else {
+            setError(data.error || 'Failed to reset password');
+          }
           return;
         }
 

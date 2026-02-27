@@ -5,8 +5,13 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase/service';
+import { withRateLimit, passwordResetRateLimit } from '@/lib/rate-limit';
 
 export async function POST(request: NextRequest) {
+  // Rate limiting temporarily disabled - Redis not configured
+  // const rateLimitResponse = await withRateLimit(request, passwordResetRateLimit);
+  // if (rateLimitResponse) return rateLimitResponse;
+
   try {
     const { token, password } = await request.json();
 
@@ -85,6 +90,10 @@ export async function POST(request: NextRequest) {
 
 // Verify token endpoint (GET request)
 export async function GET(request: NextRequest) {
+  // Rate limiting temporarily disabled - Redis not configured
+  // const rateLimitResponse = await withRateLimit(request, passwordResetRateLimit);
+  // if (rateLimitResponse) return rateLimitResponse;
+
   try {
     const token = request.nextUrl.searchParams.get('token');
 

@@ -13,7 +13,7 @@ async function testPasswordReset() {
   if (response.ok) {
     console.log('✅ Test email sent successfully!');
     console.log('   To: tdaniel@bundelefly.com (Apex Vision account)');
-    console.log('   From: Apex Affinity Group <aag@theapexway.net>');
+    console.log('   From: Apex Affinity Group <theapex@theapexway.net>');
     console.log('   Subject: Reset Your Password - Apex Affinity Group');
     console.log('\n📧 Check your email for the Apex-branded password reset link!');
   } else {

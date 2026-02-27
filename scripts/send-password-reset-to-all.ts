@@ -125,7 +125,7 @@ async function sendPasswordResetToAll() {
 
     try {
       const { error: sendError } = await resend.emails.send({
-        from: 'Apex Affinity Group <aag@theapexway.net>',
+        from: 'Apex Affinity Group <theapex@theapexway.net>',
         to: [distributor.email],
         subject: 'Action Required: Reset Your Password - Apex Affinity Group',
         html: emailHtml,
