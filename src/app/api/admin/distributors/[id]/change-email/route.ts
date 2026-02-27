@@ -46,9 +46,29 @@ export async function POST(
       .single();
 
     if (distributorError || !distributor) {
+      console.error('Distributor not found:', distributorError);
       return NextResponse.json(
         { error: 'Distributor not found' },
         { status: 404 }
+      );
+    }
+
+    // Validate auth_user_id exists and is a valid UUID
+    if (!distributor.auth_user_id) {
+      console.error('Distributor has no auth_user_id:', distributorId);
+      return NextResponse.json(
+        { error: 'Distributor is not linked to an authentication account' },
+        { status: 400 }
+      );
+    }
+
+    // Validate UUID format
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    if (!uuidRegex.test(distributor.auth_user_id)) {
+      console.error('Invalid auth_user_id format:', distributor.auth_user_id);
+      return NextResponse.json(
+        { error: 'Invalid authentication account ID format' },
+        { status: 400 }
       );
     }
 
@@ -67,6 +87,7 @@ export async function POST(
 
     // Update email in Supabase Auth
     // This will send a verification email to the new address
+    console.log('Updating auth email for user:', distributor.auth_user_id);
     const { data: authData, error: authError } = await serviceClient.auth.admin.updateUserById(
       distributor.auth_user_id,
       {
@@ -77,8 +98,9 @@ export async function POST(
 
     if (authError) {
       console.error('Error updating auth email:', authError);
+      console.error('Auth error details:', JSON.stringify(authError, null, 2));
       return NextResponse.json(
-        { error: 'Failed to update email in authentication system' },
+        { error: `Failed to update email in authentication system: ${authError.message || 'Unknown error'}` },
         { status: 500 }
       );
     }
