@@ -37,6 +37,7 @@ export default function DistributorDetailView({
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showLicenseStatusModal, setShowLicenseStatusModal] = useState(false);
   const [showPasswordResetModal, setShowPasswordResetModal] = useState(false);
+  const [showEmailChangeModal, setShowEmailChangeModal] = useState(false);
   const [isVerifyingLicense, setIsVerifyingLicense] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
@@ -303,13 +304,22 @@ export default function DistributorDetailView({
                 <label className="block text-xs font-medium text-gray-700 mb-0.5">
                   Email *
                 </label>
-                <input
-                  type="email"
-                  value={formData.email}
-                  disabled
-                  className="w-full px-2 py-1.5 text-sm border border-gray-300 rounded-md bg-gray-50"
-                />
-                <p className="text-xs text-gray-500 mt-1">Email cannot be changed</p>
+                <div className="flex gap-2">
+                  <input
+                    type="email"
+                    value={formData.email}
+                    disabled
+                    className="flex-1 px-2 py-1.5 text-sm border border-gray-300 rounded-md bg-gray-50"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowEmailChangeModal(true)}
+                    className="px-3 py-1.5 bg-orange-600 text-white text-xs rounded-md hover:bg-orange-700 whitespace-nowrap"
+                  >
+                    Change Email
+                  </button>
+                </div>
+                <p className="text-xs text-gray-500 mt-1">Admin can change email address</p>
               </div>
               <div>
                 <label className="block text-xs font-medium text-gray-700 mb-0.5">Phone</label>
@@ -619,6 +629,21 @@ export default function DistributorDetailView({
           onClose={() => setShowPasswordResetModal(false)}
         />
       )}
+
+      {/* Email Change Modal */}
+      {showEmailChangeModal && (
+        <EmailChangeModal
+          distributorId={initialDistributor.id}
+          currentEmail={initialDistributor.email}
+          distributorName={`${initialDistributor.first_name} ${initialDistributor.last_name}`}
+          onClose={() => setShowEmailChangeModal(false)}
+          onSuccess={() => {
+            setSuccess('Email updated successfully. User will receive a verification email.');
+            setShowEmailChangeModal(false);
+            router.refresh();
+          }}
+        />
+      )}
     </div>
   );
 }
@@ -701,6 +726,137 @@ function DeleteModal({
             className="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
           >
             Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Email Change Modal Component
+function EmailChangeModal({
+  distributorId,
+  currentEmail,
+  distributorName,
+  onClose,
+  onSuccess,
+}: {
+  distributorId: string;
+  currentEmail: string;
+  distributorName: string;
+  onClose: () => void;
+  onSuccess: () => void;
+}) {
+  const [newEmail, setNewEmail] = useState('');
+  const [confirmEmail, setConfirmEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async () => {
+    if (newEmail !== confirmEmail) {
+      setError('Email addresses do not match');
+      return;
+    }
+
+    if (newEmail === currentEmail) {
+      setError('New email must be different from current email');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      const response = await fetch(`/api/admin/distributors/${distributorId}/change-email`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ newEmail }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to update email');
+      }
+
+      onSuccess();
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+        <h3 className="text-xl font-bold text-gray-900 mb-4">Change Email Address</h3>
+        <p className="text-gray-600 mb-4">
+          Change the email address for <strong>{distributorName}</strong>. The user will receive
+          a verification email at the new address and must verify it before it takes effect.
+        </p>
+
+        <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+          <p className="text-sm text-blue-900">
+            <strong>Current Email:</strong> {currentEmail}
+          </p>
+        </div>
+
+        <div className="space-y-4 mb-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              New Email Address *
+            </label>
+            <input
+              type="email"
+              value={newEmail}
+              onChange={(e) => setNewEmail(e.target.value)}
+              placeholder="user@example.com"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Confirm New Email *
+            </label>
+            <input
+              type="email"
+              value={confirmEmail}
+              onChange={(e) => setConfirmEmail(e.target.value)}
+              placeholder="user@example.com"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+        </div>
+
+        {error && (
+          <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+            <p className="text-sm text-red-800">{error}</p>
+          </div>
+        )}
+
+        <div className="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+          <p className="text-sm text-yellow-800">
+            ⚠️ The user will need to verify the new email address. They will receive a verification
+            link and won't be able to log in until they verify it.
+          </p>
+        </div>
+
+        <div className="flex gap-3 justify-end">
+          <button
+            onClick={onClose}
+            disabled={isSubmitting}
+            className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={handleSubmit}
+            disabled={isSubmitting || !newEmail || !confirmEmail}
+            className="px-6 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 disabled:opacity-50"
+          >
+            {isSubmitting ? 'Updating...' : 'Change Email'}
           </button>
         </div>
       </div>
