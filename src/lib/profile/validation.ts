@@ -78,13 +78,11 @@ export const personalInfoSchema = z.object({
 
   language: z
     .string()
-    .min(2, 'Language is required')
-    .default('en-US'),
+    .min(2, 'Language is required'),
 
   timezone: z
     .string()
-    .min(1, 'Timezone is required')
-    .default('America/Chicago'),
+    .min(1, 'Timezone is required'),
 });
 
 export type PersonalInfoFormData = z.infer<typeof personalInfoSchema>;
@@ -129,12 +127,10 @@ export const paymentInfoSchema = z.object({
   minimum_payout_threshold: z
     .number()
     .min(25, 'Minimum threshold is $25')
-    .max(500, 'Maximum threshold is $500')
-    .default(50),
+    .max(500, 'Maximum threshold is $500'),
 
   payout_schedule: z
-    .enum(['weekly', 'bi-weekly', 'monthly'])
-    .default('weekly'),
+    .enum(['weekly', 'bi-weekly', 'monthly']),
 });
 
 export type PaymentInfoFormData = z.infer<typeof paymentInfoSchema>;
@@ -169,8 +165,7 @@ export const taxInfoSchema = z.object({
     .or(z.literal('')),
 
   federal_tax_classification: z
-    .enum(['individual', 'c_corp', 's_corp', 'partnership', 'trust', 'llc'])
-    .default('individual'),
+    .enum(['individual', 'c_corp', 's_corp', 'partnership', 'trust', 'llc']),
 });
 
 export type TaxInfoFormData = z.infer<typeof taxInfoSchema>;
