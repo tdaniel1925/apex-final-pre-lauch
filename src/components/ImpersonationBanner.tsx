@@ -31,10 +31,6 @@ export default function ImpersonationBanner() {
   }, []);
 
   const handleExitImpersonation = async () => {
-    if (!confirm('Exit impersonation and return to admin account?')) {
-      return;
-    }
-
     setLoading(true);
     try {
       const response = await fetch('/api/admin/exit-impersonate', {
@@ -47,12 +43,11 @@ export default function ImpersonationBanner() {
         router.refresh();
       } else {
         const error = await response.json();
-        alert(error.error || 'Failed to exit impersonation');
+        console.error('Exit impersonation error:', error);
+        setLoading(false);
       }
     } catch (error) {
       console.error('Error exiting impersonation:', error);
-      alert('Failed to exit impersonation');
-    } finally {
       setLoading(false);
     }
   };

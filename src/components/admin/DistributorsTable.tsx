@@ -31,6 +31,7 @@ export default function DistributorsTable({
   const [status, setStatus] = useState(initialStatus);
   const [isSearching, setIsSearching] = useState(false);
   const [impersonating, setImpersonating] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   // Debounced search effect
   useEffect(() => {
@@ -74,11 +75,9 @@ export default function DistributorsTable({
   };
 
   const handleImpersonate = async (distId: string, distName: string) => {
-    if (!confirm(`Impersonate ${distName}? You will be logged in as this user.`)) {
-      return;
-    }
-
+    setError(null);
     setImpersonating(distId);
+
     try {
       const response = await fetch('/api/admin/impersonate', {
         method: 'POST',
@@ -91,13 +90,13 @@ export default function DistributorsTable({
         router.push('/dashboard');
         router.refresh();
       } else {
-        const error = await response.json();
-        alert(error.error || 'Failed to impersonate user');
+        const errorData = await response.json();
+        setError(errorData.error || 'Failed to impersonate user');
         setImpersonating(null);
       }
-    } catch (error) {
-      console.error('Error impersonating:', error);
-      alert('Failed to impersonate user');
+    } catch (err) {
+      console.error('Error impersonating:', err);
+      setError('Failed to impersonate user. Please try again.');
       setImpersonating(null);
     }
   };
@@ -117,6 +116,28 @@ export default function DistributorsTable({
 
   return (
     <div className="bg-white rounded-lg shadow overflow-hidden">
+      {/* Error Message */}
+      {error && (
+        <div className="p-4 bg-red-50 border-b border-red-200">
+          <div className="flex items-start">
+            <svg className="w-5 h-5 text-red-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <div className="ml-3 flex-1">
+              <p className="text-sm font-medium text-red-800">{error}</p>
+            </div>
+            <button
+              onClick={() => setError(null)}
+              className="ml-3 text-red-600 hover:text-red-800"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Filters */}
       <div className="p-3 border-b border-gray-200">
         <div className="flex gap-2">
