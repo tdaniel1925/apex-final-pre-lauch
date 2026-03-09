@@ -3,10 +3,10 @@ import { createClient } from '@/lib/supabase/server';
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { sessionId: string } }
+  { params }: { params: Promise<{ sessionId: string }> }
 ) {
   try {
-    const supabase = createClient();
+    const supabase = await createClient();
 
     // Get current user
     const { data: { user }, error: userError } = await supabase.auth.getUser();
@@ -17,7 +17,7 @@ export async function DELETE(
       );
     }
 
-    const { sessionId } = params;
+    const { sessionId } = await params;
 
     // Delete session (only if it belongs to the current user)
     const { error } = await supabase
