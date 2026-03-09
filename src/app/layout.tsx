@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Public_Sans } from "next/font/google";
 import "./globals.css";
+import ImpersonationBanner from "@/components/ImpersonationBanner";
 
 const publicSans = Public_Sans({
   variable: "--font-public-sans",
@@ -36,6 +37,7 @@ export default function RootLayout({
       <body
         className={`${publicSans.variable} ${monaSans.variable} antialiased font-[family-name:var(--font-public-sans)]`}
       >
+        <ImpersonationBanner />
         {children}
       </body>
     </html>

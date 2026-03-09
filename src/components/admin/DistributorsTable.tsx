@@ -28,6 +28,7 @@ export default function DistributorsTable({
   const [search, setSearch] = useState(initialSearch);
   const [status, setStatus] = useState(initialStatus);
   const [isSearching, setIsSearching] = useState(false);
+  const [impersonating, setImpersonating] = useState<string | null>(null);
 
   // Debounced search effect
   useEffect(() => {
@@ -68,6 +69,35 @@ export default function DistributorsTable({
     if (status !== 'all') params.set('status', status);
     params.set('page', page.toString());
     router.push(`/admin/distributors?${params.toString()}`);
+  };
+
+  const handleImpersonate = async (distId: string, distName: string) => {
+    if (!confirm(`Impersonate ${distName}? You will be logged in as this user.`)) {
+      return;
+    }
+
+    setImpersonating(distId);
+    try {
+      const response = await fetch('/api/admin/impersonate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ target_user_id: distId }),
+      });
+
+      if (response.ok) {
+        // Redirect to dashboard as impersonated user
+        router.push('/dashboard');
+        router.refresh();
+      } else {
+        const error = await response.json();
+        alert(error.error || 'Failed to impersonate user');
+        setImpersonating(null);
+      }
+    } catch (error) {
+      console.error('Error impersonating:', error);
+      alert('Failed to impersonate user');
+      setImpersonating(null);
+    }
   };
 
   const getStatusBadge = (status: string) => {
@@ -233,12 +263,23 @@ export default function DistributorsTable({
                       </div>
                     </td>
                     <td className="px-3 py-2 whitespace-nowrap text-xs">
-                      <a
-                        href={`/admin/distributors/${dist.id}`}
-                        className="text-blue-600 hover:text-blue-900 font-medium"
-                      >
-                        View
-                      </a>
+                      <div className="flex items-center gap-2">
+                        <a
+                          href={`/admin/distributors/${dist.id}`}
+                          className="text-blue-600 hover:text-blue-900 font-medium"
+                        >
+                          View
+                        </a>
+                        <span className="text-gray-300">|</span>
+                        <button
+                          onClick={() => handleImpersonate(dist.id, `${dist.first_name} ${dist.last_name}`)}
+                          disabled={impersonating === dist.id || !dist.auth_user_id}
+                          className="text-orange-600 hover:text-orange-900 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                          title={!dist.auth_user_id ? 'User has no auth account' : 'Log in as this user'}
+                        >
+                          {impersonating === dist.id ? 'Loading...' : 'Impersonate'}
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}
