@@ -24,16 +24,16 @@ export async function POST(request: NextRequest) {
     // Check if current user is an admin
     const { data: adminData, error: adminCheckError } = await supabase
       .from('distributors')
-      .select('role, is_admin')
+      .select('is_admin')
       .eq('auth_user_id', adminUser.id)
       .single();
 
     console.log('[Impersonate] Admin check:', { adminData, adminCheckError, userId: adminUser.id });
 
-    if (!adminData || (!adminData.is_admin && adminData.role !== 'admin')) {
+    if (!adminData || !adminData.is_admin) {
       console.log('[Impersonate] Access denied - not admin');
       return NextResponse.json(
-        { error: `Admin access required. Your role: ${adminData?.role}, is_admin: ${adminData?.is_admin}` },
+        { error: `Admin access required. is_admin: ${adminData?.is_admin}` },
         { status: 403 }
       );
     }
