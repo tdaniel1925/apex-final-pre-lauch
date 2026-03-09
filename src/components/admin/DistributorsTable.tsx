@@ -293,15 +293,19 @@ export default function DistributorsTable({
                         >
                           View
                         </a>
-                        <span className="text-gray-300">|</span>
-                        <button
-                          onClick={() => handleImpersonate(dist.id, `${dist.first_name} ${dist.last_name}`)}
-                          disabled={impersonating === dist.id || !dist.auth_user_id}
-                          className="text-orange-600 hover:text-orange-900 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-                          title={!dist.auth_user_id ? 'User has no auth account' : 'Log in as this user'}
-                        >
-                          {impersonating === dist.id ? 'Loading...' : 'Impersonate'}
-                        </button>
+                        {dist.auth_user_id && (
+                          <>
+                            <span className="text-gray-300">|</span>
+                            <button
+                              onClick={() => handleImpersonate(dist.id, `${dist.first_name} ${dist.last_name}`)}
+                              disabled={impersonating === dist.id}
+                              className="text-orange-600 hover:text-orange-900 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                              title="Log in as this user"
+                            >
+                              {impersonating === dist.id ? 'Loading...' : 'Impersonate'}
+                            </button>
+                          </>
+                        )}
                       </div>
                     </td>
                   </tr>
