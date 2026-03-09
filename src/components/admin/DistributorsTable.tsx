@@ -4,6 +4,7 @@
 // Distributors Table Component
 // Displays distributors with search, filters, and actions
 // Includes impersonation feature for admin troubleshooting
+// Last updated: 2026-03-09 - Force cache bust
 // =============================================
 
 import { useState, useEffect, useCallback } from 'react';

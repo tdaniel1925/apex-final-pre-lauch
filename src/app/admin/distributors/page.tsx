@@ -1,6 +1,7 @@
 // =============================================
 // Admin Distributors List Page
 // View, search, and manage all distributors
+// Includes admin impersonation feature - 2026-03-09
 // =============================================
 
 import { requireAdmin } from '@/lib/auth/admin';
