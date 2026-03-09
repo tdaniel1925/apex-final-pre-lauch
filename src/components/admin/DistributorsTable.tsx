@@ -3,6 +3,7 @@
 // =============================================
 // Distributors Table Component
 // Displays distributors with search, filters, and actions
+// Includes impersonation feature for admin troubleshooting
 // =============================================
 
 import { useState, useEffect, useCallback } from 'react';
