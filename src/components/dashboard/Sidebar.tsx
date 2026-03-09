@@ -4,17 +4,62 @@
 // Dashboard Sidebar Navigation
 // Desktop: fixed left sidebar
 // Mobile: top bar + slide-in drawer
+// Supports collapsible submenus for Licensed Agent Tools
 // =============================================
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { signOut } from '@/app/actions/auth';
+import { createClient } from '@/lib/supabase/client';
+
+interface NavItem {
+  name: string;
+  href?: string;
+  icon: React.ReactNode;
+  submenu?: {
+    name: string;
+    href: string;
+    icon: React.ReactNode;
+  }[];
+  requiresLicense?: boolean;
+}
 
 export default function Sidebar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isSigningOut, setIsSigningOut] = useState(false);
+  const [expandedMenu, setExpandedMenu] = useState<string | null>(null);
+  const [isLicensedAgent, setIsLicensedAgent] = useState(true); // Default true since all current users are licensed
+
+  // Fetch user's licensed agent status
+  useEffect(() => {
+    const fetchLicenseStatus = async () => {
+      const supabase = createClient();
+      const { data: { user } } = await supabase.auth.getUser();
+
+      if (user) {
+        const { data: distributor } = await supabase
+          .from('distributors')
+          .select('is_licensed_agent')
+          .eq('auth_user_id', user.id)
+          .single();
+
+        if (distributor) {
+          setIsLicensedAgent(distributor.is_licensed_agent ?? true);
+        }
+      }
+    };
+
+    fetchLicenseStatus();
+  }, []);
+
+  // Auto-expand menu if current path matches
+  useEffect(() => {
+    if (pathname.startsWith('/dashboard/licensed-agent')) {
+      setExpandedMenu('Licensed Agent Tools');
+    }
+  }, [pathname]);
 
   const handleSignOut = async () => {
     if (isSigningOut) return;
@@ -28,7 +73,7 @@ export default function Sidebar() {
     }
   };
 
-  const navigation = [
+  const navigation: NavItem[] = [
     {
       name: 'Dashboard',
       href: '/dashboard',
@@ -55,6 +100,80 @@ export default function Sidebar() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
         </svg>
       ),
+    },
+    {
+      name: 'Licensed Agent Tools',
+      requiresLicense: true,
+      icon: (
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+      ),
+      submenu: [
+        {
+          name: 'Dashboard',
+          href: '/dashboard/licensed-agent',
+          icon: (
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-3zM14 12a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1h-4a1 1 0 01-1-1v-7z" />
+            </svg>
+          ),
+        },
+        {
+          name: 'Get Quotes',
+          href: '/dashboard/licensed-agent/quotes',
+          icon: (
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+          ),
+        },
+        {
+          name: 'Submit Application',
+          href: '/dashboard/licensed-agent/applications',
+          icon: (
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+          ),
+        },
+        {
+          name: 'My Licenses',
+          href: '/dashboard/licensed-agent/licenses',
+          icon: (
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+            </svg>
+          ),
+        },
+        {
+          name: 'Training & CE',
+          href: '/dashboard/licensed-agent/training',
+          icon: (
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+          ),
+        },
+        {
+          name: 'Compliance',
+          href: '/dashboard/licensed-agent/compliance',
+          icon: (
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          ),
+        },
+        {
+          name: 'Marketing Materials',
+          href: '/dashboard/licensed-agent/marketing',
+          icon: (
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          ),
+        },
+      ],
     },
     {
       name: 'Profile & Settings',
@@ -95,16 +214,78 @@ export default function Sidebar() {
     },
   ];
 
+  const toggleSubmenu = (menuName: string) => {
+    setExpandedMenu(expandedMenu === menuName ? null : menuName);
+  };
+
   const NavLinks = ({ onNavigate }: { onNavigate?: () => void }) => (
     <>
       <div className="flex-1 overflow-y-auto">
         <nav className="space-y-0.5">
           {navigation.map((item) => {
+            const hasSubmenu = !!item.submenu;
+            const isExpanded = expandedMenu === item.name;
+            const isDisabled = item.requiresLicense && !isLicensedAgent;
+
+            if (hasSubmenu) {
+              return (
+                <div key={item.name}>
+                  <button
+                    onClick={() => !isDisabled && toggleSubmenu(item.name)}
+                    disabled={isDisabled}
+                    className={`w-full flex items-center justify-between px-3 py-2 rounded-md transition-colors ${
+                      isDisabled
+                        ? 'text-gray-600 cursor-not-allowed opacity-50'
+                        : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                    }`}
+                    title={isDisabled ? 'Licensed agents only' : undefined}
+                  >
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4">{item.icon}</div>
+                      <span className="font-medium text-xs">{item.name}</span>
+                    </div>
+                    {!isDisabled && (
+                      <svg
+                        className={`w-3 h-3 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    )}
+                  </button>
+                  {isExpanded && !isDisabled && (
+                    <div className="ml-4 mt-0.5 space-y-0.5">
+                      {item.submenu?.map((subItem) => {
+                        const isActive = pathname === subItem.href;
+                        return (
+                          <Link
+                            key={subItem.name}
+                            href={subItem.href}
+                            onClick={onNavigate}
+                            className={`flex items-center gap-2 px-3 py-1.5 rounded-md transition-colors ${
+                              isActive
+                                ? 'bg-[#2B4C7E] text-white'
+                                : 'text-gray-400 hover:bg-gray-800 hover:text-white'
+                            }`}
+                          >
+                            <div className="w-3.5 h-3.5">{subItem.icon}</div>
+                            <span className="font-medium text-xs">{subItem.name}</span>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              );
+            }
+
             const isActive = pathname === item.href;
             return (
               <Link
                 key={item.name}
-                href={item.href}
+                href={item.href!}
                 onClick={onNavigate}
                 className={`flex items-center gap-2 px-3 py-2 rounded-md transition-colors ${
                   isActive
