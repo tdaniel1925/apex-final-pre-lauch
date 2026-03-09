@@ -13,6 +13,10 @@ export const metadata = {
   title: 'Manage Distributors - Admin Portal',
 };
 
+// Force dynamic rendering to prevent caching issues
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 interface PageProps {
   searchParams: Promise<{
     page?: string;
