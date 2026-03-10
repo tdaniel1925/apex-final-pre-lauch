@@ -23,11 +23,18 @@ export default function DashboardClient({ distributor, children }: DashboardClie
     // Don't show onboarding on admin pages
     const isAdminPage = pathname?.startsWith('/admin');
 
-    // Show onboarding if not completed and not on admin page
-    if (!distributor.onboarding_completed && !isAdminPage) {
+    // Show onboarding if:
+    // 1. Not completed
+    // 2. Not permanently skipped by user
+    // 3. Not on admin page
+    if (
+      !distributor.onboarding_completed &&
+      !distributor.onboarding_permanently_skipped &&
+      !isAdminPage
+    ) {
       setShowOnboarding(true);
     }
-  }, [distributor.onboarding_completed, pathname]);
+  }, [distributor.onboarding_completed, distributor.onboarding_permanently_skipped, pathname]);
 
   const handleOnboardingComplete = () => {
     setShowOnboarding(false);

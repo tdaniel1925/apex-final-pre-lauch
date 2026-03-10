@@ -17,6 +17,7 @@ import type { ApiResponse, Distributor } from '@/lib/types';
  * Body:
  *   - onboarding_step: number (1-6)
  *   - onboarding_completed: boolean (optional)
+ *   - onboarding_permanently_skipped: boolean (optional) - Don't show onboarding again
  *
  * Response:
  *   - distributor: Updated Distributor object
@@ -24,7 +25,7 @@ import type { ApiResponse, Distributor } from '@/lib/types';
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { onboarding_step, onboarding_completed } = body;
+    const { onboarding_step, onboarding_completed, onboarding_permanently_skipped } = body;
 
     // Validate request
     if (typeof onboarding_step !== 'number' || onboarding_step < 1 || onboarding_step > 6) {
@@ -67,6 +68,11 @@ export async function POST(request: NextRequest) {
     if (onboarding_completed === true) {
       updateData.onboarding_completed = true;
       updateData.onboarding_completed_at = new Date().toISOString();
+    }
+
+    // If user chose to permanently skip onboarding
+    if (typeof onboarding_permanently_skipped === 'boolean') {
+      updateData.onboarding_permanently_skipped = onboarding_permanently_skipped;
     }
 
     const { data: distributor, error: updateError } = await serviceClient

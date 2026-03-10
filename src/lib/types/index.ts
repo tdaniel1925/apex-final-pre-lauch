@@ -35,6 +35,8 @@ export interface Distributor {
   // Flags
   is_master: boolean;
   profile_complete: boolean;
+  is_admin: boolean;
+  is_licensed_agent: boolean;
 
   // Profile Completion Fields (nullable until filled)
   phone: string | null;
@@ -77,6 +79,7 @@ export interface Distributor {
   onboarding_completed: boolean;
   onboarding_step: number;
   onboarding_completed_at: string | null;
+  onboarding_permanently_skipped: boolean;
 
   // Extended Profile Fields
   profile_photo_url: string | null;

@@ -22,6 +22,8 @@ export default function OnboardingModal({ distributor, onComplete }: OnboardingM
   const [currentStep, setCurrentStep] = useState(distributor.onboarding_step || 1);
   const [isSaving, setIsSaving] = useState(false);
   const [distributorData, setDistributorData] = useState(distributor);
+  const [showSkipConfirm, setShowSkipConfirm] = useState(false);
+  const [dontShowAgain, setDontShowAgain] = useState(false);
 
   const totalSteps = 4;
 
@@ -77,10 +79,40 @@ export default function OnboardingModal({ distributor, onComplete }: OnboardingM
     }
   };
 
-  const handleSkip = async () => {
-    await saveProgress(currentStep);
-    onComplete();
-    router.refresh();
+  const handleSkipClick = () => {
+    setShowSkipConfirm(true);
+  };
+
+  const handleSkipConfirm = async () => {
+    setIsSaving(true);
+    try {
+      // Save current progress and permanent skip preference
+      const response = await fetch('/api/profile/onboarding', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          onboarding_step: currentStep,
+          onboarding_permanently_skipped: dontShowAgain,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to save skip preference');
+      }
+
+      setShowSkipConfirm(false);
+      onComplete();
+      router.refresh();
+    } catch (error) {
+      console.error('Error saving skip preference:', error);
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const handleSkipCancel = () => {
+    setShowSkipConfirm(false);
+    setDontShowAgain(false);
   };
 
   const showCompletionAnimation = () => {
@@ -143,7 +175,7 @@ export default function OnboardingModal({ distributor, onComplete }: OnboardingM
               Step {currentStep} of {totalSteps}
             </span>
             <button
-              onClick={handleSkip}
+              onClick={handleSkipClick}
               disabled={isSaving}
               className="text-gray-500 hover:text-[#2B4E7E] text-xs sm:text-sm font-medium transition-colors"
             >
@@ -159,6 +191,71 @@ export default function OnboardingModal({ distributor, onComplete }: OnboardingM
           {renderStep()}
         </div>
       </div>
+
+      {/* Skip Confirmation Modal */}
+      {showSkipConfirm && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 px-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-6 animate-in fade-in duration-200">
+            <div className="flex items-start gap-4 mb-4">
+              <div className="flex-shrink-0">
+                <svg className="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div className="flex-1">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  Skip Onboarding?
+                </h3>
+                <p className="text-sm text-gray-600 mb-4">
+                  You can always complete the onboarding later from your profile settings.
+                </p>
+
+                {/* Don't show again checkbox */}
+                <label className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200 cursor-pointer hover:bg-gray-100 transition-colors">
+                  <input
+                    type="checkbox"
+                    checked={dontShowAgain}
+                    onChange={(e) => setDontShowAgain(e.target.checked)}
+                    className="mt-0.5 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  />
+                  <div className="flex-1">
+                    <span className="text-sm font-medium text-gray-900">
+                      Don&apos;t show this again
+                    </span>
+                    <p className="text-xs text-gray-500 mt-1">
+                      You won&apos;t see the onboarding wizard on future logins
+                    </p>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            {/* Action buttons */}
+            <div className="flex gap-3 justify-end">
+              <button
+                onClick={handleSkipCancel}
+                disabled={isSaving}
+                className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleSkipConfirm}
+                disabled={isSaving}
+                className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 flex items-center gap-2"
+              >
+                {isSaving && (
+                  <svg className="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                )}
+                Skip Onboarding
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
