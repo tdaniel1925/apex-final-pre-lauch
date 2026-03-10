@@ -71,9 +71,9 @@ export async function resolveOverrideRecipient(
     const priorRank = await getPriorMonthRank(uplineRep.rep_id);
 
     // Check if qualified for this level
-    if (qualifiesForOverrideLevel(priorRank, level, uplineRep.current_rank === 'PLATINUM' ? uplineRep.team_bv || 0 : 0)) {
-      // NOTE: team_bv would need to be fetched from BV snapshot for accuracy
-      // For now, assuming current team_bv is acceptable proxy
+    // NOTE: team_bv would need to be fetched from BV snapshot for accuracy
+    // For now, passing 0 as placeholder until BV snapshot lookup is implemented
+    if (qualifiesForOverrideLevel(priorRank, level, 0)) {
 
       return {
         rep: uplineRep,
