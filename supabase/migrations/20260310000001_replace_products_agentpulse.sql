@@ -94,9 +94,9 @@ SELECT
   'smartlock',
   'Data security and compliance monitoring',
   (SELECT id FROM product_categories WHERE slug = 'agentpulse'),
-  9900,  -- $99 retail (same for member)
-  9900,  -- $99 member
-  99,    -- BV
+  10000,  -- $100 retail
+  9900,   -- $99 member
+  99,     -- BV
   TRUE,
   'monthly',
   TRUE,
@@ -111,8 +111,8 @@ SELECT
   'businesscenter',
   'Complete back office with replicated website and team management',
   (SELECT id FROM product_categories WHERE slug = 'agentpulse'),
-  3900,  -- $39 (flat)
-  3900,  -- $39 (same for member)
+  4000,  -- $40 retail
+  3900,  -- $39 member
   39,    -- BV
   TRUE,
   'monthly',
