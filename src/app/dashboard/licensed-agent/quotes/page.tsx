@@ -6,6 +6,7 @@
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { createServiceClient } from '@/lib/supabase/service';
+import WinflexSSOButton from '@/components/licensed-agent/WinflexSSOButton';
 
 export const metadata = {
   title: 'Get Quotes - Licensed Agent Tools',
@@ -56,31 +57,18 @@ export default async function GetQuotesPage() {
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-lg font-semibold text-white">Winflex Quote Engine</h2>
-              <p className="text-sm text-blue-100 mt-1">Single sign-on integration coming soon</p>
+              <p className="text-sm text-blue-100 mt-1">Secure single sign-on to Winflex</p>
             </div>
             <div className="bg-white/20 rounded-lg px-3 py-1">
-              <span className="text-xs font-semibold text-white">SSO</span>
+              <span className="text-xs font-semibold text-white">SSO Enabled</span>
             </div>
           </div>
         </div>
 
         <div className="p-6">
-          {/* Coming Soon Banner */}
-          <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6">
-            <div className="flex">
-              <div className="flex-shrink-0">
-                <svg className="h-5 w-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                </svg>
-              </div>
-              <div className="ml-3">
-                <p className="text-sm text-blue-700">
-                  <span className="font-medium">Winflex SSO Integration In Development</span>
-                  <br />
-                  Seamless single sign-on access to the Winflex quote engine will be available soon. You&apos;ll be able to generate quotes without additional login credentials.
-                </p>
-              </div>
-            </div>
+          {/* SSO Launch Button */}
+          <div className="mb-6">
+            <WinflexSSOButton />
           </div>
 
           {/* Features Grid */}
@@ -150,17 +138,36 @@ export default async function GetQuotesPage() {
             </div>
           </div>
 
-          {/* Placeholder Integration Area */}
-          <div className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center">
-            <svg className="mx-auto h-16 w-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-            <h3 className="mt-4 text-sm font-medium text-gray-900">Winflex SSO Integration Area</h3>
-            <p className="mt-2 text-xs text-gray-500">
-              The embedded Winflex quote engine will appear here once SSO is configured.
-              <br />
-              No additional login required - seamless integration with your agent account.
-            </p>
+          {/* How It Works */}
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-6 mb-6">
+            <h3 className="text-sm font-semibold text-gray-900 mb-4 flex items-center gap-2">
+              <svg className="h-5 w-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              How Winflex SSO Works
+            </h3>
+            <ol className="space-y-2 text-xs text-gray-700">
+              <li className="flex items-start gap-2">
+                <span className="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded-full bg-blue-600 text-white font-semibold text-xs">1</span>
+                <span>Click the "Launch Winflex Quote Engine" button above</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded-full bg-blue-600 text-white font-semibold text-xs">2</span>
+                <span>Winflex will open in a new window with automatic single sign-on</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded-full bg-blue-600 text-white font-semibold text-xs">3</span>
+                <span>If it&apos;s your first time, you may need to complete a quick registration (your info will be pre-filled)</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded-full bg-blue-600 text-white font-semibold text-xs">4</span>
+                <span>Generate quotes from multiple carriers and save your work</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded-full bg-blue-600 text-white font-semibold text-xs">5</span>
+                <span>Return to this page anytime - you&apos;ll stay logged in to Winflex</span>
+              </li>
+            </ol>
           </div>
 
           {/* Help Section */}
