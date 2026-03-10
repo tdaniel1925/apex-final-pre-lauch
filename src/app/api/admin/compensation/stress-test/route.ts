@@ -139,9 +139,10 @@ export async function POST(request: NextRequest) {
 
           for (const [rank, thresholds] of Object.entries(scenario.expected_values)) {
             const actual = COMP_PLAN_CONFIG.rank_thresholds[rank as keyof typeof COMP_PLAN_CONFIG.rank_thresholds];
-            if (actual.personal_bv !== thresholds.personal_bv || actual.team_bv !== thresholds.team_bv) {
+            const expected = thresholds as { personal_bv: number; team_bv: number };
+            if (actual.personal_bv !== expected.personal_bv || actual.team_bv !== expected.team_bv) {
               passed = false;
-              deviations[rank] = `Actual ${JSON.stringify(actual)} vs expected ${JSON.stringify(thresholds)}`;
+              deviations[rank] = `Actual ${JSON.stringify(actual)} vs expected ${JSON.stringify(expected)}`;
             }
           }
           break;
