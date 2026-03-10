@@ -237,7 +237,7 @@ export function visualizeCompressionChain(
   let output = `Seller: ${seller.full_name} (${seller.current_rank})\n`;
 
   // Track which upline reps received overrides
-  const recipientIds = new Set(overrideRecipients.map(r => r.rep_id));
+  const recipientIds = new Set(overrideRecipients.map(r => r.rep.rep_id));
 
   for (const uplineRep of uplineChain) {
     const recipient = overrideRecipients.find(r => r.rep.rep_id === uplineRep.rep_id);
