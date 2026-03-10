@@ -1,9 +1,10 @@
 // =============================================
-// Dashboard V2 - Template-styled Analytics Dashboard
+// Dashboard V2 - Exact Template Match
 // Matches SmartViz design system 100%
 // =============================================
 
 import Link from 'next/link';
+import '../template-v2.css';
 
 export const metadata = {
   title: 'Dashboard V2 - Analytics Overview',
@@ -12,15 +13,13 @@ export const metadata = {
 
 export default function DashboardV2() {
   return (
-    <div className="min-h-screen bg-neutral-50">
+    <div className="min-h-screen bg-white">
       {/* TOP NAVIGATION */}
       <nav className="bg-white/90 backdrop-blur-md border-b border-neutral-200 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-gradient-to-br from-neutral-900 to-neutral-700 rounded-small flex items-center justify-center text-white">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-              </svg>
+            <div className="w-9 h-9 logo-mark rounded-small flex items-center justify-center text-white">
+              <i className="ri-bar-chart-box-fill text-lg"></i>
             </div>
             <Link href="/dashboard" className="font-heading font-bold text-xl text-neutral-900 tracking-tight">
               Apex Affinity
@@ -43,213 +42,477 @@ export default function DashboardV2() {
           <div className="flex items-center gap-3">
             <Link href="/dashboard" className="inline-flex items-center gap-2 px-5 py-2.5 bg-neutral-900 text-white rounded-small text-sm font-semibold hover:bg-neutral-700 transition-colors shadow-custom">
               Back to Dashboard
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-              </svg>
+              <i className="ri-arrow-right-line text-xs"></i>
             </Link>
           </div>
         </div>
       </nav>
 
-      {/* HERO SECTION */}
-      <section className="bg-white py-12">
+      {/* HERO INTRO SECTION */}
+      <section className="bg-white py-20 max-h-[480px] overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <div className="flex justify-center mb-6">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary-50 to-primary-100 border border-primary-200">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-500 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary-500"></span>
-              </span>
-              <span className="text-xs font-semibold text-primary-700">Live Dashboard</span>
+            <div className="badge-pill inline-flex items-center gap-2 px-4 py-2 rounded-full">
+              <span className="w-2 h-2 rounded-full bg-primary-500 live-dot"></span>
+              <span className="text-xs font-semibold text-primary-700">Live dashboard — powered by your network data</span>
             </div>
           </div>
-          <h1 className="font-heading text-5xl md:text-6xl font-extrabold text-neutral-900 leading-tight mb-5 tracking-heading">
-            Your Network,<br />
-            <span className="text-primary-500">Beautifully Visualized</span>
+          <h1 className="font-heading text-5xl md:text-6xl font-extrabold text-neutral-900 leading-tight mb-5" style={{letterSpacing: 'var(--letter-spacing-heading)'}}>
+            Your Network, Beautifully<br />
+            <span className="text-primary-500">Visualized in Real Time</span>
           </h1>
-          <p className="text-lg text-neutral-500 max-w-2xl mx-auto mb-8 leading-relaxed">
-            See your distributor network metrics, team performance, and commissions in real-time with this template-styled dashboard.
+          <p className="text-lg text-neutral-500 max-w-2xl mx-auto mb-10 leading-relaxed">
+            See exactly how this template transforms your distributor network data into an interactive, insight-rich dashboard — KPIs, charts, and tables all auto-generated.
           </p>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <div className="flex items-center gap-2 px-4 py-2 bg-neutral-50 border border-neutral-200 rounded-full">
+              <i className="ri-team-line text-primary-600 text-sm"></i>
+              <span className="text-sm font-semibold text-neutral-700">1,248 Distributors</span>
+              <span className="text-neutral-300">·</span>
+              <span className="text-xs text-neutral-500">Active network</span>
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 bg-primary-50 border border-primary-100 rounded-full">
+              <span className="w-2 h-2 rounded-full bg-primary-500 live-dot"></span>
+              <span className="text-sm font-semibold text-primary-700">Auto-refreshed 2 min ago</span>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* MAIN DASHBOARD */}
-      <section className="bg-gradient-to-b from-neutral-900 to-neutral-800 py-12">
+      {/* FULL DASHBOARD SCREENSHOT SECTION */}
+      <section className="section-dark-gradient py-16 max-h-[1100px] overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
-          {/* Dashboard Header */}
-          <div className="flex items-center justify-between mb-8">
+          {/* Section Label */}
+          <div className="flex items-center justify-between mb-10">
             <div>
-              <h2 className="font-heading text-3xl font-extrabold text-white mb-2 tracking-heading">
-                Network Overview
+              <h2 className="font-heading text-3xl font-extrabold text-white mb-2" style={{letterSpacing: 'var(--letter-spacing-heading)'}}>
+                Network Dashboard Overview
               </h2>
-              <p className="text-neutral-400 text-base">Real-time metrics from your distributor network</p>
+              <p className="text-neutral-400 text-base">Full interactive view — auto-generated from your distributor data</p>
+            </div>
+            <div className="hidden md:flex items-center gap-3">
+              <button className="tab-btn active px-4 py-2 rounded-small text-sm font-semibold transition-all">Overview</button>
+              <button className="tab-btn px-4 py-2 rounded-small text-sm font-semibold transition-all">Performance</button>
+              <button className="tab-btn px-4 py-2 rounded-small text-sm font-semibold transition-all">Growth</button>
+              <button className="tab-btn px-4 py-2 rounded-small text-sm font-semibold transition-all">Licensing</button>
             </div>
           </div>
 
           {/* Dashboard Frame */}
-          <div className="bg-neutral-50 rounded-large overflow-hidden shadow-custom-hover">
-            <div className="p-6">
+          <div className="dashboard-frame rounded-large overflow-hidden glow-green">
+            {/* Browser Chrome */}
+            <div className="bg-neutral-100 border-b border-neutral-200 px-5 py-3 flex items-center gap-4">
+              <div className="flex gap-1.5">
+                <div className="w-3 h-3 rounded-full bg-red-400"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
+                <div className="w-3 h-3 rounded-full bg-green-400"></div>
+              </div>
+              <div className="flex-1 bg-white rounded-small px-4 py-1.5 flex items-center gap-2 border border-neutral-200 max-w-sm mx-auto">
+                <i className="ri-lock-line text-neutral-400 text-xs"></i>
+                <span className="text-xs text-neutral-500">app.apexaffinity.io/dashboard</span>
+                <span className="ml-auto flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary-500 live-dot"></span>
+                  <span className="text-primary-600 font-semibold" style={{fontSize: '9px'}}>LIVE</span>
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <button className="px-3 py-1 bg-neutral-900 text-white rounded text-xs font-semibold flex items-center gap-1">
+                  <i className="ri-share-line text-xs"></i>Share
+                </button>
+                <button className="px-3 py-1 bg-white border border-neutral-200 text-neutral-600 rounded text-xs font-semibold flex items-center gap-1">
+                  <i className="ri-download-line text-xs"></i>Export
+                </button>
+              </div>
+            </div>
+
+            {/* Dashboard Content */}
+            <div className="bg-background-50 p-5">
               {/* Dashboard Header Row */}
-              <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center justify-between mb-5">
                 <div>
-                  <h3 className="font-heading font-extrabold text-neutral-900 text-xl tracking-heading">
-                    Q4 2023 Performance
+                  <h3 className="font-heading font-extrabold text-neutral-900 text-xl" style={{letterSpacing: 'var(--letter-spacing-heading)'}}>
+                    Network Overview
                   </h3>
-                  <p className="text-neutral-500 text-xs mt-0.5">Updated 2 minutes ago</p>
+                  <p className="text-neutral-500 text-xs mt-0.5">Q4 2023 · Real-time distributor metrics</p>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="flex items-center gap-2 px-3 py-1.5 bg-white border border-neutral-200 rounded-small">
-                    <svg className="w-4 h-4 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-neutral-200 rounded-small">
+                    <i className="ri-calendar-line text-neutral-400 text-xs"></i>
                     <span className="text-xs font-semibold text-neutral-700">Oct – Dec 2023</span>
+                    <i className="ri-arrow-down-s-line text-neutral-400 text-xs"></i>
                   </div>
-                  <div className="flex items-center gap-2 px-3 py-1.5 bg-primary-50 border border-primary-100 rounded-small">
-                    <span className="relative flex h-1.5 w-1.5">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-500 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary-500"></span>
-                    </span>
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 bg-primary-50 border border-primary-100 rounded-small">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary-500 live-dot"></span>
                     <span className="text-xs font-semibold text-primary-700">Live Sync</span>
                   </div>
                 </div>
               </div>
 
-              {/* KPI Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-                {/* Total Distributors */}
-                <div className="bg-white rounded-large border border-neutral-200 p-5 shadow-custom hover:shadow-custom-hover transition-all hover:-translate-y-1">
+              {/* KPI Cards Row */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+                {/* Total Revenue KPI */}
+                <div className="kpi-card bg-white rounded-large border border-neutral-200 p-4 shadow-custom">
                   <div className="flex items-center justify-between mb-3">
                     <div className="w-9 h-9 rounded-large bg-primary-50 flex items-center justify-center">
-                      <svg className="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                      </svg>
+                      <i className="ri-money-dollar-circle-line text-primary-600"></i>
                     </div>
                     <span className="flex items-center gap-1 text-xs font-bold text-primary-600 bg-primary-50 px-2 py-0.5 rounded-full">
-                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-                      </svg>
-                      +24
+                      <i className="ri-arrow-up-line text-xs"></i>+15.2%
+                    </span>
+                  </div>
+                  <p className="text-xs text-neutral-500 mb-1">Total Revenue</p>
+                  <p className="font-heading font-extrabold text-2xl text-neutral-900">$2.4M</p>
+                  <div className="mt-2 h-1 bg-neutral-100 rounded-full overflow-hidden">
+                    <div className="h-full bg-primary-500 rounded-full metric-bar" style={{width: '76%'}}></div>
+                  </div>
+                  <p className="text-neutral-400 mt-1" style={{fontSize: '10px'}}>76% of annual target</p>
+                </div>
+
+                {/* Total Distributors KPI */}
+                <div className="kpi-card bg-white rounded-large border border-neutral-200 p-4 shadow-custom">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="w-9 h-9 rounded-large bg-blue-50 flex items-center justify-center">
+                      <i className="ri-team-line text-blue-600"></i>
+                    </div>
+                    <span className="flex items-center gap-1 text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">
+                      <i className="ri-arrow-up-line text-xs"></i>+12
                     </span>
                   </div>
                   <p className="text-xs text-neutral-500 mb-1">Total Distributors</p>
                   <p className="font-heading font-extrabold text-2xl text-neutral-900">1,248</p>
-                  <div className="mt-3 h-1 bg-neutral-100 rounded-full overflow-hidden">
-                    <div className="h-full bg-primary-500 rounded-full transition-all duration-700" style={{ width: '76%' }}></div>
+                  <div className="mt-2 h-1 bg-neutral-100 rounded-full overflow-hidden">
+                    <div className="h-full bg-blue-500 rounded-full metric-bar" style={{width: '62%'}}></div>
                   </div>
-                  <p className="text-neutral-400 mt-1 text-[10px]">76% of growth target</p>
+                  <p className="text-neutral-400 mt-1" style={{fontSize: '10px'}}>Across 7 matrix levels</p>
                 </div>
 
-                {/* Monthly Revenue */}
-                <div className="bg-white rounded-large border border-neutral-200 p-5 shadow-custom hover:shadow-custom-hover transition-all hover:-translate-y-1">
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="w-9 h-9 rounded-large bg-blue-50 flex items-center justify-center">
-                      <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                    <span className="flex items-center gap-1 text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">
-                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-                      </svg>
-                      +15.2%
-                    </span>
-                  </div>
-                  <p className="text-xs text-neutral-500 mb-1">Monthly Revenue</p>
-                  <p className="font-heading font-extrabold text-2xl text-neutral-900">$2.4M</p>
-                  <div className="mt-3 h-1 bg-neutral-100 rounded-full overflow-hidden">
-                    <div className="h-full bg-blue-500 rounded-full transition-all duration-700" style={{ width: '82%' }}></div>
-                  </div>
-                  <p className="text-neutral-400 mt-1 text-[10px]">82% of monthly target</p>
-                </div>
-
-                {/* Active Licenses */}
-                <div className="bg-white rounded-large border border-neutral-200 p-5 shadow-custom hover:shadow-custom-hover transition-all hover:-translate-y-1">
+                {/* Licensed Agents KPI */}
+                <div className="kpi-card bg-white rounded-large border border-neutral-200 p-4 shadow-custom">
                   <div className="flex items-center justify-between mb-3">
                     <div className="w-9 h-9 rounded-large bg-secondary-50 flex items-center justify-center">
-                      <svg className="w-5 h-5 text-secondary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                      </svg>
+                      <i className="ri-award-line text-secondary-600"></i>
                     </div>
-                    <span className="flex items-center gap-1 text-xs font-bold text-secondary-600 bg-secondary-50 px-2 py-0.5 rounded-full">
-                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-                      </svg>
-                      +8
+                    <span className="flex items-center gap-1 text-xs font-bold text-red-500 bg-red-50 px-2 py-0.5 rounded-full">
+                      <i className="ri-arrow-down-line text-xs"></i>-3.1%
                     </span>
                   </div>
                   <p className="text-xs text-neutral-500 mb-1">Licensed Agents</p>
                   <p className="font-heading font-extrabold text-2xl text-neutral-900">342</p>
-                  <div className="mt-3 h-1 bg-neutral-100 rounded-full overflow-hidden">
-                    <div className="h-full bg-secondary-400 rounded-full transition-all duration-700" style={{ width: '68%' }}></div>
+                  <div className="mt-2 h-1 bg-neutral-100 rounded-full overflow-hidden">
+                    <div className="h-full bg-secondary-400 rounded-full metric-bar" style={{width: '27%'}}></div>
                   </div>
-                  <p className="text-neutral-400 mt-1 text-[10px]">27% of total network</p>
+                  <p className="text-neutral-400 mt-1" style={{fontSize: '10px'}}>27% of total network</p>
                 </div>
 
-                {/* Avg Performance */}
-                <div className="bg-white rounded-large border border-neutral-200 p-5 shadow-custom hover:shadow-custom-hover transition-all hover:-translate-y-1">
+                {/* Avg Performance KPI */}
+                <div className="kpi-card bg-white rounded-large border border-neutral-200 p-4 shadow-custom">
                   <div className="flex items-center justify-between mb-3">
                     <div className="w-9 h-9 rounded-large bg-purple-50 flex items-center justify-center">
-                      <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                      </svg>
+                      <i className="ri-star-line text-purple-600"></i>
                     </div>
                     <span className="flex items-center gap-1 text-xs font-bold text-primary-600 bg-primary-50 px-2 py-0.5 rounded-full">
-                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-                      </svg>
-                      +4.2%
+                      <i className="ri-arrow-up-line text-xs"></i>+4.2%
                     </span>
                   </div>
                   <p className="text-xs text-neutral-500 mb-1">Avg. Performance</p>
                   <p className="font-heading font-extrabold text-2xl text-neutral-900">84.6%</p>
-                  <div className="mt-3 h-1 bg-neutral-100 rounded-full overflow-hidden">
-                    <div className="h-full bg-purple-500 rounded-full transition-all duration-700" style={{ width: '85%' }}></div>
+                  <div className="mt-2 h-1 bg-neutral-100 rounded-full overflow-hidden">
+                    <div className="h-full bg-purple-500 rounded-full metric-bar" style={{width: '85%'}}></div>
                   </div>
-                  <p className="text-neutral-400 mt-1 text-[10px]">Team performance score</p>
+                  <p className="text-neutral-400 mt-1" style={{fontSize: '10px'}}>Team performance score</p>
                 </div>
               </div>
 
-              {/* Placeholder for Charts */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-                <div className="bg-white rounded-large border border-neutral-200 p-6 shadow-custom">
-                  <h4 className="font-heading font-bold text-neutral-900 text-sm mb-4">Monthly Growth Trend</h4>
-                  <div className="h-48 flex items-center justify-center bg-neutral-50 rounded-large border border-neutral-200">
-                    <div className="text-center">
-                      <svg className="w-12 h-12 text-neutral-300 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
-                      </svg>
-                      <p className="text-xs text-neutral-400">Chart placeholder</p>
+              {/* Charts Row */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-5">
+                {/* Revenue Trend Chart */}
+                <div className="lg:col-span-2 bg-white rounded-large border border-neutral-200 p-5 shadow-custom">
+                  <div className="flex items-center justify-between mb-4">
+                    <div>
+                      <h4 className="font-heading font-bold text-neutral-900 text-sm">Monthly Revenue Trend</h4>
+                      <p className="text-neutral-400 text-xs mt-0.5">Jan – Dec 2023 · Commission data</p>
                     </div>
+                    <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-primary-500"></span>
+                        <span className="text-xs text-neutral-500">Revenue</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-secondary-400"></span>
+                        <span className="text-xs text-neutral-500">Expenses</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="h-48 w-full overflow-hidden">
+                    {/* Chart Placeholder - would use Chart.js in production */}
+                    <svg className="w-full h-full" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+                      <defs>
+                        <linearGradient id="revGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                          <stop offset="0%" style={{stopColor: '#10b981', stopOpacity: 0.18}} />
+                          <stop offset="100%" style={{stopColor: '#10b981', stopOpacity: 0}} />
+                        </linearGradient>
+                      </defs>
+                      <path d="M 0 180 L 70 160 L 140 165 L 210 145 L 280 140 L 350 130 L 420 120 L 490 125 L 560 105 L 630 90 L 700 75 L 770 60 L 800 50"
+                            stroke="#10b981" strokeWidth="3" fill="none" />
+                      <path d="M 0 200 L 0 180 L 70 160 L 140 165 L 210 145 L 280 140 L 350 130 L 420 120 L 490 125 L 560 105 L 630 90 L 700 75 L 770 60 L 800 50 L 800 200 Z"
+                            fill="url(#revGrad)" />
+                    </svg>
                   </div>
                 </div>
 
-                <div className="bg-white rounded-large border border-neutral-200 p-6 shadow-custom">
-                  <h4 className="font-heading font-bold text-neutral-900 text-sm mb-4">Network Distribution</h4>
-                  <div className="h-48 flex items-center justify-center bg-neutral-50 rounded-large border border-neutral-200">
-                    <div className="text-center">
-                      <svg className="w-12 h-12 text-neutral-300 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
-                      </svg>
-                      <p className="text-xs text-neutral-400">Chart placeholder</p>
+                {/* Department Donut */}
+                <div className="bg-white rounded-large border border-neutral-200 p-5 shadow-custom">
+                  <div className="mb-4">
+                    <h4 className="font-heading font-bold text-neutral-900 text-sm">Network by Level</h4>
+                    <p className="text-neutral-400 text-xs mt-0.5">Q4 2023 · Matrix depth</p>
+                  </div>
+                  <div className="h-36 w-full overflow-hidden flex items-center justify-center">
+                    {/* Donut Chart Placeholder */}
+                    <svg width="144" height="144" viewBox="0 0 144 144">
+                      <circle cx="72" cy="72" r="60" fill="none" stroke="#10b981" strokeWidth="24"
+                              strokeDasharray="150 400" transform="rotate(-90 72 72)"/>
+                      <circle cx="72" cy="72" r="60" fill="none" stroke="#fb923c" strokeWidth="24"
+                              strokeDasharray="90 400" strokeDashoffset="-150" transform="rotate(-90 72 72)"/>
+                      <circle cx="72" cy="72" r="60" fill="none" stroke="#60a5fa" strokeWidth="24"
+                              strokeDasharray="75 400" strokeDashoffset="-240" transform="rotate(-90 72 72)"/>
+                      <circle cx="72" cy="72" r="60" fill="none" stroke="#c084fc" strokeWidth="24"
+                              strokeDasharray="60 400" strokeDashoffset="-315" transform="rotate(-90 72 72)"/>
+                    </svg>
+                  </div>
+                  <div className="mt-3 space-y-2">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-primary-500"></span>
+                        <span className="text-xs text-neutral-600">Level 1-2</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-bold text-neutral-900">420</span>
+                        <span className="text-xs text-neutral-400">34%</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-secondary-400"></span>
+                        <span className="text-xs text-neutral-600">Level 3-4</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-bold text-neutral-900">380</span>
+                        <span className="text-xs text-neutral-400">30%</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-blue-400"></span>
+                        <span className="text-xs text-neutral-600">Level 5-6</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-bold text-neutral-900">310</span>
+                        <span className="text-xs text-neutral-400">25%</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-purple-400"></span>
+                        <span className="text-xs text-neutral-600">Level 7+</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-bold text-neutral-900">138</span>
+                        <span className="text-xs text-neutral-400">11%</span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Quick Stats */}
-              <div className="bg-gradient-to-r from-primary-500 to-primary-600 rounded-large p-6 text-white">
-                <div className="flex items-center justify-between">
+              {/* Data Table Section */}
+              <div className="bg-white rounded-large border border-neutral-200 shadow-custom overflow-hidden">
+                <div className="flex items-center justify-between px-5 py-4 border-b border-neutral-100">
                   <div>
-                    <h4 className="font-heading font-bold text-lg mb-1">Ready to see your actual data?</h4>
-                    <p className="text-primary-50 text-sm">This is a preview of the new dashboard design.</p>
+                    <h4 className="font-heading font-bold text-neutral-900 text-sm">Top Distributors</h4>
+                    <p className="text-neutral-400 text-xs mt-0.5">Last 30 days · Sorted by performance</p>
                   </div>
-                  <Link href="/dashboard" className="px-6 py-3 bg-white text-primary-600 rounded-small font-bold text-sm hover:bg-primary-50 transition-colors shadow-lg">
-                    View Real Dashboard
-                  </Link>
+                  <div className="flex items-center gap-2">
+                    <div className="relative">
+                      <i className="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400 text-xs"></i>
+                      <input type="text" placeholder="Search distributors..." className="pl-8 pr-3 py-1.5 bg-neutral-50 border border-neutral-200 rounded-small text-xs text-neutral-700 w-40 focus:outline-none focus:ring-1 focus:ring-primary-500" />
+                    </div>
+                    <button className="flex items-center gap-1.5 px-3 py-1.5 bg-neutral-100 text-neutral-600 rounded-small text-xs font-semibold hover:bg-neutral-200 transition-colors">
+                      <i className="ri-filter-line text-xs"></i>Filter
+                    </button>
+                    <button className="flex items-center gap-1.5 px-3 py-1.5 bg-neutral-900 text-white rounded-small text-xs font-semibold hover:bg-neutral-700 transition-colors">
+                      <i className="ri-download-line text-xs"></i>Export
+                    </button>
+                  </div>
+                </div>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left">
+                    <thead className="bg-neutral-50 border-b border-neutral-100">
+                      <tr>
+                        <th className="px-5 py-3 text-xs font-bold text-neutral-500 uppercase tracking-wider">Distributor</th>
+                        <th className="px-5 py-3 text-xs font-bold text-neutral-500 uppercase tracking-wider">Level</th>
+                        <th className="px-5 py-3 text-xs font-bold text-neutral-500 uppercase tracking-wider">Commission</th>
+                        <th className="px-5 py-3 text-xs font-bold text-neutral-500 uppercase tracking-wider">Performance</th>
+                        <th className="px-5 py-3 text-xs font-bold text-neutral-500 uppercase tracking-wider">Join Date</th>
+                        <th className="px-5 py-3 text-xs font-bold text-neutral-500 uppercase tracking-wider">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-neutral-100">
+                      <tr className="table-row transition-colors">
+                        <td className="px-5 py-3">
+                          <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white font-bold text-xs">
+                              SW
+                            </div>
+                            <div>
+                              <p className="text-sm font-semibold text-neutral-900">Sarah Wilson</p>
+                              <p className="text-xs text-neutral-400">REP-0042</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-5 py-3">
+                          <span className="px-2 py-1 bg-primary-50 text-primary-700 rounded-full text-xs font-bold">Level 2</span>
+                        </td>
+                        <td className="px-5 py-3 text-sm font-semibold text-neutral-800">$8,240</td>
+                        <td className="px-5 py-3">
+                          <div className="flex items-center gap-2">
+                            <div className="w-16 h-1.5 bg-neutral-100 rounded-full overflow-hidden">
+                              <div className="h-full bg-primary-500 rounded-full" style={{width: '96%'}}></div>
+                            </div>
+                            <span className="text-xs font-bold text-primary-600">96%</span>
+                          </div>
+                        </td>
+                        <td className="px-5 py-3 text-xs text-neutral-500">Mar 15, 2022</td>
+                        <td className="px-5 py-3">
+                          <span className="px-2 py-1 bg-green-50 text-green-700 rounded-full text-xs font-bold">Active</span>
+                        </td>
+                      </tr>
+                      <tr className="table-row transition-colors">
+                        <td className="px-5 py-3">
+                          <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold text-xs">
+                              JC
+                            </div>
+                            <div>
+                              <p className="text-sm font-semibold text-neutral-900">James Carter</p>
+                              <p className="text-xs text-neutral-400">REP-0018</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-5 py-3">
+                          <span className="px-2 py-1 bg-secondary-50 text-secondary-700 rounded-full text-xs font-bold">Level 3</span>
+                        </td>
+                        <td className="px-5 py-3 text-sm font-semibold text-neutral-800">$7,650</td>
+                        <td className="px-5 py-3">
+                          <div className="flex items-center gap-2">
+                            <div className="w-16 h-1.5 bg-neutral-100 rounded-full overflow-hidden">
+                              <div className="h-full bg-secondary-400 rounded-full" style={{width: '89%'}}></div>
+                            </div>
+                            <span className="text-xs font-bold text-secondary-600">89%</span>
+                          </div>
+                        </td>
+                        <td className="px-5 py-3 text-xs text-neutral-500">Jul 22, 2021</td>
+                        <td className="px-5 py-3">
+                          <span className="px-2 py-1 bg-green-50 text-green-700 rounded-full text-xs font-bold">Active</span>
+                        </td>
+                      </tr>
+                      <tr className="table-row transition-colors">
+                        <td className="px-5 py-3">
+                          <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center text-white font-bold text-xs">
+                              MP
+                            </div>
+                            <div>
+                              <p className="text-sm font-semibold text-neutral-900">Maya Patel</p>
+                              <p className="text-xs text-neutral-400">REP-0067</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-5 py-3">
+                          <span className="px-2 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-bold">Level 4</span>
+                        </td>
+                        <td className="px-5 py-3 text-sm font-semibold text-neutral-800">$6,920</td>
+                        <td className="px-5 py-3">
+                          <div className="flex items-center gap-2">
+                            <div className="w-16 h-1.5 bg-neutral-100 rounded-full overflow-hidden">
+                              <div className="h-full bg-blue-500 rounded-full" style={{width: '82%'}}></div>
+                            </div>
+                            <span className="text-xs font-bold text-blue-600">82%</span>
+                          </div>
+                        </td>
+                        <td className="px-5 py-3 text-xs text-neutral-500">Jan 10, 2022</td>
+                        <td className="px-5 py-3">
+                          <span className="px-2 py-1 bg-green-50 text-green-700 rounded-full text-xs font-bold">Active</span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div className="px-5 py-3 border-t border-neutral-100 flex items-center justify-between bg-neutral-50">
+                  <p className="text-xs text-neutral-500">Showing 3 of 1,248 distributors · Sorted by performance desc.</p>
+                  <div className="flex items-center gap-2">
+                    <button className="px-3 py-1.5 bg-white border border-neutral-200 rounded-small text-xs font-semibold text-neutral-600 hover:bg-neutral-50 transition-colors">Previous</button>
+                    <button className="px-3 py-1.5 bg-neutral-900 text-white rounded-small text-xs font-semibold hover:bg-neutral-700 transition-colors">Next</button>
+                  </div>
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Floating Badges */}
+          <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
+            <div className="floating-badge bg-white rounded-large shadow-custom-hover border border-neutral-200 px-4 py-3 flex items-center gap-3">
+              <div className="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center">
+                <i className="ri-magic-line text-primary-600 text-sm"></i>
+              </div>
+              <div>
+                <p className="font-heading font-bold text-neutral-900 text-xs">Auto-generated</p>
+                <p className="text-neutral-400" style={{fontSize: '10px'}}>No manual setup needed</p>
+              </div>
+            </div>
+            <div className="floating-badge bg-white rounded-large shadow-custom-hover border border-neutral-200 px-4 py-3 flex items-center gap-3" style={{animationDelay: '0.5s'}}>
+              <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
+                <i className="ri-refresh-line text-blue-600 text-sm"></i>
+              </div>
+              <div>
+                <p className="font-heading font-bold text-neutral-900 text-xs">Live Sync</p>
+                <p className="text-neutral-400" style={{fontSize: '10px'}}>Updates in real time</p>
+              </div>
+            </div>
+            <div className="floating-badge bg-white rounded-large shadow-custom-hover border border-neutral-200 px-4 py-3 flex items-center gap-3" style={{animationDelay: '1s'}}>
+              <div className="w-8 h-8 rounded-full bg-secondary-100 flex items-center justify-center">
+                <i className="ri-share-line text-secondary-600 text-sm"></i>
+              </div>
+              <div>
+                <p className="font-heading font-bold text-neutral-900 text-xs">One-click Share</p>
+                <p className="text-neutral-400" style={{fontSize: '10px'}}>Secure shareable link</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA SECTION */}
+      <section className="bg-neutral-900 py-16 max-h-[320px] overflow-hidden">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-500/20 border border-primary-500/30 rounded-full mb-6">
+            <i className="ri-rocket-line text-primary-400 text-sm"></i>
+            <span className="text-xs font-semibold text-primary-300">Ready to see your real data like this?</span>
+          </div>
+          <h2 className="font-heading text-4xl font-extrabold text-white mb-4" style={{letterSpacing: 'var(--letter-spacing-heading)'}}>
+            This Could Be Your<br />Actual Dashboard
+          </h2>
+          <p className="text-neutral-400 text-lg mb-8">
+            Click below to return to your real dashboard with your actual network data.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link href="/dashboard" className="inline-flex items-center gap-2.5 px-8 py-4 bg-primary-500 text-white rounded-small text-base font-bold hover:bg-primary-600 transition-colors shadow-custom">
+              <i className="ri-dashboard-line"></i>
+              View Real Dashboard
+            </Link>
+            <Link href="/profile-v2" className="inline-flex items-center gap-2.5 px-8 py-4 bg-white/10 text-white rounded-small text-base font-semibold border border-white/20 hover:bg-white/20 transition-colors">
+              View Profile V2
+              <i className="ri-arrow-right-line text-xs"></i>
+            </Link>
           </div>
         </div>
       </section>
