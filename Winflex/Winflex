@@ -1,0 +1,85 @@
+Hello Trent,
+
+ 
+
+Here is the information on how to set up Single Sign On between your website and WinFlex. 
+
+
+
+If your website requires each of its users to log in using a unique ID and password to access portions of your site, a link can be established between our sites using our Single Sign-On (SSO) solution. SSO allows users to log in to your site and then be passed directly into the WinFlex start page. Attached are the technical specifications for setting up Single Sign-On to WinFlex for your site.  
+
+ 
+
+A couple of key points . . .
+
+ • LoginType:  As an agency login, the login type would be WF_AGENCY 
+ • UserName:  A unique ID representing that user on your side. This ID could be a string, a number, anything that is unique to that user and will never change. This has no bearing on the user's WinFlex Web information.  The username that the user enters during registration for a WinFlex account does NOT have to match the username that you pass to us. We don't care what unique username you pass for each user as long as it does not change each time you pass that user through. It simply helps us maintain the link.
+ • WFCompanyCode:  Assigned by Zinnia (formerly LifeLink Corp) and never changes. Your code for Apex is {APEX}.
+ • WFCompanyPassword:  Assigned by Zinnia (formerly LifeLink Corp) and never changes. This password for Apex is “3Markagents”.
+ • You must open WinFlex in a new browser window (as opposed to frames) or the login will not work for your users.
+ 
+
+Sample XML . . .
+
+The following example contains all of the necessary information to link "testuser1234" to WinFlex Web:
+
+<LifeLink xmlns="urn:lifelink-schema">
+
+      <LL LoginType="WF_AGENCY">
+            <UserName>testuser1234</UserName>
+            <WFCompanyCode>Your company code</WFCompanyCode>
+            <WFCompanyPassword>Your company password</WFCompanyPassword>
+            <InterfaceType>GUI</InterfaceType>
+            <OutputType>URL</OutputType>
+            <Tool>
+                  <Name>WinFlex</Name>
+            </Tool>
+      </LL>
+</LifeLink>
+ 
+
+
+
+AutoCreate WinFlex users, if needed . . . 
+
+This information is not included in the attached documentation, but I'm including it here in case you would like to use this feature.
+
+If a user does not exist in the WinFlex database, they are normally taken to the WinFlex registration page which is a quick step and can be prefilled if a Profile node with values is included.  However, if you want to bypass registration and auto create a WinFlex user, you can do so by using the AutoCreate property of the Profile node.  
+
+
+
+Auto create requires at a minimum the First Name, Last Name, and Email.  The email address is the primary database key of the user.  If the email is found, we will link to an existing account.  If not, a new account is created.  To help eliminate creating duplicate user accounts, most people implementing this method will put up a disclaimer that says something along the lines of "If you have a WinFlex account, please be sure that your WinFlex email matches the email address used by this portal before continuing."  If the AutoCreate attribute is included on the Profile element (legal values of true, 1, false, 0), we will attempt to create or link up the user as noted above.  The AutoEmail property simply lets users know that an account was created given the email in the Profile.  Most just set this to false.  
+
+Here is a sample:
+
+<LifeLink xmlns="urn:lifelink-schema">
+
+      <WinFlex>
+            <Profile AutoCreate="true" AutoEmail="false">
+                  <FirstName>Some</FirstName>
+                  <LastName>Person</LastName>
+                  <CompanyName>A Company</CompanyName>
+                  <Address1>100 Anywhere Ln</Address1>
+                  <City>Some City</City>
+                  <State>CA</State>
+                  <Zip>55555</Zip>
+                  <Phone>555-555-5555</Phone>
+                  <Email>someperson@acompany.com</Email>
+            </Profile>
+      </WinFlex>
+</LifeLink>
+
+
+
+Details on the link . . .
+
+To include a link to WinFlex on your site, the attached button can be used. We approve two types of links to WinFlex Web.
+
+> 1. Text only
+> 2. WinFlex button
+> 
+The WinFlex button must be used as is and cannot be graphically changed in any way. If the button needs edits for technical reasons, please send a request to Zinnia at support.winflex@zinnia.com.
+
+
+
+Thanks,
