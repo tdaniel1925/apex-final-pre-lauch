@@ -86,28 +86,6 @@ export default function DistributorsTable({
 
   return (
     <div className="bg-white rounded-lg shadow overflow-hidden">
-      {/* Error Message */}
-      {error && (
-        <div className="p-4 bg-red-50 border-b border-red-200">
-          <div className="flex items-start">
-            <svg className="w-5 h-5 text-red-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <div className="ml-3 flex-1">
-              <p className="text-sm font-medium text-red-800">{error}</p>
-            </div>
-            <button
-              onClick={() => setError(null)}
-              className="ml-3 text-red-600 hover:text-red-800"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      )}
-
       {/* Filters */}
       <div className="p-3 border-b border-gray-200">
         <div className="flex gap-2">
