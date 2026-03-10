@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Integrations - Exported from UXMagic Copilot">
+    <title>Integrations</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['var(--font-heading-name)', 'sans-serif'],
+                        body: ['var(--font-body-name)', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            200: '#a7f3d0',
+                            300: '#6ee7b7',
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                        },
+                        secondary: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            200: '#fed7aa',
+                            300: '#fdba74',
+                            400: '#fb923c',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12',
+                        },
+                        neutral: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        },
+                        background: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                        }
+                    },
+                    spacing: {
+                        base: 'var(--space-base)',
+                    },
+                    borderRadius: {
+                        small: 'var(--radius-small)',
+                        large: 'var(--radius-large)',
+                    },
+                    boxShadow: {
+                        custom: 'var(--shadow-custom)',
+                        'custom-hover': 'var(--shadow-custom-hover)',
+                    },
+                }
+            }
+        }
+    
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+<div class="flex flex-col lg:flex-row">
+
+    <!-- Sidebar Navigation -->
+    <aside class="w-full lg:w-72 bg-white border-r border-neutral-200 flex flex-col z-20">
+        <div class="p-6 flex items-center gap-3">
+            <div class="w-10 h-10 bg-neutral-900 rounded-small flex items-center justify-center text-white">
+                <i class="ri-bar-chart-box-fill text-xl"></i>
+            </div>
+            <span class="font-heading font-bold text-xl text-neutral-900">SmartViz</span>
+        </div>
+
+        <nav class="flex-1 px-4 py-4 space-y-1 overflow-y-auto">
+            <div class="mb-6">
+                <p class="px-4 text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-2">Main</p>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 rounded-small transition-all">
+                    <i class="ri-dashboard-line"></i>
+                    <span class="font-medium">Dashboard</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 rounded-small transition-all">
+                    <i class="ri-file-excel-line"></i>
+                    <span class="font-medium">Data Sources</span>
+                </a>
+                <a href="/api/copilot/prototype/09dc877b-2028-42d5-9657-9be56806fed4/ai-chatbot" class="flex items-center gap-3 px-4 py-3 text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 rounded-small transition-all">
+                    <i class="ri-robot-line"></i>
+                    <span class="font-medium">AI Analysis</span>
+                    <span class="ml-auto bg-primary-100 text-primary-700 text-xs px-2 py-0.5 rounded-full font-bold">NEW</span>
+                </a>
+            </div>
+
+            <div class="mb-6">
+                <p class="px-4 text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-2">Management</p>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 rounded-small transition-all">
+                    <i class="ri-upload-cloud-line"></i>
+                    <span class="font-medium">Manual Upload</span>
+                </a>
+                <a href="/api/copilot/prototype/09dc877b-2028-42d5-9657-9be56806fed4/integrations" class="flex items-center gap-3 px-4 py-3 bg-neutral-900 text-white rounded-small shadow-custom transition-all">
+                    <i class="ri-links-line"></i>
+                    <span class="font-medium">Integrations</span>
+                </a>
+                <a href="/api/copilot/prototype/09dc877b-2028-42d5-9657-9be56806fed4/profile-payment-settings" class="flex items-center gap-3 px-4 py-3 text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 rounded-small transition-all">
+                    <i class="ri-user-settings-line"></i>
+                    <span class="font-medium">Profile &amp; Plan</span>
+                </a>
+                <a href="/api/copilot/prototype/09dc877b-2028-42d5-9657-9be56806fed4/reports" class="flex items-center gap-3 px-4 py-3 text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 rounded-small transition-all">
+                    <i class="ri-file-chart-line"></i>
+                    <span class="font-medium">Reports</span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="p-4 mt-auto">
+            <div class="bg-primary-500 rounded-large p-5 text-white relative overflow-hidden shadow-custom">
+                <div class="absolute top-0 right-0 -mt-2 -mr-2 w-16 h-16 bg-white opacity-20 rounded-full"></div>
+                <div class="relative z-10">
+                    <h4 class="font-heading font-bold text-lg mb-1">Pro Plan</h4>
+                    <p class="text-primary-50 text-sm mb-3 opacity-90">Unlock advanced AI insights</p>
+                    <button class="w-full bg-white text-primary-600 font-bold py-2 rounded-small text-sm hover:bg-primary-50 transition-colors">Upgrade Now</button>
+                </div>
+            </div>
+            <div class="flex items-center gap-3 mt-6 px-2">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="User" class="w-10 h-10 rounded-full border-2 border-white shadow-sm">
+                <div>
+                    <p class="text-sm font-bold text-neutral-900">Sarah Wilson</p>
+                    <p class="text-xs text-neutral-500">sarah@company.com</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col min-w-0">
+
+        <!-- Header -->
+        <header class="bg-white/80 backdrop-blur-md border-b border-neutral-200 sticky top-0 z-10">
+            <div class="px-6 py-4 flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <h1 class="font-heading text-2xl font-bold text-neutral-900">Integrations</h1>
+                    <span class="hidden md:inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary-50 text-primary-700 border border-primary-100">
+                        <span class="w-2 h-2 rounded-full bg-primary-500 mr-2"></span>
+                        4 Active
+                    </span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="relative hidden md:block">
+                        <i class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400"></i>
+                        <input type="text" placeholder="Search integrations..." class="pl-10 pr-4 py-2 bg-neutral-50 border-none rounded-full text-sm w-64 focus:ring-2 focus:ring-primary-500 focus:bg-white transition-all">
+                    </div>
+                    <button class="w-10 h-10 rounded-full bg-white border border-neutral-200 flex items-center justify-center text-neutral-600 hover:bg-neutral-50 hover:text-primary-600 transition-colors relative">
+                        <i class="ri-notification-3-line text-lg"></i>
+                        <span class="absolute top-2 right-2.5 w-2 h-2 bg-secondary-500 rounded-full border border-white"></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="px-6 flex gap-1 border-t border-neutral-100">
+                <button onclick="filterIntegrations('all')" id="filter-all" class="filter-btn px-4 py-3 text-sm font-medium text-neutral-900 border-b-2 border-neutral-900 transition-all">All</button>
+                <button onclick="filterIntegrations('connected')" id="filter-connected" class="filter-btn px-4 py-3 text-sm font-medium text-neutral-500 border-b-2 border-transparent hover:text-neutral-700 transition-all">Connected</button>
+                <button onclick="filterIntegrations('available')" id="filter-available" class="filter-btn px-4 py-3 text-sm font-medium text-neutral-500 border-b-2 border-transparent hover:text-neutral-700 transition-all">Available</button>
+                <button onclick="filterIntegrations('error')" id="filter-error" class="filter-btn px-4 py-3 text-sm font-medium text-neutral-500 border-b-2 border-transparent hover:text-neutral-700 transition-all">Needs Attention</button>
+            </div>
+        </header>
+
+        <div class="flex-1 p-6">
+
+            <!-- Summary Stats -->
+            <section class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 max-h-[160px]">
+                <div class="bg-white rounded-large shadow-custom p-5">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-9 h-9 rounded-full bg-primary-50 text-primary-600 flex items-center justify-center">
+                            <i class="ri-links-line"></i>
+                        </div>
+                        <span class="text-sm text-neutral-500">Connected</span>
+                    </div>
+                    <p class="font-heading text-2xl font-bold text-neutral-900">4</p>
+                    <p class="text-xs text-neutral-400 mt-1">of 10 available</p>
+                </div>
+                <div class="bg-white rounded-large shadow-custom p-5">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-9 h-9 rounded-full bg-green-50 text-green-600 flex items-center justify-center">
+                            <i class="ri-refresh-line"></i>
+                        </div>
+                        <span class="text-sm text-neutral-500">Last Sync</span>
+                    </div>
+                    <p class="font-heading text-2xl font-bold text-neutral-900">2m</p>
+                    <p class="text-xs text-neutral-400 mt-1">ago · Stripe</p>
+                </div>
+                <div class="bg-white rounded-large shadow-custom p-5">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-9 h-9 rounded-full bg-secondary-50 text-secondary-600 flex items-center justify-center">
+                            <i class="ri-error-warning-line"></i>
+                        </div>
+                        <span class="text-sm text-neutral-500">Errors</span>
+                    </div>
+                    <p class="font-heading text-2xl font-bold text-neutral-900">1</p>
+                    <p class="text-xs text-neutral-400 mt-1">Needs attention</p>
+                </div>
+                <div class="bg-white rounded-large shadow-custom p-5">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-9 h-9 rounded-full bg-neutral-100 text-neutral-600 flex items-center justify-center">
+                            <i class="ri-database-2-line"></i>
+                        </div>
+                        <span class="text-sm text-neutral-500">Records Synced</span>
+                    </div>
+                    <p class="font-heading text-2xl font-bold text-neutral-900">48.2k</p>
+                    <p class="text-xs text-neutral-400 mt-1">this month</p>
+                </div>
+            </section>
+
+            <!-- Connected Integrations -->
+            <section class="mb-6 max-h-[900px]">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="font-heading text-lg font-bold text-neutral-900">Connected Services</h2>
+                    <button class="flex items-center gap-2 px-4 py-2 bg-neutral-900 text-white rounded-small text-sm font-medium hover:bg-neutral-700 transition-colors shadow-custom">
+                        <i class="ri-add-line"></i>Add Integration
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                    <!-- Stripe - Connected -->
+                    <div class="bg-white rounded-large shadow-custom p-5 border border-neutral-100 hover:shadow-custom-hover transition-shadow">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-large flex items-center justify-center shadow-custom" style="background:#635BFF;">
+                                    <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=48&amp;h=48&amp;fit=crop&amp;auto=format" alt="Stripe" class="w-7 h-7 rounded object-cover opacity-0 absolute">
+                                    <i class="ri-bank-card-fill text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-heading font-bold text-neutral-900 text-sm">Stripe</h3>
+                                    <p class="text-xs text-neutral-500">Payment Processing</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-green-50 text-green-700 text-xs font-bold rounded-full border border-green-100">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>Active
+                                </span>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-50 rounded-large p-3 mb-4 border border-neutral-100">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-xs font-semibold text-neutral-600">API Key</span>
+                                <button onclick="toggleKey('stripe-key')" class="text-xs text-primary-600 hover:text-primary-700 font-medium transition-colors">
+                                    <i class="ri-eye-line mr-1"></i>Reveal
+                                </button>
+                            </div>
+                            <code id="stripe-key" class="text-xs text-neutral-500 font-mono">sk_live_••••••••••••••••••••••••4242</code>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-neutral-500 mb-4">
+                            <span><i class="ri-refresh-line mr-1 text-green-500"></i>Last sync: 2 min ago</span>
+                            <span class="font-semibold text-neutral-700">12,450 records</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="openApiModal('Stripe')" class="flex-1 px-3 py-2 bg-neutral-100 text-neutral-700 rounded-small text-xs font-semibold hover:bg-neutral-200 transition-colors">
+                                <i class="ri-settings-3-line mr-1"></i>Configure
+                            </button>
+                            <button class="flex-1 px-3 py-2 bg-primary-50 text-primary-700 rounded-small text-xs font-semibold hover:bg-primary-100 transition-colors">
+                                <i class="ri-refresh-line mr-1"></i>Sync Now
+                            </button>
+                            <button class="px-3 py-2 bg-red-50 text-red-600 rounded-small text-xs font-semibold hover:bg-red-100 transition-colors">
+                                <i class="ri-unlink"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Slack - Connected -->
+                    <div class="bg-white rounded-large shadow-custom p-5 border border-neutral-100 hover:shadow-custom-hover transition-shadow">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-large flex items-center justify-center shadow-custom" style="background:#4A154B;">
+                                    <i class="ri-slack-fill text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-heading font-bold text-neutral-900 text-sm">Slack</h3>
+                                    <p class="text-xs text-neutral-500">Team Notifications</p>
+                                </div>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-green-50 text-green-700 text-xs font-bold rounded-full border border-green-100">
+                                <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>Active
+                            </span>
+                        </div>
+                        <div class="bg-neutral-50 rounded-large p-3 mb-4 border border-neutral-100">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-xs font-semibold text-neutral-600">Webhook URL</span>
+                                <button class="text-xs text-primary-600 hover:text-primary-700 font-medium transition-colors">
+                                    <i class="ri-eye-line mr-1"></i>Reveal
+                                </button>
+                            </div>
+                            <code class="text-xs text-neutral-500 font-mono">https://hooks.slack.com/services/T0••••/B••••/••••</code>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-neutral-500 mb-4">
+                            <span><i class="ri-refresh-line mr-1 text-green-500"></i>Last sync: 15 min ago</span>
+                            <span class="font-semibold text-neutral-700">#finance-alerts</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="openApiModal('Slack')" class="flex-1 px-3 py-2 bg-neutral-100 text-neutral-700 rounded-small text-xs font-semibold hover:bg-neutral-200 transition-colors">
+                                <i class="ri-settings-3-line mr-1"></i>Configure
+                            </button>
+                            <button class="flex-1 px-3 py-2 bg-primary-50 text-primary-700 rounded-small text-xs font-semibold hover:bg-primary-100 transition-colors">
+                                <i class="ri-send-plane-line mr-1"></i>Test Alert
+                            </button>
+                            <button class="px-3 py-2 bg-red-50 text-red-600 rounded-small text-xs font-semibold hover:bg-red-100 transition-colors">
+                                <i class="ri-unlink"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Google Analytics - Error -->
+                    <div class="bg-white rounded-large shadow-custom p-5 border border-secondary-100 hover:shadow-custom-hover transition-shadow">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-large flex items-center justify-center shadow-custom" style="background:#E37400;">
+                                    <i class="ri-bar-chart-grouped-fill text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-heading font-bold text-neutral-900 text-sm">Google Analytics</h3>
+                                    <p class="text-xs text-neutral-500">Web Analytics</p>
+                                </div>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-secondary-50 text-secondary-700 text-xs font-bold rounded-full border border-secondary-100">
+                                <span class="w-1.5 h-1.5 rounded-full bg-secondary-500"></span>Error
+                            </span>
+                        </div>
+                        <div class="bg-secondary-50 border border-secondary-100 rounded-large p-3 mb-4">
+                            <div class="flex items-start gap-2">
+                                <i class="ri-error-warning-line text-secondary-500 text-sm mt-0.5 shrink-0"></i>
+                                <div>
+                                    <p class="text-xs font-semibold text-secondary-700 mb-0.5">Authentication expired</p>
+                                    <p class="text-xs text-secondary-600">OAuth token expired on Nov 18, 2023. Re-authenticate to resume syncing.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-neutral-500 mb-4">
+                            <span><i class="ri-time-line mr-1 text-secondary-400"></i>Last sync: 3 days ago</span>
+                            <span class="font-semibold text-neutral-700">8,920 records</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button class="flex-1 px-3 py-2 bg-secondary-500 text-white rounded-small text-xs font-semibold hover:bg-secondary-600 transition-colors shadow-custom">
+                                <i class="ri-refresh-line mr-1"></i>Re-authenticate
+                            </button>
+                            <button class="px-3 py-2 bg-red-50 text-red-600 rounded-small text-xs font-semibold hover:bg-red-100 transition-colors">
+                                <i class="ri-unlink"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- HubSpot - Connected -->
+                    <div class="bg-white rounded-large shadow-custom p-5 border border-neutral-100 hover:shadow-custom-hover transition-shadow">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-large flex items-center justify-center shadow-custom" style="background:#FF7A59;">
+                                    <i class="ri-customer-service-2-fill text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-heading font-bold text-neutral-900 text-sm">HubSpot</h3>
+                                    <p class="text-xs text-neutral-500">CRM &amp; Marketing</p>
+                                </div>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-green-50 text-green-700 text-xs font-bold rounded-full border border-green-100">
+                                <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>Active
+                            </span>
+                        </div>
+                        <div class="bg-neutral-50 rounded-large p-3 mb-4 border border-neutral-100">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-xs font-semibold text-neutral-600">API Key</span>
+                                <button class="text-xs text-primary-600 hover:text-primary-700 font-medium transition-colors">
+                                    <i class="ri-eye-line mr-1"></i>Reveal
+                                </button>
+                            </div>
+                            <code class="text-xs text-neutral-500 font-mono">pat-na1-••••••••-••••-••••-••••-••••••••7f3a</code>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-neutral-500 mb-4">
+                            <span><i class="ri-refresh-line mr-1 text-green-500"></i>Last sync: 1 hr ago</span>
+                            <span class="font-semibold text-neutral-700">26,880 records</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="openApiModal('HubSpot')" class="flex-1 px-3 py-2 bg-neutral-100 text-neutral-700 rounded-small text-xs font-semibold hover:bg-neutral-200 transition-colors">
+                                <i class="ri-settings-3-line mr-1"></i>Configure
+                            </button>
+                            <button class="flex-1 px-3 py-2 bg-primary-50 text-primary-700 rounded-small text-xs font-semibold hover:bg-primary-100 transition-colors">
+                                <i class="ri-refresh-line mr-1"></i>Sync Now
+                            </button>
+                            <button class="px-3 py-2 bg-red-50 text-red-600 rounded-small text-xs font-semibold hover:bg-red-100 transition-colors">
+                                <i class="ri-unlink"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Available Integrations -->
+            <section class="mb-6 max-h-[800px]">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="font-heading text-lg font-bold text-neutral-900">Available Integrations</h2>
+                    <span class="text-sm text-neutral-500">6 available</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+                    <!-- Salesforce -->
+                    <div class="bg-white rounded-large shadow-custom p-5 border border-neutral-100 hover:shadow-custom-hover transition-shadow">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-12 h-12 rounded-large flex items-center justify-center shadow-custom" style="background:#00A1E0;">
+                                <i class="ri-cloud-fill text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-heading font-bold text-neutral-900 text-sm">Salesforce</h3>
+                                <p class="text-xs text-neutral-500">CRM Platform</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-neutral-600 mb-4 leading-relaxed">Sync leads, opportunities, and revenue data directly from your Salesforce CRM.</p>
+                        <div class="flex flex-wrap gap-1.5 mb-4">
+                            <span class="px-2 py-0.5 bg-neutral-100 text-neutral-600 text-xs rounded-full">Contacts</span>
+                            <span class="px-2 py-0.5 bg-neutral-100 text-neutral-600 text-xs rounded-full">Deals</span>
+                            <span class="px-2 py-0.5 bg-neutral-100 text-neutral-600 text-xs rounded-full">Revenue</span>
+                        </div>
+                        <button class="w-full px-3 py-2 bg-neutral-900 text-white rounded-small text-xs font-semibold hover:bg-neutral-700 transition-colors shadow-custom">
+                            <i class="ri-add-line mr-1"></i>Connect Salesforce
+                        </button>
+                    </div>
+
+                    <!-- Zapier -->
+                    <div class="bg-white rounded-large shadow-custom p-5 border border-neutral-100 hover:shadow-custom-hover transition-shadow">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-12 h-12 rounded-large flex items-center justify-center shadow-custom" style="background:#FF4A00;">
+                                <i class="ri-flashlight-fill text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-heading font-bold text-neutral-900 text-sm">Zapier</h3>
+                                <p class="text-xs text-neutral-500">Workflow Automation</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-neutral-600 mb-4 leading-relaxed">Automate data flows between SmartViz and 5,000+ apps using Zapier triggers.</p>
+                        <div class="flex flex-wrap gap-1.5 mb-4">
+                            <span class="px-2 py-0.5 bg-neutral-100 text-neutral-600 text-xs rounded-full">Triggers</span>
+                            <span class="px-2 py-0.5 bg-neutral-100 text-neutral-600 text-xs rounded-full">Actions</span>
+                            <span class="px-2 py-0.5 bg-neutral-100 text-neutral-600 text-xs rounded-full">Webhooks</span>
+                        </div>
+                        <button class="w-full px-3 py-2 bg-neutral-900 text-white rounded-small text-xs font-semibold hover:bg-neutral-700 transition-colors shadow-custom">
+                            <i class="ri-add-line mr-1"></i>Connect Zapier
+                        </button>
+                    </div>
+
+                    <!-- QuickBooks -->
+                    <div class="bg-white rounded-large shadow-custom p-5 border border-neutral-100 hover:shadow-custom-hover transition-shadow">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-12 h-12 rounded-large flex items-center justify-center shadow-custom" style="background:#2CA01C;">
+                                <i class="ri-money-dollar-circle-fill text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-heading font-bold text-neutral-900 text-sm">QuickBooks</h3>
+                                <p class="text-xs text-neutral-500">Accounting</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-neutral-600 mb-4 leading-relaxed">Import invoices, expenses, and P&amp;L statements from QuickBooks automatically.</p>
+                        <div class="flex flex-wrap gap-1.5 mb-4">
+                            <span class="px-2 py-0.5 bg-neutral-100 text-neutral-600 text-xs rounded-full">Invoices</span>
+                            <span class="px-2 py-0.5 bg-neutral-100 text-neutral-600 text-xs rounded-full">Expenses</span>
+                            <span class="px-2 py-0.5 bg-neutral-100 text-neutral-600 text-xs rounded-full">P&amp;L</span>
+                        </div>
+                        <button class="w-full px-3 py-2 bg-neutral-900 text-white rounded-small text-xs font-semibold hover:bg-neutral-700 transition-colors shadow-custom">
+                            <i class="ri-add-line mr-1"></i>Connect QuickBooks
+                        </button>
+                    </div>
+
+                    <!-- Shopify -->
+                    <div class="bg-white rounded-large shadow-custom p-5 border border-neutral-100 hover:shadow-custom-hover transition-shadow">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-12 h-12 rounded-large flex items-center justify-center shadow-custom" style="background:#96BF48;">
+                                <i class="ri-store-2-fill text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-heading font-bold text-neutral-900 text-sm">Shopify</h3>
+                                <p class="text-xs text-neutral-500">E-Commerce</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-neutral-600 mb-4 leading-relaxed">Pull orders, inventory, and customer data from your Shopify store in real-time.</p>
+                        <div class="flex flex-wrap gap-1.5 mb-4">
+                            <span class="px-2 py-0.5 bg-neutral-100 text-neutral-600 text-xs rounded-full">Orders</span>
+                            <span class="px-2 py-0.5 bg-neutral-100 text-neutral-600 text-xs rounded-full">Inventory</span>
+                            <span class="px-2 py-0.5 bg-neutral-100 text-neutral-600 text-xs rounded-full">Customers</span>
+                        </div>
+                        <button class="w-full px-3 py-2 bg-neutral-900 text-white rounded-small text-xs font-semibold hover:bg-neutral-700 transition-colors shadow-custom">
+                            <i class="ri-add-line mr-1"></i>Connect Shopify
+                        </button>
+                    </div>
+
+                    <!-- Airtable -->
+                    <div class="bg-white rounded-large shadow-custom p-5 border border-neutral-100 hover:shadow-custom-hover transition-shadow">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-12 h-12 rounded-large flex items-center justify-center shadow-custom" style="background:#FCB400;">
+                                <i class="ri-table-fill text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-heading font-bold text-neutral-900 text-sm">Airtable</h3>
+                                <p class="text-xs text-neutral-500">Database &amp; Spreadsheets</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-neutral-600 mb-4 leading-relaxed">Sync Airtable bases and tables directly into SmartViz for instant visualization.</p>
+                        <div class="flex flex-wrap gap-1.5 mb-4">
+                            <span class="px-2 py-0.5 bg-neutral-100 text-neutral-600 text-xs rounded-full">Bases</span>
+                            <span class="px-2 py-0.5 bg-neutral-100 text-neutral-600 text-xs rounded-full">Tables</span>
+                            <span class="px-2 py-0.5 bg-neutral-100 text-neutral-600 text-xs rounded-full">Views</span>
+                        </div>
+                        <button class="w-full px-3 py-2 bg-neutral-900 text-white rounded-small text-xs font-semibold hover:bg-neutral-700 transition-colors shadow-custom">
+                            <i class="ri-add-line mr-1"></i>Connect Airtable
+                        </button>
+                    </div>
+
+                    <!-- Custom API -->
+                    <div class="bg-neutral-900 rounded-large p-5 border border-neutral-800 hover:shadow-custom-hover transition-shadow relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-primary-500 opacity-10 rounded-full -mt-6 -mr-6"></div>
+                        <div class="relative z-10">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-12 h-12 rounded-large bg-white/10 flex items-center justify-center">
+                                    <i class="ri-code-s-slash-fill text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-heading font-bold text-white text-sm">Custom API</h3>
+                                    <p class="text-xs text-neutral-400">REST / GraphQL</p>
+                                </div>
+                            </div>
+                            <p class="text-xs text-neutral-400 mb-4 leading-relaxed">Connect any REST or GraphQL API endpoint with custom authentication and field mapping.</p>
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                <span class="px-2 py-0.5 bg-white/10 text-neutral-300 text-xs rounded-full">REST</span>
+                                <span class="px-2 py-0.5 bg-white/10 text-neutral-300 text-xs rounded-full">GraphQL</span>
+                                <span class="px-2 py-0.5 bg-white/10 text-neutral-300 text-xs rounded-full">OAuth</span>
+                            </div>
+                            <button class="w-full px-3 py-2 bg-primary-500 text-white rounded-small text-xs font-semibold hover:bg-primary-600 transition-colors shadow-custom">
+                                <i class="ri-add-line mr-1"></i>Build Custom Integration
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Sync Activity Log -->
+            <section class="bg-white rounded-large shadow-custom overflow-hidden mb-6 max-h-[500px]">
+                <div class="p-6 border-b border-neutral-100 flex items-center justify-between">
+                    <div>
+                        <h2 class="font-heading text-lg font-bold text-neutral-900">Sync Activity Log</h2>
+                        <p class="text-sm text-neutral-500 mt-0.5">Recent sync events across all integrations</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button class="flex items-center gap-2 px-4 py-2 bg-neutral-50 text-neutral-600 rounded-small text-sm font-medium hover:bg-neutral-100 transition-colors border border-neutral-200">
+                            <i class="ri-filter-3-line"></i>Filter
+                        </button>
+                        <button class="flex items-center gap-2 px-4 py-2 bg-neutral-50 text-neutral-600 rounded-small text-sm font-medium hover:bg-neutral-100 transition-colors border border-neutral-200">
+                            <i class="ri-download-line"></i>Export
+                        </button>
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead class="bg-neutral-50 text-neutral-500 text-xs uppercase font-semibold">
+                            <tr>
+                                <th class="px-6 py-4">Integration</th>
+                                <th class="px-6 py-4">Event</th>
+                                <th class="px-6 py-4">Records</th>
+                                <th class="px-6 py-4">Timestamp</th>
+                                <th class="px-6 py-4">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-neutral-100">
+                            <tr class="hover:bg-neutral-50/50 transition-colors">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded flex items-center justify-center text-white text-xs font-bold" style="background:#635BFF;">S</div>
+                                        <span class="font-medium text-neutral-900 text-sm">Stripe</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-sm text-neutral-600">Incremental Sync</td>
+                                <td class="px-6 py-4 text-sm font-semibold text-neutral-900">+142</td>
+                                <td class="px-6 py-4 text-sm text-neutral-500">Nov 21, 2023 · 10:42 AM</td>
+                                <td class="px-6 py-4"><span class="px-2 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700">Success</span></td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50/50 transition-colors">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded flex items-center justify-center text-white text-xs font-bold" style="background:#FF7A59;">H</div>
+                                        <span class="font-medium text-neutral-900 text-sm">HubSpot</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-sm text-neutral-600">Full Sync</td>
+                                <td class="px-6 py-4 text-sm font-semibold text-neutral-900">26,880</td>
+                                <td class="px-6 py-4 text-sm text-neutral-500">Nov 21, 2023 · 09:15 AM</td>
+                                <td class="px-6 py-4"><span class="px-2 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700">Success</span></td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50/50 transition-colors">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded flex items-center justify-center text-white text-xs font-bold" style="background:#E37400;">G</div>
+                                        <span class="font-medium text-neutral-900 text-sm">Google Analytics</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-sm text-neutral-600">Auth Refresh</td>
+                                <td class="px-6 py-4 text-sm font-semibold text-neutral-900">—</td>
+                                <td class="px-6 py-4 text-sm text-neutral-500">Nov 18, 2023 · 06:00 AM</td>
+                                <td class="px-6 py-4"><span class="px-2 py-1 rounded-full text-xs font-bold bg-secondary-100 text-secondary-700">Failed</span></td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50/50 transition-colors">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded flex items-center justify-center text-white text-xs font-bold" style="background:#4A154B;">Sl</div>
+                                        <span class="font-medium text-neutral-900 text-sm">Slack</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-sm text-neutral-600">Notification Sent</td>
+                                <td class="px-6 py-4 text-sm font-semibold text-neutral-900">1 msg</td>
+                                <td class="px-6 py-4 text-sm text-neutral-500">Nov 21, 2023 · 08:00 AM</td>
+                                <td class="px-6 py-4"><span class="px-2 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700">Success</span></td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50/50 transition-colors">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded flex items-center justify-center text-white text-xs font-bold" style="background:#635BFF;">S</div>
+                                        <span class="font-medium text-neutral-900 text-sm">Stripe</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-sm text-neutral-600">Webhook Received</td>
+                                <td class="px-6 py-4 text-sm font-semibold text-neutral-900">+8</td>
+                                <td class="px-6 py-4 text-sm text-neutral-500">Nov 20, 2023 · 11:30 PM</td>
+                                <td class="px-6 py-4"><span class="px-2 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700">Success</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </div>
+    </main>
+</div>
+
+<!-- API Key Management Modal -->
+<div id="api-modal" class="modal-overlay" onclick="closeModal(event)">
+    <div class="bg-white rounded-large shadow-custom-hover w-full max-w-lg mx-4 p-6" onclick="event.stopPropagation()">
+        <div class="flex items-center justify-between mb-6">
+            <div>
+                <h3 id="modal-title" class="font-heading text-xl font-bold text-neutral-900">Configure Integration</h3>
+                <p class="text-sm text-neutral-500 mt-0.5">Manage API keys and sync settings</p>
+            </div>
+            <button onclick="closeApiModal()" class="w-9 h-9 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-500 hover:bg-neutral-200 transition-colors">
+                <i class="ri-close-line"></i>
+            </button>
+        </div>
+
+        <!-- API Key Section -->
+        <div class="mb-5">
+            <label class="block text-sm font-semibold text-neutral-700 mb-2">API Key</label>
+            <div class="relative">
+                <input id="modal-api-key" type="password" value="sk_live_abcdefghijklmnop4242" class="w-full px-4 py-2.5 bg-neutral-50 border border-neutral-200 rounded-small text-sm font-mono text-neutral-700 focus:ring-2 focus:ring-primary-500 focus:border-transparent focus:bg-white transition-all pr-24">
+                <div class="absolute right-2 top-1/2 -translate-y-1/2 flex gap-1">
+                    <button onclick="toggleModalKey()" class="px-2 py-1 bg-white border border-neutral-200 rounded text-xs text-neutral-600 hover:bg-neutral-50 transition-colors">
+                        <i class="ri-eye-line"></i>
+                    </button>
+                    <button class="px-2 py-1 bg-white border border-neutral-200 rounded text-xs text-neutral-600 hover:bg-neutral-50 transition-colors">
+                        <i class="ri-file-copy-line"></i>
+                    </button>
+                </div>
+            </div>
+            <p class="text-xs text-neutral-400 mt-1.5">Last rotated: Oct 15, 2023 · <button class="text-primary-600 hover:underline font-medium">Rotate Key</button></p>
+        </div>
+
+        <!-- Sync Settings -->
+        <div class="mb-5">
+            <label class="block text-sm font-semibold text-neutral-700 mb-2">Sync Frequency</label>
+            <select class="w-full px-4 py-2.5 bg-neutral-50 border border-neutral-200 rounded-small text-sm text-neutral-700 focus:ring-2 focus:ring-primary-500 focus:border-transparent focus:bg-white transition-all appearance-none">
+                <option>Every 15 minutes</option>
+                <option>Every 30 minutes</option>
+                <option selected="">Every hour</option>
+                <option>Every 6 hours</option>
+                <option>Daily</option>
+            </select>
+        </div>
+
+        <!-- Data Scope -->
+        <div class="mb-6">
+            <label class="block text-sm font-semibold text-neutral-700 mb-3">Data Scope</label>
+            <div class="space-y-2">
+                <label class="flex items-center gap-3 p-3 bg-neutral-50 rounded-small border border-neutral-200 cursor-pointer hover:bg-neutral-100 transition-colors">
+                    <input type="checkbox" checked="" class="w-4 h-4 accent-primary-500">
+                    <span class="text-sm text-neutral-700">Transactions &amp; Payments</span>
+                </label>
+                <label class="flex items-center gap-3 p-3 bg-neutral-50 rounded-small border border-neutral-200 cursor-pointer hover:bg-neutral-100 transition-colors">
+                    <input type="checkbox" checked="" class="w-4 h-4 accent-primary-500">
+                    <span class="text-sm text-neutral-700">Customers &amp; Subscriptions</span>
+                </label>
+                <label class="flex items-center gap-3 p-3 bg-neutral-50 rounded-small border border-neutral-200 cursor-pointer hover:bg-neutral-100 transition-colors">
+                    <input type="checkbox" class="w-4 h-4 accent-primary-500">
+                    <span class="text-sm text-neutral-700">Refunds &amp; Disputes</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="flex gap-3">
+            <button onclick="closeApiModal()" class="flex-1 px-4 py-2.5 bg-neutral-100 text-neutral-700 rounded-small text-sm font-semibold hover:bg-neutral-200 transition-colors">Cancel</button>
+            <button class="flex-1 px-4 py-2.5 bg-neutral-900 text-white rounded-small text-sm font-semibold hover:bg-neutral-700 transition-colors shadow-custom">Save Changes</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function filterIntegrations(type) {
+        document.querySelectorAll('.filter-btn').forEach(b => {
+            b.classList.remove('text-neutral-900', 'border-neutral-900');
+            b.classList.add('text-neutral-500', 'border-transparent');
+        });
+        const btn = document.getElementById('filter-' + type);
+        btn.classList.remove('text-neutral-500', 'border-transparent');
+        btn.classList.add('text-neutral-900', 'border-neutral-900');
+    }
+
+    function toggleKey(id) {
+        const el = document.getElementById(id);
+        if (el) {
+            const isHidden = el.textContent.includes('••');
+            el.textContent = isHidden
+                ? 'sk_live_abcdefghijklmnop4242'
+                : 'sk_live_••••••••••••••••••••••••4242';
+        }
+    }
+
+    function openApiModal(name) {
+        document.getElementById('modal-title').textContent = 'Configure ' + name;
+        document.getElementById('api-modal').classList.add('active');
+    }
+
+    function closeApiModal() {
+        document.getElementById('api-modal').classList.remove('active');
+    }
+
+    function closeModal(e) {
+        if (e.target === document.getElementById('api-modal')) {
+            closeApiModal();
+        }
+    }
+
+    function toggleModalKey() {
+        const input = document.getElementById('modal-api-key');
+        input.type = input.type === 'password' ? 'text' : 'password';
+    }
+</script>
+
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

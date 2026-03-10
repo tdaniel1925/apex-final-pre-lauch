@@ -1,0 +1,73 @@
+{
+  "teamManagement": [
+    {
+      "name": "Distributors",
+      "href": "/admin/distributors"
+    },
+    {
+      "name": "Genealogy Tree",
+      "href": "/admin/genealogy"
+    },
+    {
+      "name": "Matrix View",
+      "href": "/admin/matrix"
+    },
+    {
+      "name": "Prospects",
+      "href": "/admin/prospects"
+    }
+  ],
+  "compensation": [
+    {
+      "name": "Commission Engine",
+      "href": "/admin/commissions"
+    },
+    {
+      "name": "Products Catalog",
+      "href": "/admin/products"
+    },
+    {
+      "name": "Waterfall Calculator",
+      "href": "/test-waterfall",
+      "badge": "NEW"
+    },
+    {
+      "name": "Payouts",
+      "href": "/admin/payouts"
+    }
+  ],
+  "marketing": [
+    {
+      "name": "Email Templates",
+      "href": "/admin/email-templates"
+    },
+    {
+      "name": "Business Cards",
+      "href": "/admin/business-card-templates"
+    },
+    {
+      "name": "Social Content",
+      "href": "/admin/social-content"
+    }
+  ],
+  "training": [
+    {
+      "name": "Training Audio",
+      "href": "/admin/training-audio"
+    }
+  ],
+  "bottom": [
+    {
+      "name": "Reports",
+      "href": "/admin/reports"
+    },
+    {
+      "name": "Activity Log",
+      "href": "/admin/activity"
+    },
+    {
+      "name": "Settings",
+      "href": "/admin/settings"
+    }
+  ]
+}

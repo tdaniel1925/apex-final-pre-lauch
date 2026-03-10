@@ -1,19 +1,237 @@
+'use client';
+
 // =============================================
-// Dashboard V2 - Exact Template Match
-// Matches SmartViz design system 100%
+// Dashboard V2 - Direct Template Conversion
+// Converted from SmartViz template HTML
 // =============================================
 
 import Link from 'next/link';
+import { useEffect } from 'react';
 import '../template-v2.css';
 
-export const metadata = {
-  title: 'Dashboard V2 - Analytics Overview',
-  description: 'Template-styled dashboard preview',
-};
-
 export default function DashboardV2() {
+  useEffect(() => {
+    // Wait for Chart.js to load
+    if (typeof window !== 'undefined' && (window as any).Chart) {
+      const Chart = (window as any).Chart;
+
+      // Revenue Trend Chart
+      const ctx1 = (document.getElementById('revTrendChart') as HTMLCanvasElement)?.getContext('2d');
+      if (ctx1) {
+        const gradRev = ctx1.createLinearGradient(0, 0, 0, 190);
+        gradRev.addColorStop(0, 'rgba(16,185,129,0.18)');
+        gradRev.addColorStop(1, 'rgba(16,185,129,0)');
+        const gradExp = ctx1.createLinearGradient(0, 0, 0, 190);
+        gradExp.addColorStop(0, 'rgba(249,115,22,0.15)');
+        gradExp.addColorStop(1, 'rgba(249,115,22,0)');
+
+        new Chart(ctx1, {
+          type: 'line',
+          data: {
+            labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+            datasets: [
+              {
+                label: 'Revenue',
+                data: [165,178,166,189,192,205,218,212,228,242,255,268],
+                borderColor: '#10b981',
+                backgroundColor: gradRev,
+                borderWidth: 2.5,
+                tension: 0.4,
+                fill: true,
+                pointRadius: 3,
+                pointBackgroundColor: '#fff',
+                pointBorderColor: '#10b981',
+                pointBorderWidth: 2
+              },
+              {
+                label: 'Expenses',
+                data: [95,102,98,108,110,115,120,118,124,130,136,142],
+                borderColor: '#fb923c',
+                backgroundColor: gradExp,
+                borderWidth: 2.5,
+                tension: 0.4,
+                fill: true,
+                pointRadius: 3,
+                pointBackgroundColor: '#fff',
+                pointBorderColor: '#fb923c',
+                pointBorderWidth: 2
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                backgroundColor: '#1e293b',
+                padding: 10,
+                titleFont: { family: "'Plus Jakarta Sans', sans-serif", size: 12 },
+                bodyFont: { family: "'Inter', sans-serif", size: 11 },
+                cornerRadius: 8
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: false,
+                grid: { color: '#f1f5f9', drawBorder: false },
+                ticks: { font: { family: "'Inter', sans-serif", size: 10 }, color: '#94a3b8', callback: (v: any) => '$' + v + 'k' }
+              },
+              x: {
+                grid: { display: false, drawBorder: false },
+                ticks: { font: { family: "'Inter', sans-serif", size: 10 }, color: '#94a3b8' }
+              }
+            },
+            interaction: { intersect: false, mode: 'index' }
+          }
+        });
+      }
+
+      // Department Donut Chart
+      const ctx2 = (document.getElementById('deptDonutChart') as HTMLCanvasElement)?.getContext('2d');
+      if (ctx2) {
+        new Chart(ctx2, {
+          type: 'doughnut',
+          data: {
+            labels: ['Engineering', 'Sales', 'Marketing', 'Other'],
+            datasets: [{
+              data: [40, 25, 20, 15],
+              backgroundColor: ['#10b981', '#fb923c', '#60a5fa', '#c084fc'],
+              borderWidth: 0,
+              hoverOffset: 4
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '72%',
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                backgroundColor: '#1e293b',
+                padding: 10,
+                titleFont: { family: "'Plus Jakarta Sans', sans-serif", size: 12 },
+                bodyFont: { family: "'Inter', sans-serif", size: 11 },
+                cornerRadius: 8
+              }
+            }
+          }
+        });
+      }
+
+      // Department Bar Chart
+      const ctx3 = (document.getElementById('deptBarChart') as HTMLCanvasElement)?.getContext('2d');
+      if (ctx3) {
+        new Chart(ctx3, {
+          type: 'bar',
+          data: {
+            labels: ['Eng', 'Sales', 'Mktg', 'Ops', 'HR'],
+            datasets: [
+              {
+                label: 'Q4',
+                data: [4.2, 3.1, 2.4, 1.8, 1.2],
+                backgroundColor: '#10b981',
+                borderRadius: 6,
+                barPercentage: 0.5
+              },
+              {
+                label: 'Q3',
+                data: [3.8, 2.9, 2.1, 1.6, 1.1],
+                backgroundColor: '#e2e8f0',
+                borderRadius: 6,
+                barPercentage: 0.5
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                backgroundColor: '#1e293b',
+                padding: 10,
+                titleFont: { family: "'Plus Jakarta Sans', sans-serif", size: 12 },
+                bodyFont: { family: "'Inter', sans-serif", size: 11 },
+                cornerRadius: 8,
+                callbacks: { label: (ctx: any) => '$' + ctx.raw + 'M' }
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid: { color: '#f1f5f9', drawBorder: false },
+                ticks: { font: { family: "'Inter', sans-serif", size: 10 }, color: '#94a3b8', callback: (v: any) => '$' + v + 'M' }
+              },
+              x: {
+                grid: { display: false, drawBorder: false },
+                ticks: { font: { family: "'Inter', sans-serif", size: 10 }, color: '#94a3b8' }
+              }
+            }
+          }
+        });
+      }
+
+      // Utilization Area Chart
+      const ctx4 = (document.getElementById('utilizationChart') as HTMLCanvasElement)?.getContext('2d');
+      if (ctx4) {
+        const gradUtil = ctx4.createLinearGradient(0, 0, 0, 160);
+        gradUtil.addColorStop(0, 'rgba(96,165,250,0.2)');
+        gradUtil.addColorStop(1, 'rgba(96,165,250,0)');
+
+        new Chart(ctx4, {
+          type: 'line',
+          data: {
+            labels: ['W1','W2','W3','W4','W5','W6','W7','W8','W9','W10','W11','W12'],
+            datasets: [{
+              label: 'Utilization',
+              data: [72, 75, 80, 78, 82, 85, 79, 76, 81, 78, 74, 78],
+              borderColor: '#60a5fa',
+              backgroundColor: gradUtil,
+              borderWidth: 2.5,
+              tension: 0.4,
+              fill: true,
+              pointRadius: 2,
+              pointBackgroundColor: '#fff',
+              pointBorderColor: '#60a5fa',
+              pointBorderWidth: 2
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                backgroundColor: '#1e293b',
+                padding: 10,
+                titleFont: { family: "'Plus Jakarta Sans', sans-serif", size: 12 },
+                bodyFont: { family: "'Inter', sans-serif", size: 11 },
+                cornerRadius: 8,
+                callbacks: { label: (ctx: any) => ctx.raw + '%' }
+              }
+            },
+            scales: {
+              y: {
+                min: 60,
+                max: 100,
+                grid: { color: '#f1f5f9', drawBorder: false },
+                ticks: { font: { family: "'Inter', sans-serif", size: 10 }, color: '#94a3b8', callback: (v: any) => v + '%' }
+              },
+              x: {
+                grid: { display: false, drawBorder: false },
+                ticks: { font: { family: "'Inter', sans-serif", size: 10 }, color: '#94a3b8' }
+              }
+            },
+            interaction: { intersect: false, mode: 'index' }
+          }
+        });
+      }
+    }
+  }, []);
+
   return (
-    <div className="min-h-screen bg-white">
+    <>
       {/* TOP NAVIGATION */}
       <nav className="bg-white/90 backdrop-blur-md border-b border-neutral-200 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -21,23 +239,13 @@ export default function DashboardV2() {
             <div className="w-9 h-9 logo-mark rounded-small flex items-center justify-center text-white">
               <i className="ri-bar-chart-box-fill text-lg"></i>
             </div>
-            <Link href="/dashboard" className="font-heading font-bold text-xl text-neutral-900 tracking-tight">
-              Apex Affinity
-            </Link>
+            <Link href="/dashboard" className="font-heading font-bold text-xl text-neutral-900 tracking-tight">Apex Affinity</Link>
           </div>
           <div className="hidden md:flex items-center gap-8">
-            <Link href="/dashboard" className="text-sm font-medium text-neutral-500 hover:text-neutral-900 transition-colors">
-              Home
-            </Link>
-            <Link href="/dashboard-v2" className="text-sm font-semibold text-neutral-900 border-b-2 border-primary-500 pb-0.5">
-              Dashboard V2
-            </Link>
-            <Link href="/profile-v2" className="text-sm font-medium text-neutral-500 hover:text-neutral-900 transition-colors">
-              Profile V2
-            </Link>
-            <Link href="/reports-v2" className="text-sm font-medium text-neutral-500 hover:text-neutral-900 transition-colors">
-              Reports V2
-            </Link>
+            <Link href="/dashboard" className="nav-link text-sm font-medium text-neutral-500">Home</Link>
+            <Link href="/dashboard-v2" className="nav-link text-sm font-semibold text-neutral-900 border-b-2 border-primary-500 pb-0.5">Dashboard</Link>
+            <Link href="/profile-v2" className="nav-link text-sm font-medium text-neutral-500">Profile</Link>
+            <Link href="/reports-v2" className="nav-link text-sm font-medium text-neutral-500">Reports</Link>
           </div>
           <div className="flex items-center gap-3">
             <Link href="/dashboard" className="inline-flex items-center gap-2 px-5 py-2.5 bg-neutral-900 text-white rounded-small text-sm font-semibold hover:bg-neutral-700 transition-colors shadow-custom">
@@ -58,11 +266,11 @@ export default function DashboardV2() {
             </div>
           </div>
           <h1 className="font-heading text-5xl md:text-6xl font-extrabold text-neutral-900 leading-tight mb-5" style={{letterSpacing: 'var(--letter-spacing-heading)'}}>
-            Your Network, Beautifully<br />
+            Your Data, Beautifully<br />
             <span className="text-primary-500">Visualized in Real Time</span>
           </h1>
           <p className="text-lg text-neutral-500 max-w-2xl mx-auto mb-10 leading-relaxed">
-            See exactly how this template transforms your distributor network data into an interactive, insight-rich dashboard — KPIs, charts, and tables all auto-generated.
+            See exactly how this transforms your distributor network data into an interactive, insight-rich dashboard — charts, KPIs, and tables all auto-generated.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <div className="flex items-center gap-2 px-4 py-2 bg-neutral-50 border border-neutral-200 rounded-full">
@@ -85,10 +293,8 @@ export default function DashboardV2() {
           {/* Section Label */}
           <div className="flex items-center justify-between mb-10">
             <div>
-              <h2 className="font-heading text-3xl font-extrabold text-white mb-2" style={{letterSpacing: 'var(--letter-spacing-heading)'}}>
-                Network Dashboard Overview
-              </h2>
-              <p className="text-neutral-400 text-base">Full interactive view — auto-generated from your distributor data</p>
+              <h2 className="font-heading text-3xl font-extrabold text-white mb-2" style={{letterSpacing: 'var(--letter-spacing-heading)'}}>Network Dashboard Overview</h2>
+              <p className="text-neutral-400 text-base">Full interactive view — auto-generated from your data</p>
             </div>
             <div className="hidden md:flex items-center gap-3">
               <button className="tab-btn active px-4 py-2 rounded-small text-sm font-semibold transition-all">Overview</button>
@@ -112,7 +318,7 @@ export default function DashboardV2() {
                 <span className="text-xs text-neutral-500">app.apexaffinity.io/dashboard</span>
                 <span className="ml-auto flex items-center gap-1">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary-500 live-dot"></span>
-                  <span className="text-primary-600 font-semibold" style={{fontSize: '9px'}}>LIVE</span>
+                  <span className="text-primary-600 font-semibold" style={{fontSize:'9px'}}>LIVE</span>
                 </span>
               </div>
               <div className="flex items-center gap-2">
@@ -130,9 +336,7 @@ export default function DashboardV2() {
               {/* Dashboard Header Row */}
               <div className="flex items-center justify-between mb-5">
                 <div>
-                  <h3 className="font-heading font-extrabold text-neutral-900 text-xl" style={{letterSpacing: 'var(--letter-spacing-heading)'}}>
-                    Network Overview
-                  </h3>
+                  <h3 className="font-heading font-extrabold text-neutral-900 text-xl" style={{letterSpacing: 'var(--letter-spacing-heading)'}}>Network Overview</h3>
                   <p className="text-neutral-500 text-xs mt-0.5">Q4 2023 · Real-time distributor metrics</p>
                 </div>
                 <div className="flex items-center gap-3">
@@ -150,7 +354,6 @@ export default function DashboardV2() {
 
               {/* KPI Cards Row */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-5">
-                {/* Total Revenue KPI */}
                 <div className="kpi-card bg-white rounded-large border border-neutral-200 p-4 shadow-custom">
                   <div className="flex items-center justify-between mb-3">
                     <div className="w-9 h-9 rounded-large bg-primary-50 flex items-center justify-center">
@@ -163,12 +366,10 @@ export default function DashboardV2() {
                   <p className="text-xs text-neutral-500 mb-1">Total Revenue</p>
                   <p className="font-heading font-extrabold text-2xl text-neutral-900">$2.4M</p>
                   <div className="mt-2 h-1 bg-neutral-100 rounded-full overflow-hidden">
-                    <div className="h-full bg-primary-500 rounded-full metric-bar" style={{width: '76%'}}></div>
+                    <div className="h-full bg-primary-500 rounded-full metric-bar" style={{width:'76%'}}></div>
                   </div>
-                  <p className="text-neutral-400 mt-1" style={{fontSize: '10px'}}>76% of annual target</p>
+                  <p className="text-neutral-400 mt-1" style={{fontSize:'10px'}}>76% of annual target</p>
                 </div>
-
-                {/* Total Distributors KPI */}
                 <div className="kpi-card bg-white rounded-large border border-neutral-200 p-4 shadow-custom">
                   <div className="flex items-center justify-between mb-3">
                     <div className="w-9 h-9 rounded-large bg-blue-50 flex items-center justify-center">
@@ -181,12 +382,10 @@ export default function DashboardV2() {
                   <p className="text-xs text-neutral-500 mb-1">Total Distributors</p>
                   <p className="font-heading font-extrabold text-2xl text-neutral-900">1,248</p>
                   <div className="mt-2 h-1 bg-neutral-100 rounded-full overflow-hidden">
-                    <div className="h-full bg-blue-500 rounded-full metric-bar" style={{width: '62%'}}></div>
+                    <div className="h-full bg-blue-500 rounded-full metric-bar" style={{width:'62%'}}></div>
                   </div>
-                  <p className="text-neutral-400 mt-1" style={{fontSize: '10px'}}>Across 7 matrix levels</p>
+                  <p className="text-neutral-400 mt-1" style={{fontSize:'10px'}}>Across 7 matrix levels</p>
                 </div>
-
-                {/* Licensed Agents KPI */}
                 <div className="kpi-card bg-white rounded-large border border-neutral-200 p-4 shadow-custom">
                   <div className="flex items-center justify-between mb-3">
                     <div className="w-9 h-9 rounded-large bg-secondary-50 flex items-center justify-center">
@@ -199,12 +398,10 @@ export default function DashboardV2() {
                   <p className="text-xs text-neutral-500 mb-1">Licensed Agents</p>
                   <p className="font-heading font-extrabold text-2xl text-neutral-900">342</p>
                   <div className="mt-2 h-1 bg-neutral-100 rounded-full overflow-hidden">
-                    <div className="h-full bg-secondary-400 rounded-full metric-bar" style={{width: '27%'}}></div>
+                    <div className="h-full bg-secondary-400 rounded-full metric-bar" style={{width:'27%'}}></div>
                   </div>
-                  <p className="text-neutral-400 mt-1" style={{fontSize: '10px'}}>27% of total network</p>
+                  <p className="text-neutral-400 mt-1" style={{fontSize:'10px'}}>27% of total network</p>
                 </div>
-
-                {/* Avg Performance KPI */}
                 <div className="kpi-card bg-white rounded-large border border-neutral-200 p-4 shadow-custom">
                   <div className="flex items-center justify-between mb-3">
                     <div className="w-9 h-9 rounded-large bg-purple-50 flex items-center justify-center">
@@ -217,9 +414,9 @@ export default function DashboardV2() {
                   <p className="text-xs text-neutral-500 mb-1">Avg. Performance</p>
                   <p className="font-heading font-extrabold text-2xl text-neutral-900">84.6%</p>
                   <div className="mt-2 h-1 bg-neutral-100 rounded-full overflow-hidden">
-                    <div className="h-full bg-purple-500 rounded-full metric-bar" style={{width: '85%'}}></div>
+                    <div className="h-full bg-purple-500 rounded-full metric-bar" style={{width:'85%'}}></div>
                   </div>
-                  <p className="text-neutral-400 mt-1" style={{fontSize: '10px'}}>Team performance score</p>
+                  <p className="text-neutral-400 mt-1" style={{fontSize:'10px'}}>Team performance score</p>
                 </div>
               </div>
 
@@ -244,19 +441,7 @@ export default function DashboardV2() {
                     </div>
                   </div>
                   <div className="h-48 w-full overflow-hidden">
-                    {/* Chart Placeholder - would use Chart.js in production */}
-                    <svg className="w-full h-full" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
-                      <defs>
-                        <linearGradient id="revGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                          <stop offset="0%" style={{stopColor: '#10b981', stopOpacity: 0.18}} />
-                          <stop offset="100%" style={{stopColor: '#10b981', stopOpacity: 0}} />
-                        </linearGradient>
-                      </defs>
-                      <path d="M 0 180 L 70 160 L 140 165 L 210 145 L 280 140 L 350 130 L 420 120 L 490 125 L 560 105 L 630 90 L 700 75 L 770 60 L 800 50"
-                            stroke="#10b981" strokeWidth="3" fill="none" />
-                      <path d="M 0 200 L 0 180 L 70 160 L 140 165 L 210 145 L 280 140 L 350 130 L 420 120 L 490 125 L 560 105 L 630 90 L 700 75 L 770 60 L 800 50 L 800 200 Z"
-                            fill="url(#revGrad)" />
-                    </svg>
+                    <canvas id="revTrendChart"></canvas>
                   </div>
                 </div>
 
@@ -267,17 +452,7 @@ export default function DashboardV2() {
                     <p className="text-neutral-400 text-xs mt-0.5">Q4 2023 · Matrix depth</p>
                   </div>
                   <div className="h-36 w-full overflow-hidden flex items-center justify-center">
-                    {/* Donut Chart Placeholder */}
-                    <svg width="144" height="144" viewBox="0 0 144 144">
-                      <circle cx="72" cy="72" r="60" fill="none" stroke="#10b981" strokeWidth="24"
-                              strokeDasharray="150 400" transform="rotate(-90 72 72)"/>
-                      <circle cx="72" cy="72" r="60" fill="none" stroke="#fb923c" strokeWidth="24"
-                              strokeDasharray="90 400" strokeDashoffset="-150" transform="rotate(-90 72 72)"/>
-                      <circle cx="72" cy="72" r="60" fill="none" stroke="#60a5fa" strokeWidth="24"
-                              strokeDasharray="75 400" strokeDashoffset="-240" transform="rotate(-90 72 72)"/>
-                      <circle cx="72" cy="72" r="60" fill="none" stroke="#c084fc" strokeWidth="24"
-                              strokeDasharray="60 400" strokeDashoffset="-315" transform="rotate(-90 72 72)"/>
-                    </svg>
+                    <canvas id="deptDonutChart"></canvas>
                   </div>
                   <div className="mt-3 space-y-2">
                     <div className="flex items-center justify-between">
@@ -287,7 +462,7 @@ export default function DashboardV2() {
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="text-xs font-bold text-neutral-900">420</span>
-                        <span className="text-xs text-neutral-400">34%</span>
+                        <span className="text-xs text-neutral-400">40%</span>
                       </div>
                     </div>
                     <div className="flex items-center justify-between">
@@ -296,8 +471,8 @@ export default function DashboardV2() {
                         <span className="text-xs text-neutral-600">Level 3-4</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="text-xs font-bold text-neutral-900">380</span>
-                        <span className="text-xs text-neutral-400">30%</span>
+                        <span className="text-xs font-bold text-neutral-900">312</span>
+                        <span className="text-xs text-neutral-400">25%</span>
                       </div>
                     </div>
                     <div className="flex items-center justify-between">
@@ -306,8 +481,8 @@ export default function DashboardV2() {
                         <span className="text-xs text-neutral-600">Level 5-6</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="text-xs font-bold text-neutral-900">310</span>
-                        <span className="text-xs text-neutral-400">25%</span>
+                        <span className="text-xs font-bold text-neutral-900">250</span>
+                        <span className="text-xs text-neutral-400">20%</span>
                       </div>
                     </div>
                     <div className="flex items-center justify-between">
@@ -316,10 +491,90 @@ export default function DashboardV2() {
                         <span className="text-xs text-neutral-600">Level 7+</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="text-xs font-bold text-neutral-900">138</span>
-                        <span className="text-xs text-neutral-400">11%</span>
+                        <span className="text-xs font-bold text-neutral-900">187</span>
+                        <span className="text-xs text-neutral-400">15%</span>
                       </div>
                     </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Second Charts Row */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-5">
+                {/* Bar Chart */}
+                <div className="bg-white rounded-large border border-neutral-200 p-5 shadow-custom">
+                  <div className="mb-4">
+                    <h4 className="font-heading font-bold text-neutral-900 text-sm">Dept. Revenue Q4</h4>
+                    <p className="text-neutral-400 text-xs mt-0.5">Compared to Q3</p>
+                  </div>
+                  <div className="h-40 w-full overflow-hidden">
+                    <canvas id="deptBarChart"></canvas>
+                  </div>
+                </div>
+
+                {/* Performance Scores */}
+                <div className="bg-white rounded-large border border-neutral-200 p-5 shadow-custom">
+                  <div className="mb-4">
+                    <h4 className="font-heading font-bold text-neutral-900 text-sm">Performance Scores</h4>
+                    <p className="text-neutral-400 text-xs mt-0.5">By department · Q4 2023</p>
+                  </div>
+                  <div className="space-y-3">
+                    <div>
+                      <div className="flex justify-between mb-1">
+                        <span className="text-xs font-semibold text-neutral-700">Engineering</span>
+                        <span className="text-xs font-bold text-neutral-900">91%</span>
+                      </div>
+                      <div className="h-2 bg-neutral-100 rounded-full overflow-hidden">
+                        <div className="h-full bg-primary-500 rounded-full metric-bar" style={{width:'91%'}}></div>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="flex justify-between mb-1">
+                        <span className="text-xs font-semibold text-neutral-700">Sales</span>
+                        <span className="text-xs font-bold text-neutral-900">87%</span>
+                      </div>
+                      <div className="h-2 bg-neutral-100 rounded-full overflow-hidden">
+                        <div className="h-full bg-blue-500 rounded-full metric-bar" style={{width:'87%'}}></div>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="flex justify-between mb-1">
+                        <span className="text-xs font-semibold text-neutral-700">Marketing</span>
+                        <span className="text-xs font-bold text-neutral-900">82%</span>
+                      </div>
+                      <div className="h-2 bg-neutral-100 rounded-full overflow-hidden">
+                        <div className="h-full bg-secondary-400 rounded-full metric-bar" style={{width:'82%'}}></div>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="flex justify-between mb-1">
+                        <span className="text-xs font-semibold text-neutral-700">Operations</span>
+                        <span className="text-xs font-bold text-neutral-900">79%</span>
+                      </div>
+                      <div className="h-2 bg-neutral-100 rounded-full overflow-hidden">
+                        <div className="h-full bg-purple-500 rounded-full metric-bar" style={{width:'79%'}}></div>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="flex justify-between mb-1">
+                        <span className="text-xs font-semibold text-neutral-700">HR</span>
+                        <span className="text-xs font-bold text-neutral-900">84%</span>
+                      </div>
+                      <div className="h-2 bg-neutral-100 rounded-full overflow-hidden">
+                        <div className="h-full bg-teal-500 rounded-full metric-bar" style={{width:'84%'}}></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Utilization Chart */}
+                <div className="bg-white rounded-large border border-neutral-200 p-5 shadow-custom">
+                  <div className="mb-4">
+                    <h4 className="font-heading font-bold text-neutral-900 text-sm">Network Growth</h4>
+                    <p className="text-neutral-400 text-xs mt-0.5">Weekly new distributors</p>
+                  </div>
+                  <div className="h-40 w-full overflow-hidden">
+                    <canvas id="utilizationChart"></canvas>
                   </div>
                 </div>
               </div>
@@ -360,95 +615,123 @@ export default function DashboardV2() {
                       <tr className="table-row transition-colors">
                         <td className="px-5 py-3">
                           <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white font-bold text-xs">
-                              SW
-                            </div>
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=32&h=32&fit=facearea&facepad=2&q=80" alt="Sarah" className="w-8 h-8 rounded-full border border-neutral-200" />
                             <div>
                               <p className="text-sm font-semibold text-neutral-900">Sarah Wilson</p>
                               <p className="text-xs text-neutral-400">REP-0042</p>
                             </div>
                           </div>
                         </td>
-                        <td className="px-5 py-3">
-                          <span className="px-2 py-1 bg-primary-50 text-primary-700 rounded-full text-xs font-bold">Level 2</span>
-                        </td>
+                        <td className="px-5 py-3"><span className="px-2 py-1 bg-primary-50 text-primary-700 rounded-full text-xs font-bold">Level 2</span></td>
                         <td className="px-5 py-3 text-sm font-semibold text-neutral-800">$8,240</td>
                         <td className="px-5 py-3">
                           <div className="flex items-center gap-2">
                             <div className="w-16 h-1.5 bg-neutral-100 rounded-full overflow-hidden">
-                              <div className="h-full bg-primary-500 rounded-full" style={{width: '96%'}}></div>
+                              <div className="h-full bg-primary-500 rounded-full" style={{width:'96%'}}></div>
                             </div>
                             <span className="text-xs font-bold text-primary-600">96%</span>
                           </div>
                         </td>
                         <td className="px-5 py-3 text-xs text-neutral-500">Mar 15, 2022</td>
-                        <td className="px-5 py-3">
-                          <span className="px-2 py-1 bg-green-50 text-green-700 rounded-full text-xs font-bold">Active</span>
-                        </td>
+                        <td className="px-5 py-3"><span className="px-2 py-1 bg-green-50 text-green-700 rounded-full text-xs font-bold">Active</span></td>
                       </tr>
                       <tr className="table-row transition-colors">
                         <td className="px-5 py-3">
                           <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold text-xs">
-                              JC
-                            </div>
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&h=32&fit=facearea&facepad=2&q=80" alt="James" className="w-8 h-8 rounded-full border border-neutral-200" />
                             <div>
                               <p className="text-sm font-semibold text-neutral-900">James Carter</p>
                               <p className="text-xs text-neutral-400">REP-0018</p>
                             </div>
                           </div>
                         </td>
-                        <td className="px-5 py-3">
-                          <span className="px-2 py-1 bg-secondary-50 text-secondary-700 rounded-full text-xs font-bold">Level 3</span>
-                        </td>
+                        <td className="px-5 py-3"><span className="px-2 py-1 bg-secondary-50 text-secondary-700 rounded-full text-xs font-bold">Level 3</span></td>
                         <td className="px-5 py-3 text-sm font-semibold text-neutral-800">$7,650</td>
                         <td className="px-5 py-3">
                           <div className="flex items-center gap-2">
                             <div className="w-16 h-1.5 bg-neutral-100 rounded-full overflow-hidden">
-                              <div className="h-full bg-secondary-400 rounded-full" style={{width: '89%'}}></div>
+                              <div className="h-full bg-secondary-400 rounded-full" style={{width:'89%'}}></div>
                             </div>
                             <span className="text-xs font-bold text-secondary-600">89%</span>
                           </div>
                         </td>
                         <td className="px-5 py-3 text-xs text-neutral-500">Jul 22, 2021</td>
-                        <td className="px-5 py-3">
-                          <span className="px-2 py-1 bg-green-50 text-green-700 rounded-full text-xs font-bold">Active</span>
-                        </td>
+                        <td className="px-5 py-3"><span className="px-2 py-1 bg-green-50 text-green-700 rounded-full text-xs font-bold">Active</span></td>
                       </tr>
                       <tr className="table-row transition-colors">
                         <td className="px-5 py-3">
                           <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center text-white font-bold text-xs">
-                              MP
-                            </div>
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=facearea&facepad=2&q=80" alt="Maya" className="w-8 h-8 rounded-full border border-neutral-200" />
                             <div>
                               <p className="text-sm font-semibold text-neutral-900">Maya Patel</p>
                               <p className="text-xs text-neutral-400">REP-0067</p>
                             </div>
                           </div>
                         </td>
-                        <td className="px-5 py-3">
-                          <span className="px-2 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-bold">Level 4</span>
-                        </td>
+                        <td className="px-5 py-3"><span className="px-2 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-bold">Level 4</span></td>
                         <td className="px-5 py-3 text-sm font-semibold text-neutral-800">$6,920</td>
                         <td className="px-5 py-3">
                           <div className="flex items-center gap-2">
                             <div className="w-16 h-1.5 bg-neutral-100 rounded-full overflow-hidden">
-                              <div className="h-full bg-blue-500 rounded-full" style={{width: '82%'}}></div>
+                              <div className="h-full bg-blue-500 rounded-full" style={{width:'82%'}}></div>
                             </div>
                             <span className="text-xs font-bold text-blue-600">82%</span>
                           </div>
                         </td>
-                        <td className="px-5 py-3 text-xs text-neutral-500">Jan 10, 2022</td>
+                        <td className="px-5 py-3 text-xs text-neutral-500">Jan 10, 2021</td>
+                        <td className="px-5 py-3"><span className="px-2 py-1 bg-green-50 text-green-700 rounded-full text-xs font-bold">Active</span></td>
+                      </tr>
+                      <tr className="table-row transition-colors">
                         <td className="px-5 py-3">
-                          <span className="px-2 py-1 bg-green-50 text-green-700 rounded-full text-xs font-bold">Active</span>
+                          <div className="flex items-center gap-3">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=32&h=32&fit=facearea&facepad=2&q=80" alt="Tom" className="w-8 h-8 rounded-full border border-neutral-200" />
+                            <div>
+                              <p className="text-sm font-semibold text-neutral-900">Tom Nguyen</p>
+                              <p className="text-xs text-neutral-400">REP-0091</p>
+                            </div>
+                          </div>
                         </td>
+                        <td className="px-5 py-3"><span className="px-2 py-1 bg-purple-50 text-purple-700 rounded-full text-xs font-bold">Level 5</span></td>
+                        <td className="px-5 py-3 text-sm font-semibold text-neutral-800">$5,800</td>
+                        <td className="px-5 py-3">
+                          <div className="flex items-center gap-2">
+                            <div className="w-16 h-1.5 bg-neutral-100 rounded-full overflow-hidden">
+                              <div className="h-full bg-yellow-400 rounded-full" style={{width:'58%'}}></div>
+                            </div>
+                            <span className="text-xs font-bold text-yellow-600">58%</span>
+                          </div>
+                        </td>
+                        <td className="px-5 py-3 text-xs text-neutral-500">Sep 5, 2022</td>
+                        <td className="px-5 py-3"><span className="px-2 py-1 bg-yellow-50 text-yellow-700 rounded-full text-xs font-bold">Review</span></td>
+                      </tr>
+                      <tr className="table-row transition-colors">
+                        <td className="px-5 py-3">
+                          <div className="flex items-center gap-3">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=32&h=32&fit=facearea&facepad=2&q=80" alt="Priya" className="w-8 h-8 rounded-full border border-neutral-200" />
+                            <div>
+                              <p className="text-sm font-semibold text-neutral-900">Priya Sharma</p>
+                              <p className="text-xs text-neutral-400">REP-0033</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-5 py-3"><span className="px-2 py-1 bg-teal-50 text-teal-700 rounded-full text-xs font-bold">Level 2</span></td>
+                        <td className="px-5 py-3 text-sm font-semibold text-neutral-800">$7,240</td>
+                        <td className="px-5 py-3">
+                          <div className="flex items-center gap-2">
+                            <div className="w-16 h-1.5 bg-neutral-100 rounded-full overflow-hidden">
+                              <div className="h-full bg-teal-500 rounded-full" style={{width:'91%'}}></div>
+                            </div>
+                            <span className="text-xs font-bold text-teal-600">91%</span>
+                          </div>
+                        </td>
+                        <td className="px-5 py-3 text-xs text-neutral-500">Feb 28, 2020</td>
+                        <td className="px-5 py-3"><span className="px-2 py-1 bg-green-50 text-green-700 rounded-full text-xs font-bold">Active</span></td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
                 <div className="px-5 py-3 border-t border-neutral-100 flex items-center justify-between bg-neutral-50">
-                  <p className="text-xs text-neutral-500">Showing 3 of 1,248 distributors · Sorted by performance desc.</p>
+                  <p className="text-xs text-neutral-500">Showing 5 of 1,248 distributors · Sorted by performance desc.</p>
                   <div className="flex items-center gap-2">
                     <button className="px-3 py-1.5 bg-white border border-neutral-200 rounded-small text-xs font-semibold text-neutral-600 hover:bg-neutral-50 transition-colors">Previous</button>
                     <button className="px-3 py-1.5 bg-neutral-900 text-white rounded-small text-xs font-semibold hover:bg-neutral-700 transition-colors">Next</button>
@@ -466,25 +749,34 @@ export default function DashboardV2() {
               </div>
               <div>
                 <p className="font-heading font-bold text-neutral-900 text-xs">Auto-generated</p>
-                <p className="text-neutral-400" style={{fontSize: '10px'}}>No manual setup needed</p>
+                <p className="text-neutral-400" style={{fontSize:'10px'}}>No manual setup needed</p>
               </div>
             </div>
-            <div className="floating-badge bg-white rounded-large shadow-custom-hover border border-neutral-200 px-4 py-3 flex items-center gap-3" style={{animationDelay: '0.5s'}}>
+            <div className="floating-badge bg-white rounded-large shadow-custom-hover border border-neutral-200 px-4 py-3 flex items-center gap-3" style={{animationDelay:'0.5s'}}>
               <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
                 <i className="ri-refresh-line text-blue-600 text-sm"></i>
               </div>
               <div>
                 <p className="font-heading font-bold text-neutral-900 text-xs">Live Sync</p>
-                <p className="text-neutral-400" style={{fontSize: '10px'}}>Updates in real time</p>
+                <p className="text-neutral-400" style={{fontSize:'10px'}}>Updates in real time</p>
               </div>
             </div>
-            <div className="floating-badge bg-white rounded-large shadow-custom-hover border border-neutral-200 px-4 py-3 flex items-center gap-3" style={{animationDelay: '1s'}}>
+            <div className="floating-badge bg-white rounded-large shadow-custom-hover border border-neutral-200 px-4 py-3 flex items-center gap-3" style={{animationDelay:'1s'}}>
               <div className="w-8 h-8 rounded-full bg-secondary-100 flex items-center justify-center">
                 <i className="ri-share-line text-secondary-600 text-sm"></i>
               </div>
               <div>
                 <p className="font-heading font-bold text-neutral-900 text-xs">One-click Share</p>
-                <p className="text-neutral-400" style={{fontSize: '10px'}}>Secure shareable link</p>
+                <p className="text-neutral-400" style={{fontSize:'10px'}}>Secure shareable link</p>
+              </div>
+            </div>
+            <div className="floating-badge bg-white rounded-large shadow-custom-hover border border-neutral-200 px-4 py-3 flex items-center gap-3" style={{animationDelay:'1.5s'}}>
+              <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center">
+                <i className="ri-bar-chart-2-line text-purple-600 text-sm"></i>
+              </div>
+              <div>
+                <p className="font-heading font-bold text-neutral-900 text-xs">12 Chart Types</p>
+                <p className="text-neutral-400" style={{fontSize:'10px'}}>Fully customizable</p>
               </div>
             </div>
           </div>
@@ -516,6 +808,6 @@ export default function DashboardV2() {
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 }

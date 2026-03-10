@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pricing & CTA - Exported from UXMagic Copilot">
+    <title>Pricing & CTA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['var(--font-heading-name)', 'sans-serif'],
+                        body: ['var(--font-body-name)', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            200: '#a7f3d0',
+                            300: '#6ee7b7',
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                        },
+                        secondary: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            200: '#fed7aa',
+                            300: '#fdba74',
+                            400: '#fb923c',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12',
+                        },
+                        neutral: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        },
+                        background: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                        }
+                    },
+                    spacing: {
+                        base: 'var(--space-base)',
+                    },
+                    borderRadius: {
+                        small: 'var(--radius-small)',
+                        large: 'var(--radius-large)',
+                    },
+                    boxShadow: {
+                        custom: 'var(--shadow-custom)',
+                        'custom-hover': 'var(--shadow-custom-hover)',
+                    },
+                }
+            }
+        }
+    
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+<!-- TOP NAVIGATION -->
+<nav class="bg-white/90 backdrop-blur-md border-b border-neutral-200 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <div class="w-9 h-9 logo-mark rounded-small flex items-center justify-center text-white">
+                <i class="ri-bar-chart-box-fill text-lg"></i>
+            </div>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/hero-landing-page" class="font-heading font-bold text-xl text-neutral-900 tracking-tight">SmartViz</a>
+        </div>
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/hero-landing-page" class="nav-link text-sm font-medium text-neutral-500">Home</a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/features-showcase" class="nav-link text-sm font-medium text-neutral-500">Features</a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/dashboard-preview" class="nav-link text-sm font-medium text-neutral-500">Dashboard</a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/chat-bot-reports-demo" class="nav-link text-sm font-medium text-neutral-500">AI Reports</a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/pricing-cta" class="nav-link text-sm font-semibold text-neutral-900 border-b-2 border-primary-500 pb-0.5">Pricing</a>
+        </div>
+        <div class="flex items-center gap-3">
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/dashboard-preview" class="hidden md:inline-flex items-center text-sm font-semibold text-neutral-600 hover:text-neutral-900 transition-colors">
+                Sign In
+            </a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/pricing-cta" class="inline-flex items-center gap-2 px-5 py-2.5 bg-neutral-900 text-white rounded-small text-sm font-semibold hover:bg-neutral-700 transition-colors shadow-custom">
+                Get Started Free
+                <i class="ri-arrow-right-line text-xs"></i>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="bg-white pt-20 pb-16 max-h-[480px] overflow-hidden">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+        <div class="flex justify-center mb-6">
+            <div class="badge-pill inline-flex items-center gap-2 px-4 py-2 rounded-full">
+                <i class="ri-shield-check-line text-primary-600 text-sm"></i>
+                <span class="text-xs font-semibold text-primary-700">No credit card required · Cancel anytime · 14-day free trial</span>
+            </div>
+        </div>
+        <h1 class="font-heading text-5xl md:text-6xl font-extrabold text-neutral-900 leading-tight mb-5" style="letter-spacing: var(--letter-spacing-heading);">
+            Simple, Transparent<br>
+            <span class="shimmer-text">Pricing for Every Team</span>
+        </h1>
+        <p class="text-lg text-neutral-500 max-w-2xl mx-auto mb-10 leading-relaxed">
+            Start free and scale as you grow. All plans include AI-powered analysis, beautiful reports, and world-class support.
+        </p>
+
+        <!-- Billing Toggle -->
+        <div class="flex items-center justify-center gap-4">
+            <span class="text-sm font-semibold text-neutral-700">Monthly</span>
+            <button id="billing-toggle" onclick="toggleBilling()" class="relative w-14 h-7 bg-neutral-200 toggle-bg rounded-full focus:outline-none">
+                <span id="toggle-thumb" class="absolute top-0.5 left-0.5 w-6 h-6 bg-white rounded-full shadow-sm toggle-thumb"></span>
+            </button>
+            <span class="text-sm font-semibold text-neutral-700">Annual</span>
+            <span class="annual-badge hidden items-center gap-1 px-3 py-1 bg-primary-50 border border-primary-100 rounded-full text-xs font-bold text-primary-700">
+                <i class="ri-price-tag-3-line"></i>Save up to 20%
+            </span>
+            <span class="monthly-badge inline-flex items-center gap-1 px-3 py-1 bg-neutral-100 rounded-full text-xs font-semibold text-neutral-500">
+                Save 20% annually
+            </span>
+        </div>
+    </div>
+</section>
+
+<!-- PRICING CARDS SECTION -->
+<section class="bg-background-50 py-16 max-h-[1000px] overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+
+            <!-- STARTER PLAN -->
+            <div class="plan-card bg-white rounded-large border border-neutral-200 shadow-custom overflow-hidden">
+                <div class="p-8">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-10 h-10 rounded-small bg-neutral-100 flex items-center justify-center">
+                            <i class="ri-seedling-line text-neutral-600 text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-heading font-bold text-neutral-900 text-lg" style="letter-spacing: var(--letter-spacing-heading);">Starter</h3>
+                            <p class="text-xs text-neutral-500">For individuals &amp; freelancers</p>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <div class="pricing-toggle-monthly">
+                            <div class="flex items-end gap-1">
+                                <span class="font-heading text-5xl font-extrabold text-neutral-900" style="letter-spacing: var(--letter-spacing-heading);">$0</span>
+                                <span class="text-neutral-500 text-sm mb-2">/month</span>
+                            </div>
+                            <p class="text-xs text-neutral-400 mt-1">Free forever · No credit card needed</p>
+                        </div>
+                        <div class="pricing-toggle-annual">
+                            <div class="flex items-end gap-1">
+                                <span class="font-heading text-5xl font-extrabold text-neutral-900" style="letter-spacing: var(--letter-spacing-heading);">$0</span>
+                                <span class="text-neutral-500 text-sm mb-2">/month</span>
+                            </div>
+                            <p class="text-xs text-neutral-400 mt-1">Free forever · No credit card needed</p>
+                        </div>
+                    </div>
+                    <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/hero-landing-page" class="block w-full text-center px-6 py-3 bg-neutral-100 text-neutral-800 rounded-small text-sm font-bold hover:bg-neutral-200 transition-colors mb-8">
+                        Get Started Free
+                    </a>
+                    <div class="space-y-3.5">
+                        <p class="text-xs font-bold text-neutral-500 uppercase tracking-wider">What's included</p>
+                        <div class="flex items-center gap-3">
+                            <i class="ri-check-line feature-check text-base shrink-0"></i>
+                            <span class="text-sm text-neutral-700">Up to <strong class="text-neutral-900">3 spreadsheets</strong></span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="ri-check-line feature-check text-base shrink-0"></i>
+                            <span class="text-sm text-neutral-700"><strong class="text-neutral-900">5 AI queries</strong> per month</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="ri-check-line feature-check text-base shrink-0"></i>
+                            <span class="text-sm text-neutral-700"><strong class="text-neutral-900">3 PDF reports</strong> per month</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="ri-check-line feature-check text-base shrink-0"></i>
+                            <span class="text-sm text-neutral-700">Basic chart types</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="ri-check-line feature-check text-base shrink-0"></i>
+                            <span class="text-sm text-neutral-700">CSV &amp; Excel upload</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="ri-close-line feature-cross text-base shrink-0"></i>
+                            <span class="text-sm text-neutral-400">Custom branding</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="ri-close-line feature-cross text-base shrink-0"></i>
+                            <span class="text-sm text-neutral-400">Scheduled reports</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="ri-close-line feature-cross text-base shrink-0"></i>
+                            <span class="text-sm text-neutral-400">Team collaboration</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="ri-close-line feature-cross text-base shrink-0"></i>
+                            <span class="text-sm text-neutral-400">API access</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRO PLAN (POPULAR) -->
+            <div class="plan-card bg-white rounded-large popular-glow overflow-hidden relative -mt-4">
+                <div class="bg-primary-500 px-8 py-3 flex items-center justify-center gap-2">
+                    <i class="ri-star-fill text-white text-sm"></i>
+                    <span class="text-white text-xs font-bold uppercase tracking-wider">Most Popular</span>
+                    <i class="ri-star-fill text-white text-sm"></i>
+                </div>
+                <div class="p-8">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-10 h-10 rounded-small bg-primary-100 flex items-center justify-center">
+                            <i class="ri-rocket-line text-primary-600 text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-heading font-bold text-neutral-900 text-lg" style="letter-spacing: var(--letter-spacing-heading);">Pro</h3>
+                            <p class="text-xs text-neutral-500">For growing teams &amp; businesses</p>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <div class="pricing-toggle-monthly">
+                            <div class="flex items-end gap-1">
+                                <span class="font-heading text-5xl font-extrabold text-neutral-900" style="letter-spacing: var(--letter-spacing-heading);">$49</span>
+                                <span class="text-neutral-500 text-sm mb-2">/month</span>
+                            </div>
+                            <p class="text-xs text-neutral-400 mt-1">Billed monthly · Cancel anytime</p>
+                        </div>
+                        <div class="pricing-toggle-annual">
+                            <div class="flex items-end gap-2">
+                                <span class="font-heading text-5xl font-extrabold text-neutral-900" style="letter-spacing: var(--letter-spacing-heading);">$39</span>
+                                <span class="text-neutral-500 text-sm mb-2">/month</span>
+                                <span class="px-2 py-0.5 bg-primary-100 text-primary-700 text-xs font-bold rounded-full mb-2">Save $120/yr</span>
+                            </div>
+                            <p class="text-xs text-neutral-400 mt-1">Billed annually as $468/year</p>
+                        </div>
+                    </div>
+                    <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/hero-landing-page" class="block w-full text-center px-6 py-3 bg-primary-500 text-white rounded-small text-sm font-bold hover:bg-primary-600 transition-colors shadow-custom mb-8">
+                        Start 14-Day Free Trial
+                    </a>
+                    <div class="space-y-3.5">
+                        <p class="text-xs font-bold text-neutral-500 uppercase tracking-wider">Everything in Starter, plus</p>
+                        <div class="flex items-center gap-3">
+                            <i class="ri-check-line feature-check text-base shrink-0"></i>
+                            <span class="text-sm text-neutral-700"><strong class="text-neutral-900">Unlimited</strong> spreadsheets</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="ri-check-line feature-check text-base shrink-0"></i>
+                            <span class="text-sm text-neutral-700"><strong class="text-neutral-900">500 AI queries</strong> per month</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="ri-check-line feature-check text-base shrink-0"></i>
+                            <span class="text-sm text-neutral-700"><strong class="text-neutral-900">Unlimited PDF reports</strong></span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="ri-check-line feature-check text-base shrink-0"></i>
+                            <span class="text-sm text-neutral-700">Custom branding &amp; logos</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="ri-check-line feature-check text-base shrink-0"></i>
+                            <span class="text-sm text-neutral-700">Scheduled auto-reports</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="ri-check-line feature-check text-base shrink-0"></i>
+                            <span class="text-sm text-neutral-700">Up to <strong class="text-neutral-900">5 team members</strong></span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="ri-check-line feature-check text-base shrink-0"></i>
+                            <span class="text-sm text-neutral-700">All chart types &amp; templates</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="ri-check-line feature-check text-base shrink-0"></i>
+                            <span class="text-sm text-neutral-700">Priority email support</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="ri-close-line feature-cross text-base shrink-0"></i>
+                            <span class="text-sm text-neutral-400">API access</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ENTERPRISE PLAN -->
+            <div class="plan-card bg-neutral-900 rounded-large shadow-custom overflow-hidden">
+                <div class="p-8">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-10 h-10 rounded-small bg-white/10 flex items-center justify-center">
+                            <i class="ri-building-4-line text-white text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-heading font-bold text-white text-lg" style="letter-spacing: var(--letter-spacing-heading);">Enterprise</h3>
+                            <p class="text-xs text-neutral-400">For large organizations</p>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <div class="pricing-toggle-monthly">
+                            <div class="flex items-end gap-1">
+                                <span class="font-heading text-5xl font-extrabold text-white" style="letter-spacing: var(--letter-spacing-heading);">$199</span>
+                                <span class="text-neutral-400 text-sm mb-2">/month</span>
+                            </div>
+                            <p class="text-xs text-neutral-500 mt-1">Billed monthly · Volume discounts available</p>
+                        </div>
+                        <div class="pricing-toggle-annual">
+                            <div class="flex items-end gap-2">
+                                <span class="font-heading text-5xl font-extrabold text-white" style="letter-spacing: var(--letter-spacing-heading);">$159</span>
+                                <span class="text-neutral-400 text-sm mb-2">/month</span>
+                                <span class="px-2 py-0.5 bg-primary-500/30 text-primary-300 text-xs font-bold rounded-full mb-2">Save $480/yr</span>
+                            </div>
+                            <p class="text-xs text-neutral-500 mt-1">Billed annually as $1,908/year</p>
+                        </div>
+                    </div>
+                    <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/hero-landing-page" class="block w-full text-center px-6 py-3 bg-white text-neutral-900 rounded-small text-sm font-bold hover:bg-neutral-100 transition-colors mb-8">
+                        Contact Sales
+                    </a>
+                    <div class="space-y-3.5">
+                        <p class="text-xs font-bold text-neutral-500 uppercase tracking-wider">Everything in Pro, plus</p>
+                        <div class="flex items-center gap-3">
+                            <i class="ri-check-line text-primary-400 text-base shrink-0"></i>
+                            <span class="text-sm text-neutral-300"><strong class="text-white">Unlimited</strong> team members</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="ri-check-line text-primary-400 text-base shrink-0"></i>
+                            <span class="text-sm text-neutral-300"><strong class="text-white">Unlimited</strong> AI queries</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="ri-check-line text-primary-400 text-base shrink-0"></i>
+                            <span class="text-sm text-neutral-300">Full REST API access</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="ri-check-line text-primary-400 text-base shrink-0"></i>
+                            <span class="text-sm text-neutral-300">SSO &amp; SAML authentication</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="ri-check-line text-primary-400 text-base shrink-0"></i>
+                            <span class="text-sm text-neutral-300">Advanced role permissions</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="ri-check-line text-primary-400 text-base shrink-0"></i>
+                            <span class="text-sm text-neutral-300">Dedicated account manager</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="ri-check-line text-primary-400 text-base shrink-0"></i>
+                            <span class="text-sm text-neutral-300">SLA &amp; uptime guarantee</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="ri-check-line text-primary-400 text-base shrink-0"></i>
+                            <span class="text-sm text-neutral-300">Custom integrations</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="ri-check-line text-primary-400 text-base shrink-0"></i>
+                            <span class="text-sm text-neutral-300">On-premise deployment option</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Plan Comparison Note -->
+        <div class="mt-10 text-center">
+            <p class="text-sm text-neutral-500">All plans include <strong class="text-neutral-700">SSL encryption</strong>, <strong class="text-neutral-700">GDPR compliance</strong>, and <strong class="text-neutral-700">99.9% uptime SLA</strong>. Need a custom plan? <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/hero-landing-page" class="text-primary-600 font-semibold hover:text-primary-700">Talk to us →</a></p>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURE COMPARISON TABLE -->
+<section class="bg-white py-20 max-h-[900px] overflow-hidden">
+    <div class="max-w-5xl mx-auto px-6">
+        <div class="text-center mb-12">
+            <h2 class="font-heading text-4xl font-extrabold text-neutral-900 mb-4" style="letter-spacing: var(--letter-spacing-heading);">Compare All Features</h2>
+            <p class="text-neutral-500 text-lg">A full breakdown of what's included in each plan.</p>
+        </div>
+        <div class="rounded-large border border-neutral-200 overflow-hidden shadow-custom">
+            <!-- Table Header -->
+            <div class="grid grid-cols-4 bg-neutral-50 border-b border-neutral-200">
+                <div class="p-5 col-span-1">
+                    <p class="text-xs font-bold text-neutral-400 uppercase tracking-wider">Feature</p>
+                </div>
+                <div class="p-5 text-center border-l border-neutral-200">
+                    <p class="font-heading font-bold text-neutral-700 text-sm">Starter</p>
+                    <p class="text-xs text-neutral-400 mt-0.5">Free</p>
+                </div>
+                <div class="p-5 text-center border-l border-neutral-200 bg-primary-50">
+                    <p class="font-heading font-bold text-primary-700 text-sm">Pro</p>
+                    <p class="text-xs text-primary-500 mt-0.5">$49/mo</p>
+                </div>
+                <div class="p-5 text-center border-l border-neutral-200">
+                    <p class="font-heading font-bold text-neutral-700 text-sm">Enterprise</p>
+                    <p class="text-xs text-neutral-400 mt-0.5">$199/mo</p>
+                </div>
+            </div>
+            <!-- Rows -->
+            <div class="divide-y divide-neutral-100">
+                <div class="grid grid-cols-4 hover:bg-neutral-50/50 transition-colors">
+                    <div class="p-4 flex items-center gap-2"><i class="ri-file-excel-line text-neutral-400 text-sm"></i><span class="text-sm text-neutral-700">Spreadsheets</span></div>
+                    <div class="p-4 text-center border-l border-neutral-100"><span class="text-sm font-semibold text-neutral-700">3</span></div>
+                    <div class="p-4 text-center border-l border-neutral-100 bg-primary-50/50"><span class="text-sm font-semibold text-primary-700">Unlimited</span></div>
+                    <div class="p-4 text-center border-l border-neutral-100"><span class="text-sm font-semibold text-neutral-700">Unlimited</span></div>
+                </div>
+                <div class="grid grid-cols-4 hover:bg-neutral-50/50 transition-colors">
+                    <div class="p-4 flex items-center gap-2"><i class="ri-robot-line text-neutral-400 text-sm"></i><span class="text-sm text-neutral-700">AI Queries / month</span></div>
+                    <div class="p-4 text-center border-l border-neutral-100"><span class="text-sm font-semibold text-neutral-700">5</span></div>
+                    <div class="p-4 text-center border-l border-neutral-100 bg-primary-50/50"><span class="text-sm font-semibold text-primary-700">500</span></div>
+                    <div class="p-4 text-center border-l border-neutral-100"><span class="text-sm font-semibold text-neutral-700">Unlimited</span></div>
+                </div>
+                <div class="grid grid-cols-4 hover:bg-neutral-50/50 transition-colors">
+                    <div class="p-4 flex items-center gap-2"><i class="ri-file-pdf-line text-neutral-400 text-sm"></i><span class="text-sm text-neutral-700">PDF Reports</span></div>
+                    <div class="p-4 text-center border-l border-neutral-100"><span class="text-sm font-semibold text-neutral-700">3/mo</span></div>
+                    <div class="p-4 text-center border-l border-neutral-100 bg-primary-50/50"><span class="text-sm font-semibold text-primary-700">Unlimited</span></div>
+                    <div class="p-4 text-center border-l border-neutral-100"><span class="text-sm font-semibold text-neutral-700">Unlimited</span></div>
+                </div>
+                <div class="grid grid-cols-4 hover:bg-neutral-50/50 transition-colors">
+                    <div class="p-4 flex items-center gap-2"><i class="ri-palette-line text-neutral-400 text-sm"></i><span class="text-sm text-neutral-700">Custom Branding</span></div>
+                    <div class="p-4 text-center border-l border-neutral-100"><i class="ri-close-line text-neutral-300 text-lg"></i></div>
+                    <div class="p-4 text-center border-l border-neutral-100 bg-primary-50/50"><i class="ri-check-line text-primary-500 text-lg"></i></div>
+                    <div class="p-4 text-center border-l border-neutral-100"><i class="ri-check-line text-primary-500 text-lg"></i></div>
+                </div>
+                <div class="grid grid-cols-4 hover:bg-neutral-50/50 transition-colors">
+                    <div class="p-4 flex items-center gap-2"><i class="ri-time-line text-neutral-400 text-sm"></i><span class="text-sm text-neutral-700">Scheduled Reports</span></div>
+                    <div class="p-4 text-center border-l border-neutral-100"><i class="ri-close-line text-neutral-300 text-lg"></i></div>
+                    <div class="p-4 text-center border-l border-neutral-100 bg-primary-50/50"><i class="ri-check-line text-primary-500 text-lg"></i></div>
+                    <div class="p-4 text-center border-l border-neutral-100"><i class="ri-check-line text-primary-500 text-lg"></i></div>
+                </div>
+                <div class="grid grid-cols-4 hover:bg-neutral-50/50 transition-colors">
+                    <div class="p-4 flex items-center gap-2"><i class="ri-team-line text-neutral-400 text-sm"></i><span class="text-sm text-neutral-700">Team Members</span></div>
+                    <div class="p-4 text-center border-l border-neutral-100"><span class="text-sm font-semibold text-neutral-700">1</span></div>
+                    <div class="p-4 text-center border-l border-neutral-100 bg-primary-50/50"><span class="text-sm font-semibold text-primary-700">Up to 5</span></div>
+                    <div class="p-4 text-center border-l border-neutral-100"><span class="text-sm font-semibold text-neutral-700">Unlimited</span></div>
+                </div>
+                <div class="grid grid-cols-4 hover:bg-neutral-50/50 transition-colors">
+                    <div class="p-4 flex items-center gap-2"><i class="ri-code-s-slash-line text-neutral-400 text-sm"></i><span class="text-sm text-neutral-700">API Access</span></div>
+                    <div class="p-4 text-center border-l border-neutral-100"><i class="ri-close-line text-neutral-300 text-lg"></i></div>
+                    <div class="p-4 text-center border-l border-neutral-100 bg-primary-50/50"><i class="ri-close-line text-neutral-300 text-lg"></i></div>
+                    <div class="p-4 text-center border-l border-neutral-100"><i class="ri-check-line text-primary-500 text-lg"></i></div>
+                </div>
+                <div class="grid grid-cols-4 hover:bg-neutral-50/50 transition-colors">
+                    <div class="p-4 flex items-center gap-2"><i class="ri-customer-service-2-line text-neutral-400 text-sm"></i><span class="text-sm text-neutral-700">Support</span></div>
+                    <div class="p-4 text-center border-l border-neutral-100"><span class="text-xs text-neutral-500">Community</span></div>
+                    <div class="p-4 text-center border-l border-neutral-100 bg-primary-50/50"><span class="text-xs font-semibold text-primary-700">Priority Email</span></div>
+                    <div class="p-4 text-center border-l border-neutral-100"><span class="text-xs font-semibold text-neutral-700">Dedicated Manager</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS SECTION -->
+<section class="bg-background-100 py-20 max-h-[700px] overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-12">
+            <div class="inline-flex items-center gap-2 px-4 py-2 bg-white border border-neutral-200 rounded-full mb-5 shadow-custom">
+                <div class="flex -space-x-1">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=24&amp;h=24&amp;fit=facearea&amp;facepad=2&amp;q=80" alt="" class="w-6 h-6 rounded-full border-2 border-white">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=24&amp;h=24&amp;fit=facearea&amp;facepad=2&amp;q=80" alt="" class="w-6 h-6 rounded-full border-2 border-white">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=24&amp;h=24&amp;fit=facearea&amp;facepad=2&amp;q=80" alt="" class="w-6 h-6 rounded-full border-2 border-white">
+                </div>
+                <span class="text-xs font-semibold text-neutral-700">Loved by 12,000+ teams worldwide</span>
+            </div>
+            <h2 class="font-heading text-4xl font-extrabold text-neutral-900 mb-4" style="letter-spacing: var(--letter-spacing-heading);">What Our Customers Say</h2>
+            <p class="text-neutral-500 text-lg max-w-xl mx-auto">Real stories from teams who transformed their data workflows with SmartViz.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+            <!-- Testimonial 1 -->
+            <div class="testimonial-card bg-white rounded-large shadow-custom border border-neutral-100 p-6">
+                <div class="flex items-center gap-1 mb-4">
+                    <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                    <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                    <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                    <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                    <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                </div>
+                <p class="text-neutral-700 text-sm leading-relaxed mb-5">"SmartViz completely changed how we present data to our board. What used to take our analyst 3 days now takes 10 minutes. The AI reports are <strong class="text-neutral-900">shockingly accurate</strong> and beautifully formatted."</p>
+                <div class="flex items-center gap-3 pt-4 border-t border-neutral-100">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=40&amp;h=40&amp;fit=facearea&amp;facepad=2&amp;q=80" alt="Sarah Wilson" class="w-10 h-10 rounded-full">
+                    <div>
+                        <p class="font-semibold text-neutral-900 text-sm">Sarah Wilson</p>
+                        <p class="text-xs text-neutral-500">CFO at TechFlow Inc.</p>
+                    </div>
+                    <div class="ml-auto">
+                        <span class="px-2 py-1 bg-primary-50 text-primary-700 text-xs font-bold rounded-full">Pro Plan</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="testimonial-card bg-white rounded-large shadow-custom border border-neutral-100 p-6">
+                <div class="flex items-center gap-1 mb-4">
+                    <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                    <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                    <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                    <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                    <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                </div>
+                <p class="text-neutral-700 text-sm leading-relaxed mb-5">"We manage 40+ client accounts and SmartViz lets us generate branded reports for each one instantly. The <strong class="text-neutral-900">custom branding feature alone</strong> is worth the Pro subscription. Our clients are blown away."</p>
+                <div class="flex items-center gap-3 pt-4 border-t border-neutral-100">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&amp;h=40&amp;fit=facearea&amp;facepad=2&amp;q=80" alt="Marcus Chen" class="w-10 h-10 rounded-full">
+                    <div>
+                        <p class="font-semibold text-neutral-900 text-sm">Marcus Chen</p>
+                        <p class="text-xs text-neutral-500">Director at DataBridge Agency</p>
+                    </div>
+                    <div class="ml-auto">
+                        <span class="px-2 py-1 bg-primary-50 text-primary-700 text-xs font-bold rounded-full">Pro Plan</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="testimonial-card bg-white rounded-large shadow-custom border border-neutral-100 p-6">
+                <div class="flex items-center gap-1 mb-4">
+                    <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                    <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                    <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                    <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                    <i class="ri-star-half-fill text-yellow-400 text-sm"></i>
+                </div>
+                <p class="text-neutral-700 text-sm leading-relaxed mb-5">"The Enterprise plan's API access lets us embed SmartViz directly into our internal tools. The dedicated account manager helped us set up custom integrations in a week. <strong class="text-neutral-900">Exceptional service.</strong>"</p>
+                <div class="flex items-center gap-3 pt-4 border-t border-neutral-100">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&amp;h=40&amp;fit=facearea&amp;facepad=2&amp;q=80" alt="Priya Sharma" class="w-10 h-10 rounded-full">
+                    <div>
+                        <p class="font-semibold text-neutral-900 text-sm">Priya Sharma</p>
+                        <p class="text-xs text-neutral-500">VP Engineering at Nexus Corp</p>
+                    </div>
+                    <div class="ml-auto">
+                        <span class="px-2 py-1 bg-neutral-100 text-neutral-700 text-xs font-bold rounded-full">Enterprise</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Row -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
+            <div class="text-center">
+                <p class="font-heading text-4xl font-extrabold text-neutral-900 mb-1" style="letter-spacing: var(--letter-spacing-heading);">12K+</p>
+                <p class="text-sm text-neutral-500">Active teams</p>
+            </div>
+            <div class="text-center">
+                <p class="font-heading text-4xl font-extrabold text-neutral-900 mb-1" style="letter-spacing: var(--letter-spacing-heading);">2.4M</p>
+                <p class="text-sm text-neutral-500">Reports generated</p>
+            </div>
+            <div class="text-center">
+                <p class="font-heading text-4xl font-extrabold text-neutral-900 mb-1" style="letter-spacing: var(--letter-spacing-heading);">4.9/5</p>
+                <p class="text-sm text-neutral-500">Average rating</p>
+            </div>
+            <div class="text-center">
+                <p class="font-heading text-4xl font-extrabold text-neutral-900 mb-1" style="letter-spacing: var(--letter-spacing-heading);">99.9%</p>
+                <p class="text-sm text-neutral-500">Uptime SLA</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TRUST BADGES SECTION -->
+<section class="bg-white py-16 max-h-[380px] overflow-hidden">
+    <div class="max-w-5xl mx-auto px-6">
+        <div class="text-center mb-10">
+            <h2 class="font-heading text-2xl font-extrabold text-neutral-900 mb-2" style="letter-spacing: var(--letter-spacing-heading);">Enterprise-Grade Security &amp; Compliance</h2>
+            <p class="text-neutral-500 text-base">Your data is protected by industry-leading security standards.</p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="trust-badge flex flex-col items-center gap-3 p-5 rounded-large border border-neutral-200 cursor-default">
+                <div class="w-12 h-12 rounded-large bg-blue-50 flex items-center justify-center">
+                    <i class="ri-shield-check-line text-blue-600 text-2xl"></i>
+                </div>
+                <div class="text-center">
+                    <p class="font-heading font-bold text-neutral-900 text-sm">SOC 2 Type II</p>
+                    <p class="text-xs text-neutral-500 mt-0.5">Certified &amp; audited</p>
+                </div>
+            </div>
+            <div class="trust-badge flex flex-col items-center gap-3 p-5 rounded-large border border-neutral-200 cursor-default">
+                <div class="w-12 h-12 rounded-large bg-green-50 flex items-center justify-center">
+                    <i class="ri-lock-2-line text-green-600 text-2xl"></i>
+                </div>
+                <div class="text-center">
+                    <p class="font-heading font-bold text-neutral-900 text-sm">GDPR Compliant</p>
+                    <p class="text-xs text-neutral-500 mt-0.5">EU data protection</p>
+                </div>
+            </div>
+            <div class="trust-badge flex flex-col items-center gap-3 p-5 rounded-large border border-neutral-200 cursor-default">
+                <div class="w-12 h-12 rounded-large bg-purple-50 flex items-center justify-center">
+                    <i class="ri-key-2-line text-purple-600 text-2xl"></i>
+                </div>
+                <div class="text-center">
+                    <p class="font-heading font-bold text-neutral-900 text-sm">256-bit SSL</p>
+                    <p class="text-xs text-neutral-500 mt-0.5">End-to-end encryption</p>
+                </div>
+            </div>
+            <div class="trust-badge flex flex-col items-center gap-3 p-5 rounded-large border border-neutral-200 cursor-default">
+                <div class="w-12 h-12 rounded-large bg-secondary-50 flex items-center justify-center">
+                    <i class="ri-server-line text-secondary-600 text-2xl"></i>
+                </div>
+                <div class="text-center">
+                    <p class="font-heading font-bold text-neutral-900 text-sm">99.9% Uptime</p>
+                    <p class="text-xs text-neutral-500 mt-0.5">SLA guaranteed</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logos Row -->
+        <div class="mt-10 pt-8 border-t border-neutral-100">
+            <p class="text-center text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-6">Trusted by teams at</p>
+            <div class="flex flex-wrap items-center justify-center gap-8 opacity-40">
+                <span class="font-heading font-extrabold text-xl text-neutral-700">Stripe</span>
+                <span class="font-heading font-extrabold text-xl text-neutral-700">Shopify</span>
+                <span class="font-heading font-extrabold text-xl text-neutral-700">HubSpot</span>
+                <span class="font-heading font-extrabold text-xl text-neutral-700">Notion</span>
+                <span class="font-heading font-extrabold text-xl text-neutral-700">Figma</span>
+                <span class="font-heading font-extrabold text-xl text-neutral-700">Atlassian</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ SECTION -->
+<section class="bg-background-50 py-20 max-h-[800px] overflow-hidden">
+    <div class="max-w-3xl mx-auto px-6">
+        <div class="text-center mb-12">
+            <h2 class="font-heading text-4xl font-extrabold text-neutral-900 mb-4" style="letter-spacing: var(--letter-spacing-heading);">Frequently Asked Questions</h2>
+            <p class="text-neutral-500 text-lg">Everything you need to know before getting started.</p>
+        </div>
+        <div class="space-y-3" id="faq-container">
+
+            <div class="faq-item bg-white rounded-large border border-neutral-200 shadow-custom overflow-hidden">
+                <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left">
+                    <span class="font-heading font-semibold text-neutral-900 text-sm" style="letter-spacing: var(--letter-spacing-heading);">Can I try SmartViz before paying?</span>
+                    <i class="ri-add-line text-neutral-400 text-lg shrink-0 faq-icon transition-transform"></i>
+                </button>
+                <div class="faq-answer hidden px-5 pb-5">
+                    <p class="text-sm text-neutral-600 leading-relaxed">Yes! Our Starter plan is completely free forever with no credit card required. For Pro and Enterprise features, we offer a 14-day free trial with full access to all features. You can cancel anytime during the trial period.</p>
+                </div>
+            </div>
+
+            <div class="faq-item bg-white rounded-large border border-neutral-200 shadow-custom overflow-hidden">
+                <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left">
+                    <span class="font-heading font-semibold text-neutral-900 text-sm" style="letter-spacing: var(--letter-spacing-heading);">What file formats does SmartViz support?</span>
+                    <i class="ri-add-line text-neutral-400 text-lg shrink-0 faq-icon transition-transform"></i>
+                </button>
+                <div class="faq-answer hidden px-5 pb-5">
+                    <p class="text-sm text-neutral-600 leading-relaxed">SmartViz supports .xlsx, .xls, .csv, .tsv, and Google Sheets (via integration). We also support direct connections to databases like PostgreSQL, MySQL, and BigQuery on the Enterprise plan.</p>
+                </div>
+            </div>
+
+            <div class="faq-item bg-white rounded-large border border-neutral-200 shadow-custom overflow-hidden">
+                <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left">
+                    <span class="font-heading font-semibold text-neutral-900 text-sm" style="letter-spacing: var(--letter-spacing-heading);">Is my data safe and private?</span>
+                    <i class="ri-add-line text-neutral-400 text-lg shrink-0 faq-icon transition-transform"></i>
+                </button>
+                <div class="faq-answer hidden px-5 pb-5">
+                    <p class="text-sm text-neutral-600 leading-relaxed">Absolutely. Your data is encrypted at rest and in transit using 256-bit SSL. We are SOC 2 Type II certified and GDPR compliant. Critically, your data is <strong class="text-neutral-900">never used to train AI models</strong> — it is processed in isolated, ephemeral sessions and deleted after your session ends.</p>
+                </div>
+            </div>
+
+            <div class="faq-item bg-white rounded-large border border-neutral-200 shadow-custom overflow-hidden">
+                <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left">
+                    <span class="font-heading font-semibold text-neutral-900 text-sm" style="letter-spacing: var(--letter-spacing-heading);">Can I switch plans at any time?</span>
+                    <i class="ri-add-line text-neutral-400 text-lg shrink-0 faq-icon transition-transform"></i>
+                </button>
+                <div class="faq-answer hidden px-5 pb-5">
+                    <p class="text-sm text-neutral-600 leading-relaxed">Yes, you can upgrade or downgrade your plan at any time. Upgrades take effect immediately and you'll be charged a prorated amount. Downgrades take effect at the end of your current billing cycle. No penalties or fees.</p>
+                </div>
+            </div>
+
+            <div class="faq-item bg-white rounded-large border border-neutral-200 shadow-custom overflow-hidden">
+                <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left">
+                    <span class="font-heading font-semibold text-neutral-900 text-sm" style="letter-spacing: var(--letter-spacing-heading);">Do you offer discounts for nonprofits or startups?</span>
+                    <i class="ri-add-line text-neutral-400 text-lg shrink-0 faq-icon transition-transform"></i>
+                </button>
+                <div class="faq-answer hidden px-5 pb-5">
+                    <p class="text-sm text-neutral-600 leading-relaxed">Yes! We offer a 50% discount for registered nonprofits and a 30% discount for early-stage startups (under 2 years old, under $1M ARR). Contact our sales team with proof of eligibility to apply the discount to your account.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- FINAL CTA SECTION -->
+<section class="cta-gradient py-24 max-h-[600px] overflow-hidden relative">
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-primary-500 opacity-10 rounded-full -translate-y-1/2"></div>
+        <div class="absolute bottom-0 right-1/4 w-64 h-64 bg-secondary-400 opacity-10 rounded-full translate-y-1/2"></div>
+        <div class="absolute top-1/2 left-0 w-48 h-48 bg-primary-400 opacity-5 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+    </div>
+    <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-primary-500/20 border border-primary-500/30 rounded-full mb-8">
+            <span class="w-2 h-2 rounded-full bg-primary-400 animate-pulse"></span>
+            <span class="text-xs font-semibold text-primary-300">Join 12,000+ teams already using SmartViz</span>
+        </div>
+        <h2 class="font-heading text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight" style="letter-spacing: var(--letter-spacing-heading);">
+            Start Turning Data Into<br>
+            <span class="shimmer-text">Decisions Today</span>
+        </h2>
+        <p class="text-neutral-400 text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
+            Upload your first spreadsheet and get a beautiful AI-generated report in under 60 seconds. No setup. No training. No credit card.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/hero-landing-page" class="inline-flex items-center gap-3 px-10 py-4 bg-primary-500 text-white rounded-small text-base font-bold hover:bg-primary-600 transition-colors shadow-custom">
+                <i class="ri-upload-cloud-2-line text-lg"></i>
+                Start Free — No Credit Card
+                <i class="ri-arrow-right-line text-sm"></i>
+            </a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/chat-bot-reports-demo" class="inline-flex items-center gap-3 px-10 py-4 bg-white/10 text-white rounded-small text-base font-semibold border border-white/20 hover:bg-white/20 transition-colors">
+                <i class="ri-play-circle-line text-lg"></i>
+                Watch Demo
+            </a>
+        </div>
+
+        <!-- Trust Signals Row -->
+        <div class="flex flex-wrap items-center justify-center gap-6">
+            <div class="flex items-center gap-2">
+                <i class="ri-shield-check-line text-primary-400 text-base"></i>
+                <span class="text-sm text-neutral-400">SOC 2 Certified</span>
+            </div>
+            <div class="w-1 h-1 rounded-full bg-neutral-700"></div>
+            <div class="flex items-center gap-2">
+                <i class="ri-lock-2-line text-primary-400 text-base"></i>
+                <span class="text-sm text-neutral-400">256-bit Encryption</span>
+            </div>
+            <div class="w-1 h-1 rounded-full bg-neutral-700"></div>
+            <div class="flex items-center gap-2">
+                <i class="ri-time-line text-primary-400 text-base"></i>
+                <span class="text-sm text-neutral-400">14-day free trial</span>
+            </div>
+            <div class="w-1 h-1 rounded-full bg-neutral-700"></div>
+            <div class="flex items-center gap-2">
+                <i class="ri-close-circle-line text-primary-400 text-base"></i>
+                <span class="text-sm text-neutral-400">Cancel anytime</span>
+            </div>
+            <div class="w-1 h-1 rounded-full bg-neutral-700"></div>
+            <div class="flex items-center gap-2">
+                <i class="ri-customer-service-2-line text-primary-400 text-base"></i>
+                <span class="text-sm text-neutral-400">24/7 support</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-neutral-900 pt-16 pb-8 max-h-[500px] overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-10 mb-12">
+            <!-- Brand Column -->
+            <div class="md:col-span-2">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-9 h-9 logo-mark rounded-small flex items-center justify-center text-white">
+                        <i class="ri-bar-chart-box-fill text-lg"></i>
+                    </div>
+                    <span class="font-heading font-bold text-xl text-white">SmartViz</span>
+                </div>
+                <p class="text-neutral-400 text-sm leading-relaxed mb-5 max-w-xs">Turn any spreadsheet into beautiful, AI-powered reports and dashboards. No code, no SQL — just answers.</p>
+                <div class="flex items-center gap-3">
+                    <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/hero-landing-page" class="w-9 h-9 rounded-small bg-white/10 text-neutral-400 flex items-center justify-center hover:bg-white/20 hover:text-white transition-colors">
+                        <i class="ri-twitter-x-line text-sm"></i>
+                    </a>
+                    <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/hero-landing-page" class="w-9 h-9 rounded-small bg-white/10 text-neutral-400 flex items-center justify-center hover:bg-white/20 hover:text-white transition-colors">
+                        <i class="ri-linkedin-line text-sm"></i>
+                    </a>
+                    <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/hero-landing-page" class="w-9 h-9 rounded-small bg-white/10 text-neutral-400 flex items-center justify-center hover:bg-white/20 hover:text-white transition-colors">
+                        <i class="ri-github-line text-sm"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Product Links -->
+            <div>
+                <p class="font-heading font-bold text-white text-sm mb-4" style="letter-spacing: var(--letter-spacing-heading);">Product</p>
+                <div class="space-y-2.5">
+                    <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/features-showcase" class="block text-sm text-neutral-400 hover:text-white transition-colors">Features</a>
+                    <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/dashboard-preview" class="block text-sm text-neutral-400 hover:text-white transition-colors">Dashboard</a>
+                    <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/chat-bot-reports-demo" class="block text-sm text-neutral-400 hover:text-white transition-colors">AI Reports</a>
+                    <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/pricing-cta" class="block text-sm text-white font-semibold">Pricing</a>
+                    <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/hero-landing-page" class="block text-sm text-neutral-400 hover:text-white transition-colors">Changelog</a>
+                </div>
+            </div>
+
+            <!-- Company Links -->
+            <div>
+                <p class="font-heading font-bold text-white text-sm mb-4" style="letter-spacing: var(--letter-spacing-heading);">Company</p>
+                <div class="space-y-2.5">
+                    <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/hero-landing-page" class="block text-sm text-neutral-400 hover:text-white transition-colors">About</a>
+                    <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/hero-landing-page" class="block text-sm text-neutral-400 hover:text-white transition-colors">Blog</a>
+                    <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/hero-landing-page" class="block text-sm text-neutral-400 hover:text-white transition-colors">Careers</a>
+                    <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/hero-landing-page" class="block text-sm text-neutral-400 hover:text-white transition-colors">Press</a>
+                    <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/hero-landing-page" class="block text-sm text-neutral-400 hover:text-white transition-colors">Contact</a>
+                </div>
+            </div>
+
+            <!-- Legal Links -->
+            <div>
+                <p class="font-heading font-bold text-white text-sm mb-4" style="letter-spacing: var(--letter-spacing-heading);">Legal</p>
+                <div class="space-y-2.5">
+                    <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/hero-landing-page" class="block text-sm text-neutral-400 hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/hero-landing-page" class="block text-sm text-neutral-400 hover:text-white transition-colors">Terms of Service</a>
+                    <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/hero-landing-page" class="block text-sm text-neutral-400 hover:text-white transition-colors">Cookie Policy</a>
+                    <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/hero-landing-page" class="block text-sm text-neutral-400 hover:text-white transition-colors">Security</a>
+                    <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/hero-landing-page" class="block text-sm text-neutral-400 hover:text-white transition-colors">GDPR</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="border-t border-neutral-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p class="text-xs text-neutral-500">© 2024 SmartViz Inc. All rights reserved. Made with <i class="ri-heart-fill text-primary-500 text-xs"></i> for data teams everywhere.</p>
+            <div class="flex items-center gap-4">
+                <div class="flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 rounded-full">
+                    <span class="w-2 h-2 rounded-full bg-primary-400 animate-pulse"></span>
+                    <span class="text-xs text-neutral-400">All systems operational</span>
+                </div>
+                <div class="flex items-center gap-1">
+                    <i class="ri-star-fill text-yellow-400 text-xs"></i>
+                    <i class="ri-star-fill text-yellow-400 text-xs"></i>
+                    <i class="ri-star-fill text-yellow-400 text-xs"></i>
+                    <i class="ri-star-fill text-yellow-400 text-xs"></i>
+                    <i class="ri-star-fill text-yellow-400 text-xs"></i>
+                    <span class="text-xs text-neutral-400 ml-1">4.9/5 on G2</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    let isAnnual = false;
+
+    function toggleBilling() {
+        isAnnual = !isAnnual;
+        const toggle = document.getElementById('billing-toggle');
+        const thumb = document.getElementById('toggle-thumb');
+
+        if (isAnnual) {
+            toggle.classList.remove('bg-neutral-200');
+            toggle.classList.add('bg-primary-500');
+            thumb.style.transform = 'translateX(28px)';
+            document.body.classList.add('annual');
+        } else {
+            toggle.classList.add('bg-neutral-200');
+            toggle.classList.remove('bg-primary-500');
+            thumb.style.transform = 'translateX(0px)';
+            document.body.classList.remove('annual');
+        }
+    }
+
+    function toggleFaq(btn) {
+        const answer = btn.nextElementSibling;
+        const icon = btn.querySelector('.faq-icon');
+        const isOpen = !answer.classList.contains('hidden');
+
+        // Close all
+        document.querySelectorAll('.faq-answer').forEach(a => a.classList.add('hidden'));
+        document.querySelectorAll('.faq-icon').forEach(i => {
+            i.classList.remove('ri-subtract-line');
+            i.classList.add('ri-add-line');
+            i.style.transform = 'rotate(0deg)';
+        });
+
+        if (!isOpen) {
+            answer.classList.remove('hidden');
+            icon.classList.remove('ri-add-line');
+            icon.classList.add('ri-subtract-line');
+            icon.style.transform = 'rotate(45deg)';
+        }
+    }
+</script>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

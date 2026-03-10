@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI Chatbot - Exported from UXMagic Copilot">
+    <title>AI Chatbot</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['var(--font-heading-name)', 'sans-serif'],
+                        body: ['var(--font-body-name)', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            200: '#a7f3d0',
+                            300: '#6ee7b7',
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                        },
+                        secondary: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            200: '#fed7aa',
+                            300: '#fdba74',
+                            400: '#fb923c',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12',
+                        },
+                        neutral: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        },
+                        background: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                        }
+                    },
+                    spacing: {
+                        base: 'var(--space-base)',
+                    },
+                    borderRadius: {
+                        small: 'var(--radius-small)',
+                        large: 'var(--radius-large)',
+                    },
+                    boxShadow: {
+                        custom: 'var(--shadow-custom)',
+                        'custom-hover': 'var(--shadow-custom-hover)',
+                    },
+                }
+            }
+        }
+    
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+<div class="flex flex-col lg:flex-row">
+
+    <!-- Sidebar Navigation -->
+    <aside class="w-full lg:w-72 bg-white border-r border-neutral-200 flex flex-col z-20">
+        <div class="p-6 flex items-center gap-3">
+            <div class="w-10 h-10 bg-neutral-900 rounded-small flex items-center justify-center text-white">
+                <i class="ri-bar-chart-box-fill text-xl"></i>
+            </div>
+            <span class="font-heading font-bold text-xl text-neutral-900">SmartViz</span>
+        </div>
+
+        <nav class="flex-1 px-4 py-4 space-y-1 overflow-y-auto">
+            <div class="mb-6">
+                <p class="px-4 text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-2">Main</p>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 rounded-small transition-all">
+                    <i class="ri-dashboard-line"></i>
+                    <span class="font-medium">Dashboard</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 rounded-small transition-all">
+                    <i class="ri-file-excel-line"></i>
+                    <span class="font-medium">Data Sources</span>
+                </a>
+                <a href="/api/copilot/prototype/09dc877b-2028-42d5-9657-9be56806fed4/ai-chatbot" class="flex items-center gap-3 px-4 py-3 bg-neutral-900 text-white rounded-small shadow-custom transition-all">
+                    <i class="ri-robot-line"></i>
+                    <span class="font-medium">AI Analysis</span>
+                    <span class="ml-auto bg-primary-500 text-white text-xs px-2 py-0.5 rounded-full font-bold">NEW</span>
+                </a>
+            </div>
+
+            <div class="mb-6">
+                <p class="px-4 text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-2">Management</p>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 rounded-small transition-all">
+                    <i class="ri-upload-cloud-line"></i>
+                    <span class="font-medium">Manual Upload</span>
+                </a>
+                <a href="/api/copilot/prototype/09dc877b-2028-42d5-9657-9be56806fed4/integrations" class="flex items-center gap-3 px-4 py-3 text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 rounded-small transition-all">
+                    <i class="ri-links-line"></i>
+                    <span class="font-medium">Integrations</span>
+                </a>
+                <a href="/api/copilot/prototype/09dc877b-2028-42d5-9657-9be56806fed4/profile-payment-settings" class="flex items-center gap-3 px-4 py-3 text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 rounded-small transition-all">
+                    <i class="ri-user-settings-line"></i>
+                    <span class="font-medium">Profile &amp; Plan</span>
+                </a>
+                <a href="/api/copilot/prototype/09dc877b-2028-42d5-9657-9be56806fed4/reports" class="flex items-center gap-3 px-4 py-3 text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 rounded-small transition-all">
+                    <i class="ri-file-chart-line"></i>
+                    <span class="font-medium">Reports</span>
+                </a>
+            </div>
+
+            <!-- Chat History -->
+            <div class="mb-4">
+                <div class="flex items-center justify-between px-4 mb-2">
+                    <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wider">Recent Chats</p>
+                    <button onclick="newChat()" class="w-5 h-5 rounded flex items-center justify-center text-neutral-400 hover:text-neutral-700 transition-colors">
+                        <i class="ri-add-line text-sm"></i>
+                    </button>
+                </div>
+                <div class="space-y-0.5">
+                    <div class="chat-history-item active flex items-center gap-2.5 px-4 py-2.5 rounded-small cursor-pointer">
+                        <i class="ri-chat-3-line text-neutral-400 text-sm shrink-0"></i>
+                        <div class="min-w-0">
+                            <p class="text-sm font-medium text-neutral-900 truncate">Q3 Revenue Analysis</p>
+                            <p class="text-xs text-neutral-400 truncate">Today, 10:42 AM</p>
+                        </div>
+                    </div>
+                    <div class="chat-history-item flex items-center gap-2.5 px-4 py-2.5 rounded-small cursor-pointer">
+                        <i class="ri-chat-3-line text-neutral-400 text-sm shrink-0"></i>
+                        <div class="min-w-0">
+                            <p class="text-sm font-medium text-neutral-700 truncate">Sales Pipeline Insights</p>
+                            <p class="text-xs text-neutral-400 truncate">Yesterday, 3:15 PM</p>
+                        </div>
+                    </div>
+                    <div class="chat-history-item flex items-center gap-2.5 px-4 py-2.5 rounded-small cursor-pointer">
+                        <i class="ri-chat-3-line text-neutral-400 text-sm shrink-0"></i>
+                        <div class="min-w-0">
+                            <p class="text-sm font-medium text-neutral-700 truncate">Inventory Cost Drivers</p>
+                            <p class="text-xs text-neutral-400 truncate">Oct 22, 2023</p>
+                        </div>
+                    </div>
+                    <div class="chat-history-item flex items-center gap-2.5 px-4 py-2.5 rounded-small cursor-pointer">
+                        <i class="ri-chat-3-line text-neutral-400 text-sm shrink-0"></i>
+                        <div class="min-w-0">
+                            <p class="text-sm font-medium text-neutral-700 truncate">HR Headcount Trends</p>
+                            <p class="text-xs text-neutral-400 truncate">Oct 20, 2023</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="p-4 mt-auto">
+            <div class="bg-primary-500 rounded-large p-5 text-white relative overflow-hidden shadow-custom">
+                <div class="absolute top-0 right-0 -mt-2 -mr-2 w-16 h-16 bg-white opacity-20 rounded-full"></div>
+                <div class="relative z-10">
+                    <h4 class="font-heading font-bold text-lg mb-1">Pro Plan</h4>
+                    <p class="text-primary-50 text-sm mb-3 opacity-90">Unlock advanced AI insights</p>
+                    <button class="w-full bg-white text-primary-600 font-bold py-2 rounded-small text-sm hover:bg-primary-50 transition-colors">Upgrade Now</button>
+                </div>
+            </div>
+            <div class="flex items-center gap-3 mt-6 px-2">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="User" class="w-10 h-10 rounded-full border-2 border-white shadow-sm">
+                <div>
+                    <p class="text-sm font-bold text-neutral-900">Sarah Wilson</p>
+                    <p class="text-xs text-neutral-500">sarah@company.com</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col min-w-0">
+
+        <!-- Header -->
+        <header class="bg-white/80 backdrop-blur-md border-b border-neutral-200 sticky top-0 z-10">
+            <div class="px-6 py-4 flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-small bg-primary-50 flex items-center justify-center">
+                            <i class="ri-robot-2-line text-primary-600 text-lg"></i>
+                        </div>
+                        <div>
+                            <h1 class="font-heading text-xl font-bold text-neutral-900">AI Analyst</h1>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-primary-500 animate-pulse"></span>
+                                <span class="text-xs text-neutral-500">Connected to 4 data sources</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <!-- Data Sources Indicator -->
+                    <div class="hidden md:flex items-center gap-2 px-3 py-1.5 bg-neutral-50 border border-neutral-200 rounded-small">
+                        <i class="ri-database-2-line text-neutral-400 text-sm"></i>
+                        <span class="text-xs font-medium text-neutral-600">Stripe · HubSpot · GA · Manual</span>
+                    </div>
+                    <button onclick="newChat()" class="flex items-center gap-2 px-4 py-2 bg-neutral-900 text-white rounded-small text-sm font-semibold hover:bg-neutral-700 transition-colors shadow-custom">
+                        <i class="ri-add-line"></i>
+                        <span class="hidden md:inline">New Chat</span>
+                    </button>
+                    <button class="w-10 h-10 rounded-full bg-white border border-neutral-200 flex items-center justify-center text-neutral-600 hover:bg-neutral-50 hover:text-primary-600 transition-colors relative">
+                        <i class="ri-notification-3-line text-lg"></i>
+                        <span class="absolute top-2 right-2.5 w-2 h-2 bg-secondary-500 rounded-full border border-white"></span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Chat Area + Right Panel -->
+        <div class="flex-1 flex flex-col lg:flex-row min-w-0">
+
+            <!-- Chat Column -->
+            <div class="flex-1 flex flex-col min-w-0">
+
+                <!-- Chat Messages -->
+                <div id="chat-messages" class="flex-1 overflow-y-auto p-6 space-y-6 max-h-[720px]">
+
+                    <!-- AI Welcome Message -->
+                    <div class="chat-message flex gap-3 max-w-3xl">
+                        <div class="w-9 h-9 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 shrink-0 mt-0.5">
+                            <i class="ri-robot-line text-sm"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-1.5">
+                                <span class="text-sm font-bold text-neutral-900">SmartViz AI</span>
+                                <span class="text-xs text-neutral-400">10:38 AM</span>
+                            </div>
+                            <div class="bg-white rounded-large rounded-tl-small shadow-custom p-4 text-sm text-neutral-700 leading-relaxed">
+                                <p class="mb-3">👋 Hi Sarah! I'm your AI data analyst. I have access to your connected data sources and can help you:</p>
+                                <ul class="space-y-1.5 mb-3">
+                                    <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary-500 shrink-0"></span>Analyze trends and patterns in your business data</li>
+                                    <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary-500 shrink-0"></span>Answer questions about revenue, sales, inventory &amp; HR</li>
+                                    <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary-500 shrink-0"></span>Generate and download PDF reports instantly</li>
+                                    <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary-500 shrink-0"></span>Identify anomalies and actionable insights</li>
+                                </ul>
+                                <p>What would you like to explore today?</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- User Message -->
+                    <div class="chat-message flex gap-3 max-w-3xl ml-auto flex-row-reverse">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="User" class="w-9 h-9 rounded-full shrink-0 mt-0.5">
+                        <div class="flex-1">
+                            <div class="flex items-center justify-end gap-2 mb-1.5">
+                                <span class="text-xs text-neutral-400">10:40 AM</span>
+                                <span class="text-sm font-bold text-neutral-900">You</span>
+                            </div>
+                            <div class="bg-neutral-900 text-white rounded-large rounded-tr-small p-4 text-sm leading-relaxed">
+                                <p>Can you give me a summary of Q3 revenue performance and compare it to Q2? Also highlight any concerning trends.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI Response with Data -->
+                    <div class="chat-message flex gap-3 max-w-3xl">
+                        <div class="w-9 h-9 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 shrink-0 mt-0.5">
+                            <i class="ri-robot-line text-sm"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-1.5">
+                                <span class="text-sm font-bold text-neutral-900">SmartViz AI</span>
+                                <span class="text-xs text-neutral-400">10:40 AM</span>
+                                <span class="flex items-center gap-1 text-xs text-primary-600 bg-primary-50 px-2 py-0.5 rounded-full font-medium">
+                                    <i class="ri-database-2-line text-xs"></i>Stripe + HubSpot
+                                </span>
+                            </div>
+                            <div class="bg-white rounded-large rounded-tl-small shadow-custom p-4 text-sm text-neutral-700 leading-relaxed">
+                                <p class="font-semibold text-neutral-900 mb-3">Q3 vs Q2 Revenue Analysis</p>
+
+                                <!-- Inline KPI Cards -->
+                                <div class="grid grid-cols-3 gap-3 mb-4">
+                                    <div class="bg-primary-50 rounded-small p-3 text-center">
+                                        <p class="text-xs text-neutral-500 mb-1">Q3 Revenue</p>
+                                        <p class="font-heading font-bold text-lg text-neutral-900">$2.4M</p>
+                                        <p class="text-xs text-primary-600 font-semibold">+15.2% vs Q2</p>
+                                    </div>
+                                    <div class="bg-secondary-50 rounded-small p-3 text-center">
+                                        <p class="text-xs text-neutral-500 mb-1">Q3 Expenses</p>
+                                        <p class="font-heading font-bold text-lg text-neutral-900">$1.1M</p>
+                                        <p class="text-xs text-secondary-600 font-semibold">+22.4% vs Q2</p>
+                                    </div>
+                                    <div class="bg-neutral-50 rounded-small p-3 text-center">
+                                        <p class="text-xs text-neutral-500 mb-1">Net Margin</p>
+                                        <p class="font-heading font-bold text-lg text-neutral-900">54.2%</p>
+                                        <p class="text-xs text-neutral-500 font-semibold">-3.1pp vs Q2</p>
+                                    </div>
+                                </div>
+
+                                <p class="mb-3">Here's a breakdown of the key findings:</p>
+                                <ul class="space-y-2 mb-4">
+                                    <li class="flex items-start gap-2">
+                                        <span class="w-5 h-5 rounded-full bg-primary-100 text-primary-600 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">✓</span>
+                                        <span><strong class="text-neutral-900">Revenue growth is strong</strong> at +15.2%, driven primarily by new enterprise deals closed in August ($340K) and September ($280K).</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="w-5 h-5 rounded-full bg-red-100 text-red-600 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">!</span>
+                                        <span><strong class="text-neutral-900">Expenses outpaced revenue growth</strong> — operational costs rose 22.4%, compressing margins by 3.1 percentage points. Marketing ad spend (+$48K) is the primary driver.</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="w-5 h-5 rounded-full bg-secondary-100 text-secondary-600 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">~</span>
+                                        <span><strong class="text-neutral-900">August showed a dip</strong> in conversion rates (down 8% from July), though September recovered strongly. Worth monitoring in Q4.</span>
+                                    </li>
+                                </ul>
+
+                                <!-- Inline Bar Chart Visual -->
+                                <div class="bg-neutral-50 rounded-small p-3 mb-4">
+                                    <p class="text-xs font-semibold text-neutral-600 mb-2">Monthly Revenue (Q3 2023)</p>
+                                    <div class="flex items-end gap-2 h-16">
+                                        <div class="flex-1 flex flex-col items-center gap-1">
+                                            <div class="w-full bg-primary-400 rounded-t" style="height:55%"></div>
+                                            <span class="text-xs text-neutral-500">Jul</span>
+                                        </div>
+                                        <div class="flex-1 flex flex-col items-center gap-1">
+                                            <div class="w-full bg-primary-500 rounded-t" style="height:70%"></div>
+                                            <span class="text-xs text-neutral-500">Aug</span>
+                                        </div>
+                                        <div class="flex-1 flex flex-col items-center gap-1">
+                                            <div class="w-full bg-primary-600 rounded-t" style="height:100%"></div>
+                                            <span class="text-xs text-neutral-500">Sep</span>
+                                        </div>
+                                        <div class="flex-1 flex flex-col items-center gap-1">
+                                            <div class="w-full bg-neutral-200 rounded-t" style="height:45%"></div>
+                                            <span class="text-xs text-neutral-400">Q2 Avg</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p class="text-neutral-600 mb-4">Would you like me to drill deeper into any specific area, or generate a full PDF report of this analysis?</p>
+
+                                <!-- Report Download Card -->
+                                <div class="report-download-card bg-neutral-900 rounded-small p-3 flex items-center justify-between gap-3">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-9 h-9 rounded bg-primary-500/20 flex items-center justify-center">
+                                            <i class="ri-file-pdf-2-line text-primary-400 text-lg"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm font-bold text-white">Q3 Revenue Analysis Report</p>
+                                            <p class="text-xs text-neutral-400">AI-generated · 8 pages · Ready to download</p>
+                                        </div>
+                                    </div>
+                                    <button onclick="downloadReport('Q3 Revenue Analysis')" class="flex items-center gap-1.5 px-3 py-2 bg-primary-500 text-white rounded-small text-xs font-bold hover:bg-primary-600 transition-colors shrink-0">
+                                        <i class="ri-download-line"></i>PDF
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- User Follow-up -->
+                    <div class="chat-message flex gap-3 max-w-3xl ml-auto flex-row-reverse">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="User" class="w-9 h-9 rounded-full shrink-0 mt-0.5">
+                        <div class="flex-1">
+                            <div class="flex items-center justify-end gap-2 mb-1.5">
+                                <span class="text-xs text-neutral-400">10:42 AM</span>
+                                <span class="text-sm font-bold text-neutral-900">You</span>
+                            </div>
+                            <div class="bg-neutral-900 text-white rounded-large rounded-tr-small p-4 text-sm leading-relaxed">
+                                <p>What were the top 3 revenue-generating products in Q3?</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI Response - Product Breakdown -->
+                    <div class="chat-message flex gap-3 max-w-3xl">
+                        <div class="w-9 h-9 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 shrink-0 mt-0.5">
+                            <i class="ri-robot-line text-sm"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-1.5">
+                                <span class="text-sm font-bold text-neutral-900">SmartViz AI</span>
+                                <span class="text-xs text-neutral-400">10:42 AM</span>
+                                <span class="flex items-center gap-1 text-xs text-primary-600 bg-primary-50 px-2 py-0.5 rounded-full font-medium">
+                                    <i class="ri-database-2-line text-xs"></i>Stripe
+                                </span>
+                            </div>
+                            <div class="bg-white rounded-large rounded-tl-small shadow-custom p-4 text-sm text-neutral-700 leading-relaxed">
+                                <p class="font-semibold text-neutral-900 mb-3">Top Revenue Products — Q3 2023</p>
+                                <div class="space-y-3 mb-4">
+                                    <div class="flex items-center gap-3">
+                                        <span class="w-6 h-6 rounded-full bg-primary-500 text-white text-xs font-bold flex items-center justify-center shrink-0">1</span>
+                                        <div class="flex-1">
+                                            <div class="flex items-center justify-between mb-1">
+                                                <span class="font-semibold text-neutral-900 text-sm">Enterprise Suite Pro</span>
+                                                <span class="text-sm font-bold text-neutral-900">$892K</span>
+                                            </div>
+                                            <div class="w-full bg-neutral-100 rounded-full h-1.5">
+                                                <div class="bg-primary-500 h-1.5 rounded-full" style="width:85%"></div>
+                                            </div>
+                                            <p class="text-xs text-neutral-400 mt-0.5">37.2% of total revenue · +28% vs Q2</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <span class="w-6 h-6 rounded-full bg-secondary-500 text-white text-xs font-bold flex items-center justify-center shrink-0">2</span>
+                                        <div class="flex-1">
+                                            <div class="flex items-center justify-between mb-1">
+                                                <span class="font-semibold text-neutral-900 text-sm">Analytics Add-on</span>
+                                                <span class="text-sm font-bold text-neutral-900">$614K</span>
+                                            </div>
+                                            <div class="w-full bg-neutral-100 rounded-full h-1.5">
+                                                <div class="bg-secondary-400 h-1.5 rounded-full" style="width:58%"></div>
+                                            </div>
+                                            <p class="text-xs text-neutral-400 mt-0.5">25.6% of total revenue · +11% vs Q2</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <span class="w-6 h-6 rounded-full bg-blue-500 text-white text-xs font-bold flex items-center justify-center shrink-0">3</span>
+                                        <div class="flex-1">
+                                            <div class="flex items-center justify-between mb-1">
+                                                <span class="font-semibold text-neutral-900 text-sm">Starter Plan (Monthly)</span>
+                                                <span class="text-sm font-bold text-neutral-900">$438K</span>
+                                            </div>
+                                            <div class="w-full bg-neutral-100 rounded-full h-1.5">
+                                                <div class="bg-blue-400 h-1.5 rounded-full" style="width:42%"></div>
+                                            </div>
+                                            <p class="text-xs text-neutral-400 mt-0.5">18.3% of total revenue · +5% vs Q2</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-neutral-600">Enterprise Suite Pro is your strongest performer with 28% QoQ growth. Want me to analyze the customer segments driving this growth?</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Typing Indicator -->
+                    <div id="typing-indicator" class="hidden chat-message flex gap-3 max-w-3xl">
+                        <div class="w-9 h-9 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 shrink-0 mt-0.5">
+                            <i class="ri-robot-line text-sm"></i>
+                        </div>
+                        <div class="bg-white rounded-large rounded-tl-small shadow-custom p-4 flex items-center gap-1.5">
+                            <span class="typing-dot w-2 h-2 rounded-full bg-neutral-400 block"></span>
+                            <span class="typing-dot w-2 h-2 rounded-full bg-neutral-400 block"></span>
+                            <span class="typing-dot w-2 h-2 rounded-full bg-neutral-400 block"></span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Suggestion Chips -->
+                <div class="px-6 py-3 border-t border-neutral-100 bg-white">
+                    <div class="flex items-center gap-2 overflow-x-auto pb-1">
+                        <span class="text-xs text-neutral-400 shrink-0 font-medium">Try asking:</span>
+                        <button onclick="sendSuggestion(this)" class="suggestion-chip shrink-0 px-3 py-1.5 bg-neutral-50 border border-neutral-200 rounded-full text-xs font-medium text-neutral-700 hover:bg-neutral-100 hover:border-neutral-300 transition-all">
+                            📊 Show sales funnel conversion rates
+                        </button>
+                        <button onclick="sendSuggestion(this)" class="suggestion-chip shrink-0 px-3 py-1.5 bg-neutral-50 border border-neutral-200 rounded-full text-xs font-medium text-neutral-700 hover:bg-neutral-100 hover:border-neutral-300 transition-all">
+                            📉 What caused the August dip?
+                        </button>
+                        <button onclick="sendSuggestion(this)" class="suggestion-chip shrink-0 px-3 py-1.5 bg-neutral-50 border border-neutral-200 rounded-full text-xs font-medium text-neutral-700 hover:bg-neutral-100 hover:border-neutral-300 transition-all">
+                            📋 Generate Q3 executive summary PDF
+                        </button>
+                        <button onclick="sendSuggestion(this)" class="suggestion-chip shrink-0 px-3 py-1.5 bg-neutral-50 border border-neutral-200 rounded-full text-xs font-medium text-neutral-700 hover:bg-neutral-100 hover:border-neutral-300 transition-all">
+                            👥 Analyze customer churn risk
+                        </button>
+                        <button onclick="sendSuggestion(this)" class="suggestion-chip shrink-0 px-3 py-1.5 bg-neutral-50 border border-neutral-200 rounded-full text-xs font-medium text-neutral-700 hover:bg-neutral-100 hover:border-neutral-300 transition-all">
+                            🔮 Forecast Q4 revenue
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Chat Input -->
+                <div class="p-4 bg-white border-t border-neutral-200">
+                    <div class="flex items-end gap-3 bg-neutral-50 border border-neutral-200 rounded-large p-3 focus-within:border-primary-400 focus-within:ring-2 focus-within:ring-primary-100 transition-all">
+                        <div class="flex items-center gap-2 shrink-0">
+                            <button class="w-8 h-8 rounded-small bg-white border border-neutral-200 flex items-center justify-center text-neutral-500 hover:text-primary-600 hover:border-primary-300 transition-colors" title="Attach file">
+                                <i class="ri-attachment-2 text-sm"></i>
+                            </button>
+                            <button class="w-8 h-8 rounded-small bg-white border border-neutral-200 flex items-center justify-center text-neutral-500 hover:text-primary-600 hover:border-primary-300 transition-colors" title="Select data source">
+                                <i class="ri-database-2-line text-sm"></i>
+                            </button>
+                        </div>
+                        <textarea id="chat-input" rows="1" placeholder="Ask anything about your data... (e.g. 'What's our MRR growth rate?')" class="flex-1 bg-transparent border-none outline-none resize-none text-sm text-neutral-700 placeholder-neutral-400 leading-relaxed" style="max-height: 120px;" oninput="autoResize(this)" onkeydown="handleKeydown(event)"></textarea>
+                        <div class="flex items-center gap-2 shrink-0">
+                            <button onclick="generatePDFFromChat()" class="flex items-center gap-1.5 px-3 py-2 bg-neutral-100 text-neutral-700 rounded-small text-xs font-semibold hover:bg-neutral-200 transition-colors" title="Generate PDF report">
+                                <i class="ri-file-pdf-line text-red-500"></i>
+                                <span class="hidden sm:inline">PDF</span>
+                            </button>
+                            <button onclick="sendMessage()" id="send-btn" class="w-9 h-9 bg-neutral-900 text-white rounded-small flex items-center justify-center hover:bg-neutral-700 transition-colors shadow-custom">
+                                <i class="ri-send-plane-fill text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text-xs text-neutral-400 mt-2 text-center">AI responses are based on your connected data sources. Always verify critical decisions.</p>
+                </div>
+            </div>
+
+            <!-- Right Panel: Context & Tools -->
+            <div class="hidden xl:flex flex-col w-80 border-l border-neutral-200 bg-white">
+
+                <!-- Data Sources Panel -->
+                <div class="p-5 border-b border-neutral-100">
+                    <h3 class="font-heading text-sm font-bold text-neutral-900 mb-3">Active Data Sources</h3>
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between p-2.5 bg-neutral-50 rounded-small">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-7 h-7 rounded bg-violet-100 flex items-center justify-center">
+                                    <i class="ri-bank-card-line text-violet-600 text-xs"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-semibold text-neutral-900">Stripe</p>
+                                    <p class="text-xs text-neutral-400">Synced 2m ago</p>
+                                </div>
+                            </div>
+                            <span class="w-2 h-2 rounded-full bg-primary-500"></span>
+                        </div>
+                        <div class="flex items-center justify-between p-2.5 bg-neutral-50 rounded-small">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-7 h-7 rounded bg-orange-100 flex items-center justify-center">
+                                    <i class="ri-contacts-line text-orange-600 text-xs"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-semibold text-neutral-900">HubSpot</p>
+                                    <p class="text-xs text-neutral-400">Synced 5m ago</p>
+                                </div>
+                            </div>
+                            <span class="w-2 h-2 rounded-full bg-primary-500"></span>
+                        </div>
+                        <div class="flex items-center justify-between p-2.5 bg-neutral-50 rounded-small">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-7 h-7 rounded bg-blue-100 flex items-center justify-center">
+                                    <i class="ri-bar-chart-line text-blue-600 text-xs"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-semibold text-neutral-900">Google Analytics</p>
+                                    <p class="text-xs text-neutral-400">Synced 12m ago</p>
+                                </div>
+                            </div>
+                            <span class="w-2 h-2 rounded-full bg-primary-500"></span>
+                        </div>
+                        <div class="flex items-center justify-between p-2.5 bg-neutral-50 rounded-small">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-7 h-7 rounded bg-green-100 flex items-center justify-center">
+                                    <i class="ri-file-excel-line text-green-600 text-xs"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-semibold text-neutral-900">Manual Uploads</p>
+                                    <p class="text-xs text-neutral-400">3 files · Oct 24</p>
+                                </div>
+                            </div>
+                            <span class="w-2 h-2 rounded-full bg-primary-500"></span>
+                        </div>
+                    </div>
+                    <a href="/api/copilot/prototype/09dc877b-2028-42d5-9657-9be56806fed4/integrations" class="flex items-center gap-1.5 mt-3 text-xs text-primary-600 font-semibold hover:text-primary-700 transition-colors">
+                        <i class="ri-settings-3-line"></i>Manage integrations
+                    </a>
+                </div>
+
+                <!-- Generated Reports Panel -->
+                <div class="p-5 border-b border-neutral-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="font-heading text-sm font-bold text-neutral-900">Generated Reports</h3>
+                        <a href="/api/copilot/prototype/09dc877b-2028-42d5-9657-9be56806fed4/reports" class="text-xs text-primary-600 font-semibold hover:text-primary-700 transition-colors">View all</a>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="report-download-card flex items-center gap-2.5 p-2.5 bg-neutral-50 rounded-small cursor-pointer hover:bg-neutral-100 transition-colors">
+                            <div class="w-8 h-8 rounded bg-red-50 flex items-center justify-center shrink-0">
+                                <i class="ri-file-pdf-2-line text-red-500 text-sm"></i>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-xs font-semibold text-neutral-900 truncate">Q3 Revenue Analysis</p>
+                                <p class="text-xs text-neutral-400">Generated just now · 8 pages</p>
+                            </div>
+                            <button onclick="downloadReport('Q3 Revenue Analysis')" class="w-7 h-7 rounded bg-neutral-200 flex items-center justify-center text-neutral-600 hover:bg-primary-100 hover:text-primary-600 transition-colors shrink-0">
+                                <i class="ri-download-line text-xs"></i>
+                            </button>
+                        </div>
+                        <div class="report-download-card flex items-center gap-2.5 p-2.5 bg-neutral-50 rounded-small cursor-pointer hover:bg-neutral-100 transition-colors">
+                            <div class="w-8 h-8 rounded bg-red-50 flex items-center justify-center shrink-0">
+                                <i class="ri-file-pdf-2-line text-red-500 text-sm"></i>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-xs font-semibold text-neutral-900 truncate">Sales Pipeline Report</p>
+                                <p class="text-xs text-neutral-400">Yesterday · 12 pages</p>
+                            </div>
+                            <button onclick="downloadReport('Sales Pipeline')" class="w-7 h-7 rounded bg-neutral-200 flex items-center justify-center text-neutral-600 hover:bg-primary-100 hover:text-primary-600 transition-colors shrink-0">
+                                <i class="ri-download-line text-xs"></i>
+                            </button>
+                        </div>
+                        <div class="report-download-card flex items-center gap-2.5 p-2.5 bg-neutral-50 rounded-small cursor-pointer hover:bg-neutral-100 transition-colors">
+                            <div class="w-8 h-8 rounded bg-red-50 flex items-center justify-center shrink-0">
+                                <i class="ri-file-pdf-2-line text-red-500 text-sm"></i>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-xs font-semibold text-neutral-900 truncate">Inventory Status</p>
+                                <p class="text-xs text-neutral-400">Oct 22 · 6 pages</p>
+                            </div>
+                            <button onclick="downloadReport('Inventory Status')" class="w-7 h-7 rounded bg-neutral-200 flex items-center justify-center text-neutral-600 hover:bg-primary-100 hover:text-primary-600 transition-colors shrink-0">
+                                <i class="ri-download-line text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Capabilities -->
+                <div class="p-5 border-b border-neutral-100">
+                    <h3 class="font-heading text-sm font-bold text-neutral-900 mb-3">Quick Actions</h3>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button onclick="sendSuggestion(this)" class="suggestion-chip flex flex-col items-center gap-1.5 p-3 bg-neutral-50 border border-neutral-200 rounded-small text-center hover:bg-primary-50 hover:border-primary-200 transition-all">
+                            <i class="ri-line-chart-line text-primary-500 text-lg"></i>
+                            <span class="text-xs font-medium text-neutral-700">Trend Analysis</span>
+                        </button>
+                        <button onclick="sendSuggestion(this)" class="suggestion-chip flex flex-col items-center gap-1.5 p-3 bg-neutral-50 border border-neutral-200 rounded-small text-center hover:bg-primary-50 hover:border-primary-200 transition-all">
+                            <i class="ri-file-pdf-line text-red-500 text-lg"></i>
+                            <span class="text-xs font-medium text-neutral-700">Generate PDF</span>
+                        </button>
+                        <button onclick="sendSuggestion(this)" class="suggestion-chip flex flex-col items-center gap-1.5 p-3 bg-neutral-50 border border-neutral-200 rounded-small text-center hover:bg-primary-50 hover:border-primary-200 transition-all">
+                            <i class="ri-search-eye-line text-blue-500 text-lg"></i>
+                            <span class="text-xs font-medium text-neutral-700">Find Anomalies</span>
+                        </button>
+                        <button onclick="sendSuggestion(this)" class="suggestion-chip flex flex-col items-center gap-1.5 p-3 bg-neutral-50 border border-neutral-200 rounded-small text-center hover:bg-primary-50 hover:border-primary-200 transition-all">
+                            <i class="ri-crystal-ball-line text-purple-500 text-lg"></i>
+                            <span class="text-xs font-medium text-neutral-700">Forecast</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- AI Usage -->
+                <div class="p-5">
+                    <h3 class="font-heading text-sm font-bold text-neutral-900 mb-3">AI Usage This Month</h3>
+                    <div class="space-y-3">
+                        <div>
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="text-xs text-neutral-600">Queries used</span>
+                                <span class="text-xs font-bold text-neutral-900">47 / 200</span>
+                            </div>
+                            <div class="w-full bg-neutral-100 rounded-full h-1.5">
+                                <div class="bg-primary-500 h-1.5 rounded-full" style="width:23.5%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="text-xs text-neutral-600">PDFs generated</span>
+                                <span class="text-xs font-bold text-neutral-900">12 / 50</span>
+                            </div>
+                            <div class="w-full bg-neutral-100 rounded-full h-1.5">
+                                <div class="bg-secondary-400 h-1.5 rounded-full" style="width:24%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="/api/copilot/prototype/09dc877b-2028-42d5-9657-9be56806fed4/profile-payment-settings" class="flex items-center gap-1.5 mt-3 text-xs text-primary-600 font-semibold hover:text-primary-700 transition-colors">
+                        <i class="ri-vip-crown-line"></i>Upgrade for unlimited queries
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+</div>
+
+<!-- Download Toast -->
+<div id="download-toast" class="fixed bottom-6 right-6 z-50 hidden">
+    <div class="bg-neutral-900 text-white px-5 py-3.5 rounded-large shadow-custom-hover flex items-center gap-3 min-w-[300px]">
+        <div class="w-8 h-8 rounded-full bg-primary-500 flex items-center justify-center shrink-0">
+            <i class="ri-file-pdf-2-line text-sm"></i>
+        </div>
+        <div>
+            <p id="toast-title" class="text-sm font-bold">Generating PDF...</p>
+            <p id="toast-sub" class="text-xs text-neutral-400">AI is compiling your report</p>
+        </div>
+        <button onclick="document.getElementById('download-toast').classList.add('hidden')" class="ml-auto text-neutral-400 hover:text-white transition-colors">
+            <i class="ri-close-line"></i>
+        </button>
+    </div>
+</div>
+
+<script>
+    function autoResize(el) {
+        el.style.height = 'auto';
+        el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+    }
+
+    function handleKeydown(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            sendMessage();
+        }
+    }
+
+    function sendMessage() {
+        const input = document.getElementById('chat-input');
+        const text = input.value.trim();
+        if (!text) return;
+
+        const messagesContainer = document.getElementById('chat-messages');
+
+        // Add user message
+        const userMsg = document.createElement('div');
+        userMsg.className = 'chat-message flex gap-3 max-w-3xl ml-auto flex-row-reverse';
+        userMsg.innerHTML = `
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="User" class="w-9 h-9 rounded-full shrink-0 mt-0.5">
+            <div class="flex-1">
+                <div class="flex items-center justify-end gap-2 mb-1.5">
+                    <span class="text-xs text-neutral-400">Just now</span>
+                    <span class="text-sm font-bold text-neutral-900">You</span>
+                </div>
+                <div class="bg-neutral-900 text-white rounded-large rounded-tr-small p-4 text-sm leading-relaxed">
+                    <p>${text}</p>
+                </div>
+            </div>
+        `;
+        messagesContainer.appendChild(userMsg);
+
+        input.value = '';
+        input.style.height = 'auto';
+
+        // Show typing indicator
+        const typingEl = document.getElementById('typing-indicator');
+        typingEl.classList.remove('hidden');
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+        // Simulate AI response
+        setTimeout(() => {
+            typingEl.classList.add('hidden');
+
+            const aiMsg = document.createElement('div');
+            aiMsg.className = 'chat-message flex gap-3 max-w-3xl';
+            aiMsg.innerHTML = `
+                <div class="w-9 h-9 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 shrink-0 mt-0.5">
+                    <i class="ri-robot-line text-sm"></i>
+                </div>
+                <div class="flex-1">
+                    <div class="flex items-center gap-2 mb-1.5">
+                        <span class="text-sm font-bold text-neutral-900">SmartViz AI</span>
+                        <span class="text-xs text-neutral-400">Just now</span>
+                    </div>
+                    <div class="bg-white rounded-large rounded-tl-small shadow-custom p-4 text-sm text-neutral-700 leading-relaxed">
+                        <p class="mb-3">I'm analyzing your data across all connected sources to answer: <strong class="text-neutral-900">"${text}"</strong></p>
+                        <p class="mb-4">Based on the latest data from Stripe, HubSpot, and Google Analytics, here's what I found:</p>
+                        <div class="bg-primary-50 rounded-small p-3 mb-4 border border-primary-100">
+                            <div class="flex items-start gap-2">
+                                <i class="ri-lightbulb-line text-primary-600 mt-0.5"></i>
+                                <p class="text-sm text-primary-800">This is a great question! The data shows strong positive signals. Your key metrics are trending upward with a 12% improvement over the previous period. I'd recommend focusing on the top-performing segments to maximize growth.</p>
+                            </div>
+                        </div>
+                        <div class="report-download-card bg-neutral-900 rounded-small p-3 flex items-center justify-between gap-3">
+                            <div class="flex items-center gap-3">
+                                <div class="w-9 h-9 rounded bg-primary-500/20 flex items-center justify-center">
+                                    <i class="ri-file-pdf-2-line text-primary-400 text-lg"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-white">Custom Analysis Report</p>
+                                    <p class="text-xs text-neutral-400">AI-generated · Ready to download</p>
+                                </div>
+                            </div>
+                            <button onclick="downloadReport('Custom Analysis')" class="flex items-center gap-1.5 px-3 py-2 bg-primary-500 text-white rounded-small text-xs font-bold hover:bg-primary-600 transition-colors shrink-0">
+                                <i class="ri-download-line"></i>PDF
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            messagesContainer.appendChild(aiMsg);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }, 1800);
+    }
+
+    function sendSuggestion(btn) {
+        const text = btn.textContent.trim().replace(/^[^\w]+/, '').trim();
+        const input = document.getElementById('chat-input');
+        input.value = text;
+        sendMessage();
+    }
+
+    function downloadReport(name) {
+        const toast = document.getElementById('download-toast');
+        const title = document.getElementById('toast-title');
+        const sub = document.getElementById('toast-sub');
+        title.textContent = 'Generating "' + name + '"...';
+        sub.textContent = 'AI is compiling your report';
+        toast.classList.remove('hidden');
+        setTimeout(() => {
+            title.textContent = 'PDF Ready!';
+            sub.textContent = name + '.pdf has been downloaded';
+        }, 2000);
+        setTimeout(() => {
+            toast.classList.add('hidden');
+        }, 5000);
+    }
+
+    function generatePDFFromChat() {
+        downloadReport('Current Conversation Summary');
+    }
+
+    function newChat() {
+        const messagesContainer = document.getElementById('chat-messages');
+        // Clear messages except typing indicator
+        const typingEl = document.getElementById('typing-indicator');
+        messagesContainer.innerHTML = '';
+        messagesContainer.appendChild(typingEl);
+        typingEl.classList.add('hidden');
+
+        // Add welcome message
+        const welcomeMsg = document.createElement('div');
+        welcomeMsg.className = 'chat-message flex gap-3 max-w-3xl';
+        welcomeMsg.innerHTML = `
+            <div class="w-9 h-9 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 shrink-0 mt-0.5">
+                <i class="ri-robot-line text-sm"></i>
+            </div>
+            <div class="flex-1">
+                <div class="flex items-center gap-2 mb-1.5">
+                    <span class="text-sm font-bold text-neutral-900">SmartViz AI</span>
+                    <span class="text-xs text-neutral-400">Just now</span>
+                </div>
+                <div class="bg-white rounded-large rounded-tl-small shadow-custom p-4 text-sm text-neutral-700 leading-relaxed">
+                    <p>👋 New conversation started! I'm ready to help you analyze your data. What would you like to explore?</p>
+                </div>
+            </div>
+        `;
+        messagesContainer.insertBefore(welcomeMsg, typingEl);
+    }
+</script>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

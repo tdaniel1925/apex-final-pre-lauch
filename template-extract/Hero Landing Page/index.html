@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hero Landing Page - Exported from UXMagic Copilot">
+    <title>Hero Landing Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['var(--font-heading-name)', 'sans-serif'],
+                        body: ['var(--font-body-name)', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            200: '#a7f3d0',
+                            300: '#6ee7b7',
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                        },
+                        secondary: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            200: '#fed7aa',
+                            300: '#fdba74',
+                            400: '#fb923c',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12',
+                        },
+                        neutral: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        },
+                        background: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                        }
+                    },
+                    spacing: {
+                        base: 'var(--space-base)',
+                    },
+                    borderRadius: {
+                        small: 'var(--radius-small)',
+                        large: 'var(--radius-large)',
+                    },
+                    boxShadow: {
+                        custom: 'var(--shadow-custom)',
+                        'custom-hover': 'var(--shadow-custom-hover)',
+                    },
+                }
+            }
+        }
+    
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+<!-- TOP NAVIGATION -->
+<nav class="bg-white/90 backdrop-blur-md border-b border-neutral-200 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <!-- Logo -->
+        <div class="flex items-center gap-3">
+            <div class="w-9 h-9 logo-mark rounded-small flex items-center justify-center text-white">
+                <i class="ri-bar-chart-box-fill text-lg"></i>
+            </div>
+            <span class="font-heading font-bold text-xl text-neutral-900 tracking-tight">SmartViz</span>
+        </div>
+
+        <!-- Nav Links -->
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/features-showcase" class="nav-link text-sm font-medium text-neutral-500">Features</a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/dashboard-preview" class="nav-link text-sm font-medium text-neutral-500">Dashboard</a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/chat-bot-reports-demo" class="nav-link text-sm font-medium text-neutral-500">AI Reports</a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/pricing-cta" class="nav-link text-sm font-medium text-neutral-500">Pricing</a>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="flex items-center gap-3">
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/dashboard-preview" class="hidden md:inline-flex items-center text-sm font-semibold text-neutral-600 hover:text-neutral-900 transition-colors">
+                Sign In
+            </a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/pricing-cta" class="inline-flex items-center gap-2 px-5 py-2.5 bg-neutral-900 text-white rounded-small text-sm font-semibold hover:bg-neutral-700 transition-colors shadow-custom">
+                Get Started Free
+                <i class="ri-arrow-right-line text-xs"></i>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero-gradient overflow-hidden max-h-[900px]">
+    <div class="max-w-7xl mx-auto px-6 pt-16 pb-0">
+
+        <!-- Top Badge -->
+        <div class="flex justify-center mb-8">
+            <div class="badge-pill inline-flex items-center gap-2 px-4 py-2 rounded-full">
+                <span class="w-2 h-2 rounded-full bg-primary-500 animate-pulse"></span>
+                <span class="text-xs font-semibold text-primary-700">New: AI-powered spreadsheet analysis is here</span>
+                <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/features-showcase" class="text-xs font-bold text-primary-600 flex items-center gap-1 hover:text-primary-700">
+                    Learn more <i class="ri-arrow-right-line"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Headline -->
+        <div class="text-center max-w-4xl mx-auto mb-6">
+            <h1 class="font-heading text-5xl md:text-6xl font-extrabold text-neutral-900 leading-tight tracking-tight mb-5" style="letter-spacing: var(--letter-spacing-heading);">
+                Turn Your Office Spreadsheets Into
+                <span class="relative inline-block">
+                    <span class="text-primary-500"> Smart Intelligence</span>
+                </span>
+            </h1>
+            <p class="text-lg md:text-xl text-neutral-500 leading-relaxed max-w-2xl mx-auto">
+                Upload any Excel or CSV file and instantly get beautiful dashboards, AI-powered insights, and automated reports — no coding required.
+            </p>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/pricing-cta" class="cta-primary inline-flex items-center gap-2.5 px-7 py-3.5 text-white rounded-small text-base font-bold shadow-custom">
+                <i class="ri-rocket-line"></i>
+                Start for Free — No Credit Card
+            </a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/dashboard-preview" class="cta-secondary inline-flex items-center gap-2.5 px-7 py-3.5 bg-white text-neutral-700 rounded-small text-base font-semibold border border-neutral-200 shadow-custom hover:bg-neutral-50">
+                <i class="ri-play-circle-line text-primary-500 text-lg"></i>
+                See Live Dashboard
+            </a>
+        </div>
+
+        <!-- Social Proof Row -->
+        <div class="flex items-center justify-center gap-6 mb-10">
+            <div class="flex -space-x-2">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=40&amp;h=40&amp;fit=facearea&amp;facepad=2&amp;q=80" alt="User" class="w-8 h-8 rounded-full border-2 border-white shadow-sm">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&amp;h=40&amp;fit=facearea&amp;facepad=2&amp;q=80" alt="User" class="w-8 h-8 rounded-full border-2 border-white shadow-sm">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&amp;h=40&amp;fit=facearea&amp;facepad=2&amp;q=80" alt="User" class="w-8 h-8 rounded-full border-2 border-white shadow-sm">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&amp;h=40&amp;fit=facearea&amp;facepad=2&amp;q=80" alt="User" class="w-8 h-8 rounded-full border-2 border-white shadow-sm">
+                <div class="w-8 h-8 rounded-full border-2 border-white bg-primary-500 flex items-center justify-center text-white text-xs font-bold shadow-sm">+</div>
+            </div>
+            <div class="flex items-center gap-1.5">
+                <div class="flex gap-0.5">
+                    <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                    <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                    <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                    <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                    <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                </div>
+                <span class="text-sm font-semibold text-neutral-700">4.9/5</span>
+                <span class="text-sm text-neutral-400">from 2,400+ teams</span>
+            </div>
+        </div>
+
+        <!-- APP SCREENSHOT MOCKUP -->
+        <div class="relative flex justify-center">
+            <!-- Glow effect behind mockup -->
+            <div class="absolute top-8 left-1/2 -translate-x-1/2 w-3/4 h-48 bg-primary-400 opacity-10 blur-3xl rounded-full pointer-events-none"></div>
+
+            <!-- Browser Chrome Mockup -->
+            <div class="relative w-full max-w-5xl glow-green rounded-large overflow-hidden border border-neutral-200 bg-white shadow-custom-hover">
+                <!-- Browser Bar -->
+                <div class="bg-neutral-100 border-b border-neutral-200 px-4 py-3 flex items-center gap-3">
+                    <div class="flex gap-1.5">
+                        <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                    </div>
+                    <div class="flex-1 bg-white rounded-small px-3 py-1.5 flex items-center gap-2 border border-neutral-200 max-w-sm mx-auto">
+                        <i class="ri-lock-line text-neutral-400 text-xs"></i>
+                        <span class="text-xs text-neutral-500 font-medium">app.smartviz.io/dashboard</span>
+                    </div>
+                    <div class="flex items-center gap-2 ml-auto">
+                        <div class="w-6 h-6 rounded bg-neutral-200 flex items-center justify-center"><i class="ri-refresh-line text-neutral-500 text-xs"></i></div>
+                    </div>
+                </div>
+
+                <!-- Dashboard Content Inside Mockup -->
+                <div class="flex" style="height: 480px; overflow: hidden;">
+
+                    <!-- Sidebar -->
+                    <div class="w-52 bg-white border-r border-neutral-100 flex flex-col shrink-0">
+                        <div class="p-4 flex items-center gap-2 border-b border-neutral-100">
+                            <div class="w-7 h-7 bg-neutral-900 rounded flex items-center justify-center text-white">
+                                <i class="ri-bar-chart-box-fill text-sm"></i>
+                            </div>
+                            <span class="font-heading font-bold text-sm text-neutral-900">SmartViz</span>
+                        </div>
+                        <nav class="p-3 space-y-0.5 flex-1">
+                            <div class="px-3 py-2 flex items-center gap-2 bg-neutral-900 text-white rounded-small">
+                                <i class="ri-dashboard-line text-xs"></i>
+                                <span class="text-xs font-semibold">Dashboard</span>
+                            </div>
+                            <div class="px-3 py-2 flex items-center gap-2 text-neutral-500 hover:bg-neutral-50 rounded-small">
+                                <i class="ri-file-excel-line text-xs"></i>
+                                <span class="text-xs font-medium">Data Sources</span>
+                            </div>
+                            <div class="px-3 py-2 flex items-center gap-2 text-neutral-500 hover:bg-neutral-50 rounded-small">
+                                <i class="ri-robot-line text-xs"></i>
+                                <span class="text-xs font-medium">AI Analysis</span>
+                                <span class="ml-auto bg-primary-100 text-primary-700 text-xs px-1.5 py-0.5 rounded-full font-bold" style="font-size:9px">NEW</span>
+                            </div>
+                            <div class="px-3 py-2 flex items-center gap-2 text-neutral-500 hover:bg-neutral-50 rounded-small">
+                                <i class="ri-file-chart-line text-xs"></i>
+                                <span class="text-xs font-medium">Reports</span>
+                            </div>
+                            <div class="px-3 py-2 flex items-center gap-2 text-neutral-500 hover:bg-neutral-50 rounded-small">
+                                <i class="ri-links-line text-xs"></i>
+                                <span class="text-xs font-medium">Integrations</span>
+                            </div>
+                        </nav>
+                        <div class="p-3 border-t border-neutral-100">
+                            <div class="flex items-center gap-2">
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=32&amp;h=32&amp;fit=facearea&amp;facepad=2&amp;q=80" alt="User" class="w-7 h-7 rounded-full border border-neutral-200">
+                                <div>
+                                    <p class="text-xs font-bold text-neutral-900" style="font-size:10px">Sarah Wilson</p>
+                                    <p class="text-neutral-400" style="font-size:9px">Pro Plan</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main Dashboard Area -->
+                    <div class="flex-1 bg-background-50 overflow-hidden flex flex-col">
+                        <!-- Dashboard Header -->
+                        <div class="bg-white border-b border-neutral-100 px-5 py-3 flex items-center justify-between shrink-0">
+                            <div>
+                                <h2 class="font-heading font-bold text-neutral-900 text-sm">Smart Office Overview</h2>
+                                <p class="text-neutral-400" style="font-size:10px">Q4 2024 · office_data_q4.xlsx · Last updated 2m ago</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="flex items-center gap-1.5 px-2.5 py-1 bg-primary-50 rounded-full border border-primary-100">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-primary-500 animate-pulse"></span>
+                                    <span class="text-primary-700 font-semibold" style="font-size:10px">Live Sync</span>
+                                </div>
+                                <button class="px-3 py-1.5 bg-neutral-900 text-white rounded-small text-xs font-semibold flex items-center gap-1">
+                                    <i class="ri-download-line" style="font-size:10px"></i>Export
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex-1 p-4 overflow-hidden">
+                            <!-- KPI Row -->
+                            <div class="grid grid-cols-4 gap-3 mb-4">
+                                <div class="bg-white rounded-large p-3 shadow-custom border border-neutral-100">
+                                    <div class="flex items-center justify-between mb-1.5">
+                                        <span class="text-neutral-500" style="font-size:10px">Total Revenue</span>
+                                        <div class="w-6 h-6 rounded-full bg-primary-50 flex items-center justify-center">
+                                            <i class="ri-money-dollar-circle-line text-primary-600" style="font-size:11px"></i>
+                                        </div>
+                                    </div>
+                                    <p class="font-heading font-bold text-neutral-900 text-base">$2.4M</p>
+                                    <div class="flex items-center gap-1 mt-1">
+                                        <i class="ri-arrow-up-line text-primary-500" style="font-size:10px"></i>
+                                        <span class="text-primary-600 font-semibold" style="font-size:10px">+15.2%</span>
+                                        <span class="text-neutral-400" style="font-size:10px">vs last Q</span>
+                                    </div>
+                                </div>
+                                <div class="bg-white rounded-large p-3 shadow-custom border border-neutral-100">
+                                    <div class="flex items-center justify-between mb-1.5">
+                                        <span class="text-neutral-500" style="font-size:10px">Active Employees</span>
+                                        <div class="w-6 h-6 rounded-full bg-blue-50 flex items-center justify-center">
+                                            <i class="ri-team-line text-blue-600" style="font-size:11px"></i>
+                                        </div>
+                                    </div>
+                                    <p class="font-heading font-bold text-neutral-900 text-base">248</p>
+                                    <div class="flex items-center gap-1 mt-1">
+                                        <i class="ri-arrow-up-line text-primary-500" style="font-size:10px"></i>
+                                        <span class="text-primary-600 font-semibold" style="font-size:10px">+12</span>
+                                        <span class="text-neutral-400" style="font-size:10px">this month</span>
+                                    </div>
+                                </div>
+                                <div class="bg-white rounded-large p-3 shadow-custom border border-neutral-100">
+                                    <div class="flex items-center justify-between mb-1.5">
+                                        <span class="text-neutral-500" style="font-size:10px">Office Utilization</span>
+                                        <div class="w-6 h-6 rounded-full bg-secondary-50 flex items-center justify-center">
+                                            <i class="ri-building-line text-secondary-600" style="font-size:11px"></i>
+                                        </div>
+                                    </div>
+                                    <p class="font-heading font-bold text-neutral-900 text-base">78%</p>
+                                    <div class="flex items-center gap-1 mt-1">
+                                        <i class="ri-arrow-down-line text-red-400" style="font-size:10px"></i>
+                                        <span class="text-red-500 font-semibold" style="font-size:10px">-3.1%</span>
+                                        <span class="text-neutral-400" style="font-size:10px">vs last wk</span>
+                                    </div>
+                                </div>
+                                <div class="bg-white rounded-large p-3 shadow-custom border border-neutral-100">
+                                    <div class="flex items-center justify-between mb-1.5">
+                                        <span class="text-neutral-500" style="font-size:10px">Dept. Budgets</span>
+                                        <div class="w-6 h-6 rounded-full bg-purple-50 flex items-center justify-center">
+                                            <i class="ri-pie-chart-line text-purple-600" style="font-size:11px"></i>
+                                        </div>
+                                    </div>
+                                    <p class="font-heading font-bold text-neutral-900 text-base">94.2%</p>
+                                    <div class="flex items-center gap-1 mt-1">
+                                        <i class="ri-checkbox-circle-line text-primary-500" style="font-size:10px"></i>
+                                        <span class="text-primary-600 font-semibold" style="font-size:10px">On track</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Charts + Table Row -->
+                            <div class="grid grid-cols-3 gap-3 mb-3">
+                                <!-- Revenue Chart -->
+                                <div class="col-span-2 bg-white rounded-large p-3 shadow-custom border border-neutral-100">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <div>
+                                            <p class="font-heading font-bold text-neutral-900 text-xs">Monthly Revenue Trend</p>
+                                            <p class="text-neutral-400" style="font-size:9px">From office_data_q4.xlsx · Sheet 1</p>
+                                        </div>
+                                        <div class="flex gap-1">
+                                            <span class="flex items-center gap-1 text-neutral-400" style="font-size:9px"><span class="w-2 h-2 rounded-full bg-primary-500 inline-block"></span>Revenue</span>
+                                            <span class="flex items-center gap-1 text-neutral-400 ml-2" style="font-size:9px"><span class="w-2 h-2 rounded-full bg-secondary-400 inline-block"></span>Expenses</span>
+                                        </div>
+                                    </div>
+                                    <!-- SVG Mini Chart -->
+                                    <div class="h-24 w-full overflow-hidden">
+                                        <svg viewBox="0 0 300 80" class="w-full h-full" preserveAspectRatio="none">
+                                            <defs>
+                                                <linearGradient id="revGrad" x1="0" y1="0" x2="0" y2="1">
+                                                    <stop offset="0%" stop-color="#10b981" stop-opacity="0.2"></stop>
+                                                    <stop offset="100%" stop-color="#10b981" stop-opacity="0"></stop>
+                                                </linearGradient>
+                                                <linearGradient id="expGrad" x1="0" y1="0" x2="0" y2="1">
+                                                    <stop offset="0%" stop-color="#fb923c" stop-opacity="0.15"></stop>
+                                                    <stop offset="100%" stop-color="#fb923c" stop-opacity="0"></stop>
+                                                </linearGradient>
+                                            </defs>
+                                            <!-- Grid lines -->
+                                            <line x1="0" y1="20" x2="300" y2="20" stroke="#f1f5f9" stroke-width="1"></line>
+                                            <line x1="0" y1="40" x2="300" y2="40" stroke="#f1f5f9" stroke-width="1"></line>
+                                            <line x1="0" y1="60" x2="300" y2="60" stroke="#f1f5f9" stroke-width="1"></line>
+                                            <!-- Revenue area -->
+                                            <polygon points="0,65 30,58 60,60 90,48 120,50 150,38 180,35 210,30 240,25 270,18 300,15 300,80 0,80" fill="url(#revGrad)"></polygon>
+                                            <polyline points="0,65 30,58 60,60 90,48 120,50 150,38 180,35 210,30 240,25 270,18 300,15" fill="none" stroke="#10b981" stroke-width="2" stroke-linejoin="round"></polyline>
+                                            <!-- Expense area -->
+                                            <polygon points="0,72 30,68 60,70 90,64 120,65 150,60 180,58 210,55 240,52 270,48 300,46 300,80 0,80" fill="url(#expGrad)"></polygon>
+                                            <polyline points="0,72 30,68 60,70 90,64 120,65 150,60 180,58 210,55 240,52 270,48 300,46" fill="none" stroke="#fb923c" stroke-width="1.5" stroke-linejoin="round"></polyline>
+                                            <!-- Data points -->
+                                            <circle cx="300" cy="15" r="3" fill="white" stroke="#10b981" stroke-width="1.5"></circle>
+                                            <circle cx="270" cy="18" r="3" fill="white" stroke="#10b981" stroke-width="1.5"></circle>
+                                        </svg>
+                                    </div>
+                                    <!-- X axis labels -->
+                                    <div class="flex justify-between mt-1 px-1">
+                                        <span class="text-neutral-400" style="font-size:8px">Jan</span>
+                                        <span class="text-neutral-400" style="font-size:8px">Mar</span>
+                                        <span class="text-neutral-400" style="font-size:8px">May</span>
+                                        <span class="text-neutral-400" style="font-size:8px">Jul</span>
+                                        <span class="text-neutral-400" style="font-size:8px">Sep</span>
+                                        <span class="text-neutral-400" style="font-size:8px">Nov</span>
+                                    </div>
+                                </div>
+
+                                <!-- Department Breakdown -->
+                                <div class="bg-white rounded-large p-3 shadow-custom border border-neutral-100">
+                                    <p class="font-heading font-bold text-neutral-900 text-xs mb-2">Dept. Budget Usage</p>
+                                    <div class="space-y-2">
+                                        <div>
+                                            <div class="flex justify-between mb-0.5">
+                                                <span class="text-neutral-600" style="font-size:9px">Engineering</span>
+                                                <span class="font-semibold text-neutral-900" style="font-size:9px">92%</span>
+                                            </div>
+                                            <div class="h-1.5 bg-neutral-100 rounded-full overflow-hidden">
+                                                <div class="h-full bg-primary-500 rounded-full" style="width:92%"></div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="flex justify-between mb-0.5">
+                                                <span class="text-neutral-600" style="font-size:9px">Marketing</span>
+                                                <span class="font-semibold text-neutral-900" style="font-size:9px">78%</span>
+                                            </div>
+                                            <div class="h-1.5 bg-neutral-100 rounded-full overflow-hidden">
+                                                <div class="h-full bg-blue-500 rounded-full" style="width:78%"></div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="flex justify-between mb-0.5">
+                                                <span class="text-neutral-600" style="font-size:9px">Sales</span>
+                                                <span class="font-semibold text-neutral-900" style="font-size:9px">105%</span>
+                                            </div>
+                                            <div class="h-1.5 bg-neutral-100 rounded-full overflow-hidden">
+                                                <div class="h-full bg-secondary-500 rounded-full" style="width:100%"></div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="flex justify-between mb-0.5">
+                                                <span class="text-neutral-600" style="font-size:9px">Operations</span>
+                                                <span class="font-semibold text-neutral-900" style="font-size:9px">61%</span>
+                                            </div>
+                                            <div class="h-1.5 bg-neutral-100 rounded-full overflow-hidden">
+                                                <div class="h-full bg-purple-500 rounded-full" style="width:61%"></div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="flex justify-between mb-0.5">
+                                                <span class="text-neutral-600" style="font-size:9px">HR</span>
+                                                <span class="font-semibold text-neutral-900" style="font-size:9px">84%</span>
+                                            </div>
+                                            <div class="h-1.5 bg-neutral-100 rounded-full overflow-hidden">
+                                                <div class="h-full bg-teal-500 rounded-full" style="width:84%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- AI Insight Chip -->
+                                    <div class="mt-3 p-2 bg-primary-50 rounded-small border border-primary-100 flex items-start gap-1.5">
+                                        <i class="ri-sparkling-line text-primary-600 shrink-0" style="font-size:11px; margin-top:1px"></i>
+                                        <p class="text-primary-700" style="font-size:9px; line-height:1.4">Sales dept. exceeded budget by 5%. AI suggests reallocating from Operations.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Spreadsheet Data Table -->
+                            <div class="bg-white rounded-large shadow-custom border border-neutral-100 overflow-hidden">
+                                <div class="px-3 py-2 border-b border-neutral-100 flex items-center justify-between">
+                                    <div class="flex items-center gap-2">
+                                        <i class="ri-file-excel-line text-green-600" style="font-size:12px"></i>
+                                        <span class="font-heading font-bold text-neutral-900" style="font-size:11px">office_data_q4.xlsx</span>
+                                        <span class="px-1.5 py-0.5 bg-neutral-100 text-neutral-500 rounded" style="font-size:9px">Sheet 1 of 4</span>
+                                    </div>
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="text-neutral-400" style="font-size:9px">1,248 rows · 12 columns</span>
+                                        <div class="w-5 h-5 rounded bg-neutral-100 flex items-center justify-center"><i class="ri-filter-line text-neutral-500" style="font-size:10px"></i></div>
+                                    </div>
+                                </div>
+                                <div class="overflow-x-auto">
+                                    <table class="w-full text-left">
+                                        <thead class="bg-neutral-50">
+                                            <tr>
+                                                <th class="px-3 py-1.5 text-neutral-500 font-semibold border-b border-neutral-100" style="font-size:9px">Employee ID</th>
+                                                <th class="px-3 py-1.5 text-neutral-500 font-semibold border-b border-neutral-100" style="font-size:9px">Name</th>
+                                                <th class="px-3 py-1.5 text-neutral-500 font-semibold border-b border-neutral-100" style="font-size:9px">Department</th>
+                                                <th class="px-3 py-1.5 text-neutral-500 font-semibold border-b border-neutral-100" style="font-size:9px">Salary</th>
+                                                <th class="px-3 py-1.5 text-neutral-500 font-semibold border-b border-neutral-100" style="font-size:9px">Performance</th>
+                                                <th class="px-3 py-1.5 text-neutral-500 font-semibold border-b border-neutral-100" style="font-size:9px">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-neutral-50">
+                                            <tr class="hover:bg-neutral-50/50">
+                                                <td class="px-3 py-1.5 text-neutral-500" style="font-size:9px">EMP-001</td>
+                                                <td class="px-3 py-1.5 font-medium text-neutral-800" style="font-size:9px">Sarah Wilson</td>
+                                                <td class="px-3 py-1.5 text-neutral-600" style="font-size:9px">Engineering</td>
+                                                <td class="px-3 py-1.5 font-semibold text-neutral-900" style="font-size:9px">$98,500</td>
+                                                <td class="px-3 py-1.5" style="font-size:9px"><span class="px-1.5 py-0.5 bg-primary-50 text-primary-700 rounded font-bold" style="font-size:8px">Excellent</span></td>
+                                                <td class="px-3 py-1.5" style="font-size:9px"><span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span><span class="text-neutral-600">Active</span></span></td>
+                                            </tr>
+                                            <tr class="hover:bg-neutral-50/50">
+                                                <td class="px-3 py-1.5 text-neutral-500" style="font-size:9px">EMP-002</td>
+                                                <td class="px-3 py-1.5 font-medium text-neutral-800" style="font-size:9px">James Carter</td>
+                                                <td class="px-3 py-1.5 text-neutral-600" style="font-size:9px">Sales</td>
+                                                <td class="px-3 py-1.5 font-semibold text-neutral-900" style="font-size:9px">$72,000</td>
+                                                <td class="px-3 py-1.5" style="font-size:9px"><span class="px-1.5 py-0.5 bg-blue-50 text-blue-700 rounded font-bold" style="font-size:8px">Good</span></td>
+                                                <td class="px-3 py-1.5" style="font-size:9px"><span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span><span class="text-neutral-600">Active</span></span></td>
+                                            </tr>
+                                            <tr class="hover:bg-neutral-50/50">
+                                                <td class="px-3 py-1.5 text-neutral-500" style="font-size:9px">EMP-003</td>
+                                                <td class="px-3 py-1.5 font-medium text-neutral-800" style="font-size:9px">Priya Sharma</td>
+                                                <td class="px-3 py-1.5 text-neutral-600" style="font-size:9px">Marketing</td>
+                                                <td class="px-3 py-1.5 font-semibold text-neutral-900" style="font-size:9px">$85,200</td>
+                                                <td class="px-3 py-1.5" style="font-size:9px"><span class="px-1.5 py-0.5 bg-primary-50 text-primary-700 rounded font-bold" style="font-size:8px">Excellent</span></td>
+                                                <td class="px-3 py-1.5" style="font-size:9px"><span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span><span class="text-neutral-600">Active</span></span></td>
+                                            </tr>
+                                            <tr class="hover:bg-neutral-50/50">
+                                                <td class="px-3 py-1.5 text-neutral-500" style="font-size:9px">EMP-004</td>
+                                                <td class="px-3 py-1.5 font-medium text-neutral-800" style="font-size:9px">Tom Bradley</td>
+                                                <td class="px-3 py-1.5 text-neutral-600" style="font-size:9px">Operations</td>
+                                                <td class="px-3 py-1.5 font-semibold text-neutral-900" style="font-size:9px">$61,800</td>
+                                                <td class="px-3 py-1.5" style="font-size:9px"><span class="px-1.5 py-0.5 bg-yellow-50 text-yellow-700 rounded font-bold" style="font-size:8px">Average</span></td>
+                                                <td class="px-3 py-1.5" style="font-size:9px"><span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-yellow-400"></span><span class="text-neutral-600">On Leave</span></span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TRUST LOGOS SECTION -->
+<section class="bg-white border-y border-neutral-100 py-10 max-h-[160px]">
+    <div class="max-w-7xl mx-auto px-6">
+        <p class="text-center text-xs font-semibold text-neutral-400 uppercase tracking-widest mb-7">Trusted by teams at</p>
+        <div class="flex flex-wrap items-center justify-center gap-10">
+            <div class="trust-logo flex items-center gap-2">
+                <div class="w-6 h-6 bg-neutral-800 rounded flex items-center justify-center"><i class="ri-amazon-line text-white text-xs"></i></div>
+                <span class="font-heading font-bold text-neutral-400 text-sm">Amazon</span>
+            </div>
+            <div class="trust-logo flex items-center gap-2">
+                <div class="w-6 h-6 bg-blue-600 rounded flex items-center justify-center"><i class="ri-microsoft-line text-white text-xs"></i></div>
+                <span class="font-heading font-bold text-neutral-400 text-sm">Microsoft</span>
+            </div>
+            <div class="trust-logo flex items-center gap-2">
+                <div class="w-6 h-6 bg-neutral-700 rounded flex items-center justify-center"><i class="ri-slack-line text-white text-xs"></i></div>
+                <span class="font-heading font-bold text-neutral-400 text-sm">Slack</span>
+            </div>
+            <div class="trust-logo flex items-center gap-2">
+                <div class="w-6 h-6 bg-blue-500 rounded flex items-center justify-center"><i class="ri-salesforce-line text-white text-xs"></i></div>
+                <span class="font-heading font-bold text-neutral-400 text-sm">Salesforce</span>
+            </div>
+            <div class="trust-logo flex items-center gap-2">
+                <div class="w-6 h-6 bg-red-500 rounded flex items-center justify-center"><i class="ri-youtube-line text-white text-xs"></i></div>
+                <span class="font-heading font-bold text-neutral-400 text-sm">YouTube</span>
+            </div>
+            <div class="trust-logo flex items-center gap-2">
+                <div class="w-6 h-6 bg-neutral-900 rounded flex items-center justify-center"><i class="ri-github-line text-white text-xs"></i></div>
+                <span class="font-heading font-bold text-neutral-400 text-sm">GitHub</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- VALUE PROPS STRIP -->
+<section class="bg-background-50 py-14 max-h-[320px]">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="flex items-start gap-4">
+                <div class="w-12 h-12 rounded-large bg-primary-50 border border-primary-100 flex items-center justify-center shrink-0">
+                    <i class="ri-upload-cloud-2-line text-primary-600 text-xl"></i>
+                </div>
+                <div>
+                    <h3 class="font-heading font-bold text-neutral-900 text-base mb-1">Upload Any Spreadsheet</h3>
+                    <p class="text-sm text-neutral-500 leading-relaxed">Drag &amp; drop Excel, CSV, or Google Sheets. SmartViz auto-detects columns, data types, and relationships instantly.</p>
+                </div>
+            </div>
+            <div class="flex items-start gap-4">
+                <div class="w-12 h-12 rounded-large bg-secondary-50 border border-secondary-100 flex items-center justify-center shrink-0">
+                    <i class="ri-robot-2-line text-secondary-600 text-xl"></i>
+                </div>
+                <div>
+                    <h3 class="font-heading font-bold text-neutral-900 text-base mb-1">AI-Powered Insights</h3>
+                    <p class="text-sm text-neutral-500 leading-relaxed">Ask questions in plain English. Our AI analyzes your data and surfaces trends, anomalies, and actionable recommendations.</p>
+                </div>
+            </div>
+            <div class="flex items-start gap-4">
+                <div class="w-12 h-12 rounded-large bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0">
+                    <i class="ri-file-chart-2-line text-blue-600 text-xl"></i>
+                </div>
+                <div>
+                    <h3 class="font-heading font-bold text-neutral-900 text-base mb-1">Auto-Generated Reports</h3>
+                    <p class="text-sm text-neutral-500 leading-relaxed">Schedule beautiful PDF and CSV reports to be delivered to your team automatically — weekly, monthly, or on demand.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- BOTTOM CTA STRIP -->
+<section class="bg-neutral-900 py-14 max-h-[220px]">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div>
+            <h2 class="font-heading text-2xl font-bold text-white mb-1">Ready to transform your spreadsheets?</h2>
+            <p class="text-neutral-400 text-sm">Join 2,400+ teams already using SmartViz. Free forever for small teams.</p>
+        </div>
+        <div class="flex items-center gap-3 shrink-0">
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/features-showcase" class="inline-flex items-center gap-2 px-5 py-2.5 bg-white/10 text-white rounded-small text-sm font-semibold border border-white/10 hover:bg-white/20 transition-colors">
+                <i class="ri-eye-line"></i>
+                See All Features
+            </a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/pricing-cta" class="inline-flex items-center gap-2 px-5 py-2.5 bg-primary-500 text-white rounded-small text-sm font-bold hover:bg-primary-600 transition-colors shadow-custom">
+                <i class="ri-rocket-line"></i>
+                Get Started Free
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-white border-t border-neutral-100 py-8 max-h-[120px]">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-2">
+            <div class="w-7 h-7 logo-mark rounded flex items-center justify-center text-white">
+                <i class="ri-bar-chart-box-fill text-sm"></i>
+            </div>
+            <span class="font-heading font-bold text-neutral-900 text-sm">SmartViz</span>
+            <span class="text-neutral-300 mx-2">·</span>
+            <span class="text-xs text-neutral-400">© 2024 SmartViz Inc.</span>
+        </div>
+        <div class="flex items-center gap-6">
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/features-showcase" class="text-xs text-neutral-500 hover:text-neutral-900 transition-colors">Features</a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/dashboard-preview" class="text-xs text-neutral-500 hover:text-neutral-900 transition-colors">Dashboard</a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/chat-bot-reports-demo" class="text-xs text-neutral-500 hover:text-neutral-900 transition-colors">AI Reports</a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/pricing-cta" class="text-xs text-neutral-500 hover:text-neutral-900 transition-colors">Pricing</a>
+        </div>
+    </div>
+</footer>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>
