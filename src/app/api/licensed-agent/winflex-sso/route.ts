@@ -44,7 +44,7 @@ export async function GET() {
 <LifeLink xmlns="urn:lifelink-schema">
   <LL LoginType="WF_AGENCY">
     <UserName>${escapeXml(distributor.email)}</UserName>
-    <WFCompanyCode>{APEX}</WFCompanyCode>
+    <WFCompanyCode>APEX</WFCompanyCode>
     <WFCompanyPassword>3Markagents</WFCompanyPassword>
     <InterfaceType>GUI</InterfaceType>
     <OutputType>URL</OutputType>
