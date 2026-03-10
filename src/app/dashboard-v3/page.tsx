@@ -114,7 +114,7 @@ export default async function DashboardV3Page() {
   const dashboardData = {
     distributor: dist,
     stats: {
-      repNumber: dist.rep_number,
+      repNumber: dist.rep_number || 0,
       level: dist.matrix_depth,
       personalEnrollees: enrolleeStats.personalEnrollees || 0,
       organizationEnrollees: enrolleeStats.organizationEnrollees || 0,
