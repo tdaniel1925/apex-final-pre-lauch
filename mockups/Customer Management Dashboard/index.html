@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Customer Management Dashboard - Exported from UXMagic Copilot">
+    <title>Customer Management Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            50: '#E8EAF2',
+                            100: '#C5CCDF',
+                            200: '#9EAACC',
+                            300: '#7689B9',
+                            400: '#4F67A6',
+                            500: '#274693',
+                            600: '#1B3A7D',
+                            700: '#152D61',
+                            800: '#0F2045',
+                            900: '#091329',
+                        },
+                        brandRed: {
+                            50: '#FBE8E9',
+                            100: '#F5C5C7',
+                            200: '#EE9EA1',
+                            300: '#E7767B',
+                            400: '#E04F55',
+                            500: '#D9272F',
+                            600: '#C7181F',
+                            700: '#9B1318',
+                            800: '#6F0D11',
+                            900: '#42080A',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+<div class="flex" style="height: auto; min-height: 100vh;">
+    <!-- Sidebar -->
+    <aside class="hidden md:flex flex-col w-64 glass-dark text-white z-20" style="min-height: 100vh;">
+        <div class="p-6 flex items-center gap-3 border-b border-white/10">
+            <div class="w-8 h-8 rounded-lg bg-brandRed-600 flex items-center justify-center shadow-lg shadow-brandRed-600/30">
+                <i class="fa-solid fa-chart-line text-white text-sm"></i>
+            </div>
+            <span class="text-xl font-bold tracking-tight">ASCEND</span>
+        </div>
+        <nav class="flex-1 overflow-y-auto py-6 px-3 space-y-1">
+            <a href="/api/copilot/prototype/9869d0d4-73b5-4220-b922-fdca48d9d915/customer-management-dashboard" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-grid-2 w-5 text-center"></i>
+                <span class="font-medium">Dashboard</span>
+            </a>
+            <a href="/api/copilot/prototype/9869d0d4-73b5-4220-b922-fdca48d9d915/customer-management-dashboard" class="flex items-center gap-3 px-4 py-3 bg-white/10 text-white rounded-xl transition-all shadow-sm border border-white/5">
+                <i class="fa-solid fa-users w-5 text-center"></i>
+                <span class="font-medium">Customers</span>
+            </a>
+            <a href="/api/copilot/prototype/9869d0d4-73b5-4220-b922-fdca48d9d915/customer-management-dashboard" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-wallet w-5 text-center"></i>
+                <span class="font-medium">Commissions</span>
+            </a>
+            <a href="/api/copilot/prototype/9869d0d4-73b5-4220-b922-fdca48d9d915/customer-management-dashboard" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-sitemap w-5 text-center"></i>
+                <span class="font-medium">Genealogy</span>
+            </a>
+            <a href="/api/copilot/prototype/9869d0d4-73b5-4220-b922-fdca48d9d915/customer-management-dashboard" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-store w-5 text-center"></i>
+                <span class="font-medium">Shop</span>
+            </a>
+            <a href="/api/copilot/prototype/9869d0d4-73b5-4220-b922-fdca48d9d915/customer-management-dashboard" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-graduation-cap w-5 text-center"></i>
+                <span class="font-medium">Training</span>
+            </a>
+        </nav>
+        <div class="p-4 border-t border-white/10">
+            <div class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/5">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Profile" class="w-10 h-10 rounded-full border-2 border-brandRed-500">
+                <div class="flex-1 min-w-0">
+                    <p class="text-sm font-semibold text-white truncate">Sarah Jenkins</p>
+                    <p class="text-xs text-gray-400 truncate">Diamond Director</p>
+                </div>
+                <button class="text-gray-400 hover:text-white"><i class="fa-solid fa-gear"></i></button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col relative" style="min-height: 100vh;">
+
+        <!-- Mobile Header -->
+        <div class="md:hidden glass sticky top-0 z-30 px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-navy-600 flex items-center justify-center">
+                    <i class="fa-solid fa-chart-line text-white text-xs"></i>
+                </div>
+                <span class="text-lg font-bold text-navy-800">ASCEND</span>
+            </div>
+            <button class="text-navy-600 p-2"><i class="fa-solid fa-bars text-xl"></i></button>
+        </div>
+
+        <!-- Page Header -->
+        <div class="px-6 lg:px-10 pt-8 pb-4">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h1 class="text-2xl font-bold text-navy-900">Customer Management</h1>
+                    <p class="text-gray-500 text-sm mt-1">Track retail customers, CAB status, and renewal health — <span class="font-semibold text-navy-600">June 2024</span></p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="glass px-3 py-2 rounded-lg flex items-center gap-2">
+                        <i class="fa-solid fa-magnifying-glass text-navy-400 text-sm"></i>
+                        <input type="text" placeholder="Search customers..." class="bg-transparent text-sm text-navy-700 placeholder-gray-400 focus:outline-none w-40">
+                    </div>
+                    <button class="glass px-4 py-2 rounded-lg text-sm font-medium text-navy-600 hover:bg-white transition-colors">
+                        <i class="fa-solid fa-download mr-2"></i> Export
+                    </button>
+                    <button onclick="document.getElementById('addCustomerModal').classList.add('active')" class="bg-brandRed-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-brandRed-700 transition-colors shadow-lg shadow-brandRed-600/20 flex items-center gap-2">
+                        <i class="fa-solid fa-plus"></i> Add Customer
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- KPI Bar -->
+        <div class="px-6 lg:px-10 pb-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+                <!-- Renewal Rate Meter -->
+                <div class="glass rounded-2xl p-5 flex flex-col items-center">
+                    <div class="flex items-center justify-between w-full mb-3">
+                        <div>
+                            <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Renewal Rate</p>
+                            <p class="text-xs text-gray-400 mt-0.5">Month-over-month</p>
+                        </div>
+                        <div class="w-8 h-8 rounded-xl kpi-card-gradient-blue flex items-center justify-center">
+                            <i class="fa-solid fa-rotate text-white text-xs"></i>
+                        </div>
+                    </div>
+                    <div class="relative" style="width:110px;height:70px;overflow:hidden;">
+                        <svg viewBox="0 0 120 70" width="110" height="70">
+                            <!-- Track arc (half circle) -->
+                            <path d="M10,65 A50,50 0 0,1 110,65" fill="none" stroke="#e2e8f0" stroke-width="12" stroke-linecap="round"></path>
+                            <!-- Fill arc: 78% of 180deg -->
+                            <path d="M10,65 A50,50 0 0,1 110,65" fill="none" stroke="#1B3A7D" stroke-width="12" stroke-linecap="round" stroke-dasharray="125 161" stroke-dashoffset="0"></path>
+                            <!-- Needle dot -->
+                            <circle cx="60" cy="65" r="5" fill="#1B3A7D"></circle>
+                            <!-- Value -->
+                            <text x="60" y="52" text-anchor="middle" font-size="14" font-weight="700" fill="#0F2045" font-family="Inter">78%</text>
+                        </svg>
+                    </div>
+                    <div class="flex justify-between w-full mt-1">
+                        <span class="text-xs text-gray-400">0%</span>
+                        <span class="text-xs font-bold text-navy-700">Target: 80%</span>
+                        <span class="text-xs text-gray-400">100%</span>
+                    </div>
+                    <div class="mt-2 flex items-center gap-1.5">
+                        <span class="text-xs font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full">2% below target</span>
+                    </div>
+                </div>
+
+                <!-- Retail Customer Count vs PVB Threshold -->
+                <div class="glass rounded-2xl p-5 flex flex-col">
+                    <div class="flex items-center justify-between mb-3">
+                        <div>
+                            <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Retail Customers</p>
+                            <p class="text-xs text-gray-400 mt-0.5">vs PVB Threshold</p>
+                        </div>
+                        <div class="w-8 h-8 rounded-xl kpi-card-gradient-red flex items-center justify-center">
+                            <i class="fa-solid fa-user-group text-white text-xs"></i>
+                        </div>
+                    </div>
+                    <div class="flex items-end gap-3 mb-3">
+                        <div>
+                            <p class="text-3xl font-bold text-navy-900">14</p>
+                            <p class="text-xs text-gray-500">Active customers</p>
+                        </div>
+                        <div class="text-gray-300 text-lg font-light mb-1">/</div>
+                        <div>
+                            <p class="text-xl font-bold text-gray-400">10</p>
+                            <p class="text-xs text-gray-400">PVB threshold</p>
+                        </div>
+                    </div>
+                    <div class="w-full bg-gray-100 rounded-full h-2.5 overflow-hidden mb-2">
+                        <div class="bg-gradient-to-r from-brandRed-600 to-brandRed-400 h-2.5 rounded-full" style="width:100%"></div>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs text-gray-500">Threshold met</span>
+                        <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">+4 over</span>
+                    </div>
+                </div>
+
+                <!-- CAB Eligible Customers -->
+                <div class="glass rounded-2xl p-5 flex flex-col">
+                    <div class="flex items-center justify-between mb-3">
+                        <div>
+                            <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide">CAB Eligible</p>
+                            <p class="text-xs text-gray-400 mt-0.5">Within day-60 window</p>
+                        </div>
+                        <div class="w-8 h-8 rounded-xl kpi-card-gradient-emerald flex items-center justify-center">
+                            <i class="fa-solid fa-star text-white text-xs"></i>
+                        </div>
+                    </div>
+                    <p class="text-3xl font-bold text-navy-900 mb-1">3 <span class="text-base font-medium text-gray-400">/ 14</span></p>
+                    <p class="text-xs text-gray-500 mb-3">Customers in CAB window</p>
+                    <div class="flex items-center gap-2">
+                        <div class="flex-1 bg-gray-100 rounded-full h-2 overflow-hidden">
+                            <div class="bg-emerald-500 h-2 rounded-full" style="width:21%"></div>
+                        </div>
+                        <span class="text-xs font-semibold text-emerald-700">21%</span>
+                    </div>
+                    <div class="mt-2 flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-brandRed-500 inline-block"></span>
+                        <span class="text-xs text-gray-500">2 expiring in &lt;7 days</span>
+                    </div>
+                </div>
+
+                <!-- Avg Days to Day-60 -->
+                <div class="glass rounded-2xl p-5 flex flex-col">
+                    <div class="flex items-center justify-between mb-3">
+                        <div>
+                            <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Avg Days to Day-60</p>
+                            <p class="text-xs text-gray-400 mt-0.5">Active customer avg</p>
+                        </div>
+                        <div class="w-8 h-8 rounded-xl kpi-card-gradient-amber flex items-center justify-center">
+                            <i class="fa-solid fa-clock text-white text-xs"></i>
+                        </div>
+                    </div>
+                    <p class="text-3xl font-bold text-navy-900 mb-1">32 <span class="text-sm font-medium text-gray-400">days</span></p>
+                    <p class="text-xs text-gray-500 mb-3">Average remaining</p>
+                    <div class="space-y-1.5">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-brandRed-500 inline-block"></span>Urgent (&lt;10d)</span>
+                            <span class="font-semibold text-brandRed-600">2 customers</span>
+                        </div>
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-500 inline-block"></span>Warning (10–30d)</span>
+                            <span class="font-semibold text-amber-600">5 customers</span>
+                        </div>
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span>On Track (&gt;30d)</span>
+                            <span class="font-semibold text-emerald-600">7 customers</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer List Table -->
+        <div class="px-6 lg:px-10 pb-10">
+            <div class="glass rounded-2xl p-5">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
+                    <div>
+                        <h2 class="font-bold text-navy-900">Customer List</h2>
+                        <p class="text-xs text-gray-500 mt-0.5">14 active retail customers — sorted by days to day-60</p>
+                    </div>
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <div class="flex items-center gap-1.5 text-xs">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span><span class="text-gray-500">CAB Qualified</span>
+                        </div>
+                        <div class="flex items-center gap-1.5 text-xs">
+                            <span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span><span class="text-gray-500">In Progress</span>
+                        </div>
+                        <div class="flex items-center gap-1.5 text-xs">
+                            <span class="w-2.5 h-2.5 rounded-full bg-brandRed-500 inline-block"></span><span class="text-gray-500">At Risk</span>
+                        </div>
+                        <div class="flex items-center gap-1.5 text-xs">
+                            <span class="w-2.5 h-2.5 rounded-full bg-gray-400 inline-block"></span><span class="text-gray-500">Pending</span>
+                        </div>
+                        <button class="glass px-3 py-1.5 rounded-lg text-xs font-medium text-navy-600 hover:bg-white transition-colors">
+                            <i class="fa-solid fa-filter mr-1"></i> Filter
+                        </button>
+                        <button onclick="document.getElementById('addCustomerModal').classList.add('active')" class="bg-brandRed-600 text-white px-3 py-1.5 rounded-lg text-xs font-medium hover:bg-brandRed-700 transition-colors flex items-center gap-1.5">
+                            <i class="fa-solid fa-plus text-xs"></i> Add Customer
+                        </button>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto" style="max-height: 600px; overflow-y: auto;">
+                    <table class="w-full text-sm" id="customerTable">
+                        <thead class="sticky top-0 bg-white/95 backdrop-blur-sm z-10">
+                            <tr class="bg-navy-600 text-white">
+                                <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide rounded-tl-xl sortable" onclick="sortTable(0)">
+                                    <span class="flex items-center gap-1">Customer <i class="fa-solid fa-sort text-white/60 text-xs"></i></span>
+                                </th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide sortable" onclick="sortTable(1)">
+                                    <span class="flex items-center gap-1">Product <i class="fa-solid fa-sort text-white/60 text-xs"></i></span>
+                                </th>
+                                <th class="px-4 py-3 text-center text-xs font-semibold uppercase tracking-wide sortable" onclick="sortTable(2)">
+                                    <span class="flex items-center justify-center gap-1">Price Type <i class="fa-solid fa-sort text-white/60 text-xs"></i></span>
+                                </th>
+                                <th class="px-4 py-3 text-center text-xs font-semibold uppercase tracking-wide sortable" onclick="sortTable(3)">
+                                    <span class="flex items-center justify-center gap-1">CAB Status <i class="fa-solid fa-sort text-white/60 text-xs"></i></span>
+                                </th>
+                                <th class="px-4 py-3 text-center text-xs font-semibold uppercase tracking-wide sortable" onclick="sortTable(4)">
+                                    <span class="flex items-center justify-center gap-1">Days to Day-60 <i class="fa-solid fa-sort text-white/60 text-xs"></i></span>
+                                </th>
+                                <th class="px-4 py-3 text-center text-xs font-semibold uppercase tracking-wide rounded-tr-xl">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-50" id="customerTableBody">
+                            <!-- Row 1 - Urgent -->
+                            <tr class="table-row bg-brandRed-50/30">
+                                <td class="px-4 py-3.5">
+                                    <div class="flex items-center gap-3">
+                                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" class="w-8 h-8 rounded-full object-cover border-2 border-brandRed-200" alt="">
+                                        <div>
+                                            <p class="text-xs font-semibold text-navy-900">Kelly Kapoor</p>
+                                            <p class="text-xs text-gray-400">kelly.k@email.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5">
+                                    <div>
+                                        <p class="text-xs font-semibold text-navy-900">Vitality Pack Pro</p>
+                                        <p class="text-xs text-gray-400">SKU: VP-PRO-001</p>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="text-xs font-semibold text-navy-700 bg-navy-50 px-2 py-0.5 rounded-full">Retail</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="inline-flex items-center gap-1 text-xs font-semibold text-brandRed-700 bg-brandRed-50 px-2 py-0.5 rounded-full">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-brandRed-500 inline-block"></span>At Risk
+                                    </span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <div class="flex flex-col items-center gap-1">
+                                        <span class="days-urgent text-sm">5</span>
+                                        <div class="w-16 bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                                            <div class="bg-brandRed-500 h-1.5 rounded-full" style="width:8%"></div>
+                                        </div>
+                                        <span class="text-xs text-gray-400">days left</span>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <div class="flex items-center justify-center gap-1.5">
+                                        <button class="w-7 h-7 rounded-lg bg-navy-50 hover:bg-navy-100 flex items-center justify-center transition-colors" title="View">
+                                            <i class="fa-solid fa-eye text-navy-600 text-xs"></i>
+                                        </button>
+                                        <button class="w-7 h-7 rounded-lg bg-emerald-50 hover:bg-emerald-100 flex items-center justify-center transition-colors" title="Contact">
+                                            <i class="fa-solid fa-envelope text-emerald-600 text-xs"></i>
+                                        </button>
+                                        <button class="w-7 h-7 rounded-lg bg-gray-50 hover:bg-gray-100 flex items-center justify-center transition-colors" title="More">
+                                            <i class="fa-solid fa-ellipsis text-gray-500 text-xs"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Row 2 - Urgent -->
+                            <tr class="table-row bg-brandRed-50/20">
+                                <td class="px-4 py-3.5">
+                                    <div class="flex items-center gap-3">
+                                        <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" class="w-8 h-8 rounded-full object-cover border-2 border-brandRed-200" alt="">
+                                        <div>
+                                            <p class="text-xs font-semibold text-navy-900">Meredith Palmer</p>
+                                            <p class="text-xs text-gray-400">meredith.p@email.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5">
+                                    <div>
+                                        <p class="text-xs font-semibold text-navy-900">Immune Boost Bundle</p>
+                                        <p class="text-xs text-gray-400">SKU: IB-BDL-003</p>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="text-xs font-semibold text-purple-700 bg-purple-50 px-2 py-0.5 rounded-full">Preferred</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="inline-flex items-center gap-1 text-xs font-semibold text-brandRed-700 bg-brandRed-50 px-2 py-0.5 rounded-full">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-brandRed-500 inline-block"></span>At Risk
+                                    </span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <div class="flex flex-col items-center gap-1">
+                                        <span class="days-urgent text-sm">8</span>
+                                        <div class="w-16 bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                                            <div class="bg-brandRed-500 h-1.5 rounded-full" style="width:13%"></div>
+                                        </div>
+                                        <span class="text-xs text-gray-400">days left</span>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <div class="flex items-center justify-center gap-1.5">
+                                        <button class="w-7 h-7 rounded-lg bg-navy-50 hover:bg-navy-100 flex items-center justify-center transition-colors" title="View">
+                                            <i class="fa-solid fa-eye text-navy-600 text-xs"></i>
+                                        </button>
+                                        <button class="w-7 h-7 rounded-lg bg-emerald-50 hover:bg-emerald-100 flex items-center justify-center transition-colors" title="Contact">
+                                            <i class="fa-solid fa-envelope text-emerald-600 text-xs"></i>
+                                        </button>
+                                        <button class="w-7 h-7 rounded-lg bg-gray-50 hover:bg-gray-100 flex items-center justify-center transition-colors" title="More">
+                                            <i class="fa-solid fa-ellipsis text-gray-500 text-xs"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Row 3 - Warning -->
+                            <tr class="table-row">
+                                <td class="px-4 py-3.5">
+                                    <div class="flex items-center gap-3">
+                                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" class="w-8 h-8 rounded-full object-cover border-2 border-amber-200" alt="">
+                                        <div>
+                                            <p class="text-xs font-semibold text-navy-900">Angela Martin</p>
+                                            <p class="text-xs text-gray-400">angela.m@email.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5">
+                                    <div>
+                                        <p class="text-xs font-semibold text-navy-900">Collagen Complex</p>
+                                        <p class="text-xs text-gray-400">SKU: CC-STD-007</p>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="text-xs font-semibold text-navy-700 bg-navy-50 px-2 py-0.5 rounded-full">Retail</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="inline-flex items-center gap-1 text-xs font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-amber-500 inline-block"></span>In Progress
+                                    </span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <div class="flex flex-col items-center gap-1">
+                                        <span class="days-warning text-sm">14</span>
+                                        <div class="w-16 bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                                            <div class="bg-amber-500 h-1.5 rounded-full" style="width:23%"></div>
+                                        </div>
+                                        <span class="text-xs text-gray-400">days left</span>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <div class="flex items-center justify-center gap-1.5">
+                                        <button class="w-7 h-7 rounded-lg bg-navy-50 hover:bg-navy-100 flex items-center justify-center transition-colors" title="View">
+                                            <i class="fa-solid fa-eye text-navy-600 text-xs"></i>
+                                        </button>
+                                        <button class="w-7 h-7 rounded-lg bg-emerald-50 hover:bg-emerald-100 flex items-center justify-center transition-colors" title="Contact">
+                                            <i class="fa-solid fa-envelope text-emerald-600 text-xs"></i>
+                                        </button>
+                                        <button class="w-7 h-7 rounded-lg bg-gray-50 hover:bg-gray-100 flex items-center justify-center transition-colors" title="More">
+                                            <i class="fa-solid fa-ellipsis text-gray-500 text-xs"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Row 4 - Warning -->
+                            <tr class="table-row">
+                                <td class="px-4 py-3.5">
+                                    <div class="flex items-center gap-3">
+                                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" class="w-8 h-8 rounded-full object-cover border-2 border-amber-200" alt="">
+                                        <div>
+                                            <p class="text-xs font-semibold text-navy-900">Ryan Howard</p>
+                                            <p class="text-xs text-gray-400">ryan.h@email.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5">
+                                    <div>
+                                        <p class="text-xs font-semibold text-navy-900">Omega-3 Essential</p>
+                                        <p class="text-xs text-gray-400">SKU: OM3-ESS-012</p>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="text-xs font-semibold text-purple-700 bg-purple-50 px-2 py-0.5 rounded-full">Preferred</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="inline-flex items-center gap-1 text-xs font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-amber-500 inline-block"></span>In Progress
+                                    </span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <div class="flex flex-col items-center gap-1">
+                                        <span class="days-warning text-sm">19</span>
+                                        <div class="w-16 bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                                            <div class="bg-amber-500 h-1.5 rounded-full" style="width:32%"></div>
+                                        </div>
+                                        <span class="text-xs text-gray-400">days left</span>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <div class="flex items-center justify-center gap-1.5">
+                                        <button class="w-7 h-7 rounded-lg bg-navy-50 hover:bg-navy-100 flex items-center justify-center transition-colors" title="View">
+                                            <i class="fa-solid fa-eye text-navy-600 text-xs"></i>
+                                        </button>
+                                        <button class="w-7 h-7 rounded-lg bg-emerald-50 hover:bg-emerald-100 flex items-center justify-center transition-colors" title="Contact">
+                                            <i class="fa-solid fa-envelope text-emerald-600 text-xs"></i>
+                                        </button>
+                                        <button class="w-7 h-7 rounded-lg bg-gray-50 hover:bg-gray-100 flex items-center justify-center transition-colors" title="More">
+                                            <i class="fa-solid fa-ellipsis text-gray-500 text-xs"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Row 5 - Warning -->
+                            <tr class="table-row">
+                                <td class="px-4 py-3.5">
+                                    <div class="flex items-center gap-3">
+                                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" class="w-8 h-8 rounded-full object-cover border-2 border-amber-200" alt="">
+                                        <div>
+                                            <p class="text-xs font-semibold text-navy-900">Phyllis Vance</p>
+                                            <p class="text-xs text-gray-400">phyllis.v@email.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5">
+                                    <div>
+                                        <p class="text-xs font-semibold text-navy-900">Vitality Pack Pro</p>
+                                        <p class="text-xs text-gray-400">SKU: VP-PRO-001</p>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="text-xs font-semibold text-navy-700 bg-navy-50 px-2 py-0.5 rounded-full">Retail</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="inline-flex items-center gap-1 text-xs font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-amber-500 inline-block"></span>In Progress
+                                    </span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <div class="flex flex-col items-center gap-1">
+                                        <span class="days-warning text-sm">24</span>
+                                        <div class="w-16 bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                                            <div class="bg-amber-500 h-1.5 rounded-full" style="width:40%"></div>
+                                        </div>
+                                        <span class="text-xs text-gray-400">days left</span>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <div class="flex items-center justify-center gap-1.5">
+                                        <button class="w-7 h-7 rounded-lg bg-navy-50 hover:bg-navy-100 flex items-center justify-center transition-colors" title="View">
+                                            <i class="fa-solid fa-eye text-navy-600 text-xs"></i>
+                                        </button>
+                                        <button class="w-7 h-7 rounded-lg bg-emerald-50 hover:bg-emerald-100 flex items-center justify-center transition-colors" title="Contact">
+                                            <i class="fa-solid fa-envelope text-emerald-600 text-xs"></i>
+                                        </button>
+                                        <button class="w-7 h-7 rounded-lg bg-gray-50 hover:bg-gray-100 flex items-center justify-center transition-colors" title="More">
+                                            <i class="fa-solid fa-ellipsis text-gray-500 text-xs"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Row 6 - Warning -->
+                            <tr class="table-row">
+                                <td class="px-4 py-3.5">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-navy-100 flex items-center justify-center border-2 border-amber-200">
+                                            <span class="text-xs font-bold text-navy-700">TO</span>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs font-semibold text-navy-900">Toby Flenderson</p>
+                                            <p class="text-xs text-gray-400">toby.f@email.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5">
+                                    <div>
+                                        <p class="text-xs font-semibold text-navy-900">Probiotic Daily</p>
+                                        <p class="text-xs text-gray-400">SKU: PB-DLY-009</p>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">Wholesale</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="inline-flex items-center gap-1 text-xs font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-amber-500 inline-block"></span>In Progress
+                                    </span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <div class="flex flex-col items-center gap-1">
+                                        <span class="days-warning text-sm">28</span>
+                                        <div class="w-16 bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                                            <div class="bg-amber-500 h-1.5 rounded-full" style="width:47%"></div>
+                                        </div>
+                                        <span class="text-xs text-gray-400">days left</span>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <div class="flex items-center justify-center gap-1.5">
+                                        <button class="w-7 h-7 rounded-lg bg-navy-50 hover:bg-navy-100 flex items-center justify-center transition-colors" title="View">
+                                            <i class="fa-solid fa-eye text-navy-600 text-xs"></i>
+                                        </button>
+                                        <button class="w-7 h-7 rounded-lg bg-emerald-50 hover:bg-emerald-100 flex items-center justify-center transition-colors" title="Contact">
+                                            <i class="fa-solid fa-envelope text-emerald-600 text-xs"></i>
+                                        </button>
+                                        <button class="w-7 h-7 rounded-lg bg-gray-50 hover:bg-gray-100 flex items-center justify-center transition-colors" title="More">
+                                            <i class="fa-solid fa-ellipsis text-gray-500 text-xs"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Row 7 - Warning -->
+                            <tr class="table-row">
+                                <td class="px-4 py-3.5">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-brandRed-100 flex items-center justify-center border-2 border-amber-200">
+                                            <span class="text-xs font-bold text-brandRed-700">CR</span>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs font-semibold text-navy-900">Creed Bratton</p>
+                                            <p class="text-xs text-gray-400">creed.b@email.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5">
+                                    <div>
+                                        <p class="text-xs font-semibold text-navy-900">Immune Boost Bundle</p>
+                                        <p class="text-xs text-gray-400">SKU: IB-BDL-003</p>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="text-xs font-semibold text-navy-700 bg-navy-50 px-2 py-0.5 rounded-full">Retail</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="inline-flex items-center gap-1 text-xs font-semibold text-gray-600 bg-gray-100 px-2 py-0.5 rounded-full">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-gray-400 inline-block"></span>Pending
+                                    </span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <div class="flex flex-col items-center gap-1">
+                                        <span class="days-warning text-sm">30</span>
+                                        <div class="w-16 bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                                            <div class="bg-amber-400 h-1.5 rounded-full" style="width:50%"></div>
+                                        </div>
+                                        <span class="text-xs text-gray-400">days left</span>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <div class="flex items-center justify-center gap-1.5">
+                                        <button class="w-7 h-7 rounded-lg bg-navy-50 hover:bg-navy-100 flex items-center justify-center transition-colors" title="View">
+                                            <i class="fa-solid fa-eye text-navy-600 text-xs"></i>
+                                        </button>
+                                        <button class="w-7 h-7 rounded-lg bg-emerald-50 hover:bg-emerald-100 flex items-center justify-center transition-colors" title="Contact">
+                                            <i class="fa-solid fa-envelope text-emerald-600 text-xs"></i>
+                                        </button>
+                                        <button class="w-7 h-7 rounded-lg bg-gray-50 hover:bg-gray-100 flex items-center justify-center transition-colors" title="More">
+                                            <i class="fa-solid fa-ellipsis text-gray-500 text-xs"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Row 8 - On Track / CAB Qualified -->
+                            <tr class="table-row bg-emerald-50/20">
+                                <td class="px-4 py-3.5">
+                                    <div class="flex items-center gap-3">
+                                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" class="w-8 h-8 rounded-full object-cover border-2 border-emerald-300" alt="">
+                                        <div>
+                                            <p class="text-xs font-semibold text-navy-900">Pam Beesly</p>
+                                            <p class="text-xs text-gray-400">pam.b@email.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5">
+                                    <div>
+                                        <p class="text-xs font-semibold text-navy-900">Collagen Complex</p>
+                                        <p class="text-xs text-gray-400">SKU: CC-STD-007</p>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="text-xs font-semibold text-purple-700 bg-purple-50 px-2 py-0.5 rounded-full">Preferred</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block"></span>CAB Qualified
+                                    </span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <div class="flex flex-col items-center gap-1">
+                                        <span class="days-ok text-sm">35</span>
+                                        <div class="w-16 bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                                            <div class="bg-emerald-500 h-1.5 rounded-full" style="width:58%"></div>
+                                        </div>
+                                        <span class="text-xs text-gray-400">days left</span>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <div class="flex items-center justify-center gap-1.5">
+                                        <button class="w-7 h-7 rounded-lg bg-navy-50 hover:bg-navy-100 flex items-center justify-center transition-colors" title="View">
+                                            <i class="fa-solid fa-eye text-navy-600 text-xs"></i>
+                                        </button>
+                                        <button class="w-7 h-7 rounded-lg bg-emerald-50 hover:bg-emerald-100 flex items-center justify-center transition-colors" title="Contact">
+                                            <i class="fa-solid fa-envelope text-emerald-600 text-xs"></i>
+                                        </button>
+                                        <button class="w-7 h-7 rounded-lg bg-gray-50 hover:bg-gray-100 flex items-center justify-center transition-colors" title="More">
+                                            <i class="fa-solid fa-ellipsis text-gray-500 text-xs"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Row 9 - On Track / CAB Qualified -->
+                            <tr class="table-row bg-emerald-50/20">
+                                <td class="px-4 py-3.5">
+                                    <div class="flex items-center gap-3">
+                                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" class="w-8 h-8 rounded-full object-cover border-2 border-emerald-300" alt="">
+                                        <div>
+                                            <p class="text-xs font-semibold text-navy-900">Jim Halpert</p>
+                                            <p class="text-xs text-gray-400">jim.h@email.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5">
+                                    <div>
+                                        <p class="text-xs font-semibold text-navy-900">Omega-3 Essential</p>
+                                        <p class="text-xs text-gray-400">SKU: OM3-ESS-012</p>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="text-xs font-semibold text-navy-700 bg-navy-50 px-2 py-0.5 rounded-full">Retail</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block"></span>CAB Qualified
+                                    </span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <div class="flex flex-col items-center gap-1">
+                                        <span class="days-ok text-sm">38</span>
+                                        <div class="w-16 bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                                            <div class="bg-emerald-500 h-1.5 rounded-full" style="width:63%"></div>
+                                        </div>
+                                        <span class="text-xs text-gray-400">days left</span>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <div class="flex items-center justify-center gap-1.5">
+                                        <button class="w-7 h-7 rounded-lg bg-navy-50 hover:bg-navy-100 flex items-center justify-center transition-colors" title="View">
+                                            <i class="fa-solid fa-eye text-navy-600 text-xs"></i>
+                                        </button>
+                                        <button class="w-7 h-7 rounded-lg bg-emerald-50 hover:bg-emerald-100 flex items-center justify-center transition-colors" title="Contact">
+                                            <i class="fa-solid fa-envelope text-emerald-600 text-xs"></i>
+                                        </button>
+                                        <button class="w-7 h-7 rounded-lg bg-gray-50 hover:bg-gray-100 flex items-center justify-center transition-colors" title="More">
+                                            <i class="fa-solid fa-ellipsis text-gray-500 text-xs"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Row 10 - On Track / CAB Qualified -->
+                            <tr class="table-row bg-emerald-50/20">
+                                <td class="px-4 py-3.5">
+                                    <div class="flex items-center gap-3">
+                                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" class="w-8 h-8 rounded-full object-cover border-2 border-emerald-300" alt="">
+                                        <div>
+                                            <p class="text-xs font-semibold text-navy-900">Dwight Schrute</p>
+                                            <p class="text-xs text-gray-400">dwight.s@email.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5">
+                                    <div>
+                                        <p class="text-xs font-semibold text-navy-900">Vitality Pack Pro</p>
+                                        <p class="text-xs text-gray-400">SKU: VP-PRO-001</p>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">Wholesale</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block"></span>CAB Qualified
+                                    </span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <div class="flex flex-col items-center gap-1">
+                                        <span class="days-ok text-sm">42</span>
+                                        <div class="w-16 bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                                            <div class="bg-emerald-500 h-1.5 rounded-full" style="width:70%"></div>
+                                        </div>
+                                        <span class="text-xs text-gray-400">days left</span>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <div class="flex items-center justify-center gap-1.5">
+                                        <button class="w-7 h-7 rounded-lg bg-navy-50 hover:bg-navy-100 flex items-center justify-center transition-colors" title="View">
+                                            <i class="fa-solid fa-eye text-navy-600 text-xs"></i>
+                                        </button>
+                                        <button class="w-7 h-7 rounded-lg bg-emerald-50 hover:bg-emerald-100 flex items-center justify-center transition-colors" title="Contact">
+                                            <i class="fa-solid fa-envelope text-emerald-600 text-xs"></i>
+                                        </button>
+                                        <button class="w-7 h-7 rounded-lg bg-gray-50 hover:bg-gray-100 flex items-center justify-center transition-colors" title="More">
+                                            <i class="fa-solid fa-ellipsis text-gray-500 text-xs"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Row 11 -->
+                            <tr class="table-row">
+                                <td class="px-4 py-3.5">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-navy-100 flex items-center justify-center border-2 border-gray-200">
+                                            <span class="text-xs font-bold text-navy-700">OS</span>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs font-semibold text-navy-900">Oscar Santos</p>
+                                            <p class="text-xs text-gray-400">oscar.s@email.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5">
+                                    <div>
+                                        <p class="text-xs font-semibold text-navy-900">Probiotic Daily</p>
+                                        <p class="text-xs text-gray-400">SKU: PB-DLY-009</p>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="text-xs font-semibold text-navy-700 bg-navy-50 px-2 py-0.5 rounded-full">Retail</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="inline-flex items-center gap-1 text-xs font-semibold text-gray-600 bg-gray-100 px-2 py-0.5 rounded-full">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-gray-400 inline-block"></span>Pending
+                                    </span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <div class="flex flex-col items-center gap-1">
+                                        <span class="days-ok text-sm">45</span>
+                                        <div class="w-16 bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                                            <div class="bg-emerald-500 h-1.5 rounded-full" style="width:75%"></div>
+                                        </div>
+                                        <span class="text-xs text-gray-400">days left</span>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <div class="flex items-center justify-center gap-1.5">
+                                        <button class="w-7 h-7 rounded-lg bg-navy-50 hover:bg-navy-100 flex items-center justify-center transition-colors" title="View">
+                                            <i class="fa-solid fa-eye text-navy-600 text-xs"></i>
+                                        </button>
+                                        <button class="w-7 h-7 rounded-lg bg-emerald-50 hover:bg-emerald-100 flex items-center justify-center transition-colors" title="Contact">
+                                            <i class="fa-solid fa-envelope text-emerald-600 text-xs"></i>
+                                        </button>
+                                        <button class="w-7 h-7 rounded-lg bg-gray-50 hover:bg-gray-100 flex items-center justify-center transition-colors" title="More">
+                                            <i class="fa-solid fa-ellipsis text-gray-500 text-xs"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Row 12 -->
+                            <tr class="table-row">
+                                <td class="px-4 py-3.5">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center border-2 border-gray-200">
+                                            <span class="text-xs font-bold text-purple-700">KR</span>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs font-semibold text-navy-900">Karen Filippelli</p>
+                                            <p class="text-xs text-gray-400">karen.f@email.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5">
+                                    <div>
+                                        <p class="text-xs font-semibold text-navy-900">Collagen Complex</p>
+                                        <p class="text-xs text-gray-400">SKU: CC-STD-007</p>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="text-xs font-semibold text-purple-700 bg-purple-50 px-2 py-0.5 rounded-full">Preferred</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="inline-flex items-center gap-1 text-xs font-semibold text-gray-600 bg-gray-100 px-2 py-0.5 rounded-full">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-gray-400 inline-block"></span>Pending
+                                    </span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <div class="flex flex-col items-center gap-1">
+                                        <span class="days-ok text-sm">50</span>
+                                        <div class="w-16 bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                                            <div class="bg-emerald-500 h-1.5 rounded-full" style="width:83%"></div>
+                                        </div>
+                                        <span class="text-xs text-gray-400">days left</span>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <div class="flex items-center justify-center gap-1.5">
+                                        <button class="w-7 h-7 rounded-lg bg-navy-50 hover:bg-navy-100 flex items-center justify-center transition-colors" title="View">
+                                            <i class="fa-solid fa-eye text-navy-600 text-xs"></i>
+                                        </button>
+                                        <button class="w-7 h-7 rounded-lg bg-emerald-50 hover:bg-emerald-100 flex items-center justify-center transition-colors" title="Contact">
+                                            <i class="fa-solid fa-envelope text-emerald-600 text-xs"></i>
+                                        </button>
+                                        <button class="w-7 h-7 rounded-lg bg-gray-50 hover:bg-gray-100 flex items-center justify-center transition-colors" title="More">
+                                            <i class="fa-solid fa-ellipsis text-gray-500 text-xs"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Row 13 -->
+                            <tr class="table-row">
+                                <td class="px-4 py-3.5">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center border-2 border-gray-200">
+                                            <span class="text-xs font-bold text-emerald-700">DW</span>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs font-semibold text-navy-900">David Wallace</p>
+                                            <p class="text-xs text-gray-400">david.w@email.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5">
+                                    <div>
+                                        <p class="text-xs font-semibold text-navy-900">Vitality Pack Pro</p>
+                                        <p class="text-xs text-gray-400">SKU: VP-PRO-001</p>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">Wholesale</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="inline-flex items-center gap-1 text-xs font-semibold text-gray-600 bg-gray-100 px-2 py-0.5 rounded-full">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-gray-400 inline-block"></span>Pending
+                                    </span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <div class="flex flex-col items-center gap-1">
+                                        <span class="days-ok text-sm">55</span>
+                                        <div class="w-16 bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                                            <div class="bg-emerald-500 h-1.5 rounded-full" style="width:92%"></div>
+                                        </div>
+                                        <span class="text-xs text-gray-400">days left</span>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <div class="flex items-center justify-center gap-1.5">
+                                        <button class="w-7 h-7 rounded-lg bg-navy-50 hover:bg-navy-100 flex items-center justify-center transition-colors" title="View">
+                                            <i class="fa-solid fa-eye text-navy-600 text-xs"></i>
+                                        </button>
+                                        <button class="w-7 h-7 rounded-lg bg-emerald-50 hover:bg-emerald-100 flex items-center justify-center transition-colors" title="Contact">
+                                            <i class="fa-solid fa-envelope text-emerald-600 text-xs"></i>
+                                        </button>
+                                        <button class="w-7 h-7 rounded-lg bg-gray-50 hover:bg-gray-100 flex items-center justify-center transition-colors" title="More">
+                                            <i class="fa-solid fa-ellipsis text-gray-500 text-xs"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Row 14 -->
+                            <tr class="table-row">
+                                <td class="px-4 py-3.5">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center border-2 border-gray-200">
+                                            <span class="text-xs font-bold text-amber-700">MH</span>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs font-semibold text-navy-900">Michael Howard</p>
+                                            <p class="text-xs text-gray-400">michael.h@email.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5">
+                                    <div>
+                                        <p class="text-xs font-semibold text-navy-900">Immune Boost Bundle</p>
+                                        <p class="text-xs text-gray-400">SKU: IB-BDL-003</p>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="text-xs font-semibold text-navy-700 bg-navy-50 px-2 py-0.5 rounded-full">Retail</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="inline-flex items-center gap-1 text-xs font-semibold text-gray-600 bg-gray-100 px-2 py-0.5 rounded-full">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-gray-400 inline-block"></span>Pending
+                                    </span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <div class="flex flex-col items-center gap-1">
+                                        <span class="days-ok text-sm">58</span>
+                                        <div class="w-16 bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                                            <div class="bg-emerald-500 h-1.5 rounded-full" style="width:97%"></div>
+                                        </div>
+                                        <span class="text-xs text-gray-400">days left</span>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <div class="flex items-center justify-center gap-1.5">
+                                        <button class="w-7 h-7 rounded-lg bg-navy-50 hover:bg-navy-100 flex items-center justify-center transition-colors" title="View">
+                                            <i class="fa-solid fa-eye text-navy-600 text-xs"></i>
+                                        </button>
+                                        <button class="w-7 h-7 rounded-lg bg-emerald-50 hover:bg-emerald-100 flex items-center justify-center transition-colors" title="Contact">
+                                            <i class="fa-solid fa-envelope text-emerald-600 text-xs"></i>
+                                        </button>
+                                        <button class="w-7 h-7 rounded-lg bg-gray-50 hover:bg-gray-100 flex items-center justify-center transition-colors" title="More">
+                                            <i class="fa-solid fa-ellipsis text-gray-500 text-xs"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="border-t-2 border-navy-100 bg-navy-50/40">
+                                <td colspan="2" class="px-4 py-3.5 font-bold text-navy-900 text-sm">Total: 14 Customers</td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <div class="flex items-center justify-center gap-1.5 flex-wrap">
+                                        <span class="text-xs text-gray-500">6 Retail</span>
+                                        <span class="text-gray-300">·</span>
+                                        <span class="text-xs text-gray-500">4 Preferred</span>
+                                        <span class="text-gray-300">·</span>
+                                        <span class="text-xs text-gray-500">4 Wholesale</span>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <div class="flex items-center justify-center gap-1.5 flex-wrap">
+                                        <span class="text-xs font-semibold text-emerald-700">3 Qualified</span>
+                                        <span class="text-gray-300">·</span>
+                                        <span class="text-xs font-semibold text-amber-700">4 In Progress</span>
+                                        <span class="text-gray-300">·</span>
+                                        <span class="text-xs font-semibold text-brandRed-700">2 At Risk</span>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="text-xs font-semibold text-navy-700 bg-navy-100 px-2 py-0.5 rounded-full">Avg: 32 days</span>
+                                </td>
+                                <td class="px-4 py-3.5"></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<!-- Add Customer Modal -->
+<div id="addCustomerModal" class="modal-overlay" onclick="if(event.target===this)this.classList.remove('active')">
+    <div class="glass rounded-2xl p-6 w-full max-w-md mx-4 shadow-2xl" onclick="event.stopPropagation()">
+        <div class="flex items-center justify-between mb-5">
+            <div>
+                <h2 class="font-bold text-navy-900 text-lg">Add New Customer</h2>
+                <p class="text-xs text-gray-500 mt-0.5">Enter customer details to begin tracking</p>
+            </div>
+            <button onclick="document.getElementById('addCustomerModal').classList.remove('active')" class="w-8 h-8 rounded-lg bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-gray-600 text-sm"></i>
+            </button>
+        </div>
+        <form class="space-y-4" onsubmit="event.preventDefault(); document.getElementById('addCustomerModal').classList.remove('active');">
+            <div class="grid grid-cols-2 gap-3">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1.5">First Name</label>
+                    <input type="text" placeholder="Jane" class="w-full glass rounded-xl px-3 py-2.5 text-sm text-navy-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-navy-300 border border-gray-200">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1.5">Last Name</label>
+                    <input type="text" placeholder="Smith" class="w-full glass rounded-xl px-3 py-2.5 text-sm text-navy-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-navy-300 border border-gray-200">
+                </div>
+            </div>
+            <div>
+                <label class="block text-xs font-semibold text-gray-600 mb-1.5">Email Address</label>
+                <input type="email" placeholder="jane.smith@email.com" class="w-full glass rounded-xl px-3 py-2.5 text-sm text-navy-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-navy-300 border border-gray-200">
+            </div>
+            <div>
+                <label class="block text-xs font-semibold text-gray-600 mb-1.5">Product</label>
+                <select class="w-full glass rounded-xl px-3 py-2.5 text-sm text-navy-700 focus:outline-none focus:ring-2 focus:ring-navy-300 border border-gray-200">
+                    <option value="">Select a product...</option>
+                    <option>Vitality Pack Pro</option>
+                    <option>Immune Boost Bundle</option>
+                    <option>Collagen Complex</option>
+                    <option>Omega-3 Essential</option>
+                    <option>Probiotic Daily</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-xs font-semibold text-gray-600 mb-1.5">Price Type</label>
+                <div class="grid grid-cols-3 gap-2">
+                    <label class="flex items-center justify-center gap-1.5 glass rounded-xl px-3 py-2.5 cursor-pointer border-2 border-transparent has-[:checked]:border-navy-500 has-[:checked]:bg-navy-50 transition-all">
+                        <input type="radio" name="priceType" value="retail" class="sr-only">
+                        <span class="text-xs font-semibold text-navy-700">Retail</span>
+                    </label>
+                    <label class="flex items-center justify-center gap-1.5 glass rounded-xl px-3 py-2.5 cursor-pointer border-2 border-transparent has-[:checked]:border-purple-500 has-[:checked]:bg-purple-50 transition-all">
+                        <input type="radio" name="priceType" value="preferred" class="sr-only">
+                        <span class="text-xs font-semibold text-purple-700">Preferred</span>
+                    </label>
+                    <label class="flex items-center justify-center gap-1.5 glass rounded-xl px-3 py-2.5 cursor-pointer border-2 border-transparent has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-50 transition-all">
+                        <input type="radio" name="priceType" value="wholesale" class="sr-only">
+                        <span class="text-xs font-semibold text-emerald-700">Wholesale</span>
+                    </label>
+                </div>
+            </div>
+            <div>
+                <label class="block text-xs font-semibold text-gray-600 mb-1.5">Start Date (Day 1)</label>
+                <input type="date" class="w-full glass rounded-xl px-3 py-2.5 text-sm text-navy-700 focus:outline-none focus:ring-2 focus:ring-navy-300 border border-gray-200">
+            </div>
+            <div class="flex gap-3 pt-2">
+                <button type="button" onclick="document.getElementById('addCustomerModal').classList.remove('active')" class="flex-1 glass px-4 py-2.5 rounded-xl text-sm font-medium text-gray-600 hover:bg-white transition-colors border border-gray-200">
+                    Cancel
+                </button>
+                <button type="submit" class="flex-1 bg-brandRed-600 text-white px-4 py-2.5 rounded-xl text-sm font-semibold hover:bg-brandRed-700 transition-colors shadow-lg shadow-brandRed-600/20">
+                    <i class="fa-solid fa-plus mr-1.5"></i> Add Customer
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    let sortDirections = {};
+    function sortTable(colIndex) {
+        const tbody = document.getElementById('customerTableBody');
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+        const dir = sortDirections[colIndex] === 'asc' ? 'desc' : 'asc';
+        sortDirections[colIndex] = dir;
+        rows.sort((a, b) => {
+            const aCell = a.cells[colIndex];
+            const bCell = b.cells[colIndex];
+            let aVal = aCell ? aCell.innerText.trim() : '';
+            let bVal = bCell ? bCell.innerText.trim() : '';
+            const aNum = parseFloat(aVal);
+            const bNum = parseFloat(bVal);
+            if (!isNaN(aNum) && !isNaN(bNum)) {
+                return dir === 'asc' ? aNum - bNum : bNum - aNum;
+            }
+            return dir === 'asc' ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
+        });
+        rows.forEach(r => tbody.appendChild(r));
+    }
+</script>
+
+
+    <script src="script.js"></script>
+</body>
+</html>

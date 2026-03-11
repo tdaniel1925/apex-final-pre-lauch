@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Waterfall Revenue Calculator - Exported from UXMagic Copilot">
+    <title>Waterfall Revenue Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['var(--font-heading-name)', 'sans-serif'],
+            body: ['var(--font-body-name)', 'monospace'],
+          },
+          spacing: {
+            base: 'var(--space-base)',
+          },
+          borderRadius: {
+            small: 'var(--radius-small)',
+            large: 'var(--radius-large)',
+          },
+          boxShadow: {
+            custom: 'var(--shadow-custom)',
+            'custom-hover': 'var(--shadow-custom-hover)',
+          },
+        }
+      }
+    }
+  
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+  <!-- Top Navigation Bar -->
+  <header class="bg-white border-b border-gray-200 px-6 py-3 flex items-center justify-between sticky top-0 z-30" style="max-height: 64px;">
+    <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 bg-blue-700 rounded-small flex items-center justify-center">
+          <span class="text-white text-xs font-heading font-bold">WR</span>
+        </div>
+        <span class="font-heading font-bold text-gray-900 text-base tracking-tight">WaterfallCFO</span>
+      </div>
+      <span class="text-gray-300 text-lg">|</span>
+      <nav class="flex items-center gap-1">
+        <a href="/api/copilot/prototype/1ec3b62e-3245-4b15-8f3b-7c28956dbd0e/waterfall-revenue-calculator" class="px-3 py-1.5 text-xs font-heading font-semibold text-blue-700 bg-blue-50 rounded-small border border-blue-200">Revenue Calculator</a>
+        <a href="#" class="px-3 py-1.5 text-xs font-heading font-medium text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-small">Scenarios</a>
+        <a href="#" class="px-3 py-1.5 text-xs font-heading font-medium text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-small">Reports</a>
+        <a href="#" class="px-3 py-1.5 text-xs font-heading font-medium text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-small">Settings</a>
+      </nav>
+    </div>
+    <div class="flex items-center gap-3">
+      <span class="text-xs text-gray-400 font-body">Last saved: 2 min ago</span>
+      <div class="w-7 h-7 rounded-small bg-blue-700 flex items-center justify-center">
+        <span class="text-white text-xs font-heading font-bold">CF</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Title Bar -->
+  <div class="bg-white border-b border-gray-100 px-6 py-3 flex items-center justify-between" style="max-height: 56px;">
+    <div>
+      <h1 class="font-heading font-bold text-gray-900 text-lg leading-tight">Waterfall Revenue Calculator</h1>
+      <p class="text-xs text-gray-500 font-body mt-0.5">Model revenue distribution across all tiers — real-time CFO pro forma</p>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-xs px-2 py-1 bg-green-50 text-green-700 border border-green-200 rounded-small font-body font-medium">● Live</span>
+      <span class="text-xs px-2 py-1 bg-gray-100 text-gray-600 rounded-small font-body">FY 2025</span>
+    </div>
+  </div>
+
+  <!-- Main Layout -->
+  <div class="flex" style="height: auto; min-height: 100%;">
+
+    <!-- LEFT PANEL: Inputs -->
+    <aside class="w-80 bg-white border-r border-gray-200 flex flex-col" style="min-width: 320px; max-width: 320px;">
+      <div class="px-4 py-3 border-b border-gray-100 bg-gray-50">
+        <h2 class="font-heading font-semibold text-gray-800 text-sm">Input Parameters</h2>
+        <p class="text-xs text-gray-400 font-body mt-0.5">Configure your revenue model</p>
+      </div>
+
+      <div class="flex-1 overflow-y-auto px-4 py-4 space-y-5">
+
+        <!-- Product Selector -->
+        <div>
+          <label class="block text-xs font-heading font-semibold text-gray-700 mb-1.5 uppercase tracking-wide">Product</label>
+          <select id="productSelector" onchange="updateCalc()" class="w-full text-xs font-body border border-gray-200 rounded-small bg-white text-gray-800 px-3 py-2 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-100">
+            <option value="saas_monthly">SaaS — Monthly Subscription</option>
+            <option value="saas_annual">SaaS — Annual Subscription</option>
+            <option value="physical">Physical Product</option>
+            <option value="digital_download">Digital Download</option>
+            <option value="marketplace">Marketplace Listing</option>
+            <option value="enterprise">Enterprise License</option>
+          </select>
+        </div>
+
+        <!-- Price Input -->
+        <div>
+          <label class="block text-xs font-heading font-semibold text-gray-700 mb-1.5 uppercase tracking-wide">Unit Price</label>
+          <div class="relative">
+            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs font-body">$</span>
+            <input id="unitPrice" type="number" value="99" min="1" max="100000" step="1" onchange="updateCalc()" oninput="updateCalc()" class="w-full text-sm font-body border border-gray-200 rounded-small bg-white text-gray-800 pl-7 pr-3 py-2 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-100">
+          </div>
+        </div>
+
+        <!-- Member / Retail Toggle -->
+        <div>
+          <label class="block text-xs font-heading font-semibold text-gray-700 mb-1.5 uppercase tracking-wide">Pricing Tier</label>
+          <div class="flex rounded-small border border-gray-200 overflow-hidden">
+            <button id="toggleMember" onclick="setTier('member')" class="toggle-btn active flex-1 text-xs font-heading font-semibold py-2 transition-all">Member</button>
+            <button id="toggleRetail" onclick="setTier('retail')" class="toggle-btn flex-1 text-xs font-heading font-semibold py-2 transition-all">Retail</button>
+            <button id="toggleWholesale" onclick="setTier('wholesale')" class="toggle-btn flex-1 text-xs font-heading font-semibold py-2 transition-all">Wholesale</button>
+          </div>
+          <p id="tierNote" class="text-xs text-gray-400 font-body mt-1">Member: 0% markup applied</p>
+        </div>
+
+        <!-- Quantity Slider -->
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <label class="text-xs font-heading font-semibold text-gray-700 uppercase tracking-wide">Monthly Units</label>
+            <span id="qtyDisplay" class="text-xs font-body font-medium text-blue-700 bg-blue-50 px-2 py-0.5 rounded-small">500</span>
+          </div>
+          <input id="quantitySlider" type="range" min="1" max="10000" value="500" step="1" oninput="updateQty(this.value)" onchange="updateCalc()" class="w-full">
+          <div class="flex justify-between text-xs text-gray-400 font-body mt-1">
+            <span>1</span><span>2,500</span><span>5,000</span><span>10,000</span>
+          </div>
+        </div>
+
+        <!-- Stripe Fee -->
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <label class="text-xs font-heading font-semibold text-gray-700 uppercase tracking-wide">Stripe Fee %</label>
+            <span id="stripeFeeDisplay" class="text-xs font-body font-medium text-amber-700 bg-amber-50 px-2 py-0.5 rounded-small">2.9%</span>
+          </div>
+          <input id="stripeFee" type="range" min="0" max="10" value="2.9" step="0.1" oninput="updateStripeFee(this.value)" onchange="updateCalc()" class="w-full">
+          <div class="flex justify-between text-xs text-gray-400 font-body mt-1">
+            <span>0%</span><span>2.5%</span><span>5%</span><span>10%</span>
+          </div>
+          <div class="flex items-center gap-2 mt-1.5">
+            <label class="text-xs text-gray-500 font-body">+ Fixed fee per txn</label>
+            <div class="relative flex-1">
+              <span class="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400 text-xs">$</span>
+              <input id="stripeFixed" type="number" value="0.30" min="0" max="5" step="0.01" onchange="updateCalc()" oninput="updateCalc()" class="w-full text-xs font-body border border-gray-200 rounded-small bg-white text-gray-700 pl-5 pr-2 py-1 focus:outline-none focus:border-blue-400">
+            </div>
+          </div>
+        </div>
+
+        <!-- Chargeback Reserve -->
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <label class="text-xs font-heading font-semibold text-gray-700 uppercase tracking-wide">Chargeback Reserve</label>
+            <span id="chargebackDisplay" class="text-xs font-body font-medium text-pink-700 bg-pink-50 px-2 py-0.5 rounded-small">1.0%</span>
+          </div>
+          <input id="chargebackFee" type="range" min="0" max="5" value="1.0" step="0.1" oninput="updateChargeback(this.value)" onchange="updateCalc()" class="w-full">
+          <div class="flex justify-between text-xs text-gray-400 font-body mt-1">
+            <span>0%</span><span>1.25%</span><span>2.5%</span><span>5%</span>
+          </div>
+        </div>
+
+        <!-- Distribution Tiers -->
+        <div>
+          <label class="block text-xs font-heading font-semibold text-gray-700 mb-2 uppercase tracking-wide">Distribution Tiers</label>
+          <div class="space-y-2">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-body text-gray-500 w-24">Platform Cut</span>
+              <div class="relative flex-1">
+                <input id="platformCut" type="number" value="15" min="0" max="60" step="0.5" onchange="updateCalc()" oninput="updateCalc()" class="w-full text-xs font-body border border-gray-200 rounded-small bg-white text-gray-700 pr-6 pl-2 py-1.5 focus:outline-none focus:border-blue-400">
+                <span class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 text-xs">%</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-body text-gray-500 w-24">Reseller Cut</span>
+              <div class="relative flex-1">
+                <input id="resellerCut" type="number" value="10" min="0" max="50" step="0.5" onchange="updateCalc()" oninput="updateCalc()" class="w-full text-xs font-body border border-gray-200 rounded-small bg-white text-gray-700 pr-6 pl-2 py-1.5 focus:outline-none focus:border-blue-400">
+                <span class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 text-xs">%</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-body text-gray-500 w-24">Affiliate</span>
+              <div class="relative flex-1">
+                <input id="affiliateCut" type="number" value="5" min="0" max="30" step="0.5" onchange="updateCalc()" oninput="updateCalc()" class="w-full text-xs font-body border border-gray-200 rounded-small bg-white text-gray-700 pr-6 pl-2 py-1.5 focus:outline-none focus:border-blue-400">
+                <span class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 text-xs">%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Custom Fee -->
+        <div>
+          <label class="block text-xs font-heading font-semibold text-gray-700 mb-1.5 uppercase tracking-wide">Custom Fee</label>
+          <div class="flex gap-2">
+            <input id="customFeeLabel" type="text" value="Tax / VAT" placeholder="Label" class="flex-1 text-xs font-body border border-gray-200 rounded-small bg-white text-gray-700 px-2 py-1.5 focus:outline-none focus:border-blue-400">
+            <div class="relative w-20">
+              <input id="customFee" type="number" value="8" min="0" max="30" step="0.1" onchange="updateCalc()" oninput="updateCalc()" class="w-full text-xs font-body border border-gray-200 rounded-small bg-white text-gray-700 pr-5 pl-2 py-1.5 focus:outline-none focus:border-blue-400">
+              <span class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 text-xs">%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- COGS -->
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <label class="text-xs font-heading font-semibold text-gray-700 uppercase tracking-wide">COGS / Unit</label>
+          </div>
+          <div class="relative">
+            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs font-body">$</span>
+            <input id="cogs" type="number" value="12" min="0" max="10000" step="0.5" onchange="updateCalc()" oninput="updateCalc()" class="w-full text-sm font-body border border-gray-200 rounded-small bg-white text-gray-800 pl-7 pr-3 py-2 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-100">
+          </div>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- RIGHT PANEL: Charts + Tables -->
+    <main class="flex-1 flex flex-col bg-gray-50" style="min-width: 0;">
+
+      <!-- KPI Summary Row -->
+      <div class="px-6 py-4 bg-white border-b border-gray-100" style="max-height: 100px;">
+        <div class="grid grid-cols-5 gap-4">
+          <div class="text-center">
+            <p class="text-xs text-gray-400 font-body uppercase tracking-wide">Gross Revenue</p>
+            <p id="kpiGross" class="font-heading font-bold text-gray-900 text-lg mt-0.5">$49,500</p>
+          </div>
+          <div class="text-center border-l border-gray-100">
+            <p class="text-xs text-gray-400 font-body uppercase tracking-wide">Net After Fees</p>
+            <p id="kpiNet" class="font-heading font-bold text-blue-700 text-lg mt-0.5">$31,284</p>
+          </div>
+          <div class="text-center border-l border-gray-100">
+            <p class="text-xs text-gray-400 font-body uppercase tracking-wide">Total Deductions</p>
+            <p id="kpiDeductions" class="font-heading font-bold text-red-600 text-lg mt-0.5">$18,216</p>
+          </div>
+          <div class="text-center border-l border-gray-100">
+            <p class="text-xs text-gray-400 font-body uppercase tracking-wide">Net Margin</p>
+            <p id="kpiMargin" class="font-heading font-bold text-green-700 text-lg mt-0.5">63.2%</p>
+          </div>
+          <div class="text-center border-l border-gray-100">
+            <p class="text-xs text-gray-400 font-body uppercase tracking-wide">Annual Projection</p>
+            <p id="kpiAnnual" class="font-heading font-bold text-purple-700 text-lg mt-0.5">$375,408</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Waterfall Chart + Summary -->
+      <div class="flex gap-4 px-6 py-4" style="max-height: 420px;">
+
+        <!-- Waterfall Bar Chart -->
+        <div class="flex-1 bg-white rounded-large border border-gray-200 shadow-custom p-4 overflow-hidden">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="font-heading font-semibold text-gray-800 text-sm">Revenue Waterfall — Per Unit</h2>
+            <span class="text-xs text-gray-400 font-body">Gross → Net Retained</span>
+          </div>
+          <div id="waterfallChart" class="space-y-2.5 overflow-y-auto" style="max-height: 310px;">
+            <!-- Bars rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Summary Formulas Table -->
+        <div class="w-72 bg-white rounded-large border border-gray-200 shadow-custom p-4 overflow-hidden">
+          <h2 class="font-heading font-semibold text-gray-800 text-sm mb-3">Formula Breakdown</h2>
+          <div id="formulaTable" class="space-y-2 overflow-y-auto" style="max-height: 310px;">
+            <!-- Rows rendered by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Annual 12-Month Projection -->
+      <div class="px-6 pb-4" style="max-height: 280px;">
+        <div class="bg-white rounded-large border border-gray-200 shadow-custom p-4 overflow-hidden" style="max-height: 260px;">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="font-heading font-semibold text-gray-800 text-sm">12-Month Net Revenue Projection</h2>
+            <div class="flex items-center gap-3 text-xs font-body">
+              <span class="flex items-center gap-1"><span class="w-3 h-2 rounded-small inline-block bg-blue-500"></span> Gross</span>
+              <span class="flex items-center gap-1"><span class="w-3 h-2 rounded-small inline-block bg-green-500"></span> Net</span>
+              <span class="flex items-center gap-1"><span class="w-3 h-2 rounded-small inline-block bg-red-400"></span> Deductions</span>
+            </div>
+          </div>
+          <div id="monthlyChart" class="flex items-end gap-1.5 overflow-hidden" style="height: 140px;">
+            <!-- Bars rendered by JS -->
+          </div>
+          <div class="flex gap-1.5 mt-1" id="monthLabels">
+            <!-- Labels rendered by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Action Bar -->
+      <div class="bg-white border-t border-gray-200 px-6 py-3 flex items-center justify-between" style="max-height: 64px;">
+        <div class="flex items-center gap-2">
+          <button onclick="saveScenario()" class="flex items-center gap-1.5 px-4 py-2 bg-blue-700 text-white text-xs font-heading font-semibold rounded-small hover:bg-blue-800 transition-colors shadow-custom">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path></svg>
+            Save Scenario
+          </button>
+          <button onclick="compareScenario()" class="flex items-center gap-1.5 px-4 py-2 bg-white text-gray-700 text-xs font-heading font-semibold rounded-small border border-gray-200 hover:bg-gray-50 transition-colors">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+            Compare
+          </button>
+          <button onclick="exportCSV()" class="flex items-center gap-1.5 px-4 py-2 bg-white text-gray-700 text-xs font-heading font-semibold rounded-small border border-gray-200 hover:bg-gray-50 transition-colors">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+            Export CSV
+          </button>
+          <button onclick="printProForma()" class="flex items-center gap-1.5 px-4 py-2 bg-white text-gray-700 text-xs font-heading font-semibold rounded-small border border-gray-200 hover:bg-gray-50 transition-colors">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+            Print Pro Forma
+          </button>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="text-xs text-gray-400 font-body">Scenario: <span class="text-gray-700 font-medium">Base Case v1</span></span>
+          <button class="text-xs text-blue-600 font-body hover:underline">Rename</button>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-20 right-6 bg-gray-900 text-white text-xs font-body px-4 py-2.5 rounded-large shadow-custom-hover opacity-0 transition-opacity duration-300 pointer-events-none z-50">
+    Scenario saved successfully!
+  </div>
+
+  <script>
+    let currentTier = 'member';
+    const tierMarkups = { member: 0, retail: 0.20, wholesale: -0.15 };
+    const tierNotes = {
+      member: 'Member: 0% markup applied',
+      retail: 'Retail: +20% markup applied',
+      wholesale: 'Wholesale: -15% discount applied'
+    };
+
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+    function fmt(n) {
+      return '$' + Math.round(n).toLocaleString();
+    }
+    function fmtPct(n) {
+      return n.toFixed(1) + '%';
+    }
+
+    function setTier(tier) {
+      currentTier = tier;
+      ['member','retail','wholesale'].forEach(t => {
+        const btn = document.getElementById('toggle' + t.charAt(0).toUpperCase() + t.slice(1));
+        btn.classList.remove('active');
+      });
+      document.getElementById('toggle' + tier.charAt(0).toUpperCase() + tier.slice(1)).classList.add('active');
+      document.getElementById('tierNote').textContent = tierNotes[tier];
+      updateCalc();
+    }
+
+    function updateQty(val) {
+      document.getElementById('qtyDisplay').textContent = parseInt(val).toLocaleString();
+    }
+
+    function updateStripeFee(val) {
+      document.getElementById('stripeFeeDisplay').textContent = parseFloat(val).toFixed(1) + '%';
+    }
+
+    function updateChargeback(val) {
+      document.getElementById('chargebackDisplay').textContent = parseFloat(val).toFixed(1) + '%';
+    }
+
+    function getInputs() {
+      const basePrice = parseFloat(document.getElementById('unitPrice').value) || 99;
+      const markup = tierMarkups[currentTier];
+      const unitPrice = basePrice * (1 + markup);
+      const qty = parseInt(document.getElementById('quantitySlider').value) || 500;
+      const stripePct = parseFloat(document.getElementById('stripeFee').value) / 100 || 0.029;
+      const stripeFixed = parseFloat(document.getElementById('stripeFixed').value) || 0.30;
+      const chargebackPct = parseFloat(document.getElementById('chargebackFee').value) / 100 || 0.01;
+      const platformPct = parseFloat(document.getElementById('platformCut').value) / 100 || 0.15;
+      const resellerPct = parseFloat(document.getElementById('resellerCut').value) / 100 || 0.10;
+      const affiliatePct = parseFloat(document.getElementById('affiliateCut').value) / 100 || 0.05;
+      const customPct = parseFloat(document.getElementById('customFee').value) / 100 || 0.08;
+      const customLabel = document.getElementById('customFeeLabel').value || 'Custom Fee';
+      const cogsUnit = parseFloat(document.getElementById('cogs').value) || 12;
+      return { unitPrice, qty, stripePct, stripeFixed, chargebackPct, platformPct, resellerPct, affiliatePct, customPct, customLabel, cogsUnit };
+    }
+
+    function calcWaterfall(inputs) {
+      const { unitPrice, qty, stripePct, stripeFixed, chargebackPct, platformPct, resellerPct, affiliatePct, customPct, customLabel, cogsUnit } = inputs;
+
+      const gross = unitPrice * qty;
+      const stripeAmt = (unitPrice * stripePct + stripeFixed) * qty;
+      const afterStripe = gross - stripeAmt;
+      const chargebackAmt = gross * chargebackPct;
+      const afterChargeback = afterStripe - chargebackAmt;
+      const platformAmt = afterChargeback * platformPct;
+      const afterPlatform = afterChargeback - platformAmt;
+      const resellerAmt = afterPlatform * resellerPct;
+      const afterReseller = afterPlatform - resellerAmt;
+      const affiliateAmt = afterReseller * affiliatePct;
+      const afterAffiliate = afterReseller - affiliateAmt;
+      const customAmt = afterAffiliate * customPct;
+      const afterCustom = afterAffiliate - customAmt;
+      const cogsTotal = cogsUnit * qty;
+      const netRetained = afterCustom - cogsTotal;
+
+      const totalDeductions = gross - netRetained;
+      const margin = gross > 0 ? (netRetained / gross) * 100 : 0;
+
+      return {
+        gross, stripeAmt, afterStripe, chargebackAmt, afterChargeback,
+        platformAmt, afterPlatform, resellerAmt, afterReseller,
+        affiliateAmt, afterAffiliate, customAmt, afterCustom,
+        cogsTotal, netRetained, totalDeductions, margin, customLabel
+      };
+    }
+
+    function renderWaterfallChart(w) {
+      const maxVal = w.gross;
+      const bars = [
+        { label: 'Gross Revenue', value: w.gross, color: 'bg-blue-500', badge: 'badge-gross', type: 'total' },
+        { label: 'Stripe Processing', value: -w.stripeAmt, color: 'bg-amber-400', badge: 'badge-fee', type: 'deduct' },
+        { label: 'After Stripe', value: w.afterStripe, color: 'bg-blue-400', badge: 'badge-gross', type: 'subtotal' },
+        { label: 'Chargeback Reserve', value: -w.chargebackAmt, color: 'bg-pink-400', badge: 'badge-reserve', type: 'deduct' },
+        { label: 'After Chargeback', value: w.afterChargeback, color: 'bg-blue-400', badge: 'badge-gross', type: 'subtotal' },
+        { label: 'Platform Cut', value: -w.platformAmt, color: 'bg-purple-400', badge: 'badge-dist', type: 'deduct' },
+        { label: 'After Platform', value: w.afterPlatform, color: 'bg-indigo-400', badge: 'badge-dist', type: 'subtotal' },
+        { label: 'Reseller Cut', value: -w.resellerAmt, color: 'bg-violet-400', badge: 'badge-dist', type: 'deduct' },
+        { label: 'Affiliate Cut', value: -w.affiliateAmt, color: 'bg-fuchsia-400', badge: 'badge-dist', type: 'deduct' },
+        { label: w.customLabel, value: -w.customAmt, color: 'bg-orange-400', badge: 'badge-fee', type: 'deduct' },
+        { label: 'COGS', value: -w.cogsTotal, color: 'bg-red-400', badge: 'badge-fee', type: 'deduct' },
+        { label: 'Net Retained', value: w.netRetained, color: 'bg-green-500', badge: 'badge-final', type: 'total' },
+      ];
+
+      const chart = document.getElementById('waterfallChart');
+      chart.innerHTML = '';
+
+      bars.forEach(bar => {
+        const absVal = Math.abs(bar.value);
+        const pct = maxVal > 0 ? Math.max((absVal / maxVal) * 100, 1) : 1;
+        const isDeduct = bar.type === 'deduct';
+        const isSubtotal = bar.type === 'subtotal';
+
+        const row = document.createElement('div');
+        row.className = 'flex items-center gap-2 tier-row rounded-small px-1 py-0.5';
+
+        const labelEl = document.createElement('span');
+        labelEl.className = 'text-xs font-body text-gray-600 w-36 shrink-0 truncate';
+        labelEl.textContent = bar.label;
+
+        const barWrap = document.createElement('div');
+        barWrap.className = 'flex-1 bg-gray-100 rounded-small overflow-hidden h-5 relative';
+
+        const barFill = document.createElement('div');
+        barFill.className = `waterfall-bar h-full rounded-small ${bar.color} ${isDeduct ? 'opacity-80' : ''} ${isSubtotal ? 'opacity-60' : ''}`;
+        barFill.style.width = pct + '%';
+
+        barWrap.appendChild(barFill);
+
+        const valEl = document.createElement('span');
+        valEl.className = `text-xs font-body font-medium w-20 text-right shrink-0 ${isDeduct ? 'text-red-600' : bar.type === 'total' ? 'text-gray-900' : 'text-gray-600'}`;
+        valEl.textContent = (isDeduct ? '-' : '') + fmt(absVal);
+
+        const pctEl = document.createElement('span');
+        pctEl.className = 'text-xs font-body text-gray-400 w-10 text-right shrink-0';
+        pctEl.textContent = maxVal > 0 ? fmtPct((absVal / maxVal) * 100) : '0%';
+
+        row.appendChild(labelEl);
+        row.appendChild(barWrap);
+        row.appendChild(valEl);
+        row.appendChild(pctEl);
+        chart.appendChild(row);
+      });
+    }
+
+    function renderFormulaTable(w, inputs) {
+      const rows = [
+        { label: 'Unit Price', formula: `$${inputs.unitPrice.toFixed(2)} × ${inputs.qty.toLocaleString()} units`, value: fmt(w.gross), badge: 'badge-gross' },
+        { label: 'Stripe Fee', formula: `(${(inputs.stripePct*100).toFixed(1)}% + $${inputs.stripeFixed.toFixed(2)}) × qty`, value: '-' + fmt(w.stripeAmt), badge: 'badge-fee' },
+        { label: 'Chargeback', formula: `${(inputs.chargebackPct*100).toFixed(1)}% × Gross`, value: '-' + fmt(w.chargebackAmt), badge: 'badge-reserve' },
+        { label: 'Platform', formula: `${(inputs.platformPct*100).toFixed(1)}% × After CB`, value: '-' + fmt(w.platformAmt), badge: 'badge-dist' },
+        { label: 'Reseller', formula: `${(inputs.resellerPct*100).toFixed(1)}% × After Plat.`, value: '-' + fmt(w.resellerAmt), badge: 'badge-dist' },
+        { label: 'Affiliate', formula: `${(inputs.affiliatePct*100).toFixed(1)}% × After Res.`, value: '-' + fmt(w.affiliateAmt), badge: 'badge-dist' },
+        { label: w.customLabel, formula: `${(inputs.customPct*100).toFixed(1)}% × After Aff.`, value: '-' + fmt(w.customAmt), badge: 'badge-fee' },
+        { label: 'COGS', formula: `$${inputs.cogsUnit.toFixed(2)} × ${inputs.qty.toLocaleString()} units`, value: '-' + fmt(w.cogsTotal), badge: 'badge-fee' },
+        { label: 'Net Retained', formula: 'Gross − All Deductions', value: fmt(w.netRetained), badge: 'badge-final', bold: true },
+      ];
+
+      const table = document.getElementById('formulaTable');
+      table.innerHTML = '';
+
+      rows.forEach(row => {
+        const el = document.createElement('div');
+        el.className = `flex items-start justify-between gap-2 py-1.5 border-b border-gray-50 tier-row ${row.bold ? 'bg-green-50 rounded-small px-1' : ''}`;
+
+        const left = document.createElement('div');
+        left.className = 'flex-1 min-w-0';
+
+        const lbl = document.createElement('div');
+        lbl.className = `text-xs font-body ${row.bold ? 'font-semibold text-gray-900' : 'text-gray-700'} truncate`;
+        lbl.textContent = row.label;
+
+        const formula = document.createElement('div');
+        formula.className = 'text-xs font-body text-gray-400 truncate mt-0.5';
+        formula.textContent = row.formula;
+
+        left.appendChild(lbl);
+        left.appendChild(formula);
+
+        const right = document.createElement('div');
+        right.className = `text-xs font-body font-medium text-right shrink-0 ${row.bold ? 'text-green-700 font-semibold' : row.value.startsWith('-') ? 'text-red-600' : 'text-gray-800'}`;
+        right.textContent = row.value;
+
+        el.appendChild(left);
+        el.appendChild(right);
+        table.appendChild(el);
+      });
+    }
+
+    function renderMonthlyChart(w) {
+      const container = document.getElementById('monthlyChart');
+      const labelsEl = document.getElementById('monthLabels');
+      container.innerHTML = '';
+      labelsEl.innerHTML = '';
+
+      const growthRates = [1, 1.03, 1.06, 1.10, 1.13, 1.17, 1.21, 1.25, 1.28, 1.32, 1.36, 1.40];
+      const maxGross = w.gross * 1.40;
+
+      months.forEach((month, i) => {
+        const g = w.gross * growthRates[i];
+        const n = w.netRetained * growthRates[i];
+        const d = g - n;
+
+        const grossH = Math.round((g / maxGross) * 110);
+        const netH = Math.round((n / maxGross) * 110);
+        const dedH = Math.round((d / maxGross) * 110);
+
+        const col = document.createElement('div');
+        col.className = 'flex-1 flex flex-col items-center justify-end gap-0.5';
+        col.style.height = '140px';
+
+        const barsWrap = document.createElement('div');
+        barsWrap.className = 'flex items-end gap-0.5 w-full justify-center';
+
+        const grossBar = document.createElement('div');
+        grossBar.className = 'bg-blue-400 rounded-small opacity-70';
+        grossBar.style.height = grossH + 'px';
+        grossBar.style.width = '6px';
+        grossBar.title = `${month} Gross: ${fmt(g)}`;
+
+        const netBar = document.createElement('div');
+        netBar.className = 'bg-green-500 rounded-small';
+        netBar.style.height = netH + 'px';
+        netBar.style.width = '6px';
+        netBar.title = `${month} Net: ${fmt(n)}`;
+
+        const dedBar = document.createElement('div');
+        dedBar.className = 'bg-red-400 rounded-small opacity-70';
+        dedBar.style.height = dedH + 'px';
+        dedBar.style.width = '6px';
+        dedBar.title = `${month} Deductions: ${fmt(d)}`;
+
+        barsWrap.appendChild(grossBar);
+        barsWrap.appendChild(netBar);
+        barsWrap.appendChild(dedBar);
+        col.appendChild(barsWrap);
+        container.appendChild(col);
+
+        const lbl = document.createElement('div');
+        lbl.className = 'flex-1 text-center text-xs text-gray-400 font-body';
+        lbl.textContent = month;
+        labelsEl.appendChild(lbl);
+      });
+    }
+
+    function updateCalc() {
+      const inputs = getInputs();
+      const w = calcWaterfall(inputs);
+
+      document.getElementById('kpiGross').textContent = fmt(w.gross);
+      document.getElementById('kpiNet').textContent = fmt(w.netRetained);
+      document.getElementById('kpiDeductions').textContent = fmt(w.totalDeductions);
+      document.getElementById('kpiMargin').textContent = fmtPct(w.margin);
+      document.getElementById('kpiAnnual').textContent = fmt(w.netRetained * 12);
+
+      renderWaterfallChart(w);
+      renderFormulaTable(w, inputs);
+      renderMonthlyChart(w);
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.style.opacity = '1';
+      setTimeout(() => { t.style.opacity = '0'; }, 2500);
+    }
+
+    function saveScenario() { showToast('Scenario saved: Base Case v1'); }
+    function compareScenario() { showToast('Opening scenario comparison...'); }
+    function exportCSV() { showToast('Exporting CSV...'); }
+    function printProForma() { showToast('Preparing Pro Forma PDF...'); }
+
+    // Init
+    updateCalc();
+  </script>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

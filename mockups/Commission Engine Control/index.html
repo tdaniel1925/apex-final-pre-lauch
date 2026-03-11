@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Commission Engine Control - Exported from UXMagic Copilot">
+    <title>Commission Engine Control</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            50: '#E8EAF2',
+                            100: '#C5CCDF',
+                            200: '#9EAACC',
+                            300: '#7689B9',
+                            400: '#4F67A6',
+                            500: '#274693',
+                            600: '#1B3A7D',
+                            700: '#152D61',
+                            800: '#0F2045',
+                            900: '#091329',
+                        },
+                        brandRed: {
+                            50: '#FBE8E9',
+                            100: '#F5C5C7',
+                            200: '#EE9EA1',
+                            300: '#E7767B',
+                            400: '#E04F55',
+                            500: '#D9272F',
+                            600: '#C7181F',
+                            700: '#9B1318',
+                            800: '#6F0D11',
+                            900: '#42080A',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+<div class="flex" style="height: auto; min-height: 100vh;">
+
+    <!-- Sidebar Navigation -->
+    <aside class="flex flex-col w-60 flex-shrink-0 glass-dark text-white z-20" style="min-height: 100vh;">
+        <div class="px-5 py-5 flex items-center gap-3" style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+            <div class="w-9 h-9 rounded-xl flex items-center justify-center shadow-lg" style="background: linear-gradient(135deg, #C7181F 0%, #D9272F 100%);">
+                <i class="fa-solid fa-chart-line text-white text-sm"></i>
+            </div>
+            <div>
+                <span class="text-lg font-bold tracking-tight text-white">ASCEND</span>
+                <p class="text-xs text-navy-300" style="font-size:10px; margin-top:-2px; color: rgba(158,170,204,0.9);">CORPORATE ADMIN</p>
+            </div>
+        </div>
+
+        <div class="px-5 pt-5 pb-2">
+            <p class="text-xs font-semibold uppercase tracking-widest" style="color: rgba(118,137,185,0.8); font-size:10px;">Command Center</p>
+        </div>
+
+        <nav class="flex-1 px-3 space-y-0.5 overflow-y-auto pb-4">
+            <a href="#" class="sidebar-item flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium" style="color: rgba(158,170,204,0.9);">
+                <i class="fa-solid fa-gauge-high w-4 text-center" style="color: rgba(118,137,185,0.7);"></i>
+                <span>Command Center</span>
+            </a>
+            <a href="#" class="sidebar-item flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium" style="color: rgba(158,170,204,0.9);">
+                <i class="fa-solid fa-users w-4 text-center" style="color: rgba(118,137,185,0.7);"></i>
+                <span>Rep Management</span>
+            </a>
+            <a href="#" class="sidebar-item flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium" style="color: rgba(158,170,204,0.9);">
+                <i class="fa-solid fa-sitemap w-4 text-center" style="color: rgba(118,137,185,0.7);"></i>
+                <span>Org Structure</span>
+            </a>
+            <a href="/api/copilot/prototype/4e84a517-34bb-4c03-b2d7-9c44a31eb03f/commission-engine-control" class="sidebar-item active flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold">
+                <i class="fa-solid fa-wallet w-4 text-center" style="color: #E7767B;"></i>
+                <span>Compensation</span>
+            </a>
+            <a href="#" class="sidebar-item flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium" style="color: rgba(158,170,204,0.9);">
+                <i class="fa-solid fa-certificate w-4 text-center" style="color: rgba(118,137,185,0.7);"></i>
+                <span>Licensing</span>
+            </a>
+            <a href="#" class="sidebar-item flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium" style="color: rgba(158,170,204,0.9);">
+                <i class="fa-solid fa-chart-bar w-4 text-center" style="color: rgba(118,137,185,0.7);"></i>
+                <span>Analytics</span>
+            </a>
+
+            <div class="px-4 pt-4 pb-2">
+                <p class="text-xs font-semibold uppercase tracking-widest" style="color: rgba(118,137,185,0.8); font-size:10px;">Administration</p>
+            </div>
+
+            <a href="#" class="sidebar-item flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium" style="color: rgba(158,170,204,0.9);">
+                <i class="fa-solid fa-shield-halved w-4 text-center" style="color: rgba(118,137,185,0.7);"></i>
+                <span>Compliance</span>
+            </a>
+            <a href="#" class="sidebar-item flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium" style="color: rgba(158,170,204,0.9);">
+                <i class="fa-solid fa-bell w-4 text-center" style="color: rgba(118,137,185,0.7);"></i>
+                <span>Notifications</span>
+                <span class="ml-auto text-xs font-bold bg-brandRed-600 text-white px-1.5 py-0.5 rounded-full">7</span>
+            </a>
+            <a href="#" class="sidebar-item flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium" style="color: rgba(158,170,204,0.9);">
+                <i class="fa-solid fa-file-invoice w-4 text-center" style="color: rgba(118,137,185,0.7);"></i>
+                <span>Reports</span>
+            </a>
+            <a href="#" class="sidebar-item flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium" style="color: rgba(158,170,204,0.9);">
+                <i class="fa-solid fa-gear w-4 text-center" style="color: rgba(118,137,185,0.7);"></i>
+                <span>System Settings</span>
+            </a>
+        </nav>
+
+        <div class="p-3" style="border-top: 1px solid rgba(255,255,255,0.1);">
+            <div class="flex items-center gap-3 p-3 rounded-xl" style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.05);">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Admin" class="w-9 h-9 rounded-full border-2 border-brandRed-500">
+                <div class="flex-1 min-w-0">
+                    <p class="text-xs font-bold text-white truncate">James Whitfield</p>
+                    <p class="text-xs truncate font-semibold" style="color: #E7767B; font-size:10px;">Corporate Admin</p>
+                </div>
+                <button class="text-gray-400 hover:text-white transition-colors"><i class="fa-solid fa-ellipsis-vertical text-xs"></i></button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col overflow-x-hidden">
+
+        <!-- Top Bar -->
+        <div class="top-bar px-6 py-3 flex items-center justify-between flex-shrink-0 sticky top-0 z-10">
+            <div>
+                <div class="flex items-center gap-2">
+                    <a href="#" class="text-xs text-gray-400 hover:text-navy-600 transition-colors">Command Center</a>
+                    <i class="fa-solid fa-chevron-right text-gray-300" style="font-size:9px;"></i>
+                    <a href="#" class="text-xs text-gray-400 hover:text-navy-600 transition-colors">Compensation</a>
+                    <i class="fa-solid fa-chevron-right text-gray-300" style="font-size:9px;"></i>
+                    <span class="text-xs font-semibold text-navy-700">Commission Engine</span>
+                </div>
+                <h1 class="text-base font-bold text-navy-900 mt-0.5">Commission Engine Control</h1>
+            </div>
+            <div class="flex items-center gap-2">
+                <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl engine-running">
+                    <span class="w-2 h-2 rounded-full status-dot-green pulse-green inline-block"></span>
+                    <span class="text-xs font-bold text-emerald-700">Engine Running</span>
+                    <span class="text-xs text-emerald-600">· Step 7 of 12</span>
+                </div>
+                <button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-navy-600 hover:text-navy-800 transition-colors" style="background: rgba(27,58,125,0.07); border: 1px solid rgba(27,58,125,0.15);">
+                    <i class="fa-solid fa-rotate text-xs"></i> Refresh
+                </button>
+                <button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-navy-600 hover:text-navy-800 transition-colors" style="background: rgba(27,58,125,0.07); border: 1px solid rgba(27,58,125,0.15);">
+                    <i class="fa-solid fa-file-export text-xs"></i> Export
+                </button>
+                <button class="save-btn" onclick="document.getElementById('lockModal').classList.add('active')">
+                    <i class="fa-solid fa-lock text-xs"></i> Lock Run
+                </button>
+                <button class="save-btn" style="background: linear-gradient(135deg, #065f46 0%, #059669 100%); box-shadow: 0 4px 12px rgba(5,150,105,0.3);" onclick="triggerRunCommission()">
+                    <i class="fa-solid fa-play text-xs"></i> Run Commission
+                </button>
+                <div class="relative">
+                    <button class="w-9 h-9 rounded-lg flex items-center justify-center text-navy-500 hover:text-navy-800 transition-colors" style="background: rgba(27,58,125,0.07); border: 1px solid rgba(27,58,125,0.15);">
+                        <i class="fa-solid fa-bell text-sm"></i>
+                    </button>
+                    <span class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-brandRed-600 text-white flex items-center justify-center font-bold" style="font-size:9px;">7</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scrollable Content -->
+        <div class="flex-1 overflow-y-auto px-6 py-5 space-y-5">
+
+            <!-- Section 1: KPI Strip -->
+            <section style="max-height: 110px;">
+                <div class="grid grid-cols-5 gap-3">
+                    <div class="glass-card px-4 py-3 flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl kpi-card-gradient-blue flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-microchip text-white text-xs"></i>
+                        </div>
+                        <div>
+                            <p class="text-base font-bold text-navy-900">Dec 2024</p>
+                            <p class="text-xs text-gray-500">Active Run Period</p>
+                        </div>
+                    </div>
+                    <div class="glass-card px-4 py-3 flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl kpi-card-gradient-teal flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-dollar-sign text-white text-xs"></i>
+                        </div>
+                        <div>
+                            <p class="text-base font-bold text-navy-900">$4.82M</p>
+                            <p class="text-xs text-gray-500">Total Payout Est.</p>
+                        </div>
+                    </div>
+                    <div class="glass-card px-4 py-3 flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl kpi-card-gradient-purple flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-users text-white text-xs"></i>
+                        </div>
+                        <div>
+                            <p class="text-base font-bold text-navy-900">11,204</p>
+                            <p class="text-xs text-gray-500">Reps Eligible</p>
+                        </div>
+                    </div>
+                    <div class="glass-card px-4 py-3 flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl kpi-card-gradient-amber flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-triangle-exclamation text-white text-xs"></i>
+                        </div>
+                        <div>
+                            <p class="text-base font-bold text-navy-900">23</p>
+                            <p class="text-xs text-gray-500">Exceptions Flagged</p>
+                        </div>
+                    </div>
+                    <div class="glass-card px-4 py-3 flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl kpi-card-gradient-red flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-rotate-left text-white text-xs"></i>
+                        </div>
+                        <div>
+                            <p class="text-base font-bold text-navy-900">$127K</p>
+                            <p class="text-xs text-gray-500">Clawback Pending</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Monthly Commission Run + Bonus Pool Monitor -->
+            <section style="max-height: 480px;">
+                <div class="grid grid-cols-3 gap-4" style="height: 460px;">
+
+                    <!-- Monthly Commission Run Card (2/3) -->
+                    <div class="col-span-2 glass-card p-5 flex flex-col" style="height: 460px;">
+                        <div class="flex items-center justify-between mb-3 flex-shrink-0">
+                            <div>
+                                <h2 class="text-sm font-bold text-navy-900">Monthly Commission Run — December 2024</h2>
+                                <p class="text-xs text-gray-500 mt-0.5">12-step commission calculation pipeline · Last run: Nov 30, 2024 · Next scheduled: Jan 31, 2025</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-lg" style="background: rgba(5,150,105,0.08); border: 1px solid rgba(5,150,105,0.2);">
+                                    <span class="w-1.5 h-1.5 rounded-full status-dot-green pulse-green inline-block"></span>
+                                    <span class="text-xs font-bold text-emerald-700">In Progress</span>
+                                </div>
+                                <span class="text-xs text-gray-400">Started Dec 28 · 09:14 AM</span>
+                            </div>
+                        </div>
+
+                        <!-- Progress Bar -->
+                        <div class="mb-3 flex-shrink-0">
+                            <div class="flex items-center justify-between mb-1.5">
+                                <span class="text-xs font-semibold text-navy-700">Overall Progress</span>
+                                <span class="text-xs font-bold text-navy-900">7 / 12 Steps Complete</span>
+                            </div>
+                            <div class="h-2 rounded-full overflow-hidden" style="background: rgba(226,232,240,0.8);">
+                                <div class="h-full rounded-full" style="width: 58.3%; background: linear-gradient(90deg, #059669, #1B3A7D);"></div>
+                            </div>
+                        </div>
+
+                        <!-- Pipeline Steps Grid -->
+                        <div class="flex-1 overflow-y-auto">
+                            <div class="space-y-2">
+                                <!-- Steps 1-4 (done) -->
+                                <div class="grid grid-cols-4 gap-2">
+                                    <div class="pipeline-step-done rounded-xl p-2.5 flex items-center gap-2">
+                                        <div class="w-6 h-6 rounded-lg bg-white bg-opacity-20 flex items-center justify-center flex-shrink-0">
+                                            <i class="fa-solid fa-check text-white" style="font-size:9px;"></i>
+                                        </div>
+                                        <div class="min-w-0">
+                                            <p class="text-white font-bold" style="font-size:9px;">Step 1</p>
+                                            <p class="text-green-100 truncate" style="font-size:9px;">Data Ingestion</p>
+                                        </div>
+                                    </div>
+                                    <div class="pipeline-step-done rounded-xl p-2.5 flex items-center gap-2">
+                                        <div class="w-6 h-6 rounded-lg bg-white bg-opacity-20 flex items-center justify-center flex-shrink-0">
+                                            <i class="fa-solid fa-check text-white" style="font-size:9px;"></i>
+                                        </div>
+                                        <div class="min-w-0">
+                                            <p class="text-white font-bold" style="font-size:9px;">Step 2</p>
+                                            <p class="text-green-100 truncate" style="font-size:9px;">BV Validation</p>
+                                        </div>
+                                    </div>
+                                    <div class="pipeline-step-done rounded-xl p-2.5 flex items-center gap-2">
+                                        <div class="w-6 h-6 rounded-lg bg-white bg-opacity-20 flex items-center justify-center flex-shrink-0">
+                                            <i class="fa-solid fa-check text-white" style="font-size:9px;"></i>
+                                        </div>
+                                        <div class="min-w-0">
+                                            <p class="text-white font-bold" style="font-size:9px;">Step 3</p>
+                                            <p class="text-green-100 truncate" style="font-size:9px;">Rank Qualification</p>
+                                        </div>
+                                    </div>
+                                    <div class="pipeline-step-done rounded-xl p-2.5 flex items-center gap-2">
+                                        <div class="w-6 h-6 rounded-lg bg-white bg-opacity-20 flex items-center justify-center flex-shrink-0">
+                                            <i class="fa-solid fa-check text-white" style="font-size:9px;"></i>
+                                        </div>
+                                        <div class="min-w-0">
+                                            <p class="text-white font-bold" style="font-size:9px;">Step 4</p>
+                                            <p class="text-green-100 truncate" style="font-size:9px;">Leg Compression</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Steps 5-8 -->
+                                <div class="grid grid-cols-4 gap-2">
+                                    <div class="pipeline-step-done rounded-xl p-2.5 flex items-center gap-2">
+                                        <div class="w-6 h-6 rounded-lg bg-white bg-opacity-20 flex items-center justify-center flex-shrink-0">
+                                            <i class="fa-solid fa-check text-white" style="font-size:9px;"></i>
+                                        </div>
+                                        <div class="min-w-0">
+                                            <p class="text-white font-bold" style="font-size:9px;">Step 5</p>
+                                            <p class="text-green-100 truncate" style="font-size:9px;">Override Calc</p>
+                                        </div>
+                                    </div>
+                                    <div class="pipeline-step-done rounded-xl p-2.5 flex items-center gap-2">
+                                        <div class="w-6 h-6 rounded-lg bg-white bg-opacity-20 flex items-center justify-center flex-shrink-0">
+                                            <i class="fa-solid fa-check text-white" style="font-size:9px;"></i>
+                                        </div>
+                                        <div class="min-w-0">
+                                            <p class="text-white font-bold" style="font-size:9px;">Step 6</p>
+                                            <p class="text-green-100 truncate" style="font-size:9px;">Bonus Pools</p>
+                                        </div>
+                                    </div>
+                                    <div class="pipeline-step-active rounded-xl p-2.5 flex items-center gap-2">
+                                        <div class="w-6 h-6 rounded-lg bg-white bg-opacity-20 flex items-center justify-center flex-shrink-0">
+                                            <i class="fa-solid fa-spinner fa-spin text-white" style="font-size:9px;"></i>
+                                        </div>
+                                        <div class="min-w-0">
+                                            <p class="text-white font-bold" style="font-size:9px;">Step 7 ←</p>
+                                            <p class="text-blue-100 truncate" style="font-size:9px;">CAB Adjustments</p>
+                                        </div>
+                                    </div>
+                                    <div class="pipeline-step-pending rounded-xl p-2.5 flex items-center gap-2">
+                                        <div class="w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0" style="background: rgba(203,213,225,0.5);">
+                                            <i class="fa-solid fa-clock text-gray-400" style="font-size:9px;"></i>
+                                        </div>
+                                        <div class="min-w-0">
+                                            <p class="text-gray-400 font-bold" style="font-size:9px;">Step 8</p>
+                                            <p class="text-gray-400 truncate" style="font-size:9px;">Clawback Apply</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Steps 9-12 -->
+                                <div class="grid grid-cols-4 gap-2">
+                                    <div class="pipeline-step-pending rounded-xl p-2.5 flex items-center gap-2">
+                                        <div class="w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0" style="background: rgba(203,213,225,0.5);">
+                                            <i class="fa-solid fa-clock text-gray-400" style="font-size:9px;"></i>
+                                        </div>
+                                        <div class="min-w-0">
+                                            <p class="text-gray-400 font-bold" style="font-size:9px;">Step 9</p>
+                                            <p class="text-gray-400 truncate" style="font-size:9px;">Manual Adj.</p>
+                                        </div>
+                                    </div>
+                                    <div class="pipeline-step-pending rounded-xl p-2.5 flex items-center gap-2">
+                                        <div class="w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0" style="background: rgba(203,213,225,0.5);">
+                                            <i class="fa-solid fa-clock text-gray-400" style="font-size:9px;"></i>
+                                        </div>
+                                        <div class="min-w-0">
+                                            <p class="text-gray-400 font-bold" style="font-size:9px;">Step 10</p>
+                                            <p class="text-gray-400 truncate" style="font-size:9px;">Tax Withholding</p>
+                                        </div>
+                                    </div>
+                                    <div class="pipeline-step-pending rounded-xl p-2.5 flex items-center gap-2">
+                                        <div class="w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0" style="background: rgba(203,213,225,0.5);">
+                                            <i class="fa-solid fa-clock text-gray-400" style="font-size:9px;"></i>
+                                        </div>
+                                        <div class="min-w-0">
+                                            <p class="text-gray-400 font-bold" style="font-size:9px;">Step 11</p>
+                                            <p class="text-gray-400 truncate" style="font-size:9px;">Final Audit</p>
+                                        </div>
+                                    </div>
+                                    <div class="pipeline-step-locked rounded-xl p-2.5 flex items-center gap-2">
+                                        <div class="w-6 h-6 rounded-lg bg-white bg-opacity-10 flex items-center justify-center flex-shrink-0">
+                                            <i class="fa-solid fa-lock text-white" style="font-size:9px;"></i>
+                                        </div>
+                                        <div class="min-w-0">
+                                            <p class="text-white font-bold" style="font-size:9px;">Step 12</p>
+                                            <p class="text-blue-200 truncate" style="font-size:9px;">Payout Release</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Step Log -->
+                                <div class="mt-1 rounded-xl p-3" style="background: rgba(248,250,252,0.8); border: 1px solid rgba(226,232,240,0.8);">
+                                    <p class="text-xs font-bold text-navy-800 mb-2">Recent Log</p>
+                                    <div class="space-y-1.5">
+                                        <div class="flex items-center gap-2">
+                                            <span class="w-1.5 h-1.5 rounded-full status-dot-green flex-shrink-0"></span>
+                                            <span class="text-gray-400 flex-shrink-0" style="font-size:10px;">09:47 AM</span>
+                                            <span class="text-xs text-navy-700">Step 6 completed — Bonus pools allocated: $847,291</span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0" style="box-shadow: 0 0 4px #3b82f6;"></span>
+                                            <span class="text-gray-400 flex-shrink-0" style="font-size:10px;">09:51 AM</span>
+                                            <span class="text-xs text-navy-700">Step 7 started — Processing 23 CAB adjustments...</span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <span class="w-1.5 h-1.5 rounded-full status-dot-yellow flex-shrink-0"></span>
+                                            <span class="text-gray-400 flex-shrink-0" style="font-size:10px;">09:52 AM</span>
+                                            <span class="text-xs text-amber-700">Warning: 3 CAB entries require manual review</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="flex items-center gap-2 mt-3 flex-shrink-0">
+                            <button class="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold action-btn-danger">
+                                <i class="fa-solid fa-stop text-xs"></i> Abort Run
+                            </button>
+                            <button class="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold action-btn-warn">
+                                <i class="fa-solid fa-pause text-xs"></i> Pause
+                            </button>
+                            <button class="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold action-btn-navy">
+                                <i class="fa-solid fa-eye text-xs"></i> View Full Log
+                            </button>
+                            <button class="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold action-btn-navy" onclick="document.getElementById('lockModal').classList.add('active')">
+                                <i class="fa-solid fa-lock text-xs"></i> Lock Run
+                            </button>
+                            <div class="ml-auto flex items-center gap-1.5 text-xs text-gray-500">
+                                <i class="fa-solid fa-clock text-gray-400 text-xs"></i>
+                                <span>Est. completion: <span class="font-semibold text-navy-700">~42 min</span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bonus Pool Monitor (1/3) -->
+                    <div class="glass-card p-5 flex flex-col" style="height: 460px;">
+                        <div class="flex items-center justify-between mb-2 flex-shrink-0">
+                            <div>
+                                <h2 class="text-sm font-bold text-navy-900">Bonus Pool Monitor</h2>
+                                <p class="text-xs text-gray-500 mt-0.5">Dec 2024 utilization</p>
+                            </div>
+                            <button class="w-7 h-7 rounded-lg flex items-center justify-center action-btn-navy">
+                                <i class="fa-solid fa-pen text-xs"></i>
+                            </button>
+                        </div>
+
+                        <!-- Large Balance Display -->
+                        <div class="rounded-xl p-3 mb-2 flex-shrink-0" style="background: linear-gradient(135deg, rgba(27,58,125,0.08), rgba(27,58,125,0.04)); border: 1px solid rgba(27,58,125,0.15);">
+                            <p class="text-xs text-gray-500 mb-0.5">Current Pool Balance</p>
+                            <p class="text-2xl font-bold text-navy-900">$847,291</p>
+                            <div class="flex items-center gap-2 mt-1">
+                                <span class="text-xs text-gray-500">of $1.05M budget</span>
+                                <span class="text-xs font-bold text-emerald-600">80.7% utilized</span>
+                            </div>
+                        </div>
+
+                        <!-- Monthly Contributions vs Distributions Bar Chart -->
+                        <div class="rounded-xl p-3 mb-2 flex-shrink-0" style="background: rgba(248,250,252,0.8); border: 1px solid rgba(226,232,240,0.8);">
+                            <div class="flex items-center justify-between mb-2">
+                                <p class="text-xs font-bold text-navy-800">Monthly Contributions vs Distributions</p>
+                            </div>
+                            <div class="flex items-end gap-1.5 h-20 overflow-hidden">
+                                <!-- Aug -->
+                                <div class="flex flex-col items-center gap-0.5 flex-1">
+                                    <div class="w-full flex flex-col gap-0.5 items-center justify-end" style="height: 68px;">
+                                        <div class="bar-contrib w-full" style="height: 42px;"></div>
+                                        <div class="bar-distrib w-full" style="height: 28px;"></div>
+                                    </div>
+                                    <span class="text-gray-400" style="font-size:8px;">Aug</span>
+                                </div>
+                                <!-- Sep -->
+                                <div class="flex flex-col items-center gap-0.5 flex-1">
+                                    <div class="w-full flex flex-col gap-0.5 items-center justify-end" style="height: 68px;">
+                                        <div class="bar-contrib w-full" style="height: 48px;"></div>
+                                        <div class="bar-distrib w-full" style="height: 32px;"></div>
+                                    </div>
+                                    <span class="text-gray-400" style="font-size:8px;">Sep</span>
+                                </div>
+                                <!-- Oct -->
+                                <div class="flex flex-col items-center gap-0.5 flex-1">
+                                    <div class="w-full flex flex-col gap-0.5 items-center justify-end" style="height: 68px;">
+                                        <div class="bar-contrib w-full" style="height: 52px;"></div>
+                                        <div class="bar-distrib w-full" style="height: 38px;"></div>
+                                    </div>
+                                    <span class="text-gray-400" style="font-size:8px;">Oct</span>
+                                </div>
+                                <!-- Nov -->
+                                <div class="flex flex-col items-center gap-0.5 flex-1">
+                                    <div class="w-full flex flex-col gap-0.5 items-center justify-end" style="height: 68px;">
+                                        <div class="bar-contrib w-full" style="height: 58px;"></div>
+                                        <div class="bar-distrib w-full" style="height: 44px;"></div>
+                                    </div>
+                                    <span class="text-gray-400" style="font-size:8px;">Nov</span>
+                                </div>
+                                <!-- Dec (current) -->
+                                <div class="flex flex-col items-center gap-0.5 flex-1">
+                                    <div class="w-full flex flex-col gap-0.5 items-center justify-end" style="height: 68px;">
+                                        <div class="bar-contrib w-full" style="height: 64px; opacity: 1; box-shadow: 0 0 6px rgba(27,58,125,0.3);"></div>
+                                        <div class="bar-distrib w-full" style="height: 50px; opacity: 1; box-shadow: 0 0 6px rgba(199,24,31,0.3);"></div>
+                                    </div>
+                                    <span class="text-navy-700 font-bold" style="font-size:8px;">Dec</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 mt-1.5">
+                                <div class="flex items-center gap-1"><div class="w-2 h-2 rounded-sm bar-contrib"></div><span class="text-gray-500" style="font-size:9px;">Contributions</span></div>
+                                <div class="flex items-center gap-1"><div class="w-2 h-2 rounded-sm bar-distrib"></div><span class="text-gray-500" style="font-size:9px;">Distributions</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Utilization Gauge -->
+                        <div class="flex items-center justify-center mb-2 flex-shrink-0">
+                            <div class="relative" style="width: 100px; height: 100px;">
+                                <svg width="100" height="100" viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="38" fill="none" stroke="rgba(226,232,240,0.8)" stroke-width="10"></circle>
+                                    <circle cx="50" cy="50" r="38" fill="none" stroke="url(#gaugeGrad2)" stroke-width="10" stroke-dasharray="238.76" stroke-dashoffset="46.02" stroke-linecap="round" transform="rotate(-90 50 50)"></circle>
+                                    <defs>
+                                        <linearGradient id="gaugeGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" stop-color="#1B3A7D"></stop>
+                                            <stop offset="100%" stop-color="#D9272F"></stop>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                                <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                    <p class="text-lg font-bold text-navy-900">80.7%</p>
+                                    <p style="font-size:9px;" class="text-gray-500">Utilized</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Auto-trigger Threshold -->
+                        <div class="rounded-xl p-2.5 mb-2 flex-shrink-0" style="background: rgba(245,158,11,0.07); border: 1px solid rgba(245,158,11,0.25);">
+                            <div class="flex items-center justify-between mb-1">
+                                <div class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-bolt text-amber-500" style="font-size:10px;"></i>
+                                    <span class="text-xs font-bold text-amber-800">Auto-Trigger Threshold</span>
+                                </div>
+                                <span class="text-xs font-bold text-amber-700">90% / $945K</span>
+                            </div>
+                            <div class="h-1.5 rounded-full overflow-hidden" style="background: rgba(226,232,240,0.8);">
+                                <div class="h-full rounded-full" style="width: 80.7%; background: linear-gradient(90deg, #f59e0b, #d97706);"></div>
+                            </div>
+                            <p class="text-amber-700 mt-1" style="font-size:9px;">$97.7K remaining before auto-trigger fires</p>
+                        </div>
+
+                        <!-- Pool Breakdown -->
+                        <div class="flex-1 overflow-y-auto space-y-1.5">
+                            <div class="rounded-xl p-2" style="background: rgba(248,250,252,0.8); border: 1px solid rgba(226,232,240,0.8);">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-xs font-semibold text-navy-800">Leadership Pool</span>
+                                    <span class="text-xs font-bold text-navy-900">84%</span>
+                                </div>
+                                <div class="h-1.5 rounded-full overflow-hidden" style="background: rgba(226,232,240,0.8);">
+                                    <div class="h-full rounded-full kpi-card-gradient-blue" style="width: 84%;"></div>
+                                </div>
+                            </div>
+                            <div class="rounded-xl p-2" style="background: rgba(248,250,252,0.8); border: 1px solid rgba(226,232,240,0.8);">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-xs font-semibold text-navy-800">Diamond Director</span>
+                                    <span class="text-xs font-bold text-navy-900">72.7%</span>
+                                </div>
+                                <div class="h-1.5 rounded-full overflow-hidden" style="background: rgba(226,232,240,0.8);">
+                                    <div class="h-full rounded-full" style="width: 72.7%; background: linear-gradient(135deg, #4c1d95, #7c3aed);"></div>
+                                </div>
+                            </div>
+                            <div class="rounded-xl p-2" style="background: rgba(254,226,226,0.2); border: 1px solid rgba(252,165,165,0.4);">
+                                <div class="flex items-center justify-between mb-1">
+                                    <div class="flex items-center gap-1">
+                                        <span class="text-xs font-semibold text-navy-800">Performance Incentive</span>
+                                        <span class="w-1.5 h-1.5 rounded-full status-dot-red inline-block"></span>
+                                    </div>
+                                    <span class="text-xs font-bold text-brandRed-600">112%</span>
+                                </div>
+                                <div class="h-1.5 rounded-full overflow-hidden" style="background: rgba(226,232,240,0.8);">
+                                    <div class="h-full rounded-full kpi-card-gradient-red" style="width: 100%;"></div>
+                                </div>
+                                <p class="text-brandRed-500 font-semibold mt-0.5" style="font-size:9px;">⚠ Over budget by $12K</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: CAB Management Table (PENDING CABs with Force Earn / Force Void) -->
+            <section style="max-height: 520px;">
+                <div class="glass-card p-0 overflow-hidden">
+                    <div class="px-5 py-4 flex items-center justify-between" style="border-bottom: 1px solid rgba(226,232,240,0.8);">
+                        <div>
+                            <h2 class="text-sm font-bold text-navy-900">CAB Management — Pending Entries</h2>
+                            <p class="text-xs text-gray-500 mt-0.5">Commission Adjustment Board · Day-60 customer retention review · Dec 2024</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-lg" style="background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.25);">
+                                <span class="w-1.5 h-1.5 rounded-full status-dot-yellow inline-block"></span>
+                                <span class="text-xs font-bold text-amber-700">8 Pending Review</span>
+                            </div>
+                            <button class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold save-btn" style="padding: 6px 14px; border-radius: 8px;">
+                                <i class="fa-solid fa-plus text-xs"></i> New CAB Entry
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Table Header -->
+                    <div class="px-5 py-2.5 grid items-center gap-2" style="grid-template-columns: 1.2fr 1fr 90px 90px 80px 100px 130px; border-bottom: 1px solid rgba(226,232,240,0.8); background: rgba(248,250,252,0.6);">
+                        <span class="text-gray-400 font-bold uppercase" style="font-size:9px;">Rep Name</span>
+                        <span class="text-gray-400 font-bold uppercase" style="font-size:9px;">Customer</span>
+                        <span class="text-gray-400 font-bold uppercase text-center" style="font-size:9px;">Enroll Date</span>
+                        <span class="text-gray-400 font-bold uppercase text-center" style="font-size:9px;">Day 60 Target</span>
+                        <span class="text-gray-400 font-bold uppercase text-right" style="font-size:9px;">Amount</span>
+                        <span class="text-gray-400 font-bold uppercase text-center" style="font-size:9px;">Status</span>
+                        <span class="text-gray-400 font-bold uppercase text-center" style="font-size:9px;">Actions</span>
+                    </div>
+
+                    <!-- Table Body -->
+                    <div class="divide-y" style="divide-color: rgba(226,232,240,0.6); max-height: 340px; overflow-y: auto;">
+                        <!-- Row 1 -->
+                        <div class="rep-row px-5 py-3 grid items-center gap-2" style="grid-template-columns: 1.2fr 1fr 90px 90px 80px 100px 130px; background: rgba(254,243,199,0.15);">
+                            <div class="min-w-0">
+                                <p class="text-xs font-bold text-navy-900 truncate">Marcus Thompson</p>
+                                <p class="text-gray-400 truncate" style="font-size:9px;">ASD-10291 · Diamond Director</p>
+                            </div>
+                            <div class="min-w-0">
+                                <p class="text-xs font-semibold text-navy-800 truncate">Patricia Owens</p>
+                                <p class="text-gray-400 truncate" style="font-size:9px;">CUST-88421</p>
+                            </div>
+                            <p class="text-xs text-gray-600 text-center">Oct 29, 2024</p>
+                            <p class="text-xs font-semibold text-navy-700 text-center">Dec 28, 2024</p>
+                            <p class="text-xs font-bold text-navy-900 text-right">$3,840</p>
+                            <div class="flex justify-center"><span class="text-xs font-bold px-2 py-1 rounded-full cab-pending" style="font-size:9px;">Pending</span></div>
+                            <div class="flex justify-center gap-1.5">
+                                <button class="flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs font-bold action-btn-teal" onclick="cabAction(this,'earn')" style="font-size:10px;">
+                                    <i class="fa-solid fa-circle-check" style="font-size:9px;"></i> Force Earn
+                                </button>
+                                <button class="flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs font-bold action-btn-danger" onclick="cabAction(this,'void')" style="font-size:10px;">
+                                    <i class="fa-solid fa-ban" style="font-size:9px;"></i> Force Void
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Row 2 -->
+                        <div class="rep-row px-5 py-3 grid items-center gap-2" style="grid-template-columns: 1.2fr 1fr 90px 90px 80px 100px 130px; background: rgba(254,243,199,0.15);">
+                            <div class="min-w-0">
+                                <p class="text-xs font-bold text-navy-900 truncate">Jennifer Caldwell</p>
+                                <p class="text-gray-400 truncate" style="font-size:9px;">ASD-20847 · Platinum Leader</p>
+                            </div>
+                            <div class="min-w-0">
+                                <p class="text-xs font-semibold text-navy-800 truncate">Raymond Flores</p>
+                                <p class="text-gray-400 truncate" style="font-size:9px;">CUST-91034</p>
+                            </div>
+                            <p class="text-xs text-gray-600 text-center">Nov 1, 2024</p>
+                            <p class="text-xs font-semibold text-navy-700 text-center">Dec 31, 2024</p>
+                            <p class="text-xs font-bold text-navy-900 text-right">$2,100</p>
+                            <div class="flex justify-center"><span class="text-xs font-bold px-2 py-1 rounded-full cab-pending" style="font-size:9px;">Pending</span></div>
+                            <div class="flex justify-center gap-1.5">
+                                <button class="flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs font-bold action-btn-teal" onclick="cabAction(this,'earn')" style="font-size:10px;">
+                                    <i class="fa-solid fa-circle-check" style="font-size:9px;"></i> Force Earn
+                                </button>
+                                <button class="flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs font-bold action-btn-danger" onclick="cabAction(this,'void')" style="font-size:10px;">
+                                    <i class="fa-solid fa-ban" style="font-size:9px;"></i> Force Void
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Row 3 -->
+                        <div class="rep-row px-5 py-3 grid items-center gap-2" style="grid-template-columns: 1.2fr 1fr 90px 90px 80px 100px 130px; background: rgba(254,243,199,0.15);">
+                            <div class="min-w-0">
+                                <p class="text-xs font-bold text-navy-900 truncate">Robert Nguyen</p>
+                                <p class="text-gray-400 truncate" style="font-size:9px;">ASD-31029 · Gold Leader</p>
+                            </div>
+                            <div class="min-w-0">
+                                <p class="text-xs font-semibold text-navy-800 truncate">Sandra Mitchell</p>
+                                <p class="text-gray-400 truncate" style="font-size:9px;">CUST-77210</p>
+                            </div>
+                            <p class="text-xs text-gray-600 text-center">Nov 3, 2024</p>
+                            <p class="text-xs font-semibold text-amber-600 text-center">Jan 2, 2025</p>
+                            <p class="text-xs font-bold text-navy-900 text-right">$1,750</p>
+                            <div class="flex justify-center"><span class="text-xs font-bold px-2 py-1 rounded-full cab-pending" style="font-size:9px;">Pending</span></div>
+                            <div class="flex justify-center gap-1.5">
+                                <button class="flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs font-bold action-btn-teal" onclick="cabAction(this,'earn')" style="font-size:10px;">
+                                    <i class="fa-solid fa-circle-check" style="font-size:9px;"></i> Force Earn
+                                </button>
+                                <button class="flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs font-bold action-btn-danger" onclick="cabAction(this,'void')" style="font-size:10px;">
+                                    <i class="fa-solid fa-ban" style="font-size:9px;"></i> Force Void
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Row 4 -->
+                        <div class="rep-row px-5 py-3 grid items-center gap-2" style="grid-template-columns: 1.2fr 1fr 90px 90px 80px 100px 130px; background: rgba(254,243,199,0.15);">
+                            <div class="min-w-0">
+                                <p class="text-xs font-bold text-navy-900 truncate">Sarah Jenkins</p>
+                                <p class="text-gray-400 truncate" style="font-size:9px;">ASD-48291 · Silver Leader</p>
+                            </div>
+                            <div class="min-w-0">
+                                <p class="text-xs font-semibold text-navy-800 truncate">Thomas Reyes</p>
+                                <p class="text-gray-400 truncate" style="font-size:9px;">CUST-64830</p>
+                            </div>
+                            <p class="text-xs text-gray-600 text-center">Nov 5, 2024</p>
+                            <p class="text-xs font-semibold text-navy-700 text-center">Jan 4, 2025</p>
+                            <p class="text-xs font-bold text-navy-900 text-right">$980</p>
+                            <div class="flex justify-center"><span class="text-xs font-bold px-2 py-1 rounded-full cab-pending" style="font-size:9px;">Pending</span></div>
+                            <div class="flex justify-center gap-1.5">
+                                <button class="flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs font-bold action-btn-teal" onclick="cabAction(this,'earn')" style="font-size:10px;">
+                                    <i class="fa-solid fa-circle-check" style="font-size:9px;"></i> Force Earn
+                                </button>
+                                <button class="flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs font-bold action-btn-danger" onclick="cabAction(this,'void')" style="font-size:10px;">
+                                    <i class="fa-solid fa-ban" style="font-size:9px;"></i> Force Void
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Row 5 -->
+                        <div class="rep-row px-5 py-3 grid items-center gap-2" style="grid-template-columns: 1.2fr 1fr 90px 90px 80px 100px 130px; background: rgba(254,243,199,0.15);">
+                            <div class="min-w-0">
+                                <p class="text-xs font-bold text-navy-900 truncate">David Park</p>
+                                <p class="text-gray-400 truncate" style="font-size:9px;">ASD-55102 · Gold Leader</p>
+                            </div>
+                            <div class="min-w-0">
+                                <p class="text-xs font-semibold text-navy-800 truncate">Angela Brooks</p>
+                                <p class="text-gray-400 truncate" style="font-size:9px;">CUST-52019</p>
+                            </div>
+                            <p class="text-xs text-gray-600 text-center">Nov 8, 2024</p>
+                            <p class="text-xs font-semibold text-navy-700 text-center">Jan 7, 2025</p>
+                            <p class="text-xs font-bold text-navy-900 text-right">$2,450</p>
+                            <div class="flex justify-center"><span class="text-xs font-bold px-2 py-1 rounded-full cab-pending" style="font-size:9px;">Pending</span></div>
+                            <div class="flex justify-center gap-1.5">
+                                <button class="flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs font-bold action-btn-teal" onclick="cabAction(this,'earn')" style="font-size:10px;">
+                                    <i class="fa-solid fa-circle-check" style="font-size:9px;"></i> Force Earn
+                                </button>
+                                <button class="flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs font-bold action-btn-danger" onclick="cabAction(this,'void')" style="font-size:10px;">
+                                    <i class="fa-solid fa-ban" style="font-size:9px;"></i> Force Void
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Row 6 -->
+                        <div class="rep-row px-5 py-3 grid items-center gap-2" style="grid-template-columns: 1.2fr 1fr 90px 90px 80px 100px 130px; background: rgba(254,243,199,0.15);">
+                            <div class="min-w-0">
+                                <p class="text-xs font-bold text-navy-900 truncate">Kevin Walsh</p>
+                                <p class="text-gray-400 truncate" style="font-size:9px;">ASD-72910 · Platinum Leader</p>
+                            </div>
+                            <div class="min-w-0">
+                                <p class="text-xs font-semibold text-navy-800 truncate">Christine Lee</p>
+                                <p class="text-gray-400 truncate" style="font-size:9px;">CUST-39847</p>
+                            </div>
+                            <p class="text-xs text-gray-600 text-center">Nov 12, 2024</p>
+                            <p class="text-xs font-semibold text-navy-700 text-center">Jan 11, 2025</p>
+                            <p class="text-xs font-bold text-navy-900 text-right">$1,620</p>
+                            <div class="flex justify-center"><span class="text-xs font-bold px-2 py-1 rounded-full cab-pending" style="font-size:9px;">Pending</span></div>
+                            <div class="flex justify-center gap-1.5">
+                                <button class="flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs font-bold action-btn-teal" onclick="cabAction(this,'earn')" style="font-size:10px;">
+                                    <i class="fa-solid fa-circle-check" style="font-size:9px;"></i> Force Earn
+                                </button>
+                                <button class="flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs font-bold action-btn-danger" onclick="cabAction(this,'void')" style="font-size:10px;">
+                                    <i class="fa-solid fa-ban" style="font-size:9px;"></i> Force Void
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Row 7 -->
+                        <div class="rep-row px-5 py-3 grid items-center gap-2" style="grid-template-columns: 1.2fr 1fr 90px 90px 80px 100px 130px; background: rgba(254,243,199,0.15);">
+                            <div class="min-w-0">
+                                <p class="text-xs font-bold text-navy-900 truncate">Lisa Monroe</p>
+                                <p class="text-gray-400 truncate" style="font-size:9px;">ASD-61847 · Diamond Director</p>
+                            </div>
+                            <div class="min-w-0">
+                                <p class="text-xs font-semibold text-navy-800 truncate">Harold Turner</p>
+                                <p class="text-gray-400 truncate" style="font-size:9px;">CUST-28401</p>
+                            </div>
+                            <p class="text-xs text-gray-600 text-center">Nov 15, 2024</p>
+                            <p class="text-xs font-semibold text-navy-700 text-center">Jan 14, 2025</p>
+                            <p class="text-xs font-bold text-navy-900 text-right">$4,200</p>
+                            <div class="flex justify-center"><span class="text-xs font-bold px-2 py-1 rounded-full cab-pending" style="font-size:9px;">Pending</span></div>
+                            <div class="flex justify-center gap-1.5">
+                                <button class="flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs font-bold action-btn-teal" onclick="cabAction(this,'earn')" style="font-size:10px;">
+                                    <i class="fa-solid fa-circle-check" style="font-size:9px;"></i> Force Earn
+                                </button>
+                                <button class="flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs font-bold action-btn-danger" onclick="cabAction(this,'void')" style="font-size:10px;">
+                                    <i class="fa-solid fa-ban" style="font-size:9px;"></i> Force Void
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Row 8 -->
+                        <div class="rep-row px-5 py-3 grid items-center gap-2" style="grid-template-columns: 1.2fr 1fr 90px 90px 80px 100px 130px; background: rgba(254,243,199,0.15);">
+                            <div class="min-w-0">
+                                <p class="text-xs font-bold text-navy-900 truncate">Brian Holloway</p>
+                                <p class="text-gray-400 truncate" style="font-size:9px;">ASD-94182 · Gold Leader</p>
+                            </div>
+                            <div class="min-w-0">
+                                <p class="text-xs font-semibold text-navy-800 truncate">Denise Carter</p>
+                                <p class="text-gray-400 truncate" style="font-size:9px;">CUST-11920</p>
+                            </div>
+                            <p class="text-xs text-gray-600 text-center">Nov 18, 2024</p>
+                            <p class="text-xs font-semibold text-navy-700 text-center">Jan 17, 2025</p>
+                            <p class="text-xs font-bold text-navy-900 text-right">$1,380</p>
+                            <div class="flex justify-center"><span class="text-xs font-bold px-2 py-1 rounded-full cab-pending" style="font-size:9px;">Pending</span></div>
+                            <div class="flex justify-center gap-1.5">
+                                <button class="flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs font-bold action-btn-teal" onclick="cabAction(this,'earn')" style="font-size:10px;">
+                                    <i class="fa-solid fa-circle-check" style="font-size:9px;"></i> Force Earn
+                                </button>
+                                <button class="flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs font-bold action-btn-danger" onclick="cabAction(this,'void')" style="font-size:10px;">
+                                    <i class="fa-solid fa-ban" style="font-size:9px;"></i> Force Void
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="px-5 py-3 flex items-center justify-between" style="border-top: 1px solid rgba(226,232,240,0.8); background: rgba(248,250,252,0.6);">
+                        <p class="text-xs text-gray-500">Showing <span class="font-semibold text-navy-800">8</span> of <span class="font-semibold text-navy-800">8</span> pending CAB entries · Total pending: <span class="font-bold text-amber-700">$18,320</span></p>
+                        <div class="flex items-center gap-2">
+                            <button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold action-btn-teal">
+                                <i class="fa-solid fa-circle-check text-xs"></i> Force Earn All
+                            </button>
+                            <button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold action-btn-danger">
+                                <i class="fa-solid fa-ban text-xs"></i> Force Void All
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Stress Test Runner -->
+            <section style="max-height: 600px;">
+                <div class="glass-card p-0 overflow-hidden">
+                    <div class="px-5 py-4 flex items-center justify-between" style="border-bottom: 1px solid rgba(226,232,240,0.8);">
+                        <div>
+                            <h2 class="text-sm font-bold text-navy-900">Stress Test Runner</h2>
+                            <p class="text-xs text-gray-500 mt-0.5">Simulate commission engine under variable load conditions before production run</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-lg" style="background: rgba(27,58,125,0.07); border: 1px solid rgba(27,58,125,0.15);">
+                                <i class="fa-solid fa-flask text-navy-600" style="font-size:10px;"></i>
+                                <span class="text-xs font-bold text-navy-700">Simulation Mode</span>
+                            </div>
+                            <span class="text-xs text-gray-400">Last run: Dec 27, 2024 · 11:30 PM</span>
+                        </div>
+                    </div>
+
+                    <div class="p-5">
+                        <div class="grid grid-cols-2 gap-5">
+
+                            <!-- Left: Sliders + Run Button -->
+                            <div>
+                                <p class="text-xs font-bold text-navy-800 mb-3">Test Parameters</p>
+                                <div class="space-y-4">
+
+                                    <!-- Rep Count Slider -->
+                                    <div>
+                                        <div class="flex items-center justify-between mb-1.5">
+                                            <label class="form-label" style="margin-bottom:0;">Rep Count</label>
+                                            <span class="text-sm font-bold text-navy-900" id="repCountVal">11,204</span>
+                                        </div>
+                                        <input type="range" min="1000" max="25000" value="11204" step="100" class="stress-slider" id="repCountSlider" oninput="updateSlider('repCount', this.value)">
+                                        <div class="flex items-center justify-between mt-1">
+                                            <span class="text-gray-400" style="font-size:9px;">1,000 reps</span>
+                                            <span class="text-gray-400" style="font-size:9px;">25,000 reps</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Product Mix Slider -->
+                                    <div>
+                                        <div class="flex items-center justify-between mb-1.5">
+                                            <label class="form-label" style="margin-bottom:0;">Product Mix Complexity</label>
+                                            <span class="text-sm font-bold text-navy-900" id="productMixVal">65%</span>
+                                        </div>
+                                        <input type="range" min="10" max="100" value="65" step="5" class="stress-slider" id="productMixSlider" oninput="updateSlider('productMix', this.value)">
+                                        <div class="flex items-center justify-between mt-1">
+                                            <span class="text-gray-400" style="font-size:9px;">Simple (10%)</span>
+                                            <span class="text-gray-400" style="font-size:9px;">Complex (100%)</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Churn Rate Slider -->
+                                    <div>
+                                        <div class="flex items-center justify-between mb-1.5">
+                                            <label class="form-label" style="margin-bottom:0;">Customer Churn Rate</label>
+                                            <span class="text-sm font-bold text-navy-900" id="churnRateVal">12%</span>
+                                        </div>
+                                        <input type="range" min="0" max="50" value="12" step="1" class="stress-slider" id="churnRateSlider" oninput="updateSlider('churnRate', this.value)">
+                                        <div class="flex items-center justify-between mt-1">
+                                            <span class="text-gray-400" style="font-size:9px;">0% churn</span>
+                                            <span class="text-gray-400" style="font-size:9px;">50% churn</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- CAB Override Rate Slider -->
+                                    <div>
+                                        <div class="flex items-center justify-between mb-1.5">
+                                            <label class="form-label" style="margin-bottom:0;">CAB Override Rate</label>
+                                            <span class="text-sm font-bold text-navy-900" id="cabOverrideVal">8%</span>
+                                        </div>
+                                        <input type="range" min="0" max="30" value="8" step="1" class="stress-slider" id="cabOverrideSlider" oninput="updateSlider('cabOverride', this.value)">
+                                        <div class="flex items-center justify-between mt-1">
+                                            <span class="text-gray-400" style="font-size:9px;">0% overrides</span>
+                                            <span class="text-gray-400" style="font-size:9px;">30% overrides</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Bonus Pool Pressure Slider -->
+                                    <div>
+                                        <div class="flex items-center justify-between mb-1.5">
+                                            <label class="form-label" style="margin-bottom:0;">Bonus Pool Pressure</label>
+                                            <span class="text-sm font-bold text-navy-900" id="poolPressureVal">80%</span>
+                                        </div>
+                                        <input type="range" min="20" max="150" value="80" step="5" class="stress-slider" id="poolPressureSlider" oninput="updateSlider('poolPressure', this.value)">
+                                        <div class="flex items-center justify-between mt-1">
+                                            <span class="text-gray-400" style="font-size:9px;">20% utilization</span>
+                                            <span class="text-gray-400" style="font-size:9px;">150% (over budget)</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Run Button + Progress -->
+                                <div class="mt-4">
+                                    <button class="save-btn w-full justify-center py-3" id="stressRunBtn" onclick="runStressTest()" style="border-radius: 12px; font-size: 13px;">
+                                        <i class="fa-solid fa-flask text-sm"></i> Run Stress Test
+                                    </button>
+                                    <div id="stressProgress" class="mt-3 hidden">
+                                        <div class="flex items-center justify-between mb-1.5">
+                                            <span class="text-xs font-semibold text-navy-700">Simulation running...</span>
+                                            <span class="text-xs font-bold text-navy-900" id="stressProgressPct">0%</span>
+                                        </div>
+                                        <div class="h-2 rounded-full overflow-hidden" style="background: rgba(226,232,240,0.8);">
+                                            <div class="h-full rounded-full stress-progress-bar" id="stressProgressBar" style="width: 0%; background: linear-gradient(90deg, #1B3A7D, #D9272F);"></div>
+                                        </div>
+                                        <p class="text-xs text-gray-400 mt-1">Processing 11,204 reps across 12 pipeline steps...</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right: Results Table -->
+                            <div>
+                                <div class="flex items-center justify-between mb-3">
+                                    <p class="text-xs font-bold text-navy-800">Simulation Results</p>
+                                    <div class="flex items-center gap-1.5 px-2 py-1 rounded-lg" style="background: rgba(5,150,105,0.08); border: 1px solid rgba(5,150,105,0.2);">
+                                        <span class="w-1.5 h-1.5 rounded-full status-dot-green inline-block"></span>
+                                        <span class="text-xs font-bold text-emerald-700">Last Run: PASSED</span>
+                                    </div>
+                                </div>
+
+                                <!-- Summary Cards -->
+                                <div class="grid grid-cols-3 gap-2 mb-3">
+                                    <div class="rounded-xl p-2.5 text-center" style="background: rgba(27,58,125,0.06); border: 1px solid rgba(27,58,125,0.15);">
+                                        <p class="text-base font-bold text-navy-900">4.2s</p>
+                                        <p class="text-gray-500" style="font-size:9px;">Avg Step Time</p>
+                                    </div>
+                                    <div class="rounded-xl p-2.5 text-center" style="background: rgba(5,150,105,0.06); border: 1px solid rgba(5,150,105,0.2);">
+                                        <p class="text-base font-bold text-emerald-700">$4.79M</p>
+                                        <p class="text-gray-500" style="font-size:9px;">Simulated Payout</p>
+                                    </div>
+                                    <div class="rounded-xl p-2.5 text-center" style="background: rgba(245,158,11,0.07); border: 1px solid rgba(245,158,11,0.2);">
+                                        <p class="text-base font-bold text-amber-700">18</p>
+                                        <p class="text-gray-500" style="font-size:9px;">Exceptions Found</p>
+                                    </div>
+                                </div>
+
+                                <!-- Results Table -->
+                                <div class="rounded-xl overflow-hidden" style="border: 1px solid rgba(226,232,240,0.8);">
+                                    <div class="px-3 py-2 grid gap-2" style="grid-template-columns: 1fr 80px 80px 70px; background: rgba(248,250,252,0.8); border-bottom: 1px solid rgba(226,232,240,0.8);">
+                                        <span class="text-gray-400 font-bold uppercase" style="font-size:9px;">Pipeline Step</span>
+                                        <span class="text-gray-400 font-bold uppercase text-right" style="font-size:9px;">Duration</span>
+                                        <span class="text-gray-400 font-bold uppercase text-right" style="font-size:9px;">Records</span>
+                                        <span class="text-gray-400 font-bold uppercase text-center" style="font-size:9px;">Status</span>
+                                    </div>
+                                    <div class="divide-y" style="divide-color: rgba(226,232,240,0.6); max-height: 260px; overflow-y: auto;">
+                                        <div class="stress-result-row px-3 py-2 grid gap-2 items-center" style="grid-template-columns: 1fr 80px 80px 70px; background: rgba(255,255,255,0.5);">
+                                            <span class="text-xs font-semibold text-navy-800">1. Data Ingestion</span>
+                                            <span class="text-xs text-gray-600 text-right">1.2s</span>
+                                            <span class="text-xs text-gray-600 text-right">11,204</span>
+                                            <div class="flex justify-center"><span class="text-xs font-bold px-1.5 py-0.5 rounded-full cab-approved" style="font-size:8px;">Pass</span></div>
+                                        </div>
+                                        <div class="stress-result-row px-3 py-2 grid gap-2 items-center" style="grid-template-columns: 1fr 80px 80px 70px; background: rgba(255,255,255,0.5);">
+                                            <span class="text-xs font-semibold text-navy-800">2. BV Validation</span>
+                                            <span class="text-xs text-gray-600 text-right">3.8s</span>
+                                            <span class="text-xs text-gray-600 text-right">11,204</span>
+                                            <div class="flex justify-center"><span class="text-xs font-bold px-1.5 py-0.5 rounded-full cab-approved" style="font-size:8px;">Pass</span></div>
+                                        </div>
+                                        <div class="stress-result-row px-3 py-2 grid gap-2 items-center" style="grid-template-columns: 1fr 80px 80px 70px; background: rgba(255,255,255,0.5);">
+                                            <span class="text-xs font-semibold text-navy-800">3. Rank Qualification</span>
+                                            <span class="text-xs text-gray-600 text-right">5.1s</span>
+                                            <span class="text-xs text-gray-600 text-right">11,204</span>
+                                            <div class="flex justify-center"><span class="text-xs font-bold px-1.5 py-0.5 rounded-full cab-approved" style="font-size:8px;">Pass</span></div>
+                                        </div>
+                                        <div class="stress-result-row px-3 py-2 grid gap-2 items-center" style="grid-template-columns: 1fr 80px 80px 70px; background: rgba(255,255,255,0.5);">
+                                            <span class="text-xs font-semibold text-navy-800">4. Leg Compression</span>
+                                            <span class="text-xs text-gray-600 text-right">6.4s</span>
+                                            <span class="text-xs text-gray-600 text-right">11,204</span>
+                                            <div class="flex justify-center"><span class="text-xs font-bold px-1.5 py-0.5 rounded-full cab-approved" style="font-size:8px;">Pass</span></div>
+                                        </div>
+                                        <div class="stress-result-row px-3 py-2 grid gap-2 items-center" style="grid-template-columns: 1fr 80px 80px 70px; background: rgba(255,255,255,0.5);">
+                                            <span class="text-xs font-semibold text-navy-800">5. Override Calc</span>
+                                            <span class="text-xs text-gray-600 text-right">4.7s</span>
+                                            <span class="text-xs text-gray-600 text-right">11,204</span>
+                                            <div class="flex justify-center"><span class="text-xs font-bold px-1.5 py-0.5 rounded-full cab-approved" style="font-size:8px;">Pass</span></div>
+                                        </div>
+                                        <div class="stress-result-row px-3 py-2 grid gap-2 items-center" style="grid-template-columns: 1fr 80px 80px 70px; background: rgba(254,243,199,0.2);">
+                                            <span class="text-xs font-semibold text-navy-800">6. Bonus Pools</span>
+                                            <span class="text-xs text-gray-600 text-right">3.2s</span>
+                                            <span class="text-xs text-gray-600 text-right">4</span>
+                                            <div class="flex justify-center"><span class="text-xs font-bold px-1.5 py-0.5 rounded-full cab-pending" style="font-size:8px;">Warn</span></div>
+                                        </div>
+                                        <div class="stress-result-row px-3 py-2 grid gap-2 items-center" style="grid-template-columns: 1fr 80px 80px 70px; background: rgba(255,255,255,0.5);">
+                                            <span class="text-xs font-semibold text-navy-800">7. CAB Adjustments</span>
+                                            <span class="text-xs text-gray-600 text-right">2.9s</span>
+                                            <span class="text-xs text-gray-600 text-right">23</span>
+                                            <div class="flex justify-center"><span class="text-xs font-bold px-1.5 py-0.5 rounded-full cab-approved" style="font-size:8px;">Pass</span></div>
+                                        </div>
+                                        <div class="stress-result-row px-3 py-2 grid gap-2 items-center" style="grid-template-columns: 1fr 80px 80px 70px; background: rgba(255,255,255,0.5);">
+                                            <span class="text-xs font-semibold text-navy-800">8. Clawback Apply</span>
+                                            <span class="text-xs text-gray-600 text-right">1.8s</span>
+                                            <span class="text-xs text-gray-600 text-right">4</span>
+                                            <div class="flex justify-center"><span class="text-xs font-bold px-1.5 py-0.5 rounded-full cab-approved" style="font-size:8px;">Pass</span></div>
+                                        </div>
+                                        <div class="stress-result-row px-3 py-2 grid gap-2 items-center" style="grid-template-columns: 1fr 80px 80px 70px; background: rgba(255,255,255,0.5);">
+                                            <span class="text-xs font-semibold text-navy-800">9. Manual Adj.</span>
+                                            <span class="text-xs text-gray-600 text-right">0.9s</span>
+                                            <span class="text-xs text-gray-600 text-right">6</span>
+                                            <div class="flex justify-center"><span class="text-xs font-bold px-1.5 py-0.5 rounded-full cab-approved" style="font-size:8px;">Pass</span></div>
+                                        </div>
+                                        <div class="stress-result-row px-3 py-2 grid gap-2 items-center" style="grid-template-columns: 1fr 80px 80px 70px; background: rgba(255,255,255,0.5);">
+                                            <span class="text-xs font-semibold text-navy-800">10. Tax Withholding</span>
+                                            <span class="text-xs text-gray-600 text-right">7.3s</span>
+                                            <span class="text-xs text-gray-600 text-right">11,204</span>
+                                            <div class="flex justify-center"><span class="text-xs font-bold px-1.5 py-0.5 rounded-full cab-approved" style="font-size:8px;">Pass</span></div>
+                                        </div>
+                                        <div class="stress-result-row px-3 py-2 grid gap-2 items-center" style="grid-template-columns: 1fr 80px 80px 70px; background: rgba(255,255,255,0.5);">
+                                            <span class="text-xs font-semibold text-navy-800">11. Final Audit</span>
+                                            <span class="text-xs text-gray-600 text-right">9.1s</span>
+                                            <span class="text-xs text-gray-600 text-right">11,204</span>
+                                            <div class="flex justify-center"><span class="text-xs font-bold px-1.5 py-0.5 rounded-full cab-approved" style="font-size:8px;">Pass</span></div>
+                                        </div>
+                                        <div class="stress-result-row px-3 py-2 grid gap-2 items-center" style="grid-template-columns: 1fr 80px 80px 70px; background: rgba(255,255,255,0.5);">
+                                            <span class="text-xs font-semibold text-navy-800">12. Payout Release</span>
+                                            <span class="text-xs text-gray-600 text-right">2.1s</span>
+                                            <span class="text-xs text-gray-600 text-right">11,204</span>
+                                            <div class="flex justify-center"><span class="text-xs font-bold px-1.5 py-0.5 rounded-full cab-approved" style="font-size:8px;">Pass</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Export Results -->
+                                <div class="flex items-center gap-2 mt-3">
+                                    <button class="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold action-btn-navy">
+                                        <i class="fa-solid fa-download text-xs"></i> Export Results
+                                    </button>
+                                    <button class="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold action-btn-navy">
+                                        <i class="fa-solid fa-clock-rotate-left text-xs"></i> Run History
+                                    </button>
+                                    <div class="ml-auto text-xs text-gray-400">
+                                        Total sim time: <span class="font-semibold text-navy-700">50.5s</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+</div>
+
+<!-- Lock Run Confirmation Modal -->
+<div class="lock-modal-overlay" id="lockModal">
+    <div class="glass-card p-6 mx-4" style="max-width: 420px; width: 100%; border-radius: 18px; box-shadow: 0 24px 64px rgba(9,19,41,0.35);">
+        <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 rounded-2xl kpi-card-gradient-blue flex items-center justify-center flex-shrink-0">
+                <i class="fa-solid fa-lock text-white text-lg"></i>
+            </div>
+            <div>
+                <h3 class="text-base font-bold text-navy-900">Confirm Lock Run</h3>
+                <p class="text-xs text-gray-500 mt-0.5">December 2024 Commission Run</p>
+            </div>
+        </div>
+
+        <div class="rounded-xl p-3 mb-4" style="background: rgba(199,24,31,0.06); border: 1px solid rgba(199,24,31,0.2);">
+            <div class="flex items-start gap-2">
+                <i class="fa-solid fa-triangle-exclamation text-brandRed-500 mt-0.5 flex-shrink-0" style="font-size:12px;"></i>
+                <div>
+                    <p class="text-xs font-bold text-brandRed-700 mb-1">This action is irreversible</p>
+                    <p class="text-xs text-brandRed-600">Locking the run will freeze all commission calculations for December 2024. No further adjustments, CAB entries, or manual overrides will be permitted after locking.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-2 mb-4">
+            <div class="flex items-center justify-between py-2" style="border-bottom: 1px solid rgba(226,232,240,0.8);">
+                <span class="text-xs text-gray-500">Run Period</span>
+                <span class="text-xs font-bold text-navy-900">December 2024</span>
+            </div>
+            <div class="flex items-center justify-between py-2" style="border-bottom: 1px solid rgba(226,232,240,0.8);">
+                <span class="text-xs text-gray-500">Current Step</span>
+                <span class="text-xs font-bold text-amber-700">Step 7 of 12 (In Progress)</span>
+            </div>
+            <div class="flex items-center justify-between py-2" style="border-bottom: 1px solid rgba(226,232,240,0.8);">
+                <span class="text-xs text-gray-500">Total Payout Est.</span>
+                <span class="text-xs font-bold text-navy-900">$4,820,000</span>
+            </div>
+            <div class="flex items-center justify-between py-2">
+                <span class="text-xs text-gray-500">Pending CAB Entries</span>
+                <span class="text-xs font-bold text-amber-700">8 unresolved</span>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <label class="form-label">Admin Confirmation Code</label>
+            <input type="text" placeholder="Enter your 6-digit confirmation code..." class="form-input">
+        </div>
+
+        <div class="flex items-center gap-2">
+            <button class="flex-1 save-btn justify-center" style="border-radius: 10px; padding: 10px 16px;" onclick="document.getElementById('lockModal').classList.remove('active')">
+                <i class="fa-solid fa-lock text-xs"></i> Confirm Lock Run
+            </button>
+            <button class="flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-bold action-btn-navy" onclick="document.getElementById('lockModal').classList.remove('active')">
+                Cancel
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function updateSlider(type, value) {
+        if (type === 'repCount') {
+            document.getElementById('repCountVal').textContent = parseInt(value).toLocaleString();
+        } else if (type === 'productMix') {
+            document.getElementById('productMixVal').textContent = value + '%';
+        } else if (type === 'churnRate') {
+            document.getElementById('churnRateVal').textContent = value + '%';
+        } else if (type === 'cabOverride') {
+            document.getElementById('cabOverrideVal').textContent = value + '%';
+        } else if (type === 'poolPressure') {
+            document.getElementById('poolPressureVal').textContent = value + '%';
+        }
+    }
+
+    function runStressTest() {
+        const btn = document.getElementById('stressRunBtn');
+        const progressDiv = document.getElementById('stressProgress');
+        const progressBar = document.getElementById('stressProgressBar');
+        const progressPct = document.getElementById('stressProgressPct');
+
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin text-sm"></i> Running Simulation...';
+        progressDiv.classList.remove('hidden');
+
+        let pct = 0;
+        const interval = setInterval(() => {
+            pct += Math.random() * 8 + 2;
+            if (pct >= 100) {
+                pct = 100;
+                clearInterval(interval);
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa-solid fa-flask text-sm"></i> Run Stress Test';
+                progressPct.textContent = '100%';
+                progressBar.style.width = '100%';
+                setTimeout(() => {
+                    progressDiv.classList.add('hidden');
+                }, 2000);
+            }
+            progressBar.style.width = Math.min(pct, 100) + '%';
+            progressPct.textContent = Math.round(Math.min(pct, 100)) + '%';
+        }, 150);
+    }
+
+    function cabAction(btn, type) {
+        const row = btn.closest('.rep-row');
+        const statusCell = row.querySelector('.flex.justify-center span');
+        const actionsCell = row.querySelector('.flex.justify-center.gap-1\\.5');
+
+        if (type === 'earn') {
+            statusCell.className = 'text-xs font-bold px-2 py-1 rounded-full cab-approved';
+            statusCell.textContent = 'Earned';
+            row.style.background = 'rgba(209,250,229,0.15)';
+        } else {
+            statusCell.className = 'text-xs font-bold px-2 py-1 rounded-full cab-rejected';
+            statusCell.textContent = 'Voided';
+            row.style.background = 'rgba(254,226,226,0.15)';
+        }
+
+        actionsCell.innerHTML = '<button class="w-6 h-6 rounded-lg flex items-center justify-center action-btn-navy"><i class="fa-solid fa-eye text-xs"></i></button><button class="w-6 h-6 rounded-lg flex items-center justify-center action-btn-navy"><i class="fa-solid fa-rotate-left text-xs"></i></button>';
+    }
+
+    function triggerRunCommission() {
+        const btn = event.target.closest('button');
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin text-xs"></i> Initiating...';
+        btn.disabled = true;
+        setTimeout(() => {
+            btn.innerHTML = '<i class="fa-solid fa-play text-xs"></i> Run Commission';
+            btn.disabled = false;
+        }, 2000);
+    }
+</script>
+
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

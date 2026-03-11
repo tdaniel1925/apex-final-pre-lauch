@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Compliance & Audit Trail - Exported from UXMagic Copilot">
+    <title>Compliance & Audit Trail</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['var(--font-heading-name)', 'sans-serif'],
+            body: ['var(--font-body-name)', 'sans-serif'],
+          },
+          spacing: {
+            base: 'var(--space-base)',
+          },
+          borderRadius: {
+            small: 'var(--radius-small)',
+            large: 'var(--radius-large)',
+          },
+          boxShadow: {
+            custom: 'var(--shadow-custom)',
+            'custom-hover': 'var(--shadow-custom-hover)',
+          },
+          colors: {
+            navy: {
+              50: '#eef1f8',
+              100: '#d5ddf0',
+              200: '#adbae0',
+              300: '#7e93ce',
+              400: '#5570bc',
+              500: '#2f4fa8',
+              600: '#1e3a8a',
+              700: '#172d6e',
+              800: '#102054',
+              900: '#0a1438',
+            },
+            brand: {
+              red: '#dc2626',
+              'red-dark': '#b91c1c',
+              'red-light': '#fee2e2',
+            }
+          }
+        }
+      }
+    }
+  
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+  <!-- Top Navigation Bar -->
+  <header class="bg-navy-900 text-white shadow-custom" style="max-height: 72px;">
+    <div class="flex items-center justify-between px-6 h-16">
+      <div class="flex items-center gap-4">
+        <img src="https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?w=40&amp;h=40&amp;fit=crop&amp;crop=center" alt="Logo" class="w-8 h-8 rounded-small object-cover">
+        <span class="font-heading font-bold text-lg tracking-wide text-white">AdminCore</span>
+        <span class="text-navy-300 text-sm mx-2">|</span>
+        <nav class="flex items-center gap-1">
+          <a href="/api/copilot/prototype/11a17bde-4afe-41cd-b824-952e9b00c7b7/compliance-audit-trail" class="px-3 py-1.5 text-sm font-medium bg-navy-700 text-white rounded-small border-b-2 border-brand-red">Compliance</a>
+          <a href="#" class="px-3 py-1.5 text-sm font-medium text-navy-200 hover:text-white hover:bg-navy-700 rounded-small transition-colors">Dashboard</a>
+          <a href="#" class="px-3 py-1.5 text-sm font-medium text-navy-200 hover:text-white hover:bg-navy-700 rounded-small transition-colors">Users</a>
+          <a href="#" class="px-3 py-1.5 text-sm font-medium text-navy-200 hover:text-white hover:bg-navy-700 rounded-small transition-colors">Reports</a>
+          <a href="#" class="px-3 py-1.5 text-sm font-medium text-navy-200 hover:text-white hover:bg-navy-700 rounded-small transition-colors">Settings</a>
+        </nav>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="relative">
+          <span class="absolute -top-1 -right-1 w-4 h-4 bg-brand-red text-white text-xs rounded-full flex items-center justify-center font-bold">3</span>
+          <button class="p-2 text-navy-200 hover:text-white hover:bg-navy-700 rounded-small transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.437L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+          </button>
+        </div>
+        <div class="flex items-center gap-2 pl-3 border-l border-navy-700">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&amp;h=32&amp;fit=crop&amp;crop=face" alt="Admin" class="w-8 h-8 rounded-full object-cover border-2 border-navy-500">
+          <div class="text-xs">
+            <div class="font-medium text-white">James Harlow</div>
+            <div class="text-navy-300">Super Admin</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="bg-navy-800 text-white px-6 py-5 border-b border-navy-700" style="max-height: 120px;">
+    <div class="flex items-center justify-between">
+      <div>
+        <div class="flex items-center gap-2 mb-1">
+          <svg class="w-4 h-4 text-navy-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+          <span class="text-navy-300 text-sm">Admin Panel</span>
+          <svg class="w-3 h-3 text-navy-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+          <span class="text-white text-sm font-medium">Compliance &amp; Audit Trail</span>
+        </div>
+        <h1 class="font-heading text-2xl font-bold text-white">Compliance &amp; Audit Trail</h1>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="bg-navy-900 border border-navy-600 rounded-small px-3 py-1.5 text-xs text-navy-200 flex items-center gap-2">
+          <span class="w-2 h-2 bg-green-400 rounded-full inline-block"></span>
+          Last sync: 2 min ago
+        </div>
+        <button class="flex items-center gap-2 bg-brand-red hover:bg-brand-red-dark text-white text-sm font-medium px-4 py-2 rounded-small transition-colors shadow-custom">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+          Export Full Report
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Bar -->
+  <section class="bg-white border-b border-neutral-200 px-6 py-3" style="max-height: 80px;">
+    <div class="flex items-center gap-8">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 bg-red-100 rounded-small flex items-center justify-center">
+          <svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+        </div>
+        <div>
+          <div class="text-xs text-neutral-500">Critical Alerts</div>
+          <div class="font-heading font-bold text-red-600 text-sm">7</div>
+        </div>
+      </div>
+      <div class="w-px h-8 bg-neutral-200"></div>
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 bg-navy-100 rounded-small flex items-center justify-center">
+          <svg class="w-4 h-4 text-navy-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+        </div>
+        <div>
+          <div class="text-xs text-neutral-500">Total Log Entries</div>
+          <div class="font-heading font-bold text-navy-800 text-sm">14,382</div>
+        </div>
+      </div>
+      <div class="w-px h-8 bg-neutral-200"></div>
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 bg-green-100 rounded-small flex items-center justify-center">
+          <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        </div>
+        <div>
+          <div class="text-xs text-neutral-500">Signed Agreements</div>
+          <div class="font-heading font-bold text-green-700 text-sm">248</div>
+        </div>
+      </div>
+      <div class="w-px h-8 bg-neutral-200"></div>
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 bg-amber-100 rounded-small flex items-center justify-center">
+          <svg class="w-4 h-4 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        </div>
+        <div>
+          <div class="text-xs text-neutral-500">Pending Terminations</div>
+          <div class="font-heading font-bold text-amber-700 text-sm">3</div>
+        </div>
+      </div>
+      <div class="w-px h-8 bg-neutral-200"></div>
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 bg-blue-100 rounded-small flex items-center justify-center">
+          <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+        </div>
+        <div>
+          <div class="text-xs text-neutral-500">Active Terms Versions</div>
+          <div class="font-heading font-bold text-blue-700 text-sm">5</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tab Navigation -->
+  <section class="bg-white border-b border-neutral-200 px-6" style="max-height: 56px;">
+    <div class="flex gap-1 pt-2">
+      <button onclick="switchTab('audit')" id="tab-audit" class="tab-active px-5 py-2.5 text-sm font-medium rounded-t-small transition-all flex items-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+        Audit Log
+        <span class="bg-brand-red text-white text-xs px-1.5 py-0.5 rounded-full font-bold">7</span>
+      </button>
+      <button onclick="switchTab('agreements')" id="tab-agreements" class="tab-inactive px-5 py-2.5 text-sm font-medium rounded-t-small transition-all flex items-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+        Rep Agreements
+      </button>
+      <button onclick="switchTab('terms')" id="tab-terms" class="tab-inactive px-5 py-2.5 text-sm font-medium rounded-t-small transition-all flex items-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+        Terms Manager
+      </button>
+      <button onclick="switchTab('termination')" id="tab-termination" class="tab-inactive px-5 py-2.5 text-sm font-medium rounded-t-small transition-all flex items-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path></svg>
+        Termination Workflow
+        <span class="bg-amber-500 text-white text-xs px-1.5 py-0.5 rounded-full font-bold">3</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Tab Content -->
+  <div class="px-6 py-5">
+
+    <!-- AUDIT LOG TAB -->
+    <div id="panel-audit" class="tab-panel active" style="max-height: 1200px; overflow: hidden;">
+      <!-- Filters Row -->
+      <div class="bg-white rounded-large shadow-custom p-4 mb-4 border border-neutral-200">
+        <div class="flex flex-wrap items-center gap-3">
+          <div class="flex items-center gap-2 flex-1 min-w-48">
+            <svg class="w-4 h-4 text-neutral-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            <input type="text" placeholder="Search logs by user, action, IP..." class="w-full text-sm border-none outline-none text-neutral-700 placeholder-neutral-400">
+          </div>
+          <div class="w-px h-6 bg-neutral-200"></div>
+          <select class="text-sm border border-neutral-200 rounded-small px-3 py-1.5 text-neutral-700 bg-white outline-none focus:border-navy-500">
+            <option>All Severities</option>
+            <option>Critical</option>
+            <option>High</option>
+            <option>Medium</option>
+            <option>Low</option>
+            <option>Info</option>
+          </select>
+          <select class="text-sm border border-neutral-200 rounded-small px-3 py-1.5 text-neutral-700 bg-white outline-none focus:border-navy-500">
+            <option>All Actions</option>
+            <option>Login</option>
+            <option>Data Export</option>
+            <option>Permission Change</option>
+            <option>Account Deletion</option>
+            <option>Config Change</option>
+          </select>
+          <select class="text-sm border border-neutral-200 rounded-small px-3 py-1.5 text-neutral-700 bg-white outline-none focus:border-navy-500">
+            <option>Last 7 Days</option>
+            <option>Last 30 Days</option>
+            <option>Last 90 Days</option>
+            <option>Custom Range</option>
+          </select>
+          <div class="flex items-center gap-2">
+            <input type="date" class="text-sm border border-neutral-200 rounded-small px-3 py-1.5 text-neutral-700 bg-white outline-none focus:border-navy-500">
+            <span class="text-neutral-400 text-sm">to</span>
+            <input type="date" class="text-sm border border-neutral-200 rounded-small px-3 py-1.5 text-neutral-700 bg-white outline-none focus:border-navy-500">
+          </div>
+          <button class="flex items-center gap-2 bg-navy-700 hover:bg-navy-800 text-white text-sm font-medium px-4 py-1.5 rounded-small transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path></svg>
+            Apply Filters
+          </button>
+          <button class="text-sm text-neutral-500 hover:text-navy-700 px-2 py-1.5 transition-colors">Clear</button>
+        </div>
+      </div>
+
+      <!-- Audit Table -->
+      <div class="bg-white rounded-large shadow-custom border border-neutral-200 overflow-hidden">
+        <div class="flex items-center justify-between px-5 py-3 border-b border-neutral-200 bg-navy-50">
+          <div class="flex items-center gap-3">
+            <h2 class="font-heading font-semibold text-navy-900 text-sm">Audit Log Entries</h2>
+            <span class="bg-navy-100 text-navy-700 text-xs px-2 py-0.5 rounded-full font-medium">14,382 total</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <button class="flex items-center gap-1.5 text-xs text-neutral-600 hover:text-navy-700 border border-neutral-200 rounded-small px-3 py-1.5 bg-white transition-colors">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+              Export CSV
+            </button>
+            <button class="flex items-center gap-1.5 text-xs text-neutral-600 hover:text-navy-700 border border-neutral-200 rounded-small px-3 py-1.5 bg-white transition-colors">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+              Refresh
+            </button>
+          </div>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="bg-slate-50 border-b border-neutral-200">
+                <th class="text-left px-4 py-3 text-xs font-semibold text-neutral-500 uppercase tracking-wider w-8">
+                  <input type="checkbox" class="rounded-small border-neutral-300">
+                </th>
+                <th class="text-left px-4 py-3 text-xs font-semibold text-neutral-500 uppercase tracking-wider">Timestamp</th>
+                <th class="text-left px-4 py-3 text-xs font-semibold text-neutral-500 uppercase tracking-wider">Severity</th>
+                <th class="text-left px-4 py-3 text-xs font-semibold text-neutral-500 uppercase tracking-wider">User / Actor</th>
+                <th class="text-left px-4 py-3 text-xs font-semibold text-neutral-500 uppercase tracking-wider">Action</th>
+                <th class="text-left px-4 py-3 text-xs font-semibold text-neutral-500 uppercase tracking-wider">Resource</th>
+                <th class="text-left px-4 py-3 text-xs font-semibold text-neutral-500 uppercase tracking-wider">IP Address</th>
+                <th class="text-left px-4 py-3 text-xs font-semibold text-neutral-500 uppercase tracking-wider">Status</th>
+                <th class="text-left px-4 py-3 text-xs font-semibold text-neutral-500 uppercase tracking-wider">Actions</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-neutral-100">
+              <tr class="severity-critical">
+                <td class="px-4 py-3"><input type="checkbox" class="rounded-small border-neutral-300"></td>
+                <td class="px-4 py-3 text-xs text-neutral-600 whitespace-nowrap">2024-01-15 09:42:17</td>
+                <td class="px-4 py-3"><span class="inline-flex items-center gap-1 bg-red-100 text-red-700 text-xs font-semibold px-2 py-0.5 rounded-small"><span class="w-1.5 h-1.5 bg-red-600 rounded-full"></span>CRITICAL</span></td>
+                <td class="px-4 py-3">
+                  <div class="flex items-center gap-2">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=24&amp;h=24&amp;fit=crop&amp;crop=face" alt="" class="w-6 h-6 rounded-full object-cover">
+                    <div><div class="text-xs font-medium text-neutral-800">admin@corp.com</div><div class="text-xs text-neutral-400">Super Admin</div></div>
+                  </div>
+                </td>
+                <td class="px-4 py-3 text-xs font-medium text-neutral-800">Bulk Data Export</td>
+                <td class="px-4 py-3 text-xs text-neutral-600">users/all_records.csv</td>
+                <td class="px-4 py-3 text-xs font-mono text-neutral-600">192.168.1.45</td>
+                <td class="px-4 py-3"><span class="bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-small font-medium">Success</span></td>
+                <td class="px-4 py-3"><button class="text-navy-600 hover:text-navy-800 text-xs font-medium">View</button></td>
+              </tr>
+              <tr class="severity-critical">
+                <td class="px-4 py-3"><input type="checkbox" class="rounded-small border-neutral-300"></td>
+                <td class="px-4 py-3 text-xs text-neutral-600 whitespace-nowrap">2024-01-15 08:31:05</td>
+                <td class="px-4 py-3"><span class="inline-flex items-center gap-1 bg-red-100 text-red-700 text-xs font-semibold px-2 py-0.5 rounded-small"><span class="w-1.5 h-1.5 bg-red-600 rounded-full"></span>CRITICAL</span></td>
+                <td class="px-4 py-3">
+                  <div class="flex items-center gap-2">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=24&amp;h=24&amp;fit=crop&amp;crop=face" alt="" class="w-6 h-6 rounded-full object-cover">
+                    <div><div class="text-xs font-medium text-neutral-800">sarah.k@corp.com</div><div class="text-xs text-neutral-400">Manager</div></div>
+                  </div>
+                </td>
+                <td class="px-4 py-3 text-xs font-medium text-neutral-800">Permission Escalation</td>
+                <td class="px-4 py-3 text-xs text-neutral-600">roles/admin_group</td>
+                <td class="px-4 py-3 text-xs font-mono text-neutral-600">10.0.0.112</td>
+                <td class="px-4 py-3"><span class="bg-red-100 text-red-700 text-xs px-2 py-0.5 rounded-small font-medium">Blocked</span></td>
+                <td class="px-4 py-3"><button class="text-navy-600 hover:text-navy-800 text-xs font-medium">View</button></td>
+              </tr>
+              <tr class="severity-high">
+                <td class="px-4 py-3"><input type="checkbox" class="rounded-small border-neutral-300"></td>
+                <td class="px-4 py-3 text-xs text-neutral-600 whitespace-nowrap">2024-01-15 07:18:44</td>
+                <td class="px-4 py-3"><span class="inline-flex items-center gap-1 bg-orange-100 text-orange-700 text-xs font-semibold px-2 py-0.5 rounded-small"><span class="w-1.5 h-1.5 bg-orange-500 rounded-full"></span>HIGH</span></td>
+                <td class="px-4 py-3">
+                  <div class="flex items-center gap-2">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=24&amp;h=24&amp;fit=crop&amp;crop=face" alt="" class="w-6 h-6 rounded-full object-cover">
+                    <div><div class="text-xs font-medium text-neutral-800">mark.t@corp.com</div><div class="text-xs text-neutral-400">Rep</div></div>
+                  </div>
+                </td>
+                <td class="px-4 py-3 text-xs font-medium text-neutral-800">Failed Login (x5)</td>
+                <td class="px-4 py-3 text-xs text-neutral-600">auth/login</td>
+                <td class="px-4 py-3 text-xs font-mono text-neutral-600">203.0.113.77</td>
+                <td class="px-4 py-3"><span class="bg-amber-100 text-amber-700 text-xs px-2 py-0.5 rounded-small font-medium">Locked</span></td>
+                <td class="px-4 py-3"><button class="text-navy-600 hover:text-navy-800 text-xs font-medium">View</button></td>
+              </tr>
+              <tr class="severity-high">
+                <td class="px-4 py-3"><input type="checkbox" class="rounded-small border-neutral-300"></td>
+                <td class="px-4 py-3 text-xs text-neutral-600 whitespace-nowrap">2024-01-14 22:55:30</td>
+                <td class="px-4 py-3"><span class="inline-flex items-center gap-1 bg-orange-100 text-orange-700 text-xs font-semibold px-2 py-0.5 rounded-small"><span class="w-1.5 h-1.5 bg-orange-500 rounded-full"></span>HIGH</span></td>
+                <td class="px-4 py-3">
+                  <div class="flex items-center gap-2">
+                    <div class="w-6 h-6 rounded-full bg-navy-200 flex items-center justify-center text-xs font-bold text-navy-700">SY</div>
+                    <div><div class="text-xs font-medium text-neutral-800">system@auto</div><div class="text-xs text-neutral-400">Automated</div></div>
+                  </div>
+                </td>
+                <td class="px-4 py-3 text-xs font-medium text-neutral-800">Config Modification</td>
+                <td class="px-4 py-3 text-xs text-neutral-600">settings/security_policy</td>
+                <td class="px-4 py-3 text-xs font-mono text-neutral-600">127.0.0.1</td>
+                <td class="px-4 py-3"><span class="bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-small font-medium">Success</span></td>
+                <td class="px-4 py-3"><button class="text-navy-600 hover:text-navy-800 text-xs font-medium">View</button></td>
+              </tr>
+              <tr class="severity-medium">
+                <td class="px-4 py-3"><input type="checkbox" class="rounded-small border-neutral-300"></td>
+                <td class="px-4 py-3 text-xs text-neutral-600 whitespace-nowrap">2024-01-14 18:22:11</td>
+                <td class="px-4 py-3"><span class="inline-flex items-center gap-1 bg-yellow-100 text-yellow-700 text-xs font-semibold px-2 py-0.5 rounded-small"><span class="w-1.5 h-1.5 bg-yellow-500 rounded-full"></span>MEDIUM</span></td>
+                <td class="px-4 py-3">
+                  <div class="flex items-center gap-2">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=24&amp;h=24&amp;fit=crop&amp;crop=face" alt="" class="w-6 h-6 rounded-full object-cover">
+                    <div><div class="text-xs font-medium text-neutral-800">lisa.m@corp.com</div><div class="text-xs text-neutral-400">Rep</div></div>
+                  </div>
+                </td>
+                <td class="px-4 py-3 text-xs font-medium text-neutral-800">Agreement Unsigned</td>
+                <td class="px-4 py-3 text-xs text-neutral-600">agreements/rep_v2.4</td>
+                <td class="px-4 py-3 text-xs font-mono text-neutral-600">172.16.0.88</td>
+                <td class="px-4 py-3"><span class="bg-amber-100 text-amber-700 text-xs px-2 py-0.5 rounded-small font-medium">Pending</span></td>
+                <td class="px-4 py-3"><button class="text-navy-600 hover:text-navy-800 text-xs font-medium">View</button></td>
+              </tr>
+              <tr class="severity-low">
+                <td class="px-4 py-3"><input type="checkbox" class="rounded-small border-neutral-300"></td>
+                <td class="px-4 py-3 text-xs text-neutral-600 whitespace-nowrap">2024-01-14 14:09:58</td>
+                <td class="px-4 py-3"><span class="inline-flex items-center gap-1 bg-green-100 text-green-700 text-xs font-semibold px-2 py-0.5 rounded-small"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>LOW</span></td>
+                <td class="px-4 py-3">
+                  <div class="flex items-center gap-2">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=24&amp;h=24&amp;fit=crop&amp;crop=face" alt="" class="w-6 h-6 rounded-full object-cover">
+                    <div><div class="text-xs font-medium text-neutral-800">james.h@corp.com</div><div class="text-xs text-neutral-400">Super Admin</div></div>
+                  </div>
+                </td>
+                <td class="px-4 py-3 text-xs font-medium text-neutral-800">Profile Updated</td>
+                <td class="px-4 py-3 text-xs text-neutral-600">users/profile/james.h</td>
+                <td class="px-4 py-3 text-xs font-mono text-neutral-600">192.168.1.10</td>
+                <td class="px-4 py-3"><span class="bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-small font-medium">Success</span></td>
+                <td class="px-4 py-3"><button class="text-navy-600 hover:text-navy-800 text-xs font-medium">View</button></td>
+              </tr>
+              <tr class="severity-info">
+                <td class="px-4 py-3"><input type="checkbox" class="rounded-small border-neutral-300"></td>
+                <td class="px-4 py-3 text-xs text-neutral-600 whitespace-nowrap">2024-01-14 11:45:02</td>
+                <td class="px-4 py-3"><span class="inline-flex items-center gap-1 bg-blue-100 text-blue-700 text-xs font-semibold px-2 py-0.5 rounded-small"><span class="w-1.5 h-1.5 bg-blue-500 rounded-full"></span>INFO</span></td>
+                <td class="px-4 py-3">
+                  <div class="flex items-center gap-2">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=24&amp;h=24&amp;fit=crop&amp;crop=face" alt="" class="w-6 h-6 rounded-full object-cover">
+                    <div><div class="text-xs font-medium text-neutral-800">anna.p@corp.com</div><div class="text-xs text-neutral-400">Rep</div></div>
+                  </div>
+                </td>
+                <td class="px-4 py-3 text-xs font-medium text-neutral-800">Terms Accepted</td>
+                <td class="px-4 py-3 text-xs text-neutral-600">terms/v3.1_2024</td>
+                <td class="px-4 py-3 text-xs font-mono text-neutral-600">10.0.0.55</td>
+                <td class="px-4 py-3"><span class="bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-small font-medium">Success</span></td>
+                <td class="px-4 py-3"><button class="text-navy-600 hover:text-navy-800 text-xs font-medium">View</button></td>
+              </tr>
+              <tr class="severity-medium">
+                <td class="px-4 py-3"><input type="checkbox" class="rounded-small border-neutral-300"></td>
+                <td class="px-4 py-3 text-xs text-neutral-600 whitespace-nowrap">2024-01-14 09:12:33</td>
+                <td class="px-4 py-3"><span class="inline-flex items-center gap-1 bg-yellow-100 text-yellow-700 text-xs font-semibold px-2 py-0.5 rounded-small"><span class="w-1.5 h-1.5 bg-yellow-500 rounded-full"></span>MEDIUM</span></td>
+                <td class="px-4 py-3">
+                  <div class="flex items-center gap-2">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=24&amp;h=24&amp;fit=crop&amp;crop=face" alt="" class="w-6 h-6 rounded-full object-cover">
+                    <div><div class="text-xs font-medium text-neutral-800">rob.d@corp.com</div><div class="text-xs text-neutral-400">Manager</div></div>
+                  </div>
+                </td>
+                <td class="px-4 py-3 text-xs font-medium text-neutral-800">Report Downloaded</td>
+                <td class="px-4 py-3 text-xs text-neutral-600">reports/q4_2023.pdf</td>
+                <td class="px-4 py-3 text-xs font-mono text-neutral-600">172.16.0.22</td>
+                <td class="px-4 py-3"><span class="bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-small font-medium">Success</span></td>
+                <td class="px-4 py-3"><button class="text-navy-600 hover:text-navy-800 text-xs font-medium">View</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- Pagination -->
+        <div class="flex items-center justify-between px-5 py-3 border-t border-neutral-200 bg-slate-50">
+          <div class="text-xs text-neutral-500">Showing 1–8 of 14,382 entries</div>
+          <div class="flex items-center gap-1">
+            <button class="px-2.5 py-1.5 text-xs border border-neutral-200 rounded-small text-neutral-500 hover:bg-white transition-colors">Prev</button>
+            <button class="px-2.5 py-1.5 text-xs bg-navy-700 text-white rounded-small font-medium">1</button>
+            <button class="px-2.5 py-1.5 text-xs border border-neutral-200 rounded-small text-neutral-600 hover:bg-white transition-colors">2</button>
+            <button class="px-2.5 py-1.5 text-xs border border-neutral-200 rounded-small text-neutral-600 hover:bg-white transition-colors">3</button>
+            <span class="px-1 text-neutral-400 text-xs">...</span>
+            <button class="px-2.5 py-1.5 text-xs border border-neutral-200 rounded-small text-neutral-600 hover:bg-white transition-colors">1799</button>
+            <button class="px-2.5 py-1.5 text-xs border border-neutral-200 rounded-small text-neutral-500 hover:bg-white transition-colors">Next</button>
+          </div>
+          <div class="flex items-center gap-2 text-xs text-neutral-500">
+            Rows per page:
+            <select class="border border-neutral-200 rounded-small px-2 py-1 text-neutral-700 bg-white outline-none text-xs">
+              <option>8</option><option>25</option><option>50</option><option>100</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REP AGREEMENTS TAB -->
+    <div id="panel-agreements" class="tab-panel" style="max-height: 1200px; overflow: hidden;">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-3">
+          <input type="text" placeholder="Search by rep name or email..." class="text-sm border border-neutral-200 rounded-small px-3 py-2 w-72 outline-none focus:border-navy-500 bg-white">
+          <select class="text-sm border border-neutral-200 rounded-small px-3 py-2 text-neutral-700 bg-white outline-none focus:border-navy-500">
+            <option>All Statuses</option>
+            <option>Signed</option>
+            <option>Pending</option>
+            <option>Expired</option>
+            <option>Rejected</option>
+          </select>
+          <select class="text-sm border border-neutral-200 rounded-small px-3 py-2 text-neutral-700 bg-white outline-none focus:border-navy-500">
+            <option>All Agreement Types</option>
+            <option>NDA</option>
+            <option>Rep Agreement v2.4</option>
+            <option>Commission Agreement</option>
+          </select>
+        </div>
+        <div class="flex items-center gap-2">
+          <button class="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium px-4 py-2 rounded-small transition-colors shadow-custom">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+            Export CSV
+          </button>
+          <button class="flex items-center gap-2 bg-navy-700 hover:bg-navy-800 text-white text-sm font-medium px-4 py-2 rounded-small transition-colors shadow-custom">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+            Send New Agreement
+          </button>
+        </div>
+      </div>
+
+      <!-- Summary Cards -->
+      <div class="grid grid-cols-4 gap-4 mb-4">
+        <div class="bg-white rounded-large shadow-custom border border-neutral-200 p-4">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs text-neutral-500 font-medium uppercase tracking-wider">Total Sent</span>
+            <div class="w-8 h-8 bg-navy-100 rounded-small flex items-center justify-center">
+              <svg class="w-4 h-4 text-navy-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+            </div>
+          </div>
+          <div class="font-heading text-2xl font-bold text-navy-900">312</div>
+          <div class="text-xs text-neutral-500 mt-1">All time</div>
+        </div>
+        <div class="bg-white rounded-large shadow-custom border border-neutral-200 p-4">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs text-neutral-500 font-medium uppercase tracking-wider">Signed</span>
+            <div class="w-8 h-8 bg-green-100 rounded-small flex items-center justify-center">
+              <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+          </div>
+          <div class="font-heading text-2xl font-bold text-green-700">248</div>
+          <div class="text-xs text-green-600 mt-1">79.5% completion rate</div>
+        </div>
+        <div class="bg-white rounded-large shadow-custom border border-neutral-200 p-4">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs text-neutral-500 font-medium uppercase tracking-wider">Pending</span>
+            <div class="w-8 h-8 bg-amber-100 rounded-small flex items-center justify-center">
+              <svg class="w-4 h-4 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+          </div>
+          <div class="font-heading text-2xl font-bold text-amber-700">41</div>
+          <div class="text-xs text-amber-600 mt-1">Awaiting signature</div>
+        </div>
+        <div class="bg-white rounded-large shadow-custom border border-neutral-200 p-4">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs text-neutral-500 font-medium uppercase tracking-wider">Expired</span>
+            <div class="w-8 h-8 bg-red-100 rounded-small flex items-center justify-center">
+              <svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+          </div>
+          <div class="font-heading text-2xl font-bold text-red-700">23</div>
+          <div class="text-xs text-red-600 mt-1">Needs renewal</div>
+        </div>
+      </div>
+
+      <!-- Agreements Table -->
+      <div class="bg-white rounded-large shadow-custom border border-neutral-200 overflow-hidden">
+        <div class="px-5 py-3 border-b border-neutral-200 bg-navy-50 flex items-center justify-between">
+          <h2 class="font-heading font-semibold text-navy-900 text-sm">Rep Agreement Records</h2>
+          <span class="text-xs text-neutral-500">312 agreements</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="bg-slate-50 border-b border-neutral-200">
+                <th class="text-left px-4 py-3 text-xs font-semibold text-neutral-500 uppercase tracking-wider">Rep Name</th>
+                <th class="text-left px-4 py-3 text-xs font-semibold text-neutral-500 uppercase tracking-wider">Email</th>
+                <th class="text-left px-4 py-3 text-xs font-semibold text-neutral-500 uppercase tracking-wider">Agreement Type</th>
+                <th class="text-left px-4 py-3 text-xs font-semibold text-neutral-500 uppercase tracking-wider">Version</th>
+                <th class="text-left px-4 py-3 text-xs font-semibold text-neutral-500 uppercase tracking-wider">Sent Date</th>
+                <th class="text-left px-4 py-3 text-xs font-semibold text-neutral-500 uppercase tracking-wider">Signed Date</th>
+                <th class="text-left px-4 py-3 text-xs font-semibold text-neutral-500 uppercase tracking-wider">Expiry</th>
+                <th class="text-left px-4 py-3 text-xs font-semibold text-neutral-500 uppercase tracking-wider">Status</th>
+                <th class="text-left px-4 py-3 text-xs font-semibold text-neutral-500 uppercase tracking-wider">Actions</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-neutral-100">
+              <tr>
+                <td class="px-4 py-3">
+                  <div class="flex items-center gap-2">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=28&amp;h=28&amp;fit=crop&amp;crop=face" alt="" class="w-7 h-7 rounded-full object-cover">
+                    <span class="text-xs font-medium text-neutral-800">Anna Peterson</span>
+                  </div>
+                </td>
+                <td class="px-4 py-3 text-xs text-neutral-600">anna.p@corp.com</td>
+                <td class="px-4 py-3 text-xs text-neutral-700 font-medium">Rep Agreement</td>
+                <td class="px-4 py-3"><span class="bg-navy-100 text-navy-700 text-xs px-2 py-0.5 rounded-small font-medium">v2.4</span></td>
+                <td class="px-4 py-3 text-xs text-neutral-600">Jan 10, 2024</td>
+                <td class="px-4 py-3 text-xs text-neutral-600">Jan 11, 2024</td>
+                <td class="px-4 py-3 text-xs text-neutral-600">Jan 10, 2025</td>
+                <td class="px-4 py-3"><span class="bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-small font-semibold">Signed</span></td>
+                <td class="px-4 py-3 flex items-center gap-2">
+                  <button class="text-navy-600 hover:text-navy-800 text-xs font-medium">View</button>
+                  <span class="text-neutral-300">|</span>
+                  <button class="text-neutral-500 hover:text-red-600 text-xs font-medium">Revoke</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3">
+                  <div class="flex items-center gap-2">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=28&amp;h=28&amp;fit=crop&amp;crop=face" alt="" class="w-7 h-7 rounded-full object-cover">
+                    <span class="text-xs font-medium text-neutral-800">Robert Davis</span>
+                  </div>
+                </td>
+                <td class="px-4 py-3 text-xs text-neutral-600">rob.d@corp.com</td>
+                <td class="px-4 py-3 text-xs text-neutral-700 font-medium">NDA</td>
+                <td class="px-4 py-3"><span class="bg-navy-100 text-navy-700 text-xs px-2 py-0.5 rounded-small font-medium">v1.2</span></td>
+                <td class="px-4 py-3 text-xs text-neutral-600">Jan 08, 2024</td>
+                <td class="px-4 py-3 text-xs text-neutral-600">Jan 09, 2024</td>
+                <td class="px-4 py-3 text-xs text-neutral-600">Jan 08, 2025</td>
+                <td class="px-4 py-3"><span class="bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-small font-semibold">Signed</span></td>
+                <td class="px-4 py-3 flex items-center gap-2">
+                  <button class="text-navy-600 hover:text-navy-800 text-xs font-medium">View</button>
+                  <span class="text-neutral-300">|</span>
+                  <button class="text-neutral-500 hover:text-red-600 text-xs font-medium">Revoke</button>
+                </td>
+              </tr>
+              <tr class="bg-amber-50">
+                <td class="px-4 py-3">
+                  <div class="flex items-center gap-2">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=28&amp;h=28&amp;fit=crop&amp;crop=face" alt="" class="w-7 h-7 rounded-full object-cover">
+                    <span class="text-xs font-medium text-neutral-800">Lisa Morgan</span>
+                  </div>
+                </td>
+                <td class="px-4 py-3 text-xs text-neutral-600">lisa.m@corp.com</td>
+                <td class="px-4 py-3 text-xs text-neutral-700 font-medium">Rep Agreement</td>
+                <td class="px-4 py-3"><span class="bg-navy-100 text-navy-700 text-xs px-2 py-0.5 rounded-small font-medium">v2.4</span></td>
+                <td class="px-4 py-3 text-xs text-neutral-600">Jan 12, 2024</td>
+                <td class="px-4 py-3 text-xs text-neutral-400">—</td>
+                <td class="px-4 py-3 text-xs text-neutral-600">—</td>
+                <td class="px-4 py-3"><span class="bg-amber-100 text-amber-700 text-xs px-2 py-0.5 rounded-small font-semibold">Pending</span></td>
+                <td class="px-4 py-3 flex items-center gap-2">
+                  <button class="text-navy-600 hover:text-navy-800 text-xs font-medium">Remind</button>
+                  <span class="text-neutral-300">|</span>
+                  <button class="text-neutral-500 hover:text-red-600 text-xs font-medium">Cancel</button>
+                </td>
+              </tr>
+              <tr class="bg-red-50">
+                <td class="px-4 py-3">
+                  <div class="flex items-center gap-2">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=28&amp;h=28&amp;fit=crop&amp;crop=face" alt="" class="w-7 h-7 rounded-full object-cover">
+                    <span class="text-xs font-medium text-neutral-800">Mark Thompson</span>
+                  </div>
+                </td>
+                <td class="px-4 py-3 text-xs text-neutral-600">mark.t@corp.com</td>
+                <td class="px-4 py-3 text-xs text-neutral-700 font-medium">Commission Agreement</td>
+                <td class="px-4 py-3"><span class="bg-red-100 text-red-700 text-xs px-2 py-0.5 rounded-small font-medium">v1.0</span></td>
+                <td class="px-4 py-3 text-xs text-neutral-600">Oct 15, 2022</td>
+                <td class="px-4 py-3 text-xs text-neutral-600">Oct 16, 2022</td>
+                <td class="px-4 py-3 text-xs text-red-600 font-medium">Oct 15, 2023</td>
+                <td class="px-4 py-3"><span class="bg-red-100 text-red-700 text-xs px-2 py-0.5 rounded-small font-semibold">Expired</span></td>
+                <td class="px-4 py-3 flex items-center gap-2">
+                  <button class="text-navy-600 hover:text-navy-800 text-xs font-medium">Renew</button>
+                  <span class="text-neutral-300">|</span>
+                  <button class="text-neutral-500 hover:text-red-600 text-xs font-medium">Archive</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3">
+                  <div class="flex items-center gap-2">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=28&amp;h=28&amp;fit=crop&amp;crop=face" alt="" class="w-7 h-7 rounded-full object-cover">
+                    <span class="text-xs font-medium text-neutral-800">Sarah Kim</span>
+                  </div>
+                </td>
+                <td class="px-4 py-3 text-xs text-neutral-600">sarah.k@corp.com</td>
+                <td class="px-4 py-3 text-xs text-neutral-700 font-medium">NDA</td>
+                <td class="px-4 py-3"><span class="bg-navy-100 text-navy-700 text-xs px-2 py-0.5 rounded-small font-medium">v1.2</span></td>
+                <td class="px-4 py-3 text-xs text-neutral-600">Dec 01, 2023</td>
+                <td class="px-4 py-3 text-xs text-neutral-600">Dec 02, 2023</td>
+                <td class="px-4 py-3 text-xs text-neutral-600">Dec 01, 2024</td>
+                <td class="px-4 py-3"><span class="bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-small font-semibold">Signed</span></td>
+                <td class="px-4 py-3 flex items-center gap-2">
+                  <button class="text-navy-600 hover:text-navy-800 text-xs font-medium">View</button>
+                  <span class="text-neutral-300">|</span>
+                  <button class="text-neutral-500 hover:text-red-600 text-xs font-medium">Revoke</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="flex items-center justify-between px-5 py-3 border-t border-neutral-200 bg-slate-50">
+          <div class="text-xs text-neutral-500">Showing 1–5 of 312 agreements</div>
+          <div class="flex items-center gap-1">
+            <button class="px-2.5 py-1.5 text-xs border border-neutral-200 rounded-small text-neutral-500">Prev</button>
+            <button class="px-2.5 py-1.5 text-xs bg-navy-700 text-white rounded-small font-medium">1</button>
+            <button class="px-2.5 py-1.5 text-xs border border-neutral-200 rounded-small text-neutral-600">2</button>
+            <button class="px-2.5 py-1.5 text-xs border border-neutral-200 rounded-small text-neutral-600">3</button>
+            <button class="px-2.5 py-1.5 text-xs border border-neutral-200 rounded-small text-neutral-500">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TERMS MANAGER TAB -->
+    <div id="panel-terms" class="tab-panel" style="max-height: 1200px; overflow: hidden;">
+      <div class="grid grid-cols-3 gap-5">
+        <!-- Left: Active Terms -->
+        <div class="col-span-2">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="font-heading font-semibold text-navy-900">Terms &amp; Conditions Manager</h2>
+            <button class="flex items-center gap-2 bg-navy-700 hover:bg-navy-800 text-white text-sm font-medium px-4 py-2 rounded-small transition-colors shadow-custom">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+              Create New Version
+            </button>
+          </div>
+
+          <!-- Active Version Banner -->
+          <div class="bg-navy-800 rounded-large p-4 mb-4 border border-navy-600 shadow-custom">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-navy-600 rounded-large flex items-center justify-center">
+                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                </div>
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span class="font-heading font-bold text-white text-sm">Terms v3.1 — 2024 Edition</span>
+                    <span class="bg-green-500 text-white text-xs px-2 py-0.5 rounded-full font-bold">ACTIVE</span>
+                  </div>
+                  <div class="text-navy-300 text-xs mt-0.5">Published Jan 01, 2024 · 248 acceptances · Effective immediately</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <button class="text-navy-200 hover:text-white text-xs border border-navy-500 rounded-small px-3 py-1.5 transition-colors">Preview</button>
+                <button class="text-white bg-brand-red hover:bg-brand-red-dark text-xs rounded-small px-3 py-1.5 transition-colors font-medium">Deprecate</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Version History Table -->
+          <div class="bg-white rounded-large shadow-custom border border-neutral-200 overflow-hidden">
+            <div class="px-5 py-3 border-b border-neutral-200 bg-navy-50">
+              <h3 class="font-heading font-semibold text-navy-900 text-sm">Version History</h3>
+            </div>
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="bg-slate-50 border-b border-neutral-200">
+                  <th class="text-left px-4 py-3 text-xs font-semibold text-neutral-500 uppercase tracking-wider">Version</th>
+                  <th class="text-left px-4 py-3 text-xs font-semibold text-neutral-500 uppercase tracking-wider">Title</th>
+                  <th class="text-left px-4 py-3 text-xs font-semibold text-neutral-500 uppercase tracking-wider">Published</th>
+                  <th class="text-left px-4 py-3 text-xs font-semibold text-neutral-500 uppercase tracking-wider">Acceptances</th>
+                  <th class="text-left px-4 py-3 text-xs font-semibold text-neutral-500 uppercase tracking-wider">Status</th>
+                  <th class="text-left px-4 py-3 text-xs font-semibold text-neutral-500 uppercase tracking-wider">Changes</th>
+                  <th class="text-left px-4 py-3 text-xs font-semibold text-neutral-500 uppercase tracking-wider">Actions</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-neutral-100">
+                <tr class="bg-green-50">
+                  <td class="px-4 py-3"><span class="font-mono text-xs font-bold text-navy-800 bg-navy-100 px-2 py-0.5 rounded-small">v3.1</span></td>
+                  <td class="px-4 py-3 text-xs font-medium text-neutral-800">2024 Edition — Full Revision</td>
+                  <td class="px-4 py-3 text-xs text-neutral-600">Jan 01, 2024</td>
+                  <td class="px-4 py-3 text-xs font-medium text-neutral-800">248</td>
+                  <td class="px-4 py-3"><span class="bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-small font-semibold">Active</span></td>
+                  <td class="px-4 py-3"><button class="text-blue-600 hover:text-blue-800 text-xs font-medium underline">View Diff</button></td>
+                  <td class="px-4 py-3 flex items-center gap-2">
+                    <button class="text-navy-600 hover:text-navy-800 text-xs font-medium">Edit</button>
+                    <span class="text-neutral-300">|</span>
+                    <button class="text-neutral-500 hover:text-neutral-700 text-xs font-medium">Export</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3"><span class="font-mono text-xs font-bold text-neutral-600 bg-neutral-100 px-2 py-0.5 rounded-small">v3.0</span></td>
+                  <td class="px-4 py-3 text-xs font-medium text-neutral-800">2023 Q3 Update</td>
+                  <td class="px-4 py-3 text-xs text-neutral-600">Jul 01, 2023</td>
+                  <td class="px-4 py-3 text-xs font-medium text-neutral-800">189</td>
+                  <td class="px-4 py-3"><span class="bg-neutral-100 text-neutral-600 text-xs px-2 py-0.5 rounded-small font-semibold">Deprecated</span></td>
+                  <td class="px-4 py-3"><button class="text-blue-600 hover:text-blue-800 text-xs font-medium underline">View Diff</button></td>
+                  <td class="px-4 py-3 flex items-center gap-2">
+                    <button class="text-navy-600 hover:text-navy-800 text-xs font-medium">View</button>
+                    <span class="text-neutral-300">|</span>
+                    <button class="text-neutral-500 hover:text-neutral-700 text-xs font-medium">Export</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3"><span class="font-mono text-xs font-bold text-neutral-600 bg-neutral-100 px-2 py-0.5 rounded-small">v2.5</span></td>
+                  <td class="px-4 py-3 text-xs font-medium text-neutral-800">GDPR Compliance Patch</td>
+                  <td class="px-4 py-3 text-xs text-neutral-600">Mar 15, 2023</td>
+                  <td class="px-4 py-3 text-xs font-medium text-neutral-800">201</td>
+                  <td class="px-4 py-3"><span class="bg-neutral-100 text-neutral-600 text-xs px-2 py-0.5 rounded-small font-semibold">Deprecated</span></td>
+                  <td class="px-4 py-3"><button class="text-blue-600 hover:text-blue-800 text-xs font-medium underline">View Diff</button></td>
+                  <td class="px-4 py-3 flex items-center gap-2">
+                    <button class="text-navy-600 hover:text-navy-800 text-xs font-medium">View</button>
+                    <span class="text-neutral-300">|</span>
+                    <button class="text-neutral-500 hover:text-neutral-700 text-xs font-medium">Export</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3"><span class="font-mono text-xs font-bold text-neutral-600 bg-neutral-100 px-2 py-0.5 rounded-small">v2.4</span></td>
+                  <td class="px-4 py-3 text-xs font-medium text-neutral-800">Rep Agreement Overhaul</td>
+                  <td class="px-4 py-3 text-xs text-neutral-600">Jan 10, 2023</td>
+                  <td class="px-4 py-3 text-xs font-medium text-neutral-800">176</td>
+                  <td class="px-4 py-3"><span class="bg-neutral-100 text-neutral-600 text-xs px-2 py-0.5 rounded-small font-semibold">Deprecated</span></td>
+                  <td class="px-4 py-3"><button class="text-blue-600 hover:text-blue-800 text-xs font-medium underline">View Diff</button></td>
+                  <td class="px-4 py-3 flex items-center gap-2">
+                    <button class="text-navy-600 hover:text-navy-800 text-xs font-medium">View</button>
+                    <span class="text-neutral-300">|</span>
+                    <button class="text-neutral-500 hover:text-neutral-700 text-xs font-medium">Export</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3"><span class="font-mono text-xs font-bold text-neutral-600 bg-neutral-100 px-2 py-0.5 rounded-small">v2.0</span></td>
+                  <td class="px-4 py-3 text-xs font-medium text-neutral-800">Initial Platform Terms</td>
+                  <td class="px-4 py-3 text-xs text-neutral-600">Jun 01, 2022</td>
+                  <td class="px-4 py-3 text-xs font-medium text-neutral-800">98</td>
+                  <td class="px-4 py-3"><span class="bg-neutral-100 text-neutral-600 text-xs px-2 py-0.5 rounded-small font-semibold">Archived</span></td>
+                  <td class="px-4 py-3 text-xs text-neutral-400">—</td>
+                  <td class="px-4 py-3 flex items-center gap-2">
+                    <button class="text-navy-600 hover:text-navy-800 text-xs font-medium">View</button>
+                    <span class="text-neutral-300">|</span>
+                    <button class="text-neutral-500 hover:text-neutral-700 text-xs font-medium">Export</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Right: Draft & Actions -->
+        <div class="space-y-4">
+          <!-- Draft Version -->
+          <div class="bg-white rounded-large shadow-custom border border-amber-200 overflow-hidden">
+            <div class="px-4 py-3 bg-amber-50 border-b border-amber-200 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                <h3 class="font-heading font-semibold text-amber-800 text-sm">Draft in Progress</h3>
+              </div>
+              <span class="bg-amber-200 text-amber-800 text-xs px-2 py-0.5 rounded-full font-bold">DRAFT</span>
+            </div>
+            <div class="p-4">
+              <div class="font-heading font-bold text-neutral-800 text-sm mb-1">Terms v3.2 — 2024 Q2</div>
+              <div class="text-xs text-neutral-500 mb-3">Last edited: Jan 14, 2024 by James Harlow</div>
+              <div class="space-y-2 mb-4">
+                <div class="flex items-center justify-between text-xs">
+                  <span class="text-neutral-600">Sections completed</span>
+                  <span class="font-medium text-neutral-800">7 / 10</span>
+                </div>
+                <div class="w-full bg-neutral-200 rounded-full h-1.5">
+                  <div class="bg-navy-600 h-1.5 rounded-full" style="width: 70%"></div>
+                </div>
+              </div>
+              <div class="space-y-1.5 mb-4">
+                <div class="flex items-center gap-2 text-xs text-neutral-600">
+                  <svg class="w-3.5 h-3.5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                  Introduction &amp; Scope
+                </div>
+                <div class="flex items-center gap-2 text-xs text-neutral-600">
+                  <svg class="w-3.5 h-3.5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                  Data Privacy Clauses
+                </div>
+                <div class="flex items-center gap-2 text-xs text-neutral-600">
+                  <svg class="w-3.5 h-3.5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                  Liability Limitations
+                </div>
+                <div class="flex items-center gap-2 text-xs text-amber-600">
+                  <svg class="w-3.5 h-3.5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                  Termination Clauses (pending)
+                </div>
+                <div class="flex items-center gap-2 text-xs text-neutral-400">
+                  <svg class="w-3.5 h-3.5 text-neutral-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                  Dispute Resolution (not started)
+                </div>
+              </div>
+              <div class="flex gap-2">
+                <button class="flex-1 bg-navy-700 hover:bg-navy-800 text-white text-xs font-medium py-2 rounded-small transition-colors">Continue Editing</button>
+                <button class="flex-1 border border-neutral-200 text-neutral-600 hover:bg-slate-50 text-xs font-medium py-2 rounded-small transition-colors">Preview</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Publish Settings -->
+          <div class="bg-white rounded-large shadow-custom border border-neutral-200 p-4">
+            <h3 class="font-heading font-semibold text-navy-900 text-sm mb-3">Publish Settings</h3>
+            <div class="space-y-3">
+              <div>
+                <label class="text-xs text-neutral-600 font-medium block mb-1">Effective Date</label>
+                <input type="date" class="w-full text-sm border border-neutral-200 rounded-small px-3 py-1.5 outline-none focus:border-navy-500 bg-white text-neutral-700">
+              </div>
+              <div>
+                <label class="text-xs text-neutral-600 font-medium block mb-1">Notify Users</label>
+                <div class="space-y-1.5">
+                  <label class="flex items-center gap-2 text-xs text-neutral-700 cursor-pointer">
+                    <input type="checkbox" checked="" class="rounded-small border-neutral-300 text-navy-600">
+                    Email all active reps
+                  </label>
+                  <label class="flex items-center gap-2 text-xs text-neutral-700 cursor-pointer">
+                    <input type="checkbox" checked="" class="rounded-small border-neutral-300 text-navy-600">
+                    Require re-acceptance
+                  </label>
+                  <label class="flex items-center gap-2 text-xs text-neutral-700 cursor-pointer">
+                    <input type="checkbox" class="rounded-small border-neutral-300 text-navy-600">
+                    Grace period (7 days)
+                  </label>
+                </div>
+              </div>
+              <button class="w-full bg-brand-red hover:bg-brand-red-dark text-white text-xs font-semibold py-2 rounded-small transition-colors">Publish Version</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TERMINATION WORKFLOW TAB -->
+    <div id="panel-termination" class="tab-panel" style="max-height: 1400px; overflow: hidden;">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="font-heading font-semibold text-navy-900">Active Termination Cases</h2>
+        <button class="flex items-center gap-2 bg-brand-red hover:bg-brand-red-dark text-white text-sm font-medium px-4 py-2 rounded-small transition-colors shadow-custom">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+          Initiate Termination
+        </button>
+      </div>
+
+      <!-- Case 1 -->
+      <div class="bg-white rounded-large shadow-custom border border-neutral-200 mb-4 overflow-hidden">
+        <div class="flex items-center justify-between px-5 py-3 bg-red-50 border-b border-red-100">
+          <div class="flex items-center gap-3">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=36&amp;h=36&amp;fit=crop&amp;crop=face" alt="" class="w-9 h-9 rounded-full object-cover border-2 border-red-200">
+            <div>
+              <div class="font-heading font-semibold text-neutral-800 text-sm">Mark Thompson</div>
+              <div class="text-xs text-neutral-500">mark.t@corp.com · Rep ID: #RT-0042</div>
+            </div>
+            <span class="bg-red-100 text-red-700 text-xs px-2 py-0.5 rounded-small font-semibold border border-red-200">For Cause</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="text-right">
+              <div class="text-xs text-neutral-500">Initiated</div>
+              <div class="text-xs font-medium text-neutral-700">Jan 13, 2024</div>
+            </div>
+            <div class="text-right">
+              <div class="text-xs text-neutral-500">Case ID</div>
+              <div class="text-xs font-mono font-medium text-neutral-700">TERM-2024-001</div>
+            </div>
+            <button class="text-xs text-navy-600 hover:text-navy-800 border border-navy-200 rounded-small px-3 py-1.5 font-medium transition-colors">Manage Case</button>
+          </div>
+        </div>
+        <div class="px-5 py-4">
+          <!-- Step Tracker -->
+          <div class="flex items-center mb-4">
+            <div class="flex flex-col items-center">
+              <div class="step-complete w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shadow-custom">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              </div>
+              <div class="text-xs text-navy-700 font-medium mt-1 text-center w-20">Initiation</div>
+            </div>
+            <div class="flex-1 h-1 step-line-complete mx-1 mt-[-12px]"></div>
+            <div class="flex flex-col items-center">
+              <div class="step-complete w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shadow-custom">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              </div>
+              <div class="text-xs text-navy-700 font-medium mt-1 text-center w-20">HR Review</div>
+            </div>
+            <div class="flex-1 h-1 step-line-complete mx-1 mt-[-12px]"></div>
+            <div class="flex flex-col items-center">
+              <div class="step-active w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shadow-custom">3</div>
+              <div class="text-xs text-red-600 font-semibold mt-1 text-center w-24">Legal Approval</div>
+            </div>
+            <div class="flex-1 h-1 step-line-pending mx-1 mt-[-12px]"></div>
+            <div class="flex flex-col items-center">
+              <div class="step-pending w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold">4</div>
+              <div class="text-xs text-neutral-400 font-medium mt-1 text-center w-24">Notification</div>
+            </div>
+            <div class="flex-1 h-1 step-line-pending mx-1 mt-[-12px]"></div>
+            <div class="flex flex-col items-center">
+              <div class="step-pending w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold">5</div>
+              <div class="text-xs text-neutral-400 font-medium mt-1 text-center w-20">Access Revoke</div>
+            </div>
+            <div class="flex-1 h-1 step-line-pending mx-1 mt-[-12px]"></div>
+            <div class="flex flex-col items-center">
+              <div class="step-pending w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold">6</div>
+              <div class="text-xs text-neutral-400 font-medium mt-1 text-center w-20">Finalized</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 text-xs">
+            <div class="flex items-center gap-1.5 text-amber-600 bg-amber-50 border border-amber-200 rounded-small px-3 py-1.5">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              Awaiting legal sign-off — Due Jan 17, 2024
+            </div>
+            <div class="text-neutral-500">Reason: Policy violation (Section 4.2)</div>
+            <div class="ml-auto flex items-center gap-2">
+              <button class="bg-navy-700 hover:bg-navy-800 text-white text-xs font-medium px-3 py-1.5 rounded-small transition-colors">Approve Step</button>
+              <button class="border border-neutral-200 text-neutral-600 hover:bg-slate-50 text-xs font-medium px-3 py-1.5 rounded-small transition-colors">Add Note</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case 2 -->
+      <div class="bg-white rounded-large shadow-custom border border-neutral-200 mb-4 overflow-hidden">
+        <div class="flex items-center justify-between px-5 py-3 bg-amber-50 border-b border-amber-100">
+          <div class="flex items-center gap-3">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=36&amp;h=36&amp;fit=crop&amp;crop=face" alt="" class="w-9 h-9 rounded-full object-cover border-2 border-amber-200">
+            <div>
+              <div class="font-heading font-semibold text-neutral-800 text-sm">Lisa Morgan</div>
+              <div class="text-xs text-neutral-500">lisa.m@corp.com · Rep ID: #LM-0089</div>
+            </div>
+            <span class="bg-amber-100 text-amber-700 text-xs px-2 py-0.5 rounded-small font-semibold border border-amber-200">Voluntary</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="text-right">
+              <div class="text-xs text-neutral-500">Initiated</div>
+              <div class="text-xs font-medium text-neutral-700">Jan 14, 2024</div>
+            </div>
+            <div class="text-right">
+              <div class="text-xs text-neutral-500">Case ID</div>
+              <div class="text-xs font-mono font-medium text-neutral-700">TERM-2024-002</div>
+            </div>
+            <button class="text-xs text-navy-600 hover:text-navy-800 border border-navy-200 rounded-small px-3 py-1.5 font-medium transition-colors">Manage Case</button>
+          </div>
+        </div>
+        <div class="px-5 py-4">
+          <div class="flex items-center mb-4">
+            <div class="flex flex-col items-center">
+              <div class="step-complete w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shadow-custom">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              </div>
+              <div class="text-xs text-navy-700 font-medium mt-1 text-center w-20">Initiation</div>
+            </div>
+            <div class="flex-1 h-1 step-line-complete mx-1 mt-[-12px]"></div>
+            <div class="flex flex-col items-center">
+              <div class="step-active w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shadow-custom">2</div>
+              <div class="text-xs text-red-600 font-semibold mt-1 text-center w-20">HR Review</div>
+            </div>
+            <div class="flex-1 h-1 step-line-pending mx-1 mt-[-12px]"></div>
+            <div class="flex flex-col items-center">
+              <div class="step-pending w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold">3</div>
+              <div class="text-xs text-neutral-400 font-medium mt-1 text-center w-24">Legal Approval</div>
+            </div>
+            <div class="flex-1 h-1 step-line-pending mx-1 mt-[-12px]"></div>
+            <div class="flex flex-col items-center">
+              <div class="step-pending w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold">4</div>
+              <div class="text-xs text-neutral-400 font-medium mt-1 text-center w-24">Notification</div>
+            </div>
+            <div class="flex-1 h-1 step-line-pending mx-1 mt-[-12px]"></div>
+            <div class="flex flex-col items-center">
+              <div class="step-pending w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold">5</div>
+              <div class="text-xs text-neutral-400 font-medium mt-1 text-center w-20">Access Revoke</div>
+            </div>
+            <div class="flex-1 h-1 step-line-pending mx-1 mt-[-12px]"></div>
+            <div class="flex flex-col items-center">
+              <div class="step-pending w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold">6</div>
+              <div class="text-xs text-neutral-400 font-medium mt-1 text-center w-20">Finalized</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 text-xs">
+            <div class="flex items-center gap-1.5 text-blue-600 bg-blue-50 border border-blue-200 rounded-small px-3 py-1.5">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+              HR review in progress — Assigned to Karen Wells
+            </div>
+            <div class="text-neutral-500">Reason: Voluntary resignation</div>
+            <div class="ml-auto flex items-center gap-2">
+              <button class="bg-navy-700 hover:bg-navy-800 text-white text-xs font-medium px-3 py-1.5 rounded-small transition-colors">Approve Step</button>
+              <button class="border border-neutral-200 text-neutral-600 hover:bg-slate-50 text-xs font-medium px-3 py-1.5 rounded-small transition-colors">Add Note</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case 3 -->
+      <div class="bg-white rounded-large shadow-custom border border-neutral-200 mb-4 overflow-hidden">
+        <div class="flex items-center justify-between px-5 py-3 bg-slate-50 border-b border-neutral-200">
+          <div class="flex items-center gap-3">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=36&amp;h=36&amp;fit=crop&amp;crop=face" alt="" class="w-9 h-9 rounded-full object-cover border-2 border-neutral-200">
+            <div>
+              <div class="font-heading font-semibold text-neutral-800 text-sm">Sarah Kim</div>
+              <div class="text-xs text-neutral-500">sarah.k@corp.com · Rep ID: #SK-0017</div>
+            </div>
+            <span class="bg-navy-100 text-navy-700 text-xs px-2 py-0.5 rounded-small font-semibold border border-navy-200">Performance</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="text-right">
+              <div class="text-xs text-neutral-500">Initiated</div>
+              <div class="text-xs font-medium text-neutral-700">Jan 15, 2024</div>
+            </div>
+            <div class="text-right">
+              <div class="text-xs text-neutral-500">Case ID</div>
+              <div class="text-xs font-mono font-medium text-neutral-700">TERM-2024-003</div>
+            </div>
+            <button class="text-xs text-navy-600 hover:text-navy-800 border border-navy-200 rounded-small px-3 py-1.5 font-medium transition-colors">Manage Case</button>
+          </div>
+        </div>
+        <div class="px-5 py-4">
+          <div class="flex items-center mb-4">
+            <div class="flex flex-col items-center">
+              <div class="step-active w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shadow-custom">1</div>
+              <div class="text-xs text-red-600 font-semibold mt-1 text-center w-20">Initiation</div>
+            </div>
+            <div class="flex-1 h-1 step-line-pending mx-1 mt-[-12px]"></div>
+            <div class="flex flex-col items-center">
+              <div class="step-pending w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold">2</div>
+              <div class="text-xs text-neutral-400 font-medium mt-1 text-center w-20">HR Review</div>
+            </div>
+            <div class="flex-1 h-1 step-line-pending mx-1 mt-[-12px]"></div>
+            <div class="flex flex-col items-center">
+              <div class="step-pending w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold">3</div>
+              <div class="text-xs text-neutral-400 font-medium mt-1 text-center w-24">Legal Approval</div>
+            </div>
+            <div class="flex-1 h-1 step-line-pending mx-1 mt-[-12px]"></div>
+            <div class="flex flex-col items-center">
+              <div class="step-pending w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold">4</div>
+              <div class="text-xs text-neutral-400 font-medium mt-1 text-center w-24">Notification</div>
+            </div>
+            <div class="flex-1 h-1 step-line-pending mx-1 mt-[-12px]"></div>
+            <div class="flex flex-col items-center">
+              <div class="step-pending w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold">5</div>
+              <div class="text-xs text-neutral-400 font-medium mt-1 text-center w-20">Access Revoke</div>
+            </div>
+            <div class="flex-1 h-1 step-line-pending mx-1 mt-[-12px]"></div>
+            <div class="flex flex-col items-center">
+              <div class="step-pending w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold">6</div>
+              <div class="text-xs text-neutral-400 font-medium mt-1 text-center w-20">Finalized</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 text-xs">
+            <div class="flex items-center gap-1.5 text-navy-600 bg-navy-50 border border-navy-200 rounded-small px-3 py-1.5">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+              Case just initiated — Awaiting HR assignment
+            </div>
+            <div class="text-neutral-500">Reason: Repeated performance issues (Q3–Q4 2023)</div>
+            <div class="ml-auto flex items-center gap-2">
+              <button class="bg-navy-700 hover:bg-navy-800 text-white text-xs font-medium px-3 py-1.5 rounded-small transition-colors">Assign HR</button>
+              <button class="border border-neutral-200 text-neutral-600 hover:bg-slate-50 text-xs font-medium px-3 py-1.5 rounded-small transition-colors">Add Note</button>
+              <button class="border border-red-200 text-red-600 hover:bg-red-50 text-xs font-medium px-3 py-1.5 rounded-small transition-colors">Cancel Case</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Completed Cases Summary -->
+      <div class="bg-white rounded-large shadow-custom border border-neutral-200 overflow-hidden">
+        <div class="px-5 py-3 border-b border-neutral-200 bg-navy-50 flex items-center justify-between">
+          <h3 class="font-heading font-semibold text-navy-900 text-sm">Recently Completed Cases</h3>
+          <button class="text-xs text-navy-600 hover:text-navy-800 font-medium">View All History</button>
+        </div>
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="bg-slate-50 border-b border-neutral-200">
+              <th class="text-left px-4 py-2.5 text-xs font-semibold text-neutral-500 uppercase tracking-wider">Case ID</th>
+              <th class="text-left px-4 py-2.5 text-xs font-semibold text-neutral-500 uppercase tracking-wider">Rep</th>
+              <th class="text-left px-4 py-2.5 text-xs font-semibold text-neutral-500 uppercase tracking-wider">Type</th>
+              <th class="text-left px-4 py-2.5 text-xs font-semibold text-neutral-500 uppercase tracking-wider">Initiated</th>
+              <th class="text-left px-4 py-2.5 text-xs font-semibold text-neutral-500 uppercase tracking-wider">Completed</th>
+              <th class="text-left px-4 py-2.5 text-xs font-semibold text-neutral-500 uppercase tracking-wider">Duration</th>
+              <th class="text-left px-4 py-2.5 text-xs font-semibold text-neutral-500 uppercase tracking-wider">Outcome</th>
+              <th class="text-left px-4 py-2.5 text-xs font-semibold text-neutral-500 uppercase tracking-wider">Actions</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-neutral-100">
+            <tr>
+              <td class="px-4 py-2.5 text-xs font-mono text-neutral-600">TERM-2023-018</td>
+              <td class="px-4 py-2.5 text-xs font-medium text-neutral-800">David Chen</td>
+              <td class="px-4 py-2.5"><span class="bg-red-100 text-red-700 text-xs px-2 py-0.5 rounded-small">For Cause</span></td>
+              <td class="px-4 py-2.5 text-xs text-neutral-600">Dec 01, 2023</td>
+              <td class="px-4 py-2.5 text-xs text-neutral-600">Dec 14, 2023</td>
+              <td class="px-4 py-2.5 text-xs text-neutral-600">13 days</td>
+              <td class="px-4 py-2.5"><span class="bg-neutral-100 text-neutral-700 text-xs px-2 py-0.5 rounded-small font-semibold">Terminated</span></td>
+              <td class="px-4 py-2.5"><button class="text-navy-600 hover:text-navy-800 text-xs font-medium">View Record</button></td>
+            </tr>
+            <tr>
+              <td class="px-4 py-2.5 text-xs font-mono text-neutral-600">TERM-2023-017</td>
+              <td class="px-4 py-2.5 text-xs font-medium text-neutral-800">Emma Wilson</td>
+              <td class="px-4 py-2.5"><span class="bg-amber-100 text-amber-700 text-xs px-2 py-0.5 rounded-small">Voluntary</span></td>
+              <td class="px-4 py-2.5 text-xs text-neutral-600">Nov 20, 2023</td>
+              <td class="px-4 py-2.5 text-xs text-neutral-600">Nov 30, 2023</td>
+              <td class="px-4 py-2.5 text-xs text-neutral-600">10 days</td>
+              <td class="px-4 py-2.5"><span class="bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-small font-semibold">Resigned</span></td>
+              <td class="px-4 py-2.5"><button class="text-navy-600 hover:text-navy-800 text-xs font-medium">View Record</button></td>
+            </tr>
+            <tr>
+              <td class="px-4 py-2.5 text-xs font-mono text-neutral-600">TERM-2023-016</td>
+              <td class="px-4 py-2.5 text-xs font-medium text-neutral-800">James Okafor</td>
+              <td class="px-4 py-2.5"><span class="bg-navy-100 text-navy-700 text-xs px-2 py-0.5 rounded-small">Performance</span></td>
+              <td class="px-4 py-2.5 text-xs text-neutral-600">Nov 05, 2023</td>
+              <td class="px-4 py-2.5 text-xs text-neutral-600">Nov 22, 2023</td>
+              <td class="px-4 py-2.5 text-xs text-neutral-600">17 days</td>
+              <td class="px-4 py-2.5"><span class="bg-blue-100 text-blue-700 text-xs px-2 py-0.5 rounded-small font-semibold">PIP Issued</span></td>
+              <td class="px-4 py-2.5"><button class="text-navy-600 hover:text-navy-800 text-xs font-medium">View Record</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-navy-900 text-navy-300 px-6 py-4 mt-4 border-t border-navy-700" style="max-height: 60px;">
+    <div class="flex items-center justify-between text-xs">
+      <div class="flex items-center gap-4">
+        <span>AdminCore v4.2.1</span>
+        <span class="text-navy-600">·</span>
+        <span>Compliance Module</span>
+        <span class="text-navy-600">·</span>
+        <span>Data retention: 7 years</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <span>SOC 2 Type II Certified</span>
+        <span class="text-navy-600">·</span>
+        <span>GDPR Compliant</span>
+        <span class="text-navy-600">·</span>
+        <span class="text-navy-400">© 2024 AdminCore Inc.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function switchTab(tabName) {
+      const tabs = ['audit', 'agreements', 'terms', 'termination'];
+      tabs.forEach(t => {
+        const tabBtn = document.getElementById('tab-' + t);
+        const panel = document.getElementById('panel-' + t);
+        if (t === tabName) {
+          tabBtn.className = 'tab-active px-5 py-2.5 text-sm font-medium rounded-t-small transition-all flex items-center gap-2';
+          panel.classList.add('active');
+        } else {
+          tabBtn.className = 'tab-inactive px-5 py-2.5 text-sm font-medium rounded-t-small transition-all flex items-center gap-2';
+          panel.classList.remove('active');
+        }
+      });
+    }
+  </script>
+
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

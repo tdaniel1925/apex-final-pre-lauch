@@ -1,0 +1,22 @@
+{
+  "name": "step-1---sponsor-verification",
+  "version": "1.0.0",
+  "description": "UI project exported from UXMagic Copilot - Step 1 – Sponsor Verification",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx live-server ."
+  },
+  "keywords": [
+    "ui",
+    "frontend",
+    "design",
+    "uxmagic"
+  ],
+  "author": "UXMagic Copilot",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "serve": "^14.2.1"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "admin-email-campaign-builder---navy---red",
+  "version": "1.0.0",
+  "description": "UI project exported from UXMagic Copilot - Admin Email Campaign Builder — Navy & Red",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx live-server ."
+  },
+  "keywords": [
+    "ui",
+    "frontend",
+    "design",
+    "uxmagic"
+  ],
+  "author": "UXMagic Copilot",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "serve": "^14.2.1"
+  }
+}

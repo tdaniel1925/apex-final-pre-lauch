@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Step 2 – Personal Info - Exported from UXMagic Copilot">
+    <title>Step 2 – Personal Info</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              50: '#f0f4fd',
+              100: '#e4eafb',
+              200: '#cdd9f7',
+              300: '#a8bef1',
+              400: '#7d9ce9',
+              500: '#5879df',
+              600: '#3e5cd2',
+              700: '#324aba',
+              800: '#2e3e97',
+              900: '#1B3A7D',
+            },
+            red: {
+              50: '#fef2f2',
+              100: '#fee2e2',
+              200: '#fecaca',
+              300: '#fca5a5',
+              400: '#f87171',
+              500: '#ef4444',
+              600: '#dc2626',
+              700: '#b91c1c',
+              800: '#991b1b',
+              900: '#C7181F',
+            }
+          },
+          fontFamily: {
+            heading: ['var(--font-heading-name)', 'sans-serif'],
+            body: ['var(--font-body-name)', 'sans-serif'],
+          },
+          spacing: {
+            base: 'var(--space-base)',
+          },
+          borderRadius: {
+            small: 'var(--radius-small)',
+            large: 'var(--radius-large)',
+          },
+          boxShadow: {
+            custom: 'var(--shadow-custom)',
+            'custom-hover': 'var(--shadow-custom-hover)',
+          },
+        }
+      }
+    }
+  
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+  <!-- Top Brand Header -->
+  <header class="bg-navy-900 text-white py-3.5 px-6 flex items-center justify-between z-50 shadow-lg">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 bg-white rounded-small flex items-center justify-center">
+        <span class="text-navy-900 font-heading font-bold text-sm">A</span>
+      </div>
+      <div>
+        <span class="font-heading font-bold text-base tracking-tight">Apex Network</span>
+        <span class="ml-2 text-navy-300 text-xs font-medium hidden sm:inline">Distributor Enrollment</span>
+      </div>
+    </div>
+    <nav class="hidden md:flex items-center gap-1">
+      <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-1-sponsor-verification" class="text-xs font-medium text-navy-300 hover:text-white px-3 py-1.5 rounded-small transition-colors flex items-center gap-1">
+        <svg class="w-3 h-3 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+        Step 1
+      </a>
+      <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-2-personal-info" class="text-xs font-medium text-white bg-white/10 border border-white/20 px-3 py-1.5 rounded-small">Step 2</a>
+      <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-3-tax-identity" class="text-xs font-medium text-navy-300 hover:text-white px-3 py-1.5 rounded-small transition-colors">Step 3</a>
+      <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-4-agreement" class="text-xs font-medium text-navy-300 hover:text-white px-3 py-1.5 rounded-small transition-colors">Step 4</a>
+      <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-5-business-center" class="text-xs font-medium text-navy-300 hover:text-white px-3 py-1.5 rounded-small transition-colors">Step 5</a>
+      <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-6-welcome" class="text-xs font-medium text-navy-300 hover:text-white px-3 py-1.5 rounded-small transition-colors">Step 6</a>
+    </nav>
+    <div class="flex items-center gap-2 text-navy-300 text-xs">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+      <span>Secure Enrollment</span>
+    </div>
+  </header>
+
+  <!-- Two-Panel Main Layout -->
+  <div class="flex" style="height: auto; min-height: 0;">
+
+    <!-- ===== LEFT PANEL: Navy Sidebar ===== -->
+    <aside class="w-80 bg-navy-900 flex flex-col flex-shrink-0" style="min-height: 900px;">
+
+      <!-- Panel Header -->
+      <div class="px-6 pt-8 pb-6 border-b border-white/10">
+        <p class="text-navy-300 text-xs font-semibold uppercase tracking-widest mb-1">Enrollment Progress</p>
+        <h2 class="font-heading font-bold text-white text-lg leading-tight">New Distributor<br>Registration</h2>
+        <!-- Overall Progress Bar -->
+        <div class="mt-4">
+          <div class="flex justify-between items-center mb-1.5">
+            <span class="text-navy-300 text-xs">Overall Progress</span>
+            <span class="text-white text-xs font-semibold">2 of 6</span>
+          </div>
+          <div class="w-full bg-white/10 rounded-full h-1.5">
+            <div class="bg-red-900 h-1.5 rounded-full progress-fill" style="width: 33.33%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vertical Step Tracker -->
+      <div class="px-6 py-6 flex-1">
+        <div class="flex flex-col">
+
+          <!-- Step 1 – Done -->
+          <div class="flex items-start gap-3 step-done">
+            <div class="flex flex-col items-center">
+              <div class="step-circle w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold flex-shrink-0">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+              </div>
+              <div class="step-connector-v bg-green-500/30 mt-1"></div>
+            </div>
+            <div class="pb-6 pt-0.5">
+              <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-1-sponsor-verification" class="text-white/70 font-semibold text-sm hover:text-white transition-colors">Sponsor Verification</a>
+              <p class="text-navy-400 text-xs mt-0.5">Find &amp; confirm your referrer</p>
+              <span class="inline-flex items-center gap-1 mt-1.5 text-xs font-semibold text-green-400 bg-green-900/20 border border-green-900/30 px-2 py-0.5 rounded-small">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                Completed
+              </span>
+            </div>
+          </div>
+
+          <!-- Step 2 – Active -->
+          <div class="flex items-start gap-3 step-active">
+            <div class="flex flex-col items-center">
+              <div class="step-circle w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold flex-shrink-0 pulse-active">2</div>
+              <div class="step-connector-v bg-white/10 mt-1"></div>
+            </div>
+            <div class="pb-6 pt-0.5">
+              <p class="text-white font-semibold text-sm">Personal Info</p>
+              <p class="text-navy-300 text-xs mt-0.5">Name, address &amp; profile</p>
+              <span class="inline-flex items-center gap-1 mt-1.5 text-xs font-semibold text-red-400 bg-red-900/20 border border-red-900/30 px-2 py-0.5 rounded-small">
+                <span class="w-1.5 h-1.5 bg-red-400 rounded-full"></span>
+                In Progress
+              </span>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="flex items-start gap-3 step-inactive">
+            <div class="flex flex-col items-center">
+              <div class="step-circle w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold flex-shrink-0">3</div>
+              <div class="step-connector-v bg-white/10 mt-1"></div>
+            </div>
+            <div class="pb-6 pt-0.5">
+              <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-3-tax-identity" class="text-white/40 font-semibold text-sm hover:text-white/60 transition-colors">Tax &amp; Identity</a>
+              <p class="text-navy-400 text-xs mt-0.5">W-9 &amp; SSN verification</p>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="flex items-start gap-3 step-inactive">
+            <div class="flex flex-col items-center">
+              <div class="step-circle w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold flex-shrink-0">4</div>
+              <div class="step-connector-v bg-white/10 mt-1"></div>
+            </div>
+            <div class="pb-6 pt-0.5">
+              <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-4-agreement" class="text-white/40 font-semibold text-sm hover:text-white/60 transition-colors">Agreement</a>
+              <p class="text-navy-400 text-xs mt-0.5">Review &amp; e-sign contract</p>
+            </div>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="flex items-start gap-3 step-inactive">
+            <div class="flex flex-col items-center">
+              <div class="step-circle w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold flex-shrink-0">5</div>
+              <div class="step-connector-v bg-white/10 mt-1"></div>
+            </div>
+            <div class="pb-6 pt-0.5">
+              <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-5-business-center" class="text-white/40 font-semibold text-sm hover:text-white/60 transition-colors">Business Center</a>
+              <p class="text-navy-400 text-xs mt-0.5">Choose starter kit &amp; pay</p>
+            </div>
+          </div>
+
+          <!-- Step 6 -->
+          <div class="flex items-start gap-3 step-inactive">
+            <div class="flex flex-col items-center">
+              <div class="step-circle w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold flex-shrink-0">6</div>
+            </div>
+            <div class="pt-0.5">
+              <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-6-welcome" class="text-white/40 font-semibold text-sm hover:text-white/60 transition-colors">Welcome</a>
+              <p class="text-navy-400 text-xs mt-0.5">Confirm &amp; get started</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Live Rep Profile Preview -->
+      <div class="px-6 pb-5">
+        <p class="text-navy-300 text-xs font-semibold uppercase tracking-widest mb-3">Rep Profile Preview</p>
+
+        <div class="profile-preview-card rounded-large p-4">
+          <!-- Avatar + Name Row -->
+          <div class="flex items-center gap-3 mb-3">
+            <!-- Avatar with partial ring (populating) -->
+            <div class="relative flex-shrink-0">
+              <div class="w-12 h-12 rounded-full p-0.5 photo-ring">
+                <img id="preview-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Profile Preview" class="w-full h-full rounded-full object-cover border-2 border-navy-900">
+              </div>
+              <div class="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-amber-400 rounded-full border-2 border-navy-900 flex items-center justify-center">
+                <svg class="w-2.5 h-2.5 text-navy-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+              </div>
+            </div>
+            <div class="min-w-0 flex-1">
+              <p id="preview-name" class="text-white font-semibold text-sm truncate preview-field-populating">Jennifer Martinez</p>
+              <p id="preview-slug" class="text-navy-300 text-xs truncate preview-field-populating">apex.network/jennifer-m</p>
+            </div>
+          </div>
+
+          <!-- Partial Info Rows -->
+          <div class="space-y-1.5">
+            <div class="flex items-center gap-2">
+              <svg class="w-3.5 h-3.5 text-navy-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+              <p id="preview-email" class="text-navy-200 text-xs truncate preview-field-populating">jennifer.m@email.com</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="w-3.5 h-3.5 text-navy-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+              <p id="preview-location" class="text-navy-200 text-xs truncate preview-field-populating">Austin, TX</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="w-3.5 h-3.5 text-navy-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+              <p class="text-navy-200 text-xs">Under <span class="text-white font-medium">Marcus Williams</span></p>
+            </div>
+          </div>
+
+          <!-- Completion indicator -->
+          <div class="mt-3 pt-3 border-t border-white/10">
+            <div class="flex justify-between items-center mb-1">
+              <span class="text-navy-400 text-xs">Profile completion</span>
+              <span class="text-white text-xs font-semibold">65%</span>
+            </div>
+            <div class="w-full bg-white/10 rounded-full h-1">
+              <div class="bg-amber-400 h-1 rounded-full" style="width: 65%"></div>
+            </div>
+            <p class="text-navy-400 text-xs mt-1.5">Filling in as you type...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trust Badges -->
+      <div class="px-6 pb-8 space-y-2">
+        <p class="text-navy-400 text-xs font-semibold uppercase tracking-widest mb-2">Security &amp; Trust</p>
+        <div class="trust-badge rounded-small px-3 py-2 flex items-center gap-2.5">
+          <svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+          <span class="text-navy-200 text-xs">256-bit SSL Encrypted</span>
+        </div>
+        <div class="trust-badge rounded-small px-3 py-2 flex items-center gap-2.5">
+          <svg class="w-4 h-4 text-amber-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+          <span class="text-navy-200 text-xs">Data Never Sold or Shared</span>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- ===== RIGHT PANEL: Main Content ===== -->
+    <main class="flex-1 flex flex-col bg-slate-100" style="height: auto;">
+      <div class="flex-1 flex flex-col items-center justify-start px-8 py-10 max-w-2xl mx-auto w-full">
+
+        <!-- Step Header -->
+        <div class="w-full mb-6">
+          <div class="flex items-center gap-2 mb-2">
+            <div class="w-6 h-6 rounded-full bg-red-900 flex items-center justify-center flex-shrink-0">
+              <span class="text-white text-xs font-bold">2</span>
+            </div>
+            <span class="text-xs font-semibold text-red-900 uppercase tracking-wider">Step 2 of 6</span>
+          </div>
+          <h1 class="font-heading font-bold text-navy-900 text-2xl leading-tight mb-1">Personal Information</h1>
+          <p class="text-slate-500 text-sm">This information will appear on your distributor account and 1099 tax forms. All fields marked with <span class="text-red-900 font-semibold">*</span> are required.</p>
+        </div>
+
+        <!-- ===== PROFILE PHOTO UPLOAD CARD ===== -->
+        <div class="w-full bg-white rounded-large shadow-custom p-6 mb-5">
+          <h3 class="font-heading font-semibold text-navy-900 text-base mb-1">Profile Photo</h3>
+          <p class="text-slate-500 text-sm mb-4">Upload a professional photo for your rep profile page. Recommended: square, at least 400×400px.</p>
+
+          <div class="flex items-start gap-5">
+            <!-- Current Photo Preview -->
+            <div class="flex-shrink-0">
+              <div class="relative">
+                <div class="w-24 h-24 rounded-large overflow-hidden border-2 border-navy-200 shadow-custom">
+                  <img id="photo-preview" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Profile Photo Preview" class="w-full h-full object-cover">
+                </div>
+                <button onclick="triggerUpload()" class="absolute -bottom-2 -right-2 w-7 h-7 bg-navy-900 rounded-full border-2 border-white flex items-center justify-center hover:bg-navy-700 transition-colors shadow-custom" title="Change photo">
+                  <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Upload Zone + Crop Tool -->
+            <div class="flex-1">
+              <div id="upload-zone" onclick="triggerUpload()" class="upload-zone rounded-large p-4 flex flex-col items-center justify-center text-center cursor-pointer gap-2 min-h-[80px]">
+                <div class="w-8 h-8 bg-navy-50 rounded-small flex items-center justify-center">
+                  <svg class="w-4 h-4 text-navy-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-navy-900">Click to upload or drag &amp; drop</p>
+                  <p class="text-xs text-slate-400 mt-0.5">JPG, PNG or WEBP · Max 5MB</p>
+                </div>
+              </div>
+
+              <!-- Crop Tool (shown after upload) -->
+              <div id="crop-tool" class="mt-3 hidden">
+                <div class="crop-overlay rounded-large p-3 flex items-center justify-between gap-3">
+                  <div class="flex items-center gap-2">
+                    <svg class="w-4 h-4 text-navy-700 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    <span class="text-xs font-semibold text-navy-800">Crop &amp; Adjust</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <button class="text-xs text-slate-500 hover:text-navy-900 border border-slate-200 px-2.5 py-1 rounded-small transition-colors">Rotate</button>
+                    <button class="text-xs text-slate-500 hover:text-navy-900 border border-slate-200 px-2.5 py-1 rounded-small transition-colors">Zoom</button>
+                    <button onclick="applyCrop()" class="text-xs text-white bg-navy-900 hover:bg-navy-800 px-2.5 py-1 rounded-small transition-colors font-semibold">Apply</button>
+                  </div>
+                </div>
+                <!-- Crop Slider -->
+                <div class="mt-2 flex items-center gap-3">
+                  <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                  <input type="range" min="1" max="3" step="0.1" value="1.2" class="flex-1 h-1.5 bg-slate-200 rounded-full appearance-none cursor-pointer accent-navy-900">
+                  <svg class="w-4.5 h-4.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <input type="file" id="file-input" accept="image/*" class="hidden" onchange="handleFileUpload(event)">
+        </div>
+
+        <!-- ===== PERSONAL INFO FORM CARD ===== -->
+        <div class="w-full bg-white rounded-large shadow-custom p-6 mb-5">
+          <h3 class="font-heading font-semibold text-navy-900 text-base mb-4">Basic Information</h3>
+
+          <div class="space-y-4">
+            <!-- First + Last Name -->
+            <div class="grid grid-cols-2 gap-4">
+              <div class="space-y-1.5">
+                <label class="text-sm font-medium text-slate-700">First Name <span class="text-red-900">*</span></label>
+                <input type="text" id="first-name" value="Jennifer" placeholder="First name" oninput="updatePreview()" class="w-full px-3 py-2.5 border border-green-200 bg-green-50 rounded-small text-slate-800 text-sm transition-all input-focus field-filled">
+              </div>
+              <div class="space-y-1.5">
+                <label class="text-sm font-medium text-slate-700">Last Name <span class="text-red-900">*</span></label>
+                <input type="text" id="last-name" value="Martinez" placeholder="Last name" oninput="updatePreview()" class="w-full px-3 py-2.5 border border-green-200 bg-green-50 rounded-small text-slate-800 text-sm transition-all input-focus field-filled">
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="space-y-1.5">
+              <label class="text-sm font-medium text-slate-700">Email Address <span class="text-red-900">*</span></label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                </div>
+                <input type="email" id="email" value="jennifer.martinez@email.com" placeholder="your@email.com" oninput="updatePreview()" class="w-full pl-9 pr-24 py-2.5 border border-green-200 bg-green-50 rounded-small text-slate-800 text-sm transition-all input-focus field-filled">
+                <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                  <span class="text-xs text-green-600 font-semibold bg-green-100 px-2 py-0.5 rounded-small flex items-center gap-1">
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    Verified
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Phone -->
+            <div class="space-y-1.5">
+              <label class="text-sm font-medium text-slate-700">Phone Number <span class="text-red-900">*</span></label>
+              <div class="flex gap-0">
+                <div class="flex items-center px-3 bg-slate-100 border border-r-0 border-slate-200 rounded-l-small text-slate-500 text-sm font-medium flex-shrink-0">
+                  <img src="https://flagcdn.com/w20/us.png" alt="US" class="w-4 h-3 mr-1.5 object-cover">
+                  +1
+                </div>
+                <input type="tel" value="(512) 867-5309" placeholder="(555) 000-0000" class="flex-1 px-3 py-2.5 border border-green-200 bg-green-50 rounded-r-small text-slate-800 text-sm transition-all input-focus field-filled">
+              </div>
+            </div>
+
+            <!-- Address Section Divider -->
+            <div class="flex items-center gap-3 pt-1">
+              <div class="h-px flex-1 bg-slate-100"></div>
+              <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Mailing Address</span>
+              <div class="h-px flex-1 bg-slate-100"></div>
+            </div>
+
+            <!-- Street Address -->
+            <div class="space-y-1.5">
+              <label class="text-sm font-medium text-slate-700">Street Address <span class="text-red-900">*</span></label>
+              <input type="text" value="1234 Maple Street, Apt 5B" placeholder="Street address" class="w-full px-3 py-2.5 border border-green-200 bg-green-50 rounded-small text-slate-800 text-sm transition-all input-focus field-filled">
+            </div>
+
+            <!-- City / State / ZIP -->
+            <div class="grid grid-cols-5 gap-3">
+              <div class="col-span-2 space-y-1.5">
+                <label class="text-sm font-medium text-slate-700">City <span class="text-red-900">*</span></label>
+                <input type="text" id="city" value="Austin" placeholder="City" oninput="updatePreview()" class="w-full px-3 py-2.5 border border-green-200 bg-green-50 rounded-small text-slate-800 text-sm transition-all input-focus field-filled">
+              </div>
+              <div class="space-y-1.5">
+                <label class="text-sm font-medium text-slate-700">State <span class="text-red-900">*</span></label>
+                <select id="state" onchange="updatePreview()" class="w-full px-3 py-2.5 border border-green-200 bg-green-50 rounded-small text-slate-800 text-sm transition-all input-focus field-filled">
+                  <option value="TX" selected="">TX</option>
+                  <option value="CA">CA</option>
+                  <option value="FL">FL</option>
+                  <option value="NY">NY</option>
+                  <option value="WA">WA</option>
+                  <option value="CO">CO</option>
+                </select>
+              </div>
+              <div class="col-span-2 space-y-1.5">
+                <label class="text-sm font-medium text-slate-700">ZIP Code <span class="text-red-900">*</span></label>
+                <input type="text" value="78701" placeholder="ZIP" class="w-full px-3 py-2.5 border border-green-200 bg-green-50 rounded-small text-slate-800 text-sm transition-all input-focus field-filled">
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ===== USERNAME / SLUG CARD ===== -->
+        <div class="w-full bg-white rounded-large shadow-custom p-6 mb-5">
+          <div class="flex items-start justify-between gap-3 mb-1">
+            <div>
+              <h3 class="font-heading font-semibold text-navy-900 text-base">Your Rep URL</h3>
+              <p class="text-slate-500 text-sm mt-0.5">This is your personal replicated website address. Choose a unique username — it cannot be changed later.</p>
+            </div>
+            <span class="flex-shrink-0 text-xs bg-amber-50 text-amber-700 border border-amber-200 px-2.5 py-1 rounded-small font-semibold">Permanent</span>
+          </div>
+
+          <!-- URL Preview Banner -->
+          <div class="mt-4 mb-4 bg-navy-50 border border-navy-200 rounded-small px-4 py-3 flex items-center gap-2 overflow-hidden">
+            <svg class="w-4 h-4 text-navy-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+            <span class="text-navy-500 text-sm font-medium flex-shrink-0">apex.network/</span>
+            <span id="url-preview-slug" class="text-navy-900 font-bold text-sm truncate">jennifer-martinez</span>
+          </div>
+
+          <!-- Slug Input with Availability Checker -->
+          <div class="space-y-1.5">
+            <label class="text-sm font-medium text-slate-700">Username / Slug <span class="text-red-900">*</span></label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <span class="text-slate-400 text-sm font-medium">@</span>
+              </div>
+              <input type="text" id="slug-input" value="jennifer-martinez" placeholder="your-username" oninput="checkSlugAvailability(this.value)" class="w-full pl-8 pr-32 py-2.5 border rounded-small text-slate-800 text-sm transition-all input-focus slug-available bg-green-50">
+              <div id="slug-status" class="absolute inset-y-0 right-0 pr-3 flex items-center gap-1.5">
+                <!-- Available state -->
+                <span id="slug-available-badge" class="text-xs text-green-600 font-semibold bg-green-100 px-2 py-0.5 rounded-small flex items-center gap-1">
+                  <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                  Available
+                </span>
+                <!-- Checking state (hidden) -->
+                <span id="slug-checking-badge" class="hidden text-xs text-amber-600 font-semibold bg-amber-50 px-2 py-0.5 rounded-small flex items-center gap-1">
+                  <svg class="w-3 h-3 spinner" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                  Checking...
+                </span>
+                <!-- Taken state (hidden) -->
+                <span id="slug-taken-badge" class="hidden text-xs text-red-600 font-semibold bg-red-50 px-2 py-0.5 rounded-small flex items-center gap-1">
+                  <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                  Taken
+                </span>
+              </div>
+            </div>
+            <!-- Slug hints -->
+            <div id="slug-hint-available" class="flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              <p class="text-xs text-green-600 font-medium">Great choice! This username is available.</p>
+            </div>
+            <div id="slug-hint-taken" class="hidden flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              <p class="text-xs text-red-600 font-medium">That username is taken. Try <span class="font-bold cursor-pointer underline" onclick="suggestSlug()">jennifer-martinez2</span> or <span class="font-bold cursor-pointer underline" onclick="suggestSlug2()">jmartinez-apex</span></p>
+            </div>
+            <p class="text-xs text-slate-400">Only letters, numbers, and hyphens. 3–30 characters. No spaces.</p>
+          </div>
+        </div>
+
+        <!-- ===== PASSWORD CARD ===== -->
+        <div class="w-full bg-white rounded-large shadow-custom p-6 mb-5">
+          <h3 class="font-heading font-semibold text-navy-900 text-base mb-1">Account Password</h3>
+          <p class="text-slate-500 text-sm mb-4">Create a strong password to secure your distributor back office.</p>
+
+          <div class="space-y-4">
+            <div class="space-y-1.5">
+              <label class="text-sm font-medium text-slate-700">Password <span class="text-red-900">*</span></label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                </div>
+                <input type="password" id="password" value="Apex@Secure2024!" placeholder="Create a strong password" oninput="checkPasswordStrength(this.value)" class="w-full pl-9 pr-10 py-2.5 border border-green-200 bg-green-50 rounded-small text-slate-800 text-sm transition-all input-focus field-filled">
+                <button onclick="togglePassword('password')" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 transition-colors">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                </button>
+              </div>
+              <!-- Password Strength Meter -->
+              <div class="flex gap-1 mt-1.5">
+                <div class="h-1.5 flex-1 rounded-full bg-green-500"></div>
+                <div class="h-1.5 flex-1 rounded-full bg-green-500"></div>
+                <div class="h-1.5 flex-1 rounded-full bg-green-500"></div>
+                <div class="h-1.5 flex-1 rounded-full bg-green-400"></div>
+              </div>
+              <div class="flex items-center justify-between">
+                <p class="text-xs text-green-600 font-semibold flex items-center gap-1">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                  Strong password
+                </p>
+                <div class="flex items-center gap-2 text-xs text-slate-400">
+                  <span class="flex items-center gap-0.5"><svg class="w-3 h-3 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>8+ chars</span>
+                  <span class="flex items-center gap-0.5"><svg class="w-3 h-3 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Uppercase</span>
+                  <span class="flex items-center gap-0.5"><svg class="w-3 h-3 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Symbol</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-1.5">
+              <label class="text-sm font-medium text-slate-700">Confirm Password <span class="text-red-900">*</span></label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                </div>
+                <input type="password" id="confirm-password" value="Apex@Secure2024!" placeholder="Re-enter your password" class="w-full pl-9 pr-10 py-2.5 border border-green-200 bg-green-50 rounded-small text-slate-800 text-sm transition-all input-focus field-filled">
+                <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                  <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+              </div>
+              <p class="text-xs text-green-600 font-medium flex items-center gap-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                Passwords match
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== NAVIGATION BUTTONS ===== -->
+        <div class="w-full flex items-center justify-between gap-3 mb-6">
+          <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-1-sponsor-verification" class="flex items-center gap-2 px-5 py-2.5 border border-slate-200 text-slate-600 rounded-small font-medium hover:bg-slate-50 transition-colors text-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+            Back to Step 1
+          </a>
+
+          <div class="flex items-center gap-3">
+            <!-- Save Progress -->
+            <button class="flex items-center gap-2 px-4 py-2.5 border border-navy-200 text-navy-700 rounded-small font-medium hover:bg-navy-50 transition-colors text-sm">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path></svg>
+              Save Draft
+            </button>
+            <!-- Continue -->
+            <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-3-tax-identity" class="flex items-center gap-2 px-6 py-2.5 bg-navy-900 text-white rounded-small font-semibold hover:bg-navy-800 transition-all shadow-custom text-sm">
+              Continue to Step 3
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Footer Note -->
+        <div class="w-full text-center text-xs text-slate-400">
+          <p>© 2024 Apex Network, Inc. · <span class="underline cursor-pointer">Privacy Policy</span> · <span class="underline cursor-pointer">Terms of Service</span> · <span class="underline cursor-pointer">Income Disclosure</span></p>
+          <p class="mt-1">Questions? <span class="text-navy-900 font-medium">support@apexnetwork.com</span></p>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <script>
+    let slugTimer = null;
+
+    function updatePreview() {
+      const first = document.getElementById('first-name').value || '';
+      const last = document.getElementById('last-name').value || '';
+      const email = document.getElementById('email').value || '';
+      const city = document.getElementById('city').value || '';
+      const state = document.getElementById('state').value || '';
+
+      const fullName = [first, last].filter(Boolean).join(' ');
+      const location = [city, state].filter(Boolean).join(', ');
+
+      if (fullName) {
+        document.getElementById('preview-name').textContent = fullName;
+      }
+      if (email) {
+        const shortEmail = email.length > 22 ? email.substring(0, 22) + '...' : email;
+        document.getElementById('preview-email').textContent = shortEmail;
+      }
+      if (location) {
+        document.getElementById('preview-location').textContent = location;
+      }
+
+      // Auto-generate slug from name
+      if (first || last) {
+        const autoSlug = (first + '-' + last).toLowerCase().replace(/[^a-z0-9-]/g, '').replace(/--+/g, '-');
+        const slugInput = document.getElementById('slug-input');
+        if (slugInput.value === '' || slugInput.dataset.autoGenerated === 'true') {
+          slugInput.value = autoSlug;
+          slugInput.dataset.autoGenerated = 'true';
+          document.getElementById('url-preview-slug').textContent = autoSlug;
+          document.getElementById('preview-slug').textContent = 'apex.network/' + autoSlug;
+        }
+      }
+    }
+
+    function checkSlugAvailability(value) {
+      // Update URL preview
+      const cleaned = value.toLowerCase().replace(/[^a-z0-9-]/g, '');
+      document.getElementById('url-preview-slug').textContent = cleaned || 'your-username';
+      document.getElementById('preview-slug').textContent = 'apex.network/' + (cleaned || 'your-username');
+
+      // Mark as manually edited
+      document.getElementById('slug-input').dataset.autoGenerated = 'false';
+
+      // Show checking state
+      showSlugState('checking');
+
+      clearTimeout(slugTimer);
+      slugTimer = setTimeout(() => {
+        // Simulate: "jennifer-taken" is taken, everything else is available
+        const taken = ['jennifer-taken', 'john-smith', 'apex-rep', 'admin'];
+        if (taken.includes(cleaned)) {
+          showSlugState('taken');
+        } else {
+          showSlugState('available');
+        }
+      }, 900);
+    }
+
+    function showSlugState(state) {
+      const input = document.getElementById('slug-input');
+      const availBadge = document.getElementById('slug-available-badge');
+      const checkBadge = document.getElementById('slug-checking-badge');
+      const takenBadge = document.getElementById('slug-taken-badge');
+      const hintAvail = document.getElementById('slug-hint-available');
+      const hintTaken = document.getElementById('slug-hint-taken');
+
+      // Reset classes
+      input.classList.remove('slug-available', 'slug-checking', 'slug-taken', 'bg-green-50', 'bg-amber-50', 'bg-red-50', 'border-green-200', 'border-amber-300', 'border-red-300');
+
+      availBadge.classList.add('hidden');
+      checkBadge.classList.add('hidden');
+      takenBadge.classList.add('hidden');
+      hintAvail.classList.add('hidden');
+      hintTaken.classList.add('hidden');
+
+      if (state === 'available') {
+        input.classList.add('slug-available', 'bg-green-50', 'border-green-200');
+        availBadge.classList.remove('hidden');
+        hintAvail.classList.remove('hidden');
+      } else if (state === 'checking') {
+        input.classList.add('slug-checking', 'bg-amber-50', 'border-amber-300');
+        checkBadge.classList.remove('hidden');
+      } else if (state === 'taken') {
+        input.classList.add('slug-taken', 'bg-red-50', 'border-red-300');
+        takenBadge.classList.remove('hidden');
+        hintTaken.classList.remove('hidden');
+      }
+    }
+
+    function suggestSlug() {
+      const input = document.getElementById('slug-input');
+      input.value = 'jennifer-martinez2';
+      checkSlugAvailability('jennifer-martinez2');
+    }
+
+    function suggestSlug2() {
+      const input = document.getElementById('slug-input');
+      input.value = 'jmartinez-apex';
+      checkSlugAvailability('jmartinez-apex');
+    }
+
+    function triggerUpload() {
+      document.getElementById('file-input').click();
+    }
+
+    function handleFileUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById('photo-preview').src = e.target.result;
+        document.getElementById('preview-avatar').src = e.target.result;
+        document.getElementById('crop-tool').classList.remove('hidden');
+        document.getElementById('upload-zone').classList.add('hidden');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function applyCrop() {
+      document.getElementById('crop-tool').classList.add('hidden');
+      document.getElementById('upload-zone').classList.remove('hidden');
+    }
+
+    function togglePassword(id) {
+      const input = document.getElementById(id);
+      input.type = input.type === 'password' ? 'text' : 'password';
+    }
+
+    function checkPasswordStrength(value) {
+      // Basic strength check - just for demo
+    }
+  </script>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

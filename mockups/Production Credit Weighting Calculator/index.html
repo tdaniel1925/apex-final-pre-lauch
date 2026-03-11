@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Production Credit Weighting Calculator - Exported from UXMagic Copilot">
+    <title>Production Credit Weighting Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            50: '#E8ECF5',
+                            100: '#C5D0E6',
+                            200: '#9FB3D6',
+                            300: '#7996C7',
+                            400: '#5379B7',
+                            500: '#2D5CA8',
+                            600: '#1B3A7D',
+                            700: '#152D61',
+                            800: '#0F2045',
+                            900: '#091329',
+                        },
+                        red: {
+                            50: '#FBE8E9',
+                            100: '#F5C5C7',
+                            200: '#EE9FA2',
+                            300: '#E7797D',
+                            400: '#E05358',
+                            500: '#D92D33',
+                            600: '#C7181F',
+                            700: '#9B1318',
+                            800: '#6F0D11',
+                            900: '#42080A',
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['var(--font-heading-name)', 'sans-serif'],
+                        body: ['var(--font-body-name)', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    spacing: {
+                        base: 'var(--space-base)',
+                    },
+                    borderRadius: {
+                        small: 'var(--radius-small)',
+                        large: 'var(--radius-large)',
+                    },
+                    boxShadow: {
+                        custom: 'var(--shadow-custom)',
+                        'custom-hover': 'var(--shadow-custom-hover)',
+                    },
+                }
+            }
+        }
+    
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+    <!-- Top Navigation Bar -->
+    <header class="bg-navy-600 text-white shadow-lg z-50 sticky top-0">
+        <div class="max-w-[1920px] mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <div class="w-10 h-10 bg-white rounded flex items-center justify-center text-navy-600 font-bold text-xl">
+                    <img src="https://images.unsplash.com/photo-1614680376593-902f74cf0d41?q=80&amp;w=100&amp;auto=format&amp;fit=crop" alt="Apex Logo" class="w-full h-full object-cover rounded opacity-90 mix-blend-multiply">
+                </div>
+                <div>
+                    <h1 class="font-heading text-lg font-bold tracking-tight leading-tight">Apex Finance &amp; Analytics Suite</h1>
+                    <div class="text-xs text-navy-200 font-mono">INTERNAL USE ONLY • V 2.4.1</div>
+                </div>
+            </div>
+
+            <nav class="hidden lg:flex items-center gap-1">
+                <a href="/api/copilot/prototype/af087e9f-3d1a-4ab5-8300-46223558b33d/production-credit-weighting-calculator" class="flex items-center gap-1.5 px-3 py-1.5 bg-navy-700 border border-navy-500 text-white text-xs font-semibold rounded-small">
+                    <i data-lucide="scale" class="w-3.5 h-3.5 text-red-400"></i>
+                    Prod. Credit Weighting
+                </a>
+                <a href="#" class="flex items-center gap-1.5 px-3 py-1.5 text-navy-200 hover:text-white hover:bg-navy-700 text-xs font-medium rounded-small transition-colors">
+                    <i data-lucide="bar-chart-4" class="w-3.5 h-3.5"></i>
+                    Waterfall Revenue
+                </a>
+                <a href="#" class="flex items-center gap-1.5 px-3 py-1.5 text-navy-200 hover:text-white hover:bg-navy-700 text-xs font-medium rounded-small transition-colors">
+                    <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+                    BV &amp; Bonus
+                </a>
+                <a href="#" class="flex items-center gap-1.5 px-3 py-1.5 text-navy-200 hover:text-white hover:bg-navy-700 text-xs font-medium rounded-small transition-colors">
+                    <i data-lucide="pie-chart" class="w-3.5 h-3.5"></i>
+                    Bonus Pool
+                </a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <div class="hidden md:flex items-center gap-2 text-xs bg-navy-700 px-3 py-1.5 rounded border border-navy-500">
+                    <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                    <span class="font-mono text-navy-100">LIVE CALC</span>
+                </div>
+                <div class="h-8 w-px bg-navy-500"></div>
+                <div class="flex items-center gap-3">
+                    <div class="text-right hidden sm:block">
+                        <div class="text-sm font-semibold text-white">Betsy Johnson</div>
+                        <div class="text-xs text-red-300 font-bold uppercase tracking-wider">Chief Financial Officer</div>
+                    </div>
+                    <div class="w-10 h-10 rounded bg-navy-800 border-2 border-red-600 flex items-center justify-center text-sm font-bold shadow-md relative">
+                        BJ
+                        <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-red-600 rounded-full border-2 border-navy-600 flex items-center justify-center">
+                            <i data-lucide="shield" class="w-2 h-2 text-white"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sub-header / Breadcrumb + Scenario Info -->
+    <div class="bg-white border-b border-slate-200 shadow-custom">
+        <div class="max-w-[1920px] mx-auto px-6 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-2 text-sm">
+                <a href="#" class="text-navy-600 hover:underline font-medium flex items-center gap-1">
+                    <i data-lucide="home" class="w-3.5 h-3.5"></i> Dashboard
+                </a>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-slate-400"></i>
+                <span class="text-slate-500">Module 01</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-slate-400"></i>
+                <span class="font-semibold text-navy-800">Production Credit Weighting Calculator</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="flex items-center gap-2 text-xs text-slate-500">
+                    <i data-lucide="folder-open" class="w-3.5 h-3.5 text-navy-500"></i>
+                    <span>Active Scenario:</span>
+                    <span class="font-mono font-semibold text-navy-700">Q3_Weighting_Adj_v2</span>
+                    <span class="bg-green-100 text-green-700 px-1.5 py-0.5 rounded text-[10px] font-bold uppercase">Unsaved Changes</span>
+                </div>
+                <div class="h-4 w-px bg-slate-200"></div>
+                <div class="flex items-center gap-2 text-xs text-slate-400 font-mono">
+                    <i data-lucide="clock" class="w-3 h-3"></i>
+                    Last Calc: 10:47:32 AM
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Two-Panel Layout -->
+    <div class="max-w-[1920px] mx-auto px-6 py-5 flex gap-5" style="height: auto;">
+
+        <!-- LEFT PANEL: Product Weighting Table -->
+        <div class="flex-1 min-w-0 flex flex-col gap-4">
+
+            <!-- Panel Header -->
+            <div class="bg-white rounded-large border border-slate-200 shadow-custom">
+                <div class="px-5 py-3 flex items-center justify-between border-b border-slate-100">
+                    <div class="flex items-center gap-3">
+                        <div class="p-1.5 bg-navy-50 rounded-small">
+                            <i data-lucide="table" class="w-4 h-4 text-navy-600"></i>
+                        </div>
+                        <div>
+                            <h2 class="font-heading font-bold text-navy-900 text-base">Product Weighting Table</h2>
+                            <p class="text-xs text-slate-500">Edit revenue, weighting %, and view computed production credit per dollar</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="flex items-center gap-1.5 text-xs text-slate-500 bg-slate-50 border border-slate-200 px-2.5 py-1.5 rounded-small">
+                            <span class="w-2 h-2 rounded-full bg-green-400"></span>
+                            <span class="font-mono">15 Active</span>
+                        </div>
+                        <div class="flex items-center gap-1.5 text-xs text-slate-500 bg-slate-50 border border-slate-200 px-2.5 py-1.5 rounded-small">
+                            <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+                            <span class="font-mono">4 TBD</span>
+                        </div>
+                        <button class="flex items-center gap-1.5 px-3 py-1.5 bg-navy-50 border border-navy-200 text-navy-700 text-xs font-semibold rounded-small hover:bg-navy-100 transition-colors">
+                            <i data-lucide="refresh-cw" class="w-3 h-3"></i> Recalculate
+                        </button>
+                        <button class="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-slate-200 text-slate-600 text-xs font-medium rounded-small hover:bg-slate-50 transition-colors">
+                            <i data-lucide="settings-2" class="w-3 h-3"></i> Config
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Summary KPI Strip -->
+                <div class="grid grid-cols-4 divide-x divide-slate-100 border-b border-slate-100">
+                    <div class="px-5 py-3">
+                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Total Revenue Base</div>
+                        <div class="font-mono font-bold text-navy-800 text-lg">$4,872,500</div>
+                        <div class="text-[10px] text-slate-400 font-mono">Monthly Aggregate</div>
+                    </div>
+                    <div class="px-5 py-3">
+                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Avg. Weight Factor</div>
+                        <div class="font-mono font-bold text-navy-800 text-lg">1.247x</div>
+                        <div class="text-[10px] text-slate-400 font-mono">Across Active Products</div>
+                    </div>
+                    <div class="px-5 py-3">
+                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Total Prod. Credit</div>
+                        <div class="font-mono font-bold text-red-600 text-lg">$6,076,898</div>
+                        <div class="text-[10px] text-slate-400 font-mono">Weighted Output</div>
+                    </div>
+                    <div class="px-5 py-3">
+                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Weight Variance</div>
+                        <div class="font-mono font-bold text-green-600 text-lg">+2.3%</div>
+                        <div class="text-[10px] text-slate-400 font-mono">vs. Prior Period</div>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-xs">
+                        <thead>
+                            <tr class="bg-navy-900 text-white">
+                                <th class="text-left px-3 py-2.5 font-semibold text-[10px] uppercase tracking-wider w-8">#</th>
+                                <th class="text-left px-3 py-2.5 font-semibold text-[10px] uppercase tracking-wider">Product Name</th>
+                                <th class="text-left px-3 py-2.5 font-semibold text-[10px] uppercase tracking-wider w-20">SKU</th>
+                                <th class="text-left px-3 py-2.5 font-semibold text-[10px] uppercase tracking-wider w-20">Category</th>
+                                <th class="text-right px-3 py-2.5 font-semibold text-[10px] uppercase tracking-wider w-28">Revenue ($)</th>
+                                <th class="text-right px-3 py-2.5 font-semibold text-[10px] uppercase tracking-wider w-24">Weight %</th>
+                                <th class="text-right px-3 py-2.5 font-semibold text-[10px] uppercase tracking-wider w-28">Credit/Dollar</th>
+                                <th class="text-right px-3 py-2.5 font-semibold text-[10px] uppercase tracking-wider w-32">Prod. Credit ($)</th>
+                                <th class="text-center px-3 py-2.5 font-semibold text-[10px] uppercase tracking-wider w-16">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <!-- Row 1 -->
+                            <tr class="hover:bg-navy-50 transition-colors group">
+                                <td class="px-3 py-2 font-mono text-slate-400">01</td>
+                                <td class="px-3 py-2 font-semibold text-navy-800">Apex Core Membership</td>
+                                <td class="px-3 py-2 font-mono text-slate-500">ACM-001</td>
+                                <td class="px-3 py-2"><span class="bg-navy-50 text-navy-700 px-1.5 py-0.5 rounded text-[10px] font-semibold">Membership</span></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell" value="850,000" id="rev1"></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell" value="1.50" id="wt1"></td>
+                                <td class="px-3 py-2 text-right font-mono text-navy-700 font-semibold" id="cpd1">$1.50</td>
+                                <td class="px-3 py-2 text-right font-mono font-bold text-navy-900" id="pc1">$1,275,000</td>
+                                <td class="px-3 py-2 text-center"><span class="rank-badge bg-green-100 text-green-700">Active</span></td>
+                            </tr>
+                            <!-- Row 2 -->
+                            <tr class="hover:bg-navy-50 transition-colors group">
+                                <td class="px-3 py-2 font-mono text-slate-400">02</td>
+                                <td class="px-3 py-2 font-semibold text-navy-800">Premium Health Pack</td>
+                                <td class="px-3 py-2 font-mono text-slate-500">PHP-002</td>
+                                <td class="px-3 py-2"><span class="bg-red-50 text-red-700 px-1.5 py-0.5 rounded text-[10px] font-semibold">Health</span></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell" value="620,000" id="rev2"></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell" value="1.75" id="wt2"></td>
+                                <td class="px-3 py-2 text-right font-mono text-navy-700 font-semibold" id="cpd2">$1.75</td>
+                                <td class="px-3 py-2 text-right font-mono font-bold text-navy-900" id="pc2">$1,085,000</td>
+                                <td class="px-3 py-2 text-center"><span class="rank-badge bg-green-100 text-green-700">Active</span></td>
+                            </tr>
+                            <!-- Row 3 -->
+                            <tr class="hover:bg-navy-50 transition-colors group">
+                                <td class="px-3 py-2 font-mono text-slate-400">03</td>
+                                <td class="px-3 py-2 font-semibold text-navy-800">Wellness Starter Kit</td>
+                                <td class="px-3 py-2 font-mono text-slate-500">WSK-003</td>
+                                <td class="px-3 py-2"><span class="bg-red-50 text-red-700 px-1.5 py-0.5 rounded text-[10px] font-semibold">Health</span></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell" value="410,000" id="rev3"></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell" value="1.25" id="wt3"></td>
+                                <td class="px-3 py-2 text-right font-mono text-navy-700 font-semibold">$1.25</td>
+                                <td class="px-3 py-2 text-right font-mono font-bold text-navy-900">$512,500</td>
+                                <td class="px-3 py-2 text-center"><span class="rank-badge bg-green-100 text-green-700">Active</span></td>
+                            </tr>
+                            <!-- Row 4 -->
+                            <tr class="hover:bg-navy-50 transition-colors group">
+                                <td class="px-3 py-2 font-mono text-slate-400">04</td>
+                                <td class="px-3 py-2 font-semibold text-navy-800">Elite Performance Bundle</td>
+                                <td class="px-3 py-2 font-mono text-slate-500">EPB-004</td>
+                                <td class="px-3 py-2"><span class="bg-purple-50 text-purple-700 px-1.5 py-0.5 rounded text-[10px] font-semibold">Bundle</span></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell" value="380,000" id="rev4"></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell" value="2.00" id="wt4"></td>
+                                <td class="px-3 py-2 text-right font-mono text-navy-700 font-semibold">$2.00</td>
+                                <td class="px-3 py-2 text-right font-mono font-bold text-navy-900">$760,000</td>
+                                <td class="px-3 py-2 text-center"><span class="rank-badge bg-green-100 text-green-700">Active</span></td>
+                            </tr>
+                            <!-- Row 5 -->
+                            <tr class="hover:bg-navy-50 transition-colors group">
+                                <td class="px-3 py-2 font-mono text-slate-400">05</td>
+                                <td class="px-3 py-2 font-semibold text-navy-800">Nutrition Pro Series</td>
+                                <td class="px-3 py-2 font-mono text-slate-500">NPS-005</td>
+                                <td class="px-3 py-2"><span class="bg-amber-50 text-amber-700 px-1.5 py-0.5 rounded text-[10px] font-semibold">Nutrition</span></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell" value="295,000"></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell" value="1.40"></td>
+                                <td class="px-3 py-2 text-right font-mono text-navy-700 font-semibold">$1.40</td>
+                                <td class="px-3 py-2 text-right font-mono font-bold text-navy-900">$413,000</td>
+                                <td class="px-3 py-2 text-center"><span class="rank-badge bg-green-100 text-green-700">Active</span></td>
+                            </tr>
+                            <!-- Row 6 -->
+                            <tr class="hover:bg-navy-50 transition-colors group">
+                                <td class="px-3 py-2 font-mono text-slate-400">06</td>
+                                <td class="px-3 py-2 font-semibold text-navy-800">Digital Training Access</td>
+                                <td class="px-3 py-2 font-mono text-slate-500">DTA-006</td>
+                                <td class="px-3 py-2"><span class="bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded text-[10px] font-semibold">Digital</span></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell" value="275,000"></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell" value="0.85"></td>
+                                <td class="px-3 py-2 text-right font-mono text-navy-700 font-semibold">$0.85</td>
+                                <td class="px-3 py-2 text-right font-mono font-bold text-navy-900">$233,750</td>
+                                <td class="px-3 py-2 text-center"><span class="rank-badge bg-green-100 text-green-700">Active</span></td>
+                            </tr>
+                            <!-- Row 7 -->
+                            <tr class="hover:bg-navy-50 transition-colors group">
+                                <td class="px-3 py-2 font-mono text-slate-400">07</td>
+                                <td class="px-3 py-2 font-semibold text-navy-800">Apex Signature Skincare</td>
+                                <td class="px-3 py-2 font-mono text-slate-500">ASS-007</td>
+                                <td class="px-3 py-2"><span class="bg-pink-50 text-pink-700 px-1.5 py-0.5 rounded text-[10px] font-semibold">Beauty</span></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell" value="260,000"></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell" value="1.60"></td>
+                                <td class="px-3 py-2 text-right font-mono text-navy-700 font-semibold">$1.60</td>
+                                <td class="px-3 py-2 text-right font-mono font-bold text-navy-900">$416,000</td>
+                                <td class="px-3 py-2 text-center"><span class="rank-badge bg-green-100 text-green-700">Active</span></td>
+                            </tr>
+                            <!-- Row 8 -->
+                            <tr class="hover:bg-navy-50 transition-colors group">
+                                <td class="px-3 py-2 font-mono text-slate-400">08</td>
+                                <td class="px-3 py-2 font-semibold text-navy-800">Recovery &amp; Sleep Formula</td>
+                                <td class="px-3 py-2 font-mono text-slate-500">RSF-008</td>
+                                <td class="px-3 py-2"><span class="bg-red-50 text-red-700 px-1.5 py-0.5 rounded text-[10px] font-semibold">Health</span></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell" value="215,000"></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell" value="1.30"></td>
+                                <td class="px-3 py-2 text-right font-mono text-navy-700 font-semibold">$1.30</td>
+                                <td class="px-3 py-2 text-right font-mono font-bold text-navy-900">$279,500</td>
+                                <td class="px-3 py-2 text-center"><span class="rank-badge bg-green-100 text-green-700">Active</span></td>
+                            </tr>
+                            <!-- Row 9 -->
+                            <tr class="hover:bg-navy-50 transition-colors group">
+                                <td class="px-3 py-2 font-mono text-slate-400">09</td>
+                                <td class="px-3 py-2 font-semibold text-navy-800">Business Builder Toolkit</td>
+                                <td class="px-3 py-2 font-mono text-slate-500">BBT-009</td>
+                                <td class="px-3 py-2"><span class="bg-navy-50 text-navy-700 px-1.5 py-0.5 rounded text-[10px] font-semibold">Business</span></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell" value="198,000"></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell" value="1.10"></td>
+                                <td class="px-3 py-2 text-right font-mono text-navy-700 font-semibold">$1.10</td>
+                                <td class="px-3 py-2 text-right font-mono font-bold text-navy-900">$217,800</td>
+                                <td class="px-3 py-2 text-center"><span class="rank-badge bg-green-100 text-green-700">Active</span></td>
+                            </tr>
+                            <!-- Row 10 -->
+                            <tr class="hover:bg-navy-50 transition-colors group">
+                                <td class="px-3 py-2 font-mono text-slate-400">10</td>
+                                <td class="px-3 py-2 font-semibold text-navy-800">Immune Defense Complex</td>
+                                <td class="px-3 py-2 font-mono text-slate-500">IDC-010</td>
+                                <td class="px-3 py-2"><span class="bg-red-50 text-red-700 px-1.5 py-0.5 rounded text-[10px] font-semibold">Health</span></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell" value="175,000"></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell" value="1.45"></td>
+                                <td class="px-3 py-2 text-right font-mono text-navy-700 font-semibold">$1.45</td>
+                                <td class="px-3 py-2 text-right font-mono font-bold text-navy-900">$253,750</td>
+                                <td class="px-3 py-2 text-center"><span class="rank-badge bg-green-100 text-green-700">Active</span></td>
+                            </tr>
+                            <!-- Row 11 -->
+                            <tr class="hover:bg-navy-50 transition-colors group">
+                                <td class="px-3 py-2 font-mono text-slate-400">11</td>
+                                <td class="px-3 py-2 font-semibold text-navy-800">Apex Collagen Boost</td>
+                                <td class="px-3 py-2 font-mono text-slate-500">ACB-011</td>
+                                <td class="px-3 py-2"><span class="bg-pink-50 text-pink-700 px-1.5 py-0.5 rounded text-[10px] font-semibold">Beauty</span></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell" value="162,000"></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell" value="1.55"></td>
+                                <td class="px-3 py-2 text-right font-mono text-navy-700 font-semibold">$1.55</td>
+                                <td class="px-3 py-2 text-right font-mono font-bold text-navy-900">$251,100</td>
+                                <td class="px-3 py-2 text-center"><span class="rank-badge bg-green-100 text-green-700">Active</span></td>
+                            </tr>
+                            <!-- Row 12 -->
+                            <tr class="hover:bg-navy-50 transition-colors group">
+                                <td class="px-3 py-2 font-mono text-slate-400">12</td>
+                                <td class="px-3 py-2 font-semibold text-navy-800">Energy &amp; Focus Stack</td>
+                                <td class="px-3 py-2 font-mono text-slate-500">EFS-012</td>
+                                <td class="px-3 py-2"><span class="bg-amber-50 text-amber-700 px-1.5 py-0.5 rounded text-[10px] font-semibold">Nutrition</span></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell" value="148,500"></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell" value="1.20"></td>
+                                <td class="px-3 py-2 text-right font-mono text-navy-700 font-semibold">$1.20</td>
+                                <td class="px-3 py-2 text-right font-mono font-bold text-navy-900">$178,200</td>
+                                <td class="px-3 py-2 text-center"><span class="rank-badge bg-green-100 text-green-700">Active</span></td>
+                            </tr>
+                            <!-- Row 13 -->
+                            <tr class="hover:bg-navy-50 transition-colors group">
+                                <td class="px-3 py-2 font-mono text-slate-400">13</td>
+                                <td class="px-3 py-2 font-semibold text-navy-800">Probiotic Daily Balance</td>
+                                <td class="px-3 py-2 font-mono text-slate-500">PDB-013</td>
+                                <td class="px-3 py-2"><span class="bg-red-50 text-red-700 px-1.5 py-0.5 rounded text-[10px] font-semibold">Health</span></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell" value="132,000"></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell" value="1.35"></td>
+                                <td class="px-3 py-2 text-right font-mono text-navy-700 font-semibold">$1.35</td>
+                                <td class="px-3 py-2 text-right font-mono font-bold text-navy-900">$178,200</td>
+                                <td class="px-3 py-2 text-center"><span class="rank-badge bg-green-100 text-green-700">Active</span></td>
+                            </tr>
+                            <!-- Row 14 -->
+                            <tr class="hover:bg-navy-50 transition-colors group">
+                                <td class="px-3 py-2 font-mono text-slate-400">14</td>
+                                <td class="px-3 py-2 font-semibold text-navy-800">Leadership Coaching Sub.</td>
+                                <td class="px-3 py-2 font-mono text-slate-500">LCS-014</td>
+                                <td class="px-3 py-2"><span class="bg-navy-50 text-navy-700 px-1.5 py-0.5 rounded text-[10px] font-semibold">Business</span></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell" value="115,000"></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell" value="0.90"></td>
+                                <td class="px-3 py-2 text-right font-mono text-navy-700 font-semibold">$0.90</td>
+                                <td class="px-3 py-2 text-right font-mono font-bold text-navy-900">$103,500</td>
+                                <td class="px-3 py-2 text-center"><span class="rank-badge bg-green-100 text-green-700">Active</span></td>
+                            </tr>
+                            <!-- Row 15 -->
+                            <tr class="hover:bg-navy-50 transition-colors group">
+                                <td class="px-3 py-2 font-mono text-slate-400">15</td>
+                                <td class="px-3 py-2 font-semibold text-navy-800">Apex Omega-3 Advanced</td>
+                                <td class="px-3 py-2 font-mono text-slate-500">AOA-015</td>
+                                <td class="px-3 py-2"><span class="bg-red-50 text-red-700 px-1.5 py-0.5 rounded text-[10px] font-semibold">Health</span></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell" value="98,000"></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell" value="1.15"></td>
+                                <td class="px-3 py-2 text-right font-mono text-navy-700 font-semibold">$1.15</td>
+                                <td class="px-3 py-2 text-right font-mono font-bold text-navy-900">$112,700</td>
+                                <td class="px-3 py-2 text-center"><span class="rank-badge bg-green-100 text-green-700">Active</span></td>
+                            </tr>
+
+                            <!-- TBD Separator -->
+                            <tr class="bg-slate-100">
+                                <td colspan="9" class="px-3 py-1.5">
+                                    <div class="flex items-center gap-2">
+                                        <div class="flex-1 h-px bg-slate-300"></div>
+                                        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Future Products — TBD</span>
+                                        <div class="flex-1 h-px bg-slate-300"></div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- TBD Row 1 -->
+                            <tr class="tbd-row hover:bg-slate-100 transition-colors">
+                                <td class="px-3 py-2 font-mono text-slate-300">16</td>
+                                <td class="px-3 py-2"><input type="text" class="editable-cell text-left text-slate-400" placeholder="Product Name TBD" style="text-align:left;"></td>
+                                <td class="px-3 py-2 font-mono text-slate-300">TBD-016</td>
+                                <td class="px-3 py-2"><span class="bg-slate-100 text-slate-400 px-1.5 py-0.5 rounded text-[10px] font-semibold">TBD</span></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell text-slate-400" placeholder="0"></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell text-slate-400" placeholder="0.00"></td>
+                                <td class="px-3 py-2 text-right font-mono text-slate-300">—</td>
+                                <td class="px-3 py-2 text-right font-mono text-slate-300">—</td>
+                                <td class="px-3 py-2 text-center"><span class="rank-badge bg-slate-100 text-slate-400">TBD</span></td>
+                            </tr>
+                            <!-- TBD Row 2 -->
+                            <tr class="tbd-row hover:bg-slate-100 transition-colors">
+                                <td class="px-3 py-2 font-mono text-slate-300">17</td>
+                                <td class="px-3 py-2"><input type="text" class="editable-cell text-left text-slate-400" placeholder="Product Name TBD" style="text-align:left;"></td>
+                                <td class="px-3 py-2 font-mono text-slate-300">TBD-017</td>
+                                <td class="px-3 py-2"><span class="bg-slate-100 text-slate-400 px-1.5 py-0.5 rounded text-[10px] font-semibold">TBD</span></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell text-slate-400" placeholder="0"></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell text-slate-400" placeholder="0.00"></td>
+                                <td class="px-3 py-2 text-right font-mono text-slate-300">—</td>
+                                <td class="px-3 py-2 text-right font-mono text-slate-300">—</td>
+                                <td class="px-3 py-2 text-center"><span class="rank-badge bg-slate-100 text-slate-400">TBD</span></td>
+                            </tr>
+                            <!-- TBD Row 3 -->
+                            <tr class="tbd-row hover:bg-slate-100 transition-colors">
+                                <td class="px-3 py-2 font-mono text-slate-300">18</td>
+                                <td class="px-3 py-2"><input type="text" class="editable-cell text-left text-slate-400" placeholder="Product Name TBD" style="text-align:left;"></td>
+                                <td class="px-3 py-2 font-mono text-slate-300">TBD-018</td>
+                                <td class="px-3 py-2"><span class="bg-slate-100 text-slate-400 px-1.5 py-0.5 rounded text-[10px] font-semibold">TBD</span></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell text-slate-400" placeholder="0"></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell text-slate-400" placeholder="0.00"></td>
+                                <td class="px-3 py-2 text-right font-mono text-slate-300">—</td>
+                                <td class="px-3 py-2 text-right font-mono text-slate-300">—</td>
+                                <td class="px-3 py-2 text-center"><span class="rank-badge bg-slate-100 text-slate-400">TBD</span></td>
+                            </tr>
+                            <!-- TBD Row 4 -->
+                            <tr class="tbd-row hover:bg-slate-100 transition-colors">
+                                <td class="px-3 py-2 font-mono text-slate-300">19</td>
+                                <td class="px-3 py-2"><input type="text" class="editable-cell text-left text-slate-400" placeholder="Product Name TBD" style="text-align:left;"></td>
+                                <td class="px-3 py-2 font-mono text-slate-300">TBD-019</td>
+                                <td class="px-3 py-2"><span class="bg-slate-100 text-slate-400 px-1.5 py-0.5 rounded text-[10px] font-semibold">TBD</span></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell text-slate-400" placeholder="0"></td>
+                                <td class="px-3 py-2 text-right"><input type="text" class="editable-cell text-slate-400" placeholder="0.00"></td>
+                                <td class="px-3 py-2 text-right font-mono text-slate-300">—</td>
+                                <td class="px-3 py-2 text-right font-mono text-slate-300">—</td>
+                                <td class="px-3 py-2 text-center"><span class="rank-badge bg-slate-100 text-slate-400">TBD</span></td>
+                            </tr>
+
+                            <!-- Totals Row -->
+                            <tr class="bg-navy-800 text-white">
+                                <td class="px-3 py-3" colspan="2">
+                                    <span class="font-bold text-xs uppercase tracking-wider text-navy-200">TOTALS (Active Products)</span>
+                                </td>
+                                <td colspan="2" class="px-3 py-3"></td>
+                                <td class="px-3 py-3 text-right font-mono font-bold text-white">$4,333,500</td>
+                                <td class="px-3 py-3 text-right font-mono font-bold text-navy-200">—</td>
+                                <td class="px-3 py-3 text-right font-mono font-bold text-navy-200">Avg: $1.35</td>
+                                <td class="px-3 py-3 text-right font-mono font-bold text-red-400">$6,069,998</td>
+                                <td class="px-3 py-3"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT PANEL: Scenario Simulator -->
+        <div class="w-96 flex-shrink-0 flex flex-col gap-4">
+
+            <!-- Simulator Header -->
+            <div class="bg-white rounded-large border border-slate-200 shadow-custom">
+                <div class="px-4 py-3 border-b border-slate-100 flex items-center justify-between bg-navy-900 rounded-t-large">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="sliders-horizontal" class="w-4 h-4 text-red-400"></i>
+                        <h2 class="font-heading font-bold text-white text-sm">Scenario Simulator</h2>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-[10px] font-mono text-navy-300 bg-navy-800 px-2 py-0.5 rounded border border-navy-700">LIVE</span>
+                        <button class="text-navy-400 hover:text-white transition-colors">
+                            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Monthly Period Selector -->
+                <div class="px-4 py-3 border-b border-slate-100 flex items-center justify-between">
+                    <span class="text-xs font-semibold text-slate-600">Simulation Period</span>
+                    <div class="flex items-center gap-1">
+                        <button class="px-2 py-1 text-[10px] font-bold bg-navy-600 text-white rounded-small">NOV 2023</button>
+                        <button class="px-2 py-1 text-[10px] font-medium text-slate-500 hover:bg-slate-100 rounded-small">DEC 2023</button>
+                        <button class="px-2 py-1 text-[10px] font-medium text-slate-500 hover:bg-slate-100 rounded-small">Q4 AVG</button>
+                    </div>
+                </div>
+
+                <!-- Sales Mix Inputs -->
+                <div class="px-4 py-3">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Monthly Sales Mix Inputs</span>
+                        <span class="text-[10px] font-mono text-slate-400">Units Sold</span>
+                    </div>
+
+                    <div class="space-y-3">
+                        <!-- Product 1 Slider -->
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-xs font-medium text-navy-800 truncate max-w-[180px]">Apex Core Membership</span>
+                                <span class="font-mono text-xs font-bold text-navy-700" id="s1-val">850</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <input type="range" min="0" max="2000" value="850" class="flex-1" id="s1" oninput="document.getElementById('s1-val').textContent=this.value; updateSimulator();">
+                                <span class="text-[10px] font-mono text-slate-400 w-8 text-right">×1.5</span>
+                            </div>
+                        </div>
+                        <!-- Product 2 Slider -->
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-xs font-medium text-navy-800 truncate max-w-[180px]">Premium Health Pack</span>
+                                <span class="font-mono text-xs font-bold text-navy-700" id="s2-val">620</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <input type="range" min="0" max="2000" value="620" class="flex-1" id="s2" oninput="document.getElementById('s2-val').textContent=this.value; updateSimulator();">
+                                <span class="text-[10px] font-mono text-slate-400 w-8 text-right">×1.75</span>
+                            </div>
+                        </div>
+                        <!-- Product 3 Slider -->
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-xs font-medium text-navy-800 truncate max-w-[180px]">Elite Performance Bundle</span>
+                                <span class="font-mono text-xs font-bold text-navy-700" id="s3-val">380</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <input type="range" min="0" max="1000" value="380" class="flex-1" id="s3" oninput="document.getElementById('s3-val').textContent=this.value; updateSimulator();">
+                                <span class="text-[10px] font-mono text-slate-400 w-8 text-right">×2.0</span>
+                            </div>
+                        </div>
+                        <!-- Product 4 Slider -->
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-xs font-medium text-navy-800 truncate max-w-[180px]">Wellness Starter Kit</span>
+                                <span class="font-mono text-xs font-bold text-navy-700" id="s4-val">410</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <input type="range" min="0" max="1500" value="410" class="flex-1" id="s4" oninput="document.getElementById('s4-val').textContent=this.value; updateSimulator();">
+                                <span class="text-[10px] font-mono text-slate-400 w-8 text-right">×1.25</span>
+                            </div>
+                        </div>
+                        <!-- Product 5 Slider -->
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-xs font-medium text-navy-800 truncate max-w-[180px]">Nutrition Pro Series</span>
+                                <span class="font-mono text-xs font-bold text-navy-700" id="s5-val">295</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <input type="range" min="0" max="1000" value="295" class="flex-1" id="s5" oninput="document.getElementById('s5-val').textContent=this.value; updateSimulator();">
+                                <span class="text-[10px] font-mono text-slate-400 w-8 text-right">×1.4</span>
+                            </div>
+                        </div>
+                        <!-- Product 6 Slider -->
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-xs font-medium text-navy-800 truncate max-w-[180px]">Apex Signature Skincare</span>
+                                <span class="font-mono text-xs font-bold text-navy-700" id="s6-val">260</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <input type="range" min="0" max="1000" value="260" class="flex-1" id="s6" oninput="document.getElementById('s6-val').textContent=this.value; updateSimulator();">
+                                <span class="text-[10px] font-mono text-slate-400 w-8 text-right">×1.6</span>
+                            </div>
+                        </div>
+                        <!-- Product 7 Slider -->
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-xs font-medium text-navy-800 truncate max-w-[180px]">Digital Training Access</span>
+                                <span class="font-mono text-xs font-bold text-navy-700" id="s7-val">275</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <input type="range" min="0" max="1000" value="275" class="flex-1" id="s7" oninput="document.getElementById('s7-val').textContent=this.value; updateSimulator();">
+                                <span class="text-[10px] font-mono text-slate-400 w-8 text-right">×0.85</span>
+                            </div>
+                        </div>
+                        <!-- Product 8 Slider -->
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-xs font-medium text-navy-800 truncate max-w-[180px]">Other Products (8–15)</span>
+                                <span class="font-mono text-xs font-bold text-navy-700" id="s8-val">1240</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <input type="range" min="0" max="3000" value="1240" class="flex-1" id="s8" oninput="document.getElementById('s8-val').textContent=this.value; updateSimulator();">
+                                <span class="text-[10px] font-mono text-slate-400 w-8 text-right">×1.28</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Total Production Credit Output -->
+            <div class="bg-navy-900 rounded-large border border-navy-700 shadow-custom-hover p-4">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-[10px] font-bold text-navy-300 uppercase tracking-widest">Total Production Credit</span>
+                    <span class="text-[10px] font-mono text-navy-400">Simulated Output</span>
+                </div>
+                <div class="flex items-end gap-3 mb-3">
+                    <div class="font-mono font-bold text-red-400 text-3xl leading-none" id="total-credit">$6,076,898</div>
+                    <div class="flex flex-col pb-0.5">
+                        <span class="text-[10px] text-green-400 font-bold font-mono">▲ +$142,398</span>
+                        <span class="text-[10px] text-navy-400 font-mono">vs. Base</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3 border-t border-navy-700 pt-3">
+                    <div>
+                        <div class="text-[10px] text-navy-400 mb-0.5">Raw Revenue</div>
+                        <div class="font-mono text-sm font-bold text-white" id="raw-rev">$4,872,500</div>
+                    </div>
+                    <div>
+                        <div class="text-[10px] text-navy-400 mb-0.5">Effective Multiplier</div>
+                        <div class="font-mono text-sm font-bold text-white">1.247x</div>
+                    </div>
+                    <div>
+                        <div class="text-[10px] text-navy-400 mb-0.5">Total Units</div>
+                        <div class="font-mono text-sm font-bold text-white">4,330</div>
+                    </div>
+                    <div>
+                        <div class="text-[10px] text-navy-400 mb-0.5">Avg Credit/Unit</div>
+                        <div class="font-mono text-sm font-bold text-white">$1,403</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rank Threshold Comparison -->
+            <div class="bg-white rounded-large border border-slate-200 shadow-custom">
+                <div class="px-4 py-3 border-b border-slate-100 flex items-center gap-2">
+                    <i data-lucide="trophy" class="w-4 h-4 text-amber-500"></i>
+                    <h3 class="font-heading font-bold text-navy-900 text-sm">Rank Threshold Comparison</h3>
+                </div>
+                <div class="p-4 space-y-3">
+                    <!-- Rank 1 -->
+                    <div class="flex items-center gap-3">
+                        <div class="w-20 flex-shrink-0">
+                            <span class="rank-badge bg-slate-100 text-slate-600 w-full justify-center">Silver</span>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex justify-between text-[10px] mb-1">
+                                <span class="text-slate-500 font-mono">$2,500,000</span>
+                                <span class="text-green-600 font-bold">✓ MET</span>
+                            </div>
+                            <div class="h-1.5 bg-slate-100 rounded-small overflow-hidden">
+                                <div class="h-full bg-green-500 rounded-small" style="width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Rank 2 -->
+                    <div class="flex items-center gap-3">
+                        <div class="w-20 flex-shrink-0">
+                            <span class="rank-badge bg-amber-100 text-amber-700 w-full justify-center">Gold</span>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex justify-between text-[10px] mb-1">
+                                <span class="text-slate-500 font-mono">$4,500,000</span>
+                                <span class="text-green-600 font-bold">✓ MET</span>
+                            </div>
+                            <div class="h-1.5 bg-slate-100 rounded-small overflow-hidden">
+                                <div class="h-full bg-green-500 rounded-small" style="width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Rank 3 -->
+                    <div class="flex items-center gap-3">
+                        <div class="w-20 flex-shrink-0">
+                            <span class="rank-badge bg-navy-100 text-navy-700 w-full justify-center">Platinum</span>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex justify-between text-[10px] mb-1">
+                                <span class="text-slate-500 font-mono">$6,000,000</span>
+                                <span class="text-green-600 font-bold">✓ MET</span>
+                            </div>
+                            <div class="h-1.5 bg-slate-100 rounded-small overflow-hidden">
+                                <div class="h-full bg-green-500 rounded-small" style="width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Rank 4 -->
+                    <div class="flex items-center gap-3">
+                        <div class="w-20 flex-shrink-0">
+                            <span class="rank-badge bg-red-100 text-red-700 w-full justify-center">Diamond</span>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex justify-between text-[10px] mb-1">
+                                <span class="text-slate-500 font-mono">$8,000,000</span>
+                                <span class="text-amber-600 font-bold">76% — $1.9M gap</span>
+                            </div>
+                            <div class="h-1.5 bg-slate-100 rounded-small overflow-hidden">
+                                <div class="h-full bg-amber-400 rounded-small" style="width: 76%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Rank 5 -->
+                    <div class="flex items-center gap-3">
+                        <div class="w-20 flex-shrink-0">
+                            <span class="rank-badge bg-purple-100 text-purple-700 w-full justify-center">Crown</span>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex justify-between text-[10px] mb-1">
+                                <span class="text-slate-500 font-mono">$12,000,000</span>
+                                <span class="text-slate-400 font-bold">51% — $5.9M gap</span>
+                            </div>
+                            <div class="h-1.5 bg-slate-100 rounded-small overflow-hidden">
+                                <div class="h-full bg-slate-300 rounded-small" style="width: 51%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 border-t border-slate-100">
+                        <div class="flex items-center gap-1.5 text-[10px] text-navy-600 font-semibold">
+                            <i data-lucide="info" class="w-3 h-3"></i>
+                            Current scenario qualifies for <span class="text-red-600 font-bold">Platinum Rank</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bar Chart: Credit Contribution by Product -->
+            <div class="bg-white rounded-large border border-slate-200 shadow-custom">
+                <div class="px-4 py-3 border-b border-slate-100 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="bar-chart-2" class="w-4 h-4 text-navy-600"></i>
+                        <h3 class="font-heading font-bold text-navy-900 text-sm">Credit Contribution by Product</h3>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <button class="text-[10px] px-2 py-1 bg-navy-600 text-white rounded-small font-semibold">$</button>
+                        <button class="text-[10px] px-2 py-1 bg-white border border-slate-200 text-slate-500 rounded-small font-medium hover:bg-slate-50">%</button>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="space-y-2.5" id="bar-chart">
+                        <!-- Bar 1 -->
+                        <div class="flex items-center gap-2">
+                            <span class="text-[10px] text-slate-600 w-32 truncate font-medium">Core Membership</span>
+                            <div class="flex-1 h-5 bg-slate-100 rounded-small overflow-hidden relative">
+                                <div class="bar-fill bg-navy-600" style="width: 100%;"></div>
+                                <span class="absolute right-1.5 top-0 bottom-0 flex items-center text-[10px] font-mono font-bold text-white">$1,275K</span>
+                            </div>
+                        </div>
+                        <!-- Bar 2 -->
+                        <div class="flex items-center gap-2">
+                            <span class="text-[10px] text-slate-600 w-32 truncate font-medium">Premium Health Pack</span>
+                            <div class="flex-1 h-5 bg-slate-100 rounded-small overflow-hidden relative">
+                                <div class="bar-fill bg-navy-600" style="width: 85%;"></div>
+                                <span class="absolute right-1.5 top-0 bottom-0 flex items-center text-[10px] font-mono font-bold text-white">$1,085K</span>
+                            </div>
+                        </div>
+                        <!-- Bar 3 -->
+                        <div class="flex items-center gap-2">
+                            <span class="text-[10px] text-slate-600 w-32 truncate font-medium">Elite Perf. Bundle</span>
+                            <div class="flex-1 h-5 bg-slate-100 rounded-small overflow-hidden relative">
+                                <div class="bar-fill bg-red-600" style="width: 60%;"></div>
+                                <span class="absolute right-1.5 top-0 bottom-0 flex items-center text-[10px] font-mono font-bold text-white">$760K</span>
+                            </div>
+                        </div>
+                        <!-- Bar 4 -->
+                        <div class="flex items-center gap-2">
+                            <span class="text-[10px] text-slate-600 w-32 truncate font-medium">Wellness Starter Kit</span>
+                            <div class="flex-1 h-5 bg-slate-100 rounded-small overflow-hidden relative">
+                                <div class="bar-fill bg-navy-500" style="width: 40%;"></div>
+                                <span class="absolute right-1.5 top-0 bottom-0 flex items-center text-[10px] font-mono font-bold text-white">$512K</span>
+                            </div>
+                        </div>
+                        <!-- Bar 5 -->
+                        <div class="flex items-center gap-2">
+                            <span class="text-[10px] text-slate-600 w-32 truncate font-medium">Nutrition Pro Series</span>
+                            <div class="flex-1 h-5 bg-slate-100 rounded-small overflow-hidden relative">
+                                <div class="bar-fill bg-navy-400" style="width: 32%;"></div>
+                                <span class="absolute right-1.5 top-0 bottom-0 flex items-center text-[10px] font-mono font-bold text-slate-700">$413K</span>
+                            </div>
+                        </div>
+                        <!-- Bar 6 -->
+                        <div class="flex items-center gap-2">
+                            <span class="text-[10px] text-slate-600 w-32 truncate font-medium">Apex Skincare</span>
+                            <div class="flex-1 h-5 bg-slate-100 rounded-small overflow-hidden relative">
+                                <div class="bar-fill bg-navy-400" style="width: 33%;"></div>
+                                <span class="absolute right-1.5 top-0 bottom-0 flex items-center text-[10px] font-mono font-bold text-slate-700">$416K</span>
+                            </div>
+                        </div>
+                        <!-- Bar 7 -->
+                        <div class="flex items-center gap-2">
+                            <span class="text-[10px] text-slate-600 w-32 truncate font-medium">Digital Training</span>
+                            <div class="flex-1 h-5 bg-slate-100 rounded-small overflow-hidden relative">
+                                <div class="bar-fill bg-slate-400" style="width: 18%;"></div>
+                                <span class="absolute right-1.5 top-0 bottom-0 flex items-center text-[10px] font-mono font-bold text-slate-700">$234K</span>
+                            </div>
+                        </div>
+                        <!-- Bar 8 -->
+                        <div class="flex items-center gap-2">
+                            <span class="text-[10px] text-slate-600 w-32 truncate font-medium">All Others (8–15)</span>
+                            <div class="flex-1 h-5 bg-slate-100 rounded-small overflow-hidden relative">
+                                <div class="bar-fill bg-slate-300" style="width: 45%;"></div>
+                                <span class="absolute right-1.5 top-0 bottom-0 flex items-center text-[10px] font-mono font-bold text-slate-700">$1,375K</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Legend -->
+                    <div class="flex items-center gap-4 mt-4 pt-3 border-t border-slate-100">
+                        <div class="flex items-center gap-1.5">
+                            <div class="w-3 h-3 bg-navy-600 rounded-small"></div>
+                            <span class="text-[10px] text-slate-500">Top Performers</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <div class="w-3 h-3 bg-red-600 rounded-small"></div>
+                            <span class="text-[10px] text-slate-500">High Multiplier</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <div class="w-3 h-3 bg-slate-300 rounded-small"></div>
+                            <span class="text-[10px] text-slate-500">Standard</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Bottom Action Bar -->
+    <div class="sticky bottom-0 bg-white border-t-2 border-navy-600 shadow-custom-hover z-40">
+        <div class="max-w-[1920px] mx-auto px-6 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="flex items-center gap-2 text-xs text-slate-500">
+                    <i data-lucide="clock" class="w-3.5 h-3.5 text-slate-400"></i>
+                    <span class="font-mono">Auto-saved: 10:47 AM</span>
+                </div>
+                <div class="h-4 w-px bg-slate-200"></div>
+                <div class="flex items-center gap-1.5 text-xs">
+                    <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                    <span class="text-amber-600 font-semibold">Unsaved changes in current scenario</span>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <!-- Save Scenario -->
+                <button class="flex items-center gap-2 px-4 py-2 bg-navy-600 text-white text-sm font-bold rounded-small hover:bg-navy-700 transition-colors shadow-custom">
+                    <i data-lucide="save" class="w-4 h-4"></i>
+                    Save Scenario
+                </button>
+
+                <!-- Compare Scenarios -->
+                <button class="flex items-center gap-2 px-4 py-2 bg-white border border-navy-300 text-navy-700 text-sm font-semibold rounded-small hover:bg-navy-50 transition-colors">
+                    <i data-lucide="git-compare" class="w-4 h-4"></i>
+                    Compare Scenarios
+                </button>
+
+                <div class="h-6 w-px bg-slate-200"></div>
+
+                <!-- Export CSV -->
+                <button class="flex items-center gap-2 px-4 py-2 bg-white border border-slate-300 text-slate-700 text-sm font-medium rounded-small hover:bg-slate-50 transition-colors">
+                    <i data-lucide="download" class="w-4 h-4 text-green-600"></i>
+                    Export CSV
+                </button>
+
+                <!-- Print Pro Forma -->
+                <button class="flex items-center gap-2 px-4 py-2 bg-red-600 text-white text-sm font-bold rounded-small hover:bg-red-700 transition-colors shadow-custom">
+                    <i data-lucide="printer" class="w-4 h-4"></i>
+                    Print Pro Forma
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        function updateSimulator() {
+            const weights = [1.50, 1.75, 2.00, 1.25, 1.40, 1.60, 0.85, 1.28];
+            const prices = [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000];
+            
+            let totalCredit = 0;
+            let totalRev = 0;
+            
+            for (let i = 1; i <= 8; i++) {
+                const units = parseInt(document.getElementById('s' + i).value) || 0;
+                const rev = units * prices[i-1];
+                const credit = rev * weights[i-1];
+                totalCredit += credit;
+                totalRev += rev;
+            }
+
+            const creditEl = document.getElementById('total-credit');
+            const revEl = document.getElementById('raw-rev');
+            
+            if (creditEl) {
+                creditEl.textContent = '$' + totalCredit.toLocaleString('en-US', {maximumFractionDigits: 0});
+            }
+            if (revEl) {
+                revEl.textContent = '$' + totalRev.toLocaleString('en-US', {maximumFractionDigits: 0});
+            }
+        }
+    </script>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

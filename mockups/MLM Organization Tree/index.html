@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MLM Organization Tree - Exported from UXMagic Copilot">
+    <title>MLM Organization Tree</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            50: '#E8EAF2',
+                            100: '#C5CCDF',
+                            200: '#9EAACC',
+                            300: '#7689B9',
+                            400: '#4F67A6',
+                            500: '#274693',
+                            600: '#1B3A7D',
+                            700: '#152D61',
+                            800: '#0F2045',
+                            900: '#091329',
+                        },
+                        brandRed: {
+                            50: '#FBE8E9',
+                            100: '#F5C5C7',
+                            200: '#EE9EA1',
+                            300: '#E7767B',
+                            400: '#E04F55',
+                            500: '#D9272F',
+                            600: '#C7181F',
+                            700: '#9B1318',
+                            800: '#6F0D11',
+                            900: '#42080A',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+<div class="flex" style="height: auto; min-height: 100vh;">
+    <!-- Sidebar -->
+    <aside class="hidden md:flex flex-col w-64 glass-dark text-white z-20" style="min-height: 100vh;">
+        <div class="p-6 flex items-center gap-3 border-b border-white/10">
+            <div class="w-8 h-8 rounded-lg bg-brandRed-600 flex items-center justify-center shadow-lg shadow-brandRed-600/30">
+                <i class="fa-solid fa-chart-line text-white text-sm"></i>
+            </div>
+            <span class="text-xl font-bold tracking-tight">ASCEND</span>
+        </div>
+        <nav class="flex-1 overflow-y-auto py-6 px-3 space-y-1">
+            <a href="/api/copilot/prototype/5ae757ef-d501-4666-87c0-400520bd5a05/mlm-organization-tree" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-grid-2 w-5 text-center"></i>
+                <span class="font-medium">Dashboard</span>
+            </a>
+            <a href="/api/copilot/prototype/5ae757ef-d501-4666-87c0-400520bd5a05/mlm-organization-tree" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-users w-5 text-center"></i>
+                <span class="font-medium">My Team</span>
+            </a>
+            <a href="/api/copilot/prototype/5ae757ef-d501-4666-87c0-400520bd5a05/mlm-organization-tree" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-wallet w-5 text-center"></i>
+                <span class="font-medium">Commissions</span>
+            </a>
+            <a href="/api/copilot/prototype/5ae757ef-d501-4666-87c0-400520bd5a05/mlm-organization-tree" class="flex items-center gap-3 px-4 py-3 bg-white/10 text-white rounded-xl transition-all shadow-sm border border-white/5">
+                <i class="fa-solid fa-sitemap w-5 text-center"></i>
+                <span class="font-medium">Genealogy</span>
+            </a>
+            <a href="/api/copilot/prototype/5ae757ef-d501-4666-87c0-400520bd5a05/mlm-organization-tree" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-store w-5 text-center"></i>
+                <span class="font-medium">Shop</span>
+            </a>
+            <a href="/api/copilot/prototype/5ae757ef-d501-4666-87c0-400520bd5a05/mlm-organization-tree" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-graduation-cap w-5 text-center"></i>
+                <span class="font-medium">Training</span>
+            </a>
+        </nav>
+        <div class="p-4 border-t border-white/10">
+            <div class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/5">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Profile" class="w-10 h-10 rounded-full border-2 border-brandRed-500">
+                <div class="flex-1 min-w-0">
+                    <p class="text-sm font-semibold text-white truncate">Sarah Jenkins</p>
+                    <p class="text-xs text-gray-400 truncate">Diamond Director</p>
+                </div>
+                <button class="text-gray-400 hover:text-white"><i class="fa-solid fa-gear"></i></button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col relative" style="min-height: 100vh;">
+
+        <!-- Mobile Header -->
+        <div class="md:hidden glass sticky top-0 z-30 px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-navy-600 flex items-center justify-center">
+                    <i class="fa-solid fa-chart-line text-white text-xs"></i>
+                </div>
+                <span class="text-lg font-bold text-navy-800">ASCEND</span>
+            </div>
+            <button class="text-navy-600 p-2"><i class="fa-solid fa-bars text-xl"></i></button>
+        </div>
+
+        <!-- Page Header -->
+        <div class="px-6 lg:px-10 pt-8 pb-4">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h1 class="text-2xl font-bold text-navy-900">Organization Tree</h1>
+                    <p class="text-gray-500 text-sm mt-1">Visualize and manage your full downline network.</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button class="glass px-4 py-2 rounded-lg text-sm font-medium text-navy-600 hover:bg-white transition-colors">
+                        <i class="fa-solid fa-download mr-2"></i> Export
+                    </button>
+                    <button class="bg-navy-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-navy-700 transition-colors shadow-lg shadow-navy-600/20">
+                        <i class="fa-solid fa-user-plus mr-2"></i> Enroll Rep
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search & Filter Bar -->
+        <div class="px-6 lg:px-10 pb-4">
+            <div class="glass rounded-2xl p-4 flex flex-col md:flex-row gap-3 items-center">
+                <!-- Search -->
+                <div class="relative flex-1 w-full">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                    <input type="text" placeholder="Search by name, ID, or rank..." class="w-full pl-9 pr-4 py-2.5 rounded-xl bg-white/70 border border-gray-200 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-navy-300 focus:border-navy-300 transition-all">
+                </div>
+                <!-- Rank Filter -->
+                <div class="flex items-center gap-2 flex-wrap">
+                    <span class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Rank:</span>
+                    <button onclick="setFilter(this,'all')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-navy-600 text-white transition-all">All</button>
+                    <button onclick="setFilter(this,'diamond')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-navy-600 border border-navy-200 hover:bg-navy-50 transition-all">Diamond</button>
+                    <button onclick="setFilter(this,'gold')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-amber-700 border border-amber-200 hover:bg-amber-50 transition-all">Gold</button>
+                    <button onclick="setFilter(this,'ruby')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-brandRed-600 border border-brandRed-200 hover:bg-brandRed-50 transition-all">Ruby</button>
+                    <button onclick="setFilter(this,'silver')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 transition-all">Silver</button>
+                </div>
+                <!-- Status Filter -->
+                <div class="flex items-center gap-2">
+                    <span class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Status:</span>
+                    <select class="px-3 py-2 rounded-xl bg-white/70 border border-gray-200 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-navy-300 transition-all">
+                        <option>All Members</option>
+                        <option>Active Only</option>
+                        <option>Inactive Only</option>
+                    </select>
+                </div>
+                <!-- View Toggle -->
+                <div class="flex items-center glass rounded-xl p-1 gap-1 shrink-0">
+                    <button id="treeViewBtn" onclick="switchView('tree')" class="px-3 py-1.5 rounded-lg text-xs font-semibold view-btn-active transition-all flex items-center gap-1.5">
+                        <i class="fa-solid fa-sitemap"></i> Tree
+                    </button>
+                    <button id="listViewBtn" onclick="switchView('list')" class="px-3 py-1.5 rounded-lg text-xs font-semibold view-btn-inactive transition-all flex items-center gap-1.5">
+                        <i class="fa-solid fa-list"></i> List
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tree Stats Bar -->
+        <div class="px-6 lg:px-10 pb-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="glass rounded-xl px-4 py-3 flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-full bg-navy-50 flex items-center justify-center text-navy-600 shrink-0">
+                        <i class="fa-solid fa-users text-sm"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500">Total Members</p>
+                        <p class="text-lg font-bold text-navy-900">148</p>
+                    </div>
+                </div>
+                <div class="glass rounded-xl px-4 py-3 flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600 shrink-0">
+                        <i class="fa-solid fa-circle-check text-sm"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500">Active</p>
+                        <p class="text-lg font-bold text-navy-900">112</p>
+                    </div>
+                </div>
+                <div class="glass rounded-xl px-4 py-3 flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-full bg-brandRed-50 flex items-center justify-center text-brandRed-600 shrink-0">
+                        <i class="fa-solid fa-layer-group text-sm"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500">Levels Deep</p>
+                        <p class="text-lg font-bold text-navy-900">5</p>
+                    </div>
+                </div>
+                <div class="glass rounded-xl px-4 py-3 flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-full bg-navy-50 flex items-center justify-center text-navy-600 shrink-0">
+                        <i class="fa-solid fa-chart-bar text-sm"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500">Team GV</p>
+                        <p class="text-lg font-bold text-navy-900">25,340</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tree View Content -->
+        <div id="treeView" class="px-6 lg:px-10 pb-10 flex-1">
+            <div class="glass rounded-2xl p-6 overflow-auto tree-canvas" style="max-height: 780px;">
+                <!-- Legend -->
+                <div class="flex items-center gap-4 mb-6 flex-wrap">
+                    <span class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Legend:</span>
+                    <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full rank-badge-diamond inline-block"></span><span class="text-xs text-gray-600">Diamond</span></div>
+                    <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full rank-badge-gold inline-block"></span><span class="text-xs text-gray-600">Gold</span></div>
+                    <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full rank-badge-ruby inline-block"></span><span class="text-xs text-gray-600">Ruby</span></div>
+                    <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full rank-badge-silver inline-block"></span><span class="text-xs text-gray-600">Silver</span></div>
+                    <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full rank-badge-bronze inline-block"></span><span class="text-xs text-gray-600">Bronze</span></div>
+                    <div class="flex items-center gap-1.5 opacity-50"><span class="w-3 h-3 rounded-full bg-gray-400 inline-block"></span><span class="text-xs text-gray-600">Inactive</span></div>
+                    <div class="ml-auto flex items-center gap-2">
+                        <button class="text-xs text-navy-600 font-medium glass px-3 py-1.5 rounded-lg hover:bg-white transition-colors"><i class="fa-solid fa-expand mr-1"></i>Expand All</button>
+                        <button class="text-xs text-navy-600 font-medium glass px-3 py-1.5 rounded-lg hover:bg-white transition-colors"><i class="fa-solid fa-compress mr-1"></i>Collapse All</button>
+                    </div>
+                </div>
+
+                <!-- SVG Tree -->
+                <div class="flex justify-center" style="min-width: 900px;">
+                    <svg id="treeSvg" width="900" height="680" viewBox="0 0 900 680" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Connector Lines Layer -->
+                        <!-- Root to L1 -->
+                        <path d="M450,90 C450,130 220,130 220,170" class="connector-line"></path>
+                        <path d="M450,90 C450,130 450,130 450,170" class="connector-line"></path>
+                        <path d="M450,90 C450,130 680,130 680,170" class="connector-line"></path>
+
+                        <!-- L1 Left (220) to L2 -->
+                        <path d="M220,230 C220,270 130,270 130,310" class="connector-line"></path>
+                        <path d="M220,230 C220,270 310,270 310,310" class="connector-line"></path>
+
+                        <!-- L1 Center (450) to L2 -->
+                        <path d="M450,230 C450,270 380,270 380,310" class="connector-line"></path>
+                        <path d="M450,230 C450,270 520,270 520,310" class="connector-line"></path>
+
+                        <!-- L1 Right (680) to L2 -->
+                        <path d="M680,230 C680,270 620,270 620,310" class="connector-line"></path>
+                        <path d="M680,230 C680,270 760,270 760,310" class="connector-line"></path>
+
+                        <!-- L2 to L3 -->
+                        <path d="M130,370 C130,410 90,410 90,450" class="connector-line"></path>
+                        <path d="M130,370 C130,410 170,410 170,450" class="connector-line"></path>
+                        <path d="M310,370 C310,410 270,410 270,450" class="connector-line"></path>
+                        <path d="M310,370 C310,410 350,410 350,450" class="connector-line"></path>
+                        <path d="M380,370 C380,410 380,410 380,450" class="connector-line"></path>
+                        <path d="M520,370 C520,410 520,410 520,450" class="connector-line"></path>
+                        <path d="M620,370 C620,410 600,410 600,450" class="connector-line"></path>
+                        <path d="M760,370 C760,410 760,410 760,450" class="connector-line"></path>
+
+                        <!-- L3 to L4 (selected few) -->
+                        <path d="M90,510 C90,550 90,550 90,580" class="connector-line" stroke-dasharray="4 3" stroke-opacity="0.5"></path>
+                        <path d="M270,510 C270,550 270,550 270,580" class="connector-line" stroke-dasharray="4 3" stroke-opacity="0.5"></path>
+                        <path d="M520,510 C520,550 520,550 520,580" class="connector-line" stroke-dasharray="4 3" stroke-opacity="0.5"></path>
+
+                        <!-- ===== LEVEL 0: ROOT NODE (Sarah Jenkins - Diamond Director) ===== -->
+                        <g class="node-active" onclick="openPanel('sarah')" transform="translate(450,50)">
+                            <circle cx="0" cy="0" r="38" fill="white" stroke="#1B3A7D" stroke-width="3" class="node-ring" filter="url(#nodeShadow)"></circle>
+                            <clipPath id="clip-sarah"><circle cx="0" cy="0" r="35"></circle></clipPath>
+                            <image href="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" x="-35" y="-35" width="70" height="70" clip-path="url(#clip-sarah)"></image>
+                            <!-- Diamond badge -->
+                            <g transform="translate(22,22)">
+                                <circle cx="0" cy="0" r="10" fill="#1B3A7D" stroke="white" stroke-width="1.5"></circle>
+                                <text x="0" y="4" text-anchor="middle" fill="white" font-size="8" font-family="Inter" font-weight="700">D</text>
+                            </g>
+                            <!-- YOU indicator -->
+                            <rect x="-18" y="40" width="36" height="14" rx="7" fill="#1B3A7D"></rect>
+                            <text x="0" y="51" text-anchor="middle" fill="white" font-size="8" font-family="Inter" font-weight="600">YOU</text>
+                            <text x="0" y="72" text-anchor="middle" fill="#0F2045" font-size="10" font-family="Inter" font-weight="700">Sarah J.</text>
+                            <text x="0" y="85" text-anchor="middle" fill="#6b7280" font-size="9" font-family="Inter">Diamond Dir.</text>
+                        </g>
+
+                        <!-- ===== LEVEL 1 ===== -->
+                        <!-- L1-1: Dwight S. - Gold Director (Active) -->
+                        <g class="node-active" onclick="openPanel('dwight')" transform="translate(220,130)">
+                            <circle cx="0" cy="0" r="32" fill="white" stroke="#d97706" stroke-width="2.5" class="node-ring" filter="url(#nodeShadow)"></circle>
+                            <clipPath id="clip-dwight"><circle cx="0" cy="0" r="29"></circle></clipPath>
+                            <image href="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" x="-29" y="-29" width="58" height="58" clip-path="url(#clip-dwight)"></image>
+                            <g transform="translate(18,18)">
+                                <circle cx="0" cy="0" r="9" fill="#d97706" stroke="white" stroke-width="1.5"></circle>
+                                <text x="0" y="3.5" text-anchor="middle" fill="white" font-size="7" font-family="Inter" font-weight="700">G</text>
+                            </g>
+                            <text x="0" y="48" text-anchor="middle" fill="#0F2045" font-size="10" font-family="Inter" font-weight="700">Dwight S.</text>
+                            <text x="0" y="60" text-anchor="middle" fill="#6b7280" font-size="9" font-family="Inter">Gold Director</text>
+                        </g>
+
+                        <!-- L1-2: Jim H. - Ruby Director (Active) -->
+                        <g class="node-active" onclick="openPanel('jim')" transform="translate(450,130)">
+                            <circle cx="0" cy="0" r="32" fill="white" stroke="#C7181F" stroke-width="2.5" class="node-ring" filter="url(#nodeShadow)"></circle>
+                            <clipPath id="clip-jim"><circle cx="0" cy="0" r="29"></circle></clipPath>
+                            <image href="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" x="-29" y="-29" width="58" height="58" clip-path="url(#clip-jim)"></image>
+                            <g transform="translate(18,18)">
+                                <circle cx="0" cy="0" r="9" fill="#C7181F" stroke="white" stroke-width="1.5"></circle>
+                                <text x="0" y="3.5" text-anchor="middle" fill="white" font-size="7" font-family="Inter" font-weight="700">R</text>
+                            </g>
+                            <text x="0" y="48" text-anchor="middle" fill="#0F2045" font-size="10" font-family="Inter" font-weight="700">Jim H.</text>
+                            <text x="0" y="60" text-anchor="middle" fill="#6b7280" font-size="9" font-family="Inter">Ruby Director</text>
+                        </g>
+
+                        <!-- L1-3: Angela M. - Silver (Active) -->
+                        <g class="node-active" onclick="openPanel('angela')" transform="translate(680,130)">
+                            <circle cx="0" cy="0" r="32" fill="white" stroke="#94a3b8" stroke-width="2.5" class="node-ring" filter="url(#nodeShadow)"></circle>
+                            <clipPath id="clip-angela"><circle cx="0" cy="0" r="29"></circle></clipPath>
+                            <image href="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" x="-29" y="-29" width="58" height="58" clip-path="url(#clip-angela)"></image>
+                            <g transform="translate(18,18)">
+                                <circle cx="0" cy="0" r="9" fill="#94a3b8" stroke="white" stroke-width="1.5"></circle>
+                                <text x="0" y="3.5" text-anchor="middle" fill="white" font-size="7" font-family="Inter" font-weight="700">S</text>
+                            </g>
+                            <text x="0" y="48" text-anchor="middle" fill="#0F2045" font-size="10" font-family="Inter" font-weight="700">Angela M.</text>
+                            <text x="0" y="60" text-anchor="middle" fill="#6b7280" font-size="9" font-family="Inter">Silver Director</text>
+                        </g>
+
+                        <!-- ===== LEVEL 2 ===== -->
+                        <!-- Under Dwight -->
+                        <g class="node-active" onclick="openPanel('pam')" transform="translate(130,270)">
+                            <circle cx="0" cy="0" r="26" fill="white" stroke="#d97706" stroke-width="2" class="node-ring" filter="url(#nodeShadow)"></circle>
+                            <clipPath id="clip-pam"><circle cx="0" cy="0" r="23"></circle></clipPath>
+                            <image href="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" x="-23" y="-23" width="46" height="46" clip-path="url(#clip-pam)"></image>
+                            <g transform="translate(15,15)">
+                                <circle cx="0" cy="0" r="8" fill="#d97706" stroke="white" stroke-width="1.5"></circle>
+                                <text x="0" y="3" text-anchor="middle" fill="white" font-size="6" font-family="Inter" font-weight="700">G</text>
+                            </g>
+                            <text x="0" y="40" text-anchor="middle" fill="#0F2045" font-size="9" font-family="Inter" font-weight="700">Pam B.</text>
+                            <text x="0" y="51" text-anchor="middle" fill="#6b7280" font-size="8" font-family="Inter">Gold Rep</text>
+                        </g>
+
+                        <g class="node-inactive" onclick="openPanel('ryan')" transform="translate(310,270)">
+                            <circle cx="0" cy="0" r="26" fill="white" stroke="#9ca3af" stroke-width="2" class="node-ring"></circle>
+                            <clipPath id="clip-ryan"><circle cx="0" cy="0" r="23"></circle></clipPath>
+                            <image href="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" x="-23" y="-23" width="46" height="46" clip-path="url(#clip-ryan)" style="filter: grayscale(80%)"></image>
+                            <g transform="translate(15,15)">
+                                <circle cx="0" cy="0" r="8" fill="#9ca3af" stroke="white" stroke-width="1.5"></circle>
+                                <text x="0" y="3" text-anchor="middle" fill="white" font-size="6" font-family="Inter" font-weight="700">B</text>
+                            </g>
+                            <text x="0" y="40" text-anchor="middle" fill="#6b7280" font-size="9" font-family="Inter" font-weight="700">Ryan H.</text>
+                            <text x="0" y="51" text-anchor="middle" fill="#9ca3af" font-size="8" font-family="Inter">Inactive</text>
+                        </g>
+
+                        <!-- Under Jim -->
+                        <g class="node-active" onclick="openPanel('kelly')" transform="translate(380,270)">
+                            <circle cx="0" cy="0" r="26" fill="white" stroke="#C7181F" stroke-width="2" class="node-ring" filter="url(#nodeShadow)"></circle>
+                            <clipPath id="clip-kelly"><circle cx="0" cy="0" r="23"></circle></clipPath>
+                            <image href="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" x="-23" y="-23" width="46" height="46" clip-path="url(#clip-kelly)"></image>
+                            <g transform="translate(15,15)">
+                                <circle cx="0" cy="0" r="8" fill="#C7181F" stroke="white" stroke-width="1.5"></circle>
+                                <text x="0" y="3" text-anchor="middle" fill="white" font-size="6" font-family="Inter" font-weight="700">R</text>
+                            </g>
+                            <text x="0" y="40" text-anchor="middle" fill="#0F2045" font-size="9" font-family="Inter" font-weight="700">Kelly K.</text>
+                            <text x="0" y="51" text-anchor="middle" fill="#6b7280" font-size="8" font-family="Inter">Ruby Rep</text>
+                        </g>
+
+                        <g class="node-active" onclick="openPanel('oscar')" transform="translate(520,270)">
+                            <circle cx="0" cy="0" r="26" fill="white" stroke="#94a3b8" stroke-width="2" class="node-ring" filter="url(#nodeShadow)"></circle>
+                            <clipPath id="clip-oscar"><circle cx="0" cy="0" r="23"></circle></clipPath>
+                            <image href="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" x="-23" y="-23" width="46" height="46" clip-path="url(#clip-oscar)"></image>
+                            <g transform="translate(15,15)">
+                                <circle cx="0" cy="0" r="8" fill="#94a3b8" stroke="white" stroke-width="1.5"></circle>
+                                <text x="0" y="3" text-anchor="middle" fill="white" font-size="6" font-family="Inter" font-weight="700">S</text>
+                            </g>
+                            <text x="0" y="40" text-anchor="middle" fill="#0F2045" font-size="9" font-family="Inter" font-weight="700">Oscar M.</text>
+                            <text x="0" y="51" text-anchor="middle" fill="#6b7280" font-size="8" font-family="Inter">Silver Rep</text>
+                        </g>
+
+                        <!-- Under Angela -->
+                        <g class="node-active" onclick="openPanel('meredith')" transform="translate(620,270)">
+                            <circle cx="0" cy="0" r="26" fill="white" stroke="#92400e" stroke-width="2" class="node-ring" filter="url(#nodeShadow)"></circle>
+                            <clipPath id="clip-meredith"><circle cx="0" cy="0" r="23"></circle></clipPath>
+                            <image href="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" x="-23" y="-23" width="46" height="46" clip-path="url(#clip-meredith)"></image>
+                            <g transform="translate(15,15)">
+                                <circle cx="0" cy="0" r="8" fill="#92400e" stroke="white" stroke-width="1.5"></circle>
+                                <text x="0" y="3" text-anchor="middle" fill="white" font-size="6" font-family="Inter" font-weight="700">Br</text>
+                            </g>
+                            <text x="0" y="40" text-anchor="middle" fill="#0F2045" font-size="9" font-family="Inter" font-weight="700">Meredith P.</text>
+                            <text x="0" y="51" text-anchor="middle" fill="#6b7280" font-size="8" font-family="Inter">Bronze Rep</text>
+                        </g>
+
+                        <g class="node-inactive" onclick="openPanel('toby')" transform="translate(760,270)">
+                            <circle cx="0" cy="0" r="26" fill="white" stroke="#9ca3af" stroke-width="2" class="node-ring"></circle>
+                            <clipPath id="clip-toby"><circle cx="0" cy="0" r="23"></circle></clipPath>
+                            <image href="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" x="-23" y="-23" width="46" height="46" clip-path="url(#clip-toby)" style="filter: grayscale(80%)"></image>
+                            <g transform="translate(15,15)">
+                                <circle cx="0" cy="0" r="8" fill="#9ca3af" stroke="white" stroke-width="1.5"></circle>
+                                <text x="0" y="3" text-anchor="middle" fill="white" font-size="6" font-family="Inter" font-weight="700">St</text>
+                            </g>
+                            <text x="0" y="40" text-anchor="middle" fill="#6b7280" font-size="9" font-family="Inter" font-weight="700">Toby F.</text>
+                            <text x="0" y="51" text-anchor="middle" fill="#9ca3af" font-size="8" font-family="Inter">Inactive</text>
+                        </g>
+
+                        <!-- ===== LEVEL 3 ===== -->
+                        <g class="node-active" onclick="openPanel('phyllis')" transform="translate(90,410)">
+                            <circle cx="0" cy="0" r="22" fill="white" stroke="#d97706" stroke-width="2" class="node-ring" filter="url(#nodeShadow)"></circle>
+                            <clipPath id="clip-phyllis"><circle cx="0" cy="0" r="19"></circle></clipPath>
+                            <image href="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" x="-19" y="-19" width="38" height="38" clip-path="url(#clip-phyllis)"></image>
+                            <g transform="translate(13,13)">
+                                <circle cx="0" cy="0" r="7" fill="#d97706" stroke="white" stroke-width="1.5"></circle>
+                                <text x="0" y="2.5" text-anchor="middle" fill="white" font-size="5.5" font-family="Inter" font-weight="700">G</text>
+                            </g>
+                            <text x="0" y="34" text-anchor="middle" fill="#0F2045" font-size="8.5" font-family="Inter" font-weight="700">Phyllis V.</text>
+                        </g>
+
+                        <g class="node-inactive" onclick="openPanel('stanley')" transform="translate(170,410)">
+                            <circle cx="0" cy="0" r="22" fill="white" stroke="#9ca3af" stroke-width="2" class="node-ring"></circle>
+                            <clipPath id="clip-stanley"><circle cx="0" cy="0" r="19"></circle></clipPath>
+                            <image href="https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" x="-19" y="-19" width="38" height="38" clip-path="url(#clip-stanley)" style="filter: grayscale(80%)"></image>
+                            <g transform="translate(13,13)">
+                                <circle cx="0" cy="0" r="7" fill="#9ca3af" stroke="white" stroke-width="1.5"></circle>
+                                <text x="0" y="2.5" text-anchor="middle" fill="white" font-size="5.5" font-family="Inter" font-weight="700">St</text>
+                            </g>
+                            <text x="0" y="34" text-anchor="middle" fill="#9ca3af" font-size="8.5" font-family="Inter" font-weight="700">Stanley H.</text>
+                        </g>
+
+                        <g class="node-active" onclick="openPanel('creed')" transform="translate(270,410)">
+                            <circle cx="0" cy="0" r="22" fill="white" stroke="#C7181F" stroke-width="2" class="node-ring" filter="url(#nodeShadow)"></circle>
+                            <clipPath id="clip-creed"><circle cx="0" cy="0" r="19"></circle></clipPath>
+                            <image href="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" x="-19" y="-19" width="38" height="38" clip-path="url(#clip-creed)"></image>
+                            <g transform="translate(13,13)">
+                                <circle cx="0" cy="0" r="7" fill="#C7181F" stroke="white" stroke-width="1.5"></circle>
+                                <text x="0" y="2.5" text-anchor="middle" fill="white" font-size="5.5" font-family="Inter" font-weight="700">R</text>
+                            </g>
+                            <text x="0" y="34" text-anchor="middle" fill="#0F2045" font-size="8.5" font-family="Inter" font-weight="700">Creed B.</text>
+                        </g>
+
+                        <g class="node-active" onclick="openPanel('kevin')" transform="translate(350,410)">
+                            <circle cx="0" cy="0" r="22" fill="white" stroke="#92400e" stroke-width="2" class="node-ring" filter="url(#nodeShadow)"></circle>
+                            <clipPath id="clip-kevin"><circle cx="0" cy="0" r="19"></circle></clipPath>
+                            <image href="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" x="-19" y="-19" width="38" height="38" clip-path="url(#clip-kevin)"></image>
+                            <g transform="translate(13,13)">
+                                <circle cx="0" cy="0" r="7" fill="#92400e" stroke="white" stroke-width="1.5"></circle>
+                                <text x="0" y="2.5" text-anchor="middle" fill="white" font-size="5.5" font-family="Inter" font-weight="700">Br</text>
+                            </g>
+                            <text x="0" y="34" text-anchor="middle" fill="#0F2045" font-size="8.5" font-family="Inter" font-weight="700">Kevin M.</text>
+                        </g>
+
+                        <g class="node-active" onclick="openPanel('darryl')" transform="translate(380,410)">
+                        </g>
+
+                        <g class="node-active" onclick="openPanel('darryl')" transform="translate(450,410)">
+                            <circle cx="0" cy="0" r="22" fill="white" stroke="#94a3b8" stroke-width="2" class="node-ring" filter="url(#nodeShadow)"></circle>
+                            <clipPath id="clip-darryl"><circle cx="0" cy="0" r="19"></circle></clipPath>
+                            <image href="https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" x="-19" y="-19" width="38" height="38" clip-path="url(#clip-darryl)"></image>
+                            <g transform="translate(13,13)">
+                                <circle cx="0" cy="0" r="7" fill="#94a3b8" stroke="white" stroke-width="1.5"></circle>
+                                <text x="0" y="2.5" text-anchor="middle" fill="white" font-size="5.5" font-family="Inter" font-weight="700">S</text>
+                            </g>
+                            <text x="0" y="34" text-anchor="middle" fill="#0F2045" font-size="8.5" font-family="Inter" font-weight="700">Darryl P.</text>
+                        </g>
+
+                        <g class="node-active" onclick="openPanel('gabe')" transform="translate(600,410)">
+                            <circle cx="0" cy="0" r="22" fill="white" stroke="#92400e" stroke-width="2" class="node-ring" filter="url(#nodeShadow)"></circle>
+                            <clipPath id="clip-gabe"><circle cx="0" cy="0" r="19"></circle></clipPath>
+                            <image href="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" x="-19" y="-19" width="38" height="38" clip-path="url(#clip-gabe)"></image>
+                            <g transform="translate(13,13)">
+                                <circle cx="0" cy="0" r="7" fill="#92400e" stroke="white" stroke-width="1.5"></circle>
+                                <text x="0" y="2.5" text-anchor="middle" fill="white" font-size="5.5" font-family="Inter" font-weight="700">Br</text>
+                            </g>
+                            <text x="0" y="34" text-anchor="middle" fill="#0F2045" font-size="8.5" font-family="Inter" font-weight="700">Gabe L.</text>
+                        </g>
+
+                        <g class="node-active" onclick="openPanel('erin')" transform="translate(760,410)">
+                            <circle cx="0" cy="0" r="22" fill="white" stroke="#94a3b8" stroke-width="2" class="node-ring" filter="url(#nodeShadow)"></circle>
+                            <clipPath id="clip-erin"><circle cx="0" cy="0" r="19"></circle></clipPath>
+                            <image href="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" x="-19" y="-19" width="38" height="38" clip-path="url(#clip-erin)"></image>
+                            <g transform="translate(13,13)">
+                                <circle cx="0" cy="0" r="7" fill="#94a3b8" stroke="white" stroke-width="1.5"></circle>
+                                <text x="0" y="2.5" text-anchor="middle" fill="white" font-size="5.5" font-family="Inter" font-weight="700">S</text>
+                            </g>
+                            <text x="0" y="34" text-anchor="middle" fill="#0F2045" font-size="8.5" font-family="Inter" font-weight="700">Erin H.</text>
+                        </g>
+
+                        <!-- Level 4 indicator nodes (collapsed) -->
+                        <g transform="translate(90,540)">
+                            <circle cx="0" cy="0" r="16" fill="#E8EAF2" stroke="#9EAACC" stroke-width="1.5" stroke-dasharray="3 2"></circle>
+                            <text x="0" y="4" text-anchor="middle" fill="#4F67A6" font-size="9" font-family="Inter" font-weight="700">+4</text>
+                            <text x="0" y="30" text-anchor="middle" fill="#9ca3af" font-size="7.5" font-family="Inter">more</text>
+                        </g>
+                        <g transform="translate(270,540)">
+                            <circle cx="0" cy="0" r="16" fill="#E8EAF2" stroke="#9EAACC" stroke-width="1.5" stroke-dasharray="3 2"></circle>
+                            <text x="0" y="4" text-anchor="middle" fill="#4F67A6" font-size="9" font-family="Inter" font-weight="700">+7</text>
+                            <text x="0" y="30" text-anchor="middle" fill="#9ca3af" font-size="7.5" font-family="Inter">more</text>
+                        </g>
+                        <g transform="translate(520,540)">
+                            <circle cx="0" cy="0" r="16" fill="#E8EAF2" stroke="#9EAACC" stroke-width="1.5" stroke-dasharray="3 2"></circle>
+                            <text x="0" y="4" text-anchor="middle" fill="#4F67A6" font-size="9" font-family="Inter" font-weight="700">+3</text>
+                            <text x="0" y="30" text-anchor="middle" fill="#9ca3af" font-size="7.5" font-family="Inter">more</text>
+                        </g>
+
+                        <!-- SVG Filters -->
+                        <defs>
+                            <filter id="nodeShadow" x="-30%" y="-30%" width="160%" height="160%">
+                                <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="rgba(27,58,125,0.18)"></feDropShadow>
+                            </filter>
+                        </defs>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- List View Content (hidden by default) -->
+        <div id="listView" class="px-6 lg:px-10 pb-10 hidden">
+            <div class="glass rounded-2xl overflow-hidden" style="max-height: 780px; overflow-y: auto;">
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr class="bg-navy-600 text-white">
+                            <th class="px-5 py-3.5 text-left font-semibold text-xs uppercase tracking-wide">Member</th>
+                            <th class="px-5 py-3.5 text-left font-semibold text-xs uppercase tracking-wide">Rank</th>
+                            <th class="px-5 py-3.5 text-left font-semibold text-xs uppercase tracking-wide">Status</th>
+                            <th class="px-5 py-3.5 text-left font-semibold text-xs uppercase tracking-wide">Level</th>
+                            <th class="px-5 py-3.5 text-left font-semibold text-xs uppercase tracking-wide">Downline</th>
+                            <th class="px-5 py-3.5 text-left font-semibold text-xs uppercase tracking-wide">Sales Vol.</th>
+                            <th class="px-5 py-3.5 text-left font-semibold text-xs uppercase tracking-wide">Join Date</th>
+                            <th class="px-5 py-3.5 text-left font-semibold text-xs uppercase tracking-wide"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                        <tr class="list-row bg-navy-50/40 cursor-pointer" onclick="openPanel('dwight')">
+                            <td class="px-5 py-3.5">
+                                <div class="flex items-center gap-3">
+                                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" class="w-9 h-9 rounded-full object-cover border-2 border-amber-400" alt="">
+                                    <div><p class="font-semibold text-navy-900">Dwight Schrute</p><p class="text-xs text-gray-500">ID: #10042</p></div>
+                                </div>
+                            </td>
+                            <td class="px-5 py-3.5"><span class="px-2.5 py-1 rounded-full text-xs font-semibold rank-badge-gold text-white">Gold Director</span></td>
+                            <td class="px-5 py-3.5"><span class="flex items-center gap-1.5 text-emerald-600 font-medium text-xs"><span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span>Active</span></td>
+                            <td class="px-5 py-3.5 text-gray-600 font-medium">L1</td>
+                            <td class="px-5 py-3.5 text-navy-700 font-semibold">24</td>
+                            <td class="px-5 py-3.5 text-navy-700 font-semibold">$8,420</td>
+                            <td class="px-5 py-3.5 text-gray-500">Jan 2021</td>
+                            <td class="px-5 py-3.5"><button class="text-navy-500 hover:text-navy-700 text-xs font-medium">View →</button></td>
+                        </tr>
+                        <tr class="list-row cursor-pointer" onclick="openPanel('jim')">
+                            <td class="px-5 py-3.5">
+                                <div class="flex items-center gap-3">
+                                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" class="w-9 h-9 rounded-full object-cover border-2 border-brandRed-400" alt="">
+                                    <div><p class="font-semibold text-navy-900">Jim Halpert</p><p class="text-xs text-gray-500">ID: #10043</p></div>
+                                </div>
+                            </td>
+                            <td class="px-5 py-3.5"><span class="px-2.5 py-1 rounded-full text-xs font-semibold rank-badge-ruby text-white">Ruby Director</span></td>
+                            <td class="px-5 py-3.5"><span class="flex items-center gap-1.5 text-emerald-600 font-medium text-xs"><span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span>Active</span></td>
+                            <td class="px-5 py-3.5 text-gray-600 font-medium">L1</td>
+                            <td class="px-5 py-3.5 text-navy-700 font-semibold">18</td>
+                            <td class="px-5 py-3.5 text-navy-700 font-semibold">$6,850</td>
+                            <td class="px-5 py-3.5 text-gray-500">Mar 2021</td>
+                            <td class="px-5 py-3.5"><button class="text-navy-500 hover:text-navy-700 text-xs font-medium">View →</button></td>
+                        </tr>
+                        <tr class="list-row cursor-pointer" onclick="openPanel('angela')">
+                            <td class="px-5 py-3.5">
+                                <div class="flex items-center gap-3">
+                                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" class="w-9 h-9 rounded-full object-cover border-2 border-gray-400" alt="">
+                                    <div><p class="font-semibold text-navy-900">Angela Martin</p><p class="text-xs text-gray-500">ID: #10044</p></div>
+                                </div>
+                            </td>
+                            <td class="px-5 py-3.5"><span class="px-2.5 py-1 rounded-full text-xs font-semibold rank-badge-silver text-white">Silver Director</span></td>
+                            <td class="px-5 py-3.5"><span class="flex items-center gap-1.5 text-emerald-600 font-medium text-xs"><span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span>Active</span></td>
+                            <td class="px-5 py-3.5 text-gray-600 font-medium">L1</td>
+                            <td class="px-5 py-3.5 text-navy-700 font-semibold">12</td>
+                            <td class="px-5 py-3.5 text-navy-700 font-semibold">$4,200</td>
+                            <td class="px-5 py-3.5 text-gray-500">Jun 2021</td>
+                            <td class="px-5 py-3.5"><button class="text-navy-500 hover:text-navy-700 text-xs font-medium">View →</button></td>
+                        </tr>
+                        <tr class="list-row cursor-pointer" onclick="openPanel('pam')">
+                            <td class="px-5 py-3.5">
+                                <div class="flex items-center gap-3">
+                                    <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" class="w-9 h-9 rounded-full object-cover border-2 border-amber-400" alt="">
+                                    <div><p class="font-semibold text-navy-900">Pam Beesly</p><p class="text-xs text-gray-500">ID: #10051</p></div>
+                                </div>
+                            </td>
+                            <td class="px-5 py-3.5"><span class="px-2.5 py-1 rounded-full text-xs font-semibold rank-badge-gold text-white">Gold Rep</span></td>
+                            <td class="px-5 py-3.5"><span class="flex items-center gap-1.5 text-emerald-600 font-medium text-xs"><span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span>Active</span></td>
+                            <td class="px-5 py-3.5 text-gray-600 font-medium">L2</td>
+                            <td class="px-5 py-3.5 text-navy-700 font-semibold">6</td>
+                            <td class="px-5 py-3.5 text-navy-700 font-semibold">$2,100</td>
+                            <td class="px-5 py-3.5 text-gray-500">Aug 2021</td>
+                            <td class="px-5 py-3.5"><button class="text-navy-500 hover:text-navy-700 text-xs font-medium">View →</button></td>
+                        </tr>
+                        <tr class="list-row opacity-60 cursor-pointer" onclick="openPanel('ryan')">
+                            <td class="px-5 py-3.5">
+                                <div class="flex items-center gap-3">
+                                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" class="w-9 h-9 rounded-full object-cover border-2 border-gray-300 grayscale" alt="">
+                                    <div><p class="font-semibold text-gray-600">Ryan Howard</p><p class="text-xs text-gray-400">ID: #10052</p></div>
+                                </div>
+                            </td>
+                            <td class="px-5 py-3.5"><span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-gray-200 text-gray-600">Bronze Rep</span></td>
+                            <td class="px-5 py-3.5"><span class="flex items-center gap-1.5 text-gray-500 font-medium text-xs"><span class="w-2 h-2 rounded-full bg-gray-400 inline-block"></span>Inactive</span></td>
+                            <td class="px-5 py-3.5 text-gray-500 font-medium">L2</td>
+                            <td class="px-5 py-3.5 text-gray-500 font-semibold">2</td>
+                            <td class="px-5 py-3.5 text-gray-500 font-semibold">$0</td>
+                            <td class="px-5 py-3.5 text-gray-400">Oct 2021</td>
+                            <td class="px-5 py-3.5"><button class="text-navy-500 hover:text-navy-700 text-xs font-medium">View →</button></td>
+                        </tr>
+                        <tr class="list-row cursor-pointer" onclick="openPanel('kelly')">
+                            <td class="px-5 py-3.5">
+                                <div class="flex items-center gap-3">
+                                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" class="w-9 h-9 rounded-full object-cover border-2 border-brandRed-400" alt="">
+                                    <div><p class="font-semibold text-navy-900">Kelly Kapoor</p><p class="text-xs text-gray-500">ID: #10053</p></div>
+                                </div>
+                            </td>
+                            <td class="px-5 py-3.5"><span class="px-2.5 py-1 rounded-full text-xs font-semibold rank-badge-ruby text-white">Ruby Rep</span></td>
+                            <td class="px-5 py-3.5"><span class="flex items-center gap-1.5 text-emerald-600 font-medium text-xs"><span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span>Active</span></td>
+                            <td class="px-5 py-3.5 text-gray-600 font-medium">L2</td>
+                            <td class="px-5 py-3.5 text-navy-700 font-semibold">5</td>
+                            <td class="px-5 py-3.5 text-navy-700 font-semibold">$1,750</td>
+                            <td class="px-5 py-3.5 text-gray-500">Nov 2021</td>
+                            <td class="px-5 py-3.5"><button class="text-navy-500 hover:text-navy-700 text-xs font-medium">View →</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<!-- Slide Panel Overlay -->
+<div id="panelOverlay" class="fixed inset-0 bg-black/20 z-40 hidden" onclick="closePanel()"></div>
+
+<!-- Right Slide Panel -->
+<div id="slidePanel" class="slide-panel fixed top-0 right-0 h-full w-full max-w-sm bg-white z-50 shadow-2xl flex flex-col" style="max-height: 100vh; overflow-y: auto;">
+    <!-- Panel Header -->
+    <div class="glass-dark p-5 flex items-center justify-between shrink-0">
+        <h2 class="text-white font-bold text-lg">Member Profile</h2>
+        <button onclick="closePanel()" class="text-white/70 hover:text-white w-8 h-8 rounded-full bg-white/10 flex items-center justify-center transition-colors">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+
+    <!-- Panel Content -->
+    <div class="flex-1 overflow-y-auto p-5 space-y-5 bg-gradient-to-b from-slate-50 to-white">
+
+        <!-- Profile Card -->
+        <div class="glass rounded-2xl p-5 text-center">
+            <div class="relative inline-block mb-3">
+                <img id="panelPhoto" src="" alt="Member" class="w-20 h-20 rounded-full object-cover border-4 border-white shadow-lg mx-auto">
+                <span id="panelStatusDot" class="absolute bottom-1 right-1 w-4 h-4 rounded-full border-2 border-white bg-emerald-500"></span>
+            </div>
+            <h3 id="panelName" class="text-xl font-bold text-navy-900"></h3>
+            <p id="panelId" class="text-xs text-gray-500 mt-0.5"></p>
+            <div class="flex items-center justify-center gap-2 mt-2">
+                <span id="panelRankBadge" class="px-3 py-1 rounded-full text-xs font-bold text-white rank-badge-diamond"></span>
+                <span id="panelStatusBadge" class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-700"></span>
+            </div>
+            <p id="panelJoinDate" class="text-xs text-gray-400 mt-2"></p>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-2 gap-3">
+            <div class="glass rounded-xl p-4 text-center">
+                <p class="text-xs text-gray-500 mb-1">Personal PV</p>
+                <p id="panelPV" class="text-xl font-bold text-navy-900"></p>
+            </div>
+            <div class="glass rounded-xl p-4 text-center">
+                <p class="text-xs text-gray-500 mb-1">Sales Volume</p>
+                <p id="panelSales" class="text-xl font-bold text-navy-900"></p>
+            </div>
+            <div class="glass rounded-xl p-4 text-center">
+                <p class="text-xs text-gray-500 mb-1">Downline</p>
+                <p id="panelDownline" class="text-xl font-bold text-navy-900"></p>
+            </div>
+            <div class="glass rounded-xl p-4 text-center">
+                <p class="text-xs text-gray-500 mb-1">Level</p>
+                <p id="panelLevel" class="text-xl font-bold text-navy-900"></p>
+            </div>
+        </div>
+
+        <!-- Rank Progress -->
+        <div class="glass rounded-2xl p-5">
+            <div class="flex justify-between items-end mb-3">
+                <div>
+                    <h4 class="font-bold text-navy-900 text-sm">Rank Progress</h4>
+                    <p class="text-xs text-gray-500 mt-0.5">Next: <span id="panelNextRank" class="text-brandRed-600 font-semibold"></span></p>
+                </div>
+                <span id="panelProgress" class="text-lg font-bold text-navy-600"></span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2.5 overflow-hidden">
+                <div id="panelProgressBar" class="bg-gradient-to-r from-navy-600 to-brandRed-500 h-2.5 rounded-full progress-bar-fill" style="width: 0%"></div>
+            </div>
+            <div class="flex justify-between text-xs text-gray-400 mt-2">
+                <span id="panelCurrentRankLabel"></span>
+                <span id="panelGoalLabel"></span>
+            </div>
+        </div>
+
+        <!-- Monthly Activity -->
+        <div class="glass rounded-2xl p-5">
+            <h4 class="font-bold text-navy-900 text-sm mb-4">Monthly Activity</h4>
+            <div class="space-y-3">
+                <div class="flex justify-between items-center text-sm">
+                    <span class="text-gray-600 flex items-center gap-2"><i class="fa-solid fa-box text-navy-400 w-4"></i> Orders Placed</span>
+                    <span id="panelOrders" class="font-semibold text-navy-900"></span>
+                </div>
+                <div class="flex justify-between items-center text-sm">
+                    <span class="text-gray-600 flex items-center gap-2"><i class="fa-solid fa-user-plus text-brandRed-400 w-4"></i> New Recruits</span>
+                    <span id="panelRecruits" class="font-semibold text-navy-900"></span>
+                </div>
+                <div class="flex justify-between items-center text-sm">
+                    <span class="text-gray-600 flex items-center gap-2"><i class="fa-solid fa-dollar-sign text-emerald-500 w-4"></i> Commissions</span>
+                    <span id="panelCommissions" class="font-semibold text-navy-900"></span>
+                </div>
+                <div class="flex justify-between items-center text-sm">
+                    <span class="text-gray-600 flex items-center gap-2"><i class="fa-solid fa-calendar text-gray-400 w-4"></i> Last Active</span>
+                    <span id="panelLastActive" class="font-semibold text-navy-900"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="grid grid-cols-2 gap-3 pb-4">
+            <button class="bg-navy-600 text-white py-2.5 rounded-xl text-sm font-semibold hover:bg-navy-700 transition-colors flex items-center justify-center gap-2 shadow-lg shadow-navy-600/20">
+                <i class="fa-solid fa-envelope"></i> Message
+            </button>
+            <button class="glass text-navy-600 py-2.5 rounded-xl text-sm font-semibold hover:bg-white transition-colors flex items-center justify-center gap-2">
+                <i class="fa-solid fa-sitemap"></i> View Tree
+            </button>
+            <button class="glass text-gray-600 py-2.5 rounded-xl text-sm font-semibold hover:bg-white transition-colors flex items-center justify-center gap-2 col-span-2">
+                <i class="fa-solid fa-chart-line"></i> Full Report
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const memberData = {
+        sarah: {
+            name: 'Sarah Jenkins', id: 'ID: #10001', photo: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            rank: 'Diamond Director', rankClass: 'rank-badge-diamond', status: 'Active', statusClass: 'bg-emerald-100 text-emerald-700',
+            joinDate: 'Joined: January 2019', pv: '500 PV', sales: '$12,450', downline: '148', level: 'L0 (You)',
+            nextRank: 'Double Diamond', progress: '75%', progressWidth: '75', currentRankLabel: 'Diamond', goalLabel: '50k GV',
+            orders: '12', recruits: '3', commissions: '$1,240', lastActive: 'Today', active: true
+        },
+        dwight: {
+            name: 'Dwight Schrute', id: 'ID: #10042', photo: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            rank: 'Gold Director', rankClass: 'rank-badge-gold', status: 'Active', statusClass: 'bg-emerald-100 text-emerald-700',
+            joinDate: 'Joined: January 2021', pv: '420 PV', sales: '$8,420', downline: '24', level: 'L1',
+            nextRank: 'Platinum Director', progress: '62%', progressWidth: '62', currentRankLabel: 'Gold', goalLabel: '30k GV',
+            orders: '9', recruits: '2', commissions: '$842', lastActive: '2 days ago', active: true
+        },
+        jim: {
+            name: 'Jim Halpert', id: 'ID: #10043', photo: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            rank: 'Ruby Director', rankClass: 'rank-badge-ruby', status: 'Active', statusClass: 'bg-emerald-100 text-emerald-700',
+            joinDate: 'Joined: March 2021', pv: '380 PV', sales: '$6,850', downline: '18', level: 'L1',
+            nextRank: 'Gold Director', progress: '78%', progressWidth: '78', currentRankLabel: 'Ruby', goalLabel: '20k GV',
+            orders: '8', recruits: '1', commissions: '$685', lastActive: '1 day ago', active: true
+        },
+        angela: {
+            name: 'Angela Martin', id: 'ID: #10044', photo: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            rank: 'Silver Director', rankClass: 'rank-badge-silver', status: 'Active', statusClass: 'bg-emerald-100 text-emerald-700',
+            joinDate: 'Joined: June 2021', pv: '310 PV', sales: '$4,200', downline: '12', level: 'L1',
+            nextRank: 'Ruby Director', progress: '45%', progressWidth: '45', currentRankLabel: 'Silver', goalLabel: '15k GV',
+            orders: '6', recruits: '0', commissions: '$420', lastActive: '3 days ago', active: true
+        },
+        pam: {
+            name: 'Pam Beesly', id: 'ID: #10051', photo: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            rank: 'Gold Rep', rankClass: 'rank-badge-gold', status: 'Active', statusClass: 'bg-emerald-100 text-emerald-700',
+            joinDate: 'Joined: August 2021', pv: '250 PV', sales: '$2,100', downline: '6', level: 'L2',
+            nextRank: 'Gold Director', progress: '55%', progressWidth: '55', currentRankLabel: 'Gold Rep', goalLabel: '10k GV',
+            orders: '5', recruits: '1', commissions: '$210', lastActive: 'Today', active: true
+        },
+        ryan: {
+            name: 'Ryan Howard', id: 'ID: #10052', photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            rank: 'Bronze Rep', rankClass: 'rank-badge-bronze', status: 'Inactive', statusClass: 'bg-gray-100 text-gray-600',
+            joinDate: 'Joined: October 2021', pv: '0 PV', sales: '$0', downline: '2', level: 'L2',
+            nextRank: 'Silver Rep', progress: '0%', progressWidth: '0', currentRankLabel: 'Bronze Rep', goalLabel: '5k GV',
+            orders: '0', recruits: '0', commissions: '$0', lastActive: '45 days ago', active: false
+        },
+        kelly: {
+            name: 'Kelly Kapoor', id: 'ID: #10053', photo: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            rank: 'Ruby Rep', rankClass: 'rank-badge-ruby', status: 'Active', statusClass: 'bg-emerald-100 text-emerald-700',
+            joinDate: 'Joined: November 2021', pv: '200 PV', sales: '$1,750', downline: '5', level: 'L2',
+            nextRank: 'Ruby Director', progress: '40%', progressWidth: '40', currentRankLabel: 'Ruby Rep', goalLabel: '8k GV',
+            orders: '4', recruits: '1', commissions: '$175', lastActive: 'Yesterday', active: true
+        },
+        oscar: {
+            name: 'Oscar Martinez', id: 'ID: #10054', photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            rank: 'Silver Rep', rankClass: 'rank-badge-silver', status: 'Active', statusClass: 'bg-emerald-100 text-emerald-700',
+            joinDate: 'Joined: December 2021', pv: '150 PV', sales: '$1,200', downline: '3', level: 'L2',
+            nextRank: 'Ruby Rep', progress: '30%', progressWidth: '30', currentRankLabel: 'Silver Rep', goalLabel: '6k GV',
+            orders: '3', recruits: '0', commissions: '$120', lastActive: '4 days ago', active: true
+        },
+        meredith: {
+            name: 'Meredith Palmer', id: 'ID: #10055', photo: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            rank: 'Bronze Rep', rankClass: 'rank-badge-bronze', status: 'Active', statusClass: 'bg-emerald-100 text-emerald-700',
+            joinDate: 'Joined: February 2022', pv: '100 PV', sales: '$800', downline: '2', level: 'L2',
+            nextRank: 'Silver Rep', progress: '20%', progressWidth: '20', currentRankLabel: 'Bronze Rep', goalLabel: '5k GV',
+            orders: '2', recruits: '0', commissions: '$80', lastActive: '1 week ago', active: true
+        },
+        toby: {
+            name: 'Toby Flenderson', id: 'ID: #10056', photo: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            rank: 'Starter', rankClass: 'rank-badge-starter', status: 'Inactive', statusClass: 'bg-gray-100 text-gray-600',
+            joinDate: 'Joined: March 2022', pv: '0 PV', sales: '$0', downline: '0', level: 'L2',
+            nextRank: 'Bronze Rep', progress: '0%', progressWidth: '0', currentRankLabel: 'Starter', goalLabel: '3k GV',
+            orders: '0', recruits: '0', commissions: '$0', lastActive: '60 days ago', active: false
+        },
+        phyllis: {
+            name: 'Phyllis Vance', id: 'ID: #10061', photo: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            rank: 'Gold Rep', rankClass: 'rank-badge-gold', status: 'Active', statusClass: 'bg-emerald-100 text-emerald-700',
+            joinDate: 'Joined: April 2022', pv: '180 PV', sales: '$1,400', downline: '4', level: 'L3',
+            nextRank: 'Gold Director', progress: '48%', progressWidth: '48', currentRankLabel: 'Gold Rep', goalLabel: '10k GV',
+            orders: '4', recruits: '1', commissions: '$140', lastActive: 'Today', active: true
+        },
+        stanley: {
+            name: 'Stanley Hudson', id: 'ID: #10062', photo: 'https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            rank: 'Starter', rankClass: 'rank-badge-starter', status: 'Inactive', statusClass: 'bg-gray-100 text-gray-600',
+            joinDate: 'Joined: May 2022', pv: '0 PV', sales: '$0', downline: '1', level: 'L3',
+            nextRank: 'Bronze Rep', progress: '0%', progressWidth: '0', currentRankLabel: 'Starter', goalLabel: '3k GV',
+            orders: '0', recruits: '0', commissions: '$0', lastActive: '30 days ago', active: false
+        },
+        creed: {
+            name: 'Creed Bratton', id: 'ID: #10063', photo: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            rank: 'Ruby Rep', rankClass: 'rank-badge-ruby', status: 'Active', statusClass: 'bg-emerald-100 text-emerald-700',
+            joinDate: 'Joined: June 2022', pv: '120 PV', sales: '$950', downline: '3', level: 'L3',
+            nextRank: 'Ruby Director', progress: '25%', progressWidth: '25', currentRankLabel: 'Ruby Rep', goalLabel: '8k GV',
+            orders: '3', recruits: '0', commissions: '$95', lastActive: '2 days ago', active: true
+        },
+        kevin: {
+            name: 'Kevin Malone', id: 'ID: #10064', photo: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            rank: 'Bronze Rep', rankClass: 'rank-badge-bronze', status: 'Active', statusClass: 'bg-emerald-100 text-emerald-700',
+            joinDate: 'Joined: July 2022', pv: '80 PV', sales: '$600', downline: '2', level: 'L3',
+            nextRank: 'Silver Rep', progress: '16%', progressWidth: '16', currentRankLabel: 'Bronze Rep', goalLabel: '5k GV',
+            orders: '2', recruits: '0', commissions: '$60', lastActive: '5 days ago', active: true
+        },
+        darryl: {
+            name: 'Darryl Philbin', id: 'ID: #10065', photo: 'https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            rank: 'Silver Rep', rankClass: 'rank-badge-silver', status: 'Active', statusClass: 'bg-emerald-100 text-emerald-700',
+            joinDate: 'Joined: August 2022', pv: '140 PV', sales: '$1,100', downline: '3', level: 'L3',
+            nextRank: 'Ruby Rep', progress: '35%', progressWidth: '35', currentRankLabel: 'Silver Rep', goalLabel: '6k GV',
+            orders: '3', recruits: '1', commissions: '$110', lastActive: 'Yesterday', active: true
+        },
+        gabe: {
+            name: 'Gabe Lewis', id: 'ID: #10066', photo: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            rank: 'Bronze Rep', rankClass: 'rank-badge-bronze', status: 'Active', statusClass: 'bg-emerald-100 text-emerald-700',
+            joinDate: 'Joined: September 2022', pv: '90 PV', sales: '$720', downline: '1', level: 'L3',
+            nextRank: 'Silver Rep', progress: '18%', progressWidth: '18', currentRankLabel: 'Bronze Rep', goalLabel: '5k GV',
+            orders: '2', recruits: '0', commissions: '$72', lastActive: '3 days ago', active: true
+        },
+        erin: {
+            name: 'Erin Hannon', id: 'ID: #10067', photo: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            rank: 'Silver Rep', rankClass: 'rank-badge-silver', status: 'Active', statusClass: 'bg-emerald-100 text-emerald-700',
+            joinDate: 'Joined: October 2022', pv: '110 PV', sales: '$880', downline: '2', level: 'L3',
+            nextRank: 'Ruby Rep', progress: '22%', progressWidth: '22', currentRankLabel: 'Silver Rep', goalLabel: '6k GV',
+            orders: '2', recruits: '0', commissions: '$88', lastActive: '1 day ago', active: true
+        }
+    };
+
+    function openPanel(memberId) {
+        const m = memberData[memberId];
+        if (!m) return;
+
+        document.getElementById('panelPhoto').src = m.photo;
+        document.getElementById('panelName').textContent = m.name;
+        document.getElementById('panelId').textContent = m.id;
+        document.getElementById('panelJoinDate').textContent = m.joinDate;
+        document.getElementById('panelPV').textContent = m.pv;
+        document.getElementById('panelSales').textContent = m.sales;
+        document.getElementById('panelDownline').textContent = m.downline;
+        document.getElementById('panelLevel').textContent = m.level;
+        document.getElementById('panelNextRank').textContent = m.nextRank;
+        document.getElementById('panelProgress').textContent = m.progress;
+        document.getElementById('panelCurrentRankLabel').textContent = 'Current: ' + m.currentRankLabel;
+        document.getElementById('panelGoalLabel').textContent = 'Goal: ' + m.goalLabel;
+        document.getElementById('panelOrders').textContent = m.orders;
+        document.getElementById('panelRecruits').textContent = m.recruits;
+        document.getElementById('panelCommissions').textContent = m.commissions;
+        document.getElementById('panelLastActive').textContent = m.lastActive;
+
+        const rankBadge = document.getElementById('panelRankBadge');
+        rankBadge.textContent = m.rank;
+        rankBadge.className = 'px-3 py-1 rounded-full text-xs font-bold text-white ' + m.rankClass;
+
+        const statusBadge = document.getElementById('panelStatusBadge');
+        statusBadge.textContent = m.status;
+        statusBadge.className = 'px-3 py-1 rounded-full text-xs font-bold ' + m.statusClass;
+
+        const statusDot = document.getElementById('panelStatusDot');
+        statusDot.className = 'absolute bottom-1 right-1 w-4 h-4 rounded-full border-2 border-white ' + (m.active ? 'bg-emerald-500' : 'bg-gray-400');
+
+        setTimeout(() => {
+            document.getElementById('panelProgressBar').style.width = m.progressWidth + '%';
+        }, 100);
+
+        document.getElementById('panelOverlay').classList.remove('hidden');
+        document.getElementById('slidePanel').classList.add('open');
+    }
+
+    function closePanel() {
+        document.getElementById('panelOverlay').classList.add('hidden');
+        document.getElementById('slidePanel').classList.remove('open');
+        document.getElementById('panelProgressBar').style.width = '0%';
+    }
+
+    function switchView(view) {
+        const treeView = document.getElementById('treeView');
+        const listView = document.getElementById('listView');
+        const treeBtn = document.getElementById('treeViewBtn');
+        const listBtn = document.getElementById('listViewBtn');
+
+        if (view === 'tree') {
+            treeView.classList.remove('hidden');
+            listView.classList.add('hidden');
+            treeBtn.className = 'px-3 py-1.5 rounded-lg text-xs font-semibold view-btn-active transition-all flex items-center gap-1.5';
+            listBtn.className = 'px-3 py-1.5 rounded-lg text-xs font-semibold view-btn-inactive transition-all flex items-center gap-1.5';
+        } else {
+            treeView.classList.add('hidden');
+            listView.classList.remove('hidden');
+            listBtn.className = 'px-3 py-1.5 rounded-lg text-xs font-semibold view-btn-active transition-all flex items-center gap-1.5';
+            treeBtn.className = 'px-3 py-1.5 rounded-lg text-xs font-semibold view-btn-inactive transition-all flex items-center gap-1.5';
+        }
+    }
+
+    function setFilter(btn, rank) {
+        document.querySelectorAll('.filter-btn').forEach(b => {
+            b.classList.remove('bg-navy-600', 'text-white');
+            b.classList.add('bg-white');
+        });
+        btn.classList.add('bg-navy-600', 'text-white');
+        btn.classList.remove('bg-white');
+    }
+</script>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

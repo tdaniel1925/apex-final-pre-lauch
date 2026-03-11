@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Commission Earnings Dashboard - Exported from UXMagic Copilot">
+    <title>Commission Earnings Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            50: '#E8EAF2',
+                            100: '#C5CCDF',
+                            200: '#9EAACC',
+                            300: '#7689B9',
+                            400: '#4F67A6',
+                            500: '#274693',
+                            600: '#1B3A7D',
+                            700: '#152D61',
+                            800: '#0F2045',
+                            900: '#091329',
+                        },
+                        brandRed: {
+                            50: '#FBE8E9',
+                            100: '#F5C5C7',
+                            200: '#EE9EA1',
+                            300: '#E7767B',
+                            400: '#E04F55',
+                            500: '#D9272F',
+                            600: '#C7181F',
+                            700: '#9B1318',
+                            800: '#6F0D11',
+                            900: '#42080A',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+<div class="flex" style="height: auto; min-height: 100vh;">
+    <!-- Sidebar -->
+    <aside class="hidden md:flex flex-col w-64 glass-dark text-white z-20" style="min-height: 100vh;">
+        <div class="p-6 flex items-center gap-3 border-b border-white/10">
+            <div class="w-8 h-8 rounded-lg bg-brandRed-600 flex items-center justify-center shadow-lg shadow-brandRed-600/30">
+                <i class="fa-solid fa-chart-line text-white text-sm"></i>
+            </div>
+            <span class="text-xl font-bold tracking-tight">ASCEND</span>
+        </div>
+        <nav class="flex-1 overflow-y-auto py-6 px-3 space-y-1">
+            <a href="/api/copilot/prototype/cfc8dc80-72d8-43d3-8c9f-ebb0b2b1061b/commission-earnings-dashboard" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-grid-2 w-5 text-center"></i>
+                <span class="font-medium">Dashboard</span>
+            </a>
+            <a href="/api/copilot/prototype/cfc8dc80-72d8-43d3-8c9f-ebb0b2b1061b/commission-earnings-dashboard" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-users w-5 text-center"></i>
+                <span class="font-medium">My Team</span>
+            </a>
+            <a href="/api/copilot/prototype/cfc8dc80-72d8-43d3-8c9f-ebb0b2b1061b/commission-earnings-dashboard" class="flex items-center gap-3 px-4 py-3 bg-white/10 text-white rounded-xl transition-all shadow-sm border border-white/5">
+                <i class="fa-solid fa-wallet w-5 text-center"></i>
+                <span class="font-medium">Commissions</span>
+            </a>
+            <a href="/api/copilot/prototype/cfc8dc80-72d8-43d3-8c9f-ebb0b2b1061b/commission-earnings-dashboard" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-sitemap w-5 text-center"></i>
+                <span class="font-medium">Genealogy</span>
+            </a>
+            <a href="/api/copilot/prototype/cfc8dc80-72d8-43d3-8c9f-ebb0b2b1061b/commission-earnings-dashboard" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-store w-5 text-center"></i>
+                <span class="font-medium">Shop</span>
+            </a>
+            <a href="/api/copilot/prototype/cfc8dc80-72d8-43d3-8c9f-ebb0b2b1061b/commission-earnings-dashboard" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-graduation-cap w-5 text-center"></i>
+                <span class="font-medium">Training</span>
+            </a>
+        </nav>
+        <div class="p-4 border-t border-white/10">
+            <div class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/5">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Profile" class="w-10 h-10 rounded-full border-2 border-brandRed-500">
+                <div class="flex-1 min-w-0">
+                    <p class="text-sm font-semibold text-white truncate">Sarah Jenkins</p>
+                    <p class="text-xs text-gray-400 truncate">Diamond Director</p>
+                </div>
+                <button class="text-gray-400 hover:text-white"><i class="fa-solid fa-gear"></i></button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col relative" style="min-height: 100vh;">
+
+        <!-- Mobile Header -->
+        <div class="md:hidden glass sticky top-0 z-30 px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-navy-600 flex items-center justify-center">
+                    <i class="fa-solid fa-chart-line text-white text-xs"></i>
+                </div>
+                <span class="text-lg font-bold text-navy-800">ASCEND</span>
+            </div>
+            <button class="text-navy-600 p-2"><i class="fa-solid fa-bars text-xl"></i></button>
+        </div>
+
+        <!-- Page Header -->
+        <div class="px-6 lg:px-10 pt-8 pb-4">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h1 class="text-2xl font-bold text-navy-900">Commission Earnings</h1>
+                    <p class="text-gray-500 text-sm mt-1">Track your earnings, bonuses, and rank progression — <span class="font-semibold text-navy-600">June 2024</span></p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="glass px-3 py-2 rounded-lg flex items-center gap-2">
+                        <i class="fa-solid fa-calendar text-navy-400 text-sm"></i>
+                        <select class="bg-transparent text-sm font-medium text-navy-700 focus:outline-none">
+                            <option>June 2024</option>
+                            <option>May 2024</option>
+                            <option>April 2024</option>
+                            <option>Q2 2024</option>
+                        </select>
+                    </div>
+                    <button class="glass px-4 py-2 rounded-lg text-sm font-medium text-navy-600 hover:bg-white transition-colors">
+                        <i class="fa-solid fa-download mr-2"></i> Export
+                    </button>
+                    <button class="bg-navy-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-navy-700 transition-colors shadow-lg shadow-navy-600/20">
+                        <i class="fa-solid fa-paper-plane mr-2"></i> Request Payout
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- KPI Summary Cards -->
+        <div class="px-6 lg:px-10 pb-5">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Total Earnings -->
+                <div class="kpi-card-gradient-blue rounded-2xl p-5 text-white relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 rounded-full bg-white/5 -translate-y-8 translate-x-8"></div>
+                    <div class="absolute bottom-0 left-0 w-16 h-16 rounded-full bg-white/5 translate-y-6 -translate-x-6"></div>
+                    <div class="relative">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center">
+                                <i class="fa-solid fa-dollar-sign text-white text-sm"></i>
+                            </div>
+                            <span class="text-xs font-semibold bg-white/15 px-2 py-1 rounded-full flex items-center gap-1">
+                                <i class="fa-solid fa-arrow-up text-emerald-300 text-xs"></i> +12.4%
+                            </span>
+                        </div>
+                        <p class="text-3xl font-bold">$4,820</p>
+                        <p class="text-white/70 text-xs mt-1">Total Earnings — June</p>
+                        <p class="text-white/50 text-xs mt-1">vs $4,289 last month</p>
+                    </div>
+                </div>
+                <!-- Team Commission -->
+                <div class="kpi-card-gradient-red rounded-2xl p-5 text-white relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 rounded-full bg-white/5 -translate-y-8 translate-x-8"></div>
+                    <div class="absolute bottom-0 left-0 w-16 h-16 rounded-full bg-white/5 translate-y-6 -translate-x-6"></div>
+                    <div class="relative">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center">
+                                <i class="fa-solid fa-users text-white text-sm"></i>
+                            </div>
+                            <span class="text-xs font-semibold bg-white/15 px-2 py-1 rounded-full flex items-center gap-1">
+                                <i class="fa-solid fa-arrow-up text-emerald-300 text-xs"></i> +8.1%
+                            </span>
+                        </div>
+                        <p class="text-3xl font-bold">$2,340</p>
+                        <p class="text-white/70 text-xs mt-1">Team Commission</p>
+                        <p class="text-white/50 text-xs mt-1">148 active members</p>
+                    </div>
+                </div>
+                <!-- Personal Sales -->
+                <div class="kpi-card-gradient-emerald rounded-2xl p-5 text-white relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 rounded-full bg-white/5 -translate-y-8 translate-x-8"></div>
+                    <div class="absolute bottom-0 left-0 w-16 h-16 rounded-full bg-white/5 translate-y-6 -translate-x-6"></div>
+                    <div class="relative">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center">
+                                <i class="fa-solid fa-bag-shopping text-white text-sm"></i>
+                            </div>
+                            <span class="text-xs font-semibold bg-white/15 px-2 py-1 rounded-full flex items-center gap-1">
+                                <i class="fa-solid fa-arrow-up text-emerald-300 text-xs"></i> +5.3%
+                            </span>
+                        </div>
+                        <p class="text-3xl font-bold">$1,680</p>
+                        <p class="text-white/70 text-xs mt-1">Personal Sales Comm.</p>
+                        <p class="text-white/50 text-xs mt-1">500 PV this month</p>
+                    </div>
+                </div>
+                <!-- Pending Payout -->
+                <div class="kpi-card-gradient-amber rounded-2xl p-5 text-white relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 rounded-full bg-white/5 -translate-y-8 translate-x-8"></div>
+                    <div class="absolute bottom-0 left-0 w-16 h-16 rounded-full bg-white/5 translate-y-6 -translate-x-6"></div>
+                    <div class="relative">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center">
+                                <i class="fa-solid fa-clock text-white text-sm"></i>
+                            </div>
+                            <span class="text-xs font-semibold bg-white/15 px-2 py-1 rounded-full">
+                                Pending
+                            </span>
+                        </div>
+                        <p class="text-3xl font-bold">$800</p>
+                        <p class="text-white/70 text-xs mt-1">Pending Payout</p>
+                        <p class="text-white/50 text-xs mt-1">Processes Jul 1, 2024</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="px-6 lg:px-10 pb-5">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+
+                <!-- Commission Breakdown Donut Chart -->
+                <div class="glass rounded-2xl p-5">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="font-bold text-navy-900 text-sm">Commission Breakdown</h2>
+                        <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-lg">June 2024</span>
+                    </div>
+                    <div class="flex items-center justify-center mb-4">
+                        <div class="relative" style="width:160px;height:160px;">
+                            <svg viewBox="0 0 120 120" width="160" height="160">
+                                <!-- Background circle -->
+                                <circle cx="60" cy="60" r="46" fill="none" stroke="#f1f5f9" stroke-width="20"></circle>
+                                <!-- Personal Sales: 34.8% = 125.3deg -->
+                                <circle cx="60" cy="60" r="46" fill="none" stroke="#1B3A7D" stroke-width="20" stroke-dasharray="100.8 188.9" stroke-dashoffset="0" transform="rotate(-90 60 60)"></circle>
+                                <!-- Team Override: 28.6% = 103deg -->
+                                <circle cx="60" cy="60" r="46" fill="none" stroke="#C7181F" stroke-width="20" stroke-dasharray="82.8 206.9" stroke-dashoffset="-100.8" transform="rotate(-90 60 60)"></circle>
+                                <!-- Leadership Bonus: 20.7% = 74.5deg -->
+                                <circle cx="60" cy="60" r="46" fill="none" stroke="#d97706" stroke-width="20" stroke-dasharray="59.9 229.8" stroke-dashoffset="-183.6" transform="rotate(-90 60 60)"></circle>
+                                <!-- CAB Bonus: 15.9% = 57.2deg -->
+                                <circle cx="60" cy="60" r="46" fill="none" stroke="#059669" stroke-width="20" stroke-dasharray="46.0 243.7" stroke-dashoffset="-243.5" transform="rotate(-90 60 60)"></circle>
+                                <!-- Center text -->
+                                <text x="60" y="55" text-anchor="middle" font-size="13" font-weight="700" fill="#0F2045" font-family="Inter">$4,820</text>
+                                <text x="60" y="70" text-anchor="middle" font-size="7" fill="#6b7280" font-family="Inter">Total</text>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between text-xs">
+                            <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-navy-600 inline-block"></span><span class="text-gray-600">Personal Sales</span></div>
+                            <div class="flex items-center gap-2"><span class="font-semibold text-navy-900">$1,680</span><span class="text-gray-400">34.8%</span></div>
+                        </div>
+                        <div class="flex items-center justify-between text-xs">
+                            <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-brandRed-600 inline-block"></span><span class="text-gray-600">Team Override</span></div>
+                            <div class="flex items-center gap-2"><span class="font-semibold text-navy-900">$1,380</span><span class="text-gray-400">28.6%</span></div>
+                        </div>
+                        <div class="flex items-center justify-between text-xs">
+                            <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span><span class="text-gray-600">Leadership Bonus</span></div>
+                            <div class="flex items-center gap-2"><span class="font-semibold text-navy-900">$1,000</span><span class="text-gray-400">20.7%</span></div>
+                        </div>
+                        <div class="flex items-center justify-between text-xs">
+                            <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-emerald-600 inline-block"></span><span class="text-gray-600">CAB Bonus</span></div>
+                            <div class="flex items-center gap-2"><span class="font-semibold text-navy-900">$760</span><span class="text-gray-400">15.9%</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Monthly Trend Bar Chart -->
+                <div class="glass rounded-2xl p-5 lg:col-span-2">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <h2 class="font-bold text-navy-900 text-sm">Monthly Earnings Trend</h2>
+                            <p class="text-xs text-gray-500 mt-0.5">Last 6 months comparison</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-navy-600 inline-block"></span><span class="text-xs text-gray-500">Earnings</span></div>
+                            <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-brandRed-400 inline-block"></span><span class="text-xs text-gray-500">Bonuses</span></div>
+                        </div>
+                    </div>
+                    <div class="h-48 flex items-end gap-3 px-2 overflow-hidden">
+                        <!-- Jan -->
+                        <div class="flex-1 flex flex-col items-center gap-1">
+                            <div class="w-full flex items-end gap-0.5 justify-center" style="height:160px;">
+                                <div class="w-5 bg-navy-600 rounded-t-md opacity-80" style="height:52%;"></div>
+                                <div class="w-5 bg-brandRed-400 rounded-t-md opacity-80" style="height:28%;"></div>
+                            </div>
+                            <span class="text-xs text-gray-400">Jan</span>
+                        </div>
+                        <!-- Feb -->
+                        <div class="flex-1 flex flex-col items-center gap-1">
+                            <div class="w-full flex items-end gap-0.5 justify-center" style="height:160px;">
+                                <div class="w-5 bg-navy-600 rounded-t-md opacity-80" style="height:58%;"></div>
+                                <div class="w-5 bg-brandRed-400 rounded-t-md opacity-80" style="height:32%;"></div>
+                            </div>
+                            <span class="text-xs text-gray-400">Feb</span>
+                        </div>
+                        <!-- Mar -->
+                        <div class="flex-1 flex flex-col items-center gap-1">
+                            <div class="w-full flex items-end gap-0.5 justify-center" style="height:160px;">
+                                <div class="w-5 bg-navy-600 rounded-t-md opacity-80" style="height:65%;"></div>
+                                <div class="w-5 bg-brandRed-400 rounded-t-md opacity-80" style="height:38%;"></div>
+                            </div>
+                            <span class="text-xs text-gray-400">Mar</span>
+                        </div>
+                        <!-- Apr -->
+                        <div class="flex-1 flex flex-col items-center gap-1">
+                            <div class="w-full flex items-end gap-0.5 justify-center" style="height:160px;">
+                                <div class="w-5 bg-navy-600 rounded-t-md opacity-80" style="height:72%;"></div>
+                                <div class="w-5 bg-brandRed-400 rounded-t-md opacity-80" style="height:42%;"></div>
+                            </div>
+                            <span class="text-xs text-gray-400">Apr</span>
+                        </div>
+                        <!-- May -->
+                        <div class="flex-1 flex flex-col items-center gap-1">
+                            <div class="w-full flex items-end gap-0.5 justify-center" style="height:160px;">
+                                <div class="w-5 bg-navy-600 rounded-t-md opacity-80" style="height:80%;"></div>
+                                <div class="w-5 bg-brandRed-400 rounded-t-md opacity-80" style="height:46%;"></div>
+                            </div>
+                            <span class="text-xs text-gray-400">May</span>
+                        </div>
+                        <!-- Jun (current) -->
+                        <div class="flex-1 flex flex-col items-center gap-1">
+                            <div class="w-full flex items-end gap-0.5 justify-center" style="height:160px;">
+                                <div class="w-5 bg-navy-600 rounded-t-md" style="height:90%;"></div>
+                                <div class="w-5 bg-brandRed-500 rounded-t-md" style="height:52%;"></div>
+                            </div>
+                            <span class="text-xs font-semibold text-navy-600">Jun</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between mt-3 pt-3 border-t border-gray-100">
+                        <div class="text-center">
+                            <p class="text-xs text-gray-500">Avg Monthly</p>
+                            <p class="text-sm font-bold text-navy-900">$3,940</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-xs text-gray-500">YTD Total</p>
+                            <p class="text-sm font-bold text-navy-900">$23,640</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-xs text-gray-500">Best Month</p>
+                            <p class="text-sm font-bold text-emerald-600">$4,820 ↑</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-xs text-gray-500">Growth Rate</p>
+                            <p class="text-sm font-bold text-navy-900">+12.4%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Monthly Bonus Line Items -->
+        <div class="px-6 lg:px-10 pb-5">
+            <div class="glass rounded-2xl p-5">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h2 class="font-bold text-navy-900">Monthly Bonus Breakdown</h2>
+                        <p class="text-xs text-gray-500 mt-0.5">Detailed line items for June 2024</p>
+                    </div>
+                    <button class="text-xs text-navy-600 font-medium glass px-3 py-1.5 rounded-lg hover:bg-white transition-colors">
+                        <i class="fa-solid fa-file-invoice mr-1"></i> View Statement
+                    </button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-gray-100">
+                                <th class="pb-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide">Bonus Type</th>
+                                <th class="pb-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide">Description</th>
+                                <th class="pb-3 text-center text-xs font-semibold text-gray-500 uppercase tracking-wide">Rate</th>
+                                <th class="pb-3 text-right text-xs font-semibold text-gray-500 uppercase tracking-wide">Volume</th>
+                                <th class="pb-3 text-right text-xs font-semibold text-gray-500 uppercase tracking-wide">Amount</th>
+                                <th class="pb-3 text-center text-xs font-semibold text-gray-500 uppercase tracking-wide">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-50">
+                            <tr class="table-row">
+                                <td class="py-3.5 pr-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-7 h-7 rounded-lg bg-navy-50 flex items-center justify-center">
+                                            <i class="fa-solid fa-bag-shopping text-navy-600 text-xs"></i>
+                                        </div>
+                                        <span class="font-semibold text-navy-900 text-xs">Personal Sales</span>
+                                    </div>
+                                </td>
+                                <td class="py-3.5 text-gray-500 text-xs">Direct retail &amp; preferred customer orders</td>
+                                <td class="py-3.5 text-center"><span class="text-xs font-bold text-navy-600 bg-navy-50 px-2 py-0.5 rounded-full">25%</span></td>
+                                <td class="py-3.5 text-right text-xs font-medium text-gray-700">6,720 PV</td>
+                                <td class="py-3.5 text-right font-bold text-navy-900">$1,680.00</td>
+                                <td class="py-3.5 text-center"><span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">Paid</span></td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="py-3.5 pr-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-7 h-7 rounded-lg bg-brandRed-50 flex items-center justify-center">
+                                            <i class="fa-solid fa-users text-brandRed-600 text-xs"></i>
+                                        </div>
+                                        <span class="font-semibold text-navy-900 text-xs">Team Override L1</span>
+                                    </div>
+                                </td>
+                                <td class="py-3.5 text-gray-500 text-xs">Override on Level 1 downline volume</td>
+                                <td class="py-3.5 text-center"><span class="text-xs font-bold text-brandRed-600 bg-brandRed-50 px-2 py-0.5 rounded-full">8%</span></td>
+                                <td class="py-3.5 text-right text-xs font-medium text-gray-700">9,875 PV</td>
+                                <td class="py-3.5 text-right font-bold text-navy-900">$790.00</td>
+                                <td class="py-3.5 text-center"><span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">Paid</span></td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="py-3.5 pr-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-7 h-7 rounded-lg bg-brandRed-50 flex items-center justify-center">
+                                            <i class="fa-solid fa-layer-group text-brandRed-600 text-xs"></i>
+                                        </div>
+                                        <span class="font-semibold text-navy-900 text-xs">Team Override L2</span>
+                                    </div>
+                                </td>
+                                <td class="py-3.5 text-gray-500 text-xs">Override on Level 2 downline volume</td>
+                                <td class="py-3.5 text-center"><span class="text-xs font-bold text-brandRed-600 bg-brandRed-50 px-2 py-0.5 rounded-full">5%</span></td>
+                                <td class="py-3.5 text-right text-xs font-medium text-gray-700">11,800 PV</td>
+                                <td class="py-3.5 text-right font-bold text-navy-900">$590.00</td>
+                                <td class="py-3.5 text-center"><span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">Paid</span></td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="py-3.5 pr-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-7 h-7 rounded-lg bg-amber-50 flex items-center justify-center">
+                                            <i class="fa-solid fa-crown text-amber-600 text-xs"></i>
+                                        </div>
+                                        <span class="font-semibold text-navy-900 text-xs">Leadership Bonus</span>
+                                    </div>
+                                </td>
+                                <td class="py-3.5 text-gray-500 text-xs">Diamond Director rank leadership pool</td>
+                                <td class="py-3.5 text-center"><span class="text-xs font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full">Pool</span></td>
+                                <td class="py-3.5 text-right text-xs font-medium text-gray-700">—</td>
+                                <td class="py-3.5 text-right font-bold text-navy-900">$1,000.00</td>
+                                <td class="py-3.5 text-center"><span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">Paid</span></td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="py-3.5 pr-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-7 h-7 rounded-lg bg-emerald-50 flex items-center justify-center">
+                                            <i class="fa-solid fa-star text-emerald-600 text-xs"></i>
+                                        </div>
+                                        <span class="font-semibold text-navy-900 text-xs">CAB Bonus</span>
+                                    </div>
+                                </td>
+                                <td class="py-3.5 text-gray-500 text-xs">Customer Acquisition Bonus — 3 new customers</td>
+                                <td class="py-3.5 text-center"><span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">$60/ea</span></td>
+                                <td class="py-3.5 text-right text-xs font-medium text-gray-700">3 acq.</td>
+                                <td class="py-3.5 text-right font-bold text-navy-900">$180.00</td>
+                                <td class="py-3.5 text-center"><span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">Paid</span></td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="py-3.5 pr-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-7 h-7 rounded-lg bg-emerald-50 flex items-center justify-center">
+                                            <i class="fa-solid fa-trophy text-emerald-600 text-xs"></i>
+                                        </div>
+                                        <span class="font-semibold text-navy-900 text-xs">CAB Team Bonus</span>
+                                    </div>
+                                </td>
+                                <td class="py-3.5 text-gray-500 text-xs">Team CAB pool — 12 team acquisitions</td>
+                                <td class="py-3.5 text-center"><span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">$48/ea</span></td>
+                                <td class="py-3.5 text-right text-xs font-medium text-gray-700">12 acq.</td>
+                                <td class="py-3.5 text-right font-bold text-navy-900">$576.00</td>
+                                <td class="py-3.5 text-center"><span class="text-xs font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full">Pending</span></td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="py-3.5 pr-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-7 h-7 rounded-lg bg-purple-50 flex items-center justify-center">
+                                            <i class="fa-solid fa-rocket text-purple-600 text-xs"></i>
+                                        </div>
+                                        <span class="font-semibold text-navy-900 text-xs">Fast Start Bonus</span>
+                                    </div>
+                                </td>
+                                <td class="py-3.5 text-gray-500 text-xs">New recruit fast start — 1 qualified recruit</td>
+                                <td class="py-3.5 text-center"><span class="text-xs font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded-full">Flat</span></td>
+                                <td class="py-3.5 text-right text-xs font-medium text-gray-700">1 recruit</td>
+                                <td class="py-3.5 text-right font-bold text-navy-900">$24.00</td>
+                                <td class="py-3.5 text-center"><span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">Paid</span></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="border-t-2 border-navy-100 bg-navy-50/40">
+                                <td colspan="4" class="py-3.5 px-2 font-bold text-navy-900 text-sm">Total June 2024</td>
+                                <td class="py-3.5 text-right font-bold text-navy-900 text-base">$4,820.00</td>
+                                <td class="py-3.5 text-center"><span class="text-xs font-semibold text-navy-700 bg-navy-100 px-2 py-0.5 rounded-full">Mixed</span></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- CAB Tracker + Rank Projection Row -->
+        <div class="px-6 lg:px-10 pb-5">
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-5">
+
+                <!-- CAB Tracker Table -->
+                <div class="glass rounded-2xl p-5 lg:col-span-3">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <h2 class="font-bold text-navy-900">CAB Tracker</h2>
+                            <p class="text-xs text-gray-500 mt-0.5">Customer Acquisition Bonus — team performance</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs text-gray-500">June 2024</span>
+                            <button class="text-xs text-navy-600 font-medium glass px-2.5 py-1.5 rounded-lg hover:bg-white transition-colors"><i class="fa-solid fa-filter text-xs"></i></button>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto" style="max-height: 320px; overflow-y: auto;">
+                        <table class="w-full text-sm">
+                            <thead class="sticky top-0 bg-white/90 backdrop-blur-sm">
+                                <tr class="border-b border-gray-100">
+                                    <th class="pb-2.5 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide">Rep</th>
+                                    <th class="pb-2.5 text-center text-xs font-semibold text-gray-500 uppercase tracking-wide">Acq.</th>
+                                    <th class="pb-2.5 text-center text-xs font-semibold text-gray-500 uppercase tracking-wide">Target</th>
+                                    <th class="pb-2.5 text-center text-xs font-semibold text-gray-500 uppercase tracking-wide">Progress</th>
+                                    <th class="pb-2.5 text-right text-xs font-semibold text-gray-500 uppercase tracking-wide">Bonus</th>
+                                    <th class="pb-2.5 text-center text-xs font-semibold text-gray-500 uppercase tracking-wide">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-50">
+                                <tr class="table-row">
+                                    <td class="py-2.5 pr-2">
+                                        <div class="flex items-center gap-2">
+                                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" class="w-7 h-7 rounded-full object-cover border border-navy-200" alt="">
+                                            <div>
+                                                <p class="text-xs font-semibold text-navy-900">Sarah J. (You)</p>
+                                                <p class="text-xs text-gray-400">Diamond Dir.</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-2.5 text-center text-xs font-bold text-navy-900">3</td>
+                                    <td class="py-2.5 text-center text-xs text-gray-500">5</td>
+                                    <td class="py-2.5">
+                                        <div class="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                                            <div class="bg-navy-600 h-1.5 rounded-full" style="width:60%"></div>
+                                        </div>
+                                        <p class="text-xs text-gray-400 text-center mt-0.5">60%</p>
+                                    </td>
+                                    <td class="py-2.5 text-right text-xs font-bold text-navy-900">$180</td>
+                                    <td class="py-2.5 text-center"><span class="text-xs font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full">In Progress</span></td>
+                                </tr>
+                                <tr class="table-row">
+                                    <td class="py-2.5 pr-2">
+                                        <div class="flex items-center gap-2">
+                                            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" class="w-7 h-7 rounded-full object-cover border border-amber-300" alt="">
+                                            <div>
+                                                <p class="text-xs font-semibold text-navy-900">Dwight S.</p>
+                                                <p class="text-xs text-gray-400">Gold Director</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-2.5 text-center text-xs font-bold text-navy-900">5</td>
+                                    <td class="py-2.5 text-center text-xs text-gray-500">5</td>
+                                    <td class="py-2.5">
+                                        <div class="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                                            <div class="bg-emerald-500 h-1.5 rounded-full" style="width:100%"></div>
+                                        </div>
+                                        <p class="text-xs text-gray-400 text-center mt-0.5">100%</p>
+                                    </td>
+                                    <td class="py-2.5 text-right text-xs font-bold text-navy-900">$300</td>
+                                    <td class="py-2.5 text-center"><span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">Qualified</span></td>
+                                </tr>
+                                <tr class="table-row">
+                                    <td class="py-2.5 pr-2">
+                                        <div class="flex items-center gap-2">
+                                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" class="w-7 h-7 rounded-full object-cover border border-brandRed-300" alt="">
+                                            <div>
+                                                <p class="text-xs font-semibold text-navy-900">Jim H.</p>
+                                                <p class="text-xs text-gray-400">Ruby Director</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-2.5 text-center text-xs font-bold text-navy-900">4</td>
+                                    <td class="py-2.5 text-center text-xs text-gray-500">5</td>
+                                    <td class="py-2.5">
+                                        <div class="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                                            <div class="bg-amber-500 h-1.5 rounded-full" style="width:80%"></div>
+                                        </div>
+                                        <p class="text-xs text-gray-400 text-center mt-0.5">80%</p>
+                                    </td>
+                                    <td class="py-2.5 text-right text-xs font-bold text-navy-900">$192</td>
+                                    <td class="py-2.5 text-center"><span class="text-xs font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full">In Progress</span></td>
+                                </tr>
+                                <tr class="table-row">
+                                    <td class="py-2.5 pr-2">
+                                        <div class="flex items-center gap-2">
+                                            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" class="w-7 h-7 rounded-full object-cover border border-gray-300" alt="">
+                                            <div>
+                                                <p class="text-xs font-semibold text-navy-900">Angela M.</p>
+                                                <p class="text-xs text-gray-400">Silver Director</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-2.5 text-center text-xs font-bold text-navy-900">1</td>
+                                    <td class="py-2.5 text-center text-xs text-gray-500">5</td>
+                                    <td class="py-2.5">
+                                        <div class="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                                            <div class="bg-brandRed-500 h-1.5 rounded-full" style="width:20%"></div>
+                                        </div>
+                                        <p class="text-xs text-gray-400 text-center mt-0.5">20%</p>
+                                    </td>
+                                    <td class="py-2.5 text-right text-xs font-bold text-gray-400">$48</td>
+                                    <td class="py-2.5 text-center"><span class="text-xs font-semibold text-brandRed-700 bg-brandRed-50 px-2 py-0.5 rounded-full">At Risk</span></td>
+                                </tr>
+                                <tr class="table-row">
+                                    <td class="py-2.5 pr-2">
+                                        <div class="flex items-center gap-2">
+                                            <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" class="w-7 h-7 rounded-full object-cover border border-amber-300" alt="">
+                                            <div>
+                                                <p class="text-xs font-semibold text-navy-900">Pam B.</p>
+                                                <p class="text-xs text-gray-400">Gold Rep</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-2.5 text-center text-xs font-bold text-navy-900">5</td>
+                                    <td class="py-2.5 text-center text-xs text-gray-500">5</td>
+                                    <td class="py-2.5">
+                                        <div class="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                                            <div class="bg-emerald-500 h-1.5 rounded-full" style="width:100%"></div>
+                                        </div>
+                                        <p class="text-xs text-gray-400 text-center mt-0.5">100%</p>
+                                    </td>
+                                    <td class="py-2.5 text-right text-xs font-bold text-navy-900">$300</td>
+                                    <td class="py-2.5 text-center"><span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">Qualified</span></td>
+                                </tr>
+                                <tr class="table-row">
+                                    <td class="py-2.5 pr-2">
+                                        <div class="flex items-center gap-2">
+                                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" class="w-7 h-7 rounded-full object-cover border border-brandRed-300" alt="">
+                                            <div>
+                                                <p class="text-xs font-semibold text-navy-900">Kelly K.</p>
+                                                <p class="text-xs text-gray-400">Ruby Rep</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-2.5 text-center text-xs font-bold text-navy-900">0</td>
+                                    <td class="py-2.5 text-center text-xs text-gray-500">5</td>
+                                    <td class="py-2.5">
+                                        <div class="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                                            <div class="bg-brandRed-500 h-1.5 rounded-full" style="width:0%"></div>
+                                        </div>
+                                        <p class="text-xs text-gray-400 text-center mt-0.5">0%</p>
+                                    </td>
+                                    <td class="py-2.5 text-right text-xs font-bold text-gray-400">$0</td>
+                                    <td class="py-2.5 text-center"><span class="text-xs font-semibold text-brandRed-700 bg-brandRed-50 px-2 py-0.5 rounded-full">At Risk</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-3 pt-3 border-t border-gray-100 flex items-center justify-between">
+                        <div class="flex items-center gap-4">
+                            <div class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span><span class="text-xs text-gray-500">2 Qualified</span></div>
+                            <div class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-500 inline-block"></span><span class="text-xs text-gray-500">2 In Progress</span></div>
+                            <div class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-brandRed-500 inline-block"></span><span class="text-xs text-gray-500">2 At Risk</span></div>
+                        </div>
+                        <span class="text-xs font-bold text-navy-900">Team CAB: $1,020</span>
+                    </div>
+                </div>
+
+                <!-- Rank Projection Card -->
+                <div class="glass rounded-2xl p-5 lg:col-span-2 flex flex-col">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <h2 class="font-bold text-navy-900">Rank Projection</h2>
+                            <p class="text-xs text-gray-500 mt-0.5">Path to Double Diamond</p>
+                        </div>
+                        <div class="w-9 h-9 rounded-xl kpi-card-gradient-blue flex items-center justify-center">
+                            <i class="fa-solid fa-gem text-white text-sm"></i>
+                        </div>
+                    </div>
+
+                    <!-- Current Rank -->
+                    <div class="glass rounded-xl p-4 mb-4 flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-xl rank-badge-diamond flex items-center justify-center shadow-lg">
+                            <i class="fa-solid fa-gem text-white text-lg"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500">Current Rank</p>
+                            <p class="font-bold text-navy-900">Diamond Director</p>
+                            <p class="text-xs text-gray-400">Since March 2023</p>
+                        </div>
+                        <div class="ml-auto text-right">
+                            <p class="text-xs text-gray-500">GV</p>
+                            <p class="font-bold text-navy-900">37,420</p>
+                        </div>
+                    </div>
+
+                    <!-- Progress to Next Rank -->
+                    <div class="mb-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs font-semibold text-gray-600">Progress to Double Diamond</span>
+                            <span class="text-xs font-bold text-navy-600">75%</span>
+                        </div>
+                        <div class="w-full bg-gray-100 rounded-full h-3 overflow-hidden">
+                            <div class="bg-gradient-to-r from-navy-600 to-brandRed-500 h-3 rounded-full progress-bar-fill" id="rankProgressBar" style="width:75%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-400 mt-1.5">
+                            <span>37,420 GV</span>
+                            <span>Goal: 50,000 GV</span>
+                        </div>
+                    </div>
+
+                    <!-- Requirements -->
+                    <div class="space-y-2.5 flex-1">
+                        <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Requirements</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <div class="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center">
+                                    <i class="fa-solid fa-check text-emerald-600 text-xs"></i>
+                                </div>
+                                <span class="text-xs text-gray-600">Personal PV ≥ 500</span>
+                            </div>
+                            <span class="text-xs font-semibold text-emerald-600">500 ✓</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <div class="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center">
+                                    <i class="fa-solid fa-check text-emerald-600 text-xs"></i>
+                                </div>
+                                <span class="text-xs text-gray-600">3 Active L1 Directors</span>
+                            </div>
+                            <span class="text-xs font-semibold text-emerald-600">3/3 ✓</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <div class="w-5 h-5 rounded-full bg-amber-100 flex items-center justify-center">
+                                    <i class="fa-solid fa-clock text-amber-600 text-xs"></i>
+                                </div>
+                                <span class="text-xs text-gray-600">Team GV ≥ 50,000</span>
+                            </div>
+                            <span class="text-xs font-semibold text-amber-600">37,420 / 50k</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <div class="w-5 h-5 rounded-full bg-brandRed-100 flex items-center justify-center">
+                                    <i class="fa-solid fa-xmark text-brandRed-600 text-xs"></i>
+                                </div>
+                                <span class="text-xs text-gray-600">1 Diamond Leg</span>
+                            </div>
+                            <span class="text-xs font-semibold text-brandRed-600">0/1</span>
+                        </div>
+                    </div>
+
+                    <!-- Projected Date -->
+                    <div class="mt-4 pt-4 border-t border-gray-100">
+                        <div class="glass rounded-xl p-3 flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-navy-50 flex items-center justify-center">
+                                <i class="fa-solid fa-calendar-check text-navy-600 text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500">Projected Achievement</p>
+                                <p class="text-sm font-bold text-navy-900">September 2024</p>
+                            </div>
+                            <div class="ml-auto">
+                                <span class="text-xs font-semibold text-amber-700 bg-amber-50 px-2 py-1 rounded-full">~3 months</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payout History Table -->
+        <div class="px-6 lg:px-10 pb-10">
+            <div class="glass rounded-2xl p-5">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h2 class="font-bold text-navy-900">Payout History</h2>
+                        <p class="text-xs text-gray-500 mt-0.5">All commission payouts — last 12 months</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button class="glass px-3 py-1.5 rounded-lg text-xs font-medium text-navy-600 hover:bg-white transition-colors">
+                            <i class="fa-solid fa-filter mr-1"></i> Filter
+                        </button>
+                        <button class="glass px-3 py-1.5 rounded-lg text-xs font-medium text-navy-600 hover:bg-white transition-colors">
+                            <i class="fa-solid fa-download mr-1"></i> CSV
+                        </button>
+                    </div>
+                </div>
+                <div class="overflow-x-auto" style="max-height: 400px; overflow-y: auto;">
+                    <table class="w-full text-sm">
+                        <thead class="sticky top-0 bg-white/90 backdrop-blur-sm">
+                            <tr class="bg-navy-600 text-white rounded-xl">
+                                <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide rounded-tl-xl">Period</th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide">Payout Date</th>
+                                <th class="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide">Personal</th>
+                                <th class="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide">Team</th>
+                                <th class="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide">Bonuses</th>
+                                <th class="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide">Total</th>
+                                <th class="px-4 py-3 text-center text-xs font-semibold uppercase tracking-wide">Method</th>
+                                <th class="px-4 py-3 text-center text-xs font-semibold uppercase tracking-wide rounded-tr-xl">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-50">
+                            <tr class="table-row bg-navy-50/30">
+                                <td class="px-4 py-3.5">
+                                    <div>
+                                        <p class="font-semibold text-navy-900 text-xs">June 2024</p>
+                                        <p class="text-xs text-gray-400">Current</p>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-xs text-gray-600">Jul 1, 2024</td>
+                                <td class="px-4 py-3.5 text-right text-xs font-medium text-gray-700">$1,680</td>
+                                <td class="px-4 py-3.5 text-right text-xs font-medium text-gray-700">$1,380</td>
+                                <td class="px-4 py-3.5 text-right text-xs font-medium text-gray-700">$1,760</td>
+                                <td class="px-4 py-3.5 text-right font-bold text-navy-900">$4,820</td>
+                                <td class="px-4 py-3.5 text-center"><span class="text-xs text-gray-500 flex items-center justify-center gap-1"><i class="fa-solid fa-building-columns text-navy-400"></i> ACH</span></td>
+                                <td class="px-4 py-3.5 text-center"><span class="text-xs font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full">Pending</span></td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="px-4 py-3.5">
+                                    <div>
+                                        <p class="font-semibold text-navy-900 text-xs">May 2024</p>
+                                        <p class="text-xs text-gray-400">Last month</p>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-xs text-gray-600">Jun 1, 2024</td>
+                                <td class="px-4 py-3.5 text-right text-xs font-medium text-gray-700">$1,520</td>
+                                <td class="px-4 py-3.5 text-right text-xs font-medium text-gray-700">$1,240</td>
+                                <td class="px-4 py-3.5 text-right text-xs font-medium text-gray-700">$1,529</td>
+                                <td class="px-4 py-3.5 text-right font-bold text-navy-900">$4,289</td>
+                                <td class="px-4 py-3.5 text-center"><span class="text-xs text-gray-500 flex items-center justify-center gap-1"><i class="fa-solid fa-building-columns text-navy-400"></i> ACH</span></td>
+                                <td class="px-4 py-3.5 text-center"><span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">Paid</span></td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="px-4 py-3.5">
+                                    <div>
+                                        <p class="font-semibold text-navy-900 text-xs">April 2024</p>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-xs text-gray-600">May 1, 2024</td>
+                                <td class="px-4 py-3.5 text-right text-xs font-medium text-gray-700">$1,440</td>
+                                <td class="px-4 py-3.5 text-right text-xs font-medium text-gray-700">$1,100</td>
+                                <td class="px-4 py-3.5 text-right text-xs font-medium text-gray-700">$1,420</td>
+                                <td class="px-4 py-3.5 text-right font-bold text-navy-900">$3,960</td>
+                                <td class="px-4 py-3.5 text-center"><span class="text-xs text-gray-500 flex items-center justify-center gap-1"><i class="fa-solid fa-building-columns text-navy-400"></i> ACH</span></td>
+                                <td class="px-4 py-3.5 text-center"><span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">Paid</span></td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="px-4 py-3.5">
+                                    <div>
+                                        <p class="font-semibold text-navy-900 text-xs">March 2024</p>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-xs text-gray-600">Apr 1, 2024</td>
+                                <td class="px-4 py-3.5 text-right text-xs font-medium text-gray-700">$1,380</td>
+                                <td class="px-4 py-3.5 text-right text-xs font-medium text-gray-700">$1,020</td>
+                                <td class="px-4 py-3.5 text-right text-xs font-medium text-gray-700">$1,300</td>
+                                <td class="px-4 py-3.5 text-right font-bold text-navy-900">$3,700</td>
+                                <td class="px-4 py-3.5 text-center"><span class="text-xs text-gray-500 flex items-center justify-center gap-1"><i class="fa-solid fa-building-columns text-navy-400"></i> ACH</span></td>
+                                <td class="px-4 py-3.5 text-center"><span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">Paid</span></td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="px-4 py-3.5">
+                                    <div>
+                                        <p class="font-semibold text-navy-900 text-xs">February 2024</p>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-xs text-gray-600">Mar 1, 2024</td>
+                                <td class="px-4 py-3.5 text-right text-xs font-medium text-gray-700">$1,280</td>
+                                <td class="px-4 py-3.5 text-right text-xs font-medium text-gray-700">$960</td>
+                                <td class="px-4 py-3.5 text-right text-xs font-medium text-gray-700">$1,180</td>
+                                <td class="px-4 py-3.5 text-right font-bold text-navy-900">$3,420</td>
+                                <td class="px-4 py-3.5 text-center"><span class="text-xs text-gray-500 flex items-center justify-center gap-1"><i class="fa-solid fa-credit-card text-navy-400"></i> Card</span></td>
+                                <td class="px-4 py-3.5 text-center"><span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">Paid</span></td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="px-4 py-3.5">
+                                    <div>
+                                        <p class="font-semibold text-navy-900 text-xs">January 2024</p>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-xs text-gray-600">Feb 1, 2024</td>
+                                <td class="px-4 py-3.5 text-right text-xs font-medium text-gray-700">$1,200</td>
+                                <td class="px-4 py-3.5 text-right text-xs font-medium text-gray-700">$880</td>
+                                <td class="px-4 py-3.5 text-right text-xs font-medium text-gray-700">$1,100</td>
+                                <td class="px-4 py-3.5 text-right font-bold text-navy-900">$3,180</td>
+                                <td class="px-4 py-3.5 text-center"><span class="text-xs text-gray-500 flex items-center justify-center gap-1"><i class="fa-solid fa-building-columns text-navy-400"></i> ACH</span></td>
+                                <td class="px-4 py-3.5 text-center"><span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">Paid</span></td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="px-4 py-3.5">
+                                    <div>
+                                        <p class="font-semibold text-navy-900 text-xs">December 2023</p>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5 text-xs text-gray-600">Jan 1, 2024</td>
+                                <td class="px-4 py-3.5 text-right text-xs font-medium text-gray-700">$1,560</td>
+                                <td class="px-4 py-3.5 text-right text-xs font-medium text-gray-700">$1,180</td>
+                                <td class="px-4 py-3.5 text-right text-xs font-medium text-gray-700">$1,640</td>
+                                <td class="px-4 py-3.5 text-right font-bold text-navy-900">$4,380</td>
+                                <td class="px-4 py-3.5 text-center"><span class="text-xs text-gray-500 flex items-center justify-center gap-1"><i class="fa-solid fa-building-columns text-navy-400"></i> ACH</span></td>
+                                <td class="px-4 py-3.5 text-center"><span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">Paid</span></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="border-t-2 border-navy-100 bg-navy-50/40">
+                                <td colspan="5" class="px-4 py-3.5 font-bold text-navy-900 text-sm">YTD Total (Jan–Jun 2024)</td>
+                                <td class="px-4 py-3.5 text-right font-bold text-navy-900 text-base">$23,369</td>
+                                <td colspan="2" class="px-4 py-3.5 text-center text-xs text-gray-500">6 payouts processed</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<script>
+    // Animate progress bars on load
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            const bar = document.getElementById('rankProgressBar');
+            if (bar) bar.style.width = '75%';
+        }, 300);
+    });
+</script>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

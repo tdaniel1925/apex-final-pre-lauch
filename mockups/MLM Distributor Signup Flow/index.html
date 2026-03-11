@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MLM Distributor Signup Flow - Exported from UXMagic Copilot">
+    <title>MLM Distributor Signup Flow</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              50: '#f0f4fd',
+              100: '#e4eafb',
+              200: '#cdd9f7',
+              300: '#a8bef1',
+              400: '#7d9ce9',
+              500: '#5879df',
+              600: '#3e5cd2',
+              700: '#324aba',
+              800: '#2e3e97',
+              900: '#1B3A7D',
+            },
+            red: {
+              50: '#fef2f2',
+              100: '#fee2e2',
+              200: '#fecaca',
+              300: '#fca5a5',
+              400: '#f87171',
+              500: '#ef4444',
+              600: '#dc2626',
+              700: '#b91c1c',
+              800: '#991b1b',
+              900: '#C7181F',
+            }
+          },
+          fontFamily: {
+            heading: ['var(--font-heading-name)', 'sans-serif'],
+            body: ['var(--font-body-name)', 'sans-serif'],
+          },
+          spacing: {
+            base: 'var(--space-base)',
+          },
+          borderRadius: {
+            small: 'var(--radius-small)',
+            large: 'var(--radius-large)',
+          },
+          boxShadow: {
+            custom: 'var(--shadow-custom)',
+            'custom-hover': 'var(--shadow-custom-hover)',
+          },
+        }
+      }
+    }
+  
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+  <!-- Top Brand Header -->
+  <header class="bg-navy-900 text-white py-4 px-6 flex items-center justify-between sticky top-0 z-50 shadow-lg">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 bg-white rounded-small flex items-center justify-center">
+        <span class="text-navy-900 font-heading font-bold text-sm">A</span>
+      </div>
+      <div>
+        <span class="font-heading font-bold text-base tracking-tight">Apex Network</span>
+        <span class="ml-2 text-navy-300 text-xs font-medium hidden sm:inline">Distributor Enrollment</span>
+      </div>
+    </div>
+    <div class="flex items-center gap-2 text-navy-300 text-xs">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+      <span>Secure Enrollment</span>
+    </div>
+  </header>
+
+  <!-- Main Wizard Container -->
+  <div class="max-w-2xl mx-auto px-4 py-8 pb-16">
+
+    <!-- ===== PROGRESS BAR HEADER ===== -->
+    <section class="bg-white rounded-large shadow-custom p-5 mb-6 max-h-[200px]">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="font-heading font-bold text-navy-900 text-base">New Distributor Enrollment</h2>
+        <span class="text-xs font-medium text-slate-500 bg-slate-100 px-2.5 py-1 rounded-small">Step 1 of 6</span>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="w-full bg-slate-100 rounded-full h-2 mb-4">
+        <div class="bg-navy-900 h-2 rounded-full progress-fill" style="width: 16.66%"></div>
+      </div>
+
+      <!-- Step Indicators -->
+      <div class="flex items-center justify-between">
+        <!-- Step 1 -->
+        <div class="flex flex-col items-center gap-1 step-active">
+          <div class="step-circle w-7 h-7 rounded-full border-2 flex items-center justify-center text-xs font-bold">1</div>
+          <span class="text-xs font-medium text-navy-900 hidden sm:block">Sponsor</span>
+        </div>
+        <div class="step-connector bg-slate-200 mx-1"></div>
+        <!-- Step 2 -->
+        <div class="flex flex-col items-center gap-1 step-inactive">
+          <div class="step-circle w-7 h-7 rounded-full border-2 flex items-center justify-center text-xs font-bold">2</div>
+          <span class="text-xs font-medium text-slate-400 hidden sm:block">Personal</span>
+        </div>
+        <div class="step-connector bg-slate-200 mx-1"></div>
+        <!-- Step 3 -->
+        <div class="flex flex-col items-center gap-1 step-inactive">
+          <div class="step-circle w-7 h-7 rounded-full border-2 flex items-center justify-center text-xs font-bold">3</div>
+          <span class="text-xs font-medium text-slate-400 hidden sm:block">Tax Info</span>
+        </div>
+        <div class="step-connector bg-slate-200 mx-1"></div>
+        <!-- Step 4 -->
+        <div class="flex flex-col items-center gap-1 step-inactive">
+          <div class="step-circle w-7 h-7 rounded-full border-2 flex items-center justify-center text-xs font-bold">4</div>
+          <span class="text-xs font-medium text-slate-400 hidden sm:block">Agreement</span>
+        </div>
+        <div class="step-connector bg-slate-200 mx-1"></div>
+        <!-- Step 5 -->
+        <div class="flex flex-col items-center gap-1 step-inactive">
+          <div class="step-circle w-7 h-7 rounded-full border-2 flex items-center justify-center text-xs font-bold">5</div>
+          <span class="text-xs font-medium text-slate-400 hidden sm:block">Business</span>
+        </div>
+        <div class="step-connector bg-slate-200 mx-1"></div>
+        <!-- Step 6 -->
+        <div class="flex flex-col items-center gap-1 step-inactive">
+          <div class="step-circle w-7 h-7 rounded-full border-2 flex items-center justify-center text-xs font-bold">6</div>
+          <span class="text-xs font-medium text-slate-400 hidden sm:block">Welcome</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== STEP 1: SPONSOR LOOKUP ===== -->
+    <section class="bg-white rounded-large shadow-custom p-6 mb-6 max-h-[600px]">
+      <!-- Step Label -->
+      <div class="flex items-center gap-2 mb-1">
+        <div class="w-6 h-6 rounded-full bg-navy-900 flex items-center justify-center">
+          <span class="text-white text-xs font-bold">1</span>
+        </div>
+        <span class="text-xs font-semibold text-navy-900 uppercase tracking-wider">Sponsor Lookup</span>
+      </div>
+      <h3 class="font-heading font-bold text-navy-900 text-xl mb-1">Who referred you?</h3>
+      <p class="text-slate-500 text-sm mb-5">Enter your sponsor's ID or name to link your account to their downline.</p>
+
+      <!-- Search Input -->
+      <div class="relative mb-4">
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </div>
+        <input type="text" value="APX-10482" placeholder="Enter Sponsor ID or Name..." class="w-full pl-10 pr-24 py-3 border border-slate-200 rounded-small focus:ring-2 focus:ring-navy-500 focus:border-navy-500 outline-none text-slate-800 font-medium transition-all bg-slate-50">
+        <button class="absolute inset-y-0 right-0 px-4 bg-navy-900 text-white text-sm font-semibold rounded-r-small hover:bg-navy-800 transition-colors">
+          Lookup
+        </button>
+      </div>
+
+      <!-- Sponsor Found Card -->
+      <div class="border-2 border-navy-200 bg-navy-50 rounded-large p-4 flex items-center gap-4">
+        <div class="relative flex-shrink-0">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Sponsor" class="w-14 h-14 rounded-full border-2 border-navy-300 object-cover">
+          <div class="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white flex items-center justify-center">
+            <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+          </div>
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-2 flex-wrap">
+            <h4 class="font-heading font-bold text-navy-900 text-base">Marcus J. Williams</h4>
+            <span class="px-2 py-0.5 bg-navy-900 text-white text-xs font-semibold rounded-small">Diamond</span>
+          </div>
+          <p class="text-slate-500 text-sm mt-0.5">ID: APX-10482 &nbsp;·&nbsp; Joined Jan 2019</p>
+          <div class="flex items-center gap-3 mt-2">
+            <span class="text-xs text-slate-500 flex items-center gap-1">
+              <svg class="w-3.5 h-3.5 text-navy-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+              1,247 downline
+            </span>
+            <span class="text-xs text-slate-500 flex items-center gap-1">
+              <svg class="w-3.5 h-3.5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              Active &amp; Qualified
+            </span>
+          </div>
+        </div>
+        <button class="text-slate-400 hover:text-red-500 transition-colors flex-shrink-0" title="Remove sponsor">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+
+      <!-- Placement Info -->
+      <div class="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-small flex gap-2">
+        <svg class="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <p class="text-xs text-amber-800">You will be placed in Marcus's <strong>left leg</strong> binary tree. Contact your sponsor to change placement before completing enrollment.</p>
+      </div>
+
+      <!-- Step Navigation -->
+      <div class="flex justify-end mt-5">
+        <button class="px-6 py-2.5 bg-navy-900 text-white rounded-small font-semibold hover:bg-navy-800 transition-all shadow-custom flex items-center gap-2 text-sm">
+          Continue
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- ===== STEP 2: PERSONAL INFO FORM ===== -->
+    <section class="bg-white rounded-large shadow-custom p-6 mb-6 max-h-[900px]">
+      <div class="flex items-center gap-2 mb-1">
+        <div class="w-6 h-6 rounded-full bg-slate-200 flex items-center justify-center">
+          <span class="text-slate-500 text-xs font-bold">2</span>
+        </div>
+        <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Personal Information</span>
+      </div>
+      <h3 class="font-heading font-bold text-navy-900 text-xl mb-1">Tell us about yourself</h3>
+      <p class="text-slate-500 text-sm mb-5">This information will appear on your distributor account and 1099 tax forms.</p>
+
+      <!-- Form Grid -->
+      <div class="space-y-4">
+        <div class="grid grid-cols-2 gap-4">
+          <div class="space-y-1.5">
+            <label class="text-sm font-medium text-slate-700">First Name <span class="text-red-900">*</span></label>
+            <input type="text" placeholder="Jennifer" class="w-full px-3 py-2.5 border border-slate-200 rounded-small focus:ring-2 focus:ring-navy-500 focus:border-navy-500 outline-none text-slate-800 bg-slate-50 text-sm transition-all">
+          </div>
+          <div class="space-y-1.5">
+            <label class="text-sm font-medium text-slate-700">Last Name <span class="text-red-900">*</span></label>
+            <input type="text" placeholder="Martinez" class="w-full px-3 py-2.5 border border-slate-200 rounded-small focus:ring-2 focus:ring-navy-500 focus:border-navy-500 outline-none text-slate-800 bg-slate-50 text-sm transition-all">
+          </div>
+        </div>
+
+        <div class="space-y-1.5">
+          <label class="text-sm font-medium text-slate-700">Email Address <span class="text-red-900">*</span></label>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+            </div>
+            <input type="email" placeholder="jennifer.martinez@email.com" class="w-full pl-9 pr-3 py-2.5 border border-slate-200 rounded-small focus:ring-2 focus:ring-navy-500 focus:border-navy-500 outline-none text-slate-800 bg-slate-50 text-sm transition-all">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div class="space-y-1.5">
+            <label class="text-sm font-medium text-slate-700">Phone Number <span class="text-red-900">*</span></label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <span class="text-slate-400 text-sm">+1</span>
+              </div>
+              <input type="tel" placeholder="(555) 867-5309" class="w-full pl-9 pr-3 py-2.5 border border-slate-200 rounded-small focus:ring-2 focus:ring-navy-500 focus:border-navy-500 outline-none text-slate-800 bg-slate-50 text-sm transition-all">
+            </div>
+          </div>
+          <div class="space-y-1.5">
+            <label class="text-sm font-medium text-slate-700">Date of Birth <span class="text-red-900">*</span></label>
+            <input type="date" class="w-full px-3 py-2.5 border border-slate-200 rounded-small focus:ring-2 focus:ring-navy-500 focus:border-navy-500 outline-none text-slate-800 bg-slate-50 text-sm transition-all">
+          </div>
+        </div>
+
+        <div class="h-px bg-slate-100 my-2"></div>
+
+        <div class="space-y-1.5">
+          <label class="text-sm font-medium text-slate-700">Street Address <span class="text-red-900">*</span></label>
+          <input type="text" placeholder="1234 Maple Street, Apt 5B" class="w-full px-3 py-2.5 border border-slate-200 rounded-small focus:ring-2 focus:ring-navy-500 focus:border-navy-500 outline-none text-slate-800 bg-slate-50 text-sm transition-all">
+        </div>
+
+        <div class="grid grid-cols-3 gap-4">
+          <div class="col-span-1 space-y-1.5">
+            <label class="text-sm font-medium text-slate-700">City <span class="text-red-900">*</span></label>
+            <input type="text" placeholder="Austin" class="w-full px-3 py-2.5 border border-slate-200 rounded-small focus:ring-2 focus:ring-navy-500 focus:border-navy-500 outline-none text-slate-800 bg-slate-50 text-sm transition-all">
+          </div>
+          <div class="space-y-1.5">
+            <label class="text-sm font-medium text-slate-700">State <span class="text-red-900">*</span></label>
+            <select class="w-full px-3 py-2.5 border border-slate-200 rounded-small focus:ring-2 focus:ring-navy-500 focus:border-navy-500 outline-none text-slate-800 bg-slate-50 text-sm transition-all">
+              <option>TX</option>
+              <option>CA</option>
+              <option>FL</option>
+              <option>NY</option>
+            </select>
+          </div>
+          <div class="space-y-1.5">
+            <label class="text-sm font-medium text-slate-700">ZIP <span class="text-red-900">*</span></label>
+            <input type="text" placeholder="78701" class="w-full px-3 py-2.5 border border-slate-200 rounded-small focus:ring-2 focus:ring-navy-500 focus:border-navy-500 outline-none text-slate-800 bg-slate-50 text-sm transition-all">
+          </div>
+        </div>
+
+        <div class="space-y-1.5">
+          <label class="text-sm font-medium text-slate-700">Password <span class="text-red-900">*</span></label>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+            </div>
+            <input type="password" placeholder="Create a strong password" class="w-full pl-9 pr-10 py-2.5 border border-slate-200 rounded-small focus:ring-2 focus:ring-navy-500 focus:border-navy-500 outline-none text-slate-800 bg-slate-50 text-sm transition-all">
+            <button class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+            </button>
+          </div>
+          <!-- Password Strength -->
+          <div class="flex gap-1 mt-1">
+            <div class="h-1 flex-1 rounded-full bg-green-500"></div>
+            <div class="h-1 flex-1 rounded-full bg-green-500"></div>
+            <div class="h-1 flex-1 rounded-full bg-green-500"></div>
+            <div class="h-1 flex-1 rounded-full bg-slate-200"></div>
+          </div>
+          <p class="text-xs text-green-600 font-medium">Strong password</p>
+        </div>
+      </div>
+
+      <!-- Step Navigation -->
+      <div class="flex justify-between mt-6">
+        <button class="px-5 py-2.5 border border-slate-200 text-slate-600 rounded-small font-medium hover:bg-slate-50 transition-colors text-sm flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+          Back
+        </button>
+        <button class="px-6 py-2.5 bg-navy-900 text-white rounded-small font-semibold hover:bg-navy-800 transition-all shadow-custom flex items-center gap-2 text-sm">
+          Continue
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- ===== STEP 3: TAX INFORMATION ===== -->
+    <section class="bg-white rounded-large shadow-custom p-6 mb-6 max-h-[700px]">
+      <div class="flex items-center gap-2 mb-1">
+        <div class="w-6 h-6 rounded-full bg-slate-200 flex items-center justify-center">
+          <span class="text-slate-500 text-xs font-bold">3</span>
+        </div>
+        <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Tax Information</span>
+      </div>
+      <h3 class="font-heading font-bold text-navy-900 text-xl mb-1">W-9 / Tax Details</h3>
+      <p class="text-slate-500 text-sm mb-5">Required for IRS reporting. Your information is encrypted and stored securely.</p>
+
+      <!-- Security Badge -->
+      <div class="flex items-center gap-2 p-3 bg-green-50 border border-green-200 rounded-small mb-5">
+        <svg class="w-4 h-4 text-green-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+        <p class="text-xs text-green-800 font-medium">256-bit AES encryption · SOC 2 Type II certified · Never shared with third parties</p>
+      </div>
+
+      <div class="space-y-4">
+        <!-- Tax Entity Type -->
+        <div class="space-y-2">
+          <label class="text-sm font-medium text-slate-700">Tax Entity Type <span class="text-red-900">*</span></label>
+          <div class="grid grid-cols-2 gap-3">
+            <label class="flex items-center gap-3 p-3 border-2 border-navy-200 bg-navy-50 rounded-small cursor-pointer">
+              <input type="radio" name="entity" checked="" class="text-navy-900 focus:ring-navy-500">
+              <div>
+                <p class="text-sm font-semibold text-navy-900">Individual / SSN</p>
+                <p class="text-xs text-slate-500">Personal distributor</p>
+              </div>
+            </label>
+            <label class="flex items-center gap-3 p-3 border border-slate-200 rounded-small cursor-pointer hover:border-navy-200 hover:bg-navy-50 transition-all">
+              <input type="radio" name="entity" class="text-navy-900 focus:ring-navy-500">
+              <div>
+                <p class="text-sm font-semibold text-slate-700">Business / EIN</p>
+                <p class="text-xs text-slate-500">LLC, Corp, Partnership</p>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Legal Name -->
+        <div class="space-y-1.5">
+          <label class="text-sm font-medium text-slate-700">Legal Name (as on tax return) <span class="text-red-900">*</span></label>
+          <input type="text" value="Jennifer A. Martinez" class="w-full px-3 py-2.5 border border-slate-200 rounded-small focus:ring-2 focus:ring-navy-500 focus:border-navy-500 outline-none text-slate-800 bg-slate-50 text-sm transition-all">
+        </div>
+
+        <!-- SSN Field with Masking -->
+        <div class="space-y-1.5">
+          <label class="text-sm font-medium text-slate-700">Social Security Number <span class="text-red-900">*</span></label>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+            </div>
+            <input type="text" value="●●●  –  ●●  –  7834" class="w-full pl-9 pr-24 py-2.5 border border-slate-200 rounded-small focus:ring-2 focus:ring-navy-500 focus:border-navy-500 outline-none text-slate-800 bg-slate-50 text-sm font-mono tracking-widest transition-all">
+            <div class="absolute inset-y-0 right-0 pr-3 flex items-center gap-2">
+              <span class="text-xs text-green-600 font-semibold bg-green-100 px-2 py-0.5 rounded-small flex items-center gap-1">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                Verified
+              </span>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400">Last 4 digits shown for verification. Full SSN is encrypted.</p>
+        </div>
+
+        <!-- Confirm SSN -->
+        <div class="space-y-1.5">
+          <label class="text-sm font-medium text-slate-700">Confirm SSN <span class="text-red-900">*</span></label>
+          <input type="password" placeholder="Re-enter your SSN" class="w-full px-3 py-2.5 border border-slate-200 rounded-small focus:ring-2 focus:ring-navy-500 focus:border-navy-500 outline-none text-slate-800 bg-slate-50 text-sm font-mono transition-all">
+        </div>
+
+        <!-- W-9 Certification Checkbox -->
+        <div class="p-4 bg-slate-50 border border-slate-200 rounded-small">
+          <label class="flex items-start gap-3 cursor-pointer">
+            <input type="checkbox" checked="" class="mt-0.5 h-4 w-4 text-navy-900 border-slate-300 rounded focus:ring-navy-500 flex-shrink-0">
+            <p class="text-xs text-slate-600 leading-relaxed">Under penalties of perjury, I certify that: (1) The number shown on this form is my correct taxpayer identification number, (2) I am not subject to backup withholding, and (3) I am a U.S. citizen or other U.S. person.</p>
+          </label>
+        </div>
+      </div>
+
+      <!-- Step Navigation -->
+      <div class="flex justify-between mt-6">
+        <button class="px-5 py-2.5 border border-slate-200 text-slate-600 rounded-small font-medium hover:bg-slate-50 transition-colors text-sm flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+          Back
+        </button>
+        <button class="px-6 py-2.5 bg-navy-900 text-white rounded-small font-semibold hover:bg-navy-800 transition-all shadow-custom flex items-center gap-2 text-sm">
+          Continue
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- ===== STEP 4: DISTRIBUTOR AGREEMENT ===== -->
+    <section class="bg-white rounded-large shadow-custom p-6 mb-6 max-h-[800px]">
+      <div class="flex items-center gap-2 mb-1">
+        <div class="w-6 h-6 rounded-full bg-slate-200 flex items-center justify-center">
+          <span class="text-slate-500 text-xs font-bold">4</span>
+        </div>
+        <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Distributor Agreement</span>
+      </div>
+      <h3 class="font-heading font-bold text-navy-900 text-xl mb-1">Review &amp; Sign Agreement</h3>
+      <p class="text-slate-500 text-sm mb-5">Please read the full agreement before signing. Scroll to the bottom to enable the signature field.</p>
+
+      <!-- Agreement Document -->
+      <div class="border border-slate-200 rounded-large overflow-hidden mb-4">
+        <!-- Doc Header -->
+        <div class="bg-navy-900 text-white px-4 py-3 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+            <span class="text-sm font-semibold">Independent Distributor Agreement</span>
+          </div>
+          <span class="text-xs text-navy-300">Rev. 2024.1</span>
+        </div>
+
+        <!-- Scrollable Agreement Text -->
+        <div class="agreement-scroll p-4 bg-slate-50 text-xs text-slate-600 leading-relaxed space-y-3">
+          <p class="font-semibold text-slate-800">APEX NETWORK INDEPENDENT DISTRIBUTOR AGREEMENT</p>
+          <p>This Independent Distributor Agreement ("Agreement") is entered into between Apex Network, Inc. ("Company") and the individual or entity identified in the enrollment form ("Distributor").</p>
+          <p><strong>1. INDEPENDENT CONTRACTOR STATUS.</strong> Distributor is an independent contractor and not an employee, agent, or partner of the Company. Distributor is solely responsible for all taxes, insurance, and business expenses.</p>
+          <p><strong>2. COMPENSATION PLAN.</strong> Distributor will be compensated in accordance with the Apex Network Compensation Plan, which is incorporated herein by reference. The Company reserves the right to modify the Compensation Plan with 30 days written notice.</p>
+          <p><strong>3. PRODUCT SALES REQUIREMENT.</strong> To remain active and eligible for commissions, Distributor must maintain a minimum of 50 Personal Volume (PV) per calendar month through legitimate retail sales to end consumers.</p>
+          <p><strong>4. INCOME REPRESENTATIONS.</strong> Distributor agrees not to make income representations that are not consistent with the Company's official Income Disclosure Statement. Distributor acknowledges that most distributors earn little to no income.</p>
+          <p><strong>5. ETHICAL CONDUCT.</strong> Distributor agrees to conduct business in an ethical manner, comply with all applicable laws and regulations, and adhere to the Company's Policies and Procedures.</p>
+          <p><strong>6. TERM AND TERMINATION.</strong> This Agreement is effective upon acceptance and continues until terminated by either party with 30 days written notice. The Company may terminate immediately for cause.</p>
+          <p><strong>7. DISPUTE RESOLUTION.</strong> Any disputes arising under this Agreement shall be resolved through binding arbitration in accordance with the rules of the American Arbitration Association.</p>
+          <p><strong>8. GOVERNING LAW.</strong> This Agreement shall be governed by the laws of the State of Delaware without regard to conflict of law principles.</p>
+          <p class="text-slate-400 italic">Scroll down to continue reading...</p>
+          <p><strong>9. ENTIRE AGREEMENT.</strong> This Agreement, together with the Policies and Procedures and Compensation Plan, constitutes the entire agreement between the parties and supersedes all prior agreements.</p>
+          <p><strong>10. ACKNOWLEDGMENT.</strong> By signing below, Distributor acknowledges having read, understood, and agreed to all terms and conditions of this Agreement.</p>
+        </div>
+
+        <!-- Read Progress Indicator -->
+        <div class="px-4 py-2 bg-white border-t border-slate-200 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <div class="w-24 bg-slate-200 rounded-full h-1.5">
+              <div class="bg-navy-900 h-1.5 rounded-full" style="width: 75%"></div>
+            </div>
+            <span class="text-xs text-slate-500">75% read</span>
+          </div>
+          <span class="text-xs text-slate-400">Scroll to bottom to sign</span>
+        </div>
+      </div>
+
+      <!-- Checkboxes -->
+      <div class="space-y-3 mb-5">
+        <label class="flex items-start gap-3 cursor-pointer">
+          <input type="checkbox" checked="" class="mt-0.5 h-4 w-4 text-navy-900 border-slate-300 rounded focus:ring-navy-500 flex-shrink-0">
+          <p class="text-sm text-slate-700">I have read and agree to the <span class="text-navy-900 font-semibold underline cursor-pointer">Independent Distributor Agreement</span></p>
+        </label>
+        <label class="flex items-start gap-3 cursor-pointer">
+          <input type="checkbox" checked="" class="mt-0.5 h-4 w-4 text-navy-900 border-slate-300 rounded focus:ring-navy-500 flex-shrink-0">
+          <p class="text-sm text-slate-700">I have read and agree to the <span class="text-navy-900 font-semibold underline cursor-pointer">Policies &amp; Procedures</span> and <span class="text-navy-900 font-semibold underline cursor-pointer">Compensation Plan</span></p>
+        </label>
+        <label class="flex items-start gap-3 cursor-pointer">
+          <input type="checkbox" class="mt-0.5 h-4 w-4 text-navy-900 border-slate-300 rounded focus:ring-navy-500 flex-shrink-0">
+          <p class="text-sm text-slate-700">I acknowledge the <span class="text-navy-900 font-semibold underline cursor-pointer">Income Disclosure Statement</span> and understand that results are not typical</p>
+        </label>
+      </div>
+
+      <!-- Signature Pad -->
+      <div class="space-y-2">
+        <label class="text-sm font-medium text-slate-700">Electronic Signature <span class="text-red-900">*</span></label>
+        <div class="signature-pad signed p-4 flex flex-col items-center justify-center gap-2">
+          <p class="font-heading text-2xl text-navy-900" style="font-style: italic; font-family: 'Georgia', serif;">Jennifer Martinez</p>
+          <div class="w-48 h-px bg-navy-300"></div>
+          <p class="text-xs text-slate-400">Signed electronically · Nov 14, 2024 · 10:42 AM CST</p>
+        </div>
+        <p class="text-xs text-slate-400">By typing your name above, you agree this constitutes a legally binding electronic signature.</p>
+      </div>
+
+      <!-- Step Navigation -->
+      <div class="flex justify-between mt-6">
+        <button class="px-5 py-2.5 border border-slate-200 text-slate-600 rounded-small font-medium hover:bg-slate-50 transition-colors text-sm flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+          Back
+        </button>
+        <button class="px-6 py-2.5 bg-navy-900 text-white rounded-small font-semibold hover:bg-navy-800 transition-all shadow-custom flex items-center gap-2 text-sm">
+          Continue
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- ===== STEP 5: BUSINESS CENTER SELECTION ===== -->
+    <section class="bg-white rounded-large shadow-custom p-6 mb-6 max-h-[900px]">
+      <div class="flex items-center gap-2 mb-1">
+        <div class="w-6 h-6 rounded-full bg-slate-200 flex items-center justify-center">
+          <span class="text-slate-500 text-xs font-bold">5</span>
+        </div>
+        <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Business Center</span>
+      </div>
+      <h3 class="font-heading font-bold text-navy-900 text-xl mb-1">Choose Your Starter Kit</h3>
+      <p class="text-slate-500 text-sm mb-5">Select the business center tier that best fits your goals. You can upgrade at any time.</p>
+
+      <!-- Tier Cards -->
+      <div class="space-y-3 mb-5">
+
+        <!-- Tier 1: Starter -->
+        <label class="block cursor-pointer">
+          <input type="radio" name="tier" class="sr-only">
+          <div class="border-2 border-slate-200 rounded-large p-4 hover:border-navy-200 hover:bg-navy-50 transition-all">
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-start gap-3">
+                <div class="w-10 h-10 bg-slate-100 rounded-small flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                </div>
+                <div>
+                  <div class="flex items-center gap-2">
+                    <h4 class="font-heading font-bold text-slate-800">Starter Kit</h4>
+                  </div>
+                  <p class="text-xs text-slate-500 mt-0.5">Perfect for testing the waters</p>
+                  <div class="flex flex-wrap gap-1.5 mt-2">
+                    <span class="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-small">50 PV product samples</span>
+                    <span class="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-small">Digital welcome kit</span>
+                    <span class="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-small">Basic training access</span>
+                  </div>
+                </div>
+              </div>
+              <div class="text-right flex-shrink-0">
+                <p class="font-heading font-bold text-slate-800 text-lg">$49</p>
+                <p class="text-xs text-slate-400">one-time</p>
+              </div>
+            </div>
+          </div>
+        </label>
+
+        <!-- Tier 2: Builder (Selected) -->
+        <label class="block cursor-pointer">
+          <input type="radio" name="tier" checked="" class="sr-only">
+          <div class="border-2 border-navy-900 bg-navy-50 rounded-large p-4 relative">
+            <!-- Popular Badge -->
+            <div class="absolute -top-3 left-4">
+              <span class="bg-red-900 text-white text-xs font-bold px-3 py-1 rounded-small">MOST POPULAR</span>
+            </div>
+            <div class="flex items-start justify-between gap-3 mt-1">
+              <div class="flex items-start gap-3">
+                <div class="w-10 h-10 bg-navy-900 rounded-small flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                </div>
+                <div>
+                  <div class="flex items-center gap-2">
+                    <h4 class="font-heading font-bold text-navy-900">Builder Kit</h4>
+                    <span class="text-xs bg-navy-900 text-white px-2 py-0.5 rounded-small font-semibold">SELECTED</span>
+                  </div>
+                  <p class="text-xs text-navy-600 mt-0.5">Best value for serious builders</p>
+                  <div class="flex flex-wrap gap-1.5 mt-2">
+                    <span class="text-xs bg-navy-100 text-navy-800 px-2 py-0.5 rounded-small">200 PV product bundle</span>
+                    <span class="text-xs bg-navy-100 text-navy-800 px-2 py-0.5 rounded-small">Full training library</span>
+                    <span class="text-xs bg-navy-100 text-navy-800 px-2 py-0.5 rounded-small">Marketing materials</span>
+                    <span class="text-xs bg-navy-100 text-navy-800 px-2 py-0.5 rounded-small">3-month website</span>
+                  </div>
+                </div>
+              </div>
+              <div class="text-right flex-shrink-0">
+                <p class="font-heading font-bold text-navy-900 text-lg">$199</p>
+                <p class="text-xs text-navy-500">one-time</p>
+                <p class="text-xs text-green-600 font-semibold mt-0.5">Save $80</p>
+              </div>
+            </div>
+          </div>
+        </label>
+
+        <!-- Tier 3: Executive -->
+        <label class="block cursor-pointer">
+          <input type="radio" name="tier" class="sr-only">
+          <div class="border-2 border-slate-200 rounded-large p-4 hover:border-navy-200 hover:bg-navy-50 transition-all">
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-start gap-3">
+                <div class="w-10 h-10 bg-amber-100 rounded-small flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                </div>
+                <div>
+                  <div class="flex items-center gap-2">
+                    <h4 class="font-heading font-bold text-slate-800">Executive Kit</h4>
+                    <span class="text-xs bg-amber-100 text-amber-700 px-2 py-0.5 rounded-small font-semibold">PREMIUM</span>
+                  </div>
+                  <p class="text-xs text-slate-500 mt-0.5">For committed leaders ready to scale</p>
+                  <div class="flex flex-wrap gap-1.5 mt-2">
+                    <span class="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-small">500 PV premium bundle</span>
+                    <span class="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-small">1-on-1 onboarding call</span>
+                    <span class="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-small">12-month website</span>
+                    <span class="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-small">Fast-start bonus eligible</span>
+                  </div>
+                </div>
+              </div>
+              <div class="text-right flex-shrink-0">
+                <p class="font-heading font-bold text-slate-800 text-lg">$499</p>
+                <p class="text-xs text-slate-400">one-time</p>
+                <p class="text-xs text-green-600 font-semibold mt-0.5">Save $250</p>
+              </div>
+            </div>
+          </div>
+        </label>
+      </div>
+
+      <!-- Order Summary -->
+      <div class="bg-slate-50 border border-slate-200 rounded-large p-4 mb-5">
+        <h4 class="font-heading font-semibold text-slate-800 text-sm mb-3">Order Summary</h4>
+        <div class="space-y-2 text-sm">
+          <div class="flex justify-between text-slate-600">
+            <span>Builder Kit (200 PV)</span>
+            <span>$199.00</span>
+          </div>
+          <div class="flex justify-between text-slate-600">
+            <span>Enrollment Fee</span>
+            <span>$0.00</span>
+          </div>
+          <div class="flex justify-between text-green-600 font-medium">
+            <span>Promotional Discount</span>
+            <span>-$80.00</span>
+          </div>
+          <div class="h-px bg-slate-200 my-1"></div>
+          <div class="flex justify-between font-bold text-navy-900 text-base">
+            <span>Total Due Today</span>
+            <span>$199.00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment Method -->
+      <div class="space-y-2 mb-5">
+        <label class="text-sm font-medium text-slate-700">Payment Method</label>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+          </div>
+          <input type="text" placeholder="Card number" class="w-full pl-9 pr-3 py-2.5 border border-slate-200 rounded-small focus:ring-2 focus:ring-navy-500 focus:border-navy-500 outline-none text-slate-800 bg-slate-50 text-sm transition-all">
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <input type="text" placeholder="MM / YY" class="px-3 py-2.5 border border-slate-200 rounded-small focus:ring-2 focus:ring-navy-500 focus:border-navy-500 outline-none text-slate-800 bg-slate-50 text-sm transition-all">
+          <input type="text" placeholder="CVV" class="px-3 py-2.5 border border-slate-200 rounded-small focus:ring-2 focus:ring-navy-500 focus:border-navy-500 outline-none text-slate-800 bg-slate-50 text-sm transition-all">
+        </div>
+      </div>
+
+      <!-- Step Navigation -->
+      <div class="flex justify-between mt-4">
+        <button class="px-5 py-2.5 border border-slate-200 text-slate-600 rounded-small font-medium hover:bg-slate-50 transition-colors text-sm flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+          Back
+        </button>
+        <button class="px-6 py-2.5 bg-red-900 text-white rounded-small font-semibold hover:bg-red-800 transition-all shadow-lg flex items-center gap-2 text-sm">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+          Complete Enrollment · $199
+        </button>
+      </div>
+    </section>
+
+    <!-- ===== STEP 6: WELCOME SCREEN ===== -->
+    <section class="rounded-large shadow-custom overflow-hidden mb-6 max-h-[900px]">
+      <!-- Hero Banner -->
+      <div class="bg-navy-900 text-white p-8 text-center relative overflow-hidden">
+        <!-- Decorative circles -->
+        <div class="absolute top-0 right-0 w-40 h-40 bg-navy-800 rounded-full -mr-16 -mt-16 opacity-60"></div>
+        <div class="absolute bottom-0 left-0 w-32 h-32 bg-navy-700 rounded-full -ml-12 -mb-12 opacity-40"></div>
+        <div class="absolute top-1/2 left-1/4 w-20 h-20 bg-red-900 rounded-full opacity-20 blur-xl"></div>
+
+        <!-- Confetti dots -->
+        <div class="absolute top-4 left-1/4 confetti-dot bg-yellow-400" style="animation-delay: 0.1s;"></div>
+        <div class="absolute top-6 left-1/3 confetti-dot bg-red-400" style="animation-delay: 0.3s; width: 6px; height: 6px;"></div>
+        <div class="absolute top-3 right-1/3 confetti-dot bg-green-400" style="animation-delay: 0.5s;"></div>
+        <div class="absolute top-8 right-1/4 confetti-dot bg-blue-400" style="animation-delay: 0.2s; width: 5px; height: 5px;"></div>
+
+        <div class="relative z-10">
+          <!-- Success Icon -->
+          <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-xl">
+            <svg class="w-10 h-10 text-navy-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+          </div>
+
+          <h3 class="font-heading font-bold text-3xl mb-2">Welcome to Apex Network!</h3>
+          <p class="text-navy-200 text-base mb-4">You're officially an Independent Distributor</p>
+
+          <!-- Rep Number Badge -->
+          <div class="inline-flex items-center gap-3 bg-white/10 border border-white/20 rounded-large px-5 py-3 backdrop-blur-sm">
+            <div class="text-left">
+              <p class="text-navy-300 text-xs font-medium uppercase tracking-wider">Your Rep Number</p>
+              <p class="font-heading font-bold text-2xl text-white tracking-widest font-mono">APX-58291</p>
+            </div>
+            <button class="w-8 h-8 bg-white/10 hover:bg-white/20 rounded-small flex items-center justify-center transition-colors" title="Copy Rep Number">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+            </button>
+          </div>
+
+          <p class="text-navy-300 text-xs mt-3">Enrolled under <strong class="text-white">Marcus J. Williams</strong> · Builder Kit · Nov 14, 2024</p>
+        </div>
+      </div>
+
+      <!-- Welcome Body -->
+      <div class="bg-white p-6">
+        <!-- Quick Stats Row -->
+        <div class="grid grid-cols-3 gap-3 mb-6">
+          <div class="text-center p-3 bg-navy-50 rounded-large border border-navy-100">
+            <p class="font-heading font-bold text-navy-900 text-xl">200</p>
+            <p class="text-xs text-slate-500 mt-0.5">Starting PV</p>
+          </div>
+          <div class="text-center p-3 bg-green-50 rounded-large border border-green-100">
+            <p class="font-heading font-bold text-green-700 text-xl">$0</p>
+            <p class="text-xs text-slate-500 mt-0.5">Pending Bonus</p>
+          </div>
+          <div class="text-center p-3 bg-amber-50 rounded-large border border-amber-100">
+            <p class="font-heading font-bold text-amber-700 text-xl">Dist.</p>
+            <p class="text-xs text-slate-500 mt-0.5">Current Rank</p>
+          </div>
+        </div>
+
+        <!-- Getting Started Checklist -->
+        <div class="mb-6">
+          <h4 class="font-heading font-semibold text-navy-900 text-base mb-3 flex items-center gap-2">
+            <svg class="w-5 h-5 text-navy-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+            Your Getting Started Checklist
+          </h4>
+          <div class="space-y-2">
+            <!-- Done items -->
+            <div class="flex items-center gap-3 p-3 bg-green-50 border border-green-100 rounded-small">
+              <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+              </div>
+              <span class="text-sm text-slate-400 checklist-item-done">Complete enrollment &amp; sign agreement</span>
+            </div>
+            <div class="flex items-center gap-3 p-3 bg-green-50 border border-green-100 rounded-small">
+              <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+              </div>
+              <span class="text-sm text-slate-400 checklist-item-done">Submit W-9 tax information</span>
+            </div>
+            <div class="flex items-center gap-3 p-3 bg-green-50 border border-green-100 rounded-small">
+              <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+              </div>
+              <span class="text-sm text-slate-400 checklist-item-done">Purchase starter kit (Builder – 200 PV)</span>
+            </div>
+
+            <!-- Pending items -->
+            <div class="flex items-center gap-3 p-3 bg-white border border-slate-200 rounded-small">
+              <div class="w-5 h-5 border-2 border-slate-300 rounded-full flex items-center justify-center flex-shrink-0">
+                <span class="text-xs text-slate-400 font-bold">4</span>
+              </div>
+              <div class="flex-1">
+                <span class="text-sm text-slate-700 font-medium">Set up your personal replicated website</span>
+                <p class="text-xs text-slate-400">apex.network/jennifer-martinez</p>
+              </div>
+              <span class="text-xs text-navy-900 font-semibold bg-navy-50 px-2 py-0.5 rounded-small border border-navy-200">Do Now</span>
+            </div>
+            <div class="flex items-center gap-3 p-3 bg-white border border-slate-200 rounded-small">
+              <div class="w-5 h-5 border-2 border-slate-300 rounded-full flex items-center justify-center flex-shrink-0">
+                <span class="text-xs text-slate-400 font-bold">5</span>
+              </div>
+              <div class="flex-1">
+                <span class="text-sm text-slate-700 font-medium">Complete Fast Start training (3 modules)</span>
+                <p class="text-xs text-slate-400">Earn your Fast Start Bonus eligibility</p>
+              </div>
+              <span class="text-xs text-slate-500 bg-slate-100 px-2 py-0.5 rounded-small">Pending</span>
+            </div>
+            <div class="flex items-center gap-3 p-3 bg-white border border-slate-200 rounded-small">
+              <div class="w-5 h-5 border-2 border-slate-300 rounded-full flex items-center justify-center flex-shrink-0">
+                <span class="text-xs text-slate-400 font-bold">6</span>
+              </div>
+              <div class="flex-1">
+                <span class="text-sm text-slate-700 font-medium">Schedule onboarding call with your sponsor</span>
+                <p class="text-xs text-slate-400">Marcus is ready to help you get started</p>
+              </div>
+              <span class="text-xs text-slate-500 bg-slate-100 px-2 py-0.5 rounded-small">Pending</span>
+            </div>
+            <div class="flex items-center gap-3 p-3 bg-white border border-slate-200 rounded-small">
+              <div class="w-5 h-5 border-2 border-slate-300 rounded-full flex items-center justify-center flex-shrink-0">
+                <span class="text-xs text-slate-400 font-bold">7</span>
+              </div>
+              <div class="flex-1">
+                <span class="text-sm text-slate-700 font-medium">Make your first 3 retail sales</span>
+                <p class="text-xs text-slate-400">Qualify for your first commission check</p>
+              </div>
+              <span class="text-xs text-slate-500 bg-slate-100 px-2 py-0.5 rounded-small">Pending</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Email Confirmation Notice -->
+        <div class="p-4 bg-blue-50 border border-blue-200 rounded-large flex gap-3 mb-6">
+          <svg class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+          <div>
+            <p class="text-sm font-semibold text-blue-900">Confirmation email sent!</p>
+            <p class="text-xs text-blue-700 mt-0.5">We've sent your enrollment confirmation, rep number, and login credentials to <strong>jennifer.martinez@email.com</strong></p>
+          </div>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row gap-3">
+          <button class="flex-1 px-6 py-3 bg-navy-900 text-white rounded-small font-semibold hover:bg-navy-800 transition-all shadow-custom flex items-center justify-center gap-2 text-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+            Go to My Back Office
+          </button>
+          <button class="flex-1 px-6 py-3 border-2 border-navy-900 text-navy-900 rounded-small font-semibold hover:bg-navy-50 transition-all flex items-center justify-center gap-2 text-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+            Start Fast Start Training
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Note -->
+    <div class="text-center text-xs text-slate-400 pb-4">
+      <p>© 2024 Apex Network, Inc. · <span class="underline cursor-pointer">Privacy Policy</span> · <span class="underline cursor-pointer">Terms of Service</span> · <span class="underline cursor-pointer">Income Disclosure</span></p>
+      <p class="mt-1">Questions? Contact distributor support at <span class="text-navy-900 font-medium">support@apexnetwork.com</span></p>
+    </div>
+
+  </div>
+
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

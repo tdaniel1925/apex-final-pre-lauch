@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Product Catalog & Order Management - Exported from UXMagic Copilot">
+    <title>Product Catalog & Order Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            50: '#E8EAF2',
+                            100: '#C5CCDF',
+                            200: '#9EAACC',
+                            300: '#7689B9',
+                            400: '#4F67A6',
+                            500: '#274693',
+                            600: '#1B3A7D',
+                            700: '#152D61',
+                            800: '#0F2045',
+                            900: '#091329',
+                        },
+                        brandRed: {
+                            50: '#FBE8E9',
+                            100: '#F5C5C7',
+                            200: '#EE9EA1',
+                            300: '#E7767B',
+                            400: '#E04F55',
+                            500: '#D9272F',
+                            600: '#C7181F',
+                            700: '#9B1318',
+                            800: '#6F0D11',
+                            900: '#42080A',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+<div class="flex" style="height: auto; min-height: 100vh;">
+    <!-- Sidebar -->
+    <aside class="hidden md:flex flex-col w-64 glass-dark text-white z-20" style="min-height: 100vh;">
+        <div class="p-6 flex items-center gap-3 border-b border-white/10">
+            <div class="w-8 h-8 rounded-lg bg-brandRed-600 flex items-center justify-center shadow-lg shadow-brandRed-600/30">
+                <i class="fa-solid fa-chart-line text-white text-sm"></i>
+            </div>
+            <span class="text-xl font-bold tracking-tight">ASCEND</span>
+        </div>
+        <nav class="flex-1 overflow-y-auto py-6 px-3 space-y-1">
+            <a href="/api/copilot/prototype/741058d7-0ce7-483c-af02-5140ae77c84a/product-catalog-order-management" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-grid-2 w-5 text-center"></i>
+                <span class="font-medium">Dashboard</span>
+            </a>
+            <a href="/api/copilot/prototype/741058d7-0ce7-483c-af02-5140ae77c84a/product-catalog-order-management" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-users w-5 text-center"></i>
+                <span class="font-medium">Customers</span>
+            </a>
+            <a href="/api/copilot/prototype/741058d7-0ce7-483c-af02-5140ae77c84a/product-catalog-order-management" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-wallet w-5 text-center"></i>
+                <span class="font-medium">Commissions</span>
+            </a>
+            <a href="/api/copilot/prototype/741058d7-0ce7-483c-af02-5140ae77c84a/product-catalog-order-management" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-sitemap w-5 text-center"></i>
+                <span class="font-medium">Genealogy</span>
+            </a>
+            <a href="/api/copilot/prototype/741058d7-0ce7-483c-af02-5140ae77c84a/product-catalog-order-management" class="flex items-center gap-3 px-4 py-3 bg-white/10 text-white rounded-xl transition-all shadow-sm border border-white/5">
+                <i class="fa-solid fa-store w-5 text-center"></i>
+                <span class="font-medium">Shop</span>
+            </a>
+            <a href="/api/copilot/prototype/741058d7-0ce7-483c-af02-5140ae77c84a/product-catalog-order-management" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-graduation-cap w-5 text-center"></i>
+                <span class="font-medium">Training</span>
+            </a>
+        </nav>
+        <div class="p-4 border-t border-white/10">
+            <div class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/5">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Profile" class="w-10 h-10 rounded-full border-2 border-brandRed-500">
+                <div class="flex-1 min-w-0">
+                    <p class="text-sm font-semibold text-white truncate">Sarah Jenkins</p>
+                    <p class="text-xs text-gray-400 truncate">Diamond Director</p>
+                </div>
+                <button class="text-gray-400 hover:text-white"><i class="fa-solid fa-gear"></i></button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col relative" style="min-height: 100vh;">
+
+        <!-- Mobile Header -->
+        <div class="md:hidden glass sticky top-0 z-30 px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-navy-600 flex items-center justify-center">
+                    <i class="fa-solid fa-chart-line text-white text-xs"></i>
+                </div>
+                <span class="text-lg font-bold text-navy-800">ASCEND</span>
+            </div>
+            <button class="text-navy-600 p-2"><i class="fa-solid fa-bars text-xl"></i></button>
+        </div>
+
+        <!-- Page Header -->
+        <div class="px-6 lg:px-8 pt-8 pb-4">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h1 class="text-2xl font-bold text-navy-900">Product Catalog &amp; Orders</h1>
+                    <p class="text-gray-500 text-sm mt-1">Browse products, build orders, and track commission — <span class="font-semibold text-navy-600">June 2024</span></p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="glass px-3 py-2 rounded-lg flex items-center gap-2">
+                        <i class="fa-solid fa-magnifying-glass text-navy-400 text-sm"></i>
+                        <input type="text" placeholder="Search products..." class="bg-transparent text-sm text-navy-700 placeholder-gray-400 focus:outline-none w-36">
+                    </div>
+                    <div class="glass px-3 py-2 rounded-lg flex items-center gap-2">
+                        <i class="fa-solid fa-filter text-navy-400 text-sm"></i>
+                        <select class="bg-transparent text-sm text-navy-700 focus:outline-none">
+                            <option>All Products</option>
+                            <option>Health</option>
+                            <option>Security</option>
+                            <option>Business</option>
+                        </select>
+                    </div>
+                    <button class="glass px-4 py-2 rounded-lg text-sm font-medium text-navy-600 hover:bg-white transition-colors">
+                        <i class="fa-solid fa-download mr-2"></i> Export
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Two-Column Layout: Catalog + Cart -->
+        <div class="px-6 lg:px-8 pb-6 flex flex-col xl:flex-row gap-6">
+
+            <!-- LEFT: Product Catalog Grid -->
+            <div class="flex-1 min-w-0">
+
+                <!-- Price Type Toggle Banner -->
+                <div class="glass rounded-2xl p-4 mb-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div>
+                        <p class="text-sm font-semibold text-navy-800">Price Display Mode</p>
+                        <p class="text-xs text-gray-500 mt-0.5">Toggle to view member or retail pricing across all products</p>
+                    </div>
+                    <div class="flex items-center gap-1 bg-gray-100 rounded-xl p-1">
+                        <button id="globalRetailBtn" onclick="setGlobalPriceType('retail')" class="price-toggle-btn active-retail px-5 py-2 rounded-lg text-sm font-semibold transition-all">
+                            <i class="fa-solid fa-tag mr-1.5"></i> Retail
+                        </button>
+                        <button id="globalMemberBtn" onclick="setGlobalPriceType('member')" class="price-toggle-btn px-5 py-2 rounded-lg text-sm font-semibold text-gray-500 transition-all">
+                            <i class="fa-solid fa-id-card mr-1.5"></i> Member
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product Cards Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="productGrid">
+
+                    <!-- Card 1: PulseGuard -->
+                    <div class="glass-card rounded-2xl overflow-hidden cursor-pointer" id="card-pulseguard" onclick="addToCart('pulseguard')">
+                        <div class="product-img-wrap h-40 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="PulseGuard" class="w-full h-full object-cover opacity-80">
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent"></div>
+                            <div class="absolute top-3 left-3">
+                                <span class="text-xs font-bold bg-navy-600 text-white px-2.5 py-1 rounded-full">Health</span>
+                            </div>
+                            <div class="absolute top-3 right-3">
+                                <span class="bv-pill text-xs font-bold px-2.5 py-1 rounded-full">80 BV</span>
+                            </div>
+                            <div class="absolute bottom-3 left-3">
+                                <p class="text-white font-bold text-base leading-tight">PulseGuard</p>
+                                <p class="text-white/70 text-xs">SKU: PG-001</p>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <p class="text-xs text-gray-500 mb-3 leading-relaxed">Advanced cardiovascular health formula with CoQ10, Omega-3, and antioxidant blend for daily heart support.</p>
+                            <div class="flex items-center justify-between mb-3">
+                                <div>
+                                    <p class="text-xs text-gray-400 mb-0.5" id="pulseguard-label">Retail Price</p>
+                                    <p class="text-xl font-bold text-navy-800" id="pulseguard-price">$89.99</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-xs text-gray-400 mb-0.5">Member Price</p>
+                                    <p class="text-sm font-semibold text-brandRed-600">$67.49</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span>
+                                    <span class="text-xs text-gray-500">In Stock</span>
+                                </div>
+                                <button class="add-to-cart-btn bg-navy-600 hover:bg-navy-700 text-white text-xs font-semibold px-4 py-2 rounded-xl flex items-center gap-1.5 transition-colors" onclick="event.stopPropagation(); addToCart('pulseguard')">
+                                    <i class="fa-solid fa-cart-plus text-xs"></i> Add to Order
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: PulseFlow -->
+                    <div class="glass-card rounded-2xl overflow-hidden cursor-pointer" id="card-pulseflow" onclick="addToCart('pulseflow')">
+                        <div class="product-img-wrap h-40 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="PulseFlow" class="w-full h-full object-cover opacity-80">
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent"></div>
+                            <div class="absolute top-3 left-3">
+                                <span class="text-xs font-bold bg-emerald-600 text-white px-2.5 py-1 rounded-full">Wellness</span>
+                            </div>
+                            <div class="absolute top-3 right-3">
+                                <span class="bv-pill text-xs font-bold px-2.5 py-1 rounded-full">65 BV</span>
+                            </div>
+                            <div class="absolute bottom-3 left-3">
+                                <p class="text-white font-bold text-base leading-tight">PulseFlow</p>
+                                <p class="text-white/70 text-xs">SKU: PF-002</p>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <p class="text-xs text-gray-500 mb-3 leading-relaxed">Circulation-enhancing supplement with Nitric Oxide boosters, L-Arginine, and Vitamin B complex.</p>
+                            <div class="flex items-center justify-between mb-3">
+                                <div>
+                                    <p class="text-xs text-gray-400 mb-0.5" id="pulseflow-label">Retail Price</p>
+                                    <p class="text-xl font-bold text-navy-800" id="pulseflow-price">$74.99</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-xs text-gray-400 mb-0.5">Member Price</p>
+                                    <p class="text-sm font-semibold text-brandRed-600">$56.24</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span>
+                                    <span class="text-xs text-gray-500">In Stock</span>
+                                </div>
+                                <button class="add-to-cart-btn bg-navy-600 hover:bg-navy-700 text-white text-xs font-semibold px-4 py-2 rounded-xl flex items-center gap-1.5 transition-colors" onclick="event.stopPropagation(); addToCart('pulseflow')">
+                                    <i class="fa-solid fa-cart-plus text-xs"></i> Add to Order
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: PulseDrive -->
+                    <div class="glass-card rounded-2xl overflow-hidden cursor-pointer" id="card-pulsedrive" onclick="addToCart('pulsedrive')">
+                        <div class="product-img-wrap h-40 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="PulseDrive" class="w-full h-full object-cover opacity-80">
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent"></div>
+                            <div class="absolute top-3 left-3">
+                                <span class="text-xs font-bold bg-amber-600 text-white px-2.5 py-1 rounded-full">Energy</span>
+                            </div>
+                            <div class="absolute top-3 right-3">
+                                <span class="bv-pill text-xs font-bold px-2.5 py-1 rounded-full">70 BV</span>
+                            </div>
+                            <div class="absolute bottom-3 left-3">
+                                <p class="text-white font-bold text-base leading-tight">PulseDrive</p>
+                                <p class="text-white/70 text-xs">SKU: PD-003</p>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <p class="text-xs text-gray-500 mb-3 leading-relaxed">High-performance energy and endurance formula with adaptogens, B12, and natural caffeine extract.</p>
+                            <div class="flex items-center justify-between mb-3">
+                                <div>
+                                    <p class="text-xs text-gray-400 mb-0.5" id="pulsedrive-label">Retail Price</p>
+                                    <p class="text-xl font-bold text-navy-800" id="pulsedrive-price">$79.99</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-xs text-gray-400 mb-0.5">Member Price</p>
+                                    <p class="text-sm font-semibold text-brandRed-600">$59.99</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span>
+                                    <span class="text-xs text-gray-500">In Stock</span>
+                                </div>
+                                <button class="add-to-cart-btn bg-navy-600 hover:bg-navy-700 text-white text-xs font-semibold px-4 py-2 rounded-xl flex items-center gap-1.5 transition-colors" onclick="event.stopPropagation(); addToCart('pulsedrive')">
+                                    <i class="fa-solid fa-cart-plus text-xs"></i> Add to Order
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: PulseCommand -->
+                    <div class="glass-card rounded-2xl overflow-hidden cursor-pointer" id="card-pulsecommand" onclick="addToCart('pulsecommand')">
+                        <div class="product-img-wrap h-40 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="PulseCommand" class="w-full h-full object-cover opacity-80">
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent"></div>
+                            <div class="absolute top-3 left-3">
+                                <span class="text-xs font-bold bg-purple-600 text-white px-2.5 py-1 rounded-full">Security</span>
+                            </div>
+                            <div class="absolute top-3 right-3">
+                                <span class="bv-pill text-xs font-bold px-2.5 py-1 rounded-full">120 BV</span>
+                            </div>
+                            <div class="absolute bottom-3 left-3">
+                                <p class="text-white font-bold text-base leading-tight">PulseCommand</p>
+                                <p class="text-white/70 text-xs">SKU: PC-004</p>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <p class="text-xs text-gray-500 mb-3 leading-relaxed">Smart home command center with AI-powered monitoring, voice control, and 24/7 emergency response.</p>
+                            <div class="flex items-center justify-between mb-3">
+                                <div>
+                                    <p class="text-xs text-gray-400 mb-0.5" id="pulsecommand-label">Retail Price</p>
+                                    <p class="text-xl font-bold text-navy-800" id="pulsecommand-price">$149.99</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-xs text-gray-400 mb-0.5">Member Price</p>
+                                    <p class="text-sm font-semibold text-brandRed-600">$112.49</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span>
+                                    <span class="text-xs text-gray-500">In Stock</span>
+                                </div>
+                                <button class="add-to-cart-btn bg-navy-600 hover:bg-navy-700 text-white text-xs font-semibold px-4 py-2 rounded-xl flex items-center gap-1.5 transition-colors" onclick="event.stopPropagation(); addToCart('pulsecommand')">
+                                    <i class="fa-solid fa-cart-plus text-xs"></i> Add to Order
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: SmartLock -->
+                    <div class="glass-card rounded-2xl overflow-hidden cursor-pointer" id="card-smartlock" onclick="addToCart('smartlock')">
+                        <div class="product-img-wrap h-40 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="SmartLock" class="w-full h-full object-cover opacity-80">
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent"></div>
+                            <div class="absolute top-3 left-3">
+                                <span class="text-xs font-bold bg-brandRed-600 text-white px-2.5 py-1 rounded-full">Security</span>
+                            </div>
+                            <div class="absolute top-3 right-3">
+                                <span class="bv-pill text-xs font-bold px-2.5 py-1 rounded-full">95 BV</span>
+                            </div>
+                            <div class="absolute bottom-3 left-3">
+                                <p class="text-white font-bold text-base leading-tight">SmartLock</p>
+                                <p class="text-white/70 text-xs">SKU: SL-005</p>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <p class="text-xs text-gray-500 mb-3 leading-relaxed">Biometric smart lock system with fingerprint, PIN, and app-based access control for home security.</p>
+                            <div class="flex items-center justify-between mb-3">
+                                <div>
+                                    <p class="text-xs text-gray-400 mb-0.5" id="smartlock-label">Retail Price</p>
+                                    <p class="text-xl font-bold text-navy-800" id="smartlock-price">$119.99</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-xs text-gray-400 mb-0.5">Member Price</p>
+                                    <p class="text-sm font-semibold text-brandRed-600">$89.99</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-amber-500 inline-block"></span>
+                                    <span class="text-xs text-gray-500">Low Stock</span>
+                                </div>
+                                <button class="add-to-cart-btn bg-navy-600 hover:bg-navy-700 text-white text-xs font-semibold px-4 py-2 rounded-xl flex items-center gap-1.5 transition-colors" onclick="event.stopPropagation(); addToCart('smartlock')">
+                                    <i class="fa-solid fa-cart-plus text-xs"></i> Add to Order
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 6: Business Center -->
+                    <div class="glass-card rounded-2xl overflow-hidden cursor-pointer" id="card-businesscenter" onclick="addToCart('businesscenter')">
+                        <div class="product-img-wrap h-40 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="Business Center" class="w-full h-full object-cover opacity-80">
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent"></div>
+                            <div class="absolute top-3 left-3">
+                                <span class="text-xs font-bold bg-navy-800 text-white px-2.5 py-1 rounded-full">Business</span>
+                            </div>
+                            <div class="absolute top-3 right-3">
+                                <span class="bv-pill text-xs font-bold px-2.5 py-1 rounded-full">200 BV</span>
+                            </div>
+                            <div class="absolute bottom-3 left-3">
+                                <p class="text-white font-bold text-base leading-tight">Business Center</p>
+                                <p class="text-white/70 text-xs">SKU: BC-006</p>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <p class="text-xs text-gray-500 mb-3 leading-relaxed">Complete business launch kit with marketing materials, training access, and distributor starter pack.</p>
+                            <div class="flex items-center justify-between mb-3">
+                                <div>
+                                    <p class="text-xs text-gray-400 mb-0.5" id="businesscenter-label">Retail Price</p>
+                                    <p class="text-xl font-bold text-navy-800" id="businesscenter-price">$249.99</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-xs text-gray-400 mb-0.5">Member Price</p>
+                                    <p class="text-sm font-semibold text-brandRed-600">$199.99</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span>
+                                    <span class="text-xs text-gray-500">In Stock</span>
+                                </div>
+                                <button class="add-to-cart-btn bg-navy-600 hover:bg-navy-700 text-white text-xs font-semibold px-4 py-2 rounded-xl flex items-center gap-1.5 transition-colors" onclick="event.stopPropagation(); addToCart('businesscenter')">
+                                    <i class="fa-solid fa-cart-plus text-xs"></i> Add to Order
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- RIGHT: Order Cart Panel -->
+            <div class="xl:w-80 flex-shrink-0">
+                <div class="glass-cart rounded-2xl sticky top-6 overflow-hidden" style="max-height: 780px;">
+                    <!-- Cart Header -->
+                    <div class="kpi-card-gradient-blue px-5 py-4">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-8 h-8 rounded-xl bg-white/20 flex items-center justify-center">
+                                    <i class="fa-solid fa-cart-shopping text-white text-sm"></i>
+                                </div>
+                                <div>
+                                    <p class="text-white font-bold text-sm">Order Cart</p>
+                                    <p class="text-white/70 text-xs" id="cartItemCount">0 items</p>
+                                </div>
+                            </div>
+                            <button onclick="clearCart()" class="text-white/60 hover:text-white text-xs transition-colors">
+                                <i class="fa-solid fa-trash-can mr-1"></i> Clear
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="p-5 overflow-y-auto" style="max-height: 620px;">
+
+                        <!-- Price Type Toggle in Cart -->
+                        <div class="mb-4">
+                            <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Order Price Type</p>
+                            <div class="flex items-center gap-1 bg-gray-100 rounded-xl p-1">
+                                <button id="cartRetailBtn" onclick="setCartPriceType('retail')" class="price-toggle-btn active-retail flex-1 py-2 rounded-lg text-xs font-semibold transition-all text-center">
+                                    <i class="fa-solid fa-tag mr-1"></i> Retail
+                                </button>
+                                <button id="cartMemberBtn" onclick="setCartPriceType('member')" class="price-toggle-btn flex-1 py-2 rounded-lg text-xs font-semibold text-gray-500 transition-all text-center">
+                                    <i class="fa-solid fa-id-card mr-1"></i> Member
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Customer Name Field -->
+                        <div class="mb-4">
+                            <label class="block text-xs font-semibold text-gray-600 mb-1.5">Customer Name</label>
+                            <input type="text" id="customerNameInput" placeholder="Enter customer name..." class="w-full glass rounded-xl px-3 py-2.5 text-sm text-navy-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-navy-300 border border-gray-200">
+                        </div>
+
+                        <!-- Cart Items -->
+                        <div class="mb-4">
+                            <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Items</p>
+                            <div id="cartItemsList" class="space-y-2">
+                                <!-- Empty state -->
+                                <div id="cartEmptyState" class="text-center py-6">
+                                    <div class="w-12 h-12 rounded-2xl bg-navy-50 flex items-center justify-center mx-auto mb-3">
+                                        <i class="fa-solid fa-cart-shopping text-navy-300 text-xl"></i>
+                                    </div>
+                                    <p class="text-sm font-medium text-gray-400">No items yet</p>
+                                    <p class="text-xs text-gray-300 mt-1">Click a product to add it</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Order Summary -->
+                        <div class="glass rounded-xl p-4 mb-4">
+                            <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Order Summary</p>
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xs text-gray-500">Subtotal</span>
+                                    <span class="text-xs font-semibold text-navy-800" id="cartSubtotal">$0.00</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xs text-gray-500">Total BV</span>
+                                    <span class="text-xs font-semibold text-navy-600" id="cartTotalBV">0 BV</span>
+                                </div>
+                                <div class="border-t border-gray-100 pt-2 mt-2">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-bold text-navy-900">Order Total</span>
+                                        <span class="text-sm font-bold text-navy-900" id="cartTotal">$0.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Live Commission Calculation -->
+                        <div class="commission-glow rounded-xl p-4 mb-4" style="background: linear-gradient(135deg, #E8EAF2 0%, #f0f4f8 100%); border: 1px solid #C5CCDF;">
+                            <div class="flex items-center gap-2 mb-3">
+                                <div class="w-6 h-6 rounded-lg kpi-card-gradient-blue flex items-center justify-center">
+                                    <i class="fa-solid fa-dollar-sign text-white text-xs"></i>
+                                </div>
+                                <p class="text-xs font-bold text-navy-800 uppercase tracking-wide">Live Commission</p>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xs text-gray-500">Retail Profit (25%)</span>
+                                    <span class="text-xs font-semibold text-emerald-700" id="retailProfit">$0.00</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xs text-gray-500">Upline Bonus (5%)</span>
+                                    <span class="text-xs font-semibold text-navy-600" id="uplineBonus">$0.00</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xs text-gray-500">Team Override (3%)</span>
+                                    <span class="text-xs font-semibold text-navy-600" id="teamOverride">$0.00</span>
+                                </div>
+                                <div class="border-t border-navy-200 pt-2 mt-1">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-bold text-navy-900">Est. Commission</span>
+                                        <span class="text-base font-bold text-brandRed-600" id="totalCommission">$0.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Place Order Button -->
+                        <button onclick="placeOrder()" class="w-full bg-brandRed-600 hover:bg-brandRed-700 text-white font-bold py-3.5 rounded-xl transition-colors shadow-lg flex items-center justify-center gap-2 text-sm">
+                            <i class="fa-solid fa-check-circle"></i> Place Order
+                        </button>
+                        <p class="text-xs text-gray-400 text-center mt-2">Orders are processed within 24 hours</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order History Table -->
+        <div class="px-6 lg:px-8 pb-10">
+            <div class="glass rounded-2xl p-5">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
+                    <div>
+                        <h2 class="font-bold text-navy-900">Order History</h2>
+                        <p class="text-xs text-gray-500 mt-0.5">Recent orders placed through your back office — June 2024</p>
+                    </div>
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <div class="flex items-center gap-1 bg-gray-100 rounded-xl p-1">
+                            <button class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-navy-600 text-white">All</button>
+                            <button class="px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-500 hover:bg-white transition-colors">Completed</button>
+                            <button class="px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-500 hover:bg-white transition-colors">Processing</button>
+                        </div>
+                        <button class="glass px-3 py-1.5 rounded-lg text-xs font-medium text-navy-600 hover:bg-white transition-colors">
+                            <i class="fa-solid fa-download mr-1"></i> Export
+                        </button>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto" style="max-height: 500px; overflow-y: auto;">
+                    <table class="w-full text-sm" id="orderHistoryTable">
+                        <thead class="sticky top-0 z-10">
+                            <tr class="bg-navy-600 text-white">
+                                <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide rounded-tl-xl">
+                                    <span class="flex items-center gap-1">Order # <i class="fa-solid fa-sort text-white/60 text-xs"></i></span>
+                                </th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide">
+                                    <span class="flex items-center gap-1">Customer <i class="fa-solid fa-sort text-white/60 text-xs"></i></span>
+                                </th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide">
+                                    <span class="flex items-center gap-1">Product <i class="fa-solid fa-sort text-white/60 text-xs"></i></span>
+                                </th>
+                                <th class="px-4 py-3 text-center text-xs font-semibold uppercase tracking-wide">
+                                    <span class="flex items-center justify-center gap-1">Price Type <i class="fa-solid fa-sort text-white/60 text-xs"></i></span>
+                                </th>
+                                <th class="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide">
+                                    <span class="flex items-center justify-end gap-1">Amount <i class="fa-solid fa-sort text-white/60 text-xs"></i></span>
+                                </th>
+                                <th class="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide">
+                                    <span class="flex items-center justify-end gap-1">Commission <i class="fa-solid fa-sort text-white/60 text-xs"></i></span>
+                                </th>
+                                <th class="px-4 py-3 text-center text-xs font-semibold uppercase tracking-wide">
+                                    <span class="flex items-center justify-center gap-1">Date <i class="fa-solid fa-sort text-white/60 text-xs"></i></span>
+                                </th>
+                                <th class="px-4 py-3 text-center text-xs font-semibold uppercase tracking-wide rounded-tr-xl">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-50" id="orderHistoryBody">
+                            <tr class="table-row">
+                                <td class="px-4 py-3.5">
+                                    <span class="text-xs font-bold text-navy-700 bg-navy-50 px-2 py-1 rounded-lg">#ORD-2024-0891</span>
+                                </td>
+                                <td class="px-4 py-3.5">
+                                    <div class="flex items-center gap-2">
+                                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" class="w-7 h-7 rounded-full object-cover" alt="">
+                                        <div>
+                                            <p class="text-xs font-semibold text-navy-900">Kelly Kapoor</p>
+                                            <p class="text-xs text-gray-400">kelly.k@email.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5">
+                                    <p class="text-xs font-semibold text-navy-900">PulseGuard</p>
+                                    <p class="text-xs text-gray-400">SKU: PG-001 · 80 BV</p>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="text-xs font-semibold text-navy-700 bg-navy-50 px-2 py-0.5 rounded-full">Retail</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-right">
+                                    <span class="text-xs font-bold text-navy-900">$89.99</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-right">
+                                    <span class="text-xs font-bold text-emerald-700">$22.50</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="text-xs text-gray-500">Jun 18, 2024</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="status-badge-completed text-xs font-semibold px-2.5 py-1 rounded-full">Completed</span>
+                                </td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="px-4 py-3.5">
+                                    <span class="text-xs font-bold text-navy-700 bg-navy-50 px-2 py-1 rounded-lg">#ORD-2024-0890</span>
+                                </td>
+                                <td class="px-4 py-3.5">
+                                    <div class="flex items-center gap-2">
+                                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" class="w-7 h-7 rounded-full object-cover" alt="">
+                                        <div>
+                                            <p class="text-xs font-semibold text-navy-900">Jim Halpert</p>
+                                            <p class="text-xs text-gray-400">jim.h@email.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5">
+                                    <p class="text-xs font-semibold text-navy-900">Business Center</p>
+                                    <p class="text-xs text-gray-400">SKU: BC-006 · 200 BV</p>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="text-xs font-semibold text-brandRed-700 bg-brandRed-50 px-2 py-0.5 rounded-full">Member</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-right">
+                                    <span class="text-xs font-bold text-navy-900">$199.99</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-right">
+                                    <span class="text-xs font-bold text-emerald-700">$49.99</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="text-xs text-gray-500">Jun 17, 2024</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="status-badge-shipped text-xs font-semibold px-2.5 py-1 rounded-full">Shipped</span>
+                                </td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="px-4 py-3.5">
+                                    <span class="text-xs font-bold text-navy-700 bg-navy-50 px-2 py-1 rounded-lg">#ORD-2024-0889</span>
+                                </td>
+                                <td class="px-4 py-3.5">
+                                    <div class="flex items-center gap-2">
+                                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" class="w-7 h-7 rounded-full object-cover" alt="">
+                                        <div>
+                                            <p class="text-xs font-semibold text-navy-900">Phyllis Vance</p>
+                                            <p class="text-xs text-gray-400">phyllis.v@email.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5">
+                                    <p class="text-xs font-semibold text-navy-900">SmartLock</p>
+                                    <p class="text-xs text-gray-400">SKU: SL-005 · 95 BV</p>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="text-xs font-semibold text-navy-700 bg-navy-50 px-2 py-0.5 rounded-full">Retail</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-right">
+                                    <span class="text-xs font-bold text-navy-900">$119.99</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-right">
+                                    <span class="text-xs font-bold text-emerald-700">$30.00</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="text-xs text-gray-500">Jun 16, 2024</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="status-badge-processing text-xs font-semibold px-2.5 py-1 rounded-full">Processing</span>
+                                </td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="px-4 py-3.5">
+                                    <span class="text-xs font-bold text-navy-700 bg-navy-50 px-2 py-1 rounded-lg">#ORD-2024-0888</span>
+                                </td>
+                                <td class="px-4 py-3.5">
+                                    <div class="flex items-center gap-2">
+                                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" class="w-7 h-7 rounded-full object-cover" alt="">
+                                        <div>
+                                            <p class="text-xs font-semibold text-navy-900">Angela Martin</p>
+                                            <p class="text-xs text-gray-400">angela.m@email.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5">
+                                    <p class="text-xs font-semibold text-navy-900">PulseFlow</p>
+                                    <p class="text-xs text-gray-400">SKU: PF-002 · 65 BV</p>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="text-xs font-semibold text-brandRed-700 bg-brandRed-50 px-2 py-0.5 rounded-full">Member</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-right">
+                                    <span class="text-xs font-bold text-navy-900">$56.24</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-right">
+                                    <span class="text-xs font-bold text-emerald-700">$14.06</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="text-xs text-gray-500">Jun 15, 2024</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="status-badge-completed text-xs font-semibold px-2.5 py-1 rounded-full">Completed</span>
+                                </td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="px-4 py-3.5">
+                                    <span class="text-xs font-bold text-navy-700 bg-navy-50 px-2 py-1 rounded-lg">#ORD-2024-0887</span>
+                                </td>
+                                <td class="px-4 py-3.5">
+                                    <div class="flex items-center gap-2">
+                                        <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" class="w-7 h-7 rounded-full object-cover" alt="">
+                                        <div>
+                                            <p class="text-xs font-semibold text-navy-900">Meredith Palmer</p>
+                                            <p class="text-xs text-gray-400">meredith.p@email.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5">
+                                    <p class="text-xs font-semibold text-navy-900">PulseCommand</p>
+                                    <p class="text-xs text-gray-400">SKU: PC-004 · 120 BV</p>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="text-xs font-semibold text-navy-700 bg-navy-50 px-2 py-0.5 rounded-full">Retail</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-right">
+                                    <span class="text-xs font-bold text-navy-900">$149.99</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-right">
+                                    <span class="text-xs font-bold text-emerald-700">$37.50</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="text-xs text-gray-500">Jun 14, 2024</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="status-badge-completed text-xs font-semibold px-2.5 py-1 rounded-full">Completed</span>
+                                </td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="px-4 py-3.5">
+                                    <span class="text-xs font-bold text-navy-700 bg-navy-50 px-2 py-1 rounded-lg">#ORD-2024-0886</span>
+                                </td>
+                                <td class="px-4 py-3.5">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-7 h-7 rounded-full bg-navy-100 flex items-center justify-center">
+                                            <span class="text-xs font-bold text-navy-700">RH</span>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs font-semibold text-navy-900">Ryan Howard</p>
+                                            <p class="text-xs text-gray-400">ryan.h@email.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5">
+                                    <p class="text-xs font-semibold text-navy-900">PulseDrive</p>
+                                    <p class="text-xs text-gray-400">SKU: PD-003 · 70 BV</p>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="text-xs font-semibold text-brandRed-700 bg-brandRed-50 px-2 py-0.5 rounded-full">Member</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-right">
+                                    <span class="text-xs font-bold text-navy-900">$59.99</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-right">
+                                    <span class="text-xs font-bold text-emerald-700">$15.00</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="text-xs text-gray-500">Jun 13, 2024</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="status-badge-cancelled text-xs font-semibold px-2.5 py-1 rounded-full">Cancelled</span>
+                                </td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="px-4 py-3.5">
+                                    <span class="text-xs font-bold text-navy-700 bg-navy-50 px-2 py-1 rounded-lg">#ORD-2024-0885</span>
+                                </td>
+                                <td class="px-4 py-3.5">
+                                    <div class="flex items-center gap-2">
+                                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" class="w-7 h-7 rounded-full object-cover" alt="">
+                                        <div>
+                                            <p class="text-xs font-semibold text-navy-900">Pam Beesly</p>
+                                            <p class="text-xs text-gray-400">pam.b@email.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3.5">
+                                    <p class="text-xs font-semibold text-navy-900">PulseGuard</p>
+                                    <p class="text-xs text-gray-400">SKU: PG-001 · 80 BV</p>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="text-xs font-semibold text-navy-700 bg-navy-50 px-2 py-0.5 rounded-full">Retail</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-right">
+                                    <span class="text-xs font-bold text-navy-900">$89.99</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-right">
+                                    <span class="text-xs font-bold text-emerald-700">$22.50</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="text-xs text-gray-500">Jun 12, 2024</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="status-badge-completed text-xs font-semibold px-2.5 py-1 rounded-full">Completed</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="border-t-2 border-navy-100 bg-navy-50/40">
+                                <td colspan="4" class="px-4 py-3.5 font-bold text-navy-900 text-sm">Total: 7 Orders</td>
+                                <td class="px-4 py-3.5 text-right">
+                                    <span class="text-xs font-bold text-navy-900">$766.19</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-right">
+                                    <span class="text-xs font-bold text-emerald-700">$191.55</span>
+                                </td>
+                                <td colspan="2" class="px-4 py-3.5 text-center">
+                                    <div class="flex items-center justify-center gap-2 flex-wrap">
+                                        <span class="text-xs font-semibold text-emerald-700">5 Completed</span>
+                                        <span class="text-gray-300">·</span>
+                                        <span class="text-xs font-semibold text-amber-700">1 Processing</span>
+                                        <span class="text-gray-300">·</span>
+                                        <span class="text-xs font-semibold text-brandRed-700">1 Cancelled</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<!-- Order Success Modal -->
+<div id="orderSuccessModal" class="modal-overlay" onclick="if(event.target===this)this.classList.remove('active')">
+    <div class="glass rounded-2xl p-6 w-full max-w-sm mx-4 shadow-2xl text-center" onclick="event.stopPropagation()">
+        <div class="w-16 h-16 rounded-2xl kpi-card-gradient-emerald flex items-center justify-center mx-auto mb-4">
+            <i class="fa-solid fa-check text-white text-2xl"></i>
+        </div>
+        <h2 class="font-bold text-navy-900 text-lg mb-1">Order Placed!</h2>
+        <p class="text-xs text-gray-500 mb-4" id="orderSuccessMsg">Your order has been submitted successfully.</p>
+        <div class="glass rounded-xl p-4 mb-4 text-left">
+            <div class="flex justify-between items-center mb-2">
+                <span class="text-xs text-gray-500">Order Number</span>
+                <span class="text-xs font-bold text-navy-700" id="newOrderNum">#ORD-2024-0892</span>
+            </div>
+            <div class="flex justify-between items-center mb-2">
+                <span class="text-xs text-gray-500">Est. Commission</span>
+                <span class="text-xs font-bold text-emerald-700" id="newOrderComm">$0.00</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="text-xs text-gray-500">Status</span>
+                <span class="status-badge-processing text-xs font-semibold px-2 py-0.5 rounded-full">Processing</span>
+            </div>
+        </div>
+        <button onclick="document.getElementById('orderSuccessModal').classList.remove('active')" class="w-full bg-navy-600 hover:bg-navy-700 text-white font-semibold py-2.5 rounded-xl transition-colors text-sm">
+            Done
+        </button>
+    </div>
+</div>
+
+<script>
+    // Product data
+    const products = {
+        pulseguard:    { name: 'PulseGuard',      sku: 'PG-001', retailPrice: 89.99, memberPrice: 67.49, bv: 80 },
+        pulseflow:     { name: 'PulseFlow',       sku: 'PF-002', retailPrice: 74.99, memberPrice: 56.24, bv: 65 },
+        pulsedrive:    { name: 'PulseDrive',      sku: 'PD-003', retailPrice: 79.99, memberPrice: 59.99, bv: 70 },
+        pulsecommand:  { name: 'PulseCommand',    sku: 'PC-004', retailPrice: 149.99, memberPrice: 112.49, bv: 120 },
+        smartlock:     { name: 'SmartLock',       sku: 'SL-005', retailPrice: 119.99, memberPrice: 89.99, bv: 95 },
+        businesscenter:{ name: 'Business Center', sku: 'BC-006', retailPrice: 249.99, memberPrice: 199.99, bv: 200 },
+    };
+
+    let globalPriceType = 'retail';
+    let cartPriceType = 'retail';
+    let cart = {};
+
+    function setGlobalPriceType(type) {
+        globalPriceType = type;
+        const retailBtn = document.getElementById('globalRetailBtn');
+        const memberBtn = document.getElementById('globalMemberBtn');
+        if (type === 'retail') {
+            retailBtn.classList.add('active-retail');
+            retailBtn.classList.remove('text-gray-500');
+            memberBtn.classList.remove('active-member');
+            memberBtn.classList.add('text-gray-500');
+        } else {
+            memberBtn.classList.add('active-member');
+            memberBtn.classList.remove('text-gray-500');
+            retailBtn.classList.remove('active-retail');
+            retailBtn.classList.add('text-gray-500');
+        }
+        // Update all product card prices
+        Object.keys(products).forEach(key => {
+            const p = products[key];
+            const priceEl = document.getElementById(key + '-price');
+            const labelEl = document.getElementById(key + '-label');
+            if (priceEl && labelEl) {
+                if (type === 'retail') {
+                    priceEl.textContent = '$' + p.retailPrice.toFixed(2);
+                    labelEl.textContent = 'Retail Price';
+                } else {
+                    priceEl.textContent = '$' + p.memberPrice.toFixed(2);
+                    labelEl.textContent = 'Member Price';
+                }
+            }
+        });
+    }
+
+    function setCartPriceType(type) {
+        cartPriceType = type;
+        const retailBtn = document.getElementById('cartRetailBtn');
+        const memberBtn = document.getElementById('cartMemberBtn');
+        if (type === 'retail') {
+            retailBtn.classList.add('active-retail');
+            retailBtn.classList.remove('text-gray-500');
+            memberBtn.classList.remove('active-member');
+            memberBtn.classList.add('text-gray-500');
+        } else {
+            memberBtn.classList.add('active-member');
+            memberBtn.classList.remove('text-gray-500');
+            retailBtn.classList.remove('active-retail');
+            retailBtn.classList.add('text-gray-500');
+        }
+        updateCartDisplay();
+    }
+
+    function addToCart(productKey) {
+        if (cart[productKey]) {
+            cart[productKey].qty += 1;
+        } else {
+            cart[productKey] = { ...products[productKey], qty: 1 };
+        }
+        updateCartDisplay();
+        // Briefly highlight card
+        const card = document.getElementById('card-' + productKey);
+        if (card) {
+            card.classList.add('product-card-selected');
+            setTimeout(() => card.classList.remove('product-card-selected'), 800);
+        }
+    }
+
+    function removeFromCart(productKey) {
+        delete cart[productKey];
+        updateCartDisplay();
+    }
+
+    function updateQty(productKey, delta) {
+        if (cart[productKey]) {
+            cart[productKey].qty += delta;
+            if (cart[productKey].qty <= 0) {
+                delete cart[productKey];
+            }
+        }
+        updateCartDisplay();
+    }
+
+    function clearCart() {
+        cart = {};
+        updateCartDisplay();
+    }
+
+    function updateCartDisplay() {
+        const itemsList = document.getElementById('cartItemsList');
+        const emptyState = document.getElementById('cartEmptyState');
+        const keys = Object.keys(cart);
+
+        if (keys.length === 0) {
+            itemsList.innerHTML = '';
+            itemsList.appendChild(emptyState);
+            emptyState.style.display = 'block';
+            document.getElementById('cartItemCount').textContent = '0 items';
+            document.getElementById('cartSubtotal').textContent = '$0.00';
+            document.getElementById('cartTotalBV').textContent = '0 BV';
+            document.getElementById('cartTotal').textContent = '$0.00';
+            document.getElementById('retailProfit').textContent = '$0.00';
+            document.getElementById('uplineBonus').textContent = '$0.00';
+            document.getElementById('teamOverride').textContent = '$0.00';
+            document.getElementById('totalCommission').textContent = '$0.00';
+            return;
+        }
+
+        emptyState.style.display = 'none';
+        let html = '';
+        let subtotal = 0;
+        let totalBV = 0;
+        let totalItems = 0;
+
+        keys.forEach(key => {
+            const item = cart[key];
+            const price = cartPriceType === 'retail' ? item.retailPrice : item.memberPrice;
+            const lineTotal = price * item.qty;
+            subtotal += lineTotal;
+            totalBV += item.bv * item.qty;
+            totalItems += item.qty;
+            html += `
+                <div class="cart-item-enter glass rounded-xl p-3 flex items-center gap-2">
+                    <div class="flex-1 min-w-0">
+                        <p class="text-xs font-semibold text-navy-900 truncate">${item.name}</p>
+                        <p class="text-xs text-gray-400">${item.bv * item.qty} BV · $${lineTotal.toFixed(2)}</p>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <button onclick="updateQty('${key}', -1)" class="w-6 h-6 rounded-lg bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-600 text-xs font-bold transition-colors">-</button>
+                        <span class="text-xs font-bold text-navy-800 w-5 text-center">${item.qty}</span>
+                        <button onclick="updateQty('${key}', 1)" class="w-6 h-6 rounded-lg bg-navy-100 hover:bg-navy-200 flex items-center justify-center text-navy-700 text-xs font-bold transition-colors">+</button>
+                    </div>
+                    <button onclick="removeFromCart('${key}')" class="w-6 h-6 rounded-lg bg-brandRed-50 hover:bg-brandRed-100 flex items-center justify-center text-brandRed-500 text-xs transition-colors">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            `;
+        });
+
+        itemsList.innerHTML = html;
+        document.getElementById('cartItemCount').textContent = totalItems + (totalItems === 1 ? ' item' : ' items');
+        document.getElementById('cartSubtotal').textContent = '$' + subtotal.toFixed(2);
+        document.getElementById('cartTotalBV').textContent = totalBV + ' BV';
+        document.getElementById('cartTotal').textContent = '$' + subtotal.toFixed(2);
+
+        // Commission calculations
+        const retailProfit = subtotal * 0.25;
+        const uplineBonus = subtotal * 0.05;
+        const teamOverride = subtotal * 0.03;
+        const totalComm = retailProfit + uplineBonus + teamOverride;
+
+        document.getElementById('retailProfit').textContent = '$' + retailProfit.toFixed(2);
+        document.getElementById('uplineBonus').textContent = '$' + uplineBonus.toFixed(2);
+        document.getElementById('teamOverride').textContent = '$' + teamOverride.toFixed(2);
+        document.getElementById('totalCommission').textContent = '$' + totalComm.toFixed(2);
+    }
+
+    function placeOrder() {
+        const keys = Object.keys(cart);
+        if (keys.length === 0) {
+            alert('Please add at least one product to your order.');
+            return;
+        }
+        const customerName = document.getElementById('customerNameInput').value.trim();
+        if (!customerName) {
+            document.getElementById('customerNameInput').focus();
+            document.getElementById('customerNameInput').classList.add('ring-2', 'ring-brandRed-400');
+            setTimeout(() => document.getElementById('customerNameInput').classList.remove('ring-2', 'ring-brandRed-400'), 2000);
+            return;
+        }
+
+        const totalComm = parseFloat(document.getElementById('totalCommission').textContent.replace('$', ''));
+        const orderNum = '#ORD-2024-' + (Math.floor(Math.random() * 900) + 892);
+        document.getElementById('newOrderNum').textContent = orderNum;
+        document.getElementById('newOrderComm').textContent = '$' + totalComm.toFixed(2);
+        document.getElementById('orderSuccessMsg').textContent = `Order for ${customerName} has been submitted successfully.`;
+        document.getElementById('orderSuccessModal').classList.add('active');
+        clearCart();
+        document.getElementById('customerNameInput').value = '';
+    }
+
+    // Initialize
+    updateCartDisplay();
+</script>
+
+
+    <script src="script.js"></script>
+</body>
+</html>

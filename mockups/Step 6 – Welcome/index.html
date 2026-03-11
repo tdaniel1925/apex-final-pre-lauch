@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Step 6 – Welcome - Exported from UXMagic Copilot">
+    <title>Step 6 – Welcome</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              50: '#f0f4fd',
+              100: '#e4eafb',
+              200: '#cdd9f7',
+              300: '#a8bef1',
+              400: '#7d9ce9',
+              500: '#5879df',
+              600: '#3e5cd2',
+              700: '#324aba',
+              800: '#2e3e97',
+              900: '#1B3A7D',
+            },
+            red: {
+              50: '#fef2f2',
+              100: '#fee2e2',
+              200: '#fecaca',
+              300: '#fca5a5',
+              400: '#f87171',
+              500: '#ef4444',
+              600: '#dc2626',
+              700: '#b91c1c',
+              800: '#991b1b',
+              900: '#C7181F',
+            }
+          },
+          fontFamily: {
+            heading: ['var(--font-heading-name)', 'sans-serif'],
+            body: ['var(--font-body-name)', 'sans-serif'],
+          },
+          spacing: {
+            base: 'var(--space-base)',
+          },
+          borderRadius: {
+            small: 'var(--radius-small)',
+            large: 'var(--radius-large)',
+          },
+          boxShadow: {
+            custom: 'var(--shadow-custom)',
+            'custom-hover': 'var(--shadow-custom-hover)',
+          },
+        }
+      }
+    }
+  
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+  <!-- Top Brand Header -->
+  <header class="bg-navy-900 text-white py-3.5 px-6 flex items-center justify-between z-50 shadow-lg">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 bg-white rounded-small flex items-center justify-center">
+        <span class="text-navy-900 font-heading font-bold text-sm">A</span>
+      </div>
+      <div>
+        <span class="font-heading font-bold text-base tracking-tight">Apex Network</span>
+        <span class="ml-2 text-navy-300 text-xs font-medium hidden sm:inline">Distributor Enrollment</span>
+      </div>
+    </div>
+    <nav class="hidden md:flex items-center gap-1">
+      <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-1-sponsor-verification" class="text-xs font-medium text-navy-300 hover:text-white px-3 py-1.5 rounded-small transition-colors flex items-center gap-1">
+        <svg class="w-3 h-3 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+        Step 1
+      </a>
+      <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-2-personal-info" class="text-xs font-medium text-navy-300 hover:text-white px-3 py-1.5 rounded-small transition-colors flex items-center gap-1">
+        <svg class="w-3 h-3 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+        Step 2
+      </a>
+      <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-3-tax-identity" class="text-xs font-medium text-navy-300 hover:text-white px-3 py-1.5 rounded-small transition-colors flex items-center gap-1">
+        <svg class="w-3 h-3 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+        Step 3
+      </a>
+      <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-4-agreement" class="text-xs font-medium text-navy-300 hover:text-white px-3 py-1.5 rounded-small transition-colors flex items-center gap-1">
+        <svg class="w-3 h-3 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+        Step 4
+      </a>
+      <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-5-business-center" class="text-xs font-medium text-navy-300 hover:text-white px-3 py-1.5 rounded-small transition-colors flex items-center gap-1">
+        <svg class="w-3 h-3 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+        Step 5
+      </a>
+      <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-6-welcome" class="text-xs font-medium text-white bg-green-600/20 border border-green-500/30 px-3 py-1.5 rounded-small flex items-center gap-1">
+        <svg class="w-3 h-3 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+        Step 6
+      </a>
+    </nav>
+    <div class="flex items-center gap-2 text-green-400 text-xs">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+      <span class="font-semibold">Enrollment Complete</span>
+    </div>
+  </header>
+
+  <!-- Two-Panel Main Layout -->
+  <div class="flex" style="height: auto; min-height: 0;">
+
+    <!-- ===== LEFT PANEL: Navy Sidebar ===== -->
+    <aside class="w-80 bg-navy-900 flex flex-col flex-shrink-0" style="min-height: 960px;">
+
+      <!-- Panel Header -->
+      <div class="px-6 pt-8 pb-6 border-b border-white/10">
+        <p class="text-navy-300 text-xs font-semibold uppercase tracking-widest mb-1">Enrollment Progress</p>
+        <h2 class="font-heading font-bold text-white text-lg leading-tight">New Distributor<br>Registration</h2>
+        <div class="mt-4">
+          <div class="flex justify-between items-center mb-1.5">
+            <span class="text-navy-300 text-xs">Overall Progress</span>
+            <span class="text-white text-xs font-semibold">6 of 6</span>
+          </div>
+          <div class="w-full bg-white/10 rounded-full h-1.5">
+            <div class="bg-green-500 h-1.5 rounded-full progress-fill" style="width: 100%"></div>
+          </div>
+          <p class="text-green-400 text-xs font-semibold mt-1.5 flex items-center gap-1">
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+            All steps completed!
+          </p>
+        </div>
+      </div>
+
+      <!-- Vertical Step Tracker -->
+      <div class="px-6 py-6 flex-1">
+        <div class="flex flex-col">
+
+          <!-- Step 1 – Done -->
+          <div class="flex items-start gap-3 step-done">
+            <div class="flex flex-col items-center">
+              <div class="step-circle w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold flex-shrink-0">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+              </div>
+              <div class="step-connector-v bg-green-500/30 mt-1"></div>
+            </div>
+            <div class="pb-5 pt-0.5">
+              <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-1-sponsor-verification" class="text-white/70 font-semibold text-sm hover:text-white transition-colors">Sponsor Verification</a>
+              <p class="text-navy-400 text-xs mt-0.5">Find &amp; confirm your referrer</p>
+              <span class="inline-flex items-center gap-1 mt-1.5 text-xs font-semibold text-green-400 bg-green-900/20 border border-green-900/30 px-2 py-0.5 rounded-small">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                Completed
+              </span>
+            </div>
+          </div>
+
+          <!-- Step 2 – Done -->
+          <div class="flex items-start gap-3 step-done">
+            <div class="flex flex-col items-center">
+              <div class="step-circle w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold flex-shrink-0">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+              </div>
+              <div class="step-connector-v bg-green-500/30 mt-1"></div>
+            </div>
+            <div class="pb-5 pt-0.5">
+              <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-2-personal-info" class="text-white/70 font-semibold text-sm hover:text-white transition-colors">Personal Info</a>
+              <p class="text-navy-400 text-xs mt-0.5">Name, address &amp; profile</p>
+              <span class="inline-flex items-center gap-1 mt-1.5 text-xs font-semibold text-green-400 bg-green-900/20 border border-green-900/30 px-2 py-0.5 rounded-small">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                Completed
+              </span>
+            </div>
+          </div>
+
+          <!-- Step 3 – Done -->
+          <div class="flex items-start gap-3 step-done">
+            <div class="flex flex-col items-center">
+              <div class="step-circle w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold flex-shrink-0">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+              </div>
+              <div class="step-connector-v bg-green-500/30 mt-1"></div>
+            </div>
+            <div class="pb-5 pt-0.5">
+              <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-3-tax-identity" class="text-white/70 font-semibold text-sm hover:text-white transition-colors">Tax &amp; Identity</a>
+              <p class="text-navy-400 text-xs mt-0.5">W-9 &amp; SSN verification</p>
+              <span class="inline-flex items-center gap-1 mt-1.5 text-xs font-semibold text-green-400 bg-green-900/20 border border-green-900/30 px-2 py-0.5 rounded-small">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                Completed
+              </span>
+            </div>
+          </div>
+
+          <!-- Step 4 – Done -->
+          <div class="flex items-start gap-3 step-done">
+            <div class="flex flex-col items-center">
+              <div class="step-circle w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold flex-shrink-0">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+              </div>
+              <div class="step-connector-v bg-green-500/30 mt-1"></div>
+            </div>
+            <div class="pb-5 pt-0.5">
+              <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-4-agreement" class="text-white/70 font-semibold text-sm hover:text-white transition-colors">Agreement</a>
+              <p class="text-navy-400 text-xs mt-0.5">Review &amp; e-sign contract</p>
+              <span class="inline-flex items-center gap-1 mt-1.5 text-xs font-semibold text-green-400 bg-green-900/20 border border-green-900/30 px-2 py-0.5 rounded-small">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                Completed
+              </span>
+            </div>
+          </div>
+
+          <!-- Step 5 – Done -->
+          <div class="flex items-start gap-3 step-done">
+            <div class="flex flex-col items-center">
+              <div class="step-circle w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold flex-shrink-0">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+              </div>
+              <div class="step-connector-v bg-green-500/30 mt-1"></div>
+            </div>
+            <div class="pb-5 pt-0.5">
+              <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-5-business-center" class="text-white/70 font-semibold text-sm hover:text-white transition-colors">Business Center</a>
+              <p class="text-navy-400 text-xs mt-0.5">Choose starter kit &amp; pay</p>
+              <span class="inline-flex items-center gap-1 mt-1.5 text-xs font-semibold text-green-400 bg-green-900/20 border border-green-900/30 px-2 py-0.5 rounded-small">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                Completed
+              </span>
+            </div>
+          </div>
+
+          <!-- Step 6 – Done / Active -->
+          <div class="flex items-start gap-3 step-done">
+            <div class="flex flex-col items-center">
+              <div class="step-circle w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold flex-shrink-0 pulse-success">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+              </div>
+            </div>
+            <div class="pt-0.5">
+              <p class="text-white font-semibold text-sm">Welcome</p>
+              <p class="text-navy-300 text-xs mt-0.5">Confirm &amp; get started</p>
+              <span class="inline-flex items-center gap-1 mt-1.5 text-xs font-semibold text-green-400 bg-green-900/20 border border-green-900/30 px-2 py-0.5 rounded-small">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                Completed
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Rep Profile Preview -->
+      <div class="px-6 pb-5">
+        <p class="text-navy-300 text-xs font-semibold uppercase tracking-widest mb-3">Your Rep Profile</p>
+        <div class="profile-preview-card rounded-large p-4">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="relative flex-shrink-0">
+              <div class="w-12 h-12 rounded-full p-0.5 photo-ring">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Profile" class="w-full h-full rounded-full object-cover border-2 border-navy-900">
+              </div>
+              <div class="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-green-500 rounded-full border-2 border-navy-900 flex items-center justify-center">
+                <svg class="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+              </div>
+            </div>
+            <div class="min-w-0 flex-1">
+              <p class="text-white font-semibold text-sm truncate">Jennifer Martinez</p>
+              <p class="text-green-400 text-xs font-semibold">Active Distributor</p>
+              <p class="text-navy-300 text-xs truncate">apex.network/jennifer-m</p>
+            </div>
+          </div>
+          <div class="mt-2 pt-3 border-t border-white/10">
+            <div class="flex justify-between items-center mb-1">
+              <span class="text-navy-400 text-xs">Profile completion</span>
+              <span class="text-white text-xs font-semibold">100%</span>
+            </div>
+            <div class="w-full bg-white/10 rounded-full h-1">
+              <div class="bg-green-400 h-1 rounded-full" style="width: 100%"></div>
+            </div>
+            <p class="text-green-400 text-xs mt-1.5 font-medium flex items-center gap-1">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+              Enrollment complete!
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trust Badges -->
+      <div class="px-6 pb-8 space-y-2">
+        <p class="text-navy-400 text-xs font-semibold uppercase tracking-widest mb-2">Security &amp; Trust</p>
+        <div class="trust-badge rounded-small px-3 py-2 flex items-center gap-2.5">
+          <svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+          <span class="text-navy-200 text-xs">PCI-DSS Compliant Payments</span>
+        </div>
+        <div class="trust-badge rounded-small px-3 py-2 flex items-center gap-2.5">
+          <svg class="w-4 h-4 text-amber-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+          <span class="text-navy-200 text-xs">Upgrade Anytime</span>
+        </div>
+        <div class="trust-badge rounded-small px-3 py-2 flex items-center gap-2.5">
+          <svg class="w-4 h-4 text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+          <span class="text-navy-200 text-xs">256-bit AES Encrypted</span>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- ===== RIGHT PANEL: Welcome Content ===== -->
+    <main class="flex-1 flex flex-col bg-slate-100" style="height: auto;">
+      <div class="flex-1 px-8 py-10 max-w-4xl mx-auto w-full">
+
+        <!-- ===== HERO CONGRATULATIONS BANNER ===== -->
+        <section class="rounded-large overflow-hidden shadow-custom mb-6 fade-in-up fade-in-up-delay-1">
+          <div class="bg-navy-900 text-white px-8 py-10 relative overflow-hidden">
+
+            <!-- Decorative background elements -->
+            <div class="absolute top-0 right-0 w-64 h-64 bg-navy-800 rounded-full -mr-24 -mt-24 opacity-50"></div>
+            <div class="absolute bottom-0 left-0 w-48 h-48 bg-navy-700 rounded-full -ml-16 -mb-16 opacity-40"></div>
+            <div class="absolute top-1/2 right-1/4 w-32 h-32 bg-green-900 rounded-full opacity-20 blur-2xl"></div>
+            <div class="absolute top-1/3 left-1/3 w-24 h-24 bg-red-900 rounded-full opacity-15 blur-xl"></div>
+
+            <!-- Confetti -->
+            <div class="absolute top-4 left-1/4 confetti-dot bg-yellow-400" style="animation-delay: 0.1s;"></div>
+            <div class="absolute top-6 left-1/3 confetti-dot bg-red-400" style="animation-delay: 0.3s; width: 6px; height: 6px;"></div>
+            <div class="absolute top-3 right-1/3 confetti-dot bg-green-400" style="animation-delay: 0.5s;"></div>
+            <div class="absolute top-8 right-1/4 confetti-dot bg-blue-400" style="animation-delay: 0.2s; width: 5px; height: 5px;"></div>
+            <div class="absolute top-5 left-1/2 confetti-dot bg-pink-400" style="animation-delay: 0.4s; width: 7px; height: 7px;"></div>
+            <div class="absolute top-2 right-1/5 confetti-dot bg-amber-400" style="animation-delay: 0.6s; width: 6px; height: 6px;"></div>
+            <div class="absolute top-10 left-1/5 confetti-rect bg-purple-400 rounded-small" style="animation-delay: 0.35s;"></div>
+            <div class="absolute top-7 right-2/5 confetti-rect bg-cyan-400 rounded-small" style="animation-delay: 0.55s;"></div>
+
+            <div class="relative z-10 flex flex-col items-center text-center">
+
+              <!-- Success Icon -->
+              <div class="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-5 shadow-2xl pulse-success">
+                <svg class="w-12 h-12 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+              </div>
+
+              <!-- Congratulations Text -->
+              <div class="mb-2">
+                <span class="inline-flex items-center gap-1.5 bg-green-500/20 border border-green-500/30 text-green-300 text-xs font-semibold px-3 py-1 rounded-small mb-3">
+                  <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                  Enrollment Complete · All 6 Steps Done
+                </span>
+              </div>
+              <h1 class="font-heading font-bold text-4xl text-white mb-2 leading-tight">Congratulations, Jennifer!</h1>
+              <p class="text-navy-200 text-lg mb-6">You're officially an Independent Distributor with Apex Network</p>
+
+              <!-- Rep Number Badge – Prominent -->
+              <div class="inline-flex items-center gap-4 bg-white/10 border border-white/25 rounded-large px-6 py-4 backdrop-blur-sm mb-4">
+                <div class="text-left">
+                  <p class="text-navy-300 text-xs font-semibold uppercase tracking-widest mb-1">Your Representative Number</p>
+                  <p class="font-heading font-bold text-3xl text-white tracking-widest font-mono">APX-58291</p>
+                </div>
+                <button onclick="copyRepNumber()" id="copyRepBtn" class="w-10 h-10 bg-white/15 hover:bg-white/25 rounded-small flex items-center justify-center transition-all flex-shrink-0 border border-white/20" title="Copy Rep Number">
+                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                </button>
+              </div>
+
+              <p class="text-navy-300 text-sm">Enrolled under <strong class="text-white">Marcus J. Williams</strong> · Enhanced Kit · Nov 14, 2024</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== REPLICATED WEBSITE URL ===== -->
+        <section class="bg-white rounded-large shadow-custom p-6 mb-5 fade-in-up fade-in-up-delay-2">
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-8 h-8 bg-navy-100 rounded-small flex items-center justify-center flex-shrink-0">
+              <svg class="w-4 h-4 text-navy-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+            </div>
+            <div>
+              <h2 class="font-heading font-semibold text-navy-900 text-base">Your Replicated Website</h2>
+              <p class="text-slate-500 text-xs">Share this link with prospects to start building your team</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 p-3 bg-navy-50 border border-navy-200 rounded-large">
+            <div class="flex items-center gap-2 flex-1 min-w-0">
+              <div class="w-6 h-6 bg-green-100 rounded-small flex items-center justify-center flex-shrink-0">
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+              </div>
+              <span class="text-navy-900 font-semibold text-sm truncate" id="repUrl">apex.network/jennifer-martinez</span>
+            </div>
+            <button onclick="copyUrl()" id="copyUrlBtn" class="url-copy-btn flex items-center gap-1.5 px-3 py-1.5 bg-white border border-navy-200 rounded-small text-navy-700 text-xs font-semibold hover:bg-navy-50 transition-all flex-shrink-0">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+              Copy Link
+            </button>
+            <button class="flex items-center gap-1.5 px-3 py-1.5 bg-navy-900 text-white rounded-small text-xs font-semibold hover:bg-navy-800 transition-all flex-shrink-0">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+              Visit Site
+            </button>
+          </div>
+          <p class="text-slate-400 text-xs mt-2.5 flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-amber-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            Your site is live and ready to share. Customize it from your dashboard under <strong class="text-slate-600">Website Settings</strong>.
+          </p>
+        </section>
+
+        <!-- ===== NEXT STEPS CHECKLIST ===== -->
+        <section class="bg-white rounded-large shadow-custom p-6 mb-5 fade-in-up fade-in-up-delay-3">
+          <div class="flex items-center justify-between mb-5">
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-8 bg-navy-100 rounded-small flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-navy-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+              </div>
+              <div>
+                <h2 class="font-heading font-semibold text-navy-900 text-base">Your Next Steps</h2>
+                <p class="text-slate-500 text-xs">Complete these to unlock your full earning potential</p>
+              </div>
+            </div>
+            <span class="text-xs font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-small" id="checklistProgress">0 of 5 done</span>
+          </div>
+
+          <div class="space-y-3" id="nextStepsList">
+
+            <!-- Item 1 -->
+            <label class="next-step-item flex items-start gap-4 p-4 border border-slate-200 rounded-large cursor-pointer hover:border-navy-200 transition-all">
+              <div class="flex-shrink-0 mt-0.5">
+                <input type="checkbox" class="w-5 h-5 rounded-small border-2 border-slate-300 text-navy-900 focus:ring-navy-500 cursor-pointer" onchange="updateChecklist()" id="check1">
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="next-step-label text-sm font-semibold text-slate-800" id="label1">Log in to your Back Office for the first time</p>
+                <p class="text-xs text-slate-500 mt-0.5">Access your dashboard, commissions, and team overview</p>
+              </div>
+              <span class="text-xs font-semibold text-red-900 bg-red-50 border border-red-200 px-2 py-0.5 rounded-small flex-shrink-0 mt-0.5">Priority</span>
+            </label>
+
+            <!-- Item 2 -->
+            <label class="next-step-item flex items-start gap-4 p-4 border border-slate-200 rounded-large cursor-pointer hover:border-navy-200 transition-all">
+              <div class="flex-shrink-0 mt-0.5">
+                <input type="checkbox" class="w-5 h-5 rounded-small border-2 border-slate-300 text-navy-900 focus:ring-navy-500 cursor-pointer" onchange="updateChecklist()" id="check2">
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="next-step-label text-sm font-semibold text-slate-800" id="label2">Customize your replicated website</p>
+                <p class="text-xs text-slate-500 mt-0.5">Add your photo, bio, and personal story to attract prospects</p>
+              </div>
+              <span class="text-xs font-semibold text-navy-700 bg-navy-50 border border-navy-200 px-2 py-0.5 rounded-small flex-shrink-0 mt-0.5">Do Now</span>
+            </label>
+
+            <!-- Item 3 -->
+            <label class="next-step-item flex items-start gap-4 p-4 border border-slate-200 rounded-large cursor-pointer hover:border-navy-200 transition-all">
+              <div class="flex-shrink-0 mt-0.5">
+                <input type="checkbox" class="w-5 h-5 rounded-small border-2 border-slate-300 text-navy-900 focus:ring-navy-500 cursor-pointer" onchange="updateChecklist()" id="check3">
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="next-step-label text-sm font-semibold text-slate-800" id="label3">Complete Fast Start training (3 modules)</p>
+                <p class="text-xs text-slate-500 mt-0.5">Earn your Fast Start Bonus eligibility — takes about 90 minutes</p>
+              </div>
+              <span class="text-xs font-semibold text-slate-500 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded-small flex-shrink-0 mt-0.5">This Week</span>
+            </label>
+
+            <!-- Item 4 -->
+            <label class="next-step-item flex items-start gap-4 p-4 border border-slate-200 rounded-large cursor-pointer hover:border-navy-200 transition-all">
+              <div class="flex-shrink-0 mt-0.5">
+                <input type="checkbox" class="w-5 h-5 rounded-small border-2 border-slate-300 text-navy-900 focus:ring-navy-500 cursor-pointer" onchange="updateChecklist()" id="check4">
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="next-step-label text-sm font-semibold text-slate-800" id="label4">Schedule your onboarding call with Marcus</p>
+                <p class="text-xs text-slate-500 mt-0.5">Your sponsor is ready to help you build your strategy and first 90-day plan</p>
+              </div>
+              <span class="text-xs font-semibold text-slate-500 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded-small flex-shrink-0 mt-0.5">This Week</span>
+            </label>
+
+            <!-- Item 5 -->
+            <label class="next-step-item flex items-start gap-4 p-4 border border-slate-200 rounded-large cursor-pointer hover:border-navy-200 transition-all">
+              <div class="flex-shrink-0 mt-0.5">
+                <input type="checkbox" class="w-5 h-5 rounded-small border-2 border-slate-300 text-navy-900 focus:ring-navy-500 cursor-pointer" onchange="updateChecklist()" id="check5">
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="next-step-label text-sm font-semibold text-slate-800" id="label5">Make your first 3 retail sales</p>
+                <p class="text-xs text-slate-500 mt-0.5">Qualify for your first commission check and activate your Fast Start Bonus</p>
+              </div>
+              <span class="text-xs font-semibold text-slate-500 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded-small flex-shrink-0 mt-0.5">30 Days</span>
+            </label>
+
+          </div>
+
+          <!-- Progress Bar for Checklist -->
+          <div class="mt-5 pt-4 border-t border-slate-100">
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-xs text-slate-500 font-medium">Getting started progress</span>
+              <span class="text-xs font-semibold text-navy-900" id="checklistPct">0%</span>
+            </div>
+            <div class="w-full bg-slate-100 rounded-full h-2">
+              <div class="bg-navy-900 h-2 rounded-full progress-fill transition-all" id="checklistBar" style="width: 0%"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== EMAIL CONFIRMATION + QUICK STATS ===== -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5 fade-in-up fade-in-up-delay-4">
+
+          <!-- Email Confirmation -->
+          <div class="bg-blue-50 border border-blue-200 rounded-large p-5 flex gap-3">
+            <div class="w-9 h-9 bg-blue-100 rounded-small flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-blue-900 mb-0.5">Confirmation email sent!</p>
+              <p class="text-xs text-blue-700 leading-relaxed">Your enrollment confirmation, rep number, login credentials, and welcome kit have been sent to <strong>jennifer.martinez@email.com</strong></p>
+            </div>
+          </div>
+
+          <!-- Quick Stats -->
+          <div class="bg-white border border-slate-200 rounded-large p-5">
+            <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">Your Account Summary</p>
+            <div class="grid grid-cols-3 gap-3">
+              <div class="text-center">
+                <p class="font-heading font-bold text-navy-900 text-xl">200</p>
+                <p class="text-xs text-slate-500 mt-0.5">Starting PV</p>
+              </div>
+              <div class="text-center border-x border-slate-100">
+                <p class="font-heading font-bold text-green-600 text-xl">$39</p>
+                <p class="text-xs text-slate-500 mt-0.5">Monthly Kit</p>
+              </div>
+              <div class="text-center">
+                <p class="font-heading font-bold text-amber-600 text-xl">Dist.</p>
+                <p class="text-xs text-slate-500 mt-0.5">Current Rank</p>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ===== GO TO DASHBOARD CTA ===== -->
+        <section class="fade-in-up fade-in-up-delay-5">
+          <div class="bg-white rounded-large shadow-custom p-6 mb-5">
+            <div class="flex flex-col sm:flex-row items-center gap-4">
+              <div class="flex-1 text-center sm:text-left">
+                <h3 class="font-heading font-bold text-navy-900 text-lg mb-1">Ready to start building?</h3>
+                <p class="text-slate-500 text-sm">Your back office is set up and ready. Explore your dashboard, track commissions, and manage your team.</p>
+              </div>
+              <div class="flex flex-col sm:flex-row gap-3 flex-shrink-0">
+                <button class="flex items-center justify-center gap-2.5 px-8 py-3.5 bg-navy-900 text-white rounded-small font-bold text-sm hover:bg-navy-800 transition-all shadow-custom">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                  Go to My Dashboard
+                </button>
+                <button class="flex items-center justify-center gap-2 px-5 py-3.5 border-2 border-navy-200 text-navy-700 rounded-small font-semibold text-sm hover:bg-navy-50 transition-all">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                  Start Training
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Footer Note -->
+          <div class="w-full text-center text-xs text-slate-400 pb-4">
+            <p>© 2024 Apex Network, Inc. · <span class="underline cursor-pointer">Privacy Policy</span> · <span class="underline cursor-pointer">Terms of Service</span> · <span class="underline cursor-pointer">Income Disclosure</span></p>
+            <p class="mt-1">Questions? <span class="text-navy-900 font-medium">support@apexnetwork.com</span></p>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+  </div>
+
+  <script>
+    function copyRepNumber() {
+      const btn = document.getElementById('copyRepBtn');
+      navigator.clipboard.writeText('APX-58291').catch(() => {});
+      btn.innerHTML = '<svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>';
+      setTimeout(() => {
+        btn.innerHTML = '<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>';
+      }, 2000);
+    }
+
+    function copyUrl() {
+      const btn = document.getElementById('copyUrlBtn');
+      navigator.clipboard.writeText('https://apex.network/jennifer-martinez').catch(() => {});
+      btn.innerHTML = '<svg class="w-3.5 h-3.5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Copied!';
+      btn.classList.add('text-green-700', 'border-green-300', 'bg-green-50');
+      setTimeout(() => {
+        btn.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg> Copy Link';
+        btn.classList.remove('text-green-700', 'border-green-300', 'bg-green-50');
+      }, 2000);
+    }
+
+    function updateChecklist() {
+      const checkboxes = document.querySelectorAll('#nextStepsList input[type="checkbox"]');
+      let done = 0;
+      checkboxes.forEach((cb, i) => {
+        const label = document.getElementById('label' + (i + 1));
+        const row = cb.closest('label');
+        if (cb.checked) {
+          done++;
+          if (label) {
+            label.classList.add('line-through', 'text-slate-400');
+            label.classList.remove('text-slate-800');
+          }
+          if (row) {
+            row.classList.add('bg-slate-50', 'border-slate-100');
+            row.classList.remove('border-slate-200');
+          }
+        } else {
+          if (label) {
+            label.classList.remove('line-through', 'text-slate-400');
+            label.classList.add('text-slate-800');
+          }
+          if (row) {
+            row.classList.remove('bg-slate-50', 'border-slate-100');
+            row.classList.add('border-slate-200');
+          }
+        }
+      });
+      const total = checkboxes.length;
+      const pct = Math.round((done / total) * 100);
+      document.getElementById('checklistProgress').textContent = done + ' of ' + total + ' done';
+      document.getElementById('checklistPct').textContent = pct + '%';
+      document.getElementById('checklistBar').style.width = pct + '%';
+      if (pct === 100) {
+        document.getElementById('checklistBar').classList.remove('bg-navy-900');
+        document.getElementById('checklistBar').classList.add('bg-green-500');
+      } else {
+        document.getElementById('checklistBar').classList.add('bg-navy-900');
+        document.getElementById('checklistBar').classList.remove('bg-green-500');
+      }
+    }
+  </script>
+
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rep Profile Settings - Exported from UXMagic Copilot">
+    <title>Rep Profile Settings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            50: '#E8EAF2',
+                            100: '#C5CCDF',
+                            200: '#9EAACC',
+                            300: '#7689B9',
+                            400: '#4F67A6',
+                            500: '#274693',
+                            600: '#1B3A7D',
+                            700: '#152D61',
+                            800: '#0F2045',
+                            900: '#091329',
+                        },
+                        brandRed: {
+                            50: '#FBE8E9',
+                            100: '#F5C5C7',
+                            200: '#EE9EA1',
+                            300: '#E7767B',
+                            400: '#E04F55',
+                            500: '#D9272F',
+                            600: '#C7181F',
+                            700: '#9B1318',
+                            800: '#6F0D11',
+                            900: '#42080A',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+<div class="flex" style="height: auto; min-height: 100vh;">
+    <!-- Sidebar Navigation -->
+    <aside class="hidden md:flex flex-col w-64 glass-dark text-white z-20" style="min-height: 100vh;">
+        <div class="p-6 flex items-center gap-3 border-b border-white/10">
+            <div class="w-8 h-8 rounded-lg bg-brandRed-600 flex items-center justify-center shadow-lg shadow-brandRed-600/30">
+                <i class="fa-solid fa-chart-line text-white text-sm"></i>
+            </div>
+            <span class="text-xl font-bold tracking-tight">ASCEND</span>
+        </div>
+        <nav class="flex-1 overflow-y-auto py-6 px-3 space-y-1">
+            <a href="/api/copilot/prototype/5ccc549f-a74f-42e8-872a-386855eab688/rep-profile-settings" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-grid-2 w-5 text-center"></i>
+                <span class="font-medium">Dashboard</span>
+            </a>
+            <a href="/api/copilot/prototype/5ccc549f-a74f-42e8-872a-386855eab688/rep-profile-settings" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-users w-5 text-center"></i>
+                <span class="font-medium">Customers</span>
+            </a>
+            <a href="/api/copilot/prototype/5ccc549f-a74f-42e8-872a-386855eab688/rep-profile-settings" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-wallet w-5 text-center"></i>
+                <span class="font-medium">Commissions</span>
+            </a>
+            <a href="/api/copilot/prototype/5ccc549f-a74f-42e8-872a-386855eab688/rep-profile-settings" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-sitemap w-5 text-center"></i>
+                <span class="font-medium">Genealogy</span>
+            </a>
+            <a href="/api/copilot/prototype/5ccc549f-a74f-42e8-872a-386855eab688/rep-profile-settings" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-store w-5 text-center"></i>
+                <span class="font-medium">Shop</span>
+            </a>
+            <a href="/api/copilot/prototype/5ccc549f-a74f-42e8-872a-386855eab688/rep-profile-settings" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-graduation-cap w-5 text-center"></i>
+                <span class="font-medium">Training</span>
+            </a>
+            <a href="/api/copilot/prototype/5ccc549f-a74f-42e8-872a-386855eab688/rep-profile-settings" class="flex items-center gap-3 px-4 py-3 bg-white/10 text-white rounded-xl transition-all shadow-sm border border-white/5">
+                <i class="fa-solid fa-gear w-5 text-center text-brandRed-400"></i>
+                <span class="font-medium">Profile Settings</span>
+            </a>
+        </nav>
+        <div class="p-4 border-t border-white/10">
+            <div class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/5">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Profile" class="w-10 h-10 rounded-full border-2 border-brandRed-500">
+                <div class="flex-1 min-w-0">
+                    <p class="text-sm font-semibold text-white truncate">Sarah Jenkins</p>
+                    <p class="text-xs text-gray-400 truncate">Diamond Director</p>
+                </div>
+                <button class="text-brandRed-400"><i class="fa-solid fa-gear"></i></button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col relative">
+
+        <!-- Mobile Header -->
+        <div class="md:hidden glass sticky top-0 z-30 px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-navy-600 flex items-center justify-center">
+                    <i class="fa-solid fa-chart-line text-white text-xs"></i>
+                </div>
+                <span class="text-lg font-bold text-navy-800">ASCEND</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Profile" class="w-8 h-8 rounded-full border-2 border-brandRed-500">
+                <button class="text-navy-600 p-2"><i class="fa-solid fa-bars text-xl"></i></button>
+            </div>
+        </div>
+
+        <!-- Page Header -->
+        <div class="px-6 lg:px-10 pt-8 pb-4 flex items-center justify-between">
+            <div>
+                <div class="flex items-center gap-2 mb-1">
+                    <a href="/api/copilot/prototype/5ccc549f-a74f-42e8-872a-386855eab688/rep-profile-settings" class="text-gray-400 hover:text-navy-600 text-sm transition-colors"><i class="fa-solid fa-house text-xs"></i> Dashboard</a>
+                    <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+                    <span class="text-navy-700 text-sm font-medium">Profile Settings</span>
+                </div>
+                <h1 class="text-2xl font-bold text-navy-900">Rep Profile Settings</h1>
+                <p class="text-gray-500 text-sm mt-1">Manage your personal, tax, payment, and licensing information</p>
+            </div>
+            <div class="hidden md:flex items-center gap-3">
+                <span class="status-badge-active text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block"></span>
+                    Active Rep
+                </span>
+                <span class="text-xs text-gray-400 bg-white/60 border border-gray-200 px-3 py-1.5 rounded-full">Rep ID: <span class="font-bold text-navy-700">ASD-48291</span></span>
+            </div>
+        </div>
+
+        <!-- Main Settings Layout -->
+        <div class="px-6 lg:px-10 pb-10 flex flex-col lg:flex-row gap-6">
+
+            <!-- LEFT: Profile Summary Sidebar -->
+            <div class="lg:w-72 flex-shrink-0 space-y-4">
+
+                <!-- Profile Card -->
+                <div class="glass rounded-2xl overflow-hidden">
+                    <div class="h-20 relative" style="background: linear-gradient(135deg, #091329 0%, #1B3A7D 60%, #274693 100%);">
+                        <div class="absolute inset-0 opacity-20" style="background: radial-gradient(circle at 70% 50%, #D9272F, transparent 60%);"></div>
+                    </div>
+                    <div class="px-5 pb-5 -mt-10 relative">
+                        <div class="profile-avatar-ring w-20 h-20 mb-3">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Profile" class="w-full h-full rounded-full object-cover border-2 border-white">
+                        </div>
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <h2 class="text-lg font-bold text-navy-900">Sarah Jenkins</h2>
+                                <p class="text-sm text-gray-500">Diamond Director</p>
+                            </div>
+                            <span class="text-xs font-bold text-brandRed-600 bg-brandRed-50 px-2 py-1 rounded-full border border-brandRed-100">Lv. 7</span>
+                        </div>
+                        <div class="mt-3 pt-3 border-t border-gray-100 space-y-2">
+                            <div class="flex items-center gap-2 text-xs text-gray-500">
+                                <i class="fa-solid fa-envelope w-4 text-navy-400"></i>
+                                <span>sarah.jenkins@email.com</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-xs text-gray-500">
+                                <i class="fa-solid fa-phone w-4 text-navy-400"></i>
+                                <span>(555) 847-2930</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-xs text-gray-500">
+                                <i class="fa-solid fa-location-dot w-4 text-navy-400"></i>
+                                <span>Austin, TX 78701</span>
+                            </div>
+                        </div>
+                        <button class="mt-4 w-full text-xs font-semibold text-navy-600 bg-navy-50 hover:bg-navy-100 border border-navy-200 py-2 rounded-xl transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-camera text-xs"></i> Change Photo
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Profile Completion -->
+                <div class="glass rounded-2xl p-4">
+                    <div class="flex items-center justify-between mb-3">
+                        <p class="text-sm font-bold text-navy-900">Profile Completion</p>
+                        <span class="text-sm font-bold text-navy-700">78%</span>
+                    </div>
+                    <div class="w-full bg-gray-100 rounded-full h-2.5 overflow-hidden mb-3">
+                        <div class="h-2.5 rounded-full" style="width:78%; background: linear-gradient(90deg, #1B3A7D 0%, #D9272F 100%);"></div>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex items-center gap-2 text-xs">
+                            <i class="fa-solid fa-circle-check text-emerald-500 w-4"></i>
+                            <span class="text-gray-600">Personal Info</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs">
+                            <i class="fa-solid fa-circle-check text-emerald-500 w-4"></i>
+                            <span class="text-gray-600">Tax Info</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs">
+                            <i class="fa-solid fa-circle-check text-emerald-500 w-4"></i>
+                            <span class="text-gray-600">Payment Info</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs">
+                            <i class="fa-solid fa-circle-xmark text-amber-400 w-4"></i>
+                            <span class="text-gray-500">Licensed Rep Info</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs">
+                            <i class="fa-solid fa-circle-check text-emerald-500 w-4"></i>
+                            <span class="text-gray-600">Notifications</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs">
+                            <i class="fa-solid fa-circle-xmark text-amber-400 w-4"></i>
+                            <span class="text-gray-500">Rep Agreement</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="glass rounded-2xl p-4">
+                    <p class="text-sm font-bold text-navy-900 mb-3">Account Overview</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-gray-500">Member Since</span>
+                            <span class="text-xs font-bold text-navy-700">Mar 2021</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-gray-500">Rank</span>
+                            <span class="text-xs font-bold text-navy-700">Diamond Director</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-gray-500">Downline Size</span>
+                            <span class="text-xs font-bold text-navy-700">247 Reps</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-gray-500">License Status</span>
+                            <span class="status-badge-pending text-xs font-bold px-2 py-0.5 rounded-full">Pending</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-gray-500">Agreement</span>
+                            <span class="text-xs font-bold text-amber-600">Unsigned</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Security -->
+                <div class="glass rounded-2xl p-4">
+                    <p class="text-sm font-bold text-navy-900 mb-3">Security</p>
+                    <div class="space-y-2">
+                        <button class="w-full text-left flex items-center justify-between p-2.5 rounded-xl hover:bg-navy-50 transition-colors group">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-lock text-navy-500 text-xs w-4"></i>
+                                <span class="text-xs font-medium text-gray-700">Change Password</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-gray-300 text-xs group-hover:text-navy-500 transition-colors"></i>
+                        </button>
+                        <button class="w-full text-left flex items-center justify-between p-2.5 rounded-xl hover:bg-navy-50 transition-colors group">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-shield-halved text-navy-500 text-xs w-4"></i>
+                                <span class="text-xs font-medium text-gray-700">Two-Factor Auth</span>
+                            </div>
+                            <span class="text-xs text-emerald-600 font-bold">ON</span>
+                        </button>
+                        <button class="w-full text-left flex items-center justify-between p-2.5 rounded-xl hover:bg-navy-50 transition-colors group">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-clock-rotate-left text-navy-500 text-xs w-4"></i>
+                                <span class="text-xs font-medium text-gray-700">Login History</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-gray-300 text-xs group-hover:text-navy-500 transition-colors"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT: Tabbed Settings Panel -->
+            <div class="flex-1 min-w-0">
+
+                <!-- Tab Navigation -->
+                <div class="glass rounded-2xl p-2 mb-5 flex flex-wrap gap-1.5">
+                    <button onclick="switchTab('personal')" id="tab-personal" class="tab-btn active flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-white">
+                        <i class="fa-solid fa-user text-xs"></i>
+                        <span class="hidden sm:inline">Personal Info</span>
+                    </button>
+                    <button onclick="switchTab('tax')" id="tab-tax" class="tab-btn flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-gray-600">
+                        <i class="fa-solid fa-file-invoice-dollar text-xs"></i>
+                        <span class="hidden sm:inline">Tax Info</span>
+                    </button>
+                    <button onclick="switchTab('payment')" id="tab-payment" class="tab-btn flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-gray-600">
+                        <i class="fa-solid fa-credit-card text-xs"></i>
+                        <span class="hidden sm:inline">Payment Info</span>
+                    </button>
+                    <button onclick="switchTab('licensed')" id="tab-licensed" class="tab-btn flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-gray-600">
+                        <i class="fa-solid fa-certificate text-xs"></i>
+                        <span class="hidden sm:inline">Licensed Rep</span>
+                    </button>
+                    <button onclick="switchTab('notifications')" id="tab-notifications" class="tab-btn flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-gray-600">
+                        <i class="fa-solid fa-bell text-xs"></i>
+                        <span class="hidden sm:inline">Notifications</span>
+                    </button>
+                    <button onclick="switchTab('agreement')" id="tab-agreement" class="tab-btn flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-gray-600">
+                        <i class="fa-solid fa-file-signature text-xs"></i>
+                        <span class="hidden sm:inline">Agreement</span>
+                    </button>
+                </div>
+
+                <!-- TAB 1: Personal Info -->
+                <div id="content-personal" class="tab-content active glass rounded-2xl p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h2 class="text-lg font-bold text-navy-900">Personal Information</h2>
+                            <p class="text-sm text-gray-500 mt-0.5">Update your name, address, and contact details</p>
+                        </div>
+                        <span class="text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-full flex items-center gap-1.5">
+                            <i class="fa-solid fa-circle-check text-xs"></i> Verified
+                        </span>
+                    </div>
+
+                    <div class="space-y-5">
+                        <!-- Name Row -->
+                        <div>
+                            <p class="text-xs font-bold text-navy-700 uppercase tracking-wider mb-3 flex items-center gap-2">
+                                <span class="w-5 h-5 rounded-lg kpi-card-gradient-blue flex items-center justify-center"><i class="fa-solid fa-user text-white" style="font-size:8px;"></i></span>
+                                Full Name
+                            </p>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                <div>
+                                    <label class="form-label">First Name</label>
+                                    <input type="text" class="form-input" value="Sarah">
+                                </div>
+                                <div>
+                                    <label class="form-label">Middle Name</label>
+                                    <input type="text" class="form-input" value="Marie" placeholder="Optional">
+                                </div>
+                                <div>
+                                    <label class="form-label">Last Name</label>
+                                    <input type="text" class="form-input" value="Jenkins">
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="section-divider">
+
+                        <!-- Contact Info -->
+                        <div>
+                            <p class="text-xs font-bold text-navy-700 uppercase tracking-wider mb-3 flex items-center gap-2">
+                                <span class="w-5 h-5 rounded-lg kpi-card-gradient-blue flex items-center justify-center"><i class="fa-solid fa-phone text-white" style="font-size:8px;"></i></span>
+                                Contact Information
+                            </p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="form-label">Email Address</label>
+                                    <div class="relative">
+                                        <input type="email" class="form-input pr-10" value="sarah.jenkins@email.com">
+                                        <span class="absolute right-3 top-1/2 -translate-y-1/2 text-emerald-500 text-xs"><i class="fa-solid fa-circle-check"></i></span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="form-label">Secondary Email</label>
+                                    <input type="email" class="form-input" placeholder="Optional backup email">
+                                </div>
+                                <div>
+                                    <label class="form-label">Primary Phone</label>
+                                    <input type="tel" class="form-input" value="(555) 847-2930">
+                                </div>
+                                <div>
+                                    <label class="form-label">Mobile / SMS</label>
+                                    <input type="tel" class="form-input" value="(555) 847-2930">
+                                </div>
+                                <div>
+                                    <label class="form-label">Date of Birth</label>
+                                    <input type="date" class="form-input" value="1988-04-15">
+                                </div>
+                                <div>
+                                    <label class="form-label">Gender</label>
+                                    <select class="form-input">
+                                        <option>Female</option>
+                                        <option>Male</option>
+                                        <option>Non-binary</option>
+                                        <option>Prefer not to say</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="section-divider">
+
+                        <!-- Address -->
+                        <div>
+                            <p class="text-xs font-bold text-navy-700 uppercase tracking-wider mb-3 flex items-center gap-2">
+                                <span class="w-5 h-5 rounded-lg kpi-card-gradient-blue flex items-center justify-center"><i class="fa-solid fa-location-dot text-white" style="font-size:8px;"></i></span>
+                                Mailing Address
+                            </p>
+                            <div class="grid grid-cols-1 gap-4">
+                                <div>
+                                    <label class="form-label">Street Address</label>
+                                    <input type="text" class="form-input" value="4821 Ridgewood Drive">
+                                </div>
+                                <div>
+                                    <label class="form-label">Address Line 2</label>
+                                    <input type="text" class="form-input" placeholder="Apt, Suite, Unit (optional)">
+                                </div>
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                    <div>
+                                        <label class="form-label">City</label>
+                                        <input type="text" class="form-input" value="Austin">
+                                    </div>
+                                    <div>
+                                        <label class="form-label">State</label>
+                                        <select class="form-input">
+                                            <option>TX - Texas</option>
+                                            <option>CA - California</option>
+                                            <option>FL - Florida</option>
+                                            <option>NY - New York</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="form-label">ZIP Code</label>
+                                        <input type="text" class="form-input" value="78701">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="form-label">Country</label>
+                                    <select class="form-input">
+                                        <option>United States</option>
+                                        <option>Canada</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="section-divider">
+
+                        <!-- Sponsor Info (read-only) -->
+                        <div>
+                            <p class="text-xs font-bold text-navy-700 uppercase tracking-wider mb-3 flex items-center gap-2">
+                                <span class="w-5 h-5 rounded-lg kpi-card-gradient-red flex items-center justify-center"><i class="fa-solid fa-sitemap text-white" style="font-size:8px;"></i></span>
+                                Sponsor Information <span class="text-gray-400 font-normal normal-case tracking-normal ml-1">(read-only)</span>
+                            </p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="form-label">Sponsor Name</label>
+                                    <input type="text" class="form-input bg-gray-50 text-gray-500 cursor-not-allowed" value="Michael Torres" readonly="">
+                                </div>
+                                <div>
+                                    <label class="form-label">Sponsor Rep ID</label>
+                                    <input type="text" class="form-input bg-gray-50 text-gray-500 cursor-not-allowed" value="ASD-19847" readonly="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Save Button -->
+                    <div class="flex items-center justify-between mt-8 pt-6 border-t border-gray-100">
+                        <p class="text-xs text-gray-400 flex items-center gap-1.5"><i class="fa-solid fa-clock-rotate-left"></i> Last saved: Today at 2:34 PM</p>
+                        <button class="save-btn">
+                            <i class="fa-solid fa-floppy-disk"></i>
+                            Save Personal Info
+                        </button>
+                    </div>
+                </div>
+
+                <!-- TAB 2: Tax Info -->
+                <div id="content-tax" class="tab-content glass rounded-2xl p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h2 class="text-lg font-bold text-navy-900">Tax Information</h2>
+                            <p class="text-sm text-gray-500 mt-0.5">Required for 1099 reporting and commission payments</p>
+                        </div>
+                        <div class="flex items-center gap-2 bg-amber-50 border border-amber-200 px-3 py-2 rounded-xl">
+                            <i class="fa-solid fa-lock text-amber-500 text-xs"></i>
+                            <span class="text-xs font-semibold text-amber-700">Encrypted &amp; Secure</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-navy-50 border border-navy-200 rounded-xl p-4 mb-6 flex items-start gap-3">
+                        <i class="fa-solid fa-circle-info text-navy-500 mt-0.5"></i>
+                        <p class="text-xs text-navy-700 leading-relaxed">Your tax information is encrypted using 256-bit AES encryption. This information is used solely for IRS 1099 reporting purposes and is never shared with third parties.</p>
+                    </div>
+
+                    <div class="space-y-5">
+                        <!-- Tax Classification -->
+                        <div>
+                            <p class="text-xs font-bold text-navy-700 uppercase tracking-wider mb-3 flex items-center gap-2">
+                                <span class="w-5 h-5 rounded-lg kpi-card-gradient-blue flex items-center justify-center"><i class="fa-solid fa-building-columns text-white" style="font-size:8px;"></i></span>
+                                Tax Classification
+                            </p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <label class="flex items-center gap-3 p-4 rounded-xl border-2 border-navy-500 bg-navy-50 cursor-pointer">
+                                    <input type="radio" name="taxClass" checked="" class="accent-navy-600 w-4 h-4">
+                                    <div>
+                                        <p class="text-sm font-bold text-navy-900">Individual / Sole Proprietor</p>
+                                        <p class="text-xs text-gray-500 mt-0.5">SSN required for 1099 reporting</p>
+                                    </div>
+                                </label>
+                                <label class="flex items-center gap-3 p-4 rounded-xl border-2 border-gray-200 bg-white/60 cursor-pointer hover:border-navy-300 transition-colors">
+                                    <input type="radio" name="taxClass" class="accent-navy-600 w-4 h-4">
+                                    <div>
+                                        <p class="text-sm font-bold text-navy-900">Business Entity</p>
+                                        <p class="text-xs text-gray-500 mt-0.5">EIN required (LLC, Corp, etc.)</p>
+                                    </div>
+                                </label>
+                                <label class="flex items-center gap-3 p-4 rounded-xl border-2 border-gray-200 bg-white/60 cursor-pointer hover:border-navy-300 transition-colors">
+                                    <input type="radio" name="taxClass" class="accent-navy-600 w-4 h-4">
+                                    <div>
+                                        <p class="text-sm font-bold text-navy-900">S-Corporation</p>
+                                        <p class="text-xs text-gray-500 mt-0.5">EIN required</p>
+                                    </div>
+                                </label>
+                                <label class="flex items-center gap-3 p-4 rounded-xl border-2 border-gray-200 bg-white/60 cursor-pointer hover:border-navy-300 transition-colors">
+                                    <input type="radio" name="taxClass" class="accent-navy-600 w-4 h-4">
+                                    <div>
+                                        <p class="text-sm font-bold text-navy-900">Partnership</p>
+                                        <p class="text-xs text-gray-500 mt-0.5">EIN required</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <hr class="section-divider">
+
+                        <!-- SSN / EIN -->
+                        <div>
+                            <p class="text-xs font-bold text-navy-700 uppercase tracking-wider mb-3 flex items-center gap-2">
+                                <span class="w-5 h-5 rounded-lg kpi-card-gradient-red flex items-center justify-center"><i class="fa-solid fa-id-card text-white" style="font-size:8px;"></i></span>
+                                Tax Identification
+                            </p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="form-label">Social Security Number (SSN)</label>
+                                    <div class="relative">
+                                        <input type="password" id="ssnInput" class="form-input masked-input pr-10" value="847291034" placeholder="XXX-XX-XXXX">
+                                        <button onclick="toggleSSN()" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-navy-600 transition-colors">
+                                            <i id="ssnEye" class="fa-solid fa-eye-slash text-sm"></i>
+                                        </button>
+                                    </div>
+                                    <p class="text-xs text-gray-400 mt-1.5 flex items-center gap-1"><i class="fa-solid fa-shield-halved text-emerald-500"></i> Stored encrypted · Last 4: ••••1034</p>
+                                </div>
+                                <div>
+                                    <label class="form-label">Employer Identification Number (EIN)</label>
+                                    <div class="relative">
+                                        <input type="password" id="einInput" class="form-input masked-input pr-10" placeholder="XX-XXXXXXX (if applicable)">
+                                        <button onclick="toggleEIN()" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-navy-600 transition-colors">
+                                            <i id="einEye" class="fa-solid fa-eye-slash text-sm"></i>
+                                        </button>
+                                    </div>
+                                    <p class="text-xs text-gray-400 mt-1.5">Required only for business entities</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="section-divider">
+
+                        <!-- W-9 Info -->
+                        <div>
+                            <p class="text-xs font-bold text-navy-700 uppercase tracking-wider mb-3 flex items-center gap-2">
+                                <span class="w-5 h-5 rounded-lg kpi-card-gradient-blue flex items-center justify-center"><i class="fa-solid fa-file-lines text-white" style="font-size:8px;"></i></span>
+                                W-9 Information
+                            </p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="form-label">Legal Name (as on tax return)</label>
+                                    <input type="text" class="form-input" value="Sarah Marie Jenkins">
+                                </div>
+                                <div>
+                                    <label class="form-label">Business Name (if different)</label>
+                                    <input type="text" class="form-input" placeholder="DBA or business name">
+                                </div>
+                                <div>
+                                    <label class="form-label">Tax Year</label>
+                                    <select class="form-input">
+                                        <option>2024</option>
+                                        <option>2023</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="form-label">Exempt Payee Code</label>
+                                    <input type="text" class="form-input" placeholder="If applicable">
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="section-divider">
+
+                        <!-- 1099 Status -->
+                        <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-4 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center">
+                                    <i class="fa-solid fa-file-invoice text-emerald-600"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-emerald-900">2023 Form 1099-MISC</p>
+                                    <p class="text-xs text-emerald-700">Available for download · Issued Jan 31, 2024</p>
+                                </div>
+                            </div>
+                            <button class="text-xs font-bold text-emerald-700 bg-emerald-100 hover:bg-emerald-200 border border-emerald-300 px-4 py-2 rounded-xl transition-colors flex items-center gap-1.5">
+                                <i class="fa-solid fa-download"></i> Download
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between mt-8 pt-6 border-t border-gray-100">
+                        <p class="text-xs text-gray-400 flex items-center gap-1.5"><i class="fa-solid fa-clock-rotate-left"></i> Last updated: Jan 15, 2024</p>
+                        <button class="save-btn">
+                            <i class="fa-solid fa-floppy-disk"></i>
+                            Save Tax Info
+                        </button>
+                    </div>
+                </div>
+
+                <!-- TAB 3: Payment Info -->
+                <div id="content-payment" class="tab-content glass rounded-2xl p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h2 class="text-lg font-bold text-navy-900">Payment Information</h2>
+                            <p class="text-sm text-gray-500 mt-0.5">Manage how you receive your commission payments</p>
+                        </div>
+                        <span class="status-badge-active text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5">
+                            <i class="fa-solid fa-circle-check text-xs"></i> Verified
+                        </span>
+                    </div>
+
+                    <!-- Payment Method Selection -->
+                    <div class="mb-6">
+                        <p class="text-xs font-bold text-navy-700 uppercase tracking-wider mb-3 flex items-center gap-2">
+                            <span class="w-5 h-5 rounded-lg kpi-card-gradient-blue flex items-center justify-center"><i class="fa-solid fa-money-bill-transfer text-white" style="font-size:8px;"></i></span>
+                            Preferred Payment Method
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <label class="flex items-center gap-3 p-4 rounded-xl border-2 border-navy-500 bg-navy-50 cursor-pointer">
+                                <input type="radio" name="payMethod" checked="" class="accent-navy-600 w-4 h-4">
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-building-columns text-navy-600"></i>
+                                    <div>
+                                        <p class="text-sm font-bold text-navy-900">Direct Deposit</p>
+                                        <p class="text-xs text-gray-500">ACH Transfer</p>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="flex items-center gap-3 p-4 rounded-xl border-2 border-gray-200 bg-white/60 cursor-pointer hover:border-navy-300 transition-colors">
+                                <input type="radio" name="payMethod" class="accent-navy-600 w-4 h-4">
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-brands fa-paypal text-blue-500"></i>
+                                    <div>
+                                        <p class="text-sm font-bold text-navy-900">PayPal</p>
+                                        <p class="text-xs text-gray-500">Instant transfer</p>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="flex items-center gap-3 p-4 rounded-xl border-2 border-gray-200 bg-white/60 cursor-pointer hover:border-navy-300 transition-colors">
+                                <input type="radio" name="payMethod" class="accent-navy-600 w-4 h-4">
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-envelope text-gray-500"></i>
+                                    <div>
+                                        <p class="text-sm font-bold text-navy-900">Check</p>
+                                        <p class="text-xs text-gray-500">Mailed check</p>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <hr class="section-divider">
+
+                    <!-- Bank Account -->
+                    <div class="mb-5">
+                        <p class="text-xs font-bold text-navy-700 uppercase tracking-wider mb-3 flex items-center gap-2">
+                            <span class="w-5 h-5 rounded-lg kpi-card-gradient-blue flex items-center justify-center"><i class="fa-solid fa-building-columns text-white" style="font-size:8px;"></i></span>
+                            Bank Account Details
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="form-label">Bank Name</label>
+                                <input type="text" class="form-input" value="Chase Bank">
+                            </div>
+                            <div>
+                                <label class="form-label">Account Type</label>
+                                <select class="form-input">
+                                    <option>Checking</option>
+                                    <option>Savings</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="form-label">Account Number</label>
+                                <div class="relative">
+                                    <input type="password" id="acctInput" class="form-input masked-input pr-10" value="4829103847">
+                                    <button onclick="toggleAcct()" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-navy-600 transition-colors">
+                                        <i id="acctEye" class="fa-solid fa-eye-slash text-sm"></i>
+                                    </button>
+                                </div>
+                                <p class="text-xs text-gray-400 mt-1.5">Ending in ••••3847</p>
+                            </div>
+                            <div>
+                                <label class="form-label">Routing Number</label>
+                                <div class="relative">
+                                    <input type="password" id="routingInput" class="form-input masked-input pr-10" value="021000021">
+                                    <button onclick="toggleRouting()" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-navy-600 transition-colors">
+                                        <i id="routingEye" class="fa-solid fa-eye-slash text-sm"></i>
+                                    </button>
+                                </div>
+                                <p class="text-xs text-gray-400 mt-1.5">9-digit ABA routing number</p>
+                            </div>
+                            <div>
+                                <label class="form-label">Account Holder Name</label>
+                                <input type="text" class="form-input" value="Sarah Marie Jenkins">
+                            </div>
+                            <div>
+                                <label class="form-label">Confirm Account Number</label>
+                                <input type="password" class="form-input masked-input" placeholder="Re-enter account number">
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="section-divider">
+
+                    <!-- Payment Schedule -->
+                    <div>
+                        <p class="text-xs font-bold text-navy-700 uppercase tracking-wider mb-3 flex items-center gap-2">
+                            <span class="w-5 h-5 rounded-lg kpi-card-gradient-red flex items-center justify-center"><i class="fa-solid fa-calendar text-white" style="font-size:8px;"></i></span>
+                            Payment Schedule
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="form-label">Pay Frequency</label>
+                                <select class="form-input">
+                                    <option>Weekly (Every Friday)</option>
+                                    <option>Bi-Weekly</option>
+                                    <option>Monthly</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="form-label">Minimum Payout Threshold</label>
+                                <select class="form-input">
+                                    <option>$25.00</option>
+                                    <option>$50.00</option>
+                                    <option>$100.00</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-4 bg-navy-50 border border-navy-200 rounded-xl p-4 flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-bold text-navy-900">Next Scheduled Payment</p>
+                                <p class="text-xs text-navy-600 mt-0.5">Friday, December 20, 2024 · Estimated: <span class="font-bold text-emerald-700">$1,847.50</span></p>
+                            </div>
+                            <div class="w-10 h-10 rounded-xl kpi-card-gradient-blue flex items-center justify-center">
+                                <i class="fa-solid fa-calendar-check text-white text-sm"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between mt-8 pt-6 border-t border-gray-100">
+                        <p class="text-xs text-gray-400 flex items-center gap-1.5"><i class="fa-solid fa-clock-rotate-left"></i> Last updated: Nov 3, 2024</p>
+                        <button class="save-btn">
+                            <i class="fa-solid fa-floppy-disk"></i>
+                            Save Payment Info
+                        </button>
+                    </div>
+                </div>
+
+                <!-- TAB 4: Licensed Rep -->
+                <div id="content-licensed" class="tab-content glass rounded-2xl p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h2 class="text-lg font-bold text-navy-900">Licensed Representative</h2>
+                            <p class="text-sm text-gray-500 mt-0.5">Securities licensing and broker-dealer information</p>
+                        </div>
+                        <span class="status-badge-pending text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5">
+                            <i class="fa-solid fa-clock text-xs"></i> Pending Review
+                        </span>
+                    </div>
+
+                    <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6 flex items-start gap-3">
+                        <i class="fa-solid fa-triangle-exclamation text-amber-500 mt-0.5"></i>
+                        <div>
+                            <p class="text-sm font-bold text-amber-800">License Verification Pending</p>
+                            <p class="text-xs text-amber-700 mt-0.5">Your license information has been submitted and is under review by our compliance team. This typically takes 2-3 business days.</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-5">
+                        <!-- License Details -->
+                        <div>
+                            <p class="text-xs font-bold text-navy-700 uppercase tracking-wider mb-3 flex items-center gap-2">
+                                <span class="w-5 h-5 rounded-lg kpi-card-gradient-blue flex items-center justify-center"><i class="fa-solid fa-certificate text-white" style="font-size:8px;"></i></span>
+                                License Details
+                            </p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="form-label">License Number</label>
+                                    <input type="text" class="form-input" value="TX-INS-4829103">
+                                </div>
+                                <div>
+                                    <label class="form-label">License Type</label>
+                                    <select class="form-input">
+                                        <option>Life Insurance (Series 6)</option>
+                                        <option>Series 7 - General Securities</option>
+                                        <option>Series 63 - Uniform Securities</option>
+                                        <option>Series 65 - Investment Adviser</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="form-label">Issuing State</label>
+                                    <select class="form-input">
+                                        <option>TX - Texas</option>
+                                        <option>CA - California</option>
+                                        <option>FL - Florida</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="form-label">Additional States Licensed</label>
+                                    <input type="text" class="form-input" placeholder="e.g., CA, FL, NY">
+                                </div>
+                                <div>
+                                    <label class="form-label">Issue Date</label>
+                                    <input type="date" class="form-input" value="2021-03-15">
+                                </div>
+                                <div>
+                                    <label class="form-label">Expiration Date</label>
+                                    <div class="relative">
+                                        <input type="date" class="form-input" value="2025-03-15">
+                                        <span class="absolute right-3 top-1/2 -translate-y-1/2 text-amber-500 text-xs font-bold">Exp. Soon</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="section-divider">
+
+                        <!-- Broker-Dealer Info -->
+                        <div>
+                            <p class="text-xs font-bold text-navy-700 uppercase tracking-wider mb-3 flex items-center gap-2">
+                                <span class="w-5 h-5 rounded-lg kpi-card-gradient-red flex items-center justify-center"><i class="fa-solid fa-briefcase text-white" style="font-size:8px;"></i></span>
+                                Broker-Dealer Information
+                            </p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="form-label">Broker-Dealer Name</label>
+                                    <input type="text" class="form-input" value="Ascend Financial Services">
+                                </div>
+                                <div>
+                                    <label class="form-label">CRD Number</label>
+                                    <input type="text" class="form-input" value="CRD-284910">
+                                </div>
+                                <div>
+                                    <label class="form-label">FINRA Registration Status</label>
+                                    <select class="form-input">
+                                        <option>Registered - Active</option>
+                                        <option>Registered - Inactive</option>
+                                        <option>Not Registered</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="form-label">NPN (National Producer Number)</label>
+                                    <input type="text" class="form-input" value="18472930">
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="section-divider">
+
+                        <!-- License Upload -->
+                        <div>
+                            <p class="text-xs font-bold text-navy-700 uppercase tracking-wider mb-3 flex items-center gap-2">
+                                <span class="w-5 h-5 rounded-lg kpi-card-gradient-blue flex items-center justify-center"><i class="fa-solid fa-upload text-white" style="font-size:8px;"></i></span>
+                                License Documents
+                            </p>
+                            <div class="border-2 border-dashed border-navy-200 rounded-xl p-6 text-center hover:border-navy-400 hover:bg-navy-50/50 transition-all cursor-pointer">
+                                <i class="fa-solid fa-cloud-arrow-up text-navy-300 text-3xl mb-3"></i>
+                                <p class="text-sm font-semibold text-navy-700">Upload License Copy</p>
+                                <p class="text-xs text-gray-400 mt-1">PDF, JPG, PNG · Max 10MB</p>
+                                <button class="mt-3 text-xs font-bold text-navy-600 bg-navy-50 border border-navy-200 px-4 py-2 rounded-xl hover:bg-navy-100 transition-colors">Browse Files</button>
+                            </div>
+                            <div class="mt-3 flex items-center justify-between p-3 bg-white/60 border border-gray-200 rounded-xl">
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-file-pdf text-brandRed-500"></i>
+                                    <span class="text-xs font-medium text-gray-700">TX_License_Jenkins_2021.pdf</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs text-emerald-600 font-bold">Uploaded</span>
+                                    <button class="text-gray-400 hover:text-brandRed-500 transition-colors"><i class="fa-solid fa-trash text-xs"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between mt-8 pt-6 border-t border-gray-100">
+                        <p class="text-xs text-gray-400 flex items-center gap-1.5"><i class="fa-solid fa-clock-rotate-left"></i> Submitted: Dec 10, 2024</p>
+                        <button class="save-btn">
+                            <i class="fa-solid fa-floppy-disk"></i>
+                            Save License Info
+                        </button>
+                    </div>
+                </div>
+
+                <!-- TAB 5: Notification Preferences -->
+                <div id="content-notifications" class="tab-content glass rounded-2xl p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h2 class="text-lg font-bold text-navy-900">Notification Preferences</h2>
+                            <p class="text-sm text-gray-500 mt-0.5">Choose how and when you receive alerts</p>
+                        </div>
+                        <button class="text-xs font-semibold text-navy-600 hover:text-navy-800 bg-navy-50 border border-navy-200 px-3 py-2 rounded-xl transition-colors">
+                            Enable All
+                        </button>
+                    </div>
+
+                    <!-- Notification Categories -->
+                    <div class="space-y-6">
+
+                        <!-- Commission & Payments -->
+                        <div>
+                            <p class="text-xs font-bold text-navy-700 uppercase tracking-wider mb-3 flex items-center gap-2">
+                                <span class="w-5 h-5 rounded-lg kpi-card-gradient-red flex items-center justify-center"><i class="fa-solid fa-dollar-sign text-white" style="font-size:8px;"></i></span>
+                                Commission &amp; Payments
+                            </p>
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between p-4 bg-white/60 border border-gray-100 rounded-xl">
+                                    <div class="flex-1">
+                                        <p class="text-sm font-semibold text-navy-900">Commission Earned</p>
+                                        <p class="text-xs text-gray-500 mt-0.5">Notify when new commission is credited to your account</p>
+                                    </div>
+                                    <div class="flex items-center gap-4 ml-4">
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="text-xs text-gray-400">Email</span>
+                                            <label class="toggle-switch"><input type="checkbox" checked=""><span class="toggle-slider"></span></label>
+                                        </div>
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="text-xs text-gray-400">SMS</span>
+                                            <label class="toggle-switch"><input type="checkbox" checked=""><span class="toggle-slider"></span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between p-4 bg-white/60 border border-gray-100 rounded-xl">
+                                    <div class="flex-1">
+                                        <p class="text-sm font-semibold text-navy-900">Payment Processed</p>
+                                        <p class="text-xs text-gray-500 mt-0.5">Confirmation when payment is sent to your bank</p>
+                                    </div>
+                                    <div class="flex items-center gap-4 ml-4">
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="text-xs text-gray-400">Email</span>
+                                            <label class="toggle-switch"><input type="checkbox" checked=""><span class="toggle-slider"></span></label>
+                                        </div>
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="text-xs text-gray-400">SMS</span>
+                                            <label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between p-4 bg-white/60 border border-gray-100 rounded-xl">
+                                    <div class="flex-1">
+                                        <p class="text-sm font-semibold text-navy-900">Bonus Qualification</p>
+                                        <p class="text-xs text-gray-500 mt-0.5">Alert when you qualify for a new bonus or incentive</p>
+                                    </div>
+                                    <div class="flex items-center gap-4 ml-4">
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="text-xs text-gray-400">Email</span>
+                                            <label class="toggle-switch"><input type="checkbox" checked=""><span class="toggle-slider"></span></label>
+                                        </div>
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="text-xs text-gray-400">SMS</span>
+                                            <label class="toggle-switch"><input type="checkbox" checked=""><span class="toggle-slider"></span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="section-divider">
+
+                        <!-- Team & Downline -->
+                        <div>
+                            <p class="text-xs font-bold text-navy-700 uppercase tracking-wider mb-3 flex items-center gap-2">
+                                <span class="w-5 h-5 rounded-lg kpi-card-gradient-blue flex items-center justify-center"><i class="fa-solid fa-users text-white" style="font-size:8px;"></i></span>
+                                Team &amp; Downline
+                            </p>
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between p-4 bg-white/60 border border-gray-100 rounded-xl">
+                                    <div class="flex-1">
+                                        <p class="text-sm font-semibold text-navy-900">New Rep Enrolled</p>
+                                        <p class="text-xs text-gray-500 mt-0.5">When someone joins your downline team</p>
+                                    </div>
+                                    <div class="flex items-center gap-4 ml-4">
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="text-xs text-gray-400">Email</span>
+                                            <label class="toggle-switch"><input type="checkbox" checked=""><span class="toggle-slider"></span></label>
+                                        </div>
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="text-xs text-gray-400">SMS</span>
+                                            <label class="toggle-switch"><input type="checkbox" checked=""><span class="toggle-slider"></span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between p-4 bg-white/60 border border-gray-100 rounded-xl">
+                                    <div class="flex-1">
+                                        <p class="text-sm font-semibold text-navy-900">Rank Advancement</p>
+                                        <p class="text-xs text-gray-500 mt-0.5">When a downline rep advances in rank</p>
+                                    </div>
+                                    <div class="flex items-center gap-4 ml-4">
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="text-xs text-gray-400">Email</span>
+                                            <label class="toggle-switch"><input type="checkbox" checked=""><span class="toggle-slider"></span></label>
+                                        </div>
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="text-xs text-gray-400">SMS</span>
+                                            <label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between p-4 bg-white/60 border border-gray-100 rounded-xl">
+                                    <div class="flex-1">
+                                        <p class="text-sm font-semibold text-navy-900">Team Activity Digest</p>
+                                        <p class="text-xs text-gray-500 mt-0.5">Weekly summary of your team's performance</p>
+                                    </div>
+                                    <div class="flex items-center gap-4 ml-4">
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="text-xs text-gray-400">Email</span>
+                                            <label class="toggle-switch"><input type="checkbox" checked=""><span class="toggle-slider"></span></label>
+                                        </div>
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="text-xs text-gray-400">SMS</span>
+                                            <label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="section-divider">
+
+                        <!-- Compliance & Account -->
+                        <div>
+                            <p class="text-xs font-bold text-navy-700 uppercase tracking-wider mb-3 flex items-center gap-2">
+                                <span class="w-5 h-5 rounded-lg" style="background: linear-gradient(135deg, #065f46, #059669); display:flex; align-items:center; justify-content:center;"><i class="fa-solid fa-shield-halved text-white" style="font-size:8px;"></i></span>
+                                Compliance &amp; Account
+                            </p>
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between p-4 bg-white/60 border border-gray-100 rounded-xl">
+                                    <div class="flex-1">
+                                        <p class="text-sm font-semibold text-navy-900">License Expiry Reminder</p>
+                                        <p class="text-xs text-gray-500 mt-0.5">30, 60, 90 days before license expires</p>
+                                    </div>
+                                    <div class="flex items-center gap-4 ml-4">
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="text-xs text-gray-400">Email</span>
+                                            <label class="toggle-switch"><input type="checkbox" checked=""><span class="toggle-slider"></span></label>
+                                        </div>
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="text-xs text-gray-400">SMS</span>
+                                            <label class="toggle-switch"><input type="checkbox" checked=""><span class="toggle-slider"></span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between p-4 bg-white/60 border border-gray-100 rounded-xl">
+                                    <div class="flex-1">
+                                        <p class="text-sm font-semibold text-navy-900">Security Alerts</p>
+                                        <p class="text-xs text-gray-500 mt-0.5">Login from new device or suspicious activity</p>
+                                    </div>
+                                    <div class="flex items-center gap-4 ml-4">
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="text-xs text-gray-400">Email</span>
+                                            <label class="toggle-switch"><input type="checkbox" checked=""><span class="toggle-slider"></span></label>
+                                        </div>
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="text-xs text-gray-400">SMS</span>
+                                            <label class="toggle-switch"><input type="checkbox" checked=""><span class="toggle-slider"></span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between p-4 bg-white/60 border border-gray-100 rounded-xl">
+                                    <div class="flex-1">
+                                        <p class="text-sm font-semibold text-navy-900">Training Reminders</p>
+                                        <p class="text-xs text-gray-500 mt-0.5">Reminders for incomplete training modules</p>
+                                    </div>
+                                    <div class="flex items-center gap-4 ml-4">
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="text-xs text-gray-400">Email</span>
+                                            <label class="toggle-switch"><input type="checkbox" checked=""><span class="toggle-slider"></span></label>
+                                        </div>
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="text-xs text-gray-400">SMS</span>
+                                            <label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between p-4 bg-white/60 border border-gray-100 rounded-xl">
+                                    <div class="flex-1">
+                                        <p class="text-sm font-semibold text-navy-900">Marketing &amp; Promotions</p>
+                                        <p class="text-xs text-gray-500 mt-0.5">Company announcements and promotional offers</p>
+                                    </div>
+                                    <div class="flex items-center gap-4 ml-4">
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="text-xs text-gray-400">Email</span>
+                                            <label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label>
+                                        </div>
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="text-xs text-gray-400">SMS</span>
+                                            <label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between mt-8 pt-6 border-t border-gray-100">
+                        <p class="text-xs text-gray-400 flex items-center gap-1.5"><i class="fa-solid fa-clock-rotate-left"></i> Last updated: Dec 1, 2024</p>
+                        <button class="save-btn">
+                            <i class="fa-solid fa-floppy-disk"></i>
+                            Save Preferences
+                        </button>
+                    </div>
+                </div>
+
+                <!-- TAB 6: Representative Agreement -->
+                <div id="content-agreement" class="tab-content glass rounded-2xl p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h2 class="text-lg font-bold text-navy-900">Representative Agreement</h2>
+                            <p class="text-sm text-gray-500 mt-0.5">Review and sign your independent representative agreement</p>
+                        </div>
+                        <span class="text-xs font-bold text-amber-700 bg-amber-50 border border-amber-200 px-3 py-1.5 rounded-full flex items-center gap-1.5">
+                            <i class="fa-solid fa-pen text-xs"></i> Signature Required
+                        </span>
+                    </div>
+
+                    <div class="bg-brandRed-50 border border-brandRed-200 rounded-xl p-4 mb-6 flex items-start gap-3">
+                        <i class="fa-solid fa-circle-exclamation text-brandRed-500 mt-0.5"></i>
+                        <div>
+                            <p class="text-sm font-bold text-brandRed-800">Action Required: Agreement Unsigned</p>
+                            <p class="text-xs text-brandRed-700 mt-0.5">You must sign the Representative Agreement to maintain your active rep status and receive commission payments. Please review and sign below.</p>
+                        </div>
+                    </div>
+
+                    <!-- Agreement Document -->
+                    <div class="mb-5">
+                        <div class="flex items-center justify-between mb-3">
+                            <p class="text-xs font-bold text-navy-700 uppercase tracking-wider flex items-center gap-2">
+                                <span class="w-5 h-5 rounded-lg kpi-card-gradient-blue flex items-center justify-center"><i class="fa-solid fa-file-contract text-white" style="font-size:8px;"></i></span>
+                                Agreement Document
+                            </p>
+                            <button class="text-xs font-semibold text-navy-600 hover:text-navy-800 flex items-center gap-1.5 bg-navy-50 border border-navy-200 px-3 py-1.5 rounded-xl transition-colors">
+                                <i class="fa-solid fa-download text-xs"></i> Download PDF
+                            </button>
+                        </div>
+                        <div class="agreement-text">
+                            <p class="font-bold text-navy-900 mb-2">INDEPENDENT REPRESENTATIVE AGREEMENT</p>
+                            <p class="mb-3">This Independent Representative Agreement ("Agreement") is entered into as of the date of signature below, between Ascend Financial Services, Inc. ("Company"), a Delaware corporation, and the undersigned individual ("Representative").</p>
+                            <p class="font-semibold text-navy-800 mb-1">1. INDEPENDENT CONTRACTOR STATUS</p>
+                            <p class="mb-3">Representative acknowledges and agrees that they are an independent contractor and not an employee of the Company. Representative shall have no authority to bind the Company to any contract or obligation without prior written consent. Representative is solely responsible for all federal, state, and local taxes on compensation received under this Agreement.</p>
+                            <p class="font-semibold text-navy-800 mb-1">2. COMPENSATION</p>
+                            <p class="mb-3">Representative shall be entitled to commissions as set forth in the Company's current Compensation Plan, which may be amended from time to time at the Company's sole discretion. Commissions are earned upon the completion of qualifying sales and are subject to applicable chargebacks and adjustments as described in the Compensation Plan.</p>
+                            <p class="font-semibold text-navy-800 mb-1">3. COMPLIANCE AND LICENSING</p>
+                            <p class="mb-3">Representative agrees to maintain all required licenses and registrations necessary to conduct business in their jurisdiction. Representative shall comply with all applicable federal, state, and local laws, regulations, and Company policies, including but not limited to FINRA regulations, state insurance laws, and the Company's Code of Ethics.</p>
+                            <p class="font-semibold text-navy-800 mb-1">4. CONFIDENTIALITY</p>
+                            <p class="mb-3">Representative agrees to maintain the confidentiality of all proprietary information, trade secrets, customer data, and business strategies of the Company. This obligation shall survive the termination of this Agreement for a period of five (5) years.</p>
+                            <p class="font-semibold text-navy-800 mb-1">5. NON-SOLICITATION</p>
+                            <p class="mb-3">During the term of this Agreement and for a period of twelve (12) months following termination, Representative agrees not to solicit any customers or representatives of the Company for the benefit of any competing business.</p>
+                            <p class="font-semibold text-navy-800 mb-1">6. TERM AND TERMINATION</p>
+                            <p>This Agreement shall commence on the date of signature and continue until terminated by either party upon thirty (30) days written notice. The Company reserves the right to terminate this Agreement immediately for cause, including but not limited to violation of Company policies, regulatory violations, or fraudulent activity.</p>
+                        </div>
+                    </div>
+
+                    <!-- Agreement Checkboxes -->
+                    <div class="space-y-3 mb-6">
+                        <label class="flex items-start gap-3 p-4 bg-white/60 border border-gray-200 rounded-xl cursor-pointer hover:border-navy-300 transition-colors">
+                            <input type="checkbox" class="mt-0.5 w-4 h-4 accent-navy-600 flex-shrink-0">
+                            <p class="text-sm text-gray-700">I have read and understand the full Independent Representative Agreement and agree to all terms and conditions.</p>
+                        </label>
+                        <label class="flex items-start gap-3 p-4 bg-white/60 border border-gray-200 rounded-xl cursor-pointer hover:border-navy-300 transition-colors">
+                            <input type="checkbox" class="mt-0.5 w-4 h-4 accent-navy-600 flex-shrink-0">
+                            <p class="text-sm text-gray-700">I acknowledge that I am an independent contractor and not an employee of Ascend Financial Services, Inc.</p>
+                        </label>
+                        <label class="flex items-start gap-3 p-4 bg-white/60 border border-gray-200 rounded-xl cursor-pointer hover:border-navy-300 transition-colors">
+                            <input type="checkbox" class="mt-0.5 w-4 h-4 accent-navy-600 flex-shrink-0">
+                            <p class="text-sm text-gray-700">I confirm that all information provided in my profile is accurate and complete to the best of my knowledge.</p>
+                        </label>
+                    </div>
+
+                    <!-- E-Signature -->
+                    <div class="mb-5">
+                        <p class="text-xs font-bold text-navy-700 uppercase tracking-wider mb-3 flex items-center gap-2">
+                            <span class="w-5 h-5 rounded-lg kpi-card-gradient-red flex items-center justify-center"><i class="fa-solid fa-pen-nib text-white" style="font-size:8px;"></i></span>
+                            Electronic Signature
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="form-label">Full Legal Name (Type to Sign)</label>
+                                <input type="text" class="form-input" placeholder="Type your full legal name" style="font-family: 'Brush Script MT', cursive; font-size: 18px; color: #1B3A7D;">
+                            </div>
+                            <div>
+                                <label class="form-label">Date</label>
+                                <input type="date" class="form-input" value="2024-12-15">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="form-label">Signature Pad (Draw your signature)</label>
+                            <div class="sig-pad" id="sigPad" onclick="this.innerHTML='&lt;div class=\'text-center\'&gt;&lt;p class=\'text-navy-700 font-bold text-lg\' style=\'font-family: cursive;\'&gt;Sarah M. Jenkins&lt;/p&gt;&lt;p class=\'text-xs text-gray-400 mt-1\'&gt;Signed digitally&lt;/p&gt;&lt;/div&gt;'">
+                                <div class="text-center">
+                                    <i class="fa-solid fa-pen-nib text-gray-300 text-2xl mb-2"></i>
+                                    <p class="text-sm text-gray-400">Click to sign or draw your signature</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Agreement Version Info -->
+                    <div class="bg-gray-50 border border-gray-200 rounded-xl p-4 flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-bold text-gray-700">Agreement Version 4.2</p>
+                            <p class="text-xs text-gray-400 mt-0.5">Effective Date: January 1, 2024 · Last Revised: October 15, 2024</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xs text-gray-500">Previous signature:</p>
+                            <p class="text-xs font-bold text-gray-400">Not yet signed</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between mt-8 pt-6 border-t border-gray-100">
+                        <p class="text-xs text-gray-400 flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-emerald-500"></i> Legally binding e-signature · IP logged</p>
+                        <button class="save-btn">
+                            <i class="fa-solid fa-file-signature"></i>
+                            Submit Signed Agreement
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+</div>
+
+<script>
+    function switchTab(tabName) {
+        // Hide all tab contents
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        // Remove active from all tab buttons
+        document.querySelectorAll('.tab-btn').forEach(b => {
+            b.classList.remove('active');
+            b.classList.add('text-gray-600');
+            b.classList.remove('text-white');
+        });
+        // Show selected tab content
+        document.getElementById('content-' + tabName).classList.add('active');
+        // Activate selected tab button
+        const btn = document.getElementById('tab-' + tabName);
+        btn.classList.add('active');
+        btn.classList.remove('text-gray-600');
+        btn.classList.add('text-white');
+    }
+
+    function toggleSSN() {
+        const input = document.getElementById('ssnInput');
+        const eye = document.getElementById('ssnEye');
+        if (input.type === 'password') {
+            input.type = 'text';
+            eye.className = 'fa-solid fa-eye text-sm';
+        } else {
+            input.type = 'password';
+            eye.className = 'fa-solid fa-eye-slash text-sm';
+        }
+    }
+
+    function toggleEIN() {
+        const input = document.getElementById('einInput');
+        const eye = document.getElementById('einEye');
+        if (input.type === 'password') {
+            input.type = 'text';
+            eye.className = 'fa-solid fa-eye text-sm';
+        } else {
+            input.type = 'password';
+            eye.className = 'fa-solid fa-eye-slash text-sm';
+        }
+    }
+
+    function toggleAcct() {
+        const input = document.getElementById('acctInput');
+        const eye = document.getElementById('acctEye');
+        if (input.type === 'password') {
+            input.type = 'text';
+            eye.className = 'fa-solid fa-eye text-sm';
+        } else {
+            input.type = 'password';
+            eye.className = 'fa-solid fa-eye-slash text-sm';
+        }
+    }
+
+    function toggleRouting() {
+        const input = document.getElementById('routingInput');
+        const eye = document.getElementById('routingEye');
+        if (input.type === 'password') {
+            input.type = 'text';
+            eye.className = 'fa-solid fa-eye text-sm';
+        } else {
+            input.type = 'password';
+            eye.className = 'fa-solid fa-eye-slash text-sm';
+        }
+    }
+</script>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="News & Announcements - Exported from UXMagic Copilot">
+    <title>News & Announcements</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            50: '#E8EAF2',
+                            100: '#C5CCDF',
+                            200: '#9EAACC',
+                            300: '#7689B9',
+                            400: '#4F67A6',
+                            500: '#274693',
+                            600: '#1B3A7D',
+                            700: '#152D61',
+                            800: '#0F2045',
+                            900: '#091329',
+                        },
+                        brandRed: {
+                            50: '#FBE8E9',
+                            100: '#F5C5C7',
+                            200: '#EE9EA1',
+                            300: '#E7767B',
+                            400: '#E04F55',
+                            500: '#D9272F',
+                            600: '#C7181F',
+                            700: '#9B1318',
+                            800: '#6F0D11',
+                            900: '#42080A',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+<!-- Mobile Menu Overlay -->
+<div id="mobileMenuOverlay" class="mobile-menu-overlay" onclick="closeMobileMenu()"></div>
+
+<div class="flex" style="height: auto; min-height: 100vh;">
+
+    <!-- Sidebar -->
+    <aside id="mainSidebar" class="hidden md:flex flex-col w-64 glass-dark text-white z-20" style="min-height: 100vh;">
+        <div class="p-6 flex items-center gap-3 border-b border-white/10">
+            <div class="w-8 h-8 rounded-lg bg-brandRed-600 flex items-center justify-center shadow-lg shadow-brandRed-600/30">
+                <i class="fa-solid fa-chart-line text-white text-sm"></i>
+            </div>
+            <span class="text-xl font-bold tracking-tight">ASCEND</span>
+        </div>
+        <nav class="flex-1 overflow-y-auto py-6 px-3 space-y-1">
+            <a href="/api/copilot/prototype/1fa40b2a-ce2d-4760-a266-757a90c91822/news-announcements" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-grid-2 w-5 text-center"></i>
+                <span class="font-medium">Dashboard</span>
+            </a>
+            <a href="/api/copilot/prototype/1fa40b2a-ce2d-4760-a266-757a90c91822/news-announcements" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-users w-5 text-center"></i>
+                <span class="font-medium">Customers</span>
+            </a>
+            <a href="/api/copilot/prototype/1fa40b2a-ce2d-4760-a266-757a90c91822/news-announcements" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-wallet w-5 text-center"></i>
+                <span class="font-medium">Commissions</span>
+            </a>
+            <a href="/api/copilot/prototype/1fa40b2a-ce2d-4760-a266-757a90c91822/news-announcements" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-sitemap w-5 text-center"></i>
+                <span class="font-medium">Genealogy</span>
+            </a>
+            <a href="/api/copilot/prototype/1fa40b2a-ce2d-4760-a266-757a90c91822/news-announcements" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-store w-5 text-center"></i>
+                <span class="font-medium">Shop</span>
+            </a>
+            <a href="/api/copilot/prototype/1fa40b2a-ce2d-4760-a266-757a90c91822/news-announcements" class="flex items-center gap-3 px-4 py-3 sidebar-active text-white rounded-xl transition-all">
+                <i class="fa-solid fa-newspaper w-5 text-center text-brandRed-400"></i>
+                <span class="font-medium">News</span>
+                <span class="ml-auto bg-brandRed-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">3</span>
+            </a>
+            <a href="/api/copilot/prototype/1fa40b2a-ce2d-4760-a266-757a90c91822/news-announcements" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-graduation-cap w-5 text-center"></i>
+                <span class="font-medium">Training</span>
+            </a>
+
+            <!-- Upcoming Events in Sidebar -->
+            <div class="mt-6 pt-4 border-t border-white/10">
+                <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest px-4 mb-3">Upcoming Events</p>
+                <div class="space-y-2 px-1">
+
+                    <div class="flex items-start gap-3 px-3 py-3 rounded-xl hover:bg-white/5 transition-all cursor-pointer group">
+                        <div class="event-date-chip rounded-xl px-2.5 py-1.5 text-center flex-shrink-0 min-w-[44px]">
+                            <p class="text-xs font-bold leading-none">JUN</p>
+                            <p class="text-lg font-extrabold leading-tight">28</p>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-xs font-semibold text-white leading-snug group-hover:text-brandRed-300 transition-colors">National Leadership Summit</p>
+                            <p class="text-xs text-gray-400 mt-0.5">9:00 AM · Virtual</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-3 px-3 py-3 rounded-xl hover:bg-white/5 transition-all cursor-pointer group">
+                        <div class="event-date-chip rounded-xl px-2.5 py-1.5 text-center flex-shrink-0 min-w-[44px]" style="background: linear-gradient(135deg, #C7181F 0%, #9B1318 100%);">
+                            <p class="text-xs font-bold leading-none">JUL</p>
+                            <p class="text-lg font-extrabold leading-tight">05</p>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-xs font-semibold text-white leading-snug group-hover:text-brandRed-300 transition-colors">Q3 Compliance Webinar</p>
+                            <p class="text-xs text-gray-400 mt-0.5">2:00 PM · Zoom</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-3 px-3 py-3 rounded-xl hover:bg-white/5 transition-all cursor-pointer group">
+                        <div class="event-date-chip rounded-xl px-2.5 py-1.5 text-center flex-shrink-0 min-w-[44px]">
+                            <p class="text-xs font-bold leading-none">JUL</p>
+                            <p class="text-lg font-extrabold leading-tight">12</p>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-xs font-semibold text-white leading-snug group-hover:text-brandRed-300 transition-colors">New Product Launch Training</p>
+                            <p class="text-xs text-gray-400 mt-0.5">11:00 AM · Virtual</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-3 px-3 py-3 rounded-xl hover:bg-white/5 transition-all cursor-pointer group">
+                        <div class="event-date-chip rounded-xl px-2.5 py-1.5 text-center flex-shrink-0 min-w-[44px]">
+                            <p class="text-xs font-bold leading-none">JUL</p>
+                            <p class="text-lg font-extrabold leading-tight">19</p>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-xs font-semibold text-white leading-snug group-hover:text-brandRed-300 transition-colors">Diamond Director Retreat</p>
+                            <p class="text-xs text-gray-400 mt-0.5">All Day · Las Vegas</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-3 px-3 py-3 rounded-xl hover:bg-white/5 transition-all cursor-pointer group">
+                        <div class="event-date-chip rounded-xl px-2.5 py-1.5 text-center flex-shrink-0 min-w-[44px]" style="background: linear-gradient(135deg, #065f46 0%, #059669 100%);">
+                            <p class="text-xs font-bold leading-none">AUG</p>
+                            <p class="text-lg font-extrabold leading-tight">02</p>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-xs font-semibold text-white leading-snug group-hover:text-brandRed-300 transition-colors">Team Building Workshop</p>
+                            <p class="text-xs text-gray-400 mt-0.5">10:00 AM · In-Person</p>
+                        </div>
+                    </div>
+
+                    <button class="w-full mt-2 text-xs text-navy-200 hover:text-white font-medium py-2 px-3 rounded-xl hover:bg-white/5 transition-all flex items-center justify-center gap-1.5">
+                        View All Events <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <div class="p-4 border-t border-white/10">
+            <div class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/5">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Profile" class="w-10 h-10 rounded-full border-2 border-brandRed-500">
+                <div class="flex-1 min-w-0">
+                    <p class="text-sm font-semibold text-white truncate">Sarah Jenkins</p>
+                    <p class="text-xs text-gray-400 truncate">Diamond Director</p>
+                </div>
+                <button class="text-gray-400 hover:text-white"><i class="fa-solid fa-gear"></i></button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Mobile Sidebar -->
+    <aside id="mobileSidebar" class="fixed inset-y-0 left-0 w-72 glass-dark text-white z-50 transform -translate-x-full transition-transform duration-300 flex flex-col md:hidden" style="min-height: 100vh;">
+        <div class="p-5 flex items-center justify-between border-b border-white/10">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-brandRed-600 flex items-center justify-center">
+                    <i class="fa-solid fa-chart-line text-white text-sm"></i>
+                </div>
+                <span class="text-xl font-bold tracking-tight">ASCEND</span>
+            </div>
+            <button onclick="closeMobileMenu()" class="text-gray-400 hover:text-white p-1"><i class="fa-solid fa-xmark text-lg"></i></button>
+        </div>
+        <nav class="flex-1 overflow-y-auto py-4 px-3 space-y-1">
+            <a href="/api/copilot/prototype/1fa40b2a-ce2d-4760-a266-757a90c91822/news-announcements" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-grid-2 w-5 text-center"></i>
+                <span class="font-medium">Dashboard</span>
+            </a>
+            <a href="/api/copilot/prototype/1fa40b2a-ce2d-4760-a266-757a90c91822/news-announcements" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-users w-5 text-center"></i>
+                <span class="font-medium">Customers</span>
+            </a>
+            <a href="/api/copilot/prototype/1fa40b2a-ce2d-4760-a266-757a90c91822/news-announcements" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-wallet w-5 text-center"></i>
+                <span class="font-medium">Commissions</span>
+            </a>
+            <a href="/api/copilot/prototype/1fa40b2a-ce2d-4760-a266-757a90c91822/news-announcements" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-sitemap w-5 text-center"></i>
+                <span class="font-medium">Genealogy</span>
+            </a>
+            <a href="/api/copilot/prototype/1fa40b2a-ce2d-4760-a266-757a90c91822/news-announcements" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-store w-5 text-center"></i>
+                <span class="font-medium">Shop</span>
+            </a>
+            <a href="/api/copilot/prototype/1fa40b2a-ce2d-4760-a266-757a90c91822/news-announcements" class="flex items-center gap-3 px-4 py-3 sidebar-active text-white rounded-xl transition-all">
+                <i class="fa-solid fa-newspaper w-5 text-center text-brandRed-400"></i>
+                <span class="font-medium">News</span>
+                <span class="ml-auto bg-brandRed-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">3</span>
+            </a>
+            <a href="/api/copilot/prototype/1fa40b2a-ce2d-4760-a266-757a90c91822/news-announcements" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-graduation-cap w-5 text-center"></i>
+                <span class="font-medium">Training</span>
+            </a>
+        </nav>
+        <div class="p-4 border-t border-white/10">
+            <div class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/5">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Profile" class="w-10 h-10 rounded-full border-2 border-brandRed-500">
+                <div class="flex-1 min-w-0">
+                    <p class="text-sm font-semibold text-white truncate">Sarah Jenkins</p>
+                    <p class="text-xs text-gray-400 truncate">Diamond Director</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col relative" style="min-height: 100vh;">
+
+        <!-- Mobile Header -->
+        <div class="md:hidden glass sticky top-0 z-30 px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-navy-600 flex items-center justify-center">
+                    <i class="fa-solid fa-chart-line text-white text-xs"></i>
+                </div>
+                <span class="text-lg font-bold text-navy-800">ASCEND</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <button class="relative text-navy-600 p-2">
+                    <i class="fa-solid fa-bell text-lg"></i>
+                    <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-brandRed-600 rounded-full"></span>
+                </button>
+                <button onclick="openMobileMenu()" class="text-navy-600 p-2"><i class="fa-solid fa-bars text-xl"></i></button>
+            </div>
+        </div>
+
+        <!-- Urgent Alert Banner -->
+        <div id="alertBanner" class="alert-banner alert-animate mx-4 md:mx-6 lg:mx-8 mt-4 rounded-2xl px-5 py-4 flex items-start gap-4">
+            <div class="flex-shrink-0 w-9 h-9 rounded-xl bg-white/20 flex items-center justify-center mt-0.5">
+                <i class="fa-solid fa-triangle-exclamation text-white text-base"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 mb-1">
+                    <span class="text-xs font-bold bg-white/25 text-white px-2.5 py-0.5 rounded-full uppercase tracking-wide">Urgent</span>
+                    <span class="text-xs text-red-200">Posted June 20, 2024</span>
+                </div>
+                <p class="text-white font-bold text-sm leading-snug">Mandatory Compliance Update: New FTC Guidelines Effective July 1, 2024</p>
+                <p class="text-red-100 text-xs mt-1 leading-relaxed">All representatives must complete the updated compliance training module before June 30. Failure to comply may result in account suspension. <span class="underline font-semibold cursor-pointer hover:text-white transition-colors">Complete Training Now →</span></p>
+            </div>
+            <button onclick="dismissAlert()" class="flex-shrink-0 text-white/60 hover:text-white transition-colors p-1 mt-0.5" title="Dismiss">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Page Header -->
+        <div class="px-4 md:px-6 lg:px-8 pt-6 pb-4">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h1 class="text-2xl font-bold text-navy-900 flex items-center gap-3">
+                        <i class="fa-solid fa-newspaper text-navy-600 text-xl"></i>
+                        News &amp; Announcements
+                        <span class="bg-brandRed-600 text-white text-xs font-bold px-2.5 py-1 rounded-full">3 New</span>
+                    </h1>
+                    <p class="text-gray-500 text-sm mt-1">Stay up to date with the latest company news, events, and updates — <span class="font-semibold text-navy-600">June 2024</span></p>
+                </div>
+                <div class="flex items-center gap-3 flex-wrap">
+                    <div class="glass px-3 py-2 rounded-xl flex items-center gap-2">
+                        <i class="fa-solid fa-magnifying-glass text-navy-400 text-sm"></i>
+                        <input type="text" placeholder="Search news..." class="bg-transparent text-sm text-navy-700 placeholder-gray-400 focus:outline-none w-36">
+                    </div>
+                    <button class="glass px-4 py-2 rounded-xl text-sm font-medium text-navy-600 hover:bg-white transition-colors flex items-center gap-2">
+                        <i class="fa-solid fa-bell text-navy-400"></i>
+                        <span class="hidden sm:inline">Subscribe</span>
+                    </button>
+                    <button class="glass px-4 py-2 rounded-xl text-sm font-medium text-navy-600 hover:bg-white transition-colors flex items-center gap-2">
+                        <i class="fa-solid fa-sliders text-navy-400"></i>
+                        <span class="hidden sm:inline">Filter</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category Filter Tabs -->
+        <div class="px-4 md:px-6 lg:px-8 pb-5">
+            <div class="glass rounded-2xl p-1.5 flex items-center gap-1 overflow-x-auto">
+                <button onclick="setFilter('all', this)" class="filter-tab filter-tab-active flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition-all">
+                    <i class="fa-solid fa-border-all text-xs"></i> All
+                    <span class="bg-white/25 text-white text-xs font-bold px-1.5 py-0.5 rounded-full">12</span>
+                </button>
+                <button onclick="setFilter('event', this)" class="filter-tab flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-gray-600 hover:bg-white/60 whitespace-nowrap transition-all">
+                    <i class="fa-solid fa-calendar-star text-xs text-blue-500"></i> Events
+                    <span class="bg-blue-100 text-blue-700 text-xs font-bold px-1.5 py-0.5 rounded-full">4</span>
+                </button>
+                <button onclick="setFilter('update', this)" class="filter-tab flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-gray-600 hover:bg-white/60 whitespace-nowrap transition-all">
+                    <i class="fa-solid fa-rotate text-xs text-emerald-500"></i> Updates
+                    <span class="bg-emerald-100 text-emerald-700 text-xs font-bold px-1.5 py-0.5 rounded-full">3</span>
+                </button>
+                <button onclick="setFilter('training', this)" class="filter-tab flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-gray-600 hover:bg-white/60 whitespace-nowrap transition-all">
+                    <i class="fa-solid fa-graduation-cap text-xs text-amber-500"></i> Training
+                    <span class="bg-amber-100 text-amber-700 text-xs font-bold px-1.5 py-0.5 rounded-full">3</span>
+                </button>
+                <button onclick="setFilter('compliance', this)" class="filter-tab flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-gray-600 hover:bg-white/60 whitespace-nowrap transition-all">
+                    <i class="fa-solid fa-shield-check text-xs text-red-500"></i> Compliance
+                    <span class="bg-red-100 text-red-700 text-xs font-bold px-1.5 py-0.5 rounded-full">2</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="px-4 md:px-6 lg:px-8 pb-10">
+
+            <!-- Featured / Hero Article -->
+            <div class="news-card-featured rounded-2xl overflow-hidden mb-6 cursor-pointer" style="max-height: 420px;">
+                <div class="flex flex-col lg:flex-row h-full">
+                    <div class="relative lg:w-2/5 h-52 lg:h-auto overflow-hidden flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Leadership Summit" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-r from-navy-900/70 to-transparent lg:block hidden"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-900/70 to-transparent lg:hidden"></div>
+                        <div class="absolute top-4 left-4 flex items-center gap-2">
+                            <span class="unread-dot"></span>
+                            <span class="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">Event</span>
+                            <span class="bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full border border-white/30">Featured</span>
+                        </div>
+                    </div>
+                    <div class="flex-1 p-6 lg:p-8 flex flex-col justify-center">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="category-badge-event text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1.5">
+                                <i class="fa-solid fa-calendar-star text-xs"></i> Event
+                            </span>
+                            <span class="text-xs text-gray-400 flex items-center gap-1.5">
+                                <i class="fa-regular fa-clock text-xs"></i> June 18, 2024
+                            </span>
+                            <span class="text-xs text-gray-400 flex items-center gap-1.5">
+                                <i class="fa-regular fa-eye text-xs"></i> 2.4k views
+                            </span>
+                        </div>
+                        <h2 class="text-xl lg:text-2xl font-bold text-navy-900 leading-tight mb-3">2024 National Leadership Summit — Registration Now Open</h2>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-5 line-clamp-3">Join thousands of Ascend representatives for our biggest annual event. This year's summit features keynote speakers, product launches, rank advancement ceremonies, and exclusive networking opportunities. Early bird pricing ends June 30th — secure your spot today.</p>
+                        <div class="flex items-center justify-between flex-wrap gap-3">
+                            <div class="flex items-center gap-4">
+                                <div class="flex items-center gap-2">
+                                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Author" class="w-7 h-7 rounded-full border-2 border-navy-200">
+                                    <span class="text-xs font-semibold text-gray-600">Corporate Team</span>
+                                </div>
+                                <span class="text-xs text-gray-400 flex items-center gap-1">
+                                    <i class="fa-solid fa-location-dot text-xs text-navy-400"></i> Las Vegas, NV
+                                </span>
+                            </div>
+                            <button class="read-more-btn bg-navy-600 hover:bg-navy-700 text-white text-sm font-semibold px-5 py-2.5 rounded-xl flex items-center gap-2 transition-colors">
+                                Register Now <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- News Feed Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5" id="newsFeed">
+
+                <!-- Article 1 - Unread - Compliance -->
+                <div class="news-card-featured rounded-2xl overflow-hidden cursor-pointer flex flex-col">
+                    <div class="relative h-44 overflow-hidden flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Compliance Update" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent"></div>
+                        <div class="absolute top-3 left-3 flex items-center gap-2">
+                            <span class="unread-dot"></span>
+                            <span class="bg-red-600 text-white text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
+                                <i class="fa-solid fa-shield-check text-xs"></i> Compliance
+                            </span>
+                        </div>
+                        <div class="absolute top-3 right-3">
+                            <span class="bg-red-100 text-red-700 text-xs font-bold px-2.5 py-1 rounded-full">Urgent</span>
+                        </div>
+                    </div>
+                    <div class="p-5 flex flex-col flex-1">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xs text-gray-400 flex items-center gap-1"><i class="fa-regular fa-clock text-xs"></i> June 20, 2024</span>
+                            <span class="text-gray-200">·</span>
+                            <span class="text-xs text-gray-400">5 min read</span>
+                        </div>
+                        <h3 class="font-bold text-navy-900 text-base leading-snug mb-2">FTC Compliance Update: New Income Disclosure Requirements</h3>
+                        <p class="text-gray-500 text-xs leading-relaxed flex-1 mb-4">All representatives must update their income disclosure statements to comply with new FTC guidelines. Templates and training materials are now available in your back office.</p>
+                        <div class="flex items-center justify-between mt-auto">
+                            <div class="flex items-center gap-2">
+                                <div class="w-6 h-6 rounded-full bg-navy-100 flex items-center justify-center">
+                                    <span class="text-xs font-bold text-navy-700">CT</span>
+                                </div>
+                                <span class="text-xs text-gray-500">Compliance Team</span>
+                            </div>
+                            <button class="read-more-btn text-navy-600 hover:text-navy-800 text-xs font-bold flex items-center gap-1.5 transition-all">
+                                Read More <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Article 2 - Unread - Training -->
+                <div class="news-card-featured rounded-2xl overflow-hidden cursor-pointer flex flex-col">
+                    <div class="relative h-44 overflow-hidden flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Training" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent"></div>
+                        <div class="absolute top-3 left-3 flex items-center gap-2">
+                            <span class="unread-dot"></span>
+                            <span class="bg-amber-600 text-white text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
+                                <i class="fa-solid fa-graduation-cap text-xs"></i> Training
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-5 flex flex-col flex-1">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xs text-gray-400 flex items-center gap-1"><i class="fa-regular fa-clock text-xs"></i> June 17, 2024</span>
+                            <span class="text-gray-200">·</span>
+                            <span class="text-xs text-gray-400">8 min read</span>
+                        </div>
+                        <h3 class="font-bold text-navy-900 text-base leading-snug mb-2">New PulseCommand Sales Mastery Course Now Live</h3>
+                        <p class="text-gray-500 text-xs leading-relaxed flex-1 mb-4">Master the art of selling our flagship security product with our comprehensive 6-module training course. Includes scripts, objection handling, and live role-play sessions with top earners.</p>
+                        <div class="flex items-center justify-between mt-auto">
+                            <div class="flex items-center gap-2">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Author" class="w-6 h-6 rounded-full border border-navy-200">
+                                <span class="text-xs text-gray-500">Training Dept.</span>
+                            </div>
+                            <button class="read-more-btn text-navy-600 hover:text-navy-800 text-xs font-bold flex items-center gap-1.5 transition-all">
+                                Read More <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Article 3 - Unread - Update -->
+                <div class="news-card-featured rounded-2xl overflow-hidden cursor-pointer flex flex-col">
+                    <div class="relative h-44 overflow-hidden flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Business Update" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent"></div>
+                        <div class="absolute top-3 left-3 flex items-center gap-2">
+                            <span class="unread-dot"></span>
+                            <span class="bg-emerald-600 text-white text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
+                                <i class="fa-solid fa-rotate text-xs"></i> Update
+                            </span>
+                        </div>
+                        <div class="absolute top-3 right-3">
+                            <span class="bg-emerald-100 text-emerald-700 text-xs font-bold px-2.5 py-1 rounded-full">New</span>
+                        </div>
+                    </div>
+                    <div class="p-5 flex flex-col flex-1">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xs text-gray-400 flex items-center gap-1"><i class="fa-regular fa-clock text-xs"></i> June 15, 2024</span>
+                            <span class="text-gray-200">·</span>
+                            <span class="text-xs text-gray-400">4 min read</span>
+                        </div>
+                        <h3 class="font-bold text-navy-900 text-base leading-snug mb-2">Back Office 3.0 Launch: Faster, Smarter, More Powerful</h3>
+                        <p class="text-gray-500 text-xs leading-relaxed flex-1 mb-4">We've completely rebuilt the representative back office with real-time analytics, improved genealogy tools, and a redesigned mobile experience. Discover what's new in this major update.</p>
+                        <div class="flex items-center justify-between mt-auto">
+                            <div class="flex items-center gap-2">
+                                <div class="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center">
+                                    <span class="text-xs font-bold text-emerald-700">PT</span>
+                                </div>
+                                <span class="text-xs text-gray-500">Product Team</span>
+                            </div>
+                            <button class="read-more-btn text-navy-600 hover:text-navy-800 text-xs font-bold flex items-center gap-1.5 transition-all">
+                                Read More <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Article 4 - Read - Event -->
+                <div class="news-card-featured rounded-2xl overflow-hidden cursor-pointer flex flex-col opacity-90">
+                    <div class="relative h-44 overflow-hidden flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Webinar" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent"></div>
+                        <div class="absolute top-3 left-3">
+                            <span class="bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
+                                <i class="fa-solid fa-calendar-star text-xs"></i> Event
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-5 flex flex-col flex-1">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xs text-gray-400 flex items-center gap-1"><i class="fa-regular fa-clock text-xs"></i> June 12, 2024</span>
+                            <span class="text-gray-200">·</span>
+                            <span class="text-xs text-gray-400">3 min read</span>
+                        </div>
+                        <h3 class="font-bold text-navy-900 text-base leading-snug mb-2">Q3 Compliance Webinar — Register Before July 5</h3>
+                        <p class="text-gray-500 text-xs leading-relaxed flex-1 mb-4">Mandatory quarterly compliance webinar covering updated policies, best practices for social media marketing, and Q&amp;A with the legal team. All active representatives must attend.</p>
+                        <div class="flex items-center justify-between mt-auto">
+                            <div class="flex items-center gap-2">
+                                <div class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center">
+                                    <span class="text-xs font-bold text-blue-700">LT</span>
+                                </div>
+                                <span class="text-xs text-gray-500">Legal Team</span>
+                            </div>
+                            <button class="read-more-btn text-navy-600 hover:text-navy-800 text-xs font-bold flex items-center gap-1.5 transition-all">
+                                Read More <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Article 5 - Read - Training -->
+                <div class="news-card-featured rounded-2xl overflow-hidden cursor-pointer flex flex-col opacity-90">
+                    <div class="relative h-44 overflow-hidden flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Training Module" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent"></div>
+                        <div class="absolute top-3 left-3">
+                            <span class="bg-amber-600 text-white text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
+                                <i class="fa-solid fa-graduation-cap text-xs"></i> Training
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-5 flex flex-col flex-1">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xs text-gray-400 flex items-center gap-1"><i class="fa-regular fa-clock text-xs"></i> June 10, 2024</span>
+                            <span class="text-gray-200">·</span>
+                            <span class="text-xs text-gray-400">6 min read</span>
+                        </div>
+                        <h3 class="font-bold text-navy-900 text-base leading-snug mb-2">Recruiting Masterclass: Building Your Diamond Team in 90 Days</h3>
+                        <p class="text-gray-500 text-xs leading-relaxed flex-1 mb-4">Top Diamond Director Marcus Webb shares his proven 90-day system for recruiting, onboarding, and activating new team members. Includes downloadable scripts and tracking templates.</p>
+                        <div class="flex items-center justify-between mt-auto">
+                            <div class="flex items-center gap-2">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Marcus" class="w-6 h-6 rounded-full border border-navy-200">
+                                <span class="text-xs text-gray-500">Marcus Webb</span>
+                            </div>
+                            <button class="read-more-btn text-navy-600 hover:text-navy-800 text-xs font-bold flex items-center gap-1.5 transition-all">
+                                Read More <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Article 6 - Read - Update -->
+                <div class="news-card-featured rounded-2xl overflow-hidden cursor-pointer flex flex-col opacity-90">
+                    <div class="relative h-44 overflow-hidden flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Commission Update" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent"></div>
+                        <div class="absolute top-3 left-3">
+                            <span class="bg-emerald-600 text-white text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
+                                <i class="fa-solid fa-rotate text-xs"></i> Update
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-5 flex flex-col flex-1">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xs text-gray-400 flex items-center gap-1"><i class="fa-regular fa-clock text-xs"></i> June 8, 2024</span>
+                            <span class="text-gray-200">·</span>
+                            <span class="text-xs text-gray-400">5 min read</span>
+                        </div>
+                        <h3 class="font-bold text-navy-900 text-base leading-snug mb-2">Q3 Commission Structure Update: Increased Bonuses for Top Performers</h3>
+                        <p class="text-gray-500 text-xs leading-relaxed flex-1 mb-4">Effective July 1, we're increasing team override bonuses by 2% for all Diamond and above ranks. Plus, a new Fast Start Bonus for representatives who recruit 3+ members in their first 30 days.</p>
+                        <div class="flex items-center justify-between mt-auto">
+                            <div class="flex items-center gap-2">
+                                <div class="w-6 h-6 rounded-full bg-navy-100 flex items-center justify-center">
+                                    <span class="text-xs font-bold text-navy-700">CF</span>
+                                </div>
+                                <span class="text-xs text-gray-500">Corp. Finance</span>
+                            </div>
+                            <button class="read-more-btn text-navy-600 hover:text-navy-800 text-xs font-bold flex items-center gap-1.5 transition-all">
+                                Read More <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Article 7 - Read - Event -->
+                <div class="news-card-featured rounded-2xl overflow-hidden cursor-pointer flex flex-col opacity-90">
+                    <div class="relative h-44 overflow-hidden flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Product Launch" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent"></div>
+                        <div class="absolute top-3 left-3">
+                            <span class="bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
+                                <i class="fa-solid fa-calendar-star text-xs"></i> Event
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-5 flex flex-col flex-1">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xs text-gray-400 flex items-center gap-1"><i class="fa-regular fa-clock text-xs"></i> June 5, 2024</span>
+                            <span class="text-gray-200">·</span>
+                            <span class="text-xs text-gray-400">4 min read</span>
+                        </div>
+                        <h3 class="font-bold text-navy-900 text-base leading-snug mb-2">New Product Launch Training — July 12 Virtual Event</h3>
+                        <p class="text-gray-500 text-xs leading-relaxed flex-1 mb-4">Get an exclusive first look at our newest product line launching in Q3. This training event will cover product features, pricing, sales strategies, and how to maximize your BV with the new catalog.</p>
+                        <div class="flex items-center justify-between mt-auto">
+                            <div class="flex items-center gap-2">
+                                <div class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center">
+                                    <span class="text-xs font-bold text-blue-700">PM</span>
+                                </div>
+                                <span class="text-xs text-gray-500">Product Mgmt.</span>
+                            </div>
+                            <button class="read-more-btn text-navy-600 hover:text-navy-800 text-xs font-bold flex items-center gap-1.5 transition-all">
+                                Read More <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Article 8 - Read - Compliance -->
+                <div class="news-card-featured rounded-2xl overflow-hidden cursor-pointer flex flex-col opacity-90">
+                    <div class="relative h-44 overflow-hidden flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Policy Update" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent"></div>
+                        <div class="absolute top-3 left-3">
+                            <span class="bg-red-600 text-white text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
+                                <i class="fa-solid fa-shield-check text-xs"></i> Compliance
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-5 flex flex-col flex-1">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xs text-gray-400 flex items-center gap-1"><i class="fa-regular fa-clock text-xs"></i> June 3, 2024</span>
+                            <span class="text-gray-200">·</span>
+                            <span class="text-xs text-gray-400">7 min read</span>
+                        </div>
+                        <h3 class="font-bold text-navy-900 text-base leading-snug mb-2">Updated Social Media Policy: What Every Rep Needs to Know</h3>
+                        <p class="text-gray-500 text-xs leading-relaxed flex-1 mb-4">Our updated social media guidelines clarify approved language, required disclosures, and prohibited claims. Review the full policy document and complete the acknowledgment form by June 25.</p>
+                        <div class="flex items-center justify-between mt-auto">
+                            <div class="flex items-center gap-2">
+                                <div class="w-6 h-6 rounded-full bg-red-100 flex items-center justify-center">
+                                    <span class="text-xs font-bold text-red-700">CT</span>
+                                </div>
+                                <span class="text-xs text-gray-500">Compliance Team</span>
+                            </div>
+                            <button class="read-more-btn text-navy-600 hover:text-navy-800 text-xs font-bold flex items-center gap-1.5 transition-all">
+                                Read More <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Article 9 - Read - Training -->
+                <div class="news-card-featured rounded-2xl overflow-hidden cursor-pointer flex flex-col opacity-90">
+                    <div class="relative h-44 overflow-hidden flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Team Training" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent"></div>
+                        <div class="absolute top-3 left-3">
+                            <span class="bg-amber-600 text-white text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
+                                <i class="fa-solid fa-graduation-cap text-xs"></i> Training
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-5 flex flex-col flex-1">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xs text-gray-400 flex items-center gap-1"><i class="fa-regular fa-clock text-xs"></i> May 28, 2024</span>
+                            <span class="text-gray-200">·</span>
+                            <span class="text-xs text-gray-400">10 min read</span>
+                        </div>
+                        <h3 class="font-bold text-navy-900 text-base leading-snug mb-2">Leadership Development Series: Module 4 — Duplication Strategies</h3>
+                        <p class="text-gray-500 text-xs leading-relaxed flex-1 mb-4">The fourth installment of our leadership series focuses on building duplicatable systems that allow your team to grow independently. Includes video lessons, worksheets, and a live Q&amp;A recording.</p>
+                        <div class="flex items-center justify-between mt-auto">
+                            <div class="flex items-center gap-2">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Author" class="w-6 h-6 rounded-full border border-navy-200">
+                                <span class="text-xs text-gray-500">Lisa Chen</span>
+                            </div>
+                            <button class="read-more-btn text-navy-600 hover:text-navy-800 text-xs font-bold flex items-center gap-1.5 transition-all">
+                                Read More <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Load More -->
+            <div class="flex justify-center mt-8">
+                <button class="glass px-8 py-3 rounded-2xl text-sm font-semibold text-navy-700 hover:bg-white transition-all flex items-center gap-2 shadow-sm">
+                    <i class="fa-solid fa-rotate text-navy-400"></i> Load More Articles
+                </button>
+            </div>
+
+        </div>
+    </main>
+</div>
+
+<script>
+    function dismissAlert() {
+        const banner = document.getElementById('alertBanner');
+        banner.style.transition = 'all 0.3s ease';
+        banner.style.opacity = '0';
+        banner.style.transform = 'translateY(-10px)';
+        banner.style.maxHeight = '0';
+        banner.style.marginTop = '0';
+        banner.style.padding = '0';
+        setTimeout(() => banner.remove(), 350);
+    }
+
+    function setFilter(type, btn) {
+        // Reset all tabs
+        document.querySelectorAll('.filter-tab').forEach(tab => {
+            tab.classList.remove('filter-tab-active');
+            tab.classList.add('text-gray-600');
+            tab.classList.remove('text-white');
+            // Remove badge color override
+            const badge = tab.querySelector('span:last-child');
+        });
+
+        // Activate clicked tab
+        btn.classList.add('filter-tab-active');
+        btn.classList.remove('text-gray-600');
+        btn.classList.add('text-white');
+
+        // Filter articles
+        const articles = document.querySelectorAll('#newsFeed > div');
+        articles.forEach(article => {
+            if (type === 'all') {
+                article.style.display = 'flex';
+            } else {
+                const badge = article.querySelector('.absolute.top-3.left-3 span');
+                if (badge) {
+                    const badgeText = badge.textContent.trim().toLowerCase();
+                    if (badgeText.includes(type)) {
+                        article.style.display = 'flex';
+                    } else {
+                        article.style.display = 'none';
+                    }
+                }
+            }
+        });
+    }
+
+    function openMobileMenu() {
+        document.getElementById('mobileSidebar').classList.remove('-translate-x-full');
+        document.getElementById('mobileMenuOverlay').classList.add('active');
+    }
+
+    function closeMobileMenu() {
+        document.getElementById('mobileSidebar').classList.add('-translate-x-full');
+        document.getElementById('mobileMenuOverlay').classList.remove('active');
+    }
+</script>
+
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Step 5 – Business Center - Exported from UXMagic Copilot">
+    <title>Step 5 – Business Center</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              50: '#f0f4fd',
+              100: '#e4eafb',
+              200: '#cdd9f7',
+              300: '#a8bef1',
+              400: '#7d9ce9',
+              500: '#5879df',
+              600: '#3e5cd2',
+              700: '#324aba',
+              800: '#2e3e97',
+              900: '#1B3A7D',
+            },
+            red: {
+              50: '#fef2f2',
+              100: '#fee2e2',
+              200: '#fecaca',
+              300: '#fca5a5',
+              400: '#f87171',
+              500: '#ef4444',
+              600: '#dc2626',
+              700: '#b91c1c',
+              800: '#991b1b',
+              900: '#C7181F',
+            }
+          },
+          fontFamily: {
+            heading: ['var(--font-heading-name)', 'sans-serif'],
+            body: ['var(--font-body-name)', 'sans-serif'],
+          },
+          spacing: {
+            base: 'var(--space-base)',
+          },
+          borderRadius: {
+            small: 'var(--radius-small)',
+            large: 'var(--radius-large)',
+          },
+          boxShadow: {
+            custom: 'var(--shadow-custom)',
+            'custom-hover': 'var(--shadow-custom-hover)',
+          },
+        }
+      }
+    }
+  
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+  <!-- Top Brand Header -->
+  <header class="bg-navy-900 text-white py-3.5 px-6 flex items-center justify-between z-50 shadow-lg">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 bg-white rounded-small flex items-center justify-center">
+        <span class="text-navy-900 font-heading font-bold text-sm">A</span>
+      </div>
+      <div>
+        <span class="font-heading font-bold text-base tracking-tight">Apex Network</span>
+        <span class="ml-2 text-navy-300 text-xs font-medium hidden sm:inline">Distributor Enrollment</span>
+      </div>
+    </div>
+    <nav class="hidden md:flex items-center gap-1">
+      <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-1-sponsor-verification" class="text-xs font-medium text-navy-300 hover:text-white px-3 py-1.5 rounded-small transition-colors flex items-center gap-1">
+        <svg class="w-3 h-3 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+        Step 1
+      </a>
+      <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-2-personal-info" class="text-xs font-medium text-navy-300 hover:text-white px-3 py-1.5 rounded-small transition-colors flex items-center gap-1">
+        <svg class="w-3 h-3 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+        Step 2
+      </a>
+      <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-3-tax-identity" class="text-xs font-medium text-navy-300 hover:text-white px-3 py-1.5 rounded-small transition-colors flex items-center gap-1">
+        <svg class="w-3 h-3 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+        Step 3
+      </a>
+      <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-4-agreement" class="text-xs font-medium text-navy-300 hover:text-white px-3 py-1.5 rounded-small transition-colors flex items-center gap-1">
+        <svg class="w-3 h-3 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+        Step 4
+      </a>
+      <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-5-business-center" class="text-xs font-medium text-white bg-white/10 border border-white/20 px-3 py-1.5 rounded-small">Step 5</a>
+      <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-6-welcome" class="text-xs font-medium text-navy-300 hover:text-white px-3 py-1.5 rounded-small transition-colors">Step 6</a>
+    </nav>
+    <div class="flex items-center gap-2 text-navy-300 text-xs">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+      <span>Secure Enrollment</span>
+    </div>
+  </header>
+
+  <!-- Two-Panel Main Layout -->
+  <div class="flex" style="height: auto; min-height: 0;">
+
+    <!-- ===== LEFT PANEL: Navy Sidebar ===== -->
+    <aside class="w-80 bg-navy-900 flex flex-col flex-shrink-0" style="min-height: 960px;">
+
+      <!-- Panel Header -->
+      <div class="px-6 pt-8 pb-6 border-b border-white/10">
+        <p class="text-navy-300 text-xs font-semibold uppercase tracking-widest mb-1">Enrollment Progress</p>
+        <h2 class="font-heading font-bold text-white text-lg leading-tight">New Distributor<br>Registration</h2>
+        <div class="mt-4">
+          <div class="flex justify-between items-center mb-1.5">
+            <span class="text-navy-300 text-xs">Overall Progress</span>
+            <span class="text-white text-xs font-semibold">5 of 6</span>
+          </div>
+          <div class="w-full bg-white/10 rounded-full h-1.5">
+            <div class="bg-red-900 h-1.5 rounded-full progress-fill" style="width: 83.33%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vertical Step Tracker -->
+      <div class="px-6 py-6 flex-1">
+        <div class="flex flex-col">
+
+          <!-- Step 1 – Done -->
+          <div class="flex items-start gap-3 step-done">
+            <div class="flex flex-col items-center">
+              <div class="step-circle w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold flex-shrink-0">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+              </div>
+              <div class="step-connector-v bg-green-500/30 mt-1"></div>
+            </div>
+            <div class="pb-6 pt-0.5">
+              <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-1-sponsor-verification" class="text-white/70 font-semibold text-sm hover:text-white transition-colors">Sponsor Verification</a>
+              <p class="text-navy-400 text-xs mt-0.5">Find &amp; confirm your referrer</p>
+              <span class="inline-flex items-center gap-1 mt-1.5 text-xs font-semibold text-green-400 bg-green-900/20 border border-green-900/30 px-2 py-0.5 rounded-small">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                Completed
+              </span>
+            </div>
+          </div>
+
+          <!-- Step 2 – Done -->
+          <div class="flex items-start gap-3 step-done">
+            <div class="flex flex-col items-center">
+              <div class="step-circle w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold flex-shrink-0">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+              </div>
+              <div class="step-connector-v bg-green-500/30 mt-1"></div>
+            </div>
+            <div class="pb-6 pt-0.5">
+              <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-2-personal-info" class="text-white/70 font-semibold text-sm hover:text-white transition-colors">Personal Info</a>
+              <p class="text-navy-400 text-xs mt-0.5">Name, address &amp; profile</p>
+              <span class="inline-flex items-center gap-1 mt-1.5 text-xs font-semibold text-green-400 bg-green-900/20 border border-green-900/30 px-2 py-0.5 rounded-small">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                Completed
+              </span>
+            </div>
+          </div>
+
+          <!-- Step 3 – Done -->
+          <div class="flex items-start gap-3 step-done">
+            <div class="flex flex-col items-center">
+              <div class="step-circle w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold flex-shrink-0">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+              </div>
+              <div class="step-connector-v bg-green-500/30 mt-1"></div>
+            </div>
+            <div class="pb-6 pt-0.5">
+              <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-3-tax-identity" class="text-white/70 font-semibold text-sm hover:text-white transition-colors">Tax &amp; Identity</a>
+              <p class="text-navy-400 text-xs mt-0.5">W-9 &amp; SSN verification</p>
+              <span class="inline-flex items-center gap-1 mt-1.5 text-xs font-semibold text-green-400 bg-green-900/20 border border-green-900/30 px-2 py-0.5 rounded-small">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                Completed
+              </span>
+            </div>
+          </div>
+
+          <!-- Step 4 – Done -->
+          <div class="flex items-start gap-3 step-done">
+            <div class="flex flex-col items-center">
+              <div class="step-circle w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold flex-shrink-0">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+              </div>
+              <div class="step-connector-v bg-green-500/30 mt-1"></div>
+            </div>
+            <div class="pb-6 pt-0.5">
+              <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-4-agreement" class="text-white/70 font-semibold text-sm hover:text-white transition-colors">Agreement</a>
+              <p class="text-navy-400 text-xs mt-0.5">Review &amp; e-sign contract</p>
+              <span class="inline-flex items-center gap-1 mt-1.5 text-xs font-semibold text-green-400 bg-green-900/20 border border-green-900/30 px-2 py-0.5 rounded-small">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                Completed
+              </span>
+            </div>
+          </div>
+
+          <!-- Step 5 – Active -->
+          <div class="flex items-start gap-3 step-active">
+            <div class="flex flex-col items-center">
+              <div class="step-circle w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold flex-shrink-0 pulse-active">5</div>
+              <div class="step-connector-v bg-white/10 mt-1"></div>
+            </div>
+            <div class="pb-6 pt-0.5">
+              <p class="text-white font-semibold text-sm">Business Center</p>
+              <p class="text-navy-300 text-xs mt-0.5">Choose starter kit &amp; pay</p>
+              <span class="inline-flex items-center gap-1 mt-1.5 text-xs font-semibold text-red-400 bg-red-900/20 border border-red-900/30 px-2 py-0.5 rounded-small">
+                <span class="w-1.5 h-1.5 bg-red-400 rounded-full"></span>
+                In Progress
+              </span>
+            </div>
+          </div>
+
+          <!-- Step 6 – Inactive -->
+          <div class="flex items-start gap-3 step-inactive">
+            <div class="flex flex-col items-center">
+              <div class="step-circle w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold flex-shrink-0">6</div>
+            </div>
+            <div class="pt-0.5">
+              <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-6-welcome" class="text-white/40 font-semibold text-sm hover:text-white/60 transition-colors">Welcome</a>
+              <p class="text-navy-400 text-xs mt-0.5">Confirm &amp; get started</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Rep Profile Preview -->
+      <div class="px-6 pb-5">
+        <p class="text-navy-300 text-xs font-semibold uppercase tracking-widest mb-3">Rep Profile Preview</p>
+        <div class="profile-preview-card rounded-large p-4">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="relative flex-shrink-0">
+              <div class="w-12 h-12 rounded-full p-0.5 photo-ring">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Profile Preview" class="w-full h-full rounded-full object-cover border-2 border-navy-900">
+              </div>
+              <div class="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-green-500 rounded-full border-2 border-navy-900 flex items-center justify-center">
+                <svg class="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+              </div>
+            </div>
+            <div class="min-w-0 flex-1">
+              <p class="text-white font-semibold text-sm truncate">Jennifer Martinez</p>
+              <p class="text-navy-300 text-xs truncate">apex.network/jennifer-m</p>
+            </div>
+          </div>
+          <div class="space-y-1.5">
+            <div class="flex items-center gap-2">
+              <svg class="w-3.5 h-3.5 text-navy-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+              <p class="text-navy-200 text-xs truncate">jennifer.m@email.com</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="w-3.5 h-3.5 text-navy-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+              <p class="text-navy-200 text-xs truncate">Austin, TX</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="w-3.5 h-3.5 text-navy-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+              <p class="text-navy-200 text-xs">Under <span class="text-white font-medium">Marcus Williams</span></p>
+            </div>
+          </div>
+          <div class="mt-3 pt-3 border-t border-white/10">
+            <div class="flex justify-between items-center mb-1">
+              <span class="text-navy-400 text-xs">Profile completion</span>
+              <span class="text-white text-xs font-semibold">95%</span>
+            </div>
+            <div class="w-full bg-white/10 rounded-full h-1">
+              <div class="bg-green-400 h-1 rounded-full" style="width: 95%"></div>
+            </div>
+            <p class="text-navy-400 text-xs mt-1.5">Select your business center tier...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trust Badges -->
+      <div class="px-6 pb-8 space-y-2">
+        <p class="text-navy-400 text-xs font-semibold uppercase tracking-widest mb-2">Security &amp; Trust</p>
+        <div class="trust-badge rounded-small px-3 py-2 flex items-center gap-2.5">
+          <svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+          <span class="text-navy-200 text-xs">PCI-DSS Compliant Payments</span>
+        </div>
+        <div class="trust-badge rounded-small px-3 py-2 flex items-center gap-2.5">
+          <svg class="w-4 h-4 text-amber-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+          <span class="text-navy-200 text-xs">Upgrade Anytime</span>
+        </div>
+        <div class="trust-badge rounded-small px-3 py-2 flex items-center gap-2.5">
+          <svg class="w-4 h-4 text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+          <span class="text-navy-200 text-xs">256-bit AES Encrypted</span>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- ===== RIGHT PANEL: Main Content ===== -->
+    <main class="flex-1 flex flex-col bg-slate-100" style="height: auto;">
+      <div class="flex-1 px-8 py-10 max-w-5xl mx-auto w-full">
+
+        <!-- Step Header -->
+        <div class="w-full mb-6">
+          <div class="flex items-center gap-2 mb-2">
+            <div class="w-6 h-6 rounded-full bg-red-900 flex items-center justify-center flex-shrink-0">
+              <span class="text-white text-xs font-bold">5</span>
+            </div>
+            <span class="text-xs font-semibold text-red-900 uppercase tracking-wider">Step 5 of 6</span>
+          </div>
+          <h1 class="font-heading font-bold text-navy-900 text-2xl leading-tight mb-1">Choose Your Business Center</h1>
+          <p class="text-slate-500 text-sm">Select the tier that best fits your goals. You can upgrade at any time after enrollment.</p>
+        </div>
+
+        <!-- ===== TIER CARDS: 4 side by side ===== -->
+        <div class="grid grid-cols-4 gap-4 mb-6" id="tierGrid">
+
+          <!-- Tier 1: Free -->
+          <div class="tier-card p-4 flex flex-col" id="card-free" onclick="selectTier('free')">
+            <!-- Icon -->
+            <div class="w-10 h-10 bg-slate-100 rounded-small flex items-center justify-center mb-3 flex-shrink-0">
+              <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+            </div>
+            <!-- Tier Name & Price -->
+            <div class="mb-3">
+              <h3 class="font-heading font-bold text-slate-800 text-base leading-tight">Free</h3>
+              <div class="flex items-baseline gap-1 mt-1">
+                <span class="font-heading font-bold text-slate-800 text-2xl">$0</span>
+                <span class="text-slate-400 text-xs">/mo</span>
+              </div>
+              <p class="text-slate-500 text-xs mt-1 leading-snug">Get started with no upfront cost</p>
+            </div>
+            <!-- Divider -->
+            <div class="h-px bg-slate-100 mb-3"></div>
+            <!-- Feature List -->
+            <ul class="space-y-2 flex-1">
+              <li class="flex items-start gap-2">
+                <svg class="w-3.5 h-3.5 feature-check mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                <span class="text-xs text-slate-600">Basic distributor account</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-3.5 h-3.5 feature-check mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                <span class="text-xs text-slate-600">Digital welcome kit</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-3.5 h-3.5 feature-check mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                <span class="text-xs text-slate-600">Access to back office</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-3.5 h-3.5 feature-x mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                <span class="text-xs text-slate-400">Product samples</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-3.5 h-3.5 feature-x mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                <span class="text-xs text-slate-400">Training library</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-3.5 h-3.5 feature-x mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                <span class="text-xs text-slate-400">Replicated website</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-3.5 h-3.5 feature-x mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                <span class="text-xs text-slate-400">Fast-start bonus eligible</span>
+              </li>
+            </ul>
+            <!-- Select Indicator -->
+            <div class="mt-4 pt-3 border-t border-slate-100">
+              <div id="indicator-free" class="flex items-center justify-center gap-1.5 text-xs font-semibold text-slate-400">
+                <div class="w-4 h-4 rounded-full border-2 border-slate-300"></div>
+                Select
+              </div>
+            </div>
+          </div>
+
+          <!-- Tier 2: Basic $19/mo -->
+          <div class="tier-card p-4 flex flex-col" id="card-basic" onclick="selectTier('basic')">
+            <div class="w-10 h-10 bg-navy-100 rounded-small flex items-center justify-center mb-3 flex-shrink-0">
+              <svg class="w-5 h-5 text-navy-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            </div>
+            <div class="mb-3">
+              <h3 class="font-heading font-bold text-slate-800 text-base leading-tight">Basic</h3>
+              <div class="flex items-baseline gap-1 mt-1">
+                <span class="font-heading font-bold text-slate-800 text-2xl">$19</span>
+                <span class="text-slate-400 text-xs">/mo</span>
+              </div>
+              <p class="text-slate-500 text-xs mt-1 leading-snug">Perfect for testing the waters</p>
+            </div>
+            <div class="h-px bg-slate-100 mb-3"></div>
+            <ul class="space-y-2 flex-1">
+              <li class="flex items-start gap-2">
+                <svg class="w-3.5 h-3.5 feature-check mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                <span class="text-xs text-slate-600">Basic distributor account</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-3.5 h-3.5 feature-check mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                <span class="text-xs text-slate-600">Digital welcome kit</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-3.5 h-3.5 feature-check mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                <span class="text-xs text-slate-600">50 PV product samples</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-3.5 h-3.5 feature-check mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                <span class="text-xs text-slate-600">Basic training access</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-3.5 h-3.5 feature-x mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                <span class="text-xs text-slate-400">Replicated website</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-3.5 h-3.5 feature-x mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                <span class="text-xs text-slate-400">Marketing materials</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-3.5 h-3.5 feature-x mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                <span class="text-xs text-slate-400">Fast-start bonus eligible</span>
+              </li>
+            </ul>
+            <div class="mt-4 pt-3 border-t border-slate-100">
+              <div id="indicator-basic" class="flex items-center justify-center gap-1.5 text-xs font-semibold text-slate-400">
+                <div class="w-4 h-4 rounded-full border-2 border-slate-300"></div>
+                Select
+              </div>
+            </div>
+          </div>
+
+          <!-- Tier 3: Enhanced $39/mo – MOST POPULAR (pre-selected) -->
+          <div class="tier-card selected p-4 flex flex-col relative" id="card-enhanced" onclick="selectTier('enhanced')">
+            <!-- Most Popular Badge -->
+            <div class="absolute -top-3.5 left-0 right-0 flex justify-center">
+              <span class="bg-red-900 text-white text-xs font-bold px-3 py-1 rounded-small shadow-sm">MOST POPULAR</span>
+            </div>
+            <div class="w-10 h-10 bg-navy-900 rounded-small flex items-center justify-center mb-3 flex-shrink-0 mt-2">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+            </div>
+            <div class="mb-3">
+              <div class="flex items-center gap-2">
+                <h3 class="font-heading font-bold text-navy-900 text-base leading-tight">Enhanced</h3>
+                <span class="text-xs bg-navy-900 text-white px-1.5 py-0.5 rounded-small font-semibold">BEST VALUE</span>
+              </div>
+              <div class="flex items-baseline gap-1 mt-1">
+                <span class="font-heading font-bold text-navy-900 text-2xl">$39</span>
+                <span class="text-navy-500 text-xs">/mo</span>
+              </div>
+              <p class="text-navy-600 text-xs mt-1 leading-snug">Best value for serious builders</p>
+            </div>
+            <div class="h-px bg-navy-200 mb-3"></div>
+            <ul class="space-y-2 flex-1">
+              <li class="flex items-start gap-2">
+                <svg class="w-3.5 h-3.5 feature-check mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                <span class="text-xs text-slate-700">Everything in Basic</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-3.5 h-3.5 feature-check mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                <span class="text-xs text-slate-700">200 PV product bundle</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-3.5 h-3.5 feature-check mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                <span class="text-xs text-slate-700">Full training library</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-3.5 h-3.5 feature-check mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                <span class="text-xs text-slate-700">Marketing materials</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-3.5 h-3.5 feature-check mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                <span class="text-xs text-slate-700">3-month replicated website</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-3.5 h-3.5 feature-check mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                <span class="text-xs text-slate-700">Fast-start bonus eligible</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-3.5 h-3.5 feature-x mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                <span class="text-xs text-slate-400">1-on-1 onboarding call</span>
+              </li>
+            </ul>
+            <div class="mt-4 pt-3 border-t border-navy-200">
+              <div id="indicator-enhanced" class="flex items-center justify-center gap-1.5 text-xs font-semibold text-navy-900">
+                <div class="w-4 h-4 rounded-full border-2 border-navy-900 bg-navy-900 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle></svg>
+                </div>
+                Selected
+              </div>
+            </div>
+          </div>
+
+          <!-- Tier 4: Platinum $79/mo -->
+          <div class="tier-card p-4 flex flex-col" id="card-platinum" onclick="selectTier('platinum')">
+            <div class="w-10 h-10 bg-amber-100 rounded-small flex items-center justify-center mb-3 flex-shrink-0">
+              <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
+            </div>
+            <div class="mb-3">
+              <div class="flex items-center gap-2">
+                <h3 class="font-heading font-bold text-slate-800 text-base leading-tight">Platinum</h3>
+                <span class="text-xs bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded-small font-semibold">PREMIUM</span>
+              </div>
+              <div class="flex items-baseline gap-1 mt-1">
+                <span class="font-heading font-bold text-slate-800 text-2xl">$79</span>
+                <span class="text-slate-400 text-xs">/mo</span>
+              </div>
+              <p class="text-slate-500 text-xs mt-1 leading-snug">For committed leaders ready to scale</p>
+            </div>
+            <div class="h-px bg-slate-100 mb-3"></div>
+            <ul class="space-y-2 flex-1">
+              <li class="flex items-start gap-2">
+                <svg class="w-3.5 h-3.5 feature-check mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                <span class="text-xs text-slate-600">Everything in Enhanced</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-3.5 h-3.5 feature-check mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                <span class="text-xs text-slate-600">500 PV premium bundle</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-3.5 h-3.5 feature-check mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                <span class="text-xs text-slate-600">1-on-1 onboarding call</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-3.5 h-3.5 feature-check mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                <span class="text-xs text-slate-600">12-month website included</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-3.5 h-3.5 feature-check mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                <span class="text-xs text-slate-600">Priority support access</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-3.5 h-3.5 feature-check mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                <span class="text-xs text-slate-600">Fast-start bonus eligible</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-3.5 h-3.5 feature-check mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                <span class="text-xs text-slate-600">Leadership fast-track program</span>
+              </li>
+            </ul>
+            <div class="mt-4 pt-3 border-t border-slate-100">
+              <div id="indicator-platinum" class="flex items-center justify-center gap-1.5 text-xs font-semibold text-slate-400">
+                <div class="w-4 h-4 rounded-full border-2 border-slate-300"></div>
+                Select
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ===== ORDER SUMMARY + CONTINUE ===== -->
+        <div class="bg-white rounded-large shadow-custom p-6 mb-5">
+          <div class="flex flex-col md:flex-row md:items-start gap-6">
+
+            <!-- Order Summary -->
+            <div class="flex-1">
+              <h3 class="font-heading font-semibold text-navy-900 text-base mb-4 flex items-center gap-2">
+                <svg class="w-4 h-4 text-navy-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+                Order Summary
+              </h3>
+              <div class="bg-slate-50 border border-slate-200 rounded-large p-4">
+                <div class="space-y-2.5 text-sm" id="orderSummaryLines">
+                  <div class="flex justify-between text-slate-600">
+                    <span id="summaryTierName">Enhanced Business Center (200 PV)</span>
+                    <span id="summaryTierPrice">$39.00/mo</span>
+                  </div>
+                  <div class="flex justify-between text-slate-600">
+                    <span>Enrollment Fee</span>
+                    <span>$0.00</span>
+                  </div>
+                  <div class="flex justify-between text-green-600 font-medium">
+                    <span>New Member Discount</span>
+                    <span id="summaryDiscount">-$10.00</span>
+                  </div>
+                  <div class="h-px bg-slate-200 my-1"></div>
+                  <div class="flex justify-between font-bold text-navy-900 text-base">
+                    <span>Total Due Today</span>
+                    <span id="summaryTotal">$29.00</span>
+                  </div>
+                  <p class="text-xs text-slate-400 mt-1" id="summaryRecurring">Then $39.00/mo starting next billing cycle</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Vertical Divider -->
+            <div class="hidden md:block w-px bg-slate-200 self-stretch"></div>
+
+            <!-- Selected Tier Info + CTA -->
+            <div class="flex-1 flex flex-col justify-between">
+              <div>
+                <h3 class="font-heading font-semibold text-navy-900 text-base mb-3 flex items-center gap-2">
+                  <svg class="w-4 h-4 text-navy-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                  Selected Tier
+                </h3>
+                <div id="selectedTierDisplay" class="flex items-center gap-3 p-3 bg-navy-50 border border-navy-200 rounded-large mb-4 fade-in">
+                  <div class="w-10 h-10 bg-navy-900 rounded-small flex items-center justify-center flex-shrink-0">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <p id="selectedTierLabel" class="font-heading font-bold text-navy-900 text-sm">Enhanced Business Center</p>
+                    <p id="selectedTierSub" class="text-navy-600 text-xs mt-0.5">200 PV · Full training · Marketing materials · 3-mo website</p>
+                  </div>
+                  <span class="text-xs font-bold text-navy-900 bg-navy-100 border border-navy-200 px-2 py-1 rounded-small flex-shrink-0" id="selectedTierBadgePrice">$39/mo</span>
+                </div>
+
+                <!-- Upgrade note -->
+                <div class="flex items-start gap-2 p-3 bg-amber-50 border border-amber-200 rounded-small mb-4">
+                  <svg class="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                  <p class="text-xs text-amber-800">You can upgrade your tier at any time from your back office without re-enrolling.</p>
+                </div>
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="flex items-center gap-3">
+                <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-4-agreement" class="flex items-center gap-2 px-5 py-2.5 border border-slate-200 text-slate-600 rounded-small font-medium hover:bg-slate-50 transition-colors text-sm flex-shrink-0">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                  Back
+                </a>
+                <a href="/api/copilot/prototype/d8c40ecd-98da-469b-89bc-9b9d445424fb/step-6-welcome" class="flex-1 flex items-center justify-center gap-2.5 px-6 py-3 bg-red-900 text-white rounded-small font-bold text-sm hover:bg-red-800 transition-all shadow-custom">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                  <span id="continueButtonText">Continue with Enhanced · $29 Today</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Footer Note -->
+        <div class="w-full text-center text-xs text-slate-400 pb-4">
+          <p>© 2024 Apex Network, Inc. · <span class="underline cursor-pointer">Privacy Policy</span> · <span class="underline cursor-pointer">Terms of Service</span> · <span class="underline cursor-pointer">Income Disclosure</span></p>
+          <p class="mt-1">Questions? <span class="text-navy-900 font-medium">support@apexnetwork.com</span></p>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <script>
+    const tiers = {
+      free: {
+        label: 'Free Business Center',
+        sub: 'Basic account · Digital welcome kit · Back office access',
+        price: '$0/mo',
+        summaryName: 'Free Business Center',
+        summaryPrice: '$0.00/mo',
+        discount: '-$0.00',
+        total: '$0.00',
+        recurring: 'No monthly fee — free tier',
+        btnText: 'Continue with Free · $0 Today',
+        iconBg: 'bg-slate-100',
+        iconColor: 'text-slate-500',
+        iconPath: 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4',
+        displayBg: 'bg-slate-50 border-slate-200',
+        badgeBg: 'bg-slate-100 border-slate-200 text-slate-700',
+      },
+      basic: {
+        label: 'Basic Business Center',
+        sub: '50 PV samples · Basic training · Digital kit',
+        price: '$19/mo',
+        summaryName: 'Basic Business Center (50 PV)',
+        summaryPrice: '$19.00/mo',
+        discount: '-$5.00',
+        total: '$14.00',
+        recurring: 'Then $19.00/mo starting next billing cycle',
+        btnText: 'Continue with Basic · $14 Today',
+        iconBg: 'bg-navy-100',
+        iconColor: 'text-navy-600',
+        iconPath: 'M13 10V3L4 14h7v7l9-11h-7z',
+        displayBg: 'bg-navy-50 border-navy-200',
+        badgeBg: 'bg-navy-100 border-navy-200 text-navy-900',
+      },
+      enhanced: {
+        label: 'Enhanced Business Center',
+        sub: '200 PV · Full training · Marketing materials · 3-mo website',
+        price: '$39/mo',
+        summaryName: 'Enhanced Business Center (200 PV)',
+        summaryPrice: '$39.00/mo',
+        discount: '-$10.00',
+        total: '$29.00',
+        recurring: 'Then $39.00/mo starting next billing cycle',
+        btnText: 'Continue with Enhanced · $29 Today',
+        iconBg: 'bg-navy-900',
+        iconColor: 'text-white',
+        iconPath: 'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z',
+        displayBg: 'bg-navy-50 border-navy-200',
+        badgeBg: 'bg-navy-100 border-navy-200 text-navy-900',
+      },
+      platinum: {
+        label: 'Platinum Business Center',
+        sub: '500 PV premium bundle · 1-on-1 call · 12-mo website · Priority support',
+        price: '$79/mo',
+        summaryName: 'Platinum Business Center (500 PV)',
+        summaryPrice: '$79.00/mo',
+        discount: '-$20.00',
+        total: '$59.00',
+        recurring: 'Then $79.00/mo starting next billing cycle',
+        btnText: 'Continue with Platinum · $59 Today',
+        iconBg: 'bg-amber-100',
+        iconColor: 'text-amber-600',
+        iconPath: 'M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z',
+        displayBg: 'bg-amber-50 border-amber-200',
+        badgeBg: 'bg-amber-100 border-amber-200 text-amber-800',
+      }
+    };
+
+    let currentTier = 'enhanced';
+
+    function selectTier(tier) {
+      currentTier = tier;
+      const allCards = ['free', 'basic', 'enhanced', 'platinum'];
+
+      allCards.forEach(t => {
+        const card = document.getElementById('card-' + t);
+        const indicator = document.getElementById('indicator-' + t);
+
+        if (t === tier) {
+          card.classList.add('selected');
+          if (t === 'enhanced') {
+            indicator.innerHTML = '<div class="w-4 h-4 rounded-full border-2 border-navy-900 bg-navy-900 flex items-center justify-center"><svg class="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/></svg></div><span class="text-navy-900">Selected</span>';
+          } else {
+            indicator.innerHTML = '<div class="w-4 h-4 rounded-full border-2 border-navy-900 bg-navy-900 flex items-center justify-center"><svg class="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/></svg></div><span class="text-navy-900">Selected</span>';
+          }
+        } else {
+          card.classList.remove('selected');
+          indicator.innerHTML = '<div class="w-4 h-4 rounded-full border-2 border-slate-300"></div><span class="text-slate-400">Select</span>';
+        }
+      });
+
+      const data = tiers[tier];
+
+      // Update order summary
+      document.getElementById('summaryTierName').textContent = data.summaryName;
+      document.getElementById('summaryTierPrice').textContent = data.summaryPrice;
+      document.getElementById('summaryDiscount').textContent = data.discount;
+      document.getElementById('summaryTotal').textContent = data.total;
+      document.getElementById('summaryRecurring').textContent = data.recurring;
+
+      // Update selected tier display
+      document.getElementById('selectedTierLabel').textContent = data.label;
+      document.getElementById('selectedTierSub').textContent = data.sub;
+      document.getElementById('selectedTierBadgePrice').textContent = data.price;
+
+      // Update continue button
+      document.getElementById('continueButtonText').textContent = data.btnText;
+
+      // Update selected tier display styling
+      const displayEl = document.getElementById('selectedTierDisplay');
+      displayEl.className = 'flex items-center gap-3 p-3 border rounded-large mb-4 fade-in ' + data.displayBg;
+
+      const badgeEl = document.getElementById('selectedTierBadgePrice');
+      badgeEl.className = 'text-xs font-bold px-2 py-1 rounded-small flex-shrink-0 border ' + data.badgeBg;
+
+      // Update icon in selected display
+      const iconContainer = displayEl.querySelector('.w-10.h-10');
+      if (iconContainer) {
+        iconContainer.className = 'w-10 h-10 rounded-small flex items-center justify-center flex-shrink-0 ' + data.iconBg;
+        const iconSvg = iconContainer.querySelector('svg');
+        if (iconSvg) {
+          iconSvg.className = 'w-5 h-5 ' + data.iconColor;
+          iconSvg.querySelector('path').setAttribute('d', data.iconPath);
+        }
+      }
+    }
+
+    // Initialize with enhanced selected
+    selectTier('enhanced');
+  </script>
+
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

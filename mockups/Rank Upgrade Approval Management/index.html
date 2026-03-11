@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rank Upgrade Approval Management - Exported from UXMagic Copilot">
+    <title>Rank Upgrade Approval Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              50: '#f0f4fd',
+              100: '#e4eafb',
+              200: '#cdd9f7',
+              300: '#a8bef1',
+              400: '#7d9ce9',
+              500: '#5879df',
+              600: '#3e5cd2',
+              700: '#324aba',
+              800: '#2e3e97',
+              900: '#1B3A7D',
+            },
+            red: {
+              50: '#fef2f2',
+              100: '#fee2e2',
+              200: '#fecaca',
+              300: '#fca5a5',
+              400: '#f87171',
+              500: '#ef4444',
+              600: '#dc2626',
+              700: '#b91c1c',
+              800: '#991b1b',
+              900: '#C7181F',
+            }
+          },
+          fontFamily: {
+            heading: ['var(--font-heading-name)', 'sans-serif'],
+            body: ['var(--font-body-name)', 'sans-serif'],
+          },
+          spacing: {
+            base: 'var(--space-base)',
+          },
+          borderRadius: {
+            small: 'var(--radius-small)',
+            large: 'var(--radius-large)',
+          },
+          boxShadow: {
+            custom: 'var(--shadow-custom)',
+            'custom-hover': 'var(--shadow-custom-hover)',
+          },
+        }
+      }
+    }
+  
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+  <!-- Sidebar Navigation -->
+  <aside class="w-64 glass-sidebar text-white flex flex-col sticky top-0 z-20 shadow-xl border-r border-navy-800 flex-shrink-0" style="min-height: 100vh;">
+    <div class="p-5 border-b border-navy-800/50 flex items-center gap-3">
+      <div class="w-9 h-9 bg-white rounded-lg flex items-center justify-center shadow-lg flex-shrink-0">
+        <i data-lucide="hexagon" class="text-navy-900 w-5 h-5 fill-current"></i>
+      </div>
+      <div>
+        <h1 class="font-heading font-bold text-base tracking-tight">Apex Admin</h1>
+        <p class="text-xs text-navy-200 font-medium">Corporate Back Office</p>
+      </div>
+    </div>
+
+    <nav class="flex-1 overflow-y-auto py-5 px-3 space-y-0.5">
+      <div class="px-3 mb-2 text-xs font-semibold text-navy-300 uppercase tracking-wider">Field Operations</div>
+
+      <a href="/api/copilot/prototype/f2a48582-bc15-4755-8d37-6b983a61a20d/rank-upgrade-approval-management" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-white/15 text-white font-medium shadow-sm border border-white/15">
+        <i data-lucide="trending-up" class="w-4 h-4 flex-shrink-0"></i>
+        <span class="text-sm">Rank Approvals</span>
+        <span class="ml-auto bg-red-900/80 text-red-200 text-xs font-bold px-1.5 py-0.5 rounded-full">14</span>
+      </a>
+
+      <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-navy-100 hover:bg-white/5 hover:text-white transition-colors">
+        <i data-lucide="users" class="w-4 h-4 flex-shrink-0"></i>
+        <span class="text-sm">Rep Management</span>
+      </a>
+
+      <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-navy-100 hover:bg-white/5 hover:text-white transition-colors">
+        <i data-lucide="network" class="w-4 h-4 flex-shrink-0"></i>
+        <span class="text-sm">Downline Trees</span>
+      </a>
+
+      <div class="mt-5 px-3 mb-2 text-xs font-semibold text-navy-300 uppercase tracking-wider">System Config</div>
+
+      <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-navy-100 hover:bg-white/5 hover:text-white transition-colors">
+        <i data-lucide="percent" class="w-4 h-4 flex-shrink-0"></i>
+        <span class="text-sm">Commission Config</span>
+      </a>
+
+      <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-navy-100 hover:bg-white/5 hover:text-white transition-colors">
+        <i data-lucide="bar-chart-3" class="w-4 h-4 flex-shrink-0"></i>
+        <span class="text-sm">Rank Thresholds</span>
+      </a>
+
+      <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-navy-100 hover:bg-white/5 hover:text-white transition-colors">
+        <i data-lucide="gift" class="w-4 h-4 flex-shrink-0"></i>
+        <span class="text-sm">Bonus Settings</span>
+      </a>
+
+      <div class="mt-5 px-3 mb-2 text-xs font-semibold text-navy-300 uppercase tracking-wider">Administration</div>
+
+      <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-navy-100 hover:bg-white/5 hover:text-white transition-colors">
+        <i data-lucide="credit-card" class="w-4 h-4 flex-shrink-0"></i>
+        <span class="text-sm">Payment Processors</span>
+      </a>
+
+      <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-navy-100 hover:bg-white/5 hover:text-white transition-colors">
+        <i data-lucide="mail" class="w-4 h-4 flex-shrink-0"></i>
+        <span class="text-sm">Email Config</span>
+      </a>
+
+      <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-navy-100 hover:bg-white/5 hover:text-white transition-colors">
+        <i data-lucide="key" class="w-4 h-4 flex-shrink-0"></i>
+        <span class="text-sm">API Keys</span>
+      </a>
+
+      <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-red-300 hover:bg-red-900/20 hover:text-red-200 transition-colors mt-2">
+        <i data-lucide="alert-triangle" class="w-4 h-4 flex-shrink-0"></i>
+        <span class="text-sm">Maintenance Mode</span>
+      </a>
+    </nav>
+
+    <div class="p-4 border-t border-navy-800/50 bg-navy-900/50">
+      <div class="flex items-center gap-3">
+        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Admin User" class="w-9 h-9 rounded-full border-2 border-navy-400 flex-shrink-0">
+        <div class="flex-1 min-w-0">
+          <p class="text-sm font-medium text-white truncate">Alexander Pierce</p>
+          <p class="text-xs text-navy-300 truncate">Super Admin</p>
+        </div>
+        <button class="text-navy-300 hover:text-white flex-shrink-0">
+          <i data-lucide="log-out" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="flex-1 flex flex-col min-w-0">
+
+    <!-- Top Header -->
+    <header class="bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between sticky top-0 z-10 flex-shrink-0">
+      <div>
+        <h2 class="font-heading font-bold text-xl text-navy-900 tracking-tight">Rank Upgrade Approval Management</h2>
+        <p class="text-slate-500 text-sm mt-0.5">Review, approve, or deny field representative rank advancement requests.</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="px-3 py-1 rounded-full bg-amber-50 text-amber-700 text-xs font-semibold border border-amber-200 flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+          14 Pending Review
+        </span>
+        <button class="p-2 text-slate-400 hover:text-navy-900 transition-colors relative">
+          <i data-lucide="bell" class="w-5 h-5"></i>
+          <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-900 rounded-full border-2 border-white"></span>
+        </button>
+        <button class="flex items-center gap-2 px-4 py-2 bg-navy-900 text-white text-sm font-medium rounded-small hover:bg-navy-800 transition-colors shadow-custom">
+          <i data-lucide="download" class="w-4 h-4"></i>
+          Export Report
+        </button>
+      </div>
+    </header>
+
+    <!-- Two-column layout: Main + Email Log -->
+    <div class="flex flex-1 min-w-0">
+
+      <!-- Left: Main Content -->
+      <div class="flex-1 min-w-0 overflow-y-auto p-6 space-y-5">
+
+        <!-- Top Stats Row -->
+        <div class="grid grid-cols-4 gap-4">
+          <div class="glass-panel rounded-large p-4 shadow-custom">
+            <div class="flex items-start justify-between">
+              <div>
+                <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">Total Pending</p>
+                <p class="font-heading font-bold text-3xl text-navy-900 mt-1">14</p>
+                <p class="text-xs text-amber-600 font-medium mt-1 flex items-center gap-1">
+                  <i data-lucide="clock" class="w-3 h-3"></i>
+                  Awaiting action
+                </p>
+              </div>
+              <div class="w-10 h-10 bg-amber-50 rounded-large flex items-center justify-center border border-amber-100">
+                <i data-lucide="hourglass" class="w-5 h-5 text-amber-600"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-panel rounded-large p-4 shadow-custom">
+            <div class="flex items-start justify-between">
+              <div>
+                <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">Avg Days to Approval</p>
+                <p class="font-heading font-bold text-3xl text-navy-900 mt-1">3.2</p>
+                <p class="text-xs text-green-600 font-medium mt-1 flex items-center gap-1">
+                  <i data-lucide="trending-down" class="w-3 h-3"></i>
+                  -0.8 vs last month
+                </p>
+              </div>
+              <div class="w-10 h-10 bg-green-50 rounded-large flex items-center justify-center border border-green-100">
+                <i data-lucide="timer" class="w-5 h-5 text-green-600"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-panel rounded-large p-4 shadow-custom">
+            <div class="flex items-start justify-between">
+              <div>
+                <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">This Month Completed</p>
+                <p class="font-heading font-bold text-3xl text-navy-900 mt-1">47</p>
+                <p class="text-xs text-navy-600 font-medium mt-1 flex items-center gap-1">
+                  <i data-lucide="check-circle" class="w-3 h-3"></i>
+                  38 approved · 9 denied
+                </p>
+              </div>
+              <div class="w-10 h-10 bg-navy-50 rounded-large flex items-center justify-center border border-navy-100">
+                <i data-lucide="check-square" class="w-5 h-5 text-navy-600"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-panel rounded-large p-4 shadow-custom">
+            <div class="flex items-start justify-between">
+              <div>
+                <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">Approval Rate</p>
+                <p class="font-heading font-bold text-3xl text-navy-900 mt-1">80.9<span class="text-lg text-slate-400">%</span></p>
+                <p class="text-xs text-green-600 font-medium mt-1 flex items-center gap-1">
+                  <i data-lucide="trending-up" class="w-3 h-3"></i>
+                  +4.2% vs last month
+                </p>
+              </div>
+              <div class="w-10 h-10 bg-purple-50 rounded-large flex items-center justify-center border border-purple-100">
+                <i data-lucide="pie-chart" class="w-5 h-5 text-purple-600"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="glass-panel rounded-large p-4 shadow-custom">
+          <div class="flex items-center gap-3 flex-wrap">
+            <div class="flex items-center gap-2 flex-1 min-w-48">
+              <i data-lucide="search" class="w-4 h-4 text-slate-400 flex-shrink-0"></i>
+              <input type="text" placeholder="Search rep name, ID, or upline..." class="flex-1 text-sm bg-transparent outline-none text-slate-700 placeholder-slate-400">
+            </div>
+            <div class="h-5 w-px bg-slate-200"></div>
+            <div class="flex items-center gap-2">
+              <label class="text-xs font-medium text-slate-500 whitespace-nowrap">Target Rank</label>
+              <select class="text-sm border border-slate-200 rounded-small px-3 py-1.5 text-slate-700 bg-white outline-none focus:ring-2 focus:ring-navy-500 focus:border-navy-500">
+                <option>All Ranks</option>
+                <option>Silver</option>
+                <option>Gold</option>
+                <option>Platinum</option>
+                <option>Diamond</option>
+                <option>Executive</option>
+              </select>
+            </div>
+            <div class="flex items-center gap-2">
+              <label class="text-xs font-medium text-slate-500 whitespace-nowrap">Status</label>
+              <select class="text-sm border border-slate-200 rounded-small px-3 py-1.5 text-slate-700 bg-white outline-none focus:ring-2 focus:ring-navy-500 focus:border-navy-500">
+                <option>All Statuses</option>
+                <option>Pending</option>
+                <option>Under Review</option>
+                <option>Approved</option>
+                <option>Denied</option>
+                <option>On Hold</option>
+              </select>
+            </div>
+            <div class="flex items-center gap-2">
+              <label class="text-xs font-medium text-slate-500 whitespace-nowrap">Date Range</label>
+              <input type="date" class="text-sm border border-slate-200 rounded-small px-3 py-1.5 text-slate-700 bg-white outline-none focus:ring-2 focus:ring-navy-500">
+              <span class="text-slate-400 text-xs">to</span>
+              <input type="date" class="text-sm border border-slate-200 rounded-small px-3 py-1.5 text-slate-700 bg-white outline-none focus:ring-2 focus:ring-navy-500">
+            </div>
+            <button class="flex items-center gap-1.5 px-3 py-1.5 bg-navy-900 text-white text-xs font-medium rounded-small hover:bg-navy-800 transition-colors">
+              <i data-lucide="filter" class="w-3.5 h-3.5"></i>
+              Apply Filters
+            </button>
+            <button class="flex items-center gap-1.5 px-3 py-1.5 border border-slate-200 text-slate-600 text-xs font-medium rounded-small hover:bg-slate-50 transition-colors">
+              <i data-lucide="x" class="w-3.5 h-3.5"></i>
+              Clear
+            </button>
+          </div>
+        </div>
+
+        <!-- Data Table -->
+        <div class="glass-panel rounded-large shadow-custom overflow-hidden">
+          <div class="flex items-center justify-between px-5 py-3.5 border-b border-slate-200/80">
+            <div class="flex items-center gap-3">
+              <h3 class="font-heading font-semibold text-navy-900 text-sm">Upgrade Requests</h3>
+              <span class="bg-navy-100 text-navy-700 text-xs font-bold px-2 py-0.5 rounded-full">14 pending</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <button class="text-xs text-slate-500 hover:text-navy-700 flex items-center gap-1 px-2 py-1 rounded hover:bg-slate-100 transition-colors">
+                <i data-lucide="columns" class="w-3.5 h-3.5"></i>
+                Columns
+              </button>
+              <button class="text-xs text-slate-500 hover:text-navy-700 flex items-center gap-1 px-2 py-1 rounded hover:bg-slate-100 transition-colors">
+                <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+                Refresh
+              </button>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="bg-slate-50/80 border-b border-slate-200">
+                  <th class="text-left px-4 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider w-8">
+                    <input type="checkbox" class="rounded border-slate-300">
+                  </th>
+                  <th class="text-left px-4 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Rep</th>
+                  <th class="text-left px-4 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Current → Target</th>
+                  <th class="text-left px-4 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Eligibility Date</th>
+                  <th class="text-right px-4 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Prod. Credits</th>
+                  <th class="text-left px-4 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Upline</th>
+                  <th class="text-center px-4 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Days Pending</th>
+                  <th class="text-center px-4 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Status</th>
+                  <th class="text-center px-4 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Actions</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+
+                <!-- Row 1 - Normal -->
+                <tr class="hover:bg-slate-50/60 transition-colors">
+                  <td class="px-4 py-3"><input type="checkbox" class="rounded border-slate-300"></td>
+                  <td class="px-4 py-3">
+                    <div class="flex items-center gap-3">
+                      <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Rep" class="w-8 h-8 rounded-full border border-slate-200 flex-shrink-0">
+                      <div>
+                        <p class="font-medium text-slate-800 text-sm">Marcus Webb</p>
+                        <p class="text-xs text-slate-400 font-mono">REP-00412</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-4 py-3">
+                    <div class="flex items-center gap-2">
+                      <span class="rank-badge-silver text-white text-xs font-bold px-2 py-0.5 rounded-full">Silver</span>
+                      <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-slate-400"></i>
+                      <span class="rank-badge-gold text-white text-xs font-bold px-2 py-0.5 rounded-full">Gold</span>
+                    </div>
+                  </td>
+                  <td class="px-4 py-3 text-slate-600 text-xs">Nov 15, 2024</td>
+                  <td class="px-4 py-3 text-right font-mono font-semibold text-slate-800 text-sm">24,850</td>
+                  <td class="px-4 py-3">
+                    <div class="flex items-center gap-2">
+                      <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Upline" class="w-6 h-6 rounded-full border border-slate-200 flex-shrink-0">
+                      <span class="text-xs text-slate-600">Sarah Chen</span>
+                    </div>
+                  </td>
+                  <td class="px-4 py-3 text-center">
+                    <span class="text-sm font-bold text-amber-600">2</span>
+                  </td>
+                  <td class="px-4 py-3 text-center">
+                    <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-200">
+                      <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                      Pending
+                    </span>
+                  </td>
+                  <td class="px-4 py-3">
+                    <div class="flex items-center justify-center gap-1.5">
+                      <button class="px-2.5 py-1 bg-green-600 text-white text-xs font-semibold rounded-small hover:bg-green-700 transition-colors">Approve</button>
+                      <button class="px-2.5 py-1 bg-navy-100 text-navy-700 text-xs font-semibold rounded-small hover:bg-navy-200 transition-colors">Review</button>
+                      <button class="px-2.5 py-1 bg-red-50 text-red-700 text-xs font-semibold rounded-small hover:bg-red-100 transition-colors border border-red-200">Deny</button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Row 2 - Normal -->
+                <tr class="hover:bg-slate-50/60 transition-colors">
+                  <td class="px-4 py-3"><input type="checkbox" class="rounded border-slate-300"></td>
+                  <td class="px-4 py-3">
+                    <div class="flex items-center gap-3">
+                      <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Rep" class="w-8 h-8 rounded-full border border-slate-200 flex-shrink-0">
+                      <div>
+                        <p class="font-medium text-slate-800 text-sm">Priya Nair</p>
+                        <p class="text-xs text-slate-400 font-mono">REP-00389</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-4 py-3">
+                    <div class="flex items-center gap-2">
+                      <span class="rank-badge-gold text-white text-xs font-bold px-2 py-0.5 rounded-full">Gold</span>
+                      <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-slate-400"></i>
+                      <span class="rank-badge-platinum text-white text-xs font-bold px-2 py-0.5 rounded-full">Platinum</span>
+                    </div>
+                  </td>
+                  <td class="px-4 py-3 text-slate-600 text-xs">Nov 10, 2024</td>
+                  <td class="px-4 py-3 text-right font-mono font-semibold text-slate-800 text-sm">61,200</td>
+                  <td class="px-4 py-3">
+                    <div class="flex items-center gap-2">
+                      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Upline" class="w-6 h-6 rounded-full border border-slate-200 flex-shrink-0">
+                      <span class="text-xs text-slate-600">David Kim</span>
+                    </div>
+                  </td>
+                  <td class="px-4 py-3 text-center">
+                    <span class="text-sm font-bold text-red-600">7</span>
+                  </td>
+                  <td class="px-4 py-3 text-center">
+                    <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200">
+                      <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                      Under Review
+                    </span>
+                  </td>
+                  <td class="px-4 py-3">
+                    <div class="flex items-center justify-center gap-1.5">
+                      <button class="px-2.5 py-1 bg-green-600 text-white text-xs font-semibold rounded-small hover:bg-green-700 transition-colors">Approve</button>
+                      <button class="px-2.5 py-1 bg-navy-100 text-navy-700 text-xs font-semibold rounded-small hover:bg-navy-200 transition-colors">Review</button>
+                      <button class="px-2.5 py-1 bg-red-50 text-red-700 text-xs font-semibold rounded-small hover:bg-red-100 transition-colors border border-red-200">Deny</button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Row 3 - EXPANDED ROW -->
+                <tr class="bg-navy-50/40 border-l-4 border-l-navy-600">
+                  <td class="px-4 py-3"><input type="checkbox" checked="" class="rounded border-slate-300"></td>
+                  <td class="px-4 py-3">
+                    <div class="flex items-center gap-3">
+                      <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Rep" class="w-8 h-8 rounded-full border-2 border-navy-400 flex-shrink-0">
+                        <span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-navy-600 rounded-full border border-white flex items-center justify-center">
+                          <i data-lucide="chevron-down" class="w-2 h-2 text-white"></i>
+                        </span>
+                      </div>
+                      <div>
+                        <p class="font-semibold text-navy-900 text-sm">Jordan Reeves</p>
+                        <p class="text-xs text-navy-500 font-mono">REP-00271</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-4 py-3">
+                    <div class="flex items-center gap-2">
+                      <span class="rank-badge-platinum text-white text-xs font-bold px-2 py-0.5 rounded-full">Platinum</span>
+                      <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-slate-400"></i>
+                      <span class="rank-badge-diamond text-white text-xs font-bold px-2 py-0.5 rounded-full">Diamond</span>
+                    </div>
+                  </td>
+                  <td class="px-4 py-3 text-slate-600 text-xs">Oct 28, 2024</td>
+                  <td class="px-4 py-3 text-right font-mono font-semibold text-navy-900 text-sm">142,300</td>
+                  <td class="px-4 py-3">
+                    <div class="flex items-center gap-2">
+                      <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Upline" class="w-6 h-6 rounded-full border border-slate-200 flex-shrink-0">
+                      <span class="text-xs text-slate-600">Alex Pierce</span>
+                    </div>
+                  </td>
+                  <td class="px-4 py-3 text-center">
+                    <span class="text-sm font-bold text-red-700">12</span>
+                  </td>
+                  <td class="px-4 py-3 text-center">
+                    <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold bg-purple-50 text-purple-700 border border-purple-200">
+                      <span class="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse"></span>
+                      On Hold
+                    </span>
+                  </td>
+                  <td class="px-4 py-3">
+                    <div class="flex items-center justify-center gap-1.5">
+                      <button class="px-2.5 py-1 bg-green-600 text-white text-xs font-semibold rounded-small hover:bg-green-700 transition-colors">Approve</button>
+                      <button class="px-2.5 py-1 bg-navy-600 text-white text-xs font-semibold rounded-small hover:bg-navy-700 transition-colors">Review</button>
+                      <button class="px-2.5 py-1 bg-red-50 text-red-700 text-xs font-semibold rounded-small hover:bg-red-100 transition-colors border border-red-200">Deny</button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- EXPANDED DETAIL PANEL ROW -->
+                <tr class="expanded-row">
+                  <td colspan="9" class="px-5 pb-5 pt-0">
+                    <div class="border border-navy-200 rounded-large overflow-hidden shadow-custom">
+                      <!-- Detail Header -->
+                      <div class="bg-navy-900 text-white px-5 py-3 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                          <i data-lucide="zoom-in" class="w-4 h-4 text-navy-300"></i>
+                          <span class="font-heading font-semibold text-sm">Detailed Review: Jordan Reeves — Platinum → Diamond</span>
+                          <span class="bg-purple-500/30 text-purple-200 text-xs px-2 py-0.5 rounded-full border border-purple-400/30">On Hold — Policy Check</span>
+                        </div>
+                        <span class="text-xs text-navy-300 font-mono">REP-00271 · Opened Oct 28, 2024</span>
+                      </div>
+
+                      <div class="grid grid-cols-3 gap-0 divide-x divide-slate-200">
+
+                        <!-- Left: Production Breakdown + Checks -->
+                        <div class="p-4 space-y-4 col-span-2">
+                          <div class="grid grid-cols-2 gap-4">
+
+                            <!-- Production Breakdown -->
+                            <div>
+                              <h4 class="font-heading font-semibold text-navy-900 text-xs uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                                <i data-lucide="bar-chart-2" class="w-3.5 h-3.5 text-navy-600"></i>
+                                Production Breakdown
+                              </h4>
+                              <div class="space-y-2">
+                                <div class="flex justify-between items-center py-1.5 border-b border-slate-100">
+                                  <span class="text-xs text-slate-500">Personal Production</span>
+                                  <span class="text-xs font-mono font-semibold text-slate-800">48,200</span>
+                                </div>
+                                <div class="flex justify-between items-center py-1.5 border-b border-slate-100">
+                                  <span class="text-xs text-slate-500">Level 1 Downline</span>
+                                  <span class="text-xs font-mono font-semibold text-slate-800">39,600</span>
+                                </div>
+                                <div class="flex justify-between items-center py-1.5 border-b border-slate-100">
+                                  <span class="text-xs text-slate-500">Level 2 Downline</span>
+                                  <span class="text-xs font-mono font-semibold text-slate-800">31,100</span>
+                                </div>
+                                <div class="flex justify-between items-center py-1.5 border-b border-slate-100">
+                                  <span class="text-xs text-slate-500">Level 3+ Downline</span>
+                                  <span class="text-xs font-mono font-semibold text-slate-800">23,400</span>
+                                </div>
+                                <div class="flex justify-between items-center py-1.5 bg-navy-50 rounded px-2 -mx-2">
+                                  <span class="text-xs font-semibold text-navy-800">Total Credits</span>
+                                  <span class="text-sm font-mono font-bold text-navy-900">142,300</span>
+                                </div>
+                                <div class="flex justify-between items-center py-1 px-2 -mx-2">
+                                  <span class="text-xs text-slate-500">Diamond Threshold</span>
+                                  <span class="text-xs font-mono text-green-700 font-semibold">140,000 ✓</span>
+                                </div>
+                              </div>
+                            </div>
+
+                            <!-- Compliance Checks -->
+                            <div>
+                              <h4 class="font-heading font-semibold text-navy-900 text-xs uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-navy-600"></i>
+                                Compliance Checks
+                              </h4>
+                              <div class="space-y-2">
+                                <!-- Debit Balance -->
+                                <div class="flex items-start gap-2 p-2 rounded bg-green-50 border border-green-100">
+                                  <i data-lucide="check-circle-2" class="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5"></i>
+                                  <div>
+                                    <p class="text-xs font-semibold text-green-800">Debit Balance Clear</p>
+                                    <p class="text-xs text-green-600">Balance: $0.00 — No outstanding debit</p>
+                                  </div>
+                                </div>
+                                <!-- Policy Violation -->
+                                <div class="flex items-start gap-2 p-2 rounded bg-red-50 border border-red-200">
+                                  <i data-lucide="alert-circle" class="w-4 h-4 text-red-600 flex-shrink-0 mt-0.5"></i>
+                                  <div>
+                                    <p class="text-xs font-semibold text-red-800">Policy Violation Flag</p>
+                                    <p class="text-xs text-red-600">1 open violation — Oct 3, 2024 (Recruiting Misrepresentation)</p>
+                                  </div>
+                                </div>
+                                <!-- Tenure -->
+                                <div class="flex items-start gap-2 p-2 rounded bg-green-50 border border-green-100">
+                                  <i data-lucide="check-circle-2" class="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5"></i>
+                                  <div>
+                                    <p class="text-xs font-semibold text-green-800">Tenure Requirement Met</p>
+                                    <p class="text-xs text-green-600">Active 28 months — Min. 12 months required</p>
+                                  </div>
+                                </div>
+                                <!-- Training -->
+                                <div class="flex items-start gap-2 p-2 rounded bg-green-50 border border-green-100">
+                                  <i data-lucide="check-circle-2" class="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5"></i>
+                                  <div>
+                                    <p class="text-xs font-semibold text-green-800">Diamond Training Complete</p>
+                                    <p class="text-xs text-green-600">Completed Nov 1, 2024 — Cert #DT-8821</p>
+                                  </div>
+                                </div>
+                                <!-- Downline Legs -->
+                                <div class="flex items-start gap-2 p-2 rounded bg-amber-50 border border-amber-200">
+                                  <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5"></i>
+                                  <div>
+                                    <p class="text-xs font-semibold text-amber-800">Qualified Legs: 3 of 4</p>
+                                    <p class="text-xs text-amber-600">One leg below 25k threshold — borderline</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- Notes + Activity Timeline -->
+                          <div class="grid grid-cols-2 gap-4 pt-2 border-t border-slate-200">
+                            <!-- Notes Field -->
+                            <div>
+                              <h4 class="font-heading font-semibold text-navy-900 text-xs uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                                <i data-lucide="file-text" class="w-3.5 h-3.5 text-navy-600"></i>
+                                Admin Notes
+                              </h4>
+                              <textarea rows="4" placeholder="Add internal notes for this review..." class="w-full text-xs border border-slate-200 rounded-small p-2.5 text-slate-700 placeholder-slate-400 resize-none outline-none focus:ring-2 focus:ring-navy-500 focus:border-navy-500 bg-white">Policy violation from Oct 3 is under separate compliance review. Recommend holding approval until violation is resolved or formally dismissed. Production numbers are strong — rep is otherwise eligible.</textarea>
+                              <div class="flex justify-end mt-2">
+                                <button class="text-xs px-3 py-1.5 bg-navy-900 text-white rounded-small hover:bg-navy-800 transition-colors flex items-center gap-1">
+                                  <i data-lucide="save" class="w-3 h-3"></i>
+                                  Save Note
+                                </button>
+                              </div>
+                            </div>
+
+                            <!-- Activity Timeline -->
+                            <div>
+                              <h4 class="font-heading font-semibold text-navy-900 text-xs uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                                <i data-lucide="activity" class="w-3.5 h-3.5 text-navy-600"></i>
+                                Activity Timeline
+                              </h4>
+                              <div class="space-y-2 relative timeline-line pl-5">
+                                <div class="relative">
+                                  <span class="absolute -left-5 top-1 w-3.5 h-3.5 rounded-full bg-purple-500 border-2 border-white flex-shrink-0"></span>
+                                  <p class="text-xs font-semibold text-slate-800">Status set to On Hold</p>
+                                  <p class="text-xs text-slate-400">Nov 9, 2024 · 2:14 PM · A. Pierce</p>
+                                </div>
+                                <div class="relative">
+                                  <span class="absolute -left-5 top-1 w-3.5 h-3.5 rounded-full bg-blue-500 border-2 border-white flex-shrink-0"></span>
+                                  <p class="text-xs font-semibold text-slate-800">Compliance flag raised</p>
+                                  <p class="text-xs text-slate-400">Nov 8, 2024 · 10:05 AM · System Auto</p>
+                                </div>
+                                <div class="relative">
+                                  <span class="absolute -left-5 top-1 w-3.5 h-3.5 rounded-full bg-amber-500 border-2 border-white flex-shrink-0"></span>
+                                  <p class="text-xs font-semibold text-slate-800">Review initiated</p>
+                                  <p class="text-xs text-slate-400">Nov 5, 2024 · 9:30 AM · S. Chen</p>
+                                </div>
+                                <div class="relative">
+                                  <span class="absolute -left-5 top-1 w-3.5 h-3.5 rounded-full bg-green-500 border-2 border-white flex-shrink-0"></span>
+                                  <p class="text-xs font-semibold text-slate-800">Upgrade request submitted</p>
+                                  <p class="text-xs text-slate-400">Oct 28, 2024 · 4:52 PM · J. Reeves</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Right: Quick Action Panel -->
+                        <div class="p-4 bg-slate-50/60 space-y-4">
+                          <h4 class="font-heading font-semibold text-navy-900 text-xs uppercase tracking-wider flex items-center gap-1.5">
+                            <i data-lucide="zap" class="w-3.5 h-3.5 text-navy-600"></i>
+                            Quick Decision
+                          </h4>
+                          <div class="space-y-2">
+                            <button class="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-green-600 text-white text-sm font-semibold rounded-small hover:bg-green-700 transition-colors shadow-sm">
+                              <i data-lucide="check-circle" class="w-4 h-4"></i>
+                              Approve Upgrade
+                            </button>
+                            <button class="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-white border-2 border-navy-300 text-navy-700 text-sm font-semibold rounded-small hover:bg-navy-50 transition-colors">
+                              <i data-lucide="clock" class="w-4 h-4"></i>
+                              Keep On Hold
+                            </button>
+                            <button class="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-red-900 text-white text-sm font-semibold rounded-small hover:bg-red-800 transition-colors shadow-sm">
+                              <i data-lucide="x-circle" class="w-4 h-4"></i>
+                              Deny Upgrade
+                            </button>
+                          </div>
+
+                          <div class="pt-2 border-t border-slate-200">
+                            <p class="text-xs font-semibold text-slate-600 mb-2">Notify Rep</p>
+                            <div class="space-y-1.5">
+                              <label class="flex items-center gap-2 text-xs text-slate-600 cursor-pointer">
+                                <input type="checkbox" checked="" class="rounded border-slate-300 text-navy-600">
+                                Send decision email
+                              </label>
+                              <label class="flex items-center gap-2 text-xs text-slate-600 cursor-pointer">
+                                <input type="checkbox" class="rounded border-slate-300 text-navy-600">
+                                Notify upline
+                              </label>
+                              <label class="flex items-center gap-2 text-xs text-slate-600 cursor-pointer">
+                                <input type="checkbox" class="rounded border-slate-300 text-navy-600">
+                                CC compliance team
+                              </label>
+                            </div>
+                          </div>
+
+                          <div class="pt-2 border-t border-slate-200">
+                            <p class="text-xs font-semibold text-slate-600 mb-2">Rep Summary</p>
+                            <div class="space-y-1.5">
+                              <div class="flex justify-between text-xs">
+                                <span class="text-slate-500">Joined</span>
+                                <span class="font-medium text-slate-700">Jul 2022</span>
+                              </div>
+                              <div class="flex justify-between text-xs">
+                                <span class="text-slate-500">Violations</span>
+                                <span class="font-medium text-red-600">1 open</span>
+                              </div>
+                              <div class="flex justify-between text-xs">
+                                <span class="text-slate-500">Prior Upgrades</span>
+                                <span class="font-medium text-slate-700">3 approved</span>
+                              </div>
+                              <div class="flex justify-between text-xs">
+                                <span class="text-slate-500">Debit Balance</span>
+                                <span class="font-medium text-green-600">$0.00</span>
+                              </div>
+                              <div class="flex justify-between text-xs">
+                                <span class="text-slate-500">Downline Size</span>
+                                <span class="font-medium text-slate-700">84 reps</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Row 4 - Normal -->
+                <tr class="hover:bg-slate-50/60 transition-colors">
+                  <td class="px-4 py-3"><input type="checkbox" class="rounded border-slate-300"></td>
+                  <td class="px-4 py-3">
+                    <div class="flex items-center gap-3">
+                      <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Rep" class="w-8 h-8 rounded-full border border-slate-200 flex-shrink-0">
+                      <div>
+                        <p class="font-medium text-slate-800 text-sm">Aisha Okonkwo</p>
+                        <p class="text-xs text-slate-400 font-mono">REP-00503</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-4 py-3">
+                    <div class="flex items-center gap-2">
+                      <span class="rank-badge-silver text-white text-xs font-bold px-2 py-0.5 rounded-full">Silver</span>
+                      <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-slate-400"></i>
+                      <span class="rank-badge-gold text-white text-xs font-bold px-2 py-0.5 rounded-full">Gold</span>
+                    </div>
+                  </td>
+                  <td class="px-4 py-3 text-slate-600 text-xs">Nov 18, 2024</td>
+                  <td class="px-4 py-3 text-right font-mono font-semibold text-slate-800 text-sm">26,410</td>
+                  <td class="px-4 py-3">
+                    <div class="flex items-center gap-2">
+                      <img src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Upline" class="w-6 h-6 rounded-full border border-slate-200 flex-shrink-0">
+                      <span class="text-xs text-slate-600">Jordan Reeves</span>
+                    </div>
+                  </td>
+                  <td class="px-4 py-3 text-center">
+                    <span class="text-sm font-bold text-slate-500">1</span>
+                  </td>
+                  <td class="px-4 py-3 text-center">
+                    <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-200">
+                      <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                      Pending
+                    </span>
+                  </td>
+                  <td class="px-4 py-3">
+                    <div class="flex items-center justify-center gap-1.5">
+                      <button class="px-2.5 py-1 bg-green-600 text-white text-xs font-semibold rounded-small hover:bg-green-700 transition-colors">Approve</button>
+                      <button class="px-2.5 py-1 bg-navy-100 text-navy-700 text-xs font-semibold rounded-small hover:bg-navy-200 transition-colors">Review</button>
+                      <button class="px-2.5 py-1 bg-red-50 text-red-700 text-xs font-semibold rounded-small hover:bg-red-100 transition-colors border border-red-200">Deny</button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Row 5 - Approved -->
+                <tr class="hover:bg-slate-50/60 transition-colors opacity-70">
+                  <td class="px-4 py-3"><input type="checkbox" class="rounded border-slate-300"></td>
+                  <td class="px-4 py-3">
+                    <div class="flex items-center gap-3">
+                      <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Rep" class="w-8 h-8 rounded-full border border-slate-200 flex-shrink-0">
+                      <div>
+                        <p class="font-medium text-slate-800 text-sm">Liam Thornton</p>
+                        <p class="text-xs text-slate-400 font-mono">REP-00188</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-4 py-3">
+                    <div class="flex items-center gap-2">
+                      <span class="rank-badge-diamond text-white text-xs font-bold px-2 py-0.5 rounded-full">Diamond</span>
+                      <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-slate-400"></i>
+                      <span class="rank-badge-executive text-white text-xs font-bold px-2 py-0.5 rounded-full">Executive</span>
+                    </div>
+                  </td>
+                  <td class="px-4 py-3 text-slate-600 text-xs">Nov 2, 2024</td>
+                  <td class="px-4 py-3 text-right font-mono font-semibold text-slate-800 text-sm">298,750</td>
+                  <td class="px-4 py-3">
+                    <div class="flex items-center gap-2">
+                      <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Upline" class="w-6 h-6 rounded-full border border-slate-200 flex-shrink-0">
+                      <span class="text-xs text-slate-600">Alex Pierce</span>
+                    </div>
+                  </td>
+                  <td class="px-4 py-3 text-center">
+                    <span class="text-sm font-bold text-slate-400">—</span>
+                  </td>
+                  <td class="px-4 py-3 text-center">
+                    <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold bg-green-50 text-green-700 border border-green-200">
+                      <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                      Approved
+                    </span>
+                  </td>
+                  <td class="px-4 py-3">
+                    <div class="flex items-center justify-center gap-1.5">
+                      <button class="px-2.5 py-1 bg-slate-100 text-slate-400 text-xs font-semibold rounded-small cursor-not-allowed" disabled="">Approve</button>
+                      <button class="px-2.5 py-1 bg-navy-100 text-navy-700 text-xs font-semibold rounded-small hover:bg-navy-200 transition-colors">Review</button>
+                      <button class="px-2.5 py-1 bg-slate-100 text-slate-400 text-xs font-semibold rounded-small cursor-not-allowed" disabled="">Deny</button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Row 6 - Denied -->
+                <tr class="hover:bg-slate-50/60 transition-colors opacity-70">
+                  <td class="px-4 py-3"><input type="checkbox" class="rounded border-slate-300"></td>
+                  <td class="px-4 py-3">
+                    <div class="flex items-center gap-3">
+                      <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Rep" class="w-8 h-8 rounded-full border border-slate-200 flex-shrink-0">
+                      <div>
+                        <p class="font-medium text-slate-800 text-sm">Camille Dupont</p>
+                        <p class="text-xs text-slate-400 font-mono">REP-00341</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-4 py-3">
+                    <div class="flex items-center gap-2">
+                      <span class="rank-badge-gold text-white text-xs font-bold px-2 py-0.5 rounded-full">Gold</span>
+                      <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-slate-400"></i>
+                      <span class="rank-badge-platinum text-white text-xs font-bold px-2 py-0.5 rounded-full">Platinum</span>
+                    </div>
+                  </td>
+                  <td class="px-4 py-3 text-slate-600 text-xs">Oct 20, 2024</td>
+                  <td class="px-4 py-3 text-right font-mono font-semibold text-slate-800 text-sm">54,100</td>
+                  <td class="px-4 py-3">
+                    <div class="flex items-center gap-2">
+                      <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Upline" class="w-6 h-6 rounded-full border border-slate-200 flex-shrink-0">
+                      <span class="text-xs text-slate-600">Sarah Chen</span>
+                    </div>
+                  </td>
+                  <td class="px-4 py-3 text-center">
+                    <span class="text-sm font-bold text-slate-400">—</span>
+                  </td>
+                  <td class="px-4 py-3 text-center">
+                    <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold bg-red-50 text-red-700 border border-red-200">
+                      <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
+                      Denied
+                    </span>
+                  </td>
+                  <td class="px-4 py-3">
+                    <div class="flex items-center justify-center gap-1.5">
+                      <button class="px-2.5 py-1 bg-slate-100 text-slate-400 text-xs font-semibold rounded-small cursor-not-allowed" disabled="">Approve</button>
+                      <button class="px-2.5 py-1 bg-navy-100 text-navy-700 text-xs font-semibold rounded-small hover:bg-navy-200 transition-colors">Review</button>
+                      <button class="px-2.5 py-1 bg-slate-100 text-slate-400 text-xs font-semibold rounded-small cursor-not-allowed" disabled="">Deny</button>
+                    </div>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Table Footer / Pagination -->
+          <div class="px-5 py-3 border-t border-slate-200 flex items-center justify-between bg-slate-50/50">
+            <p class="text-xs text-slate-500">Showing <span class="font-semibold text-slate-700">6</span> of <span class="font-semibold text-slate-700">61</span> requests</p>
+            <div class="flex items-center gap-1">
+              <button class="px-2.5 py-1.5 text-xs border border-slate-200 rounded-small text-slate-500 hover:bg-slate-100 transition-colors">← Prev</button>
+              <button class="px-2.5 py-1.5 text-xs border border-navy-600 bg-navy-900 rounded-small text-white font-semibold">1</button>
+              <button class="px-2.5 py-1.5 text-xs border border-slate-200 rounded-small text-slate-600 hover:bg-slate-100 transition-colors">2</button>
+              <button class="px-2.5 py-1.5 text-xs border border-slate-200 rounded-small text-slate-600 hover:bg-slate-100 transition-colors">3</button>
+              <span class="px-1 text-slate-400 text-xs">...</span>
+              <button class="px-2.5 py-1.5 text-xs border border-slate-200 rounded-small text-slate-600 hover:bg-slate-100 transition-colors">11</button>
+              <button class="px-2.5 py-1.5 text-xs border border-slate-200 rounded-small text-slate-500 hover:bg-slate-100 transition-colors">Next →</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right: Email Log Panel -->
+      <div class="w-72 flex-shrink-0 border-l border-slate-200 bg-white flex flex-col" style="min-height: 100%;">
+        <div class="px-4 py-3.5 border-b border-slate-200 bg-navy-900">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <i data-lucide="mail" class="w-4 h-4 text-navy-300"></i>
+              <h3 class="font-heading font-semibold text-white text-sm">Auto-Notification Log</h3>
+            </div>
+            <span class="bg-navy-700 text-navy-200 text-xs px-2 py-0.5 rounded-full font-medium">Live</span>
+          </div>
+          <p class="text-xs text-navy-300 mt-1">System-triggered emails for rank events</p>
+        </div>
+
+        <div class="flex-1 overflow-y-auto p-3 space-y-2.5">
+
+          <!-- Email Entry 1 -->
+          <div class="border border-green-200 rounded-large p-3 bg-green-50/60">
+            <div class="flex items-start justify-between gap-2 mb-1.5">
+              <div class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0 mt-0.5"></span>
+                <span class="text-xs font-semibold text-green-800">Approval Confirmed</span>
+              </div>
+              <span class="text-xs text-slate-400 whitespace-nowrap">2m ago</span>
+            </div>
+            <p class="text-xs text-slate-700 font-medium">To: liam.thornton@apex.com</p>
+            <p class="text-xs text-slate-500 mt-0.5">Subject: Congratulations — Diamond → Executive Rank Approved</p>
+            <div class="flex items-center gap-2 mt-2">
+              <span class="text-xs bg-green-100 text-green-700 px-1.5 py-0.5 rounded font-medium border border-green-200">Delivered</span>
+              <span class="text-xs text-slate-400">REP-00188</span>
+            </div>
+          </div>
+
+          <!-- Email Entry 2 -->
+          <div class="border border-purple-200 rounded-large p-3 bg-purple-50/60">
+            <div class="flex items-start justify-between gap-2 mb-1.5">
+              <div class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-purple-500 flex-shrink-0 mt-0.5"></span>
+                <span class="text-xs font-semibold text-purple-800">Hold Notification</span>
+              </div>
+              <span class="text-xs text-slate-400 whitespace-nowrap">18m ago</span>
+            </div>
+            <p class="text-xs text-slate-700 font-medium">To: jordan.reeves@apex.com</p>
+            <p class="text-xs text-slate-500 mt-0.5">Subject: Your Rank Upgrade Request is Under Review</p>
+            <div class="flex items-center gap-2 mt-2">
+              <span class="text-xs bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded font-medium border border-purple-200">Delivered</span>
+              <span class="text-xs text-slate-400">REP-00271</span>
+            </div>
+          </div>
+
+          <!-- Email Entry 3 -->
+          <div class="border border-blue-200 rounded-large p-3 bg-blue-50/60">
+            <div class="flex items-start justify-between gap-2 mb-1.5">
+              <div class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-blue-500 flex-shrink-0 mt-0.5"></span>
+                <span class="text-xs font-semibold text-blue-800">Review Started</span>
+              </div>
+              <span class="text-xs text-slate-400 whitespace-nowrap">1h ago</span>
+            </div>
+            <p class="text-xs text-slate-700 font-medium">To: priya.nair@apex.com</p>
+            <p class="text-xs text-slate-500 mt-0.5">Subject: Your Gold → Platinum Request is Being Reviewed</p>
+            <div class="flex items-center gap-2 mt-2">
+              <span class="text-xs bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded font-medium border border-blue-200">Delivered</span>
+              <span class="text-xs text-slate-400">REP-00389</span>
+            </div>
+          </div>
+
+          <!-- Email Entry 4 -->
+          <div class="border border-red-200 rounded-large p-3 bg-red-50/60">
+            <div class="flex items-start justify-between gap-2 mb-1.5">
+              <div class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-red-500 flex-shrink-0 mt-0.5"></span>
+                <span class="text-xs font-semibold text-red-800">Denial Notice</span>
+              </div>
+              <span class="text-xs text-slate-400 whitespace-nowrap">3h ago</span>
+            </div>
+            <p class="text-xs text-slate-700 font-medium">To: camille.dupont@apex.com</p>
+            <p class="text-xs text-slate-500 mt-0.5">Subject: Rank Upgrade Request — Not Approved at This Time</p>
+            <div class="flex items-center gap-2 mt-2">
+              <span class="text-xs bg-red-100 text-red-700 px-1.5 py-0.5 rounded font-medium border border-red-200">Delivered</span>
+              <span class="text-xs text-slate-400">REP-00341</span>
+            </div>
+          </div>
+
+          <!-- Email Entry 5 -->
+          <div class="border border-amber-200 rounded-large p-3 bg-amber-50/60">
+            <div class="flex items-start justify-between gap-2 mb-1.5">
+              <div class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-amber-500 flex-shrink-0 mt-0.5"></span>
+                <span class="text-xs font-semibold text-amber-800">Submission Received</span>
+              </div>
+              <span class="text-xs text-slate-400 whitespace-nowrap">5h ago</span>
+            </div>
+            <p class="text-xs text-slate-700 font-medium">To: aisha.okonkwo@apex.com</p>
+            <p class="text-xs text-slate-500 mt-0.5">Subject: Silver → Gold Upgrade Request Received</p>
+            <div class="flex items-center gap-2 mt-2">
+              <span class="text-xs bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded font-medium border border-amber-200">Delivered</span>
+              <span class="text-xs text-slate-400">REP-00503</span>
+            </div>
+          </div>
+
+          <!-- Email Entry 6 -->
+          <div class="border border-amber-200 rounded-large p-3 bg-amber-50/60">
+            <div class="flex items-start justify-between gap-2 mb-1.5">
+              <div class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-amber-500 flex-shrink-0 mt-0.5"></span>
+                <span class="text-xs font-semibold text-amber-800">Submission Received</span>
+              </div>
+              <span class="text-xs text-slate-400 whitespace-nowrap">8h ago</span>
+            </div>
+            <p class="text-xs text-slate-700 font-medium">To: marcus.webb@apex.com</p>
+            <p class="text-xs text-slate-500 mt-0.5">Subject: Silver → Gold Upgrade Request Received</p>
+            <div class="flex items-center gap-2 mt-2">
+              <span class="text-xs bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded font-medium border border-amber-200">Delivered</span>
+              <span class="text-xs text-slate-400">REP-00412</span>
+            </div>
+          </div>
+
+          <!-- Email Entry 7 - Failed -->
+          <div class="border border-slate-200 rounded-large p-3 bg-slate-50">
+            <div class="flex items-start justify-between gap-2 mb-1.5">
+              <div class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-slate-400 flex-shrink-0 mt-0.5"></span>
+                <span class="text-xs font-semibold text-slate-600">Upline Alert</span>
+              </div>
+              <span class="text-xs text-slate-400 whitespace-nowrap">1d ago</span>
+            </div>
+            <p class="text-xs text-slate-700 font-medium">To: david.kim@apex.com</p>
+            <p class="text-xs text-slate-500 mt-0.5">Subject: Downline Rep Priya Nair Submitted Upgrade Request</p>
+            <div class="flex items-center gap-2 mt-2">
+              <span class="text-xs bg-red-100 text-red-700 px-1.5 py-0.5 rounded font-medium border border-red-200">Bounced</span>
+              <span class="text-xs text-slate-400">REP-00389</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Email Log Footer -->
+        <div class="border-t border-slate-200 p-3 bg-slate-50/80">
+          <div class="flex items-center justify-between mb-2">
+            <p class="text-xs font-semibold text-slate-600">Email Stats (Today)</p>
+            <button class="text-xs text-navy-600 hover:text-navy-800 font-medium">View All →</button>
+          </div>
+          <div class="grid grid-cols-3 gap-2">
+            <div class="text-center p-2 bg-white rounded-small border border-slate-200">
+              <p class="text-sm font-bold text-slate-800">24</p>
+              <p class="text-xs text-slate-400">Sent</p>
+            </div>
+            <div class="text-center p-2 bg-white rounded-small border border-slate-200">
+              <p class="text-sm font-bold text-green-700">23</p>
+              <p class="text-xs text-slate-400">Delivered</p>
+            </div>
+            <div class="text-center p-2 bg-white rounded-small border border-red-200">
+              <p class="text-sm font-bold text-red-600">1</p>
+              <p class="text-xs text-slate-400">Bounced</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+  </script>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

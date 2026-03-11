@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Training Center - Exported from UXMagic Copilot">
+    <title>Training Center</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            50: '#E8EAF2',
+                            100: '#C5CCDF',
+                            200: '#9EAACC',
+                            300: '#7689B9',
+                            400: '#4F67A6',
+                            500: '#274693',
+                            600: '#1B3A7D',
+                            700: '#152D61',
+                            800: '#0F2045',
+                            900: '#091329',
+                        },
+                        brandRed: {
+                            50: '#FBE8E9',
+                            100: '#F5C5C7',
+                            200: '#EE9EA1',
+                            300: '#E7767B',
+                            400: '#E04F55',
+                            500: '#D9272F',
+                            600: '#C7181F',
+                            700: '#9B1318',
+                            800: '#6F0D11',
+                            900: '#42080A',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+<div class="flex" style="height: auto; min-height: 100vh;">
+    <!-- Sidebar -->
+    <aside class="hidden md:flex flex-col w-64 glass-dark text-white z-20" style="min-height: 100vh;">
+        <div class="p-6 flex items-center gap-3 border-b border-white/10">
+            <div class="w-8 h-8 rounded-lg bg-brandRed-600 flex items-center justify-center shadow-lg shadow-brandRed-600/30">
+                <i class="fa-solid fa-chart-line text-white text-sm"></i>
+            </div>
+            <span class="text-xl font-bold tracking-tight">ASCEND</span>
+        </div>
+        <nav class="flex-1 overflow-y-auto py-6 px-3 space-y-1">
+            <a href="/api/copilot/prototype/49695907-240d-4a79-bb91-8d4668950032/training-center" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-grid-2 w-5 text-center"></i>
+                <span class="font-medium">Dashboard</span>
+            </a>
+            <a href="/api/copilot/prototype/49695907-240d-4a79-bb91-8d4668950032/training-center" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-users w-5 text-center"></i>
+                <span class="font-medium">Customers</span>
+            </a>
+            <a href="/api/copilot/prototype/49695907-240d-4a79-bb91-8d4668950032/training-center" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-wallet w-5 text-center"></i>
+                <span class="font-medium">Commissions</span>
+            </a>
+            <a href="/api/copilot/prototype/49695907-240d-4a79-bb91-8d4668950032/training-center" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-sitemap w-5 text-center"></i>
+                <span class="font-medium">Genealogy</span>
+            </a>
+            <a href="/api/copilot/prototype/49695907-240d-4a79-bb91-8d4668950032/training-center" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                <i class="fa-solid fa-store w-5 text-center"></i>
+                <span class="font-medium">Shop</span>
+            </a>
+            <a href="/api/copilot/prototype/49695907-240d-4a79-bb91-8d4668950032/training-center" class="flex items-center gap-3 px-4 py-3 bg-white/10 text-white rounded-xl transition-all shadow-sm border border-white/5">
+                <i class="fa-solid fa-graduation-cap w-5 text-center"></i>
+                <span class="font-medium">Training</span>
+            </a>
+        </nav>
+        <div class="p-4 border-t border-white/10">
+            <div class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/5">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Profile" class="w-10 h-10 rounded-full border-2 border-brandRed-500">
+                <div class="flex-1 min-w-0">
+                    <p class="text-sm font-semibold text-white truncate">Sarah Jenkins</p>
+                    <p class="text-xs text-gray-400 truncate">Diamond Director</p>
+                </div>
+                <button class="text-gray-400 hover:text-white"><i class="fa-solid fa-gear"></i></button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col relative pb-24 md:pb-20">
+
+        <!-- Mobile Header -->
+        <div class="md:hidden glass sticky top-0 z-30 px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-navy-600 flex items-center justify-center">
+                    <i class="fa-solid fa-chart-line text-white text-xs"></i>
+                </div>
+                <span class="text-lg font-bold text-navy-800">ASCEND</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Profile" class="w-8 h-8 rounded-full border-2 border-brandRed-500">
+                <button class="text-navy-600 p-2"><i class="fa-solid fa-bars text-xl"></i></button>
+            </div>
+        </div>
+
+        <!-- Desktop Page Header -->
+        <div class="hidden md:flex px-6 lg:px-10 pt-8 pb-4 items-center justify-between">
+            <div>
+                <h1 class="text-2xl font-bold text-navy-900">Training Center</h1>
+                <p class="text-gray-500 text-sm mt-1">Build your skills, grow your business — <span class="font-semibold text-navy-600">Diamond Director Track</span></p>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="glass px-3 py-2 rounded-lg flex items-center gap-2">
+                    <i class="fa-solid fa-magnifying-glass text-navy-400 text-sm"></i>
+                    <input type="text" placeholder="Search training..." class="bg-transparent text-sm text-navy-700 placeholder-gray-400 focus:outline-none w-40">
+                </div>
+                <div class="flex items-center gap-2 glass px-3 py-2 rounded-lg">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Profile" class="w-7 h-7 rounded-full border-2 border-brandRed-500">
+                    <div>
+                        <p class="text-xs font-semibold text-navy-900 leading-none">Sarah Jenkins</p>
+                        <p class="text-xs text-gray-400 leading-none mt-0.5">Diamond Director</p>
+                    </div>
+                    <span class="ml-1 text-xs font-bold text-brandRed-600 bg-brandRed-50 px-2 py-0.5 rounded-full">Lv. 7</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Overall Progress Bar (Desktop) -->
+        <div class="hidden md:block px-6 lg:px-10 pb-5">
+            <div class="glass rounded-2xl p-4">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl kpi-card-gradient-blue flex items-center justify-center">
+                            <i class="fa-solid fa-trophy text-white text-sm"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-bold text-navy-900">Overall Training Progress</p>
+                            <p class="text-xs text-gray-500">62 of 100 modules completed · 14h 30m watched</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="text-right">
+                            <p class="text-2xl font-bold text-navy-900">62<span class="text-base font-medium text-gray-400">%</span></p>
+                            <p class="text-xs text-gray-500">Complete</p>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-navy-600 inline-block"></span>Completed</span>
+                            <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-brandRed-500 inline-block"></span>In Progress</span>
+                            <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-gray-300 inline-block"></span>Not Started</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full bg-gray-100 rounded-full h-3 overflow-hidden">
+                    <div class="h-3 rounded-full" style="width:62%; background: linear-gradient(90deg, #1B3A7D 0%, #274693 60%, #D9272F 100%);"></div>
+                </div>
+                <div class="flex justify-between mt-1.5">
+                    <span class="text-xs text-gray-400">0%</span>
+                    <span class="text-xs font-semibold text-navy-700">Next milestone: 75% → Gold Badge</span>
+                    <span class="text-xs text-gray-400">100%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Featured Podcast Hero -->
+        <div class="px-6 lg:px-10 pb-6">
+            <div class="podcast-hero rounded-2xl p-6 md:p-8 relative overflow-hidden" style="max-height: 340px;">
+                <!-- Background decorative elements -->
+                <div class="absolute top-0 right-0 w-64 h-64 rounded-full opacity-10" style="background: radial-gradient(circle, #D9272F, transparent); transform: translate(30%, -30%);"></div>
+                <div class="absolute bottom-0 left-1/2 w-48 h-48 rounded-full opacity-5" style="background: radial-gradient(circle, #4F67A6, transparent); transform: translate(-50%, 40%);"></div>
+
+                <div class="relative z-10 flex flex-col md:flex-row md:items-center gap-6">
+                    <!-- Podcast Thumbnail -->
+                    <div class="flex-shrink-0 relative">
+                        <div class="w-28 h-28 md:w-36 md:h-36 rounded-2xl overflow-hidden shadow-2xl border-2 border-white/20">
+                            <img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="Podcast" class="w-full h-full object-cover">
+                        </div>
+                        <!-- Now Playing indicator -->
+                        <div class="absolute -bottom-2 -right-2 bg-brandRed-600 rounded-full w-8 h-8 flex items-center justify-center shadow-lg">
+                            <i class="fa-solid fa-headphones text-white text-xs"></i>
+                        </div>
+                    </div>
+
+                    <!-- Podcast Info & Player -->
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xs font-semibold text-brandRed-300 bg-brandRed-900/40 px-2.5 py-0.5 rounded-full border border-brandRed-700/40">🎙 FEATURED PODCAST</span>
+                            <span class="text-xs text-white/50">Ep. 47</span>
+                        </div>
+                        <h2 class="text-xl md:text-2xl font-bold text-white mb-1 leading-tight">Mastering the Comp Plan: Diamond Director Strategies</h2>
+                        <p class="text-sm text-white/60 mb-4">with <span class="text-white/80 font-medium">Mark Thompson</span> · National Sales Director · <span class="text-white/50">42:18 total</span></p>
+
+                        <!-- Audio Wave + Controls -->
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="audio-wave flex items-end gap-1 h-6">
+                                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors" title="Rewind 15s">
+                                    <i class="fa-solid fa-rotate-left text-white text-xs"></i>
+                                </button>
+                                <button id="heroPlayBtn" onclick="toggleHeroPlay()" class="w-12 h-12 rounded-full bg-brandRed-600 hover:bg-brandRed-500 flex items-center justify-center transition-colors shadow-lg shadow-brandRed-900/40">
+                                    <i class="fa-solid fa-pause text-white text-sm"></i>
+                                </button>
+                                <button class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors" title="Forward 15s">
+                                    <i class="fa-solid fa-rotate-right text-white text-xs"></i>
+                                </button>
+                                <button class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors text-xs font-bold text-white/70 hover:text-white">1.5x</button>
+                            </div>
+                            <div class="flex items-center gap-1.5 ml-auto">
+                                <i class="fa-solid fa-volume-low text-white/50 text-xs"></i>
+                                <input type="range" class="vol-track w-16" min="0" max="100" value="75">
+                                <i class="fa-solid fa-volume-high text-white/50 text-xs"></i>
+                            </div>
+                        </div>
+
+                        <!-- Playhead -->
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs text-white/50 w-8 text-right">18:42</span>
+                            <input type="range" class="playhead-track flex-1" min="0" max="100" value="44">
+                            <span class="text-xs text-white/50 w-8">42:18</span>
+                        </div>
+                    </div>
+
+                    <!-- Episode Stats (Desktop only) -->
+                    <div class="hidden lg:flex flex-col gap-3 flex-shrink-0">
+                        <div class="bg-white/10 rounded-xl p-3 text-center min-w-24">
+                            <p class="text-2xl font-bold text-white">4.9</p>
+                            <div class="flex justify-center gap-0.5 my-1">
+                                <i class="fa-solid fa-star text-amber-400 text-xs"></i>
+                                <i class="fa-solid fa-star text-amber-400 text-xs"></i>
+                                <i class="fa-solid fa-star text-amber-400 text-xs"></i>
+                                <i class="fa-solid fa-star text-amber-400 text-xs"></i>
+                                <i class="fa-solid fa-star text-amber-400 text-xs"></i>
+                            </div>
+                            <p class="text-xs text-white/50">Rating</p>
+                        </div>
+                        <div class="bg-white/10 rounded-xl p-3 text-center">
+                            <p class="text-2xl font-bold text-white">2.4k</p>
+                            <p class="text-xs text-white/50 mt-1">Listens</p>
+                        </div>
+                        <button class="bg-white/10 hover:bg-white/20 rounded-xl p-2.5 flex items-center justify-center gap-2 text-xs text-white/70 hover:text-white transition-colors">
+                            <i class="fa-solid fa-bookmark"></i>
+                            <span>Save</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category Cards - Horizontal Scroll -->
+        <div class="px-6 lg:px-10 pb-6">
+            <div class="flex items-center justify-between mb-3">
+                <h2 class="text-base font-bold text-navy-900">Training Categories</h2>
+                <button class="text-xs font-medium text-navy-600 hover:text-navy-800 flex items-center gap-1">View All <i class="fa-solid fa-chevron-right text-xs"></i></button>
+            </div>
+            <div class="flex gap-4 overflow-x-auto category-scroll pb-2" style="scrollbar-width: thin;">
+                <!-- Onboarding -->
+                <div class="flex-shrink-0 w-52 glass rounded-2xl p-4 cursor-pointer glass-card border-2 border-navy-200/50">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="w-10 h-10 rounded-xl kpi-card-gradient-blue flex items-center justify-center">
+                            <i class="fa-solid fa-rocket text-white text-sm"></i>
+                        </div>
+                        <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">Complete</span>
+                    </div>
+                    <h3 class="text-sm font-bold text-navy-900 mb-0.5">Onboarding</h3>
+                    <p class="text-xs text-gray-500 mb-3">Getting started essentials</p>
+                    <div class="flex items-center justify-between text-xs mb-1.5">
+                        <span class="text-gray-500">12/12 modules</span>
+                        <span class="font-bold text-emerald-700">100%</span>
+                    </div>
+                    <div class="w-full bg-gray-100 rounded-full h-2 overflow-hidden">
+                        <div class="bg-emerald-500 h-2 rounded-full progress-bar-fill" style="width:100%"></div>
+                    </div>
+                </div>
+
+                <!-- Comp Plan -->
+                <div class="flex-shrink-0 w-52 glass rounded-2xl p-4 cursor-pointer glass-card border-2 border-brandRed-200/50">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="w-10 h-10 rounded-xl kpi-card-gradient-red flex items-center justify-center">
+                            <i class="fa-solid fa-dollar-sign text-white text-sm"></i>
+                        </div>
+                        <span class="text-xs font-bold text-brandRed-700 bg-brandRed-50 px-2 py-0.5 rounded-full">In Progress</span>
+                    </div>
+                    <h3 class="text-sm font-bold text-navy-900 mb-0.5">Comp Plan</h3>
+                    <p class="text-xs text-gray-500 mb-3">Maximize your earnings</p>
+                    <div class="flex items-center justify-between text-xs mb-1.5">
+                        <span class="text-gray-500">9/15 modules</span>
+                        <span class="font-bold text-navy-700">60%</span>
+                    </div>
+                    <div class="w-full bg-gray-100 rounded-full h-2 overflow-hidden">
+                        <div class="bg-navy-600 h-2 rounded-full progress-bar-fill" style="width:60%"></div>
+                    </div>
+                </div>
+
+                <!-- Sales -->
+                <div class="flex-shrink-0 w-52 glass rounded-2xl p-4 cursor-pointer glass-card border-2 border-amber-200/50">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="w-10 h-10 rounded-xl kpi-card-gradient-amber flex items-center justify-center">
+                            <i class="fa-solid fa-chart-line text-white text-sm"></i>
+                        </div>
+                        <span class="text-xs font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full">In Progress</span>
+                    </div>
+                    <h3 class="text-sm font-bold text-navy-900 mb-0.5">Sales</h3>
+                    <p class="text-xs text-gray-500 mb-3">Retail &amp; prospecting skills</p>
+                    <div class="flex items-center justify-between text-xs mb-1.5">
+                        <span class="text-gray-500">7/18 modules</span>
+                        <span class="font-bold text-navy-700">39%</span>
+                    </div>
+                    <div class="w-full bg-gray-100 rounded-full h-2 overflow-hidden">
+                        <div class="bg-amber-500 h-2 rounded-full progress-bar-fill" style="width:39%"></div>
+                    </div>
+                </div>
+
+                <!-- Leadership -->
+                <div class="flex-shrink-0 w-52 glass rounded-2xl p-4 cursor-pointer glass-card border-2 border-purple-200/50">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, #6d28d9, #7c3aed);">
+                            <i class="fa-solid fa-crown text-white text-sm"></i>
+                        </div>
+                        <span class="text-xs font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">Not Started</span>
+                    </div>
+                    <h3 class="text-sm font-bold text-navy-900 mb-0.5">Leadership</h3>
+                    <p class="text-xs text-gray-500 mb-3">Build &amp; lead your team</p>
+                    <div class="flex items-center justify-between text-xs mb-1.5">
+                        <span class="text-gray-500">0/20 modules</span>
+                        <span class="font-bold text-gray-400">0%</span>
+                    </div>
+                    <div class="w-full bg-gray-100 rounded-full h-2 overflow-hidden">
+                        <div class="bg-gray-300 h-2 rounded-full progress-bar-fill" style="width:0%"></div>
+                    </div>
+                </div>
+
+                <!-- Licensing -->
+                <div class="flex-shrink-0 w-52 glass rounded-2xl p-4 cursor-pointer glass-card border-2 border-emerald-200/50">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="w-10 h-10 rounded-xl kpi-card-gradient-emerald flex items-center justify-center">
+                            <i class="fa-solid fa-certificate text-white text-sm"></i>
+                        </div>
+                        <span class="text-xs font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full">In Progress</span>
+                    </div>
+                    <h3 class="text-sm font-bold text-navy-900 mb-0.5">Licensing</h3>
+                    <p class="text-xs text-gray-500 mb-3">Compliance &amp; certifications</p>
+                    <div class="flex items-center justify-between text-xs mb-1.5">
+                        <span class="text-gray-500">4/10 modules</span>
+                        <span class="font-bold text-navy-700">40%</span>
+                    </div>
+                    <div class="w-full bg-gray-100 rounded-full h-2 overflow-hidden">
+                        <div class="bg-emerald-500 h-2 rounded-full progress-bar-fill" style="width:40%"></div>
+                    </div>
+                </div>
+
+                <!-- Bonus: Product Knowledge -->
+                <div class="flex-shrink-0 w-52 glass rounded-2xl p-4 cursor-pointer glass-card border-2 border-navy-100/50">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, #0369a1, #0284c7);">
+                            <i class="fa-solid fa-flask text-white text-sm"></i>
+                        </div>
+                        <span class="text-xs font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">Not Started</span>
+                    </div>
+                    <h3 class="text-sm font-bold text-navy-900 mb-0.5">Product Knowledge</h3>
+                    <p class="text-xs text-gray-500 mb-3">Deep product expertise</p>
+                    <div class="flex items-center justify-between text-xs mb-1.5">
+                        <span class="text-gray-500">0/14 modules</span>
+                        <span class="font-bold text-gray-400">0%</span>
+                    </div>
+                    <div class="w-full bg-gray-100 rounded-full h-2 overflow-hidden">
+                        <div class="bg-gray-300 h-2 rounded-full progress-bar-fill" style="width:0%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Library -->
+        <div class="px-6 lg:px-10 pb-8">
+            <!-- Filter Bar -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
+                <div>
+                    <h2 class="text-base font-bold text-navy-900">Content Library</h2>
+                    <p class="text-xs text-gray-500 mt-0.5">75 items · Showing 12</p>
+                </div>
+                <div class="flex items-center gap-2 flex-wrap">
+                    <div class="flex items-center gap-1.5 bg-white/60 rounded-xl p-1 border border-gray-200/80">
+                        <button onclick="setFilter(this,'All')" class="filter-btn active text-xs font-semibold px-3 py-1.5 rounded-lg">All</button>
+                        <button onclick="setFilter(this,'Video')" class="filter-btn text-xs font-semibold px-3 py-1.5 rounded-lg text-gray-600 hover:bg-gray-100">Video</button>
+                        <button onclick="setFilter(this,'Podcast')" class="filter-btn text-xs font-semibold px-3 py-1.5 rounded-lg text-gray-600 hover:bg-gray-100">Podcast</button>
+                        <button onclick="setFilter(this,'PDF')" class="filter-btn text-xs font-semibold px-3 py-1.5 rounded-lg text-gray-600 hover:bg-gray-100">PDF</button>
+                        <button onclick="setFilter(this,'Quiz')" class="filter-btn text-xs font-semibold px-3 py-1.5 rounded-lg text-gray-600 hover:bg-gray-100">Quiz</button>
+                    </div>
+                    <select class="glass text-xs font-medium text-navy-700 px-3 py-2 rounded-xl border border-gray-200 focus:outline-none">
+                        <option>All Categories</option>
+                        <option>Onboarding</option>
+                        <option>Comp Plan</option>
+                        <option>Sales</option>
+                        <option>Leadership</option>
+                        <option>Licensing</option>
+                    </select>
+                    <select class="glass text-xs font-medium text-navy-700 px-3 py-2 rounded-xl border border-gray-200 focus:outline-none">
+                        <option>Sort: Newest</option>
+                        <option>Sort: Popular</option>
+                        <option>Sort: Duration</option>
+                        <option>Sort: Progress</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Content Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+
+                <!-- Card 1 - Video - In Progress -->
+                <div class="content-card glass rounded-2xl overflow-hidden cursor-pointer">
+                    <div class="relative h-36 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Training" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-900/80 to-transparent"></div>
+                        <div class="absolute top-2 left-2 flex gap-1.5">
+                            <span class="text-xs font-bold text-white bg-brandRed-600 px-2 py-0.5 rounded-full">VIDEO</span>
+                            <span class="text-xs font-bold text-white bg-navy-700/80 px-2 py-0.5 rounded-full">Comp Plan</span>
+                        </div>
+                        <div class="absolute bottom-2 right-2 bg-black/60 text-white text-xs px-2 py-0.5 rounded-full font-medium">24:15</div>
+                        <button class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30 hover:bg-white/30 transition-colors">
+                                <i class="fa-solid fa-play text-white text-sm ml-0.5"></i>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="p-3.5">
+                        <h3 class="text-sm font-bold text-navy-900 mb-1 leading-snug">Understanding Your Bonus Volume Structure</h3>
+                        <p class="text-xs text-gray-500 mb-3">Mark Thompson · National Director</p>
+                        <div class="flex items-center justify-between text-xs mb-1.5">
+                            <span class="text-gray-500">Progress</span>
+                            <span class="font-bold text-navy-700">68%</span>
+                        </div>
+                        <div class="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                            <div class="bg-navy-600 h-1.5 rounded-full" style="width:68%"></div>
+                        </div>
+                        <div class="flex items-center justify-between mt-3">
+                            <span class="text-xs text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full font-semibold">In Progress</span>
+                            <button class="text-xs font-semibold text-navy-600 hover:text-navy-800 flex items-center gap-1">Continue <i class="fa-solid fa-arrow-right text-xs"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 - Podcast - Completed -->
+                <div class="content-card glass rounded-2xl overflow-hidden cursor-pointer">
+                    <div class="relative h-36 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Podcast" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-900/80 to-transparent"></div>
+                        <div class="absolute top-2 left-2 flex gap-1.5">
+                            <span class="text-xs font-bold text-white bg-purple-600 px-2 py-0.5 rounded-full">PODCAST</span>
+                            <span class="text-xs font-bold text-white bg-navy-700/80 px-2 py-0.5 rounded-full">Onboarding</span>
+                        </div>
+                        <div class="absolute bottom-2 right-2 bg-black/60 text-white text-xs px-2 py-0.5 rounded-full font-medium">38:02</div>
+                        <button class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30 hover:bg-white/30 transition-colors">
+                                <i class="fa-solid fa-headphones text-white text-sm"></i>
+                            </div>
+                        </button>
+                        <div class="absolute top-2 right-2 w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center">
+                            <i class="fa-solid fa-check text-white text-xs"></i>
+                        </div>
+                    </div>
+                    <div class="p-3.5">
+                        <h3 class="text-sm font-bold text-navy-900 mb-1 leading-snug">Your First 30 Days: A Rep's Roadmap</h3>
+                        <p class="text-xs text-gray-500 mb-3">Lisa Chen · Diamond Director</p>
+                        <div class="flex items-center justify-between text-xs mb-1.5">
+                            <span class="text-gray-500">Progress</span>
+                            <span class="font-bold text-emerald-700">100%</span>
+                        </div>
+                        <div class="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                            <div class="bg-emerald-500 h-1.5 rounded-full" style="width:100%"></div>
+                        </div>
+                        <div class="flex items-center justify-between mt-3">
+                            <span class="text-xs text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full font-semibold">Completed</span>
+                            <button class="text-xs font-semibold text-gray-500 hover:text-navy-800 flex items-center gap-1">Replay <i class="fa-solid fa-rotate-right text-xs"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 - PDF - Not Started -->
+                <div class="content-card glass rounded-2xl overflow-hidden cursor-pointer">
+                    <div class="relative h-36 overflow-hidden bg-gradient-to-br from-navy-700 to-navy-900 flex items-center justify-center">
+                        <div class="text-center">
+                            <i class="fa-solid fa-file-pdf text-white/30 text-5xl mb-2"></i>
+                            <p class="text-white/60 text-xs font-medium">PDF Guide</p>
+                        </div>
+                        <div class="absolute top-2 left-2 flex gap-1.5">
+                            <span class="text-xs font-bold text-white bg-orange-600 px-2 py-0.5 rounded-full">PDF</span>
+                            <span class="text-xs font-bold text-white bg-navy-700/80 px-2 py-0.5 rounded-full">Sales</span>
+                        </div>
+                        <div class="absolute bottom-2 right-2 bg-black/60 text-white text-xs px-2 py-0.5 rounded-full font-medium">18 pages</div>
+                    </div>
+                    <div class="p-3.5">
+                        <h3 class="text-sm font-bold text-navy-900 mb-1 leading-snug">Retail Customer Acquisition Playbook</h3>
+                        <p class="text-xs text-gray-500 mb-3">Ascend Training Team</p>
+                        <div class="flex items-center justify-between text-xs mb-1.5">
+                            <span class="text-gray-500">Progress</span>
+                            <span class="font-bold text-gray-400">0%</span>
+                        </div>
+                        <div class="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                            <div class="bg-gray-300 h-1.5 rounded-full" style="width:0%"></div>
+                        </div>
+                        <div class="flex items-center justify-between mt-3">
+                            <span class="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full font-semibold">Not Started</span>
+                            <button class="text-xs font-semibold text-navy-600 hover:text-navy-800 flex items-center gap-1">Start <i class="fa-solid fa-arrow-right text-xs"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 - Video - In Progress -->
+                <div class="content-card glass rounded-2xl overflow-hidden cursor-pointer">
+                    <div class="relative h-36 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Training" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-900/80 to-transparent"></div>
+                        <div class="absolute top-2 left-2 flex gap-1.5">
+                            <span class="text-xs font-bold text-white bg-brandRed-600 px-2 py-0.5 rounded-full">VIDEO</span>
+                            <span class="text-xs font-bold text-white bg-navy-700/80 px-2 py-0.5 rounded-full">Leadership</span>
+                        </div>
+                        <div class="absolute bottom-2 right-2 bg-black/60 text-white text-xs px-2 py-0.5 rounded-full font-medium">31:44</div>
+                        <button class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30 hover:bg-white/30 transition-colors">
+                                <i class="fa-solid fa-play text-white text-sm ml-0.5"></i>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="p-3.5">
+                        <h3 class="text-sm font-bold text-navy-900 mb-1 leading-snug">Building a High-Performance Downline Team</h3>
+                        <p class="text-xs text-gray-500 mb-3">Rachel Kim · Executive Director</p>
+                        <div class="flex items-center justify-between text-xs mb-1.5">
+                            <span class="text-gray-500">Progress</span>
+                            <span class="font-bold text-navy-700">25%</span>
+                        </div>
+                        <div class="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                            <div class="bg-navy-600 h-1.5 rounded-full" style="width:25%"></div>
+                        </div>
+                        <div class="flex items-center justify-between mt-3">
+                            <span class="text-xs text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full font-semibold">In Progress</span>
+                            <button class="text-xs font-semibold text-navy-600 hover:text-navy-800 flex items-center gap-1">Continue <i class="fa-solid fa-arrow-right text-xs"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 - Quiz - Completed -->
+                <div class="content-card glass rounded-2xl overflow-hidden cursor-pointer">
+                    <div class="relative h-36 overflow-hidden bg-gradient-to-br from-emerald-700 to-emerald-900 flex items-center justify-center">
+                        <div class="text-center">
+                            <i class="fa-solid fa-clipboard-question text-white/30 text-5xl mb-2"></i>
+                            <p class="text-white/60 text-xs font-medium">Knowledge Quiz</p>
+                        </div>
+                        <div class="absolute top-2 left-2 flex gap-1.5">
+                            <span class="text-xs font-bold text-white bg-emerald-600 px-2 py-0.5 rounded-full">QUIZ</span>
+                            <span class="text-xs font-bold text-white bg-navy-700/80 px-2 py-0.5 rounded-full">Licensing</span>
+                        </div>
+                        <div class="absolute bottom-2 right-2 bg-black/60 text-white text-xs px-2 py-0.5 rounded-full font-medium">15 Qs</div>
+                        <div class="absolute top-2 right-2 w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center">
+                            <i class="fa-solid fa-check text-white text-xs"></i>
+                        </div>
+                    </div>
+                    <div class="p-3.5">
+                        <h3 class="text-sm font-bold text-navy-900 mb-1 leading-snug">Compliance &amp; Ethics Certification Quiz</h3>
+                        <p class="text-xs text-gray-500 mb-3">Ascend Compliance Team</p>
+                        <div class="flex items-center justify-between text-xs mb-1.5">
+                            <span class="text-gray-500">Score</span>
+                            <span class="font-bold text-emerald-700">93%</span>
+                        </div>
+                        <div class="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                            <div class="bg-emerald-500 h-1.5 rounded-full" style="width:93%"></div>
+                        </div>
+                        <div class="flex items-center justify-between mt-3">
+                            <span class="text-xs text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full font-semibold">Passed · 93%</span>
+                            <button class="text-xs font-semibold text-gray-500 hover:text-navy-800 flex items-center gap-1">Retake <i class="fa-solid fa-rotate-right text-xs"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6 - Podcast - Not Started -->
+                <div class="content-card glass rounded-2xl overflow-hidden cursor-pointer">
+                    <div class="relative h-36 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Podcast" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-900/80 to-transparent"></div>
+                        <div class="absolute top-2 left-2 flex gap-1.5">
+                            <span class="text-xs font-bold text-white bg-purple-600 px-2 py-0.5 rounded-full">PODCAST</span>
+                            <span class="text-xs font-bold text-white bg-navy-700/80 px-2 py-0.5 rounded-full">Sales</span>
+                        </div>
+                        <div class="absolute bottom-2 right-2 bg-black/60 text-white text-xs px-2 py-0.5 rounded-full font-medium">52:30</div>
+                        <button class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30 hover:bg-white/30 transition-colors">
+                                <i class="fa-solid fa-headphones text-white text-sm"></i>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="p-3.5">
+                        <h3 class="text-sm font-bold text-navy-900 mb-1 leading-snug">Objection Handling Masterclass with Top Reps</h3>
+                        <p class="text-xs text-gray-500 mb-3">Panel Discussion · 4 Speakers</p>
+                        <div class="flex items-center justify-between text-xs mb-1.5">
+                            <span class="text-gray-500">Progress</span>
+                            <span class="font-bold text-gray-400">0%</span>
+                        </div>
+                        <div class="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                            <div class="bg-gray-300 h-1.5 rounded-full" style="width:0%"></div>
+                        </div>
+                        <div class="flex items-center justify-between mt-3">
+                            <span class="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full font-semibold">Not Started</span>
+                            <button class="text-xs font-semibold text-navy-600 hover:text-navy-800 flex items-center gap-1">Start <i class="fa-solid fa-arrow-right text-xs"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 7 - Video - Completed -->
+                <div class="content-card glass rounded-2xl overflow-hidden cursor-pointer">
+                    <div class="relative h-36 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Training" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-900/80 to-transparent"></div>
+                        <div class="absolute top-2 left-2 flex gap-1.5">
+                            <span class="text-xs font-bold text-white bg-brandRed-600 px-2 py-0.5 rounded-full">VIDEO</span>
+                            <span class="text-xs font-bold text-white bg-navy-700/80 px-2 py-0.5 rounded-full">Onboarding</span>
+                        </div>
+                        <div class="absolute bottom-2 right-2 bg-black/60 text-white text-xs px-2 py-0.5 rounded-full font-medium">12:05</div>
+                        <button class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30 hover:bg-white/30 transition-colors">
+                                <i class="fa-solid fa-play text-white text-sm ml-0.5"></i>
+                            </div>
+                        </button>
+                        <div class="absolute top-2 right-2 w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center">
+                            <i class="fa-solid fa-check text-white text-xs"></i>
+                        </div>
+                    </div>
+                    <div class="p-3.5">
+                        <h3 class="text-sm font-bold text-navy-900 mb-1 leading-snug">Setting Up Your Rep Back Office Portal</h3>
+                        <p class="text-xs text-gray-500 mb-3">Ascend Training Team</p>
+                        <div class="flex items-center justify-between text-xs mb-1.5">
+                            <span class="text-gray-500">Progress</span>
+                            <span class="font-bold text-emerald-700">100%</span>
+                        </div>
+                        <div class="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                            <div class="bg-emerald-500 h-1.5 rounded-full" style="width:100%"></div>
+                        </div>
+                        <div class="flex items-center justify-between mt-3">
+                            <span class="text-xs text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full font-semibold">Completed</span>
+                            <button class="text-xs font-semibold text-gray-500 hover:text-navy-800 flex items-center gap-1">Replay <i class="fa-solid fa-rotate-right text-xs"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 8 - PDF - In Progress -->
+                <div class="content-card glass rounded-2xl overflow-hidden cursor-pointer">
+                    <div class="relative h-36 overflow-hidden bg-gradient-to-br from-brandRed-700 to-brandRed-900 flex items-center justify-center">
+                        <div class="text-center">
+                            <i class="fa-solid fa-file-pdf text-white/30 text-5xl mb-2"></i>
+                            <p class="text-white/60 text-xs font-medium">PDF Guide</p>
+                        </div>
+                        <div class="absolute top-2 left-2 flex gap-1.5">
+                            <span class="text-xs font-bold text-white bg-orange-600 px-2 py-0.5 rounded-full">PDF</span>
+                            <span class="text-xs font-bold text-white bg-navy-700/80 px-2 py-0.5 rounded-full">Comp Plan</span>
+                        </div>
+                        <div class="absolute bottom-2 right-2 bg-black/60 text-white text-xs px-2 py-0.5 rounded-full font-medium">32 pages</div>
+                    </div>
+                    <div class="p-3.5">
+                        <h3 class="text-sm font-bold text-navy-900 mb-1 leading-snug">2024 Compensation Plan Full Reference Guide</h3>
+                        <p class="text-xs text-gray-500 mb-3">Ascend Corporate</p>
+                        <div class="flex items-center justify-between text-xs mb-1.5">
+                            <span class="text-gray-500">Progress</span>
+                            <span class="font-bold text-navy-700">50%</span>
+                        </div>
+                        <div class="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                            <div class="bg-navy-600 h-1.5 rounded-full" style="width:50%"></div>
+                        </div>
+                        <div class="flex items-center justify-between mt-3">
+                            <span class="text-xs text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full font-semibold">In Progress</span>
+                            <button class="text-xs font-semibold text-navy-600 hover:text-navy-800 flex items-center gap-1">Continue <i class="fa-solid fa-arrow-right text-xs"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Load More -->
+            <div class="flex justify-center mt-6">
+                <button class="glass px-6 py-2.5 rounded-xl text-sm font-semibold text-navy-700 hover:bg-white transition-colors border border-gray-200 flex items-center gap-2">
+                    <i class="fa-solid fa-chevron-down text-xs"></i> Load More Content
+                </button>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<!-- Sticky Mobile Audio Push Button (visible on mobile) -->
+<div class="md:hidden fixed bottom-0 left-0 right-0 z-50 sticky-audio-bar px-4 py-3">
+    <div class="flex items-center gap-3">
+        <!-- Thumbnail -->
+        <div class="w-10 h-10 rounded-xl overflow-hidden flex-shrink-0 border border-white/20">
+            <img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=100&amp;q=80" alt="Now Playing" class="w-full h-full object-cover">
+        </div>
+        <!-- Info -->
+        <div class="flex-1 min-w-0">
+            <p class="text-xs font-bold text-white truncate">Mastering the Comp Plan</p>
+            <p class="text-xs text-white/50 truncate">Ep. 47 · 18:42 / 42:18</p>
+            <!-- Mini progress bar -->
+            <div class="w-full bg-white/20 rounded-full h-1 mt-1 overflow-hidden">
+                <div class="bg-brandRed-500 h-1 rounded-full" style="width:44%"></div>
+            </div>
+        </div>
+        <!-- Controls -->
+        <div class="flex items-center gap-2 flex-shrink-0">
+            <button class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
+                <i class="fa-solid fa-backward-step text-white text-xs"></i>
+            </button>
+            <button id="mobilePlayBtn" onclick="toggleMobilePlay()" class="w-10 h-10 rounded-full bg-brandRed-600 flex items-center justify-center hover:bg-brandRed-500 transition-colors shadow-lg">
+                <i class="fa-solid fa-pause text-white text-sm"></i>
+            </button>
+            <button class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
+                <i class="fa-solid fa-forward-step text-white text-xs"></i>
+            </button>
+            <button class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
+                <i class="fa-solid fa-chevron-up text-white text-xs"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Desktop Sticky Audio Bar -->
+<div class="hidden md:block fixed bottom-0 left-64 right-0 z-40 sticky-audio-bar px-6 py-3">
+    <div class="flex items-center gap-4 max-w-6xl">
+        <!-- Thumbnail -->
+        <div class="w-10 h-10 rounded-xl overflow-hidden flex-shrink-0 border border-white/20">
+            <img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=100&amp;q=80" alt="Now Playing" class="w-full h-full object-cover">
+        </div>
+        <!-- Info -->
+        <div class="w-48 flex-shrink-0">
+            <p class="text-xs font-bold text-white truncate">Mastering the Comp Plan</p>
+            <p class="text-xs text-white/50 truncate">Ep. 47 · Mark Thompson</p>
+        </div>
+        <!-- Controls -->
+        <div class="flex items-center gap-2 flex-shrink-0">
+            <button class="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
+                <i class="fa-solid fa-backward-step text-white text-xs"></i>
+            </button>
+            <button class="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
+                <i class="fa-solid fa-rotate-left text-white text-xs"></i>
+            </button>
+            <button id="desktopPlayBtn" onclick="toggleDesktopPlay()" class="w-9 h-9 rounded-full bg-brandRed-600 flex items-center justify-center hover:bg-brandRed-500 transition-colors shadow-lg">
+                <i class="fa-solid fa-pause text-white text-sm"></i>
+            </button>
+            <button class="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
+                <i class="fa-solid fa-rotate-right text-white text-xs"></i>
+            </button>
+            <button class="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
+                <i class="fa-solid fa-forward-step text-white text-xs"></i>
+            </button>
+        </div>
+        <!-- Progress -->
+        <div class="flex-1 flex items-center gap-2">
+            <span class="text-xs text-white/50 w-10 text-right flex-shrink-0">18:42</span>
+            <input type="range" class="playhead-track flex-1" min="0" max="100" value="44">
+            <span class="text-xs text-white/50 w-10 flex-shrink-0">42:18</span>
+        </div>
+        <!-- Volume & Actions -->
+        <div class="flex items-center gap-3 flex-shrink-0">
+            <div class="flex items-center gap-1.5">
+                <i class="fa-solid fa-volume-low text-white/50 text-xs"></i>
+                <input type="range" class="vol-track w-20" min="0" max="100" value="75">
+            </div>
+            <button class="text-white/50 hover:text-white text-xs font-bold transition-colors">1.5x</button>
+            <button class="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
+                <i class="fa-solid fa-bookmark text-white text-xs"></i>
+            </button>
+            <button class="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
+                <i class="fa-solid fa-list text-white text-xs"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let heroPlaying = true;
+    let mobilePlaying = true;
+    let desktopPlaying = true;
+
+    function toggleHeroPlay() {
+        heroPlaying = !heroPlaying;
+        const btn = document.getElementById('heroPlayBtn');
+        btn.innerHTML = heroPlaying
+            ? '<i class="fa-solid fa-pause text-white text-sm"></i>'
+            : '<i class="fa-solid fa-play text-white text-sm ml-0.5"></i>';
+        const waves = document.querySelectorAll('.audio-wave span');
+        waves.forEach(w => { w.style.animationPlayState = heroPlaying ? 'running' : 'paused'; });
+    }
+
+    function toggleMobilePlay() {
+        mobilePlaying = !mobilePlaying;
+        const btn = document.getElementById('mobilePlayBtn');
+        btn.innerHTML = mobilePlaying
+            ? '<i class="fa-solid fa-pause text-white text-sm"></i>'
+            : '<i class="fa-solid fa-play text-white text-sm ml-0.5"></i>';
+    }
+
+    function toggleDesktopPlay() {
+        desktopPlaying = !desktopPlaying;
+        const btn = document.getElementById('desktopPlayBtn');
+        btn.innerHTML = desktopPlaying
+            ? '<i class="fa-solid fa-pause text-white text-sm"></i>'
+            : '<i class="fa-solid fa-play text-white text-sm ml-0.5"></i>';
+    }
+
+    function setFilter(el, type) {
+        document.querySelectorAll('.filter-btn').forEach(b => {
+            b.classList.remove('active');
+            b.classList.add('text-gray-600');
+            b.classList.remove('text-white');
+        });
+        el.classList.add('active');
+        el.classList.remove('text-gray-600');
+        el.classList.add('text-white');
+    }
+</script>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
