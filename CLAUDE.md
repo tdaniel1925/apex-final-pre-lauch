@@ -355,3 +355,65 @@ After completing code generation or significant tasks:
 - 05a-payments-edge-cases, 11a-realtime-edge-cases
 
 # === END USER INSTRUCTIONS ===
+
+# CFO Finance Dashboard — Build Rules
+> Add this block to your existing CLAUDE.md
+
+---
+
+## Finance Screen Build Protocol
+
+When building any screen under `/app/finance/`:
+
+### Step 1 — Check for mockup
+```
+Does /mockups/screen-{N}-{slug}.html exist?
+  YES → Use it as source of truth. Do not invent layout.
+  NO  → Ask before proceeding.
+```
+
+### Step 2 — Read DESIGN-SYSTEM.md
+Always read `/DESIGN-SYSTEM.md` before writing any finance screen component.
+It contains: shell layout, component patterns, color tokens, typography, validation rules.
+
+### Step 3 — Correct placeholder data
+UX Magic mockups contain fake data. Always replace with real values from BRAIN.md:
+- Carriers: Columbus Life, Corebridge (AIG), F&G, United of Omaha, National Life Group, North American
+- Ranks (SaaS): Inactive, Associate, Bronze, Silver, Gold, Platinum
+- Ranks (Insurance): New Hire, Pre-Associate, Associate, Agent, Sr. Agent, MGA
+- Colors: Navy #1B3A7D, Red #C7181F — never violet, emerald, or blue
+
+### Step 4 — Build order
+1. Page shell (sidebar + header + layout)
+2. Sections in order (match mockup section sequence)
+3. Supabase reads
+4. Validation logic
+5. Save + change log writes
+6. Role gate
+
+### Never do these things on finance screens
+- Do not add sections not in the mockup or spec
+- Do not change colors from brand tokens
+- Do not skip the change log panel
+- Do not allow save when validation errors exist
+- Do not use `any` TypeScript types
+- Do not leave console.log or console.error statements
+
+---
+
+## Screen Registry
+
+| # | Route | Mockup File | Status |
+|---|---|---|---|
+| 22 | /finance | — | pending |
+| 23 | /finance/weighting | — | pending |
+| 24 | /finance/waterfall | — | pending |
+| 25 | /finance/bonusvolume | — | pending |
+| 26 | /finance/bonuspool | — | pending |
+| 27 | /finance/rankpromo | — | pending |
+| 28 | /finance/pricing | — | pending |
+| 29 | /finance/commrun | — | pending |
+| 30 | /finance/scenarios | — | pending |
+| 31 | /finance/saas-engine | screen-31-saas-engine.html | ✅ complete |
+| 32 | /finance/insurance-engine | screen-32-insurance-engine.html | pending |
+
