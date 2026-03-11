@@ -12,7 +12,7 @@ INSERT INTO public.saas_comp_engine_config (key, value) VALUES
 ('product.pulseflow', '{"name": "PulseFlow", "member_price": 129, "retail_price": 149, "bv": 129}'::jsonb),
 ('product.pulsedrive', '{"name": "PulseDrive", "member_price": 219, "retail_price": 299, "bv": 219}'::jsonb),
 ('product.pulsecommand', '{"name": "PulseCommand", "member_price": 349, "retail_price": 499, "bv": 349}'::jsonb),
-('product.smartlock', '{"name": "SmartLock", "member_price": 99, "retail_price": 135, "bv": 99}'::jsonb),
+('product.smartlock', '{"name": "SmartLock", "member_price": 99, "retail_price": 99, "bv": 99}'::jsonb),
 ('product.businesscenter', '{"name": "Business Center", "member_price": 39, "retail_price": 39, "bv": 39}'::jsonb)
 ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value;
 

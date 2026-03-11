@@ -94,7 +94,7 @@ SELECT
   'smartlock',
   'Data security and compliance monitoring',
   (SELECT id FROM product_categories WHERE slug = 'agentpulse'),
-  10000,  -- $100 retail
+  9900,   -- $99 retail
   9900,   -- $99 member
   99,     -- BV
   TRUE,

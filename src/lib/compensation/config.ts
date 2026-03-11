@@ -83,7 +83,7 @@ export const PRODUCT_PRICES: Record<string, { member: number; retail: number; bv
   PULSEFLOW: { member: 129, retail: 149, bv: 129 },
   PULSEDRIVE: { member: 219, retail: 299, bv: 219 },
   PULSECOMMAND: { member: 349, retail: 499, bv: 349 },
-  SMARTLOCK: { member: 99, retail: 135, bv: 99 },
+  SMARTLOCK: { member: 99, retail: 99, bv: 99 },
   BIZCENTER: { member: 39, retail: 39, bv: 39 },
 };
 
