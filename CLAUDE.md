@@ -415,5 +415,5 @@ UX Magic mockups contain fake data. Always replace with real values from BRAIN.m
 | 29 | /finance/commrun | — | pending |
 | 30 | /finance/scenarios | — | pending |
 | 31 | /finance/saas-engine | screen-31-saas-engine.html | ✅ complete |
-| 32 | /finance/insurance-engine | screen-32-insurance-engine.html | pending |
+| 32 | /finance/insurance-engine | screen-32-insurance-engine.html | ✅ complete |
 
