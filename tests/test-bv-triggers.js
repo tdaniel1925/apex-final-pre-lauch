@@ -31,7 +31,7 @@ async function cleanup() {
   console.log('\n🧹 Cleaning up test data...');
 
   await supabase.from('orders').delete().in('id', [TEST_ORDER_1_ID, TEST_ORDER_2_ID, TEST_ORDER_3_ID]);
-  await supabase.from('org_bv_cache').delete().in('distributor_id', [TEST_SPONSOR_ID, TEST_REP_ID]);
+  await supabase.from('org_bv_cache').delete().in('rep_id', [TEST_SPONSOR_ID, TEST_REP_ID]);
   await supabase.from('distributors').delete().in('id', [TEST_SPONSOR_ID, TEST_REP_ID]);
 
   console.log('✅ Cleanup complete\n');
@@ -87,16 +87,17 @@ async function setup() {
   }
 
   // Initialize BV cache
+  // Note: org_bv_cache uses 'rep_id' column (not distributor_id)
   await supabase.from('org_bv_cache').insert([
     {
-      distributor_id: TEST_SPONSOR_ID,
+      rep_id: TEST_SPONSOR_ID,
       personal_bv: 0,
       team_bv: 0,
       org_bv: 0,
       last_calculated_at: new Date().toISOString(),
     },
     {
-      distributor_id: TEST_REP_ID,
+      rep_id: TEST_REP_ID,
       personal_bv: 0,
       team_bv: 0,
       org_bv: 0,
@@ -110,9 +111,9 @@ async function setup() {
 async function getBV() {
   const { data } = await supabase
     .from('org_bv_cache')
-    .select('distributor_id, personal_bv, team_bv, org_bv')
-    .in('distributor_id', [TEST_REP_ID, TEST_SPONSOR_ID])
-    .order('distributor_id');
+    .select('rep_id, personal_bv, team_bv, org_bv')
+    .in('rep_id', [TEST_REP_ID, TEST_SPONSOR_ID])
+    .order('rep_id');
 
   return data || [];
 }
@@ -127,7 +128,7 @@ async function printBV(label) {
   }
 
   bv.forEach(row => {
-    const id = row.distributor_id.slice(0, 8) + '...';
+    const id = row.rep_id.slice(0, 8) + '...';
     console.log(`  ${id.padEnd(15)} | Personal: ${row.personal_bv.toString().padStart(6)} | Team: ${row.team_bv.toString().padStart(6)} | Org: ${row.org_bv.toString().padStart(6)}`);
   });
   console.log();
@@ -142,20 +143,20 @@ async function test1_InsertOrder() {
 
   const bvBefore = await printBV('BV Before Order');
 
-  // Create complete order
+  // Create complete order (distributor buying for themselves)
   const { error } = await supabase
     .from('orders')
     .insert({
       id: TEST_ORDER_1_ID,
       order_number: `TEST-${Date.now()}-1`,
       distributor_id: TEST_REP_ID,
-      customer_id: TEST_CUSTOMER_1_ID,
+      // customer_id: null (not both - constraint: order_has_purchaser)
       subtotal_cents: 9700,
       tax_cents: 0,
       shipping_cents: 0,
       total_cents: 9700,
       total_bv: 97,
-      is_personal_purchase: false,
+      is_personal_purchase: true,
       payment_status: 'paid',
       fulfillment_status: 'pending',
     });
@@ -172,11 +173,11 @@ async function test1_InsertOrder() {
   const bvAfter = await printBV('BV After Order');
 
   // Verify
-  const rep = bvAfter.find(r => r.distributor_id === TEST_REP_ID);
-  const sponsor = bvAfter.find(r => r.distributor_id === TEST_SPONSOR_ID);
+  const rep = bvAfter.find(r => r.rep_id === TEST_REP_ID);
+  const sponsor = bvAfter.find(r => r.rep_id === TEST_SPONSOR_ID);
 
-  const repBVIncreased = rep && rep.personal_bv > bvBefore.find(r => r.distributor_id === TEST_REP_ID)?.personal_bv;
-  const sponsorTeamBVIncreased = sponsor && sponsor.team_bv > bvBefore.find(r => r.distributor_id === TEST_SPONSOR_ID)?.team_bv;
+  const repBVIncreased = rep && rep.personal_bv > bvBefore.find(r => r.rep_id === TEST_REP_ID)?.personal_bv;
+  const sponsorTeamBVIncreased = sponsor && sponsor.team_bv > bvBefore.find(r => r.rep_id === TEST_SPONSOR_ID)?.team_bv;
 
   if (repBVIncreased && sponsorTeamBVIncreased) {
     console.log('✅ PASS: BV increased for rep and sponsor chain\n');
@@ -212,8 +213,8 @@ async function test2_UpdateOrderRefund() {
   const bvAfter = await printBV('BV After Refund');
 
   // Verify BV decreased
-  const rep = bvAfter.find(r => r.distributor_id === TEST_REP_ID);
-  const repBefore = bvBefore.find(r => r.distributor_id === TEST_REP_ID);
+  const rep = bvAfter.find(r => r.rep_id === TEST_REP_ID);
+  const repBefore = bvBefore.find(r => r.rep_id === TEST_REP_ID);
 
   const bvDecreased = rep && repBefore && rep.personal_bv < repBefore.personal_bv;
 
@@ -238,13 +239,13 @@ async function test3_DeleteOrder() {
       id: TEST_ORDER_2_ID,
       order_number: `TEST-${Date.now()}-2`,
       distributor_id: TEST_REP_ID,
-      customer_id: TEST_CUSTOMER_2_ID,
+      // customer_id: null (distributor purchase)
       subtotal_cents: 14700,
       tax_cents: 0,
       shipping_cents: 0,
       total_cents: 14700,
       total_bv: 147,
-      is_personal_purchase: false,
+      is_personal_purchase: true,
       payment_status: 'paid',
       fulfillment_status: 'pending',
     });
@@ -272,8 +273,8 @@ async function test3_DeleteOrder() {
   const bvAfter = await printBV('BV After Delete');
 
   // Verify BV decreased
-  const rep = bvAfter.find(r => r.distributor_id === TEST_REP_ID);
-  const repBefore = bvBefore.find(r => r.distributor_id === TEST_REP_ID);
+  const rep = bvAfter.find(r => r.rep_id === TEST_REP_ID);
+  const repBefore = bvBefore.find(r => r.rep_id === TEST_REP_ID);
 
   const bvDecreased = rep && repBefore && rep.personal_bv < repBefore.personal_bv;
 
@@ -300,13 +301,13 @@ async function test4_PendingOrder() {
       id: TEST_ORDER_3_ID,
       order_number: `TEST-${Date.now()}-3`,
       distributor_id: TEST_REP_ID,
-      customer_id: TEST_CUSTOMER_3_ID,
+      // customer_id: null (distributor purchase)
       subtotal_cents: 19700,
       tax_cents: 0,
       shipping_cents: 0,
       total_cents: 19700,
       total_bv: 197,
-      is_personal_purchase: false,
+      is_personal_purchase: true,
       payment_status: 'pending', // NOT paid
       fulfillment_status: 'pending',
     });
@@ -318,8 +319,8 @@ async function test4_PendingOrder() {
   const bvAfter = await printBV('BV After Pending Order');
 
   // Verify NO change
-  const rep = bvAfter.find(r => r.distributor_id === TEST_REP_ID);
-  const repBefore = bvBefore.find(r => r.distributor_id === TEST_REP_ID);
+  const rep = bvAfter.find(r => r.rep_id === TEST_REP_ID);
+  const repBefore = bvBefore.find(r => r.rep_id === TEST_REP_ID);
 
   const noChange = rep && repBefore && rep.personal_bv === repBefore.personal_bv;
 

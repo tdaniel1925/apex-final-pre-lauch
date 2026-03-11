@@ -89,8 +89,9 @@ CREATE INDEX IF NOT EXISTS idx_orders_distributor_payment_bv
   WHERE payment_status IN ('paid', 'refunded');
 
 -- Index for org_bv_cache lookups
-CREATE INDEX IF NOT EXISTS idx_org_bv_cache_distributor_id
-  ON org_bv_cache(distributor_id);
+-- Note: org_bv_cache uses 'rep_id' column name (not distributor_id)
+CREATE INDEX IF NOT EXISTS idx_org_bv_cache_rep_id
+  ON org_bv_cache(rep_id);
 
 -- Index for distributor sponsor lookups (for chain traversal)
 CREATE INDEX IF NOT EXISTS idx_distributors_sponsor_id
