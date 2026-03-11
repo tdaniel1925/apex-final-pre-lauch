@@ -29,6 +29,37 @@ export default function CommissionEnginePage() {
   ]);
 
   const [currentRun, setCurrentRun] = useState<CommissionRun | null>(runs[0]);
+  const [snapshotStatus, setSnapshotStatus] = useState<'available' | 'missing' | 'running'>('checking');
+  const [selectedMonth, setSelectedMonth] = useState(new Date().toISOString().slice(0, 7));
+
+  async function checkBVSnapshot(month: string) {
+    const { data } = await supabase
+      .from('bv_snapshot_runs')
+      .select('status')
+      .eq('snapshot_month', month)
+      .single();
+
+    if (data?.status === 'complete') {
+      setSnapshotStatus('available');
+    } else if (data?.status === 'running') {
+      setSnapshotStatus('running');
+    } else {
+      setSnapshotStatus('missing');
+    }
+  }
+
+  async function runBVSnapshot() {
+    setSnapshotStatus('running');
+    const response = await fetch(`${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/snapshot-monthly-bv`, {
+      method: 'POST',
+      headers: { 'Authorization': `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}` }
+    });
+    const result = await response.json();
+    if (result.success) {
+      setSnapshotStatus('available');
+      alert(`BV Snapshot complete: ${result.successful_snapshots} reps`);
+    }
+  }
 
   useEffect(() => {
     async function checkAuth() {

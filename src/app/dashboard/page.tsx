@@ -9,11 +9,13 @@ interface DashboardData {
   totalEarnings: number;
   personalBV: number;
   teamVolume: number;
+  orgVolume: number;
   cabPending: number;
   rank: string;
   nextRank: string;
   rankProgress: number;
   directDownlineCount: number;
+  unreadNotifications: number;
   announcements: Array<{
     id: string;
     title: string;
@@ -58,14 +60,48 @@ export default function DashboardPage() {
         return;
       }
 
-      // Get current month commission data
+      // Get current month commission data from commission_run_rep_totals
       const currentMonth = new Date().toISOString().slice(0, 7);
-      const { data: commissions } = await supabase
-        .from('commission_payouts')
-        .select('*')
-        .eq('distributor_id', profile.id)
-        .gte('payout_date', `${currentMonth}-01`)
-        .order('payout_date', { ascending: false });
+
+      // Get most recent commission run for this month
+      const { data: commissionRuns } = await supabase
+        .from('commission_runs')
+        .select('id')
+        .eq('period', currentMonth)
+        .eq('status', 'complete')
+        .order('completed_at', { ascending: false })
+        .limit(1);
+
+      let totalEarnings = 0;
+      if (commissionRuns && commissionRuns.length > 0) {
+        const { data: repTotals } = await supabase
+          .from('commission_run_rep_totals')
+          .select('final_payout')
+          .eq('commission_run_id', commissionRuns[0].id)
+          .eq('rep_id', profile.id)
+          .single();
+
+        totalEarnings = repTotals?.final_payout || 0;
+      }
+
+      // Get BV data from org_bv_cache
+      const { data: bvCache } = await supabase
+        .from('org_bv_cache')
+        .select('personal_bv, team_bv, org_bv, direct_count')
+        .eq('rep_id', profile.id)
+        .single();
+
+      const personalBV = bvCache?.personal_bv || 0;
+      const teamVolume = bvCache?.team_bv || 0;
+      const orgVolume = bvCache?.org_bv || 0;
+      const directDownlineCount = bvCache?.direct_count || 0;
+
+      // Get unread notifications count
+      const { count: unreadCount } = await supabase
+        .from('notifications')
+        .select('*', { count: 'only', head: true })
+        .eq('user_id', profile.id)
+        .eq('read', false);
 
       // Get latest 2 announcements
       const { data: announcements } = await supabase
@@ -75,49 +111,38 @@ export default function DashboardPage() {
         .order('created_at', { ascending: false })
         .limit(2);
 
-      // Count direct downline
-      const { count: downlineCount } = await supabase
-        .from('distributors')
-        .select('*', { count: 'only', head: true })
-        .eq('sponsor_id', profile.id);
+      // Get recent notifications as activity
+      const { data: recentNotifications } = await supabase
+        .from('notifications')
+        .select('type, title, message, created_at')
+        .eq('user_id', profile.id)
+        .order('created_at', { ascending: false })
+        .limit(3);
 
-      // Calculate totals
-      const totalEarnings = commissions?.reduce((sum, c) => sum + (c.total_payout || 0), 0) || 0;
-      const personalBV = profile.personal_bv_current_month || 0;
-      const teamVolume = profile.team_bv_current_month || 0;
-      const cabPending = commissions?.find(c => c.status === 'pending')?.cab_bonus || 0;
+      const cabPending = 0; // Placeholder for CAB pending - would come from specific query
 
-      // Mock recent activity (in production, fetch from activity log table)
-      const recentActivity = [
-        {
-          type: 'enrollment',
-          message: 'New Rep Enrolled',
-          detail: 'A new rep joined your downline.',
-          timestamp: '2 hours ago'
-        },
-        {
-          type: 'order',
-          message: 'New Customer Order',
-          detail: 'Order from retail customer ($120).',
-          timestamp: '5 hours ago'
-        },
-        {
-          type: 'rank',
-          message: 'Rank Advancement',
-          detail: 'Your downline member hit Gold!',
-          timestamp: '1 day ago'
-        }
-      ];
+      // Map notifications to activity format
+      const recentActivity = recentNotifications?.map(n => {
+        const timeAgo = getTimeAgo(new Date(n.created_at));
+        return {
+          type: n.type || 'info',
+          message: n.title,
+          detail: n.message,
+          timestamp: timeAgo
+        };
+      }) || [];
 
       setDashboardData({
         totalEarnings,
         personalBV,
         teamVolume,
+        orgVolume,
         cabPending,
         rank: profile.rank || 'Associate',
         nextRank: getNextRank(profile.rank || 'Associate'),
         rankProgress: calculateRankProgress(teamVolume),
-        directDownlineCount: downlineCount || 0,
+        directDownlineCount,
+        unreadNotifications: unreadCount || 0,
         announcements: announcements?.map(a => ({
           id: a.id,
           title: a.title,
@@ -142,6 +167,19 @@ export default function DashboardPage() {
   function calculateRankProgress(teamBV: number): number {
     // Simplified: 50k GV needed for next rank
     return Math.min(Math.round((teamBV / 50000) * 100), 100);
+  }
+
+  function getTimeAgo(date: Date): string {
+    const seconds = Math.floor((new Date().getTime() - date.getTime()) / 1000);
+    if (seconds < 60) return 'just now';
+    const minutes = Math.floor(seconds / 60);
+    if (minutes < 60) return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+    const hours = Math.floor(minutes / 60);
+    if (hours < 24) return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+    const days = Math.floor(hours / 24);
+    if (days < 30) return `${days} day${days > 1 ? 's' : ''} ago`;
+    const months = Math.floor(days / 30);
+    return `${months} month${months > 1 ? 's' : ''} ago`;
   }
 
   if (loading) {
@@ -186,6 +224,20 @@ export default function DashboardPage() {
               </p>
             </div>
             <div className="flex items-center gap-3">
+              <button
+                onClick={() => router.push('/communications')}
+                className="relative bg-white px-4 py-2 rounded-lg text-sm font-medium text-[#1B3A7D] hover:bg-gray-50 transition-colors border border-gray-200"
+              >
+                <svg className="w-4 h-4 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                </svg>
+                Notifications
+                {dashboardData.unreadNotifications > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-[#C7181F] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">
+                    {dashboardData.unreadNotifications}
+                  </span>
+                )}
+              </button>
               <button className="bg-white px-4 py-2 rounded-lg text-sm font-medium text-[#1B3A7D] hover:bg-gray-50 transition-colors border border-gray-200">
                 <svg className="w-4 h-4 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />

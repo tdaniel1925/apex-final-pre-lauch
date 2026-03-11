@@ -14,12 +14,14 @@ interface Product {
   bv: number;
   commission_per_sale: number;
   image_url?: string;
+  hasActiveSubscription?: boolean;
 }
 
 export default function ProductsPage() {
   const router = useRouter();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const [currentUser, setCurrentUser] = useState<{ id: string; email: string } | null>(null);
 
   const supabase = createBrowserClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -38,6 +40,19 @@ export default function ProductsPage() {
       return;
     }
 
+    const { data: distributor } = await supabase
+      .from('distributors')
+      .select('id, email')
+      .eq('email', user.email)
+      .single();
+
+    if (!distributor) {
+      setLoading(false);
+      return;
+    }
+
+    setCurrentUser({ id: distributor.id, email: distributor.email });
+
     const { data: productsData } = await supabase
       .from('products')
       .select('*')
@@ -45,10 +60,37 @@ export default function ProductsPage() {
       .order('name', { ascending: true });
 
     if (productsData) {
-      setProducts(productsData as Product[]);
+      // Check for active subscriptions for each product
+      const productsWithStatus = await Promise.all(
+        productsData.map(async (product) => {
+          const { data: activeOrders } = await supabase
+            .from('orders')
+            .select('id, status, stripe_subscription_id')
+            .eq('rep_id', distributor.id)
+            .eq('product_id', product.id)
+            .in('status', ['complete', 'pending'])
+            .not('stripe_subscription_id', 'is', null)
+            .limit(1);
+
+          return {
+            ...product,
+            hasActiveSubscription: activeOrders && activeOrders.length > 0
+          };
+        })
+      );
+
+      setProducts(productsWithStatus as Product[]);
     }
 
     setLoading(false);
+  }
+
+  async function handleOrderProduct(product: Product) {
+    if (!currentUser) return;
+
+    // In production, this would create a Stripe checkout session
+    // and redirect to Stripe checkout page with metadata
+    alert(`Order feature coming soon!\n\nThis will create a Stripe checkout session with metadata:\n- rep_id: ${currentUser.id}\n- product_id: ${product.id}\n- order_type: member\n- bv_amount: ${product.bv}\n\nAfter payment, the stripe-webhook will create the order record.`);
   }
 
   if (loading) {
@@ -97,7 +139,14 @@ export default function ProductsPage() {
 
                 {/* Product Info */}
                 <div className="p-5">
-                  <h3 className="text-lg font-bold text-[#0F2045] mb-2">{product.name}</h3>
+                  <div className="flex items-start justify-between gap-2 mb-2">
+                    <h3 className="text-lg font-bold text-[#0F2045]">{product.name}</h3>
+                    {product.hasActiveSubscription && (
+                      <span className="text-[9px] font-semibold bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded border border-emerald-200 flex-shrink-0">
+                        Active
+                      </span>
+                    )}
+                  </div>
                   <p className="text-sm text-gray-600 mb-4 line-clamp-2">{product.description}</p>
 
                   {/* Pricing */}
@@ -122,8 +171,13 @@ export default function ProductsPage() {
 
                   {/* Actions */}
                   <div className="flex gap-2">
-                    <button className="flex-1 px-4 py-2 rounded-lg text-sm font-medium text-white transition-colors shadow-sm" style={{ background: '#1B3A7D' }}>
-                      Order Now
+                    <button
+                      onClick={() => handleOrderProduct(product)}
+                      className="flex-1 px-4 py-2 rounded-lg text-sm font-medium text-white transition-colors shadow-sm hover:opacity-90"
+                      style={{ background: product.hasActiveSubscription ? '#6B7280' : '#1B3A7D' }}
+                      disabled={product.hasActiveSubscription}
+                    >
+                      {product.hasActiveSubscription ? 'Subscribed' : 'Order Now'}
                     </button>
                     <button className="px-4 py-2 rounded-lg text-sm font-medium text-[#1B3A7D] bg-gray-50 hover:bg-gray-100 transition-colors border border-gray-200">
                       Details

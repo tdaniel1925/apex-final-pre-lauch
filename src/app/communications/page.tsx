@@ -29,6 +29,63 @@ export default function CommunicationsPage() {
 
   useEffect(() => {
     loadNotifications();
+
+    // Setup realtime subscription
+    let channel: any = null;
+
+    async function setupRealtimeSubscription() {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+
+      const { data: profile } = await supabase
+        .from('distributors')
+        .select('id')
+        .eq('email', user.email)
+        .single();
+
+      if (!profile) return;
+
+      // Subscribe to INSERT events on notifications table
+      channel = supabase
+        .channel('notifications-channel')
+        .on(
+          'postgres_changes',
+          {
+            event: 'INSERT',
+            schema: 'public',
+            table: 'notifications',
+            filter: `user_id=eq.${profile.id}`,
+          },
+          (payload) => {
+            // Add new notification to the top of the list
+            setNotifications((prev) => [payload.new as Notification, ...prev]);
+          }
+        )
+        .on(
+          'postgres_changes',
+          {
+            event: 'UPDATE',
+            schema: 'public',
+            table: 'notifications',
+            filter: `user_id=eq.${profile.id}`,
+          },
+          (payload) => {
+            // Update notification in list
+            setNotifications((prev) =>
+              prev.map((n) => (n.id === payload.new.id ? (payload.new as Notification) : n))
+            );
+          }
+        )
+        .subscribe();
+    }
+
+    setupRealtimeSubscription();
+
+    return () => {
+      if (channel) {
+        supabase.removeChannel(channel);
+      }
+    };
   }, []);
 
   async function loadNotifications() {
@@ -61,6 +118,17 @@ export default function CommunicationsPage() {
     }
 
     setLoading(false);
+  }
+
+  async function markAsRead(notificationId: string) {
+    await supabase
+      .from('notifications')
+      .update({ read: true })
+      .eq('id', notificationId);
+
+    setNotifications((prev) =>
+      prev.map((n) => (n.id === notificationId ? { ...n, read: true } : n))
+    );
   }
 
   async function markAllRead() {
@@ -244,6 +312,7 @@ export default function CommunicationsPage() {
             {filteredNotifications.map((notification) => (
               <div
                 key={notification.id}
+                onClick={() => !notification.read && markAsRead(notification.id)}
                 className={`bg-white rounded-xl p-5 shadow-sm border transition-all hover:shadow-md cursor-pointer ${
                   notification.read ? 'border-gray-100' : 'border-[#1B3A7D]'
                 }`}

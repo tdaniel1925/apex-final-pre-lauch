@@ -9,6 +9,8 @@ export default function FinanceHomePage() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<{ id: string; email: string } | null>(null);
+  const [promotionFundBalance, setPromotionFundBalance] = useState(0);
+  const [priceMismatchProducts, setPriceMismatchProducts] = useState<any[]>([]);
 
   const supabase = createBrowserClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -36,6 +38,23 @@ export default function FinanceHomePage() {
       }
 
       setUser({ id: authUser.id, email: authUser.email || '' });
+
+      // Fetch promotion fund balance
+      const { data: fundBalance } = await supabase.rpc('get_promotion_fund_balance');
+      if (fundBalance) {
+        setPromotionFundBalance(fundBalance);
+      }
+
+      // Check for price mismatches
+      const { data: mismatchedProducts } = await supabase
+        .from('products')
+        .select('name, stripe_product_id')
+        .eq('price_sync_status', 'mismatch');
+
+      if (mismatchedProducts) {
+        setPriceMismatchProducts(mismatchedProducts);
+      }
+
       setLoading(false);
     }
 
@@ -182,6 +201,57 @@ export default function FinanceHomePage() {
 
       {/* Main Content */}
       <main className="max-w-[1920px] mx-auto px-6 py-8">
+
+        {/* Alert Cards */}
+        {(promotionFundBalance > 0 || priceMismatchProducts.length > 0) && (
+          <div className="mb-6 space-y-3">
+            {/* Promotion Fund Balance Card */}
+            {promotionFundBalance > 0 && (
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-start gap-3">
+                <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
+                  <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm font-bold text-blue-900 mb-1">Promotion Fund Balance</p>
+                  <p className="text-xl font-bold text-blue-800">${promotionFundBalance.toLocaleString()}</p>
+                  <p className="text-xs text-blue-700 mt-1">Available for achievement and builder bonuses ($5 from each Business Center sale)</p>
+                </div>
+              </div>
+            )}
+
+            {/* Price Mismatch Alert */}
+            {priceMismatchProducts.length > 0 && (
+              <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-start gap-3">
+                <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
+                  <svg className="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm font-bold text-red-900 mb-1">⚠️ Stripe Price Mismatch Detected</p>
+                  <p className="text-xs text-red-700 mb-2">
+                    {priceMismatchProducts.length} product(s) have different prices in Supabase vs Stripe. Active subscribers will continue to be charged the Stripe price until updated.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {priceMismatchProducts.map((product, i) => (
+                      <a
+                        key={i}
+                        href={`https://dashboard.stripe.com/products/${product.stripe_product_id}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs font-medium text-red-700 bg-red-100 px-2 py-1 rounded border border-red-300 hover:bg-red-200"
+                      >
+                        {product.name} →
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Calculators Section */}
         <section className="mb-8">

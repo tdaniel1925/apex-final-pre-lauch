@@ -27,6 +27,35 @@ export default function RepManagementPage() {
   const [statusFilter, setStatusFilter] = useState<'all' | 'active' | 'suspended' | 'terminated'>('all');
   const [selectedReps, setSelectedReps] = useState<string[]>([]);
   const [panelOpen, setPanelOpen] = useState(false);
+  const [terminateModal, setTerminateModal] = useState<string | null>(null);
+  const [suspendModal, setSuspendModal] = useState<string | null>(null);
+
+  async function handleSuspendRep(repId: string) {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return;
+
+    await supabase.from('distributors').update({ status: 'suspended' }).eq('id', repId);
+
+    alert('Rep suspended successfully');
+    setSuspendModal(null);
+  }
+
+  async function handleTerminateRep(repId: string) {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return;
+
+    // Call handle_termination function
+    const { data, error } = await supabase.rpc('handle_termination', { p_rep_id: repId });
+
+    if (error) {
+      alert(`Termination failed: ${error.message}`);
+      return;
+    }
+
+    alert(`Rep terminated successfully. ${data?.length || 0} downline reps re-sponsored.`);
+    setTerminateModal(null);
+    router.refresh();
+  }
 
   // Mock data
   const reps: Rep[] = [
