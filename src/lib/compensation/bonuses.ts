@@ -187,7 +187,7 @@ export async function calculateMatchingBonus(
       record_id: rep.rep_id,
       details: {
         rep_id: rep.rep_id,
-        rep_name: `${rep.first_name} ${rep.last_name}`,
+        rep_name: rep.full_name,
         total_before_cap: total,
         capped_amount: CAP_AMOUNT,
         excess_amount: excessAmount,
@@ -427,7 +427,7 @@ export async function calculateCarAllowance(rep: Rep, db: any): Promise<number> 
       record_id: rep.rep_id,
       details: {
         rep_id: rep.rep_id,
-        rep_name: `${rep.first_name} ${rep.last_name}`,
+        rep_name: rep.full_name,
         total_before_cap: amount,
         capped_amount: CAP_AMOUNT,
         excess_amount: excessAmount,
