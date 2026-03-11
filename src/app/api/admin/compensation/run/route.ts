@@ -2,8 +2,18 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase/service';
 import { executeCommissionRun } from '@/lib/compensation/commission-run';
+import { getFinanceUser } from '@/lib/auth/finance';
 
 export async function POST(request: NextRequest) {
+  // CRITICAL: Only CFO/Admin can run commission processing
+  const financeUser = await getFinanceUser();
+  if (!financeUser) {
+    return NextResponse.json(
+      { error: 'Unauthorized - CFO/Admin access required' },
+      { status: 401 }
+    );
+  }
+
   try {
     const { month, year } = await request.json();
 
@@ -42,6 +52,15 @@ export async function POST(request: NextRequest) {
 
 // GET: Retrieve commission run status
 export async function GET(request: NextRequest) {
+  // CRITICAL: Only CFO/Admin can view commission run status
+  const financeUser = await getFinanceUser();
+  if (!financeUser) {
+    return NextResponse.json(
+      { error: 'Unauthorized - CFO/Admin access required' },
+      { status: 401 }
+    );
+  }
+
   try {
     const searchParams = request.nextUrl.searchParams;
     const month = searchParams.get('month');

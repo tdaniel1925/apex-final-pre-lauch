@@ -2,6 +2,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase/service';
 import { processCABTransitions } from '@/lib/compensation/cab-state-machine';
+import { getFinanceUser } from '@/lib/auth/finance';
 
 /**
  * Daily CAB Processing Job
@@ -13,6 +14,15 @@ import { processCABTransitions } from '@/lib/compensation/cab-state-machine';
  * POST /api/admin/compensation/cab-processing
  */
 export async function POST(request: NextRequest) {
+  // CRITICAL: Only CFO/Admin can process CAB transitions
+  const financeUser = await getFinanceUser();
+  if (!financeUser) {
+    return NextResponse.json(
+      { error: 'Unauthorized - CFO/Admin access required' },
+      { status: 401 }
+    );
+  }
+
   try {
     const db = createServiceClient();
 

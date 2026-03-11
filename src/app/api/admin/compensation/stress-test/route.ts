@@ -4,8 +4,18 @@ import { createServiceClient } from '@/lib/supabase/service';
 import { calculateWaterfall, calculateMargins, validateWaterfall } from '@/lib/compensation/waterfall';
 import { evaluateRank, validateRankEvaluation } from '@/lib/compensation/rank';
 import { PRODUCT_PRICES, COMP_PLAN_CONFIG } from '@/lib/compensation/config';
+import { getFinanceUser } from '@/lib/auth/finance';
 
 export async function POST(request: NextRequest) {
+  // CRITICAL: Only CFO/Admin can run stress tests
+  const financeUser = await getFinanceUser();
+  if (!financeUser) {
+    return NextResponse.json(
+      { error: 'Unauthorized - CFO/Admin access required' },
+      { status: 401 }
+    );
+  }
+
   try {
     const { proposedConfig } = await request.json();
 
@@ -205,6 +215,15 @@ export async function POST(request: NextRequest) {
 
 // GET: Retrieve latest stress test results
 export async function GET(request: NextRequest) {
+  // CRITICAL: Only CFO/Admin can view stress test results
+  const financeUser = await getFinanceUser();
+  if (!financeUser) {
+    return NextResponse.json(
+      { error: 'Unauthorized - CFO/Admin access required' },
+      { status: 401 }
+    );
+  }
+
   try {
     const db = createServiceClient();
 
