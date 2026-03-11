@@ -19,6 +19,31 @@ export default function SystemSettingsPage() {
     platform_maintenance_mode: false,
   });
 
+  const [bonuses, setBonuses] = useState([
+    { id: 'cab', name: 'Customer Acquisition Bonus (CAB)', enabled: true, description: '$50 per retail customer' },
+    { id: 'volume_kicker', name: 'Volume Kicker', enabled: true, description: 'Tiered BV bonus (30-day window)' },
+    { id: 'tvb', name: 'Team Volume Bonus (TVB)', enabled: true, description: 'Org BV milestone rewards' },
+    { id: 'pvb', name: 'Personal Volume Bonus (PVB)', enabled: true, description: '+5% on personal BV (10+ customers)' },
+    { id: 'retention', name: 'Retention Bonus', enabled: true, description: '+3% on personal BV (80%+ renewal)' },
+    { id: 'matching', name: 'Matching Bonus', enabled: true, description: 'Match on L1 leaders overrides' },
+    { id: 'check_match_orig', name: 'Check Match (Original)', enabled: true, description: '5% of L1 Silver+ total earnings' },
+    { id: 'gold_accel', name: 'Gold Accelerator', enabled: true, description: '$3,467 one-time on first Gold' },
+    { id: 'org_royalty', name: 'Org Royalty', enabled: false, description: '3% of org BV monthly (Platinum only)' },
+    { id: 'depth_royalty', name: 'Depth Royalty', enabled: false, description: '2% of org BV monthly (Gold only)' },
+    { id: 'team_pulse_silver', name: 'Team Pulse Silver', enabled: false, description: '$50/mo per active direct Associate+' },
+    { id: 'team_pulse_gold', name: 'Team Pulse Gold', enabled: false, description: '$75/mo per active direct Silver+' },
+    { id: 'team_pulse_platinum', name: 'Team Pulse Platinum', enabled: false, description: '$100/mo per active direct Gold+' },
+    { id: 'check_match_new', name: 'Check Match (Enhanced)', enabled: false, description: '15% of direct Platinum total earnings' },
+    { id: 'bronze_consistency', name: 'Bronze Consistency Achievement', enabled: false, description: '$500 one-time (3 consecutive Bronze months)' },
+    { id: 'silver_achievement', name: 'Silver Achievement', enabled: false, description: '$1,500 one-time on first Silver' },
+    { id: 'gold_achievement', name: 'Gold Achievement', enabled: false, description: '$5,000 one-time on first Gold' },
+    { id: 'platinum_achievement', name: 'Platinum Achievement', enabled: false, description: '$10,000 one-time on first Platinum' },
+    { id: 'silver_builder', name: 'Silver Builder', enabled: false, description: '$750 per downline Silver promotion' },
+    { id: 'gold_builder', name: 'Gold Builder', enabled: false, description: '$2,000 per downline Gold promotion' },
+    { id: 'platinum_builder', name: 'Platinum Builder', enabled: false, description: '$5,000 per downline Platinum promotion' },
+    { id: 'promotion_fund', name: 'Promotion Fund', enabled: false, description: '$5 from every Business Center sale' },
+  ]);
+
   useEffect(() => {
     async function checkAuth() {
       const { data: { user } } = await supabase.auth.getUser();
@@ -142,6 +167,69 @@ export default function SystemSettingsPage() {
                   <p className="text-xs text-gray-500">Send email notifications for important system events</p>
                 </div>
               </label>
+            </div>
+          </div>
+
+          {/* Bonus Features */}
+          <div className="bg-white rounded-lg shadow-sm border border-neutral-200 p-6">
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <h2 className="text-lg font-bold text-[#0F2045]">Bonus Features</h2>
+                <p className="text-xs text-gray-500 mt-1">Enable or disable bonus programs in the compensation engine</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-semibold text-[#1B3A7D]">{bonuses.filter(b => b.enabled).length}/{bonuses.length} Enabled</span>
+              </div>
+            </div>
+
+            <div className="space-y-2 max-h-96 overflow-y-auto pr-2">
+              {bonuses.map((bonus, index) => (
+                <div key={bonus.id} className={`p-4 rounded-lg border transition-all ${bonus.enabled ? 'border-neutral-200 bg-white' : 'border-neutral-200 bg-neutral-50'}`}>
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <p className="text-sm font-semibold text-[#0F2045]">{bonus.name}</p>
+                        {!bonus.enabled && (
+                          <span className="text-[9px] font-semibold bg-amber-100 text-amber-700 px-2 py-0.5 rounded border border-amber-200">
+                            Pending
+                          </span>
+                        )}
+                        {bonus.enabled && (
+                          <span className="text-[9px] font-semibold bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded border border-emerald-200">
+                            Active
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-xs text-gray-500">{bonus.description}</p>
+                    </div>
+                    {/* Toggle Switch */}
+                    <button
+                      onClick={() => {
+                        const updated = [...bonuses];
+                        updated[index].enabled = !updated[index].enabled;
+                        setBonuses(updated);
+                      }}
+                      className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[#1B3A7D] focus:ring-offset-2 ${
+                        bonus.enabled ? 'bg-[#1B3A7D]' : 'bg-neutral-300'
+                      }`}
+                    >
+                      <span className={`${bonus.enabled ? 'translate-x-6' : 'translate-x-1'} inline-block h-4 w-4 transform rounded-full bg-white transition-transform`}></span>
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+              <div className="flex items-start gap-2">
+                <svg className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <div>
+                  <p className="text-xs font-semibold text-blue-900">Bonus Feature Flags</p>
+                  <p className="text-xs text-blue-700 mt-1">Disabled bonuses will not be calculated during commission runs. Use this to test new bonuses before rolling them out.</p>
+                </div>
+              </div>
             </div>
           </div>
 

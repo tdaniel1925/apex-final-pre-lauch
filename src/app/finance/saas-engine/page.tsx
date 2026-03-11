@@ -49,6 +49,14 @@ interface OverrideLevel {
   pct: number;
 }
 
+interface Bonus {
+  id: string;
+  name: string;
+  description: string;
+  enabled: boolean;
+  details: string;
+}
+
 export default function SaaSEngineConfig() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
@@ -85,6 +93,33 @@ export default function SaaSEngineConfig() {
     referrer: 8,
     pool: 2,
   });
+
+  // Bonus catalog with enabled flags
+  const [bonuses, setBonuses] = useState<Bonus[]>([
+    { id: 'cab', name: 'Customer Acquisition Bonus (CAB)', description: '$50 per retail customer', enabled: true, details: 'Cap: $1,000/mo (20 CABs) • Wait: 60 days' },
+    { id: 'volume_kicker', name: 'Volume Kicker', description: 'Tiered BV bonus (30-day window)', enabled: true, details: '$500 BV = $250 • $1,000 BV = $750 • $1,500 BV = $1,500' },
+    { id: 'tvb', name: 'Team Volume Bonus (TVB)', description: 'Org BV milestone rewards', enabled: true, details: '$5K = $100 • $10K = $500 • $25K = $1,000 • $50K = $2,000' },
+    { id: 'pvb', name: 'Personal Volume Bonus (PVB)', description: '+5% on personal BV', enabled: true, details: 'Requires: 10+ retail customers' },
+    { id: 'retention', name: 'Retention Bonus', description: '+3% on personal BV', enabled: true, details: 'Requires: 80%+ renewal rate' },
+    { id: 'matching', name: 'Matching Bonus', description: 'Match on L1 leaders overrides', enabled: true, details: 'Silver: 10% • Gold: 15% • Platinum: 20%' },
+    { id: 'check_match_orig', name: 'Check Match (Original)', description: '5% of L1 Silver+ total earnings', enabled: true, details: 'Gold/Platinum only' },
+    { id: 'gold_accel', name: 'Gold Accelerator', description: '$3,467 one-time', enabled: true, details: 'Paid on first Gold qualification' },
+    // NEW BONUSES (all disabled by default)
+    { id: 'org_royalty', name: 'Org Royalty', description: '3% of org BV monthly', enabled: false, details: 'Platinum only' },
+    { id: 'depth_royalty', name: 'Depth Royalty', description: '2% of org BV monthly', enabled: false, details: 'Gold only' },
+    { id: 'team_pulse_silver', name: 'Team Pulse Silver', description: '$50/mo per active direct Associate+', enabled: false, details: 'Silver+ ranks only' },
+    { id: 'team_pulse_gold', name: 'Team Pulse Gold', description: '$75/mo per active direct Silver+', enabled: false, details: 'Gold+ ranks only' },
+    { id: 'team_pulse_platinum', name: 'Team Pulse Platinum', description: '$100/mo per active direct Gold+', enabled: false, details: 'Platinum rank only' },
+    { id: 'check_match_new', name: 'Check Match (Enhanced)', description: '15% of direct Platinum total earnings', enabled: false, details: 'Platinum only' },
+    { id: 'bronze_consistency', name: 'Bronze Consistency Achievement', description: '$500 one-time', enabled: false, details: '3 consecutive Bronze months' },
+    { id: 'silver_achievement', name: 'Silver Achievement', description: '$1,500 one-time', enabled: false, details: 'Paid on first Silver qualification' },
+    { id: 'gold_achievement', name: 'Gold Achievement', description: '$5,000 one-time', enabled: false, details: 'Paid on first Gold qualification' },
+    { id: 'platinum_achievement', name: 'Platinum Achievement', description: '$10,000 one-time', enabled: false, details: 'Paid on first Platinum qualification' },
+    { id: 'silver_builder', name: 'Silver Builder', description: '$750 per downline Silver promotion', enabled: false, details: 'Paid to sponsor' },
+    { id: 'gold_builder', name: 'Gold Builder', description: '$2,000 per downline Gold promotion', enabled: false, details: 'Paid to sponsor' },
+    { id: 'platinum_builder', name: 'Platinum Builder', description: '$5,000 per downline Platinum promotion', enabled: false, details: 'Paid to sponsor' },
+    { id: 'promotion_fund', name: 'Promotion Fund', description: '$5 from every Business Center sale', enabled: false, details: 'Reserved for promotion bonuses' },
+  ]);
 
   // Change log
   const [changeLog, setChangeLog] = useState<ChangeLogEntry[]>([]);
@@ -795,7 +830,7 @@ export default function SaaSEngineConfig() {
                   <h2 className="font-semibold text-neutral-800 text-sm flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#1B3A7D]"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
                     5. Bonus Catalog
-                    <span className="text-[10px] font-medium text-neutral-400 font-normal">8 bonus programs</span>
+                    <span className="text-[10px] font-medium text-neutral-400 font-normal">{bonuses.length} bonus programs • {bonuses.filter(b => b.enabled).length} enabled</span>
                   </h2>
                   <div className="flex items-center gap-2">
                     <span className="text-[10px] font-semibold bg-green-100 text-green-700 px-2 py-0.5 rounded">Valid</span>
@@ -804,97 +839,41 @@ export default function SaaSEngineConfig() {
                 </div>
                 {expandedSections.sec5 && (
                   <div className="p-5 space-y-3">
-                    <div className="border border-neutral-200 rounded">
-                      <div className="bg-neutral-50 px-4 py-2 border-b border-neutral-200">
-                        <h3 className="text-xs font-bold text-neutral-800">1. Customer Acquisition Bonus (CAB)</h3>
-                      </div>
-                      <div className="p-4 grid grid-cols-3 gap-3 text-xs">
-                        <div>
-                          <span className="text-neutral-500">Amount:</span> <strong>$50</strong>
+                    {bonuses.map((bonus, index) => (
+                      <div key={bonus.id} className={`border rounded transition-all ${bonus.enabled ? 'border-neutral-200' : 'border-neutral-200 opacity-60'}`}>
+                        <div className={`px-4 py-2 border-b flex justify-between items-center ${bonus.enabled ? 'bg-neutral-50 border-neutral-200' : 'bg-neutral-100 border-neutral-200'}`}>
+                          <div className="flex items-center gap-3">
+                            <h3 className="text-xs font-bold text-neutral-800">{index + 1}. {bonus.name}</h3>
+                            {!bonus.enabled && (
+                              <span className="text-[9px] font-semibold bg-amber-100 text-amber-700 px-2 py-0.5 rounded border border-amber-200">
+                                Pending Approval
+                              </span>
+                            )}
+                          </div>
+                          {/* Toggle Switch */}
+                          <button
+                            onClick={() => {
+                              const updated = [...bonuses];
+                              updated[index].enabled = !updated[index].enabled;
+                              setBonuses(updated);
+                            }}
+                            disabled={!editMode}
+                            className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[#1B3A7D] focus:ring-offset-1 disabled:opacity-50 disabled:cursor-not-allowed ${
+                              bonus.enabled ? 'bg-[#1B3A7D]' : 'bg-neutral-300'
+                            }`}
+                          >
+                            <span className={`${bonus.enabled ? 'translate-x-5' : 'translate-x-1'} inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform`}></span>
+                          </button>
                         </div>
-                        <div>
-                          <span className="text-neutral-500">Cap:</span> <strong>$1,000/mo (20 CABs)</strong>
+                        <div className="p-4 text-xs">
+                          <div className="flex justify-between mb-2">
+                            <span className="text-neutral-500">Description:</span>
+                            <strong className={bonus.enabled ? 'text-neutral-900' : 'text-neutral-600'}>{bonus.description}</strong>
+                          </div>
+                          <div className="text-[10px] text-neutral-500 mt-2">{bonus.details}</div>
                         </div>
-                        <div>
-                          <span className="text-neutral-500">Wait:</span> <strong>60 days</strong>
-                        </div>
                       </div>
-                    </div>
-
-                    <div className="border border-neutral-200 rounded">
-                      <div className="bg-neutral-50 px-4 py-2 border-b border-neutral-200">
-                        <h3 className="text-xs font-bold text-neutral-800">2. Volume Kicker</h3>
-                      </div>
-                      <div className="p-4 space-y-2 text-xs">
-                        <div className="flex justify-between"><span className="text-neutral-500">Tier 1:</span> <strong>$500 BV = $250</strong></div>
-                        <div className="flex justify-between"><span className="text-neutral-500">Tier 2:</span> <strong>$1,000 BV = $750</strong></div>
-                        <div className="flex justify-between"><span className="text-neutral-500">Tier 3:</span> <strong>$1,500 BV = $1,500</strong></div>
-                        <div className="text-[10px] text-neutral-500 mt-2">Window: 30 days</div>
-                      </div>
-                    </div>
-
-                    <div className="border border-neutral-200 rounded">
-                      <div className="bg-neutral-50 px-4 py-2 border-b border-neutral-200">
-                        <h3 className="text-xs font-bold text-neutral-800">3. Team Volume Bonus (TVB)</h3>
-                      </div>
-                      <div className="p-4 space-y-2 text-xs">
-                        <div className="flex justify-between"><span className="text-neutral-500">Tier 1:</span> <strong>$5K org BV = $100</strong></div>
-                        <div className="flex justify-between"><span className="text-neutral-500">Tier 2:</span> <strong>$10K org BV = $500</strong></div>
-                        <div className="flex justify-between"><span className="text-neutral-500">Tier 3:</span> <strong>$25K org BV = $1,000</strong></div>
-                        <div className="flex justify-between"><span className="text-neutral-500">Tier 4:</span> <strong>$50K org BV = $2,000</strong></div>
-                      </div>
-                    </div>
-
-                    <div className="border border-neutral-200 rounded">
-                      <div className="bg-neutral-50 px-4 py-2 border-b border-neutral-200">
-                        <h3 className="text-xs font-bold text-neutral-800">4. Personal Volume Bonus (PVB)</h3>
-                      </div>
-                      <div className="p-4 text-xs">
-                        <div className="flex justify-between mb-2"><span className="text-neutral-500">Rate:</span> <strong>+5% on personal BV</strong></div>
-                        <div className="text-[10px] text-neutral-500">Requires: 10+ retail customers</div>
-                      </div>
-                    </div>
-
-                    <div className="border border-neutral-200 rounded">
-                      <div className="bg-neutral-50 px-4 py-2 border-b border-neutral-200">
-                        <h3 className="text-xs font-bold text-neutral-800">5. Retention Bonus</h3>
-                      </div>
-                      <div className="p-4 text-xs">
-                        <div className="flex justify-between mb-2"><span className="text-neutral-500">Rate:</span> <strong>+3% on personal BV</strong></div>
-                        <div className="text-[10px] text-neutral-500">Requires: 80%+ renewal rate</div>
-                      </div>
-                    </div>
-
-                    <div className="border border-neutral-200 rounded">
-                      <div className="bg-neutral-50 px-4 py-2 border-b border-neutral-200">
-                        <h3 className="text-xs font-bold text-neutral-800">6. Matching Bonus</h3>
-                      </div>
-                      <div className="p-4 space-y-2 text-xs">
-                        <div className="flex justify-between"><span className="text-neutral-500">Silver:</span> <strong>10% of L1 Bronze+ leaders' overrides</strong></div>
-                        <div className="flex justify-between"><span className="text-neutral-500">Gold:</span> <strong>15% of L1 Bronze+ leaders' overrides</strong></div>
-                        <div className="flex justify-between"><span className="text-neutral-500">Platinum:</span> <strong>20% of L1 Bronze+ leaders' overrides</strong></div>
-                      </div>
-                    </div>
-
-                    <div className="border border-neutral-200 rounded">
-                      <div className="bg-neutral-50 px-4 py-2 border-b border-neutral-200">
-                        <h3 className="text-xs font-bold text-neutral-800">7. Check Match</h3>
-                      </div>
-                      <div className="p-4 text-xs">
-                        <div className="flex justify-between mb-2"><span className="text-neutral-500">Gold/Platinum:</span> <strong>5% of L1 Silver+ leaders' total earnings</strong></div>
-                        <div className="text-[10px] text-neutral-500">Applies to total monthly check amount</div>
-                      </div>
-                    </div>
-
-                    <div className="border border-neutral-200 rounded">
-                      <div className="bg-neutral-50 px-4 py-2 border-b border-neutral-200">
-                        <h3 className="text-xs font-bold text-neutral-800">8. Gold Accelerator</h3>
-                      </div>
-                      <div className="p-4 text-xs">
-                        <div className="flex justify-between"><span className="text-neutral-500">Amount:</span> <strong>$3,467 one-time</strong></div>
-                        <div className="text-[10px] text-neutral-500 mt-2">Paid on first Gold qualification</div>
-                      </div>
-                    </div>
+                    ))}
                   </div>
                 )}
               </section>
