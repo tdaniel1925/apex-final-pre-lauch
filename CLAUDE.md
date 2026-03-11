@@ -405,14 +405,14 @@ UX Magic mockups contain fake data. Always replace with real values from BRAIN.m
 
 | # | Route | Mockup File | Status |
 |---|---|---|---|
-| 22 | /finance | — | pending |
-| 23 | /finance/weighting | — | pending |
-| 24 | /finance/waterfall | — | pending |
-| 25 | /finance/bonusvolume | — | pending |
-| 26 | /finance/bonuspool | — | pending |
-| 27 | /finance/rankpromo | — | pending |
-| 28 | /finance/pricing | — | pending |
-| 29 | /finance/commrun | — | pending |
+| 22 | /finance | screen-22-finance-home.html | ✅ complete |
+| 23 | /finance/weighting | screen-23-weighting.html | ✅ complete |
+| 24 | /finance/waterfall | screen-24-waterfall.html | ✅ complete |
+| 25 | /finance/bonusvolume | screen-25-bonusvolume.html | ✅ complete |
+| 26 | /finance/bonuspool | screen-26-bonuspool.html | ✅ complete |
+| 27 | /finance/rankpromo | screen-27-rankpromo.html | ✅ complete |
+| 28 | /finance/pricing | screen-28-pricing.html | ✅ complete |
+| 29 | /finance/commrun | screen-29-commrun.html | ✅ complete |
 | 30 | /finance/scenarios | — | pending |
 | 31 | /finance/saas-engine | screen-31-saas-engine.html | ✅ complete |
 | 32 | /finance/insurance-engine | screen-32-insurance-engine.html | ✅ complete |
