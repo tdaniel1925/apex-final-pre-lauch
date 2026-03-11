@@ -67,6 +67,10 @@ serve(async (req) => {
         await handleDisputeCreated(supabase, event.data.object as Stripe.Dispute);
         break;
 
+      case 'charge.refunded':
+        await handleChargeRefunded(supabase, event.data.object as Stripe.Charge);
+        break;
+
       default:
         console.log(`Unhandled event type: ${event.type}`);
     }
@@ -265,31 +269,97 @@ async function handleInvoicePaymentFailed(supabase: any, invoice: Stripe.Invoice
 }
 
 // =====================================================
-// HANDLER: invoice.paid (FIX 8)
+// HANDLER: invoice.paid (FIX 8 - REVENUE PROTECTION)
 // =====================================================
 async function handleInvoicePaid(supabase: any, invoice: Stripe.Invoice) {
   console.log(`Invoice paid: ${invoice.id}`);
 
   // Skip if not a subscription renewal
-  if (!invoice.subscription) return;
+  if (!invoice.subscription) {
+    console.log('Not a subscription invoice - skipping');
+    return;
+  }
 
-  const { data: order } = await supabase
+  // Check for duplicate processing (idempotency)
+  const { data: existingRenewal } = await supabase
+    .from('subscription_renewals')
+    .select('id')
+    .eq('stripe_invoice_id', invoice.id)
+    .single();
+
+  if (existingRenewal) {
+    console.log(`Renewal already processed for invoice: ${invoice.id}`);
+    return;
+  }
+
+  // Find original order by subscription_id
+  const { data: originalOrder } = await supabase
     .from('orders')
     .select('*')
     .eq('stripe_subscription_id', invoice.subscription)
+    .order('created_at', { ascending: true })
+    .limit(1)
     .single();
 
-  if (!order) return;
+  if (!originalOrder) {
+    console.error(`No original order found for subscription: ${invoice.subscription}`);
+    return;
+  }
 
-  // Record successful renewal
+  console.log(`Processing renewal for subscription: ${invoice.subscription}`);
+
+  // CRITICAL FIX: Create new order record for renewal
+  const { data: renewalOrder, error: orderError } = await supabase
+    .from('orders')
+    .insert({
+      rep_id: originalOrder.rep_id,
+      customer_id: originalOrder.customer_id,
+      product_id: originalOrder.product_id,
+      order_type: originalOrder.order_type,
+      gross_amount_cents: invoice.amount_paid,
+      stripe_subscription_id: invoice.subscription,
+      stripe_payment_intent_id: invoice.payment_intent,
+      status: 'complete',
+      bv_credited: false,
+      bv_amount: originalOrder.bv_amount, // Same BV as original
+      promotion_fund_credited: false,
+      promotion_fund_credit_amount: originalOrder.order_type === 'business_center' ? 5.00 : 0,
+    })
+    .select()
+    .single();
+
+  if (orderError) {
+    console.error('Failed to create renewal order:', orderError);
+    // Still record renewal even if order creation fails
+  } else {
+    console.log(`Renewal order created: ${renewalOrder.id}`);
+
+    // If Business Center: credit promotion fund
+    if (originalOrder.order_type === 'business_center') {
+      await creditPromotionFund(supabase, renewalOrder.id, originalOrder.rep_id, 5.00);
+    }
+
+    // Send notification to rep
+    await supabase.from('notifications').insert({
+      user_id: originalOrder.rep_id,
+      type: 'subscription_renewed',
+      title: 'Subscription Renewed',
+      message: `A customer subscription has renewed for $${(invoice.amount_paid / 100).toFixed(2)}. Commission credited.`,
+      read: false,
+    });
+  }
+
+  // Record successful renewal in tracking table
   await supabase.from('subscription_renewals').insert({
-    rep_id: order.rep_id,
-    customer_id: order.customer_id,
-    product_id: order.product_id,
+    rep_id: originalOrder.rep_id,
+    customer_id: originalOrder.customer_id,
+    product_id: originalOrder.product_id,
     renewal_date: new Date().toISOString(),
     status: 'renewed',
     stripe_invoice_id: invoice.id,
   });
+
+  console.log(`Renewal processing complete for invoice: ${invoice.id}`);
 }
 
 // =====================================================
@@ -335,6 +405,107 @@ async function handleDisputeCreated(supabase: any, dispute: Stripe.Dispute) {
   }
 
   console.log(`Dispute handling complete for: ${dispute.id}`);
+}
+
+// =====================================================
+// HANDLER: charge.refunded (PHASE 2.3 - REVENUE PROTECTION)
+// =====================================================
+async function handleChargeRefunded(supabase: any, charge: Stripe.Charge) {
+  console.log(`Charge refunded: ${charge.id}`);
+
+  // Find order by payment_intent_id
+  const { data: order } = await supabase
+    .from('orders')
+    .select('*')
+    .eq('stripe_payment_intent_id', charge.payment_intent)
+    .single();
+
+  if (!order) {
+    console.error(`No order found for payment_intent: ${charge.payment_intent}`);
+    return;
+  }
+
+  // Update order status to refunded
+  await supabase
+    .from('orders')
+    .update({
+      status: 'refunded',
+      updated_at: new Date().toISOString()
+    })
+    .eq('id', order.id);
+
+  console.log(`Order ${order.id} marked as refunded`);
+
+  // CRITICAL: Deduct BV from org_bv_cache
+  // This prevents inflated BV from refunded orders
+  if (order.bv_amount > 0) {
+    const { data: currentBV } = await supabase
+      .from('org_bv_cache')
+      .select('personal_bv, team_bv, org_bv')
+      .eq('rep_id', order.rep_id)
+      .single();
+
+    if (currentBV) {
+      await supabase
+        .from('org_bv_cache')
+        .update({
+          personal_bv: Math.max(0, currentBV.personal_bv - order.bv_amount),
+          org_bv: Math.max(0, currentBV.org_bv - order.bv_amount),
+          last_calculated_at: new Date().toISOString(),
+        })
+        .eq('rep_id', order.rep_id);
+
+      console.log(`BV deducted: ${order.bv_amount} from rep ${order.rep_id}`);
+    }
+  }
+
+  // TODO: Create negative commission records to claw back commissions
+  // This requires commission_run_id from the order, which we'll add in Phase 3
+  // For now, we log the refund for manual processing
+  await supabase.from('audit_log').insert({
+    action: 'order_refunded_needs_clawback',
+    actor_type: 'system',
+    actor_id: null,
+    table_name: 'orders',
+    record_id: order.id,
+    details: {
+      order_id: order.id,
+      rep_id: order.rep_id,
+      amount: charge.amount_refunded,
+      bv_amount: order.bv_amount,
+      refund_reason: charge.refund?.reason || 'unknown',
+    },
+    timestamp: new Date().toISOString(),
+  });
+
+  // Notify rep about refund
+  await supabase.from('notifications').insert({
+    user_id: order.rep_id,
+    type: 'order_refunded',
+    title: 'Order Refunded',
+    message: `An order for $${(charge.amount_refunded / 100).toFixed(2)} has been refunded. BV has been deducted.`,
+    read: false,
+  });
+
+  // Notify admin about refund
+  const { data: admins } = await supabase
+    .from('distributors')
+    .select('id')
+    .eq('role', 'admin');
+
+  if (admins && admins.length > 0) {
+    for (const admin of admins) {
+      await supabase.from('notifications').insert({
+        user_id: admin.id,
+        type: 'system',
+        title: 'Refund Processed',
+        message: `Order ${order.id} refunded: $${(charge.amount_refunded / 100).toFixed(2)}. Commission clawback may be required.`,
+        read: false,
+      });
+    }
+  }
+
+  console.log(`Refund handling complete for charge: ${charge.id}`);
 }
 
 // =====================================================
