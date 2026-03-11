@@ -45,10 +45,10 @@ export default function FAQ() {
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <span className="inline-block px-4 py-2 bg-[#DC2626]/10 text-[#DC2626] rounded-full text-sm font-semibold mb-4">
+          <span className="inline-block px-4 py-2 bg-[#C7181F]/10 text-[#C7181F] rounded-full text-sm font-semibold mb-4">
             QUESTIONS ANSWERED
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-[#2B4C7E] mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#1B3A7D] mb-6">
             Frequently Asked Questions
           </h2>
           <p className="text-lg text-[#4B5563] max-w-3xl mx-auto leading-relaxed">
@@ -61,17 +61,17 @@ export default function FAQ() {
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="bg-white border-2 border-[#2B4C7E]/10 rounded-xl overflow-hidden hover:border-[#2B4C7E]/30 transition-all"
+              className="bg-white border-2 border-[#1B3A7D]/10 rounded-xl overflow-hidden hover:border-[#1B3A7D]/30 transition-all"
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
                 className="w-full px-6 py-5 flex items-center justify-between text-left"
               >
-                <span className="font-semibold text-[#2B4C7E] text-lg pr-4">
+                <span className="font-semibold text-[#1B3A7D] text-lg pr-4">
                   {faq.question}
                 </span>
                 <svg
-                  className={`w-6 h-6 text-[#DC2626] flex-shrink-0 transition-transform ${
+                  className={`w-6 h-6 text-[#C7181F] flex-shrink-0 transition-transform ${
                     openIndex === index ? 'rotate-180' : ''
                   }`}
                   fill="none"
@@ -102,7 +102,7 @@ export default function FAQ() {
         {/* Bottom CTA */}
         <div className="text-center mt-12">
           <p className="text-[#4B5563] mb-4">Still have questions?</p>
-          <button className="text-[#DC2626] font-semibold hover:underline">
+          <button className="text-[#C7181F] font-semibold hover:underline">
             Contact our team →
           </button>
         </div>

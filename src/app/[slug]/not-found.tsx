@@ -18,7 +18,7 @@ export default function DistributorNotFound() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
             href="/signup"
-            className="inline-flex items-center justify-center px-6 py-3 bg-[#2B4C7E] text-white font-semibold rounded-lg hover:bg-[#1a2c4e] transition-colors"
+            className="inline-flex items-center justify-center px-6 py-3 bg-[#1B3A7D] text-white font-semibold rounded-lg hover:bg-[#1a2c4e] transition-colors"
           >
             Join Apex Affinity Group
           </a>
@@ -32,7 +32,7 @@ export default function DistributorNotFound() {
 
         <p className="mt-8 text-sm text-gray-500">
           Already a member?{' '}
-          <a href="/login" className="text-[#2B4C7E] hover:underline">
+          <a href="/login" className="text-[#1B3A7D] hover:underline">
             Log in here
           </a>
         </p>

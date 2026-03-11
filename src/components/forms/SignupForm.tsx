@@ -136,7 +136,7 @@ export default function SignupForm({ sponsorSlug, sponsorName }: SignupFormProps
     <div className="w-full max-w-2xl mx-auto">
       {/* Sponsor Banner */}
       {sponsorName && (
-        <div className="mb-8 px-6 bg-gradient-to-r from-[#2B4C7E] to-[#1a2c4e] text-white rounded-lg text-center" style={{paddingTop: '20px', paddingBottom: '20px'}}>
+        <div className="mb-8 px-6 bg-gradient-to-r from-[#1B3A7D] to-[#1a2c4e] text-white rounded-lg text-center" style={{paddingTop: '20px', paddingBottom: '20px'}}>
           <p className="text-sm opacity-90" style={{margin: 0, marginBottom: '4px'}}>You've been invited by</p>
           <p className="text-5xl font-bold leading-tight" style={{margin: 0, lineHeight: '1.1'}}>{sponsorName}</p>
         </div>
@@ -153,7 +153,7 @@ export default function SignupForm({ sponsorSlug, sponsorName }: SignupFormProps
               {...register('first_name')}
               type="text"
               id="first_name"
-              className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent ${
+              className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent ${
                 errors.first_name ? 'border-red-500' : 'border-gray-300'
               }`}
               disabled={isSubmitting}
@@ -171,7 +171,7 @@ export default function SignupForm({ sponsorSlug, sponsorName }: SignupFormProps
               {...register('last_name')}
               type="text"
               id="last_name"
-              className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent ${
+              className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent ${
                 errors.last_name ? 'border-red-500' : 'border-gray-300'
               }`}
               disabled={isSubmitting}
@@ -191,7 +191,7 @@ export default function SignupForm({ sponsorSlug, sponsorName }: SignupFormProps
             {...register('email')}
             type="email"
             id="email"
-            className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent ${
+            className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent ${
               errors.email ? 'border-red-500' : 'border-gray-300'
             }`}
             disabled={isSubmitting}
@@ -211,7 +211,7 @@ export default function SignupForm({ sponsorSlug, sponsorName }: SignupFormProps
               {...register('password')}
               type={showPassword ? 'text' : 'password'}
               id="password"
-              className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent ${
+              className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent ${
                 errors.password ? 'border-red-500' : 'border-gray-300'
               }`}
               disabled={isSubmitting}
@@ -260,14 +260,14 @@ export default function SignupForm({ sponsorSlug, sponsorName }: SignupFormProps
               {...register('slug')}
               type="text"
               id="slug"
-              className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent ${
+              className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent ${
                 errors.slug ? 'border-red-500' : 'border-gray-300'
               }`}
               disabled={isSubmitting}
             />
             {slugCheckStatus === 'checking' && (
               <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                <div className="w-4 h-4 border-2 border-gray-300 border-t-[#2B4C7E] rounded-full animate-spin" />
+                <div className="w-4 h-4 border-2 border-gray-300 border-t-[#1B3A7D] rounded-full animate-spin" />
               </div>
             )}
             {slugCheckStatus === 'available' && (
@@ -311,7 +311,7 @@ export default function SignupForm({ sponsorSlug, sponsorName }: SignupFormProps
             {...register('company_name')}
             type="text"
             id="company_name"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
             disabled={isSubmitting}
           />
           {errors.company_name && (
@@ -328,7 +328,7 @@ export default function SignupForm({ sponsorSlug, sponsorName }: SignupFormProps
             {...register('phone')}
             type="tel"
             id="phone"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
             disabled={isSubmitting}
           />
           {errors.phone && (
@@ -346,13 +346,13 @@ export default function SignupForm({ sponsorSlug, sponsorName }: SignupFormProps
             <label
               className={`flex items-start gap-3 p-4 border-2 rounded-lg cursor-pointer transition-all ${
                 errors.licensing_status ? 'border-red-300' : 'border-gray-300'
-              } hover:border-[#2B4C7E] hover:shadow-md has-[:checked]:border-[#2B4C7E] has-[:checked]:bg-blue-50 has-[:checked]:shadow-md`}
+              } hover:border-[#1B3A7D] hover:shadow-md has-[:checked]:border-[#1B3A7D] has-[:checked]:bg-blue-50 has-[:checked]:shadow-md`}
             >
               <input
                 {...register('licensing_status')}
                 type="radio"
                 value="licensed"
-                className="mt-1 w-4 h-4 text-[#2B4C7E] focus:ring-[#2B4C7E]"
+                className="mt-1 w-4 h-4 text-[#1B3A7D] focus:ring-[#1B3A7D]"
                 disabled={isSubmitting}
               />
               <div className="flex-1">
@@ -376,13 +376,13 @@ export default function SignupForm({ sponsorSlug, sponsorName }: SignupFormProps
             <label
               className={`flex items-start gap-3 p-4 border-2 rounded-lg cursor-pointer transition-all ${
                 errors.licensing_status ? 'border-red-300' : 'border-gray-300'
-              } hover:border-[#2B4C7E] hover:shadow-md has-[:checked]:border-[#2B4C7E] has-[:checked]:bg-gray-100 has-[:checked]:shadow-md`}
+              } hover:border-[#1B3A7D] hover:shadow-md has-[:checked]:border-[#1B3A7D] has-[:checked]:bg-gray-100 has-[:checked]:shadow-md`}
             >
               <input
                 {...register('licensing_status')}
                 type="radio"
                 value="non_licensed"
-                className="mt-1 w-4 h-4 text-[#2B4C7E] focus:ring-[#2B4C7E]"
+                className="mt-1 w-4 h-4 text-[#1B3A7D] focus:ring-[#1B3A7D]"
                 disabled={isSubmitting}
               />
               <div className="flex-1">
@@ -423,7 +423,7 @@ export default function SignupForm({ sponsorSlug, sponsorName }: SignupFormProps
         <button
           type="submit"
           disabled={isSubmitting || slugCheckStatus === 'taken'}
-          className="w-full py-3 px-6 bg-gradient-to-r from-[#2B4C7E] to-[#1a2c4e] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full py-3 px-6 bg-gradient-to-r from-[#1B3A7D] to-[#1a2c4e] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isSubmitting ? (
             <span className="flex items-center justify-center gap-2">
@@ -437,7 +437,7 @@ export default function SignupForm({ sponsorSlug, sponsorName }: SignupFormProps
 
         <p className="text-center text-sm text-gray-600">
           Already have an account?{' '}
-          <a href="/login" className="text-[#2B4C7E] hover:underline font-medium">
+          <a href="/login" className="text-[#1B3A7D] hover:underline font-medium">
             Sign In
           </a>
         </p>

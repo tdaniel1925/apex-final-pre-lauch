@@ -6,18 +6,18 @@
 
 /**
  * Brand Colors
- * Primary: Deep royal/cobalt blue from logo (#2B4C7E)
- * Accent: Red from logo star (#DC2626)
+ * Primary: Deep royal/cobalt blue from logo (#1B3A7D)
+ * Accent: Red from logo star (#C7181F)
  */
 export const colors = {
   // Primary Brand Color (from logo)
-  primary: '#2B4C7E',
+  primary: '#1B3A7D',
   primaryHover: '#1e3555',
   primaryLight: '#3d5a8c',
   primaryLighter: '#e8eef7',
 
   // Accent (red from logo star)
-  accent: '#DC2626',
+  accent: '#C7181F',
   accentHover: '#b91c1c',
   accentLight: '#fee2e2',
 
@@ -106,15 +106,15 @@ export const components = {
   statsValue: 'text-2xl font-bold text-gray-900',
 
   // Buttons
-  buttonPrimary: 'bg-[#2B4C7E] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#1e3555] transition-colors disabled:opacity-50 disabled:cursor-not-allowed',
-  buttonSecondary: 'bg-white text-[#2B4C7E] border-2 border-[#2B4C7E] px-4 py-2 rounded-lg font-semibold hover:bg-[#e8eef7] transition-colors disabled:opacity-50 disabled:cursor-not-allowed',
+  buttonPrimary: 'bg-[#1B3A7D] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#1e3555] transition-colors disabled:opacity-50 disabled:cursor-not-allowed',
+  buttonSecondary: 'bg-white text-[#1B3A7D] border-2 border-[#1B3A7D] px-4 py-2 rounded-lg font-semibold hover:bg-[#e8eef7] transition-colors disabled:opacity-50 disabled:cursor-not-allowed',
   buttonDanger: 'bg-red-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed',
   buttonGhost: 'bg-transparent text-gray-700 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors',
 
   // Forms
-  input: 'w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed',
-  select: 'w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed',
-  textarea: 'w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed',
+  input: 'w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed',
+  select: 'w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed',
+  textarea: 'w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed',
   label: 'block text-sm font-semibold text-gray-700 mb-1',
 
   // Tables
@@ -132,7 +132,7 @@ export const components = {
   badgeNeutral: 'px-2 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-700',
 
   // Headers
-  pageHeader: 'bg-[#2B4C7E] text-white',
+  pageHeader: 'bg-[#1B3A7D] text-white',
   pageHeaderContent: 'max-w-7xl mx-auto px-4 sm:px-6 py-8',
 
   // Empty States

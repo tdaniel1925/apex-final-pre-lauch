@@ -77,7 +77,7 @@ export default function PolicyPingDashboard() {
 
       {/* Header */}
       <div className="bg-white border-b border-gray-200 px-6 py-4 flex items-center gap-3">
-        <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: '#2B4C7E' }}>
+        <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: '#1B3A7D' }}>
           <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
           </svg>
@@ -140,7 +140,7 @@ export default function PolicyPingDashboard() {
                 onClick={() => setFilter(val)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
                   filter === val
-                    ? 'bg-[#2B4C7E] text-white'
+                    ? 'bg-[#1B3A7D] text-white'
                     : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50'
                 }`}
               >
@@ -168,7 +168,7 @@ export default function PolicyPingDashboard() {
                       key={client.id}
                       onClick={() => setSelected(client)}
                       className={`border-b border-gray-50 cursor-pointer hover:bg-gray-50 transition-colors ${cfg.row} ${
-                        selected?.id === client.id ? 'ring-2 ring-inset ring-[#2B4C7E]' : ''
+                        selected?.id === client.id ? 'ring-2 ring-inset ring-[#1B3A7D]' : ''
                       }`}
                     >
                       <td className="px-4 py-3">
@@ -222,7 +222,7 @@ export default function PolicyPingDashboard() {
           {/* Client Detail Panel */}
           {selected ? (
             <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
-              <div className="px-4 py-3 border-b border-gray-100 flex items-center justify-between" style={{ background: '#2B4C7E' }}>
+              <div className="px-4 py-3 border-b border-gray-100 flex items-center justify-between" style={{ background: '#1B3A7D' }}>
                 <h3 className="text-sm font-bold text-white">{selected.name}</h3>
                 <button onClick={() => setSelected(null)} className="text-blue-200 hover:text-white">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -282,7 +282,7 @@ export default function PolicyPingDashboard() {
                   <a
                     href={`tel:${selected.phone}`}
                     className="flex-1 py-2 rounded-lg text-xs font-bold text-white text-center transition-opacity hover:opacity-90"
-                    style={{ background: '#2B4C7E' }}
+                    style={{ background: '#1B3A7D' }}
                   >
                     📞 Call
                   </a>

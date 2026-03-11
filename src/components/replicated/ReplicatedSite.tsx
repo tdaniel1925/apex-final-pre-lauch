@@ -53,7 +53,7 @@ export default function ReplicatedSite({ distributor }: ReplicatedSiteProps) {
       </header>
 
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center bg-gradient-to-br from-[#1a2c4e] via-[#2B4C7E] to-[#3d5a7f] overflow-hidden">
+      <section className="relative h-screen flex items-center bg-gradient-to-br from-[#1a2c4e] via-[#1B3A7D] to-[#3d5a7f] overflow-hidden">
         {/* Subtle Pattern Overlay */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -70,7 +70,7 @@ export default function ReplicatedSite({ distributor }: ReplicatedSiteProps) {
               <div className="lg:col-span-7">
                 <div className="space-y-3 lg:space-y-4">
                   <div className="inline-flex items-center gap-2">
-                    <span className="inline-block text-[#DC2626] font-semibold text-xs md:text-sm tracking-wide uppercase">
+                    <span className="inline-block text-[#C7181F] font-semibold text-xs md:text-sm tracking-wide uppercase">
                       Join {distributor.first_name}'s Team
                     </span>
                     <LicensingStatusBadge
@@ -91,13 +91,13 @@ export default function ReplicatedSite({ distributor }: ReplicatedSiteProps) {
                   <div className="flex flex-col sm:flex-row gap-3 pt-3 lg:pt-4">
                     <a
                       href={signupUrl}
-                      className="inline-flex items-center justify-center bg-[#DC2626] hover:bg-gradient-to-r hover:from-[#DC2626] hover:to-[#B91C1C] text-white px-5 py-3 lg:px-7 lg:py-4 text-sm lg:text-base font-bold rounded-lg transition-all shadow-lg"
+                      className="inline-flex items-center justify-center bg-[#C7181F] hover:bg-gradient-to-r hover:from-[#C7181F] hover:to-[#B91C1C] text-white px-5 py-3 lg:px-7 lg:py-4 text-sm lg:text-base font-bold rounded-lg transition-all shadow-lg"
                     >
                       Join {distributor.first_name}'s Team →
                     </a>
                     <button
                       onClick={handleCopyEmail}
-                      className="inline-flex items-center justify-center border-2 border-white text-white hover:bg-white hover:text-[#2B4C7E] px-5 py-3 lg:px-7 lg:py-4 text-sm lg:text-base font-semibold rounded-lg transition-all"
+                      className="inline-flex items-center justify-center border-2 border-white text-white hover:bg-white hover:text-[#1B3A7D] px-5 py-3 lg:px-7 lg:py-4 text-sm lg:text-base font-semibold rounded-lg transition-all"
                     >
                       {copiedEmail ? '✓ Email Copied!' : `Contact ${distributor.first_name}`}
                     </button>
@@ -264,7 +264,7 @@ export default function ReplicatedSite({ distributor }: ReplicatedSiteProps) {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-2xl shadow-xl p-8 sm:p-12">
             <div className="text-center mb-8">
-              <div className="w-24 h-24 bg-gradient-to-br from-[#2B4C7E] to-[#1a2c4e] rounded-full mx-auto mb-6 flex items-center justify-center">
+              <div className="w-24 h-24 bg-gradient-to-br from-[#1B3A7D] to-[#1a2c4e] rounded-full mx-auto mb-6 flex items-center justify-center">
                 <span className="text-4xl font-bold text-white">
                   {distributor.first_name.charAt(0)}
                   {distributor.last_name.charAt(0)}
@@ -297,7 +297,7 @@ export default function ReplicatedSite({ distributor }: ReplicatedSiteProps) {
             <div className="mt-8 text-center">
               <a
                 href={signupUrl}
-                className="inline-flex items-center justify-center px-8 py-4 bg-[#2B4C7E] text-white font-bold text-lg rounded-lg hover:bg-[#1a2c4e] transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
+                className="inline-flex items-center justify-center px-8 py-4 bg-[#1B3A7D] text-white font-bold text-lg rounded-lg hover:bg-[#1a2c4e] transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
               >
                 Join {distributor.first_name}'s Team Now →
               </a>
@@ -309,7 +309,7 @@ export default function ReplicatedSite({ distributor }: ReplicatedSiteProps) {
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
-                  <button onClick={handleCopyEmail} className="hover:text-[#2B4C7E] transition-colors">
+                  <button onClick={handleCopyEmail} className="hover:text-[#1B3A7D] transition-colors">
                     {copiedEmail ? '✓ Copied!' : distributor.email}
                   </button>
                 </div>
@@ -328,7 +328,7 @@ export default function ReplicatedSite({ distributor }: ReplicatedSiteProps) {
       </section>
 
       {/* Final CTA */}
-      <section className="py-16 bg-gradient-to-r from-[#2B4C7E] to-[#1a2c4e] text-white">
+      <section className="py-16 bg-gradient-to-r from-[#1B3A7D] to-[#1a2c4e] text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">Ready to Build Your Business?</h2>
           <p className="text-xl text-blue-100 mb-8">
@@ -336,7 +336,7 @@ export default function ReplicatedSite({ distributor }: ReplicatedSiteProps) {
           </p>
           <a
             href={signupUrl}
-            className="inline-flex items-center justify-center px-8 py-4 bg-white text-[#2B4C7E] font-bold text-lg rounded-lg hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
+            className="inline-flex items-center justify-center px-8 py-4 bg-white text-[#1B3A7D] font-bold text-lg rounded-lg hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
           >
             Join {distributor.first_name}'s Team →
           </a>

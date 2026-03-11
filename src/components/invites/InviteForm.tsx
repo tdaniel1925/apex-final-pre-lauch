@@ -54,7 +54,7 @@ export default function InviteForm() {
       <div className="min-h-screen bg-white flex flex-col items-center justify-center px-4">
         <img src="/apex-logo-full.png" alt="Apex Affinity Group" className="h-16 w-auto mb-8" />
         <div className="max-w-md w-full text-center bg-green-50 border border-green-200 rounded-2xl p-10">
-          <div className="flex items-center justify-center w-16 h-16 rounded-full mx-auto mb-4" style={{ background: '#2B4C7E' }}>
+          <div className="flex items-center justify-center w-16 h-16 rounded-full mx-auto mb-4" style={{ background: '#1B3A7D' }}>
               <i className="fa-solid fa-paper-plane" style={{ fontSize: '28px', color: '#fff' }}></i>
             </div>
           <h2 className="text-2xl font-bold text-gray-800 mb-2">Invites Sent!</h2>
@@ -64,7 +64,7 @@ export default function InviteForm() {
           <button
             onClick={() => { setStatus('idle'); setSenderName(''); setRecipients(Array.from({ length: 10 }, empty)); }}
             className="text-sm font-semibold text-white px-6 py-2.5 rounded-xl"
-            style={{ background: '#2B4C7E' }}
+            style={{ background: '#1B3A7D' }}
           >
             Send More Invites
           </button>
@@ -94,7 +94,7 @@ export default function InviteForm() {
             { icon: 'fa-calendar',   title: 'More Events Soon',  desc: 'Online sessions TBA — stay tuned' },
           ].map((ev, i) => (
             <div key={i} className="bg-blue-50 border border-blue-100 rounded-xl p-3 text-center">
-              <div className="flex items-center justify-center w-10 h-10 rounded-full mx-auto mb-2" style={{ background: '#2B4C7E' }}>
+              <div className="flex items-center justify-center w-10 h-10 rounded-full mx-auto mb-2" style={{ background: '#1B3A7D' }}>
                 <i className={`fa-solid ${ev.icon}`} style={{ fontSize: '18px', color: '#fff' }}></i>
               </div>
               <p className="text-xs font-bold text-gray-800 mb-0.5">{ev.title}</p>
@@ -131,7 +131,7 @@ export default function InviteForm() {
               Your Guests
             </h2>
             {filledCount > 0 && (
-              <span className="text-xs font-bold text-white px-2.5 py-1 rounded-full" style={{ background: '#2B4C7E' }}>
+              <span className="text-xs font-bold text-white px-2.5 py-1 rounded-full" style={{ background: '#1B3A7D' }}>
                 {filledCount} / 10 ready to send
               </span>
             )}
@@ -176,7 +176,7 @@ export default function InviteForm() {
           type="submit"
           disabled={submitting || filledCount === 0}
           className="w-full py-3.5 rounded-xl font-bold text-white text-sm transition-opacity disabled:opacity-50"
-          style={{ background: '#2B4C7E' }}
+          style={{ background: '#1B3A7D' }}
         >
           {submitting
             ? 'Sending Invites…'

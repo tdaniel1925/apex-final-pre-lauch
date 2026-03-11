@@ -102,7 +102,7 @@ export default async function DistributorPage({ params }: PageProps) {
           <p className="text-gray-600 mb-6">This distributor page is currently unavailable.</p>
           <a
             href="/signup"
-            className="inline-block px-6 py-3 bg-[#2B4C7E] text-white rounded-lg hover:bg-[#1a2c4e]"
+            className="inline-block px-6 py-3 bg-[#1B3A7D] text-white rounded-lg hover:bg-[#1a2c4e]"
           >
             Join Apex Affinity Group
           </a>

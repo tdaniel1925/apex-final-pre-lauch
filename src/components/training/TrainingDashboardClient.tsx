@@ -164,15 +164,15 @@ export default function TrainingDashboardClient({ distributorId, firstName }: Pr
       {/* Stats */}
       <div className="grid grid-cols-3 gap-4 mb-6">
         <div className="bg-white rounded-lg border border-gray-200 p-4 text-center">
-          <div className="text-2xl font-bold text-[#2B4C7E]">{completedCount}</div>
+          <div className="text-2xl font-bold text-[#1B3A7D]">{completedCount}</div>
           <div className="text-xs text-gray-500 mt-1">Episodes Completed</div>
         </div>
         <div className="bg-white rounded-lg border border-gray-200 p-4 text-center">
-          <div className="text-2xl font-bold text-[#2B4C7E]">{episodes.length}</div>
+          <div className="text-2xl font-bold text-[#1B3A7D]">{episodes.length}</div>
           <div className="text-xs text-gray-500 mt-1">Total Episodes</div>
         </div>
         <div className="bg-white rounded-lg border border-gray-200 p-4 text-center">
-          <div className="text-2xl font-bold text-[#2B4C7E]">
+          <div className="text-2xl font-bold text-[#1B3A7D]">
             {Math.round(totalListenTime / 60)}m
           </div>
           <div className="text-xs text-gray-500 mt-1">Listen Time</div>
@@ -181,7 +181,7 @@ export default function TrainingDashboardClient({ distributorId, firstName }: Pr
 
       {/* Continue Listening */}
       {continueEpisode && (
-        <div className="bg-[#2B4C7E] text-white rounded-xl p-4 mb-6">
+        <div className="bg-[#1B3A7D] text-white rounded-xl p-4 mb-6">
           <p className="text-xs font-medium text-blue-200 mb-1">Continue Listening</p>
           <p className="font-semibold text-sm mb-3">{continueEpisode.title}</p>
           <div className="w-full bg-white/20 rounded-full h-1.5 mb-3">
@@ -192,7 +192,7 @@ export default function TrainingDashboardClient({ distributorId, firstName }: Pr
           </div>
           <button
             onClick={() => setCurrentEpisode(continueEpisode)}
-            className="bg-white text-[#2B4C7E] text-xs font-semibold px-4 py-1.5 rounded-full hover:bg-blue-50 transition-colors"
+            className="bg-white text-[#1B3A7D] text-xs font-semibold px-4 py-1.5 rounded-full hover:bg-blue-50 transition-colors"
           >
             ▶ Resume ({getProgressPct(continueEpisode)}%)
           </button>
@@ -211,7 +211,7 @@ export default function TrainingDashboardClient({ distributorId, firstName }: Pr
               {currentEpisode.transcript && (
                 <button
                   onClick={() => setShowTranscript(!showTranscript)}
-                  className="text-xs text-[#2B4C7E] underline"
+                  className="text-xs text-[#1B3A7D] underline"
                 >
                   {showTranscript ? 'Hide' : 'View'} Transcript
                 </button>
@@ -253,7 +253,7 @@ export default function TrainingDashboardClient({ distributorId, firstName }: Pr
             onClick={() => setActiveCategory(cat.value)}
             className={`shrink-0 px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
               activeCategory === cat.value
-                ? 'bg-[#2B4C7E] text-white'
+                ? 'bg-[#1B3A7D] text-white'
                 : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50'
             }`}
           >
@@ -280,7 +280,7 @@ export default function TrainingDashboardClient({ distributorId, firstName }: Pr
               <div
                 key={episode.id}
                 className={`bg-white rounded-lg border transition-all ${
-                  isPlaying ? 'border-[#2B4C7E] shadow-sm' : 'border-gray-200 hover:border-gray-300'
+                  isPlaying ? 'border-[#1B3A7D] shadow-sm' : 'border-gray-200 hover:border-gray-300'
                 }`}
               >
                 <div className="flex items-center gap-3 p-4">
@@ -288,9 +288,9 @@ export default function TrainingDashboardClient({ distributorId, firstName }: Pr
                   <div
                     className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 text-sm ${
                       isCompleted
-                        ? 'bg-[#2B4C7E] text-white'
+                        ? 'bg-[#1B3A7D] text-white'
                         : isPlaying
-                        ? 'bg-blue-100 text-[#2B4C7E]'
+                        ? 'bg-blue-100 text-[#1B3A7D]'
                         : 'bg-gray-100 text-gray-400'
                     }`}
                   >
@@ -305,7 +305,7 @@ export default function TrainingDashboardClient({ distributorId, firstName }: Pr
                         {episode.title}
                       </span>
                       {isCompleted && (
-                        <span className="text-xs text-[#2B4C7E] font-medium shrink-0">Completed</span>
+                        <span className="text-xs text-[#1B3A7D] font-medium shrink-0">Completed</span>
                       )}
                     </div>
                     {episode.description && (
@@ -318,7 +318,7 @@ export default function TrainingDashboardClient({ distributorId, firstName }: Pr
                       {ep && !isCompleted && pct > 0 && (
                         <>
                           <span className="text-gray-300">•</span>
-                          <span className="text-xs text-[#2B4C7E]">{pct}% complete</span>
+                          <span className="text-xs text-[#1B3A7D]">{pct}% complete</span>
                         </>
                       )}
                     </div>
@@ -326,7 +326,7 @@ export default function TrainingDashboardClient({ distributorId, firstName }: Pr
                     {pct > 0 && !isCompleted && (
                       <div className="w-full bg-gray-100 rounded-full h-1 mt-1.5">
                         <div
-                          className="bg-[#2B4C7E] rounded-full h-1 transition-all"
+                          className="bg-[#1B3A7D] rounded-full h-1 transition-all"
                           style={{ width: `${pct}%` }}
                         />
                       </div>
@@ -340,8 +340,8 @@ export default function TrainingDashboardClient({ distributorId, firstName }: Pr
                         onClick={() => setCurrentEpisode(episode)}
                         className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
                           isPlaying
-                            ? 'bg-[#2B4C7E] text-white'
-                            : 'bg-[#2B4C7E]/10 text-[#2B4C7E] hover:bg-[#2B4C7E]/20'
+                            ? 'bg-[#1B3A7D] text-white'
+                            : 'bg-[#1B3A7D]/10 text-[#1B3A7D] hover:bg-[#1B3A7D]/20'
                         }`}
                       >
                         {isPlaying ? '▶ Playing' : ep?.current_position_seconds ? '▶ Resume' : '▶ Play'}

@@ -60,7 +60,7 @@ export default function ForgotPasswordForm() {
               setSuccess(false);
               setError(null);
             }}
-            className="text-[#2B4C7E] hover:underline font-medium"
+            className="text-[#1B3A7D] hover:underline font-medium"
           >
             try again
           </button>
@@ -83,7 +83,7 @@ export default function ForgotPasswordForm() {
           required
           autoComplete="email"
           placeholder="you@example.com"
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
           disabled={isPending}
         />
       </div>
@@ -99,7 +99,7 @@ export default function ForgotPasswordForm() {
       <button
         type="submit"
         disabled={isPending}
-        className="w-full py-3 px-6 bg-gradient-to-r from-[#2B4C7E] to-[#1a2c4e] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full py-3 px-6 bg-gradient-to-r from-[#1B3A7D] to-[#1a2c4e] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {isPending ? (
           <span className="flex items-center justify-center gap-2">

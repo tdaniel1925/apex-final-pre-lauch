@@ -70,9 +70,9 @@ export default function BusinessCardDesigner({ distributor, templates }: Props) 
       },
       colors: {
         background: '#F5F5F7',
-        nameColor: '#2B4C7E',
+        nameColor: '#1B3A7D',
         titleColor: '#E9546B',
-        contactColor: '#2B4C7E',
+        contactColor: '#1B3A7D',
         accentColor: '#E9546B',
       },
       fonts: {
@@ -175,8 +175,8 @@ export default function BusinessCardDesigner({ distributor, templates }: Props) 
                   setSelectedTemplate(template);
                   setStep('design');
                 }}
-                className={`group relative bg-white rounded-xl border-2 p-4 hover:border-[#2B4C7E] transition-all ${
-                  selectedTemplate.id === template.id ? 'border-[#2B4C7E] ring-2 ring-blue-200' : 'border-gray-200'
+                className={`group relative bg-white rounded-xl border-2 p-4 hover:border-[#1B3A7D] transition-all ${
+                  selectedTemplate.id === template.id ? 'border-[#1B3A7D] ring-2 ring-blue-200' : 'border-gray-200'
                 }`}
               >
                 {template.preview_front_url ? (
@@ -194,7 +194,7 @@ export default function BusinessCardDesigner({ distributor, templates }: Props) 
                 )}
                 <h3 className="font-bold text-gray-900 mb-1">{template.name}</h3>
                 <p className="text-sm text-gray-600">{template.description}</p>
-                <div className="mt-3 text-sm font-semibold text-[#2B4C7E] group-hover:underline">
+                <div className="mt-3 text-sm font-semibold text-[#1B3A7D] group-hover:underline">
                   Select Template →
                 </div>
               </button>
@@ -324,7 +324,7 @@ export default function BusinessCardDesigner({ distributor, templates }: Props) 
                     type="checkbox"
                     checked={includeQR}
                     onChange={(e) => setIncludeQR(e.target.checked)}
-                    className="w-4 h-4 text-[#2B4C7E] rounded focus:ring-2 focus:ring-blue-200"
+                    className="w-4 h-4 text-[#1B3A7D] rounded focus:ring-2 focus:ring-blue-200"
                   />
                   <span className="text-sm font-medium text-gray-700">
                     Include QR code linking to your website
@@ -342,7 +342,7 @@ export default function BusinessCardDesigner({ distributor, templates }: Props) 
                 </button>
                 <button
                   onClick={() => setStep('order')}
-                  className="w-full bg-[#2B4C7E] text-white py-2.5 rounded-lg font-semibold hover:bg-[#1e3a5f] transition-colors"
+                  className="w-full bg-[#1B3A7D] text-white py-2.5 rounded-lg font-semibold hover:bg-[#1e3a5f] transition-colors"
                 >
                   Continue to Order →
                 </button>
@@ -508,7 +508,7 @@ export default function BusinessCardDesigner({ distributor, templates }: Props) 
                       height: '200px',
                       backgroundImage: selectedTemplate.preview_back_url
                         ? `url(${selectedTemplate.preview_back_url})`
-                        : 'linear-gradient(135deg, #2B4C7E 0%, #567EBB 100%)',
+                        : 'linear-gradient(135deg, #1B3A7D 0%, #567EBB 100%)',
                       backgroundSize: 'cover',
                       backgroundPosition: 'center',
                       borderRadius: '12px',
@@ -536,7 +536,7 @@ export default function BusinessCardDesigner({ distributor, templates }: Props) 
           </p>
           <button
             onClick={() => setStep('design')}
-            className="text-sm text-[#2B4C7E] hover:underline"
+            className="text-sm text-[#1B3A7D] hover:underline"
           >
             ← Back to Edit
           </button>

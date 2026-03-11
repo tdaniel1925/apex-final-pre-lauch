@@ -1,59 +1,41 @@
 // =============================================
-// Dashboard Page
-// Main distributor dashboard
+// Dashboard V4 - Shadcn/ui Modern Design
+// Professional SaaS-style dashboard
 // =============================================
 
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { createServiceClient } from '@/lib/supabase/service';
-import ReferralLink from '@/components/dashboard/ReferralLink';
-import TeamStatisticsUser from '@/components/dashboard/TeamStatisticsUser';
-import DashboardClient from '@/components/dashboard/DashboardClient';
-import Road500Banner from '@/components/dashboard/Road500Banner';
-import ActivityFeed from '@/components/dashboard/ActivityFeed';
 import type { Distributor } from '@/lib/types';
 import { getEnrolleeStats } from '@/lib/enrollees/enrollee-counter';
+import DashboardClient from '@/components/dashboard/DashboardClient';
+import Road500Banner from '@/components/dashboard/Road500Banner';
+import DashboardV4Client from '@/components/dashboard/DashboardV4Client';
 
 export const metadata = {
   title: 'Dashboard - Apex Affinity Group',
-  description: 'Distributor dashboard',
+  description: 'Modern distributor dashboard',
 };
 
-// Enable caching for 60 seconds
 export const revalidate = 60;
 
-export default async function DashboardPage() {
+export default async function DashboardV4Page() {
   const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) redirect('/login');
 
-  // Check if user is authenticated
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    redirect('/login');
-  }
-
-  // Get distributor data (use service client to bypass RLS)
   const serviceClient = createServiceClient();
-
-  // Fetch distributor first
   const { data: distributor, error } = await serviceClient
     .from('distributors')
     .select('*')
     .eq('auth_user_id', user.id)
     .single();
 
-  if (error || !distributor) {
-    console.error('Error loading distributor:', error);
-    redirect('/signup');
-  }
+  if (error || !distributor) redirect('/signup');
 
   const dist = distributor as Distributor;
 
-  // OPTIMIZATION: Run all queries in parallel instead of sequential
-  const [parentData, sponsorData, directReferrals, matrixChildrenData, enrolleeStats] = await Promise.all([
-    // Get matrix parent info (only needed fields)
+  const [parentData, sponsorData, directReferrals, matrixChildrenData, enrolleeStats, recentActivity] = await Promise.all([
     dist.matrix_parent_id
       ? serviceClient
           .from('distributors')
@@ -62,7 +44,6 @@ export default async function DashboardPage() {
           .single()
       : Promise.resolve({ data: null }),
 
-    // Get sponsor info (only needed fields)
     dist.sponsor_id
       ? serviceClient
           .from('distributors')
@@ -71,174 +52,67 @@ export default async function DashboardPage() {
           .single()
       : Promise.resolve({ data: null }),
 
-    // Get direct referrals (only needed fields for statistics)
     serviceClient
       .from('distributors')
       .select('id, first_name, last_name, created_at, licensing_status, matrix_depth')
       .eq('sponsor_id', dist.id)
-      .order('created_at', { ascending: false }),
+      .order('created_at', { ascending: false })
+      .limit(10),
 
-    // Get matrix children (only needed fields for statistics)
     serviceClient
       .from('distributors')
       .select('id, first_name, last_name, created_at, licensing_status, matrix_position')
       .eq('matrix_parent_id', dist.id)
       .order('matrix_position', { ascending: true }),
 
-    // Get enrollee statistics
     getEnrolleeStats(dist.id),
+
+    serviceClient
+      .from('distributors')
+      .select('first_name, last_name, created_at')
+      .eq('sponsor_id', dist.id)
+      .order('created_at', { ascending: false })
+      .limit(5),
   ]);
 
-  // Process parent name
   const parentName = parentData.data
     ? `${parentData.data.first_name} ${parentData.data.last_name}`
-    : 'Direct under Master';
+    : 'Master';
 
-  // Process sponsor name
   const sponsorName = sponsorData.data
     ? `${sponsorData.data.first_name} ${sponsorData.data.last_name}`
     : 'None';
 
-  // Process referrals
   const recruits = (directReferrals.data || []) as Distributor[];
-  const referralCount = recruits.length;
-
-  // Process matrix children
   const matrixChildren = (matrixChildrenData.data || []) as Distributor[];
-  const childrenCount = matrixChildren.length;
+  const recentMembers = (recentActivity.data || []) as Array<{first_name: string; last_name: string; created_at: string}>;
 
   const referralLink = `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3050'}/${dist.slug}`;
+
+  const dashboardData = {
+    distributor: dist,
+    stats: {
+      repNumber: dist.rep_number || 0,
+      level: dist.matrix_depth,
+      personalEnrollees: enrolleeStats.personalEnrollees || 0,
+      organizationEnrollees: enrolleeStats.organizationEnrollees || 0,
+      matrixChildren: matrixChildren.length,
+      directReferrals: recruits.length,
+    },
+    placement: {
+      matrixParent: parentName,
+      sponsor: sponsorName,
+    },
+    referralLink,
+    recentMembers,
+    recruits,
+    matrixChildren,
+  };
 
   return (
     <DashboardClient distributor={dist}>
       <Road500Banner />
-      <div className="p-4">
-      {/* Welcome Header */}
-      <div className="mb-4">
-        <h1 className="text-2xl font-bold text-gray-900">
-          It's good to see you, {dist.first_name}!
-        </h1>
-        <p className="text-sm text-gray-600 mt-1">@{dist.slug}</p>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
-        {/* Left Column - Stats */}
-        <div className="lg:col-span-2 space-y-3">
-          {/* Stats Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
-            {/* Rep Number */}
-            <div className="bg-white rounded-lg shadow p-3">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-xs text-gray-600 mb-0.5">Rep Number</p>
-                  <p className="text-2xl font-bold text-[#2B4C7E]">
-                    #{dist.rep_number ?? 'N/A'}
-                  </p>
-                </div>
-                <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                  <svg className="w-5 h-5 text-[#2B4C7E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                  </svg>
-                </div>
-              </div>
-              <p className="text-[10px] text-gray-500 mt-1">Level {dist.matrix_depth}</p>
-            </div>
-
-            {/* Personal Enrollees */}
-            <div className="bg-white rounded-lg shadow p-3">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-xs text-gray-600 mb-0.5">Personal Enrollees</p>
-                  <p className="text-2xl font-bold text-[#2B4C7E]">{enrolleeStats.personalEnrollees || 0}</p>
-                </div>
-                <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                  <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                  </svg>
-                </div>
-              </div>
-              <p className="text-[10px] text-gray-500 mt-1">You personally signed up</p>
-            </div>
-
-            {/* Organization Enrollees */}
-            <div className="bg-white rounded-lg shadow p-3">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-xs text-gray-600 mb-0.5">Organization Enrollees</p>
-                  <p className="text-2xl font-bold text-[#2B4C7E]">{enrolleeStats.organizationEnrollees || 0}</p>
-                </div>
-                <div className="w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center">
-                  <svg className="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                </div>
-              </div>
-              <p className="text-[10px] text-gray-500 mt-1">All downline enrollees</p>
-            </div>
-
-            {/* Matrix Children */}
-            <div className="bg-white rounded-lg shadow p-3">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-xs text-gray-600 mb-0.5">Matrix Children</p>
-                  <p className="text-2xl font-bold text-[#2B4C7E]">{childrenCount || 0}</p>
-                </div>
-                <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
-                  <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                </div>
-              </div>
-              <p className="text-[10px] text-gray-500 mt-1">Capacity: {childrenCount || 0}/5</p>
-            </div>
-
-            {/* Level */}
-            <div className="bg-white rounded-lg shadow p-3">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-xs text-gray-600 mb-0.5">Your Level</p>
-                  <p className="text-2xl font-bold text-[#2B4C7E]">{dist.matrix_depth}</p>
-                </div>
-                <div className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center">
-                  <svg className="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-              </div>
-              <p className="text-[10px] text-gray-500 mt-1">of 7 levels deep</p>
-            </div>
-          </div>
-
-          {/* Matrix Info Card */}
-          <div className="bg-white rounded-lg shadow p-3">
-            <h2 className="text-lg font-bold text-gray-900 mb-2">Matrix Placement</h2>
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <p className="text-xs text-gray-600 mb-0.5">Matrix Parent</p>
-                <p className="text-sm font-semibold text-gray-900">{parentName}</p>
-              </div>
-              <div>
-                <p className="text-xs text-gray-600 mb-0.5">Sponsor</p>
-                <p className="text-sm font-semibold text-gray-900">{sponsorName}</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Referral Link Card */}
-          <ReferralLink referralLink={referralLink} />
-        </div>
-
-        {/* Right Column - Team Statistics */}
-        <div>
-          <TeamStatisticsUser recruits={recruits} matrixChildren={matrixChildren} />
-        </div>
-      </div>
-
-      {/* Activity Feed - Full Width */}
-      <div className="mt-4">
-        <ActivityFeed />
-      </div>
-    </div>
+      <DashboardV4Client data={dashboardData} />
     </DashboardClient>
   );
 }

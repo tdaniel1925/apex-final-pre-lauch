@@ -55,7 +55,7 @@ export default function MatrixChildrenUser({ children }: MatrixChildrenUserProps
           <span className="text-xs text-gray-600 bg-gray-100 px-2 py-0.5 rounded-full">
             {filledCount}/5 filled
           </span>
-          <span className="text-xs font-semibold text-[#2B4C7E]">
+          <span className="text-xs font-semibold text-[#1B3A7D]">
             {fillPercentage}%
           </span>
         </div>
@@ -65,7 +65,7 @@ export default function MatrixChildrenUser({ children }: MatrixChildrenUserProps
       <div className="mb-3">
         <div className="bg-gray-200 rounded-full h-2">
           <div
-            className="bg-gradient-to-r from-[#2B4C7E] to-purple-600 h-2 rounded-full transition-all"
+            className="bg-gradient-to-r from-[#1B3A7D] to-purple-600 h-2 rounded-full transition-all"
             style={{ width: `${fillPercentage}%` }}
           />
         </div>
@@ -89,16 +89,16 @@ export default function MatrixChildrenUser({ children }: MatrixChildrenUserProps
               // Filled Slot - Clickable to drill down
               <a
                 href={`/dashboard/matrix/${slot.distributor!.id}`}
-                className="block border-2 border-[#2B4C7E]/30 rounded-lg p-2 bg-purple-50 hover:border-[#2B4C7E] hover:shadow-md transition-all cursor-pointer"
+                className="block border-2 border-[#1B3A7D]/30 rounded-lg p-2 bg-purple-50 hover:border-[#1B3A7D] hover:shadow-md transition-all cursor-pointer"
               >
                 <div className="text-center">
                   {/* Position Badge */}
-                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-[#2B4C7E] rounded-full flex items-center justify-center">
+                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-[#1B3A7D] rounded-full flex items-center justify-center">
                     <span className="text-[8px] font-bold text-white">{slot.position}</span>
                   </div>
 
                   {/* Avatar */}
-                  <div className="w-8 h-8 mx-auto bg-gradient-to-br from-[#2B4C7E] to-purple-600 rounded-full flex items-center justify-center mb-1">
+                  <div className="w-8 h-8 mx-auto bg-gradient-to-br from-[#1B3A7D] to-purple-600 rounded-full flex items-center justify-center mb-1">
                     <span className="text-[10px] font-bold text-white">
                       {slot.distributor!.first_name.charAt(0)}
                       {slot.distributor!.last_name.charAt(0)}
@@ -126,7 +126,7 @@ export default function MatrixChildrenUser({ children }: MatrixChildrenUserProps
 
                   {/* Drill Down Indicator */}
                   <div className="mt-1">
-                    <span className="text-[8px] text-[#2B4C7E] font-semibold">
+                    <span className="text-[8px] text-[#1B3A7D] font-semibold">
                       View Matrix →
                     </span>
                   </div>

@@ -322,7 +322,7 @@ export default function GenealogyV2() {
         <nav className="flex-1 px-4 py-4 space-y-1 overflow-y-auto">
           <div className="mb-6">
             <p className="px-4 text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-2">Main</p>
-            <Link href="/dashboard-v2" className="flex items-center gap-3 px-4 py-3 text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 rounded-small transition-all">
+            <Link href="/dashboard" className="flex items-center gap-3 px-4 py-3 text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 rounded-small transition-all">
               <i className="ri-dashboard-line"></i>
               <span className="font-medium">Dashboard</span>
             </Link>

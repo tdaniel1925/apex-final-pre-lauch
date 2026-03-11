@@ -28,10 +28,10 @@ export default function Testimonials() {
   ];
 
   return (
-    <section className="py-24 bg-gradient-to-br from-[#2B4C7E] to-[#1a2c4e] text-white">
+    <section className="py-24 bg-gradient-to-br from-[#1B3A7D] to-[#1a2c4e] text-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-[#DC2626] font-semibold text-sm uppercase tracking-wide mb-4 block">
+          <span className="text-[#C7181F] font-semibold text-sm uppercase tracking-wide mb-4 block">
             Success Stories
           </span>
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -46,9 +46,9 @@ export default function Testimonials() {
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-[#DC2626]/50 transition-all"
+              className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-[#C7181F]/50 transition-all"
             >
-              <div className="flex gap-1 text-[#DC2626] mb-6">
+              <div className="flex gap-1 text-[#C7181F] mb-6">
                 {[...Array(testimonial.rating)].map((_, i) => (
                   <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 20 20">
                     <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />

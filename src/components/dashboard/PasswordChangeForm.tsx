@@ -87,7 +87,7 @@ export default function PasswordChangeForm() {
           type="password"
           name="current_password"
           required
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
         />
       </div>
 
@@ -100,7 +100,7 @@ export default function PasswordChangeForm() {
           name="new_password"
           required
           minLength={8}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
         />
         <p className="text-xs text-gray-500 mt-1">Minimum 8 characters</p>
       </div>
@@ -114,7 +114,7 @@ export default function PasswordChangeForm() {
           name="confirm_password"
           required
           minLength={8}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
         />
       </div>
 
@@ -131,7 +131,7 @@ export default function PasswordChangeForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="px-6 py-2 bg-[#2B4C7E] text-white rounded-md hover:bg-[#1a2c4e] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        className="px-6 py-2 bg-[#1B3A7D] text-white rounded-md hover:bg-[#1a2c4e] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
       >
         {isSubmitting ? 'Updating...' : 'Update Password'}
       </button>

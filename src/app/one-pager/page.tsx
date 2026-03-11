@@ -26,7 +26,7 @@ export default function OnePagerPage() {
         }
 
         .op-header {
-          background: linear-gradient(135deg, #1a2f50 0%, #2B4C7E 100%);
+          background: linear-gradient(135deg, #1a2f50 0%, #1B3A7D 100%);
           color: #fff;
           padding: 36px 48px 28px;
           display: flex;
@@ -57,7 +57,7 @@ export default function OnePagerPage() {
 
         .op-tagline {
           background: #f0f5ff;
-          border-left: 5px solid #2B4C7E;
+          border-left: 5px solid #1B3A7D;
           padding: 18px 48px;
           font-size: 17px;
           font-weight: 600;
@@ -75,7 +75,7 @@ export default function OnePagerPage() {
           font-weight: 800;
           text-transform: uppercase;
           letter-spacing: 1.5px;
-          color: #2B4C7E;
+          color: #1B3A7D;
           margin: 0 0 14px;
         }
 
@@ -104,7 +104,7 @@ export default function OnePagerPage() {
         .op-pillar-icon {
           width: 44px;
           height: 44px;
-          background: #2B4C7E;
+          background: #1B3A7D;
           border-radius: 50%;
           display: flex;
           align-items: center;
@@ -128,7 +128,7 @@ export default function OnePagerPage() {
           font-size: 10px;
           text-transform: uppercase;
           letter-spacing: 1px;
-          color: #2B4C7E;
+          color: #1B3A7D;
           font-weight: 700;
           margin: 0 0 8px;
         }
@@ -155,7 +155,7 @@ export default function OnePagerPage() {
 
         .op-benefit i {
           font-size: 14px;
-          color: #2B4C7E;
+          color: #1B3A7D;
           margin-top: 2px;
           flex-shrink: 0;
         }
@@ -199,7 +199,7 @@ export default function OnePagerPage() {
         }
 
         .op-footer {
-          background: linear-gradient(135deg, #1a2f50 0%, #2B4C7E 100%);
+          background: linear-gradient(135deg, #1a2f50 0%, #1B3A7D 100%);
           color: #fff;
           padding: 24px 48px;
           display: flex;
@@ -247,7 +247,7 @@ export default function OnePagerPage() {
 
         .op-chain-item i {
           font-size: 22px;
-          color: #2B4C7E;
+          color: #1B3A7D;
         }
 
         .op-chain-item span {
@@ -268,7 +268,7 @@ export default function OnePagerPage() {
           position: fixed;
           bottom: 24px;
           right: 24px;
-          background: #2B4C7E;
+          background: #1B3A7D;
           color: #fff;
           border: none;
           border-radius: 10px;
@@ -365,7 +365,7 @@ export default function OnePagerPage() {
             ].map((cat, i) => (
               <div key={i} style={{ background: '#fff', border: '1.5px solid #dbeafe', borderRadius: '8px', padding: '12px 10px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-                  <i className={`fa-solid ${cat.icon}`} style={{ fontSize: '14px', color: '#2B4C7E' }}></i>
+                  <i className={`fa-solid ${cat.icon}`} style={{ fontSize: '14px', color: '#1B3A7D' }}></i>
                   <strong style={{ fontSize: '12px', color: '#1a2f50' }}>{cat.title}</strong>
                 </div>
                 {cat.items.map((item, j) => (

@@ -11,7 +11,7 @@ export default function AgentPulseSidebarBanner() {
   return (
     <Link
       href="/dashboard/agentpulse"
-      className="block mx-3 mb-3 p-3 bg-[#2B4C7E] rounded-lg hover:from-[#1e3555] hover:to-[#2B4C7E] transition-all group"
+      className="block mx-3 mb-3 p-3 bg-[#1B3A7D] rounded-lg hover:from-[#1e3555] hover:to-[#1B3A7D] transition-all group"
     >
       <div className="flex items-start gap-2">
         <div className="text-lg">🚀</div>

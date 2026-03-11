@@ -70,7 +70,7 @@ export default async function SignupPage({ searchParams }: SignupPageProps) {
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-600">
             Already have an account?{' '}
-            <a href="/login" className="text-[#2B4C7E] hover:underline font-medium">
+            <a href="/login" className="text-[#1B3A7D] hover:underline font-medium">
               Sign In
             </a>
           </p>

@@ -29,7 +29,7 @@ function buildEmailHtml(body: string, agentName: string, prospectName: string): 
     <tr><td align="center">
       <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08);">
         <tr>
-          <td style="background:linear-gradient(135deg,#1a2f50 0%,#2B4C7E 100%);padding:28px 40px;">
+          <td style="background:linear-gradient(135deg,#1a2f50 0%,#1B3A7D 100%);padding:28px 40px;">
             <img src="https://theapexway.net/apex-logo-white.png" alt="Apex Affinity Group" style="height:48px;width:auto;" />
           </td>
         </tr>

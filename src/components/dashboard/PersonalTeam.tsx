@@ -104,7 +104,7 @@ export default function PersonalTeam({ recruits }: PersonalTeamProps) {
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="flex-1 px-2 py-1.5 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2B4C7E]"
+            className="flex-1 px-2 py-1.5 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-[#1B3A7D]"
           >
             <option value="all">All Status</option>
             <option value="active">Active Only</option>
@@ -113,7 +113,7 @@ export default function PersonalTeam({ recruits }: PersonalTeamProps) {
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as SortField)}
-            className="flex-1 px-2 py-1.5 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2B4C7E]"
+            className="flex-1 px-2 py-1.5 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-[#1B3A7D]"
           >
             <option value="created_at">Date Joined</option>
             <option value="first_name">Name</option>
@@ -194,7 +194,7 @@ export default function PersonalTeam({ recruits }: PersonalTeamProps) {
                     <tr key={member.id} className="hover:bg-gray-50">
                       <td className="px-3 py-2">
                         <div className="flex items-center gap-2">
-                          <div className="w-6 h-6 bg-[#2B4C7E] rounded-full flex items-center justify-center text-white font-bold text-[10px] flex-shrink-0">
+                          <div className="w-6 h-6 bg-[#1B3A7D] rounded-full flex items-center justify-center text-white font-bold text-[10px] flex-shrink-0">
                             {member.first_name.charAt(0)}
                             {member.last_name.charAt(0)}
                           </div>
@@ -211,7 +211,7 @@ export default function PersonalTeam({ recruits }: PersonalTeamProps) {
                       <td className="px-3 py-2 text-gray-900">@{member.slug}</td>
                       <td className="px-3 py-2">
                         <div className="text-xs">
-                          <span className="font-semibold text-[#2B4C7E]">
+                          <span className="font-semibold text-[#1B3A7D]">
                             Rep #{member.rep_number ?? 'N/A'}
                           </span>
                           <span className="text-gray-500 ml-1">L{member.matrix_depth || 0}</span>

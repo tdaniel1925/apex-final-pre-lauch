@@ -41,7 +41,7 @@ export default function ResetPasswordPage() {
         <div className="bg-white rounded-2xl shadow-xl p-8">
           <Suspense fallback={
             <div className="text-center py-12">
-              <div className="w-16 h-16 border-4 border-[#2B4C7E] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+              <div className="w-16 h-16 border-4 border-[#1B3A7D] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
               <p className="text-gray-600">Loading...</p>
             </div>
           }>
@@ -53,7 +53,7 @@ export default function ResetPasswordPage() {
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-600">
             Remember your password?{' '}
-            <a href="/login" className="text-[#2B4C7E] hover:underline font-medium">
+            <a href="/login" className="text-[#1B3A7D] hover:underline font-medium">
               Back to Login
             </a>
           </p>

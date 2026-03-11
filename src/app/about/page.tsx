@@ -35,13 +35,13 @@ export default function AboutPage() {
                   <div className="nav-menu-wrapper">
                     <ul className="navbar-nav mr-auto">
                       <li className="nav-item"><a className="nav-link" href="/">Home</a></li>
-                      <li className="nav-item"><a className="nav-link" href="/about" style={{ color: '#2B4C7E', fontWeight: 700 }}>About</a></li>
+                      <li className="nav-item"><a className="nav-link" href="/about" style={{ color: '#1B3A7D', fontWeight: 700 }}>About</a></li>
                       <li className="nav-item"><a className="nav-link" href="/#faq">FAQs</a></li>
                       <li className="nav-item"><a className="nav-link" href="/#contact">Contact</a></li>
                     </ul>
                   </div>
                   <div className="header-btn">
-                    <a href="/signup" className="btn-default" style={{ background: '#2B4C7E', backgroundColor: '#2B4C7E', backgroundImage: 'none', borderColor: '#2B4C7E' }}>
+                    <a href="/signup" className="btn-default" style={{ background: '#1B3A7D', backgroundColor: '#1B3A7D', backgroundImage: 'none', borderColor: '#1B3A7D' }}>
                       Join the Waitlist
                     </a>
                   </div>
@@ -55,7 +55,7 @@ export default function AboutPage() {
         <div className="hero hero-video dark-section" style={{ minHeight: '420px' }}>
           <div style={{
             position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
-            background: 'linear-gradient(135deg, #1a2f50 0%, #2B4C7E 60%, #1a3a6b 100%)',
+            background: 'linear-gradient(135deg, #1a2f50 0%, #1B3A7D 60%, #1a3a6b 100%)',
             zIndex: 0
           }} />
           <div className="container" style={{ position: 'relative', zIndex: 2, paddingTop: '100px', paddingBottom: '80px' }}>
@@ -94,7 +94,7 @@ export default function AboutPage() {
                   But we didn't stop there. We were founded on a simple belief: the insurance industry works best when agents are genuinely equipped to serve — not just recruited and left to figure it out. So we built the infrastructure around our products to match: AI-powered tools, structured training, strong carrier relationships, compliance support, and a community of professionals invested in each other's growth.
                 </p>
                 <p style={{ fontSize: '17px', color: '#4b5563', lineHeight: '1.8' }}>
-                  <strong style={{ color: '#2B4C7E' }}>The result?</strong> Agents who sell world-class products with world-class support — and clients who are better protected because of it.
+                  <strong style={{ color: '#1B3A7D' }}>The result?</strong> Agents who sell world-class products with world-class support — and clients who are better protected because of it.
                 </p>
               </div>
             </div>
@@ -178,11 +178,11 @@ export default function AboutPage() {
               ].map((pillar, i) => (
                 <div key={i} className="col-lg-4 col-md-6" style={{ marginBottom: '30px' }}>
                   <div style={{ background: pillar.color, border: '2px solid #dbeafe', borderRadius: '16px', padding: '40px 32px', height: '100%', textAlign: 'center' }}>
-                    <div style={{ width: '72px', height: '72px', background: '#2B4C7E', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px' }}>
+                    <div style={{ width: '72px', height: '72px', background: '#1B3A7D', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px' }}>
                       <i className={`fa-solid ${pillar.icon}`} style={{ fontSize: '30px', color: '#fff' }}></i>
                     </div>
                     <h3 style={{ fontSize: '26px', fontWeight: 800, color: '#1a2f50', marginBottom: '6px' }}>{pillar.title}</h3>
-                    <p style={{ fontSize: '13px', color: '#2B4C7E', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '16px' }}>{pillar.sub}</p>
+                    <p style={{ fontSize: '13px', color: '#1B3A7D', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '16px' }}>{pillar.sub}</p>
                     <p style={{ fontSize: '15px', color: '#4b5563', lineHeight: '1.8' }}>{pillar.desc}</p>
                   </div>
                 </div>
@@ -217,7 +217,7 @@ export default function AboutPage() {
                 <div key={i} className="col-lg-4 col-md-6" style={{ marginBottom: '24px' }}>
                   <div style={{ background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '14px', padding: '28px 24px', height: '100%' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '14px' }}>
-                      <div style={{ width: '46px', height: '46px', background: '#2B4C7E', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <div style={{ width: '46px', height: '46px', background: '#1B3A7D', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                         <i className={`fa-solid ${tool.icon}`} style={{ fontSize: '20px', color: '#93c5fd' }}></i>
                       </div>
                       <h4 style={{ margin: 0, fontSize: '18px', fontWeight: 700, color: '#fff' }}>{tool.name}</h4>
@@ -257,7 +257,7 @@ export default function AboutPage() {
               ].map((cat, i) => (
                 <div key={i} className="col-lg-3 col-md-6" style={{ marginBottom: '24px' }}>
                   <div style={{ background: '#f8faff', border: '2px solid #dbeafe', borderRadius: '14px', padding: '28px 22px', height: '100%', textAlign: 'center' }}>
-                    <div style={{ width: '60px', height: '60px', background: '#2B4C7E', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
+                    <div style={{ width: '60px', height: '60px', background: '#1B3A7D', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
                       <i className={`fa-solid ${cat.icon}`} style={{ fontSize: '24px', color: '#fff' }}></i>
                     </div>
                     <h4 style={{ fontSize: '18px', fontWeight: 800, color: '#1a2f50', marginBottom: '10px' }}>{cat.title}</h4>
@@ -281,7 +281,7 @@ export default function AboutPage() {
                 <p style={{ fontSize: '17px', color: '#4b5563', lineHeight: '1.8', maxWidth: '600px', margin: '0 auto 36px' }}>
                   Join the professionals who've stopped figuring it out alone and started building something that lasts. No cost to join. No pressure. Just a genuine home for your career.
                 </p>
-                <a href="/signup" className="btn-default" style={{ background: '#2B4C7E', backgroundColor: '#2B4C7E', backgroundImage: 'none', borderColor: '#2B4C7E', fontSize: '17px', padding: '16px 48px' }}>
+                <a href="/signup" className="btn-default" style={{ background: '#1B3A7D', backgroundColor: '#1B3A7D', backgroundImage: 'none', borderColor: '#1B3A7D', fontSize: '17px', padding: '16px 48px' }}>
                   Join the Waitlist Today
                 </a>
               </div>

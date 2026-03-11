@@ -24,7 +24,7 @@ export function buildReminderEmail(recipientName: string, senderName: string) {
 
         <!-- HEADER -->
         <tr>
-          <td style="background:linear-gradient(135deg,#1a2f50 0%,#2B4C7E 100%);padding:36px 40px;text-align:center;">
+          <td style="background:linear-gradient(135deg,#1a2f50 0%,#1B3A7D 100%);padding:36px 40px;text-align:center;">
             <img src="https://reachtheapex.net/apex-logo-white.png" alt="Apex Affinity Group" style="height:90px;width:auto;" />
             <div style="margin-top:16px;display:inline-block;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:999px;padding:5px 18px;">
               <span style="color:#93c5fd;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;">📅 Quick Reminder</span>
@@ -48,20 +48,20 @@ export function buildReminderEmail(recipientName: string, senderName: string) {
             <hr style="border:none;border-top:1px solid #e5e7eb;margin:0 0 28px;" />
 
             <!-- THE SCHEDULE -->
-            <p style="margin:0 0 20px;font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#2B4C7E;">Mark Your Calendar</p>
+            <p style="margin:0 0 20px;font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#1B3A7D;">Mark Your Calendar</p>
 
             <!-- Event 1: Webinar -->
             <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:20px;background:#eff6ff;border-radius:12px;padding:20px;">
               <tr>
                 <td style="width:56px;vertical-align:top;padding-top:4px;">
-                  <div style="width:48px;height:48px;background:#2B4C7E;border-radius:12px;text-align:center;line-height:48px;font-size:24px;">🎙️</div>
+                  <div style="width:48px;height:48px;background:#1B3A7D;border-radius:12px;text-align:center;line-height:48px;font-size:24px;">🎙️</div>
                 </td>
                 <td style="padding-left:16px;">
                   <p style="margin:0 0 6px;font-size:18px;font-weight:800;color:#1a2f50;">Pre-Launch Webinar</p>
-                  <p style="margin:0 0 8px;font-size:16px;font-weight:700;color:#2B4C7E;">Monday, February 23rd at 6:30 PM Central</p>
+                  <p style="margin:0 0 8px;font-size:16px;font-weight:700;color:#1B3A7D;">Monday, February 23rd at 6:30 PM Central</p>
                   <p style="margin:0;font-size:14px;color:#6b7280;line-height:1.6;">Join us live for a complete walkthrough of the platform, our product lineup, compensation plan, and how to get started. This is the official kickoff!</p>
                   <div style="margin-top:12px;">
-                    <a href="${webinarLink}" style="display:inline-block;background:#2B4C7E;color:#ffffff;font-weight:700;font-size:14px;text-decoration:none;padding:10px 24px;border-radius:8px;">
+                    <a href="${webinarLink}" style="display:inline-block;background:#1B3A7D;color:#ffffff;font-weight:700;font-size:14px;text-decoration:none;padding:10px 24px;border-radius:8px;">
                       Join Webinar →
                     </a>
                   </div>
@@ -125,7 +125,7 @@ export function buildReminderEmail(recipientName: string, senderName: string) {
               <strong>Apex Affinity Group</strong> &nbsp;·&nbsp; 1600 Highway 6, Ste 400, Sugar Land, TX 77478
             </p>
             <p style="margin:0;font-size:12px;">
-              <a href="${BASE_URL}" style="color:#2B4C7E;text-decoration:none;font-weight:600;">Visit theapexway.net</a>
+              <a href="${BASE_URL}" style="color:#1B3A7D;text-decoration:none;font-weight:600;">Visit theapexway.net</a>
             </p>
           </td>
         </tr>

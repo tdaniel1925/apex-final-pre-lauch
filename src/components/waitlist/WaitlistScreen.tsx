@@ -82,7 +82,7 @@ export default function WaitlistScreen({ sponsorSlug, sponsorName }: Props) {
   return (
     <div
       className="fixed inset-0 z-50 flex overflow-hidden"
-      style={{ background: 'linear-gradient(135deg, #1a2f50 0%, #2B4C7E 50%, #1a3a6b 100%)' }}
+      style={{ background: 'linear-gradient(135deg, #1a2f50 0%, #1B3A7D 50%, #1a3a6b 100%)' }}
     >
       {/* Animated background rings */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -154,7 +154,7 @@ export default function WaitlistScreen({ sponsorSlug, sponsorName }: Props) {
             href={WEBINAR_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full max-w-sm bg-white text-[#2B4C7E] font-bold py-2.5 px-6 rounded-xl text-sm hover:bg-blue-50 transition-colors mb-1 text-center block"
+            className="w-full max-w-sm bg-white text-[#1B3A7D] font-bold py-2.5 px-6 rounded-xl text-sm hover:bg-blue-50 transition-colors mb-1 text-center block"
           >
             Join the Pre-Launch Webinar →
           </a>
@@ -202,7 +202,7 @@ export default function WaitlistScreen({ sponsorSlug, sponsorName }: Props) {
             <button
               type="submit"
               disabled={submitting}
-              className="bg-white text-[#2B4C7E] font-bold px-5 py-2.5 rounded-xl text-sm hover:bg-blue-50 transition-colors disabled:opacity-60 shrink-0"
+              className="bg-white text-[#1B3A7D] font-bold px-5 py-2.5 rounded-xl text-sm hover:bg-blue-50 transition-colors disabled:opacity-60 shrink-0"
             >
               {submitting ? 'Saving...' : 'Notify Me'}
             </button>

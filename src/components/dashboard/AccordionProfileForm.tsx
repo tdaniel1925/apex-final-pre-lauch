@@ -142,7 +142,7 @@ export default function AccordionProfileForm({ distributor, userEmail }: Accordi
                   name="first_name"
                   defaultValue={distributor.first_name}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
                 />
               </div>
 
@@ -155,7 +155,7 @@ export default function AccordionProfileForm({ distributor, userEmail }: Accordi
                   name="last_name"
                   defaultValue={distributor.last_name}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
                 />
               </div>
 
@@ -179,7 +179,7 @@ export default function AccordionProfileForm({ distributor, userEmail }: Accordi
                   type="text"
                   name="company_name"
                   defaultValue={distributor.company_name || ''}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
                 />
               </div>
 
@@ -193,7 +193,7 @@ export default function AccordionProfileForm({ distributor, userEmail }: Accordi
                   defaultValue={distributor.phone || ''}
                   required
                   placeholder="(555) 123-4567"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
                 />
               </div>
             </div>
@@ -219,7 +219,7 @@ export default function AccordionProfileForm({ distributor, userEmail }: Accordi
                   name="address_line1"
                   defaultValue={distributor.address_line1 || ''}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
                 />
               </div>
 
@@ -231,7 +231,7 @@ export default function AccordionProfileForm({ distributor, userEmail }: Accordi
                   type="text"
                   name="address_line2"
                   defaultValue={distributor.address_line2 || ''}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
                 />
               </div>
 
@@ -245,7 +245,7 @@ export default function AccordionProfileForm({ distributor, userEmail }: Accordi
                     name="city"
                     defaultValue={distributor.city || ''}
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
                   />
                 </div>
 
@@ -260,7 +260,7 @@ export default function AccordionProfileForm({ distributor, userEmail }: Accordi
                     required
                     maxLength={2}
                     placeholder="CA"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent uppercase"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent uppercase"
                   />
                 </div>
 
@@ -275,7 +275,7 @@ export default function AccordionProfileForm({ distributor, userEmail }: Accordi
                     required
                     maxLength={10}
                     placeholder="12345"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
                   />
                 </div>
               </div>
@@ -309,7 +309,7 @@ export default function AccordionProfileForm({ distributor, userEmail }: Accordi
                   defaultValue={distributor.bank_name || ''}
                   required
                   placeholder="e.g., Chase Bank, Bank of America"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
                 />
               </div>
 
@@ -326,7 +326,7 @@ export default function AccordionProfileForm({ distributor, userEmail }: Accordi
                     maxLength={9}
                     pattern="[0-9]{9}"
                     placeholder="9 digits"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
                   />
                   <p className="text-xs text-gray-500 mt-1">9-digit number on bottom of check</p>
                 </div>
@@ -341,7 +341,7 @@ export default function AccordionProfileForm({ distributor, userEmail }: Accordi
                     defaultValue={distributor.bank_account_number || ''}
                     required
                     placeholder="Account number"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
                   />
                 </div>
               </div>
@@ -354,7 +354,7 @@ export default function AccordionProfileForm({ distributor, userEmail }: Accordi
                   name="bank_account_type"
                   defaultValue={distributor.bank_account_type || ''}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
                 >
                   <option value="">Select account type</option>
                   <option value="checking">Checking</option>
@@ -397,7 +397,7 @@ export default function AccordionProfileForm({ distributor, userEmail }: Accordi
                   name="tax_id_type"
                   defaultValue={distributor.tax_id_type || ''}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
                 >
                   <option value="">Select type</option>
                   <option value="ssn">SSN (Social Security Number) - Individual</option>
@@ -415,7 +415,7 @@ export default function AccordionProfileForm({ distributor, userEmail }: Accordi
                   defaultValue={distributor.tax_id || ''}
                   required
                   placeholder="XXX-XX-XXXX or XX-XXXXXXX"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
                 />
                 <p className="text-xs text-gray-500 mt-1">Your information is encrypted and secure</p>
               </div>
@@ -429,7 +429,7 @@ export default function AccordionProfileForm({ distributor, userEmail }: Accordi
                   name="date_of_birth"
                   defaultValue={distributor.date_of_birth || ''}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
                 />
               </div>
             </div>
@@ -464,7 +464,7 @@ export default function AccordionProfileForm({ distributor, userEmail }: Accordi
                       alert('Password reset email sent! Check your inbox.');
                     }
                   }}
-                  className="px-4 py-2 bg-[#2B4C7E] text-white rounded-md hover:bg-[#1a2c4e] transition-colors text-sm"
+                  className="px-4 py-2 bg-[#1B3A7D] text-white rounded-md hover:bg-[#1a2c4e] transition-colors text-sm"
                 >
                   Send Password Reset Email
                 </button>
@@ -488,7 +488,7 @@ export default function AccordionProfileForm({ distributor, userEmail }: Accordi
         <button
           type="submit"
           disabled={isSubmitting}
-          className="px-8 py-3 bg-[#2B4C7E] text-white rounded-md hover:bg-[#1a2c4e] disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-semibold"
+          className="px-8 py-3 bg-[#1B3A7D] text-white rounded-md hover:bg-[#1a2c4e] disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-semibold"
         >
           {isSubmitting ? 'Saving...' : 'Save All Changes'}
         </button>

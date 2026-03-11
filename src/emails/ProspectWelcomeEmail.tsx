@@ -150,7 +150,7 @@ const container = {
 };
 
 const header = {
-  background: 'linear-gradient(135deg, #2B4C7E 0%, #1e3557 100%)',
+  background: 'linear-gradient(135deg, #1B3A7D 0%, #1e3557 100%)',
   padding: '40px 30px',
   textAlign: 'center' as const,
 };
@@ -173,13 +173,13 @@ const content = {
 };
 
 const h2 = {
-  color: '#2B4C7E',
+  color: '#1B3A7D',
   fontSize: '24px',
   margin: '0 0 20px 0',
 };
 
 const h3 = {
-  color: '#2B4C7E',
+  color: '#1B3A7D',
   fontSize: '20px',
   margin: '0 0 15px 0',
 };
@@ -205,7 +205,7 @@ const stepSection = {
 const stepNumber = {
   width: '40px',
   height: '40px',
-  backgroundColor: '#2B4C7E',
+  backgroundColor: '#1B3A7D',
   borderRadius: '50%',
   color: '#ffffff',
   fontWeight: 'bold',
@@ -221,7 +221,7 @@ const stepContent = {
 };
 
 const stepTitle = {
-  color: '#2B4C7E',
+  color: '#1B3A7D',
   fontSize: '18px',
   margin: '0 0 8px 0',
 };
@@ -235,13 +235,13 @@ const stepText = {
 
 const ctaBox = {
   backgroundColor: '#f8f9fa',
-  borderLeft: '4px solid #2B4C7E',
+  borderLeft: '4px solid #1B3A7D',
   padding: '20px',
   margin: '20px 0',
 };
 
 const ctaTitle = {
-  color: '#2B4C7E',
+  color: '#1B3A7D',
   fontSize: '18px',
   margin: '0 0 10px 0',
 };
@@ -261,7 +261,7 @@ const contactInfo = {
 };
 
 const link = {
-  color: '#2B4C7E',
+  color: '#1B3A7D',
   textDecoration: 'none',
 };
 
@@ -283,7 +283,7 @@ const footerLinks = {
 };
 
 const footerLink = {
-  color: '#2B4C7E',
+  color: '#1B3A7D',
   textDecoration: 'none',
   fontSize: '14px',
   margin: '0 10px',

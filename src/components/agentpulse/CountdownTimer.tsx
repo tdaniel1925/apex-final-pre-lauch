@@ -55,28 +55,28 @@ export default function CountdownTimer({ targetDate, size = 'md' }: CountdownTim
   return (
     <div className="flex gap-4 justify-center items-center">
       <div className="text-center">
-        <div className={`font-bold ${sizeClasses[size]} text-[#2B4C7E]`}>
+        <div className={`font-bold ${sizeClasses[size]} text-[#1B3A7D]`}>
           {timeLeft.days}
         </div>
         <div className={`${labelSizeClasses[size]} text-gray-600`}>Days</div>
       </div>
       <div className={`${sizeClasses[size]} text-gray-400`}>:</div>
       <div className="text-center">
-        <div className={`font-bold ${sizeClasses[size]} text-[#2B4C7E]`}>
+        <div className={`font-bold ${sizeClasses[size]} text-[#1B3A7D]`}>
           {String(timeLeft.hours).padStart(2, '0')}
         </div>
         <div className={`${labelSizeClasses[size]} text-gray-600`}>Hours</div>
       </div>
       <div className={`${sizeClasses[size]} text-gray-400`}>:</div>
       <div className="text-center">
-        <div className={`font-bold ${sizeClasses[size]} text-[#2B4C7E]`}>
+        <div className={`font-bold ${sizeClasses[size]} text-[#1B3A7D]`}>
           {String(timeLeft.minutes).padStart(2, '0')}
         </div>
         <div className={`${labelSizeClasses[size]} text-gray-600`}>Minutes</div>
       </div>
       <div className={`${sizeClasses[size]} text-gray-400`}>:</div>
       <div className="text-center">
-        <div className={`font-bold ${sizeClasses[size]} text-[#2B4C7E]`}>
+        <div className={`font-bold ${sizeClasses[size]} text-[#1B3A7D]`}>
           {String(timeLeft.seconds).padStart(2, '0')}
         </div>
         <div className={`${labelSizeClasses[size]} text-gray-600`}>Seconds</div>

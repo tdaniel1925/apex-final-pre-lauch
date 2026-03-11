@@ -78,7 +78,7 @@ export default function PulseFollowDemo() {
 
       {/* Header */}
       <div className="bg-white border-b border-gray-200 px-6 py-4 flex items-center gap-3">
-        <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: '#2B4C7E' }}>
+        <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: '#1B3A7D' }}>
           <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
           </svg>
@@ -133,7 +133,7 @@ export default function PulseFollowDemo() {
                     onClick={() => setSituation(chip)}
                     className={`text-xs px-2.5 py-1 rounded-full border transition-colors ${
                       situation === chip
-                        ? 'border-[#2B4C7E] bg-blue-50 text-[#2B4C7E] font-semibold'
+                        ? 'border-[#1B3A7D] bg-blue-50 text-[#1B3A7D] font-semibold'
                         : 'border-gray-200 text-gray-500 hover:border-gray-300 hover:text-gray-700'
                     }`}
                   >
@@ -160,7 +160,7 @@ export default function PulseFollowDemo() {
               onClick={handleGenerate}
               disabled={loading || !prospectName.trim() || !situation.trim()}
               className="w-full py-3 rounded-xl text-sm font-bold text-white transition-opacity disabled:opacity-40 flex items-center justify-center gap-2"
-              style={{ background: '#2B4C7E' }}
+              style={{ background: '#1B3A7D' }}
             >
               {loading ? (
                 <>
@@ -216,7 +216,7 @@ export default function PulseFollowDemo() {
 
           {loading && (
             <div className="bg-white rounded-xl border border-gray-200 p-12 text-center">
-              <svg className="w-8 h-8 animate-spin text-[#2B4C7E] mx-auto mb-3" fill="none" viewBox="0 0 24 24">
+              <svg className="w-8 h-8 animate-spin text-[#1B3A7D] mx-auto mb-3" fill="none" viewBox="0 0 24 24">
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
               </svg>

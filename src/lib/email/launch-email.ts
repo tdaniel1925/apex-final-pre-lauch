@@ -29,7 +29,7 @@ export function buildLaunchEmail(sourceSlug: string | null) {
 
           <!-- ============ HEADER ============ -->
           <tr>
-            <td style="background:linear-gradient(135deg,#1a2f50 0%,#2B4C7E 100%);padding:48px 40px 40px;text-align:center;">
+            <td style="background:linear-gradient(135deg,#1a2f50 0%,#1B3A7D 100%);padding:48px 40px 40px;text-align:center;">
               <img
                 src="${BASE_URL}/apex-logo-white.png"
                 alt="Apex Affinity Group"
@@ -56,7 +56,7 @@ export function buildLaunchEmail(sourceSlug: string | null) {
 
               <p style="margin:0 0 20px;font-size:16px;color:#4b5563;line-height:1.7;">
                 You were one of the first people to raise your hand and say
-                <strong style="color:#2B4C7E;">"I'm ready."</strong>
+                <strong style="color:#1B3A7D;">"I'm ready."</strong>
                 That matters. Now it's time to back that up and claim your place in the Apex Affinity Group matrix.
               </p>
 
@@ -68,7 +68,7 @@ export function buildLaunchEmail(sourceSlug: string | null) {
               <!-- CTA Button -->
               <table cellpadding="0" cellspacing="0" style="margin:0 auto 36px;">
                 <tr>
-                  <td align="center" style="background:linear-gradient(135deg,#2B4C7E,#1a3a6b);border-radius:12px;box-shadow:0 4px 16px rgba(43,76,126,0.4);">
+                  <td align="center" style="background:linear-gradient(135deg,#1B3A7D,#1a3a6b);border-radius:12px;box-shadow:0 4px 16px rgba(43,76,126,0.4);">
                     <a
                       href="${signupUrl}"
                       style="display:block;padding:18px 52px;color:#ffffff;text-decoration:none;font-size:17px;font-weight:800;letter-spacing:0.3px;white-space:nowrap;"
@@ -83,7 +83,7 @@ export function buildLaunchEmail(sourceSlug: string | null) {
               <table cellpadding="0" cellspacing="0" width="100%" style="background:#f8faff;border:1px solid #e0e9f7;border-radius:12px;margin-bottom:36px;">
                 <tr>
                   <td style="padding:28px 28px 20px;">
-                    <p style="margin:0 0 16px;font-size:13px;font-weight:700;color:#2B4C7E;text-transform:uppercase;letter-spacing:1.5px;">
+                    <p style="margin:0 0 16px;font-size:13px;font-weight:700;color:#1B3A7D;text-transform:uppercase;letter-spacing:1.5px;">
                       What you get when you join
                     </p>
                     <table cellpadding="0" cellspacing="0" width="100%">
@@ -98,7 +98,7 @@ export function buildLaunchEmail(sourceSlug: string | null) {
                           <table cellpadding="0" cellspacing="0">
                             <tr>
                               <td style="padding-right:12px;vertical-align:top;">
-                                <div style="width:22px;height:22px;background:#2B4C7E;border-radius:50%;text-align:center;line-height:22px;font-size:11px;color:#fff;font-weight:700;">✓</div>
+                                <div style="width:22px;height:22px;background:#1B3A7D;border-radius:50%;text-align:center;line-height:22px;font-size:11px;color:#fff;font-weight:700;">✓</div>
                               </td>
                               <td>
                                 <p style="margin:0;font-size:14px;font-weight:700;color:#1f2937;">${title}</p>
@@ -116,7 +116,7 @@ export function buildLaunchEmail(sourceSlug: string | null) {
               <p style="margin:0 0 8px;font-size:13px;color:#9ca3af;">
                 Or copy this link into your browser:
               </p>
-              <p style="margin:0 0 36px;font-size:12px;color:#2B4C7E;word-break:break-all;font-family:monospace;">
+              <p style="margin:0 0 36px;font-size:12px;color:#1B3A7D;word-break:break-all;font-family:monospace;">
                 ${signupUrl}
               </p>
 
@@ -130,7 +130,7 @@ export function buildLaunchEmail(sourceSlug: string | null) {
                 You're receiving this because you joined the Apex Affinity Group pre-launch waitlist.
               </p>
               <p style="margin:0;font-size:13px;">
-                <a href="${returnUrl}" style="color:#2B4C7E;text-decoration:none;font-weight:600;">
+                <a href="${returnUrl}" style="color:#1B3A7D;text-decoration:none;font-weight:600;">
                   Visit Apex Affinity Group
                 </a>
               </p>

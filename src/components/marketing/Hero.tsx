@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 
 export default function Hero() {
   return (
-    <section className="relative h-screen flex items-center bg-gradient-to-br from-[#1a2c4e] via-[#2B4C7E] to-[#3d5a7f] overflow-hidden">
+    <section className="relative h-screen flex items-center bg-gradient-to-br from-[#1a2c4e] via-[#1B3A7D] to-[#3d5a7f] overflow-hidden">
       {/* Subtle Pattern Overlay */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
@@ -21,7 +21,7 @@ export default function Hero() {
             {/* Hero Content */}
             <div className="lg:col-span-7">
               <div className="space-y-3 lg:space-y-4">
-                <span className="inline-block text-[#DC2626] font-semibold text-xs md:text-sm tracking-wide uppercase">
+                <span className="inline-block text-[#C7181F] font-semibold text-xs md:text-sm tracking-wide uppercase">
                   The Apex Way
                 </span>
                 <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight">
@@ -33,14 +33,14 @@ export default function Hero() {
                 <div className="flex flex-col sm:flex-row gap-3 pt-3 lg:pt-4">
                   <Button
                     asChild
-                    className="bg-[#DC2626] hover:bg-gradient-to-r hover:from-[#DC2626] hover:to-[#B91C1C] text-white px-5 py-3 lg:px-7 lg:py-4 text-sm lg:text-base"
+                    className="bg-[#C7181F] hover:bg-gradient-to-r hover:from-[#C7181F] hover:to-[#B91C1C] text-white px-5 py-3 lg:px-7 lg:py-4 text-sm lg:text-base"
                   >
                     <Link href="#choose-path">Choose Your Path</Link>
                   </Button>
                   <Button
                     asChild
                     variant="outline"
-                    className="border-white text-white hover:bg-white hover:text-[#2B4C7E] px-5 py-3 lg:px-7 lg:py-4 text-sm lg:text-base"
+                    className="border-white text-white hover:bg-white hover:text-[#1B3A7D] px-5 py-3 lg:px-7 lg:py-4 text-sm lg:text-base"
                   >
                     <Link href="#why-apex">Why Apex</Link>
                   </Button>

@@ -72,7 +72,7 @@ function Steps({ current }: { current: number }) {
             <div className="flex flex-col items-center">
               <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-colors ${
                 done ? 'bg-green-500 text-white' : active ? 'text-white' : 'bg-gray-200 text-gray-500'
-              }`} style={active ? { background: '#2B4C7E' } : {}}>
+              }`} style={active ? { background: '#1B3A7D' } : {}}>
                 {done ? (
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
@@ -96,7 +96,7 @@ function UpgradeWall({ onToast }: { onToast: () => void }) {
   return (
     <div className="max-w-2xl mx-auto px-4 py-12">
       <div className="bg-white rounded-2xl border border-gray-200 p-8 text-center">
-        <div className="w-14 h-14 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ background: '#2B4C7E' }}>
+        <div className="w-14 h-14 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ background: '#1B3A7D' }}>
           <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
           </svg>
@@ -117,10 +117,10 @@ function UpgradeWall({ onToast }: { onToast: () => void }) {
               <li>✓ Birthday & date triggers</li>
             </ul>
           </div>
-          <div className="border-2 rounded-xl p-5 text-left" style={{ borderColor: '#2B4C7E', background: '#f0f5ff' }}>
+          <div className="border-2 rounded-xl p-5 text-left" style={{ borderColor: '#1B3A7D', background: '#f0f5ff' }}>
             <div className="flex items-center justify-between mb-1">
               <p className="text-lg font-bold text-gray-900">Pro</p>
-              <span className="text-xs font-bold px-2 py-0.5 rounded-full text-white" style={{ background: '#2B4C7E' }}>Best Value</span>
+              <span className="text-xs font-bold px-2 py-0.5 rounded-full text-white" style={{ background: '#1B3A7D' }}>Best Value</span>
             </div>
             <p className="text-3xl font-bold text-gray-900 mb-1">$97<span className="text-base font-normal text-gray-500">/mo</span></p>
             <ul className="text-sm text-gray-600 space-y-1.5 mt-3">
@@ -135,7 +135,7 @@ function UpgradeWall({ onToast }: { onToast: () => void }) {
         <button
           onClick={onToast}
           className="w-full max-w-xs py-3.5 rounded-xl font-bold text-white text-sm"
-          style={{ background: '#2B4C7E' }}
+          style={{ background: '#1B3A7D' }}
         >
           Upgrade to Starter — $47/mo →
         </button>
@@ -241,7 +241,7 @@ export default function NurtureApp({ agentEmail }: Props) {
 
       {/* Header */}
       <div className="bg-white border-b border-gray-200 px-6 py-4 flex items-center gap-3">
-        <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: '#2B4C7E' }}>
+        <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: '#1B3A7D' }}>
           <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
           </svg>
@@ -339,7 +339,7 @@ export default function NurtureApp({ agentEmail }: Props) {
                       onClick={() => setContext(chip)}
                       className={`text-xs px-2.5 py-1 rounded-full border transition-colors ${
                         context === chip
-                          ? 'border-[#2B4C7E] bg-blue-50 text-[#2B4C7E] font-semibold'
+                          ? 'border-[#1B3A7D] bg-blue-50 text-[#1B3A7D] font-semibold'
                           : 'border-gray-200 text-gray-500 hover:border-gray-300'
                       }`}
                     >
@@ -363,7 +363,7 @@ export default function NurtureApp({ agentEmail }: Props) {
                 onClick={handleGenerate}
                 disabled={loading || !prospectName.trim() || !prospectEmail.trim() || !context.trim()}
                 className="w-full py-3.5 rounded-xl font-bold text-white text-sm disabled:opacity-40 flex items-center justify-center gap-2 transition-opacity hover:opacity-90"
-                style={{ background: '#2B4C7E' }}
+                style={{ background: '#1B3A7D' }}
               >
                 {loading ? (
                   <>
@@ -396,7 +396,7 @@ export default function NurtureApp({ agentEmail }: Props) {
               {emails.map((email, i) => (
                 <div key={i} className="bg-white rounded-xl border border-gray-200 p-5">
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="w-6 h-6 rounded-full text-white text-xs font-bold flex items-center justify-center" style={{ background: '#2B4C7E' }}>{i + 1}</span>
+                    <span className="w-6 h-6 rounded-full text-white text-xs font-bold flex items-center justify-center" style={{ background: '#1B3A7D' }}>{i + 1}</span>
                     <span className="text-xs font-bold text-gray-500 uppercase tracking-wide">Email {i + 1}</span>
                   </div>
                   <p className="text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">
@@ -413,7 +413,7 @@ export default function NurtureApp({ agentEmail }: Props) {
                 <button
                   onClick={() => setStep(3)}
                   className="flex-1 py-3 rounded-xl font-bold text-white text-sm hover:opacity-90"
-                  style={{ background: '#2B4C7E' }}
+                  style={{ background: '#1B3A7D' }}
                 >
                   Set Schedule →
                 </button>
@@ -440,7 +440,7 @@ export default function NurtureApp({ agentEmail }: Props) {
                           ? 'text-white border-transparent'
                           : 'border-gray-200 text-gray-600 hover:border-gray-300'
                       }`}
-                      style={intervalDays === days ? { background: '#2B4C7E', borderColor: '#2B4C7E' } : {}}
+                      style={intervalDays === days ? { background: '#1B3A7D', borderColor: '#1B3A7D' } : {}}
                     >
                       Every {days} days
                     </button>
@@ -459,7 +459,7 @@ export default function NurtureApp({ agentEmail }: Props) {
                 <div className="space-y-2">
                   {scheduleDates.map((date, i) => (
                     <div key={i} className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full text-white text-xs font-bold flex items-center justify-center shrink-0" style={{ background: '#2B4C7E' }}>
+                      <div className="w-8 h-8 rounded-full text-white text-xs font-bold flex items-center justify-center shrink-0" style={{ background: '#1B3A7D' }}>
                         {i + 1}
                       </div>
                       <div className="flex-1 h-px bg-gray-200"></div>
@@ -478,7 +478,7 @@ export default function NurtureApp({ agentEmail }: Props) {
                 <button
                   onClick={() => setStep(4)}
                   className="flex-1 py-3 rounded-xl font-bold text-white text-sm hover:opacity-90"
-                  style={{ background: '#2B4C7E' }}
+                  style={{ background: '#1B3A7D' }}
                 >
                   Review & Launch →
                 </button>
@@ -529,7 +529,7 @@ export default function NurtureApp({ agentEmail }: Props) {
                   onClick={handleLaunch}
                   disabled={launching}
                   className="flex-1 py-3 rounded-xl font-bold text-white text-sm disabled:opacity-50 flex items-center justify-center gap-2 hover:opacity-90"
-                  style={{ background: '#2B4C7E' }}
+                  style={{ background: '#1B3A7D' }}
                 >
                   {launching ? (
                     <>
@@ -577,7 +577,7 @@ export default function NurtureApp({ agentEmail }: Props) {
                             className="h-full rounded-full"
                             style={{
                               width: `${(c.emails_sent / c.total_emails) * 100}%`,
-                              background: '#2B4C7E',
+                              background: '#1B3A7D',
                             }}
                           />
                         </div>

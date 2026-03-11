@@ -58,7 +58,7 @@ export default function CredentialsConfirmationPage() {
 
   if (!credentials) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-[#2B4C7E] to-[#1a2c4e] flex items-center justify-center p-4">
+      <div className="min-h-screen bg-gradient-to-br from-[#1B3A7D] to-[#1a2c4e] flex items-center justify-center p-4">
         <div className="text-center text-white">
           <div className="w-8 h-8 border-2 border-white border-t-transparent rounded-full animate-spin mx-auto" />
           <p className="mt-4">Loading...</p>
@@ -68,7 +68,7 @@ export default function CredentialsConfirmationPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#2B4C7E] to-[#1a2c4e] flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-[#1B3A7D] to-[#1a2c4e] flex items-center justify-center p-4">
       <div className="max-w-2xl w-full bg-white rounded-2xl shadow-2xl p-8">
         {/* Success Icon */}
         <div className="text-center mb-6">
@@ -153,7 +153,7 @@ export default function CredentialsConfirmationPage() {
                   href={`https://reachtheapex.net/${credentials.username}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#2B4C7E] hover:underline font-medium"
+                  className="text-[#1B3A7D] hover:underline font-medium"
                 >
                   reachtheapex.net/{credentials.username}
                 </a>
@@ -196,7 +196,7 @@ export default function CredentialsConfirmationPage() {
               type="checkbox"
               checked={confirmed}
               onChange={(e) => setConfirmed(e.target.checked)}
-              className="mt-1 w-5 h-5 text-[#2B4C7E] focus:ring-[#2B4C7E] rounded cursor-pointer"
+              className="mt-1 w-5 h-5 text-[#1B3A7D] focus:ring-[#1B3A7D] rounded cursor-pointer"
             />
             <span className="text-sm text-gray-700 select-none group-hover:text-gray-900">
               I have written down or copied my login credentials and understand that I will need them to access my account.
@@ -208,7 +208,7 @@ export default function CredentialsConfirmationPage() {
         <button
           onClick={handleConfirm}
           disabled={!confirmed}
-          className="w-full py-4 px-6 bg-gradient-to-r from-[#2B4C7E] to-[#1a2c4e] text-white font-bold text-lg rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full py-4 px-6 bg-gradient-to-r from-[#1B3A7D] to-[#1a2c4e] text-white font-bold text-lg rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Continue to Dashboard Setup
         </button>

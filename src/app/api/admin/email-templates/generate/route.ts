@@ -127,10 +127,10 @@ You MUST return ONLY a valid JSON object with this EXACT structure (no markdown,
 - Use inline styles (no external CSS)
 - Max width: 600px
 - Font: Arial, sans-serif
-- Primary color: #2B4C7E (Apex blue)
+- Primary color: #1B3A7D (Apex blue)
 - Use <h2> for main heading, <h3> for subheadings
 - Add 15-20px padding/margin for spacing
-- Style links as buttons with background: #2B4C7E, white text, padding
+- Style links as buttons with background: #1B3A7D, white text, padding
 - Make it mobile-responsive
 
 Generate the email now:`;

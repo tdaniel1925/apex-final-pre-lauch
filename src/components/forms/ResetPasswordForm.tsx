@@ -121,7 +121,7 @@ export default function ResetPasswordForm() {
   if (tokenValid === null) {
     return (
       <div className="text-center py-12">
-        <div className="w-16 h-16 border-4 border-[#2B4C7E] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+        <div className="w-16 h-16 border-4 border-[#1B3A7D] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
         <p className="text-gray-600">Verifying reset link...</p>
       </div>
     );
@@ -140,7 +140,7 @@ export default function ResetPasswordForm() {
         <p className="text-gray-600 mb-6">{error}</p>
         <a
           href="/forgot-password"
-          className="inline-block px-6 py-3 bg-[#2B4C7E] text-white rounded-lg hover:bg-[#1a2c4e] transition-colors"
+          className="inline-block px-6 py-3 bg-[#1B3A7D] text-white rounded-lg hover:bg-[#1a2c4e] transition-colors"
         >
           Request New Reset Link
         </a>
@@ -183,7 +183,7 @@ export default function ResetPasswordForm() {
             minLength={8}
             autoComplete="new-password"
             placeholder="At least 8 characters"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
             disabled={isPending}
           />
           <button
@@ -210,7 +210,7 @@ export default function ResetPasswordForm() {
             minLength={8}
             autoComplete="new-password"
             placeholder="Re-enter your password"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
             disabled={isPending}
           />
           <button
@@ -234,7 +234,7 @@ export default function ResetPasswordForm() {
       <button
         type="submit"
         disabled={isPending}
-        className="w-full py-3 px-6 bg-gradient-to-r from-[#2B4C7E] to-[#1a2c4e] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full py-3 px-6 bg-gradient-to-r from-[#1B3A7D] to-[#1a2c4e] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {isPending ? (
           <span className="flex items-center justify-center gap-2">

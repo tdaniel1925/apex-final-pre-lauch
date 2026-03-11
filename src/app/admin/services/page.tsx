@@ -265,7 +265,7 @@ export default async function ServiceCostsPage() {
                   </p>
                 </div>
                 <div className="text-right">
-                  <p className="text-xl font-bold text-[#2B4C7E]">
+                  <p className="text-xl font-bold text-[#1B3A7D]">
                     ${serviceSummary.currentMonth.totalCost.toFixed(4)}
                   </p>
                   <div className="flex items-center gap-1 text-xs">

@@ -11,9 +11,9 @@ export default function CompanyLogos() {
   return (
     <section className="bg-white py-16">
       <div className="container mx-auto px-4">
-        <div className="bg-gradient-to-r from-[#DC2626]/10 to-[#2B4C7E]/10 rounded-2xl p-8 md:p-12">
+        <div className="bg-gradient-to-r from-[#C7181F]/10 to-[#1B3A7D]/10 rounded-2xl p-8 md:p-12">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-            <h3 className="text-2xl font-bold text-[#2B4C7E] md:min-w-fit whitespace-nowrap">
+            <h3 className="text-2xl font-bold text-[#1B3A7D] md:min-w-fit whitespace-nowrap">
               Trusted By Leading Businesses Worldwide
             </h3>
             <div className="flex flex-wrap items-center justify-center md:justify-end gap-8 md:gap-12">

@@ -44,9 +44,9 @@ export const CARD_TEMPLATES: CardTemplate[] = [
     },
     colors: {
       background: '#F5F5F7', // Light gray to match the card
-      nameColor: '#2B4C7E', // Navy blue
+      nameColor: '#1B3A7D', // Navy blue
       titleColor: '#E9546B', // Pink/salmon accent
-      contactColor: '#2B4C7E',
+      contactColor: '#1B3A7D',
       accentColor: '#E9546B',
     },
     fonts: {
@@ -70,9 +70,9 @@ export const CARD_TEMPLATES: CardTemplate[] = [
     },
     colors: {
       background: 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)',
-      nameColor: '#2B4C7E',
+      nameColor: '#1B3A7D',
       titleColor: '#DC143C',
-      contactColor: '#2B4C7E',
+      contactColor: '#1B3A7D',
       accentColor: '#DC143C',
     },
     fonts: {
@@ -95,7 +95,7 @@ export const CARD_TEMPLATES: CardTemplate[] = [
       logoPosition: 'top-right',
     },
     colors: {
-      background: 'linear-gradient(135deg, #2B4C7E 0%, #567EBB 100%)',
+      background: 'linear-gradient(135deg, #1B3A7D 0%, #567EBB 100%)',
       nameColor: '#ffffff',
       titleColor: '#FDE047',
       contactColor: '#ffffff',
@@ -121,7 +121,7 @@ export const CARD_TEMPLATES: CardTemplate[] = [
       logoPosition: 'bottom-right',
     },
     colors: {
-      background: '#2B4C7E',
+      background: '#1B3A7D',
       nameColor: '#ffffff',
       titleColor: '#DC143C',
       contactColor: '#ffffff',
@@ -148,9 +148,9 @@ export const CARD_TEMPLATES: CardTemplate[] = [
     },
     colors: {
       background: '#ffffff',
-      nameColor: '#2B4C7E',
+      nameColor: '#1B3A7D',
       titleColor: '#DC143C',
-      contactColor: '#2B4C7E',
+      contactColor: '#1B3A7D',
       accentColor: '#DC143C',
     },
     fonts: {
@@ -174,9 +174,9 @@ export const CARD_TEMPLATES: CardTemplate[] = [
     },
     colors: {
       background: 'linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%)',
-      nameColor: '#2B4C7E',
+      nameColor: '#1B3A7D',
       titleColor: '#B8860B',
-      contactColor: '#2B4C7E',
+      contactColor: '#1B3A7D',
       accentColor: '#B8860B',
     },
     fonts: {

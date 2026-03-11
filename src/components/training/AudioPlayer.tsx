@@ -141,7 +141,7 @@ export default function AudioPlayer({ src, episodeId, initialPosition, onProgres
           disabled={!loaded}
           className="w-full h-1.5 appearance-none rounded-full cursor-pointer"
           style={{
-            background: `linear-gradient(to right, #2B4C7E ${progressPct}%, #e5e7eb ${progressPct}%)`,
+            background: `linear-gradient(to right, #1B3A7D ${progressPct}%, #e5e7eb ${progressPct}%)`,
           }}
         />
         <div className="flex justify-between text-xs text-gray-400 mt-0.5">
@@ -176,7 +176,7 @@ export default function AudioPlayer({ src, episodeId, initialPosition, onProgres
           <button
             onClick={togglePlay}
             disabled={!loaded}
-            className="w-10 h-10 rounded-full bg-[#2B4C7E] text-white flex items-center justify-center hover:bg-[#1e3555] transition-colors disabled:opacity-50"
+            className="w-10 h-10 rounded-full bg-[#1B3A7D] text-white flex items-center justify-center hover:bg-[#1e3555] transition-colors disabled:opacity-50"
           >
             {isPlaying ? (
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">

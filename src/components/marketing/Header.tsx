@@ -27,31 +27,31 @@ export default function Header() {
           <div className="hidden lg:flex items-center space-x-8">
             <Link
               href="/"
-              className="text-[#2B4C7E] hover:text-[#DC2626] transition-colors font-medium"
+              className="text-[#1B3A7D] hover:text-[#C7181F] transition-colors font-medium"
             >
               Home
             </Link>
             <Link
               href="/about"
-              className="text-[#2B4C7E] hover:text-[#DC2626] transition-colors font-medium"
+              className="text-[#1B3A7D] hover:text-[#C7181F] transition-colors font-medium"
             >
               About Us
             </Link>
             <Link
               href="/services"
-              className="text-[#2B4C7E] hover:text-[#DC2626] transition-colors font-medium"
+              className="text-[#1B3A7D] hover:text-[#C7181F] transition-colors font-medium"
             >
               Services
             </Link>
             <Link
               href="/opportunity"
-              className="text-[#2B4C7E] hover:text-[#DC2626] transition-colors font-medium"
+              className="text-[#1B3A7D] hover:text-[#C7181F] transition-colors font-medium"
             >
               Opportunity
             </Link>
             <Link
               href="/contact"
-              className="text-[#2B4C7E] hover:text-[#DC2626] transition-colors font-medium"
+              className="text-[#1B3A7D] hover:text-[#C7181F] transition-colors font-medium"
             >
               Contact
             </Link>
@@ -61,7 +61,7 @@ export default function Header() {
           <div className="hidden lg:block">
             <Button
               asChild
-              className="bg-[#DC2626] hover:bg-[#2B4C7E] text-white px-6 py-2 rounded-md transition-colors"
+              className="bg-[#C7181F] hover:bg-[#1B3A7D] text-white px-6 py-2 rounded-md transition-colors"
             >
               <Link href="/signup">Join Our Team</Link>
             </Button>
@@ -74,9 +74,9 @@ export default function Header() {
             aria-label="Toggle menu"
           >
             <div className="w-6 h-5 flex flex-col justify-between">
-              <span className={`block h-0.5 w-full bg-[#2B4C7E] transition-transform ${mobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-              <span className={`block h-0.5 w-full bg-[#2B4C7E] transition-opacity ${mobileMenuOpen ? 'opacity-0' : ''}`} />
-              <span className={`block h-0.5 w-full bg-[#2B4C7E] transition-transform ${mobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+              <span className={`block h-0.5 w-full bg-[#1B3A7D] transition-transform ${mobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+              <span className={`block h-0.5 w-full bg-[#1B3A7D] transition-opacity ${mobileMenuOpen ? 'opacity-0' : ''}`} />
+              <span className={`block h-0.5 w-full bg-[#1B3A7D] transition-transform ${mobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
             </div>
           </button>
         </nav>
@@ -87,42 +87,42 @@ export default function Header() {
             <div className="flex flex-col space-y-4">
               <Link
                 href="/"
-                className="text-[#2B4C7E] hover:text-[#DC2626] transition-colors font-medium py-2"
+                className="text-[#1B3A7D] hover:text-[#C7181F] transition-colors font-medium py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Home
               </Link>
               <Link
                 href="/about"
-                className="text-[#2B4C7E] hover:text-[#DC2626] transition-colors font-medium py-2"
+                className="text-[#1B3A7D] hover:text-[#C7181F] transition-colors font-medium py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 About Us
               </Link>
               <Link
                 href="/services"
-                className="text-[#2B4C7E] hover:text-[#DC2626] transition-colors font-medium py-2"
+                className="text-[#1B3A7D] hover:text-[#C7181F] transition-colors font-medium py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Services
               </Link>
               <Link
                 href="/opportunity"
-                className="text-[#2B4C7E] hover:text-[#DC2626] transition-colors font-medium py-2"
+                className="text-[#1B3A7D] hover:text-[#C7181F] transition-colors font-medium py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Opportunity
               </Link>
               <Link
                 href="/contact"
-                className="text-[#2B4C7E] hover:text-[#DC2626] transition-colors font-medium py-2"
+                className="text-[#1B3A7D] hover:text-[#C7181F] transition-colors font-medium py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Contact
               </Link>
               <Button
                 asChild
-                className="bg-[#DC2626] hover:bg-[#2B4C7E] text-white w-full"
+                className="bg-[#C7181F] hover:bg-[#1B3A7D] text-white w-full"
               >
                 <Link href="/signup">Join Our Team</Link>
               </Button>

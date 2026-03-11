@@ -118,7 +118,7 @@ export default function LeadLoopBoard() {
       {/* ── Page Header ──────────────────────────── */}
       <div className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: '#2B4C7E' }}>
+          <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: '#1B3A7D' }}>
             <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
             </svg>
@@ -134,7 +134,7 @@ export default function LeadLoopBoard() {
         <button
           onClick={() => setAddOpen(true)}
           className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-semibold text-white transition-opacity hover:opacity-90"
-          style={{ background: '#2B4C7E' }}
+          style={{ background: '#1B3A7D' }}
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -182,7 +182,7 @@ export default function LeadLoopBoard() {
                       onClick={() => setSelected(lead)}
                       className={`bg-white rounded-lg border p-3 cursor-pointer select-none transition-all hover:shadow-md ${
                         draggingId === lead.id ? 'opacity-40 shadow-lg' : ''
-                      } ${selected?.id === lead.id ? 'ring-2 ring-[#2B4C7E] border-transparent' : 'border-gray-200'}`}
+                      } ${selected?.id === lead.id ? 'ring-2 ring-[#1B3A7D] border-transparent' : 'border-gray-200'}`}
                     >
                       <div className="flex items-start justify-between gap-1 mb-2">
                         <p className="text-sm font-semibold text-gray-900 leading-tight">{lead.name}</p>
@@ -269,7 +269,7 @@ export default function LeadLoopBoard() {
                     <svg className="w-4 h-4 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
-                    <a href={`tel:${selected.phone}`} className="hover:text-[#2B4C7E]">{selected.phone}</a>
+                    <a href={`tel:${selected.phone}`} className="hover:text-[#1B3A7D]">{selected.phone}</a>
                   </div>
                 )}
                 {selected.email && (
@@ -277,7 +277,7 @@ export default function LeadLoopBoard() {
                     <svg className="w-4 h-4 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
-                    <a href={`mailto:${selected.email}`} className="hover:text-[#2B4C7E] truncate">{selected.email}</a>
+                    <a href={`mailto:${selected.email}`} className="hover:text-[#1B3A7D] truncate">{selected.email}</a>
                   </div>
                 )}
               </div>
@@ -415,7 +415,7 @@ export default function LeadLoopBoard() {
                 onClick={addLead}
                 disabled={!form.name.trim()}
                 className="flex-1 py-2.5 rounded-xl text-sm font-bold text-white transition-opacity disabled:opacity-40"
-                style={{ background: '#2B4C7E' }}
+                style={{ background: '#1B3A7D' }}
               >
                 Add Lead
               </button>

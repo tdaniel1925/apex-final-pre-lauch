@@ -163,7 +163,7 @@ export async function POST(
           <!-- Content -->
           <tr>
             <td style="padding: 40px 32px; color: #4A5068; font-family: Arial, sans-serif; font-size: 15px; line-height: 1.7;">
-              <h1 style="font-family: Georgia, serif; font-size: 28px; line-height: 1.2; color: #2B4C7E; margin: 0 0 20px 0;">
+              <h1 style="font-family: Georgia, serif; font-size: 28px; line-height: 1.2; color: #1B3A7D; margin: 0 0 20px 0;">
                 Email Address Updated
               </h1>
 
@@ -171,13 +171,13 @@ export async function POST(
 
               <p style="margin: 0 0 16px 0;">Your Apex Affinity Group email address has been updated by an administrator.</p>
 
-              <table width="100%" cellpadding="16" cellspacing="0" border="0" style="background-color: #F0F2F8; border-left: 4px solid #2B4C7E; border-radius: 8px; margin: 24px 0;">
+              <table width="100%" cellpadding="16" cellspacing="0" border="0" style="background-color: #F0F2F8; border-left: 4px solid #1B3A7D; border-radius: 8px; margin: 24px 0;">
                 <tr>
                   <td>
                     <p style="margin: 0 0 8px 0; font-size: 13px; color: #7A8098;">Previous Email:</p>
                     <p style="margin: 0 0 16px 0; font-weight: 600; color: #4A5068;">${distributor.email}</p>
                     <p style="margin: 0 0 8px 0; font-size: 13px; color: #7A8098;">New Email:</p>
-                    <p style="margin: 0; font-weight: 600; color: #2B4C7E; font-size: 16px;">${newEmail}</p>
+                    <p style="margin: 0; font-weight: 600; color: #1B3A7D; font-size: 16px;">${newEmail}</p>
                   </td>
                 </tr>
               </table>
@@ -185,7 +185,7 @@ export async function POST(
               <p style="margin: 0 0 16px 0;">You can now log in to your Apex dashboard using your new email address.</p>
 
               <p style="margin: 24px 0; text-align: center;">
-                <a href="https://reachtheapex.net/login" style="display: inline-block; padding: 14px 32px; background-color: #2B4C7E; color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: 600;">
+                <a href="https://reachtheapex.net/login" style="display: inline-block; padding: 14px 32px; background-color: #1B3A7D; color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: 600;">
                   Log In to Apex
                 </a>
               </p>
@@ -193,7 +193,7 @@ export async function POST(
               <table width="100%" cellpadding="16" cellspacing="0" border="0" style="background-color: #fff3cd; border-left: 4px solid #ffc107; border-radius: 8px; margin: 24px 0;">
                 <tr>
                   <td>
-                    <p style="margin: 0;"><strong>🔒 Security Notice:</strong> If you did not request this change or have concerns, please contact support immediately at <a href="mailto:support@reachtheapex.net" style="color: #2B4C7E;">support@reachtheapex.net</a> or call <span style="color: #C7181F; font-weight: 700;">1 (832) 909-1715</span>.</p>
+                    <p style="margin: 0;"><strong>🔒 Security Notice:</strong> If you did not request this change or have concerns, please contact support immediately at <a href="mailto:support@reachtheapex.net" style="color: #1B3A7D;">support@reachtheapex.net</a> or call <span style="color: #C7181F; font-weight: 700;">1 (832) 909-1715</span>.</p>
                   </td>
                 </tr>
               </table>

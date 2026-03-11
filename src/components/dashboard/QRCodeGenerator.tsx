@@ -32,7 +32,7 @@ export default function QRCodeGenerator({ distributorSlug, distributorName }: QR
         width: 300,
         margin: 2,
         color: {
-          dark: '#2B4C7E', // Apex blue
+          dark: '#1B3A7D', // Apex blue
           light: '#FFFFFF',
         },
       });

@@ -49,12 +49,12 @@ export default function WaitlistForm() {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your email"
             required
-            className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+            className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
           />
           <button
             type="submit"
             disabled={loading}
-            className="px-6 py-3 bg-[#2B4C7E] text-white font-semibold rounded-lg hover:bg-[#1e3555] transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+            className="px-6 py-3 bg-[#1B3A7D] text-white font-semibold rounded-lg hover:bg-[#1e3555] transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
           >
             {loading ? 'Joining...' : 'Join Waitlist'}
           </button>

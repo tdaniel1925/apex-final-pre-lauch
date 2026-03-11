@@ -118,7 +118,7 @@ export default function BusinessCardOrder({ distributor }: Props) {
                   letterSpacing: '0.5px',
                   marginBottom: '4px',
                 }}>PHONE</div>
-                <div style={{ color: '#2B4C7E', fontSize: '10px', fontWeight: 600, lineHeight: '1.4' }}>
+                <div style={{ color: '#1B3A7D', fontSize: '10px', fontWeight: 600, lineHeight: '1.4' }}>
                   {distributor.phone || '(XXX) XXX-XXXX'}
                 </div>
               </div>
@@ -132,7 +132,7 @@ export default function BusinessCardOrder({ distributor }: Props) {
                   letterSpacing: '0.5px',
                   marginBottom: '4px',
                 }}>WEB</div>
-                <div style={{ color: '#2B4C7E', fontSize: '10px', fontWeight: 600, lineHeight: '1.4' }}>
+                <div style={{ color: '#1B3A7D', fontSize: '10px', fontWeight: 600, lineHeight: '1.4' }}>
                   {website}
                 </div>
               </div>
@@ -149,7 +149,7 @@ export default function BusinessCardOrder({ distributor }: Props) {
               padding: '0 20px',
             }}>
               <div style={{
-                color: '#2B4C7E',
+                color: '#1B3A7D',
                 fontWeight: 800,
                 fontSize: '18px',
                 marginBottom: '4px',
@@ -198,20 +198,20 @@ export default function BusinessCardOrder({ distributor }: Props) {
                 onClick={() => setQuantity(q)}
                 className={`rounded-xl border-2 p-4 text-center transition-all ${
                   quantity === q
-                    ? 'border-[#2B4C7E] bg-blue-50'
+                    ? 'border-[#1B3A7D] bg-blue-50'
                     : 'border-gray-200 hover:border-gray-300'
                 }`}
               >
                 <div className="font-bold text-gray-800 text-lg">{q}</div>
                 <div className="text-xs text-gray-500">cards</div>
-                <div className="text-sm font-bold text-[#2B4C7E] mt-1">{PRICES[q]}</div>
+                <div className="text-sm font-bold text-[#1B3A7D] mt-1">{PRICES[q]}</div>
               </button>
             ))}
           </div>
           <button
             onClick={() => setStep('shipping')}
             className="w-full py-3 rounded-xl font-bold text-white text-sm"
-            style={{ background: '#2B4C7E' }}
+            style={{ background: '#1B3A7D' }}
           >
             Continue to Shipping →
           </button>
@@ -222,7 +222,7 @@ export default function BusinessCardOrder({ distributor }: Props) {
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-sm font-bold text-gray-500 uppercase tracking-wide">Shipping Address</h2>
-            <span className="text-xs text-[#2B4C7E] font-bold">{quantity} cards — {PRICES[quantity]}</span>
+            <span className="text-xs text-[#1B3A7D] font-bold">{quantity} cards — {PRICES[quantity]}</span>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-3">
@@ -313,7 +313,7 @@ export default function BusinessCardOrder({ distributor }: Props) {
                 type="submit"
                 disabled={submitting}
                 className="flex-1 py-3 rounded-xl font-bold text-white text-sm transition-opacity disabled:opacity-60"
-                style={{ background: '#2B4C7E' }}
+                style={{ background: '#1B3A7D' }}
               >
                 {submitting ? 'Placing Order…' : `Place Order — ${PRICES[quantity]}`}
               </button>
@@ -339,7 +339,7 @@ export default function BusinessCardOrder({ distributor }: Props) {
           </p>
           <button
             onClick={() => { setStep('preview'); setOrderId(''); }}
-            className="mt-6 text-sm text-[#2B4C7E] font-medium hover:underline"
+            className="mt-6 text-sm text-[#1B3A7D] font-medium hover:underline"
           >
             Place another order
           </button>

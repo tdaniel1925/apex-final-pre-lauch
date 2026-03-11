@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
       subject: 'Test Email from Apex Affinity Group',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-          <h2 style="color: #2B4C7E;">Test Email Success!</h2>
+          <h2 style="color: #1B3A7D;">Test Email Success!</h2>
 
           <p>Hi ${admin.first_name},</p>
 

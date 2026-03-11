@@ -13,16 +13,16 @@ const config: Config = {
         foreground: 'var(--foreground)',
         // Template Design System Colors
         primary: {
-          50: '#ecfdf5',
-          100: '#d1fae5',
-          200: '#a7f3d0',
-          300: '#6ee7b7',
-          400: '#34d399',
-          500: '#10b981',
-          600: '#059669',
-          700: '#047857',
-          800: '#065f46',
-          900: '#064e3b',
+          50: '#EEF2F9',
+          100: '#D4E1F3',
+          200: '#A9C3E7',
+          300: '#7EA5DB',
+          400: '#5387CF',
+          500: '#1B3A7D',  // Navy
+          600: '#152E64',
+          700: '#10234B',
+          800: '#0A1732',
+          900: '#050C19',
         },
         secondary: {
           50: '#fff7ed',

@@ -89,7 +89,7 @@ export async function POST(request: NextRequest) {
           <!-- Content -->
           <tr>
             <td style="padding: 20px 40px 40px; color: #333333;">
-              <h1 style="margin: 0 0 20px; font-size: 28px; font-weight: bold; color: #2B4C7E; text-align: center;">
+              <h1 style="margin: 0 0 20px; font-size: 28px; font-weight: bold; color: #1B3A7D; text-align: center;">
                 Reset Your Password
               </h1>
 
@@ -109,7 +109,7 @@ export async function POST(request: NextRequest) {
               <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin: 24px 0;">
                 <tr>
                   <td style="text-align: center;">
-                    <a href="${resetLink}" style="display: inline-block; padding: 16px 32px; background-color: #2B4C7E; color: #ffffff; text-decoration: none; font-size: 16px; font-weight: bold; border-radius: 6px;">
+                    <a href="${resetLink}" style="display: inline-block; padding: 16px 32px; background-color: #1B3A7D; color: #ffffff; text-decoration: none; font-size: 16px; font-weight: bold; border-radius: 6px;">
                       Reset My Password
                     </a>
                   </td>

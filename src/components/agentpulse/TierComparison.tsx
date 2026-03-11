@@ -75,12 +75,12 @@ export default function TierComparison() {
           key={tier.name}
           className={`bg-white rounded-lg shadow-lg overflow-hidden border-2 ${
             tier.highlighted
-              ? 'border-[#2B4C7E] ring-4 ring-blue-50'
+              ? 'border-[#1B3A7D] ring-4 ring-blue-50'
               : 'border-gray-200'
           }`}
         >
           {tier.highlighted && (
-            <div className="bg-[#2B4C7E] text-white text-center py-2 text-sm font-semibold">
+            <div className="bg-[#1B3A7D] text-white text-center py-2 text-sm font-semibold">
               ⭐ Most Popular
             </div>
           )}
@@ -117,7 +117,7 @@ export default function TierComparison() {
             <button
               className={`w-full py-3 px-4 rounded-lg font-semibold transition-colors ${
                 tier.highlighted
-                  ? 'bg-[#2B4C7E] text-white hover:bg-[#1e3555]'
+                  ? 'bg-[#1B3A7D] text-white hover:bg-[#1e3555]'
                   : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
               }`}
             >

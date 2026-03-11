@@ -78,7 +78,7 @@ export default function ProspectSignupForm() {
         </p>
         <button
           onClick={() => router.push('/')}
-          className="text-[#2B4C7E] hover:underline font-medium"
+          className="text-[#1B3A7D] hover:underline font-medium"
         >
           Return to Home
         </button>
@@ -107,7 +107,7 @@ export default function ProspectSignupForm() {
             required
             value={formData.firstName}
             onChange={handleChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
           />
         </div>
 
@@ -122,7 +122,7 @@ export default function ProspectSignupForm() {
             required
             value={formData.lastName}
             onChange={handleChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
           />
         </div>
       </div>
@@ -140,7 +140,7 @@ export default function ProspectSignupForm() {
             required
             value={formData.email}
             onChange={handleChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
           />
         </div>
 
@@ -155,7 +155,7 @@ export default function ProspectSignupForm() {
             value={formData.phone}
             onChange={handleChange}
             placeholder="(555) 123-4567"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
           />
         </div>
       </div>
@@ -171,7 +171,7 @@ export default function ProspectSignupForm() {
           name="address"
           value={formData.address}
           onChange={handleChange}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
         />
       </div>
 
@@ -187,7 +187,7 @@ export default function ProspectSignupForm() {
             name="city"
             value={formData.city}
             onChange={handleChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
           />
         </div>
 
@@ -202,7 +202,7 @@ export default function ProspectSignupForm() {
             value={formData.state}
             onChange={handleChange}
             placeholder="TX"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
           />
         </div>
 
@@ -217,7 +217,7 @@ export default function ProspectSignupForm() {
             value={formData.zipCode}
             onChange={handleChange}
             placeholder="12345"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
           />
         </div>
       </div>
@@ -232,7 +232,7 @@ export default function ProspectSignupForm() {
           name="howDidYouHear"
           value={formData.howDidYouHear}
           onChange={handleChange}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
         >
           <option value="">Select an option</option>
           <option value="friend_referral">Friend or Family Referral</option>
@@ -247,7 +247,7 @@ export default function ProspectSignupForm() {
       <button
         type="submit"
         disabled={isLoading}
-        className="w-full bg-[#2B4C7E] text-white py-3 px-4 rounded-lg hover:bg-[#1e3557] transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full bg-[#1B3A7D] text-white py-3 px-4 rounded-lg hover:bg-[#1e3557] transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {isLoading ? 'Submitting...' : 'Submit'}
       </button>

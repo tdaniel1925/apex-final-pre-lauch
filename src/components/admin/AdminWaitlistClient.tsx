@@ -73,7 +73,7 @@ export default function AdminWaitlistClient({ entries, total, pending, notified 
         <button
           onClick={handleSendLaunchEmails}
           disabled={sending || pending === 0}
-          className="bg-[#2B4C7E] text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-[#1e3555] disabled:opacity-50 transition-colors"
+          className="bg-[#1B3A7D] text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-[#1e3555] disabled:opacity-50 transition-colors"
         >
           {sending ? '⏳ Sending...' : `🚀 Send Launch Emails (${pending} pending)`}
         </button>
@@ -82,7 +82,7 @@ export default function AdminWaitlistClient({ entries, total, pending, notified 
       {/* Stats */}
       <div className="grid grid-cols-3 gap-4 mb-6">
         {[
-          { label: 'Total Signups', value: total, color: 'text-[#2B4C7E]' },
+          { label: 'Total Signups', value: total, color: 'text-[#1B3A7D]' },
           { label: 'Pending Launch Email', value: pending, color: 'text-yellow-600' },
           { label: 'Already Notified', value: notified, color: 'text-green-600' },
         ].map((s) => (
@@ -130,7 +130,7 @@ export default function AdminWaitlistClient({ entries, total, pending, notified 
                     <td className="px-4 py-3 text-gray-900">{entry.email}</td>
                     <td className="px-4 py-3 text-gray-500">
                       {entry.source_slug ? (
-                        <span className="text-[#2B4C7E] font-medium">/{entry.source_slug}</span>
+                        <span className="text-[#1B3A7D] font-medium">/{entry.source_slug}</span>
                       ) : (
                         <span className="text-gray-400">Main Site</span>
                       )}

@@ -150,7 +150,7 @@ export default function AdminTrainingClient() {
         </div>
         <button
           onClick={() => { setEditingEpisode(null); setShowModal(true); }}
-          className="bg-[#2B4C7E] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#1e3555] transition-colors"
+          className="bg-[#1B3A7D] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#1e3555] transition-colors"
         >
           + Create New Episode
         </button>
@@ -212,7 +212,7 @@ export default function AdminTrainingClient() {
           <p className="text-gray-500 mb-4">No episodes yet</p>
           <button
             onClick={() => setShowModal(true)}
-            className="bg-[#2B4C7E] text-white px-4 py-2 rounded-lg text-sm font-medium"
+            className="bg-[#1B3A7D] text-white px-4 py-2 rounded-lg text-sm font-medium"
           >
             Create Your First Episode
           </button>

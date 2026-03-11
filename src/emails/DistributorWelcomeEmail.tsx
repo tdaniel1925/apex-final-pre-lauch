@@ -236,7 +236,7 @@ const container = {
 };
 
 const header = {
-  background: 'linear-gradient(135deg, #2B4C7E 0%, #1e3557 100%)',
+  background: 'linear-gradient(135deg, #1B3A7D 0%, #1e3557 100%)',
   padding: '40px 30px',
   textAlign: 'center' as const,
 };
@@ -259,13 +259,13 @@ const content = {
 };
 
 const h2 = {
-  color: '#2B4C7E',
+  color: '#1B3A7D',
   fontSize: '24px',
   margin: '0 0 20px 0',
 };
 
 const h3 = {
-  color: '#2B4C7E',
+  color: '#1B3A7D',
   fontSize: '20px',
   margin: '0 0 15px 0',
 };
@@ -286,14 +286,14 @@ const divider = {
 // Credentials Box
 const credentialsBox = {
   backgroundColor: '#f0f5ff',
-  border: '2px solid #2B4C7E',
+  border: '2px solid #1B3A7D',
   borderRadius: '8px',
   padding: '24px',
   margin: '20px 0',
 };
 
 const credentialsTitle = {
-  color: '#2B4C7E',
+  color: '#1B3A7D',
   fontSize: '20px',
   margin: '0 0 20px 0',
   textAlign: 'center' as const,
@@ -311,7 +311,7 @@ const credentialLabel = {
 };
 
 const credentialValue = {
-  color: '#2B4C7E',
+  color: '#1B3A7D',
   fontSize: '16px',
   fontWeight: 'bold',
   fontFamily: 'monospace',
@@ -319,7 +319,7 @@ const credentialValue = {
 };
 
 const credentialLink = {
-  color: '#2B4C7E',
+  color: '#1B3A7D',
   textDecoration: 'underline',
 };
 
@@ -335,13 +335,13 @@ const securityNote = {
 // Website Box
 const websiteBox = {
   backgroundColor: '#f8f9fa',
-  borderLeft: '4px solid #2B4C7E',
+  borderLeft: '4px solid #1B3A7D',
   padding: '20px',
   margin: '20px 0',
 };
 
 const websiteUrl = {
-  color: '#2B4C7E',
+  color: '#1B3A7D',
   fontSize: '16px',
   fontWeight: 'bold',
   margin: '10px 0',
@@ -349,7 +349,7 @@ const websiteUrl = {
 };
 
 const websiteLink = {
-  color: '#2B4C7E',
+  color: '#1B3A7D',
   textDecoration: 'underline',
 };
 
@@ -369,7 +369,7 @@ const stepSection = {
 const stepNumber = {
   width: '40px',
   height: '40px',
-  backgroundColor: '#2B4C7E',
+  backgroundColor: '#1B3A7D',
   borderRadius: '50%',
   color: '#ffffff',
   fontWeight: 'bold',
@@ -385,7 +385,7 @@ const stepContent = {
 };
 
 const stepTitle = {
-  color: '#2B4C7E',
+  color: '#1B3A7D',
   fontSize: '18px',
   margin: '0 0 8px 0',
 };
@@ -426,7 +426,7 @@ const contactInfo = {
 };
 
 const link = {
-  color: '#2B4C7E',
+  color: '#1B3A7D',
   textDecoration: 'none',
 };
 
@@ -449,7 +449,7 @@ const footerLinks = {
 };
 
 const footerLink = {
-  color: '#2B4C7E',
+  color: '#1B3A7D',
   textDecoration: 'none',
   fontSize: '14px',
   margin: '0 10px',

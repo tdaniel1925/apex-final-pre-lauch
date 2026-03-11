@@ -71,7 +71,7 @@ export default function WhyApex() {
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-[#2B4C7E] mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#1B3A7D] mb-6">
             Insurance, Done Right
           </h2>
           <p className="text-lg text-[#4B5563] max-w-3xl mx-auto mb-8">
@@ -82,12 +82,12 @@ export default function WhyApex() {
 
         {/* Carriers Section */}
         <div className="mb-16">
-          <h3 className="text-2xl font-bold text-[#2B4C7E] text-center mb-8">Our Premier Carrier Partners</h3>
+          <h3 className="text-2xl font-bold text-[#1B3A7D] text-center mb-8">Our Premier Carrier Partners</h3>
           <div className="flex flex-wrap justify-center gap-4 md:gap-6">
             {carriers.map((carrier, index) => (
               <div
                 key={index}
-                className="bg-white border-2 border-[#2B4C7E]/10 rounded-xl px-6 py-4 text-[#2B4C7E] font-semibold hover:border-[#DC2626] hover:text-[#DC2626] transition-colors"
+                className="bg-white border-2 border-[#1B3A7D]/10 rounded-xl px-6 py-4 text-[#1B3A7D] font-semibold hover:border-[#C7181F] hover:text-[#C7181F] transition-colors"
               >
                 {carrier}
               </div>
@@ -100,12 +100,12 @@ export default function WhyApex() {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-shadow border border-[#2B4C7E]/10"
+              className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-shadow border border-[#1B3A7D]/10"
             >
-              <div className="w-16 h-16 bg-gradient-to-br from-[#2B4C7E] to-[#1a2c4e] rounded-2xl flex items-center justify-center text-white mb-6">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#1B3A7D] to-[#1a2c4e] rounded-2xl flex items-center justify-center text-white mb-6">
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-bold text-[#2B4C7E] mb-3">{feature.title}</h3>
+              <h3 className="text-xl font-bold text-[#1B3A7D] mb-3">{feature.title}</h3>
               <p className="text-[#4B5563] leading-relaxed">{feature.description}</p>
             </div>
           ))}

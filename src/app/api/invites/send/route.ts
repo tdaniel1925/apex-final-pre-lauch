@@ -32,7 +32,7 @@ function vipEmailHtml(recipientName: string, senderName: string): string {
 
         <!-- HEADER -->
         <tr>
-          <td style="background:linear-gradient(135deg,#1a2f50 0%,#2B4C7E 100%);padding:36px 40px;text-align:center;">
+          <td style="background:linear-gradient(135deg,#1a2f50 0%,#1B3A7D 100%);padding:36px 40px;text-align:center;">
             <img src="https://theapexway.net/apex-logo-white.png" alt="Apex Affinity Group" style="height:60px;width:auto;" />
             <div style="margin-top:16px;display:inline-block;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:999px;padding:5px 18px;">
               <span style="color:#fbbf24;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;">VIP First Look</span>
@@ -60,7 +60,7 @@ function vipEmailHtml(recipientName: string, senderName: string): string {
             <hr style="border:none;border-top:1px solid #e5e7eb;margin:0 0 28px;" />
 
             <!-- 3 EVENTS -->
-            <p style="margin:0 0 20px;font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#2B4C7E;">Here's What's Coming</p>
+            <p style="margin:0 0 20px;font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#1B3A7D;">Here's What's Coming</p>
 
             <!-- Event 1 -->
             <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:16px;">
@@ -105,14 +105,14 @@ function vipEmailHtml(recipientName: string, senderName: string): string {
             <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:32px;">
               <tr>
                 <td align="center" style="padding:0 0 12px;">
-                  <a href="${waitlistLink}" style="display:inline-block;background:#2B4C7E;color:#ffffff;font-weight:700;font-size:15px;text-decoration:none;padding:14px 40px;border-radius:12px;">
+                  <a href="${waitlistLink}" style="display:inline-block;background:#1B3A7D;color:#ffffff;font-weight:700;font-size:15px;text-decoration:none;padding:14px 40px;border-radius:12px;">
                     Join the Waitlist — It's Free →
                   </a>
                 </td>
               </tr>
               <tr>
                 <td align="center">
-                  <a href="${webinarLink}" style="display:inline-block;background:#ffffff;color:#2B4C7E;font-weight:700;font-size:14px;text-decoration:none;padding:12px 32px;border-radius:12px;border:2px solid #2B4C7E;">
+                  <a href="${webinarLink}" style="display:inline-block;background:#ffffff;color:#1B3A7D;font-weight:700;font-size:14px;text-decoration:none;padding:12px 32px;border-radius:12px;border:2px solid #1B3A7D;">
                     Register for the Webinar →
                   </a>
                 </td>

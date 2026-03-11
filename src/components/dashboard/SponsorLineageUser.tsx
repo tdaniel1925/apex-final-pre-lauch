@@ -45,7 +45,7 @@ export default function SponsorLineageUser({ sponsorPath, currentUser }: Sponsor
                 </svg>
               )}
               <div className="inline-flex items-center gap-1 bg-white/60 rounded px-1.5 py-0.5">
-                <div className="w-4 h-4 bg-gradient-to-br from-[#2B4C7E] to-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
+                <div className="w-4 h-4 bg-gradient-to-br from-[#1B3A7D] to-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
                   <span className="text-[8px] font-bold text-white">
                     {sponsor.first_name.charAt(0)}
                     {sponsor.last_name.charAt(0)}

@@ -49,7 +49,7 @@ export default function CardPreviewRenderer({
         width: 120,
         margin: 1,
         color: {
-          dark: '#2B4C7E',
+          dark: '#1B3A7D',
           light: '#00000000',
         },
       }).then(setQrDataUrl);

@@ -157,7 +157,7 @@ export function calculateMatchingBonus(
 
   let total = 0;
 
-  for (const [leaderId, overrides] of l1LeadersOverrides.entries()) {
+  for (const [leaderId, overrides] of Array.from(l1LeadersOverrides.entries())) {
     const leaderRank = l1LeadersRanks.get(leaderId);
     if (!leaderRank) continue;
 
@@ -205,7 +205,7 @@ export function calculateCheckMatch(
 
   let total = 0;
 
-  for (const [leaderId, earnings] of l1LeadersTotalEarnings.entries()) {
+  for (const [leaderId, earnings] of Array.from(l1LeadersTotalEarnings.entries())) {
     const leaderRank = l1LeadersRanks.get(leaderId);
     if (!leaderRank) continue;
 

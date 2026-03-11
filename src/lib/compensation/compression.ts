@@ -1,7 +1,7 @@
 // Apex Affinity Group - Override Resolution & Compression
 // Source: BUSINESS-RULES.md, 05_genealogy_examples.md
 
-import type { Rep, Rank, OverrideRecipient } from './types';
+import type { Rep, Rank, OverrideRecipient, BVSnapshot } from './types';
 import { qualifiesForOverrideLevel } from './rank';
 
 /**
@@ -41,13 +41,15 @@ import { qualifiesForOverrideLevel } from './rank';
  * @param level - Override level (1-7)
  * @param uplineChain - Pre-fetched upline chain from database
  * @param getPriorMonthRank - Function to get prior month rank for a rep
+ * @param bvSnapshots - Map of rep_id to BV snapshot for team_bv lookup
  * @returns Override recipient or null (Apex Reserve)
  */
 export async function resolveOverrideRecipient(
   seller: Rep,
   level: number,
   uplineChain: Rep[],
-  getPriorMonthRank: (repId: string) => Promise<Rank | null>
+  getPriorMonthRank: (repId: string) => Promise<Rank | null>,
+  bvSnapshots: Map<string, BVSnapshot>
 ): Promise<OverrideRecipient | null> {
   const MAX_DEPTH = 10;
   let depth = 0;
@@ -70,10 +72,12 @@ export async function resolveOverrideRecipient(
     // Get prior month rank (CRITICAL: not current rank!)
     const priorRank = await getPriorMonthRank(uplineRep.rep_id);
 
-    // Check if qualified for this level
-    // NOTE: team_bv would need to be fetched from BV snapshot for accuracy
-    // For now, passing 0 as placeholder until BV snapshot lookup is implemented
-    if (qualifiesForOverrideLevel(priorRank, level, 0)) {
+    // Get team_bv from snapshot (required for L6/L7 Powerline qualification)
+    const snapshot = bvSnapshots.get(uplineRep.rep_id);
+    const teamBV = snapshot?.team_bv || 0;
+
+    // Check if qualified for this level with actual team_bv
+    if (qualifiesForOverrideLevel(priorRank, level, teamBV)) {
 
       return {
         rep: uplineRep,
@@ -108,6 +112,7 @@ export async function resolveOverrideRecipient(
  * @param uplineChain - Pre-fetched upline chain
  * @param getPriorMonthRank - Function to get prior month rank
  * @param enroller - Personal enroller (for L1 exception)
+ * @param bvSnapshots - Map of rep_id to BV snapshot
  * @returns Array of override recipients with amounts
  */
 export async function resolveAllOverrides(
@@ -115,7 +120,8 @@ export async function resolveAllOverrides(
   overrideLevels: Record<string, number>,
   uplineChain: Rep[],
   getPriorMonthRank: (repId: string) => Promise<Rank | null>,
-  enroller: Rep | null
+  enroller: Rep | null,
+  bvSnapshots: Map<string, BVSnapshot>
 ): Promise<OverrideRecipient[]> {
   const recipients: OverrideRecipient[] = [];
 
@@ -144,7 +150,8 @@ export async function resolveAllOverrides(
       seller,
       level,
       uplineChain,
-      getPriorMonthRank
+      getPriorMonthRank,
+      bvSnapshots
     );
 
     if (recipient) {

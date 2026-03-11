@@ -375,7 +375,7 @@ export default function CreateEpisodeModal({ episode, onClose, onSaved }: Props)
               onClick={() => setActiveTab(tab.id)}
               className={`px-4 py-2.5 text-sm font-medium transition-colors ${
                 activeTab === tab.id
-                  ? 'border-b-2 border-[#2B4C7E] text-[#2B4C7E]'
+                  ? 'border-b-2 border-[#1B3A7D] text-[#1B3A7D]'
                   : 'text-gray-500 hover:text-gray-700'
               }`}
             >
@@ -455,7 +455,7 @@ export default function CreateEpisodeModal({ episode, onClose, onSaved }: Props)
               </div>
               <button
                 onClick={() => setActiveTab('content')}
-                className="bg-[#2B4C7E] text-white px-4 py-2 rounded-lg text-sm font-medium w-full"
+                className="bg-[#1B3A7D] text-white px-4 py-2 rounded-lg text-sm font-medium w-full"
               >
                 Next: Content →
               </button>
@@ -498,7 +498,7 @@ export default function CreateEpisodeModal({ episode, onClose, onSaved }: Props)
                   <button
                     onClick={handleGenerateScript}
                     disabled={generatingScript || !scriptTopic || !title}
-                    className="bg-[#2B4C7E] text-white px-4 py-2 rounded-lg text-sm font-medium disabled:opacity-50 mt-5"
+                    className="bg-[#1B3A7D] text-white px-4 py-2 rounded-lg text-sm font-medium disabled:opacity-50 mt-5"
                   >
                     {generatingScript ? '⏳ Generating...' : '✨ Generate Script'}
                   </button>
@@ -522,7 +522,7 @@ export default function CreateEpisodeModal({ episode, onClose, onSaved }: Props)
               </div>
               <button
                 onClick={() => setActiveTab('production')}
-                className="bg-[#2B4C7E] text-white px-4 py-2 rounded-lg text-sm font-medium w-full"
+                className="bg-[#1B3A7D] text-white px-4 py-2 rounded-lg text-sm font-medium w-full"
               >
                 Next: Production Settings →
               </button>
@@ -600,7 +600,7 @@ export default function CreateEpisodeModal({ episode, onClose, onSaved }: Props)
                     type="button"
                     onClick={() => setEnableMusic((v) => !v)}
                     className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
-                      enableMusic ? 'bg-[#2B4C7E]' : 'bg-gray-300'
+                      enableMusic ? 'bg-[#1B3A7D]' : 'bg-gray-300'
                     }`}
                   >
                     <span
@@ -636,7 +636,7 @@ export default function CreateEpisodeModal({ episode, onClose, onSaved }: Props)
                         max="40"
                         value={musicVolume}
                         onChange={(e) => setMusicVolume(parseInt(e.target.value))}
-                        className="w-full accent-[#2B4C7E]"
+                        className="w-full accent-[#1B3A7D]"
                       />
                     </div>
                   </>
@@ -645,7 +645,7 @@ export default function CreateEpisodeModal({ episode, onClose, onSaved }: Props)
 
               <button
                 onClick={() => setActiveTab('generate')}
-                className="bg-[#2B4C7E] text-white px-4 py-2 rounded-lg text-sm font-medium w-full"
+                className="bg-[#1B3A7D] text-white px-4 py-2 rounded-lg text-sm font-medium w-full"
               >
                 Next: Preview & Generate →
               </button>
@@ -677,7 +677,7 @@ export default function CreateEpisodeModal({ episode, onClose, onSaved }: Props)
                 <button
                   onClick={handleGenerateFullAudio}
                   disabled={generatingAudio || !script || !title}
-                  className="w-full bg-[#2B4C7E] text-white py-3 rounded-lg font-medium text-sm disabled:opacity-50"
+                  className="w-full bg-[#1B3A7D] text-white py-3 rounded-lg font-medium text-sm disabled:opacity-50"
                 >
                   {generatingAudio ? (
                     <span>⏳ {generatingStep || 'Generating...'}</span>
@@ -747,7 +747,7 @@ export default function CreateEpisodeModal({ episode, onClose, onSaved }: Props)
           <button
             onClick={() => handleSave(true)}
             disabled={saving}
-            className="px-4 py-2 text-sm bg-[#2B4C7E] text-white rounded-lg font-medium hover:bg-[#1e3555] disabled:opacity-50"
+            className="px-4 py-2 text-sm bg-[#1B3A7D] text-white rounded-lg font-medium hover:bg-[#1e3555] disabled:opacity-50"
           >
             {saving ? 'Publishing...' : '⚡ Publish'}
           </button>

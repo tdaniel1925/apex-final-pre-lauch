@@ -80,10 +80,10 @@ export const RANK_ID_MAP: Record<string, number> = {
 // Product pricing (member prices for BV calculation)
 export const PRODUCT_PRICES: Record<string, { member: number; retail: number; bv: number }> = {
   PULSEGUARD: { member: 59, retail: 79, bv: 59 },
-  PULSEFLOW: { member: 109, retail: 149, bv: 109 },
+  PULSEFLOW: { member: 129, retail: 149, bv: 129 },
   PULSEDRIVE: { member: 219, retail: 299, bv: 219 },
-  PULSECOMMAND: { member: 349, retail: 469, bv: 349 },
-  SMARTLOCK: { member: 95, retail: 135, bv: 95 },
+  PULSECOMMAND: { member: 349, retail: 499, bv: 349 },
+  SMARTLOCK: { member: 99, retail: 135, bv: 99 },
   BIZCENTER: { member: 39, retail: 39, bv: 39 },
 };
 

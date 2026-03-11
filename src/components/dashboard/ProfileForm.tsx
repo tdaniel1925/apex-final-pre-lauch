@@ -71,7 +71,7 @@ export default function ProfileForm({ distributor, userEmail }: ProfileFormProps
               name="first_name"
               defaultValue={distributor.first_name}
               required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
             />
           </div>
 
@@ -84,7 +84,7 @@ export default function ProfileForm({ distributor, userEmail }: ProfileFormProps
               name="last_name"
               defaultValue={distributor.last_name}
               required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
             />
           </div>
 
@@ -108,7 +108,7 @@ export default function ProfileForm({ distributor, userEmail }: ProfileFormProps
               type="text"
               name="company_name"
               defaultValue={distributor.company_name || ''}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
             />
           </div>
 
@@ -120,7 +120,7 @@ export default function ProfileForm({ distributor, userEmail }: ProfileFormProps
               type="tel"
               name="phone"
               defaultValue={distributor.phone || ''}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
             />
           </div>
         </div>
@@ -139,7 +139,7 @@ export default function ProfileForm({ distributor, userEmail }: ProfileFormProps
               type="text"
               name="address_line1"
               defaultValue={distributor.address_line1 || ''}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
             />
           </div>
 
@@ -151,7 +151,7 @@ export default function ProfileForm({ distributor, userEmail }: ProfileFormProps
               type="text"
               name="address_line2"
               defaultValue={distributor.address_line2 || ''}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
             />
           </div>
 
@@ -164,7 +164,7 @@ export default function ProfileForm({ distributor, userEmail }: ProfileFormProps
                 type="text"
                 name="city"
                 defaultValue={distributor.city || ''}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
               />
             </div>
 
@@ -176,7 +176,7 @@ export default function ProfileForm({ distributor, userEmail }: ProfileFormProps
                 type="text"
                 name="state"
                 defaultValue={distributor.state || ''}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
               />
             </div>
 
@@ -188,7 +188,7 @@ export default function ProfileForm({ distributor, userEmail }: ProfileFormProps
                 type="text"
                 name="zip"
                 defaultValue={distributor.zip || ''}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#1B3A7D] focus:border-transparent"
               />
             </div>
           </div>
@@ -209,7 +209,7 @@ export default function ProfileForm({ distributor, userEmail }: ProfileFormProps
         <button
           type="submit"
           disabled={isSubmitting}
-          className="px-6 py-2 bg-[#2B4C7E] text-white rounded-md hover:bg-[#1a2c4e] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="px-6 py-2 bg-[#1B3A7D] text-white rounded-md hover:bg-[#1a2c4e] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
           {isSubmitting ? 'Saving...' : 'Save Changes'}
         </button>

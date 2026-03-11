@@ -53,11 +53,11 @@ export default function GettingStarted() {
   ];
 
   return (
-    <section className="py-24 bg-gradient-to-br from-[#2B4C7E] to-[#1a2c4e]">
+    <section className="py-24 bg-gradient-to-br from-[#1B3A7D] to-[#1a2c4e]">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-20">
-          <span className="inline-block px-4 py-2 bg-[#DC2626]/20 text-[#DC2626] rounded-full text-sm font-semibold mb-4">
+          <span className="inline-block px-4 py-2 bg-[#C7181F]/20 text-[#C7181F] rounded-full text-sm font-semibold mb-4">
             YOUR JOURNEY STARTS HERE
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
@@ -71,14 +71,14 @@ export default function GettingStarted() {
         {/* Timeline */}
         <div className="max-w-5xl mx-auto relative">
           {/* Center Line - Hidden on mobile */}
-          <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#DC2626] via-[#DC2626]/50 to-[#DC2626]" />
+          <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#C7181F] via-[#C7181F]/50 to-[#C7181F]" />
 
           {/* Steps */}
           <div className="space-y-12 md:space-y-24">
             {steps.map((step, index) => (
               <div key={index} className="relative">
                 {/* Mobile Timeline Line */}
-                <div className="md:hidden absolute left-6 top-0 bottom-0 w-0.5 bg-[#DC2626]/30" />
+                <div className="md:hidden absolute left-6 top-0 bottom-0 w-0.5 bg-[#C7181F]/30" />
 
                 {/* Step Container */}
                 <div className={`flex flex-col md:flex-row items-center gap-6 md:gap-8 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
@@ -86,12 +86,12 @@ export default function GettingStarted() {
                   <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'} pl-16 md:pl-0`}>
                     <div className="group bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
                       {/* Icon */}
-                      <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[#2B4C7E] to-[#1a2c4e] text-white rounded-xl mb-4 group-hover:scale-110 transition-transform ${index % 2 === 0 ? 'md:ml-auto' : ''}`}>
+                      <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[#1B3A7D] to-[#1a2c4e] text-white rounded-xl mb-4 group-hover:scale-110 transition-transform ${index % 2 === 0 ? 'md:ml-auto' : ''}`}>
                         {step.icon}
                       </div>
 
                       {/* Title */}
-                      <h3 className="text-2xl font-bold text-[#2B4C7E] mb-3">
+                      <h3 className="text-2xl font-bold text-[#1B3A7D] mb-3">
                         {step.title}
                       </h3>
 
@@ -106,17 +106,17 @@ export default function GettingStarted() {
                   <div className="absolute left-6 md:left-1/2 md:transform md:-translate-x-1/2 flex items-center justify-center z-10">
                     <div className="relative">
                       {/* Outer Ring */}
-                      <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-[#DC2626] flex items-center justify-center shadow-lg">
+                      <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-[#C7181F] flex items-center justify-center shadow-lg">
                         {/* Inner Circle */}
                         <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white flex items-center justify-center">
-                          <span className="text-lg md:text-xl font-bold text-[#DC2626]">
+                          <span className="text-lg md:text-xl font-bold text-[#C7181F]">
                             {step.number}
                           </span>
                         </div>
                       </div>
 
                       {/* Pulse Animation */}
-                      <div className="absolute inset-0 rounded-full bg-[#DC2626] animate-ping opacity-20" />
+                      <div className="absolute inset-0 rounded-full bg-[#C7181F] animate-ping opacity-20" />
                     </div>
                   </div>
 
@@ -133,7 +133,7 @@ export default function GettingStarted() {
           <p className="text-white/90 text-lg mb-6">
             Ready to start your journey to financial freedom?
           </p>
-          <button className="bg-[#DC2626] hover:bg-[#B91C1C] text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5">
+          <button className="bg-[#C7181F] hover:bg-[#B91C1C] text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5">
             Join Apex Today →
           </button>
         </div>

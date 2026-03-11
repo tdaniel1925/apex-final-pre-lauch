@@ -21,7 +21,7 @@ export default function WelcomePage() {
   }, [router]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#2B4C7E] to-[#1a2c4e] flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-[#1B3A7D] to-[#1a2c4e] flex items-center justify-center p-4">
       <div className="text-center">
         {/* Logo */}
         <div className="mb-8 animate-fade-in">

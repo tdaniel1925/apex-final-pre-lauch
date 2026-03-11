@@ -118,7 +118,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
 
                   {/* Header Btn Start */}
                   <div className="header-btn">
-                    <a href={signupUrl} className="btn-default" style={{background: '#2B4C7E', backgroundColor: '#2B4C7E', backgroundImage: 'none', borderColor: '#2B4C7E'}}>
+                    <a href={signupUrl} className="btn-default" style={{background: '#1B3A7D', backgroundColor: '#1B3A7D', backgroundImage: 'none', borderColor: '#1B3A7D'}}>
                       {distributor.slug === 'apex' ? 'Get Started' : 'Join My Team'}
                     </a>
                   </div>
@@ -205,9 +205,9 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
 
                       {/* ASPIRING CARD */}
                       <div className="col-xl-4 col-md-6" style={{marginBottom: '20px'}}>
-                        <div className="pricing-item" style={{border: '3px solid #2B4C7E', height: '100%'}}>
+                        <div className="pricing-item" style={{border: '3px solid #1B3A7D', height: '100%'}}>
                           <div className="icon-box">
-                            <i className="fa-solid fa-seedling" style={{fontSize: '48px', color: '#2B4C7E'}}></i>
+                            <i className="fa-solid fa-seedling" style={{fontSize: '48px', color: '#1B3A7D'}}></i>
                           </div>
                           <div className="pricing-item-content">
                             <h2>Aspiring</h2>
@@ -217,12 +217,12 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                           <div className="pricing-item-list">
                             <h3>What You Get:</h3>
                             <ul>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> No License Needed to Start</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Earn Day One with Ancillary Products</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Free Licensing Guidance & Study Support</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> AI-Powered CRM from Day One</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> 1-on-1 Mentorship &amp; Onboarding</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Built-in Path to Full Insurance Sales</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#1B3A7D'}}></i> No License Needed to Start</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#1B3A7D'}}></i> Earn Day One with Ancillary Products</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#1B3A7D'}}></i> Free Licensing Guidance & Study Support</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#1B3A7D'}}></i> AI-Powered CRM from Day One</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#1B3A7D'}}></i> 1-on-1 Mentorship &amp; Onboarding</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#1B3A7D'}}></i> Built-in Path to Full Insurance Sales</li>
                             </ul>
                           </div>
                           <div className="pricing-item-btn">
@@ -235,15 +235,15 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
 
                       {/* GROWING CARD */}
                       <div className="col-xl-4 col-md-6" style={{marginBottom: '20px'}}>
-                        <div className="pricing-item pricing-item-popular" style={{border: '3px solid #2B4C7E', position: 'relative', height: '100%'}}>
+                        <div className="pricing-item pricing-item-popular" style={{border: '3px solid #1B3A7D', position: 'relative', height: '100%'}}>
                           <div style={{
                             position: 'absolute', top: '-15px', right: '20px',
-                            background: '#2B4C7E', color: '#fff',
+                            background: '#1B3A7D', color: '#fff',
                             padding: '5px 20px', borderRadius: '20px',
                             fontWeight: 'bold', fontSize: '12px'
                           }}>MOST COMMON</div>
                           <div className="icon-box">
-                            <i className="fa-solid fa-chart-line" style={{fontSize: '48px', color: '#2B4C7E'}}></i>
+                            <i className="fa-solid fa-chart-line" style={{fontSize: '48px', color: '#1B3A7D'}}></i>
                           </div>
                           <div className="pricing-item-content">
                             <h2>Growing</h2>
@@ -253,12 +253,12 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                           <div className="pricing-item-list">
                             <h3>What You Get:</h3>
                             <ul>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Stronger Carrier Contracts</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Sales Training Podcast &amp; Live Calls</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Lead Generation &amp; Client Management Tools</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Compliance &amp; Product Support</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Peer Community &amp; Accountability</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> 100% Book of Business Ownership</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#1B3A7D'}}></i> Stronger Carrier Contracts</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#1B3A7D'}}></i> Sales Training Podcast &amp; Live Calls</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#1B3A7D'}}></i> Lead Generation &amp; Client Management Tools</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#1B3A7D'}}></i> Compliance &amp; Product Support</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#1B3A7D'}}></i> Peer Community &amp; Accountability</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#1B3A7D'}}></i> 100% Book of Business Ownership</li>
                             </ul>
                           </div>
                           <div className="pricing-item-btn">
@@ -271,9 +271,9 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
 
                       {/* ESTABLISHED CARD */}
                       <div className="col-xl-4 col-md-6" style={{marginBottom: '20px'}}>
-                        <div className="pricing-item" style={{border: '3px solid #2B4C7E', height: '100%'}}>
+                        <div className="pricing-item" style={{border: '3px solid #1B3A7D', height: '100%'}}>
                           <div className="icon-box">
-                            <i className="fa-solid fa-award" style={{fontSize: '48px', color: '#2B4C7E'}}></i>
+                            <i className="fa-solid fa-award" style={{fontSize: '48px', color: '#1B3A7D'}}></i>
                           </div>
                           <div className="pricing-item-content">
                             <h2>Established</h2>
@@ -283,12 +283,12 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                           <div className="pricing-item-list">
                             <h3>What You Get:</h3>
                             <ul>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Top-Tier Commission Contracts</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Multiple Carrier Appointments</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Team Building &amp; Residual Income</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Advanced CRM &amp; Automation Tools</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Leadership &amp; Mentorship Opportunities</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Replicated Site &amp; Personal Brand Tools</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#1B3A7D'}}></i> Top-Tier Commission Contracts</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#1B3A7D'}}></i> Multiple Carrier Appointments</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#1B3A7D'}}></i> Team Building &amp; Residual Income</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#1B3A7D'}}></i> Advanced CRM &amp; Automation Tools</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#1B3A7D'}}></i> Leadership &amp; Mentorship Opportunities</li>
+                              <li><i className="fa-solid fa-check" style={{color: '#1B3A7D'}}></i> Replicated Site &amp; Personal Brand Tools</li>
                             </ul>
                           </div>
                           <div className="pricing-item-btn">
@@ -304,7 +304,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
 
                   {/* Universal Benefits */}
                   <div className="pricing-benefit-list wow fadeInUp" data-wow-delay="0.2s" style={{marginTop: '40px'}}>
-                    <h3 style={{textAlign: 'center', marginBottom: '20px', color: '#2B4C7E', fontSize: '24px'}}>Every Member Gets These From Day One:</h3>
+                    <h3 style={{textAlign: 'center', marginBottom: '20px', color: '#1B3A7D', fontSize: '24px'}}>Every Member Gets These From Day One:</h3>
                     <ul style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '30px'}}>
                       <li><img src="/optive/images/icon-pricing-benefit-1.svg" alt="" />$0 to join, no monthly fees</li>
                       <li><img src="/optive/images/icon-pricing-benefit-2.svg" alt="" />AI-powered CRM included free</li>
@@ -431,11 +431,11 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
               ].map((cat, i) => (
                 <div key={i} className="col-lg-3 col-md-6" style={{marginBottom: '24px'}}>
                   <div style={{background: '#fff', border: '2px solid #dbeafe', borderRadius: '14px', padding: '28px 22px', height: '100%', textAlign: 'center'}}>
-                    <div style={{width: '56px', height: '56px', background: '#2B4C7E', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px', margin: '0 auto 16px'}}>
+                    <div style={{width: '56px', height: '56px', background: '#1B3A7D', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px', margin: '0 auto 16px'}}>
                       <i className={`fa-solid ${cat.icon}`} style={{fontSize: '24px', color: '#fff'}}></i>
                     </div>
                     <h4 style={{fontSize: '18px', fontWeight: 800, color: '#1a2f50', marginBottom: '4px'}}>{cat.title}</h4>
-                    <p style={{fontSize: '13px', color: '#2B4C7E', fontWeight: 600, marginBottom: '14px'}}>{cat.desc}</p>
+                    <p style={{fontSize: '13px', color: '#1B3A7D', fontWeight: 600, marginBottom: '14px'}}>{cat.desc}</p>
                     <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
                       {cat.items.map((item, j) => (
                         <li key={j} style={{fontSize: '14px', color: '#4b5563', lineHeight: '1.8'}}>
@@ -471,7 +471,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                       When agents are properly equipped, trained, and supported — they show up differently for their clients. They close coverage gaps that could devastate families. They build trust that lasts decades. They become pillars in their communities. That's the real mission behind everything Apex Affinity Group does. We invest in you so you can invest in the people who need you most.
                     </p>
                     <div className="wow fadeInUp" data-wow-delay="0.4s" style={{marginTop: '40px', display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap'}}>
-                      <a href={signupUrl} className="btn-default" style={{background: '#ffffff', color: '#2B4C7E', borderColor: '#ffffff'}}>
+                      <a href={signupUrl} className="btn-default" style={{background: '#ffffff', color: '#1B3A7D', borderColor: '#ffffff'}}>
                         {distributor.slug === 'apex' ? 'Get Started' : 'Join the Mission'}
                       </a>
                     </div>
@@ -612,7 +612,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                       {distributor.first_name} {distributor.last_name}
                     </h2>
                     {distributor.company_name && (
-                      <p className="wow fadeInUp" data-wow-delay="0.1s" style={{fontSize: '18px', fontWeight: 600, color: '#2B4C7E'}}>
+                      <p className="wow fadeInUp" data-wow-delay="0.1s" style={{fontSize: '18px', fontWeight: 600, color: '#1B3A7D'}}>
                         {distributor.company_name}
                       </p>
                     )}
@@ -634,7 +634,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                             height: '200px',
                             borderRadius: '50%',
                             objectFit: 'cover',
-                            border: '4px solid #2B4C7E',
+                            border: '4px solid #1B3A7D',
                             boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
                           }}
                         />
@@ -661,7 +661,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                           <div style={{
                             width: '40px',
                             height: '40px',
-                            background: '#2B4C7E',
+                            background: '#1B3A7D',
                             borderRadius: '50%',
                             display: 'flex',
                             alignItems: 'center',
@@ -671,7 +671,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                           </div>
                           <a
                             href={`mailto:${distributor.email}`}
-                            style={{fontSize: '16px', color: '#2B4C7E', fontWeight: 600, textDecoration: 'none'}}
+                            style={{fontSize: '16px', color: '#1B3A7D', fontWeight: 600, textDecoration: 'none'}}
                           >
                             {distributor.email}
                           </a>
@@ -683,7 +683,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                             <div style={{
                               width: '40px',
                               height: '40px',
-                              background: '#2B4C7E',
+                              background: '#1B3A7D',
                               borderRadius: '50%',
                               display: 'flex',
                               alignItems: 'center',
@@ -693,7 +693,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                             </div>
                             <a
                               href={`tel:${distributor.phone}`}
-                              style={{fontSize: '16px', color: '#2B4C7E', fontWeight: 600, textDecoration: 'none'}}
+                              style={{fontSize: '16px', color: '#1B3A7D', fontWeight: 600, textDecoration: 'none'}}
                             >
                               {formatPhoneNumber(distributor.phone)}
                             </a>
@@ -703,7 +703,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
 
                       {/* CTA Button */}
                       <div style={{marginTop: '32px'}}>
-                        <a href={signupUrl} className="btn-default" style={{background: '#2B4C7E', borderColor: '#2B4C7E'}}>
+                        <a href={signupUrl} className="btn-default" style={{background: '#1B3A7D', borderColor: '#1B3A7D'}}>
                           Join {distributor.first_name}'s Team
                         </a>
                       </div>
@@ -763,7 +763,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
             width: '50px',
             height: '50px',
             borderRadius: '50%',
-            backgroundColor: '#2B4C7E',
+            backgroundColor: '#1B3A7D',
             color: '#ffffff',
             border: 'none',
             cursor: 'pointer',
@@ -782,7 +782,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
             e.currentTarget.style.transform = 'translateY(-3px)';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = '#2B4C7E';
+            e.currentTarget.style.backgroundColor = '#1B3A7D';
             e.currentTarget.style.transform = 'translateY(0)';
           }}
         >

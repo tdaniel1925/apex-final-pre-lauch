@@ -1,6 +1,8 @@
 // Apex Affinity Group - TypeScript Types
 // Generated from database schema and documentation
 
+import type { SupabaseClient } from '@supabase/supabase-js';
+
 // ============================================================================
 // ENUMS
 // ============================================================================
@@ -319,3 +321,9 @@ export interface CompPlanConfig {
   };
   minimum_payout: number;
 }
+
+// ============================================================================
+// DATABASE CLIENT
+// ============================================================================
+
+export type DatabaseClient = SupabaseClient<any, 'public', any>;

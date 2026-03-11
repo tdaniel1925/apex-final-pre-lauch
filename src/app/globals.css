@@ -49,47 +49,47 @@
 
 :root {
   /* Apex Affinity Group Brand Colors */
-  --apex-navy: #2B4C7E;
-  --apex-red: #DC2626;
+  --apex-navy: #1B3A7D;
+  --apex-red: #C7181F;
   --apex-light-bg: #F5F7FA;
   --apex-text: #4B5563;
   --apex-dark: #1F2937;
-  --apex-divider: rgba(43, 76, 126, 0.1);
+  --apex-divider: rgba(27, 58, 125, 0.1);
   --apex-light-divider: rgba(255, 255, 255, 0.1);
 
   /* shadcn theme - mapped to Apex colors */
   --radius: 0.625rem;
   --background: 216 33% 97%;  /* #F5F7FA - light bg */
-  --foreground: 217 42% 33%;  /* #2B4C7E - navy */
+  --foreground: 221 64% 28%;  /* #1B3A7D - navy */
   --card: 0 0% 100%;
-  --card-foreground: 217 42% 33%;
+  --card-foreground: 221 64% 28%;
   --popover: 0 0% 100%;
-  --popover-foreground: 217 42% 33%;
-  --primary: 217 42% 33%;  /* #2B4C7E - navy blue */
+  --popover-foreground: 221 64% 28%;
+  --primary: 221 64% 28%;  /* #1B3A7D - navy blue */
   --primary-foreground: 0 0% 100%;
-  --secondary: 0 84% 60%;  /* #DC2626 - red */
+  --secondary: 0 74% 44%;  /* #C7181F - red */
   --secondary-foreground: 0 0% 100%;
   --muted: 216 33% 97%;
   --muted-foreground: 220 9% 46%;  /* #4B5563 - text */
-  --accent: 0 84% 60%;  /* #DC2626 - red accent */
+  --accent: 0 74% 44%;  /* #C7181F - red accent */
   --accent-foreground: 0 0% 100%;
-  --destructive: 0 84% 60%;
-  --border: 217 42% 33% / 0.1;
-  --input: 217 42% 33% / 0.1;
-  --ring: 0 84% 60%;
-  --chart-1: 0 84% 60%;
-  --chart-2: 217 42% 33%;
+  --destructive: 0 74% 44%;
+  --border: 221 64% 28% / 0.1;
+  --input: 221 64% 28% / 0.1;
+  --ring: 0 74% 44%;
+  --chart-1: 0 74% 44%;
+  --chart-2: 221 64% 28%;
   --chart-3: 220 9% 46%;
-  --chart-4: 0 84% 60%;
-  --chart-5: 217 42% 33%;
+  --chart-4: 0 74% 44%;
+  --chart-5: 221 64% 28%;
   --sidebar: 0 0% 98%;
-  --sidebar-foreground: 217 42% 33%;
-  --sidebar-primary: 217 42% 33%;
+  --sidebar-foreground: 221 64% 28%;
+  --sidebar-primary: 221 64% 28%;
   --sidebar-primary-foreground: 0 0% 100%;
   --sidebar-accent: 216 33% 97%;
-  --sidebar-accent-foreground: 217 42% 33%;
-  --sidebar-border: 217 42% 33% / 0.1;
-  --sidebar-ring: 0 84% 60%;
+  --sidebar-accent-foreground: 221 64% 28%;
+  --sidebar-border: 221 64% 28% / 0.1;
+  --sidebar-ring: 0 74% 44%;
 }
 
 .dark {
@@ -141,7 +141,7 @@
     font-family: var(--font-mona-sans), sans-serif;
     font-weight: 600;
     line-height: 1.2;
-    /* color: #2B4C7E; -- REMOVED: Let parent control text color (e.g., text-white on dark backgrounds) */
+    /* color: #1B3A7D; -- REMOVED: Let parent control text color (e.g., text-white on dark backgrounds) */
   }
   p {
     line-height: 1.6em;

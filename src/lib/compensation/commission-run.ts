@@ -9,7 +9,8 @@ import type {
   CommissionLineItem,
   BVSnapshot,
   RankSnapshot,
-  Rank
+  Rank,
+  DatabaseClient
 } from './types';
 import { calculateWaterfall, calculateBizCenterSplit } from './waterfall';
 import { resolveAllOverrides } from './compression';
@@ -85,13 +86,13 @@ export interface CommissionRunResult {
  *
  * @param month - Month to process (1-12)
  * @param year - Year
- * @param db - Database connection (Supabase client)
+ * @param db - Supabase service client with admin privileges
  * @returns Commission run result
  */
 export async function executeCommissionRun(
   month: number,
   year: number,
-  db: any  // Replace with proper Supabase client type
+  db: DatabaseClient
 ): Promise<CommissionRunResult> {
   // ===== STEP 1: Create commission run record =====
   const context = await createCommissionRun(month, year, db);
@@ -117,6 +118,11 @@ export async function executeCommissionRun(
 
     const rankSnapshotMap = new Map<string, Rank>(
       rankSnapshots.data?.map((snap: RankSnapshot) => [snap.rep_id, snap.rank]) || []
+    );
+
+    // Create BV snapshot map for team_bv lookups
+    const bvSnapshotMap = new Map<string, BVSnapshot>(
+      bvSnapshots.data?.map((snap: BVSnapshot) => [snap.rep_id, snap]) || []
     );
 
     // Helper function to get prior month rank
@@ -224,7 +230,8 @@ export async function executeCommissionRun(
           waterfall.overrideLevels,
           uplineChain,
           getPriorMonthRank,
-          enroller
+          enroller,
+          bvSnapshotMap
         );
 
         // Create override line items
@@ -360,7 +367,7 @@ export async function executeCommissionRun(
     // ===== STEP 10: Check $25 minimum payout threshold =====
     let totalCarryForwards = 0;
 
-    for (const [repId, total] of repTotals.entries()) {
+    for (const [repId, total] of Array.from(repTotals.entries())) {
       if (total > 0 && total < COMP_PLAN_CONFIG.minimum_payout) {
         // Below threshold → carry forward
         await db
@@ -431,7 +438,7 @@ export async function executeCommissionRun(
 // HELPER FUNCTIONS
 // ============================================================================
 
-async function createCommissionRun(month: number, year: number, db: any): Promise<CommissionRunContext> {
+async function createCommissionRun(month: number, year: number, db: DatabaseClient): Promise<CommissionRunContext> {
   // Check if run already exists
   const existing = await db
     .from('commission_runs')
@@ -461,7 +468,7 @@ async function createCommissionRun(month: number, year: number, db: any): Promis
   return { month, year, runId, priorMonth, priorYear };
 }
 
-async function getUplineChain(repId: string, db: any): Promise<Rep[]> {
+async function getUplineChain(repId: string, db: DatabaseClient): Promise<Rep[]> {
   // Use recursive CTE or materialized path
   const result = await db.rpc('get_upline_chain', { start_rep_id: repId, max_depth: 8 });
   return result.data || [];

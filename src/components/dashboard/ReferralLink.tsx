@@ -35,7 +35,7 @@ export default function ReferralLink({ referralLink }: ReferralLinkProps) {
         <button
           type="button"
           onClick={handleCopy}
-          className="px-6 py-2 bg-white text-[#2B4C7E] font-semibold rounded-lg hover:bg-gray-100 transition-colors"
+          className="px-6 py-2 bg-white text-[#1B3A7D] font-semibold rounded-lg hover:bg-gray-100 transition-colors"
         >
           {copied ? 'Copied!' : 'Copy'}
         </button>
