@@ -130,18 +130,22 @@ export function calculateRetentionBonus(renewalRate: number): number {
  * - Gold: 15%
  * - Platinum: 20%
  *
+ * CAP: $25,000 per month (Revenue Protection - Phase 2.4)
+ *
  * Formula: For each qualifying L1 leader, earn X% of their override earnings
  *
  * @param rep - Rep earning bonus
  * @param l1LeadersOverrides - Map of L1 leader IDs to their override earnings
  * @param l1LeadersRanks - Map of L1 leader IDs to their ranks
+ * @param db - Database connection for cap logging
  * @returns Matching bonus amount
  */
-export function calculateMatchingBonus(
+export async function calculateMatchingBonus(
   rep: Rep,
   l1LeadersOverrides: Map<string, number>,
-  l1LeadersRanks: Map<string, Rank>
-): number {
+  l1LeadersRanks: Map<string, Rank>,
+  db: any
+): Promise<number> {
   const repRankId = RANK_ID_MAP[rep.current_rank];
 
   // Eligibility: Silver or higher
@@ -167,6 +171,44 @@ export function calculateMatchingBonus(
     if (leaderRankId >= RANK_ID_MAP.BRONZE) {
       total += round2(overrides * percentage);
     }
+  }
+
+  // CRITICAL: Apply $25,000 monthly cap (Phase 2.4 Revenue Protection)
+  const CAP_AMOUNT = 25000;
+  if (total > CAP_AMOUNT) {
+    const excessAmount = total - CAP_AMOUNT;
+
+    // Log cap event to audit_log
+    await db.from('audit_log').insert({
+      action: 'matching_bonus_capped',
+      actor_type: 'system',
+      actor_id: null,
+      table_name: 'commissions',
+      record_id: rep.rep_id,
+      details: {
+        rep_id: rep.rep_id,
+        rep_name: `${rep.first_name} ${rep.last_name}`,
+        total_before_cap: total,
+        capped_amount: CAP_AMOUNT,
+        excess_amount: excessAmount,
+        cap_reason: 'Monthly matching bonus cap of $25,000 exceeded',
+      },
+      timestamp: new Date().toISOString(),
+    });
+
+    // Notify rep about cap
+    await db.from('notifications').insert({
+      user_id: rep.rep_id,
+      type: 'commission_capped',
+      title: 'Matching Bonus Capped',
+      message: `Your matching bonus has reached the $25,000 monthly cap. Original amount: $${total.toFixed(2)}. Excess: $${excessAmount.toFixed(2)}.`,
+      read: false,
+      created_at: new Date().toISOString(),
+    });
+
+    console.warn(`⚠️ Matching bonus capped for rep ${rep.rep_id}: $${total.toFixed(2)} → $${CAP_AMOUNT.toFixed(2)}`);
+
+    return CAP_AMOUNT;
   }
 
   return total;
@@ -357,15 +399,59 @@ export function calculateInfinityBonus(rep: Rep, secondOrgBV: number): number {
  * - car_allowance_active flag = TRUE (auto-set after 6 months)
  * - If downrank below Gold → deactivate, reset counter
  *
+ * CAP: $3,000 per month (Revenue Protection - Phase 2.4)
+ * Note: Normal amount is $400, cap is safety net for edge cases
+ *
  * @param rep - Rep to check
+ * @param db - Database connection for cap logging
  * @returns Car allowance amount
  */
-export function calculateCarAllowance(rep: Rep): number {
-  if (rep.car_allowance_active) {
-    return 400;  // $400/month
+export async function calculateCarAllowance(rep: Rep, db: any): Promise<number> {
+  if (!rep.car_allowance_active) {
+    return 0;
   }
 
-  return 0;
+  let amount = 400;  // $400/month standard
+
+  // CRITICAL: Apply $3,000 monthly cap (Phase 2.4 Revenue Protection)
+  const CAP_AMOUNT = 3000;
+  if (amount > CAP_AMOUNT) {
+    const excessAmount = amount - CAP_AMOUNT;
+
+    // Log cap event to audit_log
+    await db.from('audit_log').insert({
+      action: 'car_bonus_capped',
+      actor_type: 'system',
+      actor_id: null,
+      table_name: 'commissions',
+      record_id: rep.rep_id,
+      details: {
+        rep_id: rep.rep_id,
+        rep_name: `${rep.first_name} ${rep.last_name}`,
+        total_before_cap: amount,
+        capped_amount: CAP_AMOUNT,
+        excess_amount: excessAmount,
+        cap_reason: 'Monthly car bonus cap of $3,000 exceeded',
+      },
+      timestamp: new Date().toISOString(),
+    });
+
+    // Notify rep about cap
+    await db.from('notifications').insert({
+      user_id: rep.rep_id,
+      type: 'commission_capped',
+      title: 'Car Bonus Capped',
+      message: `Your car bonus has reached the $3,000 monthly cap. Original amount: $${amount.toFixed(2)}. Excess: $${excessAmount.toFixed(2)}.`,
+      read: false,
+      created_at: new Date().toISOString(),
+    });
+
+    console.warn(`⚠️ Car bonus capped for rep ${rep.rep_id}: $${amount.toFixed(2)} → $${CAP_AMOUNT.toFixed(2)}`);
+
+    return CAP_AMOUNT;
+  }
+
+  return amount;
 }
 
 /**
@@ -459,10 +545,10 @@ export async function calculateAllBonuses(
   // const renewalRate = await calculateRenewalRate(rep.rep_id, db);
   // const retention = calculateRetentionBonus(renewalRate);
 
-  // 5. Matching Bonus
+  // 5. Matching Bonus (with $25k monthly cap)
   const l1Overrides = new Map(Array.from(l1Leaders.entries()).map(([id, data]) => [id, data.overrides]));
   const l1Ranks = new Map(Array.from(l1Leaders.entries()).map(([id, data]) => [id, data.rank]));
-  const matching = calculateMatchingBonus(rep, l1Overrides, l1Ranks);
+  const matching = await calculateMatchingBonus(rep, l1Overrides, l1Ranks, db);
   if (matching > 0) {
     bonuses.push({ type: 'BONUS_MATCHING', amount: matching });
   }
@@ -491,8 +577,8 @@ export async function calculateAllBonuses(
   // const secondOrgBV = await getSecondOrgBV(rep.second_org_root_rep_id, db);
   // const infinity = calculateInfinityBonus(rep, secondOrgBV);
 
-  // 10. Car Allowance
-  const carAllowance = calculateCarAllowance(rep);
+  // 10. Car Allowance (with $3k monthly cap)
+  const carAllowance = await calculateCarAllowance(rep, db);
   if (carAllowance > 0) {
     bonuses.push({ type: 'BONUS_CAR_ALLOWANCE', amount: carAllowance });
   }
