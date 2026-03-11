@@ -12,30 +12,30 @@
 CREATE OR REPLACE FUNCTION trigger_recalculate_bv()
 RETURNS TRIGGER AS $$
 DECLARE
-  v_rep_id UUID;
+  v_distributor_id UUID;
 BEGIN
-  -- Determine rep_id based on operation
+  -- Determine distributor_id based on operation
   IF TG_OP = 'DELETE' THEN
-    v_rep_id := OLD.rep_id;
+    v_distributor_id := OLD.distributor_id;
   ELSE
-    v_rep_id := NEW.rep_id;
+    v_distributor_id := NEW.distributor_id;
   END IF;
 
-  -- Only recalculate if order is complete or status changed
-  IF TG_OP = 'INSERT' AND NEW.status = 'complete' THEN
-    -- New complete order - recalculate sponsor chain
-    PERFORM recalculate_sponsor_chain(v_rep_id);
+  -- Only recalculate if order is paid or payment status changed
+  IF TG_OP = 'INSERT' AND NEW.payment_status = 'paid' THEN
+    -- New paid order - recalculate sponsor chain
+    PERFORM recalculate_sponsor_chain(v_distributor_id);
 
   ELSIF TG_OP = 'UPDATE' AND (
-    OLD.status != NEW.status OR
-    OLD.bv_amount != NEW.bv_amount
+    OLD.payment_status != NEW.payment_status OR
+    OLD.total_bv != NEW.total_bv
   ) THEN
-    -- Status or BV changed - recalculate sponsor chain
-    PERFORM recalculate_sponsor_chain(v_rep_id);
+    -- Payment status or BV changed - recalculate sponsor chain
+    PERFORM recalculate_sponsor_chain(v_distributor_id);
 
   ELSIF TG_OP = 'DELETE' THEN
     -- Order deleted - recalculate sponsor chain
-    PERFORM recalculate_sponsor_chain(v_rep_id);
+    PERFORM recalculate_sponsor_chain(v_distributor_id);
   END IF;
 
   -- Return appropriate value
@@ -54,7 +54,7 @@ $$ LANGUAGE plpgsql;
 CREATE TRIGGER recalculate_bv_on_order_insert
   AFTER INSERT ON orders
   FOR EACH ROW
-  WHEN (NEW.status = 'complete')
+  WHEN (NEW.payment_status = 'paid')
   EXECUTE FUNCTION trigger_recalculate_bv();
 
 -- =====================================================
@@ -65,8 +65,8 @@ CREATE TRIGGER recalculate_bv_on_order_update
   AFTER UPDATE ON orders
   FOR EACH ROW
   WHEN (
-    OLD.status IS DISTINCT FROM NEW.status OR
-    OLD.bv_amount IS DISTINCT FROM NEW.bv_amount
+    OLD.payment_status IS DISTINCT FROM NEW.payment_status OR
+    OLD.total_bv IS DISTINCT FROM NEW.total_bv
   )
   EXECUTE FUNCTION trigger_recalculate_bv();
 
@@ -83,14 +83,14 @@ CREATE TRIGGER recalculate_bv_on_order_delete
 -- Add indexes for performance
 -- =====================================================
 
--- Index for orders by rep_id and status (for BV calculation)
-CREATE INDEX IF NOT EXISTS idx_orders_rep_status_bv
-  ON orders(rep_id, status, bv_amount)
-  WHERE status IN ('complete', 'refunded');
+-- Index for orders by distributor_id and payment_status (for BV calculation)
+CREATE INDEX IF NOT EXISTS idx_orders_distributor_payment_bv
+  ON orders(distributor_id, payment_status, total_bv)
+  WHERE payment_status IN ('paid', 'refunded');
 
 -- Index for org_bv_cache lookups
-CREATE INDEX IF NOT EXISTS idx_org_bv_cache_rep_id
-  ON org_bv_cache(rep_id);
+CREATE INDEX IF NOT EXISTS idx_org_bv_cache_distributor_id
+  ON org_bv_cache(distributor_id);
 
 -- Index for distributor sponsor lookups (for chain traversal)
 CREATE INDEX IF NOT EXISTS idx_distributors_sponsor_id
