@@ -18,21 +18,45 @@ export default function RepSidebar() {
 
   useEffect(() => {
     async function loadRepData() {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (user) {
-        const { data: dist } = await supabase
-          .from('distributors')
-          .select('first_name, last_name, rank, photo_url')
-          .eq('email', user.email)
-          .single();
+      try {
+        const { data: { user } } = await supabase.auth.getUser();
+        if (user) {
+          const { data: dist, error } = await supabase
+            .from('distributors')
+            .select('first_name, last_name, rank, photo_url')
+            .eq('email', user.email)
+            .single();
 
-        if (dist) {
+          if (error) {
+            console.error('Error loading rep data:', error);
+            // Set fallback data so it doesn't stay on "Loading..."
+            setRepData({
+              name: 'User',
+              rank: 'Associate',
+            });
+            return;
+          }
+
+          if (dist) {
+            setRepData({
+              name: `${dist.first_name} ${dist.last_name}`,
+              rank: dist.rank || 'Associate',
+              photo: dist.photo_url
+            });
+          }
+        } else {
+          // No user, set fallback
           setRepData({
-            name: `${dist.first_name} ${dist.last_name}`,
-            rank: dist.rank || 'Associate',
-            photo: dist.photo_url
+            name: 'User',
+            rank: 'Associate',
           });
         }
+      } catch (error) {
+        console.error('Error in loadRepData:', error);
+        setRepData({
+          name: 'User',
+          rank: 'Associate',
+        });
       }
     }
     loadRepData();
@@ -42,26 +66,34 @@ export default function RepSidebar() {
 
   const navItems = [
     { path: '/dashboard', icon: 'grid-2', label: 'Dashboard' },
-    { path: '/org-tree', icon: 'sitemap', label: 'My Team' },
+    { path: '/today', icon: 'clipboard-check', label: 'What Do I Do Today?' },
+    { path: '/org-tree', icon: 'users', label: 'My Team' },
     { path: '/earnings', icon: 'wallet', label: 'Commissions' },
-    { path: '/customers', icon: 'users', label: 'Customers' },
+    { path: '/customers', icon: 'user-group', label: 'Customers' },
     { path: '/products', icon: 'store', label: 'Shop' },
+    { path: '/email-marketing', icon: 'email', label: 'Email Marketing' },
     { path: '/training', icon: 'graduation-cap', label: 'Training' },
-    { path: '/announcements', icon: 'bullhorn', label: 'News' },
-    { path: '/communications', icon: 'bell', label: 'Notifications' },
-    { path: '/profile', icon: 'user', label: 'Profile' },
+    { path: '/announcements', icon: 'megaphone', label: 'Announcements' },
+    { path: '/communications', icon: 'chat', label: 'Communications' },
   ];
 
   return (
-    <aside className="hidden md:flex flex-col w-64 text-white z-20 h-full" style={{background: 'linear-gradient(180deg, #1B3A7D 0%, #0F2045 100%)'}}>
+    <aside
+      className="hidden md:flex flex-col w-64 text-white z-20 h-screen overflow-hidden border-r flex-shrink-0"
+      style={{
+        background: 'rgba(27, 58, 125, 0.95)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
+        borderColor: 'rgba(255, 255, 255, 0.1)'
+      }}
+    >
       {/* Logo Header */}
-      <div className="p-6 flex items-center gap-3 border-b border-white/10">
-        <div className="w-8 h-8 rounded-lg flex items-center justify-center shadow-lg" style={{background: '#C7181F', boxShadow: '0 4px 14px 0 rgba(199, 24, 31, 0.3)'}}>
-          <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-          </svg>
-        </div>
-        <span className="text-xl font-bold tracking-tight">ASCEND</span>
+      <div className="p-6 flex items-center justify-center border-b border-white/10">
+        <img
+          src="/apex-logo-white.png"
+          alt="Apex Affinity Group"
+          className="h-12 w-auto"
+        />
       </div>
 
       {/* Navigation */}
@@ -76,16 +108,17 @@ export default function RepSidebar() {
                 : 'text-gray-300 hover:bg-white/5 hover:text-white'
             }`}
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {item.icon === 'grid-2' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />}
-              {item.icon === 'sitemap' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />}
-              {item.icon === 'wallet' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />}
-              {item.icon === 'users' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />}
-              {item.icon === 'store' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />}
-              {item.icon === 'graduation-cap' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />}
-              {item.icon === 'bullhorn' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />}
-              {item.icon === 'bell' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />}
-              {item.icon === 'user' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />}
+            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              {item.icon === 'grid-2' && <path d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 6v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />}
+              {item.icon === 'clipboard-check' && <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5z M7.707 11.293a1 1 0 011.414 0L10 12.172l2.879-2.879a1 1 0 111.414 1.414l-3.586 3.586a1 1 0 01-1.414 0l-1.586-1.586a1 1 0 010-1.414z" />}
+              {item.icon === 'users' && <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />}
+              {item.icon === 'wallet' && <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9z M4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1z M9 12a1 1 0 100 2h1a1 1 0 100-2H9z" />}
+              {item.icon === 'user-group' && <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />}
+              {item.icon === 'store' && <path fillRule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clipRule="evenodd" />}
+              {item.icon === 'email' && <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />}
+              {item.icon === 'graduation-cap' && <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />}
+              {item.icon === 'megaphone' && <path fillRule="evenodd" d="M18 3a1 1 0 00-1.447-.894L8.763 6H5a3 3 0 000 6h.28l1.771 5.316A1 1 0 008 18h1a1 1 0 001-1v-4.382l6.553 3.276A1 1 0 0018 15V3z" clipRule="evenodd" />}
+              {item.icon === 'chat' && <path fillRule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clipRule="evenodd" />}
             </svg>
             <span className="font-medium">{item.label}</span>
           </Link>
@@ -96,9 +129,9 @@ export default function RepSidebar() {
       <div className="p-4 border-t border-white/10">
         <div className="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/5">
           {repData?.photo ? (
-            <img src={repData.photo} alt="Profile" className="w-10 h-10 rounded-full border-2 border-[#C7181F]" />
+            <img src={repData.photo} alt="Profile" className="w-10 h-10 rounded-full border-2 object-cover" style={{borderColor: '#C7181F'}} />
           ) : (
-            <div className="w-10 h-10 rounded-full border-2 border-[#C7181F] bg-gray-700 flex items-center justify-center text-white font-bold">
+            <div className="w-10 h-10 rounded-full border-2 bg-gray-700 flex items-center justify-center text-white font-bold" style={{borderColor: '#C7181F'}}>
               {repData?.name?.charAt(0) || 'U'}
             </div>
           )}
