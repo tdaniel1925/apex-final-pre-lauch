@@ -35,6 +35,7 @@
     "tests",
     "scripts",
     "supabase/migrations_temp",
+    "supabase/functions",
     "**/*.sql",
     "*.sql"
   ]
