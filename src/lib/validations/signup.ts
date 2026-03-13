@@ -113,6 +113,38 @@ export const signupSchema = z.object({
   sponsor_slug: z.string().optional(),
 
   licensing_status: z.enum(['licensed', 'non_licensed']),
+
+  // Tax & Identity fields
+  tax_id: z
+    .string()
+    .min(9, 'Tax ID must be at least 9 digits')
+    .max(11, 'Tax ID must be less than 11 characters')
+    .regex(/^[0-9\-]*$/, 'Tax ID can only contain numbers and hyphens')
+    .trim(),
+
+  tax_id_type: z.enum(['ssn', 'ein'], {
+    message: 'Please select SSN or EIN',
+  }),
+
+  date_of_birth: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/, 'Please enter a valid date (YYYY-MM-DD)')
+    .refine((date) => {
+      const dob = new Date(date);
+      const age = (new Date().getTime() - dob.getTime()) / (1000 * 60 * 60 * 24 * 365);
+      return age >= 18;
+    }, 'You must be at least 18 years old'),
+
+  // Agreement fields
+  signature: z
+    .string()
+    .min(2, 'Please enter your full name')
+    .max(200, 'Signature must be less than 200 characters')
+    .trim(),
+
+  agreed_to_terms: z
+    .boolean()
+    .refine((val) => val === true, 'You must agree to the terms'),
 });
 
 /**
