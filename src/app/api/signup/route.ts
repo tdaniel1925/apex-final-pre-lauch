@@ -9,7 +9,6 @@ import { createClient } from '@/lib/supabase/server';
 import { createServiceClient } from '@/lib/supabase/service';
 import { signupSchema } from '@/lib/validations/signup';
 import { checkSlugAvailability } from '@/lib/utils/slug';
-import { enrollInCampaign } from '@/lib/email/campaign-service';
 import type { ApiResponse, Distributor } from '@/lib/types';
 
 /**
@@ -231,7 +230,7 @@ export async function POST(request: NextRequest) {
       sponsor_id: sponsorId,
     });
 
-    const { data: distributorRows, error: distributorError } = await serviceClient.rpc(
+    const { data: distributorRows, error: distributorError} = await serviceClient.rpc(
       'create_distributor_atomic',
       {
         p_auth_user_id: authData.user.id,
@@ -244,6 +243,9 @@ export async function POST(request: NextRequest) {
         p_sponsor_id: sponsorId,
         p_licensing_status: data.licensing_status,
         p_licensing_status_set_at: new Date().toISOString(),
+        p_tax_id: data.tax_id,
+        p_tax_id_type: data.tax_id_type,
+        p_date_of_birth: data.date_of_birth,
       }
     );
 
@@ -275,12 +277,70 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Step 8: Enroll in email campaign and send welcome email
-    const enrollResult = await enrollInCampaign(distributor as Distributor);
+    // Step 7b: Save agreement signature
+    if (data.signature && data.agreed_to_terms) {
+      const ip =
+        request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+        request.headers.get('x-real-ip') ||
+        null;
 
-    if (!enrollResult.success) {
+      const { error: agreementError } = await serviceClient
+        .from('distributor_agreements')
+        .insert({
+          distributor_id: distributor.id,
+          agreement_type: 'distributor_agreement',
+          agreement_version: '1.0',
+          agreed_at: new Date().toISOString(),
+          ip_address: ip,
+          signature_text: data.signature,
+        });
+
+      if (agreementError) {
+        console.error('Failed to save agreement signature:', agreementError);
+        // Log error but don't fail signup - signature can be captured later
+      }
+    }
+
+    // Step 8: Send email verification (REQUIRED before dashboard access)
+    const { sendVerificationEmail } = await import('@/lib/email/send-verification');
+    const verifyEmailResult = await sendVerificationEmail({
+      distributorId: distributor.id,
+      email: distributor.email,
+      firstName: distributor.first_name,
+      lastName: distributor.last_name,
+    });
+
+    if (!verifyEmailResult.success) {
+      console.error('Verification email failed:', verifyEmailResult.error);
+      // Continue with signup but warn user
+    }
+
+    // Step 8b: Send welcome email with login credentials
+    const { sendWelcomeEmail } = await import('@/lib/email/send-welcome');
+    const welcomeResult = await sendWelcomeEmail({
+      id: distributor.id,
+      first_name: distributor.first_name,
+      last_name: distributor.last_name,
+      email: distributor.email,
+    });
+
+    if (!welcomeResult.success) {
       // Log error but don't fail signup - email can be sent manually later
-      console.error('Email campaign enrollment failed:', enrollResult.error);
+      console.error('Welcome email failed:', welcomeResult.error);
+    }
+
+    // Step 8c: Notify sponsor if this distributor has a sponsor
+    if (sponsorId) {
+      const { sendSponsorNotification } = await import('@/lib/email/send-sponsor-notification');
+      const sponsorNotifyResult = await sendSponsorNotification({
+        newDistributor: distributor as Distributor,
+        sponsorId: sponsorId,
+      });
+
+      if (!sponsorNotifyResult.success) {
+        // Log error but don't fail signup - notification is not critical
+        console.error('Sponsor notification failed:', sponsorNotifyResult.error);
+      }
     }
 
     // Step 9: Return success

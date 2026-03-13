@@ -29,7 +29,7 @@ export default function CommissionEnginePage() {
   ]);
 
   const [currentRun, setCurrentRun] = useState<CommissionRun | null>(runs[0]);
-  const [snapshotStatus, setSnapshotStatus] = useState<'available' | 'missing' | 'running'>('checking');
+  const [snapshotStatus, setSnapshotStatus] = useState<'available' | 'missing' | 'running' | 'checking'>('checking');
   const [selectedMonth, setSelectedMonth] = useState(new Date().toISOString().slice(0, 7));
 
   async function checkBVSnapshot(month: string) {
@@ -65,8 +65,8 @@ export default function CommissionEnginePage() {
     async function checkAuth() {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) {router.push('/login'); return;}
-      const { data: dist } = await supabase.from('distributors').select('role').eq('email', user.email).single();
-      if (!dist || dist.role !== 'admin') {router.push('/dashboard'); return;}
+      const { data: dist } = await supabase.from('distributors').select('is_admin').eq('email', user.email).single();
+      if (!dist || !dist.is_admin) {router.push('/dashboard'); return;}
       setLoading(false);
     }
     checkAuth();
