@@ -113,11 +113,15 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                       <li className="nav-item"><a className="nav-link" href="#services">Services</a></li>
                       <li className="nav-item"><a className="nav-link" href="#faq">FAQs</a></li>
                       <li className="nav-item"><a className="nav-link" href="#contact">Contact</a></li>
+                      <li className="nav-item"><a className="nav-link" href="/live">Live</a></li>
                     </ul>
                   </div>
 
                   {/* Header Btn Start */}
-                  <div className="header-btn">
+                  <div className="header-btn" style={{display: 'flex', gap: '12px', alignItems: 'center'}}>
+                    <a href="/login" className="btn-default" style={{background: 'transparent', backgroundColor: 'transparent', backgroundImage: 'none', borderColor: '#2B4C7E', color: '#2B4C7E', padding: '8px 20px', fontSize: '14px'}}>
+                      Login
+                    </a>
                     <a href={signupUrl} className="btn-default" style={{background: '#2B4C7E', backgroundColor: '#2B4C7E', backgroundImage: 'none', borderColor: '#2B4C7E'}}>
                       {distributor.slug === 'apex' ? 'Get Started' : 'Join My Team'}
                     </a>
