@@ -154,7 +154,7 @@ No registration required - just click and join! See you there!`;
       </header>
       {/* Header End */}
 
-      <div style={{ background: 'linear-gradient(135deg, #0F2045 0%, #1B3A7D 50%, #274693 100%)', minHeight: '100vh', paddingTop: '120px', paddingBottom: '80px' }}>
+      <div style={{ background: 'linear-gradient(135deg, #0F2045 0%, #1B3A7D 50%, #274693 100%)', minHeight: '100vh', paddingTop: '180px', paddingBottom: '80px' }}>
 
         <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
 
