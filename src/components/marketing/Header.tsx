@@ -55,10 +55,23 @@ export default function Header() {
             >
               Contact
             </Link>
+            <Link
+              href="/live"
+              className="text-[#2B4C7E] hover:text-[#DC2626] transition-colors font-medium"
+            >
+              Live
+            </Link>
           </div>
 
-          {/* CTA Button */}
-          <div className="hidden lg:block">
+          {/* CTA Buttons */}
+          <div className="hidden lg:flex items-center space-x-4">
+            <Button
+              asChild
+              variant="outline"
+              className="border-[#2B4C7E] text-[#2B4C7E] hover:bg-[#2B4C7E] hover:text-white px-4 py-2 rounded-md transition-colors text-sm"
+            >
+              <Link href="/login">Login</Link>
+            </Button>
             <Button
               asChild
               className="bg-[#DC2626] hover:bg-[#2B4C7E] text-white px-6 py-2 rounded-md transition-colors"
@@ -120,6 +133,20 @@ export default function Header() {
               >
                 Contact
               </Link>
+              <Link
+                href="/live"
+                className="text-[#2B4C7E] hover:text-[#DC2626] transition-colors font-medium py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Live
+              </Link>
+              <Button
+                asChild
+                variant="outline"
+                className="border-[#2B4C7E] text-[#2B4C7E] hover:bg-[#2B4C7E] hover:text-white w-full"
+              >
+                <Link href="/login">Login</Link>
+              </Button>
               <Button
                 asChild
                 className="bg-[#DC2626] hover:bg-[#2B4C7E] text-white w-full"
