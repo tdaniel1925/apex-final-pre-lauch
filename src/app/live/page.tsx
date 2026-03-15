@@ -73,12 +73,17 @@ export default function LiveEventsPage() {
   const copyInvite = () => {
     const inviteText = `Join me for live ${nextEvent?.title || 'events'} every ${nextEvent?.day || 'week'}!
 
+🤖 Discover how AI is revolutionizing the insurance industry and creating unprecedented opportunities for financial growth. Learn about our AI-powered platform that's helping people build successful insurance businesses.
+
 📅 When: ${nextEvent?.day || 'Weekly'} at ${nextEvent?.time || '6:30 PM'} Central Time
-🔗 Link: ${MEETING_LINK}
+📍 Where: https://reachtheapex.net/live
+🔗 Direct Join Link: ${MEETING_LINK}
 
 ${nextEvent?.description || ''}
 
-No registration required - just click and join! See you there!`;
+No registration required - just click and join! This could be the opportunity you've been looking for.
+
+See you there!`;
 
     navigator.clipboard.writeText(inviteText);
     setCopiedInvite(true);
