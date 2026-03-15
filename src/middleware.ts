@@ -80,14 +80,14 @@ export async function middleware(request: NextRequest) {
         return NextResponse.redirect(redirectUrl);
       }
 
-      // Check role in distributors table
+      // Check is_admin in distributors table
       const { data: distributor, error: roleError } = await supabase
         .from('distributors')
-        .select('role')
+        .select('is_admin, admin_role')
         .eq('email', user.email)
         .single();
 
-      if (roleError || !distributor || !['cfo', 'admin'].includes(distributor.role)) {
+      if (roleError || !distributor || (!distributor.is_admin && !['cfo', 'admin'].includes(distributor.admin_role))) {
         // Unauthorized - redirect to dashboard
         return NextResponse.redirect(new URL('/dashboard', request.url));
       }
@@ -101,14 +101,14 @@ export async function middleware(request: NextRequest) {
         return NextResponse.redirect(redirectUrl);
       }
 
-      // Check role in distributors table
+      // Check is_admin in distributors table
       const { data: distributor, error: roleError } = await supabase
         .from('distributors')
-        .select('role')
+        .select('is_admin')
         .eq('email', user.email)
         .single();
 
-      if (roleError || !distributor || distributor.role !== 'admin') {
+      if (roleError || !distributor || !distributor.is_admin) {
         // Unauthorized - redirect to dashboard
         return NextResponse.redirect(new URL('/dashboard', request.url));
       }
