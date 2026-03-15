@@ -87,27 +87,62 @@ No registration required - just click and join! See you there!`;
   };
 
   return (
-    <div className="min-h-screen" style={{ background: 'linear-gradient(135deg, #0F2045 0%, #1B3A7D 50%, #274693 100%)' }}>
+    <>
+      {/* Load Optive CSS for Header */}
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      <link href="https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+      <link href="/optive/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+      <link href="/optive/css/custom.css" rel="stylesheet" media="screen" />
 
-      {/* Header */}
-      <header className="border-b border-white/10 bg-white/5 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          <Link href="/" className="text-white text-xl font-bold">
-            Apex Affinity Group
-          </Link>
-          <nav className="flex items-center gap-6">
-            <Link href="/live" className="text-white hover:text-white transition-colors text-sm font-medium border-b-2 border-[#C7181F] pb-1">
-              Live
-            </Link>
-            <Link href="/login" className="text-white/80 hover:text-white transition-colors text-sm font-medium">
-              Login
-            </Link>
-            <Link href="/signup" className="bg-[#C7181F] hover:bg-[#991316] text-white px-5 py-2 rounded-lg text-sm font-medium transition-colors">
-              Join Now
-            </Link>
+      {/* Header Start - Same as marketing site */}
+      <header className="main-header">
+        <div className="header-sticky">
+          <nav className="navbar navbar-expand-lg">
+            <div className="container">
+              {/* Logo Start */}
+              <a className="navbar-brand" href="/">
+                <img src="/apex-logo-full.png" alt="Apex Affinity Group" style={{height: '80px'}} />
+              </a>
+              {/* Logo End */}
+
+              {/* Navbar Toggler for Mobile */}
+              <button
+                className="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span className="navbar-toggler-icon"></span>
+              </button>
+
+              {/* Main Menu Start */}
+              <div className="navbar-collapse main-menu" id="navbarNav">
+                <div className="nav-menu-wrapper">
+                  <ul className="navbar-nav mr-auto" id="menu">
+                    <li className="nav-item"><a className="nav-link" href="/#home">Home</a></li>
+                    <li className="nav-item"><a className="nav-link" href="/#journey">Your Journey</a></li>
+                    <li className="nav-item"><a className="nav-link" href="/#products">Products</a></li>
+                    <li className="nav-item"><a className="nav-link" href="/#services">Services</a></li>
+                    <li className="nav-item"><a className="nav-link" href="/#faq">FAQs</a></li>
+                    <li className="nav-item"><a className="nav-link" href="/#contact">Contact</a></li>
+                    <li className="nav-item"><a className="nav-link active" href="/live">Live</a></li>
+                  </ul>
+                </div>
+              </div>
+              {/* Main Menu End */}
+              <div className="navbar-toggle"></div>
+            </div>
           </nav>
+          <div className="responsive-menu"></div>
         </div>
       </header>
+      {/* Header End */}
+
+      <div className="min-h-screen" style={{ background: 'linear-gradient(135deg, #0F2045 0%, #1B3A7D 50%, #274693 100%)' }}>
 
       {/* Hero Section */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
@@ -238,6 +273,7 @@ No registration required - just click and join! See you there!`;
         </div>
       </div>
 
-    </div>
+      </div>
+    </>
   );
 }
