@@ -32,6 +32,8 @@ export default function LiveEventsPage() {
   const [nextEvent, setNextEvent] = useState<EventSchedule | null>(null);
   const [copiedInvite, setCopiedInvite] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
+  const [showInviteModal, setShowInviteModal] = useState(false);
+  const [editableInvite, setEditableInvite] = useState('');
 
   useEffect(() => {
     function checkLiveStatus() {
@@ -70,24 +72,40 @@ export default function LiveEventsPage() {
     return () => clearInterval(interval);
   }, []);
 
-  const copyInvite = () => {
-    const inviteText = `Join me for live ${nextEvent?.title || 'events'} every ${nextEvent?.day || 'week'}!
+  const getDefaultInviteMessage = () => {
+    return `Join me for live ${nextEvent?.title || 'Opportunity Meetings'} every ${nextEvent?.day || 'Tuesday'}!
 
-🤖 Discover how AI is revolutionizing the insurance industry and creating unprecedented opportunities for financial growth. Learn about our AI-powered platform that's helping people build successful insurance businesses.
+💰 Two ladders. Two income streams. One opportunity.
 
-📅 When: ${nextEvent?.day || 'Weekly'} at ${nextEvent?.time || '6:30 PM'} Central Time
-📍 Where: https://reachtheapex.net/live
-🔗 Direct Join Link: ${MEETING_LINK}
+Apex Affinity Group isn't just another insurance organization — it's insurance AND AI technology working together. Our reps hold two ranks, earn on two sides, and build one business that pays them from both.
 
-${nextEvent?.description || ''}
+🔹 Sell insurance — earn 40%–90% carrier commissions + generational overrides up to 6 levels deep
+🔹 Sell AI-powered tools — earn commissions on every sale + ranked team overrides that unlock as you advance
+🔹 Do both — and watch your ranks climb faster on BOTH sides through our cross-credit system
 
-No registration required - just click and join! This could be the opportunity you've been looking for.
+Trips. Car allowances. Rank bonuses up to $30,000. Fast start bonuses in your first 90 days. This isn't a pitch — it's a plan.
+
+📅 ${nextEvent?.day || 'Tuesday'} at ${nextEvent?.time || '6:30 PM'} Central
+📍 https://reachtheapex.net/live
+🔗 ${MEETING_LINK}
+
+No registration. Just show up. This could be the meeting that changes your trajectory.
 
 See you there!`;
+  };
 
-    navigator.clipboard.writeText(inviteText);
+  const openInviteModal = () => {
+    setEditableInvite(getDefaultInviteMessage());
+    setShowInviteModal(true);
+  };
+
+  const copyFromModal = () => {
+    navigator.clipboard.writeText(editableInvite);
     setCopiedInvite(true);
-    setTimeout(() => setCopiedInvite(false), 2000);
+    setTimeout(() => {
+      setCopiedInvite(false);
+      setShowInviteModal(false);
+    }, 1500);
   };
 
   const copyLink = () => {
@@ -478,7 +496,7 @@ See you there!`;
                 </p>
 
                 <button
-                  onClick={copyInvite}
+                  onClick={openInviteModal}
                   style={{
                     width: '100%',
                     display: 'flex',
@@ -504,22 +522,11 @@ See you there!`;
                     e.currentTarget.style.transform = 'scale(1)';
                   }}
                 >
-                  {copiedInvite ? (
-                    <>
-                      <svg style={{ width: '20px', height: '20px' }} fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                      Copied!
-                    </>
-                  ) : (
-                    <>
-                      <svg style={{ width: '20px', height: '20px' }} fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z" />
-                        <path d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z" />
-                      </svg>
-                      Copy Invite Message
-                    </>
-                  )}
+                  <svg style={{ width: '20px', height: '20px' }} fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z" />
+                    <path d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z" />
+                  </svg>
+                  Create Invite Message
                 </button>
               </div>
             </div>
@@ -528,6 +535,158 @@ See you there!`;
 
         </div>
       </div>
+
+      {/* Invite Modal */}
+      {showInviteModal && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(0, 0, 0, 0.8)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 9999,
+            padding: '20px'
+          }}
+          onClick={() => setShowInviteModal(false)}
+        >
+          <div
+            style={{
+              background: 'white',
+              borderRadius: '20px',
+              maxWidth: '700px',
+              width: '100%',
+              maxHeight: '90vh',
+              overflow: 'hidden',
+              display: 'flex',
+              flexDirection: 'column'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div style={{
+              padding: '25px 30px',
+              borderBottom: '1px solid #E5E7EB',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center'
+            }}>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#1B3A7D', margin: 0 }}>
+                Customize Your Invite
+              </h3>
+              <button
+                onClick={() => setShowInviteModal(false)}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  fontSize: '1.5rem',
+                  color: '#6B7280',
+                  cursor: 'pointer',
+                  padding: '5px',
+                  lineHeight: 1
+                }}
+              >
+                ×
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <div style={{ padding: '30px', flex: 1, overflow: 'auto' }}>
+              <p style={{ color: '#6B7280', marginBottom: '15px', fontSize: '0.95rem' }}>
+                Edit the message below to personalize it, then click Copy to clipboard
+              </p>
+              <textarea
+                value={editableInvite}
+                onChange={(e) => setEditableInvite(e.target.value)}
+                style={{
+                  width: '100%',
+                  minHeight: '400px',
+                  padding: '15px',
+                  border: '2px solid #E5E7EB',
+                  borderRadius: '12px',
+                  fontSize: '0.95rem',
+                  fontFamily: 'monospace',
+                  lineHeight: '1.6',
+                  resize: 'vertical',
+                  outline: 'none'
+                }}
+                onFocus={(e) => e.currentTarget.style.borderColor = '#1B3A7D'}
+                onBlur={(e) => e.currentTarget.style.borderColor = '#E5E7EB'}
+              />
+            </div>
+
+            {/* Modal Footer */}
+            <div style={{
+              padding: '20px 30px',
+              borderTop: '1px solid #E5E7EB',
+              display: 'flex',
+              gap: '15px',
+              justifyContent: 'flex-end'
+            }}>
+              <button
+                onClick={() => setShowInviteModal(false)}
+                style={{
+                  padding: '12px 24px',
+                  background: '#F3F4F6',
+                  color: '#374151',
+                  border: 'none',
+                  borderRadius: '10px',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s'
+                }}
+                onMouseOver={(e) => e.currentTarget.style.background = '#E5E7EB'}
+                onMouseOut={(e) => e.currentTarget.style.background = '#F3F4F6'}
+              >
+                Cancel
+              </button>
+              <button
+                onClick={copyFromModal}
+                style={{
+                  padding: '12px 24px',
+                  background: copiedInvite ? '#10B981' : '#C7181F',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '10px',
+                  fontWeight: 'bold',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px'
+                }}
+                onMouseOver={(e) => {
+                  if (!copiedInvite) e.currentTarget.style.background = '#991316';
+                }}
+                onMouseOut={(e) => {
+                  if (!copiedInvite) e.currentTarget.style.background = '#C7181F';
+                }}
+              >
+                {copiedInvite ? (
+                  <>
+                    <svg style={{ width: '18px', height: '18px' }} fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    Copied!
+                  </>
+                ) : (
+                  <>
+                    <svg style={{ width: '18px', height: '18px' }} fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z" />
+                      <path d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z" />
+                    </svg>
+                    Copy to Clipboard
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
