@@ -69,8 +69,50 @@ export async function middleware(request: NextRequest) {
       }
     );
 
-    // Refresh session
-    await supabase.auth.getUser();
+    // Refresh session and get user
+    const { data: { user }, error: authError } = await supabase.auth.getUser();
+
+    // Protect finance routes - CFO/Admin only
+    if (request.nextUrl.pathname.startsWith('/finance')) {
+      if (!user || authError) {
+        const redirectUrl = new URL('/login', request.url);
+        redirectUrl.searchParams.set('redirect', request.nextUrl.pathname);
+        return NextResponse.redirect(redirectUrl);
+      }
+
+      // Check is_admin in distributors table
+      const { data: distributor, error: roleError } = await supabase
+        .from('distributors')
+        .select('is_admin, admin_role')
+        .eq('email', user.email)
+        .single();
+
+      if (roleError || !distributor || (!distributor.is_admin && !['cfo', 'admin'].includes(distributor.admin_role))) {
+        // Unauthorized - redirect to dashboard
+        return NextResponse.redirect(new URL('/dashboard', request.url));
+      }
+    }
+
+    // Protect admin routes
+    if (request.nextUrl.pathname.startsWith('/admin')) {
+      if (!user || authError) {
+        const redirectUrl = new URL('/login', request.url);
+        redirectUrl.searchParams.set('redirect', request.nextUrl.pathname);
+        return NextResponse.redirect(redirectUrl);
+      }
+
+      // Check is_admin in distributors table
+      const { data: distributor, error: roleError } = await supabase
+        .from('distributors')
+        .select('is_admin')
+        .eq('email', user.email)
+        .single();
+
+      if (roleError || !distributor || !distributor.is_admin) {
+        // Unauthorized - redirect to dashboard
+        return NextResponse.redirect(new URL('/dashboard', request.url));
+      }
+    }
   } catch (error) {
     // If middleware fails, continue without auth refresh
     console.error('Middleware error:', error);

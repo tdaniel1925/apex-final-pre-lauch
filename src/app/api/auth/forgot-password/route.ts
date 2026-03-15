@@ -61,7 +61,18 @@ export async function POST(request: NextRequest) {
     }
 
     // Build reset link with our token
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3050';
+    // Auto-detect production URL if environment variable not set
+    let baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
+
+    // If not set or set to localhost, try to use Vercel URL or default to production
+    if (!baseUrl || baseUrl.includes('localhost')) {
+      if (process.env.VERCEL_URL) {
+        baseUrl = `https://${process.env.VERCEL_URL}`;
+      } else {
+        baseUrl = 'https://reachtheapex.net'; // Production fallback
+      }
+    }
+
     const resetLink = `${baseUrl}/reset-password?token=${token}`;
 
     // Send Apex-branded email
