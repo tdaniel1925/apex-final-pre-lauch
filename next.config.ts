@@ -64,8 +64,6 @@ const nextConfig: NextConfig = {
   // Strict mode for better error catching
   reactStrictMode: true,
 
-  // Keep these packages external to prevent build-time bundling issues
-  serverExternalPackages: ['@anthropic-ai/sdk'],
 
   // Experimental features for performance
   experimental: {
