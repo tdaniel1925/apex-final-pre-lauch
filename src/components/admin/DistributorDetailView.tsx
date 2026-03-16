@@ -120,18 +120,32 @@ export default function DistributorDetailView({
   };
 
   const handleDelete = async () => {
+    setError(null);
+    setSuccess(null);
+
     try {
       const response = await fetch(`/api/admin/distributors/${initialDistributor.id}`, {
         method: 'DELETE',
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error('Failed to delete distributor');
+        throw new Error(data.error || 'Failed to delete distributor');
       }
 
-      router.push('/admin/distributors');
+      setSuccess('Distributor deleted successfully');
+      setShowDeleteModal(false);
+
+      // Redirect after a short delay to show success message
+      setTimeout(() => {
+        router.push('/admin/distributors');
+        router.refresh();
+      }, 1000);
     } catch (err: any) {
-      setError(err.message);
+      console.error('Delete error:', err);
+      setError(err.message || 'Failed to delete distributor');
+      setShowDeleteModal(false);
     }
   };
 
@@ -703,9 +717,20 @@ function DeleteModal({
   distributorName,
 }: {
   onClose: () => void;
-  onConfirm: () => void;
+  onConfirm: () => Promise<void>;
   distributorName: string;
 }) {
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const handleConfirm = async () => {
+    setIsDeleting(true);
+    try {
+      await onConfirm();
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
@@ -717,15 +742,23 @@ function DeleteModal({
         <div className="flex gap-3 justify-end">
           <button
             onClick={onClose}
-            className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+            disabled={isDeleting}
+            className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50"
           >
             Cancel
           </button>
           <button
-            onClick={onConfirm}
-            className="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+            onClick={handleConfirm}
+            disabled={isDeleting}
+            className="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:opacity-50 flex items-center gap-2"
           >
-            Delete
+            {isDeleting && (
+              <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            )}
+            {isDeleting ? 'Deleting...' : 'Delete'}
           </button>
         </div>
       </div>
