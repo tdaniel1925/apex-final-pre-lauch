@@ -140,82 +140,65 @@ Response: Uses the totalCommissions field from the returned data
 **WORKING EXAMPLES:**
 
 1. "Show all active distributors in Texas"
-```json
 {
   "table": "distributors",
   "filters": {"status": "active", "state": "TX"},
   "limit": 50
 }
-```
 
 2. "Find all Gmail users"
-```json
 {
   "table": "distributors",
   "filters": {"email": "%@gmail.com"},
   "limit": 50
 }
-```
 
 3. "List products that are active"
-```json
 {
   "table": "products",
   "filters": {"active": true},
   "orderBy": "price",
   "orderDirection": "asc"
 }
-```
 
 4. "Show distributors in Texas, California, or New York"
-```json
 {
   "table": "distributors",
   "filters": {"state": ["TX", "CA", "NY"]},
   "limit": 100
 }
-```
 
 5. "Find distributors without a phone number"
-```json
 {
   "table": "distributors",
   "filters": {"phone": null}
 }
-```
 
 6. "Get all prospects"
-```json
 {
   "table": "prospects",
   "orderBy": "created_at",
   "orderDirection": "desc",
   "limit": 50
 }
-```
 
-7. **"Show distributors who joined after January 1, 2024"**
-```json
+7. "Show distributors who joined after January 1, 2024"
 {
   "table": "distributors",
   "filters": {"created_at__gte": "2024-01-01"},
   "orderBy": "created_at",
   "orderDirection": "desc"
 }
-```
 
-8. **"Find products priced over $100"**
-```json
+8. "Find products priced over $100"
 {
   "table": "products",
   "filters": {"price__gt": 100},
   "orderBy": "price",
   "orderDirection": "desc"
 }
-```
 
-9. **"Show commissions from the last month"**
-```json
+9. "Show commissions from the last month"
 {
   "table": "commissions",
   "filters": {"created_at__gte": "2024-11-01"},
@@ -223,16 +206,13 @@ Response: Uses the totalCommissions field from the returned data
   "orderDirection": "desc",
   "limit": 100
 }
-```
 
-10. **"Find distributors NOT deleted"**
-```json
+10. "Find distributors NOT deleted"
 {
   "table": "distributors",
   "filters": {"status__neq": "deleted"},
   "limit": 50
 }
-```
 
 **IMPORTANT CAPABILITIES:**
 - ✅ Date comparisons (>=, >, <, <=) - USE YYYY-MM-DD format!
