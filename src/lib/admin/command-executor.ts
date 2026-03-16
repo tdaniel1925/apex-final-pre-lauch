@@ -184,48 +184,116 @@ async function executeUpdateStatus(action: ParsedAction, adminId: string): Promi
   }
 
   const dist = distResult.distributor;
-  let endpoint = '';
-  let method = 'POST';
-  let body: any = {};
+  const supabase = createServiceClient();
 
   switch (action.action) {
-    case 'suspend':
-      endpoint = `/api/admin/distributors/${dist.id}/suspend`;
-      body = { reason: action.reason || 'Suspended via AI Assistant' };
-      break;
+    case 'suspend': {
+      const reason = action.reason || 'Suspended via AI Assistant';
 
-    case 'activate':
-      // Use suspend endpoint with reactivate
-      endpoint = `/api/admin/distributors/${dist.id}/suspend`;
-      method = 'DELETE'; // Assuming DELETE reactivates
-      break;
+      const { error } = await supabase
+        .from('distributors')
+        .update({
+          status: 'suspended',
+          suspended_at: new Date().toISOString(),
+          suspended_by: adminId,
+          suspension_reason: reason,
+        })
+        .eq('id', dist.id);
 
-    case 'delete':
-      endpoint = `/api/admin/distributors/${dist.id}`;
-      method = 'DELETE';
-      break;
+      if (error) {
+        return {
+          success: false,
+          error: error.message,
+          message: 'Suspend failed',
+        };
+      }
+
+      // Log activity
+      await supabase.from('distributor_activity_log').insert({
+        distributor_id: dist.id,
+        action: 'suspended',
+        details: { reason, suspended_by_admin: adminId },
+      });
+
+      return {
+        success: true,
+        message: `Successfully suspended ${formatDistributor(dist)}`,
+        data: { distributor: dist, action: 'suspend', reason },
+      };
+    }
+
+    case 'activate': {
+      const { error } = await supabase
+        .from('distributors')
+        .update({
+          status: 'active',
+          suspended_at: null,
+          suspended_by: null,
+          suspension_reason: null,
+        })
+        .eq('id', dist.id);
+
+      if (error) {
+        return {
+          success: false,
+          error: error.message,
+          message: 'Activate failed',
+        };
+      }
+
+      // Log activity
+      await supabase.from('distributor_activity_log').insert({
+        distributor_id: dist.id,
+        action: 'activated',
+        details: { activated_by_admin: adminId },
+      });
+
+      return {
+        success: true,
+        message: `Successfully activated ${formatDistributor(dist)}`,
+        data: { distributor: dist, action: 'activate' },
+      };
+    }
+
+    case 'delete': {
+      const { error } = await supabase
+        .from('distributors')
+        .update({
+          status: 'deleted',
+          deleted_at: new Date().toISOString(),
+          deleted_by: adminId,
+        })
+        .eq('id', dist.id);
+
+      if (error) {
+        return {
+          success: false,
+          error: error.message,
+          message: 'Delete failed',
+        };
+      }
+
+      // Log activity
+      await supabase.from('distributor_activity_log').insert({
+        distributor_id: dist.id,
+        action: 'deleted',
+        details: { deleted_by_admin: adminId },
+      });
+
+      return {
+        success: true,
+        message: `Successfully deleted ${formatDistributor(dist)}`,
+        data: { distributor: dist, action: 'delete' },
+      };
+    }
+
+    default:
+      return {
+        success: false,
+        error: 'Invalid action',
+        message: 'Unknown action',
+      };
   }
-
-  const response = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}${endpoint}`, {
-    method,
-    headers: { 'Content-Type': 'application/json' },
-    body: method !== 'DELETE' ? JSON.stringify(body) : undefined,
-  });
-
-  if (!response.ok) {
-    const error = await response.json();
-    return {
-      success: false,
-      error: error.error || `Failed to ${action.action} distributor`,
-      message: `${action.action} failed`,
-    };
-  }
-
-  return {
-    success: true,
-    message: `Successfully ${action.action === 'activate' ? 'activated' : action.action + 'd'} ${formatDistributor(dist)}`,
-    data: { distributor: dist, action: action.action },
-  };
 }
 
 /**
