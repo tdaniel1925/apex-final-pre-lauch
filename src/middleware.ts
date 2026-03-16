@@ -7,20 +7,18 @@ import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 
 export async function middleware(request: NextRequest) {
-  let response = NextResponse.next({
-    request: {
-      headers: request.headers,
-    },
-  });
-
   // Skip auth refresh for static files and API routes
   const isStaticFile = request.nextUrl.pathname.match(/\.(ico|png|jpg|jpeg|gif|svg|webp)$/);
   const isApiRoute = request.nextUrl.pathname.startsWith('/api/');
   const isNextInternal = request.nextUrl.pathname.startsWith('/_next/');
 
   if (isStaticFile || isApiRoute || isNextInternal) {
-    return response;
+    return NextResponse.next();
   }
+
+  let response = NextResponse.next({
+    request,
+  });
 
   try {
     const supabase = createServerClient(
@@ -32,16 +30,6 @@ export async function middleware(request: NextRequest) {
             return request.cookies.get(name)?.value;
           },
           set(name: string, value: string, options: any) {
-            request.cookies.set({
-              name,
-              value,
-              ...options,
-            });
-            response = NextResponse.next({
-              request: {
-                headers: request.headers,
-              },
-            });
             response.cookies.set({
               name,
               value,
@@ -49,16 +37,6 @@ export async function middleware(request: NextRequest) {
             });
           },
           remove(name: string, options: any) {
-            request.cookies.set({
-              name,
-              value: '',
-              ...options,
-            });
-            response = NextResponse.next({
-              request: {
-                headers: request.headers,
-              },
-            });
             response.cookies.set({
               name,
               value: '',
