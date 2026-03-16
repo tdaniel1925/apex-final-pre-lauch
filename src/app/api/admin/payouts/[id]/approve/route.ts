@@ -14,7 +14,7 @@ export async function POST(
 ) {
   try {
     const params = await context.params;
-    const adminUser = const adminUser = await getAdminUser();
+    const adminUser = await getAdminUser();
     if (!adminUser) {
       return NextResponse.json(
         { error: 'Unauthorized - Admin access required' },
