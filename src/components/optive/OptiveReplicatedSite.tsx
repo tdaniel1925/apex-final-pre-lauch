@@ -119,7 +119,17 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
 
                   {/* Header Btn Start */}
                   <div className="header-btn" style={{display: 'flex', gap: '12px', alignItems: 'center'}}>
-                    <a href="/login" className="btn-default" style={{background: 'transparent', backgroundColor: 'transparent', backgroundImage: 'none', borderColor: '#2B4C7E', color: '#2B4C7E', padding: '8px 20px', fontSize: '14px'}}>
+                    <a href="/login" style={{
+                      padding: '10px 24px',
+                      fontSize: '15px',
+                      fontWeight: '600',
+                      color: '#2B4C7E',
+                      textDecoration: 'none',
+                      border: '2px solid #2B4C7E',
+                      borderRadius: '6px',
+                      transition: 'all 0.3s ease',
+                      backgroundColor: 'transparent'
+                    }}>
                       Login
                     </a>
                     <a href={signupUrl} className="btn-default" style={{background: '#2B4C7E', backgroundColor: '#2B4C7E', backgroundImage: 'none', borderColor: '#2B4C7E'}}>
