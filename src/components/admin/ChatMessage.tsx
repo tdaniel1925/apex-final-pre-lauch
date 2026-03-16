@@ -32,6 +32,13 @@ export default function ChatMessage({ role, content, success, error, data }: Cha
         {/* Message content */}
         <div className="text-sm whitespace-pre-wrap">{content}</div>
 
+        {/* Error details */}
+        {!isUser && error && (
+          <div className="mt-2 p-2 bg-red-100 border border-red-300 rounded text-xs text-red-800">
+            <strong>Error:</strong> {error}
+          </div>
+        )}
+
         {/* Success/Error indicator */}
         {!isUser && (success !== undefined) && (
           <div className="mt-2 flex items-center gap-2">
