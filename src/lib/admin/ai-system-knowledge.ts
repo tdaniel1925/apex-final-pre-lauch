@@ -208,11 +208,39 @@ WHERE state = 'TX'
 AND status = 'active'
 \`\`\`
 
+Using query_database:
+\`\`\`json
+{
+  "table": "distributors",
+  "filters": {"state": "TX", "status": "active"}
+}
+\`\`\`
+
 ### Get recent signups
 \`\`\`sql
 SELECT * FROM distributors
-WHERE created_at >= NOW() - INTERVAL '30 days'
+WHERE created_at >= '2024-01-01'
 ORDER BY created_at DESC
+\`\`\`
+
+Using query_database:
+\`\`\`json
+{
+  "table": "distributors",
+  "filters": {"created_at__gte": "2024-01-01"},
+  "orderBy": "created_at",
+  "orderDirection": "desc"
+}
+\`\`\`
+
+### Find high-value commissions
+\`\`\`json
+{
+  "table": "commissions",
+  "filters": {"amount__gt": 1000},
+  "orderBy": "amount",
+  "orderDirection": "desc"
+}
 \`\`\`
 
 ## AVAILABLE AI FUNCTIONS

@@ -125,6 +125,11 @@ Response: Uses the totalCommissions field from the returned data
 - **Pattern match**: {"email": "%@gmail.com"} → WHERE email LIKE '%@gmail.com'
 - **IN clause**: {"state": ["TX", "CA", "NY"]} → WHERE state IN ('TX', 'CA', 'NY')
 - **NULL check**: {"deleted_at": null} → WHERE deleted_at IS NULL
+- **Greater than**: {"price__gt": 100} → WHERE price > 100
+- **Greater/equal**: {"created_at__gte": "2024-01-01"} → WHERE created_at >= '2024-01-01'
+- **Less than**: {"price__lt": 50} → WHERE price < 50
+- **Less/equal**: {"created_at__lte": "2024-12-31"} → WHERE created_at <= '2024-12-31'
+- **Not equal**: {"status__neq": "deleted"} → WHERE status != 'deleted'
 
 **WORKING EXAMPLES:**
 
@@ -183,12 +188,55 @@ Response: Uses the totalCommissions field from the returned data
 }
 ```
 
-**IMPORTANT LIMITATIONS:**
-- ❌ Can't do date comparisons (>= 30 days ago) - just order by date and limit
-- ❌ Can't do numeric comparisons (price > 100) - filters are exact match only
-- ✅ CAN use pattern matching with % wildcards
-- ✅ CAN use IN clause for multiple values
-- ✅ CAN check for NULL
+7. **"Show distributors who joined after January 1, 2024"**
+```json
+{
+  "table": "distributors",
+  "filters": {"created_at__gte": "2024-01-01"},
+  "orderBy": "created_at",
+  "orderDirection": "desc"
+}
+```
+
+8. **"Find products priced over $100"**
+```json
+{
+  "table": "products",
+  "filters": {"price__gt": 100},
+  "orderBy": "price",
+  "orderDirection": "desc"
+}
+```
+
+9. **"Show commissions from the last month"**
+```json
+{
+  "table": "commissions",
+  "filters": {"created_at__gte": "2024-11-01"},
+  "orderBy": "created_at",
+  "orderDirection": "desc",
+  "limit": 100
+}
+```
+
+10. **"Find distributors NOT deleted"**
+```json
+{
+  "table": "distributors",
+  "filters": {"status__neq": "deleted"},
+  "limit": 50
+}
+```
+
+**IMPORTANT CAPABILITIES:**
+- ✅ Date comparisons (>=, >, <, <=) - USE YYYY-MM-DD format!
+- ✅ Numeric comparisons (price > 100) - works!
+- ✅ Pattern matching with % wildcards - works!
+- ✅ IN clause for multiple values - works!
+- ✅ NULL checks - works!
+- ✅ Not equal (!=) - works!
+
+**DATE FORMAT:** Always use "YYYY-MM-DD" format for dates (e.g., "2024-01-01", "2024-12-31")
 
 **KEY BEHAVIORS:**
 ✅ Always search first, then answer with data

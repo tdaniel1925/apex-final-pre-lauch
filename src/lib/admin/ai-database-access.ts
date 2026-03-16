@@ -47,7 +47,30 @@ export async function executeDatabaseQuery(
     // Apply filters if provided
     if (action.filters) {
       Object.entries(action.filters).forEach(([key, value]) => {
-        if (value === null) {
+        // Check for comparison operators in key (e.g., "created_at__gte")
+        if (key.includes('__')) {
+          const [field, operator] = key.split('__');
+          switch (operator) {
+            case 'gt':
+              query = query.gt(field, value);
+              break;
+            case 'gte':
+              query = query.gte(field, value);
+              break;
+            case 'lt':
+              query = query.lt(field, value);
+              break;
+            case 'lte':
+              query = query.lte(field, value);
+              break;
+            case 'neq':
+              query = query.neq(field, value);
+              break;
+            default:
+              // Unknown operator, treat as exact match
+              query = query.eq(key, value);
+          }
+        } else if (value === null) {
           query = query.is(key, null);
         } else if (typeof value === 'string' && value.startsWith('%') && value.endsWith('%')) {
           // Pattern matching
