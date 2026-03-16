@@ -28,10 +28,6 @@ interface AssistantRequest {
   action?: ParsedAction;
 }
 
-const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-});
-
 export async function POST(request: NextRequest) {
   try {
     // Auth check
@@ -93,6 +89,11 @@ async function processMessage(
   adminId: string
 ): Promise<NextResponse> {
   try {
+    // Instantiate Anthropic client at runtime (not at module load)
+    const anthropic = new Anthropic({
+      apiKey: process.env.ANTHROPIC_API_KEY,
+    });
+
     // Build messages array
     const messages: any[] = [
       ...conversationHistory.map(m => ({
