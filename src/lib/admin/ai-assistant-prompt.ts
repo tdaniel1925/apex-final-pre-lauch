@@ -37,7 +37,7 @@ export const AI_FUNCTIONS = [
   {
     name: 'move_rep_sponsor',
     description: 'Change a distributor\'s sponsor/upline in the organization',
-    parameters: {
+    input_schema: {
       type: 'object',
       properties: {
         distributorIdentifier: {
@@ -55,7 +55,7 @@ export const AI_FUNCTIONS = [
   {
     name: 'update_status',
     description: 'Suspend, activate, or delete a distributor account',
-    parameters: {
+    input_schema: {
       type: 'object',
       properties: {
         distributorIdentifier: {
@@ -78,7 +78,7 @@ export const AI_FUNCTIONS = [
   {
     name: 'reset_password',
     description: 'Reset a distributor\'s password and send them a reset link',
-    parameters: {
+    input_schema: {
       type: 'object',
       properties: {
         distributorIdentifier: {
@@ -92,7 +92,7 @@ export const AI_FUNCTIONS = [
   {
     name: 'change_email',
     description: 'Update a distributor\'s email address',
-    parameters: {
+    input_schema: {
       type: 'object',
       properties: {
         distributorIdentifier: {
@@ -110,7 +110,7 @@ export const AI_FUNCTIONS = [
   {
     name: 'change_admin_role',
     description: 'Update a distributor\'s admin role (super_admin, admin, support, viewer) or remove admin access',
-    parameters: {
+    input_schema: {
       type: 'object',
       properties: {
         distributorIdentifier: {
@@ -129,7 +129,7 @@ export const AI_FUNCTIONS = [
   {
     name: 'search_distributors',
     description: 'Search for distributors by various criteria',
-    parameters: {
+    input_schema: {
       type: 'object',
       properties: {
         query: {
@@ -155,7 +155,7 @@ export const AI_FUNCTIONS = [
   {
     name: 'get_distributor_info',
     description: 'Get detailed information about a specific distributor',
-    parameters: {
+    input_schema: {
       type: 'object',
       properties: {
         distributorIdentifier: {

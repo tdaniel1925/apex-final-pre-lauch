@@ -71,11 +71,11 @@ export default function AIAssistantChat() {
         }),
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to get response from AI assistant');
-      }
-
       const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || data.message || 'Failed to get response from AI assistant');
+      }
 
       if (data.type === 'confirmation') {
         // Show confirmation UI

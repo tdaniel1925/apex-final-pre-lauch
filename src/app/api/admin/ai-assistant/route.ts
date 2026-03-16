@@ -105,11 +105,18 @@ async function processMessage(
     ];
 
     // Call Claude API directly via fetch (no SDK dependency)
+    const apiKey = process.env.ANTHROPIC_API_KEY;
+
+    if (!apiKey) {
+      console.error('ANTHROPIC_API_KEY is not set in environment variables');
+      throw new Error('AI service is not configured. Please contact support.');
+    }
+
     const apiResponse = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': process.env.ANTHROPIC_API_KEY || '',
+        'x-api-key': apiKey,
         'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
@@ -122,8 +129,13 @@ async function processMessage(
     });
 
     if (!apiResponse.ok) {
-      const errorData = await apiResponse.json();
-      throw new Error(`Anthropic API error: ${errorData.error?.message || 'Unknown error'}`);
+      const errorData = await apiResponse.json().catch(() => ({}));
+      console.error('Anthropic API error:', {
+        status: apiResponse.status,
+        statusText: apiResponse.statusText,
+        error: errorData,
+      });
+      throw new Error(`Anthropic API error: ${errorData.error?.message || apiResponse.statusText || 'Unknown error'}`);
     }
 
     const response = await apiResponse.json();
