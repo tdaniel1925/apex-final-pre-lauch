@@ -92,15 +92,6 @@ async function processMessage(
   adminId: string
 ): Promise<NextResponse> {
   try {
-    // Dynamic import to prevent build-time initialization
-    const { default: Anthropic } = await import('@anthropic-ai/sdk');
-
-    // Instantiate Anthropic client at runtime (not at module load)
-    // Use dummy key during build, real key at runtime
-    const anthropic = new Anthropic({
-      apiKey: process.env.ANTHROPIC_API_KEY || 'sk-ant-build-placeholder-key',
-    });
-
     // Build messages array
     const messages: any[] = [
       ...conversationHistory.map(m => ({
@@ -113,14 +104,29 @@ async function processMessage(
       },
     ];
 
-    // Call Claude with function calling
-    const response = await anthropic.messages.create({
-      model: 'claude-3-5-sonnet-20241022',
-      max_tokens: 1024,
-      system: SYSTEM_PROMPT,
-      tools: AI_FUNCTIONS as any[],
-      messages,
+    // Call Claude API directly via fetch (no SDK dependency)
+    const apiResponse = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': process.env.ANTHROPIC_API_KEY || '',
+        'anthropic-version': '2023-06-01',
+      },
+      body: JSON.stringify({
+        model: 'claude-3-5-sonnet-20241022',
+        max_tokens: 1024,
+        system: SYSTEM_PROMPT,
+        tools: AI_FUNCTIONS,
+        messages,
+      }),
     });
+
+    if (!apiResponse.ok) {
+      const errorData = await apiResponse.json();
+      throw new Error(`Anthropic API error: ${errorData.error?.message || 'Unknown error'}`);
+    }
+
+    const response = await apiResponse.json();
 
     // Check if Claude wants to use a tool
     const toolUse = response.content.find((block: any) => block.type === 'tool_use') as any;
