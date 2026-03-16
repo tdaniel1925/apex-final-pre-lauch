@@ -652,7 +652,7 @@ export default function DistributorDetailView({
           distributorName={`${initialDistributor.first_name} ${initialDistributor.last_name}`}
           onClose={() => setShowEmailChangeModal(false)}
           onSuccess={() => {
-            setSuccess('Email updated successfully. User will receive a verification email.');
+            setSuccess('Email updated successfully. User can now log in with their new email address.');
             setShowEmailChangeModal(false);
             router.refresh();
           }}
@@ -825,8 +825,7 @@ function EmailChangeModal({
       <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
         <h3 className="text-xl font-bold text-gray-900 mb-4">Change Email Address</h3>
         <p className="text-gray-600 mb-4">
-          Change the email address for <strong>{distributorName}</strong>. The user will receive
-          a verification email at the new address and must verify it before it takes effect.
+          Change the email address for <strong>{distributorName}</strong>. The change will take effect immediately and the user can log in with their new email right away.
         </p>
 
         <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
@@ -869,10 +868,9 @@ function EmailChangeModal({
           </div>
         )}
 
-        <div className="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
-          <p className="text-sm text-yellow-800">
-            ⚠️ The user will need to verify the new email address. They will receive a verification
-            link and won't be able to log in until they verify it.
+        <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+          <p className="text-sm text-blue-900">
+            ℹ️ As an admin, email changes you make take effect immediately. The user will receive a notification email at their new address and can log in right away using the new email.
           </p>
         </div>
 
