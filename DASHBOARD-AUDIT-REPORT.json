@@ -1,0 +1,475 @@
+{
+  "summary": {
+    "total_routes": 44,
+    "working_routes": 42,
+    "broken_routes": 1,
+    "partial_routes": 1,
+    "missing_api_endpoints": 0,
+    "broken_buttons": 2,
+    "security_issues": 1
+  },
+  "routes": [
+    {
+      "path": "/dashboard/agentpulse/agentpilot",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/agentpulse/leadloop",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/agentpulse",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/agentpulse/policyping",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/agentpulse/pulsefollow",
+      "status": "partial",
+      "issues": [
+        "Link to non-existent route: /dashboard/agentpulse#commission"
+      ],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/agentpulse/pulseinsight",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/agentpulse/warmline",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/apps/leadloop",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/apps/nurture",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/apps/policyping",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/apps/pulsefollow",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/business-cards",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/compensation/calculator",
+      "status": "broken",
+      "issues": [
+        "Potential buttons without handlers detected"
+      ],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [
+        "1 buttons may be missing onClick handlers"
+      ],
+      "security_issues": [
+        "No authentication check found"
+      ],
+      "auth_check": false
+    },
+    {
+      "path": "/dashboard/compensation/car",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/compensation/customer-milestones",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/compensation/customer-retention",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/compensation/fast-start",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/compensation/glossary",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/compensation/infinity",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/compensation/infinity-pool",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/compensation/matching",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/compensation/matrix",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/compensation/override",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/compensation",
+      "status": "working",
+      "issues": [
+        "Potential buttons without handlers detected"
+      ],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [
+        "4 buttons may be missing onClick handlers"
+      ],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/compensation/rank-advancement",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/compensation/retail",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/compensation/vacation",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/genealogy",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/licensed-agent/applications",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/licensed-agent/compliance",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/licensed-agent/licenses",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/licensed-agent/marketing",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/licensed-agent",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/licensed-agent/quotes",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/licensed-agent/training",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/matrix",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/matrix/[id]",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/profile",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/road-to-500",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/settings",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/social-media",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/team",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    },
+    {
+      "path": "/dashboard/training",
+      "status": "working",
+      "issues": [],
+      "missing_apis": [],
+      "broken_components": [],
+      "broken_handlers": [],
+      "security_issues": [],
+      "auth_check": true
+    }
+  ],
+  "critical_issues": [
+    "/dashboard/compensation/calculator: No authentication check found, Potential buttons without handlers detected"
+  ],
+  "recommendations": [
+    "⚠️ CRITICAL: Add authentication checks to all routes without them",
+    "Fix broken component imports and links",
+    "Run TypeScript compiler (npx tsc --noEmit) to catch type errors",
+    "Test all forms and buttons to ensure handlers work correctly",
+    "Review compensation calculator for calculation accuracy"
+  ]
+}
