@@ -39,10 +39,9 @@ CREATE POLICY "Reps can read own orders"
   ON public.orders
   FOR SELECT
   USING (
-    auth.uid() IN (
-      SELECT id FROM public.distributors WHERE email = auth.email()
+    rep_id IN (
+      SELECT id FROM public.distributors WHERE auth_user_id = auth.uid()
     )
-    AND rep_id = auth.uid()
   );
 
 CREATE POLICY "Admin and CFO can read all orders"
@@ -51,7 +50,7 @@ CREATE POLICY "Admin and CFO can read all orders"
   USING (
     EXISTS (
       SELECT 1 FROM public.distributors
-      WHERE id = auth.uid()
+      WHERE auth_user_id = auth.uid()
       AND role IN ('admin', 'cfo')
     )
   );
@@ -102,7 +101,7 @@ CREATE POLICY "Admin and CFO can read clawback queue"
   USING (
     EXISTS (
       SELECT 1 FROM public.distributors
-      WHERE id = auth.uid()
+      WHERE auth_user_id = auth.uid()
       AND role IN ('admin', 'cfo')
     )
   );
@@ -142,10 +141,9 @@ CREATE POLICY "Reps can read own renewals"
   ON public.subscription_renewals
   FOR SELECT
   USING (
-    auth.uid() IN (
-      SELECT id FROM public.distributors WHERE email = auth.email()
+    rep_id IN (
+      SELECT id FROM public.distributors WHERE auth_user_id = auth.uid()
     )
-    AND rep_id = auth.uid()
   );
 
 CREATE POLICY "Admin and CFO can read all renewals"
@@ -154,7 +152,7 @@ CREATE POLICY "Admin and CFO can read all renewals"
   USING (
     EXISTS (
       SELECT 1 FROM public.distributors
-      WHERE id = auth.uid()
+      WHERE auth_user_id = auth.uid()
       AND role IN ('admin', 'cfo')
     )
   );
@@ -264,10 +262,9 @@ CREATE POLICY "Reps can read own commission totals"
   ON public.commission_run_rep_totals
   FOR SELECT
   USING (
-    auth.uid() IN (
-      SELECT id FROM public.distributors WHERE email = auth.email()
+    rep_id IN (
+      SELECT id FROM public.distributors WHERE auth_user_id = auth.uid()
     )
-    AND rep_id = auth.uid()
   );
 
 CREATE POLICY "Admin and CFO can read all commission totals"
@@ -276,7 +273,7 @@ CREATE POLICY "Admin and CFO can read all commission totals"
   USING (
     EXISTS (
       SELECT 1 FROM public.distributors
-      WHERE id = auth.uid()
+      WHERE auth_user_id = auth.uid()
       AND role IN ('admin', 'cfo')
     )
   );
@@ -316,7 +313,7 @@ CREATE POLICY "Admin and CFO can read snapshot runs"
   USING (
     EXISTS (
       SELECT 1 FROM public.distributors
-      WHERE id = auth.uid()
+      WHERE auth_user_id = auth.uid()
       AND role IN ('admin', 'cfo')
     )
   );
