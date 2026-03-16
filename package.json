@@ -18,7 +18,6 @@
     "test:email": "tsx scripts/test-email.ts"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.78.0",
     "@ffmpeg-installer/ffmpeg": "^1.1.0",
     "@hookform/resolvers": "^5.2.2",
     "@react-email/components": "^1.0.8",
