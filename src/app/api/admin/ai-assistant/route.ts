@@ -10,6 +10,10 @@ import { executeCommand, type ParsedAction } from '@/lib/admin/command-executor'
 import { resolveDistributor, formatDistributor } from '@/lib/admin/entity-resolver';
 import { createServiceClient } from '@/lib/supabase/service';
 
+// Force dynamic rendering - prevent build-time analysis
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
+
 // Rate limiting map (in-memory, simple implementation)
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
 const RATE_LIMIT = 20; // requests per minute
