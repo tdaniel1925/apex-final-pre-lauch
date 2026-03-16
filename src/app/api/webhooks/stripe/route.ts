@@ -238,17 +238,18 @@ async function handleSubscriptionCreated(subscription: Stripe.Subscription) {
 
 async function handleSubscriptionUpdated(subscription: Stripe.Subscription) {
   try {
+    const subscriptionData = subscription as any;
     const { error } = await supabase
       .from('subscriptions')
       .update({
-        status: subscription.status,
-        current_period_start: subscription.current_period_start ? new Date((subscription.current_period_start as any) * 1000).toISOString() : null,
-        current_period_end: subscription.current_period_end ? new Date((subscription.current_period_end as any) * 1000).toISOString() : null,
-        next_billing_date: subscription.current_period_end ? new Date((subscription.current_period_end as any) * 1000).toISOString() : null,
-        cancel_at_period_end: subscription.cancel_at_period_end || false,
-        canceled_at: subscription.canceled_at ? new Date((subscription.canceled_at as any) * 1000).toISOString() : null,
+        status: subscriptionData.status,
+        current_period_start: subscriptionData.current_period_start ? new Date(subscriptionData.current_period_start * 1000).toISOString() : null,
+        current_period_end: subscriptionData.current_period_end ? new Date(subscriptionData.current_period_end * 1000).toISOString() : null,
+        next_billing_date: subscriptionData.current_period_end ? new Date(subscriptionData.current_period_end * 1000).toISOString() : null,
+        cancel_at_period_end: subscriptionData.cancel_at_period_end || false,
+        canceled_at: subscriptionData.canceled_at ? new Date(subscriptionData.canceled_at * 1000).toISOString() : null,
       })
-      .eq('stripe_subscription_id', subscription.id);
+      .eq('stripe_subscription_id', subscriptionData.id);
 
     if (error) {
       console.error('Failed to update subscription:', error);
