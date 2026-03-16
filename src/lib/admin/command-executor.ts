@@ -441,6 +441,20 @@ async function executeGetDistributorInfo(action: ParsedAction): Promise<Executio
   }
 
   const distResult = await resolveDistributor(action.distributorIdentifier);
+
+  // Check if multiple matches were found
+  if (!distResult.success && distResult.matches && distResult.matches.length > 0) {
+    const matchList = distResult.matches
+      .map((d, i) => `${i + 1}. ${formatDistributor(d)}`)
+      .join('\n');
+
+    return {
+      success: true,
+      message: `Found ${distResult.matches.length} distributors matching "${action.distributorIdentifier}":\n\n${matchList}\n\nPlease specify which one by using their rep number or email.`,
+      data: { matches: distResult.matches },
+    };
+  }
+
   if (!distResult.success || !distResult.distributor) {
     return {
       success: false,
