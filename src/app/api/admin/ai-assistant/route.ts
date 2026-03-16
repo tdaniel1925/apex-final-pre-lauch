@@ -120,8 +120,8 @@ async function processMessage(
         'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
-        model: 'claude-3-5-sonnet-20241022',
-        max_tokens: 1024,
+        model: 'claude-3-5-sonnet-20240620',
+        max_tokens: 2048,
         system: SYSTEM_PROMPT,
         tools: AI_FUNCTIONS,
         messages,
