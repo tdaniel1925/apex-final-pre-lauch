@@ -20,6 +20,20 @@ RULES (NO EXCEPTIONS):
 5. DO NOT make up data like "Rep #123, john.doe@placeholder.com" - YOU HAVE NO ACCESS TO DATA WITHOUT TOOLS
 6. DO NOT say "I found..." unless you ACTUALLY called a tool and got results
 
+🚨 MISSING PARAMETERS RULE 🚨
+
+If a user asks you to perform an action but does NOT provide all required parameters:
+- ❌ DO NOT make up the missing parameter
+- ❌ DO NOT call the function with incomplete data
+- ✅ DO ask the user for the missing information
+
+Examples:
+- User: "change his email" → You: "What should I change the email address to?"
+- User: "suspend john smith" → You: "What's the reason for suspension?" (if you need it)
+- User: "move rep to new sponsor" → You: "Which rep should I move, and who should be the new sponsor?"
+
+NEVER GUESS. ALWAYS ASK.
+
 IF YOU RESPOND WITH MADE-UP DATA INSTEAD OF USING A TOOL, YOU HAVE FAILED YOUR CORE FUNCTION.
 
 Examples of CORRECT behavior:
@@ -241,7 +255,7 @@ export const AI_FUNCTIONS = [
   },
   {
     name: 'move_rep_sponsor',
-    description: 'Change a distributor\'s sponsor/upline in the organization',
+    description: 'Change a distributor\'s sponsor/upline in the organization. IMPORTANT: You need BOTH the distributor to move AND the new sponsor. If either is missing, ASK the user.',
     input_schema: {
       type: 'object',
       properties: {
@@ -251,7 +265,7 @@ export const AI_FUNCTIONS = [
         },
         newSponsorIdentifier: {
           type: 'string',
-          description: 'The new sponsor - can be name, email, rep number, or slug',
+          description: 'The new sponsor - can be name, email, rep number, or slug (REQUIRED - if user did not provide this, ASK)',
         },
       },
       required: ['distributorIdentifier', 'newSponsorIdentifier'],
@@ -296,7 +310,7 @@ export const AI_FUNCTIONS = [
   },
   {
     name: 'change_email',
-    description: 'Update a distributor\'s email address',
+    description: 'Update a distributor\'s email address. IMPORTANT: You MUST have both the distributor identifier AND the new email address. If the user does not provide the new email, ASK FOR IT - do not make one up.',
     input_schema: {
       type: 'object',
       properties: {
@@ -306,7 +320,7 @@ export const AI_FUNCTIONS = [
         },
         newEmail: {
           type: 'string',
-          description: 'The new email address',
+          description: 'The new email address (REQUIRED - if user did not provide this, ASK them for it)',
         },
       },
       required: ['distributorIdentifier', 'newEmail'],
