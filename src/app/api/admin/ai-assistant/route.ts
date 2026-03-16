@@ -115,9 +115,9 @@ async function processMessage(
     });
 
     // Check if Claude wants to use a tool
-    const toolUse = response.content.find((block: any) => block.type === 'tool_use');
+    const toolUse = response.content.find((block: any) => block.type === 'tool_use') as any;
 
-    if (toolUse) {
+    if (toolUse && toolUse.type === 'tool_use') {
       // Claude identified a command
       const functionName = toolUse.name;
       const functionArgs = toolUse.input;
