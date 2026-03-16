@@ -11,6 +11,7 @@ import TeamStatisticsUser from '@/components/dashboard/TeamStatisticsUser';
 import DashboardClient from '@/components/dashboard/DashboardClient';
 import Road500Banner from '@/components/dashboard/Road500Banner';
 import ActivityFeed from '@/components/dashboard/ActivityFeed';
+import QuickActions from '@/components/dashboard/QuickActions';
 import type { Distributor } from '@/lib/types';
 import { getEnrolleeStats } from '@/lib/enrollees/enrollee-counter';
 
@@ -120,6 +121,9 @@ export default async function DashboardPage() {
         </h1>
         <p className="text-sm text-gray-600 mt-1">@{dist.slug}</p>
       </div>
+
+      {/* Quick Actions */}
+      <QuickActions distributorSlug={dist.slug} />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Left Column - Stats */}
