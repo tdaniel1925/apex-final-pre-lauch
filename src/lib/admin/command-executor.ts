@@ -294,26 +294,97 @@ async function executeChangeEmail(action: ParsedAction, adminId: string): Promis
   }
 
   const dist = distResult.distributor;
+  const newEmail = action.newEmail;
+  const oldEmail = dist.email;
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/admin/distributors/${dist.id}/change-email`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ newEmail: action.newEmail }),
-  });
-
-  if (!response.ok) {
-    const error = await response.json();
+  // Validate email format
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(newEmail)) {
     return {
       success: false,
-      error: error.error || 'Failed to change email',
+      error: 'Invalid email format',
       message: 'Email change failed',
     };
   }
 
+  const supabase = createServiceClient();
+
+  // Check if email already in use
+  const { data: existingDist } = await supabase
+    .from('distributors')
+    .select('id')
+    .eq('email', newEmail)
+    .neq('id', dist.id)
+    .single();
+
+  if (existingDist) {
+    return {
+      success: false,
+      error: 'This email address is already in use',
+      message: 'Email change failed',
+    };
+  }
+
+  // Check if distributor has auth_user_id
+  if (!dist.auth_user_id) {
+    return {
+      success: false,
+      error: 'Distributor is not linked to an authentication account',
+      message: 'Email change failed',
+    };
+  }
+
+  // Update email in Supabase Auth
+  const { error: authError } = await supabase.auth.admin.updateUserById(
+    dist.auth_user_id,
+    {
+      email: newEmail,
+      email_confirm: true,
+    }
+  );
+
+  if (authError) {
+    return {
+      success: false,
+      error: `Failed to update email in authentication system: ${authError.message}`,
+      message: 'Email change failed',
+    };
+  }
+
+  // Update email in distributors table
+  const { error: dbError } = await supabase
+    .from('distributors')
+    .update({ email: newEmail })
+    .eq('id', dist.id);
+
+  if (dbError) {
+    // Try to rollback auth change
+    await supabase.auth.admin.updateUserById(dist.auth_user_id, {
+      email: oldEmail,
+    });
+    return {
+      success: false,
+      error: 'Failed to update email in database',
+      message: 'Email change failed',
+    };
+  }
+
+  // Log the change
+  await supabase.from('distributor_activity_log').insert({
+    distributor_id: dist.id,
+    action: 'email_changed',
+    details: {
+      old_email: oldEmail,
+      new_email: newEmail,
+      changed_by_admin: true,
+      admin_id: adminId,
+    },
+  });
+
   return {
     success: true,
-    message: `Successfully changed email from ${dist.email} to ${action.newEmail}`,
-    data: { distributor: dist, oldEmail: dist.email, newEmail: action.newEmail },
+    message: `Successfully changed email from ${oldEmail} to ${newEmail}`,
+    data: { distributor: dist, oldEmail, newEmail },
   };
 }
 
