@@ -5,6 +5,7 @@
 
 import { resolveDistributor, resolveSponsor, formatDistributor, canBeSponsor, type ResolvedDistributor } from './entity-resolver';
 import { createServiceClient } from '@/lib/supabase/service';
+import { executeDatabaseQuery, getCompleteDistributorData, type DatabaseQueryAction } from './ai-database-access';
 
 export interface ParsedAction {
   type: string;
@@ -18,6 +19,12 @@ export interface ParsedAction {
   status?: string;
   state?: string;
   limit?: number;
+  // Database query fields
+  table?: string;
+  select?: string;
+  filters?: Record<string, any>;
+  orderBy?: string;
+  orderDirection?: 'asc' | 'desc';
 }
 
 export interface ExecutionResult {
@@ -56,6 +63,9 @@ export async function executeCommand(
 
       case 'get_distributor_info':
         return await executeGetDistributorInfo(action);
+
+      case 'query_database':
+        return await executeDatabaseQuery(action as unknown as DatabaseQueryAction);
 
       default:
         return {
@@ -463,68 +473,6 @@ async function executeGetDistributorInfo(action: ParsedAction): Promise<Executio
     };
   }
 
-  const dist = distResult.distributor;
-  const supabase = createServiceClient();
-
-  // Get full distributor details
-  const { data, error } = await supabase
-    .from('distributors')
-    .select('*, sponsor:spread_id(first_name, last_name, rep_number)')
-    .eq('id', dist.id)
-    .single();
-
-  if (error) {
-    return {
-      success: false,
-      error: error.message,
-      message: 'Failed to get distributor info',
-    };
-  }
-
-  // Get team statistics (organizational data)
-  const { data: teamStats } = await supabase
-    .from('distributors')
-    .select('id, first_name, last_name, status, created_at, matrix_depth')
-    .eq('sponsor_id', dist.id)
-    .neq('status', 'deleted');
-
-  const recruits = teamStats || [];
-  const total = recruits.length;
-  const active = recruits.filter((r) => (r.status || 'active') === 'active').length;
-  const suspended = recruits.filter((r) => r.status === 'suspended').length;
-
-  // Get matrix children
-  const { data: matrixChildren } = await supabase
-    .from('distributors')
-    .select('id')
-    .eq('matrix_parent_id', dist.id)
-    .neq('status', 'deleted');
-
-  const matrixFilled = (matrixChildren || []).length;
-  const matrixEmpty = 5 - matrixFilled;
-
-  // Format a comprehensive response
-  const infoMessage = `**${data.first_name} ${data.last_name}** (Rep #${data.rep_number})
-
-📧 Email: ${data.email}
-📍 Location: ${data.city || 'N/A'}, ${data.state || 'N/A'}
-🎯 Status: ${data.status || 'active'}
-📅 Joined: ${new Date(data.created_at).toLocaleDateString()}
-
-**Organization Size:**
-👥 Direct Recruits: ${total} (${active} active, ${suspended} suspended)
-🌳 Matrix: ${matrixFilled}/5 positions filled (${matrixEmpty} empty)
-${data.sponsor ? `\n👤 Sponsor: ${data.sponsor.first_name} ${data.sponsor.last_name} (Rep #${data.sponsor.rep_number})` : ''}`;
-
-  return {
-    success: true,
-    message: infoMessage,
-    data: {
-      distributor: data,
-      teamStats: {
-        directRecruits: { total, active, suspended },
-        matrix: { filled: matrixFilled, empty: matrixEmpty, percentage: Math.round((matrixFilled / 5) * 100) },
-      }
-    },
-  };
+  // Use the comprehensive database query function
+  return await getCompleteDistributorData(distResult.distributor.id);
 }

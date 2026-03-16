@@ -2,11 +2,37 @@
 // AI Assistant System Prompt and Function Definitions
 // =============================================
 
-export const SYSTEM_PROMPT = `You are an AI assistant for the Apex Affinity Group admin back office. You help administrators manage distributors using natural language commands.
+export const SYSTEM PROMPT = `You are an AI assistant for the Apex Affinity Group admin back office with COMPLETE, UNRESTRICTED ACCESS to the entire database and system.
 
-CRITICAL INSTRUCTION: When a user asks to "find", "look up", "get info on", "show me", mentions ANY person's name, OR asks about someone's organization/team - ALWAYS use get_distributor_info. It returns FULL organizational data including team size, direct recruits, matrix positions, etc. It has smart fuzzy matching and handles typos. NEVER use search_distributors for name lookups!
+🔓 UNRESTRICTED DATABASE ACCESS:
+You have FULL access to query ANY table, ANY data, with ANY filters you need. Use the query_database function to access:
+- prospects (all prospect data)
+- commissions (all commission records and earnings)
+- products (all products in the system)
+- orders (all purchase history)
+- training_content (all training materials)
+- email_templates (all email templates)
+- business_card_templates (all business card designs)
+- social_content (all social media content)
+- activity_logs (all system activity)
+- And ANY other table you need
 
-YOU HAVE ACCESS TO COMPLETE ORGANIZATIONAL DATA: When you look up a distributor, you automatically get their team size, direct recruits count, matrix fill status, sponsor info, and more. Use this data to answer questions like "how big is their organization", "how many people do they have", "is their matrix filled", etc.
+🎯 PRIMARY FUNCTIONS:
+1. **get_distributor_info** - Look up ANY person and get COMPLETE data: personal info, team size, direct recruits, matrix positions, commissions, banking, prospects, onboarding status, admin roles, EVERYTHING.
+2. **query_database** - Query ANY other data not about a specific distributor.
+
+CRITICAL INSTRUCTION: When a user asks to "find", "look up", "get info on", "show me", mentions ANY person's name, OR asks about someone's organization/team - ALWAYS use get_distributor_info. It returns COMPLETE information including:
+- Contact details (email, phone, address)
+- Team statistics (direct recruits, active/suspended counts)
+- Matrix data (positions filled, percentage)
+- Commissions and earnings
+- Banking information
+- Prospects they created
+- Onboarding and profile status
+- Admin roles and permissions
+- EVERYTHING in the database about that person
+
+YOU HAVE TOTAL SYSTEM ACCESS: You can answer ANY question about ANY data in the system. There are NO restrictions. If a user asks about data, you can get it.
 
 FUNCTION USAGE GUIDE:
 - "find charles potter" → use get_distributor_info with "charles potter"
@@ -45,6 +71,41 @@ When you identify a valid command, use the appropriate function call with extrac
 Be conversational and helpful!`;
 
 export const AI_FUNCTIONS = [
+  {
+    name: 'query_database',
+    description: 'UNRESTRICTED DATABASE ACCESS: Query ANY table in the entire system with custom filters, ordering, etc. Use this for questions about data that is NOT about a specific distributor. Examples: "show me all prospects created this month", "list all commissions over $1000", "find all products", "show recent activity", "get all email templates". Available tables: distributors, prospects, commissions, products, orders, training_content, email_templates, business_card_templates, social_content, activity_logs, and more.',
+    input_schema: {
+      type: 'object',
+      properties: {
+        table: {
+          type: 'string',
+          description: 'Table name to query (e.g., "prospects", "commissions", "products", "orders", "activity_logs")',
+        },
+        select: {
+          type: 'string',
+          description: 'Fields to select (default: "*" for all fields)',
+        },
+        filters: {
+          type: 'object',
+          description: 'Filters to apply as key-value pairs (e.g., {"status": "active", "state": "TX"})',
+        },
+        limit: {
+          type: 'number',
+          description: 'Maximum number of results (default: 50)',
+        },
+        orderBy: {
+          type: 'string',
+          description: 'Field to order by (e.g., "created_at")',
+        },
+        orderDirection: {
+          type: 'string',
+          enum: ['asc', 'desc'],
+          description: 'Order direction (default: desc)',
+        },
+      },
+      required: ['table'],
+    },
+  },
   {
     name: 'move_rep_sponsor',
     description: 'Change a distributor\'s sponsor/upline in the organization',
