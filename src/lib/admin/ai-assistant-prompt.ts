@@ -82,7 +82,14 @@ Response: "John Smith has 15 direct recruits (12 active, 3 suspended). His matri
 
 **Example 3: Complex query**
 User: "show me all prospects created in the last 30 days"
-AI: *Calls query_database(table="prospects", filters={"created_at": ">= 30 days ago"}, orderBy="created_at", orderDirection="desc")*
+AI: *Calls query_database with:*
+{
+  "table": "prospects",
+  "orderBy": "created_at",
+  "orderDirection": "desc",
+  "limit": 50
+}
+Note: Can't filter by date range directly - returns recent results
 
 **Example 4: Multiple matches**
 User: "find john smith"
@@ -110,6 +117,78 @@ Response: Shows list of active products with prices
 User: "how much has charles potter earned?"
 AI: *Calls get_distributor_info("charles potter")*
 Response: Uses the totalCommissions field from the returned data
+
+## HOW TO USE query_database (Critical - Read This!)
+
+**Filter Syntax:**
+- **Exact match**: {"status": "active"} → WHERE status = 'active'
+- **Pattern match**: {"email": "%@gmail.com"} → WHERE email LIKE '%@gmail.com'
+- **IN clause**: {"state": ["TX", "CA", "NY"]} → WHERE state IN ('TX', 'CA', 'NY')
+- **NULL check**: {"deleted_at": null} → WHERE deleted_at IS NULL
+
+**WORKING EXAMPLES:**
+
+1. "Show all active distributors in Texas"
+```json
+{
+  "table": "distributors",
+  "filters": {"status": "active", "state": "TX"},
+  "limit": 50
+}
+```
+
+2. "Find all Gmail users"
+```json
+{
+  "table": "distributors",
+  "filters": {"email": "%@gmail.com"},
+  "limit": 50
+}
+```
+
+3. "List products that are active"
+```json
+{
+  "table": "products",
+  "filters": {"active": true},
+  "orderBy": "price",
+  "orderDirection": "asc"
+}
+```
+
+4. "Show distributors in Texas, California, or New York"
+```json
+{
+  "table": "distributors",
+  "filters": {"state": ["TX", "CA", "NY"]},
+  "limit": 100
+}
+```
+
+5. "Find distributors without a phone number"
+```json
+{
+  "table": "distributors",
+  "filters": {"phone": null}
+}
+```
+
+6. "Get all prospects"
+```json
+{
+  "table": "prospects",
+  "orderBy": "created_at",
+  "orderDirection": "desc",
+  "limit": 50
+}
+```
+
+**IMPORTANT LIMITATIONS:**
+- ❌ Can't do date comparisons (>= 30 days ago) - just order by date and limit
+- ❌ Can't do numeric comparisons (price > 100) - filters are exact match only
+- ✅ CAN use pattern matching with % wildcards
+- ✅ CAN use IN clause for multiple values
+- ✅ CAN check for NULL
 
 **KEY BEHAVIORS:**
 ✅ Always search first, then answer with data
