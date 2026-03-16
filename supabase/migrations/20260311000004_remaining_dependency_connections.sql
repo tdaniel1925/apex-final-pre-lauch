@@ -64,15 +64,15 @@ CREATE POLICY "Reps can read own orders"
     )
   );
 
--- CREATE POLICY "Admin and CFO can read all orders"
---   ON public.orders
---   FOR SELECT
---   USING (
---     EXISTS (
---       SELECT 1 FROM public.admin_distributors
---       WHERE auth_user_id = auth.uid()
---     )
---   );
+CREATE POLICY "Admin and CFO can read all orders"
+  ON public.orders
+  FOR SELECT
+  USING (
+    EXISTS (
+      SELECT 1 FROM public.admins
+      WHERE auth_user_id = auth.uid()
+    )
+  );
 
 CREATE POLICY "System can insert orders"
   ON public.orders
@@ -114,15 +114,15 @@ CREATE TABLE IF NOT EXISTS public.cab_clawback_queue (
 -- RLS Policies for cab_clawback_queue
 ALTER TABLE public.cab_clawback_queue ENABLE ROW LEVEL SECURITY;
 
--- CREATE POLICY "Admin and CFO can read clawback queue"
---   ON public.cab_clawback_queue
---   FOR SELECT
---   USING (
---     EXISTS (
---       SELECT 1 FROM public.admin_distributors
---       WHERE auth_user_id = auth.uid()
---     )
---   );
+CREATE POLICY "Admin and CFO can read clawback queue"
+  ON public.cab_clawback_queue
+  FOR SELECT
+  USING (
+    EXISTS (
+      SELECT 1 FROM public.admins
+      WHERE auth_user_id = auth.uid()
+    )
+  );
 
 CREATE POLICY "System can manage clawback queue"
   ON public.cab_clawback_queue
@@ -172,15 +172,15 @@ CREATE POLICY "Reps can read own renewals"
     )
   );
 
--- CREATE POLICY "Admin and CFO can read all renewals"
---   ON public.subscription_renewals
---   FOR SELECT
---   USING (
---     EXISTS (
---       SELECT 1 FROM public.admin_distributors
---       WHERE auth_user_id = auth.uid()
---     )
---   );
+CREATE POLICY "Admin and CFO can read all renewals"
+  ON public.subscription_renewals
+  FOR SELECT
+  USING (
+    EXISTS (
+      SELECT 1 FROM public.admins
+      WHERE auth_user_id = auth.uid()
+    )
+  );
 
 CREATE POLICY "System can insert renewals"
   ON public.subscription_renewals
@@ -300,15 +300,15 @@ CREATE POLICY "Reps can read own commission totals"
     )
   );
 
--- CREATE POLICY "Admin and CFO can read all commission totals"
---   ON public.commission_run_rep_totals
---   FOR SELECT
---   USING (
---     EXISTS (
---       SELECT 1 FROM public.admin_distributors
---       WHERE auth_user_id = auth.uid()
---     )
---   );
+CREATE POLICY "Admin and CFO can read all commission totals"
+  ON public.commission_run_rep_totals
+  FOR SELECT
+  USING (
+    EXISTS (
+      SELECT 1 FROM public.admins
+      WHERE auth_user_id = auth.uid()
+    )
+  );
 
 CREATE POLICY "System can manage commission totals"
   ON public.commission_run_rep_totals
@@ -339,15 +339,15 @@ CREATE TABLE IF NOT EXISTS public.bv_snapshot_runs (
 -- RLS Policies
 ALTER TABLE public.bv_snapshot_runs ENABLE ROW LEVEL SECURITY;
 
--- CREATE POLICY "Admin and CFO can read snapshot runs"
---   ON public.bv_snapshot_runs
---   FOR SELECT
---   USING (
---     EXISTS (
---       SELECT 1 FROM public.admin_distributors
---       WHERE auth_user_id = auth.uid()
---     )
---   );
+CREATE POLICY "Admin and CFO can read snapshot runs"
+  ON public.bv_snapshot_runs
+  FOR SELECT
+  USING (
+    EXISTS (
+      SELECT 1 FROM public.admins
+      WHERE auth_user_id = auth.uid()
+    )
+  );
 
 CREATE POLICY "System can manage snapshot runs"
   ON public.bv_snapshot_runs
