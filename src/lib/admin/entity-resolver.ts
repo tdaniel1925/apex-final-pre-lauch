@@ -14,6 +14,7 @@ export interface ResolvedDistributor {
   email: string;
   slug: string;
   status: string;
+  auth_user_id?: string;
 }
 
 export interface ResolutionResult {
@@ -39,7 +40,7 @@ export async function resolveDistributor(identifier: string): Promise<Resolution
     const repNumber = parseInt(repNumberMatch[1]);
     const { data, error } = await supabase
       .from('distributors')
-      .select('id, rep_number, first_name, last_name, email, slug, status')
+      .select('id, rep_number, first_name, last_name, email, slug, status, auth_user_id')
       .eq('rep_number', repNumber)
       .single();
 
@@ -55,7 +56,7 @@ export async function resolveDistributor(identifier: string): Promise<Resolution
   if (cleaned.includes('@')) {
     const { data, error } = await supabase
       .from('distributors')
-      .select('id, rep_number, first_name, last_name, email, slug, status')
+      .select('id, rep_number, first_name, last_name, email, slug, status, auth_user_id')
       .eq('email', cleaned)
       .single();
 
@@ -71,7 +72,7 @@ export async function resolveDistributor(identifier: string): Promise<Resolution
   const slugCleaned = cleaned.replace(/[@\s]/g, '');
   const { data: slugMatch, error: slugError } = await supabase
     .from('distributors')
-    .select('id, rep_number, first_name, last_name, email, slug, status')
+    .select('id, rep_number, first_name, last_name, email, slug, status, auth_user_id')
     .eq('slug', slugCleaned)
     .single();
 
@@ -88,7 +89,7 @@ export async function resolveDistributor(identifier: string): Promise<Resolution
 
   let query = supabase
     .from('distributors')
-    .select('id, rep_number, first_name, last_name, email, slug, status')
+    .select('id, rep_number, first_name, last_name, email, slug, status, auth_user_id')
     .neq('status', 'deleted')
     .limit(20); // Get more results for fuzzy matching
 
