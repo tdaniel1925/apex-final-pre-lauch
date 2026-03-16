@@ -120,7 +120,7 @@ async function processMessage(
         'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
-        model: 'claude-3-opus-20240229',
+        model: 'claude-3-haiku-20240307',
         max_tokens: 2048,
         system: SYSTEM_PROMPT,
         tools: AI_FUNCTIONS,
