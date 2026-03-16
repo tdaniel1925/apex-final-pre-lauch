@@ -11,6 +11,8 @@ describe('Email Template Variable System', () => {
   let mockDistributor: Distributor;
 
   beforeEach(() => {
+    // Set the site URL for email template tests
+    process.env.NEXT_PUBLIC_SITE_URL = 'https://test.com';
     mockDistributor = {
       id: 'test-id-123',
       auth_user_id: 'auth-id-123',
