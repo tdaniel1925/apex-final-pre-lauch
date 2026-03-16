@@ -50,9 +50,20 @@ export async function middleware(request: NextRequest) {
     // Refresh session and get user
     const { data: { user }, error: authError } = await supabase.auth.getUser();
 
+    // Debug logging (remove after testing)
+    if (request.nextUrl.pathname.startsWith('/admin') || request.nextUrl.pathname.startsWith('/finance')) {
+      console.log('Middleware check:', {
+        path: request.nextUrl.pathname,
+        hasUser: !!user,
+        userEmail: user?.email,
+        authError: authError?.message,
+      });
+    }
+
     // Protect finance routes - CFO/Admin only
     if (request.nextUrl.pathname.startsWith('/finance')) {
       if (!user || authError) {
+        console.log('Finance route: No user or auth error, redirecting to login');
         const redirectUrl = new URL('/login', request.url);
         redirectUrl.searchParams.set('redirect', request.nextUrl.pathname);
         return NextResponse.redirect(redirectUrl);
@@ -74,6 +85,7 @@ export async function middleware(request: NextRequest) {
     // Protect admin routes
     if (request.nextUrl.pathname.startsWith('/admin')) {
       if (!user || authError) {
+        console.log('Admin route: No user or auth error, redirecting to login');
         const redirectUrl = new URL('/login', request.url);
         redirectUrl.searchParams.set('redirect', request.nextUrl.pathname);
         return NextResponse.redirect(redirectUrl);
@@ -86,10 +98,20 @@ export async function middleware(request: NextRequest) {
         .eq('email', user.email)
         .single();
 
+      console.log('Admin check:', {
+        email: user.email,
+        distributor,
+        roleError: roleError?.message,
+        isAdmin: distributor?.is_admin,
+      });
+
       if (roleError || !distributor || !distributor.is_admin) {
+        console.log('Admin route: Not admin or error, redirecting to dashboard');
         // Unauthorized - redirect to dashboard
         return NextResponse.redirect(new URL('/dashboard', request.url));
       }
+
+      console.log('Admin route: Access granted');
     }
   } catch (error) {
     // If middleware fails, continue without auth refresh
