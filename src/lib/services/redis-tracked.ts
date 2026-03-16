@@ -7,11 +7,18 @@ import { Redis } from '@upstash/redis';
 import { trackUsage } from './tracking';
 import type { TriggeredBy } from '@/types/service-tracking';
 
-// Initialize Redis client
-const redis = new Redis({
-  url: process.env.UPSTASH_REDIS_REST_URL || '',
-  token: process.env.UPSTASH_REDIS_REST_TOKEN || '',
-});
+// Lazy-load Redis client to avoid build-time initialization
+let _redis: Redis | undefined;
+
+function getRedis(): Redis {
+  if (!_redis) {
+    _redis = new Redis({
+      url: process.env.UPSTASH_REDIS_REST_URL || '',
+      token: process.env.UPSTASH_REDIS_REST_TOKEN || '',
+    });
+  }
+  return _redis;
+}
 
 // =============================================
 // Tracked Redis Client
@@ -32,6 +39,7 @@ export async function getTracked<T = any>(
   context: TrackedRedisContext
 ): Promise<T | null> {
   const startTime = Date.now();
+  const redis = getRedis();
 
   try {
     const value = await redis.get<T>(key);
@@ -91,6 +99,7 @@ export async function setTracked<T = any>(
   context: TrackedRedisContext
 ): Promise<string | null> {
   const startTime = Date.now();
+  const redis = getRedis();
 
   try {
     const valueSize = JSON.stringify(value).length;
@@ -152,6 +161,7 @@ export async function delTracked(
   context: TrackedRedisContext
 ): Promise<number> {
   const startTime = Date.now();
+  const redis = getRedis();
 
   try {
     const result = Array.isArray(key) ? await redis.del(...key) : await redis.del(key);
@@ -241,6 +251,7 @@ export async function incrTracked(
   context: TrackedRedisContext
 ): Promise<number> {
   const startTime = Date.now();
+  const redis = getRedis();
 
   try {
     const result = await redis.incr(key);
@@ -287,5 +298,5 @@ export async function incrTracked(
   }
 }
 
-// Export original client for direct access if needed (not tracked)
-export { redis };
+// Export function to get Redis client for direct access if needed (not tracked)
+export { getRedis as redis };
