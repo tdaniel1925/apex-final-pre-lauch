@@ -166,7 +166,7 @@ async function processMessage(
     }
 
     // No tool use - just a regular response
-    const textBlock = response.content.find((block: any) => block.type === 'text');
+    const textBlock = response.content.find((block: any) => block.type === 'text') as any;
     const responseText = textBlock?.text || 'I can help you manage distributors. Try commands like "move rep John Smith under Jane Doe" or type "help" for more information.';
 
     // Log conversation
