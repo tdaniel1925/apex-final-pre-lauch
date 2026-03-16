@@ -4,7 +4,7 @@
 // =============================================
 
 import { NextRequest, NextResponse } from 'next/server';
-import { requireAdmin } from '@/lib/auth/admin';
+import { getAdminUser } from '@/lib/auth/admin';
 import { createServiceClient } from '@/lib/supabase/service';
 import { Resend } from 'resend';
 
@@ -16,7 +16,13 @@ export async function POST(
 ) {
   try {
     // Require admin authentication
-    await requireAdmin();
+    const adminUser = await getAdminUser();
+    if (!adminUser) {
+      return NextResponse.json(
+        { error: 'Unauthorized - Admin access required' },
+        { status: 401 }
+      );
+    }
 
     const { id: distributorId } = await params;
     const body = await request.json();
