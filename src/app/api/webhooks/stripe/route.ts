@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { createClient } from '@supabase/supabase-js';
+import { createServiceClient } from '@/lib/supabase/service';
 import { sendEmail } from '@/lib/email/resend';
 import { generateOrderReceiptHTML, generateOrderReceiptSubject } from '@/lib/email/order-receipt';
 
@@ -8,18 +8,23 @@ import { generateOrderReceiptHTML, generateOrderReceiptSubject } from '@/lib/ema
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2026-01-28.clover',
-});
+// Lazy-load Stripe client to prevent build-time initialization
+let _stripe: Stripe | undefined;
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
-
-const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
+function getStripe(): Stripe {
+  if (!_stripe) {
+    _stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+      apiVersion: '2026-01-28.clover',
+    });
+  }
+  return _stripe;
+}
 
 export async function POST(request: NextRequest) {
+  const stripe = getStripe();
+  const supabase = createServiceClient();
+  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
+
   try {
     const body = await request.text();
     const signature = request.headers.get('stripe-signature');
@@ -84,6 +89,8 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
   }
 
   try {
+    const supabase = createServiceClient();
+
     // Get distributor details
     const { data: distributor } = await supabase
       .from('distributors')
@@ -242,6 +249,7 @@ async function handleSubscriptionCreated(subscription: Stripe.Subscription) {
 
 async function handleSubscriptionUpdated(subscription: Stripe.Subscription) {
   try {
+    const supabase = createServiceClient();
     const subscriptionData = subscription as any;
     const { error } = await supabase
       .from('subscriptions')
@@ -265,6 +273,7 @@ async function handleSubscriptionUpdated(subscription: Stripe.Subscription) {
 
 async function handleSubscriptionDeleted(subscription: Stripe.Subscription) {
   try {
+    const supabase = createServiceClient();
     const { error } = await supabase
       .from('subscriptions')
       .update({

@@ -1,21 +1,27 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { createClient } from '@supabase/supabase-js';
+import { createServiceClient } from '@/lib/supabase/service';
 
 // Force dynamic rendering - prevent build-time analysis
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2026-01-28.clover',
-});
+// Lazy-load Stripe client to prevent build-time initialization
+let _stripe: Stripe | undefined;
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+function getStripe(): Stripe {
+  if (!_stripe) {
+    _stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+      apiVersion: '2026-01-28.clover',
+    });
+  }
+  return _stripe;
+}
 
 export async function POST(request: NextRequest) {
+  const stripe = getStripe();
+  const supabase = createServiceClient();
+
   try {
     const { productId, distributorId } = await request.json();
 
