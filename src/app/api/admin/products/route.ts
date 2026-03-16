@@ -4,12 +4,18 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase/service';
-import { requireAdmin } from '@/lib/auth/admin';
+import { getAdminUser } from '@/lib/auth/admin';
 
 // GET /api/admin/products - List all products
 export async function GET(request: NextRequest) {
   try {
-    await requireAdmin();
+    const adminUser = await getAdminUser();
+    if (!adminUser) {
+      return NextResponse.json(
+        { error: 'Unauthorized - Admin access required' },
+        { status: 401 }
+      );
+    }
 
     const supabase = createServiceClient();
 
@@ -37,7 +43,13 @@ export async function GET(request: NextRequest) {
 // POST /api/admin/products - Create new product
 export async function POST(request: NextRequest) {
   try {
-    await requireAdmin();
+    const adminUser = await getAdminUser();
+    if (!adminUser) {
+      return NextResponse.json(
+        { error: 'Unauthorized - Admin access required' },
+        { status: 401 }
+      );
+    }
 
     const body = await request.json();
     const {

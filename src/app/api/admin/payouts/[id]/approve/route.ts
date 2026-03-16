@@ -4,7 +4,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase/service';
-import { requireAdmin } from '@/lib/auth/admin';
+import { getAdminUser } from '@/lib/auth/admin';
 import { createClient } from '@/lib/supabase/server';
 
 // POST /api/admin/payouts/[id]/approve
@@ -14,7 +14,13 @@ export async function POST(
 ) {
   try {
     const params = await context.params;
-    const adminUser = await requireAdmin();
+    const adminUser = const adminUser = await getAdminUser();
+    if (!adminUser) {
+      return NextResponse.json(
+        { error: 'Unauthorized - Admin access required' },
+        { status: 401 }
+      );
+    }
     const supabase = createServiceClient();
 
     // Get batch details

@@ -5,7 +5,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase/service';
-import { requireAdmin } from '@/lib/auth/admin';
+import { getAdminUser } from '@/lib/auth/admin';
 
 // POST /api/admin/payouts/[id]/generate-ach
 export async function POST(
@@ -14,7 +14,13 @@ export async function POST(
 ) {
   try {
     const params = await context.params;
-    await requireAdmin();
+    const adminUser = await getAdminUser();
+    if (!adminUser) {
+      return NextResponse.json(
+        { error: 'Unauthorized - Admin access required' },
+        { status: 401 }
+      );
+    }
 
     const supabase = createServiceClient();
 
