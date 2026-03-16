@@ -120,8 +120,8 @@ async function processMessage(
         'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
-        model: 'claude-3-haiku-20240307',
-        max_tokens: 2048,
+        model: 'claude-3-5-sonnet-20241022', // Upgraded from Haiku to Sonnet for better comprehension
+        max_tokens: 4096, // Increased for more detailed responses
         system: SYSTEM_PROMPT,
         tools: AI_FUNCTIONS,
         tool_choice: { type: 'auto' }, // Let Claude decide, but with strong prompt guidance
