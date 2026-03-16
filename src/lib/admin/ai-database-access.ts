@@ -161,19 +161,39 @@ export async function getCompleteDistributorData(
       sponsorInfo = sponsor;
     }
 
-    // Get prospects they created
-    const { data: prospects } = await supabase
-      .from('prospects')
-      .select('*')
-      .eq('created_by', distributorId);
+    // Get prospects they created (may not exist)
+    let prospects = [];
+    try {
+      const { data: prospectsData, error: prospectsError } = await supabase
+        .from('prospects')
+        .select('*')
+        .eq('created_by', distributorId);
 
-    // Get their commissions (if table exists)
-    const { data: commissions } = await supabase
-      .from('commissions')
-      .select('*')
-      .eq('distributor_id', distributorId)
-      .order('created_at', { ascending: false })
-      .limit(10);
+      if (!prospectsError && prospectsData) {
+        prospects = prospectsData;
+      }
+    } catch (e) {
+      // Table might not exist, ignore
+      console.log('Prospects table query failed:', e);
+    }
+
+    // Get their commissions (may not exist)
+    let commissions = [];
+    try {
+      const { data: commissionsData, error: commissionsError } = await supabase
+        .from('commissions')
+        .select('*')
+        .eq('distributor_id', distributorId)
+        .order('created_at', { ascending: false })
+        .limit(10);
+
+      if (!commissionsError && commissionsData) {
+        commissions = commissionsData;
+      }
+    } catch (e) {
+      // Table might not exist, ignore
+      console.log('Commissions table query failed:', e);
+    }
 
     // Calculate stats
     const recruits = directRecruits || [];
@@ -189,7 +209,7 @@ export async function getCompleteDistributorData(
       percentage: Math.round(((matrixChildren || []).length / 5) * 100),
     };
 
-    const totalCommissions = (commissions || []).reduce((sum, c) => sum + (c.amount || 0), 0);
+    const totalCommissions = commissions.reduce((sum: number, c: any) => sum + (c.amount || 0), 0);
 
     // Format comprehensive response
     const message = `**COMPLETE DATA FOR ${distributor.first_name} ${distributor.last_name}** (Rep #${distributor.rep_number})
@@ -214,10 +234,10 @@ ${distributor.ach_verified ? '✅ ACH Verified' : '❌ ACH Not Verified'}
 
 **COMMISSIONS:**
 💰 Total Commissions: $${totalCommissions.toFixed(2)}
-📊 Commission Records: ${(commissions || []).length}
+📊 Commission Records: ${commissions.length}
 
 **PROSPECTS:**
-📋 Prospects Created: ${(prospects || []).length}
+📋 Prospects Created: ${prospects.length}
 
 **ADMIN:**
 ${distributor.is_admin ? `🛡️ Admin Role: ${distributor.admin_role}` : '👤 Regular Distributor'}
@@ -237,8 +257,8 @@ ${distributor.profile_complete ? '✅ Profile Complete' : '❌ Profile Incomplet
         matrixChildren: matrixChildren || [],
         teamStats,
         matrixStats,
-        prospects: prospects || [],
-        commissions: commissions || [],
+        prospects,
+        commissions,
         totalCommissions,
       },
       rowCount: 1,
