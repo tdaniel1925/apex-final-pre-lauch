@@ -32,6 +32,26 @@ CREATE TABLE IF NOT EXISTS public.orders (
   updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
+-- Add missing columns if table already existed
+DO $$
+BEGIN
+  IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='orders' AND column_name='rep_id') THEN
+    ALTER TABLE public.orders ADD COLUMN rep_id UUID REFERENCES public.distributors(id) ON DELETE CASCADE;
+  END IF;
+  IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='orders' AND column_name='bv_amount') THEN
+    ALTER TABLE public.orders ADD COLUMN bv_amount NUMERIC(10, 2) NOT NULL DEFAULT 0;
+  END IF;
+  IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='orders' AND column_name='commission_run_id') THEN
+    ALTER TABLE public.orders ADD COLUMN commission_run_id UUID;
+  END IF;
+  IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='orders' AND column_name='promotion_fund_credited') THEN
+    ALTER TABLE public.orders ADD COLUMN promotion_fund_credited BOOLEAN DEFAULT false;
+  END IF;
+  IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='orders' AND column_name='promotion_fund_credit_amount') THEN
+    ALTER TABLE public.orders ADD COLUMN promotion_fund_credit_amount NUMERIC(10, 2) DEFAULT 0;
+  END IF;
+END $$;
+
 -- RLS Policies for orders
 ALTER TABLE public.orders ENABLE ROW LEVEL SECURITY;
 
@@ -133,6 +153,14 @@ CREATE TABLE IF NOT EXISTS public.subscription_renewals (
   stripe_invoice_id TEXT,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
+
+-- Add missing columns if table already existed
+DO $$
+BEGIN
+  IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='subscription_renewals' AND column_name='rep_id') THEN
+    ALTER TABLE public.subscription_renewals ADD COLUMN rep_id UUID REFERENCES public.distributors(id) ON DELETE CASCADE;
+  END IF;
+END $$;
 
 -- RLS Policies
 ALTER TABLE public.subscription_renewals ENABLE ROW LEVEL SECURITY;
@@ -254,6 +282,14 @@ CREATE TABLE IF NOT EXISTS public.commission_run_rep_totals (
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   UNIQUE(commission_run_id, rep_id)
 );
+
+-- Add missing columns if table already existed
+DO $$
+BEGIN
+  IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='commission_run_rep_totals' AND column_name='rep_id') THEN
+    ALTER TABLE public.commission_run_rep_totals ADD COLUMN rep_id UUID REFERENCES public.distributors(id) ON DELETE CASCADE;
+  END IF;
+END $$;
 
 -- RLS Policies
 ALTER TABLE public.commission_run_rep_totals ENABLE ROW LEVEL SECURITY;
