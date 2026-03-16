@@ -92,8 +92,9 @@ async function processMessage(
     const { default: Anthropic } = await import('@anthropic-ai/sdk');
 
     // Instantiate Anthropic client at runtime (not at module load)
+    // Use dummy key during build, real key at runtime
     const anthropic = new Anthropic({
-      apiKey: process.env.ANTHROPIC_API_KEY,
+      apiKey: process.env.ANTHROPIC_API_KEY || 'sk-ant-build-placeholder-key',
     });
 
     // Build messages array
