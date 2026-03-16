@@ -83,30 +83,35 @@ export async function resolveDistributor(identifier: string): Promise<Resolution
   }
 
   // Try name search - first name, last name, or full name
-  const nameParts = cleaned.split(/\s+/);
+  // Using broader matching to handle typos
+  const nameParts = cleaned.split(/\s+/).filter(p => p.length > 0);
 
   let query = supabase
     .from('distributors')
     .select('id, rep_number, first_name, last_name, email, slug, status')
     .neq('status', 'deleted')
-    .limit(10);
+    .limit(20); // Get more results for fuzzy matching
 
   if (nameParts.length === 1) {
     // Single name - could be first or last
-    query = query.or(`first_name.ilike.%${nameParts[0]}%,last_name.ilike.%${nameParts[0]}%`);
-  } else if (nameParts.length === 2) {
-    // Full name
-    const [first, last] = nameParts;
-    query = query
-      .ilike('first_name', `%${first}%`)
-      .ilike('last_name', `%${last}%`);
-  } else if (nameParts.length > 2) {
-    // Try first word as first name, rest as last name
-    const first = nameParts[0];
-    const last = nameParts.slice(1).join(' ');
-    query = query
-      .ilike('first_name', `%${first}%`)
-      .ilike('last_name', `%${last}%`);
+    // Use broader matching (starts with OR contains)
+    const term = nameParts[0];
+    query = query.or(
+      `first_name.ilike.${term}%,` +  // Starts with
+      `last_name.ilike.${term}%,` +   // Starts with
+      `first_name.ilike.%${term}%,` + // Contains
+      `last_name.ilike.%${term}%`     // Contains
+    );
+  } else if (nameParts.length >= 2) {
+    // Full name - match first and last parts
+    const [first, ...lastParts] = nameParts;
+    const last = lastParts.join(' ');
+
+    // Try exact pattern first, then broader patterns
+    query = query.or(
+      `and(first_name.ilike.${first}%,last_name.ilike.${last}%),` +      // Both start with
+      `and(first_name.ilike.%${first}%,last_name.ilike.%${last}%)`       // Both contain
+    );
   }
 
   const { data: nameMatches } = await query;
