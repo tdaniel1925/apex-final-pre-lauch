@@ -69,9 +69,8 @@ CREATE POLICY "Admin and CFO can read all orders"
   FOR SELECT
   USING (
     EXISTS (
-      SELECT 1 FROM public.distributors
+      SELECT 1 FROM public.admin_distributors
       WHERE auth_user_id = auth.uid()
-      AND role IN ('admin', 'cfo')
     )
   );
 
@@ -120,9 +119,8 @@ CREATE POLICY "Admin and CFO can read clawback queue"
   FOR SELECT
   USING (
     EXISTS (
-      SELECT 1 FROM public.distributors
+      SELECT 1 FROM public.admin_distributors
       WHERE auth_user_id = auth.uid()
-      AND role IN ('admin', 'cfo')
     )
   );
 
@@ -179,9 +177,8 @@ CREATE POLICY "Admin and CFO can read all renewals"
   FOR SELECT
   USING (
     EXISTS (
-      SELECT 1 FROM public.distributors
+      SELECT 1 FROM public.admin_distributors
       WHERE auth_user_id = auth.uid()
-      AND role IN ('admin', 'cfo')
     )
   );
 
@@ -308,9 +305,8 @@ CREATE POLICY "Admin and CFO can read all commission totals"
   FOR SELECT
   USING (
     EXISTS (
-      SELECT 1 FROM public.distributors
+      SELECT 1 FROM public.admin_distributors
       WHERE auth_user_id = auth.uid()
-      AND role IN ('admin', 'cfo')
     )
   );
 
@@ -348,9 +344,8 @@ CREATE POLICY "Admin and CFO can read snapshot runs"
   FOR SELECT
   USING (
     EXISTS (
-      SELECT 1 FROM public.distributors
+      SELECT 1 FROM public.admin_distributors
       WHERE auth_user_id = auth.uid()
-      AND role IN ('admin', 'cfo')
     )
   );
 
