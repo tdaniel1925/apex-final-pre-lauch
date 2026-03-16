@@ -5,7 +5,6 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getAdminUser } from '@/lib/auth/admin';
-import Anthropic from '@anthropic-ai/sdk';
 import { SYSTEM_PROMPT, AI_FUNCTIONS } from '@/lib/admin/ai-assistant-prompt';
 import { executeCommand, type ParsedAction } from '@/lib/admin/command-executor';
 import { resolveDistributor, formatDistributor } from '@/lib/admin/entity-resolver';
@@ -89,6 +88,9 @@ async function processMessage(
   adminId: string
 ): Promise<NextResponse> {
   try {
+    // Dynamic import to prevent build-time initialization
+    const { default: Anthropic } = await import('@anthropic-ai/sdk');
+
     // Instantiate Anthropic client at runtime (not at module load)
     const anthropic = new Anthropic({
       apiKey: process.env.ANTHROPIC_API_KEY,
