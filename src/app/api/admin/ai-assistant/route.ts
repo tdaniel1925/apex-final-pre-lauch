@@ -124,6 +124,7 @@ async function processMessage(
         max_tokens: 2048,
         system: SYSTEM_PROMPT,
         tools: AI_FUNCTIONS,
+        tool_choice: { type: 'auto' }, // Let Claude decide, but with strong prompt guidance
         messages,
       }),
     });
