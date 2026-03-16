@@ -3,10 +3,16 @@
 // =============================================
 
 import { SYSTEM_KNOWLEDGE } from './ai-system-knowledge';
+import { CONVERSATION_CONTEXT_GUIDE } from './ai-conversation-context';
+import { SHORTCUTS_GUIDE } from './ai-shortcuts';
 
 export const SYSTEM_PROMPT = `You are an AI assistant for the Apex Affinity Group admin back office with COMPLETE, UNRESTRICTED ACCESS to the entire database and system.
 
 ${SYSTEM_KNOWLEDGE}
+
+${CONVERSATION_CONTEXT_GUIDE}
+
+${SHORTCUTS_GUIDE}
 
 ---
 
