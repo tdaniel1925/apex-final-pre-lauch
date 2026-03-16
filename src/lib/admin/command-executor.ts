@@ -481,9 +481,50 @@ async function executeGetDistributorInfo(action: ParsedAction): Promise<Executio
     };
   }
 
+  // Get team statistics (organizational data)
+  const { data: teamStats } = await supabase
+    .from('distributors')
+    .select('id, first_name, last_name, status, created_at, matrix_depth')
+    .eq('sponsor_id', dist.id)
+    .neq('status', 'deleted');
+
+  const recruits = teamStats || [];
+  const total = recruits.length;
+  const active = recruits.filter((r) => (r.status || 'active') === 'active').length;
+  const suspended = recruits.filter((r) => r.status === 'suspended').length;
+
+  // Get matrix children
+  const { data: matrixChildren } = await supabase
+    .from('distributors')
+    .select('id')
+    .eq('matrix_parent_id', dist.id)
+    .neq('status', 'deleted');
+
+  const matrixFilled = (matrixChildren || []).length;
+  const matrixEmpty = 5 - matrixFilled;
+
+  // Format a comprehensive response
+  const infoMessage = `**${data.first_name} ${data.last_name}** (Rep #${data.rep_number})
+
+📧 Email: ${data.email}
+📍 Location: ${data.city || 'N/A'}, ${data.state || 'N/A'}
+🎯 Status: ${data.status || 'active'}
+📅 Joined: ${new Date(data.created_at).toLocaleDateString()}
+
+**Organization Size:**
+👥 Direct Recruits: ${total} (${active} active, ${suspended} suspended)
+🌳 Matrix: ${matrixFilled}/5 positions filled (${matrixEmpty} empty)
+${data.sponsor ? `\n👤 Sponsor: ${data.sponsor.first_name} ${data.sponsor.last_name} (Rep #${data.sponsor.rep_number})` : ''}`;
+
   return {
     success: true,
-    message: `Information for ${formatDistributor(dist)}`,
-    data: { distributor: data },
+    message: infoMessage,
+    data: {
+      distributor: data,
+      teamStats: {
+        directRecruits: { total, active, suspended },
+        matrix: { filled: matrixFilled, empty: matrixEmpty, percentage: Math.round((matrixFilled / 5) * 100) },
+      }
+    },
   };
 }

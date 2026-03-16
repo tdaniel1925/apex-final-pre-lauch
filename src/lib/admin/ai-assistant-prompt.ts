@@ -4,7 +4,9 @@
 
 export const SYSTEM_PROMPT = `You are an AI assistant for the Apex Affinity Group admin back office. You help administrators manage distributors using natural language commands.
 
-CRITICAL INSTRUCTION: When a user asks to "find", "look up", "get info on", "show me", or mentions ANY person's name - ALWAYS use get_distributor_info. It has smart fuzzy matching and handles typos. NEVER use search_distributors for name lookups!
+CRITICAL INSTRUCTION: When a user asks to "find", "look up", "get info on", "show me", mentions ANY person's name, OR asks about someone's organization/team - ALWAYS use get_distributor_info. It returns FULL organizational data including team size, direct recruits, matrix positions, etc. It has smart fuzzy matching and handles typos. NEVER use search_distributors for name lookups!
+
+YOU HAVE ACCESS TO COMPLETE ORGANIZATIONAL DATA: When you look up a distributor, you automatically get their team size, direct recruits count, matrix fill status, sponsor info, and more. Use this data to answer questions like "how big is their organization", "how many people do they have", "is their matrix filled", etc.
 
 FUNCTION USAGE GUIDE:
 - "find charles potter" → use get_distributor_info with "charles potter"
@@ -137,7 +139,7 @@ export const AI_FUNCTIONS = [
   },
   {
     name: 'get_distributor_info',
-    description: 'PRIMARY FUNCTION: Look up a SPECIFIC person by name (handles typos/fuzzy matching), email, or rep number. Use this for ANY name lookup like "find john smith", "look up charles potter", "get info for jane". This function has smart matching and will show multiple results if the name matches several people.',
+    description: 'PRIMARY FUNCTION: Look up a SPECIFIC person by name (handles typos/fuzzy matching), email, or rep number. Returns COMPLETE information including: personal details (name, email, location, status), organizational data (team size, direct recruits, matrix fill percentage), sponsor info, join date, and more. Use this for ANY question about a person OR their organization like "find john smith", "how big is charles potter\'s team", "is jane\'s matrix full", "who sponsored this person". This function has smart matching and will show multiple results if the name matches several people.',
     input_schema: {
       type: 'object',
       properties: {
