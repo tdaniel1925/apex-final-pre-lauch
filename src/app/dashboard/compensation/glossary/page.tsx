@@ -13,7 +13,7 @@ import { createClient } from '@/lib/supabase/client';
 const glossaryTerms = [
   {
     term: 'Bonus Pool',
-    definition: 'A pool funded by 3.5% of company revenue (after BotMakers and Apex shares) that funds incentive programs like trip incentives, fast start bonuses, car allowances, quarterly contests, and enhanced rank bonuses.',
+    definition: 'A pool funded by company revenue that funds incentive programs like trip incentives, fast start bonuses, car allowances, quarterly contests, and enhanced rank bonuses.',
     example: 'If company revenue is $100K, the bonus pool receives $1,715 to distribute across all programs.',
     category: 'Incentives',
   },
@@ -25,7 +25,7 @@ const glossaryTerms = [
   },
   {
     term: 'Commission Pool',
-    definition: 'The portion of revenue (44% of customer payment after BotMakers/Apex/Pools) that is split between seller commission (60%) and override pool (40%). Results in approximately 27.9% seller commission rate.',
+    definition: 'The portion allocated to field compensation (44% of customer payment) that is split between seller commission (60%) and override pool (40%). Results in approximately 27.9% seller commission rate.',
     example: 'On a $100 sale, commission pool = $44. You get $26.40 (60% of pool), override pool gets $17.60 (40% of pool).',
     category: 'Commissions',
   },
@@ -174,9 +174,9 @@ const glossaryTerms = [
     category: 'Leadership',
   },
   {
-    term: 'Waterfall',
-    definition: 'The revenue distribution flow from customer payment through BotMakers (30%), Apex (21%), Bonus Pool (1.7%), Leadership Pool (0.7%), Commission Pool (44%), then split to seller (60%) and override pool (40%).',
-    example: 'Customer pays $100 → $30 BotMakers, $21 Apex, $1.70 Bonus Pool, $0.70 Leadership Pool, $44 Commission Pool → $26.40 to you, $17.60 to override pool.',
+    term: 'Commission Structure',
+    definition: 'The distribution of customer payments to field compensation. Total field compensation is 44% of customer payment, split to seller commission (60% = 27.9%) and override pool (40% = 17.6%). Bonus and Leadership pools are separately funded.',
+    example: 'Customer pays $100 → $44 goes to field compensation → $27.90 to you as direct commission, $17.60 to override pool for your upline.',
     category: 'Core Concepts',
   },
 ];

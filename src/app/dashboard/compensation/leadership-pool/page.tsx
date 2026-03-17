@@ -114,9 +114,8 @@ export default function LeadershipPoolPage() {
               <div>
                 <h3 className="font-semibold text-blue-900 mb-2">Share in Company Growth</h3>
                 <p className="text-blue-800 leading-relaxed">
-                  The Leadership Pool is an exclusive program that allocates <span className="font-bold">1.5% of total
-                  company revenue</span> (after BotMakers 30% and Apex 30%) to early leaders who help build the foundation
-                  of the company. This is distributed as <span className="font-bold">shares</span>, not percentages.
+                  The Leadership Pool is an exclusive program funded by company revenue to reward early leaders who help build
+                  the foundation of the company. This is distributed as <span className="font-bold">shares</span>, not percentages.
                 </p>
               </div>
             </div>

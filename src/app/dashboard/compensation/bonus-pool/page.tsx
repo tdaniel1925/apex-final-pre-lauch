@@ -185,7 +185,7 @@ export default function BonusPoolPage() {
                 <h3 className="font-semibold text-blue-900 mb-2">Funded by Revenue, Not Override Savings</h3>
                 <p className="text-blue-800 leading-relaxed">
                   The Bonus Pool is funded by <span className="font-bold">3.5% of total company revenue</span> (after
-                  BotMakers 30% and Apex 30% take their shares). This is a separate allocation from the commission pool
+                  company operations and product costs). This is a separate allocation from the commission pool
                   and override pool.
                 </p>
               </div>
@@ -201,16 +201,8 @@ export default function BonusPoolPage() {
                   <span className="font-bold">100%</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span>BotMakers (30%)</span>
+                  <span>Company Operations</span>
                   <span className="text-red-600 font-semibold">-30%</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span>Apex Operations (21%)</span>
-                  <span className="text-red-600 font-semibold">-21%</span>
-                </div>
-                <div className="flex justify-between items-center pb-2 border-b border-slate-300">
-                  <span className="font-medium">Remaining Distributor Pool</span>
-                  <span className="font-bold">49%</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="font-semibold text-green-700">Bonus Pool (3.5% of 49%)</span>

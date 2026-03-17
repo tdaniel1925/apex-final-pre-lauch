@@ -113,39 +113,26 @@ export default function CommissionsPage() {
                 approximately 27.9% of the sale price as direct commission.
               </p>
               <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-                <h4 className="font-semibold text-slate-900 mb-2">Revenue Waterfall</h4>
+                <h4 className="font-semibold text-slate-900 mb-2">Commission Breakdown</h4>
                 <div className="space-y-2 text-sm text-slate-700">
                   <div className="flex justify-between">
-                    <span>Customer Pays</span>
+                    <span>Customer Payment</span>
                     <span className="font-mono">100%</span>
                   </div>
-                  <div className="flex justify-between text-slate-500">
-                    <span>- BotMakers (30%)</span>
-                    <span className="font-mono">-30%</span>
-                  </div>
-                  <div className="flex justify-between text-slate-500">
-                    <span>- Apex (21%)</span>
-                    <span className="font-mono">-21%</span>
-                  </div>
-                  <div className="flex justify-between text-slate-500">
-                    <span>- Bonus Pool (3.5%)</span>
-                    <span className="font-mono">-3.5%</span>
-                  </div>
-                  <div className="flex justify-between text-slate-500">
-                    <span>- Leadership Pool (1.5%)</span>
-                    <span className="font-mono">-1.5%</span>
-                  </div>
                   <div className="flex justify-between border-t border-slate-300 pt-2 font-semibold">
-                    <span>Commission Pool</span>
+                    <span>Total Field Compensation</span>
                     <span className="font-mono">44%</span>
                   </div>
-                  <div className="flex justify-between text-green-700 font-semibold">
-                    <span>You Receive (60% of pool)</span>
-                    <span className="font-mono">~27.9%</span>
+                  <div className="flex justify-between text-green-700 font-semibold pl-4">
+                    <span>→ Your Direct Commission (60%)</span>
+                    <span className="font-mono">27.9%</span>
                   </div>
-                  <div className="flex justify-between text-slate-500">
-                    <span>Override Pool (40% of pool)</span>
-                    <span className="font-mono">~17.6%</span>
+                  <div className="flex justify-between text-slate-600 pl-4">
+                    <span>→ Override Pool (40%)</span>
+                    <span className="font-mono">17.6%</span>
+                  </div>
+                  <div className="mt-3 pt-3 border-t border-slate-200 text-xs text-slate-600">
+                    <p>The override pool is distributed to your upline based on rank and qualification.</p>
                   </div>
                 </div>
               </div>
@@ -158,35 +145,23 @@ export default function CommissionsPage() {
                 exactly $10 when you sell a Business Center.
               </p>
               <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-                <h4 className="font-semibold text-slate-900 mb-2">Fixed Distribution</h4>
+                <h4 className="font-semibold text-slate-900 mb-2">Fixed Commission Structure</h4>
                 <div className="space-y-2 text-sm text-slate-700">
                   <div className="flex justify-between">
                     <span>Customer Pays</span>
                     <span className="font-mono">$39.00</span>
                   </div>
-                  <div className="flex justify-between text-slate-500">
-                    <span>BotMakers</span>
-                    <span className="font-mono">$11.00</span>
-                  </div>
-                  <div className="flex justify-between text-slate-500">
-                    <span>Apex</span>
-                    <span className="font-mono">$8.00</span>
-                  </div>
-                  <div className="flex justify-between text-green-700 font-semibold border-t border-slate-300 pt-2">
-                    <span>You Receive</span>
+                  <div className="flex justify-between text-green-700 font-semibold border-t border-slate-300 pt-2 mt-2">
+                    <span>Your Commission</span>
                     <span className="font-mono">$10.00</span>
                   </div>
-                  <div className="flex justify-between text-slate-500">
-                    <span>Your Sponsor Bonus</span>
+                  <div className="flex justify-between text-slate-600">
+                    <span>Sponsor Receives</span>
                     <span className="font-mono">$8.00</span>
-                  </div>
-                  <div className="flex justify-between text-slate-500">
-                    <span>Costs/Expenses</span>
-                    <span className="font-mono">$2.00</span>
                   </div>
                 </div>
                 <div className="mt-3 text-xs text-slate-500">
-                  Note: BC has no override pool or bonus pool
+                  Note: Business Center has no override pool or bonus pool allocation
                 </div>
               </div>
             </div>
