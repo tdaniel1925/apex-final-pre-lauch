@@ -146,7 +146,7 @@ export default async function UserGenealogyPage({ searchParams }: PageProps) {
     .from('distributors')
     .select(`
       *,
-      member:members!distributors_id_fkey (
+      member:members!members_distributor_id_fkey (
         member_id,
         full_name,
         tech_rank,
@@ -160,8 +160,9 @@ export default async function UserGenealogyPage({ searchParams }: PageProps) {
     .single();
 
   if (userError || !userData) {
-    // User data fetch failed - redirect to signup
-    redirect('/signup');
+    console.error('Genealogy page - user data error:', userError);
+    // User data fetch failed - redirect to login instead of signup (they're already authenticated)
+    redirect('/dashboard');
   }
 
   // Extract member data (handle potential array from join)
