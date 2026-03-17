@@ -34,7 +34,7 @@ export interface WaterfallResult {
   // Step 4: Remainder (adjusted gross - Apex)
   remainderCents: number;
 
-  // Step 5: Bonus Pool (3.5% of remainder)
+  // Step 5: Bonus Pool (5% of remainder)
   bonusPoolCents: number;
 
   // Step 6: Leadership Pool (1.5% of remainder)
@@ -60,10 +60,10 @@ export interface WaterfallResult {
  * STEP 1: Customer pays PRICE (retail or member)
  * STEP 2: BotMakers takes 30% of price = ADJUSTED GROSS
  * STEP 3: Apex takes 30% of Adjusted Gross = REMAINDER
- * STEP 4: 3.5% of Remainder → BONUS POOL
+ * STEP 4: 5% of Remainder → BONUS POOL
  * STEP 5: 1.5% of Remainder → LEADERSHIP POOL
- *         = COMMISSION POOL (Remainder - 3.5% - 1.5%)
- * STEP 6: Seller gets 60% of Commission Pool (~27.9% effective)
+ *         = COMMISSION POOL (Remainder - 5% - 1.5%)
+ * STEP 6: Seller gets 60% of Commission Pool (~27.5% effective)
  * STEP 7: Override Pool gets 40% of Commission Pool
  *         → Distributed across 5 levels
  *
@@ -100,7 +100,7 @@ export function calculateWaterfall(
   const apexTakeCents = Math.round(adjustedGrossCents * WATERFALL_CONFIG.APEX_TAKE_PCT);
   const remainderCents = adjustedGrossCents - apexTakeCents;
 
-  // Separate pools (3.5% + 1.5%)
+  // Separate pools (5% + 1.5%)
   const bonusPoolCents = Math.round(remainderCents * WATERFALL_CONFIG.BONUS_POOL_PCT);
   const leadershipPoolCents = Math.round(
     remainderCents * WATERFALL_CONFIG.LEADERSHIP_POOL_PCT

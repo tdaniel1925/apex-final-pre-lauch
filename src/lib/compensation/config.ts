@@ -208,20 +208,29 @@ export const NEW_REP_RANK_LOCK_MONTHS = 6; // 6-month lock on rank for new reps
  * Waterfall Percentages
  *
  * From spec:
- * 1. BotMakers takes 30% of price
- * 2. Apex takes 30% of adjusted gross
- * 3. 3.5% of remainder → Bonus Pool
- * 4. 1.5% of remainder → Leadership Pool
- * 5. Seller gets 60% of commission pool
- * 6. Override pool gets 40% of commission pool
+ * 1. BotMakers takes 30% of retail price
+ * 2. Apex takes 30% of adjusted gross (after BotMakers) = 21% of retail
+ * 3. Bonus Pool: 5% of remainder (after BotMakers + Apex)
+ * 4. Leadership Pool: 1.5% of remainder (after BotMakers + Apex)
+ * 5. Seller gets 60% of field compensation
+ * 6. Override pool gets 40% of field compensation
+ *
+ * Calculation:
+ * - 100% retail
+ * - BotMakers: 30% → leaves 70%
+ * - Apex: 30% of 70% = 21% → leaves 49%
+ * - Bonus Pool: 5% of 49% = 2.45% → leaves 46.55%
+ * - Leadership Pool: 1.5% of 49% = 0.735% → leaves 45.815%
+ * - Direct Commission: 60% of 45.815% = 27.489%
+ * - Override Pool: 40% of 45.815% = 18.326%
  */
 export const WATERFALL_CONFIG = {
-  BOTMAKERS_FEE_PCT: 0.30, // 30% of price
-  APEX_TAKE_PCT: 0.30, // 30% of adjusted gross
-  BONUS_POOL_PCT: 0.035, // 3.5% of remainder
-  LEADERSHIP_POOL_PCT: 0.015, // 1.5% of remainder
-  SELLER_COMMISSION_PCT: 0.60, // 60% of commission pool
-  OVERRIDE_POOL_PCT: 0.40, // 40% of commission pool
+  BOTMAKERS_FEE_PCT: 0.30, // 30% of retail price
+  APEX_TAKE_PCT: 0.30, // 30% of adjusted gross (after BotMakers)
+  BONUS_POOL_PCT: 0.05, // 5% of remainder (after BotMakers + Apex)
+  LEADERSHIP_POOL_PCT: 0.015, // 1.5% of remainder (after BotMakers + Apex)
+  SELLER_COMMISSION_PCT: 0.60, // 60% of field compensation
+  OVERRIDE_POOL_PCT: 0.40, // 40% of field compensation
 } as const;
 
 /**
