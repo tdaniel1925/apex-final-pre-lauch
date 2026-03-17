@@ -195,10 +195,10 @@ export default async function DashboardPage() {
             <p className="text-sm text-slate-600 mt-1">@{dist.slug}</p>
           </div>
 
-          {/* CEO Video & Training Audio Section */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <CEOVideoSection />
+          {/* Training Audio & CEO Video Section */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <TrainingAudioPlayer />
+            <CEOVideoSection />
           </div>
 
           {/* Compensation Stats - 4 Cards */}
