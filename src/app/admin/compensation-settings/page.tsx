@@ -8,6 +8,7 @@
 import { useState } from 'react';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
+import OverviewTab from '@/components/admin/compensation/OverviewTab';
 import WaterfallEditor from '@/components/admin/compensation/WaterfallEditor';
 import TechRankEditor from '@/components/admin/compensation/TechRankEditor';
 import OverrideScheduleEditor from '@/components/admin/compensation/OverrideScheduleEditor';
@@ -104,103 +105,7 @@ export default function CompensationSettingsPage() {
 
         {/* Overview Tab */}
         <TabsContent value="overview">
-          <div className="bg-white rounded-lg shadow p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4">
-              Configuration Overview
-            </h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Waterfall Summary */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                  <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                  </svg>
-                  Waterfall Configuration
-                </h3>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">BotMakers Fee:</span>
-                    <span className="font-medium">5.0%</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Apex Take:</span>
-                    <span className="font-medium">10.0%</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Bonus Pool:</span>
-                    <span className="font-medium">10.0%</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Leadership Pool:</span>
-                    <span className="font-medium">5.0%</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Seller Commission:</span>
-                    <span className="font-medium">35.0%</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Override Pool:</span>
-                    <span className="font-medium">35.0%</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Tech Ranks Summary */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                  <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                  Tech Ladder Ranks
-                </h3>
-                <div className="space-y-2 text-sm">
-                  <p className="text-gray-600">Total Ranks: <span className="font-medium text-gray-900">9</span></p>
-                  <p className="text-gray-600">Highest Rank: <span className="font-medium text-gray-900">Elite</span></p>
-                  <p className="text-gray-600">Entry Requirement: <span className="font-medium text-gray-900">1 Personal Credit</span></p>
-                </div>
-              </div>
-
-              {/* Bonus Programs Summary */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                  <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  Active Bonus Programs
-                </h3>
-                <div className="space-y-2 text-sm">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <span>Fast Start Bonus</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <span>Rank Advancement Bonus</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
-                    <span>Car Allowance (Disabled)</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Override Schedule Summary */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                  <svg className="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-3zM14 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1h-4a1 1 0 01-1-1v-3z" />
-                  </svg>
-                  Override Configuration
-                </h3>
-                <div className="space-y-2 text-sm">
-                  <p className="text-gray-600">Max Override Levels: <span className="font-medium text-gray-900">5</span></p>
-                  <p className="text-gray-600">Elite L1 Override: <span className="font-medium text-gray-900">20%</span></p>
-                  <p className="text-gray-600">Compression: <span className="font-medium text-gray-900">Enabled</span></p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <OverviewTab />
         </TabsContent>
 
         {/* Waterfall Tab */}

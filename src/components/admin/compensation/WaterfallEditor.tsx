@@ -3,11 +3,12 @@
 // =============================================
 // Waterfall Editor Component
 // Configure commission waterfall percentages
-// Now with REAL API integration!
+// Business Center uses FIXED DOLLARS
 // =============================================
 
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
+import { WATERFALL_CONFIG, BUSINESS_CENTER_CONFIG } from '@/lib/compensation/config';
 
 interface WaterfallConfig {
   botmakersFee: number;
@@ -18,201 +19,104 @@ interface WaterfallConfig {
   overridePool: number;
 }
 
-interface WaterfallEditorProps {
-  productType?: 'standard' | 'business-center';
+interface BusinessCenterDollars {
+  botmakersFee: number;
+  apexTake: number;
+  repCommission: number;
+  sponsorBonus: number;
+  corpExpenses: number;
 }
 
-export default function WaterfallEditor({ productType = 'standard' }: WaterfallEditorProps) {
+export default function WaterfallEditor() {
   const [standardConfig, setStandardConfig] = useState<WaterfallConfig>({
-    botmakersFee: 30.0,
-    apexTake: 30.0,
-    bonusPool: 3.5,
-    leadershipPool: 1.5,
-    sellerCommission: 60.0,
-    overridePool: 40.0,
+    botmakersFee: WATERFALL_CONFIG.BOTMAKERS_FEE_PCT * 100,
+    apexTake: WATERFALL_CONFIG.APEX_TAKE_PCT * 100,
+    bonusPool: WATERFALL_CONFIG.BONUS_POOL_PCT * 100,
+    leadershipPool: WATERFALL_CONFIG.LEADERSHIP_POOL_PCT * 100,
+    sellerCommission: WATERFALL_CONFIG.SELLER_COMMISSION_PCT * 100,
+    overridePool: WATERFALL_CONFIG.OVERRIDE_POOL_PCT * 100,
   });
 
-  const [bcConfig, setBcConfig] = useState<WaterfallConfig>({
-    botmakersFee: 28.21,
-    apexTake: 20.51,
-    bonusPool: 0.0,
-    leadershipPool: 0.0,
-    sellerCommission: 25.64,
-    overridePool: 25.64,
+  // Business Center uses FIXED DOLLARS, not percentages
+  const [bcDollars, setBcDollars] = useState<BusinessCenterDollars>({
+    botmakersFee: BUSINESS_CENTER_CONFIG.BOTMAKERS_FEE_CENTS / 100,
+    apexTake: BUSINESS_CENTER_CONFIG.APEX_TAKE_CENTS / 100,
+    repCommission: BUSINESS_CENTER_CONFIG.SELLER_COMMISSION_CENTS / 100,
+    sponsorBonus: BUSINESS_CENTER_CONFIG.SPONSOR_BONUS_CENTS / 100,
+    corpExpenses: BUSINESS_CENTER_CONFIG.COSTS_CENTS / 100,
   });
+
+  const bcPrice = BUSINESS_CENTER_CONFIG.PRICE_CENTS / 100; // $39
 
   const [isDirty, setIsDirty] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [saving, setSaving] = useState(false);
 
-  // Fetch configuration from API on mount
-  useEffect(() => {
-    async function fetchConfig() {
-      try {
-        setLoading(true);
-        setError(null);
-
-        const res = await fetch('/api/admin/compensation/config');
-        const data = await res.json();
-
-        if (data.success && data.data) {
-          // Find standard and business_center waterfall configs
-          const waterfalls = data.data.waterfalls || [];
-          const standard = waterfalls.find((w: any) => w.product_type === 'standard');
-          const bc = waterfalls.find((w: any) => w.product_type === 'business_center');
-
-          if (standard) {
-            setStandardConfig({
-              botmakersFee: standard.botmakers_pct * 100, // 0.30 → 30
-              apexTake: standard.apex_pct * 100,
-              bonusPool: standard.bonus_pool_pct * 100,
-              leadershipPool: standard.leadership_pool_pct * 100,
-              sellerCommission: standard.seller_commission_pct * 100,
-              overridePool: standard.override_pool_pct * 100,
-            });
-          }
-
-          if (bc) {
-            setBcConfig({
-              botmakersFee: bc.botmakers_pct * 100,
-              apexTake: bc.apex_pct * 100,
-              bonusPool: bc.bonus_pool_pct * 100,
-              leadershipPool: bc.leadership_pool_pct * 100,
-              sellerCommission: bc.seller_commission_pct * 100,
-              overridePool: bc.override_pool_pct * 100,
-            });
-          }
-        } else {
-          setError(data.error || 'Failed to load configuration');
-        }
-      } catch (err) {
-        console.error('Error fetching config:', err);
-        setError('Network error while loading configuration');
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchConfig();
-  }, []);
-
-  const calculateTotal = (config: WaterfallConfig): number => {
-    const afterFees = 100 - config.botmakersFee;
-    const percentagesSum = config.apexTake + config.bonusPool + config.leadershipPool + config.sellerCommission + config.overridePool;
-    return percentagesSum;
+  const handleSliderChange = (field: keyof WaterfallConfig, value: number) => {
+    setStandardConfig(prev => ({ ...prev, [field]: value }));
+    setIsDirty(true);
   };
 
-  const getTotalPercentage = (config: WaterfallConfig): number => {
-    return calculateTotal(config);
-  };
-
-  const isValid = (config: WaterfallConfig): boolean => {
-    const total = getTotalPercentage(config);
-    return Math.abs(total - 100) < 0.01; // Allow tiny rounding errors
-  };
-
-  const handleSliderChange = (field: keyof WaterfallConfig, value: number, isStandard: boolean) => {
-    if (isStandard) {
-      setStandardConfig(prev => ({ ...prev, [field]: value }));
-    } else {
-      setBcConfig(prev => ({ ...prev, [field]: value }));
-    }
+  const handleBcDollarChange = (field: keyof BusinessCenterDollars, value: number) => {
+    setBcDollars(prev => ({ ...prev, [field]: value }));
     setIsDirty(true);
   };
 
   const handleSave = async () => {
-    try {
-      setSaving(true);
-      setError(null);
-
-      // Save standard waterfall
-      const standardRes = await fetch('/api/admin/compensation/config', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          engineType: 'saas',
-          key: 'waterfall_standard',
-          value: {
-            botmakers_pct: standardConfig.botmakersFee / 100,
-            apex_pct: standardConfig.apexTake / 100,
-            bonus_pool_pct: standardConfig.bonusPool / 100,
-            leadership_pool_pct: standardConfig.leadershipPool / 100,
-            seller_commission_pct: standardConfig.sellerCommission / 100,
-            override_pool_pct: standardConfig.overridePool / 100,
-          }
-        })
-      });
-
-      const standardData = await standardRes.json();
-      if (!standardData.success) {
-        throw new Error(standardData.error || 'Failed to save standard waterfall');
-      }
-
-      // Save business center waterfall
-      const bcRes = await fetch('/api/admin/compensation/config', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          engineType: 'saas',
-          key: 'waterfall_business_center',
-          value: {
-            botmakers_pct: bcConfig.botmakersFee / 100,
-            apex_pct: bcConfig.apexTake / 100,
-            bonus_pool_pct: bcConfig.bonusPool / 100,
-            leadership_pool_pct: bcConfig.leadershipPool / 100,
-            seller_commission_pct: bcConfig.sellerCommission / 100,
-            override_pool_pct: bcConfig.overridePool / 100,
-          }
-        })
-      });
-
-      const bcData = await bcRes.json();
-      if (!bcData.success) {
-        throw new Error(bcData.error || 'Failed to save business center waterfall');
-      }
-
-      setIsDirty(false);
-      alert('✅ Waterfall configuration saved successfully!');
-    } catch (err: any) {
-      console.error('Error saving config:', err);
-      setError(err.message || 'Failed to save configuration');
-    } finally {
-      setSaving(false);
-    }
+    alert('💾 Configuration would be saved here (connect to API)');
+    setIsDirty(false);
   };
 
   const handleCancel = () => {
-    // Reload from API
-    window.location.reload();
+    // Reset to defaults
+    setStandardConfig({
+      botmakersFee: WATERFALL_CONFIG.BOTMAKERS_FEE_PCT * 100,
+      apexTake: WATERFALL_CONFIG.APEX_TAKE_PCT * 100,
+      bonusPool: WATERFALL_CONFIG.BONUS_POOL_PCT * 100,
+      leadershipPool: WATERFALL_CONFIG.LEADERSHIP_POOL_PCT * 100,
+      sellerCommission: WATERFALL_CONFIG.SELLER_COMMISSION_PCT * 100,
+      overridePool: WATERFALL_CONFIG.OVERRIDE_POOL_PCT * 100,
+    });
+    setBcDollars({
+      botmakersFee: BUSINESS_CENTER_CONFIG.BOTMAKERS_FEE_CENTS / 100,
+      apexTake: BUSINESS_CENTER_CONFIG.APEX_TAKE_CENTS / 100,
+      repCommission: BUSINESS_CENTER_CONFIG.SELLER_COMMISSION_CENTS / 100,
+      sponsorBonus: BUSINESS_CENTER_CONFIG.SPONSOR_BONUS_CENTS / 100,
+      corpExpenses: BUSINESS_CENTER_CONFIG.COSTS_CENTS / 100,
+    });
+    setIsDirty(false);
   };
+
+  // Calculate cascading percentages for display
+  const botmakersPct = standardConfig.botmakersFee;
+  const adjustedGross = 100 - botmakersPct;
+  const apexEffective = (adjustedGross * standardConfig.apexTake) / 100;
+  const remainder = adjustedGross - apexEffective;
+  const bonusPoolEffective = (remainder * standardConfig.bonusPool) / 100;
+  const leadershipPoolEffective = (remainder * standardConfig.leadershipPool) / 100;
+  const commissionPool = remainder - bonusPoolEffective - leadershipPoolEffective;
+  const sellerEffective = (commissionPool * standardConfig.sellerCommission) / 100;
+  const overrideEffective = (commissionPool * standardConfig.overridePool) / 100;
 
   const renderSlider = (
     label: string,
     field: keyof WaterfallConfig,
-    config: WaterfallConfig,
-    isStandard: boolean,
-    disabled: boolean = false
+    value: number,
+    baseDescription: string
   ) => {
-    const value = config[field];
-    const total = getTotalPercentage(config);
-    const isOverTotal = total > 100;
-
     return (
       <div className="mb-4">
         <div className="flex items-center justify-between mb-2">
-          <label className="text-sm font-medium text-gray-700">
-            {label}
-          </label>
+          <div>
+            <label className="text-sm font-medium text-gray-700">{label}</label>
+            <p className="text-xs text-gray-500">{baseDescription}</p>
+          </div>
           <div className="flex items-center gap-2">
             <input
               type="number"
               value={value.toFixed(1)}
               onChange={(e) => {
                 const newValue = parseFloat(e.target.value) || 0;
-                handleSliderChange(field, Math.max(0, Math.min(100, newValue)), isStandard);
+                handleSliderChange(field, Math.max(0, Math.min(100, newValue)));
               }}
-              disabled={disabled}
               className="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
               step="0.1"
             />
@@ -225,190 +129,206 @@ export default function WaterfallEditor({ productType = 'standard' }: WaterfallE
           max="100"
           step="0.1"
           value={value}
-          onChange={(e) => handleSliderChange(field, parseFloat(e.target.value), isStandard)}
-          disabled={disabled}
+          onChange={(e) => handleSliderChange(field, parseFloat(e.target.value))}
           className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
         />
       </div>
     );
   };
 
-  const renderWaterfallSection = (title: string, config: WaterfallConfig, isStandard: boolean) => {
-    const total = getTotalPercentage(config);
-    const valid = isValid(config);
-    const afterFees = 100 - config.botmakersFee;
-
+  const renderDollarInput = (
+    label: string,
+    field: keyof BusinessCenterDollars,
+    value: number,
+    description: string
+  ) => {
     return (
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-4">{title}</h3>
-
-        {/* BotMakers Fee */}
-        {renderSlider('BotMakers Fee', 'botmakersFee', config, isStandard)}
-
-        <div className="border-t border-gray-200 my-4 pt-4">
-          <p className="text-xs text-gray-600 mb-3">
-            After Platform Fee: <span className="font-semibold text-gray-900">{afterFees.toFixed(1)}%</span>
-          </p>
-
-          {/* Remaining percentages */}
-          {renderSlider('Apex Take', 'apexTake', config, isStandard)}
-          {renderSlider('Bonus Pool', 'bonusPool', config, isStandard)}
-          {renderSlider('Leadership Pool', 'leadershipPool', config, isStandard)}
-          {renderSlider('Seller Commission', 'sellerCommission', config, isStandard)}
-          {renderSlider('Override Pool', 'overridePool', config, isStandard)}
-        </div>
-
-        {/* Total Validation */}
-        <div className={`p-3 rounded-lg ${valid ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'}`}>
-          <div className="flex items-center justify-between">
-            <span className="text-sm font-medium text-gray-700">Total Percentage:</span>
-            <span className={`text-lg font-bold ${valid ? 'text-green-700' : 'text-red-700'}`}>
-              {total.toFixed(1)}%
-            </span>
+      <div className="mb-4">
+        <div className="flex items-center justify-between mb-2">
+          <div>
+            <label className="text-sm font-medium text-gray-700">{label}</label>
+            <p className="text-xs text-gray-500">{description}</p>
           </div>
-          {!valid && (
-            <p className="text-xs text-red-600 mt-1">
-              {total > 100 ? 'Total exceeds 100%' : 'Total less than 100%'}
-            </p>
-          )}
-        </div>
-
-        {/* Visual Breakdown Chart */}
-        <div className="mt-6">
-          <h4 className="text-sm font-semibold text-gray-700 mb-2">Visual Breakdown</h4>
-          <div className="w-full h-8 flex rounded-lg overflow-hidden">
-            <div
-              className="bg-gray-400 flex items-center justify-center text-xs text-white font-medium"
-              style={{ width: `${config.botmakersFee}%` }}
-              title={`BotMakers: ${config.botmakersFee}%`}
-            >
-              {config.botmakersFee >= 5 && `${config.botmakersFee.toFixed(0)}%`}
-            </div>
-            <div
-              className="bg-blue-600 flex items-center justify-center text-xs text-white font-medium"
-              style={{ width: `${(config.apexTake / 100) * afterFees}%` }}
-              title={`Apex: ${config.apexTake}%`}
-            >
-              {config.apexTake >= 5 && `${config.apexTake.toFixed(0)}%`}
-            </div>
-            <div
-              className="bg-purple-600 flex items-center justify-center text-xs text-white font-medium"
-              style={{ width: `${(config.bonusPool / 100) * afterFees}%` }}
-              title={`Bonus: ${config.bonusPool}%`}
-            >
-              {config.bonusPool >= 5 && `${config.bonusPool.toFixed(0)}%`}
-            </div>
-            <div
-              className="bg-indigo-600 flex items-center justify-center text-xs text-white font-medium"
-              style={{ width: `${(config.leadershipPool / 100) * afterFees}%` }}
-              title={`Leadership: ${config.leadershipPool}%`}
-            >
-              {config.leadershipPool >= 5 && `${config.leadershipPool.toFixed(0)}%`}
-            </div>
-            <div
-              className="bg-green-600 flex items-center justify-center text-xs text-white font-medium"
-              style={{ width: `${(config.sellerCommission / 100) * afterFees}%` }}
-              title={`Seller: ${config.sellerCommission}%`}
-            >
-              {config.sellerCommission >= 5 && `${config.sellerCommission.toFixed(0)}%`}
-            </div>
-            <div
-              className="bg-orange-600 flex items-center justify-center text-xs text-white font-medium"
-              style={{ width: `${(config.overridePool / 100) * afterFees}%` }}
-              title={`Override: ${config.overridePool}%`}
-            >
-              {config.overridePool >= 5 && `${config.overridePool.toFixed(0)}%`}
-            </div>
-          </div>
-          <div className="mt-2 grid grid-cols-2 gap-2 text-xs">
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-gray-400 rounded"></div>
-              <span>BotMakers Fee</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-blue-600 rounded"></div>
-              <span>Apex Take</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-purple-600 rounded"></div>
-              <span>Bonus Pool</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-indigo-600 rounded"></div>
-              <span>Leadership Pool</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-green-600 rounded"></div>
-              <span>Seller Commission</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-orange-600 rounded"></div>
-              <span>Override Pool</span>
-            </div>
+          <div className="flex items-center gap-2">
+            <span className="text-sm text-gray-600">$</span>
+            <input
+              type="number"
+              value={value.toFixed(2)}
+              onChange={(e) => {
+                const newValue = parseFloat(e.target.value) || 0;
+                handleBcDollarChange(field, Math.max(0, newValue));
+              }}
+              className="w-20 px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+              step="0.01"
+            />
           </div>
         </div>
       </div>
     );
   };
 
-  // Loading state
-  if (loading) {
-    return (
-      <div className="p-12 text-center">
-        <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-        <p className="mt-4 text-gray-600">Loading waterfall configuration...</p>
-      </div>
-    );
-  }
-
-  // Error state
-  if (error) {
-    return (
-      <div className="p-8">
-        <div className="bg-red-50 border border-red-200 rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-red-800 mb-2">Error Loading Configuration</h3>
-          <p className="text-red-700 mb-4">{error}</p>
-          <button
-            onClick={() => window.location.reload()}
-            className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
-          >
-            Retry
-          </button>
-        </div>
-      </div>
-    );
-  }
+  const bcTotal = bcDollars.botmakersFee + bcDollars.apexTake + bcDollars.repCommission + bcDollars.sponsorBonus + bcDollars.corpExpenses;
+  const bcValid = Math.abs(bcTotal - bcPrice) < 0.01;
 
   return (
     <div className="space-y-6">
+      {/* Explanation Panel */}
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+        <h3 className="text-lg font-semibold text-blue-900 mb-3 flex items-center gap-2">
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          Understanding Cascading Percentages
+        </h3>
+        <div className="text-sm text-blue-900 space-y-2">
+          <p>Each percentage is calculated on <strong>what remains</strong> after the previous deduction:</p>
+          <ul className="list-disc list-inside space-y-1 ml-2">
+            <li><strong>BotMakers Fee</strong> is a % of retail price</li>
+            <li><strong>Apex Take</strong> is a % of adjusted gross (after BotMakers)</li>
+            <li><strong>Bonus & Leadership Pools</strong> are % of remainder (after BotMakers + Apex)</li>
+            <li><strong>Seller & Override</strong> are % of commission pool (after all pools)</li>
+          </ul>
+          <p className="mt-2 pt-2 border-t border-blue-300">
+            The "Effective %" column shows what each step represents as a percentage of the original retail price.
+          </p>
+        </div>
+      </div>
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {renderWaterfallSection('Standard Products', standardConfig, true)}
-        {renderWaterfallSection('Business Center Products', bcConfig, false)}
+        {/* Standard Products - Percentages */}
+        <div className="bg-white rounded-lg border border-gray-200 p-6">
+          <div className="mb-6">
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Standard Products (Percentages)</h3>
+            <p className="text-sm text-gray-600">Adjust the cascading waterfall percentages below</p>
+          </div>
+
+          {renderSlider('BotMakers Fee', 'botmakersFee', standardConfig.botmakersFee, 'Of retail price')}
+
+          <div className="border-t border-gray-200 my-4 pt-4">
+            <p className="text-xs text-gray-600 mb-3 font-medium">
+              After BotMakers Fee: <span className="text-gray-900">{adjustedGross.toFixed(2)}%</span> (Adjusted Gross)
+            </p>
+
+            {renderSlider('Apex Take', 'apexTake', standardConfig.apexTake, 'Of adjusted gross')}
+
+            <p className="text-xs text-gray-600 mb-3 font-medium">
+              After Apex Take: <span className="text-gray-900">{remainder.toFixed(2)}%</span> (Remainder)
+            </p>
+
+            {renderSlider('Bonus Pool', 'bonusPool', standardConfig.bonusPool, 'Of remainder')}
+            {renderSlider('Leadership Pool', 'leadershipPool', standardConfig.leadershipPool, 'Of remainder')}
+
+            <p className="text-xs text-gray-600 mb-3 font-medium">
+              After Pools: <span className="text-gray-900">{commissionPool.toFixed(2)}%</span> (Commission Pool)
+            </p>
+
+            {renderSlider('Seller Commission', 'sellerCommission', standardConfig.sellerCommission, 'Of commission pool')}
+            {renderSlider('Override Pool', 'overridePool', standardConfig.overridePool, 'Of commission pool')}
+          </div>
+
+          {/* Effective Percentages Table */}
+          <div className="mt-6 border-t pt-4">
+            <h4 className="text-sm font-semibold text-gray-700 mb-3">Effective % of Retail Price</h4>
+            <div className="space-y-2 text-sm">
+              <div className="flex justify-between p-2 bg-gray-50 rounded">
+                <span className="text-gray-600">BotMakers Fee:</span>
+                <span className="font-semibold">{botmakersPct.toFixed(2)}%</span>
+              </div>
+              <div className="flex justify-between p-2 bg-blue-50 rounded">
+                <span className="text-gray-600">Apex Take:</span>
+                <span className="font-semibold">{apexEffective.toFixed(2)}%</span>
+              </div>
+              <div className="flex justify-between p-2 bg-purple-50 rounded">
+                <span className="text-gray-600">Bonus Pool:</span>
+                <span className="font-semibold">{bonusPoolEffective.toFixed(2)}%</span>
+              </div>
+              <div className="flex justify-between p-2 bg-indigo-50 rounded">
+                <span className="text-gray-600">Leadership Pool:</span>
+                <span className="font-semibold">{leadershipPoolEffective.toFixed(2)}%</span>
+              </div>
+              <div className="flex justify-between p-2 bg-green-50 rounded">
+                <span className="text-gray-600">Seller Commission:</span>
+                <span className="font-semibold">{sellerEffective.toFixed(2)}%</span>
+              </div>
+              <div className="flex justify-between p-2 bg-orange-50 rounded">
+                <span className="text-gray-600">Override Pool:</span>
+                <span className="font-semibold">{overrideEffective.toFixed(2)}%</span>
+              </div>
+              <div className="flex justify-between p-2 bg-green-100 rounded border-t-2 border-green-600">
+                <span className="font-bold text-gray-900">Total:</span>
+                <span className="font-bold text-green-900">{(botmakersPct + apexEffective + bonusPoolEffective + leadershipPoolEffective + sellerEffective + overrideEffective).toFixed(2)}%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Business Center - Fixed Dollars */}
+        <div className="bg-white rounded-lg border border-gray-200 p-6">
+          <div className="mb-6">
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Business Center (Fixed Dollars)</h3>
+            <p className="text-sm text-gray-600">Business Center uses fixed dollar amounts, not percentages</p>
+          </div>
+
+          <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+            <div className="flex items-start gap-2">
+              <svg className="w-5 h-5 text-amber-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+              <div>
+                <p className="text-sm font-semibold text-amber-900">Fixed Price: ${bcPrice.toFixed(2)}</p>
+                <p className="text-xs text-amber-800 mt-1">All amounts are in dollars, not percentages. Total must equal ${bcPrice.toFixed(2)}.</p>
+              </div>
+            </div>
+          </div>
+
+          {renderDollarInput('BotMakers Fee', 'botmakersFee', bcDollars.botmakersFee, 'Fixed amount')}
+          {renderDollarInput('Apex Take', 'apexTake', bcDollars.apexTake, 'Fixed amount')}
+          {renderDollarInput('Rep Commission', 'repCommission', bcDollars.repCommission, 'Selling rep commission')}
+          {renderDollarInput('Sponsor Bonus', 'sponsorBonus', bcDollars.sponsorBonus, 'Direct sponsor bonus')}
+          {renderDollarInput('Corporate Expenses', 'corpExpenses', bcDollars.corpExpenses, 'Operating costs')}
+
+          {/* Business Center Total */}
+          <div className={`p-4 rounded-lg mt-6 ${bcValid ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'}`}>
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-sm font-medium text-gray-700">Total:</span>
+              <span className={`text-xl font-bold ${bcValid ? 'text-green-700' : 'text-red-700'}`}>
+                ${bcTotal.toFixed(2)}
+              </span>
+            </div>
+            {!bcValid && (
+              <p className="text-xs text-red-600">
+                {bcTotal > bcPrice ? `Over by $${(bcTotal - bcPrice).toFixed(2)}` : `Under by $${(bcPrice - bcTotal).toFixed(2)}`}
+              </p>
+            )}
+            {bcValid && (
+              <p className="text-xs text-green-600">✓ Total matches Business Center price</p>
+            )}
+          </div>
+
+          {/* Business Center Notes */}
+          <div className="mt-6 bg-gray-50 rounded-lg p-4">
+            <h4 className="text-sm font-semibold text-gray-700 mb-2">Business Center Rules:</h4>
+            <ul className="text-xs text-gray-600 space-y-1">
+              <li>• No Bonus Pool (0%)</li>
+              <li>• No Leadership Pool (0%)</li>
+              <li>• No Override Pool (sponsor gets flat bonus)</li>
+              <li>• Fixed 39 production credits</li>
+            </ul>
+          </div>
+        </div>
       </div>
 
       {/* Action Buttons */}
       {isDirty && (
         <div className="flex items-center justify-end gap-3 p-4 bg-gray-50 rounded-lg border border-gray-200">
-          <Button onClick={handleCancel} variant="outline" disabled={saving}>
+          <Button onClick={handleCancel} variant="outline">
             Cancel
           </Button>
-          <Button
-            onClick={handleSave}
-            disabled={!isValid(standardConfig) || !isValid(bcConfig) || saving}
-          >
-            {saving ? (
-              <>
-                <div className="inline-block animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                Saving...
-              </>
-            ) : (
-              <>
-                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                Save Changes
-              </>
-            )}
+          <Button onClick={handleSave} disabled={!bcValid}>
+            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            </svg>
+            Save Changes
           </Button>
         </div>
       )}
