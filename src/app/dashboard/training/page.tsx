@@ -94,7 +94,7 @@ export default async function TrainingPage() {
   const serviceClient = createServiceClient();
 
   // Get distributor and member data with rank
-  const { data: userData } = await serviceClient
+  const { data: userData, error: userError } = await serviceClient
     .from('distributors')
     .select(`
       id,
@@ -102,16 +102,21 @@ export default async function TrainingPage() {
       last_name,
       member:members!members_distributor_id_fkey (
         tech_rank,
-        sales_rank
+        insurance_rank
       )
     `)
     .eq('auth_user_id', user.id)
     .single();
 
-  if (!userData) redirect('/login');
+  if (userError || !userData) {
+    console.error('Training page - user data error:', userError);
+    redirect('/dashboard');
+  }
 
-  const techRank = userData.member?.[0]?.tech_rank || 'starter';
-  const salesRank = userData.member?.[0]?.sales_rank || 'starter';
+  // Handle member data (can be array or object from join)
+  const memberData = Array.isArray(userData.member) ? userData.member[0] : userData.member;
+  const techRank = memberData?.tech_rank || 'starter';
+  const insuranceRank = memberData?.insurance_rank || 'inactive';
   const userRankLevel = getRankLevel(techRank);
 
   // Filter modules based on rank access
@@ -157,7 +162,7 @@ export default async function TrainingPage() {
           </div>
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-            <span>Sales Rank: {salesRank.charAt(0).toUpperCase() + salesRank.slice(1)}</span>
+            <span>Insurance Rank: {insuranceRank.charAt(0).toUpperCase() + insuranceRank.slice(1).replace('_', ' ')}</span>
           </div>
         </div>
       </div>
