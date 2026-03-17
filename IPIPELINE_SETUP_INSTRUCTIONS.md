@@ -16,7 +16,7 @@
 
 ### Required File
 
-**File:** `IPIPELINE_METADATA.xml` (in your project root)
+**File:** `APEX_IPIPELINE_METADATA.XML` (in your project root)
 
 **Send this file to your iPipeline account representative** and ask them to:
 1. Configure SAML SSO for GAID 2643 (Apex Affinity Group/APEX)
@@ -67,7 +67,7 @@ Account Information:
 - Channel: APEX
 - Environment: UAT (for testing, then Production)
 
-We have attached our SAML IdP metadata file (IPIPELINE_METADATA.xml).
+We have attached our SAML IdP metadata file (APEX_IPIPELINE_METADATA.XML).
 
 Please configure SAML SSO for the following products:
 1. iGO Illustration
@@ -123,7 +123,7 @@ IPIPELINE_SAML_CERTIFICATE="-----BEGIN CERTIFICATE-----\n[content from apex-saml
 **IMPORTANT**:
 - Keep `apex-saml.key` SECRET and SECURE
 - Never commit `.env.local` or the private key to git
-- Only share `IPIPELINE_METADATA.xml` or `apex-saml.crt` with iPipeline
+- Only share `APEX_IPIPELINE_METADATA.XML` or `apex-saml.crt` with iPipeline
 
 ### Step 2: Convert Certificate Files to Environment Variables
 
@@ -306,7 +306,7 @@ After UAT testing is successful:
 |------|---------|----------------------|
 | `apex-saml.key` | Private key for signing SAML | ❌ NEVER |
 | `apex-saml.crt` | Public certificate | ✅ Optional |
-| `IPIPELINE_METADATA.xml` | IdP metadata with certificate | ✅ Required |
+| `APEX_IPIPELINE_METADATA.XML` | IdP metadata with certificate | ✅ Required |
 | `generate-ipipeline-metadata.js` | Script to regenerate metadata | ❌ Internal |
 | `src/lib/integrations/ipipeline/saml.ts` | SAML client implementation | ❌ Internal |
 | `src/lib/integrations/ipipeline/types.ts` | TypeScript types | ❌ Internal |
@@ -328,7 +328,7 @@ Contact your iPipeline account representative directly for faster setup
 
 ## Next Steps Checklist
 
-- [ ] Send `IPIPELINE_METADATA.xml` to iPipeline (use email template above)
+- [ ] Send `APEX_IPIPELINE_METADATA.XML` to iPipeline (use email template above)
 - [ ] Configure environment variables in `.env.local`
 - [ ] Add launcher component to your application
 - [ ] Wait for iPipeline confirmation (usually 1-3 business days)

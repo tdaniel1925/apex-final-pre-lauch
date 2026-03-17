@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
+    entityID="https://reachtheapex.net/saml/idp">
+  <md:IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+    <md:KeyDescriptor use="signing">
+      <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+        <ds:X509Data>
+          <ds:X509Certificate>MIIDzzCCAregAwIBAgIUGfgmJBA6iY6r7dfSJKFuj6O/7w4wDQYJKoZIhvcNAQELBQAwdzELMAkGA1UEBhMCVVMxDjAMBgNVBAgMBVN0YXRlMQ0wCwYDVQQHDARDaXR5MRwwGgYDVQQKDBNBcGV4IEFmZmluaXR5IEdyb3VwMQswCQYDVQQLDAJJVDEeMBwGA1UEAwwVYXBleGFmZmluaXR5Z3JvdXAuY29tMB4XDTI2MDMxNjIzMDQyNVoXDTM2MDMxMzIzMDQyNVowdzELMAkGA1UEBhMCVVMxDjAMBgNVBAgMBVN0YXRlMQ0wCwYDVQQHDARDaXR5MRwwGgYDVQQKDBNBcGV4IEFmZmluaXR5IEdyb3VwMQswCQYDVQQLDAJJVDEeMBwGA1UEAwwVYXBleGFmZmluaXR5Z3JvdXAuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA9fFSl9TtrA7Au/ataKicwKwxotJ35GJfxH4bOfk1wkerCa6PnLzIx3MKcfPw5zRTNQjhYMjw2dSdInaV3VI5ozcBp9uw2KblwynKgN7gJxrjGEfp5cVABQGtL5pm/NAq6kG2x2R5lYo1VGeYPQKTKBap6giaCyiTg9FwoBNBgN5W/P/ZVC0/kEKOmFBOwACLmiqHDRpK/OCIDd1P4lrbNci9jLzgQvKb8u+mW5UVlSnJeWCTRxGoXsNhOVbaWnZwH+UBf3sX6yg/ywHGn7TbiptI06yjEiXCsBZbOND4aXiSyE50ajiU5t4DbC0Osd+M4rTSdJftiGNAFsf2EYupawIDAQABo1MwUTAdBgNVHQ4EFgQU/1ea8OsbK5TgdBgMmTmLw79oTq8wHwYDVR0jBBgwFoAU/1ea8OsbK5TgdBgMmTmLw79oTq8wDwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEAJ8+OCl7rTooYaVrcCmBZHlQwDSK5JHVuuql9mFHL1uFbPKd9jPXTCSBl3ScpnzhEp9Z+m/1B1BTFs0HxsdnWw9crpRT5giCLo45Tm1QF6lbAXU6yimpCXWnoicqLgkeUXFzM5/3TqmVyO4x2kj4tIB861P7+s7XjyrtnFooRui7qBR02vgaJ3z3TCU8UKnP/6vUwVo4n1OmrcEtr1KNCU0eNZpiimPXQVv5cE7lCq50upmd54eggjVZyFOTk3TeAUuu4TrlkZJwMmP+IKESuyWzbrqn5hCSn756uf99jK6X1ynS8Ttbb2+yr/8qMXw/FLCECOiUDdTPzKZJj7MKmDw==</ds:X509Certificate>
+        </ds:X509Data>
+      </ds:KeyInfo>
+    </md:KeyDescriptor>
+    <md:SingleSignOnService
+        Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+        Location="https://reachtheapex.net/api/integrations/ipipeline/sso"/>
+  </md:IDPSSODescriptor>
+  <md:Organization>
+    <md:OrganizationName xml:lang="en">Apex Affinity Group</md:OrganizationName>
+    <md:OrganizationDisplayName xml:lang="en">Apex Affinity Group</md:OrganizationDisplayName>
+    <md:OrganizationURL xml:lang="en">https://reachtheapex.net</md:OrganizationURL>
+  </md:Organization>
+  <md:ContactPerson contactType="technical">
+    <md:Company>Apex Affinity Group</md:Company>
+    <md:EmailAddress>support@reachtheapex.net</md:EmailAddress>
+  </md:ContactPerson>
+</md:EntityDescriptor>

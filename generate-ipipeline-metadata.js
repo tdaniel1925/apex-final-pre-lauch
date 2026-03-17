@@ -50,14 +50,14 @@ const metadata = `<?xml version="1.0" encoding="UTF-8"?>
 </md:EntityDescriptor>`;
 
 // Write to file
-const outputPath = path.join(__dirname, 'IPIPELINE_METADATA.xml');
+const outputPath = path.join(__dirname, 'APEX_IPIPELINE_METADATA.XML');
 fs.writeFileSync(outputPath, metadata, 'utf8');
 
 console.log('✅ iPipeline IdP Metadata generated successfully!');
 console.log(`📄 File: ${outputPath}`);
 console.log('');
 console.log('📧 Next steps:');
-console.log('1. Send IPIPELINE_METADATA.xml to your iPipeline account representative');
+console.log('1. Send APEX_IPIPELINE_METADATA.XML to your iPipeline account representative');
 console.log('2. Ask them to configure SAML SSO for GAID 2643 (Apex Affinity Group/APEX)');
 console.log('3. Request access to UAT environment first for testing');
 console.log('');

@@ -24,7 +24,7 @@ The iPipeline SAML 2.0 SSO integration has been successfully implemented for the
 4. **Certificates & Metadata**
    - `apex-saml.key` - Private key for SAML signing (keep secure!)
    - `apex-saml.crt` - Public certificate
-   - `IPIPELINE_METADATA.xml` - IdP metadata to send to iPipeline
+   - `APEX_IPIPELINE_METADATA.XML` - IdP metadata to send to iPipeline
 
 5. **Utility Scripts**
    - `generate-ipipeline-metadata.js` - Regenerate metadata XML
@@ -80,7 +80,7 @@ Get-Content apex-saml.crt -Raw
 
 ### 2. Send Metadata to iPipeline
 
-Email `IPIPELINE_METADATA.xml` to your iPipeline account representative with:
+Email `APEX_IPIPELINE_METADATA.XML` to your iPipeline account representative with:
 - **GAID**: 2643
 - **Channel**: APEX
 - **Environment**: Start with UAT, then Production
@@ -136,7 +136,7 @@ npm run dev
 - Any file containing the private key
 
 ### Safe to Share
-- `IPIPELINE_METADATA.xml` - Send to iPipeline
+- `APEX_IPIPELINE_METADATA.XML` - Send to iPipeline
 - `apex-saml.crt` - Public certificate (optional)
 
 ---
@@ -172,7 +172,7 @@ All validation checks passed! ✨
 ## 🎯 Next Steps
 
 1. ✅ **Configure environment variables** in `.env.local`
-2. ✅ **Send metadata** to iPipeline (IPIPELINE_METADATA.xml)
+2. ✅ **Send metadata** to iPipeline (APEX_IPIPELINE_METADATA.XML)
 3. ⏳ **Wait for iPipeline** to configure your certificate (1-3 days)
 4. ⏳ **Test in UAT** environment
 5. ⏳ **Request Production** configuration
@@ -186,7 +186,7 @@ All validation checks passed! ✨
 c:\dev\1 - Apex Pre-Launch Site\
 ├── apex-saml.key                              # Private key (keep secure!)
 ├── apex-saml.crt                              # Public certificate
-├── IPIPELINE_METADATA.xml                     # Send to iPipeline
+├── APEX_IPIPELINE_METADATA.XML                     # Send to iPipeline
 ├── generate-ipipeline-metadata.js             # Regenerate metadata
 ├── test-ipipeline-saml.ts                     # Test SAML generation
 ├── IPIPELINE_SETUP_INSTRUCTIONS.md            # Complete setup guide
