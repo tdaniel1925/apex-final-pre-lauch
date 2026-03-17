@@ -21,53 +21,45 @@ export default function ActivityFeed({ distributorId, initialActivities = [] }: 
   const [periodFilter, setPeriodFilter] = useState<string>('week');
   const [maxDepthFilter, setMaxDepthFilter] = useState<number>(7);
 
-  // Fetch activities
-  const fetchActivities = async () => {
-    setLoading(true);
-    try {
-      const params = new URLSearchParams();
-      params.append('distributor_id', distributorId);
-      if (eventTypeFilter !== 'all') params.append('event_type', eventTypeFilter);
-      if (periodFilter !== 'all') params.append('period', periodFilter);
-      if (maxDepthFilter < 7) params.append('max_depth', maxDepthFilter.toString());
-      params.append('limit', '50');
-
-      const response = await fetch(`/api/activity-feed?${params.toString()}`);
-
-      // Handle auth errors (shouldn't happen now, but keep as safety)
-      if (response.status === 401) {
-        window.location.href = '/login';
-        return;
-      }
-
-      const result = await response.json();
-
-      if (result.success) {
-        setActivities(result.data.activities);
-      }
-    } catch (error) {
-      console.error('Error fetching activities:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Fetch on mount and when filters change
+  // CLIENT-SIDE FILTERING (no API calls - pure display component)
+  // Filter the server-rendered initialActivities based on client-side filters
   useEffect(() => {
-    // Only fetch if filters change OR if we don't have initial data
-    // Skip initial fetch if we already have data from server-side render
-    if (initialActivities.length === 0 || eventTypeFilter !== 'all' || periodFilter !== 'week' || maxDepthFilter !== 7) {
-      fetchActivities();
+    let filtered = [...initialActivities];
+
+    // Apply event type filter
+    if (eventTypeFilter !== 'all') {
+      filtered = filtered.filter(a => a.event_type === eventTypeFilter);
     }
 
-    // Auto-refresh every 60 seconds (but not immediately)
-    const interval = setInterval(fetchActivities, 60000);
+    // Apply depth filter
+    if (maxDepthFilter < 7) {
+      filtered = filtered.filter(a => a.depth_from_root <= maxDepthFilter);
+    }
 
-    return () => {
-      clearInterval(interval);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [eventTypeFilter, periodFilter, maxDepthFilter, distributorId]);
+    // Apply period filter
+    if (periodFilter !== 'all') {
+      const now = new Date();
+      let startDate: Date;
+
+      switch (periodFilter) {
+        case 'today':
+          startDate = new Date(now.setHours(0, 0, 0, 0));
+          break;
+        case 'week':
+          startDate = new Date(now.setDate(now.getDate() - 7));
+          break;
+        case 'month':
+          startDate = new Date(now.setMonth(now.getMonth() - 1));
+          break;
+        default:
+          startDate = new Date(0);
+      }
+
+      filtered = filtered.filter(a => new Date(a.created_at) >= startDate);
+    }
+
+    setActivities(filtered);
+  }, [eventTypeFilter, periodFilter, maxDepthFilter, initialActivities]);
 
   // Get icon for event type
   const getEventIcon = (eventType: string) => {
@@ -133,13 +125,7 @@ export default function ActivityFeed({ distributorId, initialActivities = [] }: 
       <div className="border-b border-gray-200 p-4">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-bold text-gray-900">Activity Feed</h2>
-          <button
-            onClick={fetchActivities}
-            disabled={loading}
-            className="text-sm text-blue-600 hover:text-blue-800 font-medium disabled:opacity-50"
-          >
-            {loading ? 'Refreshing...' : '🔄 Refresh'}
-          </button>
+          <p className="text-xs text-gray-500">Auto-refreshes on page reload</p>
         </div>
 
         {/* Filters */}
