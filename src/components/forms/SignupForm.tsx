@@ -265,6 +265,10 @@ export default function SignupForm({ sponsorSlug, sponsorName }: SignupFormProps
                 errors.slug ? 'border-red-500' : 'border-gray-300'
               }`}
               disabled={isSubmitting}
+              onChange={(e) => {
+                const lowercase = e.target.value.toLowerCase();
+                setValue('slug', lowercase);
+              }}
             />
             {slugCheckStatus === 'checking' && (
               <div className="absolute right-3 top-1/2 -translate-y-1/2">
@@ -279,7 +283,10 @@ export default function SignupForm({ sponsorSlug, sponsorName }: SignupFormProps
             )}
           </div>
           <p className="mt-1 text-xs text-gray-500">
-            reachtheapex.net/{watchSlug || 'your-username'}
+            Your referral link: reachtheapex.net/{watchSlug || 'your-username'}
+          </p>
+          <p className="mt-1 text-xs text-gray-400">
+            Use lowercase letters, numbers, and hyphens only (we'll auto-convert for you)
           </p>
           {errors.slug && (
             <p className="mt-1 text-sm text-red-600">{errors.slug.message}</p>
