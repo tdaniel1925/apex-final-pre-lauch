@@ -15,7 +15,7 @@ import { createClient } from '@/lib/supabase/server';
 import { createServiceClient } from '@/lib/supabase/service';
 import CEOVideoSection from '@/components/dashboard/CEOVideoSection';
 import CompensationStatsWidget from '@/components/dashboard/CompensationStatsWidget';
-import ActivityFeed from '@/components/dashboard/ActivityFeed';
+// import ActivityFeed from '@/components/dashboard/ActivityFeed'; // TEMPORARILY DISABLED
 import DashboardClient from '@/components/dashboard/DashboardClient';
 import type { Distributor } from '@/lib/types';
 import { ArrowRight, Users, Link as LinkIcon, FileText, MessageCircle } from 'lucide-react';
@@ -274,7 +274,7 @@ export default async function DashboardPage() {
             </Link>
           </div>
 
-          {/* Recent Activity Feed */}
+          {/* Recent Activity Feed - TEMPORARILY DISABLED */}
           <div className="bg-white rounded-lg shadow-md border border-slate-200">
             <div className="p-6 border-b border-slate-200">
               <h2 className="text-xl font-bold text-slate-900">Recent Activity</h2>
@@ -283,7 +283,10 @@ export default async function DashboardPage() {
               </p>
             </div>
             <div className="p-6">
-              <ActivityFeed />
+              <div className="text-center py-8">
+                <p className="text-slate-600">Activity feed temporarily disabled during maintenance.</p>
+                <p className="text-sm text-slate-500 mt-2">Check back soon!</p>
+              </div>
             </div>
           </div>
         </div>
