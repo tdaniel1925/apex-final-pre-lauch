@@ -14,6 +14,7 @@ import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { createServiceClient } from '@/lib/supabase/service';
 import CEOVideoSection from '@/components/dashboard/CEOVideoSection';
+import TrainingAudioPlayer from '@/components/dashboard/TrainingAudioPlayer';
 import CompensationStatsWidget from '@/components/dashboard/CompensationStatsWidget';
 import ActivityFeed from '@/components/dashboard/ActivityFeed';
 import DashboardClient from '@/components/dashboard/DashboardClient';
@@ -194,8 +195,11 @@ export default async function DashboardPage() {
             <p className="text-sm text-slate-600 mt-1">@{dist.slug}</p>
           </div>
 
-          {/* CEO Video Section */}
-          <CEOVideoSection />
+          {/* CEO Video & Training Audio Section */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <CEOVideoSection />
+            <TrainingAudioPlayer />
+          </div>
 
           {/* Compensation Stats - 4 Cards */}
           <CompensationStatsWidget
