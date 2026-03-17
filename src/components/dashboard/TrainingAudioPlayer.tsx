@@ -15,7 +15,7 @@ interface AudioTrack {
   url: string;
 }
 
-// Training audio playlist - add more tracks here in the future
+// Training audio playlist - plays in order
 const TRAINING_PLAYLIST: AudioTrack[] = [
   {
     id: '20-20-conversation',
@@ -23,13 +23,12 @@ const TRAINING_PLAYLIST: AudioTrack[] = [
     description: 'Essential training for building your business',
     url: '/training-audios/The 20_20 Conversation Training.mp3',
   },
-  // Add more tracks here as they become available
-  // {
-  //   id: 'next-training',
-  //   title: 'Next Training Topic',
-  //   description: 'Description here',
-  //   url: '/training-audios/next-training.mp3',
-  // },
+  {
+    id: 'mastering-conversation',
+    title: 'Mastering the Conversation - The Apex Way Podcast',
+    description: 'Advanced conversation techniques',
+    url: '/training-audios/Mastering the Conversation_ The Apex Way Podcast Episode (2).mp3',
+  },
 ];
 
 export default function TrainingAudioPlayer() {
