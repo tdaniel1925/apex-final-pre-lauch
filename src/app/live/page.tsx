@@ -29,6 +29,8 @@ const SCHEDULE: EventSchedule[] = [
 
 export default function LiveEventsPage() {
   const [isLive, setIsLive] = useState(false);
+  const [isEventStarted, setIsEventStarted] = useState(false);
+  const [countdown, setCountdown] = useState('');
   const [nextEvent, setNextEvent] = useState<EventSchedule | null>(null);
   const [copiedInvite, setCopiedInvite] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
@@ -42,19 +44,36 @@ export default function LiveEventsPage() {
       const dayOfWeek = centralTime.getDay();
       const hours = centralTime.getHours();
       const minutes = centralTime.getMinutes();
+      const seconds = centralTime.getSeconds();
       const currentMinutes = hours * 60 + minutes;
 
-      const liveStart = 18 * 60; // 6:00 PM
-      const eventEnd = 19 * 60 + 30; // 7:30 PM
+      const roomOpen = 18 * 60; // 6:00 PM - Room opens
+      const eventStart = 18 * 60 + 30; // 6:30 PM - Event starts
+      const eventEnd = 19 * 60 + 30; // 7:30 PM - Event ends
 
       const isTuesday = dayOfWeek === 2;
       const isThursday = dayOfWeek === 4;
 
-      if ((isTuesday || isThursday) && currentMinutes >= liveStart && currentMinutes < eventEnd) {
+      if ((isTuesday || isThursday) && currentMinutes >= roomOpen && currentMinutes < eventEnd) {
         setIsLive(true);
         setNextEvent(isTuesday ? SCHEDULE[0] : SCHEDULE[1]);
+
+        // Check if event has started (6:30 PM)
+        if (currentMinutes >= eventStart) {
+          setIsEventStarted(true);
+          setCountdown('');
+        } else {
+          setIsEventStarted(false);
+          // Calculate countdown to 6:30 PM
+          const totalSecondsUntilStart = (eventStart - currentMinutes) * 60 - seconds;
+          const minutesLeft = Math.floor(totalSecondsUntilStart / 60);
+          const secondsLeft = totalSecondsUntilStart % 60;
+          setCountdown(`${minutesLeft}:${secondsLeft.toString().padStart(2, '0')}`);
+        }
       } else {
         setIsLive(false);
+        setIsEventStarted(false);
+        setCountdown('');
         const daysUntilTuesday = (2 - dayOfWeek + 7) % 7 || 7;
         const daysUntilThursday = (4 - dayOfWeek + 7) % 7 || 7;
 
@@ -67,7 +86,7 @@ export default function LiveEventsPage() {
     }
 
     checkLiveStatus();
-    const interval = setInterval(checkLiveStatus, 60000);
+    const interval = setInterval(checkLiveStatus, 1000); // Update every second for countdown
 
     return () => clearInterval(interval);
   }, []);
@@ -202,7 +221,7 @@ See you there!`;
                   borderRadius: '50%',
                   animation: 'ping 1s infinite'
                 }}></span>
-                <span style={{ fontWeight: 'bold' }}>LIVE NOW</span>
+                <span style={{ fontWeight: 'bold' }}>ROOM OPEN NOW</span>
               </div>
             )}
 
@@ -236,33 +255,70 @@ See you there!`;
 
             {/* Join Button */}
             {isLive ? (
-              <a
-                href={MEETING_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  padding: '20px 50px',
-                  fontSize: '1.5rem',
-                  fontWeight: 'bold',
-                  color: 'white',
-                  background: 'linear-gradient(135deg, #C7181F 0%, #E04F55 100%)',
-                  borderRadius: '16px',
-                  textDecoration: 'none',
-                  boxShadow: '0 0 60px rgba(199, 24, 31, 0.8), 0 0 100px rgba(199, 24, 31, 0.5)',
-                  transition: 'transform 0.2s',
-                  cursor: 'pointer'
-                }}
-                onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-                onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
-              >
-                <svg style={{ width: '32px', height: '32px', marginRight: '12px' }} fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-                </svg>
-                Join Live Event Now
-              </a>
+              isEventStarted ? (
+                <a
+                  href={MEETING_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '20px 50px',
+                    fontSize: '1.5rem',
+                    fontWeight: 'bold',
+                    color: 'white',
+                    background: 'linear-gradient(135deg, #C7181F 0%, #E04F55 100%)',
+                    borderRadius: '16px',
+                    textDecoration: 'none',
+                    boxShadow: '0 0 60px rgba(199, 24, 31, 0.8), 0 0 100px rgba(199, 24, 31, 0.5)',
+                    transition: 'transform 0.2s',
+                    cursor: 'pointer'
+                  }}
+                  onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+                  onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                >
+                  <svg style={{ width: '32px', height: '32px', marginRight: '12px' }} fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                  </svg>
+                  Join Live Event Now!
+                </a>
+              ) : (
+                <a
+                  href={MEETING_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'inline-flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '20px 50px',
+                    fontSize: '1.5rem',
+                    fontWeight: 'bold',
+                    color: 'white',
+                    background: 'linear-gradient(135deg, #C7181F 0%, #E04F55 100%)',
+                    borderRadius: '16px',
+                    textDecoration: 'none',
+                    boxShadow: '0 0 60px rgba(199, 24, 31, 0.8), 0 0 100px rgba(199, 24, 31, 0.5)',
+                    transition: 'transform 0.2s',
+                    cursor: 'pointer',
+                    gap: '8px'
+                  }}
+                  onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+                  onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <svg style={{ width: '32px', height: '32px' }} fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                    </svg>
+                    <span>Join Room Now</span>
+                  </div>
+                  <div style={{ fontSize: '1rem', fontWeight: 'normal', opacity: 0.95 }}>
+                    Event starts in: <span style={{ fontWeight: 'bold', fontSize: '1.25rem' }}>{countdown}</span>
+                  </div>
+                </a>
+              )
             ) : (
               <div>
                 <div style={{
