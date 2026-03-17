@@ -1,212 +1,372 @@
+'use client';
+
 // =============================================
-// Compensation Plan Glossary
-// Simple definitions of MLM terms
+// Compensation Glossary - Dual Ladder System
+// Based on APEX_COMP_ENGINE_SPEC_FINAL.md
 // =============================================
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
-import { createClient } from '@/lib/supabase/server';
-
-export const metadata = {
-  title: 'Glossary - Compensation Plan',
-  description: 'Simple explanations of compensation plan terms',
-};
+import { useRouter } from 'next/navigation';
+import { createClient } from '@/lib/supabase/client';
 
 const glossaryTerms = [
   {
-    term: 'Active Distributor',
-    definition: 'Someone who has at least 50 BV (Business Volume) in a month. You need to be active to earn most commissions.',
-    example: 'If you buy the Essentials Kit (50 BV), you\'re active that month.',
+    term: 'Bonus Pool',
+    definition: 'A pool funded by 3.5% of company revenue (after BotMakers and Apex shares) that funds incentive programs like trip incentives, fast start bonuses, car allowances, quarterly contests, and enhanced rank bonuses.',
+    example: 'If company revenue is $100K, the bonus pool receives $1,715 to distribute across all programs.',
+    category: 'Incentives',
   },
   {
-    term: 'BV (Business Volume)',
-    definition: 'Points assigned to each product. It\'s how we measure your sales activity. Think of it like "points" instead of dollars.',
-    example: 'A product that costs $79 might have 40 BV. The Essentials Kit has 50 BV.',
+    term: 'Business Center',
+    definition: 'A $39/month subscription that provides 39 production credits toward rank advancement. It pays a fixed commission structure (not the waterfall system) with $10 to seller and $8 to direct sponsor.',
+    example: 'Selling one Business Center gives you $10 commission and 39 credits toward rank requirements.',
+    category: 'Products',
   },
   {
-    term: 'Downline',
-    definition: 'Everyone below you in your team tree - people you enrolled, people they enrolled, etc.',
-    example: 'You enroll Sarah. Sarah enrolls Mike. Both Sarah and Mike are in your downline.',
+    term: 'Commission Pool',
+    definition: 'The portion of revenue (44% of customer payment after BotMakers/Apex/Pools) that is split between seller commission (60%) and override pool (40%). Results in approximately 27.9% seller commission rate.',
+    example: 'On a $100 sale, commission pool = $44. You get $26.40 (60% of pool), override pool gets $17.60 (40% of pool).',
+    category: 'Commissions',
   },
   {
-    term: 'Enroll / Sponsor',
-    definition: 'When you invite someone to join as a distributor using your referral link, you "enroll" or "sponsor" them.',
-    example: 'You share your link with a friend. They sign up. You enrolled them!',
+    term: 'Credits (Production Credits)',
+    definition: 'Points earned from product sales that count toward rank advancement. Each product has a credit value (Price × Credit %). Credits replace the old BV (Business Volume) system.',
+    example: 'PulseFlow at $149 retail = 149 × 50% = 75 credits toward your monthly production.',
+    category: 'Core Concepts',
   },
   {
-    term: 'GBV (Group Business Volume)',
-    definition: 'The total BV of everyone in your entire downline combined. This number grows as your team grows.',
-    example: 'You have 50 BV, Sarah has 100 BV, Mike has 75 BV. Your GBV is 225.',
+    term: 'Credit-Based Advancement',
+    definition: 'The new system where ranks are achieved through production credits (not customer accounts). Personal credits + group credits determine your rank, not how many customers you have.',
+    example: 'Gold rank needs 1,200 personal credits and 5,000 group credits per month, regardless of how many customers that represents.',
+    category: 'Core Concepts',
   },
   {
-    term: 'Generation',
-    definition: 'A "layer" of leaders in your team. Gen 1 = your personal enrollments who hit a certain rank. Gen 2 = their leaders, etc.',
-    example: 'You enroll Sarah (becomes Silver rank) - she\'s Gen 1. Sarah enrolls Mike (becomes Silver) - he\'s Gen 2.',
+    term: 'Cross-Credit (Tech to Insurance)',
+    definition: 'Licensed agents earn insurance credits from technology product sales at 30-50% of tech credits (varies by product). Helps licensed agents advance on both ladders simultaneously.',
+    example: 'Selling PulseFlow (75 tech credits) gives you 38 insurance credits as a licensed agent.',
+    category: 'Dual Ladder',
   },
   {
-    term: 'Level (Matrix)',
-    definition: 'How many "steps" away someone is from you. Level 1 = people YOU enrolled. Level 2 = people THEY enrolled. Goes to Level 7.',
-    example: 'You → Sarah (Level 1) → Mike (Level 2) → Jenny (Level 3)',
+    term: 'Direct Commission',
+    definition: 'The commission you earn on your own sales, regardless of your rank. Everyone earns the same effective rate of 27.9% (60% of the commission pool).',
+    example: 'Sell PulseCommand at $499 retail → You earn $139.37 direct commission, whether you\'re Starter or Elite.',
+    category: 'Commissions',
   },
   {
-    term: 'Matrix',
-    definition: 'The structure of your team. Apex uses a "5-wide" matrix - each person can have up to 5 people directly under them on Level 1.',
-    example: 'You enroll 5 people. That fills your Level 1. The 6th person goes on Level 2.',
+    term: 'Dual Ladder System',
+    definition: 'Apex\'s compensation structure with two independent advancement paths: Technology Ladder (9 ranks for all reps) and Insurance Ladder (6 ranks + 7 MGA tiers for licensed agents only).',
+    example: 'You can be Gold on Tech Ladder and Associate on Insurance Ladder simultaneously, earning from both systems.',
+    category: 'Core Concepts',
   },
   {
-    term: 'Matching Bonus',
-    definition: 'You earn a percentage of what your PERSONALLY enrolled distributors earn in commissions.',
-    example: 'Sarah (you enrolled her) earns $500 in commissions. You get 10% matching = $50.',
-  },
-  {
-    term: 'Override',
-    definition: 'When you outrank someone in your downline, you earn the difference between your rank\'s percentage and theirs.',
-    example: 'You\'re Gold (8%), Sarah is Silver (6%). You earn 2% override on her volume.',
-  },
-  {
-    term: 'Personal Enrollment',
-    definition: 'Someone YOU directly signed up (not someone your team signed up). These are your "Level 1" people.',
-    example: 'You share your link with 3 friends. They all join. Those 3 are your personal enrollments.',
-  },
-  {
-    term: 'Personal BV',
-    definition: 'The BV from YOUR OWN purchases or sales that month (not your team\'s).',
-    example: 'You buy a kit worth 50 BV. That\'s your Personal BV for the month.',
-  },
-  {
-    term: 'Rank',
-    definition: 'Your title in the company based on your team\'s performance. Starts at Affiliate, goes to Royal Diamond.',
-    example: 'You start as Affiliate. When you hit 1,000 GBV, you become Associate.',
-  },
-  {
-    term: 'Rank Advancement Bonus',
-    definition: 'A one-time cash bonus when you achieve a new rank for the first time.',
-    example: 'You hit Silver rank for the first time → You get a $250 bonus!',
-  },
-  {
-    term: 'Retail Commission',
-    definition: 'The profit you make when a CUSTOMER (not a distributor) buys a product through your link.',
-    example: 'A customer buys a $100 product. You paid $70 wholesale. You keep $30 profit.',
-  },
-  {
-    term: 'Retail Price',
-    definition: 'The full price a customer pays for a product.',
-    example: 'The Essentials Kit retail price is $79.',
-  },
-  {
-    term: 'Spillover',
-    definition: 'When your sponsor\'s recruits go under YOU because their Level 1 is full (5 people). Free team members!',
-    example: 'Your sponsor enrolls 6 people. Their first 5 fill Level 1. The 6th person "spills over" under you.',
-  },
-  {
-    term: 'Sponsor / Upline',
-    definition: 'The person who enrolled you. They\'re above you in the team structure.',
-    example: 'Sarah invited you to join. Sarah is your sponsor/upline.',
-  },
-  {
-    term: 'Upline',
-    definition: 'Everyone ABOVE you in your team tree - your sponsor, their sponsor, etc.',
-    example: 'You → Sarah (your sponsor) → Mike (Sarah\'s sponsor). Sarah and Mike are your upline.',
-  },
-  {
-    term: 'Wholesale Price',
-    definition: 'The discounted price that distributors pay for products (about 70% of retail).',
-    example: 'Retail price: $100. Wholesale price: $70. You save $30 as a distributor.',
-  },
-  {
-    term: 'Infinity Bonus',
-    definition: 'Once you hit Diamond rank, you can earn commissions beyond Level 7 (Level 8, 9, 10, etc.) - unlimited depth!',
-    example: 'You\'re Diamond. You earn on Level 1-7 from Matrix, PLUS Level 8+ from Infinity.',
+    term: 'Enroller Override Rule',
+    definition: 'If you personally enrolled someone, you ALWAYS earn the L1 rate (30% of override pool) on their sales, regardless of where they are in your organization or what rank you are.',
+    example: 'You enrolled Sarah. She\'s now 7 levels deep. You still earn 30% L1 rate on her sales because you enrolled her.',
+    category: 'Overrides',
   },
   {
     term: 'Fast Start Bonus',
-    definition: 'A quick $100 bonus when you enroll someone in your first 30 days as a distributor.',
-    example: 'You join on Jan 1. You enroll someone on Jan 15. You get $100 Fast Start!',
+    definition: 'One-time bonuses paid to new reps based on their first 30 days of production: $250 for 150 credits, $500 for 500 credits, or $1,000 for 1,200 credits.',
+    example: 'Generate 1,200 personal credits in your first 30 days → Earn $1,000 fast start bonus.',
+    category: 'Incentives',
   },
   {
-    term: 'Break (Override Break)',
-    definition: 'When you reach someone in your downline who has the SAME or HIGHER rank as you, you stop earning overrides on their group.',
-    example: 'You\'re Gold. Sarah (in your downline) becomes Gold too. Override "breaks" at Sarah.',
+    term: 'Generation (Insurance Ladder)',
+    definition: 'A layer of MGA leaders in your insurance downline. Gen 1 = MGAs you personally sponsored. Gen 2 = MGAs they sponsored. Goes up to Gen 6 for Premier MGA.',
+    example: 'You sponsor Mike (becomes MGA) = Gen 1. Mike sponsors Sarah (becomes MGA) = Gen 2 in your organization.',
+    category: 'Insurance Ladder',
+  },
+  {
+    term: 'Group Credits',
+    definition: 'The total production credits generated by your entire organization (everyone in your downline) for the month. One of two requirements for rank advancement.',
+    example: 'You: 1,200 credits. Your team combined: 3,800 credits. Your group credits = 5,000.',
+    category: 'Core Concepts',
+  },
+  {
+    term: 'Insurance Ladder',
+    definition: 'A separate advancement system for licensed insurance agents. 6 base ranks (Pre-Associate to MGA) plus 7 MGA tiers (MGA to Premier MGA) with generational override bonuses.',
+    example: 'Licensed agent advances from Associate (55% commission) to Agent (70% commission) by hitting $45K in 90-day premium.',
+    category: 'Dual Ladder',
+  },
+  {
+    term: 'Leadership Pool',
+    definition: 'An exclusive program for early leaders (pre-launch through Year 1). 1,000 total shares allocated. Share owners receive a portion of 1.5% of company revenue monthly. Requires Gold+ rank for payouts.',
+    example: 'You have 50 shares (5% of pool). Company does $1M revenue → Pool = $15K → You get $750 that month.',
+    category: 'Leadership',
+  },
+  {
+    term: 'Level (L1, L2, L3, L4, L5)',
+    definition: 'Your position in relation to team members for override calculations. L1 = personal enrollees (or enroller rule). Higher ranks unlock more levels (up to L5 for Platinum+).',
+    example: 'You → Sarah (L1) → Mike (L2) → Jenny (L3). If you\'re Gold rank, you can earn overrides on all three levels.',
+    category: 'Overrides',
+  },
+  {
+    term: 'Member Price',
+    definition: 'The discounted price that distributors and members pay for products. Lower than retail price. Commission and credit calculations are based on the actual price paid (member or retail).',
+    example: 'PulseFlow: Member $129, Retail $149. Member sale gives you $36.03 commission and 65 credits.',
+    category: 'Products',
+  },
+  {
+    term: 'MGA (Managing General Agent)',
+    definition: 'The 6th rank on the Insurance Ladder. Unlocks access to 7 MGA tiers with generational override bonuses (15% Gen 1, 5% Gen 2, etc.). Requires $150K in 90-day premium volume.',
+    example: 'Hit MGA rank → Start earning generational overrides on your insurance leaders\' production.',
+    category: 'Insurance Ladder',
+  },
+  {
+    term: 'Override Bonus',
+    definition: 'Additional commissions earned on your team\'s sales based on your rank and organizational levels. Higher ranks unlock more levels (L1-L5) and higher percentages.',
+    example: 'Gold rank earns 30% L1, 15% L2, 10% L3, 5% L4 on each team member\'s override pool.',
+    category: 'Overrides',
+  },
+  {
+    term: 'Override Pool',
+    definition: 'The portion of revenue (40% of commission pool, or 17.6% of customer payment) that is distributed to upline as override bonuses based on rank and level.',
+    example: 'On a $499 sale, override pool = $87.82. This is split among upline based on their ranks and levels.',
+    category: 'Overrides',
+  },
+  {
+    term: 'Override Qualification (50 Credits)',
+    definition: 'You must generate at least 50 personal credits per month to earn override bonuses, rank bonuses, and participate in bonus pool programs. Below 50 credits = direct commissions only.',
+    example: 'You generate 45 credits this month → You still earn direct commissions but NO overrides or bonuses.',
+    category: 'Overrides',
+  },
+  {
+    term: 'Personal Credits',
+    definition: 'Production credits you personally generate through your own sales (not your team\'s sales). One of two requirements for rank advancement.',
+    example: 'You sell 5 PulseFlow (member) = 5 × 65 credits = 325 personal credits for the month.',
+    category: 'Core Concepts',
+  },
+  {
+    term: 'Personal Enrollment',
+    definition: 'Someone you directly enrolled into the company using your referral link. They are permanently tied to you as their enroller (immutable), which triggers the Enroller Override Rule.',
+    example: 'You share your link with 3 friends. They join. Those 3 are your personal enrollments forever.',
+    category: 'Core Concepts',
+  },
+  {
+    term: 'Rank Advancement Bonus',
+    definition: 'One-time cash bonuses paid when you first achieve a new rank on the Tech Ladder. Ranges from $250 (Bronze) to $30,000 (Elite). Total potential: $93,750. Paid once per rank per lifetime.',
+    example: 'Hit Gold rank for the first time → Receive $3,000 one-time bonus. Drop to Silver and re-qualify for Gold → No second bonus.',
+    category: 'Incentives',
+  },
+  {
+    term: 'Ranked Override Schedule',
+    definition: 'The percentage rates you earn on each level (L1-L5) based on your current Tech Ladder rank. Higher ranks unlock more levels and higher percentages.',
+    example: 'Silver: L1=30%, L2=10%, L3=5%. Gold: L1=30%, L2=15%, L3=10%, L4=5%.',
+    category: 'Overrides',
+  },
+  {
+    term: 'Retail Price',
+    definition: 'The full price non-distributors pay for products. Higher than member price. Retail sales generate more credits and commissions than member sales.',
+    example: 'PulseFlow: Retail $149 → 75 credits and $41.62 commission. Member $129 → 65 credits and $36.03 commission.',
+    category: 'Products',
+  },
+  {
+    term: 'Tech Ladder (Technology Ladder)',
+    definition: 'The primary advancement path for all reps. 9 ranks from Starter to Elite based on personal credits, group credits, and sponsored downline rank requirements.',
+    example: 'Advance from Starter (no requirements) → Bronze (150 personal, 300 group) → Silver (500 personal, 1,500 group).',
+    category: 'Dual Ladder',
+  },
+  {
+    term: 'Vesting',
+    definition: 'The gradual earning of Leadership Pool shares over time. Pre-launch leaders vest over 24 months. Launch phase vests over 18 months. Growth phase vests over 12 months. Diamond rank accelerates to 100% immediately.',
+    example: 'You get 100 shares with 24-month vesting. After 12 months, 50 shares are vested. Hit Diamond → Remaining 50 shares vest immediately.',
+    category: 'Leadership',
+  },
+  {
+    term: 'Waterfall',
+    definition: 'The revenue distribution flow from customer payment through BotMakers (30%), Apex (21%), Bonus Pool (1.7%), Leadership Pool (0.7%), Commission Pool (44%), then split to seller (60%) and override pool (40%).',
+    example: 'Customer pays $100 → $30 BotMakers, $21 Apex, $1.70 Bonus Pool, $0.70 Leadership Pool, $44 Commission Pool → $26.40 to you, $17.60 to override pool.',
+    category: 'Core Concepts',
   },
 ];
 
-export default async function GlossaryPage() {
-  const supabase = await createClient();
+const categories = ['All', 'Core Concepts', 'Commissions', 'Overrides', 'Products', 'Incentives', 'Dual Ladder', 'Insurance Ladder', 'Leadership'];
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+export default function GlossaryPage() {
+  const router = useRouter();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
-  if (!user) {
-    redirect('/login');
+  useEffect(() => {
+    const checkAuth = async () => {
+      const supabase = createClient();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (!user) {
+        router.push('/login');
+      } else {
+        setIsAuthenticated(true);
+      }
+      setIsLoading(false);
+    };
+
+    checkAuth();
+  }, [router]);
+
+  const filteredTerms = glossaryTerms.filter((term) => {
+    const matchesSearch =
+      searchQuery === '' ||
+      term.term.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      term.definition.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      term.example.toLowerCase().includes(searchQuery.toLowerCase());
+
+    const matchesCategory = selectedCategory === 'All' || term.category === selectedCategory;
+
+    return matchesSearch && matchesCategory;
+  });
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-gray-600">Loading...</div>
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return null;
   }
 
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-gradient-to-r from-[#2B4C7E] to-[#567EBB] text-white py-12">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Link
-            href="/dashboard/compensation"
-            className="inline-flex items-center text-white hover:text-white mb-4 transition-colors"
-          >
-            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            Back to Compensation Plan
-          </Link>
-          <h1 className="text-4xl font-bold mb-4">📖 Compensation Plan Glossary</h1>
-          <p className="text-xl text-white">
-            Simple explanations of all the terms you'll see in our compensation plan. No jargon, just clear definitions.
-          </p>
+      <div className="bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="max-w-3xl">
+            <div className="mb-6">
+              <Link
+                href="/dashboard/compensation"
+                className="text-slate-300 hover:text-white transition-colors inline-flex items-center text-sm"
+              >
+                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+                Back to Compensation Plan
+              </Link>
+            </div>
+            <h1 className="text-4xl font-bold mb-4">Compensation Glossary</h1>
+            <p className="text-xl text-slate-200 leading-relaxed">
+              Clear definitions of terms used in the dual-ladder compensation system.
+            </p>
+          </div>
         </div>
       </div>
 
-      {/* Glossary Terms */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="bg-blue-50 border-l-4 border-[#2B4C7E] p-6 mb-8 rounded-r-lg">
-          <p className="text-gray-700">
-            <strong>Tip:</strong> Bookmark this page! You can come back anytime you see a term you don't understand.
-          </p>
-        </div>
-
-        <div className="space-y-6">
-          {glossaryTerms.map((item) => (
-            <div
-              key={item.term}
-              className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow"
-            >
-              <h3 className="text-xl font-bold text-[#2B4C7E] mb-3">{item.term}</h3>
-              <p className="text-gray-700 mb-4 leading-relaxed">{item.definition}</p>
-              <div className="bg-gray-50 border-l-4 border-green-400 p-4 rounded-r">
-                <p className="text-sm font-semibold text-gray-600 mb-1">Example:</p>
-                <p className="text-gray-700">{item.example}</p>
+      {/* Filter Bar */}
+      <div className="sticky top-0 z-30 bg-white border-b border-slate-200 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          {/* Search */}
+          <div className="mb-4">
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <svg className="h-5 w-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
               </div>
+              <input
+                type="text"
+                placeholder="Search terms..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="block w-full pl-10 pr-3 py-2.5 border border-slate-300 rounded-lg bg-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-slate-500"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600"
+                >
+                  <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              )}
             </div>
-          ))}
-        </div>
+          </div>
 
-        {/* Bottom CTA */}
-        <div className="mt-12 bg-gradient-to-r from-[#2B4C7E] to-[#567EBB] text-white rounded-lg p-8 text-center">
-          <h2 className="text-2xl font-bold mb-4">Still Have Questions?</h2>
-          <p className="mb-6">
-            The best way to learn is by doing! Start building your team and see these concepts in action.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/dashboard/compensation/calculator"
-              className="bg-white text-[#2B4C7E] px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
-            >
-              Try the Calculator
-            </Link>
-            <Link
-              href="/dashboard/compensation"
-              className="bg-blue-800/50 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800/70 transition-colors border border-blue-400/30"
-            >
-              View All Commission Types
-            </Link>
+          {/* Category Filters */}
+          <div className="flex items-center gap-2 overflow-x-auto pb-2">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`px-4 py-2 rounded-lg text-sm font-semibold whitespace-nowrap transition-all ${
+                  selectedCategory === category
+                    ? 'bg-slate-900 text-white shadow-md'
+                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+
+          {/* Results Counter */}
+          <div className="mt-3 text-sm text-slate-600">
+            Showing <span className="font-semibold text-slate-900">{filteredTerms.length}</span> of{' '}
+            <span className="font-semibold text-slate-900">{glossaryTerms.length}</span> terms
+            {(searchQuery || selectedCategory !== 'All') && (
+              <button
+                onClick={() => {
+                  setSearchQuery('');
+                  setSelectedCategory('All');
+                }}
+                className="ml-3 text-slate-700 hover:text-slate-900 font-semibold"
+              >
+                Clear filters
+              </button>
+            )}
           </div>
         </div>
+      </div>
+
+      {/* Terms List */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {filteredTerms.length > 0 ? (
+          <div className="space-y-6">
+            {filteredTerms.map((term, idx) => (
+              <div key={idx} className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
+                <div className="flex items-start justify-between mb-3">
+                  <h3 className="text-2xl font-bold text-slate-900">{term.term}</h3>
+                  <span className="inline-block px-3 py-1 bg-slate-100 text-slate-700 text-xs font-semibold rounded-full">
+                    {term.category}
+                  </span>
+                </div>
+                <p className="text-slate-700 leading-relaxed mb-4">{term.definition}</p>
+                <div className="bg-slate-50 border-l-4 border-slate-400 rounded-r-lg p-4">
+                  <div className="font-semibold text-slate-900 text-sm mb-1">Example:</div>
+                  <p className="text-slate-700 text-sm leading-relaxed">{term.example}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          // Empty State
+          <div className="text-center py-16">
+            <div className="inline-block p-4 bg-slate-100 rounded-full mb-4">
+              <svg className="w-12 h-12 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 className="text-lg font-semibold text-slate-900 mb-2">No terms found</h3>
+            <p className="text-slate-600 mb-6">
+              Try adjusting your search or filter to find what you're looking for.
+            </p>
+            <button
+              onClick={() => {
+                setSearchQuery('');
+                setSelectedCategory('All');
+              }}
+              className="bg-slate-900 text-white px-6 py-2 rounded-lg font-semibold hover:bg-slate-800 transition-colors"
+            >
+              Clear all filters
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
