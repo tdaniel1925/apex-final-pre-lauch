@@ -36,9 +36,9 @@ interface IPipelineLauncherProps {
   /** Default product to launch */
   defaultProduct?: IPipelineProduct;
   /** Button variant */
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger' | 'default';
+  variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link';
   /** Button size */
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'default' | 'sm' | 'lg' | 'icon';
   /** Custom button text */
   buttonText?: string;
   /** Show product selector */

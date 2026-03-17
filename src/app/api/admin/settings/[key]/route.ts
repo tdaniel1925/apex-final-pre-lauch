@@ -9,9 +9,9 @@ import { createClient } from '@/lib/supabase/server';
 import { requireAdmin } from '@/lib/auth/admin';
 
 interface RouteContext {
-  params: {
+  params: Promise<{
     key: string;
-  };
+  }>;
 }
 
 // GET single setting
@@ -23,7 +23,7 @@ export async function GET(
     await requireAdmin();
 
     const supabase = await createClient();
-    const { key } = params;
+    const { key } = await params;
 
     const { data: setting, error } = await supabase
       .from('system_settings')
@@ -81,7 +81,7 @@ export async function PUT(
     const adminContext = await requireAdmin();
 
     const supabase = await createClient();
-    const { key } = params;
+    const { key } = await params;
     const body = await request.json();
 
     const { value } = body;
