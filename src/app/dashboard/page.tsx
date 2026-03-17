@@ -17,8 +17,9 @@ import CEOVideoSection from '@/components/dashboard/CEOVideoSection';
 import CompensationStatsWidget from '@/components/dashboard/CompensationStatsWidget';
 import ActivityFeed from '@/components/dashboard/ActivityFeed';
 import DashboardClient from '@/components/dashboard/DashboardClient';
+import CopyReferralButton from '@/components/dashboard/CopyReferralButton';
 import type { Distributor } from '@/lib/types';
-import { ArrowRight, Users, Link as LinkIcon, FileText, MessageCircle } from 'lucide-react';
+import { ArrowRight, Users, FileText, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
 
 export const metadata = {
@@ -258,27 +259,7 @@ export default async function DashboardPage() {
             </Link>
 
             {/* Share Referral Link */}
-            <button
-              type="button"
-              className="group bg-white rounded-lg shadow-md p-6 border border-slate-200 hover:border-slate-400 hover:shadow-lg transition-all text-left"
-              onClick={() => {
-                const referralLink = `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3050'}/${dist.slug}`;
-                navigator.clipboard.writeText(referralLink);
-              }}
-            >
-              <div className="flex items-center justify-between">
-                <div className="p-3 bg-slate-100 rounded-lg group-hover:bg-slate-200 transition-colors">
-                  <LinkIcon className="w-6 h-6 text-slate-700" />
-                </div>
-                <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-slate-600 transition-colors" />
-              </div>
-              <h3 className="mt-4 text-lg font-semibold text-slate-900">
-                Share Referral Link
-              </h3>
-              <p className="text-sm text-slate-600 mt-1">
-                Copy to clipboard
-              </p>
-            </button>
+            <CopyReferralButton slug={dist.slug} />
 
             {/* View Compensation Plan */}
             <Link
