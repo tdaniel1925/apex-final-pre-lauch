@@ -1,0 +1,634 @@
+{
+  "info": {
+    "name": "Apex Platform Integrations",
+    "description": "Complete API collection for integrating external platforms with Apex.\n\nIncludes:\n- User Creation API (for external platforms to implement)\n- Sales Webhook API (for sending sale events to Apex)\n- HMAC signature generation examples\n- Environment variables for sandbox and production\n\nDocumentation: https://developers.theapexway.net",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "12345678"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{apex_api_key}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://sandbox.theapexway.net/api",
+      "type": "string"
+    },
+    {
+      "key": "platform_name",
+      "value": "yourplatform",
+      "type": "string"
+    },
+    {
+      "key": "apex_api_key",
+      "value": "sk_test_your_api_key_here",
+      "type": "string"
+    },
+    {
+      "key": "webhook_secret",
+      "value": "whsec_test_your_webhook_secret_here",
+      "type": "string"
+    },
+    {
+      "key": "platform_api_key",
+      "value": "your_platform_api_key",
+      "type": "string"
+    },
+    {
+      "key": "platform_base_url",
+      "value": "https://platform.example.com/api/v1",
+      "type": "string"
+    },
+    {
+      "key": "test_distributor_id",
+      "value": "00000000-0000-0000-0000-000000000001",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "User Creation API",
+      "item": [
+        {
+          "name": "Create User (Success)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 201\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has success=true\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.success).to.eql(true);",
+                  "});",
+                  "",
+                  "pm.test(\"Response contains user_id\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.user_id).to.exist;",
+                  "});",
+                  "",
+                  "pm.test(\"Response contains site_url\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.site_url).to.exist;",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{platform_api_key}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john.doe@example.com\",\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"username\": \"johndoe\",\n  \"company_name\": \"John Doe Insurance\",\n  \"phone\": \"+1-555-123-4567\",\n  \"apex_distributor_id\": \"{{test_distributor_id}}\",\n  \"apex_member_id\": \"M123456\",\n  \"apex_affiliate_code\": \"JD8X9K2L\",\n  \"apex_sponsor\": {\n    \"id\": \"650e8400-e29b-41d4-a716-446655440001\",\n    \"name\": \"Jane Smith\",\n    \"email\": \"jane.smith@example.com\"\n  },\n  \"metadata\": {\n    \"licensing_status\": \"licensed\",\n    \"onboarding_complete\": true,\n    \"signup_date\": \"2026-03-17T10:30:00Z\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{platform_base_url}}/apex/users",
+              "host": ["{{platform_base_url}}"],
+              "path": ["apex", "users"]
+            },
+            "description": "Creates a new user account on the external platform. This endpoint should be implemented by the external platform.\n\nApex will call this endpoint when a new distributor joins."
+          },
+          "response": [
+            {
+              "name": "Success - User Created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{platform_api_key}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"john.doe@example.com\",\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"username\": \"johndoe\",\n  \"apex_distributor_id\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{platform_base_url}}/apex/users",
+                  "host": ["{{platform_base_url}}"],
+                  "path": ["apex", "users"]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"success\": true,\n  \"user_id\": \"ext_user_7a9b3c4d5e6f\",\n  \"username\": \"johndoe\",\n  \"site_url\": \"https://platform.example.com/johndoe\",\n  \"dashboard_url\": \"https://platform.example.com/dashboard/johndoe\",\n  \"api_key\": \"sk_live_a1b2c3d4e5f6g7h8i9j0\",\n  \"onboarding_url\": \"https://platform.example.com/onboard?token=abc123xyz\",\n  \"created_at\": \"2026-03-17T10:30:15Z\",\n  \"message\": \"User account created successfully\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Create User (Idempotent - Already Exists)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response indicates user already exists\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.success).to.eql(true);",
+                  "    pm.expect(jsonData.message).to.include('already exists');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{platform_api_key}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"existing.user@example.com\",\n  \"first_name\": \"Existing\",\n  \"last_name\": \"User\",\n  \"username\": \"existinguser\",\n  \"apex_distributor_id\": \"{{test_distributor_id}}\",\n  \"apex_member_id\": \"M123456\",\n  \"apex_affiliate_code\": \"EXIST8KY\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{platform_base_url}}/apex/users",
+              "host": ["{{platform_base_url}}"],
+              "path": ["apex", "users"]
+            },
+            "description": "Tests idempotency by attempting to create a user with an apex_distributor_id that already exists.\n\nShould return 200 OK with existing user data instead of creating a duplicate."
+          },
+          "response": []
+        },
+        {
+          "name": "Create User (Missing Required Fields)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test(\"Error indicates missing fields\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.success).to.eql(false);",
+                  "    pm.expect(jsonData.error).to.eql('INVALID_REQUEST');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{platform_api_key}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"incomplete@example.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{platform_base_url}}/apex/users",
+              "host": ["{{platform_base_url}}"],
+              "path": ["apex", "users"]
+            },
+            "description": "Tests validation by sending a request with missing required fields.\n\nShould return 400 Bad Request."
+          },
+          "response": []
+        },
+        {
+          "name": "Create User (Unauthorized)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 401\", function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});",
+                  "",
+                  "pm.test(\"Error indicates unauthorized\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.success).to.eql(false);",
+                  "    pm.expect(jsonData.error).to.eql('UNAUTHORIZED');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer invalid_api_key",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"first_name\": \"Test\",\n  \"last_name\": \"User\",\n  \"apex_distributor_id\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{platform_base_url}}/apex/users",
+              "host": ["{{platform_base_url}}"],
+              "path": ["apex", "users"]
+            },
+            "description": "Tests authentication by using an invalid API key.\n\nShould return 401 Unauthorized."
+          },
+          "response": []
+        }
+      ],
+      "description": "Endpoints that external platforms must implement to receive user creation requests from Apex."
+    },
+    {
+      "name": "Webhook API (Send to Apex)",
+      "item": [
+        {
+          "name": "Send Sale Created Webhook",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// Generate HMAC signature for webhook",
+                  "const webhookSecret = pm.environment.get('webhook_secret') || pm.collectionVariables.get('webhook_secret');",
+                  "",
+                  "// Get the request body",
+                  "const requestBody = JSON.parse(pm.request.body.raw);",
+                  "",
+                  "// Generate signature",
+                  "const payloadString = JSON.stringify(requestBody);",
+                  "const signature = CryptoJS.HmacSHA256(payloadString, webhookSecret).toString(CryptoJS.enc.Hex);",
+                  "",
+                  "// Set headers",
+                  "pm.request.headers.add({",
+                  "    key: 'X-Platform-Signature',",
+                  "    value: signature",
+                  "});",
+                  "",
+                  "pm.request.headers.add({",
+                  "    key: 'X-Event-ID',",
+                  "    value: 'evt_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9)",
+                  "});",
+                  "",
+                  "pm.request.headers.add({",
+                  "    key: 'X-Event-Timestamp',",
+                  "    value: Math.floor(Date.now() / 1000).toString()",
+                  "});",
+                  "",
+                  "console.log('Generated signature:', signature);"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Webhook processed successfully\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.success).to.eql(true);",
+                  "    pm.expect(jsonData.event_id).to.exist;",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"event\": \"sale.created\",\n  \"event_id\": \"evt_7f8g9h0i1j2k3l4m\",\n  \"timestamp\": \"{{$isoTimestamp}}\",\n  \"platform\": {\n    \"name\": \"{{platform_name}}\",\n    \"version\": \"1.0.0\"\n  },\n  \"seller\": {\n    \"user_id\": \"ext_user_7a9b3c4d5e6f\",\n    \"apex_distributor_id\": \"{{test_distributor_id}}\",\n    \"apex_member_id\": \"M123456\",\n    \"email\": \"john.doe@example.com\",\n    \"name\": \"John Doe\"\n  },\n  \"order\": {\n    \"order_id\": \"ord_8k9l0m1n2o3p\",\n    \"order_number\": \"ORD-2026-03-1234\",\n    \"status\": \"completed\"\n  },\n  \"product\": {\n    \"product_id\": \"prod_5e6f7g8h9i0j\",\n    \"product_name\": \"Business Starter Pack\",\n    \"product_sku\": \"BSP-001\",\n    \"product_category\": \"digital_products\"\n  },\n  \"transaction\": {\n    \"amount\": 99.00,\n    \"currency\": \"USD\",\n    \"payment_method\": \"credit_card\",\n    \"transaction_id\": \"txn_1a2b3c4d5e6f\"\n  },\n  \"customer\": {\n    \"customer_id\": \"cust_9j8k7l6m5n4o\",\n    \"email\": \"customer@example.com\",\n    \"name\": \"Jane Smith\",\n    \"phone\": \"+1-555-987-6543\"\n  },\n  \"metadata\": {\n    \"commission_eligible\": true,\n    \"sale_type\": \"direct\",\n    \"channel\": \"web\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/webhooks/{{platform_name}}",
+              "host": ["{{base_url}}"],
+              "path": ["webhooks", "{{platform_name}}"]
+            },
+            "description": "Sends a sale.created webhook event to Apex.\n\nThe pre-request script automatically generates the HMAC signature using the webhook secret."
+          },
+          "response": [
+            {
+              "name": "Success - Webhook Processed",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-Platform-Signature",
+                    "value": "abc123..."
+                  },
+                  {
+                    "key": "X-Event-ID",
+                    "value": "evt_unique_123"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"event\": \"sale.created\",\n  \"seller\": {\n    \"apex_distributor_id\": \"550e8400-e29b-41d4-a716-446655440000\"\n  },\n  \"transaction\": {\n    \"amount\": 99.00\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/webhooks/{{platform_name}}",
+                  "host": ["{{base_url}}"],
+                  "path": ["webhooks", "{{platform_name}}"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"success\": true,\n  \"message\": \"Webhook processed successfully\",\n  \"event_id\": \"evt_7f8g9h0i1j2k3l4m\",\n  \"processed_at\": \"2026-03-17T14:25:35Z\",\n  \"apex_order_id\": \"ord_apex_5a6b7c8d9e0f\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Send Subscription Created Webhook",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// Generate HMAC signature for webhook",
+                  "const webhookSecret = pm.environment.get('webhook_secret') || pm.collectionVariables.get('webhook_secret');",
+                  "const requestBody = JSON.parse(pm.request.body.raw);",
+                  "const payloadString = JSON.stringify(requestBody);",
+                  "const signature = CryptoJS.HmacSHA256(payloadString, webhookSecret).toString(CryptoJS.enc.Hex);",
+                  "",
+                  "pm.request.headers.upsert({key: 'X-Platform-Signature', value: signature});",
+                  "pm.request.headers.upsert({key: 'X-Event-ID', value: 'evt_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9)});",
+                  "pm.request.headers.upsert({key: 'X-Event-Timestamp', value: Math.floor(Date.now() / 1000).toString()});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"event\": \"subscription.created\",\n  \"event_id\": \"evt_sub_9a8b7c6d5e4f\",\n  \"timestamp\": \"{{$isoTimestamp}}\",\n  \"platform\": {\n    \"name\": \"{{platform_name}}\",\n    \"version\": \"1.0.0\"\n  },\n  \"seller\": {\n    \"user_id\": \"ext_user_7a9b3c4d5e6f\",\n    \"apex_distributor_id\": \"{{test_distributor_id}}\",\n    \"apex_member_id\": \"M123456\",\n    \"email\": \"john.doe@example.com\",\n    \"name\": \"John Doe\"\n  },\n  \"order\": {\n    \"order_id\": \"ord_sub_1a2b3c4d\",\n    \"order_number\": \"SUB-2026-03-5678\",\n    \"status\": \"active\"\n  },\n  \"product\": {\n    \"product_id\": \"prod_monthly_sub\",\n    \"product_name\": \"Monthly Premium Subscription\",\n    \"product_sku\": \"SUB-MONTHLY-001\",\n    \"product_category\": \"subscription\"\n  },\n  \"transaction\": {\n    \"amount\": 49.99,\n    \"currency\": \"USD\",\n    \"payment_method\": \"credit_card\",\n    \"transaction_id\": \"txn_sub_5e6f7g8h\"\n  },\n  \"customer\": {\n    \"customer_id\": \"cust_repeat_customer\",\n    \"email\": \"subscriber@example.com\",\n    \"name\": \"Sarah Johnson\"\n  },\n  \"metadata\": {\n    \"commission_eligible\": true,\n    \"sale_type\": \"subscription\",\n    \"subscription_interval\": \"monthly\",\n    \"channel\": \"web\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/webhooks/{{platform_name}}",
+              "host": ["{{base_url}}"],
+              "path": ["webhooks", "{{platform_name}}"]
+            },
+            "description": "Sends a subscription.created webhook event to Apex for recurring revenue tracking."
+          },
+          "response": []
+        },
+        {
+          "name": "Send Sale Refunded Webhook",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// Generate HMAC signature for webhook",
+                  "const webhookSecret = pm.environment.get('webhook_secret') || pm.collectionVariables.get('webhook_secret');",
+                  "const requestBody = JSON.parse(pm.request.body.raw);",
+                  "const payloadString = JSON.stringify(requestBody);",
+                  "const signature = CryptoJS.HmacSHA256(payloadString, webhookSecret).toString(CryptoJS.enc.Hex);",
+                  "",
+                  "pm.request.headers.upsert({key: 'X-Platform-Signature', value: signature});",
+                  "pm.request.headers.upsert({key: 'X-Event-ID', value: 'evt_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9)});",
+                  "pm.request.headers.upsert({key: 'X-Event-Timestamp', value: Math.floor(Date.now() / 1000).toString()});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"event\": \"sale.refunded\",\n  \"event_id\": \"evt_refund_1a2b3c4d\",\n  \"timestamp\": \"{{$isoTimestamp}}\",\n  \"platform\": {\n    \"name\": \"{{platform_name}}\",\n    \"version\": \"1.0.0\"\n  },\n  \"seller\": {\n    \"user_id\": \"ext_user_7a9b3c4d5e6f\",\n    \"apex_distributor_id\": \"{{test_distributor_id}}\",\n    \"apex_member_id\": \"M123456\",\n    \"email\": \"john.doe@example.com\",\n    \"name\": \"John Doe\"\n  },\n  \"order\": {\n    \"order_id\": \"ord_refunded_order\",\n    \"order_number\": \"ORD-2026-03-9999\",\n    \"status\": \"refunded\"\n  },\n  \"product\": {\n    \"product_id\": \"prod_5e6f7g8h9i0j\",\n    \"product_name\": \"Business Starter Pack\",\n    \"product_sku\": \"BSP-001\"\n  },\n  \"transaction\": {\n    \"amount\": 99.00,\n    \"currency\": \"USD\",\n    \"payment_method\": \"credit_card\",\n    \"transaction_id\": \"txn_refund_abc123\",\n    \"original_transaction_id\": \"txn_1a2b3c4d5e6f\"\n  },\n  \"customer\": {\n    \"customer_id\": \"cust_9j8k7l6m5n4o\",\n    \"email\": \"customer@example.com\",\n    \"name\": \"Jane Smith\"\n  },\n  \"metadata\": {\n    \"refund_reason\": \"customer_request\",\n    \"commission_reversal_required\": true\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/webhooks/{{platform_name}}",
+              "host": ["{{base_url}}"],
+              "path": ["webhooks", "{{platform_name}}"]
+            },
+            "description": "Sends a sale.refunded webhook event to Apex to reverse commissions."
+          },
+          "response": []
+        }
+      ],
+      "description": "Webhooks that external platforms send to Apex for tracking sales and commissions."
+    },
+    {
+      "name": "Testing & Validation",
+      "item": [
+        {
+          "name": "Verify Signature Generation",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// This is a test request to verify your signature generation logic",
+                  "const webhookSecret = pm.environment.get('webhook_secret') || pm.collectionVariables.get('webhook_secret');",
+                  "",
+                  "const testPayload = {",
+                  "    \"event\": \"sale.created\",",
+                  "    \"amount\": 99.00",
+                  "};",
+                  "",
+                  "const payloadString = JSON.stringify(testPayload);",
+                  "const expectedSignature = CryptoJS.HmacSHA256(payloadString, webhookSecret).toString(CryptoJS.enc.Hex);",
+                  "",
+                  "console.log('Test Payload:', payloadString);",
+                  "console.log('Webhook Secret:', webhookSecret.substring(0, 10) + '...');",
+                  "console.log('Generated Signature:', expectedSignature);",
+                  "",
+                  "pm.test(\"Signature generated successfully\", function () {",
+                  "    pm.expect(expectedSignature).to.be.a('string');",
+                  "    pm.expect(expectedSignature).to.have.lengthOf(64); // SHA256 hex is 64 chars",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/health",
+              "host": ["{{base_url}}"],
+              "path": ["health"]
+            },
+            "description": "This is a utility request to test HMAC signature generation.\n\nCheck the Test Results tab to see the generated signature."
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}
