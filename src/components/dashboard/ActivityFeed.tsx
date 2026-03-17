@@ -54,16 +54,16 @@ export default function ActivityFeed({ distributorId, initialActivities = [] }: 
 
   // Fetch on mount and when filters change
   useEffect(() => {
-    // Delay initial fetch by 2 seconds to avoid concurrent requests on page load
-    const initialTimeout = setTimeout(() => {
+    // Only fetch if filters change OR if we don't have initial data
+    // Skip initial fetch if we already have data from server-side render
+    if (initialActivities.length === 0 || eventTypeFilter !== 'all' || periodFilter !== 'week' || maxDepthFilter !== 7) {
       fetchActivities();
-    }, 2000);
+    }
 
-    // Auto-refresh every 60 seconds
+    // Auto-refresh every 60 seconds (but not immediately)
     const interval = setInterval(fetchActivities, 60000);
 
     return () => {
-      clearTimeout(initialTimeout);
       clearInterval(interval);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps

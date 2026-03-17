@@ -121,6 +121,51 @@ export default async function DashboardPage() {
   // Sum all approved earnings for this month
   const monthlyEarnings = earnings?.reduce((sum, e) => sum + (e.amount_usd || 0), 0) || 0;
 
+  // Fetch activity feed data server-side (to avoid concurrent auth token usage)
+  const { data: activityData } = await serviceClient
+    .from('activity_feed')
+    .select(`
+      id,
+      actor_id,
+      target_id,
+      event_type,
+      event_title,
+      event_description,
+      metadata,
+      depth_from_root,
+      created_at,
+      actor:distributors!activity_feed_actor_id_fkey(
+        first_name,
+        last_name,
+        slug,
+        profile_photo_url
+      ),
+      target:distributors!activity_feed_target_id_fkey(
+        first_name,
+        last_name
+      )
+    `)
+    .eq('organization_root_id', dist.id)
+    .order('created_at', { ascending: false })
+    .limit(50);
+
+  // Transform activity data
+  const initialActivities = (activityData || []).map((activity: any) => ({
+    id: activity.id,
+    actor_id: activity.actor_id,
+    actor_name: activity.actor ? `${activity.actor.first_name} ${activity.actor.last_name}` : 'Unknown',
+    actor_slug: activity.actor?.slug || '',
+    actor_photo_url: activity.actor?.profile_photo_url || null,
+    target_id: activity.target_id,
+    target_name: activity.target ? `${activity.target.first_name} ${activity.target.last_name}` : null,
+    event_type: activity.event_type,
+    event_title: activity.event_title,
+    event_description: activity.event_description,
+    metadata: activity.metadata || {},
+    depth_from_root: activity.depth_from_root,
+    created_at: activity.created_at,
+  }));
+
   // Calculate rank progress
   const nextRank = getNextRank(currentRank);
   const currentRankReq = TECH_RANK_REQUIREMENTS[currentRank.toLowerCase() as keyof typeof TECH_RANK_REQUIREMENTS] || TECH_RANK_REQUIREMENTS.starter;
@@ -283,7 +328,7 @@ export default async function DashboardPage() {
               </p>
             </div>
             <div className="p-6">
-              <ActivityFeed distributorId={dist.id} />
+              <ActivityFeed distributorId={dist.id} initialActivities={initialActivities} />
             </div>
           </div>
         </div>
