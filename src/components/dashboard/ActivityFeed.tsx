@@ -31,6 +31,13 @@ export default function ActivityFeed({ initialActivities = [] }: ActivityFeedPro
       params.append('limit', '50');
 
       const response = await fetch(`/api/activity-feed?${params.toString()}`);
+
+      // Handle auth errors (stale tokens) by redirecting to login
+      if (response.status === 401) {
+        window.location.href = '/login';
+        return;
+      }
+
       const result = await response.json();
 
       if (result.success) {
