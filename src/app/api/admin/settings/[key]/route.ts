@@ -17,13 +17,13 @@ interface RouteContext {
 // GET single setting
 export async function GET(
   request: NextRequest,
-  { params }: RouteContext
+  context: RouteContext
 ) {
   try {
     await requireAdmin();
 
     const supabase = await createClient();
-    const { key } = await params;
+    const { key } = await context.params;
 
     const { data: setting, error } = await supabase
       .from('system_settings')
@@ -75,13 +75,13 @@ export async function GET(
 // PUT update setting
 export async function PUT(
   request: NextRequest,
-  { params }: RouteContext
+  context: RouteContext
 ) {
   try {
     const adminContext = await requireAdmin();
 
     const supabase = await createClient();
-    const { key } = await params;
+    const { key } = await context.params;
     const body = await request.json();
 
     const { value } = body;
