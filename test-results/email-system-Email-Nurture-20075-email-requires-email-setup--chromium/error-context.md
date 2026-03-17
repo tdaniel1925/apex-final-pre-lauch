@@ -1,0 +1,84 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - img "Apex Affinity Group" [ref=e5]
+    - generic [ref=e6]:
+      - heading "Join Apex Affinity Group" [level=1] [ref=e7]
+      - paragraph [ref=e8]: Create your distributor account and start building your business
+    - generic [ref=e10]:
+      - generic [ref=e11]:
+        - paragraph [ref=e12]: You've been invited by
+        - paragraph [ref=e13]: Apex Vision
+      - generic [ref=e14]:
+        - generic [ref=e15]:
+          - generic [ref=e16]:
+            - generic [ref=e17]: First Name *
+            - textbox "First Name *" [ref=e18]: Test
+          - generic [ref=e19]:
+            - generic [ref=e20]: Last Name *
+            - textbox "Last Name *" [ref=e21]: User
+        - generic [ref=e22]:
+          - generic [ref=e23]: Email *
+          - textbox "Email *" [ref=e24]: test-1773722294958@example.com
+        - generic [ref=e25]:
+          - generic [ref=e26]: Password *
+          - generic [ref=e27]:
+            - textbox "Password *" [ref=e28]: TestPass123!
+            - button "Show" [ref=e29]
+          - paragraph [ref=e37]: Very Strong
+        - generic [ref=e38]:
+          - generic [ref=e39]: Username *
+          - generic [ref=e40]:
+            - textbox "Username *" [ref=e41]: test-user-1773722295564
+            - generic [ref=e42]: ✓
+          - paragraph [ref=e43]: "Your referral link: reachtheapex.net/test-user-1773722295564"
+          - paragraph [ref=e44]: Use lowercase letters, numbers, and hyphens only (we'll auto-convert for you)
+        - generic [ref=e45]:
+          - generic [ref=e46]: Company Name (Optional)
+          - textbox "Company Name (Optional)" [ref=e47]
+        - generic [ref=e48]:
+          - generic [ref=e49]: Phone (Optional)
+          - textbox "Phone (Optional)" [ref=e50]
+        - generic [ref=e51]:
+          - generic [ref=e52]: Social Security Number *
+          - textbox "Social Security Number *" [active] [ref=e53]:
+            - /placeholder: XXX-XX-XXXX
+          - paragraph [ref=e54]: Social Security Number is required
+          - generic [ref=e56]:
+            - img [ref=e57]
+            - generic [ref=e59]:
+              - paragraph [ref=e60]: "Why we collect your Social Security Number:"
+              - paragraph [ref=e61]: Federal law requires us to collect your SSN for tax reporting purposes (IRS Form 1099) and to comply with anti-money laundering regulations under the Bank Secrecy Act and USA PATRIOT Act. Your SSN is encrypted and stored securely and will only be used for required tax reporting and identity verification.
+        - generic [ref=e62]:
+          - generic [ref=e63]: Are you a licensed insurance agent? *
+          - generic [ref=e64]:
+            - generic [ref=e65] [cursor=pointer]:
+              - radio "Yes, I am licensed I hold an active insurance license and will provide documentation. I'll have access to all features including license management, advanced commissions, and client tools." [checked] [ref=e66]
+              - generic [ref=e67]:
+                - generic [ref=e68]:
+                  - img [ref=e69]
+                  - generic [ref=e71]: Yes, I am licensed
+                - paragraph [ref=e72]: I hold an active insurance license and will provide documentation. I'll have access to all features including license management, advanced commissions, and client tools.
+            - generic [ref=e73] [cursor=pointer]:
+              - radio "No, I am not licensed I will participate in referral and team-building activities. I'll have access to training materials, marketing tools, and team management features." [ref=e74]
+              - generic [ref=e75]:
+                - generic [ref=e76]:
+                  - img [ref=e77]
+                  - generic [ref=e79]: No, I am not licensed
+                - paragraph [ref=e80]: I will participate in referral and team-building activities. I'll have access to training materials, marketing tools, and team management features.
+          - paragraph [ref=e81]: 💡 This selection determines which features and tools will be available in your dashboard. You can change this later from your profile settings.
+        - button "Join Apex Today" [ref=e82]
+        - paragraph [ref=e83]:
+          - text: Already have an account?
+          - link "Sign In" [ref=e84] [cursor=pointer]:
+            - /url: /login
+    - paragraph [ref=e86]:
+      - text: Already have an account?
+      - link "Sign In" [ref=e87] [cursor=pointer]:
+        - /url: /login
+  - button "Open Next.js Dev Tools" [ref=e93] [cursor=pointer]:
+    - img [ref=e94]
+  - alert [ref=e97]
+```

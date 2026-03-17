@@ -1,0 +1,238 @@
+DATABASE SCHEMA ANALYSIS - APEX COMPENSATION ENGINE
+
+PART 1: CORE MEMBERS TABLE (public.members)
+================================================
+
+Key Relationship Columns:
+- member_id (UUID) PRIMARY KEY
+- distributor_id (UUID) - Links to distributors table (one-to-one)
+- enroller_id (UUID) - Personal upline (IMMUTABLE - never changes after set)
+- sponsor_id (UUID) - Matrix sponsor for positional overrides
+
+Tech Ladder Columns (9 ranks):
+- tech_rank (starter → elite)
+- highest_tech_rank (for rank bonuses)
+- tech_rank_achieved_date
+- tech_rank_promotion_scheduled (promotions take effect next month)
+- tech_rank_grace_period_start (2-month grace before demotion)
+- tech_rank_lock_until (6-month lock for new reps)
+
+Insurance Ladder Columns (7 ranks):
+- insurance_rank (inactive → mga)
+- highest_insurance_rank
+- insurance_rank_achieved_date
+- mga_shop_id, mga_shop_name, mga_licensed_states
+
+Production Credits (Monthly):
+- personal_credits_monthly (INT) - Rep's own sales
+- team_credits_monthly (INT) - Entire downline
+- tech_personal_credits_monthly
+- tech_team_credits_monthly
+- insurance_personal_credits_monthly
+- insurance_team_credits_monthly
+
+Override Qualification:
+- override_qualified (BOOLEAN) - TRUE if personal_credits >= 50
+
+CRITICAL INSIGHT: Enroller is checked BEFORE matrix position for overrides!
+
+
+PART 2: PRODUCTS TABLE (public.products)
+========================================
+
+Product with Credit System:
+- name, slug, description
+- retail_price_cents, wholesale_price_cents
+- credit_pct (0.30, 0.50, 1.00, 0.40, or 0.00)
+- member_credits (INT) - Credits for member price
+- retail_credits (INT) - Credits for retail price
+
+Current Products:
+PulseGuard: $59/$79 member/retail, 30% credit = 18/24 credits
+PulseFlow: $129/$149, 50% credit = 65/75 credits
+PulseDrive: $219/$299, 100% credit = 219/299 credits
+PulseCommand: $349/$499, 100% credit = 349/499 credits
+SmartLook: $99/$99, 40% credit = 40/40 credits
+Business Center: $39, 0% credit = 39 credits (FIXED SPLIT)
+
+
+PART 3: SUBSCRIPTIONS TABLE (public.subscriptions)
+==================================================
+
+Recurring Orders:
+- id (UUID) PRIMARY KEY
+- customer_id or distributor_id (one or the other)
+- product_id (UUID) - Which product
+- current_price_cents
+- interval (monthly, annual, quarterly)
+- started_at, current_period_start, current_period_end
+- next_billing_date
+- status (active, past_due, canceled, paused, trialing)
+- stripe_subscription_id
+
+CRITICAL: Subscriptions are PRIMARY source of production credits
+Monthly credits = SUM(product.member_credits OR product.retail_credits) from active subs
+
+
+PART 4: EARNINGS LEDGER (public.earnings_ledger)
+================================================
+
+All Commission Payments:
+- earning_id (UUID) PRIMARY KEY
+- run_id, run_date, pay_period_start, pay_period_end
+- member_id (who earned), source_member_id (who generated)
+- earning_type: override, rank_bonus, bonus_pool, leadership_pool, fast_start_bonus, etc.
+- override_level (L1-L5), override_percentage (30%, 25%, 20%, 15%, 10%)
+- member_tech_rank (snapshot)
+- base_amount_cents, adjustment_cents, final_amount_cents
+- status (pending, approved, paid, held, reversed, disputed)
+- paid_at, payment_method
+
+
+PART 5: WATERFALL CALCULATION
+=============================
+
+Standard Products (NOT Business Center):
+Price $499 retail example:
+1. BotMakers 30%: $149.70
+2. Adjusted Gross: $349.30
+3. Apex 30%: $104.79
+4. Remainder: $244.51
+5. Bonus Pool 3.5%: $8.56
+6. Leadership Pool 1.5%: $3.67
+7. Commission Pool: $232.28
+8. Seller 60%: $139.37 (27.9% effective)
+9. Override Pool 40%: $92.91 (distributed L1-L5)
+
+Business Center Exception:
+Fixed split (NOT waterfall):
+- Rep: $10
+- Sponsor: $8
+- BotMakers: $11
+- Apex: $8
+- Costs: $2
+- Credits: 39 (always)
+- NO override pool, bonus pool, or leadership pool
+
+
+PART 6: RANK QUALIFICATION (Tech Ladder)
+========================================
+
+9 Ranks with Credit Requirements:
+Starter: 0 personal / 0 team - $0 bonus
+Bronze: 150 / 300 - $250 bonus
+Silver: 500 / 1,500 - $1,000 bonus
+Gold: 1,200 / 5,000 + 1 Bronze downline - $3,000 bonus
+Platinum: 2,500 / 15,000 + 2 Silver downline - $7,500 bonus
+Ruby: 4,000 / 30,000 + 2 Gold downline - $12,000 bonus
+Diamond: 5,000 / 50,000 + (3 Gold OR 2 Platinum) downline - $18,000 bonus
+Crown: 6,000 / 75,000 + (2 Platinum + 1 Gold) downline - $22,000 bonus
+Elite: 8,000 / 120,000 + (3 Platinum OR 2 Diamond) downline - $30,000 bonus
+
+Total Bonuses Available: $93,750 (lifetime, one-time per rank)
+
+Override Qualification: personal_credits >= 50/month required for overrides
+
+Promotions: Evaluated end-of-month, take effect NEXT month
+
+
+PART 7: OVERRIDE SCHEDULE (% of Override Pool)
+==============================================
+
+All Ranks: L1 = 30% always
+Bronze: L1 30%, L2 5%
+Silver: L1 30%, L2 10%, L3 5%
+Gold: L1 30%, L2 15%, L3 10%, L4 5%
+Platinum: L1 30%, L2 18%, L3 12%, L4 8%, L5 3%
+Ruby: L1 30%, L2 20%, L3 15%, L4 10%, L5 5%
+Diamond: L1 30%, L2 22%, L3 18%, L4 12%, L5 8%
+Crown: L1 30%, L2 25%, L3 20%, L4 15%, L5 10%
+Elite: L1 30%, L2 25%, L3 20%, L4 15%, L5 10%
+
+CRITICAL RULE - ENROLLER OVERRIDE:
+IF org_member.enroller_id == rep.member_id THEN
+    Override = 30% of override pool (always L1)
+ELSE
+    Override = rank_schedule[matrix_level] if level unlocked, else $0
+
+
+PART 8: BONUS & LEADERSHIP POOLS
+================================
+
+Bonus Pool (3.5% of Remainder):
+- Accumulates from waterfall (NOT Business Center)
+- Allocated: 25% trips, 20% fast-start, 15% contests, 15% car allowance,
+             10% retreat, 10% enhanced rank, 5% reserve
+- Tables: bonus_pool_ledger, incentive_records
+
+Leadership Pool (1.5% of Remainder):
+- Total 1,000 shares distributed to Early Leaders
+- Eligibility: Must maintain Gold+ tech rank for payouts
+- Vesting: 24mo (founders), 18mo (launch), 12mo (growth)
+- Diamond Acceleration: 100% immediate vest if achieve Diamond
+- Table: leadership_shares
+
+
+PART 9: DATABASE TABLES SUMMARY
+==============================
+
+Core Tables:
+- distributors - Auth linked distributors
+- members - Rep/distributor identity + dual ranks
+- products - Product catalog with credit %
+- subscriptions - Monthly/annual recurring orders
+- orders - One-time purchases
+- order_items - Line items from orders
+- customers - Retail customers (non-reps)
+
+Compensation Tables:
+- earnings_ledger - All commission payments (line item detail)
+- bonus_pool_ledger - Monthly 3.5% pool tracking
+- leadership_shares - Elite member pool share allocation
+- pool_distribution_history - Audit trail
+
+Support Tables:
+- bv_snapshots - Monthly BV snapshot (personal/group)
+- business_center_subscriptions - BC tier tracking
+- product_categories - Product organization
+- crm_contacts - For Business Center CRM features
+
+Indexes:
+- idx_members_enroller - Find all direct enrollees
+- idx_members_tech_rank - Query by rank
+- idx_members_override_qualified - Find override qualified
+- idx_earnings_member - Member earnings
+- idx_earnings_run - Commission run lookup
+- idx_subscriptions_distributor - Distributor active subs
+
+
+PART 10: KEY QUERIES FOR WIRING DATA
+====================================
+
+Get downline count by rank:
+SELECT tech_rank, COUNT(*) 
+FROM members 
+WHERE enroller_id = 'rep_id'
+GROUP BY tech_rank;
+
+Get active subscriptions for credits:
+SELECT product_id, 
+  CASE WHEN customer_id IS NOT NULL 
+    THEN product.retail_credits 
+    ELSE product.member_credits 
+  END as credits
+FROM subscriptions s
+JOIN products p ON s.product_id = p.id
+WHERE s.distributor_id = 'rep_id' AND s.status = 'active';
+
+Check override qualification:
+SELECT personal_credits_monthly >= 50 as qualified
+FROM members WHERE member_id = 'rep_id';
+
+Get monthly earnings:
+SELECT earning_type, COUNT(*), SUM(final_amount_cents)/100.0
+FROM earnings_ledger
+WHERE member_id = 'rep_id' 
+  AND DATE_TRUNC('month', run_date) = CURRENT_DATE_TRUNC
+GROUP BY earning_type;
+

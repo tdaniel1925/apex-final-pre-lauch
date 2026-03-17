@@ -47,12 +47,11 @@ describe('QuickActions', () => {
     });
   });
 
-  it('should render all four action buttons', () => {
+  it('should render all three action buttons', () => {
     render(<QuickActions distributorSlug={mockDistributorSlug} />);
 
     expect(screen.getByText('Enroll Rep')).toBeInTheDocument();
     expect(screen.getByText('Share Link')).toBeInTheDocument();
-    expect(screen.getByText('Send Sample')).toBeInTheDocument();
     expect(screen.getByText('Schedule Call')).toBeInTheDocument();
   });
 
@@ -99,15 +98,6 @@ describe('QuickActions', () => {
         description: 'Please try again',
       });
     });
-  });
-
-  it('should navigate to business cards page when Send Sample is clicked', () => {
-    render(<QuickActions distributorSlug={mockDistributorSlug} />);
-
-    const sampleButton = screen.getByText('Send Sample');
-    fireEvent.click(sampleButton);
-
-    expect(mockPush).toHaveBeenCalledWith('/dashboard/business-cards?tab=samples');
   });
 
   it('should open Calendly link and show info toast when Schedule Call is clicked', () => {

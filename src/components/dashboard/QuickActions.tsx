@@ -35,10 +35,6 @@ export default function QuickActions({ distributorSlug }: QuickActionsProps) {
     }
   };
 
-  const handleSendSample = () => {
-    router.push('/dashboard/business-cards?tab=samples');
-  };
-
   const handleScheduleCall = () => {
     // Open external calendar (Calendly)
     window.open('https://calendly.com/theapexway', '_blank');
@@ -52,7 +48,7 @@ export default function QuickActions({ distributorSlug }: QuickActionsProps) {
   return (
     <div className="bg-white rounded-lg shadow p-4 mb-4">
       <h2 className="text-lg font-bold text-gray-900 mb-3">Quick Actions</h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
         {/* Enroll Rep Button */}
         <button
           onClick={handleEnrollRep}
@@ -73,17 +69,6 @@ export default function QuickActions({ distributorSlug }: QuickActionsProps) {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
           </svg>
           <span className="text-sm font-semibold">Share Link</span>
-        </button>
-
-        {/* Send Sample Button */}
-        <button
-          onClick={handleSendSample}
-          className="flex flex-col items-center justify-center p-4 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
-        >
-          <svg className="w-8 h-8 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-          </svg>
-          <span className="text-sm font-semibold">Send Sample</span>
         </button>
 
         {/* Schedule Call Button */}

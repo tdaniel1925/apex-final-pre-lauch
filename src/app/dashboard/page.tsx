@@ -1,19 +1,25 @@
 // =============================================
 // Dashboard Page
-// Main distributor dashboard
+// Main distributor dashboard with compensation metrics
+// =============================================
+// AGENT 1 REBUILD - Dual-Ladder System
+// =============================================
+// DATA SOURCES:
+// - distributors table: Main distributor record
+// - members table: Compensation data (personal_credits_monthly, team_credits_monthly, tech_rank)
+// - earnings_ledger: Monthly earnings (status='approved')
 // =============================================
 
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { createServiceClient } from '@/lib/supabase/service';
-import ReferralLink from '@/components/dashboard/ReferralLink';
-import TeamStatisticsUser from '@/components/dashboard/TeamStatisticsUser';
-import DashboardClient from '@/components/dashboard/DashboardClient';
-import Road500Banner from '@/components/dashboard/Road500Banner';
+import CEOVideoSection from '@/components/dashboard/CEOVideoSection';
+import CompensationStatsWidget from '@/components/dashboard/CompensationStatsWidget';
 import ActivityFeed from '@/components/dashboard/ActivityFeed';
-import QuickActions from '@/components/dashboard/QuickActions';
+import DashboardClient from '@/components/dashboard/DashboardClient';
 import type { Distributor } from '@/lib/types';
-import { getEnrolleeStats } from '@/lib/enrollees/enrollee-counter';
+import { ArrowRight, Users, Link as LinkIcon, FileText, MessageCircle } from 'lucide-react';
+import Link from 'next/link';
 
 export const metadata = {
   title: 'Dashboard - Apex Affinity Group',
@@ -22,6 +28,27 @@ export const metadata = {
 
 // Enable caching for 60 seconds
 export const revalidate = 60;
+
+// Rank requirements mapping (from APEX_COMP_ENGINE_SPEC_FINAL.md)
+const TECH_RANK_REQUIREMENTS = {
+  starter: { personal: 0, group: 0 },
+  bronze: { personal: 150, group: 300 },
+  silver: { personal: 500, group: 1500 },
+  gold: { personal: 1200, group: 5000 },
+  platinum: { personal: 2500, group: 15000 },
+  ruby: { personal: 4000, group: 30000 },
+  diamond: { personal: 5000, group: 50000 },
+  crown: { personal: 6000, group: 75000 },
+  elite: { personal: 8000, group: 120000 },
+};
+
+// Get next rank in progression
+function getNextRank(currentRank: string): string | null {
+  const ranks = Object.keys(TECH_RANK_REQUIREMENTS);
+  const currentIndex = ranks.indexOf(currentRank.toLowerCase());
+  if (currentIndex === -1 || currentIndex === ranks.length - 1) return null;
+  return ranks[currentIndex + 1];
+}
 
 export default async function DashboardPage() {
   const supabase = await createClient();
@@ -38,10 +65,20 @@ export default async function DashboardPage() {
   // Get distributor data (use service client to bypass RLS)
   const serviceClient = createServiceClient();
 
-  // Fetch distributor first
+  // Fetch distributor with joined member data
   const { data: distributor, error } = await serviceClient
     .from('distributors')
-    .select('*')
+    .select(`
+      *,
+      member:members!members_distributor_id_fkey (
+        member_id,
+        personal_credits_monthly,
+        team_credits_monthly,
+        tech_rank,
+        highest_tech_rank,
+        override_qualified
+      )
+    `)
     .eq('auth_user_id', user.id)
     .single();
 
@@ -50,199 +87,207 @@ export default async function DashboardPage() {
     redirect('/signup');
   }
 
-  const dist = distributor as Distributor;
+  const dist = distributor as Distributor & {
+    member?: {
+      member_id: string;
+      personal_credits_monthly: number;
+      team_credits_monthly: number;
+      tech_rank: string;
+      highest_tech_rank: string;
+      override_qualified: boolean;
+    } | null;
+  };
 
-  // OPTIMIZATION: Run all queries in parallel instead of sequential
-  const [parentData, sponsorData, directReferrals, matrixChildrenData, enrolleeStats] = await Promise.all([
-    // Get matrix parent info (only needed fields)
-    dist.matrix_parent_id
-      ? serviceClient
-          .from('distributors')
-          .select('first_name, last_name, slug')
-          .eq('id', dist.matrix_parent_id)
-          .single()
-      : Promise.resolve({ data: null }),
+  // Extract member compensation data
+  // If no member record exists yet, use default values
+  const personalCredits = dist.member?.personal_credits_monthly ?? 0;
+  const teamCredits = dist.member?.team_credits_monthly ?? 0;
+  const currentRank = dist.member?.tech_rank ?? 'starter';
 
-    // Get sponsor info (only needed fields)
-    dist.sponsor_id
-      ? serviceClient
-          .from('distributors')
-          .select('first_name, last_name, slug')
-          .eq('id', dist.sponsor_id)
-          .single()
-      : Promise.resolve({ data: null }),
+  // Calculate monthly earnings
+  // Query earnings_ledger for current month, status='approved'
+  const startOfMonth = new Date();
+  startOfMonth.setDate(1);
+  startOfMonth.setHours(0, 0, 0, 0);
 
-    // Get direct referrals (only needed fields for statistics)
-    serviceClient
-      .from('distributors')
-      .select('id, first_name, last_name, created_at, licensing_status, matrix_depth')
-      .eq('sponsor_id', dist.id)
-      .order('created_at', { ascending: false }),
+  const { data: earnings } = await serviceClient
+    .from('earnings_ledger')
+    .select('amount_usd')
+    .eq('member_id', dist.member?.member_id ?? '')
+    .eq('status', 'approved')
+    .gte('created_at', startOfMonth.toISOString())
+    .order('created_at', { ascending: false });
 
-    // Get matrix children (only needed fields for statistics)
-    serviceClient
-      .from('distributors')
-      .select('id, first_name, last_name, created_at, licensing_status, matrix_position')
-      .eq('matrix_parent_id', dist.id)
-      .order('matrix_position', { ascending: true }),
+  // Sum all approved earnings for this month
+  const monthlyEarnings = earnings?.reduce((sum, e) => sum + (e.amount_usd || 0), 0) || 0;
 
-    // Get enrollee statistics
-    getEnrolleeStats(dist.id),
-  ]);
+  // Calculate rank progress
+  const nextRank = getNextRank(currentRank);
+  const currentRankReq = TECH_RANK_REQUIREMENTS[currentRank.toLowerCase() as keyof typeof TECH_RANK_REQUIREMENTS] || TECH_RANK_REQUIREMENTS.starter;
+  const nextRankReq = nextRank ? TECH_RANK_REQUIREMENTS[nextRank as keyof typeof TECH_RANK_REQUIREMENTS] : null;
 
-  // Process parent name
-  const parentName = parentData.data
-    ? `${parentData.data.first_name} ${parentData.data.last_name}`
-    : 'Direct under Master';
-
-  // Process sponsor name
-  const sponsorName = sponsorData.data
-    ? `${sponsorData.data.first_name} ${sponsorData.data.last_name}`
-    : 'None';
-
-  // Process referrals
-  const recruits = (directReferrals.data || []) as Distributor[];
-  const referralCount = recruits.length;
-
-  // Process matrix children
-  const matrixChildren = (matrixChildrenData.data || []) as Distributor[];
-  const childrenCount = matrixChildren.length;
-
-  const referralLink = `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3050'}/${dist.slug}`;
+  // Progress percentage based on personal credits
+  let progressPercent = 100;
+  let creditsNeeded = 0;
+  if (nextRankReq) {
+    const creditsRequired = nextRankReq.personal - currentRankReq.personal;
+    const creditsProgress = personalCredits - currentRankReq.personal;
+    progressPercent = Math.min(100, Math.max(0, (creditsProgress / creditsRequired) * 100));
+    creditsNeeded = Math.max(0, nextRankReq.personal - personalCredits);
+  }
 
   return (
     <DashboardClient distributor={dist}>
-      <Road500Banner />
-      <div className="p-4">
-      {/* Welcome Header */}
-      <div className="mb-4">
-        <h1 className="text-2xl font-bold text-gray-900">
-          It's good to see you, {dist.first_name}!
-        </h1>
-        <p className="text-sm text-gray-600 mt-1">@{dist.slug}</p>
-      </div>
+      <div className="min-h-screen bg-slate-50">
+        <div className="max-w-7xl mx-auto p-6 space-y-6">
+          {/* Welcome Header */}
+          <div className="mb-6">
+            <h1 className="text-3xl font-bold text-slate-900">
+              Welcome back, {dist.first_name}
+            </h1>
+            <p className="text-sm text-slate-600 mt-1">@{dist.slug}</p>
+          </div>
 
-      {/* Quick Actions */}
-      <QuickActions distributorSlug={dist.slug} />
+          {/* CEO Video Section */}
+          <CEOVideoSection />
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
-        {/* Left Column - Stats */}
-        <div className="lg:col-span-2 space-y-3">
-          {/* Stats Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
-            {/* Rep Number */}
-            <div className="bg-white rounded-lg shadow p-3">
-              <div className="flex items-center justify-between">
+          {/* Compensation Stats - 4 Cards */}
+          <CompensationStatsWidget
+            personalCredits={personalCredits}
+            teamCredits={teamCredits}
+            currentRank={currentRank}
+            monthlyEarnings={monthlyEarnings}
+          />
+
+          {/* Rank Progress Bar */}
+          {nextRank && (
+            <div className="bg-white rounded-lg shadow-md p-6 border border-slate-200">
+              <div className="flex items-center justify-between mb-3">
                 <div>
-                  <p className="text-xs text-gray-600 mb-0.5">Rep Number</p>
-                  <p className="text-2xl font-bold text-[#2B4C7E]">
-                    #{dist.rep_number ?? 'N/A'}
+                  <h3 className="text-lg font-semibold text-slate-900">
+                    Progress to {nextRank.charAt(0).toUpperCase() + nextRank.slice(1)}
+                  </h3>
+                  <p className="text-sm text-slate-600">
+                    {creditsNeeded.toLocaleString()} credits needed
                   </p>
                 </div>
-                <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                  <svg className="w-5 h-5 text-[#2B4C7E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                  </svg>
+                <div className="text-right">
+                  <p className="text-2xl font-bold text-slate-900">
+                    {progressPercent.toFixed(0)}%
+                  </p>
                 </div>
               </div>
-              <p className="text-[10px] text-gray-500 mt-1">Level {dist.matrix_depth}</p>
+              {/* Progress Bar */}
+              <div className="w-full bg-slate-200 rounded-full h-3 overflow-hidden">
+                <div
+                  className="bg-gradient-to-r from-slate-700 to-slate-900 h-full rounded-full transition-all duration-500"
+                  style={{ width: `${progressPercent}%` }}
+                />
+              </div>
+              <div className="flex justify-between mt-2 text-xs text-slate-600">
+                <span>{personalCredits.toLocaleString()} credits</span>
+                {nextRankReq && <span>{nextRankReq.personal.toLocaleString()} credits</span>}
+              </div>
             </div>
+          )}
 
-            {/* Personal Enrollees */}
-            <div className="bg-white rounded-lg shadow p-3">
+          {/* Quick Actions - 4 Buttons */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {/* Enroll New Member */}
+            <Link
+              href={`/${dist.slug}`}
+              className="group bg-white rounded-lg shadow-md p-6 border border-slate-200 hover:border-slate-400 hover:shadow-lg transition-all"
+            >
               <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-xs text-gray-600 mb-0.5">Personal Enrollees</p>
-                  <p className="text-2xl font-bold text-[#2B4C7E]">{enrolleeStats.personalEnrollees || 0}</p>
+                <div className="p-3 bg-slate-100 rounded-lg group-hover:bg-slate-200 transition-colors">
+                  <Users className="w-6 h-6 text-slate-700" />
                 </div>
-                <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                  <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                  </svg>
-                </div>
+                <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-slate-600 transition-colors" />
               </div>
-              <p className="text-[10px] text-gray-500 mt-1">You personally signed up</p>
-            </div>
+              <h3 className="mt-4 text-lg font-semibold text-slate-900">
+                Enroll New Member
+              </h3>
+              <p className="text-sm text-slate-600 mt-1">
+                Share your landing page
+              </p>
+            </Link>
 
-            {/* Organization Enrollees */}
-            <div className="bg-white rounded-lg shadow p-3">
+            {/* Share Referral Link */}
+            <button
+              type="button"
+              className="group bg-white rounded-lg shadow-md p-6 border border-slate-200 hover:border-slate-400 hover:shadow-lg transition-all text-left"
+              onClick={() => {
+                const referralLink = `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3050'}/${dist.slug}`;
+                navigator.clipboard.writeText(referralLink);
+              }}
+            >
               <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-xs text-gray-600 mb-0.5">Organization Enrollees</p>
-                  <p className="text-2xl font-bold text-[#2B4C7E]">{enrolleeStats.organizationEnrollees || 0}</p>
+                <div className="p-3 bg-slate-100 rounded-lg group-hover:bg-slate-200 transition-colors">
+                  <LinkIcon className="w-6 h-6 text-slate-700" />
                 </div>
-                <div className="w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center">
-                  <svg className="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                </div>
+                <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-slate-600 transition-colors" />
               </div>
-              <p className="text-[10px] text-gray-500 mt-1">All downline enrollees</p>
-            </div>
+              <h3 className="mt-4 text-lg font-semibold text-slate-900">
+                Share Referral Link
+              </h3>
+              <p className="text-sm text-slate-600 mt-1">
+                Copy to clipboard
+              </p>
+            </button>
 
-            {/* Matrix Children */}
-            <div className="bg-white rounded-lg shadow p-3">
+            {/* View Compensation Plan */}
+            <Link
+              href="/compensation"
+              className="group bg-white rounded-lg shadow-md p-6 border border-slate-200 hover:border-slate-400 hover:shadow-lg transition-all"
+            >
               <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-xs text-gray-600 mb-0.5">Matrix Children</p>
-                  <p className="text-2xl font-bold text-[#2B4C7E]">{childrenCount || 0}</p>
+                <div className="p-3 bg-slate-100 rounded-lg group-hover:bg-slate-200 transition-colors">
+                  <FileText className="w-6 h-6 text-slate-700" />
                 </div>
-                <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
-                  <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                </div>
+                <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-slate-600 transition-colors" />
               </div>
-              <p className="text-[10px] text-gray-500 mt-1">Capacity: {childrenCount || 0}/5</p>
-            </div>
+              <h3 className="mt-4 text-lg font-semibold text-slate-900">
+                View Compensation Plan
+              </h3>
+              <p className="text-sm text-slate-600 mt-1">
+                See earning potential
+              </p>
+            </Link>
 
-            {/* Level */}
-            <div className="bg-white rounded-lg shadow p-3">
+            {/* Contact Support */}
+            <Link
+              href="/support"
+              className="group bg-white rounded-lg shadow-md p-6 border border-slate-200 hover:border-slate-400 hover:shadow-lg transition-all"
+            >
               <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-xs text-gray-600 mb-0.5">Your Level</p>
-                  <p className="text-2xl font-bold text-[#2B4C7E]">{dist.matrix_depth}</p>
+                <div className="p-3 bg-slate-100 rounded-lg group-hover:bg-slate-200 transition-colors">
+                  <MessageCircle className="w-6 h-6 text-slate-700" />
                 </div>
-                <div className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center">
-                  <svg className="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
+                <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-slate-600 transition-colors" />
               </div>
-              <p className="text-[10px] text-gray-500 mt-1">of 7 levels deep</p>
-            </div>
+              <h3 className="mt-4 text-lg font-semibold text-slate-900">
+                Contact Support
+              </h3>
+              <p className="text-sm text-slate-600 mt-1">
+                Get help anytime
+              </p>
+            </Link>
           </div>
 
-          {/* Matrix Info Card */}
-          <div className="bg-white rounded-lg shadow p-3">
-            <h2 className="text-lg font-bold text-gray-900 mb-2">Matrix Placement</h2>
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <p className="text-xs text-gray-600 mb-0.5">Matrix Parent</p>
-                <p className="text-sm font-semibold text-gray-900">{parentName}</p>
-              </div>
-              <div>
-                <p className="text-xs text-gray-600 mb-0.5">Sponsor</p>
-                <p className="text-sm font-semibold text-gray-900">{sponsorName}</p>
-              </div>
+          {/* Recent Activity Feed */}
+          <div className="bg-white rounded-lg shadow-md border border-slate-200">
+            <div className="p-6 border-b border-slate-200">
+              <h2 className="text-xl font-bold text-slate-900">Recent Activity</h2>
+              <p className="text-sm text-slate-600 mt-1">
+                Latest updates from your organization
+              </p>
+            </div>
+            <div className="p-6">
+              <ActivityFeed />
             </div>
           </div>
-
-          {/* Referral Link Card */}
-          <ReferralLink referralLink={referralLink} />
-        </div>
-
-        {/* Right Column - Team Statistics */}
-        <div>
-          <TeamStatisticsUser recruits={recruits} matrixChildren={matrixChildren} />
         </div>
       </div>
-
-      {/* Activity Feed - Full Width */}
-      <div className="mt-4">
-        <ActivityFeed />
-      </div>
-    </div>
     </DashboardClient>
   );
 }

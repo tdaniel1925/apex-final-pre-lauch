@@ -1,18 +1,19 @@
 // =============================================
-// Matrix Page
-// View matrix structure and downline
+// Matrix Page - Rebuilt with Node-Based Flowchart
+// Professional slate color scheme with level-based layout
 // =============================================
 
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { createServiceClient } from '@/lib/supabase/service';
 import type { Distributor } from '@/lib/types';
-import SponsorLineageUser from '@/components/dashboard/SponsorLineageUser';
-import MatrixChildrenUser from '@/components/dashboard/MatrixChildrenUser';
+import MatrixLevelView from '@/components/matrix/MatrixLevelView';
+import { calculateMatrixLevels, getMaxMatrixDepth } from '@/lib/matrix/level-calculator';
+import type { MatrixNodeData } from '@/components/matrix/MatrixNodeCard';
 
 export const metadata = {
   title: 'Matrix - Apex Affinity Group',
-  description: 'View your matrix placement',
+  description: 'View your matrix structure and team organization',
 };
 
 export default async function MatrixPage() {
@@ -27,11 +28,20 @@ export default async function MatrixPage() {
     redirect('/login');
   }
 
-  // Get distributor
+  // Get distributor with member data
   const serviceClient = createServiceClient();
   const { data: distributor } = await serviceClient
     .from('distributors')
-    .select('*')
+    .select(`
+      *,
+      member:members!members_distributor_id_fkey (
+        member_id,
+        personal_credits_monthly,
+        tech_rank,
+        override_qualified,
+        team_credits_monthly
+      )
+    `)
     .eq('auth_user_id', user.id)
     .single();
 
@@ -39,137 +49,237 @@ export default async function MatrixPage() {
     redirect('/signup');
   }
 
-  const dist = distributor as Distributor;
+  const dist = distributor as Distributor & {
+    member: {
+      member_id: string;
+      personal_credits_monthly: number;
+      tech_rank: string;
+      override_qualified: boolean;
+      team_credits_monthly: number;
+    } | null;
+  };
 
-  // Get sponsor path (traverse up to master)
-  const sponsorPath: Distributor[] = [];
-  let currentSponsorId = dist.sponsor_id;
-
-  while (currentSponsorId) {
-    const { data: sponsor } = await serviceClient
-      .from('distributors')
-      .select('*')
-      .eq('id', currentSponsorId)
-      .single();
-
-    if (!sponsor) break;
-
-    sponsorPath.unshift(sponsor as Distributor);
-    currentSponsorId = sponsor.sponsor_id;
+  // If member record doesn't exist yet, show message
+  if (!dist.member) {
+    return (
+      <div className="min-h-screen bg-slate-900 p-8">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-slate-800 border border-slate-700 rounded-lg p-8 text-center">
+            <h1 className="text-2xl font-bold text-white mb-4">Matrix Not Available</h1>
+            <p className="text-slate-400">
+              Your member profile is being set up. Please check back shortly.
+            </p>
+          </div>
+        </div>
+      </div>
+    );
   }
 
-  // Get matrix parent
-  let parentName = 'Master';
-  if (dist.matrix_parent_id) {
-    const { data: parent } = await serviceClient
-      .from('distributors')
-      .select('first_name, last_name, slug')
-      .eq('id', dist.matrix_parent_id)
-      .single();
+  // Get all downline members (anyone enrolled by this user or their downline)
+  // We need to get ALL members first, then calculate levels recursively
+  const { data: allMembers } = await serviceClient
+    .from('members')
+    .select(`
+      member_id,
+      full_name,
+      enroller_id,
+      tech_rank,
+      personal_credits_monthly,
+      override_qualified,
+      distributor:distributors!members_distributor_id_fkey (
+        id,
+        rep_number,
+        slug
+      )
+    `)
+    .eq('status', 'active');
 
-    if (parent) {
-      parentName = `${parent.first_name} ${parent.last_name}`;
-    }
+  // Calculate matrix levels
+  const currentMemberId = dist.member.member_id;
+  const members = allMembers || [];
+
+  const levelMap = calculateMatrixLevels(
+    currentMemberId,
+    members as any[]
+  );
+
+  // Transform to MatrixNodeData format
+  const nodesByLevel: Record<number, MatrixNodeData[]> = {};
+  for (let level = 1; level <= 5; level++) {
+    nodesByLevel[level] = (levelMap[level] || []).map((m: any) => ({
+      member_id: m.member_id,
+      distributor_id: m.distributor?.[0]?.id || '',
+      full_name: m.full_name,
+      rep_number: m.distributor?.[0]?.rep_number || null,
+      tech_rank: m.tech_rank,
+      personal_credits_monthly: m.personal_credits_monthly,
+      override_qualified: m.override_qualified,
+      slug: m.distributor?.[0]?.slug || null,
+    }));
   }
 
-  // Get matrix children (direct downline in matrix)
-  const { data: matrixChildren } = await serviceClient
-    .from('distributors')
-    .select('*')
-    .eq('matrix_parent_id', dist.id)
-    .order('matrix_position', { ascending: true });
+  // Calculate totals
+  const totalTeamSize = members.filter((m) => m.enroller_id === currentMemberId || levelMap[1]?.some((l1: any) => l1.member_id === m.member_id) || levelMap[2]?.some((l2: any) => l2.member_id === m.member_id) || levelMap[3]?.some((l3: any) => l3.member_id === m.member_id) || levelMap[4]?.some((l4: any) => l4.member_id === m.member_id) || levelMap[5]?.some((l5: any) => l5.member_id === m.member_id)).length;
 
-  const children = (matrixChildren || []) as Distributor[];
+  const activeMembers = members.filter((m) => {
+    const isInDownline = m.enroller_id === currentMemberId ||
+      levelMap[1]?.some((l1: any) => l1.member_id === m.member_id) ||
+      levelMap[2]?.some((l2: any) => l2.member_id === m.member_id) ||
+      levelMap[3]?.some((l3: any) => l3.member_id === m.member_id) ||
+      levelMap[4]?.some((l4: any) => l4.member_id === m.member_id) ||
+      levelMap[5]?.some((l5: any) => l5.member_id === m.member_id);
+    return isInDownline && m.override_qualified;
+  }).length;
 
-  // Calculate matrix stats
-  const totalDownline = children.length;
-  const capacity = 5;
-  const availableSlots = capacity - totalDownline;
+  // Get override earnings this month
+  const startOfMonth = new Date();
+  startOfMonth.setDate(1);
+  startOfMonth.setHours(0, 0, 0, 0);
+
+  const { data: overrideEarnings } = await serviceClient
+    .from('earnings_ledger')
+    .select('amount_usd')
+    .eq('member_id', currentMemberId)
+    .eq('earning_type', 'override')
+    .gte('created_at', startOfMonth.toISOString());
+
+  const totalOverrideEarnings = (overrideEarnings || []).reduce(
+    (sum, e) => sum + (e.amount_usd || 0),
+    0
+  );
+
+  // Get max depth based on rank
+  const maxRankDepth = getMaxMatrixDepth(dist.member.tech_rank);
 
   return (
-    <div className="p-4">
-      <div className="mb-4">
-        <h1 className="text-2xl font-bold text-gray-900">Matrix View</h1>
-        <p className="text-sm text-gray-600 mt-1">Your position in the 5×7 forced matrix</p>
-      </div>
+    <div className="min-h-screen bg-slate-900 p-4 md:p-8">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-white mb-2">Matrix View</h1>
+          <p className="text-slate-400">
+            Your team organized by enrollment levels (1-{maxRankDepth} based on your {dist.member.tech_rank} rank)
+          </p>
+        </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
-        {/* Left Column - Stats */}
-        <div className="space-y-3">
-          {/* Matrix Stats */}
-          <div className="grid grid-cols-2 gap-2">
-            <div className="bg-white rounded-lg shadow p-3">
-              <p className="text-xs text-gray-600 mb-0.5">Your Rep #</p>
-              <p className="text-2xl font-bold text-[#2B4C7E]">#{dist.rep_number ?? 'N/A'}</p>
-            </div>
-
-            <div className="bg-white rounded-lg shadow p-3">
-              <p className="text-xs text-gray-600 mb-0.5">Your Level</p>
-              <p className="text-2xl font-bold text-[#2B4C7E]">{dist.matrix_depth}</p>
-              <p className="text-[10px] text-gray-500 mt-0.5">of 7 levels</p>
-            </div>
-
-            <div className="bg-white rounded-lg shadow p-3">
-              <p className="text-xs text-gray-600 mb-0.5">Direct Downline</p>
-              <p className="text-2xl font-bold text-[#2B4C7E]">{totalDownline}</p>
-              <p className="text-[10px] text-gray-500 mt-0.5">
-                {availableSlots} {availableSlots === 1 ? 'slot' : 'slots'} available
-              </p>
-            </div>
-
-            <div className="bg-white rounded-lg shadow p-3">
-              <p className="text-xs text-gray-600 mb-0.5">Capacity</p>
-              <p className="text-2xl font-bold text-[#2B4C7E]">
-                {totalDownline}/{capacity}
-              </p>
-              <div className="mt-1 bg-gray-200 rounded-full h-2">
-                <div
-                  className="bg-[#2B4C7E] h-2 rounded-full transition-all"
-                  style={{ width: `${(totalDownline / capacity) * 100}%` }}
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* Matrix Parent */}
-          <div className="bg-white rounded-lg shadow p-3">
-            <h2 className="text-lg font-bold text-gray-900 mb-2">Matrix Placement</h2>
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-[#2B4C7E] rounded-full flex items-center justify-center text-white font-bold text-sm">
-                {parentName.charAt(0)}
+        {/* Your Position Card */}
+        <div className="bg-slate-800 border-2 border-slate-700 rounded-lg p-6 mb-8">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            {/* Left: Avatar & Info */}
+            <div className="flex items-center gap-4">
+              <div className="w-20 h-20 bg-slate-700 rounded-full flex items-center justify-center border-2 border-slate-600">
+                <span className="text-white font-bold text-2xl">
+                  {dist.first_name.charAt(0)}{dist.last_name.charAt(0)}
+                </span>
               </div>
               <div>
-                <p className="text-xs text-gray-600">Your Matrix Parent</p>
-                <p className="text-sm font-semibold text-gray-900">{parentName}</p>
+                <h2 className="text-2xl font-bold text-white">
+                  {dist.first_name} {dist.last_name}
+                </h2>
+                <p className="text-slate-400">Rep #{dist.rep_number || 'N/A'}</p>
+              </div>
+            </div>
+
+            {/* Right: Stats Grid */}
+            <div className="grid grid-cols-2 gap-4">
+              {/* Current Rank */}
+              <div className="bg-slate-900 rounded px-4 py-2">
+                <p className="text-xs text-slate-400 mb-1">Tech Rank</p>
+                <p className="text-lg font-bold text-white capitalize">
+                  {dist.member.tech_rank}
+                </p>
+              </div>
+
+              {/* Personal Credits */}
+              <div className="bg-slate-900 rounded px-4 py-2">
+                <p className="text-xs text-slate-400 mb-1">Personal Credits</p>
+                <p className="text-lg font-bold text-white">
+                  {dist.member.personal_credits_monthly}
+                </p>
+              </div>
+
+              {/* Override Qualified */}
+              <div className="bg-slate-900 rounded px-4 py-2">
+                <p className="text-xs text-slate-400 mb-1">Override Status</p>
+                <div className="flex items-center gap-2">
+                  <div className={`w-3 h-3 rounded-full ${dist.member.override_qualified ? 'bg-green-500' : 'bg-slate-600'}`} />
+                  <p className={`text-sm font-semibold ${dist.member.override_qualified ? 'text-green-400' : 'text-slate-500'}`}>
+                    {dist.member.override_qualified ? 'Yes' : 'No'}
+                  </p>
+                </div>
+              </div>
+
+              {/* Team Credits */}
+              <div className="bg-slate-900 rounded px-4 py-2">
+                <p className="text-xs text-slate-400 mb-1">Team Credits</p>
+                <p className="text-lg font-bold text-white">
+                  {dist.member.team_credits_monthly}
+                </p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Right Column - Lineage & Matrix */}
-        <div className="lg:col-span-2 space-y-3">
-          {/* Sponsor Lineage */}
-          <SponsorLineageUser
-            sponsorPath={sponsorPath}
-            currentUser={{
-              first_name: dist.first_name,
-              last_name: dist.last_name,
-              slug: dist.slug,
-            }}
-          />
+        {/* Stats Summary */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+          <div className="bg-slate-800 border border-slate-700 rounded-lg p-4">
+            <p className="text-sm text-slate-400 mb-1">Total Team Size</p>
+            <p className="text-3xl font-bold text-white">{totalTeamSize}</p>
+          </div>
 
-          {/* Matrix Children */}
-          <MatrixChildrenUser children={children} />
+          <div className="bg-slate-800 border border-slate-700 rounded-lg p-4">
+            <p className="text-sm text-slate-400 mb-1">Active Members</p>
+            <p className="text-3xl font-bold text-green-400">{activeMembers}</p>
+          </div>
 
-          {/* Help Text */}
-          {children.length > 0 && (
-            <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
-              <p className="text-xs text-purple-800">
-                <strong>💡 Tip:</strong> Click on any team member above to drill down and view their matrix positions and downline. This lets you navigate through all 7 levels of your organization!
+          <div className="bg-slate-800 border border-slate-700 rounded-lg p-4">
+            <p className="text-sm text-slate-400 mb-1">Team Credits/Month</p>
+            <p className="text-3xl font-bold text-white">{dist.member.team_credits_monthly}</p>
+          </div>
+
+          <div className="bg-slate-800 border border-slate-700 rounded-lg p-4">
+            <p className="text-sm text-slate-400 mb-1">Override Earnings (MTD)</p>
+            <p className="text-3xl font-bold text-blue-400">
+              ${totalOverrideEarnings.toFixed(2)}
+            </p>
+          </div>
+        </div>
+
+        {/* Matrix Levels */}
+        <div className="bg-slate-800 border border-slate-700 rounded-lg p-6">
+          <h2 className="text-xl font-bold text-white mb-6">Your Matrix Organization</h2>
+
+          {totalTeamSize === 0 ? (
+            <div className="bg-slate-900 border border-dashed border-slate-600 rounded-lg p-12 text-center">
+              <p className="text-slate-400 text-lg mb-2">No team members yet</p>
+              <p className="text-slate-500 text-sm">
+                Start building your team by sharing your referral link
               </p>
             </div>
+          ) : (
+            <>
+              {[1, 2, 3, 4, 5].map((level) => (
+                <MatrixLevelView
+                  key={level}
+                  level={level}
+                  nodes={nodesByLevel[level] || []}
+                  maxRankDepth={maxRankDepth}
+                />
+              ))}
+            </>
           )}
         </div>
+
+        {/* Help Text */}
+        {totalTeamSize > 0 && (
+          <div className="mt-6 bg-slate-800 border border-slate-700 rounded-lg p-4">
+            <p className="text-sm text-slate-400">
+              <span className="font-semibold text-slate-300">Tip:</span> Your matrix levels are based on the enrollment chain.
+              Level 1 shows your direct enrollees, Level 2 shows their enrollees, and so on.
+              Your current {dist.member.tech_rank} rank allows you to view up to {maxRankDepth} level{maxRankDepth > 1 ? 's' : ''}.
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
