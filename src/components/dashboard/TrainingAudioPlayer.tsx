@@ -6,7 +6,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { Play, Pause, Volume2, VolumeX, X, Minimize2, Maximize2 } from 'lucide-react';
+import { Play, Pause, Volume2, VolumeX, X } from 'lucide-react';
 
 interface AudioTrack {
   id: string;
@@ -37,7 +37,6 @@ export default function TrainingAudioPlayer() {
   const [isMuted, setIsMuted] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [isMinimized, setIsMinimized] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -49,12 +48,6 @@ export default function TrainingAudioPlayer() {
     const dismissed = localStorage.getItem('training_audio_dismissed');
     if (dismissed === 'true') {
       setHidden(true);
-    }
-
-    // Check if user has minimized before
-    const minimized = localStorage.getItem('training_audio_minimized');
-    if (minimized === 'true') {
-      setIsMinimized(true);
     }
   }, []);
 
@@ -111,25 +104,7 @@ export default function TrainingAudioPlayer() {
     }
   };
 
-  const handleMinimize = () => {
-    setIsMinimized(true);
-    localStorage.setItem('training_audio_minimized', 'true');
-  };
-
-  const handleMaximize = () => {
-    setIsMinimized(false);
-    localStorage.setItem('training_audio_minimized', 'false');
-  };
-
   const handleClose = () => {
-    setHidden(true);
-    if (audioRef.current && isPlaying) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    }
-  };
-
-  const handleNeverShowAgain = () => {
     localStorage.setItem('training_audio_dismissed', 'true');
     setHidden(true);
     if (audioRef.current && isPlaying) {
@@ -147,128 +122,49 @@ export default function TrainingAudioPlayer() {
 
   if (hidden) return null;
 
-  // Minimized Banner Mode - Sticky at top of dashboard
-  if (isMinimized) {
-    return (
-      <div className="sticky top-0 z-50 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border-b border-slate-700 shadow-lg">
-        <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3 flex-1 min-w-0">
-            {/* Play/Pause Button */}
-            <button
-              type="button"
-              onClick={togglePlay}
-              className="flex-shrink-0 p-2 rounded-full bg-slate-700/50 hover:bg-slate-700 transition-colors"
-              aria-label={isPlaying ? 'Pause' : 'Play'}
-            >
-              {isPlaying ? (
-                <Pause className="w-4 h-4 text-white" />
-              ) : (
-                <Play className="w-4 h-4 text-white" />
-              )}
-            </button>
-
-            {/* Track Info */}
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-white truncate">
-                {currentTrack.title}
-              </p>
-              <div className="flex items-center gap-2 text-xs text-slate-400">
-                <span>{formatTime(currentTime)}</span>
-                <span>/</span>
-                <span>{formatTime(duration)}</span>
-              </div>
-            </div>
-
-            {/* Progress Bar */}
-            <div
-              className="hidden md:block flex-1 h-1.5 bg-slate-700 rounded-full cursor-pointer overflow-hidden"
-              onClick={handleProgressClick}
-            >
-              <div
-                className="h-full bg-white transition-all duration-100"
-                style={{ width: `${(currentTime / duration) * 100 || 0}%` }}
-              />
-            </div>
-          </div>
-
-          {/* Controls */}
-          <div className="flex items-center gap-2 flex-shrink-0">
-            <button
-              type="button"
-              onClick={toggleMute}
-              className="p-2 rounded-full hover:bg-slate-700/50 transition-colors"
-              aria-label={isMuted ? 'Unmute' : 'Mute'}
-            >
-              {isMuted ? (
-                <VolumeX className="w-4 h-4 text-white" />
-              ) : (
-                <Volume2 className="w-4 h-4 text-white" />
-              )}
-            </button>
-            <button
-              type="button"
-              onClick={handleMaximize}
-              className="p-2 rounded-full hover:bg-slate-700/50 transition-colors"
-              aria-label="Expand player"
-            >
-              <Maximize2 className="w-4 h-4 text-white" />
-            </button>
-            <button
-              type="button"
-              onClick={handleClose}
-              className="p-2 rounded-full hover:bg-slate-700/50 transition-colors"
-              aria-label="Close player"
-            >
-              <X className="w-4 h-4 text-white" />
-            </button>
-          </div>
-        </div>
-
-        {/* Hidden audio element */}
-        <audio ref={audioRef} src={currentTrack.url} preload="metadata" />
-      </div>
-    );
-  }
-
-  // Full Player Mode - Next to CEO Video
+  // Thin Full-Width Player - Above Stats Cards
   return (
-    <div className="relative rounded-lg overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 shadow-md max-w-sm">
-      {/* Close and Minimize Buttons */}
-      <div className="absolute top-2 right-2 z-10 flex gap-1">
-        <button
-          type="button"
-          onClick={handleMinimize}
-          className="p-1 rounded-full bg-slate-800/50 hover:bg-slate-700/70 transition-colors"
-          aria-label="Minimize player"
-        >
-          <Minimize2 className="w-4 h-4 text-white" />
-        </button>
-        <button
-          type="button"
-          onClick={handleClose}
-          className="p-1 rounded-full bg-slate-800/50 hover:bg-slate-700/70 transition-colors"
-          aria-label="Close player"
-        >
-          <X className="w-4 h-4 text-white" />
-        </button>
-      </div>
+    <div className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 rounded-lg shadow-md border border-slate-700 overflow-hidden">
+      <div className="px-6 py-4 flex items-center justify-between gap-6">
+        {/* Left Section: Title & Play Button */}
+        <div className="flex items-center gap-4 flex-shrink-0">
+          {/* Play/Pause Button */}
+          <button
+            type="button"
+            onClick={togglePlay}
+            className="flex-shrink-0 p-3 rounded-full bg-white hover:bg-slate-100 transition-all transform hover:scale-105"
+            aria-label={isPlaying ? 'Pause' : 'Play'}
+          >
+            {isPlaying ? (
+              <Pause className="w-5 h-5 text-slate-900" />
+            ) : (
+              <Play className="w-5 h-5 text-slate-900" />
+            )}
+          </button>
 
-      {/* Audio Player UI */}
-      <div className="p-6 space-y-4">
-        {/* Track Title */}
-        <div>
-          <h3 className="text-sm font-bold text-white leading-snug">
-            {currentTrack.title}
-          </h3>
-          <p className="text-slate-400 text-xs mt-1">
-            {currentTrack.description}
-          </p>
+          {/* Track Title */}
+          <div className="min-w-0">
+            <h3 className="text-sm font-bold text-white leading-tight">
+              {currentTrack.title}
+            </h3>
+            <p className="text-xs text-slate-400 mt-0.5">
+              Training Audio
+            </p>
+          </div>
         </div>
 
-        {/* Progress Bar */}
-        <div className="space-y-2">
+        {/* Middle Section: Progress Bar & Time */}
+        <div className="flex-1 flex items-center gap-4 min-w-0">
+          {/* Time Display */}
+          <div className="flex items-center gap-2 text-sm text-slate-300 flex-shrink-0">
+            <span>{formatTime(currentTime)}</span>
+            <span className="text-slate-500">/</span>
+            <span>{formatTime(duration)}</span>
+          </div>
+
+          {/* Progress Bar */}
           <div
-            className="w-full h-2 bg-slate-700 rounded-full cursor-pointer overflow-hidden"
+            className="flex-1 h-2 bg-slate-700 rounded-full cursor-pointer overflow-hidden"
             onClick={handleProgressClick}
           >
             <div
@@ -276,33 +172,15 @@ export default function TrainingAudioPlayer() {
               style={{ width: `${(currentTime / duration) * 100 || 0}%` }}
             />
           </div>
-          <div className="flex justify-between text-xs text-slate-400">
-            <span>{formatTime(currentTime)}</span>
-            <span>{formatTime(duration)}</span>
-          </div>
         </div>
 
-        {/* Controls */}
-        <div className="flex items-center justify-center gap-4">
-          {/* Play/Pause Button */}
-          <button
-            type="button"
-            onClick={togglePlay}
-            className="group p-4 rounded-full bg-white hover:bg-slate-100 transition-all transform hover:scale-105"
-            aria-label={isPlaying ? 'Pause' : 'Play'}
-          >
-            {isPlaying ? (
-              <Pause className="w-6 h-6 text-slate-900" />
-            ) : (
-              <Play className="w-6 h-6 text-slate-900" />
-            )}
-          </button>
-
+        {/* Right Section: Volume & Close */}
+        <div className="flex items-center gap-2 flex-shrink-0">
           {/* Volume Control */}
           <button
             type="button"
             onClick={toggleMute}
-            className="p-3 rounded-full bg-slate-800/50 hover:bg-slate-700/70 transition-colors"
+            className="p-2 rounded-full hover:bg-slate-700/50 transition-colors"
             aria-label={isMuted ? 'Unmute' : 'Mute'}
           >
             {isMuted ? (
@@ -311,25 +189,15 @@ export default function TrainingAudioPlayer() {
               <Volume2 className="w-5 h-5 text-white" />
             )}
           </button>
-        </div>
 
-        {/* Playlist Info */}
-        {TRAINING_PLAYLIST.length > 1 && (
-          <div className="pt-4 border-t border-slate-700">
-            <p className="text-xs text-slate-400 text-center">
-              Track {currentTrackIndex + 1} of {TRAINING_PLAYLIST.length}
-            </p>
-          </div>
-        )}
-
-        {/* Don't Show Again Link */}
-        <div className="pt-2">
+          {/* Close Button */}
           <button
             type="button"
-            onClick={handleNeverShowAgain}
-            className="text-xs text-slate-400 hover:text-slate-300 underline w-full text-center"
+            onClick={handleClose}
+            className="p-2 rounded-full hover:bg-slate-700/50 transition-colors"
+            aria-label="Close player"
           >
-            Don't show again
+            <X className="w-5 h-5 text-white" />
           </button>
         </div>
       </div>
