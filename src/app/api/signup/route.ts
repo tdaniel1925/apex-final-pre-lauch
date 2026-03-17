@@ -38,6 +38,9 @@ const RATE_LIMIT_MAX = 5;
 const RATE_LIMIT_WINDOW_MINUTES = 15;
 
 export async function POST(request: NextRequest) {
+  let authUserId: string | null = null;
+  let distributorId: string | null = null;
+
   try {
     const body = await request.json();
 
@@ -228,6 +231,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Track auth user for rollback
+    authUserId = authData.user.id;
+
     // Step 6 + 7: Atomically find placement AND insert distributor in one
     // PostgreSQL transaction with advisory lock — eliminates race condition
     const { data: distributorRows, error: distributorError } = await serviceClient.rpc(
@@ -252,7 +258,9 @@ export async function POST(request: NextRequest) {
       console.error('Distributor creation error:', distributorError);
 
       // Rollback: Delete auth user if distributor creation failed
-      await serviceClient.auth.admin.deleteUser(authData.user.id);
+      console.log('[ROLLBACK] Distributor creation failed, deleting auth user:', authUserId);
+      await serviceClient.auth.admin.deleteUser(authUserId!);
+      authUserId = null; // Prevent double-rollback in catch block
 
       return NextResponse.json(
         {
@@ -264,17 +272,24 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Track distributor for rollback
+    distributorId = distributor.id;
+
     // Step 7.5: Store SSN in tax_info table
     if (data.ssn) {
       const ssnData = prepareSSNForStorage(data.ssn);
 
       if (!ssnData.valid) {
         // Rollback: Delete both auth user and distributor
-        await serviceClient.auth.admin.deleteUser(authData.user.id);
+        console.log('[ROLLBACK] Invalid SSN, deleting auth user and distributor');
+        await serviceClient.auth.admin.deleteUser(authUserId!);
         await serviceClient
           .from('distributors')
           .delete()
-          .eq('id', distributor.id);
+          .eq('id', distributorId!);
+
+        authUserId = null;
+        distributorId = null;
 
         return NextResponse.json(
           {
@@ -299,11 +314,15 @@ export async function POST(request: NextRequest) {
         console.error('Tax info creation error:', taxInfoError);
 
         // Rollback: Delete both auth user and distributor
-        await serviceClient.auth.admin.deleteUser(authData.user.id);
+        console.log('[ROLLBACK] Tax info creation failed, deleting auth user and distributor');
+        await serviceClient.auth.admin.deleteUser(authUserId!);
         await serviceClient
           .from('distributors')
           .delete()
-          .eq('id', distributor.id);
+          .eq('id', distributorId!);
+
+        authUserId = null;
+        distributorId = null;
 
         return NextResponse.json(
           {
@@ -342,6 +361,30 @@ export async function POST(request: NextRequest) {
     );
   } catch (error) {
     console.error('Signup API error:', error);
+
+    // CRITICAL: Rollback any partial data
+    const serviceClient = createServiceClient();
+
+    if (authUserId) {
+      console.log('[ROLLBACK] Deleting auth user:', authUserId);
+      try {
+        await serviceClient.auth.admin.deleteUser(authUserId);
+        console.log('[ROLLBACK] Successfully deleted auth user');
+      } catch (rollbackError) {
+        console.error('[ROLLBACK] Failed to delete auth user:', rollbackError);
+      }
+    }
+
+    if (distributorId) {
+      console.log('[ROLLBACK] Deleting distributor:', distributorId);
+      try {
+        await serviceClient.from('distributors').delete().eq('id', distributorId);
+        await serviceClient.from('distributor_tax_info').delete().eq('distributor_id', distributorId);
+        console.log('[ROLLBACK] Successfully deleted distributor and tax info');
+      } catch (rollbackError) {
+        console.error('[ROLLBACK] Failed to delete distributor:', rollbackError);
+      }
+    }
 
     return NextResponse.json(
       {
