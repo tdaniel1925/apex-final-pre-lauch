@@ -7,14 +7,14 @@ import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 
 export async function middleware(request: NextRequest) {
-  // Skip auth refresh for static files and API routes
+  // Skip auth refresh for static files, API routes, and ALL dashboard routes
   const isStaticFile = request.nextUrl.pathname.match(/\.(ico|png|jpg|jpeg|gif|svg|webp)$/);
   const isApiRoute = request.nextUrl.pathname.startsWith('/api/');
   const isNextInternal = request.nextUrl.pathname.startsWith('/_next/');
   const isDashboard = request.nextUrl.pathname.startsWith('/dashboard');
 
-  // Skip middleware for dashboard routes - they handle auth server-side
-  // This prevents concurrent refresh token usage issues
+  // Dashboard routes handle auth server-side in their page components
+  // This prevents the race condition: middleware auth + server component auth = concurrent token refresh
   if (isStaticFile || isApiRoute || isNextInternal || isDashboard) {
     return NextResponse.next();
   }
@@ -50,7 +50,8 @@ export async function middleware(request: NextRequest) {
       }
     );
 
-    // Refresh session and get user
+    // ONLY check auth for admin/finance routes
+    // DO NOT call getUser() for other routes - let server components handle their own auth
     const { data: { user }, error: authError } = await supabase.auth.getUser();
 
     // Debug logging (remove after testing)
