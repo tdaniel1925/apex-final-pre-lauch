@@ -5,8 +5,6 @@
 
 'use client';
 
-import Link from 'next/link';
-
 export interface MatrixNodeData {
   member_id: string;
   distributor_id: string;
@@ -59,7 +57,7 @@ export default function MatrixNodeCard({ node, level, onClick }: MatrixNodeCardP
   const borderColor = RANK_COLORS[node.tech_rank] || 'border-slate-400';
   const rankLabel = RANK_LABELS[node.tech_rank] || 'Starter';
 
-  const cardContent = (
+  return (
     <div
       className={`
         bg-slate-800 rounded-lg shadow-lg border-2 ${borderColor}
@@ -113,15 +111,4 @@ export default function MatrixNodeCard({ node, level, onClick }: MatrixNodeCardP
       </div>
     </div>
   );
-
-  // Wrap in Link if slug exists
-  if (node.slug) {
-    return (
-      <Link href={`/dashboard/matrix/${node.distributor_id}`} className="block">
-        {cardContent}
-      </Link>
-    );
-  }
-
-  return cardContent;
 }

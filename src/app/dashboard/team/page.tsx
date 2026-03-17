@@ -8,7 +8,7 @@ import { createClient } from '@/lib/supabase/server';
 import { createServiceClient } from '@/lib/supabase/service';
 import TeamStatsHeader from '@/components/team/TeamStatsHeader';
 import TeamMemberCard, { type TeamMemberData } from '@/components/team/TeamMemberCard';
-import TeamFilters from '@/components/team/TeamFilters';
+import TeamWithModal from '@/components/team/TeamWithModal';
 
 export const metadata = {
   title: 'My Team - Apex Affinity Group',
@@ -179,7 +179,7 @@ export default async function TeamPage() {
         </div>
 
         {/* Filters Component (client-side) */}
-        <TeamFilters members={membersWithStats} />
+        <TeamWithModal members={membersWithStats} />
       </div>
     </div>
   );

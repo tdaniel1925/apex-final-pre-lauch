@@ -11,9 +11,10 @@ interface MatrixLevelViewProps {
   level: number;
   nodes: MatrixNodeData[];
   maxRankDepth: number; // Max level allowed based on user's rank
+  onNodeClick?: (distributorId: string) => void;
 }
 
-export default function MatrixLevelView({ level, nodes, maxRankDepth }: MatrixLevelViewProps) {
+export default function MatrixLevelView({ level, nodes, maxRankDepth, onNodeClick }: MatrixLevelViewProps) {
   // Don't render if this level exceeds the user's rank depth
   if (level > maxRankDepth) {
     return null;
@@ -41,6 +42,7 @@ export default function MatrixLevelView({ level, nodes, maxRankDepth }: MatrixLe
                 key={node.member_id}
                 node={node}
                 level={level}
+                onClick={() => onNodeClick?.(node.distributor_id)}
               />
             ))}
           </div>

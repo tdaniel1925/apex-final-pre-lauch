@@ -33,7 +33,7 @@ interface TreeNodeCardProps {
   node: MemberNode;
   isExpanded: boolean;
   onToggle: () => void;
-  onMemberClick?: (memberId: string) => void;
+  onMemberClick?: (distributorId: string) => void;
 }
 
 const RANK_COLORS: Record<string, string> = {
@@ -97,7 +97,7 @@ export default function TreeNodeCard({
         className={`flex-1 border-l-4 ${rankColor} ${rankBg} rounded-lg p-3 shadow-sm hover:shadow-md transition-shadow ${
           onMemberClick ? 'cursor-pointer' : ''
         }`}
-        onClick={() => onMemberClick?.(node.member_id)}
+        onClick={() => onMemberClick?.(node.distributor.id)}
       >
         <div className="flex items-center justify-between gap-3">
           {/* Left: Avatar + Info */}

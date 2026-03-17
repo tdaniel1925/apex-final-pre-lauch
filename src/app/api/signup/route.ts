@@ -11,6 +11,7 @@ import { signupSchema } from '@/lib/validations/signup';
 import { checkSlugAvailability } from '@/lib/utils/slug';
 import { enrollInCampaign } from '@/lib/email/campaign-service';
 import { prepareSSNForStorage } from '@/lib/utils/ssn';
+import { createReplicatedSites } from '@/lib/integrations/user-sync/service';
 import type { ApiResponse, Distributor } from '@/lib/types';
 
 /**
@@ -389,6 +390,16 @@ export async function POST(request: NextRequest) {
     if (!enrollResult.success) {
       // Log error but don't fail signup - email can be sent manually later
       console.error('Email campaign enrollment failed:', enrollResult.error);
+    }
+
+    // Step 8.5: Create replicated sites on external platforms
+    // This runs asynchronously and errors are logged but don't fail signup
+    try {
+      console.log('[Signup] Creating replicated sites for distributor:', distributor.id);
+      await createReplicatedSites(distributor.id);
+    } catch (replicationError) {
+      // Log error but don't fail signup - sites can be created manually later
+      console.error('[Signup] Replicated site creation failed:', replicationError);
     }
 
     // Step 9: Return success

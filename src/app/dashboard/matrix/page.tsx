@@ -7,7 +7,7 @@ import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { createServiceClient } from '@/lib/supabase/service';
 import type { Distributor } from '@/lib/types';
-import MatrixLevelView from '@/components/matrix/MatrixLevelView';
+import MatrixWithModal from '@/components/matrix/MatrixWithModal';
 import { calculateMatrixLevels, getMaxMatrixDepth } from '@/lib/matrix/level-calculator';
 import type { MatrixNodeData } from '@/components/matrix/MatrixNodeCard';
 
@@ -249,25 +249,11 @@ export default async function MatrixPage() {
         <div className="bg-slate-800 border border-slate-700 rounded-lg p-6">
           <h2 className="text-xl font-bold text-white mb-6">Your Matrix Organization</h2>
 
-          {totalTeamSize === 0 ? (
-            <div className="bg-slate-900 border border-dashed border-slate-600 rounded-lg p-12 text-center">
-              <p className="text-slate-400 text-lg mb-2">No team members yet</p>
-              <p className="text-slate-500 text-sm">
-                Start building your team by sharing your referral link
-              </p>
-            </div>
-          ) : (
-            <>
-              {[1, 2, 3, 4, 5].map((level) => (
-                <MatrixLevelView
-                  key={level}
-                  level={level}
-                  nodes={nodesByLevel[level] || []}
-                  maxRankDepth={maxRankDepth}
-                />
-              ))}
-            </>
-          )}
+          <MatrixWithModal
+            nodesByLevel={nodesByLevel}
+            maxRankDepth={maxRankDepth}
+            totalTeamSize={totalTeamSize}
+          />
         </div>
 
         {/* Help Text */}

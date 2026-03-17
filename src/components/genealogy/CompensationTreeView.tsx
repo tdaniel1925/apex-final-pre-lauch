@@ -11,7 +11,7 @@ import TreeNodeCard, { type MemberNode } from './TreeNodeCard';
 interface CompensationTreeViewProps {
   tree: MemberNode[];
   maxInitialDepth?: number;
-  onMemberClick?: (memberId: string) => void;
+  onMemberClick?: (distributorId: string) => void;
 }
 
 export default function CompensationTreeView({
@@ -216,7 +216,7 @@ interface TreeNodeRecursiveProps {
   node: MemberNode;
   expandedNodes: Set<string>;
   onToggle: (nodeId: string) => void;
-  onMemberClick?: (memberId: string) => void;
+  onMemberClick?: (distributorId: string) => void;
 }
 
 function TreeNodeRecursive({

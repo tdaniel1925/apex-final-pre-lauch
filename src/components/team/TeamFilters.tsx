@@ -10,6 +10,7 @@ import TeamMemberCard, { type TeamMemberData } from './TeamMemberCard';
 
 interface TeamFiltersProps {
   members: TeamMemberData[];
+  onMemberClick?: (distributorId: string) => void;
 }
 
 type SortField = 'name' | 'credits' | 'joinDate' | 'rank';
@@ -29,7 +30,7 @@ const RANK_ORDER = [
   'elite',
 ];
 
-export default function TeamFilters({ members }: TeamFiltersProps) {
+export default function TeamFilters({ members, onMemberClick }: TeamFiltersProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [rankFilter, setRankFilter] = useState<string>('all');
   const [activeFilter, setActiveFilter] = useState<string>('all');
@@ -261,7 +262,7 @@ export default function TeamFilters({ members }: TeamFiltersProps) {
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
             {paginatedMembers.map((member) => (
-              <TeamMemberCard key={member.memberId} member={member} />
+              <TeamMemberCard key={member.memberId} member={member} onMemberClick={onMemberClick} />
             ))}
           </div>
 

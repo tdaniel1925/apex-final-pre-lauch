@@ -6,7 +6,7 @@
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { createServiceClient } from '@/lib/supabase/service';
-import CompensationTreeView from '@/components/genealogy/CompensationTreeView';
+import GenealogyWithModal from '@/components/genealogy/GenealogyWithModal';
 import type { MemberNode } from '@/components/genealogy/TreeNodeCard';
 
 export const metadata = {
@@ -284,7 +284,7 @@ export default async function UserGenealogyPage({ searchParams }: PageProps) {
       ) : (
         <>
           {/* Tree View */}
-          <CompensationTreeView tree={enrollmentTree} maxInitialDepth={3} />
+          <GenealogyWithModal tree={enrollmentTree} maxInitialDepth={3} />
 
           {/* Depth Controls */}
           <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">

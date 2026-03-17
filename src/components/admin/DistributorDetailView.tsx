@@ -20,6 +20,7 @@ import ResendWelcomeButton from '@/components/dashboard/ResendWelcomeButton';
 import NotesPanel from './NotesPanel';
 import ActivityLogPanel from './ActivityLogPanel';
 import PasswordResetModal from './PasswordResetModal';
+import ReplicatedSitesPanel from './ReplicatedSitesPanel';
 
 interface DistributorDetailViewProps {
   distributor: Distributor;
@@ -599,6 +600,9 @@ export default function DistributorDetailView({
 
         {/* Sidebar */}
         <div className="lg:col-span-1 space-y-3">
+          {/* Replicated Sites */}
+          <ReplicatedSitesPanel distributorId={initialDistributor.id} />
+
           {/* Admin Notes */}
           <NotesPanel distributorId={initialDistributor.id} currentAdminRole={currentAdminRole} />
 

@@ -23,9 +23,10 @@ export interface TeamMemberData {
 
 interface TeamMemberCardProps {
   member: TeamMemberData;
+  onMemberClick?: (distributorId: string) => void;
 }
 
-export default function TeamMemberCard({ member }: TeamMemberCardProps) {
+export default function TeamMemberCard({ member, onMemberClick }: TeamMemberCardProps) {
   const initials = member.fullName
     .split(' ')
     .map((n) => n[0])
@@ -48,7 +49,12 @@ export default function TeamMemberCard({ member }: TeamMemberCardProps) {
   const rankColor = rankColors[member.techRank.toLowerCase()] || 'bg-slate-100 text-slate-700';
 
   return (
-    <div className="bg-white border border-slate-200 rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow">
+    <div
+      className={`bg-white border border-slate-200 rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow ${
+        onMemberClick ? 'cursor-pointer' : ''
+      }`}
+      onClick={() => onMemberClick?.(member.distributorId)}
+    >
       {/* Header */}
       <div className="flex items-start gap-4 mb-4">
         {/* Avatar */}
