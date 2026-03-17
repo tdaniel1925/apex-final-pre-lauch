@@ -84,8 +84,8 @@ export async function POST(request: NextRequest) {
         },
       ],
       mode: product.is_subscription ? 'subscription' : 'payment',
-      success_url: `${process.env.NEXT_PUBLIC_APP_URL}/products?success=true&session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/products?canceled=true`,
+      success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/dashboard/store?success=true&session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/dashboard/store?canceled=true`,
       customer_email: distributor.email,
       metadata: {
         distributor_id: distributorId,
