@@ -67,7 +67,7 @@ export function IPipelineLauncher({
   user,
   defaultProduct = 'igo',
   variant = 'default',
-  size = 'md',
+  size = 'default',
   buttonText,
   showProductSelector = false,
   className = '',
