@@ -10,6 +10,7 @@ import { createServiceClient } from '@/lib/supabase/service';
 import { signupSchema } from '@/lib/validations/signup';
 import { checkSlugAvailability } from '@/lib/utils/slug';
 import { enrollInCampaign } from '@/lib/email/campaign-service';
+import { prepareSSNForStorage } from '@/lib/utils/ssn';
 import type { ApiResponse, Distributor } from '@/lib/types';
 
 /**
@@ -254,6 +255,58 @@ export async function POST(request: NextRequest) {
         } as ApiResponse,
         { status: 500 }
       );
+    }
+
+    // Step 7.5: Store SSN in tax_info table
+    if (data.ssn) {
+      const ssnData = prepareSSNForStorage(data.ssn);
+
+      if (!ssnData.valid) {
+        // Rollback: Delete both auth user and distributor
+        await serviceClient.auth.admin.deleteUser(authData.user.id);
+        await serviceClient
+          .from('distributors')
+          .delete()
+          .eq('id', distributor.id);
+
+        return NextResponse.json(
+          {
+            success: false,
+            error: 'Invalid SSN',
+            message: ssnData.error || 'Invalid Social Security Number',
+          } as ApiResponse,
+          { status: 400 }
+        );
+      }
+
+      const { error: taxInfoError } = await serviceClient
+        .from('distributor_tax_info')
+        .insert({
+          distributor_id: distributor.id,
+          ssn_encrypted: ssnData.encrypted,
+          ssn_last_4: ssnData.last4,
+          created_by: authData.user.id,
+        });
+
+      if (taxInfoError) {
+        console.error('Tax info creation error:', taxInfoError);
+
+        // Rollback: Delete both auth user and distributor
+        await serviceClient.auth.admin.deleteUser(authData.user.id);
+        await serviceClient
+          .from('distributors')
+          .delete()
+          .eq('id', distributor.id);
+
+        return NextResponse.json(
+          {
+            success: false,
+            error: 'Failed to save tax information',
+            message: 'Account creation failed. Please try again.',
+          } as ApiResponse,
+          { status: 500 }
+        );
+      }
     }
 
     // Step 8: Enroll in email campaign and send welcome email

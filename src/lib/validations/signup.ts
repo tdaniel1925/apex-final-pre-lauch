@@ -113,6 +113,33 @@ export const signupSchema = z.object({
   sponsor_slug: z.string().optional(),
 
   licensing_status: z.enum(['licensed', 'non_licensed']),
+
+  ssn: z
+    .string()
+    .min(1, 'Social Security Number is required')
+    .regex(
+      /^\d{3}-\d{2}-\d{4}$/,
+      'SSN must be in format XXX-XX-XXXX'
+    )
+    .refine(
+      (ssn) => {
+        const cleaned = ssn.replace(/-/g, '');
+        // Check for invalid patterns
+        const invalid = ['000000000', '111111111', '222222222', '333333333', '444444444', '555555555', '666666666', '777777777', '888888888', '999999999', '123456789'];
+        if (invalid.includes(cleaned)) return false;
+        // Area number cannot be 000, 666, or 900-999
+        const area = parseInt(cleaned.substring(0, 3));
+        if (area === 0 || area === 666 || area >= 900) return false;
+        // Group number cannot be 00
+        const group = parseInt(cleaned.substring(3, 5));
+        if (group === 0) return false;
+        // Serial number cannot be 0000
+        const serial = parseInt(cleaned.substring(5, 9));
+        if (serial === 0) return false;
+        return true;
+      },
+      'Please enter a valid Social Security Number'
+    ),
 });
 
 /**
