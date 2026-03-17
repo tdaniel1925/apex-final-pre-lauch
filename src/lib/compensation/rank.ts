@@ -1,187 +1,435 @@
-// Apex Affinity Group - Rank Evaluation
-// Source: 03_rep_policies.md, BUSINESS-RULES.md
+// =============================================
+// DUAL-LADDER COMPENSATION ENGINE - RANK EVALUATION
+// =============================================
+// Source: APEX_COMP_ENGINE_SPEC_FINAL.md
+// Phase: 3 (Build New TypeScript Code)
+// Agent: 3C
+// =============================================
 
-import type { Rank } from './types';
-import { COMP_PLAN_CONFIG, RANK_EVALUATION_ORDER, RANK_ID_MAP } from './config';
+import {
+  TECH_RANKS,
+  TECH_RANK_REQUIREMENTS,
+  INSURANCE_RANKS,
+  TechRank,
+  InsuranceRank,
+  getRankValue,
+  RANK_GRACE_PERIOD_MONTHS,
+  NEW_REP_RANK_LOCK_MONTHS,
+  TechRankRequirements,
+  DownlineRequirement,
+} from './config';
 
 /**
- * Evaluate rep's rank based on personal BV and team BV
- *
- * CRITICAL RULES:
- * - Evaluation runs on LAST CALENDAR DAY of each month
- * - Result stored in rank_snapshots table (immutable)
- * - Snapshot governs override access for FOLLOWING month
- * - Downrank is automatic (no grace period)
- * - personal_bv = rep's own customer subscriptions only
- * - team_bv = downline only (excludes rep's own)
- * - Requires BOTH thresholds to qualify for rank
- *
- * Evaluation order (highest to lowest - first match wins):
- *   IF personal_bv < 50 → INACTIVE
- *   ELIF personal_bv >= 250 AND team_bv >= 25000 → PLATINUM
- *   ELIF personal_bv >= 200 AND team_bv >= 10000 → GOLD
- *   ELIF personal_bv >= 150 AND team_bv >= 2500  → SILVER
- *   ELIF personal_bv >= 100 AND team_bv >= 500   → BRONZE
- *   ELSE → ASSOCIATE
- *
- * @param personalBV - Rep's own customer subscriptions BV
- * @param teamBV - Downline BV (excludes rep's own)
- * @returns Evaluated rank
+ * Member Data for Rank Evaluation
  */
-export function evaluateRank(personalBV: number, teamBV: number): Rank {
-  // CRITICAL: If personal BV < $50, always INACTIVE
-  if (personalBV < COMP_PLAN_CONFIG.rank_thresholds.ASSOCIATE.personal_bv) {
-    return 'INACTIVE';
-  }
+export interface MemberRankData {
+  memberId: string;
+  personalCreditsMonthly: number;
+  groupCreditsMonthly: number;
+  currentTechRank: TechRank;
+  currentInsuranceRank?: InsuranceRank;
+  enrollmentDate: Date;
+  techGraceMonths: number; // Months below requirements
+  techRankLockUntil?: Date; // 6-month lock for new reps
+  highestTechRank: TechRank;
+}
 
-  // Evaluate from highest rank to lowest (first match wins)
-  for (const requirement of RANK_EVALUATION_ORDER) {
+/**
+ * Sponsored Member (for downline verification)
+ */
+export interface SponsoredMember {
+  memberId: string;
+  techRank: TechRank;
+  personallySponsored: boolean; // Must be true for downline requirements
+}
+
+/**
+ * Rank Evaluation Result
+ */
+export interface RankEvaluationResult {
+  currentRank: TechRank;
+  qualifiedRank: TechRank; // Rank they qualify for based on credits/downline
+  action: 'maintain' | 'promote' | 'demote' | 'grace_period' | 'rank_locked';
+  effectiveDate?: Date; // When promotion takes effect (next month)
+  graceMonthsUsed: number;
+  graceMonthsRemaining: number;
+  isRankLocked: boolean;
+  reasons: string[];
+}
+
+/**
+ * Evaluate Tech Ladder Rank
+ *
+ * From spec:
+ * - Check personal + group credits against thresholds
+ * - Verify downline rank requirements (personally sponsored)
+ * - Apply grace period (2 months) for demotions
+ * - Apply rank lock (6 months) for new reps
+ * - Promotions take effect next month
+ *
+ * @param member - Member data
+ * @param sponsoredMembers - List of personally sponsored members
+ * @returns Rank evaluation result
+ */
+export function evaluateTechRank(
+  member: MemberRankData,
+  sponsoredMembers: SponsoredMember[]
+): RankEvaluationResult {
+  const reasons: string[] = [];
+  const currentRankValue = getRankValue(member.currentTechRank);
+
+  // Check if rank is locked (6-month lock for new reps)
+  const isRankLocked = Boolean(member.techRankLockUntil && new Date() < member.techRankLockUntil);
+
+  // Find highest rank member qualifies for
+  let qualifiedRank: TechRank = 'starter';
+
+  for (let i = TECH_RANK_REQUIREMENTS.length - 1; i >= 0; i--) {
+    const req = TECH_RANK_REQUIREMENTS[i];
+
+    // Check credit requirements
     if (
-      personalBV >= requirement.personalBVMin &&
-      teamBV >= requirement.teamBVMin
+      member.personalCreditsMonthly >= req.personal &&
+      member.groupCreditsMonthly >= req.group
     ) {
-      return requirement.rank;
+      // Check downline requirements
+      if (checkDownlineRequirements(req.downline, sponsoredMembers)) {
+        qualifiedRank = req.name;
+        reasons.push(
+          `Qualifies for ${req.name}: ${member.personalCreditsMonthly}/${req.personal} personal, ${member.groupCreditsMonthly}/${req.group} group`
+        );
+        break;
+      } else {
+        reasons.push(
+          `Credits met for ${req.name}, but downline requirements not met`
+        );
+      }
     }
   }
 
-  // Fallback (should never reach here if RANK_EVALUATION_ORDER is correct)
-  return 'ASSOCIATE';
-}
+  const qualifiedRankValue = getRankValue(qualifiedRank);
 
-/**
- * Check if rep qualifies for a specific override level
- *
- * CRITICAL: Uses PRIOR MONTH rank, not current month
- *
- * Level requirements:
- *   L1: Associate or higher (rank_id >= 0)
- *   L2: Bronze or higher (rank_id >= 1)
- *   L3: Silver or higher (rank_id >= 2)
- *   L4: Gold or higher (rank_id >= 3)
- *   L5: Platinum (rank_id >= 4)
- *   L6: Platinum + Powerline (rank_id == 4 AND team_bv >= $100K)
- *   L7: Platinum + Powerline (rank_id == 4 AND team_bv >= $100K)
- *
- * @param priorMonthRank - Rank from PRIOR month snapshot
- * @param level - Override level (1-7)
- * @param teamBV - Current team BV (for Powerline check)
- * @returns True if qualified for this level
- */
-export function qualifiesForOverrideLevel(
-  priorMonthRank: Rank | null,
-  level: number,
-  teamBV: number = 0
-): boolean {
-  // No prior month rank = new rep in Month 1 = treated as INACTIVE
-  if (!priorMonthRank) {
-    return false;
-  }
+  // PROMOTION
+  if (qualifiedRankValue > currentRankValue) {
+    const effectiveDate = getFirstDayOfNextMonth();
+    reasons.push(`Promotion to ${qualifiedRank} effective ${effectiveDate.toISOString().split('T')[0]}`);
 
-  // INACTIVE never qualifies for any level
-  if (priorMonthRank === 'INACTIVE') {
-    return false;
-  }
-
-  const rankId = RANK_ID_MAP[priorMonthRank];
-
-  // Levels 1-5: Standard rank requirements
-  if (level <= 5) {
-    const requiredRankId = level - 1;  // L1=0 (Associate), L2=1 (Bronze), etc.
-    return rankId >= requiredRankId;
-  }
-
-  // Levels 6-7: Powerline (Platinum + $100K team BV)
-  if (level === 6 || level === 7) {
-    const isPlatinum = priorMonthRank === 'PLATINUM';
-    const meetsThreshold = teamBV >= COMP_PLAN_CONFIG.powerline.threshold_bv;
-    return isPlatinum && meetsThreshold;
-  }
-
-  return false;
-}
-
-/**
- * Check if Powerline is active for a rep
- *
- * Powerline requirements:
- * - Rank: Platinum
- * - Team BV: >= $100,000
- *
- * When active:
- * - Unlocks L6 and L7 override levels
- * - Changes override percentage split (standard → powerline)
- *
- * @param rank - Current rank (or prior month rank for override calculations)
- * @param teamBV - Team BV
- * @returns True if Powerline is active
- */
-export function isPowerlineActive(rank: Rank, teamBV: number): boolean {
-  return (
-    rank === COMP_PLAN_CONFIG.powerline.required_rank &&
-    teamBV >= COMP_PLAN_CONFIG.powerline.threshold_bv
-  );
-}
-
-/**
- * Get rank progression (next rank and gap)
- *
- * Useful for rep dashboard "Rank Progress" screen
- *
- * @param currentRank - Current rank
- * @param personalBV - Personal BV
- * @param teamBV - Team BV
- * @returns Next rank and what's needed to achieve it
- */
-export function getRankProgression(
-  currentRank: Rank,
-  personalBV: number,
-  teamBV: number
-) {
-  const currentRankId = RANK_ID_MAP[currentRank];
-
-  // Find next rank in hierarchy
-  const nextRankRequirement = RANK_EVALUATION_ORDER.find(
-    (req) => RANK_ID_MAP[req.rank] > currentRankId
-  );
-
-  if (!nextRankRequirement) {
     return {
-      nextRank: null,
-      requirements: null,
-      gaps: null,
+      currentRank: member.currentTechRank,
+      qualifiedRank,
+      action: 'promote',
+      effectiveDate,
+      graceMonthsUsed: 0,
+      graceMonthsRemaining: RANK_GRACE_PERIOD_MONTHS,
+      isRankLocked: false,
+      reasons,
     };
   }
 
-  const personalBVGap = Math.max(0, nextRankRequirement.personalBVMin - personalBV);
-  const teamBVGap = Math.max(0, nextRankRequirement.teamBVMin - teamBV);
+  // DEMOTION
+  if (qualifiedRankValue < currentRankValue) {
+    // Check rank lock
+    if (isRankLocked) {
+      reasons.push(
+        `Rank locked until ${member.techRankLockUntil?.toISOString().split('T')[0]} (new rep protection)`
+      );
+      return {
+        currentRank: member.currentTechRank,
+        qualifiedRank: member.currentTechRank,
+        action: 'rank_locked',
+        graceMonthsUsed: 0,
+        graceMonthsRemaining: RANK_GRACE_PERIOD_MONTHS,
+        isRankLocked: true,
+        reasons,
+      };
+    }
 
+    // Apply grace period
+    const graceMonthsUsed = member.techGraceMonths + 1;
+    const graceMonthsRemaining = Math.max(0, RANK_GRACE_PERIOD_MONTHS - graceMonthsUsed);
+
+    if (graceMonthsUsed < RANK_GRACE_PERIOD_MONTHS) {
+      reasons.push(
+        `Grace period: ${graceMonthsUsed}/${RANK_GRACE_PERIOD_MONTHS} months used. No demotion yet.`
+      );
+      return {
+        currentRank: member.currentTechRank,
+        qualifiedRank,
+        action: 'grace_period',
+        graceMonthsUsed,
+        graceMonthsRemaining,
+        isRankLocked: false,
+        reasons,
+      };
+    }
+
+    // Grace expired, demote
+    const effectiveDate = getFirstDayOfNextMonth();
+    reasons.push(
+      `Grace period expired. Demotion to ${qualifiedRank} effective ${effectiveDate.toISOString().split('T')[0]}`
+    );
+
+    return {
+      currentRank: member.currentTechRank,
+      qualifiedRank,
+      action: 'demote',
+      effectiveDate,
+      graceMonthsUsed,
+      graceMonthsRemaining: 0,
+      isRankLocked: false,
+      reasons,
+    };
+  }
+
+  // MAINTAIN
+  reasons.push(`Maintaining ${member.currentTechRank} rank`);
   return {
-    nextRank: nextRankRequirement.rank,
-    requirements: {
-      personalBV: nextRankRequirement.personalBVMin,
-      teamBV: nextRankRequirement.teamBVMin,
-    },
-    gaps: {
-      personalBV: personalBVGap,
-      teamBV: teamBVGap,
-    },
-    qualifies: personalBVGap === 0 && teamBVGap === 0,
+    currentRank: member.currentTechRank,
+    qualifiedRank: member.currentTechRank,
+    action: 'maintain',
+    graceMonthsUsed: 0,
+    graceMonthsRemaining: RANK_GRACE_PERIOD_MONTHS,
+    isRankLocked,
+    reasons,
   };
 }
 
 /**
- * Validate rank evaluation against test cases
+ * Check Downline Rank Requirements
  *
- * @param personalBV - Personal BV
- * @param teamBV - Team BV
- * @param expectedRank - Expected rank
- * @returns True if evaluation matches expected
+ * From spec:
+ * - Downline rank requirements must be personally sponsored members
+ * - Some ranks have OR conditions (e.g., Diamond: 3 Golds OR 2 Platinums)
+ * - "At least X members at rank Y or higher"
+ *
+ * @param requirements - Downline requirements (can be array for OR conditions)
+ * @param sponsored - List of personally sponsored members
+ * @returns True if requirements met
  */
-export function validateRankEvaluation(
-  personalBV: number,
-  teamBV: number,
-  expectedRank: Rank
+function checkDownlineRequirements(
+  requirements: DownlineRequirement | DownlineRequirement[] | undefined,
+  sponsored: SponsoredMember[]
 ): boolean {
-  const actualRank = evaluateRank(personalBV, teamBV);
-  return actualRank === expectedRank;
+  if (!requirements) return true; // No downline requirement
+
+  // OR condition (Diamond, Elite)
+  if (Array.isArray(requirements)) {
+    return requirements.some((req) => checkSingleDownlineRequirement(req, sponsored));
+  }
+
+  // Single requirement
+  return checkSingleDownlineRequirement(requirements, sponsored);
+}
+
+/**
+ * Check a single downline requirement
+ *
+ * @param requirement - Single downline requirement (e.g., { gold: 2 })
+ * @param sponsored - List of personally sponsored members
+ * @returns True if requirement met
+ */
+function checkSingleDownlineRequirement(
+  requirement: DownlineRequirement,
+  sponsored: SponsoredMember[]
+): boolean {
+  for (const [requiredRank, requiredCount] of Object.entries(requirement)) {
+    const requiredRankValue = getRankValue(requiredRank as TechRank);
+
+    // Count sponsored members at or above required rank
+    const qualifiedCount = sponsored.filter(
+      (s) => s.personallySponsored && getRankValue(s.techRank) >= requiredRankValue
+    ).length;
+
+    if (qualifiedCount < requiredCount) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+/**
+ * Calculate Rank Lock End Date for New Reps
+ *
+ * From spec:
+ * "6-month rank lock: New reps who achieve a rank in first 6 months are locked (no demotion) for 6 months"
+ *
+ * @param enrollmentDate - Member enrollment date
+ * @param firstRankDate - Date they achieved their first rank above Starter
+ * @returns Date when rank lock expires (6 months after first rank, or null if not applicable)
+ */
+export function calculateRankLockDate(
+  enrollmentDate: Date,
+  firstRankDate: Date
+): Date | null {
+  // Check if first rank was achieved within 6 months of enrollment
+  const sixMonthsAfterEnrollment = addMonths(enrollmentDate, 6);
+
+  if (firstRankDate > sixMonthsAfterEnrollment) {
+    return null; // Rank lock only applies if achieved within first 6 months
+  }
+
+  // Lock expires 6 months after achieving the rank
+  return addMonths(firstRankDate, NEW_REP_RANK_LOCK_MONTHS);
+}
+
+/**
+ * Get first day of next month (for promotion effective dates)
+ *
+ * From spec:
+ * "Promotions take effect next month"
+ *
+ * @returns First day of next month
+ */
+function getFirstDayOfNextMonth(): Date {
+  const today = new Date();
+  const nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+  return nextMonth;
+}
+
+/**
+ * Add months to a date
+ *
+ * @param date - Starting date
+ * @param months - Number of months to add
+ * @returns New date
+ */
+function addMonths(date: Date, months: number): Date {
+  const result = new Date(date);
+  result.setMonth(result.getMonth() + months);
+  return result;
+}
+
+/**
+ * Check if member qualifies for rank bonus
+ *
+ * From spec:
+ * "Bonuses paid once per rank per lifetime"
+ * "Re-qualification does NOT earn second bonus"
+ *
+ * @param newRank - Rank member is being promoted to
+ * @param highestRank - Highest rank ever achieved
+ * @returns True if rank bonus should be paid
+ */
+export function shouldPayRankBonus(newRank: TechRank, highestRank: TechRank): boolean {
+  return getRankValue(newRank) > getRankValue(highestRank);
+}
+
+/**
+ * Get rank bonus amount for a rank
+ *
+ * @param rank - Tech rank
+ * @returns Bonus amount in cents
+ */
+export function getRankBonus(rank: TechRank): number {
+  const req = TECH_RANK_REQUIREMENTS.find((r) => r.name === rank);
+  return req?.bonus ?? 0;
+}
+
+/**
+ * Simple Insurance Rank Evaluation
+ *
+ * Note: Full insurance ladder logic would include:
+ * - Insurance production metrics
+ * - Placement ratio
+ * - Persistency ratio
+ * - MGA shop requirements
+ *
+ * This is a placeholder for basic structure.
+ * Full implementation would be in a separate insurance-rank.ts module.
+ */
+export function evaluateInsuranceRank(
+  insuranceProductionCents: number,
+  placementRatio: number,
+  persistencyRatio: number
+): InsuranceRank {
+  // Simplified logic - actual implementation would use spec thresholds
+  if (insuranceProductionCents >= 500000 && placementRatio >= 0.8 && persistencyRatio >= 0.9) {
+    return 'mga';
+  }
+
+  if (insuranceProductionCents >= 250000 && placementRatio >= 0.75) {
+    return 'executive_director';
+  }
+
+  if (insuranceProductionCents >= 100000 && placementRatio >= 0.7) {
+    return 'senior_director';
+  }
+
+  if (insuranceProductionCents >= 50000) {
+    return 'director';
+  }
+
+  if (insuranceProductionCents >= 25000) {
+    return 'manager';
+  }
+
+  if (insuranceProductionCents >= 10000) {
+    return 'associate';
+  }
+
+  return 'inactive';
+}
+
+// =============================================
+// ASYNC VERSIONS (Future Database-Driven Config)
+// =============================================
+// These versions use the config-loader for future database-driven config
+// Use these in new code that can handle async/await
+// =============================================
+
+/**
+ * Evaluate Tech Ladder Rank (async version)
+ *
+ * This version loads rank requirements from config-loader (currently hardcoded, future DB)
+ *
+ * @param member - Member data
+ * @param sponsoredMembers - List of personally sponsored members
+ * @returns Rank evaluation result
+ */
+export async function evaluateTechRankAsync(
+  member: MemberRankData,
+  sponsoredMembers: SponsoredMember[]
+): Promise<RankEvaluationResult> {
+  // For now, delegate to sync version
+  // FUTURE: Load requirements from config-loader
+  return evaluateTechRank(member, sponsoredMembers);
+
+  // FUTURE IMPLEMENTATION:
+  // import { getTechRankRequirements } from './config-loader';
+  //
+  // const reasons: string[] = [];
+  // const currentRankValue = getRankValue(member.currentTechRank);
+  //
+  // const isRankLocked = Boolean(member.techRankLockUntil && new Date() < member.techRankLockUntil);
+  //
+  // // Load requirements from database
+  // const requirements = await getTechRankRequirements();
+  //
+  // let qualifiedRank: TechRank = 'starter';
+  //
+  // for (let i = requirements.length - 1; i >= 0; i--) {
+  //   const req = requirements[i];
+  //
+  //   if (
+  //     member.personalCreditsMonthly >= req.personal &&
+  //     member.groupCreditsMonthly >= req.group
+  //   ) {
+  //     if (checkDownlineRequirements(req.downline, sponsoredMembers)) {
+  //       qualifiedRank = req.name;
+  //       reasons.push(
+  //         `Qualifies for ${req.name}: ${member.personalCreditsMonthly}/${req.personal} personal, ${member.groupCreditsMonthly}/${req.group} group`
+  //       );
+  //       break;
+  //     } else {
+  //       reasons.push(
+  //         `Credits met for ${req.name}, but downline requirements not met`
+  //       );
+  //     }
+  //   }
+  // }
+  //
+  // const qualifiedRankValue = getRankValue(qualifiedRank);
+  //
+  // // ... rest of evaluation logic (same as sync version)
 }

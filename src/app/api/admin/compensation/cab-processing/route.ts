@@ -1,102 +1,41 @@
-// API Endpoint: CAB Daily Processing
+// =============================================
+// DEPRECATED: Old CAB Processing API
+// Date Deprecated: 2026-03-16
+// Reason: Replaced by dual-ladder compensation system
+// Phase: 1 (Remove Old System - Agent 1C)
+// Note: CAB logic will be preserved but reimplemented in Phase 3
+// =============================================
+
 import { NextRequest, NextResponse } from 'next/server';
-import { createServiceClient } from '@/lib/supabase/service';
-import { processCABTransitions } from '@/lib/compensation/cab-state-machine';
-import { getAdminUser } from '@/lib/auth/admin';
 
-/**
- * Daily CAB Processing Job
- *
- * This endpoint should be called daily (via cron job) to:
- * 1. Check all PENDING CABs that reached day 60 → transition to EARNED
- * 2. Check subscriptions with expired recovery deadlines → VOID CABs
- *
- * POST /api/admin/compensation/cab-processing
- */
+// Old imports - NO LONGER AVAILABLE (files moved to _OLD_BACKUP/)
+// import { createServiceClient } from '@/lib/supabase/service';
+// import { processCABTransitions } from '@/lib/compensation/cab-state-machine';
+// import { getAdminUser } from '@/lib/auth/admin';
+
 export async function POST(request: NextRequest) {
-  // CRITICAL: Only Admin can process CAB transitions
-  const adminUser = await getAdminUser();
-  if (!adminUser) {
-    return NextResponse.json(
-      { error: 'Unauthorized - Admin access required' },
-      { status: 401 }
-    );
-  }
-
-  try {
-    const db = createServiceClient();
-
-    // Process all CAB transitions
-    const result = await processCABTransitions(db);
-
-    return NextResponse.json({
-      success: true,
-      cabs_earned: result.earned,
-      cabs_voided: result.voided,
-      total_processed: result.earned + result.voided,
-    });
-  } catch (error: any) {
-    console.error('CAB processing error:', error);
-    return NextResponse.json(
-      { error: error.message || 'CAB processing failed' },
-      { status: 500 }
-    );
-  }
+  return NextResponse.json(
+    {
+      error: 'DEPRECATED: This endpoint has been removed',
+      message: 'CAB processing will be reimplemented with dual-ladder system',
+      deprecated_date: '2026-03-16',
+      status: 'removed',
+      action: 'CAB state machine logic will be preserved and updated in Phase 3',
+      note: 'PENDING → EARNED → CLAWBACK flow remains the same',
+    },
+    { status: 501 } // 501 Not Implemented
+  );
 }
 
-// GET: Retrieve CAB statistics
 export async function GET(request: NextRequest) {
-  try {
-    const db = createServiceClient();
-
-    // Count CABs by state
-    const { data: pending } = await db
-      .from('cab_records')
-      .select('*', { count: 'exact', head: true })
-      .eq('state', 'PENDING');
-
-    const { data: earned } = await db
-      .from('cab_records')
-      .select('*', { count: 'exact', head: true })
-      .eq('state', 'EARNED');
-
-    const { data: voided } = await db
-      .from('cab_records')
-      .select('*', { count: 'exact', head: true })
-      .eq('state', 'VOIDED');
-
-    const { data: clawback } = await db
-      .from('cab_records')
-      .select('*', { count: 'exact', head: true })
-      .eq('state', 'CLAWBACK');
-
-    // Calculate pending CABs approaching day 60
-    const today = new Date();
-    const in30Days = new Date(today);
-    in30Days.setDate(in30Days.getDate() + 30);
-
-    const { data: approaching } = await db
-      .from('cab_records')
-      .select('*', { count: 'exact', head: true })
-      .eq('state', 'PENDING')
-      .gte('release_eligible_date', today.toISOString())
-      .lte('release_eligible_date', in30Days.toISOString());
-
-    return NextResponse.json({
-      success: true,
-      stats: {
-        pending: pending || 0,
-        earned: earned || 0,
-        voided: voided || 0,
-        clawback: clawback || 0,
-        approaching_release: approaching || 0,
-      },
-    });
-  } catch (error: any) {
-    console.error('Error fetching CAB stats:', error);
-    return NextResponse.json(
-      { error: error.message || 'Failed to fetch CAB stats' },
-      { status: 500 }
-    );
-  }
+  return NextResponse.json(
+    {
+      error: 'DEPRECATED: This endpoint has been removed',
+      message: 'CAB statistics endpoint will be reimplemented with new schema',
+      deprecated_date: '2026-03-16',
+      status: 'removed',
+      action: 'Will be available after Phase 4 completion',
+    },
+    { status: 501 } // 501 Not Implemented
+  );
 }

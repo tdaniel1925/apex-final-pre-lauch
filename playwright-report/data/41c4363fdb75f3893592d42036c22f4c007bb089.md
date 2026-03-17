@@ -1,0 +1,336 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - navigation [ref=e5]:
+        - generic [ref=e6]:
+          - link "Apex Affinity Group" [ref=e7] [cursor=pointer]:
+            - /url: /
+            - img "Apex Affinity Group" [ref=e8]
+          - generic [ref=e9]:
+            - list [ref=e11]:
+              - listitem [ref=e12]:
+                - link "Home" [ref=e13] [cursor=pointer]:
+                  - /url: "#home"
+              - listitem [ref=e14]:
+                - link "Your Journey" [ref=e15] [cursor=pointer]:
+                  - /url: "#journey"
+              - listitem [ref=e16]:
+                - link "Products" [ref=e17] [cursor=pointer]:
+                  - /url: "#products"
+              - listitem [ref=e18]:
+                - link "Services" [ref=e19] [cursor=pointer]:
+                  - /url: "#services"
+              - listitem [ref=e20]:
+                - link "FAQs" [ref=e21] [cursor=pointer]:
+                  - /url: "#faq"
+              - listitem [ref=e22]:
+                - link "Contact" [ref=e23] [cursor=pointer]:
+                  - /url: "#contact"
+              - listitem [ref=e24]:
+                - link "Live" [ref=e25] [cursor=pointer]:
+                  - /url: /live
+            - generic [ref=e26]:
+              - link "Login" [ref=e27] [cursor=pointer]:
+                - /url: /login
+              - link "Get Started" [ref=e28] [cursor=pointer]:
+                - /url: /signup
+    - generic [ref=e37]:
+      - generic [ref=e38]: Where Insurance Professionals Come Home
+      - heading "Aspiring. Growing. Established.You Belong Here." [level=1] [ref=e39]:
+        - generic [ref=e40]:
+          - generic [ref=e41]:
+            - generic [ref=e42]: A
+            - generic [ref=e43]: s
+            - generic [ref=e44]: p
+            - generic [ref=e45]: i
+            - generic [ref=e46]: r
+            - generic [ref=e47]: i
+            - generic [ref=e48]: "n"
+            - generic [ref=e49]: g
+            - generic [ref=e50]: .
+          - generic [ref=e51]:
+            - generic [ref=e52]: G
+            - generic [ref=e53]: r
+            - generic [ref=e54]: o
+            - generic [ref=e55]: w
+            - generic [ref=e56]: i
+            - generic [ref=e57]: "n"
+            - generic [ref=e58]: g
+            - generic [ref=e59]: .
+          - generic [ref=e60]:
+            - generic [ref=e61]: E
+            - generic [ref=e62]: s
+            - generic [ref=e63]: t
+            - generic [ref=e64]: a
+            - generic [ref=e65]: b
+            - generic [ref=e66]: l
+            - generic [ref=e67]: i
+            - generic [ref=e68]: s
+            - generic [ref=e69]: h
+            - generic [ref=e70]: e
+            - generic [ref=e71]: d
+            - generic [ref=e72]: .
+        - generic [ref=e73]:
+          - generic [ref=e74]:
+            - generic [ref=e75]: "Y"
+            - generic [ref=e76]: o
+            - generic [ref=e77]: u
+          - generic [ref=e78]:
+            - generic [ref=e79]: B
+            - generic [ref=e80]: e
+            - generic [ref=e81]: l
+            - generic [ref=e82]: o
+            - generic [ref=e83]: "n"
+            - generic [ref=e84]: g
+          - generic [ref=e85]:
+            - generic [ref=e86]: H
+            - generic [ref=e87]: e
+            - generic [ref=e88]: r
+            - generic [ref=e89]: e
+            - generic [ref=e90]: .
+      - paragraph [ref=e91]: Whether you're just starting out, building your career, or a seasoned professional ready to scale — Apex Affinity Group is your home. We give your clients world-class life insurance and protection products. We give you the tools, training, and community to sell them with confidence. Both sides of the equation, fully covered.
+    - heading "No Matter Where You Are, Apex Meets You There" [level=2] [ref=e97]:
+      - generic [ref=e98]:
+        - generic [ref=e99]:
+          - generic [ref=e100]: "N"
+          - generic [ref=e101]: o
+        - generic [ref=e102]:
+          - generic [ref=e103]: M
+          - generic [ref=e104]: a
+          - generic [ref=e105]: t
+          - generic [ref=e106]: t
+          - generic [ref=e107]: e
+          - generic [ref=e108]: r
+        - generic [ref=e109]:
+          - generic [ref=e110]: W
+          - generic [ref=e111]: h
+          - generic [ref=e112]: e
+          - generic [ref=e113]: r
+          - generic [ref=e114]: e
+        - generic [ref=e115]:
+          - generic [ref=e116]: "Y"
+          - generic [ref=e117]: o
+          - generic [ref=e118]: u
+        - generic [ref=e119]:
+          - generic [ref=e120]: A
+          - generic [ref=e121]: r
+          - generic [ref=e122]: e
+          - generic [ref=e123]: ","
+        - generic [ref=e124]:
+          - generic [ref=e125]: A
+          - generic [ref=e126]: p
+          - generic [ref=e127]: e
+          - generic [ref=e128]: x
+      - generic [ref=e129]:
+        - generic [ref=e130]:
+          - generic [ref=e131]: M
+          - generic [ref=e132]: e
+          - generic [ref=e133]: e
+          - generic [ref=e134]: t
+          - generic [ref=e135]: s
+        - generic [ref=e136]:
+          - generic [ref=e137]: "Y"
+          - generic [ref=e138]: o
+          - generic [ref=e139]: u
+        - generic [ref=e140]:
+          - generic [ref=e141]: T
+          - generic [ref=e142]: h
+          - generic [ref=e143]: e
+          - generic [ref=e144]: r
+          - generic [ref=e145]: e
+    - heading "The Tools That Help You Serve Better" [level=2] [ref=e153]:
+      - generic [ref=e154]:
+        - generic [ref=e155]:
+          - generic [ref=e156]: T
+          - generic [ref=e157]: h
+          - generic [ref=e158]: e
+        - generic [ref=e159]:
+          - generic [ref=e160]: T
+          - generic [ref=e161]: o
+          - generic [ref=e162]: o
+          - generic [ref=e163]: l
+          - generic [ref=e164]: s
+        - generic [ref=e165]:
+          - generic [ref=e166]: T
+          - generic [ref=e167]: h
+          - generic [ref=e168]: a
+          - generic [ref=e169]: t
+        - generic [ref=e170]:
+          - generic [ref=e171]: H
+          - generic [ref=e172]: e
+          - generic [ref=e173]: l
+          - generic [ref=e174]: p
+        - generic [ref=e175]:
+          - generic [ref=e176]: "Y"
+          - generic [ref=e177]: o
+          - generic [ref=e178]: u
+        - generic [ref=e179]:
+          - generic [ref=e180]: S
+          - generic [ref=e181]: e
+          - generic [ref=e182]: r
+          - generic [ref=e183]: v
+          - generic [ref=e184]: e
+      - generic [ref=e186]:
+        - generic [ref=e187]: B
+        - generic [ref=e188]: e
+        - generic [ref=e189]: t
+        - generic [ref=e190]: t
+        - generic [ref=e191]: e
+        - generic [ref=e192]: r
+    - heading "World-Class Products. Real Client Solutions." [level=2] [ref=e201]:
+      - generic [ref=e202]:
+        - generic [ref=e203]:
+          - generic [ref=e204]: W
+          - generic [ref=e205]: o
+          - generic [ref=e206]: r
+          - generic [ref=e207]: l
+          - generic [ref=e208]: d
+          - generic [ref=e209]: "-"
+          - generic [ref=e210]: C
+          - generic [ref=e211]: l
+          - generic [ref=e212]: a
+          - generic [ref=e213]: s
+          - generic [ref=e214]: s
+        - generic [ref=e215]:
+          - generic [ref=e216]: P
+          - generic [ref=e217]: r
+          - generic [ref=e218]: o
+          - generic [ref=e219]: d
+          - generic [ref=e220]: u
+          - generic [ref=e221]: c
+          - generic [ref=e222]: t
+          - generic [ref=e223]: s
+          - generic [ref=e224]: .
+        - generic [ref=e225]:
+          - generic [ref=e226]: R
+          - generic [ref=e227]: e
+          - generic [ref=e228]: a
+          - generic [ref=e229]: l
+      - generic [ref=e230]:
+        - generic [ref=e231]:
+          - generic [ref=e232]: C
+          - generic [ref=e233]: l
+          - generic [ref=e234]: i
+          - generic [ref=e235]: e
+          - generic [ref=e236]: "n"
+          - generic [ref=e237]: t
+        - generic [ref=e238]:
+          - generic [ref=e239]: S
+          - generic [ref=e240]: o
+          - generic [ref=e241]: l
+          - generic [ref=e242]: u
+          - generic [ref=e243]: t
+          - generic [ref=e244]: i
+          - generic [ref=e245]: o
+          - generic [ref=e246]: "n"
+          - generic [ref=e247]: s
+          - generic [ref=e248]: .
+    - heading "Better Agents. Better Service. Stronger Communities." [level=2] [ref=e256]:
+      - generic [ref=e257]:
+        - generic [ref=e258]:
+          - generic [ref=e259]: B
+          - generic [ref=e260]: e
+          - generic [ref=e261]: t
+          - generic [ref=e262]: t
+          - generic [ref=e263]: e
+          - generic [ref=e264]: r
+        - generic [ref=e265]:
+          - generic [ref=e266]: A
+          - generic [ref=e267]: g
+          - generic [ref=e268]: e
+          - generic [ref=e269]: "n"
+          - generic [ref=e270]: t
+          - generic [ref=e271]: s
+          - generic [ref=e272]: .
+        - generic [ref=e273]:
+          - generic [ref=e274]: B
+          - generic [ref=e275]: e
+          - generic [ref=e276]: t
+          - generic [ref=e277]: t
+          - generic [ref=e278]: e
+          - generic [ref=e279]: r
+        - generic [ref=e280]:
+          - generic [ref=e281]: S
+          - generic [ref=e282]: e
+          - generic [ref=e283]: r
+          - generic [ref=e284]: v
+          - generic [ref=e285]: i
+          - generic [ref=e286]: c
+          - generic [ref=e287]: e
+          - generic [ref=e288]: .
+      - generic [ref=e289]:
+        - generic [ref=e290]:
+          - generic [ref=e291]: S
+          - generic [ref=e292]: t
+          - generic [ref=e293]: r
+          - generic [ref=e294]: o
+          - generic [ref=e295]: "n"
+          - generic [ref=e296]: g
+          - generic [ref=e297]: e
+          - generic [ref=e298]: r
+        - generic [ref=e299]:
+          - generic [ref=e300]: C
+          - generic [ref=e301]: o
+          - generic [ref=e302]: m
+          - generic [ref=e303]: m
+          - generic [ref=e304]: u
+          - generic [ref=e305]: "n"
+          - generic [ref=e306]: i
+          - generic [ref=e307]: t
+          - generic [ref=e308]: i
+          - generic [ref=e309]: e
+          - generic [ref=e310]: s
+          - generic [ref=e311]: .
+    - generic [ref=e313]:
+      - heading "Real Answers. No Runaround." [level=2] [ref=e317]:
+        - generic [ref=e318]:
+          - generic [ref=e319]:
+            - generic [ref=e320]: R
+            - generic [ref=e321]: e
+            - generic [ref=e322]: a
+            - generic [ref=e323]: l
+          - generic [ref=e324]:
+            - generic [ref=e325]: A
+            - generic [ref=e326]: "n"
+            - generic [ref=e327]: s
+            - generic [ref=e328]: w
+            - generic [ref=e329]: e
+            - generic [ref=e330]: r
+            - generic [ref=e331]: s
+            - generic [ref=e332]: .
+          - generic [ref=e333]:
+            - generic [ref=e334]: "N"
+            - generic [ref=e335]: o
+          - generic [ref=e336]:
+            - generic [ref=e337]: R
+            - generic [ref=e338]: u
+            - generic [ref=e339]: "n"
+            - generic [ref=e340]: a
+            - generic [ref=e341]: r
+            - generic [ref=e342]: o
+            - generic [ref=e343]: u
+            - generic [ref=e344]: "n"
+            - generic [ref=e345]: d
+            - generic [ref=e346]: .
+      - generic [ref=e350]: "Seasoned agents join Apex because we give them what they've been missing: better carrier contracts, AI-powered client management tools, a supportive professional community, and the ability to build residual income through team development — all while keeping 100% ownership of their book of business. It's the infrastructure of a large agency without giving up your independence."
+    - contentinfo [ref=e351]:
+      - generic [ref=e353]:
+        - generic [ref=e355]:
+          - paragraph [ref=e356]: Apex Affinity Group
+          - paragraph [ref=e357]: 1600 Highway 6 Ste 400
+          - paragraph [ref=e358]: Sugar Land, TX 77478
+        - img "Apex Affinity Group" [ref=e360]
+        - list [ref=e362]:
+          - listitem [ref=e363]:
+            - link "Terms & Conditions" [ref=e364] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=e365]:
+            - link "Privacy Policy" [ref=e366] [cursor=pointer]:
+              - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=e372] [cursor=pointer]:
+    - img [ref=e373]
+  - alert [ref=e376]
+```

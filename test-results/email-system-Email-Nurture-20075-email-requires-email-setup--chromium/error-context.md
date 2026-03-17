@@ -1,0 +1,43 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - button "Open Next.js Dev Tools" [ref=e7] [cursor=pointer]:
+    - img [ref=e8]
+  - alert [ref=e11]: Apex Affinity Group - Distributor Network
+  - generic [ref=e13]:
+    - generic [ref=e14]:
+      - img [ref=e16]
+      - heading "Account Created Successfully!" [level=1] [ref=e18]
+      - paragraph [ref=e19]: Welcome to Apex Affinity Group
+    - generic [ref=e21]:
+      - img [ref=e22]
+      - generic [ref=e24]:
+        - heading "Save Your Login Credentials" [level=3] [ref=e25]
+        - paragraph [ref=e26]: Please save your login information below. Your welcome email may take a few minutes to arrive or could go to spam. Having these credentials saved ensures you can log in immediately.
+    - generic [ref=e27]:
+      - generic [ref=e28]:
+        - generic [ref=e29]:
+          - generic [ref=e30]: Email Address
+          - generic [ref=e31]: test-1773695513068@example.com
+        - generic [ref=e32]:
+          - generic [ref=e33]: Username
+          - generic [ref=e34]: test-user-1773695513810
+        - generic [ref=e35]:
+          - generic [ref=e36]: Password
+          - generic [ref=e37]: TestPass123!
+        - generic [ref=e38]:
+          - generic [ref=e39]: Your Replicated Website
+          - link "reachtheapex.net/test-user-1773695513810" [ref=e41] [cursor=pointer]:
+            - /url: https://reachtheapex.net/test-user-1773695513810
+      - button "Copy All Credentials" [ref=e42]:
+        - img [ref=e43]
+        - text: Copy All Credentials
+    - generic [ref=e47] [cursor=pointer]:
+      - checkbox "I have written down or copied my login credentials and understand that I will need them to access my account." [ref=e48]
+      - generic [ref=e49]: I have written down or copied my login credentials and understand that I will need them to access my account.
+    - button "Continue to Dashboard Setup" [disabled] [ref=e50]
+    - paragraph [ref=e51]:
+      - text: A confirmation email has been sent to
+      - strong [ref=e52]: test-1773695513068@example.com
+```
