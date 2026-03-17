@@ -275,7 +275,55 @@ export async function POST(request: NextRequest) {
     // Track distributor for rollback
     distributorId = distributor.id;
 
-    // Step 7.5: Store SSN in tax_info table
+    // Step 7.5: Create member record (for compensation tracking)
+    const { error: memberError } = await serviceClient
+      .from('members')
+      .insert({
+        distributor_id: distributor.id,
+        email: distributor.email,
+        full_name: `${distributor.first_name} ${distributor.last_name}`,
+        enroller_id: null, // Will be updated later when enroller's member record exists
+        sponsor_id: null, // Will be updated later when sponsor's member record exists
+        status: 'active',
+        enrollment_date: distributor.created_at,
+        tech_rank: 'starter',
+        highest_tech_rank: 'starter',
+        insurance_rank: 'inactive',
+        highest_insurance_rank: 'inactive',
+        personal_credits_monthly: 0,
+        team_credits_monthly: 0,
+        tech_personal_credits_monthly: 0,
+        tech_team_credits_monthly: 0,
+        insurance_personal_credits_monthly: 0,
+        insurance_team_credits_monthly: 0,
+        override_qualified: false,
+      });
+
+    if (memberError) {
+      console.error('Member creation error:', memberError);
+
+      // Rollback: Delete auth user and distributor
+      console.log('[ROLLBACK] Member creation failed, deleting auth user and distributor');
+      await serviceClient.auth.admin.deleteUser(authUserId!);
+      await serviceClient
+        .from('distributors')
+        .delete()
+        .eq('id', distributorId!);
+
+      authUserId = null;
+      distributorId = null;
+
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'Failed to create member profile',
+          message: 'Account creation failed. Please try again.',
+        } as ApiResponse,
+        { status: 500 }
+      );
+    }
+
+    // Step 7.6: Store SSN in tax_info table
     if (data.ssn) {
       const ssnData = prepareSSNForStorage(data.ssn);
 
@@ -378,9 +426,10 @@ export async function POST(request: NextRequest) {
     if (distributorId) {
       console.log('[ROLLBACK] Deleting distributor:', distributorId);
       try {
+        await serviceClient.from('members').delete().eq('distributor_id', distributorId);
         await serviceClient.from('distributors').delete().eq('id', distributorId);
         await serviceClient.from('distributor_tax_info').delete().eq('distributor_id', distributorId);
-        console.log('[ROLLBACK] Successfully deleted distributor and tax info');
+        console.log('[ROLLBACK] Successfully deleted member, distributor and tax info');
       } catch (rollbackError) {
         console.error('[ROLLBACK] Failed to delete distributor:', rollbackError);
       }
