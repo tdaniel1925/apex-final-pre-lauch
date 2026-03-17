@@ -283,7 +283,7 @@ export default async function DashboardPage() {
               </p>
             </div>
             <div className="p-6">
-              <ActivityFeed />
+              <ActivityFeed distributorId={dist.id} />
             </div>
           </div>
         </div>

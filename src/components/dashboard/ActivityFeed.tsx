@@ -10,10 +10,11 @@ import Link from 'next/link';
 import type { ActivityFeedItem } from '@/app/api/activity-feed/route';
 
 interface ActivityFeedProps {
+  distributorId: string;
   initialActivities?: ActivityFeedItem[];
 }
 
-export default function ActivityFeed({ initialActivities = [] }: ActivityFeedProps) {
+export default function ActivityFeed({ distributorId, initialActivities = [] }: ActivityFeedProps) {
   const [activities, setActivities] = useState<ActivityFeedItem[]>(initialActivities);
   const [loading, setLoading] = useState(false);
   const [eventTypeFilter, setEventTypeFilter] = useState<string>('all');
@@ -25,6 +26,7 @@ export default function ActivityFeed({ initialActivities = [] }: ActivityFeedPro
     setLoading(true);
     try {
       const params = new URLSearchParams();
+      params.append('distributor_id', distributorId);
       if (eventTypeFilter !== 'all') params.append('event_type', eventTypeFilter);
       if (periodFilter !== 'all') params.append('period', periodFilter);
       if (maxDepthFilter < 7) params.append('max_depth', maxDepthFilter.toString());
@@ -32,7 +34,7 @@ export default function ActivityFeed({ initialActivities = [] }: ActivityFeedPro
 
       const response = await fetch(`/api/activity-feed?${params.toString()}`);
 
-      // Handle auth errors (stale tokens) by redirecting to login
+      // Handle auth errors (shouldn't happen now, but keep as safety)
       if (response.status === 401) {
         window.location.href = '/login';
         return;
@@ -52,12 +54,20 @@ export default function ActivityFeed({ initialActivities = [] }: ActivityFeedPro
 
   // Fetch on mount and when filters change
   useEffect(() => {
-    fetchActivities();
+    // Delay initial fetch by 2 seconds to avoid concurrent requests on page load
+    const initialTimeout = setTimeout(() => {
+      fetchActivities();
+    }, 2000);
 
-    // Auto-refresh every 30 seconds
-    const interval = setInterval(fetchActivities, 30000);
-    return () => clearInterval(interval);
-  }, [eventTypeFilter, periodFilter, maxDepthFilter]);
+    // Auto-refresh every 60 seconds
+    const interval = setInterval(fetchActivities, 60000);
+
+    return () => {
+      clearTimeout(initialTimeout);
+      clearInterval(interval);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [eventTypeFilter, periodFilter, maxDepthFilter, distributorId]);
 
   // Get icon for event type
   const getEventIcon = (eventType: string) => {
