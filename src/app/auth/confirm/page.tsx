@@ -1,11 +1,14 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { Button } from '@/components/ui/button';
 
-export default function ConfirmEmailPage() {
+// Force dynamic rendering (disable static generation)
+export const dynamic = 'force-dynamic';
+
+function ConfirmEmailContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading');
@@ -113,5 +116,24 @@ export default function ConfirmEmailPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ConfirmEmailPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#2B4C7E] via-[#567EBB] to-[#606C38] p-4">
+          <div className="max-w-md w-full bg-white rounded-2xl shadow-2xl p-8">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-[#2B4C7E] mx-auto mb-4"></div>
+              <h1 className="text-2xl font-bold text-gray-900 mb-2">Loading...</h1>
+            </div>
+          </div>
+        </div>
+      }
+    >
+      <ConfirmEmailContent />
+    </Suspense>
   );
 }
