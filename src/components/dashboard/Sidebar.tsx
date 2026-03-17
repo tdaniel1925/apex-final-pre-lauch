@@ -131,7 +131,24 @@ export default function Sidebar() {
       ],
     },
 
-    // SECTION 3: COMPENSATION
+    // SECTION 3: STORE
+    {
+      section: 'store',
+      sectionTitle: 'Store',
+      items: [
+        {
+          name: 'Service Store',
+          href: '/dashboard/store',
+          icon: (
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+            </svg>
+          ),
+        },
+      ],
+    },
+
+    // SECTION 4: COMPENSATION
     {
       section: 'compensation',
       sectionTitle: 'Comp. Plan Details',
@@ -160,7 +177,7 @@ export default function Sidebar() {
       ],
     },
 
-    // SECTION 4: APPS & TOOLS
+    // SECTION 5: APPS & TOOLS
     {
       section: 'apps',
       sectionTitle: 'Apps & Tools',
@@ -190,7 +207,7 @@ export default function Sidebar() {
       ],
     },
 
-    // SECTION 5: LICENSED AGENT TOOLS
+    // SECTION 6: LICENSED AGENT TOOLS
     {
       section: 'licensed',
       sectionTitle: 'Licensed Agent Tools',
