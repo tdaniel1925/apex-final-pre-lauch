@@ -89,6 +89,25 @@ export default function CredentialsConfirmationPage() {
           </p>
         </div>
 
+        {/* Email Verification Notice */}
+        <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-4 mb-4">
+          <div className="flex gap-3">
+            <svg className="w-6 h-6 text-blue-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+              <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+            </svg>
+            <div>
+              <h3 className="font-semibold text-blue-900 mb-1">
+                📧 Verify Your Email Address
+              </h3>
+              <p className="text-sm text-blue-800">
+                <strong>Important:</strong> A verification email has been sent to <strong>{credentials.email}</strong>.
+                Please check your inbox (and spam folder) and click the confirmation link to activate your account.
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Important Notice */}
         <div className="bg-yellow-50 border-2 border-yellow-200 rounded-lg p-4 mb-6">
           <div className="flex gap-3">

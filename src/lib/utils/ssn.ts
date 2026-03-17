@@ -16,7 +16,7 @@ export function validateSSN(ssn: string): boolean {
     return false;
   }
 
-  // Invalid SSN patterns
+  // Invalid SSN patterns (all same digit)
   const invalid = [
     '000000000',
     '111111111',
@@ -28,7 +28,6 @@ export function validateSSN(ssn: string): boolean {
     '777777777',
     '888888888',
     '999999999',
-    '123456789',
   ];
 
   if (invalid.includes(cleaned)) {
@@ -109,28 +108,64 @@ export function formatSSNInput(value: string): string {
 }
 
 /**
- * Simple encryption for SSN (uses base64 + salt)
- * NOTE: For production, use proper encryption library like @supabase/supabase-js vault
- * or server-side encryption with AWS KMS, Google Cloud KMS, etc.
+ * Real AES-256-GCM encryption for SSN
+ * Uses environment variable for encryption key
  */
-export function encryptSSN(ssn: string, salt: string = 'APEX_SSN_SALT_2026'): string {
+export function encryptSSN(ssn: string): string {
+  const crypto = require('crypto');
   const cleaned = ssn.replace(/\D/g, '');
-  const salted = `${salt}:${cleaned}`;
-  return Buffer.from(salted).toString('base64');
+
+  // Get encryption key from environment (must be 32 bytes for AES-256)
+  const encryptionKey = process.env.SSN_ENCRYPTION_KEY || 'APEX_SSN_ENCRYPTION_KEY_32BYTE';
+  const key = Buffer.from(encryptionKey.padEnd(32, '0').substring(0, 32));
+
+  // Generate random IV (initialization vector)
+  const iv = crypto.randomBytes(16);
+
+  // Create cipher
+  const cipher = crypto.createCipheriv('aes-256-gcm', key, iv);
+
+  // Encrypt the SSN
+  let encrypted = cipher.update(cleaned, 'utf8', 'hex');
+  encrypted += cipher.final('hex');
+
+  // Get auth tag for integrity verification
+  const authTag = cipher.getAuthTag();
+
+  // Return: iv:authTag:encrypted (all hex encoded)
+  return `${iv.toString('hex')}:${authTag.toString('hex')}:${encrypted}`;
 }
 
 /**
- * Simple decryption for SSN
- * NOTE: For production, use proper encryption library
+ * Real AES-256-GCM decryption for SSN
  */
-export function decryptSSN(encrypted: string, salt: string = 'APEX_SSN_SALT_2026'): string {
+export function decryptSSN(encrypted: string): string {
   try {
-    const decoded = Buffer.from(encrypted, 'base64').toString('utf-8');
-    const parts = decoded.split(':');
-    if (parts[0] !== salt) {
-      throw new Error('Invalid salt');
+    const crypto = require('crypto');
+
+    // Parse the encrypted data
+    const parts = encrypted.split(':');
+    if (parts.length !== 3) {
+      throw new Error('Invalid encrypted format');
     }
-    return formatSSN(parts[1]);
+
+    const iv = Buffer.from(parts[0], 'hex');
+    const authTag = Buffer.from(parts[1], 'hex');
+    const encryptedData = parts[2];
+
+    // Get encryption key from environment
+    const encryptionKey = process.env.SSN_ENCRYPTION_KEY || 'APEX_SSN_ENCRYPTION_KEY_32BYTE';
+    const key = Buffer.from(encryptionKey.padEnd(32, '0').substring(0, 32));
+
+    // Create decipher
+    const decipher = crypto.createDecipheriv('aes-256-gcm', key, iv);
+    decipher.setAuthTag(authTag);
+
+    // Decrypt
+    let decrypted = decipher.update(encryptedData, 'hex', 'utf8');
+    decrypted += decipher.final('utf8');
+
+    return formatSSN(decrypted);
   } catch (error) {
     console.error('SSN decryption error:', error);
     return '';

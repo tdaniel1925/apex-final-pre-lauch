@@ -70,9 +70,9 @@ export const signupSchema = z.object({
   email: z
     .string()
     .min(1, 'Email is required')
+    .trim()
     .email('Please enter a valid email address')
-    .toLowerCase()
-    .trim(),
+    .toLowerCase(),
 
   password: z
     .string()
@@ -124,8 +124,8 @@ export const signupSchema = z.object({
     .refine(
       (ssn) => {
         const cleaned = ssn.replace(/-/g, '');
-        // Check for invalid patterns
-        const invalid = ['000000000', '111111111', '222222222', '333333333', '444444444', '555555555', '666666666', '777777777', '888888888', '999999999', '123456789'];
+        // Check for invalid patterns (all same digit)
+        const invalid = ['000000000', '111111111', '222222222', '333333333', '444444444', '555555555', '666666666', '777777777', '888888888', '999999999'];
         if (invalid.includes(cleaned)) return false;
         // Area number cannot be 000, 666, or 900-999
         const area = parseInt(cleaned.substring(0, 3));
