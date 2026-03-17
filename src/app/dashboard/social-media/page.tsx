@@ -96,7 +96,7 @@ export default async function SocialMediaPage() {
   if (!distributor) redirect('/login');
 
   // Generate referral link
-  const referralLink = `https://apexaffinity.com/join/${distributor.slug}`;
+  const referralLink = `${process.env.NEXT_PUBLIC_SITE_URL || 'https://reachtheapex.net'}/${distributor.slug}`;
   const distributorName = `${distributor.first_name} ${distributor.last_name}`;
 
   return (
