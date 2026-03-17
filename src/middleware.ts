@@ -11,8 +11,11 @@ export async function middleware(request: NextRequest) {
   const isStaticFile = request.nextUrl.pathname.match(/\.(ico|png|jpg|jpeg|gif|svg|webp)$/);
   const isApiRoute = request.nextUrl.pathname.startsWith('/api/');
   const isNextInternal = request.nextUrl.pathname.startsWith('/_next/');
+  const isDashboard = request.nextUrl.pathname.startsWith('/dashboard');
 
-  if (isStaticFile || isApiRoute || isNextInternal) {
+  // Skip middleware for dashboard routes - they handle auth server-side
+  // This prevents concurrent refresh token usage issues
+  if (isStaticFile || isApiRoute || isNextInternal || isDashboard) {
     return NextResponse.next();
   }
 
