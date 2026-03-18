@@ -212,8 +212,8 @@ export default async function TrainingVideosPage() {
   // Get distributor info
   const { data: distributor } = await supabase
     .from('distributors')
-    .select('id, user_id, first_name, last_name, rank')
-    .eq('user_id', user.id)
+    .select('id, auth_user_id, first_name, last_name, rank')
+    .eq('auth_user_id', user.id)
     .single();
 
   if (!distributor) {
