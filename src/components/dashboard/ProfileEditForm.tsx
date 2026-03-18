@@ -26,6 +26,10 @@ const safeProfileUpdateSchema = z.object({
   date_of_birth: personalInfoSchema.shape.date_of_birth.optional(),
   company_name: personalInfoSchema.shape.company_name.optional(),
 
+  // Business fields (editable for business registrations)
+  dba_name: personalInfoSchema.shape.dba_name.optional(),
+  business_website: personalInfoSchema.shape.business_website.optional(),
+
   // Address
   address_line1: addressSchema.shape.address_line1.optional(),
   address_line2: addressSchema.shape.address_line2.optional(),
@@ -84,6 +88,8 @@ export default function ProfileEditForm({
       phone: distributor.phone || undefined,
       date_of_birth: distributor.date_of_birth || undefined,
       company_name: distributor.company_name || undefined,
+      dba_name: (distributor as any).dba_name || undefined,
+      business_website: (distributor as any).business_website || undefined,
       address_line1: distributor.address_line1 || undefined,
       address_line2: distributor.address_line2 || undefined,
       city: distributor.city || undefined,
@@ -160,6 +166,8 @@ export default function ProfileEditForm({
           phone: result.distributor.phone || undefined,
           date_of_birth: result.distributor.date_of_birth || undefined,
           company_name: result.distributor.company_name || undefined,
+          dba_name: (result.distributor as any).dba_name || undefined,
+          business_website: (result.distributor as any).business_website || undefined,
           address_line1: result.distributor.address_line1 || undefined,
           address_line2: result.distributor.address_line2 || undefined,
           city: result.distributor.city || undefined,
@@ -350,6 +358,94 @@ export default function ProfileEditForm({
               </p>
             )}
           </div>
+
+          {/* Registration Type (Readonly) */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Registration Type
+            </label>
+            <input
+              type="text"
+              value={(distributor as any).registration_type === 'business' ? 'Business' : 'Personal'}
+              disabled
+              className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50 text-gray-500 capitalize"
+            />
+            <p className="mt-1 text-xs text-gray-500">
+              Registration type cannot be changed. Contact support if needed.
+            </p>
+          </div>
+
+          {/* Business Type (Readonly, only for business registrations) */}
+          {(distributor as any).registration_type === 'business' && (
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Business Type
+              </label>
+              <input
+                type="text"
+                value={
+                  (distributor as any).business_type === 'llc' ? 'LLC' :
+                  (distributor as any).business_type === 'corporation' ? 'Corporation' :
+                  (distributor as any).business_type === 's_corporation' ? 'S Corporation' :
+                  (distributor as any).business_type === 'partnership' ? 'Partnership' :
+                  (distributor as any).business_type === 'sole_proprietor' ? 'Sole Proprietor' :
+                  ''
+                }
+                disabled
+                className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50 text-gray-500"
+              />
+              <p className="mt-1 text-xs text-gray-500">
+                Business type cannot be changed. Contact support if needed.
+              </p>
+            </div>
+          )}
+
+          {/* DBA Name (Editable, only for business registrations) */}
+          {(distributor as any).registration_type === 'business' && (
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                DBA Name (Optional)
+              </label>
+              <input
+                type="text"
+                {...register('dba_name')}
+                placeholder="Doing Business As name"
+                className={`w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent ${
+                  errors.dba_name ? 'border-red-500' : 'border-gray-300'
+                }`}
+              />
+              <p className="mt-1 text-xs text-gray-500">
+                Enter your DBA ("Doing Business As") name if your business operates under a different name
+              </p>
+              {errors.dba_name && (
+                <p className="mt-1 text-sm text-red-600">
+                  {errors.dba_name.message}
+                </p>
+              )}
+            </div>
+          )}
+
+          {/* Business Website (Editable, only for business registrations) */}
+          {(distributor as any).registration_type === 'business' && (
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Business Website (Optional)
+              </label>
+              <input
+                type="url"
+                {...register('business_website')}
+                placeholder="https://www.example.com"
+                className={`w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent ${
+                  errors.business_website ? 'border-red-500' : 'border-gray-300'
+                }`}
+              />
+              {errors.business_website && (
+                <p className="mt-1 text-sm text-red-600">
+                  {errors.business_website.message}
+                </p>
+              )}
+            </div>
+          )}
         </div>
       </div>
 

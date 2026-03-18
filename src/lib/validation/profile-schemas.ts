@@ -49,12 +49,13 @@ export const personalInfoSchema = z.object({
 
   phone: z.string()
     .regex(US_PHONE_REGEX, 'Invalid US phone number format')
+    .min(10, 'Phone number is required')
     .optional()
     .or(z.literal('')),
 
   date_of_birth: z.string()
     .refine((date) => {
-      if (!date) return true; // Optional
+      if (!date) return true; // Optional (already set during signup)
       const dob = new Date(date);
       const age = (new Date().getTime() - dob.getTime()) / (1000 * 60 * 60 * 24 * 365.25);
       return age >= 18 && age <= 120;
@@ -65,6 +66,18 @@ export const personalInfoSchema = z.object({
   company_name: z.string()
     .min(2, 'Company name must be at least 2 characters')
     .max(100, 'Company name must not exceed 100 characters')
+    .optional()
+    .or(z.literal('')),
+
+  // Business-specific fields (editable)
+  dba_name: z.string()
+    .max(200, 'DBA name must not exceed 200 characters')
+    .optional()
+    .or(z.literal('')),
+
+  business_website: z.string()
+    .url('Please enter a valid URL')
+    .max(200, 'Website URL must not exceed 200 characters')
     .optional()
     .or(z.literal('')),
 });
@@ -200,6 +213,10 @@ export const comprehensiveProfileSchema = z.object({
   current_password: z.string()
     .min(1, 'Current password is required for email changes')
     .optional(),
+
+  // Registration type and business type (readonly - displayed but not editable)
+  registration_type: z.enum(['personal', 'business']).optional(),
+  business_type: z.enum(['llc', 'corporation', 's_corporation', 'partnership', 'sole_proprietor']).optional(),
 });
 
 export type ComprehensiveProfile = z.infer<typeof comprehensiveProfileSchema>;

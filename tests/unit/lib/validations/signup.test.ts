@@ -8,15 +8,22 @@ import { signupSchema, slugSchema, emailSchema } from '@/lib/validations/signup'
 describe('Signup Schema Validation', () => {
 
   const validData = {
+    registration_type: 'personal' as const,
     first_name: 'John',
     last_name: 'Doe',
     email: 'john.doe@example.com',
     password: 'SecurePass123!',
     slug: 'john-doe',
     company_name: '',
-    phone: '',
+    phone: '5551234567',
+    address_line1: '123 Main St',
+    address_line2: '',
+    city: 'Houston',
+    state: 'TX' as const,
+    zip: '77001',
     sponsor_slug: undefined,
     licensing_status: 'non_licensed' as const,
+    date_of_birth: '1990-01-01',
     ssn: '123-45-6789',
   };
 
@@ -194,9 +201,12 @@ describe('Signup Schema Validation', () => {
   });
 
   describe('Phone Validation', () => {
-    it('should allow empty phone (optional)', () => {
+    it('should require phone', () => {
       const result = signupSchema.safeParse({ ...validData, phone: '' });
-      expect(result.success).toBe(true);
+      expect(result.success).toBe(false);
+      if (!result.success) {
+        expect(result.error.issues[0].message).toContain('Phone');
+      }
     });
 
     it('should allow valid phone formats', () => {

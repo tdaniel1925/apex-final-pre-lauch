@@ -11,6 +11,8 @@ import { signupSchema } from '@/lib/validations/signup';
 import { checkSlugAvailability } from '@/lib/utils/slug';
 import { enrollInCampaign } from '@/lib/email/campaign-service';
 import { prepareSSNForStorage } from '@/lib/utils/ssn';
+import { prepareEINForStorage } from '@/lib/utils/ein';
+import { validateDateOfBirth } from '@/lib/utils/date-validation';
 import { createReplicatedSites } from '@/lib/integrations/user-sync/service';
 import type { ApiResponse, Distributor } from '@/lib/types';
 
@@ -235,6 +237,21 @@ export async function POST(request: NextRequest) {
     // Track auth user for rollback
     authUserId = authData.user.id;
 
+    // Step 5.5: Validate date of birth (for personal registrations)
+    if (data.registration_type === 'personal' && data.date_of_birth) {
+      const dobValidation = validateDateOfBirth(data.date_of_birth);
+      if (!dobValidation.valid) {
+        return NextResponse.json(
+          {
+            success: false,
+            error: 'Invalid date of birth',
+            message: dobValidation.error || 'Please provide a valid date of birth',
+          } as ApiResponse,
+          { status: 400 }
+        );
+      }
+    }
+
     // Step 6 + 7: Atomically find placement AND insert distributor in one
     // PostgreSQL transaction with advisory lock — eliminates race condition
     const { data: distributorRows, error: distributorError } = await serviceClient.rpc(
@@ -246,10 +263,22 @@ export async function POST(request: NextRequest) {
         p_email: data.email,
         p_slug: data.slug,
         p_company_name: data.company_name || null,
-        p_phone: data.phone || null,
+        p_phone: data.phone || '',
         p_sponsor_id: sponsorId,
         p_licensing_status: data.licensing_status,
         p_licensing_status_set_at: new Date().toISOString(),
+        // New fields for business/personal registration
+        p_registration_type: data.registration_type,
+        p_business_type: data.registration_type === 'business' ? data.business_type : null,
+        p_tax_id_type: data.registration_type === 'business' ? 'ein' : 'ssn',
+        p_date_of_birth: data.registration_type === 'personal' && data.date_of_birth ? data.date_of_birth : null,
+        p_dba_name: data.registration_type === 'business' && data.dba_name ? data.dba_name : null,
+        p_business_website: data.registration_type === 'business' && data.business_website ? data.business_website : null,
+        p_address_line1: data.address_line1,
+        p_address_line2: data.address_line2 || null,
+        p_city: data.city,
+        p_state: data.state,
+        p_zip: data.zip,
       }
     );
 
@@ -324,8 +353,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Step 7.6: Store SSN in tax_info table
-    if (data.ssn) {
+    // Step 7.6: Store Tax ID (SSN or EIN) in tax_info table
+    if (data.registration_type === 'personal' && data.ssn) {
+      // Store SSN for personal registrations
       const ssnData = prepareSSNForStorage(data.ssn);
 
       if (!ssnData.valid) {
@@ -354,13 +384,73 @@ export async function POST(request: NextRequest) {
         .from('distributor_tax_info')
         .insert({
           distributor_id: distributor.id,
-          ssn_encrypted: ssnData.encrypted,
+          tax_id: ssnData.encrypted, // Renamed from ssn_encrypted
           ssn_last_4: ssnData.last4,
+          tax_id_type: 'ssn',
           created_by: authData.user.id,
         });
 
       if (taxInfoError) {
-        console.error('Tax info creation error:', taxInfoError);
+        console.error('Tax info creation error (SSN):', taxInfoError);
+
+        // Rollback: Delete both auth user and distributor
+        console.log('[ROLLBACK] Tax info creation failed, deleting auth user and distributor');
+        await serviceClient.auth.admin.deleteUser(authUserId!);
+        await serviceClient
+          .from('distributors')
+          .delete()
+          .eq('id', distributorId!);
+
+        authUserId = null;
+        distributorId = null;
+
+        return NextResponse.json(
+          {
+            success: false,
+            error: 'Failed to save tax information',
+            message: 'Account creation failed. Please try again.',
+          } as ApiResponse,
+          { status: 500 }
+        );
+      }
+    } else if (data.registration_type === 'business' && data.ein) {
+      // Store EIN for business registrations
+      const einData = prepareEINForStorage(data.ein);
+
+      if (!einData.valid) {
+        // Rollback: Delete both auth user and distributor
+        console.log('[ROLLBACK] Invalid EIN, deleting auth user and distributor');
+        await serviceClient.auth.admin.deleteUser(authUserId!);
+        await serviceClient
+          .from('distributors')
+          .delete()
+          .eq('id', distributorId!);
+
+        authUserId = null;
+        distributorId = null;
+
+        return NextResponse.json(
+          {
+            success: false,
+            error: 'Invalid EIN',
+            message: einData.error || 'Invalid Employer Identification Number',
+          } as ApiResponse,
+          { status: 400 }
+        );
+      }
+
+      const { error: taxInfoError } = await serviceClient
+        .from('distributor_tax_info')
+        .insert({
+          distributor_id: distributor.id,
+          tax_id: einData.encrypted, // Same column as SSN (renamed to tax_id)
+          ssn_last_4: einData.last4, // Reusing same column for last 4 digits
+          tax_id_type: 'ein',
+          created_by: authData.user.id,
+        });
+
+      if (taxInfoError) {
+        console.error('Tax info creation error (EIN):', taxInfoError);
 
         // Rollback: Delete both auth user and distributor
         console.log('[ROLLBACK] Tax info creation failed, deleting auth user and distributor');

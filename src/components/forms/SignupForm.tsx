@@ -9,9 +9,11 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { signupSchema, type SignupFormData } from '@/lib/validations/signup';
+import { signupSchema, type SignupFormData, US_STATES } from '@/lib/validations/signup';
 import { generateSlug } from '@/lib/utils/slug-client';
 import { formatSSNInput, maskSSN } from '@/lib/utils/ssn';
+import { formatEINInput } from '@/lib/utils/ein';
+import { getMaxDate, getMinDate } from '@/lib/utils/date-validation';
 
 interface SignupFormProps {
   sponsorSlug?: string;
@@ -37,6 +39,7 @@ export default function SignupForm({ sponsorSlug, sponsorName }: SignupFormProps
     resolver: zodResolver(signupSchema),
     defaultValues: {
       sponsor_slug: sponsorSlug || undefined,
+      registration_type: 'personal', // Default to personal registration
     },
   });
 
@@ -44,6 +47,7 @@ export default function SignupForm({ sponsorSlug, sponsorName }: SignupFormProps
   const watchLastName = watch('last_name');
   const watchSlug = watch('slug');
   const watchPassword = watch('password');
+  const watchRegistrationType = watch('registration_type');
 
   // Auto-generate slug from name
   useEffect(() => {
@@ -144,6 +148,69 @@ export default function SignupForm({ sponsorSlug, sponsorName }: SignupFormProps
       )}
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        {/* Registration Type Selection */}
+        <div className="border-2 border-[#2B4C7E] rounded-lg p-4 bg-blue-50">
+          <label className="block text-sm font-medium text-gray-900 mb-3">
+            Are you registering as an individual or business? *
+          </label>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {/* Personal Registration Option */}
+            <label
+              className={`flex items-start gap-3 p-4 border-2 rounded-lg cursor-pointer transition-all ${
+                errors.registration_type ? 'border-red-300' : 'border-gray-300'
+              } hover:border-[#2B4C7E] hover:shadow-md has-[:checked]:border-[#2B4C7E] has-[:checked]:bg-white has-[:checked]:shadow-md`}
+            >
+              <input
+                {...register('registration_type')}
+                type="radio"
+                value="personal"
+                className="mt-1 w-4 h-4 text-[#2B4C7E] focus:ring-[#2B4C7E]"
+                disabled={isSubmitting}
+              />
+              <div className="flex-1">
+                <div className="flex items-center gap-2">
+                  <svg className="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                  </svg>
+                  <span className="font-semibold text-gray-900">Personal</span>
+                </div>
+                <p className="text-xs text-gray-600 mt-1 ml-7">
+                  I'm registering as an individual distributor
+                </p>
+              </div>
+            </label>
+
+            {/* Business Registration Option */}
+            <label
+              className={`flex items-start gap-3 p-4 border-2 rounded-lg cursor-pointer transition-all ${
+                errors.registration_type ? 'border-red-300' : 'border-gray-300'
+              } hover:border-[#2B4C7E] hover:shadow-md has-[:checked]:border-[#2B4C7E] has-[:checked]:bg-white has-[:checked]:shadow-md`}
+            >
+              <input
+                {...register('registration_type')}
+                type="radio"
+                value="business"
+                className="mt-1 w-4 h-4 text-[#2B4C7E] focus:ring-[#2B4C7E]"
+                disabled={isSubmitting}
+              />
+              <div className="flex-1">
+                <div className="flex items-center gap-2">
+                  <svg className="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z" clipRule="evenodd" />
+                  </svg>
+                  <span className="font-semibold text-gray-900">Business</span>
+                </div>
+                <p className="text-xs text-gray-600 mt-1 ml-7">
+                  I'm registering as an agency or company
+                </p>
+              </div>
+            </label>
+          </div>
+          {errors.registration_type && (
+            <p className="mt-2 text-sm text-red-600 font-medium">{errors.registration_type.message}</p>
+          )}
+        </div>
+
         {/* Name Fields */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
@@ -310,16 +377,19 @@ export default function SignupForm({ sponsorSlug, sponsorName }: SignupFormProps
           )}
         </div>
 
-        {/* Company Name (Optional) */}
+        {/* Company Name (Required for Business, Optional for Personal) */}
         <div>
           <label htmlFor="company_name" className="block text-sm font-medium text-gray-700 mb-1">
-            Company Name (Optional)
+            {watchRegistrationType === 'business' ? 'Company Legal Name *' : 'Company Name (Optional)'}
           </label>
           <input
             {...register('company_name')}
             type="text"
             id="company_name"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+            className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent ${
+              errors.company_name ? 'border-red-500' : 'border-gray-300'
+            }`}
+            placeholder={watchRegistrationType === 'business' ? 'Acme Insurance Agency LLC' : ''}
             disabled={isSubmitting}
           />
           {errors.company_name && (
@@ -327,16 +397,89 @@ export default function SignupForm({ sponsorSlug, sponsorName }: SignupFormProps
           )}
         </div>
 
-        {/* Phone (Optional) */}
+        {/* Business Type (Only for Business Registration) */}
+        {watchRegistrationType === 'business' && (
+          <div>
+            <label htmlFor="business_type" className="block text-sm font-medium text-gray-700 mb-1">
+              Business Type *
+            </label>
+            <select
+              {...register('business_type')}
+              id="business_type"
+              className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent ${
+                (errors as any).business_type ? 'border-red-500' : 'border-gray-300'
+              }`}
+              disabled={isSubmitting}
+            >
+              <option value="">Select business type...</option>
+              <option value="llc">LLC (Limited Liability Company)</option>
+              <option value="corporation">Corporation</option>
+              <option value="s_corporation">S Corporation</option>
+              <option value="partnership">Partnership</option>
+              <option value="sole_proprietor">Sole Proprietor</option>
+            </select>
+            {(errors as any).business_type && (
+              <p className="mt-1 text-sm text-red-600">{(errors as any).business_type.message}</p>
+            )}
+          </div>
+        )}
+
+        {/* DBA Name (Only for Business Registration, Optional) */}
+        {watchRegistrationType === 'business' && (
+          <div>
+            <label htmlFor="dba_name" className="block text-sm font-medium text-gray-700 mb-1">
+              DBA Name (Optional)
+            </label>
+            <input
+              {...register('dba_name')}
+              type="text"
+              id="dba_name"
+              placeholder="Doing Business As name, if different from legal name"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+              disabled={isSubmitting}
+            />
+            <p className="mt-1 text-xs text-gray-500">
+              Enter your DBA ("Doing Business As") name if your business operates under a different name than the legal name
+            </p>
+            {(errors as any).dba_name && (
+              <p className="mt-1 text-sm text-red-600">{(errors as any).dba_name.message}</p>
+            )}
+          </div>
+        )}
+
+        {/* Business Website (Only for Business Registration, Optional) */}
+        {watchRegistrationType === 'business' && (
+          <div>
+            <label htmlFor="business_website" className="block text-sm font-medium text-gray-700 mb-1">
+              Business Website (Optional)
+            </label>
+            <input
+              {...register('business_website')}
+              type="url"
+              id="business_website"
+              placeholder="https://www.example.com"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+              disabled={isSubmitting}
+            />
+            {(errors as any).business_website && (
+              <p className="mt-1 text-sm text-red-600">{(errors as any).business_website.message}</p>
+            )}
+          </div>
+        )}
+
+        {/* Phone (Now Required) */}
         <div>
           <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-            Phone (Optional)
+            Phone *
           </label>
           <input
             {...register('phone')}
             type="tel"
             id="phone"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+            placeholder="(555) 123-4567"
+            className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent ${
+              errors.phone ? 'border-red-500' : 'border-gray-300'
+            }`}
             disabled={isSubmitting}
           />
           {errors.phone && (
@@ -344,44 +487,230 @@ export default function SignupForm({ sponsorSlug, sponsorName }: SignupFormProps
           )}
         </div>
 
-        {/* Social Security Number */}
-        <div className="border-2 border-amber-200 rounded-lg p-4 bg-amber-50">
-          <label htmlFor="ssn" className="block text-sm font-medium text-gray-900 mb-1">
-            Social Security Number *
-          </label>
-          <input
-            {...register('ssn')}
-            type="text"
-            id="ssn"
-            placeholder="XXX-XX-XXXX"
-            maxLength={11}
-            className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent font-mono ${
-              errors.ssn ? 'border-red-500' : 'border-gray-300'
-            }`}
-            disabled={isSubmitting}
-            onChange={(e) => {
-              const formatted = formatSSNInput(e.target.value);
-              setValue('ssn', formatted);
-            }}
-          />
-          {errors.ssn && (
-            <p className="mt-1 text-sm text-red-600">{errors.ssn.message}</p>
-          )}
+        {/* Address Fields (Required for both Personal and Business) */}
+        <div className="space-y-4">
+          <h3 className="text-md font-semibold text-gray-900">Mailing Address *</h3>
 
-          {/* SSN Disclaimer */}
-          <div className="mt-3 p-3 bg-white rounded-md border border-amber-300">
-            <div className="flex gap-2">
-              <svg className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-              </svg>
-              <div>
-                <p className="text-xs font-semibold text-gray-900 mb-1">Why we collect your Social Security Number:</p>
-                <p className="text-xs text-gray-700 leading-relaxed">
-                  Federal law requires us to collect your SSN for tax reporting purposes (IRS Form 1099) and to comply with anti-money laundering regulations under the Bank Secrecy Act and USA PATRIOT Act. Your SSN is encrypted and stored securely and will only be used for required tax reporting and identity verification.
-                </p>
-              </div>
+          {/* Address Line 1 */}
+          <div>
+            <label htmlFor="address_line1" className="block text-sm font-medium text-gray-700 mb-1">
+              Street Address *
+            </label>
+            <input
+              {...register('address_line1')}
+              type="text"
+              id="address_line1"
+              placeholder="123 Main Street"
+              className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent ${
+                errors.address_line1 ? 'border-red-500' : 'border-gray-300'
+              }`}
+              disabled={isSubmitting}
+            />
+            {errors.address_line1 && (
+              <p className="mt-1 text-sm text-red-600">{errors.address_line1.message}</p>
+            )}
+          </div>
+
+          {/* Address Line 2 */}
+          <div>
+            <label htmlFor="address_line2" className="block text-sm font-medium text-gray-700 mb-1">
+              Apartment, Suite, etc. (Optional)
+            </label>
+            <input
+              {...register('address_line2')}
+              type="text"
+              id="address_line2"
+              placeholder="Apt 4B"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent"
+              disabled={isSubmitting}
+            />
+            {errors.address_line2 && (
+              <p className="mt-1 text-sm text-red-600">{errors.address_line2.message}</p>
+            )}
+          </div>
+
+          {/* City, State, ZIP */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* City */}
+            <div className="md:col-span-1">
+              <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-1">
+                City *
+              </label>
+              <input
+                {...register('city')}
+                type="text"
+                id="city"
+                placeholder="Houston"
+                className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent ${
+                  errors.city ? 'border-red-500' : 'border-gray-300'
+                }`}
+                disabled={isSubmitting}
+              />
+              {errors.city && (
+                <p className="mt-1 text-sm text-red-600">{errors.city.message}</p>
+              )}
+            </div>
+
+            {/* State */}
+            <div className="md:col-span-1">
+              <label htmlFor="state" className="block text-sm font-medium text-gray-700 mb-1">
+                State *
+              </label>
+              <select
+                {...register('state')}
+                id="state"
+                className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent ${
+                  errors.state ? 'border-red-500' : 'border-gray-300'
+                }`}
+                disabled={isSubmitting}
+              >
+                <option value="">Select state...</option>
+                {US_STATES.map((state) => (
+                  <option key={state} value={state}>
+                    {state}
+                  </option>
+                ))}
+              </select>
+              {errors.state && (
+                <p className="mt-1 text-sm text-red-600">{errors.state.message}</p>
+              )}
+            </div>
+
+            {/* ZIP */}
+            <div className="md:col-span-1">
+              <label htmlFor="zip" className="block text-sm font-medium text-gray-700 mb-1">
+                ZIP Code *
+              </label>
+              <input
+                {...register('zip')}
+                type="text"
+                id="zip"
+                placeholder="77001"
+                maxLength={10}
+                className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent ${
+                  errors.zip ? 'border-red-500' : 'border-gray-300'
+                }`}
+                disabled={isSubmitting}
+              />
+              {errors.zip && (
+                <p className="mt-1 text-sm text-red-600">{errors.zip.message}</p>
+              )}
             </div>
           </div>
+
+          <p className="text-xs text-gray-500 italic">
+            📍 Your mailing address is required for tax reporting (1099), ACH payouts, and compliance with regulations.
+          </p>
+        </div>
+
+        {/* Date of Birth (Only for Personal Registration) */}
+        {watchRegistrationType === 'personal' && (
+          <div>
+            <label htmlFor="date_of_birth" className="block text-sm font-medium text-gray-700 mb-1">
+              Date of Birth *
+            </label>
+            <input
+              {...register('date_of_birth')}
+              type="date"
+              id="date_of_birth"
+              max={getMaxDate()}
+              className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent ${
+                (errors as any).date_of_birth ? 'border-red-500' : 'border-gray-300'
+              }`}
+              disabled={isSubmitting}
+            />
+            <p className="mt-1 text-xs text-gray-500">
+              You must be at least 18 years old to register
+            </p>
+            {(errors as any).date_of_birth && (
+              <p className="mt-1 text-sm text-red-600">{(errors as any).date_of_birth.message}</p>
+            )}
+          </div>
+        )}
+
+        {/* Tax ID - SSN for Personal, EIN for Business */}
+        <div className="border-2 border-amber-200 rounded-lg p-4 bg-amber-50">
+          {watchRegistrationType === 'personal' ? (
+            // Social Security Number for Personal Registration
+            <>
+              <label htmlFor="ssn" className="block text-sm font-medium text-gray-900 mb-1">
+                Social Security Number *
+              </label>
+              <input
+                {...register('ssn')}
+                type="text"
+                id="ssn"
+                placeholder="XXX-XX-XXXX"
+                maxLength={11}
+                className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent font-mono ${
+                  (errors as any).ssn ? 'border-red-500' : 'border-gray-300'
+                }`}
+                disabled={isSubmitting}
+                onChange={(e) => {
+                  const formatted = formatSSNInput(e.target.value);
+                  setValue('ssn', formatted);
+                }}
+              />
+              {(errors as any).ssn && (
+                <p className="mt-1 text-sm text-red-600">{(errors as any).ssn.message}</p>
+              )}
+
+              {/* SSN Disclaimer */}
+              <div className="mt-3 p-3 bg-white rounded-md border border-amber-300">
+                <div className="flex gap-2">
+                  <svg className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                  </svg>
+                  <div>
+                    <p className="text-xs font-semibold text-gray-900 mb-1">Why we collect your Social Security Number:</p>
+                    <p className="text-xs text-gray-700 leading-relaxed">
+                      Federal law requires us to collect your SSN for tax reporting purposes (IRS Form 1099) and to comply with anti-money laundering regulations under the Bank Secrecy Act and USA PATRIOT Act. Your SSN is encrypted and stored securely and will only be used for required tax reporting and identity verification.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </>
+          ) : (
+            // EIN for Business Registration
+            <>
+              <label htmlFor="ein" className="block text-sm font-medium text-gray-900 mb-1">
+                Employer Identification Number (EIN) *
+              </label>
+              <input
+                {...register('ein')}
+                type="text"
+                id="ein"
+                placeholder="XX-XXXXXXX"
+                maxLength={10}
+                className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent font-mono ${
+                  (errors as any).ein ? 'border-red-500' : 'border-gray-300'
+                }`}
+                disabled={isSubmitting}
+                onChange={(e) => {
+                  const formatted = formatEINInput(e.target.value);
+                  setValue('ein', formatted);
+                }}
+              />
+              {(errors as any).ein && (
+                <p className="mt-1 text-sm text-red-600">{(errors as any).ein.message}</p>
+              )}
+
+              {/* EIN Disclaimer */}
+              <div className="mt-3 p-3 bg-white rounded-md border border-amber-300">
+                <div className="flex gap-2">
+                  <svg className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                  </svg>
+                  <div>
+                    <p className="text-xs font-semibold text-gray-900 mb-1">Why we collect your EIN:</p>
+                    <p className="text-xs text-gray-700 leading-relaxed">
+                      Federal law requires us to collect your business's Employer Identification Number (EIN) for tax reporting purposes (IRS Form W-9) and to comply with anti-money laundering regulations. Your EIN is encrypted and stored securely and will only be used for required tax reporting and business identity verification.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
         </div>
 
         {/* Licensing Status Selection */}
