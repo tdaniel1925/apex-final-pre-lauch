@@ -10,6 +10,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/com
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
+import ProfileEditForm from '@/components/dashboard/ProfileEditForm';
 
 export const metadata = {
   title: 'Profile - Apex Affinity Group',
@@ -234,42 +235,7 @@ export default async function ProfilePage() {
 
           {/* Personal Info Tab */}
           <TabsContent value="personal">
-            <Card>
-              <CardHeader>
-                <CardTitle>Personal Information</CardTitle>
-                <CardDescription>Your account and contact details</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <p className="text-sm font-medium text-slate-500">Full Name</p>
-                    <p className="text-slate-900 mt-1">{distributor.first_name} {distributor.last_name}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium text-slate-500">Email</p>
-                    <p className="text-slate-900 mt-1">{distributor.email}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium text-slate-500">Phone</p>
-                    <p className="text-slate-900 mt-1">{distributor.phone || 'Not provided'}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium text-slate-500">Date of Birth</p>
-                    <p className="text-slate-900 mt-1">{formatDate(distributor.date_of_birth)}</p>
-                  </div>
-                  <div className="md:col-span-2">
-                    <p className="text-sm font-medium text-slate-500">Address</p>
-                    <p className="text-slate-900 mt-1">
-                      {distributor.address_line1 || 'Not provided'}
-                      {distributor.address_line2 && <><br />{distributor.address_line2}</>}
-                      {distributor.city && distributor.state && distributor.zip && (
-                        <><br />{distributor.city}, {distributor.state} {distributor.zip}</>
-                      )}
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            <ProfileEditForm distributor={distributor} userEmail={distributor.email} />
           </TabsContent>
 
           {/* Compensation Stats Tab */}
