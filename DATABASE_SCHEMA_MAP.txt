@@ -1,0 +1,216 @@
+APEX PRE-LAUNCH SITE DATABASE SCHEMA COMPREHENSIVE MAP
+=====================================================
+
+SECTION 1: CORE DISTRIBUTOR/MEMBER TABLES
+
+1. DISTRIBUTORS TABLE - Primary distributor record
+   PK: id (UUID)
+   Links to: auth.users(id) via auth_user_id [UNIQUE 1-to-1]
+   
+   Profile Fields:
+   - first_name, last_name, email (UNIQUE)
+   - company_name
+   - phone, address_line1, address_line2, city, state, zip
+   - slug (UNIQUE, for landing pages)
+   - affiliate_code (UNIQUE)
+   
+   MLM Structure:
+   - sponsor_id -> distributors(id) [who recruited them]
+   - matrix_parent_id -> distributors(id) [where in 5x7 matrix]
+   - matrix_position (1-5), matrix_depth (0-7)
+   - is_master (root distributor flag)
+   
+   Banking/ACH:
+   - bank_name, bank_routing_number, bank_account_number, bank_account_type
+   - ach_verified, ach_verified_at
+   
+   Tax Info (also in separate distributor_tax_info table):
+   - tax_id, tax_id_type, date_of_birth
+   
+   Licensing:
+   - licensing_status, licensing_status_set_at, licensed_agent
+   
+   Admin:
+   - admin_notes_count, last_admin_action, last_admin_action_by -> admins(id)
+   
+   Status:
+   - profile_complete, skip_onboarding_preference
+
+2. MEMBERS TABLE - Dual-ladder rank tracking
+   PK: member_id (UUID)
+   FK: distributor_id -> distributors(id) [UNIQUE 1-to-1 CASCADE]
+   
+   Enroller/Sponsor (ENROLLER IS IMMUTABLE):
+   - enroller_id -> members(member_id) [WHO ENROLLS = WHO GETS L1 OVERRIDE FOREVER]
+   - sponsor_id -> members(member_id) [matrix sponsor]
+   
+   Denormalized from Distributor:
+   - email, full_name (= first_name + last_name)
+   - status (active/inactive/terminated)
+   - enrollment_date, termination_date
+   
+   TECH LADDER RANKS (9 ranks):
+   - tech_rank, highest_tech_rank
+   - tech_rank_achieved_date, tech_rank_promotion_scheduled
+   - tech_rank_grace_period_start (2-month grace before demotion)
+   - tech_rank_lock_until (6-month lock for new reps)
+   
+   INSURANCE LADDER RANKS (7 ranks):
+   - insurance_rank, highest_insurance_rank
+   - insurance_rank_achieved_date
+   
+   MGA Shop (if insurance_rank = 'mga'):
+   - mga_shop_id, mga_shop_name, mga_licensed_states[]
+   
+   Monthly Production Credits:
+   - personal_credits_monthly, team_credits_monthly
+   - tech_personal_credits_monthly, tech_team_credits_monthly
+   - insurance_personal_credits_monthly, insurance_team_credits_monthly
+   
+   Override Qualification:
+   - override_qualified [AUTO-CALCULATED: TRUE if personal_credits_monthly >= 50]
+   
+   Cross-Credit:
+   - tech_to_insurance_credit_pct, insurance_to_tech_credit_pct
+
+3. DISTRIBUTOR_TAX_INFO TABLE - Encrypted SSN storage
+   FK: distributor_id -> distributors(id) [UNIQUE CASCADE]
+   - ssn_encrypted (NOT human-readable - encrypted)
+   - ssn_last_4 (display purposes)
+   RLS: Distributors view own within 30 days, admins full access
+
+4. SSN_ACCESS_LOG TABLE - Audit trail for SSN access
+   FK: distributor_id -> distributors(id) [CASCADE]
+   FK: admin_id -> admins(id)
+   - action (view_last_4, reveal_full, update)
+   - ip_address, user_agent, timestamp
+
+SECTION 2: TABLES REFERENCING DISTRIBUTORS (25+)
+
+COMMISSION & COMPENSATION (10 tables):
+- retail_commissions [many-to-1 CASCADE]
+- fast_start_bonuses [many-to-1 CASCADE]
+- override_commissions [many-to-1 CASCADE, also upline_from_distributor_id -> SET NULL]
+- team_bonuses [many-to-1 CASCADE]
+- earnings_ledger [many-to-1 CASCADE]
+
+CRM & COMMUNICATIONS (5 tables):
+- crm_contacts [many-to-1 CASCADE]
+- email_campaigns [many-to-1 CASCADE]
+- campaign_emails_sent [cascade from email_campaigns]
+- crm_tasks [many-to-1 CASCADE]
+
+ADMIN & MODERATION (2 tables):
+- admin_notes [many-to-1 CASCADE]
+- admin_activity_log [many-to-1 CASCADE]
+
+BUSINESS CENTER & AFFILIATE (4 tables):
+- business_center_subscriptions [1-to-1 UNIQUE CASCADE]
+- affiliate_clicks [many-to-1 SET NULL]
+- affiliate_conversions [many-to-1 SET NULL]
+
+ORDERS & PRODUCTS (2 tables):
+- orders [referred_by_distributor_id SET NULL, upgraded_to_distributor_id SET NULL]
+- order_items [distributor_id for drop-ship SET NULL]
+
+INTEGRATIONS & EXTERNAL (4 tables):
+- replicated_site_integrations [many-to-1 CASCADE]
+- sales_page_webhooks [many-to-1 RESTRICT]
+- service_subscriptions [many-to-1 CASCADE]
+- platform_integrations [many-to-1 CASCADE]
+
+CONTENT & ACTIVITY (5 tables):
+- social_media_content [many-to-1 CASCADE]
+- activity_feed [many-to-1 CASCADE, also related_distributor_id]
+- ai_assistant_logs [many-to-1 CASCADE]
+- password_reset_tokens [many-to-1 CASCADE]
+- digital_products [many-to-1 CASCADE]
+
+MISC (1 table):
+- prospects_system [converted_to_distributor_id SET NULL]
+
+SECTION 3: PROFILE UPDATE IMPACT
+
+ALWAYS UPDATE DISTRIBUTORS:
+- first_name, last_name
+- email (UNIQUE)
+- phone
+- address fields
+- company_name
+- bank_* fields
+- tax_* fields
+- ach_verified, ach_verified_at
+- licensing_status, licensing_status_set_at
+- licensed_agent
+- profile_complete
+- skip_onboarding_preference
+
+CONDITIONALLY UPDATE:
+- If first_name/last_name changed -> members.full_name = CONCAT(first_name, ' ', last_name)
+- If email changed -> members.email
+- If SSN changed -> distributor_tax_info.ssn_encrypted, ssn_last_4
+
+AUDIT & LOG:
+- admin_activity_log [who, what, when, IP, user agent]
+- admin_notes [if significant change]
+- ssn_access_log [if tax info accessed]
+
+NEVER CHANGE:
+- members.enroller_id [IMMUTABLE]
+- distributors.id [PK]
+- distributors.auth_user_id [1-to-1 with auth.users]
+- affiliate_code [breaks historical data]
+- auth.users.email [use Supabase Auth API]
+
+SECTION 4: KEY CONSTRAINTS
+
+UNIQUE:
+- distributors.auth_user_id, email, slug, affiliate_code
+- members.distributor_id
+- business_center_subscriptions.distributor_id
+- distributor_tax_info.distributor_id
+
+CASCADING DELETE (if distributor deleted):
+- members, distributor_tax_info, ssn_access_log
+- crm_contacts, email_campaigns, campaign_emails_sent, crm_tasks
+- retail_commissions, override_commissions
+- admin_notes, admin_activity_log
+- social_media_content, activity_feed
+- ai_assistant_logs, password_reset_tokens
+- replicated_site_integrations, service_subscriptions
+- digital_products, platform_integrations
+
+SET NULL (preserves history):
+- orders.referred_by_distributor_id, orders.upgraded_to_distributor_id
+- order_items.distributor_id
+- affiliate_clicks.distributor_id, affiliate_conversions.distributor_id
+- prospects_system.converted_to_distributor_id
+
+SECTION 5: CRITICAL NOTES
+
+1. members.enroller_id IS IMMUTABLE
+   - Set once at enrollment, never changes
+   - Controls L1 override (30%) forever
+
+2. members.full_name IS DENORMALIZED
+   - Copy of first_name + last_name
+   - Must update when distributor names change
+
+3. EMAIL IS IN 3 PLACES
+   - auth.users.email [source of truth, use Auth API]
+   - distributors.email [UNIQUE]
+   - members.email [denormalized copy]
+
+4. SSN IS ENCRYPTED
+   - In distributor_tax_info, NOT main distributors table
+   - Must encrypt/decrypt in application
+   - All access logged to ssn_access_log
+
+5. CASCADING DELETES
+   - Deleting distributor cascades to most tables
+   - Only affiliate/order tables preserve history (SET NULL)
+
+6. MONTHLY CREDITS AUTO-CALCULATED
+   - override_qualified = true when personal_credits >= 50
+   - Automatic via trigger
+

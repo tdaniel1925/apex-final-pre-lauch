@@ -75,8 +75,8 @@ export default async function MatrixPage() {
     );
   }
 
-  // Get all downline members (anyone enrolled by this user or their downline)
-  // We need to get ALL members first, then calculate levels recursively
+  // FIXED: Get all members for matrix calculation
+  // We need all members to build the downline tree, but we filter by status
   const { data: allMembers } = await serviceClient
     .from('members')
     .select(`
@@ -94,7 +94,7 @@ export default async function MatrixPage() {
     `)
     .eq('status', 'active');
 
-  // Calculate matrix levels
+  // Calculate matrix levels using recursive algorithm
   const currentMemberId = dist.member.member_id;
   const members = allMembers || [];
 
@@ -118,18 +118,17 @@ export default async function MatrixPage() {
     }));
   }
 
-  // Calculate totals
-  const totalTeamSize = members.filter((m) => m.enroller_id === currentMemberId || levelMap[1]?.some((l1: any) => l1.member_id === m.member_id) || levelMap[2]?.some((l2: any) => l2.member_id === m.member_id) || levelMap[3]?.some((l3: any) => l3.member_id === m.member_id) || levelMap[4]?.some((l4: any) => l4.member_id === m.member_id) || levelMap[5]?.some((l5: any) => l5.member_id === m.member_id)).length;
+  // FIXED: Calculate totals efficiently from levelMap
+  const allDownlineMembers = [
+    ...(levelMap[1] || []),
+    ...(levelMap[2] || []),
+    ...(levelMap[3] || []),
+    ...(levelMap[4] || []),
+    ...(levelMap[5] || []),
+  ];
 
-  const activeMembers = members.filter((m) => {
-    const isInDownline = m.enroller_id === currentMemberId ||
-      levelMap[1]?.some((l1: any) => l1.member_id === m.member_id) ||
-      levelMap[2]?.some((l2: any) => l2.member_id === m.member_id) ||
-      levelMap[3]?.some((l3: any) => l3.member_id === m.member_id) ||
-      levelMap[4]?.some((l4: any) => l4.member_id === m.member_id) ||
-      levelMap[5]?.some((l5: any) => l5.member_id === m.member_id);
-    return isInDownline && m.override_qualified;
-  }).length;
+  const totalTeamSize = allDownlineMembers.length;
+  const activeMembers = allDownlineMembers.filter(m => m.override_qualified).length;
 
   // Get override earnings this month
   const startOfMonth = new Date();

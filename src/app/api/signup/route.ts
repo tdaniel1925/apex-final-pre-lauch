@@ -384,7 +384,7 @@ export async function POST(request: NextRequest) {
         .from('distributor_tax_info')
         .insert({
           distributor_id: distributor.id,
-          tax_id: ssnData.encrypted, // Renamed from ssn_encrypted
+          ssn_encrypted: ssnData.encrypted, // Column is still named ssn_encrypted (not tax_id yet)
           ssn_last_4: ssnData.last4,
           tax_id_type: 'ssn',
           created_by: authData.user.id,
@@ -443,7 +443,7 @@ export async function POST(request: NextRequest) {
         .from('distributor_tax_info')
         .insert({
           distributor_id: distributor.id,
-          tax_id: einData.encrypted, // Same column as SSN (renamed to tax_id)
+          ssn_encrypted: einData.encrypted, // Column is still named ssn_encrypted (stores both SSN and EIN)
           ssn_last_4: einData.last4, // Reusing same column for last 4 digits
           tax_id_type: 'ein',
           created_by: authData.user.id,
