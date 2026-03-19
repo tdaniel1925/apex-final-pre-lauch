@@ -306,14 +306,28 @@ export async function POST(request: NextRequest) {
     distributorId = distributor.id;
 
     // Step 7.5: Create member record (for compensation tracking)
+    // Look up sponsor's member_id if sponsor exists
+    let enrollerMemberId: string | null = null;
+    if (sponsorId) {
+      const { data: sponsorMember } = await serviceClient
+        .from('members')
+        .select('member_id')
+        .eq('distributor_id', sponsorId)
+        .single();
+
+      if (sponsorMember) {
+        enrollerMemberId = sponsorMember.member_id;
+      }
+    }
+
     const { error: memberError } = await serviceClient
       .from('members')
       .insert({
         distributor_id: distributor.id,
         email: distributor.email,
         full_name: `${distributor.first_name} ${distributor.last_name}`,
-        enroller_id: null, // Will be updated later when enroller's member record exists
-        sponsor_id: null, // Will be updated later when sponsor's member record exists
+        enroller_id: enrollerMemberId, // Set to sponsor's member_id
+        sponsor_id: sponsorId, // Set to sponsor's distributor_id
         status: 'active',
         enrollment_date: distributor.created_at,
         tech_rank: 'starter',
