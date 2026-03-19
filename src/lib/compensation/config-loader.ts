@@ -307,7 +307,8 @@ export async function getOverrideSchedules(): Promise<Record<TechRank, [number, 
 export async function getOverridePercentage(rank: TechRank, level: number): Promise<number> {
   if (level < 1 || level > 5) return 0;
   const schedules = await getOverrideSchedules();
-  return schedules[rank][level - 1];
+  const schedule = schedules[rank];
+  return schedule ? schedule[level - 1] : 0;
 }
 
 // =============================================

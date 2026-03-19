@@ -11,6 +11,7 @@ import {
   LEADERSHIP_POOL_ELIGIBLE_RANK,
   OVERRIDE_QUALIFICATION_MIN_CREDITS,
 } from './config';
+import { shouldPayRankBonus, getRankBonus } from './rank';
 
 /**
  * Rank Advancement Bonus
