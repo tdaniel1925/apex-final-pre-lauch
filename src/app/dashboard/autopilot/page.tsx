@@ -28,11 +28,16 @@ export default async function AutopilotPage() {
 
   // Get distributor info (use service client to bypass RLS)
   const serviceClient = createServiceClient();
-  const { data: distributor } = await serviceClient
+  const { data: distributor, error: distError } = await serviceClient
     .from('distributors')
-    .select('id, first_name, last_name, email, autopilot_tier')
+    .select('id, first_name, last_name, email')
     .eq('auth_user_id', user.id)
     .single();
+
+  // Debug logging
+  console.log('[Autopilot] User ID:', user.id);
+  console.log('[Autopilot] Distributor query result:', distributor);
+  console.log('[Autopilot] Distributor query error:', JSON.stringify(distError, null, 2));
 
   // If no distributor record, check if they're an admin
   if (!distributor) {
@@ -66,7 +71,7 @@ export default async function AutopilotPage() {
         {/* Dashboard */}
         <AutopilotDashboard
           distributorId={distributor.id}
-          autopilotTier={distributor.autopilot_tier || 'free'}
+          autopilotTier={'free'}
         />
       </div>
     </div>
