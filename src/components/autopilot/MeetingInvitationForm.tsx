@@ -4,12 +4,18 @@ import { useState, useEffect } from 'react';
 import { z } from 'zod';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Send, Loader2, Check, AlertCircle } from 'lucide-react';
+import { Send, Loader2, Check, AlertCircle, Plus, X } from 'lucide-react';
 
-// Validation schema
-const invitationSchema = z.object({
+// Recipient validation schema
+const recipientSchema = z.object({
   recipient_email: z.string().email('Invalid email address'),
   recipient_name: z.string().min(2, 'Name must be at least 2 characters'),
+  recipient_phone: z.string().optional(),
+});
+
+// Main invitation validation schema
+const invitationSchema = z.object({
+  recipients: z.array(recipientSchema).min(1, 'At least one recipient is required').max(10, 'Maximum 10 recipients allowed'),
   meeting_title: z.string().min(3, 'Title must be at least 3 characters'),
   meeting_description: z.string().optional(),
   meeting_date_time: z.string().min(1, 'Date and time are required'),
@@ -18,6 +24,12 @@ const invitationSchema = z.object({
   invitation_type: z.enum(['personal', 'company_event']).optional(),
   company_event_id: z.string().uuid().optional().nullable(),
 });
+
+type Recipient = {
+  recipient_email: string;
+  recipient_name: string;
+  recipient_phone?: string;
+};
 
 type InvitationFormData = z.infer<typeof invitationSchema>;
 
@@ -42,6 +54,7 @@ interface MeetingInvitationFormProps {
 export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitationFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [successCount, setSuccessCount] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const [remainingInvites, setRemainingInvites] = useState<number | null>(null);
   const [isVirtual, setIsVirtual] = useState(true);
@@ -50,8 +63,7 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
   const [loadingEvents, setLoadingEvents] = useState(false);
 
   const [formData, setFormData] = useState<InvitationFormData>({
-    recipient_email: '',
-    recipient_name: '',
+    recipients: [{ recipient_email: '', recipient_name: '', recipient_phone: '' }],
     meeting_title: '',
     meeting_description: '',
     meeting_date_time: '',
@@ -147,7 +159,51 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
     }
   };
 
-  const handleChange = (field: keyof InvitationFormData, value: string) => {
+  // Add a new recipient
+  const addRecipient = () => {
+    if (formData.recipients.length < 10) {
+      setFormData((prev) => ({
+        ...prev,
+        recipients: [...prev.recipients, { recipient_email: '', recipient_name: '', recipient_phone: '' }],
+      }));
+    }
+  };
+
+  // Remove a recipient
+  const removeRecipient = (index: number) => {
+    if (formData.recipients.length > 1) {
+      setFormData((prev) => ({
+        ...prev,
+        recipients: prev.recipients.filter((_, i) => i !== index),
+      }));
+      // Clear errors for this recipient
+      const newErrors = { ...validationErrors };
+      delete newErrors[`recipients.${index}.recipient_email`];
+      delete newErrors[`recipients.${index}.recipient_name`];
+      delete newErrors[`recipients.${index}.recipient_phone`];
+      setValidationErrors(newErrors);
+    }
+  };
+
+  // Update a specific recipient field
+  const updateRecipient = (index: number, field: keyof Recipient, value: string) => {
+    setFormData((prev) => {
+      const newRecipients = [...prev.recipients];
+      newRecipients[index] = { ...newRecipients[index], [field]: value };
+      return { ...prev, recipients: newRecipients };
+    });
+    // Clear validation error for this field
+    const errorKey = `recipients.${index}.${field}`;
+    if (validationErrors[errorKey]) {
+      setValidationErrors((prev) => {
+        const newErrors = { ...prev };
+        delete newErrors[errorKey];
+        return newErrors;
+      });
+    }
+  };
+
+  const handleChange = (field: keyof Omit<InvitationFormData, 'recipients'>, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
     // Clear validation error for this field
     if (validationErrors[field]) {
@@ -169,7 +225,7 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
     if (!validation.success) {
       const errors: Record<string, string> = {};
       validation.error.issues.forEach((err) => {
-        const field = err.path[0] as string;
+        const field = err.path.join('.');
         errors[field] = err.message;
       });
       setValidationErrors(errors);
@@ -184,10 +240,16 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
       return;
     }
 
+    // Check if user has enough invites for all recipients
+    if (remainingInvites !== null && remainingInvites !== 999999 && remainingInvites < formData.recipients.length) {
+      setError(`You only have ${remainingInvites} invitation${remainingInvites !== 1 ? 's' : ''} remaining, but you're trying to send ${formData.recipients.length}.`);
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/autopilot/invitations', {
+      const response = await fetch('/api/autopilot/invitations/bulk', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -206,24 +268,24 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
           });
           setValidationErrors(errors);
         } else {
-          setError(data.message || 'Failed to send invitation');
+          setError(data.message || 'Failed to send invitations');
         }
         return;
       }
 
       // Success!
       setShowSuccess(true);
+      setSuccessCount(data.successCount || formData.recipients.length);
 
       // Update remaining invites
       if (remainingInvites !== null && remainingInvites !== 999999) {
-        setRemainingInvites(remainingInvites - 1);
+        setRemainingInvites(Math.max(0, remainingInvites - (data.successCount || formData.recipients.length)));
       }
 
       // Reset form after delay
       setTimeout(() => {
         setFormData({
-          recipient_email: '',
-          recipient_name: '',
+          recipients: [{ recipient_email: '', recipient_name: '', recipient_phone: '' }],
           meeting_title: '',
           meeting_description: '',
           meeting_date_time: '',
@@ -234,8 +296,9 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
         });
         setInvitationType('personal');
         setShowSuccess(false);
+        setSuccessCount(0);
         if (onSuccess) onSuccess();
-      }, 2000);
+      }, 3000);
     } catch (error) {
       setError('An unexpected error occurred. Please try again.');
     } finally {
@@ -244,6 +307,7 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
   };
 
   const isLimitReached = remainingInvites !== null && remainingInvites <= 0;
+  const canAddMore = formData.recipients.length < 10 && !isLimitReached;
 
   return (
     <Card className="p-6">
@@ -251,7 +315,7 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-2xl font-bold text-navy-900">Send Meeting Invitation</h2>
+            <h2 className="text-2xl font-bold text-navy-900">Send Meeting Invitations</h2>
             <p className="text-sm text-gray-500 mt-1">
               {remainingInvites !== null && (
                 <>
@@ -272,7 +336,9 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
         {showSuccess && (
           <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-center gap-3">
             <Check className="w-5 h-5 text-green-600" />
-            <p className="text-green-800 font-medium">Invitation sent successfully!</p>
+            <p className="text-green-800 font-medium">
+              {successCount} invitation{successCount !== 1 ? 's' : ''} sent successfully!
+            </p>
           </div>
         )}
 
@@ -359,48 +425,117 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
           )}
         </div>
 
-        {/* Recipient Information */}
+        {/* Recipients Section */}
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-navy-900">Recipient Information</h3>
-
-          <div>
-            <label htmlFor="recipient_name" className="block text-sm font-medium text-gray-700 mb-1">
-              Recipient Name *
-            </label>
-            <input
-              type="text"
-              id="recipient_name"
-              value={formData.recipient_name}
-              onChange={(e) => handleChange('recipient_name', e.target.value)}
-              className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gold ${
-                validationErrors.recipient_name ? 'border-red-500' : 'border-gray-300'
-              }`}
-              placeholder="John Prospect"
-              disabled={isSubmitting || isLimitReached}
-            />
-            {validationErrors.recipient_name && (
-              <p className="text-red-500 text-sm mt-1">{validationErrors.recipient_name}</p>
+          <div className="flex items-center justify-between">
+            <h3 className="text-lg font-semibold text-navy-900">
+              Recipients ({formData.recipients.length}/10)
+            </h3>
+            {canAddMore && (
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={addRecipient}
+                disabled={isSubmitting || isLimitReached}
+                className="flex items-center gap-2"
+              >
+                <Plus className="w-4 h-4" />
+                Add Recipient
+              </Button>
             )}
           </div>
 
-          <div>
-            <label htmlFor="recipient_email" className="block text-sm font-medium text-gray-700 mb-1">
-              Recipient Email *
-            </label>
-            <input
-              type="email"
-              id="recipient_email"
-              value={formData.recipient_email}
-              onChange={(e) => handleChange('recipient_email', e.target.value)}
-              className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gold ${
-                validationErrors.recipient_email ? 'border-red-500' : 'border-gray-300'
-              }`}
-              placeholder="john@example.com"
-              disabled={isSubmitting || isLimitReached}
-            />
-            {validationErrors.recipient_email && (
-              <p className="text-red-500 text-sm mt-1">{validationErrors.recipient_email}</p>
-            )}
+          {validationErrors.recipients && (
+            <p className="text-red-500 text-sm">{validationErrors.recipients}</p>
+          )}
+
+          {/* Recipient Cards */}
+          <div className="space-y-4">
+            {formData.recipients.map((recipient, index) => (
+              <div key={index} className="border border-gray-200 rounded-lg p-4 bg-gray-50 relative">
+                {/* Remove button */}
+                {formData.recipients.length > 1 && (
+                  <button
+                    type="button"
+                    onClick={() => removeRecipient(index)}
+                    className="absolute top-2 right-2 text-red-600 hover:text-red-800 p-1"
+                    disabled={isSubmitting || isLimitReached}
+                    title="Remove recipient"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                )}
+
+                <div className="space-y-3">
+                  <div className="font-medium text-sm text-gray-700 mb-2">
+                    Recipient {index + 1}
+                  </div>
+
+                  {/* Name */}
+                  <div>
+                    <label htmlFor={`recipient_name_${index}`} className="block text-sm font-medium text-gray-700 mb-1">
+                      Name *
+                    </label>
+                    <input
+                      type="text"
+                      id={`recipient_name_${index}`}
+                      value={recipient.recipient_name}
+                      onChange={(e) => updateRecipient(index, 'recipient_name', e.target.value)}
+                      className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gold ${
+                        validationErrors[`recipients.${index}.recipient_name`] ? 'border-red-500' : 'border-gray-300'
+                      }`}
+                      placeholder="John Prospect"
+                      disabled={isSubmitting || isLimitReached}
+                    />
+                    {validationErrors[`recipients.${index}.recipient_name`] && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {validationErrors[`recipients.${index}.recipient_name`]}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Email */}
+                  <div>
+                    <label htmlFor={`recipient_email_${index}`} className="block text-sm font-medium text-gray-700 mb-1">
+                      Email *
+                    </label>
+                    <input
+                      type="email"
+                      id={`recipient_email_${index}`}
+                      value={recipient.recipient_email}
+                      onChange={(e) => updateRecipient(index, 'recipient_email', e.target.value)}
+                      className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gold ${
+                        validationErrors[`recipients.${index}.recipient_email`] ? 'border-red-500' : 'border-gray-300'
+                      }`}
+                      placeholder="john@example.com"
+                      disabled={isSubmitting || isLimitReached}
+                    />
+                    {validationErrors[`recipients.${index}.recipient_email`] && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {validationErrors[`recipients.${index}.recipient_email`]}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Phone (Optional) */}
+                  <div>
+                    <label htmlFor={`recipient_phone_${index}`} className="block text-sm font-medium text-gray-700 mb-1">
+                      Phone (Optional)
+                    </label>
+                    <input
+                      type="tel"
+                      id={`recipient_phone_${index}`}
+                      value={recipient.recipient_phone || ''}
+                      onChange={(e) => updateRecipient(index, 'recipient_phone', e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold"
+                      placeholder="(555) 123-4567"
+                      disabled={isSubmitting || isLimitReached}
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -545,12 +680,12 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
             {isSubmitting ? (
               <>
                 <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                Sending...
+                Sending to {formData.recipients.length} recipient{formData.recipients.length !== 1 ? 's' : ''}...
               </>
             ) : (
               <>
                 <Send className="w-4 h-4 mr-2" />
-                Send Invitation
+                Send to {formData.recipients.length} Recipient{formData.recipients.length !== 1 ? 's' : ''}
               </>
             )}
           </Button>
