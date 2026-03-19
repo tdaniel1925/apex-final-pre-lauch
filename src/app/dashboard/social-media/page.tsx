@@ -161,8 +161,8 @@ export default async function SocialMediaPage() {
         />
       </section>
 
-      {/* Marketing Materials */}
-      <section>
+      {/* Marketing Materials - COMMENTED OUT PER USER REQUEST */}
+      {/* <section>
         <div className="mb-4">
           <h2 className="text-2xl font-bold text-slate-900">Marketing Materials</h2>
           <p className="text-sm text-slate-600 mt-1">
@@ -177,7 +177,6 @@ export default async function SocialMediaPage() {
               className="bg-white border border-slate-200 rounded-lg p-6 hover:border-slate-300 hover:shadow-md transition-all"
             >
               <div className="flex items-start gap-4">
-                {/* Document Icon */}
                 <div className="flex-shrink-0">
                   <div className="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center">
                     <svg
@@ -196,7 +195,6 @@ export default async function SocialMediaPage() {
                   </div>
                 </div>
 
-                {/* Content */}
                 <div className="flex-1">
                   <div className="flex items-start justify-between">
                     <div>
@@ -257,7 +255,7 @@ export default async function SocialMediaPage() {
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* Usage Tips */}
       <div className="mt-10 bg-slate-50 border border-slate-200 rounded-xl p-6">

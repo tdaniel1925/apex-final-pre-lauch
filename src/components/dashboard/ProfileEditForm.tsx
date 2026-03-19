@@ -16,6 +16,7 @@ import {
   addressSchema,
 } from '@/lib/validation/profile-schemas';
 import type { Distributor } from '@/lib/types';
+import ProfilePhotoCropper from './ProfilePhotoCropper';
 
 // Schema for safe profile updates (excludes email)
 const safeProfileUpdateSchema = z.object({
@@ -69,11 +70,26 @@ export default function ProfileEditForm({
   onSuccess,
 }: ProfileEditFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [profilePhotoUrl, setProfilePhotoUrl] = useState<string | null>(
+    distributor.profile_photo_url || null
+  );
   const [message, setMessage] = useState<{
     type: 'success' | 'error';
     text: string;
     details?: string[];
   } | null>(null);
+
+  const handlePhotoUpdate = (newPhotoUrl: string) => {
+    setProfilePhotoUrl(newPhotoUrl);
+    setMessage({
+      type: 'success',
+      text: 'Profile photo updated successfully!',
+    });
+    // Refresh the page to show the new avatar in the header
+    setTimeout(() => {
+      window.location.reload();
+    }, 1500);
+  };
 
   const {
     register,
@@ -240,6 +256,17 @@ export default function ProfileEditForm({
           </div>
         </div>
       )}
+
+      {/* Profile Photo */}
+      <div className="bg-white rounded-lg shadow p-6">
+        <h2 className="text-lg font-semibold text-gray-900 mb-4">
+          Profile Photo
+        </h2>
+        <ProfilePhotoCropper
+          currentPhotoUrl={profilePhotoUrl}
+          onPhotoUpdate={handlePhotoUpdate}
+        />
+      </div>
 
       {/* Personal Information */}
       <div className="bg-white rounded-lg shadow p-6">
