@@ -15,9 +15,24 @@ const invitationSchema = z.object({
   meeting_date_time: z.string().min(1, 'Date and time are required'),
   meeting_location: z.string().optional(),
   meeting_link: z.string().url('Invalid URL').optional().or(z.literal('')),
+  invitation_type: z.enum(['personal', 'company_event']).optional(),
+  company_event_id: z.string().uuid().optional().nullable(),
 });
 
 type InvitationFormData = z.infer<typeof invitationSchema>;
+
+interface CompanyEvent {
+  id: string;
+  event_name: string;
+  event_type: string;
+  event_date_time: string;
+  event_description: string | null;
+  location_type: string;
+  venue_name: string | null;
+  virtual_meeting_link: string | null;
+  invitation_subject: string | null;
+  invitation_template: string | null;
+}
 
 interface MeetingInvitationFormProps {
   onSuccess?: () => void;
@@ -30,6 +45,9 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
   const [error, setError] = useState<string | null>(null);
   const [remainingInvites, setRemainingInvites] = useState<number | null>(null);
   const [isVirtual, setIsVirtual] = useState(true);
+  const [invitationType, setInvitationType] = useState<'personal' | 'company_event'>('personal');
+  const [companyEvents, setCompanyEvents] = useState<CompanyEvent[]>([]);
+  const [loadingEvents, setLoadingEvents] = useState(false);
 
   const [formData, setFormData] = useState<InvitationFormData>({
     recipient_email: '',
@@ -39,13 +57,16 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
     meeting_date_time: '',
     meeting_location: '',
     meeting_link: '',
+    invitation_type: 'personal',
+    company_event_id: null,
   });
 
   const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
 
-  // Fetch remaining invites on mount
+  // Fetch remaining invites and company events on mount
   useEffect(() => {
     fetchRemainingInvites();
+    fetchCompanyEvents();
   }, []);
 
   const fetchRemainingInvites = async () => {
@@ -64,6 +85,65 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
       }
     } catch (error) {
       console.error('Error fetching remaining invites:', error);
+    }
+  };
+
+  const fetchCompanyEvents = async () => {
+    setLoadingEvents(true);
+    try {
+      const response = await fetch('/api/autopilot/events?upcoming=true&status=active');
+      if (response.ok) {
+        const data = await response.json();
+        if (data.success && data.data) {
+          setCompanyEvents(data.data);
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching company events:', error);
+    } finally {
+      setLoadingEvents(false);
+    }
+  };
+
+  const handleEventSelection = (eventId: string) => {
+    const selectedEvent = companyEvents.find((e) => e.id === eventId);
+    if (!selectedEvent) return;
+
+    // Pre-fill form with event details
+    setFormData((prev) => ({
+      ...prev,
+      company_event_id: eventId,
+      meeting_title: selectedEvent.event_name,
+      meeting_description: selectedEvent.event_description || '',
+      meeting_date_time: new Date(selectedEvent.event_date_time).toISOString().slice(0, 16),
+      meeting_location:
+        selectedEvent.location_type === 'in_person' ? selectedEvent.venue_name || '' : '',
+      meeting_link:
+        selectedEvent.location_type === 'virtual' ? selectedEvent.virtual_meeting_link || '' : '',
+    }));
+
+    // Set virtual/in-person based on event
+    setIsVirtual(selectedEvent.location_type === 'virtual');
+  };
+
+  const handleInvitationTypeChange = (type: 'personal' | 'company_event') => {
+    setInvitationType(type);
+    setFormData((prev) => ({
+      ...prev,
+      invitation_type: type,
+      company_event_id: type === 'personal' ? null : prev.company_event_id,
+    }));
+
+    // Clear form if switching to personal
+    if (type === 'personal') {
+      setFormData((prev) => ({
+        ...prev,
+        meeting_title: '',
+        meeting_description: '',
+        meeting_date_time: '',
+        meeting_location: '',
+        meeting_link: '',
+      }));
     }
   };
 
@@ -149,7 +229,10 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
           meeting_date_time: '',
           meeting_location: '',
           meeting_link: '',
+          invitation_type: 'personal',
+          company_event_id: null,
         });
+        setInvitationType('personal');
         setShowSuccess(false);
         if (onSuccess) onSuccess();
       }, 2000);
@@ -210,6 +293,72 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
           </div>
         )}
 
+        {/* Invitation Type Selection */}
+        <div className="space-y-4">
+          <h3 className="text-lg font-semibold text-navy-900">Invitation Type</h3>
+          <div className="flex items-center gap-4">
+            <button
+              type="button"
+              onClick={() => handleInvitationTypeChange('personal')}
+              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                invitationType === 'personal'
+                  ? 'bg-gold text-navy-900'
+                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              }`}
+              disabled={isSubmitting || isLimitReached}
+            >
+              Custom Meeting
+            </button>
+            <button
+              type="button"
+              onClick={() => handleInvitationTypeChange('company_event')}
+              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                invitationType === 'company_event'
+                  ? 'bg-gold text-navy-900'
+                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              }`}
+              disabled={isSubmitting || isLimitReached}
+            >
+              Company Event
+            </button>
+          </div>
+
+          {/* Company Event Dropdown */}
+          {invitationType === 'company_event' && (
+            <div>
+              <label htmlFor="company_event" className="block text-sm font-medium text-gray-700 mb-1">
+                Select Event *
+              </label>
+              {loadingEvents ? (
+                <div className="text-sm text-gray-500">Loading events...</div>
+              ) : companyEvents.length === 0 ? (
+                <div className="text-sm text-gray-500 p-3 bg-gray-50 rounded-lg">
+                  No upcoming company events available at this time.
+                </div>
+              ) : (
+                <select
+                  id="company_event"
+                  value={formData.company_event_id || ''}
+                  onChange={(e) => handleEventSelection(e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold"
+                  disabled={isSubmitting || isLimitReached}
+                  required={invitationType === 'company_event'}
+                >
+                  <option value="">-- Select an event --</option>
+                  {companyEvents.map((event) => (
+                    <option key={event.id} value={event.id}>
+                      {event.event_name} - {new Date(event.event_date_time).toLocaleDateString()}
+                    </option>
+                  ))}
+                </select>
+              )}
+              <p className="text-xs text-gray-500 mt-1">
+                Select a company event to pre-fill meeting details and templates
+              </p>
+            </div>
+          )}
+        </div>
+
         {/* Recipient Information */}
         <div className="space-y-4">
           <h3 className="text-lg font-semibold text-navy-900">Recipient Information</h3>
@@ -257,7 +406,12 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
 
         {/* Meeting Information */}
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-navy-900">Meeting Information</h3>
+          <h3 className="text-lg font-semibold text-navy-900">
+            Meeting Information
+            {invitationType === 'company_event' && formData.company_event_id && (
+              <span className="ml-2 text-sm font-normal text-gray-500">(Pre-filled from event)</span>
+            )}
+          </h3>
 
           <div>
             <label htmlFor="meeting_title" className="block text-sm font-medium text-gray-700 mb-1">
@@ -270,9 +424,10 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
               onChange={(e) => handleChange('meeting_title', e.target.value)}
               className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gold ${
                 validationErrors.meeting_title ? 'border-red-500' : 'border-gray-300'
-              }`}
+              } ${invitationType === 'company_event' && formData.company_event_id ? 'bg-gray-50' : ''}`}
               placeholder="Business Overview Meeting"
-              disabled={isSubmitting || isLimitReached}
+              disabled={isSubmitting || isLimitReached || (invitationType === 'company_event' && !!formData.company_event_id)}
+              readOnly={invitationType === 'company_event' && !!formData.company_event_id}
             />
             {validationErrors.meeting_title && (
               <p className="text-red-500 text-sm mt-1">{validationErrors.meeting_title}</p>
@@ -305,8 +460,9 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
               onChange={(e) => handleChange('meeting_date_time', e.target.value)}
               className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gold ${
                 validationErrors.meeting_date_time ? 'border-red-500' : 'border-gray-300'
-              }`}
-              disabled={isSubmitting || isLimitReached}
+              } ${invitationType === 'company_event' && formData.company_event_id ? 'bg-gray-50' : ''}`}
+              disabled={isSubmitting || isLimitReached || (invitationType === 'company_event' && !!formData.company_event_id)}
+              readOnly={invitationType === 'company_event' && !!formData.company_event_id}
             />
             {validationErrors.meeting_date_time && (
               <p className="text-red-500 text-sm mt-1">{validationErrors.meeting_date_time}</p>
