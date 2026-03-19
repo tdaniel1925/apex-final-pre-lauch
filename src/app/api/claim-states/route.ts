@@ -97,6 +97,11 @@ async function getAllStates(currentYear: number) {
   const statesData: StateOwnershipData[] = (states || []).map((state: any) => {
     const currentGVP = parseFloat(state.current_gvp || '0');
 
+    // Supabase returns array for foreign key, get first element
+    const currentOwner = Array.isArray(state.current_owner)
+      ? state.current_owner[0]
+      : state.current_owner;
+
     // Determine status
     let status: 'unclaimed' | 'claimed' | 'elite' | 'legacy' = 'unclaimed';
     if (currentGVP >= 5000) status = 'legacy';
@@ -108,10 +113,10 @@ async function getAllStates(currentYear: number) {
       name: state.state_name,
       status,
       currentGVP,
-      currentOwner: state.current_owner ? {
-        id: state.current_owner.id,
-        name: `${state.current_owner.first_name} ${state.current_owner.last_name}`,
-        photo_url: state.current_owner.profile_photo_url,
+      currentOwner: currentOwner ? {
+        id: currentOwner.id,
+        name: `${currentOwner.first_name} ${currentOwner.last_name}`,
+        photo_url: currentOwner.profile_photo_url,
         gvp: currentGVP,
         dateClaimed: state.date_claimed,
       } : null,
@@ -204,6 +209,11 @@ async function getStateDetails(stateCode: string, currentYear: number) {
 
   const currentGVP = parseFloat(state.current_gvp || '0');
 
+  // Supabase returns array for foreign key, get first element
+  const currentOwner = Array.isArray(state.current_owner)
+    ? state.current_owner[0]
+    : state.current_owner;
+
   // Determine status
   let status: 'unclaimed' | 'claimed' | 'elite' | 'legacy' = 'unclaimed';
   if (currentGVP >= 5000) status = 'legacy';
@@ -215,10 +225,10 @@ async function getStateDetails(stateCode: string, currentYear: number) {
     name: state.state_name,
     status,
     currentGVP,
-    currentOwner: state.current_owner ? {
-      id: state.current_owner.id,
-      name: `${state.current_owner.first_name} ${state.current_owner.last_name}`,
-      photo_url: state.current_owner.profile_photo_url,
+    currentOwner: currentOwner ? {
+      id: currentOwner.id,
+      name: `${currentOwner.first_name} ${currentOwner.last_name}`,
+      photo_url: currentOwner.profile_photo_url,
       gvp: currentGVP,
       dateClaimed: state.date_claimed,
     } : null,
@@ -228,14 +238,17 @@ async function getStateDetails(stateCode: string, currentYear: number) {
       dateClaimed: state.first_claim_date,
       gvp: parseFloat(state.first_claim_gvp || '0'),
     } : null,
-    topContributors: (contributors || []).map((c: any, index: number) => ({
-      id: c.distributor.id,
-      name: `${c.distributor.first_name} ${c.distributor.last_name}`,
-      slug: c.distributor.slug,
-      photo_url: c.distributor.profile_photo_url,
-      gvp: parseFloat(c.total_gvp || '0'),
-      rank: index + 1,
-    })),
+    topContributors: (contributors || []).map((c: any, index: number) => {
+      const distributor = Array.isArray(c.distributor) ? c.distributor[0] : c.distributor;
+      return {
+        id: distributor.id,
+        name: `${distributor.first_name} ${distributor.last_name}`,
+        slug: distributor.slug,
+        photo_url: distributor.profile_photo_url,
+        gvp: parseFloat(c.total_gvp || '0'),
+        rank: index + 1,
+      };
+    }),
   };
 
   return NextResponse.json({
