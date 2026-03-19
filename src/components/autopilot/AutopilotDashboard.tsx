@@ -34,31 +34,36 @@ export default function AutopilotDashboard({ distributorId, autopilotTier }: Aut
       id: 'invitations' as Tab,
       name: 'Send Invitations',
       icon: <Mail className="w-4 h-4" />,
-      description: 'Email & SMS invitations to prospects',
+      description: 'Email invitations to prospects',
+      enabled: true,
     },
     {
       id: 'social' as Tab,
       name: 'Social Posts',
       icon: <MessageSquare className="w-4 h-4" />,
       description: 'AI-powered social media content',
+      enabled: false,
     },
     {
       id: 'flyers' as Tab,
       name: 'Create Flyers',
       icon: <Image className="w-4 h-4" />,
       description: 'Professional marketing materials',
+      enabled: false,
     },
     {
       id: 'crm' as Tab,
       name: 'My Contacts',
       icon: <Users className="w-4 h-4" />,
       description: 'Manage your prospect database',
+      enabled: false,
     },
     {
       id: 'stats' as Tab,
       name: 'Statistics',
       icon: <Sparkles className="w-4 h-4" />,
       description: 'Track your performance',
+      enabled: false,
     },
   ];
 
@@ -66,52 +71,28 @@ export default function AutopilotDashboard({ distributorId, autopilotTier }: Aut
     <div className="space-y-6">
       {/* Free Trial Banner */}
       {isFreeTrial && (
-        <div className="bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-lg p-6 shadow-lg">
+        <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg p-6 shadow-lg">
           <div className="flex items-start gap-4">
             <div className="bg-white/20 rounded-full p-3">
-              <Sparkles className="w-6 h-6" />
+              <Mail className="w-6 h-6" />
             </div>
             <div className="flex-1">
-              <h3 className="text-xl font-bold mb-2">🎉 Free Trial Active - Full Access Unlocked!</h3>
-              <p className="text-green-50 mb-3">
-                All Autopilot features are currently FREE for all distributors. Enjoy unlimited access to:
+              <h3 className="text-xl font-bold mb-2">📧 Meeting Invitations Now Available!</h3>
+              <p className="text-blue-50 mb-3">
+                Send personalized invitations to prospects for meetings and events. Additional features coming soon!
               </p>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-2 text-sm">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
                 <div className="flex items-center gap-2">
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  Unlimited Invitations
+                  Send bulk invitations (up to 10 at once)
                 </div>
                 <div className="flex items-center gap-2">
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  Social Media Posts
-                </div>
-                <div className="flex items-center gap-2">
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  Flyer Generator
-                </div>
-                <div className="flex items-center gap-2">
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  CRM & Contacts
-                </div>
-                <div className="flex items-center gap-2">
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  AI-Powered Tools
-                </div>
-                <div className="flex items-center gap-2">
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  Performance Stats
+                  Track engagement and responses
                 </div>
               </div>
             </div>
@@ -143,17 +124,27 @@ export default function AutopilotDashboard({ distributorId, autopilotTier }: Aut
           {tabs.map((tab) => (
             <button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-2 px-4 py-3 rounded-lg transition-all ${
-                activeTab === tab.id
+              onClick={() => tab.enabled && setActiveTab(tab.id)}
+              disabled={!tab.enabled}
+              className={`relative flex items-center gap-2 px-4 py-3 rounded-lg transition-all ${
+                activeTab === tab.id && tab.enabled
                   ? 'bg-blue-600 text-white shadow-md'
+                  : !tab.enabled
+                  ? 'bg-slate-100 text-slate-400 cursor-not-allowed opacity-60'
                   : 'bg-slate-50 text-slate-700 hover:bg-slate-100'
               }`}
             >
               {tab.icon}
               <div className="text-left">
-                <div className="font-semibold text-sm">{tab.name}</div>
-                <div className={`text-xs ${activeTab === tab.id ? 'text-blue-100' : 'text-slate-500'}`}>
+                <div className="flex items-center gap-2">
+                  <span className="font-semibold text-sm">{tab.name}</span>
+                  {!tab.enabled && (
+                    <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-amber-100 text-amber-800 border border-amber-200">
+                      Coming Soon
+                    </span>
+                  )}
+                </div>
+                <div className={`text-xs ${activeTab === tab.id && tab.enabled ? 'text-blue-100' : 'text-slate-500'}`}>
                   {tab.description}
                 </div>
               </div>
@@ -261,12 +252,12 @@ export default function AutopilotDashboard({ distributorId, autopilotTier }: Aut
         <div className="flex items-start gap-3">
           <Megaphone className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
           <div>
-            <h3 className="font-semibold text-blue-900 mb-2">Pro Tips</h3>
+            <h3 className="font-semibold text-blue-900 mb-2">Invitation Tips</h3>
             <ul className="text-sm text-blue-800 space-y-1">
+              <li>• Use bulk invitations to send to multiple prospects at once (up to 10)</li>
               <li>• Send invitations at optimal times (Tuesday-Thursday, 10am-2pm)</li>
-              <li>• Personalize your messages with the recipient's name for better engagement</li>
-              <li>• Follow up within 24-48 hours of sending an invitation</li>
-              <li>• Track your stats regularly to see what's working</li>
+              <li>• Personalize with recipient names for better engagement</li>
+              <li>• Follow up within 24-48 hours of sending</li>
             </ul>
           </div>
         </div>
