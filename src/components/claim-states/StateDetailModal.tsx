@@ -32,8 +32,8 @@ interface StateDetailModalProps {
     name: string;
     status: 'unclaimed' | 'claimed' | 'elite' | 'legacy';
     currentGVP: number;
-    currentOwner?: StateOwner;
-    firstOwner?: StateOwner;
+    currentOwner?: StateOwner | null;
+    firstOwner?: StateOwner | null;
     topContributors: StateContributor[];
   } | null;
 }
