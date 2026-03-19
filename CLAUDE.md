@@ -70,6 +70,34 @@ const finalHtml = emailHtml.replace(/{{(\w+)}}/g, (match, key) => variables[key]
 
 ---
 
+## 🎨 UI CONTRAST RULES (ACCESSIBILITY)
+
+**MANDATORY: All text must meet WCAG AA standards (4.5:1 ratio for normal text)**
+
+### Dark Backgrounds (`bg-slate-700`, `bg-slate-800`, `bg-slate-900`, `bg-gray-800+`):
+```tsx
+✅ ALWAYS USE: text-white, text-slate-100, text-slate-200, text-slate-300
+❌ NEVER USE: text-slate-400, text-slate-500, text-slate-600 (fails WCAG)
+```
+
+### Light Backgrounds (`bg-white`, `bg-slate-50`, `bg-gray-50`):
+```tsx
+✅ ALWAYS USE: text-slate-900, text-slate-800, text-slate-700
+❌ NEVER USE: text-slate-100, text-slate-200 (invisible)
+```
+
+### Status Colors on Dark Backgrounds:
+```tsx
+✅ Success: text-green-400 (NOT green-600)
+✅ Warning: text-yellow-300 (NOT yellow-600)
+✅ Error: text-red-400 (NOT red-600)
+✅ Info: text-blue-400 (NOT blue-600)
+```
+
+**Test all UI components with browser DevTools contrast checker before committing.**
+
+---
+
 ## ⛔ TWO-GATE ENFORCEMENT SYSTEM
 
 **You MUST pass through TWO gates for every feature:**
