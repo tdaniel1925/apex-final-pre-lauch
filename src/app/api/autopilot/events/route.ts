@@ -33,11 +33,22 @@ export async function GET(request: NextRequest) {
     }
 
     // Get distributor info to check rank
+    console.log('🔍 [Autopilot Events API] Fetching distributor for user:', {
+      userId: user.id,
+      userEmail: user.email,
+    });
+
     const { data: distributor, error: distError } = await supabase
       .from('distributors')
       .select('tech_rank')
       .eq('auth_user_id', user.id)
       .single();
+
+    console.log('🔍 [Autopilot Events API] Distributor query result:', {
+      found: !!distributor,
+      distributor,
+      error: distError,
+    });
 
     if (distError) {
       console.error('Error fetching distributor:', distError);
@@ -57,11 +68,12 @@ export async function GET(request: NextRequest) {
     const limit = Math.min(parseInt(searchParams.get('limit') || '50'), 100);
     const offset = (page - 1) * limit;
 
-    // Build query - only show active/full events that are public
+    // Build query - only show active/full events that are public and not archived
     let query = supabase
       .from('company_events')
       .select('*', { count: 'exact' })
-      .in('status', ['active', 'full']);
+      .in('status', ['active', 'full'])
+      .is('archived_at', null); // Exclude soft-deleted events
 
     // Filter by visibility
     // Event is visible if:

@@ -39,9 +39,17 @@ export async function requireAdmin(): Promise<AdminContext> {
   // Check if user is authenticated
   const {
     data: { user },
+    error: authError,
   } = await supabase.auth.getUser();
 
+  console.log('[requireAdmin] Auth check:', {
+    hasUser: !!user,
+    userEmail: user?.email,
+    error: authError?.message
+  });
+
   if (!user) {
+    console.log('[requireAdmin] No user found, redirecting to /login');
     redirect('/login');
   }
 

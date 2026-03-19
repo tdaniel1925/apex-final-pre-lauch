@@ -5,12 +5,12 @@
 
 import { test, expect, Page } from '@playwright/test';
 
-// Test data
+// Test data - ISO format for API calls
 const testEvent = {
   event_name: 'Test Product Launch 2026',
   event_type: 'product_launch',
   event_description: 'This is a test event for E2E testing',
-  event_date_time: '2026-06-15T14:00',
+  event_date_time: new Date('2026-06-15T14:00:00').toISOString(),
   event_duration_minutes: 120,
   event_timezone: 'America/Chicago',
   location_type: 'virtual',
@@ -21,11 +21,20 @@ const testEvent = {
   is_featured: false,
 };
 
+// Datetime for form filling (datetime-local format)
+const testEventFormDateTime = '2026-06-15T14:00';
+
+// Test credentials (from setup script)
+const TEST_ADMIN_EMAIL = 'test-admin@example.com';
+const TEST_ADMIN_PASSWORD = 'TestAdmin123!';
+const TEST_DISTRIBUTOR_EMAIL = 'test-distributor@example.com';
+const TEST_DISTRIBUTOR_PASSWORD = 'TestDist123!';
+
 // Helper function to login as admin
 async function loginAsAdmin(page: Page) {
   await page.goto('/login');
-  await page.fill('input[name="email"]', process.env.TEST_ADMIN_EMAIL || 'tdaniel@botmakers.ai');
-  await page.fill('input[name="password"]', process.env.TEST_ADMIN_PASSWORD || 'testpassword');
+  await page.fill('input[name="email"]', TEST_ADMIN_EMAIL);
+  await page.fill('input[name="password"]', TEST_ADMIN_PASSWORD);
   await page.click('button[type="submit"]');
   await page.waitForURL(/\/admin|\/dashboard/, { timeout: 10000 });
 }
@@ -33,25 +42,47 @@ async function loginAsAdmin(page: Page) {
 // Helper function to login as distributor
 async function loginAsDistributor(page: Page) {
   await page.goto('/login');
-  await page.fill('input[name="email"]', process.env.TEST_DISTRIBUTOR_EMAIL || 'test@example.com');
-  await page.fill('input[name="password"]', process.env.TEST_DISTRIBUTOR_PASSWORD || 'testpassword');
+  await page.fill('input[name="email"]', TEST_DISTRIBUTOR_EMAIL);
+  await page.fill('input[name="password"]', TEST_DISTRIBUTOR_PASSWORD);
   await page.click('button[type="submit"]');
   await page.waitForURL(/\/dashboard/, { timeout: 10000 });
 }
 
-// Helper function to create event via API
+// Helper function to create event via API using page context (shares cookies)
 async function createEventViaAPI(page: Page, eventData: any = testEvent) {
-  const response = await page.request.post('/api/admin/events', {
+  const cookies = await page.context().cookies();
+
+  const response = await page.context().request.post('http://localhost:3050/api/admin/events', {
     data: eventData,
+    headers: {
+      'Content-Type': 'application/json',
+      'Cookie': cookies.map(c => `${c.name}=${c.value}`).join('; '),
+    },
   });
+
+  // Debug: Log the response if it fails
+  if (!response.ok()) {
+    const errorData = await response.json().catch(() => ({ error: 'Could not parse error response' }));
+    console.log('API Error:', {
+      status: response.status(),
+      statusText: response.statusText(),
+      error: errorData,
+    });
+  }
+
   expect(response.ok()).toBeTruthy();
   const data = await response.json();
   return data.data;
 }
 
-// Helper function to delete event via API
+// Helper function to delete event via API using page context
 async function deleteEventViaAPI(page: Page, eventId: string) {
-  await page.request.delete(`/api/admin/events/${eventId}`);
+  const cookies = await page.context().cookies();
+  await page.context().request.delete(`http://localhost:3050/api/admin/events/${eventId}`, {
+    headers: {
+      'Cookie': cookies.map(c => `${c.name}=${c.value}`).join('; '),
+    },
+  });
 }
 
 test.describe('Admin Events Management', () => {
@@ -76,10 +107,14 @@ test.describe('Admin Events Management', () => {
   });
 
   test('admin can create new event', async ({ page }) => {
-    await page.goto('/admin/events/new');
+    await page.goto('/admin/events/new', { waitUntil: 'networkidle' });
 
     // Check form loaded
     await expect(page.locator('h1')).toContainText('Create New Event');
+
+    // Wait for React to hydrate
+    await page.waitForLoadState('domcontentloaded');
+    await page.waitForTimeout(1000);
 
     // Fill out basic information
     await page.fill('input[name="event_name"]', testEvent.event_name);
@@ -87,7 +122,7 @@ test.describe('Admin Events Management', () => {
     await page.fill('textarea[name="event_description"]', testEvent.event_description);
 
     // Fill out date/time
-    await page.fill('input[name="event_date_time"]', testEvent.event_date_time);
+    await page.fill('input[name="event_date_time"]', testEventFormDateTime);
     await page.fill('input[name="event_duration_minutes"]', testEvent.event_duration_minutes.toString());
 
     // Select location type
@@ -102,6 +137,10 @@ test.describe('Admin Events Management', () => {
 
     // Submit form
     await page.click('button[type="submit"]');
+
+    // Debug: Log current URL after submission
+    await page.waitForTimeout(2000);
+    console.log('Current URL after form submit:', page.url());
 
     // Wait for redirect
     await page.waitForURL('/admin/events', { timeout: 10000 });
@@ -167,9 +206,13 @@ test.describe('Admin Events Management', () => {
 
     await page.goto('/admin/events');
 
+    // Wait for the event to appear in the list
+    await page.waitForSelector(`text=${testEvent.event_name}`, { timeout: 10000 });
+
     // Find and delete the event
     const eventCard = page.locator(`text=${testEvent.event_name}`).locator('..').locator('..');
-    const deleteButton = eventCard.locator('button:has-text("Delete"), button[aria-label*="delete"]').first();
+    // Delete button is the second button in the actions (has Trash2 icon)
+    const deleteButton = eventCard.locator('button').nth(1);
 
     // Intercept the confirm dialog
     page.on('dialog', dialog => dialog.accept());
@@ -245,9 +288,9 @@ test.describe('Admin Events Management', () => {
       const eventCard = page.locator(`text=${testEvent.event_name}`).locator('..').locator('..');
 
       // Check stats are displayed
-      await expect(eventCard.locator('text=/\\d+ RSVPs/')).toBeVisible();
-      await expect(eventCard.locator('text=/\\d+ invitations sent/')).toBeVisible();
-      await expect(eventCard.locator('text=/\\d+ confirmed/')).toBeVisible();
+      await expect(eventCard.locator('text=/\\d+ RSVPs/').first()).toBeVisible();
+      await expect(eventCard.locator('text=/\\d+ invitations sent/').first()).toBeVisible();
+      await expect(eventCard.locator('text=/\\d+ confirmed/').first()).toBeVisible();
     } finally {
       // Cleanup
       await deleteEventViaAPI(page, event.id);
@@ -399,11 +442,12 @@ test.describe('Distributor Events Access', () => {
 });
 
 test.describe('Events API Integration', () => {
-  test('API returns only active public events for distributors', async ({ page }) => {
+  test('API returns only active public events for distributors', async ({ page, browser }) => {
     await loginAsDistributor(page);
 
-    // Create test events via admin
-    const adminPage = await page.context().newPage();
+    // Create test events via admin (use separate context to avoid session conflicts)
+    const adminContext = await browser.newContext();
+    const adminPage = await adminContext.newPage();
     await loginAsAdmin(adminPage);
 
     const publicActiveEvent = await createEventViaAPI(adminPage, {
@@ -421,26 +465,42 @@ test.describe('Events API Integration', () => {
     });
 
     try {
-      // Fetch events via API
-      const response = await page.request.get('/api/autopilot/events?upcoming=true');
+      // Fetch events via API (use browser context to include auth cookies)
+      const cookies = await page.context().cookies();
+      const response = await page.context().request.get('http://localhost:3050/api/autopilot/events?upcoming=true', {
+        headers: {
+          'Cookie': cookies.map(c => `${c.name}=${c.value}`).join('; '),
+        },
+      });
+
+      // Debug: Log error if failed
+      if (!response.ok()) {
+        const errorData = await response.json().catch(() => ({ error: 'Could not parse error' }));
+        console.log('API Error:', {
+          status: response.status(),
+          statusText: response.statusText(),
+          error: errorData,
+        });
+      }
+
       expect(response.ok()).toBeTruthy();
 
-      const data = await response.json();
-      expect(data.success).toBeTruthy();
-      expect(Array.isArray(data.data)).toBeTruthy();
+      const result = await response.json();
+      expect(Array.isArray(result.data)).toBeTruthy();
+      expect(result.meta).toBeDefined();
 
       // Check public active event is in results
-      const hasPublicEvent = data.data.some((e: any) => e.event_name === 'Public Active Event');
+      const hasPublicEvent = result.data.some((e: any) => e.event_name === 'Public Active Event');
       expect(hasPublicEvent).toBeTruthy();
 
       // Check private draft event is NOT in results
-      const hasPrivateEvent = data.data.some((e: any) => e.event_name === 'Private Draft Event');
+      const hasPrivateEvent = result.data.some((e: any) => e.event_name === 'Private Draft Event');
       expect(hasPrivateEvent).toBeFalsy();
     } finally {
       // Cleanup
       await deleteEventViaAPI(adminPage, publicActiveEvent.id);
       await deleteEventViaAPI(adminPage, privateDraftEvent.id);
-      await adminPage.close();
+      await adminContext.close();
     }
   });
 });

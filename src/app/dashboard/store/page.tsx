@@ -126,7 +126,7 @@ export default async function StorePage() {
                       <div className="mb-4">
                         <div className="flex items-baseline gap-2">
                           <span className="text-2xl font-bold text-slate-900">
-                            ${(product.wholesale_price_cents / 100).toFixed(2)}
+                            ${(product.wholesale_price_cents / 100).toFixed(0)}
                           </span>
                           {product.is_subscription && (
                             <span className="text-sm text-slate-600">
@@ -135,7 +135,7 @@ export default async function StorePage() {
                           )}
                         </div>
                         <p className="text-xs text-slate-500 mt-1">
-                          Earn {product.bv || 0} credits
+                          Earn {product.bv || 0} BV credits
                         </p>
                       </div>
 
@@ -169,7 +169,7 @@ export default async function StorePage() {
                           productId={product.id}
                           distributorId={distributor.id}
                           productName={product.name}
-                          price={(product.wholesale_price_cents / 100).toFixed(2)}
+                          price={(product.wholesale_price_cents / 100).toFixed(0)}
                           isSubscription={product.is_subscription}
                         />
                       )}

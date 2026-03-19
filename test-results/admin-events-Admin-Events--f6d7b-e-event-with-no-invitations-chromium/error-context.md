@@ -2,29 +2,884 @@
 
 ```yaml
 - generic [active] [ref=e1]:
-  - generic [ref=e3]:
-    - img "Apex Affinity Group" [ref=e5]
-    - generic [ref=e6]:
-      - heading "Welcome Back" [level=1] [ref=e7]
-      - paragraph [ref=e8]: Sign in to your distributor account
-    - generic [ref=e10]:
-      - generic [ref=e11]:
-        - generic [ref=e12]: Email
-        - textbox "Email" [ref=e13]: tdaniel@botmakers.ai
-      - generic [ref=e14]:
-        - generic [ref=e15]: Password
-        - generic [ref=e16]:
-          - textbox "Password" [ref=e17]: testpassword
-          - button "Show" [ref=e18]
-      - link "Reset your password here" [ref=e20] [cursor=pointer]:
-        - /url: /forgot-password
-      - paragraph [ref=e22]: Invalid email or password
-      - button "Sign In" [ref=e23]
-    - paragraph [ref=e25]:
-      - text: Don't have an account?
-      - link "Join Apex Today" [ref=e26] [cursor=pointer]:
-        - /url: /signup
-  - button "Open Next.js Dev Tools" [ref=e32] [cursor=pointer]:
-    - img [ref=e33]
-  - alert [ref=e36]
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - generic [ref=e4]:
+        - img "Apex Affinity Group" [ref=e6]
+        - generic [ref=e7]: ADMIN PORTAL
+      - navigation [ref=e9]:
+        - link "Dashboard" [ref=e10] [cursor=pointer]:
+          - /url: /admin
+          - img [ref=e12]
+          - generic [ref=e14]: Dashboard
+        - link "Distributors" [ref=e15] [cursor=pointer]:
+          - /url: /admin/distributors
+          - img [ref=e17]
+          - generic [ref=e19]: Distributors
+        - link "AI Assistant" [ref=e20] [cursor=pointer]:
+          - /url: /admin/ai-assistant
+          - img [ref=e22]
+          - generic [ref=e24]: AI Assistant
+        - link "Genealogy Tree" [ref=e25] [cursor=pointer]:
+          - /url: /admin/genealogy
+          - img [ref=e27]
+          - generic [ref=e29]: Genealogy Tree
+        - link "Matrix View" [ref=e30] [cursor=pointer]:
+          - /url: /admin/matrix
+          - img [ref=e32]
+          - generic [ref=e34]: Matrix View
+        - link "Integrations" [ref=e35] [cursor=pointer]:
+          - /url: /admin/integrations
+          - img [ref=e37]
+          - generic [ref=e39]: Integrations
+        - link "Prospects" [ref=e40] [cursor=pointer]:
+          - /url: /admin/prospects
+          - img [ref=e42]
+          - generic [ref=e44]: Prospects
+        - link "Email Templates" [ref=e45] [cursor=pointer]:
+          - /url: /admin/email-templates
+          - img [ref=e47]
+          - generic [ref=e49]: Email Templates
+        - link "Training Audio" [ref=e50] [cursor=pointer]:
+          - /url: /admin/training-audio
+          - img [ref=e52]
+          - generic [ref=e54]: Training Audio
+        - link "Compensation Settings" [ref=e55] [cursor=pointer]:
+          - /url: /admin/compensation-settings
+          - img [ref=e57]
+          - generic [ref=e60]: Compensation Settings
+        - link "Commissions" [ref=e61] [cursor=pointer]:
+          - /url: /admin/commissions
+          - img [ref=e63]
+          - generic [ref=e65]: Commissions
+        - link "Reports" [ref=e66] [cursor=pointer]:
+          - /url: /admin/reports
+          - img [ref=e68]
+          - generic [ref=e70]: Reports
+        - link "Activity Log" [ref=e71] [cursor=pointer]:
+          - /url: /admin/activity
+          - img [ref=e73]
+          - generic [ref=e75]: Activity Log
+        - link "Business Cards" [ref=e76] [cursor=pointer]:
+          - /url: /admin/business-card-templates
+          - img [ref=e78]
+          - generic [ref=e80]: Business Cards
+        - link "Social Content" [ref=e81] [cursor=pointer]:
+          - /url: /admin/social-content
+          - img [ref=e83]
+          - generic [ref=e85]: Social Content
+        - link "Settings" [ref=e86] [cursor=pointer]:
+          - /url: /admin/settings
+          - img [ref=e88]
+          - generic [ref=e91]: Settings
+      - generic [ref=e92]:
+        - link "User Dashboard" [ref=e93] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e94]
+          - generic [ref=e96]: User Dashboard
+        - button "Sign Out" [ref=e98]:
+          - img [ref=e99]
+          - generic [ref=e101]: Sign Out
+    - main [ref=e102]:
+      - generic [ref=e103]:
+        - generic [ref=e104]:
+          - generic [ref=e105]:
+            - heading "Company Events" [level=1] [ref=e106]
+            - paragraph [ref=e107]: Manage events that distributors can invite prospects to
+          - link "Create Event" [ref=e108] [cursor=pointer]:
+            - /url: /admin/events/new
+            - button "Create Event" [ref=e109]:
+              - img
+              - text: Create Event
+        - generic [ref=e110]:
+          - button "All Events" [ref=e111]
+          - button "Active" [ref=e112]
+          - button "Draft" [ref=e113]
+          - button "Completed" [ref=e114]
+        - generic [ref=e115]:
+          - generic [ref=e117]:
+            - generic [ref=e118]:
+              - generic [ref=e119]:
+                - heading "Test Product Launch 2026" [level=3] [ref=e120]
+                - generic [ref=e121]: active
+              - generic [ref=e122]:
+                - generic [ref=e123]:
+                  - img [ref=e124]
+                  - text: Jun 15, 2026, 02:00 PM
+                - generic [ref=e126]:
+                  - img [ref=e127]
+                  - text: Virtual
+                - generic [ref=e130]:
+                  - img [ref=e131]
+                  - text: 0 RSVPs
+              - generic [ref=e136]:
+                - generic [ref=e137]:
+                  - strong [ref=e138]: "0"
+                  - text: invitations sent
+                - generic [ref=e139]:
+                  - strong [ref=e140]: "0"
+                  - text: confirmed
+            - generic [ref=e141]:
+              - link "Edit" [ref=e142] [cursor=pointer]:
+                - /url: /admin/events/352b24f2-013d-48d3-9d91-5c48026b460e
+                - button "Edit" [ref=e143]:
+                  - img
+                  - text: Edit
+              - button [ref=e144]:
+                - img
+          - generic [ref=e146]:
+            - generic [ref=e147]:
+              - generic [ref=e148]:
+                - heading "Test Product Launch 2026" [level=3] [ref=e149]
+                - generic [ref=e150]: active
+              - generic [ref=e151]:
+                - generic [ref=e152]:
+                  - img [ref=e153]
+                  - text: Jun 15, 2026, 02:00 PM
+                - generic [ref=e155]:
+                  - img [ref=e156]
+                  - text: Virtual
+                - generic [ref=e159]:
+                  - img [ref=e160]
+                  - text: 0 RSVPs
+              - generic [ref=e165]:
+                - generic [ref=e166]:
+                  - strong [ref=e167]: "0"
+                  - text: invitations sent
+                - generic [ref=e168]:
+                  - strong [ref=e169]: "0"
+                  - text: confirmed
+            - generic [ref=e170]:
+              - link "Edit" [ref=e171] [cursor=pointer]:
+                - /url: /admin/events/32ffbbc1-088a-4a76-a3e4-9c2d7d0df7db
+                - button "Edit" [ref=e172]:
+                  - img
+                  - text: Edit
+              - button [ref=e173]:
+                - img
+          - generic [ref=e175]:
+            - generic [ref=e176]:
+              - generic [ref=e177]:
+                - heading "Test Product Launch 2026" [level=3] [ref=e178]
+                - generic [ref=e179]: active
+              - generic [ref=e180]:
+                - generic [ref=e181]:
+                  - img [ref=e182]
+                  - text: Jun 15, 2026, 02:00 PM
+                - generic [ref=e184]:
+                  - img [ref=e185]
+                  - text: Virtual
+                - generic [ref=e188]:
+                  - img [ref=e189]
+                  - text: 0 RSVPs
+              - generic [ref=e194]:
+                - generic [ref=e195]:
+                  - strong [ref=e196]: "0"
+                  - text: invitations sent
+                - generic [ref=e197]:
+                  - strong [ref=e198]: "0"
+                  - text: confirmed
+            - generic [ref=e199]:
+              - link "Edit" [ref=e200] [cursor=pointer]:
+                - /url: /admin/events/8ceb8a7f-0143-4f95-97b5-e05c7ce7fda8
+                - button "Edit" [ref=e201]:
+                  - img
+                  - text: Edit
+              - button [ref=e202]:
+                - img
+          - generic [ref=e204]:
+            - generic [ref=e205]:
+              - generic [ref=e206]:
+                - heading "Test Product Launch 2026" [level=3] [ref=e207]
+                - generic [ref=e208]: active
+              - generic [ref=e209]:
+                - generic [ref=e210]:
+                  - img [ref=e211]
+                  - text: Jun 15, 2026, 02:00 PM
+                - generic [ref=e213]:
+                  - img [ref=e214]
+                  - text: Virtual
+                - generic [ref=e217]:
+                  - img [ref=e218]
+                  - text: 0 RSVPs
+              - generic [ref=e223]:
+                - generic [ref=e224]:
+                  - strong [ref=e225]: "0"
+                  - text: invitations sent
+                - generic [ref=e226]:
+                  - strong [ref=e227]: "0"
+                  - text: confirmed
+            - generic [ref=e228]:
+              - link "Edit" [ref=e229] [cursor=pointer]:
+                - /url: /admin/events/aafd44f4-ff3f-440f-8d88-f9e241a6dce2
+                - button "Edit" [ref=e230]:
+                  - img
+                  - text: Edit
+              - button [ref=e231]:
+                - img
+          - generic [ref=e233]:
+            - generic [ref=e234]:
+              - generic [ref=e235]:
+                - heading "Test Product Launch 2026" [level=3] [ref=e236]
+                - generic [ref=e237]: active
+              - generic [ref=e238]:
+                - generic [ref=e239]:
+                  - img [ref=e240]
+                  - text: Jun 15, 2026, 02:00 PM
+                - generic [ref=e242]:
+                  - img [ref=e243]
+                  - text: Virtual
+                - generic [ref=e246]:
+                  - img [ref=e247]
+                  - text: 0 RSVPs
+              - generic [ref=e252]:
+                - generic [ref=e253]:
+                  - strong [ref=e254]: "0"
+                  - text: invitations sent
+                - generic [ref=e255]:
+                  - strong [ref=e256]: "0"
+                  - text: confirmed
+            - generic [ref=e257]:
+              - link "Edit" [ref=e258] [cursor=pointer]:
+                - /url: /admin/events/086386e7-f954-404f-919a-b83c3607623f
+                - button "Edit" [ref=e259]:
+                  - img
+                  - text: Edit
+              - button [ref=e260]:
+                - img
+          - generic [ref=e262]:
+            - generic [ref=e263]:
+              - generic [ref=e264]:
+                - heading "Test Product Launch 2026" [level=3] [ref=e265]
+                - generic [ref=e266]: active
+              - generic [ref=e267]:
+                - generic [ref=e268]:
+                  - img [ref=e269]
+                  - text: Jun 15, 2026, 02:00 PM
+                - generic [ref=e271]:
+                  - img [ref=e272]
+                  - text: Virtual
+                - generic [ref=e275]:
+                  - img [ref=e276]
+                  - text: 0 RSVPs
+              - generic [ref=e281]:
+                - generic [ref=e282]:
+                  - strong [ref=e283]: "0"
+                  - text: invitations sent
+                - generic [ref=e284]:
+                  - strong [ref=e285]: "0"
+                  - text: confirmed
+            - generic [ref=e286]:
+              - link "Edit" [ref=e287] [cursor=pointer]:
+                - /url: /admin/events/c354787b-4448-403b-b489-7846b9a0836d
+                - button "Edit" [ref=e288]:
+                  - img
+                  - text: Edit
+              - button [ref=e289]:
+                - img
+          - generic [ref=e291]:
+            - generic [ref=e292]:
+              - generic [ref=e293]:
+                - heading "Test Product Launch 2026" [level=3] [ref=e294]
+                - generic [ref=e295]: active
+              - generic [ref=e296]:
+                - generic [ref=e297]:
+                  - img [ref=e298]
+                  - text: Jun 15, 2026, 02:00 PM
+                - generic [ref=e300]:
+                  - img [ref=e301]
+                  - text: Virtual
+                - generic [ref=e304]:
+                  - img [ref=e305]
+                  - text: 0 RSVPs
+              - generic [ref=e310]:
+                - generic [ref=e311]:
+                  - strong [ref=e312]: "0"
+                  - text: invitations sent
+                - generic [ref=e313]:
+                  - strong [ref=e314]: "0"
+                  - text: confirmed
+            - generic [ref=e315]:
+              - link "Edit" [ref=e316] [cursor=pointer]:
+                - /url: /admin/events/7eac5334-6904-416b-8607-89aad1b5ec31
+                - button "Edit" [ref=e317]:
+                  - img
+                  - text: Edit
+              - button [ref=e318]:
+                - img
+          - generic [ref=e320]:
+            - generic [ref=e321]:
+              - generic [ref=e322]:
+                - heading "Test Product Launch 2026" [level=3] [ref=e323]
+                - generic [ref=e324]: active
+              - generic [ref=e325]:
+                - generic [ref=e326]:
+                  - img [ref=e327]
+                  - text: Jun 15, 2026, 02:00 PM
+                - generic [ref=e329]:
+                  - img [ref=e330]
+                  - text: Virtual
+                - generic [ref=e333]:
+                  - img [ref=e334]
+                  - text: 0 RSVPs
+              - generic [ref=e339]:
+                - generic [ref=e340]:
+                  - strong [ref=e341]: "0"
+                  - text: invitations sent
+                - generic [ref=e342]:
+                  - strong [ref=e343]: "0"
+                  - text: confirmed
+            - generic [ref=e344]:
+              - link "Edit" [ref=e345] [cursor=pointer]:
+                - /url: /admin/events/d798c9ba-8dd9-47f8-babd-a851f442530d
+                - button "Edit" [ref=e346]:
+                  - img
+                  - text: Edit
+              - button [ref=e347]:
+                - img
+          - generic [ref=e349]:
+            - generic [ref=e350]:
+              - generic [ref=e351]:
+                - heading "Test Product Launch 2026" [level=3] [ref=e352]
+                - generic [ref=e353]: active
+              - generic [ref=e354]:
+                - generic [ref=e355]:
+                  - img [ref=e356]
+                  - text: Jun 15, 2026, 02:00 PM
+                - generic [ref=e358]:
+                  - img [ref=e359]
+                  - text: Virtual
+                - generic [ref=e362]:
+                  - img [ref=e363]
+                  - text: 0 RSVPs
+              - generic [ref=e368]:
+                - generic [ref=e369]:
+                  - strong [ref=e370]: "0"
+                  - text: invitations sent
+                - generic [ref=e371]:
+                  - strong [ref=e372]: "0"
+                  - text: confirmed
+            - generic [ref=e373]:
+              - link "Edit" [ref=e374] [cursor=pointer]:
+                - /url: /admin/events/ae4704ad-3fdf-4918-91c2-c2ebb7f5be62
+                - button "Edit" [ref=e375]:
+                  - img
+                  - text: Edit
+              - button [ref=e376]:
+                - img
+          - generic [ref=e378]:
+            - generic [ref=e379]:
+              - generic [ref=e380]:
+                - heading "Test Product Launch 2026" [level=3] [ref=e381]
+                - generic [ref=e382]: active
+              - generic [ref=e383]:
+                - generic [ref=e384]:
+                  - img [ref=e385]
+                  - text: Jun 15, 2026, 02:00 PM
+                - generic [ref=e387]:
+                  - img [ref=e388]
+                  - text: Virtual
+                - generic [ref=e391]:
+                  - img [ref=e392]
+                  - text: 0 RSVPs
+              - generic [ref=e397]:
+                - generic [ref=e398]:
+                  - strong [ref=e399]: "0"
+                  - text: invitations sent
+                - generic [ref=e400]:
+                  - strong [ref=e401]: "0"
+                  - text: confirmed
+            - generic [ref=e402]:
+              - link "Edit" [ref=e403] [cursor=pointer]:
+                - /url: /admin/events/d827734e-ba81-4436-9b02-60cdc3fcf34d
+                - button "Edit" [ref=e404]:
+                  - img
+                  - text: Edit
+              - button [ref=e405]:
+                - img
+          - generic [ref=e407]:
+            - generic [ref=e408]:
+              - generic [ref=e409]:
+                - heading "Test Product Launch 2026" [level=3] [ref=e410]
+                - generic [ref=e411]: active
+              - generic [ref=e412]:
+                - generic [ref=e413]:
+                  - img [ref=e414]
+                  - text: Jun 15, 2026, 02:00 PM
+                - generic [ref=e416]:
+                  - img [ref=e417]
+                  - text: Virtual
+                - generic [ref=e420]:
+                  - img [ref=e421]
+                  - text: 0 RSVPs
+              - generic [ref=e426]:
+                - generic [ref=e427]:
+                  - strong [ref=e428]: "0"
+                  - text: invitations sent
+                - generic [ref=e429]:
+                  - strong [ref=e430]: "0"
+                  - text: confirmed
+            - generic [ref=e431]:
+              - link "Edit" [ref=e432] [cursor=pointer]:
+                - /url: /admin/events/9fd63613-8e43-4430-91e2-1098cf8990e1
+                - button "Edit" [ref=e433]:
+                  - img
+                  - text: Edit
+              - button [ref=e434]:
+                - img
+          - generic [ref=e436]:
+            - generic [ref=e437]:
+              - generic [ref=e438]:
+                - heading "Test Product Launch 2026" [level=3] [ref=e439]
+                - generic [ref=e440]: active
+              - generic [ref=e441]:
+                - generic [ref=e442]:
+                  - img [ref=e443]
+                  - text: Jun 15, 2026, 02:00 PM
+                - generic [ref=e445]:
+                  - img [ref=e446]
+                  - text: Virtual
+                - generic [ref=e449]:
+                  - img [ref=e450]
+                  - text: 0 RSVPs
+              - generic [ref=e455]:
+                - generic [ref=e456]:
+                  - strong [ref=e457]: "0"
+                  - text: invitations sent
+                - generic [ref=e458]:
+                  - strong [ref=e459]: "0"
+                  - text: confirmed
+            - generic [ref=e460]:
+              - link "Edit" [ref=e461] [cursor=pointer]:
+                - /url: /admin/events/e23fa4b0-aedc-466c-9c73-04730f5e0048
+                - button "Edit" [ref=e462]:
+                  - img
+                  - text: Edit
+              - button [ref=e463]:
+                - img
+          - generic [ref=e465]:
+            - generic [ref=e466]:
+              - generic [ref=e467]:
+                - heading "Test Product Launch 2026" [level=3] [ref=e468]
+                - generic [ref=e469]: active
+              - generic [ref=e470]:
+                - generic [ref=e471]:
+                  - img [ref=e472]
+                  - text: Jun 15, 2026, 02:00 PM
+                - generic [ref=e474]:
+                  - img [ref=e475]
+                  - text: Virtual
+                - generic [ref=e478]:
+                  - img [ref=e479]
+                  - text: 0 RSVPs
+              - generic [ref=e484]:
+                - generic [ref=e485]:
+                  - strong [ref=e486]: "0"
+                  - text: invitations sent
+                - generic [ref=e487]:
+                  - strong [ref=e488]: "0"
+                  - text: confirmed
+            - generic [ref=e489]:
+              - link "Edit" [ref=e490] [cursor=pointer]:
+                - /url: /admin/events/05625f0d-ee31-42bc-a6a1-5161bdb30569
+                - button "Edit" [ref=e491]:
+                  - img
+                  - text: Edit
+              - button [ref=e492]:
+                - img
+          - generic [ref=e494]:
+            - generic [ref=e495]:
+              - generic [ref=e496]:
+                - heading "Test Product Launch 2026" [level=3] [ref=e497]
+                - generic [ref=e498]: active
+              - generic [ref=e499]:
+                - generic [ref=e500]:
+                  - img [ref=e501]
+                  - text: Jun 15, 2026, 02:00 PM
+                - generic [ref=e503]:
+                  - img [ref=e504]
+                  - text: Virtual
+                - generic [ref=e507]:
+                  - img [ref=e508]
+                  - text: 0 RSVPs
+              - generic [ref=e513]:
+                - generic [ref=e514]:
+                  - strong [ref=e515]: "0"
+                  - text: invitations sent
+                - generic [ref=e516]:
+                  - strong [ref=e517]: "0"
+                  - text: confirmed
+            - generic [ref=e518]:
+              - link "Edit" [ref=e519] [cursor=pointer]:
+                - /url: /admin/events/466fa281-9329-4152-bbf6-a7e3620d5f54
+                - button "Edit" [ref=e520]:
+                  - img
+                  - text: Edit
+              - button [ref=e521]:
+                - img
+          - generic [ref=e523]:
+            - generic [ref=e524]:
+              - generic [ref=e525]:
+                - heading "Test Product Launch 2026" [level=3] [ref=e526]
+                - generic [ref=e527]: active
+              - generic [ref=e528]:
+                - generic [ref=e529]:
+                  - img [ref=e530]
+                  - text: Jun 15, 2026, 02:00 PM
+                - generic [ref=e532]:
+                  - img [ref=e533]
+                  - text: Virtual
+                - generic [ref=e536]:
+                  - img [ref=e537]
+                  - text: 0 RSVPs
+              - generic [ref=e542]:
+                - generic [ref=e543]:
+                  - strong [ref=e544]: "0"
+                  - text: invitations sent
+                - generic [ref=e545]:
+                  - strong [ref=e546]: "0"
+                  - text: confirmed
+            - generic [ref=e547]:
+              - link "Edit" [ref=e548] [cursor=pointer]:
+                - /url: /admin/events/1b3604b9-148b-419c-a97e-d5c0dcf57d88
+                - button "Edit" [ref=e549]:
+                  - img
+                  - text: Edit
+              - button [ref=e550]:
+                - img
+          - generic [ref=e552]:
+            - generic [ref=e553]:
+              - generic [ref=e554]:
+                - heading "Test Product Launch 2026" [level=3] [ref=e555]
+                - generic [ref=e556]: active
+              - generic [ref=e557]:
+                - generic [ref=e558]:
+                  - img [ref=e559]
+                  - text: Jun 15, 2026, 02:00 PM
+                - generic [ref=e561]:
+                  - img [ref=e562]
+                  - text: Virtual
+                - generic [ref=e565]:
+                  - img [ref=e566]
+                  - text: 0 RSVPs
+              - generic [ref=e571]:
+                - generic [ref=e572]:
+                  - strong [ref=e573]: "0"
+                  - text: invitations sent
+                - generic [ref=e574]:
+                  - strong [ref=e575]: "0"
+                  - text: confirmed
+            - generic [ref=e576]:
+              - link "Edit" [ref=e577] [cursor=pointer]:
+                - /url: /admin/events/f0bfe37f-3784-4c78-bf4e-d453a4a3f706
+                - button "Edit" [ref=e578]:
+                  - img
+                  - text: Edit
+              - button [ref=e579]:
+                - img
+          - generic [ref=e581]:
+            - generic [ref=e582]:
+              - generic [ref=e583]:
+                - heading "Test Product Launch 2026" [level=3] [ref=e584]
+                - generic [ref=e585]: active
+              - generic [ref=e586]:
+                - generic [ref=e587]:
+                  - img [ref=e588]
+                  - text: Jun 15, 2026, 02:00 PM
+                - generic [ref=e590]:
+                  - img [ref=e591]
+                  - text: Virtual
+                - generic [ref=e594]:
+                  - img [ref=e595]
+                  - text: 0 RSVPs
+              - generic [ref=e600]:
+                - generic [ref=e601]:
+                  - strong [ref=e602]: "0"
+                  - text: invitations sent
+                - generic [ref=e603]:
+                  - strong [ref=e604]: "0"
+                  - text: confirmed
+            - generic [ref=e605]:
+              - link "Edit" [ref=e606] [cursor=pointer]:
+                - /url: /admin/events/63930104-733c-440f-ab83-5f41329a8dad
+                - button "Edit" [ref=e607]:
+                  - img
+                  - text: Edit
+              - button [ref=e608]:
+                - img
+          - generic [ref=e610]:
+            - generic [ref=e611]:
+              - generic [ref=e612]:
+                - heading "Test Product Launch 2026" [level=3] [ref=e613]
+                - generic [ref=e614]: active
+              - generic [ref=e615]:
+                - generic [ref=e616]:
+                  - img [ref=e617]
+                  - text: Jun 15, 2026, 02:00 PM
+                - generic [ref=e619]:
+                  - img [ref=e620]
+                  - text: Virtual
+                - generic [ref=e623]:
+                  - img [ref=e624]
+                  - text: 0 RSVPs
+              - generic [ref=e629]:
+                - generic [ref=e630]:
+                  - strong [ref=e631]: "0"
+                  - text: invitations sent
+                - generic [ref=e632]:
+                  - strong [ref=e633]: "0"
+                  - text: confirmed
+            - generic [ref=e634]:
+              - link "Edit" [ref=e635] [cursor=pointer]:
+                - /url: /admin/events/5463e94f-77ec-414a-8161-66c442e43d3a
+                - button "Edit" [ref=e636]:
+                  - img
+                  - text: Edit
+              - button [ref=e637]:
+                - img
+          - generic [ref=e639]:
+            - generic [ref=e640]:
+              - generic [ref=e641]:
+                - heading "Test Product Launch 2026" [level=3] [ref=e642]
+                - generic [ref=e643]: active
+              - generic [ref=e644]:
+                - generic [ref=e645]:
+                  - img [ref=e646]
+                  - text: Jun 15, 2026, 02:00 PM
+                - generic [ref=e648]:
+                  - img [ref=e649]
+                  - text: Virtual
+                - generic [ref=e652]:
+                  - img [ref=e653]
+                  - text: 0 RSVPs
+              - generic [ref=e658]:
+                - generic [ref=e659]:
+                  - strong [ref=e660]: "0"
+                  - text: invitations sent
+                - generic [ref=e661]:
+                  - strong [ref=e662]: "0"
+                  - text: confirmed
+            - generic [ref=e663]:
+              - link "Edit" [ref=e664] [cursor=pointer]:
+                - /url: /admin/events/57c37177-c182-4616-9b3d-d837959993a6
+                - button "Edit" [ref=e665]:
+                  - img
+                  - text: Edit
+              - button [ref=e666]:
+                - img
+          - generic [ref=e668]:
+            - generic [ref=e669]:
+              - generic [ref=e670]:
+                - heading "Test Product Launch 2026" [level=3] [ref=e671]
+                - generic [ref=e672]: active
+              - generic [ref=e673]:
+                - generic [ref=e674]:
+                  - img [ref=e675]
+                  - text: Jun 15, 2026, 02:00 PM
+                - generic [ref=e677]:
+                  - img [ref=e678]
+                  - text: Virtual
+                - generic [ref=e681]:
+                  - img [ref=e682]
+                  - text: 0 RSVPs
+              - generic [ref=e687]:
+                - generic [ref=e688]:
+                  - strong [ref=e689]: "0"
+                  - text: invitations sent
+                - generic [ref=e690]:
+                  - strong [ref=e691]: "0"
+                  - text: confirmed
+            - generic [ref=e692]:
+              - link "Edit" [ref=e693] [cursor=pointer]:
+                - /url: /admin/events/63f75e88-b7c7-48ca-9d69-49732b77947c
+                - button "Edit" [ref=e694]:
+                  - img
+                  - text: Edit
+              - button [ref=e695]:
+                - img
+          - generic [ref=e697]:
+            - generic [ref=e698]:
+              - generic [ref=e699]:
+                - heading "Test Product Launch 2026" [level=3] [ref=e700]
+                - generic [ref=e701]: active
+              - generic [ref=e702]:
+                - generic [ref=e703]:
+                  - img [ref=e704]
+                  - text: Jun 15, 2026, 02:00 PM
+                - generic [ref=e706]:
+                  - img [ref=e707]
+                  - text: Virtual
+                - generic [ref=e710]:
+                  - img [ref=e711]
+                  - text: 0 RSVPs
+              - generic [ref=e716]:
+                - generic [ref=e717]:
+                  - strong [ref=e718]: "0"
+                  - text: invitations sent
+                - generic [ref=e719]:
+                  - strong [ref=e720]: "0"
+                  - text: confirmed
+            - generic [ref=e721]:
+              - link "Edit" [ref=e722] [cursor=pointer]:
+                - /url: /admin/events/546ee5d7-5bfb-4804-9698-320d53d5f43b
+                - button "Edit" [ref=e723]:
+                  - img
+                  - text: Edit
+              - button [ref=e724]:
+                - img
+          - generic [ref=e726]:
+            - generic [ref=e727]:
+              - generic [ref=e728]:
+                - heading "Test Product Launch 2026" [level=3] [ref=e729]
+                - generic [ref=e730]: active
+              - generic [ref=e731]:
+                - generic [ref=e732]:
+                  - img [ref=e733]
+                  - text: Jun 15, 2026, 02:00 PM
+                - generic [ref=e735]:
+                  - img [ref=e736]
+                  - text: Virtual
+                - generic [ref=e739]:
+                  - img [ref=e740]
+                  - text: 0 RSVPs
+              - generic [ref=e745]:
+                - generic [ref=e746]:
+                  - strong [ref=e747]: "0"
+                  - text: invitations sent
+                - generic [ref=e748]:
+                  - strong [ref=e749]: "0"
+                  - text: confirmed
+            - generic [ref=e750]:
+              - link "Edit" [ref=e751] [cursor=pointer]:
+                - /url: /admin/events/bf09c262-632f-46c6-843f-dcab9b7e1112
+                - button "Edit" [ref=e752]:
+                  - img
+                  - text: Edit
+              - button [ref=e753]:
+                - img
+          - generic [ref=e755]:
+            - generic [ref=e756]:
+              - generic [ref=e757]:
+                - heading "Test Product Launch 2026" [level=3] [ref=e758]
+                - generic [ref=e759]: active
+              - generic [ref=e760]:
+                - generic [ref=e761]:
+                  - img [ref=e762]
+                  - text: Jun 15, 2026, 02:00 PM
+                - generic [ref=e764]:
+                  - img [ref=e765]
+                  - text: Virtual
+                - generic [ref=e768]:
+                  - img [ref=e769]
+                  - text: 0 RSVPs
+              - generic [ref=e774]:
+                - generic [ref=e775]:
+                  - strong [ref=e776]: "0"
+                  - text: invitations sent
+                - generic [ref=e777]:
+                  - strong [ref=e778]: "0"
+                  - text: confirmed
+            - generic [ref=e779]:
+              - link "Edit" [ref=e780] [cursor=pointer]:
+                - /url: /admin/events/c508da9f-5f93-42a7-9667-7a892077055f
+                - button "Edit" [ref=e781]:
+                  - img
+                  - text: Edit
+              - button [ref=e782]:
+                - img
+          - generic [ref=e784]:
+            - generic [ref=e785]:
+              - generic [ref=e786]:
+                - heading "Test Product Launch 2026" [level=3] [ref=e787]
+                - generic [ref=e788]: active
+              - generic [ref=e789]:
+                - generic [ref=e790]:
+                  - img [ref=e791]
+                  - text: Jun 15, 2026, 02:00 PM
+                - generic [ref=e793]:
+                  - img [ref=e794]
+                  - text: Virtual
+                - generic [ref=e797]:
+                  - img [ref=e798]
+                  - text: 0 RSVPs
+              - generic [ref=e803]:
+                - generic [ref=e804]:
+                  - strong [ref=e805]: "0"
+                  - text: invitations sent
+                - generic [ref=e806]:
+                  - strong [ref=e807]: "0"
+                  - text: confirmed
+            - generic [ref=e808]:
+              - link "Edit" [ref=e809] [cursor=pointer]:
+                - /url: /admin/events/1735fb64-a4c3-4901-8b67-d2455710fb00
+                - button "Edit" [ref=e810]:
+                  - img
+                  - text: Edit
+              - button [ref=e811]:
+                - img
+          - generic [ref=e813]:
+            - generic [ref=e814]:
+              - generic [ref=e815]:
+                - heading "Test Product Launch 2026" [level=3] [ref=e816]
+                - generic [ref=e817]: active
+              - generic [ref=e818]:
+                - generic [ref=e819]:
+                  - img [ref=e820]
+                  - text: Jun 15, 2026, 02:00 PM
+                - generic [ref=e822]:
+                  - img [ref=e823]
+                  - text: Virtual
+                - generic [ref=e826]:
+                  - img [ref=e827]
+                  - text: 0 RSVPs
+              - generic [ref=e832]:
+                - generic [ref=e833]:
+                  - strong [ref=e834]: "0"
+                  - text: invitations sent
+                - generic [ref=e835]:
+                  - strong [ref=e836]: "0"
+                  - text: confirmed
+            - generic [ref=e837]:
+              - link "Edit" [ref=e838] [cursor=pointer]:
+                - /url: /admin/events/188b6285-235e-4b6e-b627-5ecaaad83a25
+                - button "Edit" [ref=e839]:
+                  - img
+                  - text: Edit
+              - button [ref=e840]:
+                - img
+          - generic [ref=e842]:
+            - generic [ref=e843]:
+              - generic [ref=e844]:
+                - heading "Test Product Launch 2026" [level=3] [ref=e845]
+                - generic [ref=e846]: active
+              - generic [ref=e847]:
+                - generic [ref=e848]:
+                  - img [ref=e849]
+                  - text: Jun 15, 2026, 02:00 PM
+                - generic [ref=e851]:
+                  - img [ref=e852]
+                  - text: Virtual
+                - generic [ref=e855]:
+                  - img [ref=e856]
+                  - text: 0 RSVPs
+              - generic [ref=e861]:
+                - generic [ref=e862]:
+                  - strong [ref=e863]: "0"
+                  - text: invitations sent
+                - generic [ref=e864]:
+                  - strong [ref=e865]: "0"
+                  - text: confirmed
+            - generic [ref=e866]:
+              - link "Edit" [ref=e867] [cursor=pointer]:
+                - /url: /admin/events/ca5fed88-cf8b-4db5-b1a7-0f42d45b205a
+                - button "Edit" [ref=e868]:
+                  - img
+                  - text: Edit
+              - button [ref=e869]:
+                - img
+    - button "Open AI Assistant" [ref=e870]:
+      - img [ref=e871]
+  - button "Open Next.js Dev Tools" [ref=e880] [cursor=pointer]:
+    - img [ref=e881]
+  - alert [ref=e884]
 ```

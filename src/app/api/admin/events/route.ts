@@ -114,7 +114,8 @@ export async function GET(request: NextRequest) {
     // Build query
     let query = supabase
       .from('company_events')
-      .select('*', { count: 'exact' });
+      .select('*', { count: 'exact' })
+      .is('archived_at', null); // Exclude soft-deleted events
 
     // Apply filters
     if (status) {

@@ -5,7 +5,7 @@
 
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -153,6 +153,7 @@ export default function EventForm({ event }: EventFormProps) {
   const locationType = watch('location_type');
 
   const onSubmit = async (data: EventFormData) => {
+    console.log('[EventForm] onSubmit called with data:', { event_name: data.event_name });
     setLoading(true);
     setError(null);
 
@@ -229,8 +230,13 @@ export default function EventForm({ event }: EventFormProps) {
     }
   };
 
+  const handleButtonClick = async () => {
+    console.log('[EventForm] Submit button clicked');
+    await handleSubmit(onSubmit)();
+  };
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="bg-white rounded-lg shadow-md border border-slate-200">
+    <div className="bg-white rounded-lg shadow-md border border-slate-200">
       {error && (
         <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
           <p className="text-sm text-red-600">{error}</p>
@@ -743,7 +749,7 @@ export default function EventForm({ event }: EventFormProps) {
           >
             Cancel
           </Button>
-          <Button type="submit" disabled={loading}>
+          <Button type="button" onClick={handleButtonClick} disabled={loading}>
             {loading ? (
               <>
                 <Loader2 className="w-4 h-4 mr-2 animate-spin" />
@@ -758,6 +764,6 @@ export default function EventForm({ event }: EventFormProps) {
           </Button>
         </div>
       </div>
-    </form>
+    </div>
   );
 }
