@@ -10,6 +10,10 @@ import crypto from 'crypto';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+// Rate limiting: max 5 password reset requests per hour per IP
+const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_WINDOW_HOURS = 1;
+
 export async function POST(request: NextRequest) {
   try {
     const { email } = await request.json();
@@ -22,6 +26,46 @@ export async function POST(request: NextRequest) {
     }
 
     const supabase = createServiceClient();
+
+    // Rate limiting check
+    const ip =
+      request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+      request.headers.get('x-real-ip') ||
+      'unknown';
+
+    if (ip !== 'unknown') {
+      const windowStart = new Date(
+        Date.now() - RATE_LIMIT_WINDOW_HOURS * 60 * 60 * 1000
+      ).toISOString();
+
+      const { count: recentAttempts } = await supabase
+        .from('password_reset_rate_limits')
+        .select('*', { count: 'exact', head: true })
+        .eq('ip_address', ip)
+        .gte('created_at', windowStart);
+
+      if ((recentAttempts || 0) >= RATE_LIMIT_MAX) {
+        return NextResponse.json(
+          {
+            success: false,
+            error: 'Too many requests',
+            message: 'Too many password reset attempts. Please try again in 1 hour.',
+          },
+          { status: 429 }
+        );
+      }
+
+      // Record this attempt
+      await supabase
+        .from('password_reset_rate_limits')
+        .insert({ ip_address: ip, email: email.toLowerCase() });
+
+      // Cleanup old entries (keep table lean)
+      await supabase
+        .from('password_reset_rate_limits')
+        .delete()
+        .lt('created_at', new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString());
+    }
 
     // Check if user exists
     const { data: distributor } = await supabase
@@ -61,7 +105,18 @@ export async function POST(request: NextRequest) {
     }
 
     // Build reset link with our token
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3050';
+    // Auto-detect production URL if environment variable not set
+    let baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
+
+    // If not set or set to localhost, try to use Vercel URL or default to production
+    if (!baseUrl || baseUrl.includes('localhost')) {
+      if (process.env.VERCEL_URL) {
+        baseUrl = `https://${process.env.VERCEL_URL}`;
+      } else {
+        baseUrl = 'https://reachtheapex.net'; // Production fallback
+      }
+    }
+
     const resetLink = `${baseUrl}/reset-password?token=${token}`;
 
     // Send Apex-branded email

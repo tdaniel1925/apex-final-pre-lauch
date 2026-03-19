@@ -5,6 +5,7 @@
 
 import { requireAdmin } from '@/lib/auth/admin';
 import AdminSidebar from '@/components/admin/AdminSidebar';
+import AIAssistantChat from '@/components/admin/AIAssistantChat';
 
 export const metadata = {
   title: 'Admin Portal - Apex Affinity Group',
@@ -25,6 +26,7 @@ export default async function AdminLayout({
     <div className="flex min-h-screen bg-gray-50">
       <AdminSidebar />
       <main className="flex-1 overflow-auto">{children}</main>
+      <AIAssistantChat />
     </div>
   );
 }

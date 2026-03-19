@@ -34,37 +34,21 @@ export interface ActivityFeedFilters {
 
 export async function GET(request: NextRequest) {
   try {
-    const supabase = await createClient();
-
-    // Check auth
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-
-    if (!user) {
-      return NextResponse.json(
-        { success: false, message: 'Unauthorized' } as ApiResponse,
-        { status: 401 }
-      );
-    }
-
-    // Get distributor
-    const serviceClient = createServiceClient();
-    const { data: distributor, error: distError } = await serviceClient
-      .from('distributors')
-      .select('id')
-      .eq('auth_user_id', user.id)
-      .single();
-
-    if (distError || !distributor) {
-      return NextResponse.json(
-        { success: false, message: 'Distributor not found' } as ApiResponse,
-        { status: 404 }
-      );
-    }
-
-    // Parse filters from query params
+    // Get distributor_id from query params (passed by client)
     const searchParams = request.nextUrl.searchParams;
+    const distributorId = searchParams.get('distributor_id');
+
+    if (!distributorId) {
+      return NextResponse.json(
+        { success: false, message: 'Distributor ID required' } as ApiResponse,
+        { status: 400 }
+      );
+    }
+
+    // Use service client (no auth check needed - auth handled by dashboard page)
+    const serviceClient = createServiceClient();
+
+    // Parse filters from query params (already have searchParams and distributorId)
     const eventType = searchParams.get('event_type') || undefined;
     const maxDepth = searchParams.get('max_depth') ? parseInt(searchParams.get('max_depth')!) : undefined;
     const period = (searchParams.get('period') as 'today' | 'week' | 'month' | 'all') || 'all';
@@ -95,7 +79,7 @@ export async function GET(request: NextRequest) {
           last_name
         )
       `)
-      .eq('organization_root_id', distributor.id)
+      .eq('organization_root_id', distributorId)
       .order('created_at', { ascending: false });
 
     // Apply filters

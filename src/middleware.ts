@@ -7,20 +7,21 @@ import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 
 export async function middleware(request: NextRequest) {
-  let response = NextResponse.next({
-    request: {
-      headers: request.headers,
-    },
-  });
-
-  // Skip auth refresh for static files and API routes
+  // Skip auth refresh for static files, API routes, and ALL dashboard routes
   const isStaticFile = request.nextUrl.pathname.match(/\.(ico|png|jpg|jpeg|gif|svg|webp)$/);
   const isApiRoute = request.nextUrl.pathname.startsWith('/api/');
   const isNextInternal = request.nextUrl.pathname.startsWith('/_next/');
+  const isDashboard = request.nextUrl.pathname.startsWith('/dashboard');
 
-  if (isStaticFile || isApiRoute || isNextInternal) {
-    return response;
+  // Dashboard routes handle auth server-side in their page components
+  // This prevents the race condition: middleware auth + server component auth = concurrent token refresh
+  if (isStaticFile || isApiRoute || isNextInternal || isDashboard) {
+    return NextResponse.next();
   }
+
+  let response = NextResponse.next({
+    request,
+  });
 
   try {
     const supabase = createServerClient(
@@ -32,16 +33,6 @@ export async function middleware(request: NextRequest) {
             return request.cookies.get(name)?.value;
           },
           set(name: string, value: string, options: any) {
-            request.cookies.set({
-              name,
-              value,
-              ...options,
-            });
-            response = NextResponse.next({
-              request: {
-                headers: request.headers,
-              },
-            });
             response.cookies.set({
               name,
               value,
@@ -49,16 +40,6 @@ export async function middleware(request: NextRequest) {
             });
           },
           remove(name: string, options: any) {
-            request.cookies.set({
-              name,
-              value: '',
-              ...options,
-            });
-            response = NextResponse.next({
-              request: {
-                headers: request.headers,
-              },
-            });
             response.cookies.set({
               name,
               value: '',
@@ -69,8 +50,73 @@ export async function middleware(request: NextRequest) {
       }
     );
 
-    // Refresh session
-    await supabase.auth.getUser();
+    // ONLY check auth for admin/finance routes
+    // DO NOT call getUser() for other routes - let server components handle their own auth
+    const { data: { user }, error: authError } = await supabase.auth.getUser();
+
+    // Debug logging (remove after testing)
+    if (request.nextUrl.pathname.startsWith('/admin') || request.nextUrl.pathname.startsWith('/finance')) {
+      console.log('Middleware check:', {
+        path: request.nextUrl.pathname,
+        hasUser: !!user,
+        userEmail: user?.email,
+        authError: authError?.message,
+      });
+    }
+
+    // Protect finance routes - CFO/Admin only
+    if (request.nextUrl.pathname.startsWith('/finance')) {
+      if (!user || authError) {
+        console.log('Finance route: No user or auth error, redirecting to login');
+        const redirectUrl = new URL('/login', request.url);
+        redirectUrl.searchParams.set('redirect', request.nextUrl.pathname);
+        return NextResponse.redirect(redirectUrl);
+      }
+
+      // Check is_admin in distributors table
+      const { data: distributor, error: roleError } = await supabase
+        .from('distributors')
+        .select('is_admin, admin_role')
+        .eq('email', user.email)
+        .single();
+
+      if (roleError || !distributor || (!distributor.is_admin && !['cfo', 'admin'].includes(distributor.admin_role))) {
+        // Unauthorized - redirect to dashboard
+        return NextResponse.redirect(new URL('/dashboard', request.url));
+      }
+    }
+
+    // Protect admin routes
+    if (request.nextUrl.pathname.startsWith('/admin')) {
+      if (!user || authError) {
+        console.log('Admin route: No user or auth error, redirecting to login');
+        const redirectUrl = new URL('/login', request.url);
+        redirectUrl.searchParams.set('redirect', request.nextUrl.pathname);
+        return NextResponse.redirect(redirectUrl);
+      }
+
+      // Check is_admin in distributors table
+      const { data: distributor, error: roleError } = await supabase
+        .from('distributors')
+        .select('is_admin')
+        .eq('email', user.email)
+        .single();
+
+      console.log('Admin check:', {
+        email: user.email,
+        distributor,
+        roleError: roleError?.message,
+        isAdmin: distributor?.is_admin,
+      });
+
+      if (roleError || !distributor || !distributor.is_admin) {
+        console.log('Admin route: Not admin or error, redirecting to dashboard');
+        // Unauthorized - redirect to dashboard
+        return NextResponse.redirect(new URL('/dashboard', request.url));
+      }
+
+      console.log('Admin route: Access granted');
+    }
   } catch (error) {
     // If middleware fails, continue without auth refresh
     console.error('Middleware error:', error);

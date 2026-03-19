@@ -1,9 +1,8 @@
 'use client';
 
 // =============================================
-// Compensation Plan Overview
-// Visual summary of all 12 commission types
-// WITH SEARCH AND FILTER
+// Compensation Plan Overview - Dual Ladder System
+// Professional layout based on APEX_COMP_ENGINE_SPEC_FINAL.md
 // =============================================
 
 import { useState, useEffect } from 'react';
@@ -11,126 +10,80 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 
-const commissionTypes = [
+const compensationSections = [
   {
-    id: 'retail',
-    name: 'Retail Commissions',
-    description: 'Earn 30% profit when customers buy products through your referral link',
-    icon: '🛍️',
-    color: 'from-blue-500 to-blue-600',
-    badgeColor: 'bg-blue-100 text-blue-700',
-    category: 'Direct Sales',
+    id: 'tech-ladder',
+    title: 'Technology Ladder',
+    subtitle: '9 Ranks • Credit-Based Advancement',
+    description: 'Build your income through technology product sales and team development. Advance through 9 ranks from Starter to Elite based on personal and group production credits.',
+    href: '/dashboard/compensation/tech-ladder',
+    category: 'Dual Ladder System',
   },
   {
-    id: 'matrix',
-    name: 'Matrix Commissions',
-    description: 'Earn on 7 levels deep in your team structure (2% to 10% per level)',
-    icon: '📊',
-    color: 'from-purple-500 to-purple-600',
-    badgeColor: 'bg-purple-100 text-purple-700',
+    id: 'insurance-ladder',
+    title: 'Insurance Ladder',
+    subtitle: 'Licensed Agents Only • 6 Ranks + MGA Tiers',
+    description: 'Licensed insurance agents can build a separate income stream through insurance sales. Advance from Pre-Associate to Premier MGA with generational overrides.',
+    href: '/dashboard/compensation/insurance-ladder',
+    category: 'Dual Ladder System',
+  },
+  {
+    id: 'products',
+    title: 'Products & Credits',
+    subtitle: '6 Products • Member & Retail Pricing',
+    description: 'Understand our product lineup, pricing structure, and how production credits are calculated for rank advancement and qualification.',
+    href: '/dashboard/compensation/products',
+    category: 'Core Concepts',
+  },
+  {
+    id: 'commissions',
+    title: 'Direct Commissions',
+    subtitle: '27.9% Effective Commission Rate',
+    description: 'Earn immediate commissions on every sale. All reps earn the same percentage regardless of rank. Business Center has a fixed $10 payout.',
+    href: '/dashboard/compensation/commissions',
+    category: 'Core Concepts',
+  },
+  {
+    id: 'overrides',
+    title: 'Override Bonuses',
+    subtitle: 'Ranked System • 5 Levels Deep',
+    description: 'Earn override bonuses on your organization\'s sales. Higher ranks unlock more levels and higher percentages. Enroller Override Rule always pays L1 rate.',
+    href: '/dashboard/compensation/overrides',
     category: 'Team Building',
   },
   {
-    id: 'matching',
-    name: 'Matching Bonuses',
-    description: 'Match a percentage of what your personally enrolled distributors earn',
-    icon: '🎯',
-    color: 'from-green-500 to-green-600',
-    badgeColor: 'bg-green-100 text-green-700',
-    category: 'Team Building',
+    id: 'rank-bonuses',
+    title: 'Rank Advancement Bonuses',
+    subtitle: 'One-Time Payments • $250 to $30,000',
+    description: 'Receive one-time cash bonuses when you achieve each new rank. Total potential: $93,750 from Starter to Elite on Tech Ladder.',
+    href: '/dashboard/compensation/rank-bonuses',
+    category: 'Incentives',
   },
   {
-    id: 'override',
-    name: 'Override Bonuses',
-    description: 'Earn overrides when you outrank people in your downline',
-    icon: '👑',
-    color: 'from-yellow-500 to-yellow-600',
-    badgeColor: 'bg-yellow-100 text-yellow-700',
+    id: 'bonus-pool',
+    title: 'Bonus Pool Programs',
+    subtitle: 'Trip Incentives • Car Bonuses • Fast Start',
+    description: 'Funded by 3.5% of company revenue. Includes trip incentives, fast start bonuses, car allowances, quarterly contests, and enhanced rank bonuses.',
+    href: '/dashboard/compensation/bonus-pool',
+    category: 'Incentives',
+  },
+  {
+    id: 'leadership-pool',
+    title: 'Leadership Pool',
+    subtitle: '1,000 Shares • 1.5% of Revenue',
+    description: 'Exclusive pool for early leaders. 1,000 total shares allocated during pre-launch through Year 1. Vesting schedules and rank requirements apply.',
+    href: '/dashboard/compensation/leadership-pool',
     category: 'Leadership',
-  },
-  {
-    id: 'infinity',
-    name: 'Infinity Bonus',
-    description: 'Earn from level 8 and beyond once you reach Diamond rank',
-    icon: '♾️',
-    color: 'from-indigo-500 to-indigo-600',
-    badgeColor: 'bg-indigo-100 text-indigo-700',
-    category: 'Leadership',
-  },
-  {
-    id: 'fast-start',
-    name: 'Fast Start Bonuses',
-    description: 'Earn $100 when you enroll someone in their first 30 days',
-    icon: '⚡',
-    color: 'from-orange-500 to-orange-600',
-    badgeColor: 'bg-orange-100 text-orange-700',
-    category: 'Quick Wins',
-  },
-  {
-    id: 'rank-advancement',
-    name: 'Rank Advancement',
-    description: 'Get rewarded when you advance to a new rank ($50 to $5,000)',
-    icon: '🏆',
-    color: 'from-red-500 to-red-600',
-    badgeColor: 'bg-red-100 text-red-700',
-    category: 'Quick Wins',
-  },
-  {
-    id: 'customer-milestones',
-    name: 'Customer Milestones',
-    description: 'Bonuses when your customers hit purchase milestones',
-    icon: '🎁',
-    color: 'from-pink-500 to-pink-600',
-    badgeColor: 'bg-pink-100 text-pink-700',
-    category: 'Customer Growth',
-  },
-  {
-    id: 'customer-retention',
-    name: 'Customer Retention',
-    description: 'Earn when customers continue buying month after month',
-    icon: '🔄',
-    color: 'from-teal-500 to-teal-600',
-    badgeColor: 'bg-teal-100 text-teal-700',
-    category: 'Customer Growth',
-  },
-  {
-    id: 'car',
-    name: 'Car Bonus',
-    description: 'Qualify for $500-$1,500/month car bonus at higher ranks',
-    icon: '🚗',
-    color: 'from-cyan-500 to-cyan-600',
-    badgeColor: 'bg-cyan-100 text-cyan-700',
-    category: 'Lifestyle',
-  },
-  {
-    id: 'vacation',
-    name: 'Vacation Bonus',
-    description: 'Annual vacation bonuses from $1,000 to $10,000',
-    icon: '✈️',
-    color: 'from-violet-500 to-violet-600',
-    badgeColor: 'bg-violet-100 text-violet-700',
-    category: 'Lifestyle',
-  },
-  {
-    id: 'infinity-pool',
-    name: 'Infinity Pool',
-    description: 'Share in a pool of 2% of company revenue at Crown Diamond+',
-    icon: '💎',
-    color: 'from-emerald-500 to-emerald-600',
-    badgeColor: 'bg-emerald-100 text-emerald-700',
-    category: 'Elite',
   },
 ];
 
 const categories = [
   'All',
-  'Direct Sales',
+  'Dual Ladder System',
+  'Core Concepts',
   'Team Building',
+  'Incentives',
   'Leadership',
-  'Quick Wins',
-  'Customer Growth',
-  'Lifestyle',
-  'Elite',
 ];
 
 export default function CompensationOverviewPage() {
@@ -140,7 +93,6 @@ export default function CompensationOverviewPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Check authentication
   useEffect(() => {
     const checkAuth = async () => {
       const supabase = createClient();
@@ -159,13 +111,12 @@ export default function CompensationOverviewPage() {
     checkAuth();
   }, [router]);
 
-  // Filter commission types based on search and category
-  const filteredTypes = commissionTypes.filter((type) => {
+  const filteredSections = compensationSections.filter((section) => {
     const matchesSearch =
       searchQuery === '' ||
-      type.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      type.description.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCategory = activeCategory === 'All' || type.category === activeCategory;
+      section.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      section.description.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory = activeCategory === 'All' || section.category === activeCategory;
     return matchesSearch && matchesCategory;
   });
 
@@ -184,107 +135,101 @@ export default function CompensationOverviewPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-[#2B4C7E] text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <h1 className="text-4xl font-bold mb-4">Compensation Plan</h1>
-          <p className="text-xl max-w-3xl" style={{ color: '#FFFFFF' }}>
-            Welcome to one of the most generous compensation plans in the industry. Here's how you can earn with Apex Affinity Group.
-          </p>
-          <div className="mt-6 flex flex-wrap gap-4">
-            <Link
-              href="/dashboard/compensation/calculator"
-              className="bg-white text-[#2B4C7E] px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
-            >
-              💰 Earnings Calculator
-            </Link>
-            <Link
-              href="/dashboard/compensation/glossary"
-              className="bg-blue-800/50 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800/70 transition-colors border border-blue-400/30"
-            >
-              📖 Glossary
-            </Link>
+      <div className="bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="max-w-3xl">
+            <h1 className="text-4xl font-bold mb-4">Compensation Plan</h1>
+            <p className="text-xl text-slate-200 leading-relaxed mb-6">
+              Our dual-ladder compensation system provides multiple pathways to financial success.
+              Build income through technology products, insurance sales, or both.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href="/dashboard/compensation/calculator"
+                className="inline-flex items-center px-6 py-3 bg-white text-slate-900 font-semibold rounded-lg hover:bg-slate-100 transition-colors"
+              >
+                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                </svg>
+                Earnings Calculator
+              </Link>
+              <Link
+                href="/dashboard/compensation/glossary"
+                className="inline-flex items-center px-6 py-3 bg-slate-700/50 text-white font-semibold rounded-lg hover:bg-slate-700 transition-colors border border-slate-600"
+              >
+                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+                Compensation Glossary
+              </Link>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Quick Stats */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 mb-8">
-        <div className="bg-white rounded-lg shadow-lg p-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+      {/* Key Stats */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 mb-12">
+        <div className="bg-white rounded-xl shadow-lg p-8 grid grid-cols-2 md:grid-cols-4 gap-6">
           <div className="text-center">
-            <div className="text-3xl font-bold text-[#2B4C7E]">12</div>
-            <div className="text-sm text-gray-600">Ways to Earn</div>
+            <div className="text-4xl font-bold text-slate-900 mb-2">27.9%</div>
+            <div className="text-sm text-slate-600 font-medium">Direct Commission Rate</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-[#2B4C7E]">7</div>
-            <div className="text-sm text-gray-600">Matrix Levels</div>
+            <div className="text-4xl font-bold text-slate-900 mb-2">9</div>
+            <div className="text-sm text-slate-600 font-medium">Tech Ladder Ranks</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-[#2B4C7E]">30%</div>
-            <div className="text-sm text-gray-600">Retail Profit</div>
+            <div className="text-4xl font-bold text-slate-900 mb-2">5</div>
+            <div className="text-sm text-slate-600 font-medium">Override Levels</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-[#2B4C7E]">9</div>
-            <div className="text-sm text-gray-600">Ranks to Achieve</div>
+            <div className="text-4xl font-bold text-slate-900 mb-2">$93K</div>
+            <div className="text-sm text-slate-600 font-medium">Total Rank Bonuses</div>
           </div>
         </div>
       </div>
 
-      {/* STICKY FILTER BAR */}
-      <div className="sticky top-0 md:top-0 z-30 bg-white border-b border-gray-200 shadow-sm">
+      {/* Filter Bar */}
+      <div className="sticky top-0 z-30 bg-white border-b border-slate-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          {/* Search Bar */}
+          {/* Search */}
           <div className="mb-4">
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <svg
-                  className="h-5 w-5 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
+                <svg className="h-5 w-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
               </div>
               <input
                 type="text"
-                placeholder="Search commission types..."
+                placeholder="Search compensation topics..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="block w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-lg leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-2 focus:ring-[#2B4C7E] focus:border-[#2B4C7E] sm:text-sm"
+                className="block w-full pl-10 pr-3 py-2.5 border border-slate-300 rounded-lg bg-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-slate-500"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600"
                 >
                   <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>
               )}
             </div>
           </div>
 
-          {/* Category Filter Chips */}
+          {/* Category Filters */}
           <div className="flex items-center gap-2 overflow-x-auto pb-2">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`px-4 py-1.5 rounded-full text-sm font-semibold whitespace-nowrap transition-all ${
+                className={`px-4 py-2 rounded-lg text-sm font-semibold whitespace-nowrap transition-all ${
                   activeCategory === category
-                    ? 'bg-[#2B4C7E] text-white shadow-md'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'bg-slate-900 text-white shadow-md'
+                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                 }`}
               >
                 {category}
@@ -293,16 +238,16 @@ export default function CompensationOverviewPage() {
           </div>
 
           {/* Results Counter */}
-          <div className="mt-3 text-sm text-gray-600">
-            Showing <span className="font-semibold text-gray-900">{filteredTypes.length}</span> of{' '}
-            <span className="font-semibold text-gray-900">{commissionTypes.length}</span> commission types
+          <div className="mt-3 text-sm text-slate-600">
+            Showing <span className="font-semibold text-slate-900">{filteredSections.length}</span> of{' '}
+            <span className="font-semibold text-slate-900">{compensationSections.length}</span> sections
             {(searchQuery || activeCategory !== 'All') && (
               <button
                 onClick={() => {
                   setSearchQuery('');
                   setActiveCategory('All');
                 }}
-                className="ml-3 text-[#2B4C7E] hover:text-[#1e3555] font-semibold"
+                className="ml-3 text-slate-700 hover:text-slate-900 font-semibold"
               >
                 Clear filters
               </button>
@@ -311,40 +256,47 @@ export default function CompensationOverviewPage() {
         </div>
       </div>
 
-      {/* UNIFIED GRID */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {filteredTypes.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {filteredTypes.map((type) => (
-              <Link key={type.id} href={`/dashboard/compensation/${type.id}`} className="group block">
-                <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden h-full border-2 border-transparent hover:border-[#2B4C7E] hover:-translate-y-1">
-                  {/* Color Bar */}
-                  <div className={`h-1.5 bg-gradient-to-r ${type.color}`} />
-
-                  {/* Content */}
-                  <div className="p-4">
-                    <div className="flex items-start justify-between mb-3">
-                      <div className="text-3xl">{type.icon}</div>
-                      <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${type.badgeColor}`}>
-                        {type.category}
+      {/* Sections Grid */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {filteredSections.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {filteredSections.map((section) => (
+              <Link key={section.id} href={section.href} className="group block">
+                <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border-2 border-transparent hover:border-slate-300 h-full">
+                  <div className="p-6">
+                    {/* Category Badge */}
+                    <div className="mb-4">
+                      <span className="inline-block px-3 py-1 bg-slate-100 text-slate-700 text-xs font-semibold rounded-full">
+                        {section.category}
                       </span>
                     </div>
 
-                    <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-[#2B4C7E] transition-colors leading-tight">
-                      {type.name}
+                    {/* Title */}
+                    <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-slate-700 transition-colors">
+                      {section.title}
                     </h3>
 
-                    <p className="text-xs text-gray-600 leading-relaxed mb-3 line-clamp-3">
-                      {type.description}
+                    {/* Subtitle */}
+                    <p className="text-sm font-medium text-slate-600 mb-3">
+                      {section.subtitle}
                     </p>
 
-                    <div className="flex items-center text-[#2B4C7E] text-xs font-semibold group-hover:translate-x-1 transition-transform">
+                    {/* Description */}
+                    <p className="text-sm text-slate-600 leading-relaxed mb-4">
+                      {section.description}
+                    </p>
+
+                    {/* Learn More Link */}
+                    <div className="flex items-center text-slate-700 text-sm font-semibold group-hover:translate-x-1 transition-transform">
                       Learn More
-                      <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
                     </div>
                   </div>
+
+                  {/* Bottom Border Accent */}
+                  <div className="h-1 bg-gradient-to-r from-slate-600 to-slate-800" />
                 </div>
               </Link>
             ))}
@@ -352,18 +304,13 @@ export default function CompensationOverviewPage() {
         ) : (
           // Empty State
           <div className="text-center py-16">
-            <div className="inline-block p-4 bg-gray-100 rounded-full mb-4">
-              <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
+            <div className="inline-block p-4 bg-slate-100 rounded-full mb-4">
+              <svg className="w-12 h-12 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">No commission types found</h3>
-            <p className="text-gray-600 mb-6">
+            <h3 className="text-lg font-semibold text-slate-900 mb-2">No sections found</h3>
+            <p className="text-slate-600 mb-6">
               Try adjusting your search or filter to find what you're looking for.
             </p>
             <button
@@ -371,7 +318,7 @@ export default function CompensationOverviewPage() {
                 setSearchQuery('');
                 setActiveCategory('All');
               }}
-              className="bg-[#2B4C7E] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#1e3555] transition-colors"
+              className="bg-slate-900 text-white px-6 py-2 rounded-lg font-semibold hover:bg-slate-800 transition-colors"
             >
               Clear all filters
             </button>
@@ -380,22 +327,22 @@ export default function CompensationOverviewPage() {
       </div>
 
       {/* CTA Section */}
-      <div className="bg-[#2B4C7E] text-white py-16 mt-8">
+      <div className="bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 text-white py-16 mt-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to Start Earning?</h2>
-          <p className="text-xl mb-8" style={{ color: '#FFFFFF' }}>
-            Use our calculator to see how much you could earn, or dive into each commission type to learn more.
+          <h2 className="text-3xl font-bold mb-4">Ready to Build Your Income?</h2>
+          <p className="text-xl text-slate-200 mb-8">
+            Use our calculator to estimate your potential earnings, or explore each section to understand how our compensation plan works.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/dashboard/compensation/calculator"
-              className="bg-white text-[#2B4C7E] px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-50 transition-colors"
+              className="bg-white text-slate-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-slate-100 transition-colors"
             >
-              Calculate My Potential Earnings
+              Calculate My Potential
             </Link>
             <Link
               href="/dashboard/team"
-              className="bg-blue-800/50 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-800/70 transition-colors border-2 border-blue-400/30"
+              className="bg-slate-700/50 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-slate-700 transition-colors border-2 border-slate-600"
             >
               View My Team
             </Link>

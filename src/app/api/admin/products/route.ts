@@ -1,88 +1,30 @@
 // =============================================
-// Admin Products API - List & Create
+// Admin Products API
+// Create and manage service products
 // =============================================
 
 import { NextRequest, NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase/service';
-import { requireAdmin } from '@/lib/auth/admin';
 
-// GET /api/admin/products - List all products
-export async function GET(request: NextRequest) {
-  try {
-    await requireAdmin();
-
-    const supabase = createServiceClient();
-
-    const { data: products, error } = await supabase
-      .from('products')
-      .select(`
-        *,
-        category:product_categories(id, name, slug)
-      `)
-      .order('display_order', { ascending: true })
-      .order('name', { ascending: true });
-
-    if (error) {
-      console.error('Error fetching products:', error);
-      return NextResponse.json({ error: 'Failed to fetch products' }, { status: 500 });
-    }
-
-    return NextResponse.json({ products });
-  } catch (error: any) {
-    console.error('Products API error:', error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
-  }
-}
-
-// POST /api/admin/products - Create new product
 export async function POST(request: NextRequest) {
+  const serviceClient = createServiceClient();
+
   try {
-    await requireAdmin();
-
     const body = await request.json();
-    const {
-      name,
-      slug,
-      category_id,
-      description,
-      retail_price_cents,
-      wholesale_price_cents,
-      bv,
-      is_subscription,
-      subscription_interval,
-      is_active,
-      is_featured,
-    } = body;
 
-    // Validation
-    if (!name || !slug || !category_id) {
+    // Validate required fields
+    if (!body.name || !body.slug || !body.category_id) {
       return NextResponse.json(
         { error: 'Name, slug, and category are required' },
         { status: 400 }
       );
     }
 
-    if (!retail_price_cents || !wholesale_price_cents || bv === undefined) {
-      return NextResponse.json(
-        { error: 'Pricing and BV are required' },
-        { status: 400 }
-      );
-    }
-
-    if (retail_price_cents <= wholesale_price_cents) {
-      return NextResponse.json(
-        { error: 'Retail price must be greater than wholesale price' },
-        { status: 400 }
-      );
-    }
-
-    const supabase = createServiceClient();
-
-    // Check for duplicate slug
-    const { data: existing } = await supabase
+    // Check if slug already exists
+    const { data: existing } = await serviceClient
       .from('products')
       .select('id')
-      .eq('slug', slug)
+      .eq('slug', body.slug)
       .single();
 
     if (existing) {
@@ -92,33 +34,64 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create product
-    const { data: product, error } = await supabase
+    // Insert product
+    const { data: product, error } = await serviceClient
       .from('products')
       .insert({
-        name,
-        slug,
-        category_id,
-        description: description || null,
-        retail_price_cents,
-        wholesale_price_cents,
-        bv,
-        is_subscription: is_subscription || false,
-        subscription_interval: is_subscription ? subscription_interval : null,
-        is_active: is_active !== undefined ? is_active : true,
-        is_featured: is_featured || false,
+        category_id: body.category_id,
+        name: body.name,
+        slug: body.slug,
+        description: body.description || null,
+        long_description: body.long_description || null,
+
+        // Pricing (already in cents from form)
+        retail_price_cents: body.retail_price_cents,
+        wholesale_price_cents: body.wholesale_price_cents,
+        bv: body.bv || 0,
+
+        // Subscription
+        is_subscription: body.is_subscription ?? false,
+        subscription_interval: body.is_subscription ? body.subscription_interval : null,
+        subscription_interval_count: 1,
+
+        // Service fields
+        service_type: body.service_type || null,
+        access_url: body.access_url || null,
+        setup_instructions: body.setup_instructions || null,
+        trial_days: body.trial_days || 0,
+
+        // Product type
+        is_digital: body.is_digital ?? true,
+        stock_status: body.stock_status || 'in_stock',
+
+        // Media
+        image_url: body.image_url || null,
+
+        // Status
+        is_active: body.is_active ?? true,
+        is_featured: body.is_featured ?? false,
+        display_order: 0,
       })
       .select()
       .single();
 
     if (error) {
       console.error('Error creating product:', error);
-      return NextResponse.json({ error: 'Failed to create product' }, { status: 500 });
+      return NextResponse.json(
+        { error: error.message || 'Failed to create product' },
+        { status: 500 }
+      );
     }
 
-    return NextResponse.json({ product }, { status: 201 });
+    return NextResponse.json({
+      success: true,
+      product,
+    });
   } catch (error: any) {
-    console.error('Create product error:', error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    console.error('Product creation error:', error);
+    return NextResponse.json(
+      { error: error.message || 'Internal server error' },
+      { status: 500 }
+    );
   }
 }

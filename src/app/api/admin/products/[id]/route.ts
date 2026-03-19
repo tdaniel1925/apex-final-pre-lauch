@@ -4,7 +4,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase/service';
-import { requireAdmin } from '@/lib/auth/admin';
+import { getAdminUser } from '@/lib/auth/admin';
 
 // PATCH /api/admin/products/[id] - Update product
 export async function PATCH(
@@ -13,7 +13,13 @@ export async function PATCH(
 ) {
   try {
     const params = await context.params;
-    await requireAdmin();
+    const adminUser = await getAdminUser();
+    if (!adminUser) {
+      return NextResponse.json(
+        { error: 'Unauthorized - Admin access required' },
+        { status: 401 }
+      );
+    }
 
     const body = await request.json();
     const {
@@ -106,7 +112,13 @@ export async function DELETE(
 ) {
   try {
     const params = await context.params;
-    await requireAdmin();
+    const adminUser = await getAdminUser();
+    if (!adminUser) {
+      return NextResponse.json(
+        { error: 'Unauthorized - Admin access required' },
+        { status: 401 }
+      );
+    }
 
     const supabase = createServiceClient();
 

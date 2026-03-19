@@ -10,6 +10,10 @@ import { createServiceClient } from '@/lib/supabase/service';
 import { signupSchema } from '@/lib/validations/signup';
 import { checkSlugAvailability } from '@/lib/utils/slug';
 import { enrollInCampaign } from '@/lib/email/campaign-service';
+import { prepareSSNForStorage } from '@/lib/utils/ssn';
+import { prepareEINForStorage } from '@/lib/utils/ein';
+import { validateDateOfBirth } from '@/lib/utils/date-validation';
+import { createReplicatedSites } from '@/lib/integrations/user-sync/service';
 import type { ApiResponse, Distributor } from '@/lib/types';
 
 /**
@@ -37,6 +41,9 @@ const RATE_LIMIT_MAX = 5;
 const RATE_LIMIT_WINDOW_MINUTES = 15;
 
 export async function POST(request: NextRequest) {
+  let authUserId: string | null = null;
+  let distributorId: string | null = null;
+
   try {
     const body = await request.json();
 
@@ -169,10 +176,17 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Step 5: Create auth user
+    // Step 5: Create auth user with email confirmation
     const { data: authData, error: authError } = await supabase.auth.signUp({
       email: data.email,
       password: data.password,
+      options: {
+        emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/confirm`,
+        data: {
+          first_name: data.first_name,
+          last_name: data.last_name,
+        },
+      },
     });
 
     if (authError || !authData.user) {
@@ -220,6 +234,24 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Track auth user for rollback
+    authUserId = authData.user.id;
+
+    // Step 5.5: Validate date of birth (for personal registrations)
+    if (data.registration_type === 'personal' && data.date_of_birth) {
+      const dobValidation = validateDateOfBirth(data.date_of_birth);
+      if (!dobValidation.valid) {
+        return NextResponse.json(
+          {
+            success: false,
+            error: 'Invalid date of birth',
+            message: dobValidation.error || 'Please provide a valid date of birth',
+          } as ApiResponse,
+          { status: 400 }
+        );
+      }
+    }
+
     // Step 6 + 7: Atomically find placement AND insert distributor in one
     // PostgreSQL transaction with advisory lock — eliminates race condition
     console.log('[SIGNUP] Calling create_distributor_atomic with params:', {
@@ -240,10 +272,22 @@ export async function POST(request: NextRequest) {
         p_email: data.email,
         p_slug: data.slug,
         p_company_name: data.company_name || null,
-        p_phone: data.phone || null,
+        p_phone: data.phone || '',
         p_sponsor_id: sponsorId,
         p_licensing_status: data.licensing_status,
         p_licensing_status_set_at: new Date().toISOString(),
+        // New fields for business/personal registration
+        p_registration_type: data.registration_type,
+        p_business_type: data.registration_type === 'business' ? data.business_type : null,
+        p_tax_id_type: data.registration_type === 'business' ? 'ein' : 'ssn',
+        p_date_of_birth: data.registration_type === 'personal' && data.date_of_birth ? data.date_of_birth : null,
+        p_dba_name: data.registration_type === 'business' && data.dba_name ? data.dba_name : null,
+        p_business_website: data.registration_type === 'business' && data.business_website ? data.business_website : null,
+        p_address_line1: data.address_line1,
+        p_address_line2: data.address_line2 || null,
+        p_city: data.city,
+        p_state: data.state,
+        p_zip: data.zip,
       }
     );
 
@@ -262,7 +306,9 @@ export async function POST(request: NextRequest) {
       console.error('Distributor data:', distributor);
 
       // Rollback: Delete auth user if distributor creation failed
-      await serviceClient.auth.admin.deleteUser(authData.user.id);
+      console.log('[ROLLBACK] Distributor creation failed, deleting auth user:', authUserId);
+      await serviceClient.auth.admin.deleteUser(authUserId!);
+      authUserId = null; // Prevent double-rollback in catch block
 
       return NextResponse.json(
         {
@@ -275,12 +321,194 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Track distributor for rollback
+    distributorId = distributor.id;
+
+    // Step 7.5: Create member record (for compensation tracking)
+    const { error: memberError } = await serviceClient
+      .from('members')
+      .insert({
+        distributor_id: distributor.id,
+        email: distributor.email,
+        full_name: `${distributor.first_name} ${distributor.last_name}`,
+        enroller_id: null, // Will be updated later when enroller's member record exists
+        sponsor_id: null, // Will be updated later when sponsor's member record exists
+        status: 'active',
+        enrollment_date: distributor.created_at,
+        tech_rank: 'starter',
+        highest_tech_rank: 'starter',
+        insurance_rank: 'inactive',
+        highest_insurance_rank: 'inactive',
+        personal_credits_monthly: 0,
+        team_credits_monthly: 0,
+        tech_personal_credits_monthly: 0,
+        tech_team_credits_monthly: 0,
+        insurance_personal_credits_monthly: 0,
+        insurance_team_credits_monthly: 0,
+        override_qualified: false,
+      });
+
+    if (memberError) {
+      console.error('Member creation error:', memberError);
+
+      // Rollback: Delete auth user and distributor
+      console.log('[ROLLBACK] Member creation failed, deleting auth user and distributor');
+      await serviceClient.auth.admin.deleteUser(authUserId!);
+      await serviceClient
+        .from('distributors')
+        .delete()
+        .eq('id', distributorId!);
+
+      authUserId = null;
+      distributorId = null;
+
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'Failed to create member profile',
+          message: 'Account creation failed. Please try again.',
+        } as ApiResponse,
+        { status: 500 }
+      );
+    }
+
+    // Step 7.6: Store Tax ID (SSN or EIN) in tax_info table
+    if (data.registration_type === 'personal' && data.ssn) {
+      // Store SSN for personal registrations
+      const ssnData = prepareSSNForStorage(data.ssn);
+
+      if (!ssnData.valid) {
+        // Rollback: Delete both auth user and distributor
+        console.log('[ROLLBACK] Invalid SSN, deleting auth user and distributor');
+        await serviceClient.auth.admin.deleteUser(authUserId!);
+        await serviceClient
+          .from('distributors')
+          .delete()
+          .eq('id', distributorId!);
+
+        authUserId = null;
+        distributorId = null;
+
+        return NextResponse.json(
+          {
+            success: false,
+            error: 'Invalid SSN',
+            message: ssnData.error || 'Invalid Social Security Number',
+          } as ApiResponse,
+          { status: 400 }
+        );
+      }
+
+      const { error: taxInfoError } = await serviceClient
+        .from('distributor_tax_info')
+        .insert({
+          distributor_id: distributor.id,
+          ssn_encrypted: ssnData.encrypted, // Column is still named ssn_encrypted (not tax_id yet)
+          ssn_last_4: ssnData.last4,
+          tax_id_type: 'ssn',
+          created_by: authData.user.id,
+        });
+
+      if (taxInfoError) {
+        console.error('Tax info creation error (SSN):', taxInfoError);
+
+        // Rollback: Delete both auth user and distributor
+        console.log('[ROLLBACK] Tax info creation failed, deleting auth user and distributor');
+        await serviceClient.auth.admin.deleteUser(authUserId!);
+        await serviceClient
+          .from('distributors')
+          .delete()
+          .eq('id', distributorId!);
+
+        authUserId = null;
+        distributorId = null;
+
+        return NextResponse.json(
+          {
+            success: false,
+            error: 'Failed to save tax information',
+            message: 'Account creation failed. Please try again.',
+          } as ApiResponse,
+          { status: 500 }
+        );
+      }
+    } else if (data.registration_type === 'business' && data.ein) {
+      // Store EIN for business registrations
+      const einData = prepareEINForStorage(data.ein);
+
+      if (!einData.valid) {
+        // Rollback: Delete both auth user and distributor
+        console.log('[ROLLBACK] Invalid EIN, deleting auth user and distributor');
+        await serviceClient.auth.admin.deleteUser(authUserId!);
+        await serviceClient
+          .from('distributors')
+          .delete()
+          .eq('id', distributorId!);
+
+        authUserId = null;
+        distributorId = null;
+
+        return NextResponse.json(
+          {
+            success: false,
+            error: 'Invalid EIN',
+            message: einData.error || 'Invalid Employer Identification Number',
+          } as ApiResponse,
+          { status: 400 }
+        );
+      }
+
+      const { error: taxInfoError } = await serviceClient
+        .from('distributor_tax_info')
+        .insert({
+          distributor_id: distributor.id,
+          ssn_encrypted: einData.encrypted, // Column is still named ssn_encrypted (stores both SSN and EIN)
+          ssn_last_4: einData.last4, // Reusing same column for last 4 digits
+          tax_id_type: 'ein',
+          created_by: authData.user.id,
+        });
+
+      if (taxInfoError) {
+        console.error('Tax info creation error (EIN):', taxInfoError);
+
+        // Rollback: Delete both auth user and distributor
+        console.log('[ROLLBACK] Tax info creation failed, deleting auth user and distributor');
+        await serviceClient.auth.admin.deleteUser(authUserId!);
+        await serviceClient
+          .from('distributors')
+          .delete()
+          .eq('id', distributorId!);
+
+        authUserId = null;
+        distributorId = null;
+
+        return NextResponse.json(
+          {
+            success: false,
+            error: 'Failed to save tax information',
+            message: 'Account creation failed. Please try again.',
+          } as ApiResponse,
+          { status: 500 }
+        );
+      }
+    }
+
     // Step 8: Enroll in email campaign and send welcome email
     const enrollResult = await enrollInCampaign(distributor as Distributor);
 
     if (!enrollResult.success) {
       // Log error but don't fail signup - email can be sent manually later
       console.error('Email campaign enrollment failed:', enrollResult.error);
+    }
+
+    // Step 8.5: Create replicated sites on external platforms
+    // This runs asynchronously and errors are logged but don't fail signup
+    try {
+      console.log('[Signup] Creating replicated sites for distributor:', distributor.id);
+      await createReplicatedSites(distributor.id);
+    } catch (replicationError) {
+      // Log error but don't fail signup - sites can be created manually later
+      console.error('[Signup] Replicated site creation failed:', replicationError);
     }
 
     // Step 9: Return success
@@ -302,6 +530,31 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('[SIGNUP] Unexpected error in signup route:', error);
     console.error('[SIGNUP] Error stack:', error instanceof Error ? error.stack : 'No stack trace');
+
+    // CRITICAL: Rollback any partial data
+    const serviceClient = createServiceClient();
+
+    if (authUserId) {
+      console.log('[ROLLBACK] Deleting auth user:', authUserId);
+      try {
+        await serviceClient.auth.admin.deleteUser(authUserId);
+        console.log('[ROLLBACK] Successfully deleted auth user');
+      } catch (rollbackError) {
+        console.error('[ROLLBACK] Failed to delete auth user:', rollbackError);
+      }
+    }
+
+    if (distributorId) {
+      console.log('[ROLLBACK] Deleting distributor:', distributorId);
+      try {
+        await serviceClient.from('members').delete().eq('distributor_id', distributorId);
+        await serviceClient.from('distributors').delete().eq('id', distributorId);
+        await serviceClient.from('distributor_tax_info').delete().eq('distributor_id', distributorId);
+        console.log('[ROLLBACK] Successfully deleted member, distributor and tax info');
+      } catch (rollbackError) {
+        console.error('[ROLLBACK] Failed to delete distributor:', rollbackError);
+      }
+    }
 
     return NextResponse.json(
       {

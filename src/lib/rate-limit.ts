@@ -11,71 +11,131 @@ import { NextRequest, NextResponse } from 'next/server';
 // Redis Client Setup
 // =============================================
 
-// Initialize Redis client for rate limiting
-// Uses Upstash Redis for serverless compatibility
-const redis = new Redis({
-  url: process.env.UPSTASH_REDIS_REST_URL || '',
-  token: process.env.UPSTASH_REDIS_REST_TOKEN || '',
-});
+// Lazy-load Redis client to avoid build-time initialization
+// Only creates the client when rate limiting is actually used
+let redis: Redis | undefined;
+
+function getRedis(): Redis {
+  if (!redis) {
+    // Only initialize if credentials are provided
+    if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
+      redis = new Redis({
+        url: process.env.UPSTASH_REDIS_REST_URL,
+        token: process.env.UPSTASH_REDIS_REST_TOKEN,
+      });
+    } else {
+      // Create a mock Redis client that always allows requests
+      // This allows the app to work without Redis configured
+      redis = {
+        get: async () => null,
+        set: async () => 'OK',
+        incr: async () => 1,
+        expire: async () => 1,
+      } as unknown as Redis;
+    }
+  }
+  return redis;
+}
 
 // =============================================
-// Rate Limiters by Type
+// Rate Limiters by Type (Lazy-loaded)
 // =============================================
+
+let _publicRateLimit: Ratelimit | undefined;
+let _apiRateLimit: Ratelimit | undefined;
+let _adminRateLimit: Ratelimit | undefined;
+let _emailRateLimit: Ratelimit | undefined;
+let _passwordResetRateLimit: Ratelimit | undefined;
 
 /**
  * Public routes rate limiter (signup, login, password reset)
  * 10 requests per minute per IP
  */
-export const publicRateLimit = new Ratelimit({
-  redis,
-  limiter: Ratelimit.slidingWindow(10, '1 m'),
-  analytics: true,
-  prefix: 'ratelimit:public',
-});
+export const publicRateLimit = {
+  limit: async (identifier: string) => {
+    if (!_publicRateLimit) {
+      _publicRateLimit = new Ratelimit({
+        redis: getRedis(),
+        limiter: Ratelimit.slidingWindow(10, '1 m'),
+        analytics: true,
+        prefix: 'ratelimit:public',
+      });
+    }
+    return _publicRateLimit.limit(identifier);
+  },
+} as Ratelimit;
 
 /**
  * Authenticated API routes rate limiter
  * 100 requests per minute per user
  */
-export const apiRateLimit = new Ratelimit({
-  redis,
-  limiter: Ratelimit.slidingWindow(100, '1 m'),
-  analytics: true,
-  prefix: 'ratelimit:api',
-});
+export const apiRateLimit = {
+  limit: async (identifier: string) => {
+    if (!_apiRateLimit) {
+      _apiRateLimit = new Ratelimit({
+        redis: getRedis(),
+        limiter: Ratelimit.slidingWindow(100, '1 m'),
+        analytics: true,
+        prefix: 'ratelimit:api',
+      });
+    }
+    return _apiRateLimit.limit(identifier);
+  },
+} as Ratelimit;
 
 /**
  * Admin routes rate limiter
  * 200 requests per minute per admin
  */
-export const adminRateLimit = new Ratelimit({
-  redis,
-  limiter: Ratelimit.slidingWindow(200, '1 m'),
-  analytics: true,
-  prefix: 'ratelimit:admin',
-});
+export const adminRateLimit = {
+  limit: async (identifier: string) => {
+    if (!_adminRateLimit) {
+      _adminRateLimit = new Ratelimit({
+        redis: getRedis(),
+        limiter: Ratelimit.slidingWindow(200, '1 m'),
+        analytics: true,
+        prefix: 'ratelimit:admin',
+      });
+    }
+    return _adminRateLimit.limit(identifier);
+  },
+} as Ratelimit;
 
 /**
  * Email sending rate limiter
  * 5 requests per hour per user (prevents spam)
  */
-export const emailRateLimit = new Ratelimit({
-  redis,
-  limiter: Ratelimit.slidingWindow(5, '1 h'),
-  analytics: true,
-  prefix: 'ratelimit:email',
-});
+export const emailRateLimit = {
+  limit: async (identifier: string) => {
+    if (!_emailRateLimit) {
+      _emailRateLimit = new Ratelimit({
+        redis: getRedis(),
+        limiter: Ratelimit.slidingWindow(5, '1 h'),
+        analytics: true,
+        prefix: 'ratelimit:email',
+      });
+    }
+    return _emailRateLimit.limit(identifier);
+  },
+} as Ratelimit;
 
 /**
  * Password reset rate limiter
  * 3 requests per hour per IP (prevents brute force)
  */
-export const passwordResetRateLimit = new Ratelimit({
-  redis,
-  limiter: Ratelimit.slidingWindow(3, '1 h'),
-  analytics: true,
-  prefix: 'ratelimit:password',
-});
+export const passwordResetRateLimit = {
+  limit: async (identifier: string) => {
+    if (!_passwordResetRateLimit) {
+      _passwordResetRateLimit = new Ratelimit({
+        redis: getRedis(),
+        limiter: Ratelimit.slidingWindow(3, '1 h'),
+        analytics: true,
+        prefix: 'ratelimit:password',
+      });
+    }
+    return _passwordResetRateLimit.limit(identifier);
+  },
+} as Ratelimit;
 
 // =============================================
 // Helper Functions

@@ -64,6 +64,7 @@ const nextConfig: NextConfig = {
   // Strict mode for better error catching
   reactStrictMode: true,
 
+
   // Experimental features for performance
   experimental: {
     // Optimize package imports

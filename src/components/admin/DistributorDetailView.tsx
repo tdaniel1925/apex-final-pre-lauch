@@ -20,6 +20,7 @@ import ResendWelcomeButton from '@/components/dashboard/ResendWelcomeButton';
 import NotesPanel from './NotesPanel';
 import ActivityLogPanel from './ActivityLogPanel';
 import PasswordResetModal from './PasswordResetModal';
+import ReplicatedSitesPanel from './ReplicatedSitesPanel';
 
 interface DistributorDetailViewProps {
   distributor: Distributor;
@@ -120,18 +121,32 @@ export default function DistributorDetailView({
   };
 
   const handleDelete = async () => {
+    setError(null);
+    setSuccess(null);
+
     try {
       const response = await fetch(`/api/admin/distributors/${initialDistributor.id}`, {
         method: 'DELETE',
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error('Failed to delete distributor');
+        throw new Error(data.error || 'Failed to delete distributor');
       }
 
-      router.push('/admin/distributors');
+      setSuccess('Distributor deleted successfully');
+      setShowDeleteModal(false);
+
+      // Redirect after a short delay to show success message
+      setTimeout(() => {
+        router.push('/admin/distributors');
+        router.refresh();
+      }, 1000);
     } catch (err: any) {
-      setError(err.message);
+      console.error('Delete error:', err);
+      setError(err.message || 'Failed to delete distributor');
+      setShowDeleteModal(false);
     }
   };
 
@@ -585,6 +600,9 @@ export default function DistributorDetailView({
 
         {/* Sidebar */}
         <div className="lg:col-span-1 space-y-3">
+          {/* Replicated Sites */}
+          <ReplicatedSitesPanel distributorId={initialDistributor.id} />
+
           {/* Admin Notes */}
           <NotesPanel distributorId={initialDistributor.id} currentAdminRole={currentAdminRole} />
 
@@ -638,7 +656,7 @@ export default function DistributorDetailView({
           distributorName={`${initialDistributor.first_name} ${initialDistributor.last_name}`}
           onClose={() => setShowEmailChangeModal(false)}
           onSuccess={() => {
-            setSuccess('Email updated successfully. User will receive a verification email.');
+            setSuccess('Email updated successfully. User can now log in with their new email address.');
             setShowEmailChangeModal(false);
             router.refresh();
           }}
@@ -703,9 +721,20 @@ function DeleteModal({
   distributorName,
 }: {
   onClose: () => void;
-  onConfirm: () => void;
+  onConfirm: () => Promise<void>;
   distributorName: string;
 }) {
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const handleConfirm = async () => {
+    setIsDeleting(true);
+    try {
+      await onConfirm();
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
@@ -717,15 +746,23 @@ function DeleteModal({
         <div className="flex gap-3 justify-end">
           <button
             onClick={onClose}
-            className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+            disabled={isDeleting}
+            className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50"
           >
             Cancel
           </button>
           <button
-            onClick={onConfirm}
-            className="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+            onClick={handleConfirm}
+            disabled={isDeleting}
+            className="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:opacity-50 flex items-center gap-2"
           >
-            Delete
+            {isDeleting && (
+              <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            )}
+            {isDeleting ? 'Deleting...' : 'Delete'}
           </button>
         </div>
       </div>
@@ -792,8 +829,7 @@ function EmailChangeModal({
       <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
         <h3 className="text-xl font-bold text-gray-900 mb-4">Change Email Address</h3>
         <p className="text-gray-600 mb-4">
-          Change the email address for <strong>{distributorName}</strong>. The user will receive
-          a verification email at the new address and must verify it before it takes effect.
+          Change the email address for <strong>{distributorName}</strong>. The change will take effect immediately and the user can log in with their new email right away.
         </p>
 
         <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
@@ -836,10 +872,9 @@ function EmailChangeModal({
           </div>
         )}
 
-        <div className="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
-          <p className="text-sm text-yellow-800">
-            ⚠️ The user will need to verify the new email address. They will receive a verification
-            link and won't be able to log in until they verify it.
+        <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+          <p className="text-sm text-blue-900">
+            ℹ️ As an admin, email changes you make take effect immediately. The user will receive a notification email at their new address and can log in right away using the new email.
           </p>
         </div>
 

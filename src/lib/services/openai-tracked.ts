@@ -7,10 +7,17 @@ import OpenAI from 'openai';
 import { trackUsage } from './tracking';
 import type { TriggeredBy } from '@/types/service-tracking';
 
-// Initialize OpenAI client
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+// Lazy-load OpenAI client to avoid build-time initialization
+let _openai: OpenAI | undefined;
+
+function getOpenAI(): OpenAI {
+  if (!_openai) {
+    _openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    });
+  }
+  return _openai;
+}
 
 // =============================================
 // Tracked OpenAI Client
@@ -48,6 +55,7 @@ export interface TrackedCompletionParams {
  */
 export async function createTrackedCompletion(params: TrackedCompletionParams) {
   const startTime = Date.now();
+  const openai = getOpenAI();
 
   try {
     const response = await openai.chat.completions.create({
@@ -124,6 +132,7 @@ export async function createTrackedEmbedding(params: {
   feature?: string;
 }) {
   const startTime = Date.now();
+  const openai = getOpenAI();
 
   try {
     const response = await openai.embeddings.create({
@@ -180,5 +189,5 @@ export async function createTrackedEmbedding(params: {
   }
 }
 
-// Export original client for non-tracked use if needed
-export { openai };
+// Export function to get OpenAI client for non-tracked use if needed
+export { getOpenAI as openai };

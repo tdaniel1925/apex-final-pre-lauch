@@ -31,6 +31,7 @@ export async function generateMetadata({ params }: PageProps) {
     'contact',
     'terms',
     'privacy',
+    'live',
     '_next',
     'favicon.ico',
   ];
@@ -72,6 +73,7 @@ export default async function DistributorPage({ params }: PageProps) {
     login: '/login',
     signup: '/signup',
     join: '/signup',
+    live: '/live',
   };
 
   if (RESERVED_ROUTES[slug.toLowerCase()]) {

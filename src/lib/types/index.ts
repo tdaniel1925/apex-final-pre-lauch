@@ -178,3 +178,315 @@ export interface ApiResponse<T = unknown> {
   error?: string;
   message?: string;
 }
+
+// =============================================
+// EXTERNAL INTEGRATIONS TYPES
+// Matches migration: 20260317181850_external_integrations_system.sql
+// =============================================
+
+/**
+ * Integration - External platform configuration
+ * Matches the integrations table schema
+ */
+export interface Integration {
+  // Primary Key
+  id: string;
+
+  // Platform identification
+  platform_name: string; // 'jordyn', 'agentpulse', 'shopify', etc.
+  display_name: string; // User-friendly name
+
+  // Configuration
+  is_enabled: boolean;
+  api_endpoint: string;
+  api_key_encrypted: string | null;
+  webhook_secret: string | null;
+
+  // Features
+  supports_replicated_sites: boolean;
+  supports_sales_webhooks: boolean;
+  supports_commission_tracking: boolean;
+
+  // Auto-creation settings
+  auto_create_site_on_signup: boolean;
+
+  // Metadata
+  integration_metadata: Record<string, unknown>;
+  notes: string | null;
+
+  // Timestamps
+  created_at: string;
+  updated_at: string;
+}
+
+/**
+ * DistributorReplicatedSite - Distributor's replicated site on external platform
+ * Matches the distributor_replicated_sites table schema
+ */
+export interface DistributorReplicatedSite {
+  // Primary Key
+  id: string;
+
+  // Relationships
+  distributor_id: string;
+  integration_id: string;
+
+  // External platform identifiers
+  external_site_id: string;
+  external_user_id: string | null;
+
+  // Site details
+  site_url: string;
+  site_slug: string | null;
+  site_status: 'pending' | 'active' | 'suspended' | 'deleted';
+
+  // Creation details
+  created_via: 'manual' | 'auto' | 'import';
+  provisioned_at: string | null;
+
+  // Synchronization
+  last_synced_at: string | null;
+  sync_status: 'synced' | 'pending' | 'error';
+  sync_error: string | null;
+
+  // Platform-specific data
+  site_metadata: Record<string, unknown>;
+
+  // Timestamps
+  created_at: string;
+  updated_at: string;
+}
+
+/**
+ * IntegrationProductMapping - Maps external products to credits/commissions
+ * Matches the integration_product_mappings table schema
+ */
+export interface IntegrationProductMapping {
+  // Primary Key
+  id: string;
+
+  // Relationships
+  integration_id: string;
+  product_id: string | null;
+
+  // External product identification
+  external_product_id: string;
+  external_product_name: string;
+  external_product_sku: string | null;
+
+  // Credit/Commission rules
+  tech_credits: number;
+  insurance_credits: number;
+  direct_commission_percentage: number;
+  override_commission_percentage: number;
+
+  // Fixed commission amounts
+  fixed_commission_amount: number | null;
+
+  // Mapping configuration
+  is_active: boolean;
+  commission_type: 'credits' | 'percentage' | 'fixed' | 'none';
+
+  // Metadata
+  mapping_metadata: Record<string, unknown>;
+  notes: string | null;
+
+  // Timestamps
+  created_at: string;
+  updated_at: string;
+}
+
+/**
+ * ExternalSale - Sale from external platform
+ * Matches the external_sales table schema
+ */
+export interface ExternalSale {
+  // Primary Key
+  id: string;
+
+  // Relationships
+  integration_id: string;
+  distributor_id: string;
+  product_mapping_id: string | null;
+  replicated_site_id: string | null;
+
+  // External platform identifiers
+  external_sale_id: string;
+  external_customer_id: string | null;
+  external_product_id: string;
+
+  // Sale details
+  sale_amount: number;
+  currency: string;
+  quantity: number;
+
+  // Commission calculated
+  tech_credits_earned: number;
+  insurance_credits_earned: number;
+  commission_amount: number;
+  commission_type: string | null;
+
+  // Sale status
+  sale_status: 'pending' | 'completed' | 'refunded' | 'canceled';
+
+  // Timestamps
+  sale_date: string;
+  processed_at: string;
+  refunded_at: string | null;
+
+  // Webhook data
+  webhook_payload: Record<string, unknown> | null;
+
+  // Processing status
+  commission_applied: boolean;
+  commission_applied_at: string | null;
+
+  // Metadata
+  notes: string | null;
+
+  // Timestamps
+  created_at: string;
+  updated_at: string;
+}
+
+/**
+ * IntegrationWebhookLog - Audit log for webhook requests
+ * Matches the integration_webhook_logs table schema
+ */
+export interface IntegrationWebhookLog {
+  // Primary Key
+  id: string;
+
+  // Relationships
+  integration_id: string | null;
+  external_sale_id: string | null;
+
+  // Webhook details
+  webhook_event_type: string;
+  webhook_source_ip: string | null;
+  webhook_signature: string | null;
+  signature_verified: boolean;
+
+  // Request data
+  http_method: string;
+  headers: Record<string, unknown> | null;
+  payload: Record<string, unknown>;
+
+  // Processing status
+  processing_status: 'pending' | 'processing' | 'success' | 'error' | 'ignored';
+  processing_started_at: string | null;
+  processing_completed_at: string | null;
+
+  // Error handling
+  error_message: string | null;
+  error_details: Record<string, unknown> | null;
+  retry_count: number;
+
+  // Response
+  response_code: number | null;
+  response_body: string | null;
+
+  // Timestamps
+  received_at: string;
+  created_at: string;
+}
+
+/**
+ * DistributorReplicatedSiteInsert - Type for creating replicated sites
+ * Omits auto-generated fields
+ */
+export type DistributorReplicatedSiteInsert = Omit<
+  DistributorReplicatedSite,
+  'id' | 'created_at' | 'updated_at'
+>;
+
+/**
+ * ExternalSaleInsert - Type for creating external sales
+ * Omits auto-generated fields
+ */
+export type ExternalSaleInsert = Omit<
+  ExternalSale,
+  'id' | 'created_at' | 'updated_at' | 'processed_at'
+>;
+
+/**
+ * IntegrationWithStats - Integration with usage statistics
+ * Used for admin dashboard
+ */
+export interface IntegrationWithStats extends Integration {
+  total_sites: number;
+  active_sites: number;
+  total_sales: number;
+  total_sales_amount: number;
+  total_webhooks_received: number;
+  last_webhook_at: string | null;
+}
+
+// =============================================
+// PLATFORM INTEGRATIONS TYPES (User Sync System)
+// For automatic replicated site creation
+// =============================================
+
+/**
+ * PlatformIntegration - External platform configuration for user sync
+ * Matches the platform_integrations table schema
+ */
+export interface PlatformIntegration {
+  id: string;
+  platform_name: string;
+  platform_display_name: string;
+  platform_url: string;
+  api_endpoint: string;
+  api_key_encrypted: string | null;
+  api_secret_encrypted: string | null;
+  auth_type: 'bearer' | 'basic' | 'api_key';
+  sync_users: boolean;
+  enabled: boolean;
+  site_url_pattern: string;
+  max_retry_attempts: number;
+  retry_delay_seconds: number;
+  config: Record<string, unknown>;
+  created_at: string;
+  updated_at: string;
+  created_by: string | null;
+  updated_by: string | null;
+}
+
+/**
+ * DistributorReplicatedSiteNew - New replicated site record for user sync
+ * Matches the new distributor_replicated_sites table from 20260317000001 migration
+ */
+export interface DistributorReplicatedSiteNew {
+  id: string;
+  distributor_id: string;
+  integration_id: string;
+  site_url: string;
+  external_user_id: string | null;
+  external_username: string | null;
+  status: 'pending' | 'active' | 'failed' | 'suspended';
+  sync_attempts: number;
+  last_sync_attempt_at: string | null;
+  last_sync_error: string | null;
+  activated_at: string | null;
+  suspended_at: string | null;
+  suspended_reason: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+/**
+ * DistributorReplicatedSiteWithIntegration - Replicated site with integration info
+ */
+export interface DistributorReplicatedSiteWithIntegration extends DistributorReplicatedSiteNew {
+  integration: PlatformIntegration;
+}
+
+/**
+ * CreateReplicatedSiteResult - Result from creating a replicated site
+ */
+export interface CreateReplicatedSiteResult {
+  success: boolean;
+  site_url?: string;
+  external_user_id?: string;
+  error?: string;
+}

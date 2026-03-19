@@ -7,8 +7,15 @@ import { Resend } from 'resend';
 import { trackUsage } from './tracking';
 import type { TriggeredBy } from '@/types/service-tracking';
 
-// Initialize Resend client
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Lazy-load Resend client to avoid build-time initialization
+let _resend: Resend | undefined;
+
+function getResend(): Resend {
+  if (!_resend) {
+    _resend = new Resend(process.env.RESEND_API_KEY);
+  }
+  return _resend;
+}
 
 // =============================================
 // Tracked Resend Client
@@ -51,6 +58,7 @@ export interface TrackedEmailParams {
  */
 export async function sendTrackedEmail(params: TrackedEmailParams) {
   const startTime = Date.now();
+  const resend = getResend();
 
   try {
     const emailCount = Array.isArray(params.to) ? params.to.length : 1;
@@ -141,6 +149,7 @@ export async function sendTrackedBatchEmails(params: {
   feature?: string;
 }) {
   const startTime = Date.now();
+  const resend = getResend();
 
   try {
     const response = await resend.batch.send(params.emails as any);
@@ -198,5 +207,5 @@ export async function sendTrackedBatchEmails(params: {
   }
 }
 
-// Export original client for non-tracked use if needed
-export { resend };
+// Export function to get Resend client for non-tracked use if needed
+export { getResend as resend };
