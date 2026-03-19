@@ -73,6 +73,10 @@ export default async function TeamPage() {
 
   const currentMemberId = distributor.member.member_id;
 
+  // Debug logging
+  console.log('[Team Page] Current member ID:', currentMemberId);
+  console.log('[Team Page] Distributor ID:', distributor.id);
+
   // Get all L1 direct enrollees
   const { data: teamMembers, error: teamError } = await serviceClient
     .from('members')
@@ -94,10 +98,15 @@ export default async function TeamPage() {
     `
     )
     .eq('enroller_id', currentMemberId)
+    .eq('status', 'active')
     .order('enrollment_date', { ascending: false });
 
+  console.log('[Team Page] Team members query result:', teamMembers);
+  console.log('[Team Page] Team members count:', teamMembers?.length || 0);
+  console.log('[Team Page] Team query error:', teamError);
+
   if (teamError) {
-    // Error logged, continue with empty array
+    console.error('[Team Page] Error fetching team members:', teamError);
   }
 
   const members = teamMembers || [];
