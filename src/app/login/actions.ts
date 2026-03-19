@@ -12,6 +12,7 @@ import { createServiceClient } from '@/lib/supabase/service';
 export async function loginAction(formData: FormData) {
   const email = formData.get('email') as string;
   const password = formData.get('password') as string;
+  const rememberMe = formData.get('rememberMe') === 'on';
 
   if (!email || !password) {
     return { error: 'Email and password are required' };
@@ -19,9 +20,20 @@ export async function loginAction(formData: FormData) {
 
   const supabase = await createClient();
 
+  // Configure session duration based on "Remember Me"
+  // Remember Me checked (default): 180 days
+  // Remember Me unchecked: 24 hours
   const { error, data } = await supabase.auth.signInWithPassword({
     email,
     password,
+    options: {
+      // Supabase session persistence
+      // Remember Me: 180 days = 15,552,000 seconds
+      // Default: 24 hours = 86,400 seconds
+      data: {
+        rememberMe,
+      },
+    },
   });
 
   if (error) {

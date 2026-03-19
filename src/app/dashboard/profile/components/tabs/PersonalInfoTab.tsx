@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { personalInfoSchema, type PersonalInfoFormData } from '@/lib/profile/validation';
 import { GENDER_OPTIONS, US_STATES, US_TIMEZONES } from '@/types/profile';
 import { Loader2, Save, CheckCircle2 } from 'lucide-react';
+import { formatPhoneInput } from '@/lib/utils/format-phone';
 
 interface PersonalInfoTabProps {
   userId: string;
@@ -148,12 +149,18 @@ export default function PersonalInfoTab({ userId, initialData }: PersonalInfoTab
             <input
               type="tel"
               {...register('phone')}
-              placeholder="(555) 123-4567"
+              placeholder="555-123-4567"
+              onChange={(e) => {
+                // Auto-format as user types
+                const formatted = formatPhoneInput(e.target.value);
+                e.target.value = formatted;
+              }}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-apex-primary focus:border-transparent"
             />
             {errors.phone && (
               <p className="mt-1 text-xs text-red-600">{errors.phone.message}</p>
             )}
+            <p className="mt-1 text-xs text-gray-500">Will be formatted as 1-xxx-xxx-xxxx for SMS</p>
           </div>
 
           <div className="grid grid-cols-2 gap-4">

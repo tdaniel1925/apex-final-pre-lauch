@@ -14,6 +14,7 @@ import { generateSlug } from '@/lib/utils/slug-client';
 import { formatSSNInput, maskSSN } from '@/lib/utils/ssn';
 import { formatEINInput } from '@/lib/utils/ein';
 import { getMaxDate, getMinDate } from '@/lib/utils/date-validation';
+import { formatPhoneInput } from '@/lib/utils/format-phone';
 
 interface SignupFormProps {
   sponsorSlug?: string;
@@ -467,16 +468,21 @@ export default function SignupForm({ sponsorSlug, sponsorName }: SignupFormProps
           </div>
         )}
 
-        {/* Phone (Now Required) */}
+        {/* Phone (Required) */}
         <div>
           <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-            Phone *
+            Phone Number *
           </label>
           <input
             {...register('phone')}
             type="tel"
             id="phone"
-            placeholder="(555) 123-4567"
+            placeholder="555-123-4567"
+            onChange={(e) => {
+              // Auto-format as user types
+              const formatted = formatPhoneInput(e.target.value);
+              setValue('phone', formatted);
+            }}
             className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent ${
               errors.phone ? 'border-red-500' : 'border-gray-300'
             }`}
@@ -485,6 +491,9 @@ export default function SignupForm({ sponsorSlug, sponsorName }: SignupFormProps
           {errors.phone && (
             <p className="mt-1 text-sm text-red-600">{errors.phone.message}</p>
           )}
+          <p className="mt-1 text-xs text-gray-500">
+            Required for SMS notifications about meeting attendees
+          </p>
         </div>
 
         {/* Address Fields (Required for both Personal and Business) */}

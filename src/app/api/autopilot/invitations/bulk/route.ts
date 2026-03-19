@@ -2,11 +2,13 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 import { z } from 'zod';
 import {
-  canSendInvitation,
+  hasEnoughInvites,
   validateInvitationData,
   incrementInvitationUsage,
+  isDuplicateInvitation,
 } from '@/lib/autopilot/invitation-helpers';
 import { sendMeetingInvitationEmail } from '@/lib/email/send-meeting-invitation';
+import { MAX_BULK_RECIPIENTS, INVITATION_STATUS } from '@/lib/autopilot/constants';
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic';
@@ -21,7 +23,10 @@ const recipientSchema = z.object({
 
 // Validation schema for bulk invitations
 const bulkInvitationSchema = z.object({
-  recipients: z.array(recipientSchema).min(1, 'At least one recipient is required').max(10, 'Maximum 10 recipients allowed'),
+  recipients: z
+    .array(recipientSchema)
+    .min(1, 'At least one recipient is required')
+    .max(MAX_BULK_RECIPIENTS, `Maximum ${MAX_BULK_RECIPIENTS} recipients allowed`),
   meeting_title: z.string().min(3, 'Title must be at least 3 characters'),
   meeting_description: z.string().optional(),
   meeting_date_time: z.string().datetime('Invalid date/time format'),
@@ -34,6 +39,15 @@ const bulkInvitationSchema = z.object({
 /**
  * POST /api/autopilot/invitations/bulk
  * Create and send meeting invitations to multiple recipients
+ *
+ * Features:
+ * - Validates all recipients before processing
+ * - Checks quota for entire batch (not just first recipient)
+ * - Detects duplicate invitations within 60-second window
+ * - Processes invitations sequentially with individual error tracking
+ * - Increments usage counter once for all successful sends (atomic)
+ * - Updates invitation status to 'failed' if email sending fails
+ * - Returns detailed per-recipient results
  */
 export async function POST(request: NextRequest) {
   try {
@@ -98,15 +112,15 @@ export async function POST(request: NextRequest) {
     const data = validation.data;
     const recipientsCount = data.recipients.length;
 
-    // Check if distributor can send the required number of invitations
-    // We'll check the limit against the total number of recipients
-    const canSend = await canSendInvitation(distributor.id);
-    if (!canSend) {
+    // Check if distributor has enough invitations for ALL recipients in the bulk send
+    // This prevents partial sends where user doesn't have enough quota
+    const hasEnough = await hasEnoughInvites(distributor.id, recipientsCount);
+    if (!hasEnough) {
       return NextResponse.json(
         {
           success: false,
-          error: 'Limit Reached',
-          message: 'You have reached your monthly invitation limit. Please upgrade your plan to send more invitations.',
+          error: 'Insufficient Quota',
+          message: `You don't have enough invitations remaining to send to ${recipientsCount} recipient${recipientsCount !== 1 ? 's' : ''}. Please upgrade your plan or reduce the number of recipients.`,
         },
         { status: 403 }
       );
@@ -149,6 +163,25 @@ export async function POST(request: NextRequest) {
 
     for (const recipient of data.recipients) {
       try {
+        // Check for duplicate invitation within the time window
+        const isDuplicate = await isDuplicateInvitation(
+          distributor.id,
+          recipient.recipient_email,
+          data.meeting_date_time
+        );
+
+        if (isDuplicate) {
+          console.log(
+            `[Bulk Invitations API] Skipping duplicate invitation for ${recipient.recipient_email}`
+          );
+          results.push({
+            success: false,
+            recipient: recipient.recipient_email,
+            error: 'Duplicate invitation - already sent recently',
+          });
+          continue;
+        }
+
         // Create invitation record
         const { data: invitation, error: createError } = await supabase
           .from('meeting_invitations')
@@ -164,7 +197,7 @@ export async function POST(request: NextRequest) {
             meeting_link: data.meeting_link || null,
             invitation_type: data.invitation_type || 'personal',
             company_event_id: data.company_event_id || null,
-            status: 'sent',
+            status: INVITATION_STATUS.SENT,
             sent_at: new Date().toISOString(),
           })
           .select()
@@ -195,10 +228,13 @@ export async function POST(request: NextRequest) {
             emailResult.error
           );
 
-          // Update invitation status to failed
+          // Update invitation status to 'failed' (not 'draft')
           await supabase
             .from('meeting_invitations')
-            .update({ status: 'draft' })
+            .update({
+              status: INVITATION_STATUS.FAILED,
+              updated_at: new Date().toISOString(),
+            })
             .eq('id', invitation.id);
 
           results.push({
@@ -209,15 +245,7 @@ export async function POST(request: NextRequest) {
           continue;
         }
 
-        // Increment usage counter
-        const usageIncremented = await incrementInvitationUsage(distributor.id);
-        if (!usageIncremented) {
-          console.error(
-            `[Bulk Invitations API] Warning: Failed to increment usage counter for ${recipient.recipient_email}`
-          );
-          // Don't fail the request, just log the warning
-        }
-
+        // Mark as successful (will increment usage counter in batch below)
         results.push({
           success: true,
           recipient: recipient.recipient_email,
@@ -238,6 +266,18 @@ export async function POST(request: NextRequest) {
     // Count successes and failures
     const successCount = results.filter((r) => r.success).length;
     const failureCount = results.filter((r) => !r.success).length;
+
+    // Increment usage counter ONCE for all successful sends (atomic operation)
+    // This prevents race conditions from incrementing in the loop
+    if (successCount > 0) {
+      const usageIncremented = await incrementInvitationUsage(distributor.id, successCount);
+      if (!usageIncremented) {
+        console.error(
+          `[Bulk Invitations API] WARNING: Failed to increment usage counter for ${successCount} successful invitations`
+        );
+        // Log this but don't fail the request - invitations were sent successfully
+      }
+    }
 
     // Return results
     if (successCount === 0) {

@@ -10,7 +10,7 @@
 import { useState, useEffect } from 'react';
 import type { Distributor } from '@/lib/types';
 import Script from 'next/script';
-import { formatPhoneNumber } from '@/lib/utils/format-phone';
+import { formatPhoneForDisplay } from '@/lib/utils/format-phone';
 
 interface OptiveReplicatedSiteProps {
   distributor: Distributor;
@@ -709,7 +709,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                               href={`tel:${distributor.phone}`}
                               style={{fontSize: '16px', color: '#2B4C7E', fontWeight: 600, textDecoration: 'none'}}
                             >
-                              {formatPhoneNumber(distributor.phone)}
+                              {formatPhoneForDisplay(distributor.phone)}
                             </a>
                           </div>
                         )}

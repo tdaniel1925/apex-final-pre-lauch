@@ -14,10 +14,10 @@ import {
   BookOpen,
   AlertCircle
 } from 'lucide-react';
-import { isAutopiLotFreeTrial } from '@/lib/config/autopilot';
+import { isAutopilotFreeTrial } from '@/lib/config/autopilot';
 
 export function AutopilotOverview() {
-  const isFreeTrialActive = isAutopiLotFreeTrial();
+  const isFreeTrialActive = isAutopilotFreeTrial();
 
   return (
     <div className="space-y-8">

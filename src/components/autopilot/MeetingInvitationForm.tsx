@@ -4,7 +4,15 @@ import { useState, useEffect } from 'react';
 import { z } from 'zod';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Send, Loader2, Check, AlertCircle, Plus, X } from 'lucide-react';
+import { Send, Loader2, Check, AlertCircle, Plus, X, Calendar, Users as UsersIcon } from 'lucide-react';
+import {
+  UNLIMITED_INVITES,
+  MAX_BULK_RECIPIENTS,
+  MIN_MEETING_SCHEDULE_BUFFER_MS,
+  MAX_MEETING_SCHEDULE_FUTURE_MS,
+  SUCCESS_MESSAGE_DURATION_MS,
+  INVITATION_TYPES,
+} from '@/lib/autopilot/constants';
 
 // Recipient validation schema
 const recipientSchema = z.object({
@@ -15,7 +23,10 @@ const recipientSchema = z.object({
 
 // Main invitation validation schema
 const invitationSchema = z.object({
-  recipients: z.array(recipientSchema).min(1, 'At least one recipient is required').max(10, 'Maximum 10 recipients allowed'),
+  recipients: z
+    .array(recipientSchema)
+    .min(1, 'At least one recipient is required')
+    .max(MAX_BULK_RECIPIENTS, `Maximum ${MAX_BULK_RECIPIENTS} recipients allowed`),
   meeting_title: z.string().min(3, 'Title must be at least 3 characters'),
   meeting_description: z.string().optional(),
   meeting_date_time: z.string().min(1, 'Date and time are required'),
@@ -81,6 +92,10 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
     fetchCompanyEvents();
   }, []);
 
+  /**
+   * Fetch the user's remaining invitation quota
+   * Sets UNLIMITED_INVITES (-1) if user has unlimited plan
+   */
   const fetchRemainingInvites = async () => {
     try {
       const response = await fetch('/api/autopilot/subscription');
@@ -89,29 +104,34 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
         if (data.success && data.usage?.emailInvites) {
           const { used, limit, isUnlimited } = data.usage.emailInvites;
           if (isUnlimited) {
-            setRemainingInvites(999999);
+            setRemainingInvites(UNLIMITED_INVITES);
           } else {
             setRemainingInvites(Math.max(0, limit - used));
           }
         }
       }
     } catch (error) {
-      console.error('Error fetching remaining invites:', error);
+      console.error('[MeetingInvitationForm] Error fetching remaining invites:', error);
     }
   };
 
+  /**
+   * Fetch available company events for pre-configured invitations
+   * Only fetches upcoming, active events that the distributor has access to
+   */
   const fetchCompanyEvents = async () => {
     setLoadingEvents(true);
     try {
-      const response = await fetch('/api/autopilot/events?upcoming=true&status=active');
+      const response = await fetch('/api/autopilot/events?upcoming_only=true');
       if (response.ok) {
         const data = await response.json();
-        if (data.success && data.data) {
+        if (data.data) {
           setCompanyEvents(data.data);
+          console.log('[MeetingInvitationForm] Loaded company events:', data.data.length);
         }
       }
     } catch (error) {
-      console.error('Error fetching company events:', error);
+      console.error('[MeetingInvitationForm] Error fetching company events:', error);
     } finally {
       setLoadingEvents(false);
     }
@@ -159,12 +179,18 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
     }
   };
 
-  // Add a new recipient
+  /**
+   * Add a new recipient to the list
+   * Maximum of MAX_BULK_RECIPIENTS (10) recipients allowed
+   */
   const addRecipient = () => {
-    if (formData.recipients.length < 10) {
+    if (formData.recipients.length < MAX_BULK_RECIPIENTS) {
       setFormData((prev) => ({
         ...prev,
-        recipients: [...prev.recipients, { recipient_email: '', recipient_name: '', recipient_phone: '' }],
+        recipients: [
+          ...prev.recipients,
+          { recipient_email: '', recipient_name: '', recipient_phone: '' },
+        ],
       }));
     }
   };
@@ -232,17 +258,39 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
       return;
     }
 
-    // Check if meeting date is in the future
+    // Validate meeting date/time
     const meetingDate = new Date(formData.meeting_date_time);
     const now = new Date();
-    if (meetingDate <= now) {
-      setValidationErrors({ meeting_date_time: 'Meeting must be scheduled in the future' });
+    const minMeetingTime = new Date(now.getTime() + MIN_MEETING_SCHEDULE_BUFFER_MS);
+    const maxMeetingTime = new Date(now.getTime() + MAX_MEETING_SCHEDULE_FUTURE_MS);
+
+    if (meetingDate < minMeetingTime) {
+      setValidationErrors({
+        meeting_date_time: 'Meeting must be scheduled at least 1 hour in the future',
+      });
       return;
     }
 
-    // Check if user has enough invites for all recipients
-    if (remainingInvites !== null && remainingInvites !== 999999 && remainingInvites < formData.recipients.length) {
-      setError(`You only have ${remainingInvites} invitation${remainingInvites !== 1 ? 's' : ''} remaining, but you're trying to send ${formData.recipients.length}.`);
+    if (meetingDate > maxMeetingTime) {
+      setValidationErrors({
+        meeting_date_time: 'Meeting cannot be scheduled more than 1 year in the future',
+      });
+      return;
+    }
+
+    // Check if user has enough invites for ALL recipients in bulk
+    if (
+      remainingInvites !== null &&
+      remainingInvites !== UNLIMITED_INVITES &&
+      remainingInvites < formData.recipients.length
+    ) {
+      setError(
+        `You only have ${remainingInvites} invitation${remainingInvites !== 1 ? 's' : ''} remaining, but you're trying to send ${formData.recipients.length}. ${
+          remainingInvites > 0
+            ? `Please remove ${formData.recipients.length - remainingInvites} recipient${formData.recipients.length - remainingInvites !== 1 ? 's' : ''} or upgrade your plan.`
+            : 'Please upgrade your plan to send more invitations.'
+        }`
+      );
       return;
     }
 
@@ -277,9 +325,11 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
       setShowSuccess(true);
       setSuccessCount(data.successCount || formData.recipients.length);
 
-      // Update remaining invites
-      if (remainingInvites !== null && remainingInvites !== 999999) {
-        setRemainingInvites(Math.max(0, remainingInvites - (data.successCount || formData.recipients.length)));
+      // Update remaining invites (only if not unlimited)
+      if (remainingInvites !== null && remainingInvites !== UNLIMITED_INVITES) {
+        setRemainingInvites(
+          Math.max(0, remainingInvites - (data.successCount || formData.recipients.length))
+        );
       }
 
       // Reset form after delay
@@ -298,7 +348,7 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
         setShowSuccess(false);
         setSuccessCount(0);
         if (onSuccess) onSuccess();
-      }, 3000);
+      }, SUCCESS_MESSAGE_DURATION_MS);
     } catch (error) {
       setError('An unexpected error occurred. Please try again.');
     } finally {
@@ -307,7 +357,8 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
   };
 
   const isLimitReached = remainingInvites !== null && remainingInvites <= 0;
-  const canAddMore = formData.recipients.length < 10 && !isLimitReached;
+  const canAddMore = formData.recipients.length < MAX_BULK_RECIPIENTS && !isLimitReached;
+  const isUnlimited = remainingInvites === UNLIMITED_INVITES;
 
   return (
     <Card className="p-6">
@@ -319,11 +370,12 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
             <p className="text-sm text-gray-500 mt-1">
               {remainingInvites !== null && (
                 <>
-                  {remainingInvites === 999999 ? (
-                    <span className="text-green-600 font-medium">Unlimited invitations</span>
+                  {isUnlimited ? (
+                    <span className="text-green-600 font-medium">∞ Unlimited invitations</span>
                   ) : (
                     <span className={remainingInvites > 0 ? 'text-gray-600' : 'text-red-600'}>
-                      {remainingInvites} invitation{remainingInvites !== 1 ? 's' : ''} remaining this month
+                      {remainingInvites} invitation{remainingInvites !== 1 ? 's' : ''} remaining this
+                      month
                     </span>
                   )}
                 </>
@@ -361,31 +413,61 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
 
         {/* Invitation Type Selection */}
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-navy-900">Invitation Type</h3>
-          <div className="flex items-center gap-4">
+          <div>
+            <h3 className="text-lg font-semibold text-navy-900 mb-1">Invitation Type</h3>
+            <p className="text-sm text-gray-500">
+              Choose custom meeting for 1-on-1s or select a company event to invite prospects
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            {/* Custom Meeting Button */}
             <button
               type="button"
               onClick={() => handleInvitationTypeChange('personal')}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+              className={`relative p-4 rounded-lg border-2 font-medium transition-all ${
                 invitationType === 'personal'
-                  ? 'bg-gold text-navy-900'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  ? 'bg-blue-50 border-blue-600 text-blue-900 shadow-sm'
+                  : 'bg-white border-gray-200 text-gray-700 hover:border-gray-300 hover:bg-gray-50'
               }`}
               disabled={isSubmitting || isLimitReached}
             >
-              Custom Meeting
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <Calendar className="w-5 h-5" />
+                <span className="text-base">Custom Meeting</span>
+              </div>
+              <p className="text-xs text-gray-600">
+                Create your own meeting details
+              </p>
+              {invitationType === 'personal' && (
+                <div className="absolute -top-1 -right-1 bg-blue-600 text-white rounded-full p-1">
+                  <Check className="w-3 h-3" />
+                </div>
+              )}
             </button>
+
+            {/* Company Event Button */}
             <button
               type="button"
               onClick={() => handleInvitationTypeChange('company_event')}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+              className={`relative p-4 rounded-lg border-2 font-medium transition-all ${
                 invitationType === 'company_event'
-                  ? 'bg-gold text-navy-900'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  ? 'bg-blue-50 border-blue-600 text-blue-900 shadow-sm'
+                  : 'bg-white border-gray-200 text-gray-700 hover:border-gray-300 hover:bg-gray-50'
               }`}
               disabled={isSubmitting || isLimitReached}
             >
-              Company Event
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <UsersIcon className="w-5 h-5" />
+                <span className="text-base">Company Event</span>
+              </div>
+              <p className="text-xs text-gray-600">
+                Use pre-configured event templates
+              </p>
+              {invitationType === 'company_event' && (
+                <div className="absolute -top-1 -right-1 bg-blue-600 text-white rounded-full p-1">
+                  <Check className="w-3 h-3" />
+                </div>
+              )}
             </button>
           </div>
 
@@ -429,7 +511,7 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="text-lg font-semibold text-navy-900">
-              Recipients ({formData.recipients.length}/10)
+              Recipients ({formData.recipients.length}/{MAX_BULK_RECIPIENTS})
             </h3>
             {canAddMore && (
               <Button

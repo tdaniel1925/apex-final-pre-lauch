@@ -5,6 +5,7 @@
 
 import { createServiceClient } from '@/lib/supabase/service';
 import { hasReachedLimit } from '@/lib/stripe/autopilot-helpers';
+import { UNLIMITED_INVITES, DUPLICATE_CHECK_WINDOW_MS, INVITATION_STATUS } from './constants';
 
 export type InvitationStatus =
   | 'draft'
@@ -54,6 +55,9 @@ export async function canSendInvitation(distributorId: string): Promise<boolean>
 
 /**
  * Get remaining invitations for distributor
+ * Returns UNLIMITED_INVITES (-1) if distributor has unlimited plan
+ * @param distributorId - The distributor's ID
+ * @returns Number of remaining invites, or UNLIMITED_INVITES for unlimited plans
  */
 export async function getRemainingInvites(distributorId: string): Promise<number> {
   try {
@@ -71,8 +75,8 @@ export async function getRemainingInvites(distributorId: string): Promise<number
     }
 
     // -1 means unlimited
-    if (data.email_invites_limit === -1) {
-      return 999999; // Return large number for unlimited
+    if (data.email_invites_limit === UNLIMITED_INVITES) {
+      return UNLIMITED_INVITES;
     }
 
     const remaining = data.email_invites_limit - data.email_invites_used_this_month;
@@ -84,7 +88,16 @@ export async function getRemainingInvites(distributorId: string): Promise<number
 }
 
 /**
- * Generate invitation response link
+ * Generate entrance page link for meeting invitation
+ * This is the main link invitees click to view meeting details and enter the room
+ */
+export function generateMeetingEntranceLink(invitationId: string): string {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+  return `${baseUrl}/live/${invitationId}`;
+}
+
+/**
+ * Generate invitation response link (Yes/No/Maybe)
  */
 export function generateInvitationLink(
   invitationId: string,
@@ -148,15 +161,21 @@ export function isInvitationExpired(invitation: MeetingInvitation): boolean {
 
 /**
  * Increment email invitation usage counter
+ * @param distributorId - The distributor's ID
+ * @param count - Number of invitations to increment (default: 1)
+ * @returns true if successful, false otherwise
  */
-export async function incrementInvitationUsage(distributorId: string): Promise<boolean> {
+export async function incrementInvitationUsage(
+  distributorId: string,
+  count: number = 1
+): Promise<boolean> {
   try {
     const supabase = createServiceClient();
 
     const { data, error } = await supabase.rpc('increment_autopilot_usage', {
       p_distributor_id: distributorId,
       p_limit_type: 'email',
-      p_increment: 1,
+      p_increment: count,
     });
 
     if (error) {
@@ -168,6 +187,67 @@ export async function incrementInvitationUsage(distributorId: string): Promise<b
   } catch (error) {
     console.error('[Invitation Helpers] Error incrementing usage:', error);
     return false;
+  }
+}
+
+/**
+ * Check if distributor has enough invites for a bulk send
+ * @param distributorId - The distributor's ID
+ * @param count - Number of invitations needed
+ * @returns true if enough invites available, false otherwise
+ */
+export async function hasEnoughInvites(
+  distributorId: string,
+  count: number
+): Promise<boolean> {
+  const remaining = await getRemainingInvites(distributorId);
+
+  // Unlimited means always has enough
+  if (remaining === UNLIMITED_INVITES) {
+    return true;
+  }
+
+  return remaining >= count;
+}
+
+/**
+ * Check for duplicate invitations within the time window
+ * Prevents sending multiple invitations to the same recipient for the same meeting
+ * @param distributorId - The distributor's ID
+ * @param recipientEmail - The recipient's email address
+ * @param meetingDateTime - The meeting date/time
+ * @returns true if duplicate found, false otherwise
+ */
+export async function isDuplicateInvitation(
+  distributorId: string,
+  recipientEmail: string,
+  meetingDateTime: string
+): Promise<boolean> {
+  try {
+    const supabase = createServiceClient();
+
+    // Check for invitations sent within the duplicate check window
+    const windowStart = new Date(Date.now() - DUPLICATE_CHECK_WINDOW_MS).toISOString();
+
+    const { data, error } = await supabase
+      .from('meeting_invitations')
+      .select('id')
+      .eq('distributor_id', distributorId)
+      .eq('recipient_email', recipientEmail.toLowerCase())
+      .eq('meeting_date_time', meetingDateTime)
+      .in('status', [INVITATION_STATUS.SENT, INVITATION_STATUS.OPENED])
+      .gte('created_at', windowStart)
+      .limit(1);
+
+    if (error) {
+      console.error('[Invitation Helpers] Error checking for duplicates:', error);
+      return false; // On error, allow the send (fail open)
+    }
+
+    return (data && data.length > 0);
+  } catch (error) {
+    console.error('[Invitation Helpers] Error checking for duplicates:', error);
+    return false; // On error, allow the send (fail open)
   }
 }
 

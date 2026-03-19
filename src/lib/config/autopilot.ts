@@ -73,6 +73,6 @@ export function getEffectiveTier(actualTier: string): string {
 /**
  * Check if free trial is active
  */
-export function isAutopiLotFreeTrial(): boolean {
+export function isAutopilotFreeTrial(): boolean {
   return AUTOPILOT_FREE_TRIAL_ACTIVE;
 }

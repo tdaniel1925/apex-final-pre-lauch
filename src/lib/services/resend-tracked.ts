@@ -1,11 +1,13 @@
 // =============================================
 // Resend Email Client with Usage Tracking
 // Wraps Resend API calls with automatic cost tracking
+// ALL emails automatically use Apex base template
 // =============================================
 
 import { Resend } from 'resend';
 import { trackUsage } from './tracking';
 import type { TriggeredBy } from '@/types/service-tracking';
+import { wrapEmailTemplate } from '../email/template-wrapper';
 
 // Lazy-load Resend client to avoid build-time initialization
 let _resend: Resend | undefined;
@@ -38,6 +40,10 @@ export interface TrackedEmailParams {
   userId?: string;
   adminId?: string;
   feature?: string;
+
+  // Template options
+  skipTemplateWrap?: boolean; // Set to true to skip automatic Apex template wrapping
+  unsubscribeUrl?: string; // Optional unsubscribe URL
 }
 
 /**
@@ -63,11 +69,22 @@ export async function sendTrackedEmail(params: TrackedEmailParams) {
   try {
     const emailCount = Array.isArray(params.to) ? params.to.length : 1;
 
+    // Automatically wrap HTML content with Apex base template
+    // (unless skipTemplateWrap is true or using React component)
+    let finalHtml = params.html;
+    if (params.html && !params.skipTemplateWrap && !params.react) {
+      finalHtml = wrapEmailTemplate(
+        params.html,
+        params.subject,
+        params.unsubscribeUrl
+      );
+    }
+
     const response = await resend.emails.send({
       from: params.from,
       to: params.to,
       subject: params.subject,
-      html: params.html,
+      html: finalHtml,
       text: params.text,
       react: params.react,
       attachments: params.attachments,
@@ -147,12 +164,24 @@ export async function sendTrackedBatchEmails(params: {
   userId?: string;
   adminId?: string;
   feature?: string;
+  skipTemplateWrap?: boolean; // Set to true to skip automatic Apex template wrapping
+  unsubscribeUrl?: string;
 }) {
   const startTime = Date.now();
   const resend = getResend();
 
   try {
-    const response = await resend.batch.send(params.emails as any);
+    // Automatically wrap all HTML emails with Apex base template
+    const wrappedEmails = params.skipTemplateWrap
+      ? params.emails
+      : params.emails.map(email => ({
+          ...email,
+          html: email.html
+            ? wrapEmailTemplate(email.html, email.subject, params.unsubscribeUrl)
+            : email.html,
+        }));
+
+    const response = await resend.batch.send(wrappedEmails as any);
 
     const durationMs = Date.now() - startTime;
     const successCount = response.data ? (response.data as unknown as any[]).filter((r: any) => !r.error).length : 0;

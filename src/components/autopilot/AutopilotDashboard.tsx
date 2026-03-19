@@ -7,7 +7,7 @@
 
 import { useState } from 'react';
 import { Mail, MessageSquare, Image, Users, Megaphone, Sparkles } from 'lucide-react';
-import { isAutopiLotFreeTrial, getEffectiveTier } from '@/lib/config/autopilot';
+import { isAutopilotFreeTrial, getEffectiveTier } from '@/lib/config/autopilot';
 import { MeetingInvitationForm } from './MeetingInvitationForm';
 import { SocialPostComposer } from './SocialPostComposer';
 import { SocialPostsList } from './SocialPostsList';
@@ -26,7 +26,7 @@ export default function AutopilotDashboard({ distributorId, autopilotTier }: Aut
   const [activeTab, setActiveTab] = useState<Tab>('invitations');
 
   // Check if free trial is active (controlled in /lib/config/autopilot.ts)
-  const isFreeTrial = isAutopiLotFreeTrial();
+  const isFreeTrial = isAutopilotFreeTrial();
   const effectiveTier = getEffectiveTier(autopilotTier);
 
   const tabs = [
@@ -160,7 +160,7 @@ export default function AutopilotDashboard({ distributorId, autopilotTier }: Aut
             <div>
               <h2 className="text-xl font-bold text-slate-900 mb-2">Send Invitations</h2>
               <p className="text-slate-600">
-                Send personalized email or SMS invitations to prospects for meetings, events, or presentations.
+                Send personalized email invitations to prospects for meetings, events, or presentations.
               </p>
             </div>
             <MeetingInvitationForm />
