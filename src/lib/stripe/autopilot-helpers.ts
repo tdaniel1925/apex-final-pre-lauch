@@ -177,6 +177,8 @@ export async function createAutopilotCheckoutSession(
       distributor_id: distributorId,
       autopilot_tier: tier,
       product_type: 'autopilot_subscription',
+      bv_amount: product.bvValue.toString(), // 1:1 BV ratio for autopilot
+      is_personal_purchase: 'true', // Autopilot subscriptions count as personal purchases
     },
   });
 

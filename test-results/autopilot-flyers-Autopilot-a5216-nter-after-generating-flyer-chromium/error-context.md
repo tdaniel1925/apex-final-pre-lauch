@@ -1,0 +1,67 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - heading "Event Flyer Generator" [level=1] [ref=e4]
+      - paragraph [ref=e5]: Create professional event flyers with pre-designed templates
+    - generic [ref=e6]:
+      - generic [ref=e7]:
+        - heading "Generate New Flyer" [level=2] [ref=e8]
+        - generic [ref=e11]:
+          - generic [ref=e12]:
+            - text: Select Template
+            - generic [ref=e13]:
+              - generic [ref=e14] [cursor=pointer]:
+                - heading "Professional Event" [level=3] [ref=e16]
+                - paragraph [ref=e17]: Clean, corporate design perfect for business meetings and professional events
+              - generic [ref=e18] [cursor=pointer]:
+                - heading "Community Meeting" [level=3] [ref=e20]
+                - paragraph [ref=e21]: Warm and inviting design for community gatherings and local events
+              - generic [ref=e22] [cursor=pointer]:
+                - heading "Product Launch" [level=3] [ref=e24]
+                - paragraph [ref=e25]: Bold, modern design for product announcements and launch events
+              - generic [ref=e26] [cursor=pointer]:
+                - heading "Training Session" [level=3] [ref=e28]
+                - paragraph [ref=e29]: Educational theme perfect for workshops, seminars, and training events
+              - generic [ref=e30] [cursor=pointer]:
+                - heading "Webinar" [level=3] [ref=e32]
+                - paragraph [ref=e33]: Tech-focused design for online events, webinars, and virtual meetings
+          - generic [ref=e34]:
+            - generic [ref=e35]:
+              - text: Event Title *
+              - textbox "Event Title *" [ref=e36]:
+                - /placeholder: Annual Business Meeting
+            - generic [ref=e37]:
+              - text: Event Date
+              - textbox "Event Date" [ref=e38]
+          - generic [ref=e39]:
+            - generic [ref=e40]:
+              - text: Event Time
+              - textbox "Event Time" [ref=e41]
+            - generic [ref=e42]:
+              - text: Event Location
+              - textbox "Event Location" [ref=e43]:
+                - /placeholder: Conference Center
+          - generic [ref=e44]:
+            - text: Description
+            - textbox "Description" [ref=e45]:
+              - /placeholder: Join us for an exciting event...
+          - generic [ref=e46]:
+            - generic [ref=e47]:
+              - text: Contact Phone
+              - textbox "Contact Phone" [ref=e48]:
+                - /placeholder: (555) 123-4567
+            - generic [ref=e49]:
+              - text: Contact Email
+              - textbox "Contact Email" [ref=e50]:
+                - /placeholder: contact@example.com
+          - button "Generate Flyer" [ref=e51]
+      - generic [ref=e52]:
+        - heading "Your Flyers" [level=2] [ref=e53]
+        - generic [ref=e54]: No flyers yet. Generate your first flyer to get started!
+  - button "Open Next.js Dev Tools" [ref=e60] [cursor=pointer]:
+    - img [ref=e61]
+  - alert [ref=e64]
+```
