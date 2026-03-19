@@ -39,7 +39,7 @@ function errorResponse(message: string, code: string, status: number, details?: 
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   // Admin auth check
   const admin = await getAdminUser();
@@ -48,12 +48,13 @@ export async function GET(
   }
 
   try {
+    const { id } = await params;
     const supabase = await createClient();
 
     const { data: template, error } = await supabase
       .from('event_templates')
       .select('*')
-      .eq('id', params.id)
+      .eq('id', id)
       .single();
 
     if (error || !template) {
@@ -73,7 +74,7 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   // Admin auth check
   const admin = await getAdminUser();
@@ -82,6 +83,7 @@ export async function PUT(
   }
 
   try {
+    const { id } = await params;
     const body = await request.json();
 
     // Validate request body
@@ -102,7 +104,7 @@ export async function PUT(
     const { data: template, error } = await supabase
       .from('event_templates')
       .update(result.data)
-      .eq('id', params.id)
+      .eq('id', id)
       .select()
       .single();
 
@@ -127,7 +129,7 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   // Admin auth check
   const admin = await getAdminUser();
@@ -136,13 +138,14 @@ export async function DELETE(
   }
 
   try {
+    const { id } = await params;
     const supabase = await createClient();
 
     // Check if template is in use
     const { data: eventsUsingTemplate, error: checkError } = await supabase
       .from('company_events')
       .select('id')
-      .eq('template_id', params.id)
+      .eq('template_id', id)
       .limit(1);
 
     if (checkError) {
@@ -162,7 +165,7 @@ export async function DELETE(
     const { error } = await supabase
       .from('event_templates')
       .delete()
-      .eq('id', params.id);
+      .eq('id', id);
 
     if (error) {
       console.error('Error deleting template:', error);
