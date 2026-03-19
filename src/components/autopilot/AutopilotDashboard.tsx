@@ -8,14 +8,12 @@
 import { useState } from 'react';
 import { Mail, MessageSquare, Image, Users, Megaphone, Sparkles } from 'lucide-react';
 import { isAutopiLotFreeTrial, getEffectiveTier } from '@/lib/config/autopilot';
-import MeetingInvitationForm from './MeetingInvitationForm';
-import SocialPostComposer from './SocialPostComposer';
-import SocialPostsList from './SocialPostsList';
-import FlyerGenerator from './FlyerGenerator';
-import FlyerGallery from './FlyerGallery';
-import ContactList from './crm/ContactList';
-import InvitationStats from './InvitationStats';
-import AutopilotSubscriptionCard from './AutopilotSubscriptionCard';
+import { MeetingInvitationForm } from './MeetingInvitationForm';
+import { SocialPostComposer } from './SocialPostComposer';
+import { SocialPostsList } from './SocialPostsList';
+import { FlyerGenerator } from './FlyerGenerator';
+import { FlyerGallery } from './FlyerGallery';
+import { InvitationStats } from './InvitationStats';
 
 interface AutopilotDashboardProps {
   distributorId: string;
@@ -123,7 +121,20 @@ export default function AutopilotDashboard({ distributorId, autopilotTier }: Aut
 
       {/* Subscription Status - Hidden during free trial */}
       {!isFreeTrial && (
-        <AutopilotSubscriptionCard distributorId={distributorId} currentTier={autopilotTier} />
+        <div className="bg-white rounded-lg shadow-sm border p-6">
+          <h3 className="text-lg font-semibold text-slate-900 mb-2">
+            Current Plan: {autopilotTier.replace('_', ' ').toUpperCase()}
+          </h3>
+          <p className="text-slate-600">
+            Manage your subscription and billing settings
+          </p>
+          <a
+            href="/dashboard/autopilot/subscription"
+            className="inline-block mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
+            View Subscription Details
+          </a>
+        </div>
       )}
 
       {/* Tab Navigation */}
@@ -161,7 +172,7 @@ export default function AutopilotDashboard({ distributorId, autopilotTier }: Aut
                 Send personalized email or SMS invitations to prospects for meetings, events, or presentations.
               </p>
             </div>
-            <MeetingInvitationForm distributorId={distributorId} />
+            <MeetingInvitationForm />
           </div>
         )}
 
@@ -174,11 +185,11 @@ export default function AutopilotDashboard({ distributorId, autopilotTier }: Aut
               </p>
             </div>
 
-            <SocialPostComposer distributorId={distributorId} />
+            <SocialPostComposer />
 
             <div className="border-t border-slate-200 pt-6">
               <h3 className="text-lg font-semibold text-slate-900 mb-4">Your Recent Posts</h3>
-              <SocialPostsList distributorId={distributorId} />
+              <SocialPostsList />
             </div>
           </div>
         )}
@@ -192,11 +203,11 @@ export default function AutopilotDashboard({ distributorId, autopilotTier }: Aut
               </p>
             </div>
 
-            <FlyerGenerator distributorId={distributorId} />
+            <FlyerGenerator />
 
             <div className="border-t border-slate-200 pt-6">
               <h3 className="text-lg font-semibold text-slate-900 mb-4">Your Flyers</h3>
-              <FlyerGallery distributorId={distributorId} />
+              <FlyerGallery />
             </div>
           </div>
         )}
@@ -210,7 +221,24 @@ export default function AutopilotDashboard({ distributorId, autopilotTier }: Aut
               </p>
             </div>
 
-            <ContactList distributorId={distributorId} />
+            <div className="bg-white rounded-lg shadow-sm border p-8 text-center">
+              <Users className="w-16 h-16 text-blue-600 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-slate-900 mb-2">
+                CRM Contact Management
+              </h3>
+              <p className="text-slate-600 mb-6">
+                View and manage all your contacts, track lead scores, and organize your sales pipeline.
+              </p>
+              <a
+                href="/dashboard/autopilot/crm/contacts"
+                className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
+              >
+                Go to CRM
+                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
           </div>
         )}
 
@@ -223,7 +251,7 @@ export default function AutopilotDashboard({ distributorId, autopilotTier }: Aut
               </p>
             </div>
 
-            <InvitationStats distributorId={distributorId} />
+            <InvitationStats />
           </div>
         )}
       </div>
