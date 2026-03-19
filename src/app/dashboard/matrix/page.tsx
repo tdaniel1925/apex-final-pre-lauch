@@ -6,6 +6,7 @@
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { createServiceClient } from '@/lib/supabase/service';
+import { getAdminUser } from '@/lib/auth/admin';
 import type { Distributor } from '@/lib/types';
 import MatrixWithModal from '@/components/matrix/MatrixWithModal';
 import { calculateMatrixLevels, getMaxMatrixDepth } from '@/lib/matrix/level-calculator';
@@ -45,7 +46,16 @@ export default async function MatrixPage() {
     .eq('auth_user_id', user.id)
     .single();
 
+  // If no distributor record, check if they're an admin
   if (!distributor) {
+    const adminUser = await getAdminUser();
+
+    // If they're an admin, redirect to admin dashboard
+    if (adminUser) {
+      redirect('/admin');
+    }
+
+    // Otherwise, they need to complete signup
     redirect('/signup');
   }
 

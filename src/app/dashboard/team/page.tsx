@@ -6,6 +6,7 @@
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { createServiceClient } from '@/lib/supabase/service';
+import { getAdminUser } from '@/lib/auth/admin';
 import TeamStatsHeader from '@/components/team/TeamStatsHeader';
 import TeamMemberCard, { type TeamMemberData } from '@/components/team/TeamMemberCard';
 import TeamWithModal from '@/components/team/TeamWithModal';
@@ -45,7 +46,16 @@ export default async function TeamPage() {
     .eq('auth_user_id', user.id)
     .single();
 
+  // If no distributor record, check if they're an admin
   if (distError || !distributor) {
+    const adminUser = await getAdminUser();
+
+    // If they're an admin, redirect to admin dashboard
+    if (adminUser) {
+      redirect('/admin');
+    }
+
+    // Otherwise, they need to complete signup
     redirect('/signup');
   }
 

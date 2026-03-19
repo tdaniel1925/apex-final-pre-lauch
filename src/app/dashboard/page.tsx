@@ -13,6 +13,7 @@
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { createServiceClient } from '@/lib/supabase/service';
+import { getAdminUser } from '@/lib/auth/admin';
 import TrainingAudioPlayer from '@/components/dashboard/TrainingAudioPlayer';
 import CompensationStatsWidget from '@/components/dashboard/CompensationStatsWidget';
 import ActivityFeed from '@/components/dashboard/ActivityFeed';
@@ -83,8 +84,18 @@ export default async function DashboardPage() {
     .eq('auth_user_id', user.id)
     .single();
 
+  // If no distributor record, check if they're an admin
   if (error || !distributor) {
     console.error('Error loading distributor:', error);
+
+    const adminUser = await getAdminUser();
+
+    // If they're an admin, redirect to admin dashboard
+    if (adminUser) {
+      redirect('/admin');
+    }
+
+    // Otherwise, they need to complete signup
     redirect('/signup');
   }
 

@@ -6,6 +6,7 @@
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
 import AutopilotDashboard from '@/components/autopilot/AutopilotDashboard';
+import { getAdminUser } from '@/lib/auth/admin';
 
 export const metadata = {
   title: 'Lead Autopilot - Apex Affinity Group',
@@ -31,7 +32,16 @@ export default async function AutopilotPage() {
     .eq('auth_user_id', user.id)
     .single();
 
+  // If no distributor record, check if they're an admin
   if (!distributor) {
+    const adminUser = await getAdminUser();
+
+    // If they're an admin, redirect to admin autopilot page
+    if (adminUser) {
+      redirect('/admin/autopilot');
+    }
+
+    // Otherwise, they need to complete signup
     redirect('/signup');
   }
 
