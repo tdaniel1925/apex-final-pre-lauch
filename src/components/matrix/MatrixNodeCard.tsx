@@ -80,7 +80,7 @@ export default function MatrixNodeCard({ node, level, onClick }: MatrixNodeCardP
       </h3>
 
       {/* Rep Number */}
-      <p className="text-slate-400 text-xs text-center mb-2">
+      <p className="text-slate-300 text-xs text-center mb-2">
         Rep #{node.rep_number || 'N/A'}
       </p>
 
@@ -97,7 +97,7 @@ export default function MatrixNodeCard({ node, level, onClick }: MatrixNodeCardP
 
       {/* Credits */}
       <div className="bg-slate-900 rounded px-2 py-1 mb-2">
-        <p className="text-slate-400 text-xs text-center">
+        <p className="text-slate-200 text-xs text-center">
           {node.personal_credits_monthly} credits/mo
         </p>
       </div>
@@ -105,7 +105,7 @@ export default function MatrixNodeCard({ node, level, onClick }: MatrixNodeCardP
       {/* Override Qualified Status */}
       <div className="flex items-center justify-center gap-1">
         <div className={`w-2 h-2 rounded-full ${node.override_qualified ? 'bg-green-500' : 'bg-slate-600'}`} />
-        <span className={`text-xs ${node.override_qualified ? 'text-green-400' : 'text-slate-500'}`}>
+        <span className={`text-xs ${node.override_qualified ? 'text-green-400' : 'text-slate-300'}`}>
           {node.override_qualified ? 'Active' : 'Inactive'}
         </span>
       </div>
