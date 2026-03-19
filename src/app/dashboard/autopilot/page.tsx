@@ -4,6 +4,7 @@
 // =====================================================
 
 import { createClient } from '@/lib/supabase/server';
+import { createServiceClient } from '@/lib/supabase/service';
 import { redirect } from 'next/navigation';
 import AutopilotDashboard from '@/components/autopilot/AutopilotDashboard';
 import { getAdminUser } from '@/lib/auth/admin';
@@ -25,8 +26,9 @@ export default async function AutopilotPage() {
     redirect('/login');
   }
 
-  // Get distributor info
-  const { data: distributor } = await supabase
+  // Get distributor info (use service client to bypass RLS)
+  const serviceClient = createServiceClient();
+  const { data: distributor } = await serviceClient
     .from('distributors')
     .select('id, first_name, last_name, email, autopilot_tier')
     .eq('auth_user_id', user.id)
