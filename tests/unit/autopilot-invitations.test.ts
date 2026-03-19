@@ -22,38 +22,50 @@ describe('Autopilot Meeting Invitations', () => {
   let testInvitationId: string;
 
   beforeAll(async () => {
-    // Create test distributor
+    // Use existing active distributor for tests
     const { data: distributor } = await supabase
       .from('distributors')
-      .insert({
-        auth_user_id: 'test-user-invitations',
-        first_name: 'Test',
-        last_name: 'Distributor',
-        email: 'test-invitations@example.com',
-      })
-      .select()
+      .select('id')
+      .eq('status', 'active')
+      .limit(1)
       .single();
 
-    testDistributorId = distributor!.id;
+    if (!distributor) {
+      console.warn('No active distributor found - skipping invitation tests');
+      return;
+    }
 
-    // Create autopilot subscription (FREE tier)
-    await supabase.from('autopilot_subscriptions').insert({
+    testDistributorId = distributor.id;
+
+    // Ensure autopilot subscription exists (upsert)
+    await supabase.from('autopilot_subscriptions').upsert({
       distributor_id: testDistributorId,
       tier: 'free',
       status: 'active',
+    }, {
+      onConflict: 'distributor_id',
     });
 
-    // Usage limits should be auto-created by trigger
+    // Ensure usage limits exist
+    await supabase.from('autopilot_usage_limits').upsert({
+      distributor_id: testDistributorId,
+      email_invites_used: 0,
+      sms_messages_used: 0,
+      social_posts_used: 0,
+      event_flyers_used: 0,
+      period_start: new Date().toISOString(),
+      period_end: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
+    }, {
+      onConflict: 'distributor_id',
+    });
   });
 
   afterAll(async () => {
-    // Cleanup test data
+    // Cleanup only test invitation data (keep distributor for other tests)
     if (testInvitationId) {
       await supabase.from('meeting_invitations').delete().eq('id', testInvitationId);
     }
-    await supabase.from('autopilot_subscriptions').delete().eq('distributor_id', testDistributorId);
-    await supabase.from('autopilot_usage_limits').delete().eq('distributor_id', testDistributorId);
-    await supabase.from('distributors').delete().eq('id', testDistributorId);
+    // Don't delete distributor, subscription, or usage limits - reused for tests
   });
 
   describe('Helper Functions', () => {
