@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{email_title}}</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f5f5f5;">
+    <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f5f5f5; padding: 40px 20px;">
+        <tr>
+            <td align="center">
+                <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+
+                    <!-- Header with logo -->
+                    <tr>
+                        <td style="background-color: #ffffff; padding: 40px 40px 30px 40px; text-align: center; border-bottom: 2px solid #2c5aa0;">
+                            <img src="https://theapexway.net/apex-logo-full.png" alt="Apex Affinity Group" style="max-width: 280px; height: auto; margin: 0 auto; display: block;" />
+                        </td>
+                    </tr>
+
+                    <!-- Content area -->
+                    <tr>
+                        <td style="padding: 40px 40px;">
+                            {{email_content}}
+                        </td>
+                    </tr>
+
+                    <!-- Footer -->
+                    <tr>
+                        <td style="background-color: #f8f9fa; padding: 30px 40px; text-align: center; border-top: 1px solid #e5e7eb;">
+                            <p style="color: #495057; font-size: 14px; line-height: 1.6; margin: 0 0 8px 0; font-weight: 600;">
+                                Apex Affinity Group
+                            </p>
+                            <p style="color: #6c757d; font-size: 13px; line-height: 1.6; margin: 0 0 16px 0;">
+                                AI-Powered Lead Autopilot | theapexway.net
+                            </p>
+                            <p style="color: #6c757d; font-size: 12px; line-height: 1.6; margin: 0;">
+                                1600 Highway 6 Ste 400, Sugar Land, TX 77478
+                            </p>
+                        </td>
+                    </tr>
+
+                    <!-- Legal footer -->
+                    <tr>
+                        <td style="background-color: #e9ecef; padding: 20px 40px; text-align: center;">
+                            <p style="color: #6c757d; font-size: 11px; line-height: 1.6; margin: 0 0 8px 0;">
+                                You are receiving this email as a member of Apex Affinity Group.
+                            </p>
+                            <p style="color: #6c757d; font-size: 11px; line-height: 1.6; margin: 0;">
+                                <a href="{{unsubscribe_url}}" style="color: #495057; text-decoration: underline;">Unsubscribe</a> |
+                                <a href="https://theapexway.net/privacy" style="color: #495057; text-decoration: underline;">Privacy Policy</a> |
+                                <a href="https://theapexway.net/contact" style="color: #495057; text-decoration: underline;">Contact Us</a>
+                            </p>
+                        </td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

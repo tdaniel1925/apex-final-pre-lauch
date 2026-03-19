@@ -33,6 +33,43 @@ If you see a "conversation summary" above, or this feels like a fresh start but 
 
 ---
 
+## 📧 EMAIL SYSTEM RULES (MANDATORY)
+
+**ALL system emails MUST follow these rules:**
+
+### 1. Email Domain
+- **ALWAYS use:** `@theapexway.net` domain for ALL emails
+- **NEVER use:** Any other domain (notifications@reachtheapex.net, etc.)
+- **Verified addresses:** `theapex@theapexway.net`, `support@theapexway.net`, `noreply@theapexway.net`
+
+### 2. Email Template
+- **ALWAYS use:** Base template at `src/lib/email/templates/base-email-template.html`
+- **Professional tone:** No emojis, no playful colors, no purple gradients
+- **Color scheme:** Navy blue (#2c5aa0), grays (#212529, #495057, #6c757d)
+- **Style:** Corporate, serious, professional
+
+### 3. Email Sending
+- **Use:** Resend SDK through `src/lib/email/resend.ts` utility
+- **Error handling:** ALWAYS check `result.error` before logging success
+- **Response structure:** Access `result.data.id` (NOT `result.id`)
+- **Logging:** Log ALL email attempts to database
+
+### 4. Template Structure
+```typescript
+// Load base template
+const baseTemplate = await fs.readFile('src/lib/email/templates/base-email-template.html', 'utf-8');
+// Load content template
+const contentTemplate = await fs.readFile('src/lib/email/templates/[specific-email].html', 'utf-8');
+// Merge templates
+const emailHtml = baseTemplate.replace('{{email_content}}', contentTemplate);
+// Replace variables
+const finalHtml = emailHtml.replace(/{{(\w+)}}/g, (match, key) => variables[key]);
+```
+
+**NO exceptions to these rules.**
+
+---
+
 ## ⛔ TWO-GATE ENFORCEMENT SYSTEM
 
 **You MUST pass through TWO gates for every feature:**
