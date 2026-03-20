@@ -187,6 +187,133 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                       Apex delivers Fortune 500 marketing automation to small businesses for a fraction of the cost — with AI-generated content, landing pages, podcasts, and video production. All done for you. Starting at $59/month.
                     </p>
 
+                    {/* Two Paths Visual */}
+                    <div className="wow fadeInUp" data-wow-delay="0.15s" style={{
+                      marginTop: '40px',
+                      marginBottom: '30px',
+                      maxWidth: '900px',
+                      margin: '40px auto 30px auto'
+                    }}>
+                      <div style={{
+                        textAlign: 'center',
+                        color: '#fbbf24',
+                        fontSize: '14px',
+                        fontWeight: '700',
+                        letterSpacing: '1px',
+                        marginBottom: '20px',
+                        textTransform: 'uppercase'
+                      }}>
+                        Two Paths. One Platform.
+                      </div>
+                      <div style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+                        gap: '20px',
+                        maxWidth: '800px',
+                        margin: '0 auto'
+                      }}>
+                        {/* AI Technology Path */}
+                        <a href="#products" style={{
+                          background: 'rgba(255, 255, 255, 0.15)',
+                          backdropFilter: 'blur(10px)',
+                          border: '2px solid rgba(255, 255, 255, 0.3)',
+                          borderRadius: '16px',
+                          padding: '24px',
+                          textDecoration: 'none',
+                          transition: 'all 0.3s ease',
+                          cursor: 'pointer'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.25)';
+                          e.currentTarget.style.borderColor = '#ffffff';
+                          e.currentTarget.style.transform = 'translateY(-4px)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)';
+                          e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                          e.currentTarget.style.transform = 'translateY(0)';
+                        }}>
+                          <div style={{fontSize: '40px', marginBottom: '12px', textAlign: 'center'}}>💻</div>
+                          <h3 style={{
+                            color: '#ffffff',
+                            fontSize: '20px',
+                            fontWeight: '700',
+                            marginBottom: '8px',
+                            textAlign: 'center'
+                          }}>
+                            AI Technology
+                          </h3>
+                          <p style={{
+                            color: 'rgba(255, 255, 255, 0.9)',
+                            fontSize: '14px',
+                            marginBottom: '12px',
+                            textAlign: 'center',
+                            lineHeight: '1.5'
+                          }}>
+                            AI-powered marketing software for any business owner
+                          </p>
+                          <div style={{
+                            color: '#fbbf24',
+                            fontSize: '13px',
+                            fontWeight: '600',
+                            textAlign: 'center'
+                          }}>
+                            No license needed →
+                          </div>
+                        </a>
+
+                        {/* Insurance Path */}
+                        <a href="#insurance" style={{
+                          background: 'rgba(251, 191, 36, 0.2)',
+                          backdropFilter: 'blur(10px)',
+                          border: '2px solid rgba(251, 191, 36, 0.5)',
+                          borderRadius: '16px',
+                          padding: '24px',
+                          textDecoration: 'none',
+                          transition: 'all 0.3s ease',
+                          cursor: 'pointer'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.background = 'rgba(251, 191, 36, 0.3)';
+                          e.currentTarget.style.borderColor = '#fbbf24';
+                          e.currentTarget.style.transform = 'translateY(-4px)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.background = 'rgba(251, 191, 36, 0.2)';
+                          e.currentTarget.style.borderColor = 'rgba(251, 191, 36, 0.5)';
+                          e.currentTarget.style.transform = 'translateY(0)';
+                        }}>
+                          <div style={{fontSize: '40px', marginBottom: '12px', textAlign: 'center'}}>🛡️</div>
+                          <h3 style={{
+                            color: '#ffffff',
+                            fontSize: '20px',
+                            fontWeight: '700',
+                            marginBottom: '8px',
+                            textAlign: 'center'
+                          }}>
+                            Insurance Career
+                          </h3>
+                          <p style={{
+                            color: 'rgba(255, 255, 255, 0.9)',
+                            fontSize: '14px',
+                            marginBottom: '12px',
+                            textAlign: 'center',
+                            lineHeight: '1.5'
+                          }}>
+                            Life, annuities, ancillary products + top-tier contracts
+                          </p>
+                          <div style={{
+                            color: '#fbbf24',
+                            fontSize: '13px',
+                            fontWeight: '600',
+                            textAlign: 'center'
+                          }}>
+                            License required →
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+
                     {/* Trust Bar */}
                     <div className="wow fadeInUp" data-wow-delay="0.2s" style={{
                       display: 'flex',
