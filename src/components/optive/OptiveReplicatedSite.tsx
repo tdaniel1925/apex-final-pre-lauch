@@ -515,25 +515,25 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                           </div>
                           <div className="pricing-item-list" style={{padding: '0 24px 24px'}}>
                             <ul style={{listStyle: 'none', padding: 0}}>
-                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                              <li style={{marginBottom: '16px', display: 'flex', alignItems: 'start', gap: '10px', lineHeight: '1.6'}}>
                                 <i className="fa-solid fa-check" style={{color: '#2B4C7E', marginTop: '4px'}}></i>
-                                <span>3 AI-Generated Landing Pages</span>
+                                <span style={{fontSize: '15px'}}>3 AI-Generated Landing Pages</span>
                               </li>
-                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                              <li style={{marginBottom: '16px', display: 'flex', alignItems: 'start', gap: '10px', lineHeight: '1.6'}}>
                                 <i className="fa-solid fa-check" style={{color: '#2B4C7E', marginTop: '4px'}}></i>
-                                <span>30 Social Media Posts/Month</span>
+                                <span style={{fontSize: '15px'}}>30 Social Media Posts/Month</span>
                               </li>
-                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                              <li style={{marginBottom: '16px', display: 'flex', alignItems: 'start', gap: '10px', lineHeight: '1.6'}}>
                                 <i className="fa-solid fa-check" style={{color: '#2B4C7E', marginTop: '4px'}}></i>
-                                <span>Lead Capture Forms</span>
+                                <span style={{fontSize: '15px'}}>Lead Capture Forms</span>
                               </li>
-                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                              <li style={{marginBottom: '16px', display: 'flex', alignItems: 'start', gap: '10px', lineHeight: '1.6'}}>
                                 <i className="fa-solid fa-check" style={{color: '#2B4C7E', marginTop: '4px'}}></i>
-                                <span>Click-to-Call Buttons</span>
+                                <span style={{fontSize: '15px'}}>Click-to-Call Buttons</span>
                               </li>
-                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                              <li style={{marginBottom: '0', display: 'flex', alignItems: 'start', gap: '10px', lineHeight: '1.6'}}>
                                 <i className="fa-solid fa-check" style={{color: '#2B4C7E', marginTop: '4px'}}></i>
-                                <span>Analytics Dashboard</span>
+                                <span style={{fontSize: '15px'}}>Analytics Dashboard</span>
                               </li>
                             </ul>
                           </div>
@@ -560,25 +560,25 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                           </div>
                           <div className="pricing-item-list" style={{padding: '0 24px 24px'}}>
                             <ul style={{listStyle: 'none', padding: 0}}>
-                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                              <li style={{marginBottom: '16px', display: 'flex', alignItems: 'start', gap: '10px', lineHeight: '1.6'}}>
                                 <i className="fa-solid fa-check" style={{color: '#2B4C7E', marginTop: '4px'}}></i>
-                                <span>5 AI Landing Pages</span>
+                                <span style={{fontSize: '15px'}}>5 AI Landing Pages</span>
                               </li>
-                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                              <li style={{marginBottom: '16px', display: 'flex', alignItems: 'start', gap: '10px', lineHeight: '1.6'}}>
                                 <i className="fa-solid fa-check" style={{color: '#2B4C7E', marginTop: '4px'}}></i>
-                                <span>60 Social Posts/Month</span>
+                                <span style={{fontSize: '15px'}}>60 Social Posts/Month</span>
                               </li>
-                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                              <li style={{marginBottom: '16px', display: 'flex', alignItems: 'start', gap: '10px', lineHeight: '1.6'}}>
                                 <i className="fa-solid fa-check" style={{color: '#2B4C7E', marginTop: '4px'}}></i>
-                                <span>4 Email Campaigns/Month</span>
+                                <span style={{fontSize: '15px'}}>4 Email Campaigns/Month</span>
                               </li>
-                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                              <li style={{marginBottom: '16px', display: 'flex', alignItems: 'start', gap: '10px', lineHeight: '1.6'}}>
                                 <i className="fa-solid fa-check" style={{color: '#2B4C7E', marginTop: '4px'}}></i>
-                                <span>2 AI Blog Articles/Month</span>
+                                <span style={{fontSize: '15px'}}>2 AI Blog Articles/Month</span>
                               </li>
-                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                              <li style={{marginBottom: '0', display: 'flex', alignItems: 'start', gap: '10px', lineHeight: '1.6'}}>
                                 <i className="fa-solid fa-check" style={{color: '#2B4C7E', marginTop: '4px'}}></i>
-                                <span>Conversion Tracking</span>
+                                <span style={{fontSize: '15px'}}>Conversion Tracking</span>
                               </li>
                             </ul>
                           </div>
@@ -611,25 +611,25 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                           </div>
                           <div className="pricing-item-list" style={{padding: '0 24px 24px'}}>
                             <ul style={{listStyle: 'none', padding: 0}}>
-                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                              <li style={{marginBottom: '16px', display: 'flex', alignItems: 'start', gap: '10px', lineHeight: '1.6'}}>
                                 <i className="fa-solid fa-check" style={{color: '#2B4C7E', marginTop: '4px'}}></i>
-                                <span>10 Landing Pages</span>
+                                <span style={{fontSize: '15px'}}>10 Landing Pages</span>
                               </li>
-                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                              <li style={{marginBottom: '16px', display: 'flex', alignItems: 'start', gap: '10px', lineHeight: '1.6'}}>
                                 <i className="fa-solid fa-check" style={{color: '#2B4C7E', marginTop: '4px'}}></i>
-                                <span>100 Social Posts/Month</span>
+                                <span style={{fontSize: '15px'}}>100 Social Posts/Month</span>
                               </li>
-                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                              <li style={{marginBottom: '16px', display: 'flex', alignItems: 'start', gap: '10px', lineHeight: '1.6'}}>
                                 <i className="fa-solid fa-check" style={{color: '#2B4C7E', marginTop: '4px'}}></i>
-                                <span>8 Email Campaigns/Month</span>
+                                <span style={{fontSize: '15px'}}>8 Email Campaigns/Month</span>
                               </li>
-                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                              <li style={{marginBottom: '16px', display: 'flex', alignItems: 'start', gap: '10px', lineHeight: '1.6'}}>
                                 <i className="fa-solid fa-check" style={{color: '#2B4C7E', marginTop: '4px'}}></i>
-                                <span>4 Podcast Episodes/Month (AI Voice)</span>
+                                <span style={{fontSize: '15px'}}>4 Podcast Episodes/Month (AI Voice)</span>
                               </li>
-                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                              <li style={{marginBottom: '0', display: 'flex', alignItems: 'start', gap: '10px', lineHeight: '1.6'}}>
                                 <i className="fa-solid fa-check" style={{color: '#2B4C7E', marginTop: '4px'}}></i>
-                                <span>Video Production + Short-Form Clips</span>
+                                <span style={{fontSize: '15px'}}>Video Production + Short-Form Clips</span>
                               </li>
                             </ul>
                           </div>
@@ -656,29 +656,29 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                           </div>
                           <div className="pricing-item-list" style={{padding: '0 24px 24px'}}>
                             <ul style={{listStyle: 'none', padding: 0}}>
-                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                              <li style={{marginBottom: '16px', display: 'flex', alignItems: 'start', gap: '10px', lineHeight: '1.6'}}>
                                 <i className="fa-solid fa-check" style={{color: '#8B5CF6', marginTop: '4px'}}></i>
-                                <span>UNLIMITED Landing Pages</span>
+                                <span style={{fontSize: '15px'}}>UNLIMITED Landing Pages</span>
                               </li>
-                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                              <li style={{marginBottom: '16px', display: 'flex', alignItems: 'start', gap: '10px', lineHeight: '1.6'}}>
                                 <i className="fa-solid fa-check" style={{color: '#8B5CF6', marginTop: '4px'}}></i>
-                                <span>150+ Social Posts/Month</span>
+                                <span style={{fontSize: '15px'}}>150+ Social Posts/Month</span>
                               </li>
-                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                              <li style={{marginBottom: '16px', display: 'flex', alignItems: 'start', gap: '10px', lineHeight: '1.6'}}>
                                 <i className="fa-solid fa-check" style={{color: '#8B5CF6', marginTop: '4px'}}></i>
-                                <span>AI Avatar Videos (HeyGen)</span>
+                                <span style={{fontSize: '15px'}}>AI Avatar Videos (HeyGen)</span>
                               </li>
-                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                              <li style={{marginBottom: '16px', display: 'flex', alignItems: 'start', gap: '10px', lineHeight: '1.6'}}>
                                 <i className="fa-solid fa-check" style={{color: '#8B5CF6', marginTop: '4px'}}></i>
-                                <span>Podcast on All Major Platforms</span>
+                                <span style={{fontSize: '15px'}}>Podcast on All Major Platforms</span>
                               </li>
-                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                              <li style={{marginBottom: '16px', display: 'flex', alignItems: 'start', gap: '10px', lineHeight: '1.6'}}>
                                 <i className="fa-solid fa-check" style={{color: '#8B5CF6', marginTop: '4px'}}></i>
-                                <span>Custom Domain + YouTube Management</span>
+                                <span style={{fontSize: '15px'}}>Custom Domain + YouTube Management</span>
                               </li>
-                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                              <li style={{marginBottom: '0', display: 'flex', alignItems: 'start', gap: '10px', lineHeight: '1.6'}}>
                                 <i className="fa-solid fa-check" style={{color: '#8B5CF6', marginTop: '4px'}}></i>
-                                <span>White-Glove Onboarding</span>
+                                <span style={{fontSize: '15px'}}>White-Glove Onboarding</span>
                               </li>
                             </ul>
                           </div>
@@ -705,29 +705,29 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                           </div>
                           <div className="pricing-item-list" style={{padding: '0 24px 24px'}}>
                             <ul style={{listStyle: 'none', padding: 0}}>
-                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                              <li style={{marginBottom: '16px', display: 'flex', alignItems: 'start', gap: '10px', lineHeight: '1.6'}}>
                                 <i className="fa-solid fa-check" style={{color: '#059669', marginTop: '4px'}}></i>
-                                <span>Real-Time KPI Dashboards</span>
+                                <span style={{fontSize: '15px'}}>Real-Time KPI Dashboards</span>
                               </li>
-                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                              <li style={{marginBottom: '16px', display: 'flex', alignItems: 'start', gap: '10px', lineHeight: '1.6'}}>
                                 <i className="fa-solid fa-check" style={{color: '#059669', marginTop: '4px'}}></i>
-                                <span>Commission Tracker (All Carriers)</span>
+                                <span style={{fontSize: '15px'}}>Commission Tracker (All Carriers)</span>
                               </li>
-                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                              <li style={{marginBottom: '16px', display: 'flex', alignItems: 'start', gap: '10px', lineHeight: '1.6'}}>
                                 <i className="fa-solid fa-check" style={{color: '#059669', marginTop: '4px'}}></i>
-                                <span>Revenue Forecasting (90-Day)</span>
+                                <span style={{fontSize: '15px'}}>Revenue Forecasting (90-Day)</span>
                               </li>
-                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                              <li style={{marginBottom: '16px', display: 'flex', alignItems: 'start', gap: '10px', lineHeight: '1.6'}}>
                                 <i className="fa-solid fa-check" style={{color: '#059669', marginTop: '4px'}}></i>
-                                <span>Office Leaderboard + Activity Feed</span>
+                                <span style={{fontSize: '15px'}}>Office Leaderboard + Activity Feed</span>
                               </li>
-                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                              <li style={{marginBottom: '16px', display: 'flex', alignItems: 'start', gap: '10px', lineHeight: '1.6'}}>
                                 <i className="fa-solid fa-check" style={{color: '#059669', marginTop: '4px'}}></i>
-                                <span>Role-Based Views</span>
+                                <span style={{fontSize: '15px'}}>Role-Based Views</span>
                               </li>
-                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                              <li style={{marginBottom: '0', display: 'flex', alignItems: 'start', gap: '10px', lineHeight: '1.6'}}>
                                 <i className="fa-solid fa-check" style={{color: '#059669', marginTop: '4px'}}></i>
-                                <span>Mobile-Responsive UI</span>
+                                <span style={{fontSize: '15px'}}>Mobile-Responsive UI</span>
                               </li>
                             </ul>
                           </div>
