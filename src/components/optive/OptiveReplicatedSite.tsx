@@ -108,12 +108,12 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   <div className="nav-menu-wrapper">
                     <ul className="navbar-nav mr-auto" id="menu">
                       <li className="nav-item"><a className="nav-link" href="#home">Home</a></li>
-                      <li className="nav-item"><a className="nav-link" href="#journey">Your Journey</a></li>
                       <li className="nav-item"><a className="nav-link" href="#products">Products</a></li>
-                      <li className="nav-item"><a className="nav-link" href="#services">Services</a></li>
+                      <li className="nav-item"><a className="nav-link" href="#opportunity">Opportunity</a></li>
+                      <li className="nav-item"><a className="nav-link" href="#insurance">Insurance</a></li>
+                      <li className="nav-item"><a className="nav-link" href="#how-it-works">How It Works</a></li>
                       <li className="nav-item"><a className="nav-link" href="#faq">FAQs</a></li>
                       <li className="nav-item"><a className="nav-link" href="#contact">Contact</a></li>
-                      <li className="nav-item"><a className="nav-link" href="/live">Live</a></li>
                     </ul>
                   </div>
 
@@ -176,16 +176,82 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   <div className="section-title">
                     <span className="section-sub-title wow fadeInUp">
                       {distributor.slug === 'apex'
-                        ? 'Where Insurance Professionals Come Home'
-                        : `Your Professional Home — with ${distributor.first_name} ${distributor.last_name}`
+                        ? 'AI-Powered Technology for Business Growth'
+                        : `AI-Powered Marketing with ${distributor.first_name} ${distributor.last_name}`
                       }
                     </span>
                     <h1 className="text-anime-style-3" data-cursor="-opaque">
-                      Aspiring. Growing. Established.<br />You Belong Here.
+                      AI-Powered Marketing.<br />Real Business Growth.<br />Built for You.
                     </h1>
-                    <p className="wow fadeInUp" data-wow-delay="0.1s" style={{color: '#fff', fontSize: '18px', marginTop: '20px', maxWidth: '680px'}}>
-                      Whether you're just starting out, building your career, or a seasoned professional ready to scale — Apex Affinity Group is your home. We give your clients world-class life insurance and protection products. We give you the tools, training, and community to sell them with confidence. Both sides of the equation, fully covered.
+                    <p className="wow fadeInUp" data-wow-delay="0.1s" style={{color: '#fff', fontSize: '18px', marginTop: '20px', maxWidth: '750px', lineHeight: '1.6'}}>
+                      Apex delivers Fortune 500 marketing automation to small businesses for a fraction of the cost — with AI-generated content, landing pages, podcasts, and video production. All done for you. Starting at $59/month.
                     </p>
+
+                    {/* Trust Bar */}
+                    <div className="wow fadeInUp" data-wow-delay="0.2s" style={{
+                      display: 'flex',
+                      gap: '30px',
+                      marginTop: '30px',
+                      flexWrap: 'wrap',
+                      justifyContent: 'center',
+                      maxWidth: '750px'
+                    }}>
+                      <div style={{display: 'flex', alignItems: 'center', gap: '8px', color: '#fff', fontSize: '15px'}}>
+                        <svg style={{width: '20px', height: '20px'}} fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        AI-Generated Content
+                      </div>
+                      <div style={{display: 'flex', alignItems: 'center', gap: '8px', color: '#fff', fontSize: '15px'}}>
+                        <svg style={{width: '20px', height: '20px'}} fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        30+ Posts/Month
+                      </div>
+                      <div style={{display: 'flex', alignItems: 'center', gap: '8px', color: '#fff', fontSize: '15px'}}>
+                        <svg style={{width: '20px', height: '20px'}} fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        Landing Pages Included
+                      </div>
+                      <div style={{display: 'flex', alignItems: 'center', gap: '8px', color: '#fff', fontSize: '15px'}}>
+                        <svg style={{width: '20px', height: '20px'}} fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        No Setup Required
+                      </div>
+                    </div>
+
+                    {/* Dual CTAs */}
+                    <div className="wow fadeInUp" data-wow-delay="0.3s" style={{
+                      display: 'flex',
+                      gap: '16px',
+                      marginTop: '40px',
+                      flexWrap: 'wrap',
+                      justifyContent: 'center'
+                    }}>
+                      <a href="#products" className="btn-default" style={{
+                        background: '#ffffff',
+                        color: '#2B4C7E',
+                        borderColor: '#ffffff',
+                        padding: '14px 32px',
+                        fontSize: '16px',
+                        fontWeight: '600'
+                      }}>
+                        View Products
+                      </a>
+                      <a href={signupUrl} className="btn-default" style={{
+                        background: 'transparent',
+                        color: '#ffffff',
+                        borderColor: '#ffffff',
+                        border: '2px solid #ffffff',
+                        padding: '14px 32px',
+                        fontSize: '16px',
+                        fontWeight: '600'
+                      }}>
+                        {distributor.slug === 'apex' ? 'Join as Distributor' : `Join ${distributor.first_name}'s Team`}
+                      </a>
+                    </div>
                   </div>
                   {/* Section Title End */}
                 </div>
@@ -196,17 +262,107 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
         </div>
         {/* Hero Section End */}
 
-
-
-        {/* Your Journey — 3 Pillars Section Start */}
-        <div className="our-pricing" style={{background: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)'}}>
+        {/* The Problem Section Start */}
+        <div style={{background: '#ffffff', padding: '80px 0'}}>
           <div className="container">
             <div className="row section-row">
               <div className="col-lg-12">
                 <div className="section-title section-title-center">
-                  <span className="section-sub-title wow fadeInUp" id="journey">Every Stage. One Home.</span>
-                  <h2 className="text-anime-style-3" data-cursor="-opaque">No Matter Where You Are, Apex Meets You There</h2>
-                  <p className="wow fadeInUp" data-wow-delay="0.2s">Apex Affinity Group was built for insurance professionals at every stage of their journey. Whether you're just exploring, actively building, or a seasoned veteran — we have the tools, support, and community to take you further.</p>
+                  <span className="section-sub-title wow fadeInUp" style={{color: '#2B4C7E'}}>The Problem Every Business Owner Has</span>
+                  <h2 className="text-anime-style-3" data-cursor="-opaque" style={{color: '#1a2f50', marginBottom: '20px'}}>
+                    You're Spending $300–$1,500/Month on Software.<br />But Where's Your Marketing?
+                  </h2>
+                </div>
+              </div>
+            </div>
+
+            <div className="row justify-content-center">
+              <div className="col-lg-8">
+                <div className="wow fadeInUp" data-wow-delay="0.2s">
+                  <p style={{fontSize: '18px', lineHeight: '1.8', color: '#4b5563', textAlign: 'center', marginBottom: '40px'}}>
+                    Most business owners spend hundreds per month on disconnected software subscriptions — and very little of it actually generates leads or grows their business.
+                  </p>
+
+                  <div style={{background: '#f8f9fa', borderRadius: '12px', padding: '40px', border: '2px solid #e5e7eb'}}>
+                    <h3 style={{color: '#2B4C7E', fontSize: '20px', fontWeight: '700', marginBottom: '24px', textAlign: 'center'}}>
+                      You Need:
+                    </h3>
+                    <div className="row">
+                      <div className="col-md-6" style={{marginBottom: '16px'}}>
+                        <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                          <svg style={{width: '24px', height: '24px', color: '#2B4C7E', flexShrink: 0, marginTop: '2px'}} fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                          </svg>
+                          <span style={{fontSize: '16px', color: '#1f2937'}}>A website that converts visitors to leads</span>
+                        </div>
+                      </div>
+                      <div className="col-md-6" style={{marginBottom: '16px'}}>
+                        <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                          <svg style={{width: '24px', height: '24px', color: '#2B4C7E', flexShrink: 0, marginTop: '2px'}} fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                          </svg>
+                          <span style={{fontSize: '16px', color: '#1f2937'}}>Social media content posted consistently</span>
+                        </div>
+                      </div>
+                      <div className="col-md-6" style={{marginBottom: '16px'}}>
+                        <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                          <svg style={{width: '24px', height: '24px', color: '#2B4C7E', flexShrink: 0, marginTop: '2px'}} fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                          </svg>
+                          <span style={{fontSize: '16px', color: '#1f2937'}}>Email campaigns that nurture prospects</span>
+                        </div>
+                      </div>
+                      <div className="col-md-6" style={{marginBottom: '16px'}}>
+                        <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                          <svg style={{width: '24px', height: '24px', color: '#2B4C7E', flexShrink: 0, marginTop: '2px'}} fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                          </svg>
+                          <span style={{fontSize: '16px', color: '#1f2937'}}>SEO content that brings organic traffic</span>
+                        </div>
+                      </div>
+                      <div className="col-md-6" style={{marginBottom: '16px'}}>
+                        <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                          <svg style={{width: '24px', height: '24px', color: '#2B4C7E', flexShrink: 0, marginTop: '2px'}} fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                          </svg>
+                          <span style={{fontSize: '16px', color: '#1f2937'}}>Lead tracking and analytics</span>
+                        </div>
+                      </div>
+                      <div className="col-md-6" style={{marginBottom: '16px'}}>
+                        <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                          <svg style={{width: '24px', height: '24px', color: '#2B4C7E', flexShrink: 0, marginTop: '2px'}} fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                          </svg>
+                          <span style={{fontSize: '16px', color: '#1f2937'}}>Time to actually run your business</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div style={{marginTop: '32px', textAlign: 'center', padding: '24px', background: '#ffffff', borderRadius: '8px', border: '2px solid #2B4C7E'}}>
+                      <p style={{fontSize: '20px', fontWeight: '700', color: '#2B4C7E', marginBottom: '8px'}}>
+                        Apex Delivers All of This — Powered by AI
+                      </p>
+                      <p style={{fontSize: '16px', color: '#4b5563', margin: 0}}>
+                        For less than what you're paying for one disconnected tool.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* The Problem Section End */}
+
+        {/* Product Showcase Section Start */}
+        <div className="our-pricing" style={{background: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)'}} id="products">
+          <div className="container">
+            <div className="row section-row">
+              <div className="col-lg-12">
+                <div className="section-title section-title-center">
+                  <span className="section-sub-title wow fadeInUp">The Apex Product Suite</span>
+                  <h2 className="text-anime-style-3" data-cursor="-opaque">Five AI-Powered Platforms.<br />One Marketing Department.<br />Unlimited Growth.</h2>
+                  <p className="wow fadeInUp" data-wow-delay="0.2s">Choose the tier that fits your business — from entry-level presence to elite omnichannel dominance. All products include AI-generated content, landing pages, and analytics. Member pricing shown (retail pricing available).</p>
                 </div>
               </div>
             </div>
@@ -215,100 +371,243 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
               <div className="col-lg-12">
                 <div className="our-pricing-box wow fadeInUp" data-wow-delay="0.4s">
                   <div className="pricing-tab-item" style={{ display: 'block' }}>
-                    <div className="row">
+                    <div className="row justify-content-center">
 
-                      {/* ASPIRING CARD */}
-                      <div className="col-xl-4 col-md-6" style={{marginBottom: '20px'}}>
-                        <div className="pricing-item" style={{border: '3px solid #2B4C7E', height: '100%'}}>
-                          <div className="icon-box">
-                            <i className="fa-solid fa-seedling" style={{fontSize: '48px', color: '#2B4C7E'}}></i>
+                      {/* PULSEGUARD/PULSEMARKET CARD */}
+                      <div className="col-lg-4 col-md-6" style={{marginBottom: '30px'}}>
+                        <div className="pricing-item" style={{border: '3px solid #2B4C7E', height: '100%', borderRadius: '12px'}}>
+                          <div style={{background: '#f8f9fa', padding: '20px', borderRadius: '10px 10px 0 0'}}>
+                            <div style={{fontSize: '14px', fontWeight: '600', color: '#2B4C7E', marginBottom: '8px'}}>💡 PULSEGUARD</div>
+                            <h3 style={{fontSize: '22px', fontWeight: '700', color: '#1a2f50', marginBottom: '4px'}}>Entry Tier</h3>
+                            <p style={{fontSize: '14px', color: '#6b7280', marginBottom: '16px'}}>Your digital foundation</p>
+                            <div style={{fontSize: '32px', fontWeight: '800', color: '#2B4C7E'}}>$79<span style={{fontSize: '16px', fontWeight: '400', color: '#6b7280'}}>/mo</span></div>
+                            <div style={{fontSize: '13px', color: '#6b7280'}}>$59 member price</div>
                           </div>
-                          <div className="pricing-item-content">
-                            <h2>Aspiring</h2>
-                            <p>Curious about insurance. No license yet.</p>
-                            <h3>Start <sub>From Zero</sub></h3>
+                          <div className="pricing-item-content" style={{padding: '24px'}}>
+                            <p style={{fontSize: '15px', color: '#4b5563', lineHeight: '1.6', marginBottom: '20px'}}>
+                              Get online without spending hours building it yourself. Perfect for new businesses and part-time entrepreneurs.
+                            </p>
                           </div>
-                          <div className="pricing-item-list">
-                            <h3>What You Get:</h3>
-                            <ul>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> No License Needed to Start</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Earn Day One with Ancillary Products</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Free Licensing Guidance & Study Support</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> AI-Powered CRM from Day One</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> 1-on-1 Mentorship &amp; Onboarding</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Built-in Path to Full Insurance Sales</li>
+                          <div className="pricing-item-list" style={{padding: '0 24px 24px'}}>
+                            <ul style={{listStyle: 'none', padding: 0}}>
+                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                                <i className="fa-solid fa-check" style={{color: '#2B4C7E', marginTop: '4px'}}></i>
+                                <span>3 AI-Generated Landing Pages</span>
+                              </li>
+                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                                <i className="fa-solid fa-check" style={{color: '#2B4C7E', marginTop: '4px'}}></i>
+                                <span>30 Social Media Posts/Month</span>
+                              </li>
+                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                                <i className="fa-solid fa-check" style={{color: '#2B4C7E', marginTop: '4px'}}></i>
+                                <span>Lead Capture Forms</span>
+                              </li>
+                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                                <i className="fa-solid fa-check" style={{color: '#2B4C7E', marginTop: '4px'}}></i>
+                                <span>Click-to-Call Buttons</span>
+                              </li>
+                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                                <i className="fa-solid fa-check" style={{color: '#2B4C7E', marginTop: '4px'}}></i>
+                                <span>Analytics Dashboard</span>
+                              </li>
                             </ul>
                           </div>
-                          <div className="pricing-item-btn">
-                            <a href={signupUrl} className="btn-default">
-                              {distributor.slug === 'apex' ? 'Get Started' : 'Start Your Journey'}
-                            </a>
+                          <div className="pricing-item-btn" style={{padding: '0 24px 24px'}}>
+                            <a href={signupUrl} className="btn-default" style={{width: '100%', textAlign: 'center'}}>Learn More</a>
                           </div>
                         </div>
                       </div>
 
-                      {/* GROWING CARD */}
-                      <div className="col-xl-4 col-md-6" style={{marginBottom: '20px'}}>
-                        <div className="pricing-item pricing-item-popular" style={{border: '3px solid #2B4C7E', position: 'relative', height: '100%'}}>
+                      {/* PULSEFLOW CARD */}
+                      <div className="col-lg-4 col-md-6" style={{marginBottom: '30px'}}>
+                        <div className="pricing-item" style={{border: '3px solid #2B4C7E', height: '100%', borderRadius: '12px'}}>
+                          <div style={{background: '#f8f9fa', padding: '20px', borderRadius: '10px 10px 0 0'}}>
+                            <div style={{fontSize: '14px', fontWeight: '600', color: '#2B4C7E', marginBottom: '8px'}}>📈 PULSEFLOW</div>
+                            <h3 style={{fontSize: '22px', fontWeight: '700', color: '#1a2f50', marginBottom: '4px'}}>Growth Tier</h3>
+                            <p style={{fontSize: '14px', color: '#6b7280', marginBottom: '16px'}}>Scale your content engine</p>
+                            <div style={{fontSize: '32px', fontWeight: '800', color: '#2B4C7E'}}>$149<span style={{fontSize: '16px', fontWeight: '400', color: '#6b7280'}}>/mo</span></div>
+                            <div style={{fontSize: '13px', color: '#6b7280'}}>$129 member price</div>
+                          </div>
+                          <div className="pricing-item-content" style={{padding: '24px'}}>
+                            <p style={{fontSize: '15px', color: '#4b5563', lineHeight: '1.6', marginBottom: '20px'}}>
+                              Replace $300-800/month in disconnected tools. Perfect for growing businesses ready to systemize.
+                            </p>
+                          </div>
+                          <div className="pricing-item-list" style={{padding: '0 24px 24px'}}>
+                            <ul style={{listStyle: 'none', padding: 0}}>
+                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                                <i className="fa-solid fa-check" style={{color: '#2B4C7E', marginTop: '4px'}}></i>
+                                <span>5 AI Landing Pages</span>
+                              </li>
+                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                                <i className="fa-solid fa-check" style={{color: '#2B4C7E', marginTop: '4px'}}></i>
+                                <span>60 Social Posts/Month</span>
+                              </li>
+                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                                <i className="fa-solid fa-check" style={{color: '#2B4C7E', marginTop: '4px'}}></i>
+                                <span>4 Email Campaigns/Month</span>
+                              </li>
+                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                                <i className="fa-solid fa-check" style={{color: '#2B4C7E', marginTop: '4px'}}></i>
+                                <span>2 AI Blog Articles/Month</span>
+                              </li>
+                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                                <i className="fa-solid fa-check" style={{color: '#2B4C7E', marginTop: '4px'}}></i>
+                                <span>Conversion Tracking</span>
+                              </li>
+                            </ul>
+                          </div>
+                          <div className="pricing-item-btn" style={{padding: '0 24px 24px'}}>
+                            <a href={signupUrl} className="btn-default" style={{width: '100%', textAlign: 'center'}}>Learn More</a>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* PULSEDRIVE CARD - POPULAR */}
+                      <div className="col-lg-4 col-md-6" style={{marginBottom: '30px'}}>
+                        <div className="pricing-item pricing-item-popular" style={{border: '3px solid #2B4C7E', height: '100%', borderRadius: '12px', position: 'relative'}}>
                           <div style={{
                             position: 'absolute', top: '-15px', right: '20px',
                             background: '#2B4C7E', color: '#fff',
                             padding: '5px 20px', borderRadius: '20px',
                             fontWeight: 'bold', fontSize: '12px'
-                          }}>MOST COMMON</div>
-                          <div className="icon-box">
-                            <i className="fa-solid fa-chart-line" style={{fontSize: '48px', color: '#2B4C7E'}}></i>
+                          }}>MOST POPULAR</div>
+                          <div style={{background: '#f8f9fa', padding: '20px', borderRadius: '10px 10px 0 0'}}>
+                            <div style={{fontSize: '14px', fontWeight: '600', color: '#2B4C7E', marginBottom: '8px'}}>🎙️ PULSEDRIVE</div>
+                            <h3 style={{fontSize: '22px', fontWeight: '700', color: '#1a2f50', marginBottom: '4px'}}>Professional Tier</h3>
+                            <p style={{fontSize: '14px', color: '#6b7280', marginBottom: '16px'}}>Your podcast. Your voice. Autopilot.</p>
+                            <div style={{fontSize: '32px', fontWeight: '800', color: '#2B4C7E'}}>$299<span style={{fontSize: '16px', fontWeight: '400', color: '#6b7280'}}>/mo</span></div>
+                            <div style={{fontSize: '13px', color: '#6b7280'}}>$219 member price</div>
                           </div>
-                          <div className="pricing-item-content">
-                            <h2>Growing</h2>
-                            <p>Licensed and building. Ready for more.</p>
-                            <h3>Level <sub>Up Now</sub></h3>
+                          <div className="pricing-item-content" style={{padding: '24px'}}>
+                            <p style={{fontSize: '15px', color: '#4b5563', lineHeight: '1.6', marginBottom: '20px'}}>
+                              Become the most prolific content creator in your market without recording anything yourself.
+                            </p>
                           </div>
-                          <div className="pricing-item-list">
-                            <h3>What You Get:</h3>
-                            <ul>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Stronger Carrier Contracts</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Sales Training Podcast &amp; Live Calls</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Lead Generation &amp; Client Management Tools</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Compliance &amp; Product Support</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Peer Community &amp; Accountability</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> 100% Book of Business Ownership</li>
+                          <div className="pricing-item-list" style={{padding: '0 24px 24px'}}>
+                            <ul style={{listStyle: 'none', padding: 0}}>
+                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                                <i className="fa-solid fa-check" style={{color: '#2B4C7E', marginTop: '4px'}}></i>
+                                <span>10 Landing Pages</span>
+                              </li>
+                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                                <i className="fa-solid fa-check" style={{color: '#2B4C7E', marginTop: '4px'}}></i>
+                                <span>100 Social Posts/Month</span>
+                              </li>
+                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                                <i className="fa-solid fa-check" style={{color: '#2B4C7E', marginTop: '4px'}}></i>
+                                <span>8 Email Campaigns/Month</span>
+                              </li>
+                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                                <i className="fa-solid fa-check" style={{color: '#2B4C7E', marginTop: '4px'}}></i>
+                                <span>4 Podcast Episodes/Month (AI Voice)</span>
+                              </li>
+                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                                <i className="fa-solid fa-check" style={{color: '#2B4C7E', marginTop: '4px'}}></i>
+                                <span>Video Production + Short-Form Clips</span>
+                              </li>
                             </ul>
                           </div>
-                          <div className="pricing-item-btn">
-                            <a href={signupUrl} className="btn-default">
-                              {distributor.slug === 'apex' ? 'Get Started' : 'Grow With Us'}
-                            </a>
+                          <div className="pricing-item-btn" style={{padding: '0 24px 24px'}}>
+                            <a href={signupUrl} className="btn-default" style={{width: '100%', textAlign: 'center'}}>Learn More</a>
                           </div>
                         </div>
                       </div>
 
-                      {/* ESTABLISHED CARD */}
-                      <div className="col-xl-4 col-md-6" style={{marginBottom: '20px'}}>
-                        <div className="pricing-item" style={{border: '3px solid #2B4C7E', height: '100%'}}>
-                          <div className="icon-box">
-                            <i className="fa-solid fa-award" style={{fontSize: '48px', color: '#2B4C7E'}}></i>
+                      {/* PULSECOMMAND CARD */}
+                      <div className="col-lg-4 col-md-6" style={{marginBottom: '30px'}}>
+                        <div className="pricing-item" style={{border: '3px solid #8B5CF6', height: '100%', borderRadius: '12px'}}>
+                          <div style={{background: 'linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%)', padding: '20px', borderRadius: '10px 10px 0 0'}}>
+                            <div style={{fontSize: '14px', fontWeight: '600', color: '#ffffff', marginBottom: '8px'}}>👑 PULSECOMMAND</div>
+                            <h3 style={{fontSize: '22px', fontWeight: '700', color: '#ffffff', marginBottom: '4px'}}>Elite Tier</h3>
+                            <p style={{fontSize: '14px', color: '#e0e0e0', marginBottom: '16px'}}>Unlimited. Omnichannel. Elite.</p>
+                            <div style={{fontSize: '32px', fontWeight: '800', color: '#ffffff'}}>$499<span style={{fontSize: '16px', fontWeight: '400', color: '#e0e0e0'}}>/mo</span></div>
+                            <div style={{fontSize: '13px', color: '#e0e0e0'}}>$349 member price</div>
                           </div>
-                          <div className="pricing-item-content">
-                            <h2>Established</h2>
-                            <p>Seasoned pro. Time to serve at a higher level.</p>
-                            <h3>Unlimited <sub>Potential</sub></h3>
+                          <div className="pricing-item-content" style={{padding: '24px'}}>
+                            <p style={{fontSize: '15px', color: '#4b5563', lineHeight: '1.6', marginBottom: '20px'}}>
+                              Fortune 500 marketing operation for $349/month. Agency builders and top producers run this.
+                            </p>
                           </div>
-                          <div className="pricing-item-list">
-                            <h3>What You Get:</h3>
-                            <ul>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Top-Tier Commission Contracts</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Multiple Carrier Appointments</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Team Building &amp; Residual Income</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Advanced CRM &amp; Automation Tools</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Leadership &amp; Mentorship Opportunities</li>
-                              <li><i className="fa-solid fa-check" style={{color: '#2B4C7E'}}></i> Replicated Site &amp; Personal Brand Tools</li>
+                          <div className="pricing-item-list" style={{padding: '0 24px 24px'}}>
+                            <ul style={{listStyle: 'none', padding: 0}}>
+                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                                <i className="fa-solid fa-check" style={{color: '#8B5CF6', marginTop: '4px'}}></i>
+                                <span>UNLIMITED Landing Pages</span>
+                              </li>
+                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                                <i className="fa-solid fa-check" style={{color: '#8B5CF6', marginTop: '4px'}}></i>
+                                <span>150+ Social Posts/Month</span>
+                              </li>
+                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                                <i className="fa-solid fa-check" style={{color: '#8B5CF6', marginTop: '4px'}}></i>
+                                <span>AI Avatar Videos (HeyGen)</span>
+                              </li>
+                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                                <i className="fa-solid fa-check" style={{color: '#8B5CF6', marginTop: '4px'}}></i>
+                                <span>Podcast on All Major Platforms</span>
+                              </li>
+                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                                <i className="fa-solid fa-check" style={{color: '#8B5CF6', marginTop: '4px'}}></i>
+                                <span>Custom Domain + YouTube Management</span>
+                              </li>
+                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                                <i className="fa-solid fa-check" style={{color: '#8B5CF6', marginTop: '4px'}}></i>
+                                <span>White-Glove Onboarding</span>
+                              </li>
                             </ul>
                           </div>
-                          <div className="pricing-item-btn">
-                            <a href={signupUrl} className="btn-default">
-                              {distributor.slug === 'apex' ? 'Get Started' : `Join ${distributor.first_name}'s Network`}
-                            </a>
+                          <div className="pricing-item-btn" style={{padding: '0 24px 24px'}}>
+                            <a href={signupUrl} className="btn-default" style={{width: '100%', textAlign: 'center', background: '#8B5CF6', borderColor: '#8B5CF6'}}>Learn More</a>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* SMARTLOOK XL CARD */}
+                      <div className="col-lg-4 col-md-6" style={{marginBottom: '30px'}}>
+                        <div className="pricing-item" style={{border: '3px solid #059669', height: '100%', borderRadius: '12px'}}>
+                          <div style={{background: 'linear-gradient(135deg, #059669 0%, #047857 100%)', padding: '20px', borderRadius: '10px 10px 0 0'}}>
+                            <div style={{fontSize: '14px', fontWeight: '600', color: '#ffffff', marginBottom: '8px'}}>📊 SMARTLOOK XL</div>
+                            <h3 style={{fontSize: '22px', fontWeight: '700', color: '#ffffff', marginBottom: '4px'}}>Smart Office</h3>
+                            <p style={{fontSize: '14px', color: '#e0e0e0', marginBottom: '16px'}}>Business intelligence dashboard</p>
+                            <div style={{fontSize: '32px', fontWeight: '800', color: '#ffffff'}}>$99<span style={{fontSize: '16px', fontWeight: '400', color: '#e0e0e0'}}>/mo</span></div>
+                            <div style={{fontSize: '13px', color: '#e0e0e0'}}>Member price (no retail)</div>
+                          </div>
+                          <div className="pricing-item-content" style={{padding: '24px'}}>
+                            <p style={{fontSize: '15px', color: '#4b5563', lineHeight: '1.6', marginBottom: '20px'}}>
+                              See every dollar in your business. Real-time KPIs across all carriers and team members.
+                            </p>
+                          </div>
+                          <div className="pricing-item-list" style={{padding: '0 24px 24px'}}>
+                            <ul style={{listStyle: 'none', padding: 0}}>
+                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                                <i className="fa-solid fa-check" style={{color: '#059669', marginTop: '4px'}}></i>
+                                <span>Real-Time KPI Dashboards</span>
+                              </li>
+                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                                <i className="fa-solid fa-check" style={{color: '#059669', marginTop: '4px'}}></i>
+                                <span>Commission Tracker (All Carriers)</span>
+                              </li>
+                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                                <i className="fa-solid fa-check" style={{color: '#059669', marginTop: '4px'}}></i>
+                                <span>Revenue Forecasting (90-Day)</span>
+                              </li>
+                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                                <i className="fa-solid fa-check" style={{color: '#059669', marginTop: '4px'}}></i>
+                                <span>Office Leaderboard + Activity Feed</span>
+                              </li>
+                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                                <i className="fa-solid fa-check" style={{color: '#059669', marginTop: '4px'}}></i>
+                                <span>Role-Based Views</span>
+                              </li>
+                              <li style={{marginBottom: '12px', display: 'flex', alignItems: 'start', gap: '10px'}}>
+                                <i className="fa-solid fa-check" style={{color: '#059669', marginTop: '4px'}}></i>
+                                <span>Mobile-Responsive UI</span>
+                              </li>
+                            </ul>
+                          </div>
+                          <div className="pricing-item-btn" style={{padding: '0 24px 24px'}}>
+                            <a href={signupUrl} className="btn-default" style={{width: '100%', textAlign: 'center', background: '#059669', borderColor: '#059669'}}>Learn More</a>
                           </div>
                         </div>
                       </div>
@@ -316,15 +615,32 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                     </div>
                   </div>
 
-                  {/* Universal Benefits */}
-                  <div className="pricing-benefit-list wow fadeInUp" data-wow-delay="0.2s" style={{marginTop: '40px'}}>
-                    <h3 style={{textAlign: 'center', marginBottom: '20px', color: '#2B4C7E', fontSize: '24px'}}>Every Member Gets These From Day One:</h3>
-                    <ul style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '30px'}}>
-                      <li><img src="/optive/images/icon-pricing-benefit-1.svg" alt="" />$0 to join, no monthly fees</li>
-                      <li><img src="/optive/images/icon-pricing-benefit-2.svg" alt="" />AI-powered CRM included free</li>
-                      <li><img src="/optive/images/icon-pricing-benefit-3.svg" alt="" />Training podcast &amp; live calls</li>
-                      <li><img src="/optive/images/icon-pricing-benefit-1.svg" alt="" />100% book of business ownership</li>
-                    </ul>
+                  {/* How It Works - Sale Process */}
+                  <div className="wow fadeInUp" data-wow-delay="0.2s" style={{marginTop: '60px', background: '#ffffff', borderRadius: '12px', padding: '40px', border: '2px solid #e5e7eb'}} id="how-it-works">
+                    <h3 style={{textAlign: 'center', marginBottom: '16px', color: '#2B4C7E', fontSize: '24px', fontWeight: '700'}}>How Does a Sale Work?</h3>
+                    <p style={{textAlign: 'center', marginBottom: '40px', color: '#6b7280', fontSize: '16px'}}>Simple. Fast. Done for You.</p>
+                    <div className="row">
+                      <div className="col-md-3" style={{marginBottom: '20px', textAlign: 'center'}}>
+                        <div style={{width: '60px', height: '60px', background: '#2B4C7E', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', color: '#fff', fontSize: '24px', fontWeight: '700'}}>1</div>
+                        <h4 style={{fontSize: '16px', fontWeight: '600', marginBottom: '8px'}}>Client Purchases</h4>
+                        <p style={{fontSize: '14px', color: '#6b7280'}}>From your custom website</p>
+                      </div>
+                      <div className="col-md-3" style={{marginBottom: '20px', textAlign: 'center'}}>
+                        <div style={{width: '60px', height: '60px', background: '#2B4C7E', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', color: '#fff', fontSize: '24px', fontWeight: '700'}}>2</div>
+                        <h4 style={{fontSize: '16px', fontWeight: '600', marginBottom: '8px'}}>Schedule Onboarding</h4>
+                        <p style={{fontSize: '14px', color: '#6b7280'}}>30-minute needs assessment</p>
+                      </div>
+                      <div className="col-md-3" style={{marginBottom: '20px', textAlign: 'center'}}>
+                        <div style={{width: '60px', height: '60px', background: '#2B4C7E', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', color: '#fff', fontSize: '24px', fontWeight: '700'}}>3</div>
+                        <h4 style={{fontSize: '16px', fontWeight: '600', marginBottom: '8px'}}>We Set Up Channels</h4>
+                        <p style={{fontSize: '14px', color: '#6b7280'}}>Social media, content calendar</p>
+                      </div>
+                      <div className="col-md-3" style={{marginBottom: '20px', textAlign: 'center'}}>
+                        <div style={{width: '60px', height: '60px', background: '#2B4C7E', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', color: '#fff', fontSize: '24px', fontWeight: '700'}}>4</div>
+                        <h4 style={{fontSize: '16px', fontWeight: '600', marginBottom: '8px'}}>Delivery Begins</h4>
+                        <p style={{fontSize: '14px', color: '#6b7280'}}>Within 10 days</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -506,7 +822,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                 <div className="section-title section-title-center">
                   <span className="section-sub-title wow fadeInUp" id="faq">Frequently Asked Questions</span>
                   <h2 className="text-anime-style-3" data-cursor="-opaque">Real Answers. No Runaround.</h2>
-                  <p className="wow fadeInUp" data-wow-delay="0.2s">We believe transparency builds trust. Here are honest answers to the questions we hear most from insurance professionals considering Apex as their professional home.</p>
+                  <p className="wow fadeInUp" data-wow-delay="0.2s">We believe transparency builds trust. Here are honest answers to the questions we hear most from business owners and potential distributors exploring Apex.</p>
                 </div>
                 {/* Section Title End */}
               </div>
@@ -525,7 +841,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                     </h2>
                     <div id="collapse1" className="accordion-collapse collapse" role="region" aria-labelledby="heading1" data-bs-parent="#accordion">
                       <div style={{backgroundColor: 'white', padding: '20px'}}>
-                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>Apex Affinity Group is both — an insurance company and a professional services platform. On one side, we offer a world-class product portfolio: life insurance, annuities, and ancillary protection products that our agents bring to their clients every day. On the other side, we provide everything an agent needs to do that well: AI-powered tools, structured training, career mentorship, carrier access, and a professional community. You sell real insurance. We make sure you have everything you need to do it at the highest level.</div>
+                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>Apex Affinity Group is a technology company that provides AI-powered marketing and business intelligence software for business owners across all industries — with specialized tools for insurance professionals. Our products (PulseGuard, PulseFlow, PulseDrive, PulseCommand, SmartLook XL) deliver AI-generated content, landing pages, social media automation, podcast production, and business analytics. We sell through a direct sales distribution model, meaning you can either buy our software as a customer OR join as a distributor to earn recurring commissions sharing it with others.</div>
                       </div>
                     </div>
                   </div>
@@ -535,12 +851,12 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   <div className="accordion-item wow fadeInUp" data-wow-delay="0.2s">
                     <h2 className="accordion-header" id="heading2">
                       <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
-                        Q2. Do I need an insurance license to join?
+                        Q2. Who are your products for?
                       </button>
                     </h2>
                     <div id="collapse2" className="accordion-collapse collapse" role="region" aria-labelledby="heading2" data-bs-parent="#accordion">
                       <div style={{backgroundColor: 'white', padding: '20px'}}>
-                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>No license is required to get started. You can begin earning immediately with our ancillary product line — telemedicine, roadside assistance, ID theft protection, and legal services — while we guide you through the licensing process at your own pace. For already-licensed agents, you plug directly into stronger contracts, better tools, and a supportive professional community.</div>
+                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>Any business owner who needs marketing automation — insurance agents, financial advisors, real estate professionals, coaches, consultants, small business owners, and entrepreneurs. If you need a website, social media presence, lead generation, or content marketing, Apex replaces 5-10 disconnected tools with one AI-powered platform. Most business owners spend $300-$1,500/month on software that doesn't generate leads. Our products deliver actual marketing results starting at $79/month.</div>
                       </div>
                     </div>
                   </div>
@@ -550,12 +866,12 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   <div className="accordion-item wow fadeInUp" data-wow-delay="0.4s">
                     <h2 className="accordion-header" id="heading3">
                       <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
-                        Q3. I'm already a licensed agent. Why would I join Apex?
+                        Q3. Can I just buy the products, or do I have to join as a distributor?
                       </button>
                     </h2>
                     <div id="collapse3" className="accordion-collapse collapse show" role="region" aria-labelledby="heading3" data-bs-parent="#accordion">
                       <div style={{backgroundColor: 'white', padding: '20px'}}>
-                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>Seasoned agents join Apex because we give them what they've been missing: better carrier contracts, AI-powered client management tools, a supportive professional community, and the ability to build residual income through team development — all while keeping 100% ownership of their book of business. It's the infrastructure of a large agency without giving up your independence.</div>
+                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>You can absolutely purchase any Apex product as a retail customer without joining the business opportunity. However, joining as a distributor gives you two major benefits: (1) Access to member pricing (20-30% discount on all products), and (2) The ability to earn recurring commissions by sharing these products with other business owners. There's $0 cost to join, no monthly fees, and no obligations. Many people join just for the member pricing and later decide to build it as a business.</div>
                       </div>
                     </div>
                   </div>
@@ -565,12 +881,12 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   <div className="accordion-item wow fadeInUp" data-wow-delay="0.6s">
                     <h2 className="accordion-header" id="heading4">
                       <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
-                        Q4. What does "insurance services" mean — are you different from a typical agency?
+                        Q4. How do I earn money as an Apex distributor?
                       </button>
                     </h2>
                     <div id="collapse4" className="accordion-collapse collapse" role="region" aria-labelledby="heading4" data-bs-parent="#accordion">
                       <div style={{backgroundColor: 'white', padding: '20px'}}>
-                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>Yes — significantly. A traditional agency focuses on recruiting agents to sell their products. Apex focuses on serving agents with the resources they need to build better practices. We provide technology, training, carrier access, compliance support, and community — because we believe the best way to grow is to make every agent we work with genuinely excellent at what they do. Better agents serve better. It's that simple.</div>
+                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>You earn commissions on every personal sale (27.9% recurring monthly) plus override commissions on your team's sales (up to 5 levels deep). Example: Sell one PulseCommand at retail ($499/mo) and earn $139.37/month for as long as that customer stays subscribed. That's recurring income, paid monthly. Additionally, you can earn fast start bonuses ($50/customer in first 60 days), team volume bonuses ($100-$2,000/month), and leadership bonuses as you build your organization. No license required to sell our technology products.</div>
                       </div>
                     </div>
                   </div>
@@ -580,12 +896,12 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   <div className="accordion-item wow fadeInUp" data-wow-delay="0.8s">
                     <h2 className="accordion-header" id="heading5">
                       <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
-                        Q5. What training and support does Apex actually provide?
+                        Q5. What about insurance? Do I need a license?
                       </button>
                     </h2>
                     <div id="collapse5" className="accordion-collapse collapse" role="region" aria-labelledby="heading5" data-bs-parent="#accordion">
                       <div style={{backgroundColor: 'white', padding: '20px'}}>
-                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>From day one, you get access to comprehensive onboarding, an AI-powered sales training podcast, weekly live training calls, 1-on-1 mentorship, an AI-powered CRM with automated lead nurturing, product training across all insurance types, and ongoing support from {distributor.slug === 'apex' ? 'the Apex team' : `${distributor.first_name} and the entire Apex team`}. We're invested in your success because your success is our mission.</div>
+                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>No license required to join Apex or sell our technology products (PulseGuard, PulseFlow, PulseDrive, PulseCommand, SmartLook XL). That said, Apex offers a dual-ladder compensation plan. The Tech Ladder is for everyone (licensed or not) selling our software products. The Insurance Ladder is optional for licensed agents who also want to sell life insurance, annuities, and ancillary products through Apex's carrier partnerships. You can do technology only, technology + insurance, or start with technology and add insurance later when/if you choose to get licensed. Apex provides guidance and support for licensing if you decide to pursue it.</div>
                       </div>
                     </div>
                   </div>
@@ -595,12 +911,12 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   <div className="accordion-item wow fadeInUp" data-wow-delay="1s">
                     <h2 className="accordion-header" id="heading6">
                       <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
-                        Q6. Is there a cost to join, and what's the commitment?
+                        Q6. Is there a cost to join as a distributor?
                       </button>
                     </h2>
                     <div id="collapse6" className="accordion-collapse collapse" role="region" aria-labelledby="heading6" data-bs-parent="#accordion">
                       <div style={{backgroundColor: 'white', padding: '20px'}}>
-                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>Zero cost to join. No monthly fees, no hidden dues, no minimum production requirements. Apex is your professional home — and a home doesn't charge you rent to belong. Many agents start part-time while keeping their current role, building at their own pace until Apex becomes their primary focus. You control your schedule, your growth, and your business.</div>
+                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>$0 to join. No monthly fees. No minimum production requirements. The optional Business Center ($39/month) gives you advanced back-office tools, but it's not required to join or earn commissions. Many distributors start with just the products they use personally (at member pricing), then build from there. You control your schedule, your growth, and your business. Start part-time, full-time, or anywhere in between.</div>
                       </div>
                     </div>
                   </div>
