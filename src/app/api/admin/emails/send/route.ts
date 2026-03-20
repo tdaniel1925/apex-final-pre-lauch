@@ -51,11 +51,22 @@ export async function POST(request: NextRequest) {
 
     for (const recipient of recipients) {
       try {
+        // Personalize email content with recipient's name
+        let personalizedContent = htmlContent;
+
+        // Replace "Hi there," or "Hello," with personalized greeting
+        const firstName = recipient.first_name || 'there';
+        personalizedContent = personalizedContent
+          .replace(/Hi there,/gi, `Hi ${firstName},`)
+          .replace(/Hello there,/gi, `Hello ${firstName},`)
+          .replace(/Hello,/gi, `Hello ${firstName},`)
+          .replace(/Hi,/gi, `Hi ${firstName},`);
+
         const result = await sendTrackedEmail({
           from: 'Apex Affinity Group <notifications@theapexway.net>',
           to: recipient.email,
           subject,
-          html: htmlContent,
+          html: personalizedContent,
           skipTemplateWrap: true, // Email already has full template
           triggeredBy: 'admin',
           userId: recipient.user_id,

@@ -175,7 +175,7 @@ Template structure guidelines:
     if (htmlMatch) {
       emailContent = htmlMatch[1].trim();
     } else {
-      // Fallback: Create basic HTML from user message
+      // Fallback: Create basic HTML from user message (will be personalized per recipient)
       emailContent = `
 <p style="color: #1f2937; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
   Hi there,
