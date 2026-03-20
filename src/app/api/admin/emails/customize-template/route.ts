@@ -63,7 +63,7 @@ The user will describe what they want to change. You should:
 
     // Call Claude API
     const response = await anthropic.messages.create({
-      model: 'claude-3-5-sonnet-latest',
+      model: 'claude-sonnet-4-6',
       max_tokens: 4000,
       system: systemPrompt,
       messages,
