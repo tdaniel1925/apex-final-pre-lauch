@@ -326,8 +326,8 @@ export async function POST(request: NextRequest) {
         distributor_id: distributor.id,
         email: distributor.email,
         full_name: `${distributor.first_name} ${distributor.last_name}`,
-        enroller_id: enrollerMemberId, // Set to sponsor's member_id
-        sponsor_id: sponsorId, // Set to sponsor's distributor_id
+        enroller_id: enrollerMemberId, // Set to sponsor's member_id (FK to members.member_id)
+        sponsor_id: enrollerMemberId, // Set to sponsor's member_id (FK to members.member_id)
         status: 'active',
         enrollment_date: distributor.created_at,
         tech_rank: 'starter',
