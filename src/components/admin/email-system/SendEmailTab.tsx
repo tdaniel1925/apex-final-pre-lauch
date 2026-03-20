@@ -31,6 +31,7 @@ export default function SendEmailTab({ adminId }: SendEmailTabProps) {
   const [emailContent, setEmailContent] = useState('');
   const [selectedRecipients, setSelectedRecipients] = useState<string[]>([]);
   const [isSending, setIsSending] = useState(false);
+  const [testEmails, setTestEmails] = useState('');
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -105,6 +106,46 @@ export default function SendEmailTab({ adminId }: SendEmailTabProps) {
       ]);
     } finally {
       setIsGenerating(false);
+    }
+  };
+
+  const handleSendTestEmail = async () => {
+    if (!emailSubject || !emailContent) {
+      alert('Please generate an email first');
+      return;
+    }
+
+    if (!testEmails.trim()) {
+      alert('Please enter at least one test email address');
+      return;
+    }
+
+    setIsSending(true);
+
+    try {
+      const response = await fetch('/api/admin/emails/send-test', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          subject: emailSubject,
+          htmlContent: emailContent,
+          testEmails: testEmails,
+          adminId,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        alert(`Test email sent successfully to ${data.sentCount} address(es)!`);
+      } else {
+        alert(`Error sending test email: ${data.error}`);
+      }
+    } catch (error) {
+      console.error('Error sending test email:', error);
+      alert('Error sending test email. Please try again.');
+    } finally {
+      setIsSending(false);
     }
   };
 
@@ -213,6 +254,32 @@ export default function SendEmailTab({ adminId }: SendEmailTabProps) {
             </button>
           </div>
         </div>
+
+        {/* Test Email Field */}
+        {emailContent && (
+          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Send Test Email
+            </label>
+            <input
+              type="text"
+              value={testEmails}
+              onChange={(e) => setTestEmails(e.target.value)}
+              placeholder="test@example.com, another@example.com"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg mb-2 focus:outline-none focus:ring-2 focus:ring-[#2c5aa0]"
+            />
+            <p className="text-xs text-gray-500 mb-3">
+              Enter one or more email addresses separated by commas
+            </p>
+            <button
+              onClick={handleSendTestEmail}
+              disabled={isSending || !testEmails.trim()}
+              className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              {isSending ? 'Sending...' : 'Send Test Email'}
+            </button>
+          </div>
+        )}
 
         {/* Recipient Selector */}
         <RecipientSelector
