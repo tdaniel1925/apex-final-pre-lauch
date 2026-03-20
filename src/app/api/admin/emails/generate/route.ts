@@ -81,7 +81,10 @@ export async function POST(request: NextRequest) {
     const systemPrompt = `You are an AI email assistant for Apex Affinity Group, a network marketing company. Your job is to help admins create professional emails to send to their distributors.
 
 IMPORTANT RULES:
-1. Generate ONLY the email content HTML (the body text) - NOT the full template
+1. You MUST provide your response in TWO parts:
+   - First: A conversational message explaining what you created
+   - Second: The HTML content wrapped in \`\`\`html tags
+
 2. Use professional, encouraging, and supportive tone
 3. Keep emails concise and action-oriented
 4. Use HTML formatting: <h2>, <p>, <strong>, <ul>, <li>, <a> tags
@@ -89,25 +92,52 @@ IMPORTANT RULES:
 6. Include clear calls-to-action when appropriate
 7. Always be respectful and motivating
 
-The user will describe what they want the email to say. You should:
-1. Create appropriate email content based on their description
-2. Suggest a subject line
-3. Respond conversationally to confirm what you created
+RESPONSE FORMAT (you MUST follow this exactly):
 
-Template structure:
-- Use <h2> for main headings (color: #2c5aa0)
-- Use <p> for paragraphs (color: #1f2937, line-height: 1.6)
-- Use tables for special sections like boxes or highlights
-- Keep styling inline for email compatibility
+I've created an email for you! [explain what you created]
 
-Example response format:
-"I've created an email for you! Here's what I came up with:
+**Subject:** [the subject line]
 
-**Subject:** [subject line]
+[Any additional conversational text about the email]
 
-The email thanks everyone for attending the training and reminds them to check their back office daily. I've included a clear call-to-action button to log in and update their phone number.
+\`\`\`html
+<p style="color: #1f2937; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
+  Hi there,
+</p>
 
-Would you like me to adjust anything?"`;
+<h2 style="color: #2c5aa0; font-size: 24px; font-weight: 700; margin: 0 0 16px 0;">
+  [Heading]
+</h2>
+
+<p style="color: #1f2937; font-size: 16px; line-height: 1.6; margin: 0 0 24px 0;">
+  [Content]
+</p>
+
+<table width="100%" cellpadding="0" cellspacing="0" style="margin: 0 0 24px 0;">
+  <tr>
+    <td align="center" style="padding: 20px 0;">
+      <a href="https://reachtheapex.net/login" style="display: inline-block; background-color: #2c5aa0; color: #ffffff; text-decoration: none; padding: 16px 40px; border-radius: 6px; font-size: 16px; font-weight: 600;">
+        Log Into Your Back Office
+      </a>
+    </td>
+  </tr>
+</table>
+
+<p style="color: #1f2937; font-size: 16px; line-height: 1.6; margin: 0;">
+  Keep building!
+</p>
+
+<p style="color: #4b5563; font-size: 16px; line-height: 1.6; margin: 20px 0 0 0;">
+  <strong>The Apex Team</strong>
+</p>
+\`\`\`
+
+Template structure guidelines:
+- Use inline styles for all elements
+- Use <h2> for main headings with color: #2c5aa0
+- Use <p> for paragraphs with color: #1f2937, line-height: 1.6
+- Use tables for buttons and special sections
+- Always include proper spacing with margin properties`;
 
     // Convert conversation history to Claude format
     const messages = conversationHistory.map((msg: { role: string; content: string }) => ({
@@ -131,27 +161,21 @@ Would you like me to adjust anything?"`;
 
     const aiResponse = response.content[0].type === 'text' ? response.content[0].text : '';
 
-    // Extract subject line if present (look for **Subject:** pattern)
+    // Extract subject line (look for **Subject:** pattern)
     let emailSubject = '';
     const subjectMatch = aiResponse.match(/\*\*Subject:\*\*\s*(.+?)(?:\n|$)/i);
     if (subjectMatch) {
       emailSubject = subjectMatch[1].trim();
     }
 
-    // Generate HTML content
-    // For now, we'll use a simple conversion. In production, you might want more sophisticated HTML generation
+    // Extract HTML content from markdown code block
     let emailContent = '';
+    const htmlMatch = aiResponse.match(/```html\n([\s\S]*?)\n```/);
 
-    // Try to extract HTML content if Claude provided it
-    const htmlMatch = aiResponse.match(/<html[\s\S]*<\/html>/i);
     if (htmlMatch) {
-      emailContent = htmlMatch[0];
+      emailContent = htmlMatch[1].trim();
     } else {
-      // Convert plain text response to basic HTML
-      const contentWithoutSubject = aiResponse.replace(/\*\*Subject:\*\*\s*(.+?)(?:\n|$)/i, '').trim();
-
-      // Basic HTML generation from the description
-      // This is a simplified version - in production you'd want Claude to generate the actual HTML
+      // Fallback: Create basic HTML from user message
       emailContent = `
 <p style="color: #1f2937; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
   Hi there,
@@ -162,7 +186,7 @@ Would you like me to adjust anything?"`;
 </h2>
 
 <p style="color: #1f2937; font-size: 16px; line-height: 1.6; margin: 0 0 24px 0;">
-  ${contentWithoutSubject || userMessage}
+  ${userMessage}
 </p>
 
 <table width="100%" cellpadding="0" cellspacing="0" style="margin: 0 0 24px 0;">
@@ -187,16 +211,28 @@ Would you like me to adjust anything?"`;
     // Wrap content in template
     const fullEmail = emailTemplate.replace('{{CONTENT}}', emailContent);
 
+    // Clean the AI response for display (remove HTML code block)
+    const cleanResponse = aiResponse.replace(/```html\n[\s\S]*?\n```/, '[HTML email content generated]').trim();
+
     return NextResponse.json({
       success: true,
-      aiResponse,
+      aiResponse: cleanResponse || aiResponse,
       emailSubject: emailSubject || 'Update from Apex',
       emailContent: fullEmail,
     });
   } catch (error) {
     console.error('Error generating email:', error);
+
+    // Return more detailed error for debugging
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    console.error('Detailed error:', errorMessage);
+
     return NextResponse.json(
-      { success: false, error: 'Failed to generate email' },
+      {
+        success: false,
+        error: 'Failed to generate email',
+        details: process.env.NODE_ENV === 'development' ? errorMessage : undefined
+      },
       { status: 500 }
     );
   }
