@@ -813,23 +813,23 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                       <tbody>
                         <tr style={{borderBottom: '1px solid rgba(255,255,255,0.1)'}}>
                           <td style={{padding: '16px 12px', fontSize: '16px'}}>PulseGuard</td>
-                          <td style={{padding: '16px 12px', textAlign: 'right', fontSize: '18px', fontWeight: '700'}}>$22.06/month</td>
+                          <td style={{padding: '16px 12px', textAlign: 'right', fontSize: '18px', fontWeight: '700'}}>$22.06/month*</td>
                         </tr>
                         <tr style={{borderBottom: '1px solid rgba(255,255,255,0.1)'}}>
                           <td style={{padding: '16px 12px', fontSize: '16px'}}>PulseFlow</td>
-                          <td style={{padding: '16px 12px', textAlign: 'right', fontSize: '18px', fontWeight: '700'}}>$41.62/month</td>
+                          <td style={{padding: '16px 12px', textAlign: 'right', fontSize: '18px', fontWeight: '700'}}>$41.62/month*</td>
                         </tr>
                         <tr style={{borderBottom: '1px solid rgba(255,255,255,0.1)'}}>
                           <td style={{padding: '16px 12px', fontSize: '16px'}}>PulseDrive</td>
-                          <td style={{padding: '16px 12px', textAlign: 'right', fontSize: '18px', fontWeight: '700'}}>$83.51/month</td>
+                          <td style={{padding: '16px 12px', textAlign: 'right', fontSize: '18px', fontWeight: '700'}}>$83.51/month*</td>
                         </tr>
                         <tr style={{borderBottom: '1px solid rgba(255,255,255,0.1)'}}>
                           <td style={{padding: '16px 12px', fontSize: '16px', fontWeight: '600'}}>PulseCommand</td>
-                          <td style={{padding: '16px 12px', textAlign: 'right', fontSize: '20px', fontWeight: '700', color: '#fbbf24'}}>$139.37/month</td>
+                          <td style={{padding: '16px 12px', textAlign: 'right', fontSize: '20px', fontWeight: '700', color: '#fbbf24'}}>$139.37/month*</td>
                         </tr>
                         <tr>
                           <td style={{padding: '16px 12px', fontSize: '16px'}}>SmartLook XL</td>
-                          <td style={{padding: '16px 12px', textAlign: 'right', fontSize: '18px', fontWeight: '700'}}>$27.65/month</td>
+                          <td style={{padding: '16px 12px', textAlign: 'right', fontSize: '18px', fontWeight: '700'}}>$27.65/month*</td>
                         </tr>
                       </tbody>
                     </table>
@@ -860,7 +860,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                           <div style={{width: '48px', height: '48px', background: '#fbbf24', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px', fontWeight: '700', color: '#1a2c4e', flexShrink: 0}}>1</div>
                           <h4 style={{fontSize: '18px', fontWeight: '700', color: '#ffffff', margin: 0}}>Direct Commissions</h4>
                         </div>
-                        <p style={{color: '#e0e7ff', fontSize: '15px', marginBottom: 0}}>27.9% on every personal sale, recurring monthly. Your foundation income.</p>
+                        <p style={{color: '#e0e7ff', fontSize: '15px', marginBottom: 0}}>Earn on every personal sale, recurring monthly. Your foundation income.* </p>
                       </div>
                     </div>
 
@@ -983,9 +983,9 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                     <div className="col-md-3" style={{marginBottom: '20px'}}>
                       <div style={{background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)', border: '2px solid #2B4C7E', borderRadius: '12px', padding: '24px', textAlign: 'center', height: '100%'}}>
                         <div style={{fontSize: '18px', fontWeight: '700', color: '#2B4C7E', marginBottom: '12px'}}>5 Customers</div>
-                        <div style={{fontSize: '36px', fontWeight: '800', color: '#2B4C7E', marginBottom: '8px'}}>$560</div>
+                        <div style={{fontSize: '36px', fontWeight: '800', color: '#2B4C7E', marginBottom: '8px'}}>$560*</div>
                         <div style={{fontSize: '13px', color: '#6b7280', lineHeight: '1.4'}}>
-                          $310 commission<br />
+                          $310 commission*<br />
                           $250 fast start
                         </div>
                       </div>
@@ -994,9 +994,9 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                     <div className="col-md-3" style={{marginBottom: '20px'}}>
                       <div style={{background: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)', border: '2px solid #2B4C7E', borderRadius: '12px', padding: '24px', textAlign: 'center', height: '100%'}}>
                         <div style={{fontSize: '18px', fontWeight: '700', color: '#2B4C7E', marginBottom: '12px'}}>10 Customers</div>
-                        <div style={{fontSize: '36px', fontWeight: '800', color: '#2B4C7E', marginBottom: '8px'}}>$1,370</div>
+                        <div style={{fontSize: '36px', fontWeight: '800', color: '#2B4C7E', marginBottom: '8px'}}>$1,370*</div>
                         <div style={{fontSize: '13px', color: '#6b7280', lineHeight: '1.4'}}>
-                          $620 commission<br />
+                          $620 commission*<br />
                           $500 fast start<br />
                           $250 volume kicker
                         </div>
@@ -1007,9 +1007,9 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                       <div style={{background: 'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)', border: '3px solid #fbbf24', borderRadius: '12px', padding: '24px', textAlign: 'center', height: '100%', position: 'relative'}}>
                         <div style={{position: 'absolute', top: '-12px', right: '12px', background: '#fbbf24', color: '#1a2c4e', padding: '4px 12px', borderRadius: '12px', fontSize: '11px', fontWeight: '700'}}>POPULAR</div>
                         <div style={{fontSize: '18px', fontWeight: '700', color: '#92400e', marginBottom: '12px'}}>15 Customers</div>
-                        <div style={{fontSize: '36px', fontWeight: '800', color: '#92400e', marginBottom: '8px'}}>$2,430</div>
+                        <div style={{fontSize: '36px', fontWeight: '800', color: '#92400e', marginBottom: '8px'}}>$2,430*</div>
                         <div style={{fontSize: '13px', color: '#78350f', lineHeight: '1.4'}}>
-                          $930 commission<br />
+                          $930 commission*<br />
                           $750 fast start<br />
                           $750 volume kicker
                         </div>
@@ -1019,9 +1019,9 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                     <div className="col-md-3" style={{marginBottom: '20px'}}>
                       <div style={{background: 'linear-gradient(135deg, #2B4C7E 0%, #1a2c4e 100%)', border: '3px solid #fbbf24', borderRadius: '12px', padding: '24px', textAlign: 'center', height: '100%', color: '#ffffff'}}>
                         <div style={{fontSize: '18px', fontWeight: '700', color: '#fbbf24', marginBottom: '12px'}}>20 Customers</div>
-                        <div style={{fontSize: '36px', fontWeight: '800', color: '#fbbf24', marginBottom: '8px'}}>$3,740</div>
+                        <div style={{fontSize: '36px', fontWeight: '800', color: '#fbbf24', marginBottom: '8px'}}>$3,740*</div>
                         <div style={{fontSize: '13px', color: '#e0e7ff', lineHeight: '1.4'}}>
-                          $1,240 commission<br />
+                          $1,240 commission*<br />
                           $1,000 fast start<br />
                           $1,500 volume kicker
                         </div>
@@ -1709,6 +1709,26 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
           </div>
         )}
         {/* Your Agent Contact Section End */}
+
+        {/* Commission Disclosure Section */}
+        <div style={{background: '#f8f9fa', padding: '40px 0', borderTop: '1px solid #e5e7eb'}}>
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-12">
+                <div style={{maxWidth: '900px', margin: '0 auto', fontSize: '13px', color: '#6b7280', lineHeight: '1.8'}}>
+                  <p style={{fontWeight: '600', color: '#1a2c4e', marginBottom: '12px'}}>* Commission Disclosure:</p>
+                  <p style={{marginBottom: '8px'}}>
+                    Commission amounts shown are based on Business Volume (BV) and represent estimated earnings for illustrative purposes only. Actual commissions are calculated using a BV-based compensation structure and may vary based on product mix, member vs. retail pricing, rank qualifications, and individual performance.
+                  </p>
+                  <p style={{marginBottom: 0}}>
+                    The commission structure includes multiple components: direct commissions, override commissions, fast start bonuses, volume kickers, and other performance-based incentives. Total earnings depend on personal sales volume, team performance, rank advancement, and eligibility for various bonus programs. See the full Compensation Plan for complete details. Past performance and income examples do not guarantee future results. Individual results will vary.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* Commission Disclosure Section End */}
 
         {/* Main Footer End */}
         <footer className="main-footer dark-section" id="contact" style={{paddingTop: '50px'}}>
