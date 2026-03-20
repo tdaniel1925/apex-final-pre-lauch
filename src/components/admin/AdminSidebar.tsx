@@ -143,7 +143,7 @@ export default function AdminSidebar() {
     },
     {
       name: 'Email Templates',
-      href: '/admin/email-templates',
+      href: '/admin/emails',
       icon: (
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
