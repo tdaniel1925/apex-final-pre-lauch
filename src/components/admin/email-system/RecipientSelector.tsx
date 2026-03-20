@@ -44,11 +44,15 @@ export default function RecipientSelector({
   const fetchDistributors = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch('/api/admin/distributors');
+      const response = await fetch('/api/admin/distributors?status=all&pageSize=1000');
       const data = await response.json();
 
-      if (data.success) {
+      // The API returns { distributors: [], total, page, pageSize }
+      if (data.distributors) {
         setDistributors(data.distributors);
+      } else if (Array.isArray(data)) {
+        // Fallback if it returns array directly
+        setDistributors(data);
       }
     } catch (error) {
       console.error('Error fetching distributors:', error);
