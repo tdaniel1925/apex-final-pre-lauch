@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
           <!-- Content -->
           <tr>
             <td style="padding: 40px 30px;">
-              {{CONTENT}}
+              {{EMAIL_CONTENT}}
             </td>
           </tr>
 
@@ -209,7 +209,10 @@ Template structure guidelines:
     }
 
     // Wrap content in template
-    const fullEmail = emailTemplate.replace('{{CONTENT}}', emailContent);
+    const fullEmail = emailTemplate
+      .replace('{{EMAIL_CONTENT}}', emailContent)
+      .replace('{{EMAIL_TITLE}}', emailSubject || 'Update from Apex')
+      .replace('{{unsubscribe_url}}', 'https://reachtheapex.net/unsubscribe');
 
     // Clean the AI response for display (remove HTML code block)
     const cleanResponse = aiResponse.replace(/```html\n[\s\S]*?\n```/, '[HTML email content generated]').trim();
