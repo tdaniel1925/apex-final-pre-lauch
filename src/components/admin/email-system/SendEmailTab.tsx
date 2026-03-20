@@ -81,11 +81,16 @@ export default function SendEmailTab({ adminId }: SendEmailTabProps) {
         if (data.emailSubject) setEmailSubject(data.emailSubject);
         if (data.emailContent) setEmailContent(data.emailContent);
       } else {
+        // Show actual error message
+        const errorMsg = data.error || 'Unknown error';
+        const details = data.details ? `\n\nDetails: ${data.details}` : '';
+        console.error('API Error:', errorMsg, details);
+
         setMessages((prev) => [
           ...prev,
           {
             role: 'assistant',
-            content: 'Sorry, I encountered an error generating the email. Please try again.',
+            content: `Sorry, I encountered an error: ${errorMsg}${details}\n\nPlease try again.`,
           },
         ]);
       }
