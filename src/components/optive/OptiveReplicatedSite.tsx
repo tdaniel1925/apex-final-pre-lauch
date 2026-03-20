@@ -1057,7 +1057,6 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                           gap: '8px'
                         }}>
                           <span style={{
-                            display: 'inline-block',
                             width: '32px',
                             height: '32px',
                             background: '#2B4C7E',
