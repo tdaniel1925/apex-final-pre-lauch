@@ -189,7 +189,7 @@ export default async function TeamPage() {
       />
 
       {/* Team Members Section */}
-      <div className="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
+      <div className="team-list bg-white border border-slate-200 rounded-lg p-6 shadow-sm" data-testid="team-list">
         <div className="mb-6">
           <h2 className="text-xl font-bold text-slate-900">Team Members</h2>
           <p className="text-sm text-slate-600 mt-1">

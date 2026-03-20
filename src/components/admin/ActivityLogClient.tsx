@@ -167,8 +167,8 @@ export default function ActivityLogClient({ activities }: ActivityLogClientProps
               onChange={(e) => setFilterDistributor(e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
-              {distributorNames.map(name => (
-                <option key={name || 'null'} value={name || ''}>
+              {distributorNames.map((name, index) => (
+                <option key={name ? `distributor-${name}` : `no-distributor-${index}`} value={name || ''}>
                   {name === 'all' ? 'All Distributors' : name}
                 </option>
               ))}

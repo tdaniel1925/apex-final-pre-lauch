@@ -1,0 +1,228 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - region "Notifications alt+T"
+    - complementary [ref=e3]:
+      - img "Apex Affinity Group" [ref=e5]
+      - generic [ref=e6]:
+        - navigation [ref=e8]:
+          - link "Dashboard" [ref=e10] [cursor=pointer]:
+            - /url: /dashboard
+            - img [ref=e12]
+            - generic [ref=e14]: Dashboard
+          - generic [ref=e15]:
+            - heading "Team & Growth" [level=4] [ref=e17]
+            - link "Lead Autopilot" [ref=e18] [cursor=pointer]:
+              - /url: /dashboard/autopilot
+              - img [ref=e20]
+              - generic [ref=e22]: Lead Autopilot
+            - link "My Team" [ref=e23] [cursor=pointer]:
+              - /url: /dashboard/team
+              - img [ref=e25]
+              - generic [ref=e27]: My Team
+            - link "Matrix" [ref=e28] [cursor=pointer]:
+              - /url: /dashboard/matrix
+              - img [ref=e30]
+              - generic [ref=e32]: Matrix
+            - link "Genealogy" [ref=e33] [cursor=pointer]:
+              - /url: /dashboard/genealogy
+              - img [ref=e35]
+              - generic [ref=e37]: Genealogy
+          - generic [ref=e38]:
+            - heading "Store" [level=4] [ref=e40]
+            - link "Service Store" [ref=e41] [cursor=pointer]:
+              - /url: /dashboard/store
+              - img [ref=e43]
+              - generic [ref=e45]: Service Store
+          - generic [ref=e46]:
+            - heading "Comp. Plan Details" [level=4] [ref=e48]
+            - button "Overview" [ref=e50]:
+              - generic [ref=e51]:
+                - img [ref=e53]
+                - generic [ref=e55]: Overview
+              - img [ref=e56]
+          - generic [ref=e58]:
+            - heading "Licensed Agent Tools" [level=4] [ref=e60]
+            - button "Licensed Agent Tools" [ref=e62]:
+              - generic [ref=e63]:
+                - img [ref=e65]
+                - generic [ref=e67]: Licensed Agent Tools
+              - img [ref=e68]
+          - generic [ref=e70]:
+            - heading "Resources" [level=4] [ref=e72]
+            - button "Training" [ref=e74]:
+              - generic [ref=e75]:
+                - img [ref=e77]
+                - generic [ref=e79]: Training
+              - img [ref=e80]
+            - link "Social Media" [ref=e82] [cursor=pointer]:
+              - /url: /dashboard/social-media
+              - img [ref=e84]
+              - generic [ref=e86]: Social Media
+            - link "Claim the States!" [ref=e87] [cursor=pointer]:
+              - /url: /dashboard/claim-the-states
+              - img [ref=e89]
+              - generic [ref=e91]: Claim the States!
+          - generic [ref=e92]:
+            - heading "Downloads" [level=4] [ref=e94]
+            - link "Downloads" [ref=e95] [cursor=pointer]:
+              - /url: /dashboard/downloads
+              - img [ref=e97]
+              - generic [ref=e99]: Downloads
+          - generic [ref=e100]:
+            - heading "Account" [level=4] [ref=e102]
+            - link "Profile" [ref=e103] [cursor=pointer]:
+              - /url: /dashboard/profile
+              - img [ref=e105]
+              - generic [ref=e107]: Profile
+            - link "Settings" [ref=e108] [cursor=pointer]:
+              - /url: /dashboard/settings
+              - img [ref=e110]
+              - generic [ref=e113]: Settings
+            - link "Support" [ref=e114] [cursor=pointer]:
+              - /url: /dashboard/support
+              - img [ref=e116]
+              - generic [ref=e118]: Support
+        - button "Sign Out" [ref=e120]:
+          - img [ref=e121]
+          - generic [ref=e123]: Sign Out
+    - main [ref=e124]:
+      - generic [ref=e125]:
+        - generic [ref=e129]:
+          - img "Apex Affinity Group" [ref=e130]
+          - generic [ref=e131]:
+            - generic [ref=e132]: Step 1 of 4
+            - button "Skip for now" [ref=e133]
+        - generic [ref=e136]:
+          - heading "Welcome to Apex Affinity Group, Test!" [level=1] [ref=e137]
+          - paragraph [ref=e138]: You've just joined the premier insurance marketing organization. Let's get your account set up so you can start building your business right away.
+          - generic [ref=e139]:
+            - generic [ref=e140]:
+              - heading "Your Website" [level=3] [ref=e141]
+              - paragraph [ref=e142]: Personalized replicated website
+            - generic [ref=e143]:
+              - heading "Build Your Team" [level=3] [ref=e144]
+              - paragraph [ref=e145]: Grow your network and earn
+            - generic [ref=e146]:
+              - heading "Unlimited Earnings" [level=3] [ref=e147]
+              - paragraph [ref=e148]: Multiple income streams
+          - button "Let's Get Started →" [ref=e149]
+      - generic [ref=e151]:
+        - generic [ref=e152]:
+          - heading "Welcome back, Test" [level=1] [ref=e153]
+          - paragraph [ref=e154]: "@test-distributor"
+        - generic [ref=e156]:
+          - generic [ref=e157]:
+            - button "Play" [ref=e158]:
+              - img [ref=e159]
+            - generic [ref=e161]:
+              - heading "How to Build Your Apex Business - The 20/20 Conversation" [level=3] [ref=e162]
+              - paragraph [ref=e163]: Training Audio
+          - generic [ref=e165]:
+            - generic [ref=e166]: 0:00
+            - generic [ref=e167]: /
+            - generic [ref=e168]: 11:09
+          - generic [ref=e170]:
+            - button "Mute" [ref=e171]:
+              - img [ref=e172]
+            - button "Close player" [ref=e176]:
+              - img [ref=e177]
+        - generic [ref=e180]:
+          - generic [ref=e181]:
+            - img [ref=e184]
+            - generic [ref=e188]:
+              - paragraph [ref=e189]: Personal Credits
+              - paragraph [ref=e190]: "500"
+              - paragraph [ref=e191]: This Month
+          - generic [ref=e192]:
+            - img [ref=e195]
+            - generic [ref=e198]:
+              - paragraph [ref=e199]: Group Credits
+              - paragraph [ref=e200]: "0"
+              - paragraph [ref=e201]: This Month
+          - generic [ref=e202]:
+            - img [ref=e205]
+            - generic [ref=e208]:
+              - paragraph [ref=e209]: Current Rank
+              - paragraph [ref=e210]: Silver
+              - paragraph [ref=e211]: Tech Ladder
+          - generic [ref=e212]:
+            - img [ref=e215]
+            - generic [ref=e217]:
+              - paragraph [ref=e218]: Monthly Earnings
+              - paragraph [ref=e219]: $0.00
+              - paragraph [ref=e220]: Approved This Month
+        - generic [ref=e221]:
+          - generic [ref=e222]:
+            - generic [ref=e223]:
+              - heading "Progress to Gold" [level=3] [ref=e224]
+              - paragraph [ref=e225]: 700 credits needed
+            - paragraph [ref=e227]: 0%
+          - generic [ref=e229]:
+            - generic [ref=e230]: 500 credits
+            - generic [ref=e231]: 1,200 credits
+        - generic [ref=e232]:
+          - link "Enroll New Member Share your landing page" [ref=e233] [cursor=pointer]:
+            - /url: /test-distributor
+            - generic [ref=e234]:
+              - img [ref=e236]
+              - img [ref=e241]
+            - heading "Enroll New Member" [level=3] [ref=e243]
+            - paragraph [ref=e244]: Share your landing page
+          - button "Share Referral Link Copy to clipboard" [ref=e245]:
+            - generic [ref=e246]:
+              - img [ref=e248]
+              - img [ref=e251]
+            - heading "Share Referral Link" [level=3] [ref=e253]
+            - paragraph [ref=e254]: Copy to clipboard
+          - link "View Compensation Plan See earning potential" [ref=e255] [cursor=pointer]:
+            - /url: /compensation
+            - generic [ref=e256]:
+              - img [ref=e258]
+              - img [ref=e261]
+            - heading "View Compensation Plan" [level=3] [ref=e263]
+            - paragraph [ref=e264]: See earning potential
+          - link "Contact Support Get help anytime" [ref=e265] [cursor=pointer]:
+            - /url: /support
+            - generic [ref=e266]:
+              - img [ref=e268]
+              - img [ref=e270]
+            - heading "Contact Support" [level=3] [ref=e272]
+            - paragraph [ref=e273]: Get help anytime
+        - generic [ref=e274]:
+          - generic [ref=e275]:
+            - heading "Recent Activity" [level=2] [ref=e276]
+            - paragraph [ref=e277]: Latest updates from your organization
+          - generic [ref=e279]:
+            - generic [ref=e280]:
+              - generic [ref=e281]:
+                - heading "Activity Feed" [level=2] [ref=e282]
+                - paragraph [ref=e283]: Auto-refreshes on page reload
+              - generic [ref=e284]:
+                - generic [ref=e285]:
+                  - generic [ref=e286]: Event Type
+                  - combobox [ref=e287]:
+                    - option "All Events" [selected]
+                    - option "New Signups"
+                    - option "Rank Advances"
+                    - option "Matrix Filled"
+                - generic [ref=e288]:
+                  - generic [ref=e289]: Time Period
+                  - combobox [ref=e290]:
+                    - option "Today"
+                    - option "This Week" [selected]
+                    - option "This Month"
+                    - option "All Time"
+                - generic [ref=e291]:
+                  - generic [ref=e292]: Max Depth (Level 7)
+                  - slider [ref=e293]: "7"
+            - generic [ref=e295]:
+              - paragraph [ref=e296]: 📭
+              - paragraph [ref=e297]: No activities yet
+              - paragraph [ref=e298]: Activities from your organization will appear here
+  - button "Open Next.js Dev Tools" [ref=e304] [cursor=pointer]:
+    - img [ref=e305]
+  - alert [ref=e308]
+```

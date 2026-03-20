@@ -60,12 +60,14 @@ export default function MatrixNodeCard({ node, level, onClick }: MatrixNodeCardP
   return (
     <div
       className={`
+        matrix-node matrix-position
         bg-slate-800 rounded-lg shadow-lg border-2 ${borderColor}
         p-4 min-w-[200px] max-w-[200px]
         hover:shadow-xl hover:scale-105 transition-all duration-200
         cursor-pointer
       `}
       onClick={onClick}
+      data-testid="matrix-node"
     >
       {/* Avatar Circle */}
       <div className="flex justify-center mb-3">

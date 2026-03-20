@@ -31,34 +31,15 @@ interface NavSection {
   items: NavItem[];
 }
 
-export default function Sidebar() {
+interface SidebarProps {
+  isLicensedAgent?: boolean;
+}
+
+export default function Sidebar({ isLicensedAgent = true }: SidebarProps) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isSigningOut, setIsSigningOut] = useState(false);
   const [expandedMenu, setExpandedMenu] = useState<string | null>(null);
-  const [isLicensedAgent, setIsLicensedAgent] = useState(true); // Default true since all current users are licensed
-
-  // Fetch user's licensed agent status
-  useEffect(() => {
-    const fetchLicenseStatus = async () => {
-      const supabase = createClient();
-      const { data: { user } } = await supabase.auth.getUser();
-
-      if (user) {
-        const { data: distributor } = await supabase
-          .from('distributors')
-          .select('is_licensed_agent')
-          .eq('auth_user_id', user.id)
-          .single();
-
-        if (distributor) {
-          setIsLicensedAgent(distributor.is_licensed_agent ?? true);
-        }
-      }
-    };
-
-    fetchLicenseStatus();
-  }, []);
 
   // Auto-expand menu if current path matches
   useEffect(() => {
