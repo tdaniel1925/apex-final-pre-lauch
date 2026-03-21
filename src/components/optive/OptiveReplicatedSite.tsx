@@ -2097,7 +2097,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                 <div className="section-title section-title-center">
                   <span className="section-sub-title wow fadeInUp" id="faq">Frequently Asked Questions</span>
                   <h2 className="text-anime-style-3" data-cursor="-opaque">Real Answers. No Runaround.</h2>
-                  <p className="wow fadeInUp" data-wow-delay="0.2s">We believe transparency builds trust. Here are honest answers to the questions we hear most from business owners and potential distributors exploring Apex.</p>
+                  <p className="wow fadeInUp" data-wow-delay="0.2s">We believe transparency builds trust. Here are honest answers to the questions we hear most from people exploring the Apex opportunity.</p>
                 </div>
                 {/* Section Title End */}
               </div>
@@ -2131,7 +2131,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                     </h2>
                     <div id="collapse2" className="accordion-collapse collapse" role="region" aria-labelledby="heading2" data-bs-parent="#accordion">
                       <div style={{backgroundColor: 'white', padding: '20px'}}>
-                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>Any business owner who needs marketing automation — insurance agents, financial advisors, real estate professionals, coaches, consultants, small business owners, and entrepreneurs. If you need a website, social media presence, lead generation, or content marketing, Apex replaces 5-10 disconnected tools with one AI-powered platform. Most business owners spend $300-$1,500/month on software that doesn't generate leads. Our products deliver actual marketing results starting at $79/month.</div>
+                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>Any business owner who needs marketing automation — insurance agents, financial advisors, real estate professionals, coaches, consultants, small business owners, and entrepreneurs. If you need a website, social media presence, lead generation, or content marketing, Apex replaces multiple disconnected tools with one AI-powered platform. Our products deliver actual marketing results that help businesses grow.</div>
                       </div>
                     </div>
                   </div>
@@ -2146,7 +2146,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                     </h2>
                     <div id="collapse3" className="accordion-collapse collapse show" role="region" aria-labelledby="heading3" data-bs-parent="#accordion">
                       <div style={{backgroundColor: 'white', padding: '20px'}}>
-                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>You can absolutely purchase any Apex product as a retail customer without joining the business opportunity. However, joining as a distributor gives you two major benefits: (1) Access to member pricing (20-30% discount on all products), and (2) The ability to earn recurring commissions by sharing these products with other business owners. There's $0 cost to join, no monthly fees, and no obligations. Many people join just for the member pricing and later decide to build it as a business.</div>
+                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>You can absolutely purchase any Apex product as a retail customer without joining the business opportunity. However, joining as a distributor gives you two major benefits: (1) Access to member pricing on all products, and (2) The ability to earn recurring income by sharing these products with other business owners. There's $0 cost to join, no monthly fees, and no obligations. Many people join for the member pricing and later decide to build it as a business.</div>
                       </div>
                     </div>
                   </div>
@@ -2156,12 +2156,12 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   <div className="accordion-item wow fadeInUp" data-wow-delay="0.6s">
                     <h2 className="accordion-header" id="heading4">
                       <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
-                        Q4. How do I earn money as an Apex distributor?
+                        Q4. How does the Apex business model work?
                       </button>
                     </h2>
                     <div id="collapse4" className="accordion-collapse collapse" role="region" aria-labelledby="heading4" data-bs-parent="#accordion">
                       <div style={{backgroundColor: 'white', padding: '20px'}}>
-                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>You earn commissions on every personal sale (27.9% recurring monthly) plus override commissions on your team's sales (up to 5 levels deep). Example: Sell one PulseCommand at retail ($499/mo) and earn $139.37/month for as long as that customer stays subscribed. That's recurring income, paid monthly. Additionally, you can earn fast start bonuses ($50/customer in first 60 days), team volume bonuses ($100-$2,000/month), and leadership bonuses as you build your organization. No license required to sell our technology products.</div>
+                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>The Apex model is simple: help people solve real problems, and earn recurring income as long as they succeed. You can choose one or both paths: (1) AI Technology - help businesses get enterprise-level marketing automation, or (2) Insurance - help families protect their financial future. When your customers see value and stay subscribed, you earn monthly recurring income. You can also build a team and earn on their success. No license required to sell our technology products. Full compensation details are available in your back office after signup.</div>
                       </div>
                     </div>
                   </div>
@@ -2191,7 +2191,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                     </h2>
                     <div id="collapse6" className="accordion-collapse collapse" role="region" aria-labelledby="heading6" data-bs-parent="#accordion">
                       <div style={{backgroundColor: 'white', padding: '20px'}}>
-                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>$0 to join. No monthly fees. No minimum production requirements. The optional Business Center ($39/month) gives you advanced back-office tools, but it's not required to join or earn commissions. Many distributors start with just the products they use personally (at member pricing), then build from there. You control your schedule, your growth, and your business. Start part-time, full-time, or anywhere in between.</div>
+                        <div style={{color: 'black', fontSize: '16px', lineHeight: '1.8', fontFamily: 'inherit'}}>$0 to join. No monthly fees. No minimum production requirements. An optional Business Center gives you advanced back-office tools, but it's not required to join or earn. Many distributors start with just the products they use personally (at member pricing), then build from there. You control your schedule, your growth, and your business. Start part-time, full-time, or anywhere in between.</div>
                       </div>
                     </div>
                   </div>
