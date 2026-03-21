@@ -41,29 +41,8 @@ export async function PATCH(request: Request, { params }: RouteParams) {
       );
     }
 
-    // Validation: Check if position is already taken by another distributor
-    if (matrix_parent_id && matrix_position) {
-      const { data: existing } = await serviceClient
-        .from('distributors')
-        .select('id')
-        .eq('matrix_parent_id', matrix_parent_id)
-        .eq('matrix_position', matrix_position)
-        .neq('id', id)
-        .neq('status', 'deleted')
-        .single();
-
-      if (existing) {
-        return NextResponse.json(
-          {
-            success: false,
-            error: `Position ${matrix_position} under this parent is already occupied`
-          },
-          { status: 400 }
-        );
-      }
-    }
-
-    // Validation: Matrix position must be 1-5
+    // Basic client-side validation before calling stored procedure
+    // (The stored procedure will do full validation with locks)
     if (matrix_position && (matrix_position < 1 || matrix_position > 5)) {
       return NextResponse.json(
         { success: false, error: 'Matrix position must be between 1 and 5' },
@@ -71,7 +50,6 @@ export async function PATCH(request: Request, { params }: RouteParams) {
       );
     }
 
-    // Validation: Matrix depth must be 0-7
     if (matrix_depth !== undefined && (matrix_depth < 0 || matrix_depth > 7)) {
       return NextResponse.json(
         { success: false, error: 'Matrix depth must be between 0 and 7' },
@@ -79,41 +57,21 @@ export async function PATCH(request: Request, { params }: RouteParams) {
       );
     }
 
-    // Validation: If parent is provided, verify it exists
-    if (matrix_parent_id) {
-      const { data: parent } = await serviceClient
-        .from('distributors')
-        .select('id, matrix_depth')
-        .eq('id', matrix_parent_id)
-        .neq('status', 'deleted')
-        .single();
-
-      if (!parent) {
-        return NextResponse.json(
-          { success: false, error: 'Matrix parent not found' },
-          { status: 400 }
-        );
+    // FIX: Use transaction function with advisory lock to prevent race conditions
+    const { data: result, error: updateError } = await serviceClient.rpc(
+      'update_distributor_matrix_position',
+      {
+        p_distributor_id: id,
+        p_matrix_parent_id: matrix_parent_id,
+        p_matrix_position: matrix_position,
+        p_matrix_depth: matrix_depth
       }
-    }
-
-    // Update matrix position
-    const updates: any = {
-      updated_at: new Date().toISOString(),
-    };
-
-    if (matrix_parent_id !== undefined) updates.matrix_parent_id = matrix_parent_id;
-    if (matrix_position !== undefined) updates.matrix_position = matrix_position;
-    if (matrix_depth !== undefined) updates.matrix_depth = matrix_depth;
-
-    const { error: updateError } = await serviceClient
-      .from('distributors')
-      .update(updates)
-      .eq('id', id);
+    );
 
     if (updateError) {
       console.error('Error updating matrix position:', updateError);
       return NextResponse.json(
-        { success: false, error: 'Failed to update matrix position' },
+        { success: false, error: updateError.message || 'Failed to update matrix position' },
         { status: 500 }
       );
     }
@@ -121,6 +79,7 @@ export async function PATCH(request: Request, { params }: RouteParams) {
     return NextResponse.json({
       success: true,
       message: 'Matrix position updated successfully',
+      data: result
     });
   } catch (error) {
     console.error('Error updating matrix position:', error);

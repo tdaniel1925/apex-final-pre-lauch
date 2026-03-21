@@ -566,7 +566,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                 <div className="section-title section-title-center">
                   <span className="section-sub-title wow fadeInUp" style={{color: '#2B4C7E'}}>The Old Model Is Broken</span>
                   <h2 className="text-anime-style-3" data-cursor="-opaque" style={{color: '#1a2f50', marginBottom: '20px'}}>
-                    The New American Dream Isn't a&nbsp;Job.<br />It's Ownership.
+                    The American Dream.<br />Ownership.
                   </h2>
                 </div>
               </div>

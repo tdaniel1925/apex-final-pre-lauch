@@ -185,6 +185,28 @@ BEGIN
   )
   RETURNING * INTO v_distributor;
 
+  -- Create corresponding members table record for commission system
+  -- This links the distributor to the dual-ladder compensation system
+  INSERT INTO public.members (
+    distributor_id,
+    email,
+    full_name,
+    enroller_id,
+    sponsor_id,
+    status,
+    tech_rank,
+    insurance_rank
+  ) VALUES (
+    v_distributor.id,
+    p_email,
+    p_first_name || ' ' || p_last_name,
+    (SELECT member_id FROM public.members WHERE distributor_id = p_sponsor_id),
+    (SELECT member_id FROM public.members WHERE distributor_id = p_sponsor_id),
+    'active',
+    'starter',
+    'inactive'
+  );
+
   RETURN v_distributor;
 END;
 $$;
