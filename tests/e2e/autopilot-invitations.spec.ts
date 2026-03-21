@@ -496,4 +496,124 @@ test.describe('Autopilot - Meeting Invitations (FREE Tier)', () => {
     // Should show validation errors
     await expect(page.locator('text=/invalid email|email.*required/i')).toBeVisible({ timeout: 5000 });
   });
+
+  // =============================================
+  // TEST 11: DateTime Format Fix - Date Picker
+  // =============================================
+  test('should accept date/time from picker without format errors', async ({ page }) => {
+    // Login
+    await page.goto(`${BASE_URL}/login`);
+    await page.fill('input[type="email"]', testEmail);
+    await page.fill('input[type="password"]', testPassword);
+    await page.click('button[type="submit"]');
+    await page.waitForURL(/\/dashboard/, { timeout: 10000 });
+
+    // Navigate to invitations
+    await page.goto(`${BASE_URL}/autopilot/invitations`);
+
+    // Fill out complete form with valid data
+    const recipientEmail = `datetime-test-${Date.now()}@example.com`;
+    await page.fill('input[name="recipient_email"]', recipientEmail);
+    await page.fill('input[name="recipient_name"]', 'DateTime Test User');
+    await page.fill('input[name="meeting_title"]', 'DateTime Format Test Meeting');
+
+    // Use datetime-local picker (this is what was causing the bug)
+    const futureDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+    const dateTimeStr = futureDate.toISOString().slice(0, 16); // Format: YYYY-MM-DDTHH:mm
+    await page.fill('input[type="datetime-local"]', dateTimeStr);
+
+    // Optional: add meeting link
+    await page.fill('input[name="meeting_link"]', 'https://zoom.us/j/test123456');
+
+    // Submit form
+    await page.click('button[type="submit"]');
+
+    // Should NOT show "Invalid date/time format" error
+    await expect(page.locator('text=/Invalid date\/time format/i')).not.toBeVisible({ timeout: 3000 });
+
+    // Should show success message instead
+    await expect(page.locator('text=/sent successfully|success/i')).toBeVisible({ timeout: 10000 });
+
+    // Verify invitation saved with correct ISO datetime
+    const { data: invitations } = await supabase
+      .from('meeting_invitations')
+      .select('*')
+      .eq('distributor_id', testDistributorId)
+      .eq('recipient_email', recipientEmail);
+
+    expect(invitations).toBeTruthy();
+    expect(invitations?.length).toBeGreaterThan(0);
+
+    // Verify datetime is stored in valid ISO format
+    const savedDateTime = invitations?.[0].meeting_date_time;
+    expect(savedDateTime).toBeTruthy();
+
+    // Verify it's a valid ISO 8601 datetime
+    const parsedDate = new Date(savedDateTime);
+    expect(parsedDate.toString()).not.toBe('Invalid Date');
+  });
+
+  // =============================================
+  // TEST 12: DateTime Validation - Past Date
+  // =============================================
+  test('should reject past dates with clear error message', async ({ page }) => {
+    // Login
+    await page.goto(`${BASE_URL}/login`);
+    await page.fill('input[type="email"]', testEmail);
+    await page.fill('input[type="password"]', testPassword);
+    await page.click('button[type="submit"]');
+    await page.waitForURL(/\/dashboard/, { timeout: 10000 });
+
+    // Navigate to invitations
+    await page.goto(`${BASE_URL}/autopilot/invitations`);
+
+    // Fill out form
+    await page.fill('input[name="recipient_email"]', 'past-test@example.com');
+    await page.fill('input[name="recipient_name"]', 'Past Test User');
+    await page.fill('input[name="meeting_title"]', 'Past Date Test Meeting');
+
+    // Set date in the past
+    const pastDate = new Date(Date.now() - 24 * 60 * 60 * 1000); // Yesterday
+    const dateTimeStr = pastDate.toISOString().slice(0, 16);
+    await page.fill('input[type="datetime-local"]', dateTimeStr);
+
+    // Submit form
+    await page.click('button[type="submit"]');
+
+    // Should show error about future scheduling
+    await expect(page.locator('text=/at least 1 hour in the future|must be in the future/i')).toBeVisible({
+      timeout: 5000
+    });
+  });
+
+  // =============================================
+  // TEST 13: DateTime Validation - Minimum Buffer
+  // =============================================
+  test('should require at least 1 hour buffer for meeting scheduling', async ({ page }) => {
+    // Login
+    await page.goto(`${BASE_URL}/login`);
+    await page.fill('input[type="email"]', testEmail);
+    await page.fill('input[type="password"]', testPassword);
+    await page.click('button[type="submit"]');
+    await page.waitForURL(/\/dashboard/, { timeout: 10000 });
+
+    // Navigate to invitations
+    await page.goto(`${BASE_URL}/autopilot/invitations`);
+
+    // Fill out form
+    await page.fill('input[name="recipient_email"]', 'buffer-test@example.com');
+    await page.fill('input[name="recipient_name"]', 'Buffer Test User');
+    await page.fill('input[name="meeting_title"]', 'Buffer Test Meeting');
+
+    // Set date 30 minutes in future (should fail - need 1 hour)
+    const nearFuture = new Date(Date.now() + 30 * 60 * 1000);
+    const dateTimeStr = nearFuture.toISOString().slice(0, 16);
+    await page.fill('input[type="datetime-local"]', dateTimeStr);
+
+    // Submit form
+    await page.click('button[type="submit"]');
+
+    // Should show error about 1 hour buffer
+    await expect(page.locator('text=/at least 1 hour in the future/i')).toBeVisible({ timeout: 5000 });
+  });
 });
