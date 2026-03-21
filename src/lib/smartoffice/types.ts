@@ -450,3 +450,196 @@ export const HOLDING_TYPE_NAMES: Record<number, string> = {
 export function getHoldingTypeName(holdingType: number): string {
   return HOLDING_TYPE_NAMES[holdingType] || 'Unknown';
 }
+
+// ============================================
+// ADMIN UI TYPES (for list/detail pages)
+// ============================================
+
+export interface PaginationParams {
+  page?: number;
+  limit?: number;
+  search?: string;
+  sortBy?: string;
+  sortOrder?: 'asc' | 'desc';
+}
+
+export interface PaginatedResponse<T> {
+  data: T[];
+  pagination: {
+    page: number;
+    limit: number;
+    total: number;
+    totalPages: number;
+  };
+}
+
+export interface AgentWithStats {
+  id: string;
+  smartoffice_id: string;
+  contact_id: string | null;
+  apex_agent_id: string | null;
+  first_name: string | null;
+  last_name: string | null;
+  email: string | null;
+  phone: string | null;
+  tax_id: string | null;
+  client_type: number | null;
+  status: number | null;
+  raw_data: any;
+  synced_at: string;
+  created_at: string;
+  updated_at: string;
+  // Stats
+  policy_count?: number;
+  total_commissions?: number;
+  // Joined data
+  distributor?: {
+    id: string;
+    first_name: string;
+    last_name: string;
+    email: string;
+  } | null;
+}
+
+export interface PolicyWithAgent {
+  id: string;
+  smartoffice_id: string;
+  smartoffice_agent_id: string | null;
+  primary_advisor_contact_id: string | null;
+  policy_number: string | null;
+  product_name: string | null;
+  carrier_name: string | null;
+  holding_type: number | null;
+  holding_type_name: string | null;
+  annual_premium: number | null;
+  status: string | null;
+  issue_date: string | null;
+  effective_date: string | null;
+  writing_agent_id: string | null;
+  raw_data: any;
+  synced_at: string;
+  created_at: string;
+  updated_at: string;
+  // Joined data
+  agent?: {
+    smartoffice_id: string;
+    first_name: string | null;
+    last_name: string | null;
+    email: string | null;
+  } | null;
+}
+
+export interface CommissionWithDetails {
+  id: string;
+  smartoffice_id: string;
+  policy_number: string | null;
+  agent_role: string | null;
+  receivable: number | null;
+  payable_due_date: string | null;
+  paid_amount: number | null;
+  status: string | null;
+  comm_type: string | null;
+  component_premium: number | null;
+  receivable_percent: number | null;
+  receivable_percent_of: string | null;
+  raw_data: any;
+  synced_at: string;
+  created_at: string;
+  updated_at: string;
+  // Joined data
+  policy?: {
+    policy_number: string | null;
+    product_name: string | null;
+    carrier_name: string | null;
+    smartoffice_agent_id: string | null;
+  } | null;
+  agent?: {
+    first_name: string | null;
+    last_name: string | null;
+    email: string | null;
+  } | null;
+}
+
+export interface AgentsListParams extends PaginationParams {
+  status?: 'active' | 'inactive' | 'all';
+  mapped?: 'yes' | 'no' | 'all';
+}
+
+export interface PoliciesListParams extends PaginationParams {
+  carrier?: string;
+  agent_id?: string;
+  date_from?: string;
+  date_to?: string;
+}
+
+export interface CommissionsListParams extends PaginationParams {
+  agent_id?: string;
+  policy_number?: string;
+  status?: 'paid' | 'pending' | 'all';
+  date_from?: string;
+  date_to?: string;
+}
+
+export interface DashboardStats {
+  agents: {
+    total: number;
+    active: number;
+    inactive: number;
+    mapped: number;
+    unmapped: number;
+  };
+  policies: {
+    total: number;
+    totalPremium: number;
+    byCarrier: Array<{ carrier: string; count: number; premium: number }>;
+  };
+  commissions: {
+    total: number;
+    paid: number;
+    pending: number;
+    totalPaid: number;
+    totalPending: number;
+    byMonth: Array<{ month: string; amount: number }>;
+  };
+  topAgents: {
+    byPolicies: Array<{
+      smartoffice_id: string;
+      agent_name: string;
+      policy_count: number;
+    }>;
+    byCommissions: Array<{
+      smartoffice_id: string;
+      agent_name: string;
+      total_commissions: number;
+    }>;
+  };
+  unmappedAgents: Array<{
+    smartoffice_id: string;
+    first_name: string | null;
+    last_name: string | null;
+    email: string | null;
+  }>;
+}
+
+export interface AgentDetailData {
+  agent: AgentWithStats;
+  stats: {
+    policies_count: number;
+    total_premium: number;
+    total_commissions_earned: number;
+    commissions_paid: number;
+    commissions_pending: number;
+  };
+  policies: PolicyWithAgent[];
+  commissions: CommissionWithDetails[];
+}
+
+export interface PolicyDetailData {
+  policy: PolicyWithAgent;
+  stats: {
+    total_commissions: number;
+    commission_count: number;
+  };
+  commissions: CommissionWithDetails[];
+  agent: AgentWithStats | null;
+}

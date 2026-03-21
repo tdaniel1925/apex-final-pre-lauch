@@ -10,11 +10,11 @@ import type { AgentDetailData } from '@/lib/smartoffice/types';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const supabase = createServiceClient();
-    const { id } = params;
+    const { id } = await params;
 
     // Fetch agent with distributor info
     const { data: agent, error: agentError } = await supabase

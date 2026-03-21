@@ -6,7 +6,7 @@
 // =====================================================
 
 import { useState } from 'react';
-import { Mail, MessageSquare, Image, Users, Megaphone, Sparkles } from 'lucide-react';
+import { Mail, MessageSquare, Image, Users, Megaphone, Sparkles, Calendar } from 'lucide-react';
 import { isAutopilotFreeTrial, getEffectiveTier } from '@/lib/config/autopilot';
 import { MeetingInvitationForm } from './MeetingInvitationForm';
 import { SocialPostComposer } from './SocialPostComposer';
@@ -14,13 +14,14 @@ import { SocialPostsList } from './SocialPostsList';
 import { FlyerGenerator } from './FlyerGenerator';
 import { FlyerGallery } from './FlyerGallery';
 import { InvitationStats } from './InvitationStats';
+import MeetingsTab from './MeetingsTab';
 
 interface AutopilotDashboardProps {
   distributorId: string;
   autopilotTier: string;
 }
 
-type Tab = 'invitations' | 'social' | 'flyers' | 'crm' | 'stats';
+type Tab = 'invitations' | 'meetings' | 'social' | 'flyers' | 'crm' | 'stats';
 
 export default function AutopilotDashboard({ distributorId, autopilotTier }: AutopilotDashboardProps) {
   const [activeTab, setActiveTab] = useState<Tab>('invitations');
@@ -35,6 +36,13 @@ export default function AutopilotDashboard({ distributorId, autopilotTier }: Aut
       name: 'Send Invitations',
       icon: <Mail className="w-4 h-4" />,
       description: 'Email invitations to prospects',
+      enabled: true,
+    },
+    {
+      id: 'meetings' as Tab,
+      name: 'Meeting Reservations',
+      icon: <Calendar className="w-4 h-4" />,
+      description: 'Create event registration pages',
       enabled: true,
     },
     {
@@ -166,6 +174,8 @@ export default function AutopilotDashboard({ distributorId, autopilotTier }: Aut
             <MeetingInvitationForm />
           </div>
         )}
+
+        {activeTab === 'meetings' && <MeetingsTab />}
 
         {activeTab === 'social' && (
           <div className="space-y-6">
