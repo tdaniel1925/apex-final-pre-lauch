@@ -297,12 +297,18 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
     setIsSubmitting(true);
 
     try {
+      // Convert datetime-local format to ISO 8601 with timezone
+      const meetingDateISO = new Date(formData.meeting_date_time).toISOString();
+
       const response = await fetch('/api/autopilot/invitations/bulk', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          meeting_date_time: meetingDateISO,
+        }),
       });
 
       const data = await response.json();
