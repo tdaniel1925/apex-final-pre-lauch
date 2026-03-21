@@ -294,7 +294,6 @@ async function sendConfirmationEmail({
       to: registration.email,
       subject: `Registered: ${meeting.title}`,
       html: emailHtml,
-      replyTo: `${distributor.first_name} ${distributor.last_name} <${distributor.email}>`,
       triggeredBy: 'system',
       userId: distributor.id,
       feature: 'meeting-reservations',
