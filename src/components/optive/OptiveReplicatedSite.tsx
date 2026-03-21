@@ -1023,246 +1023,82 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
               </div>
             </div>
 
-            {/* Commission Overview */}
+            {/* How It Works Overview */}
             <div className="row" style={{marginTop: '40px'}}>
-              <div className="col-lg-8 mx-auto">
-                <div className="wow fadeInUp" style={{background: 'rgba(255,255,255,0.1)', borderRadius: '16px', padding: '40px', backdropFilter: 'blur(10px)'}}>
-                  <h3 style={{color: '#ffffff', fontSize: '24px', fontWeight: '700', marginBottom: '24px', textAlign: 'center'}}>
-                    Earn Recurring Commissions on Every Sale
+              <div className="col-lg-10 mx-auto">
+                <div className="wow fadeInUp" style={{background: 'rgba(255,255,255,0.1)', borderRadius: '16px', padding: '48px', backdropFilter: 'blur(10px)', border: '2px solid rgba(255,255,255,0.2)'}}>
+                  <h3 style={{color: '#fbbf24', fontSize: '28px', fontWeight: '700', marginBottom: '24px', textAlign: 'center'}}>
+                    The Model is Simple
                   </h3>
-                  <p style={{color: '#e0e7ff', fontSize: '16px', lineHeight: '1.8', textAlign: 'center', marginBottom: '32px'}}>
-                    Every customer you refer pays you monthly — as long as they stay subscribed. This is true recurring income.
+                  <p style={{color: '#e0e7ff', fontSize: '18px', lineHeight: '1.8', textAlign: 'center', marginBottom: '40px'}}>
+                    Help people solve real problems. Build relationships. Earn recurring income as long as they succeed.
                   </p>
 
-                  <div style={{background: 'rgba(255,255,255,0.15)', borderRadius: '12px', padding: '24px', marginBottom: '24px'}}>
-                    <table style={{width: '100%', color: '#ffffff'}}>
-                      <thead>
-                        <tr style={{borderBottom: '2px solid rgba(255,255,255,0.3)'}}>
-                          <th style={{padding: '12px', textAlign: 'left', fontSize: '14px', fontWeight: '600', color: '#93c5fd'}}>PRODUCT</th>
-                          <th style={{padding: '12px', textAlign: 'right', fontSize: '14px', fontWeight: '600', color: '#93c5fd'}}>YOUR COMMISSION</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr style={{borderBottom: '1px solid rgba(255,255,255,0.1)'}}>
-                          <td style={{padding: '16px 12px', fontSize: '16px'}}>PulseGuard</td>
-                          <td style={{padding: '16px 12px', textAlign: 'right', fontSize: '18px', fontWeight: '700'}}>$22.06/month*</td>
-                        </tr>
-                        <tr style={{borderBottom: '1px solid rgba(255,255,255,0.1)'}}>
-                          <td style={{padding: '16px 12px', fontSize: '16px'}}>PulseFlow</td>
-                          <td style={{padding: '16px 12px', textAlign: 'right', fontSize: '18px', fontWeight: '700'}}>$41.62/month*</td>
-                        </tr>
-                        <tr style={{borderBottom: '1px solid rgba(255,255,255,0.1)'}}>
-                          <td style={{padding: '16px 12px', fontSize: '16px'}}>PulseDrive</td>
-                          <td style={{padding: '16px 12px', textAlign: 'right', fontSize: '18px', fontWeight: '700'}}>$83.51/month*</td>
-                        </tr>
-                        <tr style={{borderBottom: '1px solid rgba(255,255,255,0.1)'}}>
-                          <td style={{padding: '16px 12px', fontSize: '16px', fontWeight: '600'}}>PulseCommand</td>
-                          <td style={{padding: '16px 12px', textAlign: 'right', fontSize: '20px', fontWeight: '700', color: '#fbbf24'}}>$139.37/month*</td>
-                        </tr>
-                        <tr>
-                          <td style={{padding: '16px 12px', fontSize: '16px'}}>SmartLook XL</td>
-                          <td style={{padding: '16px 12px', textAlign: 'right', fontSize: '18px', fontWeight: '700'}}>$27.65/month*</td>
-                        </tr>
-                      </tbody>
-                    </table>
+                  <div className="row">
+                    <div className="col-md-6" style={{marginBottom: '24px'}}>
+                      <div style={{background: 'rgba(255,255,255,0.05)', borderRadius: '12px', padding: '32px', height: '100%'}}>
+                        <div style={{fontSize: '48px', marginBottom: '16px', textAlign: 'center'}}>💻</div>
+                        <h4 style={{color: '#ffffff', fontSize: '20px', fontWeight: '700', marginBottom: '16px', textAlign: 'center'}}>
+                          AI Technology Path
+                        </h4>
+                        <div style={{display: 'flex', flexDirection: 'column', gap: '12px'}}>
+                          <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                            <span style={{color: '#fbbf24', fontWeight: '700', fontSize: '16px', flexShrink: 0}}>1.</span>
+                            <span style={{color: '#e0e7ff', fontSize: '15px', lineHeight: '1.6'}}>Connect with business owners</span>
+                          </div>
+                          <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                            <span style={{color: '#fbbf24', fontWeight: '700', fontSize: '16px', flexShrink: 0}}>2.</span>
+                            <span style={{color: '#e0e7ff', fontSize: '15px', lineHeight: '1.6'}}>Show them AI-powered solutions</span>
+                          </div>
+                          <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                            <span style={{color: '#fbbf24', fontWeight: '700', fontSize: '16px', flexShrink: 0}}>3.</span>
+                            <span style={{color: '#e0e7ff', fontSize: '15px', lineHeight: '1.6'}}>They see results and stay subscribed</span>
+                          </div>
+                          <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                            <span style={{color: '#fbbf24', fontWeight: '700', fontSize: '16px', flexShrink: 0}}>4.</span>
+                            <span style={{color: '#e0e7ff', fontSize: '15px', lineHeight: '1.6'}}>You earn recurring income</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="col-md-6" style={{marginBottom: '24px'}}>
+                      <div style={{background: 'rgba(255,255,255,0.05)', borderRadius: '12px', padding: '32px', height: '100%'}}>
+                        <div style={{fontSize: '48px', marginBottom: '16px', textAlign: 'center'}}>🛡️</div>
+                        <h4 style={{color: '#ffffff', fontSize: '20px', fontWeight: '700', marginBottom: '16px', textAlign: 'center'}}>
+                          Insurance Path
+                        </h4>
+                        <div style={{display: 'flex', flexDirection: 'column', gap: '12px'}}>
+                          <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                            <span style={{color: '#fbbf24', fontWeight: '700', fontSize: '16px', flexShrink: 0}}>1.</span>
+                            <span style={{color: '#e0e7ff', fontSize: '15px', lineHeight: '1.6'}}>Get licensed (we'll help)</span>
+                          </div>
+                          <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                            <span style={{color: '#fbbf24', fontWeight: '700', fontSize: '16px', flexShrink: 0}}>2.</span>
+                            <span style={{color: '#e0e7ff', fontSize: '15px', lineHeight: '1.6'}}>Help families make smart decisions</span>
+                          </div>
+                          <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                            <span style={{color: '#fbbf24', fontWeight: '700', fontSize: '16px', flexShrink: 0}}>3.</span>
+                            <span style={{color: '#e0e7ff', fontSize: '15px', lineHeight: '1.6'}}>Build trust as their advisor</span>
+                          </div>
+                          <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                            <span style={{color: '#fbbf24', fontWeight: '700', fontSize: '16px', flexShrink: 0}}>4.</span>
+                            <span style={{color: '#e0e7ff', fontSize: '15px', lineHeight: '1.6'}}>Earn residual income for years</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
 
-                  <div style={{background: 'rgba(251, 191, 36, 0.2)', border: '2px solid #fbbf24', borderRadius: '12px', padding: '20px', textAlign: 'center'}}>
-                    <p style={{fontSize: '16px', color: '#fef3c7', marginBottom: '8px', fontWeight: '600'}}>Example Income:</p>
-                    <p style={{fontSize: '20px', color: '#ffffff', lineHeight: '1.6'}}>
-                      Refer <span style={{fontWeight: '700', color: '#fbbf24'}}>10 PulseDrive customers</span> = <span style={{fontSize: '28px', fontWeight: '800', color: '#fbbf24'}}>$835/month</span> recurring income
+                  <div style={{background: 'rgba(251, 191, 36, 0.2)', border: '2px solid #fbbf24', borderRadius: '12px', padding: '24px', textAlign: 'center', marginTop: '32px'}}>
+                    <p style={{fontSize: '18px', color: '#ffffff', lineHeight: '1.6', marginBottom: '8px'}}>
+                      <strong style={{color: '#fbbf24'}}>Can you do both?</strong> Yes. Many Apex members combine AI technology and insurance to serve the same clients with multiple solutions.
                     </p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* 11 Ways to Earn */}
-            <div className="row" style={{marginTop: '60px'}}>
-              <div className="col-lg-10 mx-auto">
-                <div className="wow fadeInUp" data-wow-delay="0.2s">
-                  <h3 style={{color: '#ffffff', fontSize: '28px', fontWeight: '700', marginBottom: '32px', textAlign: 'center'}}>
-                    11 Ways to Earn with Apex
-                  </h3>
-
-                  <div className="row">
-                    <div className="col-md-6" style={{marginBottom: '20px'}}>
-                      <div style={{background: 'rgba(255,255,255,0.1)', borderRadius: '12px', padding: '24px', height: '100%'}}>
-                        <div style={{display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '12px'}}>
-                          <div style={{width: '48px', height: '48px', background: '#fbbf24', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px', fontWeight: '700', color: '#1a2c4e', flexShrink: 0}}>1</div>
-                          <h4 style={{fontSize: '18px', fontWeight: '700', color: '#ffffff', margin: 0}}>Direct Commissions</h4>
-                        </div>
-                        <p style={{color: '#e0e7ff', fontSize: '15px', marginBottom: 0}}>Earn on every personal sale, recurring monthly. Your foundation income.* </p>
-                      </div>
-                    </div>
-
-                    <div className="col-md-6" style={{marginBottom: '20px'}}>
-                      <div style={{background: 'rgba(255,255,255,0.1)', borderRadius: '12px', padding: '24px', height: '100%'}}>
-                        <div style={{display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '12px'}}>
-                          <div style={{width: '48px', height: '48px', background: '#fbbf24', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px', fontWeight: '700', color: '#1a2c4e', flexShrink: 0}}>2</div>
-                          <h4 style={{fontSize: '18px', fontWeight: '700', color: '#ffffff', margin: 0}}>Override Commissions</h4>
-                        </div>
-                        <p style={{color: '#e0e7ff', fontSize: '15px', marginBottom: 0}}>Earn on your team's sales (up to 5 levels deep). Build residual income.</p>
-                      </div>
-                    </div>
-
-                    <div className="col-md-6" style={{marginBottom: '20px'}}>
-                      <div style={{background: 'rgba(255,255,255,0.1)', borderRadius: '12px', padding: '24px', height: '100%'}}>
-                        <div style={{display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '12px'}}>
-                          <div style={{width: '48px', height: '48px', background: '#fbbf24', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px', fontWeight: '700', color: '#1a2c4e', flexShrink: 0}}>3</div>
-                          <h4 style={{fontSize: '18px', fontWeight: '700', color: '#ffffff', margin: 0}}>Fast Start Bonuses</h4>
-                        </div>
-                        <p style={{color: '#e0e7ff', fontSize: '15px', marginBottom: 0}}>$50/customer in first 60 days (max $1,000). Hit the ground running.</p>
-                      </div>
-                    </div>
-
-                    <div className="col-md-6" style={{marginBottom: '20px'}}>
-                      <div style={{background: 'rgba(255,255,255,0.1)', borderRadius: '12px', padding: '24px', height: '100%'}}>
-                        <div style={{display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '12px'}}>
-                          <div style={{width: '48px', height: '48px', background: '#fbbf24', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px', fontWeight: '700', color: '#1a2c4e', flexShrink: 0}}>4</div>
-                          <h4 style={{fontSize: '18px', fontWeight: '700', color: '#ffffff', margin: 0}}>Volume Kicker</h4>
-                        </div>
-                        <p style={{color: '#e0e7ff', fontSize: '15px', marginBottom: 0}}>$250-$1,500 bonuses at volume thresholds in first 30 days.</p>
-                      </div>
-                    </div>
-
-                    <div className="col-md-6" style={{marginBottom: '20px'}}>
-                      <div style={{background: 'rgba(255,255,255,0.1)', borderRadius: '12px', padding: '24px', height: '100%'}}>
-                        <div style={{display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '12px'}}>
-                          <div style={{width: '48px', height: '48px', background: '#93c5fd', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px', fontWeight: '700', color: '#1a2c4e', flexShrink: 0}}>5</div>
-                          <h4 style={{fontSize: '18px', fontWeight: '700', color: '#ffffff', margin: 0}}>Team Volume Bonuses</h4>
-                        </div>
-                        <p style={{color: '#e0e7ff', fontSize: '15px', marginBottom: 0}}>$100-$2,000/month at organization volume thresholds.</p>
-                      </div>
-                    </div>
-
-                    <div className="col-md-6" style={{marginBottom: '20px'}}>
-                      <div style={{background: 'rgba(255,255,255,0.1)', borderRadius: '12px', padding: '24px', height: '100%'}}>
-                        <div style={{display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '12px'}}>
-                          <div style={{width: '48px', height: '48px', background: '#93c5fd', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px', fontWeight: '700', color: '#1a2c4e', flexShrink: 0}}>6</div>
-                          <h4 style={{fontSize: '18px', fontWeight: '700', color: '#ffffff', margin: 0}}>Retention Bonuses</h4>
-                        </div>
-                        <p style={{color: '#e0e7ff', fontSize: '15px', marginBottom: 0}}>+3% when you maintain 80%+ customer renewal rate.</p>
-                      </div>
-                    </div>
-
-                    <div className="col-md-6" style={{marginBottom: '20px'}}>
-                      <div style={{background: 'rgba(255,255,255,0.1)', borderRadius: '12px', padding: '24px', height: '100%'}}>
-                        <div style={{display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '12px'}}>
-                          <div style={{width: '48px', height: '48px', background: '#93c5fd', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px', fontWeight: '700', color: '#1a2c4e', flexShrink: 0}}>7</div>
-                          <h4 style={{fontSize: '18px', fontWeight: '700', color: '#ffffff', margin: 0}}>Matching Bonuses</h4>
-                        </div>
-                        <p style={{color: '#e0e7ff', fontSize: '15px', marginBottom: 0}}>10-20% match on your Level 1 leaders' override earnings.</p>
-                      </div>
-                    </div>
-
-                    <div className="col-md-6" style={{marginBottom: '20px'}}>
-                      <div style={{background: 'rgba(255,255,255,0.1)', borderRadius: '12px', padding: '24px', height: '100%'}}>
-                        <div style={{display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '12px'}}>
-                          <div style={{width: '48px', height: '48px', background: '#93c5fd', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px', fontWeight: '700', color: '#1a2c4e', flexShrink: 0}}>8</div>
-                          <h4 style={{fontSize: '18px', fontWeight: '700', color: '#ffffff', margin: 0}}>Check Match</h4>
-                        </div>
-                        <p style={{color: '#e0e7ff', fontSize: '15px', marginBottom: 0}}>5% of your Silver+ leaders' total earnings (Gold+ only).</p>
-                      </div>
-                    </div>
-
-                    <div className="col-md-6" style={{marginBottom: '20px'}}>
-                      <div style={{background: 'rgba(255,255,255,0.1)', borderRadius: '12px', padding: '24px', height: '100%'}}>
-                        <div style={{display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '12px'}}>
-                          <div style={{width: '48px', height: '48px', background: '#a78bfa', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px', fontWeight: '700', color: '#1a2c4e', flexShrink: 0}}>9</div>
-                          <h4 style={{fontSize: '18px', fontWeight: '700', color: '#ffffff', margin: 0}}>Rank Bonuses</h4>
-                        </div>
-                        <p style={{color: '#e0e7ff', fontSize: '15px', marginBottom: 0}}>$250-$30,000 one-time bonuses when you hit new ranks.</p>
-                      </div>
-                    </div>
-
-                    <div className="col-md-6" style={{marginBottom: '20px'}}>
-                      <div style={{background: 'rgba(255,255,255,0.1)', borderRadius: '12px', padding: '24px', height: '100%'}}>
-                        <div style={{display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '12px'}}>
-                          <div style={{width: '48px', height: '48px', background: '#a78bfa', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px', fontWeight: '700', color: '#1a2c4e', flexShrink: 0}}>10</div>
-                          <h4 style={{fontSize: '18px', fontWeight: '700', color: '#ffffff', margin: 0}}>Car/Lifestyle Allowance</h4>
-                        </div>
-                        <p style={{color: '#e0e7ff', fontSize: '15px', marginBottom: 0}}>$500-$1,000/month at Platinum+ ranks.</p>
-                      </div>
-                    </div>
-
-                    <div className="col-md-6" style={{marginBottom: '20px'}}>
-                      <div style={{background: 'rgba(255,255,255,0.1)', borderRadius: '12px', padding: '24px', height: '100%'}}>
-                        <div style={{display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '12px'}}>
-                          <div style={{width: '48px', height: '48px', background: '#a78bfa', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px', fontWeight: '700', color: '#1a2c4e', flexShrink: 0}}>11</div>
-                          <h4 style={{fontSize: '18px', fontWeight: '700', color: '#ffffff', margin: 0}}>Global Revenue Share</h4>
-                        </div>
-                        <p style={{color: '#e0e7ff', fontSize: '15px', marginBottom: 0}}>Monthly pool split among all Platinum+ leaders.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* First 30 Days Income */}
-            <div className="row" style={{marginTop: '60px'}}>
-              <div className="col-lg-10 mx-auto">
-                <div className="wow fadeInUp" data-wow-delay="0.3s" style={{background: 'rgba(255,255,255,0.95)', borderRadius: '16px', padding: '40px', color: '#1a2f50'}}>
-                  <h3 style={{color: '#2B4C7E', fontSize: '28px', fontWeight: '700', marginBottom: '16px', textAlign: 'center'}}>
-                    What Can You Earn in Your First 30 Days?
-                  </h3>
-                  <p style={{color: '#6b7280', fontSize: '16px', textAlign: 'center', marginBottom: '32px'}}>
-                    Based on PulseDrive average sales. Includes Direct Commission + Fast Start Bonus + Volume Kicker.
-                  </p>
-
-                  <div className="row">
-                    <div className="col-md-3" style={{marginBottom: '20px'}}>
-                      <div style={{background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)', border: '2px solid #2B4C7E', borderRadius: '12px', padding: '24px', textAlign: 'center', height: '100%'}}>
-                        <div style={{fontSize: '18px', fontWeight: '700', color: '#2B4C7E', marginBottom: '12px'}}>5 Customers</div>
-                        <div style={{fontSize: '36px', fontWeight: '800', color: '#2B4C7E', marginBottom: '8px'}}>$560*</div>
-                        <div style={{fontSize: '13px', color: '#6b7280', lineHeight: '1.4'}}>
-                          $310 commission*<br />
-                          $250 fast start
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="col-md-3" style={{marginBottom: '20px'}}>
-                      <div style={{background: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)', border: '2px solid #2B4C7E', borderRadius: '12px', padding: '24px', textAlign: 'center', height: '100%'}}>
-                        <div style={{fontSize: '18px', fontWeight: '700', color: '#2B4C7E', marginBottom: '12px'}}>10 Customers</div>
-                        <div style={{fontSize: '36px', fontWeight: '800', color: '#2B4C7E', marginBottom: '8px'}}>$1,370*</div>
-                        <div style={{fontSize: '13px', color: '#6b7280', lineHeight: '1.4'}}>
-                          $620 commission*<br />
-                          $500 fast start<br />
-                          $250 volume kicker
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="col-md-3" style={{marginBottom: '20px'}}>
-                      <div style={{background: 'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)', border: '3px solid #fbbf24', borderRadius: '12px', padding: '24px', textAlign: 'center', height: '100%', position: 'relative'}}>
-                        <div style={{position: 'absolute', top: '-12px', right: '12px', background: '#fbbf24', color: '#1a2c4e', padding: '4px 12px', borderRadius: '12px', fontSize: '11px', fontWeight: '700'}}>POPULAR</div>
-                        <div style={{fontSize: '18px', fontWeight: '700', color: '#92400e', marginBottom: '12px'}}>15 Customers</div>
-                        <div style={{fontSize: '36px', fontWeight: '800', color: '#92400e', marginBottom: '8px'}}>$2,430*</div>
-                        <div style={{fontSize: '13px', color: '#78350f', lineHeight: '1.4'}}>
-                          $930 commission*<br />
-                          $750 fast start<br />
-                          $750 volume kicker
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="col-md-3" style={{marginBottom: '20px'}}>
-                      <div style={{background: 'linear-gradient(135deg, #2B4C7E 0%, #1a2c4e 100%)', border: '3px solid #fbbf24', borderRadius: '12px', padding: '24px', textAlign: 'center', height: '100%', color: '#ffffff'}}>
-                        <div style={{fontSize: '18px', fontWeight: '700', color: '#fbbf24', marginBottom: '12px'}}>20 Customers</div>
-                        <div style={{fontSize: '36px', fontWeight: '800', color: '#fbbf24', marginBottom: '8px'}}>$3,740*</div>
-                        <div style={{fontSize: '13px', color: '#e0e7ff', lineHeight: '1.4'}}>
-                          $1,240 commission*<br />
-                          $1,000 fast start<br />
-                          $1,500 volume kicker
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
 
             {/* CTA */}
             <div className="row" style={{marginTop: '50px'}}>
@@ -1277,10 +1113,10 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                     fontWeight: '700',
                     boxShadow: '0 4px 12px rgba(251, 191, 36, 0.4)'
                   }}>
-                    {distributor.slug === 'apex' ? 'Start Earning Today' : `Join ${distributor.first_name}'s Team`}
+                    Join the Movement
                   </a>
-                  <p style={{marginTop: '16px', color: '#e0e7ff', fontSize: '14px'}}>
-                    $0 to join • No monthly fees • Start earning immediately
+                  <p style={{marginTop: '16px', color: '#e0e7ff', fontSize: '15px'}}>
+                    Choose your path. Get trained. Start building.
                   </p>
                 </div>
               </div>
