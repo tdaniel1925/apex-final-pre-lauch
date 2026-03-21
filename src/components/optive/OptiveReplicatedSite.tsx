@@ -2341,6 +2341,101 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
         </div>
         {/* Commission Disclosure Section End */}
 
+        {/* Final CTA Section Start */}
+        <div style={{background: 'linear-gradient(135deg, #1a2c4e 0%, #2B4C7E 100%)', padding: '100px 0', color: '#fff'}}>
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-10 mx-auto text-center">
+                <div className="wow fadeInUp">
+                  <span style={{
+                    display: 'inline-block',
+                    padding: '8px 24px',
+                    background: 'rgba(255,255,255,0.2)',
+                    color: '#fbbf24',
+                    borderRadius: '20px',
+                    fontSize: '14px',
+                    fontWeight: '600',
+                    marginBottom: '24px',
+                    textTransform: 'uppercase',
+                    letterSpacing: '1px'
+                  }}>
+                    Ready to Build Something Real?
+                  </span>
+                  <h2 style={{
+                    fontSize: '48px',
+                    fontWeight: '800',
+                    color: '#ffffff',
+                    marginBottom: '24px',
+                    lineHeight: '1.2'
+                  }}>
+                    Join the Apex Movement.<br />Start Building Today.
+                  </h2>
+                  <p style={{
+                    fontSize: '20px',
+                    color: '#e0e7ff',
+                    maxWidth: '700px',
+                    margin: '0 auto 48px auto',
+                    lineHeight: '1.7'
+                  }}>
+                    No income claims. No hype. Just a proven model for building recurring income by helping people solve real problems.
+                  </p>
+                  <p style={{
+                    fontSize: '18px',
+                    color: '#93c5fd',
+                    marginBottom: '40px',
+                    fontWeight: '600'
+                  }}>
+                    Choose your path. Get trained. Start building.
+                  </p>
+
+                  {/* Two CTA Buttons */}
+                  <div style={{display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '40px'}}>
+                    <a href={signupUrl} className="btn-default" style={{
+                      background: '#fbbf24',
+                      color: '#1a2c4e',
+                      borderColor: '#fbbf24',
+                      padding: '18px 48px',
+                      fontSize: '18px',
+                      fontWeight: '700',
+                      boxShadow: '0 4px 12px rgba(251, 191, 36, 0.4)',
+                      minWidth: '280px'
+                    }}>
+                      Join the Movement
+                    </a>
+                    <a href="#how-it-works" className="btn-default" style={{
+                      background: 'transparent',
+                      color: '#ffffff',
+                      borderColor: '#ffffff',
+                      padding: '18px 48px',
+                      fontSize: '18px',
+                      fontWeight: '700',
+                      minWidth: '280px'
+                    }}>
+                      See How It Works
+                    </a>
+                  </div>
+
+                  {/* Bottom Trust Line */}
+                  <div style={{
+                    borderTop: '1px solid rgba(255,255,255,0.2)',
+                    paddingTop: '32px',
+                    fontSize: '16px',
+                    color: '#e0e7ff'
+                  }}>
+                    <p style={{marginBottom: '8px'}}>
+                      Questions? <a href="/live" style={{color: '#fbbf24', textDecoration: 'underline'}}>Watch our live event first</a>
+                    </p>
+                    <p style={{marginBottom: 0}}>
+                      Or email us: <a href="mailto:support@reachtheapex.net" style={{color: '#fbbf24', textDecoration: 'underline'}}>support@reachtheapex.net</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* Final CTA Section End */}
+
         {/* Main Footer End */}
         <footer className="main-footer dark-section" id="contact" style={{paddingTop: '50px'}}>
           <div className="container">
