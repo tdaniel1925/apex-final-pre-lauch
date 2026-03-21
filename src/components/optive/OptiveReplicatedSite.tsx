@@ -287,8 +287,8 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                     }}>
                       Login
                     </a>
-                    <a href={signupUrl} className="btn-default" style={{background: '#2B4C7E', backgroundColor: '#2B4C7E', backgroundImage: 'none', borderColor: '#2B4C7E'}}>
-                      {distributor.slug === 'apex' ? 'Get Started' : 'Join My Team'}
+                    <a href={signupUrl} className="btn-default" style={{background: '#2B4C7E', backgroundColor: '#2B4C7E', backgroundImage: 'none', borderColor: '#2B4C7E', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}>
+                      <i className="fa-solid fa-arrow-right"></i> {distributor.slug === 'apex' ? 'Get Started' : 'Join My Team'}
                     </a>
                   </div>
                   {/* Header Btn End */}
@@ -480,7 +480,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                       e.currentTarget.style.transform = 'translateX(0)';
                     }}>
                       <div style={{display: 'flex', alignItems: 'center', gap: '16px'}}>
-                        <div style={{fontSize: '48px', flexShrink: 0}}>🛡️</div>
+                        <div style={{fontSize: '48px', flexShrink: 0, color: '#2B4C7E'}}><i className="fa-solid fa-shield-halved"></i></div>
                         <div style={{flex: 1}}>
                           <h3 style={{
                             color: '#ffffff',
@@ -525,9 +525,13 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                       fontSize: '16px',
                       fontWeight: '600',
                       textAlign: 'center',
-                      width: '100%'
+                      width: '100%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '10px'
                     }}>
-                      Watch How It Works
+                      <i className="fa-solid fa-play-circle"></i> Watch How It Works
                     </a>
                     <a href={signupUrl} className="btn-default" style={{
                       background: 'transparent',
@@ -538,9 +542,13 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                       fontSize: '16px',
                       fontWeight: '600',
                       textAlign: 'center',
-                      width: '100%'
+                      width: '100%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '10px'
                     }}>
-                      Join the Movement
+                      <i className="fa-solid fa-arrow-right"></i> Join the Movement
                     </a>
                   </div>
                 </div>
@@ -630,15 +638,15 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                         <h4 style={{fontSize: '18px', fontWeight: '700', color: '#6b7280', marginBottom: '24px', textAlign: 'center'}}>Traditional Job</h4>
                         <div style={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
                           <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
-                            <span style={{fontSize: '20px'}}>⏰</span>
+                            <span style={{fontSize: '20px', color: '#dc2626'}}><i className="fa-solid fa-clock"></i></span>
                             <span style={{fontSize: '15px', color: '#6b7280', lineHeight: '1.5'}}>Trade time for money</span>
                           </div>
                           <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
-                            <span style={{fontSize: '20px'}}>📊</span>
+                            <span style={{fontSize: '20px', color: '#dc2626'}}><i className="fa-solid fa-chart-line"></i></span>
                             <span style={{fontSize: '15px', color: '#6b7280', lineHeight: '1.5'}}>Income capped by hours</span>
                           </div>
                           <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
-                            <span style={{fontSize: '20px'}}>👔</span>
+                            <span style={{fontSize: '20px', color: '#dc2626'}}><i className="fa-solid fa-briefcase"></i></span>
                             <span style={{fontSize: '15px', color: '#6b7280', lineHeight: '1.5'}}>Someone else's business</span>
                           </div>
                           <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
@@ -653,15 +661,15 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                         <h4 style={{fontSize: '18px', fontWeight: '700', color: '#6b7280', marginBottom: '24px', textAlign: 'center'}}>Gig Economy</h4>
                         <div style={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
                           <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
-                            <span style={{fontSize: '20px'}}>⏰</span>
+                            <span style={{fontSize: '20px', color: '#dc2626'}}><i className="fa-solid fa-clock"></i></span>
                             <span style={{fontSize: '15px', color: '#6b7280', lineHeight: '1.5'}}>Trade time for money</span>
                           </div>
                           <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
-                            <span style={{fontSize: '20px'}}>📊</span>
+                            <span style={{fontSize: '20px', color: '#dc2626'}}><i className="fa-solid fa-chart-line"></i></span>
                             <span style={{fontSize: '15px', color: '#6b7280', lineHeight: '1.5'}}>Income capped by hours</span>
                           </div>
                           <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
-                            <span style={{fontSize: '20px'}}>🚗</span>
+                            <span style={{fontSize: '20px', color: '#dc2626'}}><i className="fa-solid fa-car"></i></span>
                             <span style={{fontSize: '15px', color: '#6b7280', lineHeight: '1.5'}}>Work for the platform</span>
                           </div>
                           <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
@@ -684,11 +692,11 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                             <span style={{fontSize: '15px', color: '#ffffff', lineHeight: '1.5', fontWeight: '600'}}>Income compounds</span>
                           </div>
                           <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
-                            <span style={{fontSize: '20px'}}>🏗️</span>
+                            <span style={{fontSize: '20px', color: '#10b981'}}><i className="fa-solid fa-building"></i></span>
                             <span style={{fontSize: '15px', color: '#ffffff', lineHeight: '1.5', fontWeight: '600'}}>You own your business</span>
                           </div>
                           <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
-                            <span style={{fontSize: '20px'}}>✨</span>
+                            <span style={{fontSize: '20px', color: '#fbbf24'}}><i className="fa-solid fa-sparkles"></i></span>
                             <span style={{fontSize: '15px', color: '#ffffff', lineHeight: '1.5', fontWeight: '600'}}>Residual income that lasts</span>
                           </div>
                         </div>
@@ -700,8 +708,8 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                     <p style={{fontSize: '22px', fontWeight: '600', color: '#2B4C7E', marginBottom: '8px'}}>
                       That's not a dream. That's Apex.
                     </p>
-                    <a href="#opportunity" style={{display: 'inline-block', marginTop: '16px', padding: '12px 32px', background: '#2B4C7E', color: '#ffffff', borderRadius: '8px', textDecoration: 'none', fontWeight: '600', fontSize: '16px', transition: 'all 0.3s ease'}}>
-                      See How It Works →
+                    <a href="#opportunity" style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px', marginTop: '16px', padding: '12px 32px', background: '#2B4C7E', color: '#ffffff', borderRadius: '8px', textDecoration: 'none', fontWeight: '600', fontSize: '16px', transition: 'all 0.3s ease'}}>
+                      <i className="fa-solid fa-play-circle"></i> See How It Works
                     </a>
                   </div>
                 </div>
@@ -768,7 +776,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                             </ul>
                           </div>
                           <div className="pricing-item-btn" style={{padding: '0 24px 24px'}}>
-                            <a href={signupUrl} className="btn-default" style={{width: '100%', textAlign: 'center'}}>Learn More</a>
+                            <a href={signupUrl} className="btn-default" style={{width: '100%', textAlign: 'center', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}><i className="fa-solid fa-arrow-right"></i> Learn More</a>
                           </div>
                         </div>
                       </div>
@@ -811,7 +819,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                             </ul>
                           </div>
                           <div className="pricing-item-btn" style={{padding: '0 24px 24px'}}>
-                            <a href={signupUrl} className="btn-default" style={{width: '100%', textAlign: 'center'}}>Learn More</a>
+                            <a href={signupUrl} className="btn-default" style={{width: '100%', textAlign: 'center', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}><i className="fa-solid fa-arrow-right"></i> Learn More</a>
                           </div>
                         </div>
                       </div>
@@ -826,7 +834,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                             fontWeight: 'bold', fontSize: '12px'
                           }}>MOST POPULAR</div>
                           <div style={{background: '#f8f9fa', padding: '20px', borderRadius: '10px 10px 0 0'}}>
-                            <div style={{fontSize: '14px', fontWeight: '600', color: '#2B4C7E', marginBottom: '8px'}}>🎙️ PULSEDRIVE</div>
+                            <div style={{fontSize: '14px', fontWeight: '600', color: '#2B4C7E', marginBottom: '8px'}}><i className="fa-solid fa-microphone" style={{marginRight: '8px'}}></i>PULSEDRIVE</div>
                             <h3 style={{fontSize: '22px', fontWeight: '700', color: '#1a2f50', marginBottom: '4px'}}>Professional Tier</h3>
                             <p style={{fontSize: '14px', color: '#6b7280', marginBottom: '16px'}}>Your podcast. Your voice. Autopilot.</p>
                           </div>
@@ -860,7 +868,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                             </ul>
                           </div>
                           <div className="pricing-item-btn" style={{padding: '0 24px 24px'}}>
-                            <a href={signupUrl} className="btn-default" style={{width: '100%', textAlign: 'center'}}>Learn More</a>
+                            <a href={signupUrl} className="btn-default" style={{width: '100%', textAlign: 'center', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}><i className="fa-solid fa-arrow-right"></i> Learn More</a>
                           </div>
                         </div>
                       </div>
@@ -907,7 +915,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                             </ul>
                           </div>
                           <div className="pricing-item-btn" style={{padding: '0 24px 24px'}}>
-                            <a href={signupUrl} className="btn-default" style={{width: '100%', textAlign: 'center', background: '#8B5CF6', borderColor: '#8B5CF6'}}>Learn More</a>
+                            <a href={signupUrl} className="btn-default" style={{width: '100%', textAlign: 'center', background: '#8B5CF6', borderColor: '#8B5CF6', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}><i className="fa-solid fa-arrow-right"></i> Learn More</a>
                           </div>
                         </div>
                       </div>
@@ -916,7 +924,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                       <div className="col-lg-4 col-md-6" style={{marginBottom: '30px'}}>
                         <div className="pricing-item" style={{border: '3px solid #059669', height: '100%', borderRadius: '12px'}}>
                           <div style={{background: 'linear-gradient(135deg, #059669 0%, #047857 100%)', padding: '20px', borderRadius: '10px 10px 0 0'}}>
-                            <div style={{fontSize: '14px', fontWeight: '600', color: '#ffffff', marginBottom: '8px'}}>📊 SMARTLOOK XL</div>
+                            <div style={{fontSize: '14px', fontWeight: '600', color: '#ffffff', marginBottom: '8px'}}><i className="fa-solid fa-chart-line" style={{marginRight: '8px'}}></i>SMARTLOOK XL</div>
                             <h3 style={{fontSize: '22px', fontWeight: '700', color: '#ffffff', marginBottom: '4px'}}>Smart Office</h3>
                             <p style={{fontSize: '14px', color: '#e0e0e0', marginBottom: '16px'}}>Business intelligence dashboard</p>
                           </div>
@@ -954,7 +962,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                             </ul>
                           </div>
                           <div className="pricing-item-btn" style={{padding: '0 24px 24px'}}>
-                            <a href={signupUrl} className="btn-default" style={{width: '100%', textAlign: 'center', background: '#059669', borderColor: '#059669'}}>Learn More</a>
+                            <a href={signupUrl} className="btn-default" style={{width: '100%', textAlign: 'center', background: '#059669', borderColor: '#059669', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}><i className="fa-solid fa-arrow-right"></i> Learn More</a>
                           </div>
                         </div>
                       </div>
@@ -1054,7 +1062,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
 
                     <div className="col-md-6" style={{marginBottom: '24px'}}>
                       <div style={{background: 'rgba(255,255,255,0.05)', borderRadius: '12px', padding: '32px', height: '100%'}}>
-                        <div style={{fontSize: '48px', marginBottom: '16px', textAlign: 'center'}}>🛡️</div>
+                        <div style={{fontSize: '48px', marginBottom: '16px', textAlign: 'center', color: '#2B4C7E'}}><i className="fa-solid fa-shield-halved"></i></div>
                         <h4 style={{color: '#ffffff', fontSize: '20px', fontWeight: '700', marginBottom: '16px', textAlign: 'center'}}>
                           Insurance Path
                         </h4>
@@ -1101,9 +1109,13 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                     padding: '16px 48px',
                     fontSize: '18px',
                     fontWeight: '700',
-                    boxShadow: '0 4px 12px rgba(251, 191, 36, 0.4)'
+                    boxShadow: '0 4px 12px rgba(251, 191, 36, 0.4)',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '10px'
                   }}>
-                    Join the Movement
+                    <i className="fa-solid fa-arrow-right"></i> Join the Movement
                   </a>
                   <p style={{marginTop: '16px', color: '#e0e7ff', fontSize: '15px'}}>
                     Choose your path. Get&nbsp;trained. Start&nbsp;building.
@@ -1187,7 +1199,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                       <h4 style={{fontSize: '20px', fontWeight: '700', color: '#1a2c4e', margin: 0}}>Setup</h4>
                     </div>
                     <div style={{marginLeft: '52px'}}>
-                      <p style={{fontSize: '16px', fontWeight: '600', color: '#2B4C7E', marginBottom: '8px'}}>⚙️ We Handle the Tech</p>
+                      <p style={{fontSize: '16px', fontWeight: '600', color: '#2B4C7E', marginBottom: '8px'}}><i className="fa-solid fa-gear"></i> We Handle the Tech</p>
                       <ul style={{fontSize: '15px', color: '#475569', lineHeight: '1.6', paddingLeft: '20px', marginBottom: 0}}>
                         <li>Customer signs up through your link</li>
                         <li>Our team handles onboarding and setup</li>
@@ -1225,7 +1237,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   padding: '48px',
                   height: '100%'
                 }}>
-                  <div style={{fontSize: '56px', marginBottom: '24px', textAlign: 'center'}}>🛡️</div>
+                  <div style={{fontSize: '56px', marginBottom: '24px', textAlign: 'center', color: '#92400e'}}><i className="fa-solid fa-shield-halved"></i></div>
                   <h3 style={{fontSize: '28px', fontWeight: '700', color: '#1a2c4e', marginBottom: '32px', textAlign: 'center'}}>
                     For Insurance Professionals
                   </h3>
@@ -1254,7 +1266,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                       <h4 style={{fontSize: '20px', fontWeight: '700', color: '#1a2c4e', margin: 0}}>Learn the Products</h4>
                     </div>
                     <div style={{marginLeft: '52px'}}>
-                      <p style={{fontSize: '16px', fontWeight: '600', color: '#92400e', marginBottom: '8px'}}>🎓 Product Training</p>
+                      <p style={{fontSize: '16px', fontWeight: '600', color: '#92400e', marginBottom: '8px'}}><i className="fa-solid fa-graduation-cap" style={{marginRight: '8px'}}></i>Product Training</p>
                       <ul style={{fontSize: '15px', color: '#475569', lineHeight: '1.6', paddingLeft: '20px', marginBottom: 0}}>
                         <li>Life insurance (term, whole, final expense)</li>
                         <li>Annuities and retirement planning</li>
@@ -1288,7 +1300,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                       <h4 style={{fontSize: '20px', fontWeight: '700', color: '#1a2c4e', margin: 0}}>Earn Residually</h4>
                     </div>
                     <div style={{marginLeft: '52px'}}>
-                      <p style={{fontSize: '16px', fontWeight: '600', color: '#92400e', marginBottom: '8px'}}>💰 Build Long-Term Income</p>
+                      <p style={{fontSize: '16px', fontWeight: '600', color: '#92400e', marginBottom: '8px'}}><i className="fa-solid fa-dollar-sign" style={{marginRight: '8px'}}></i>Build Long-Term Income</p>
                       <ul style={{fontSize: '15px', color: '#475569', lineHeight: '1.6', paddingLeft: '20px', marginBottom: 0}}>
                         <li>Earn on new policies</li>
                         <li>Earn renewals as policies stay in force</li>
@@ -1358,7 +1370,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   border: '2px solid rgba(255,255,255,0.2)',
                   height: '100%'
                 }}>
-                  <div style={{fontSize: '48px', marginBottom: '20px', textAlign: 'center'}}>💰</div>
+                  <div style={{fontSize: '48px', marginBottom: '20px', textAlign: 'center', color: '#059669'}}><i className="fa-solid fa-dollar-sign"></i></div>
                   <h3 style={{fontSize: '24px', fontWeight: '700', color: '#fbbf24', marginBottom: '16px', textAlign: 'center'}}>
                     Recurring Income
                   </h3>
@@ -1381,7 +1393,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   border: '2px solid rgba(255,255,255,0.2)',
                   height: '100%'
                 }}>
-                  <div style={{fontSize: '48px', marginBottom: '20px', textAlign: 'center'}}>✨</div>
+                  <div style={{fontSize: '48px', marginBottom: '20px', textAlign: 'center', color: '#fbbf24'}}><i className="fa-solid fa-sparkles"></i></div>
                   <h3 style={{fontSize: '24px', fontWeight: '700', color: '#fbbf24', marginBottom: '16px', textAlign: 'center'}}>
                     Real Value
                   </h3>
@@ -1404,7 +1416,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   border: '2px solid rgba(255,255,255,0.2)',
                   height: '100%'
                 }}>
-                  <div style={{fontSize: '48px', marginBottom: '20px', textAlign: 'center'}}>🤖</div>
+                  <div style={{fontSize: '48px', marginBottom: '20px', textAlign: 'center', color: '#059669'}}><i className="fa-solid fa-robot"></i></div>
                   <h3 style={{fontSize: '24px', fontWeight: '700', color: '#fbbf24', marginBottom: '16px', textAlign: 'center'}}>
                     Technology Advantage
                   </h3>
@@ -1427,7 +1439,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   border: '2px solid rgba(255,255,255,0.2)',
                   height: '100%'
                 }}>
-                  <div style={{fontSize: '48px', marginBottom: '20px', textAlign: 'center'}}>🛤️</div>
+                  <div style={{fontSize: '48px', marginBottom: '20px', textAlign: 'center', color: '#059669'}}><i className="fa-solid fa-road"></i></div>
                   <h3 style={{fontSize: '24px', fontWeight: '700', color: '#fbbf24', marginBottom: '16px', textAlign: 'center'}}>
                     Dual Opportunity
                   </h3>
@@ -1450,7 +1462,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   border: '2px solid rgba(255,255,255,0.2)',
                   height: '100%'
                 }}>
-                  <div style={{fontSize: '48px', marginBottom: '20px', textAlign: 'center'}}>🎓</div>
+                  <div style={{fontSize: '48px', marginBottom: '20px', textAlign: 'center', color: '#059669'}}><i className="fa-solid fa-graduation-cap"></i></div>
                   <h3 style={{fontSize: '24px', fontWeight: '700', color: '#fbbf24', marginBottom: '16px', textAlign: 'center'}}>
                     Training & Support
                   </h3>
@@ -1477,7 +1489,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   border: '2px solid rgba(255,255,255,0.2)',
                   height: '100%'
                 }}>
-                  <div style={{fontSize: '48px', marginBottom: '20px', textAlign: 'center'}}>📦</div>
+                  <div style={{fontSize: '48px', marginBottom: '20px', textAlign: 'center', color: '#059669'}}><i className="fa-solid fa-box"></i></div>
                   <h3 style={{fontSize: '24px', fontWeight: '700', color: '#fbbf24', marginBottom: '16px', textAlign: 'center'}}>
                     No Inventory. No Overhead.
                   </h3>
@@ -1879,7 +1891,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                         padding: '30px',
                         height: '100%'
                       }}>
-                        <div style={{fontSize: '40px', marginBottom: '12px'}}>🛡️</div>
+                        <div style={{fontSize: '40px', marginBottom: '12px', color: '#8B5CF6'}}><i className="fa-solid fa-shield-halved"></i></div>
                         <h4 style={{fontSize: '22px', fontWeight: '700', color: '#1a2c4e', marginBottom: '12px'}}>
                           Insurance Ladder
                         </h4>
@@ -1903,9 +1915,13 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                       fontSize: '18px',
                       fontWeight: '700',
                       boxShadow: '0 4px 12px rgba(139, 92, 246, 0.4)',
-                      marginRight: '16px'
+                      marginRight: '16px',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '10px'
                     }}>
-                      {distributor.slug === 'apex' ? 'Join as Licensed Agent' : `Join ${distributor.first_name}'s Agency`}
+                      <i className="fa-solid fa-user-tie"></i> {distributor.slug === 'apex' ? 'Join as Licensed Agent' : `Join ${distributor.first_name}'s Agency`}
                     </a>
                     <a href="#products" className="btn-default" style={{
                       background: 'transparent',
@@ -1913,9 +1929,13 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                       borderColor: '#2B4C7E',
                       padding: '16px 48px',
                       fontSize: '18px',
-                      fontWeight: '700'
+                      fontWeight: '700',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '10px'
                     }}>
-                      View All Products
+                      <i className="fa-solid fa-box"></i> View All Products
                     </a>
                   </div>
                 </div>
@@ -2076,8 +2096,8 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                       When agents are properly equipped, trained, and supported — they show up differently for their clients. They close coverage gaps that could devastate families. They build trust that lasts decades. They become pillars in their communities. That's the real mission behind everything Apex Affinity Group does. We invest in you so you can invest in the people who need you most.
                     </p>
                     <div className="wow fadeInUp" data-wow-delay="0.4s" style={{marginTop: '40px', display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap'}}>
-                      <a href={signupUrl} className="btn-default" style={{background: '#ffffff', color: '#2B4C7E', borderColor: '#ffffff'}}>
-                        {distributor.slug === 'apex' ? 'Get Started' : 'Join the Mission'}
+                      <a href={signupUrl} className="btn-default" style={{background: '#ffffff', color: '#2B4C7E', borderColor: '#ffffff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}>
+                        <i className="fa-solid fa-arrow-right"></i> {distributor.slug === 'apex' ? 'Get Started' : 'Join the Mission'}
                       </a>
                     </div>
                   </div>
@@ -2308,8 +2328,8 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
 
                       {/* CTA Button */}
                       <div style={{marginTop: '32px'}}>
-                        <a href={signupUrl} className="btn-default" style={{background: '#2B4C7E', borderColor: '#2B4C7E'}}>
-                          Join {distributor.first_name}'s Team
+                        <a href={signupUrl} className="btn-default" style={{background: '#2B4C7E', borderColor: '#2B4C7E', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}>
+                          <i className="fa-solid fa-user-plus"></i> Join {distributor.first_name}'s Team
                         </a>
                       </div>
                     </div>
@@ -2398,9 +2418,13 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                       fontSize: '18px',
                       fontWeight: '700',
                       boxShadow: '0 4px 12px rgba(251, 191, 36, 0.4)',
-                      minWidth: '280px'
+                      minWidth: '280px',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '10px'
                     }}>
-                      Join the Movement
+                      <i className="fa-solid fa-arrow-right"></i> Join the Movement
                     </a>
                     <a href="#how-it-works" className="btn-default" style={{
                       background: 'transparent',
@@ -2409,9 +2433,13 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                       padding: '18px 48px',
                       fontSize: '18px',
                       fontWeight: '700',
-                      minWidth: '280px'
+                      minWidth: '280px',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '10px'
                     }}>
-                      See How It Works
+                      <i className="fa-solid fa-play-circle"></i> See How It Works
                     </a>
                   </div>
 

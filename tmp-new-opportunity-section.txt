@@ -1,0 +1,347 @@
+        {/* The Two Paths Section Start */}
+        <div style={{background: 'linear-gradient(135deg, #1a2c4e 0%, #2B4C7E 100%)', padding: '80px 0', color: '#fff'}} id="opportunity">
+          <div className="container">
+            <div className="row section-row">
+              <div className="col-lg-12">
+                <div className="section-title section-title-center">
+                  <span className="section-sub-title wow fadeInUp" style={{color: '#93c5fd'}}>Choose Your Path (Or Do Both)</span>
+                  <h2 className="text-anime-style-3" data-cursor="-opaque" style={{color: '#ffffff'}}>
+                    Two Ways to Build.<br />One Platform That Supports You.
+                  </h2>
+                  <p className="wow fadeInUp" data-wow-delay="0.2s" style={{color: '#e0e7ff', maxWidth: '900px', margin: '0 auto', fontSize: '18px', lineHeight: '1.7'}}>
+                    Apex isn't one-size-fits-all. We offer two distinct career paths — both built on the same foundation of recurring income, real value, and technology that works for you.
+                  </p>
+                  <p className="wow fadeInUp" data-wow-delay="0.3s" style={{color: '#93c5fd', maxWidth: '700px', margin: '16px auto 0', fontSize: '17px'}}>
+                    Choose the path that resonates. Or do both.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* PATH 1: AI Technology Advocate */}
+            <div className="row" style={{marginTop: '60px'}}>
+              <div className="col-lg-10 mx-auto">
+                <div className="wow fadeInUp" style={{background: 'rgba(255,255,255,0.1)', borderRadius: '20px', padding: '48px', backdropFilter: 'blur(10px)', border: '2px solid rgba(255,255,255,0.2)'}}>
+                  <div style={{display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '32px'}}>
+                    <div style={{fontSize: '56px'}}>💻</div>
+                    <div>
+                      <h3 style={{color: '#fbbf24', fontSize: '28px', fontWeight: '700', marginBottom: '8px'}}>
+                        PATH 1: AI Technology Advocate
+                      </h3>
+                      <p style={{color: '#e0e7ff', fontSize: '18px', margin: 0}}>
+                        Help Businesses Compete Like the Big Players
+                      </p>
+                    </div>
+                  </div>
+
+                  <div style={{marginBottom: '32px'}}>
+                    <h4 style={{color: '#ffffff', fontSize: '20px', fontWeight: '700', marginBottom: '16px'}}>
+                      The Problem You Solve:
+                    </h4>
+                    <p style={{color: '#e0e7ff', fontSize: '16px', lineHeight: '1.7'}}>
+                      Small businesses are drowning. They know they need marketing — websites, social media, content, email campaigns — but they can't afford agencies charging thousands per month. So they do nothing. And they lose to competitors who figured it out.
+                    </p>
+                  </div>
+
+                  <div style={{marginBottom: '32px'}}>
+                    <h4 style={{color: '#ffffff', fontSize: '20px', fontWeight: '700', marginBottom: '16px'}}>
+                      The Solution You Bring:
+                    </h4>
+                    <p style={{color: '#e0e7ff', fontSize: '16px', lineHeight: '1.7', marginBottom: '20px'}}>
+                      AI-powered marketing automation that does what a full marketing team does — without the cost.
+                    </p>
+                    <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '12px'}}>
+                      <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
+                        <svg style={{width: '24px', height: '24px', color: '#fbbf24', flexShrink: 0}} fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span style={{color: '#e0e7ff', fontSize: '15px'}}>AI-generated content (social, blogs, emails)</span>
+                      </div>
+                      <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
+                        <svg style={{width: '24px', height: '24px', color: '#fbbf24', flexShrink: 0}} fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span style={{color: '#e0e7ff', fontSize: '15px'}}>Landing pages that convert</span>
+                      </div>
+                      <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
+                        <svg style={{width: '24px', height: '24px', color: '#fbbf24', flexShrink: 0}} fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span style={{color: '#e0e7ff', fontSize: '15px'}}>Podcast production with AI voice</span>
+                      </div>
+                      <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
+                        <svg style={{width: '24px', height: '24px', color: '#fbbf24', flexShrink: 0}} fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span style={{color: '#e0e7ff', fontSize: '15px'}}>Video content for social platforms</span>
+                      </div>
+                      <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
+                        <svg style={{width: '24px', height: '24px', color: '#fbbf24', flexShrink: 0}} fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span style={{color: '#e0e7ff', fontSize: '15px'}}>All automated. All done-for-you.</span>
+                      </div>
+                    </div>
+                    <p style={{color: '#93c5fd', fontSize: '15px', marginTop: '20px', fontStyle: 'italic'}}>
+                      You don't build it. You don't run it. You simply connect business owners with the solution — and AI does the rest.
+                    </p>
+                  </div>
+
+                  <div style={{background: 'rgba(255,255,255,0.05)', borderRadius: '12px', padding: '24px', marginBottom: '24px'}}>
+                    <h4 style={{color: '#fbbf24', fontSize: '18px', fontWeight: '700', marginBottom: '16px'}}>
+                      What You Actually Do:
+                    </h4>
+                    <div style={{display: 'flex', flexDirection: 'column', gap: '12px'}}>
+                      <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                        <span style={{color: '#fbbf24', fontWeight: '700', fontSize: '16px', flexShrink: 0}}>→</span>
+                        <span style={{color: '#e0e7ff', fontSize: '15px', lineHeight: '1.6'}}>Talk to business owners about their marketing struggles</span>
+                      </div>
+                      <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                        <span style={{color: '#fbbf24', fontWeight: '700', fontSize: '16px', flexShrink: 0}}>→</span>
+                        <span style={{color: '#e0e7ff', fontSize: '15px', lineHeight: '1.6'}}>Show them what's possible with AI automation</span>
+                      </div>
+                      <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                        <span style={{color: '#fbbf24', fontWeight: '700', fontSize: '16px', flexShrink: 0}}>→</span>
+                        <span style={{color: '#e0e7ff', fontSize: '15px', lineHeight: '1.6'}}>Help them get set up (we handle the tech)</span>
+                      </div>
+                      <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                        <span style={{color: '#fbbf24', fontWeight: '700', fontSize: '16px', flexShrink: 0}}>→</span>
+                        <span style={{color: '#e0e7ff', fontSize: '15px', lineHeight: '1.6'}}>Stay in touch as they see results</span>
+                      </div>
+                    </div>
+                    <p style={{color: '#93c5fd', fontSize: '14px', marginTop: '16px', fontStyle: 'italic'}}>
+                      That's it. No coding. No design. No writing content for them.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 style={{color: '#ffffff', fontSize: '18px', fontWeight: '700', marginBottom: '16px'}}>
+                      Why This Path Works:
+                    </h4>
+                    <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '12px'}}>
+                      <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
+                        <svg style={{width: '20px', height: '20px', color: '#fbbf24', flexShrink: 0}} fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span style={{color: '#e0e7ff', fontSize: '14px'}}>Every business needs marketing</span>
+                      </div>
+                      <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
+                        <svg style={{width: '20px', height: '20px', color: '#fbbf24', flexShrink: 0}} fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span style={{color: '#e0e7ff', fontSize: '14px'}}>AI makes it affordable for the first time</span>
+                      </div>
+                      <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
+                        <svg style={{width: '20px', height: '20px', color: '#fbbf24', flexShrink: 0}} fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span style={{color: '#e0e7ff', fontSize: '14px'}}>Customers stay because it works</span>
+                      </div>
+                      <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
+                        <svg style={{width: '20px', height: '20px', color: '#fbbf24', flexShrink: 0}} fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span style={{color: '#e0e7ff', fontSize: '14px'}}>You're the guide, not the technician</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style={{textAlign: 'center', marginTop: '32px'}}>
+                    <a href="#products" style={{display: 'inline-block', padding: '14px 36px', background: '#fbbf24', color: '#1a2c4e', borderRadius: '8px', textDecoration: 'none', fontWeight: '700', fontSize: '16px', transition: 'all 0.3s ease'}}>
+                      Learn More About AI Solutions →
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* PATH 2: Insurance Professional */}
+            <div className="row" style={{marginTop: '40px'}}>
+              <div className="col-lg-10 mx-auto">
+                <div className="wow fadeInUp" style={{background: 'rgba(255,255,255,0.1)', borderRadius: '20px', padding: '48px', backdropFilter: 'blur(10px)', border: '2px solid rgba(255,255,255,0.2)'}}>
+                  <div style={{display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '32px'}}>
+                    <div style={{fontSize: '56px'}}>🛡️</div>
+                    <div>
+                      <h3 style={{color: '#fbbf24', fontSize: '28px', fontWeight: '700', marginBottom: '8px'}}>
+                        PATH 2: Insurance Professional
+                      </h3>
+                      <p style={{color: '#e0e7ff', fontSize: '18px', margin: 0}}>
+                        Protect What Matters Most
+                      </p>
+                    </div>
+                  </div>
+
+                  <div style={{marginBottom: '32px'}}>
+                    <h4 style={{color: '#ffffff', fontSize: '20px', fontWeight: '700', marginBottom: '16px'}}>
+                      The Problem You Solve:
+                    </h4>
+                    <p style={{color: '#e0e7ff', fontSize: '16px', lineHeight: '1.7'}}>
+                      Families are underinsured. They know they need life insurance, retirement planning, and financial protection — but the industry feels confusing, pushy, and full of jargon. So they procrastinate. And hope nothing bad happens.
+                    </p>
+                  </div>
+
+                  <div style={{marginBottom: '32px'}}>
+                    <h4 style={{color: '#ffffff', fontSize: '20px', fontWeight: '700', marginBottom: '16px'}}>
+                      The Solution You Bring:
+                    </h4>
+                    <p style={{color: '#e0e7ff', fontSize: '16px', lineHeight: '1.7', marginBottom: '20px'}}>
+                      Trust. Clarity. Peace of mind.
+                    </p>
+                    <p style={{color: '#93c5fd', fontSize: '15px', marginBottom: '20px', fontStyle: 'italic'}}>
+                      You're not here to "sell insurance." You're here to help families make informed decisions about protecting their future.
+                    </p>
+                    <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '12px'}}>
+                      <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
+                        <svg style={{width: '24px', height: '24px', color: '#fbbf24', flexShrink: 0}} fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span style={{color: '#e0e7ff', fontSize: '15px'}}>Life insurance (term, whole, final expense)</span>
+                      </div>
+                      <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
+                        <svg style={{width: '24px', height: '24px', color: '#fbbf24', flexShrink: 0}} fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span style={{color: '#e0e7ff', fontSize: '15px'}}>Annuities (retirement income planning)</span>
+                      </div>
+                      <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
+                        <svg style={{width: '24px', height: '24px', color: '#fbbf24', flexShrink: 0}} fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span style={{color: '#e0e7ff', fontSize: '15px'}}>Ancillary products (hospital, accident, critical illness)</span>
+                      </div>
+                      <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
+                        <svg style={{width: '24px', height: '24px', color: '#fbbf24', flexShrink: 0}} fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span style={{color: '#e0e7ff', fontSize: '15px'}}>Top-tier contracts with leading carriers</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style={{background: 'rgba(255,255,255,0.05)', borderRadius: '12px', padding: '24px', marginBottom: '24px'}}>
+                    <h4 style={{color: '#fbbf24', fontSize: '18px', fontWeight: '700', marginBottom: '16px'}}>
+                      What You Actually Do:
+                    </h4>
+                    <div style={{display: 'flex', flexDirection: 'column', gap: '12px'}}>
+                      <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                        <span style={{color: '#fbbf24', fontWeight: '700', fontSize: '16px', flexShrink: 0}}>→</span>
+                        <span style={{color: '#e0e7ff', fontSize: '15px', lineHeight: '1.6'}}>Listen to families' concerns and goals</span>
+                      </div>
+                      <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                        <span style={{color: '#fbbf24', fontWeight: '700', fontSize: '16px', flexShrink: 0}}>→</span>
+                        <span style={{color: '#e0e7ff', fontSize: '15px', lineHeight: '1.6'}}>Educate them on their options (no pressure)</span>
+                      </div>
+                      <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                        <span style={{color: '#fbbf24', fontWeight: '700', fontSize: '16px', flexShrink: 0}}>→</span>
+                        <span style={{color: '#e0e7ff', fontSize: '15px', lineHeight: '1.6'}}>Help them choose the right coverage</span>
+                      </div>
+                      <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                        <span style={{color: '#fbbf24', fontWeight: '700', fontSize: '16px', flexShrink: 0}}>→</span>
+                        <span style={{color: '#e0e7ff', fontSize: '15px', lineHeight: '1.6'}}>Be their trusted advisor for life</span>
+                      </div>
+                    </div>
+                    <p style={{color: '#93c5fd', fontSize: '14px', marginTop: '16px', fontStyle: 'italic'}}>
+                      You don't underwrite policies. You don't handle claims. You build relationships and help people sleep better at night.
+                    </p>
+                  </div>
+
+                  <div style={{marginBottom: '24px'}}>
+                    <h4 style={{color: '#ffffff', fontSize: '18px', fontWeight: '700', marginBottom: '16px'}}>
+                      Why This Path Works:
+                    </h4>
+                    <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '12px'}}>
+                      <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
+                        <svg style={{width: '20px', height: '20px', color: '#fbbf24', flexShrink: 0}} fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span style={{color: '#e0e7ff', fontSize: '14px'}}>Families need protection (always in demand)</span>
+                      </div>
+                      <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
+                        <svg style={{width: '20px', height: '20px', color: '#fbbf24', flexShrink: 0}} fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span style={{color: '#e0e7ff', fontSize: '14px'}}>Trusted advisors earn referrals for decades</span>
+                      </div>
+                      <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
+                        <svg style={{width: '20px', height: '20px', color: '#fbbf24', flexShrink: 0}} fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span style={{color: '#e0e7ff', fontSize: '14px'}}>Residual income on renewals</span>
+                      </div>
+                      <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
+                        <svg style={{width: '20px', height: '20px', color: '#fbbf24', flexShrink: 0}} fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span style={{color: '#e0e7ff', fontSize: '14px'}}>You're making a real difference in people's lives</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style={{background: 'rgba(251, 191, 36, 0.2)', border: '2px solid #fbbf24', borderRadius: '12px', padding: '24px', marginBottom: '24px'}}>
+                    <h4 style={{color: '#fbbf24', fontSize: '18px', fontWeight: '700', marginBottom: '12px'}}>
+                      What About Licensing?
+                    </h4>
+                    <p style={{color: '#ffffff', fontSize: '15px', lineHeight: '1.7', marginBottom: '16px'}}>
+                      Don't have your insurance license yet? No problem.
+                    </p>
+                    <p style={{color: '#e0e7ff', fontSize: '15px', lineHeight: '1.7'}}>
+                      We'll guide you through the process: Pre-licensing courses (online, self-paced) → State exam prep and support → Onboarding and product training → Mentorship from experienced agents
+                    </p>
+                    <p style={{color: '#93c5fd', fontSize: '14px', marginTop: '12px', fontStyle: 'italic'}}>
+                      Timeline: 2–4 weeks from start to licensed.
+                    </p>
+                  </div>
+
+                  <div style={{textAlign: 'center', marginTop: '32px'}}>
+                    <a href="#insurance" style={{display: 'inline-block', padding: '14px 36px', background: '#fbbf24', color: '#1a2c4e', borderRadius: '8px', textDecoration: 'none', fontWeight: '700', fontSize: '16px', transition: 'all 0.3s ease'}}>
+                      Learn More About Insurance →
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Can You Do Both? */}
+            <div className="row" style={{marginTop: '50px'}}>
+              <div className="col-lg-8 mx-auto">
+                <div className="wow fadeInUp" style={{background: 'rgba(251, 191, 36, 0.15)', border: '2px solid #fbbf24', borderRadius: '16px', padding: '40px', textAlign: 'center'}}>
+                  <h3 style={{color: '#fbbf24', fontSize: '24px', fontWeight: '700', marginBottom: '16px'}}>
+                    Can You Do Both?
+                  </h3>
+                  <p style={{color: '#ffffff', fontSize: '18px', lineHeight: '1.8', marginBottom: '16px'}}>
+                    ✅ Yes. Many Apex members do both paths.
+                  </p>
+                  <p style={{color: '#e0e7ff', fontSize: '16px', lineHeight: '1.7'}}>
+                    <strong style={{color: '#fbbf24'}}>Example:</strong> You help a business owner with AI marketing. They trust you. Later, you help them with life insurance and retirement planning.
+                  </p>
+                  <p style={{color: '#fbbf24', fontSize: '17px', marginTop: '20px', fontWeight: '600'}}>
+                    Two income streams. One relationship.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Final CTA */}
+            <div className="row" style={{marginTop: '50px'}}>
+              <div className="col-lg-12 text-center">
+                <div className="wow fadeInUp" data-wow-delay="0.4s">
+                  <a href={signupUrl} className="btn-default" style={{
+                    background: '#fbbf24',
+                    color: '#1a2c4e',
+                    borderColor: '#fbbf24',
+                    padding: '16px 48px',
+                    fontSize: '18px',
+                    fontWeight: '700',
+                    boxShadow: '0 4px 12px rgba(251, 191, 36, 0.4)'
+                  }}>
+                    Join the Movement
+                  </a>
+                  <p style={{marginTop: '16px', color: '#e0e7ff', fontSize: '15px'}}>
+                    Choose your path. Get trained. Start building.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* The Two Paths Section End */}
