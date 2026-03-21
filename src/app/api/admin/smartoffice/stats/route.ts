@@ -5,11 +5,11 @@
  */
 
 import { NextResponse } from 'next/server';
-import { getServiceSupabase } from '@/lib/supabase/service';
+import { createServiceClient } from '@/lib/supabase/service';
 
 export async function GET() {
   try {
-    const supabase = getServiceSupabase();
+    const supabase = createServiceClient();
 
     // Get agent counts
     const { count: totalAgents } = await supabase

@@ -29,7 +29,7 @@ import {
   parsePolicySearchResult,
   parseCommissionMethodResult,
 } from './xml-parser';
-import { getServiceSupabase } from '@/lib/supabase/service';
+import { createServiceClient } from '@/lib/supabase/service';
 
 // Singleton client instance (lazy-loaded)
 let clientInstance: SmartOfficeClient | null = null;
@@ -65,7 +65,7 @@ export function resetSmartOfficeClient(): void {
  * Get SmartOffice config from database
  */
 async function getSmartOfficeConfig(): Promise<SmartOfficeSyncConfig | null> {
-  const supabase = getServiceSupabase();
+  const supabase = createServiceClient();
   const { data, error } = await supabase
     .from('smartoffice_sync_config')
     .select('*')

@@ -3,7 +3,7 @@
  * Orchestrates data synchronization between SmartOffice and Apex
  */
 
-import { getServiceSupabase } from '@/lib/supabase/service';
+import { createServiceClient } from '@/lib/supabase/service';
 import { getSmartOfficeClient, resetSmartOfficeClient } from './client';
 import type {
   SyncResult,
@@ -20,7 +20,7 @@ import type {
  * SmartOffice Sync Service
  */
 export class SmartOfficeSyncService {
-  private supabase = getServiceSupabase();
+  private supabase = createServiceClient();
 
   /**
    * Run a full sync (all agents, policies, commissions)
