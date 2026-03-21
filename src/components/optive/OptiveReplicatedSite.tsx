@@ -343,7 +343,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                       Whether you're helping businesses grow with AI-powered marketing or protecting families with insurance — you're building recurring income doing work that matters.
                     </p>
                     <p className="wow fadeInUp" data-wow-delay="0.15s" style={{color: 'rgba(255, 255, 255, 0.9)', fontSize: '16px', marginTop: '12px', maxWidth: '600px', lineHeight: '1.6'}}>
-                      No quotas. No pressure. Just real value for real people.
+                      No quotas. No pressure. Just real&nbsp;value for real&nbsp;people.
                     </p>
 
                     {/* Trust Bar */}
@@ -1106,7 +1106,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                     Join the Movement
                   </a>
                   <p style={{marginTop: '16px', color: '#e0e7ff', fontSize: '15px'}}>
-                    Choose your path. Get trained. Start building.
+                    Choose your path. Get&nbsp;trained. Start&nbsp;building.
                   </p>
                 </div>
               </div>
@@ -2377,7 +2377,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                     margin: '0 auto 48px auto',
                     lineHeight: '1.7'
                   }}>
-                    No income claims. No hype. Just a proven model for building recurring income by helping people solve real problems.
+                    No income claims. No hype. Just a proven model for building recurring income by&nbsp;helping people solve real&nbsp;problems.
                   </p>
                   <p style={{
                     fontSize: '18px',
@@ -2385,7 +2385,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                     marginBottom: '40px',
                     fontWeight: '600'
                   }}>
-                    Choose your path. Get trained. Start building.
+                    Choose your path. Get&nbsp;trained. Start&nbsp;building.
                   </p>
 
                   {/* Two CTA Buttons */}
