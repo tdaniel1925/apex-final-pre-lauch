@@ -235,7 +235,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
         {/* Live Event Countdown Banner End */}
 
         {/* Header Start */}
-        <header className="main-header">
+        <header className="main-header" style={{marginTop: '40px'}}>
           <div className="header-sticky">
             <nav className="navbar navbar-expand-lg">
               <div className="container">
