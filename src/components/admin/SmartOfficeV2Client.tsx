@@ -56,7 +56,15 @@ export default function SmartOfficeV2Client({
     setSyncing(true);
     setSyncMessage(null);
 
+    console.log('[SmartOffice] Starting sync...');
+
     try {
+      // Show progress message
+      setSyncMessage({
+        type: 'success',
+        message: 'Connecting to SmartOffice API...',
+      });
+
       const response = await fetch('/api/admin/smartoffice/sync', {
         method: 'POST',
       });
@@ -64,21 +72,24 @@ export default function SmartOfficeV2Client({
       const data = await response.json();
 
       if (response.ok) {
+        console.log('[SmartOffice] Sync completed:', data);
         setSyncMessage({
           type: 'success',
-          message: `Sync completed! Synced ${data.agents || 0} agents and ${data.policies || 0} policies.`,
+          message: `✅ Sync completed! Synced ${data.agents || 0} agents, ${data.policies || 0} policies, and ${data.commissions || 0} commissions in ${Math.round((data.duration_ms || 0) / 1000)}s`,
         });
 
         // Refresh stats
+        console.log('[SmartOffice] Refreshing stats...');
         const statsResponse = await fetch('/api/admin/smartoffice/stats');
         if (statsResponse.ok) {
           const newStats = await statsResponse.json();
+          console.log('[SmartOffice] Updated stats:', newStats);
           setStats({
             totalAgents: newStats.totalAgents || 0,
             mappedAgents: newStats.mappedAgents || 0,
             unmappedAgents: newStats.unmappedAgents || 0,
             totalPolicies: newStats.totalPolicies || 0,
-            totalCommissions: 0,
+            totalCommissions: newStats.totalCommissions || 0,
             lastSync: {
               completed_at: new Date().toISOString(),
               status: 'success',
@@ -88,18 +99,21 @@ export default function SmartOfficeV2Client({
           });
         }
       } else {
+        console.error('[SmartOffice] Sync failed:', data.error);
         setSyncMessage({
           type: 'error',
-          message: data.error || 'Sync failed. Please try again.',
+          message: `❌ ${data.error || 'Sync failed. Please try again.'}`,
         });
       }
     } catch (error) {
+      console.error('[SmartOffice] Sync error:', error);
       setSyncMessage({
         type: 'error',
-        message: 'Failed to connect to SmartOffice API. Please check your configuration.',
+        message: '❌ Failed to connect to SmartOffice API. Please check your configuration and try again.',
       });
     } finally {
       setSyncing(false);
+      console.log('[SmartOffice] Sync process finished');
     }
   };
 
@@ -218,19 +232,30 @@ export default function SmartOfficeV2Client({
         <CardContent className="space-y-4">
           {syncMessage && (
             <div
-              className={`p-4 rounded-md ${
+              className={`p-4 rounded-lg border-2 ${
                 syncMessage.type === 'success'
-                  ? 'bg-green-50 border border-green-200 text-green-800'
-                  : 'bg-red-50 border border-red-200 text-red-800'
+                  ? 'bg-green-50 border-green-300 text-green-900'
+                  : 'bg-red-50 border-red-300 text-red-900'
               }`}
             >
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-3">
                 {syncMessage.type === 'success' ? (
-                  <CheckCircle className="w-4 h-4" />
+                  syncing ? (
+                    <Loader2 className="w-5 h-5 animate-spin flex-shrink-0" />
+                  ) : (
+                    <CheckCircle className="w-5 h-5 flex-shrink-0" />
+                  )
                 ) : (
-                  <AlertCircle className="w-4 h-4" />
+                  <AlertCircle className="w-5 h-5 flex-shrink-0" />
                 )}
-                <span className="font-medium">{syncMessage.message}</span>
+                <div className="flex-1">
+                  <p className="font-semibold text-base">{syncMessage.message}</p>
+                  {syncing && (
+                    <p className="text-sm mt-1 opacity-80">
+                      Please wait, this may take 30-60 seconds...
+                    </p>
+                  )}
+                </div>
               </div>
             </div>
           )}
