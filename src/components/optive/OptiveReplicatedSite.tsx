@@ -1315,7 +1315,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                     Can You Do Both?
                   </h3>
                   <div style={{fontSize: '20px', fontWeight: '600', color: '#8B5CF6', marginBottom: '16px'}}>
-                    ✅ Yes. Many Apex members do both paths.
+                    <i className="fa-solid fa-circle-check" style={{color: '#10b981', marginRight: '8px'}}></i> Yes. Many Apex members do both&nbsp;paths.
                   </div>
                   <p style={{fontSize: '17px', color: '#475569', lineHeight: '1.7', maxWidth: '700px', margin: '0 auto'}}>
                     <strong>Example:</strong> You help a business owner with AI marketing. They trust you. Later, you help them with life insurance and retirement planning.
@@ -1529,7 +1529,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   marginBottom: '24px'
                 }}>
                   <div style={{display: 'flex', alignItems: 'start', gap: '16px'}}>
-                    <div style={{fontSize: '36px', flexShrink: 0}}>✅</div>
+                    <div style={{fontSize: '36px', flexShrink: 0, color: '#10b981'}}><i className="fa-solid fa-circle-check"></i></div>
                     <div>
                       <h3 style={{fontSize: '22px', fontWeight: '700', color: '#1a2c4e', marginBottom: '12px'}}>
                         Parents Who Want Flexibility
@@ -1550,7 +1550,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   marginBottom: '24px'
                 }}>
                   <div style={{display: 'flex', alignItems: 'start', gap: '16px'}}>
-                    <div style={{fontSize: '36px', flexShrink: 0}}>✅</div>
+                    <div style={{fontSize: '36px', flexShrink: 0, color: '#10b981'}}><i className="fa-solid fa-circle-check"></i></div>
                     <div>
                       <h3 style={{fontSize: '22px', fontWeight: '700', color: '#1a2c4e', marginBottom: '12px'}}>
                         Entrepreneurs Who See the AI Revolution
@@ -1571,7 +1571,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   marginBottom: '24px'
                 }}>
                   <div style={{display: 'flex', alignItems: 'start', gap: '16px'}}>
-                    <div style={{fontSize: '36px', flexShrink: 0}}>✅</div>
+                    <div style={{fontSize: '36px', flexShrink: 0, color: '#10b981'}}><i className="fa-solid fa-circle-check"></i></div>
                     <div>
                       <h3 style={{fontSize: '22px', fontWeight: '700', color: '#1a2c4e', marginBottom: '12px'}}>
                         Insurance Agents Looking for Better Contracts
@@ -1592,7 +1592,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   marginBottom: '24px'
                 }}>
                   <div style={{display: 'flex', alignItems: 'start', gap: '16px'}}>
-                    <div style={{fontSize: '36px', flexShrink: 0}}>✅</div>
+                    <div style={{fontSize: '36px', flexShrink: 0, color: '#10b981'}}><i className="fa-solid fa-circle-check"></i></div>
                     <div>
                       <h3 style={{fontSize: '22px', fontWeight: '700', color: '#1a2c4e', marginBottom: '12px'}}>
                         People Tired of Trading Time for Money
@@ -1613,7 +1613,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   marginBottom: '24px'
                 }}>
                   <div style={{display: 'flex', alignItems: 'start', gap: '16px'}}>
-                    <div style={{fontSize: '36px', flexShrink: 0}}>✅</div>
+                    <div style={{fontSize: '36px', flexShrink: 0, color: '#10b981'}}><i className="fa-solid fa-circle-check"></i></div>
                     <div>
                       <h3 style={{fontSize: '22px', fontWeight: '700', color: '#1a2c4e', marginBottom: '12px'}}>
                         Anyone Who Wants to Build Something That Lasts
@@ -1642,19 +1642,19 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   </h3>
                   <div style={{display: 'flex', flexDirection: 'column', gap: '12px', textAlign: 'left', maxWidth: '600px', margin: '0 auto 20px auto'}}>
                     <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
-                      <span style={{fontSize: '20px', flexShrink: 0}}>❌</span>
+                      <span style={{fontSize: '20px', flexShrink: 0, color: '#dc2626'}}><i className="fa-solid fa-circle-xmark"></i></span>
                       <span style={{fontSize: '16px', color: '#475569', lineHeight: '1.7'}}>People looking to "get rich quick"</span>
                     </div>
                     <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
-                      <span style={{fontSize: '20px', flexShrink: 0}}>❌</span>
+                      <span style={{fontSize: '20px', flexShrink: 0, color: '#dc2626'}}><i className="fa-solid fa-circle-xmark"></i></span>
                       <span style={{fontSize: '16px', color: '#475569', lineHeight: '1.7'}}>People who won't help others succeed</span>
                     </div>
                     <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
-                      <span style={{fontSize: '20px', flexShrink: 0}}>❌</span>
+                      <span style={{fontSize: '20px', flexShrink: 0, color: '#dc2626'}}><i className="fa-solid fa-circle-xmark"></i></span>
                       <span style={{fontSize: '16px', color: '#475569', lineHeight: '1.7'}}>People who expect passive income without any work</span>
                     </div>
                     <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
-                      <span style={{fontSize: '20px', flexShrink: 0}}>❌</span>
+                      <span style={{fontSize: '20px', flexShrink: 0, color: '#dc2626'}}><i className="fa-solid fa-circle-xmark"></i></span>
                       <span style={{fontSize: '16px', color: '#475569', lineHeight: '1.7'}}>People who don't believe in the value we deliver</span>
                     </div>
                   </div>
