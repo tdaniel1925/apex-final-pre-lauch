@@ -125,116 +125,117 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
 
         {/* Live Event Countdown Banner */}
         <div style={{
-          background: 'linear-gradient(135deg, #dc2626 0%, #b91c1c 100%)',
-          color: '#ffffff',
-          padding: '10px 0',
-          fontSize: '14px',
-          fontWeight: '600',
-          textAlign: 'center',
-          boxShadow: '0 2px 8px rgba(220, 38, 38, 0.3)',
-          position: 'relative',
-          zIndex: 1000
+          padding: '8px 0',
+          display: 'flex',
+          justifyContent: 'center'
         }}>
           <div className="container">
             <div style={{
+              background: 'linear-gradient(135deg, #dc2626 0%, #b91c1c 100%)',
+              borderRadius: '8px',
+              padding: '5px 16px',
+              boxShadow: '0 2px 8px rgba(220, 38, 38, 0.3)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '16px',
-              flexWrap: 'wrap'
+              gap: '12px',
+              flexWrap: 'wrap',
+              color: '#ffffff',
+              fontSize: '13px',
+              fontWeight: '600'
             }}>
               <div style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '8px'
+                gap: '6px'
               }}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <circle cx="12" cy="12" r="10" />
                   <polyline points="12 6 12 12 16 14" />
                 </svg>
-                <span style={{fontSize: '15px', letterSpacing: '0.5px'}}>Our Next Live Event Starts In:</span>
+                <span style={{fontSize: '13px', letterSpacing: '0.3px'}}>Next Live Event:</span>
               </div>
               <div style={{
                 display: 'flex',
-                gap: '12px',
+                gap: '6px',
                 alignItems: 'center'
               }}>
                 {/* Days */}
                 <div style={{
                   background: 'rgba(255, 255, 255, 0.2)',
-                  padding: '6px 12px',
-                  borderRadius: '6px',
-                  minWidth: '60px',
+                  padding: '3px 8px',
+                  borderRadius: '4px',
+                  minWidth: '42px',
                   textAlign: 'center',
                   backdropFilter: 'blur(10px)'
                 }}>
-                  <div style={{fontSize: '18px', fontWeight: '800', lineHeight: '1'}}>{String(timeLeft.days).padStart(2, '0')}</div>
-                  <div style={{fontSize: '10px', marginTop: '2px', opacity: 0.9, textTransform: 'uppercase', letterSpacing: '0.5px'}}>Days</div>
+                  <div style={{fontSize: '14px', fontWeight: '800', lineHeight: '1'}}>{String(timeLeft.days).padStart(2, '0')}</div>
+                  <div style={{fontSize: '8px', marginTop: '1px', opacity: 0.9, textTransform: 'uppercase', letterSpacing: '0.3px'}}>Days</div>
                 </div>
-                <span style={{fontSize: '20px', fontWeight: '700', opacity: 0.7}}>:</span>
+                <span style={{fontSize: '14px', fontWeight: '700', opacity: 0.7}}>:</span>
                 {/* Hours */}
                 <div style={{
                   background: 'rgba(255, 255, 255, 0.2)',
-                  padding: '6px 12px',
-                  borderRadius: '6px',
-                  minWidth: '60px',
+                  padding: '3px 8px',
+                  borderRadius: '4px',
+                  minWidth: '42px',
                   textAlign: 'center',
                   backdropFilter: 'blur(10px)'
                 }}>
-                  <div style={{fontSize: '18px', fontWeight: '800', lineHeight: '1'}}>{String(timeLeft.hours).padStart(2, '0')}</div>
-                  <div style={{fontSize: '10px', marginTop: '2px', opacity: 0.9, textTransform: 'uppercase', letterSpacing: '0.5px'}}>Hours</div>
+                  <div style={{fontSize: '14px', fontWeight: '800', lineHeight: '1'}}>{String(timeLeft.hours).padStart(2, '0')}</div>
+                  <div style={{fontSize: '8px', marginTop: '1px', opacity: 0.9, textTransform: 'uppercase', letterSpacing: '0.3px'}}>Hours</div>
                 </div>
-                <span style={{fontSize: '20px', fontWeight: '700', opacity: 0.7}}>:</span>
+                <span style={{fontSize: '14px', fontWeight: '700', opacity: 0.7}}>:</span>
                 {/* Minutes */}
                 <div style={{
                   background: 'rgba(255, 255, 255, 0.2)',
-                  padding: '6px 12px',
-                  borderRadius: '6px',
-                  minWidth: '60px',
+                  padding: '3px 8px',
+                  borderRadius: '4px',
+                  minWidth: '42px',
                   textAlign: 'center',
                   backdropFilter: 'blur(10px)'
                 }}>
-                  <div style={{fontSize: '18px', fontWeight: '800', lineHeight: '1'}}>{String(timeLeft.minutes).padStart(2, '0')}</div>
-                  <div style={{fontSize: '10px', marginTop: '2px', opacity: 0.9, textTransform: 'uppercase', letterSpacing: '0.5px'}}>Minutes</div>
+                  <div style={{fontSize: '14px', fontWeight: '800', lineHeight: '1'}}>{String(timeLeft.minutes).padStart(2, '0')}</div>
+                  <div style={{fontSize: '8px', marginTop: '1px', opacity: 0.9, textTransform: 'uppercase', letterSpacing: '0.3px'}}>Min</div>
                 </div>
-                <span style={{fontSize: '20px', fontWeight: '700', opacity: 0.7}}>:</span>
+                <span style={{fontSize: '14px', fontWeight: '700', opacity: 0.7}}>:</span>
                 {/* Seconds */}
                 <div style={{
                   background: 'rgba(255, 255, 255, 0.2)',
-                  padding: '6px 12px',
-                  borderRadius: '6px',
-                  minWidth: '60px',
+                  padding: '3px 8px',
+                  borderRadius: '4px',
+                  minWidth: '42px',
                   textAlign: 'center',
                   backdropFilter: 'blur(10px)'
                 }}>
-                  <div style={{fontSize: '18px', fontWeight: '800', lineHeight: '1'}}>{String(timeLeft.seconds).padStart(2, '0')}</div>
-                  <div style={{fontSize: '10px', marginTop: '2px', opacity: 0.9, textTransform: 'uppercase', letterSpacing: '0.5px'}}>Seconds</div>
+                  <div style={{fontSize: '14px', fontWeight: '800', lineHeight: '1'}}>{String(timeLeft.seconds).padStart(2, '0')}</div>
+                  <div style={{fontSize: '8px', marginTop: '1px', opacity: 0.9, textTransform: 'uppercase', letterSpacing: '0.3px'}}>Sec</div>
                 </div>
               </div>
               <a href="/live" style={{
                 background: '#ffffff',
                 color: '#dc2626',
-                padding: '8px 20px',
-                borderRadius: '6px',
+                padding: '5px 14px',
+                borderRadius: '4px',
                 textDecoration: 'none',
-                fontSize: '13px',
+                fontSize: '12px',
                 fontWeight: '700',
                 textTransform: 'uppercase',
-                letterSpacing: '0.5px',
+                letterSpacing: '0.3px',
                 transition: 'all 0.3s ease',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.15)'
+                boxShadow: '0 1px 4px rgba(0,0,0,0.15)'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.background = '#fef2f2';
-                e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
+                e.currentTarget.style.transform = 'translateY(-1px)';
+                e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.2)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.background = '#ffffff';
                 e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)';
+                e.currentTarget.style.boxShadow = '0 1px 4px rgba(0,0,0,0.15)';
               }}>
-                Join Event →
+                Join →
               </a>
             </div>
           </div>
