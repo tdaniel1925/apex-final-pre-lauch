@@ -263,10 +263,10 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   <div className="nav-menu-wrapper">
                     <ul className="navbar-nav mr-auto" id="menu">
                       <li className="nav-item"><a className="nav-link" href="#home">Home</a></li>
-                      <li className="nav-item"><a className="nav-link" href="#products">Products</a></li>
                       <li className="nav-item"><a className="nav-link" href="#opportunity">Opportunity</a></li>
-                      <li className="nav-item"><a className="nav-link" href="#insurance">Insurance</a></li>
                       <li className="nav-item"><a className="nav-link" href="#how-it-works">How It Works</a></li>
+                      <li className="nav-item"><a className="nav-link" href="#products">AI Technology</a></li>
+                      <li className="nav-item"><a className="nav-link" href="#insurance">Insurance</a></li>
                       <li className="nav-item"><a className="nav-link" href="#faq">FAQs</a></li>
                       <li className="nav-item"><a className="nav-link" href="/live">Events</a></li>
                     </ul>
