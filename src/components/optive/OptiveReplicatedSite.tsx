@@ -125,25 +125,19 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
 
         {/* Live Event Countdown Banner */}
         <div style={{
-          padding: '8px 0',
+          background: 'linear-gradient(135deg, #dc2626 0%, #b91c1c 100%)',
+          width: '100%',
+          padding: '5px 16px',
+          boxShadow: '0 2px 8px rgba(220, 38, 38, 0.3)',
           display: 'flex',
-          justifyContent: 'center'
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '12px',
+          flexWrap: 'wrap',
+          color: '#ffffff',
+          fontSize: '13px',
+          fontWeight: '600'
         }}>
-          <div className="container">
-            <div style={{
-              background: 'linear-gradient(135deg, #dc2626 0%, #b91c1c 100%)',
-              borderRadius: '8px',
-              padding: '5px 16px',
-              boxShadow: '0 2px 8px rgba(220, 38, 38, 0.3)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '12px',
-              flexWrap: 'wrap',
-              color: '#ffffff',
-              fontSize: '13px',
-              fontWeight: '600'
-            }}>
               <div style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -237,8 +231,6 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
               }}>
                 Join →
               </a>
-            </div>
-          </div>
         </div>
         {/* Live Event Countdown Banner End */}
 
