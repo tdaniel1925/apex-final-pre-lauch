@@ -1115,6 +1115,221 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
         </div>
         {/* Business Opportunity Section End */}
 
+        {/* How It Works Section Start */}
+        <div style={{background: '#ffffff', padding: '80px 0'}} id="how-it-works">
+          <div className="container">
+            <div className="row section-row">
+              <div className="col-lg-12">
+                <div className="section-title section-title-center">
+                  <span className="section-sub-title wow fadeInUp" style={{color: '#2B4C7E'}}>The System Behind the Success</span>
+                  <h2 className="text-anime-style-3" data-cursor="-opaque" style={{color: '#1a2f50'}}>
+                    You Focus on People.<br />Technology Handles the Rest.
+                  </h2>
+                  <p className="wow fadeInUp" data-wow-delay="0.2s" style={{color: '#475569', maxWidth: '800px', margin: '0 auto', fontSize: '18px', lineHeight: '1.7'}}>
+                    Whether you choose AI Technology or Insurance (or both), the model is the same: help people, build relationships, and let the system create recurring income.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="row" style={{marginTop: '60px'}}>
+              {/* AI Technology Path */}
+              <div className="col-lg-6" style={{marginBottom: '40px'}}>
+                <div className="wow fadeInUp" style={{
+                  background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)',
+                  border: '3px solid #2B4C7E',
+                  borderRadius: '16px',
+                  padding: '48px',
+                  height: '100%'
+                }}>
+                  <div style={{fontSize: '56px', marginBottom: '24px', textAlign: 'center'}}>💻</div>
+                  <h3 style={{fontSize: '28px', fontWeight: '700', color: '#1a2c4e', marginBottom: '32px', textAlign: 'center'}}>
+                    For AI Technology Advocates
+                  </h3>
+
+                  {/* Step 1 */}
+                  <div style={{marginBottom: '32px'}}>
+                    <div style={{display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px'}}>
+                      <div style={{width: '40px', height: '40px', background: '#2B4C7E', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '18px', fontWeight: '700', flexShrink: 0}}>1</div>
+                      <h4 style={{fontSize: '20px', fontWeight: '700', color: '#1a2c4e', margin: 0}}>Connect</h4>
+                    </div>
+                    <div style={{marginLeft: '52px'}}>
+                      <p style={{fontSize: '16px', fontWeight: '600', color: '#2B4C7E', marginBottom: '8px'}}>🤝 Talk to Business Owners</p>
+                      <ul style={{fontSize: '15px', color: '#475569', lineHeight: '1.6', paddingLeft: '20px', marginBottom: 0}}>
+                        <li>Find local businesses (coffee shops, salons, gyms, contractors)</li>
+                        <li>Ask: "How do you handle your marketing right now?"</li>
+                        <li>Most will say: "I post when I have time" or "I don't really do marketing"</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Step 2 */}
+                  <div style={{marginBottom: '32px'}}>
+                    <div style={{display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px'}}>
+                      <div style={{width: '40px', height: '40px', background: '#2B4C7E', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '18px', fontWeight: '700', flexShrink: 0}}>2</div>
+                      <h4 style={{fontSize: '20px', fontWeight: '700', color: '#1a2c4e', margin: 0}}>Show</h4>
+                    </div>
+                    <div style={{marginLeft: '52px'}}>
+                      <p style={{fontSize: '16px', fontWeight: '600', color: '#2B4C7E', marginBottom: '8px'}}>📱 Demo What's Possible</p>
+                      <ul style={{fontSize: '15px', color: '#475569', lineHeight: '1.6', paddingLeft: '20px', marginBottom: 0}}>
+                        <li>Show examples of AI-generated content</li>
+                        <li>Walk through a sample campaign</li>
+                        <li>Let them see what automation looks like</li>
+                        <li>"What if all of this ran on autopilot?"</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Step 3 */}
+                  <div style={{marginBottom: '32px'}}>
+                    <div style={{display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px'}}>
+                      <div style={{width: '40px', height: '40px', background: '#2B4C7E', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '18px', fontWeight: '700', flexShrink: 0}}>3</div>
+                      <h4 style={{fontSize: '20px', fontWeight: '700', color: '#1a2c4e', margin: 0}}>Setup</h4>
+                    </div>
+                    <div style={{marginLeft: '52px'}}>
+                      <p style={{fontSize: '16px', fontWeight: '600', color: '#2B4C7E', marginBottom: '8px'}}>⚙️ We Handle the Tech</p>
+                      <ul style={{fontSize: '15px', color: '#475569', lineHeight: '1.6', paddingLeft: '20px', marginBottom: 0}}>
+                        <li>Customer signs up through your link</li>
+                        <li>Our team handles onboarding and setup</li>
+                        <li>AI starts generating content within 10 days</li>
+                        <li>Customer gets trained on the dashboard</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Step 4 */}
+                  <div>
+                    <div style={{display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px'}}>
+                      <div style={{width: '40px', height: '40px', background: '#2B4C7E', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '18px', fontWeight: '700', flexShrink: 0}}>4</div>
+                      <h4 style={{fontSize: '20px', fontWeight: '700', color: '#1a2c4e', margin: 0}}>Succeed Together</h4>
+                    </div>
+                    <div style={{marginLeft: '52px'}}>
+                      <p style={{fontSize: '16px', fontWeight: '600', color: '#2B4C7E', marginBottom: '8px'}}>📈 They Grow. You Earn.</p>
+                      <ul style={{fontSize: '15px', color: '#475569', lineHeight: '1.6', paddingLeft: '20px', marginBottom: 0}}>
+                        <li>Customer sees more leads, more visibility</li>
+                        <li>They stay subscribed because it works</li>
+                        <li>You earn monthly recurring income</li>
+                        <li>You stay in touch and support their growth</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Insurance Path */}
+              <div className="col-lg-6" style={{marginBottom: '40px'}}>
+                <div className="wow fadeInUp" data-wow-delay="0.2s" style={{
+                  background: 'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)',
+                  border: '3px solid #fbbf24',
+                  borderRadius: '16px',
+                  padding: '48px',
+                  height: '100%'
+                }}>
+                  <div style={{fontSize: '56px', marginBottom: '24px', textAlign: 'center'}}>🛡️</div>
+                  <h3 style={{fontSize: '28px', fontWeight: '700', color: '#1a2c4e', marginBottom: '32px', textAlign: 'center'}}>
+                    For Insurance Professionals
+                  </h3>
+
+                  {/* Step 1 */}
+                  <div style={{marginBottom: '32px'}}>
+                    <div style={{display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px'}}>
+                      <div style={{width: '40px', height: '40px', background: '#fbbf24', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#1a2c4e', fontSize: '18px', fontWeight: '700', flexShrink: 0}}>1</div>
+                      <h4 style={{fontSize: '20px', fontWeight: '700', color: '#1a2c4e', margin: 0}}>Get Licensed</h4>
+                    </div>
+                    <div style={{marginLeft: '52px'}}>
+                      <p style={{fontSize: '16px', fontWeight: '600', color: '#92400e', marginBottom: '8px'}}>📚 Complete Licensing (If Needed)</p>
+                      <ul style={{fontSize: '15px', color: '#475569', lineHeight: '1.6', paddingLeft: '20px', marginBottom: 0}}>
+                        <li>Take pre-licensing course (online, self-paced)</li>
+                        <li>Pass state exam (we provide study materials)</li>
+                        <li>Get appointed with top carriers</li>
+                        <li>Timeline: 2–4 weeks</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Step 2 */}
+                  <div style={{marginBottom: '32px'}}>
+                    <div style={{display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px'}}>
+                      <div style={{width: '40px', height: '40px', background: '#fbbf24', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#1a2c4e', fontSize: '18px', fontWeight: '700', flexShrink: 0}}>2</div>
+                      <h4 style={{fontSize: '20px', fontWeight: '700', color: '#1a2c4e', margin: 0}}>Learn the Products</h4>
+                    </div>
+                    <div style={{marginLeft: '52px'}}>
+                      <p style={{fontSize: '16px', fontWeight: '600', color: '#92400e', marginBottom: '8px'}}>🎓 Product Training</p>
+                      <ul style={{fontSize: '15px', color: '#475569', lineHeight: '1.6', paddingLeft: '20px', marginBottom: 0}}>
+                        <li>Life insurance (term, whole, final expense)</li>
+                        <li>Annuities and retirement planning</li>
+                        <li>Ancillary products (hospital, accident, critical illness)</li>
+                        <li>Ongoing training and certification</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Step 3 */}
+                  <div style={{marginBottom: '32px'}}>
+                    <div style={{display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px'}}>
+                      <div style={{width: '40px', height: '40px', background: '#fbbf24', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#1a2c4e', fontSize: '18px', fontWeight: '700', flexShrink: 0}}>3</div>
+                      <h4 style={{fontSize: '20px', fontWeight: '700', color: '#1a2c4e', margin: 0}}>Build Relationships</h4>
+                    </div>
+                    <div style={{marginLeft: '52px'}}>
+                      <p style={{fontSize: '16px', fontWeight: '600', color: '#92400e', marginBottom: '8px'}}>👨‍👩‍👧‍👦 Help Families Make Decisions</p>
+                      <ul style={{fontSize: '15px', color: '#475569', lineHeight: '1.6', paddingLeft: '20px', marginBottom: 0}}>
+                        <li>Meet with families (in-person, phone, or Zoom)</li>
+                        <li>Listen to their concerns and goals</li>
+                        <li>Present options without pressure</li>
+                        <li>Help them choose the right coverage</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Step 4 */}
+                  <div>
+                    <div style={{display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px'}}>
+                      <div style={{width: '40px', height: '40px', background: '#fbbf24', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#1a2c4e', fontSize: '18px', fontWeight: '700', flexShrink: 0}}>4</div>
+                      <h4 style={{fontSize: '20px', fontWeight: '700', color: '#1a2c4e', margin: 0}}>Earn Residually</h4>
+                    </div>
+                    <div style={{marginLeft: '52px'}}>
+                      <p style={{fontSize: '16px', fontWeight: '600', color: '#92400e', marginBottom: '8px'}}>💰 Build Long-Term Income</p>
+                      <ul style={{fontSize: '15px', color: '#475569', lineHeight: '1.6', paddingLeft: '20px', marginBottom: 0}}>
+                        <li>Earn on new policies</li>
+                        <li>Earn renewals as policies stay in force</li>
+                        <li>Get referrals from happy clients</li>
+                        <li>Build a book of business that pays for years</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Can You Do Both? */}
+            <div className="row" style={{marginTop: '40px'}}>
+              <div className="col-lg-10 mx-auto">
+                <div className="wow fadeInUp" data-wow-delay="0.3s" style={{
+                  background: 'linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%)',
+                  border: '3px solid #8B5CF6',
+                  borderRadius: '16px',
+                  padding: '48px',
+                  textAlign: 'center'
+                }}>
+                  <h3 style={{fontSize: '28px', fontWeight: '700', color: '#1a2c4e', marginBottom: '20px'}}>
+                    Can You Do Both?
+                  </h3>
+                  <div style={{fontSize: '20px', fontWeight: '600', color: '#8B5CF6', marginBottom: '16px'}}>
+                    ✅ Yes. Many Apex members do both paths.
+                  </div>
+                  <p style={{fontSize: '17px', color: '#475569', lineHeight: '1.7', maxWidth: '700px', margin: '0 auto'}}>
+                    <strong>Example:</strong> You help a business owner with AI marketing. They trust you. Later, you help them with life insurance and retirement planning.
+                  </p>
+                  <p style={{fontSize: '18px', color: '#1a2c4e', fontWeight: '600', marginTop: '16px', marginBottom: 0}}>
+                    Two income streams. One relationship.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* How It Works Section End */}
+
         {/* Insurance Section Start */}
         <div style={{background: '#ffffff', padding: '80px 0'}} id="insurance">
           <div className="container">
