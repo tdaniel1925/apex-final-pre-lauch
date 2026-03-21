@@ -480,7 +480,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                       e.currentTarget.style.transform = 'translateX(0)';
                     }}>
                       <div style={{display: 'flex', alignItems: 'center', gap: '16px'}}>
-                        <div style={{fontSize: '48px', flexShrink: 0, color: '#2B4C7E'}}><i className="fa-solid fa-shield-halved"></i></div>
+                        <div style={{fontSize: '48px', flexShrink: 0, color: '#fbbf24'}}><i className="fa-solid fa-shield-halved"></i></div>
                         <div style={{flex: 1}}>
                           <h3 style={{
                             color: '#ffffff',
