@@ -1176,7 +1176,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   </h3>
                   <div style={{display: 'flex', flexDirection: 'column', gap: '20px'}}>
                     {[
-                      'Top-Tier Commission Contracts (50-90% depending on rank)',
+                      'Top-Tier Commission Contracts',
                       'Multiple Carrier Appointments',
                       'Team Building & Residual Income',
                       'Advanced CRM & Automation Tools',
@@ -1295,7 +1295,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                     margin: '0 auto 40px auto',
                     lineHeight: '1.7'
                   }}>
-                    Apex is unique. You can climb our <strong>Technology Ladder</strong> by selling AI-powered marketing products to any business owner — <em>no license required</em>. If you're licensed (or become licensed), you also climb the <strong>Insurance Ladder</strong>, unlocking higher insurance commissions, carrier bonuses, and advanced training.
+                    Apex is unique. You can climb our <strong>Technology Ladder</strong> by selling AI-powered marketing products to any business owner — <em>no license required</em>. If you're licensed (or become licensed), you also climb the <strong>Insurance Ladder</strong>, unlocking greater earning potential, carrier relationships, and advanced training.
                   </p>
 
                   <div className="row" style={{maxWidth: '900px', margin: '0 auto'}}>
@@ -1334,7 +1334,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                           Associate → Senior → Regional → National Director
                         </p>
                         <p style={{fontSize: '14px', color: '#64748b', marginTop: '8px', marginBottom: 0}}>
-                          License required. Higher insurance contracts, carrier bonuses.
+                          License required. Advanced contracts, carrier relationships, leadership opportunities.
                         </p>
                       </div>
                     </div>
