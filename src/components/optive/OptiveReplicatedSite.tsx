@@ -348,7 +348,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                       AI-Powered Marketing.<br />Real Business Growth.<br />Built for You.
                     </h1>
                     <p className="wow fadeInUp" data-wow-delay="0.1s" style={{color: '#fff', fontSize: '18px', marginTop: '20px', maxWidth: '600px', lineHeight: '1.6'}}>
-                      Apex delivers Fortune 500 marketing automation to small businesses for a fraction of the cost — with AI-generated content, landing pages, podcasts, and video production. All done for you. Starting at $59/month.
+                      Apex delivers enterprise-level marketing automation to small businesses — with AI-generated content, landing pages, podcasts, and video production. All done for you.
                     </p>
 
                     {/* Trust Bar */}
@@ -369,7 +369,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                         <svg style={{width: '20px', height: '20px'}} fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                         </svg>
-                        30+ Posts/Month
+                        Automated Posting
                       </div>
                       <div style={{display: 'flex', alignItems: 'center', gap: '8px', color: '#fff', fontSize: '15px'}}>
                         <svg style={{width: '20px', height: '20px'}} fill="currentColor" viewBox="0 0 20 20">
@@ -450,14 +450,14 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                             marginBottom: '8px',
                             lineHeight: '1.5'
                           }}>
-                            AI-powered marketing software for any business owner
+                            AI-powered marketing solutions for business growth
                           </p>
                           <div style={{
                             color: '#fbbf24',
                             fontSize: '13px',
                             fontWeight: '600'
                           }}>
-                            No license needed →
+                            Learn more →
                           </div>
                         </div>
                       </div>
