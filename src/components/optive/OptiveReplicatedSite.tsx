@@ -222,35 +222,6 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                       </div>
                     </div>
 
-                    {/* Dual CTAs */}
-                    <div className="wow fadeInUp" data-wow-delay="0.3s" style={{
-                      display: 'flex',
-                      gap: '16px',
-                      marginTop: '40px',
-                      flexWrap: 'wrap'
-                    }}>
-                      <a href="#products" className="btn-default" style={{
-                        background: '#ffffff',
-                        color: '#2B4C7E',
-                        borderColor: '#ffffff',
-                        padding: '14px 32px',
-                        fontSize: '16px',
-                        fontWeight: '600'
-                      }}>
-                        View Products
-                      </a>
-                      <a href={signupUrl} className="btn-default" style={{
-                        background: 'transparent',
-                        color: '#ffffff',
-                        borderColor: '#ffffff',
-                        border: '2px solid #ffffff',
-                        padding: '14px 32px',
-                        fontSize: '16px',
-                        fontWeight: '600'
-                      }}>
-                        {distributor.slug === 'apex' ? 'Join as Distributor' : `Join ${distributor.first_name}'s Team`}
-                      </a>
-                    </div>
                   </div>
                   {/* Section Title End */}
                 </div>
@@ -378,6 +349,40 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                           </div>
                         </div>
                       </div>
+                    </a>
+                  </div>
+
+                  {/* Dual CTAs - Moved from left column */}
+                  <div className="wow fadeInUp" data-wow-delay="0.4s" style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '12px',
+                    marginTop: '24px'
+                  }}>
+                    <a href="#products" className="btn-default" style={{
+                      background: '#ffffff',
+                      color: '#2B4C7E',
+                      borderColor: '#ffffff',
+                      padding: '14px 32px',
+                      fontSize: '16px',
+                      fontWeight: '600',
+                      textAlign: 'center',
+                      width: '100%'
+                    }}>
+                      View Products
+                    </a>
+                    <a href={signupUrl} className="btn-default" style={{
+                      background: 'transparent',
+                      color: '#ffffff',
+                      borderColor: '#ffffff',
+                      border: '2px solid #ffffff',
+                      padding: '14px 32px',
+                      fontSize: '16px',
+                      fontWeight: '600',
+                      textAlign: 'center',
+                      width: '100%'
+                    }}>
+                      {distributor.slug === 'apex' ? 'Join as Distributor' : `Join ${distributor.first_name}'s Team`}
                     </a>
                   </div>
                 </div>
