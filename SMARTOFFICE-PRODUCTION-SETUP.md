@@ -26,6 +26,11 @@ When you visit `/admin/smartoffice-v2`, the server tries to query these tables, 
 
 ## ✅ Solution: Apply Migration to Production
 
+**IMPORTANT:** Make sure you have the latest migration file with the reserved keyword fix!
+- The migration was just updated to fix a SQL syntax error
+- Column `current_role` renamed to `agent_role` (reserved keyword issue)
+- Make sure to pull latest changes before copying SQL
+
 ### Step 1: Open Supabase SQL Editor
 
 1. Go to Supabase Dashboard: https://supabase.com/dashboard
