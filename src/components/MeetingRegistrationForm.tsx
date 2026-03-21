@@ -68,7 +68,7 @@ export default function MeetingRegistrationForm({
 
   // Calculate spots remaining
   const spotsRemaining = meeting.maxAttendees
-    ? meeting.maxAttendees - meeting.total_registered
+    ? meeting.maxAttendees - meeting.totalRegistered
     : null;
 
   const handleSubmit = async (e: React.FormEvent) => {
