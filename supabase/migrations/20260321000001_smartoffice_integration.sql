@@ -165,8 +165,8 @@ CREATE POLICY "Admin can read all SmartOffice agents"
   USING (
     EXISTS (
       SELECT 1 FROM public.distributors
-      WHERE id = auth.uid()
-      AND role IN ('admin', 'cfo')
+      WHERE auth_user_id = auth.uid()
+      AND (is_admin = true OR admin_role IN ('admin', 'cfo'))
     )
   );
 
@@ -185,8 +185,8 @@ CREATE POLICY "Admin can read all SmartOffice policies"
   USING (
     EXISTS (
       SELECT 1 FROM public.distributors
-      WHERE id = auth.uid()
-      AND role IN ('admin', 'cfo')
+      WHERE auth_user_id = auth.uid()
+      AND (is_admin = true OR admin_role IN ('admin', 'cfo'))
     )
   );
 
@@ -205,8 +205,8 @@ CREATE POLICY "Admin can read all SmartOffice commissions"
   USING (
     EXISTS (
       SELECT 1 FROM public.distributors
-      WHERE id = auth.uid()
-      AND role IN ('admin', 'cfo')
+      WHERE auth_user_id = auth.uid()
+      AND (is_admin = true OR admin_role IN ('admin', 'cfo'))
     )
   );
 
@@ -225,8 +225,8 @@ CREATE POLICY "Admin can read all sync logs"
   USING (
     EXISTS (
       SELECT 1 FROM public.distributors
-      WHERE id = auth.uid()
-      AND role IN ('admin', 'cfo')
+      WHERE auth_user_id = auth.uid()
+      AND (is_admin = true OR admin_role IN ('admin', 'cfo'))
     )
   );
 
@@ -245,8 +245,8 @@ CREATE POLICY "Admin can read config"
   USING (
     EXISTS (
       SELECT 1 FROM public.distributors
-      WHERE id = auth.uid()
-      AND role IN ('admin', 'cfo')
+      WHERE auth_user_id = auth.uid()
+      AND (is_admin = true OR admin_role IN ('admin', 'cfo'))
     )
   );
 
@@ -256,15 +256,15 @@ CREATE POLICY "Admin can update config"
   USING (
     EXISTS (
       SELECT 1 FROM public.distributors
-      WHERE id = auth.uid()
-      AND role IN ('admin', 'cfo')
+      WHERE auth_user_id = auth.uid()
+      AND (is_admin = true OR admin_role IN ('admin', 'cfo'))
     )
   )
   WITH CHECK (
     EXISTS (
       SELECT 1 FROM public.distributors
-      WHERE id = auth.uid()
-      AND role IN ('admin', 'cfo')
+      WHERE auth_user_id = auth.uid()
+      AND (is_admin = true OR admin_role IN ('admin', 'cfo'))
     )
   );
 
