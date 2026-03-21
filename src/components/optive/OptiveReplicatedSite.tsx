@@ -113,7 +113,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                       <li className="nav-item"><a className="nav-link" href="#insurance">Insurance</a></li>
                       <li className="nav-item"><a className="nav-link" href="#how-it-works">How It Works</a></li>
                       <li className="nav-item"><a className="nav-link" href="#faq">FAQs</a></li>
-                      <li className="nav-item"><a className="nav-link" href="#contact">Contact</a></li>
+                      <li className="nav-item"><a className="nav-link" href="/live">Live</a></li>
                     </ul>
                   </div>
 
