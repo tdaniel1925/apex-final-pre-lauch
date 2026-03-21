@@ -1,0 +1,978 @@
+{
+  "config": {
+    "configFile": "C:\\dev\\1 - Apex Pre-Launch Site\\playwright.config.ts",
+    "rootDir": "C:/dev/1 - Apex Pre-Launch Site/tests/e2e",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 4
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/dev/1 - Apex Pre-Launch Site/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 4
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "C:/dev/1 - Apex Pre-Launch Site/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "runAgents": "none",
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.58.2",
+    "workers": 4,
+    "webServer": {
+      "command": "npm run dev",
+      "url": "http://localhost:3050",
+      "reuseExistingServer": true,
+      "timeout": 120000
+    }
+  },
+  "suites": [
+    {
+      "title": "smartoffice-api.spec.ts",
+      "file": "smartoffice-api.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "SmartOffice API Endpoints",
+          "file": "smartoffice-api.spec.ts",
+          "line": 8,
+          "column": 6,
+          "specs": [],
+          "suites": [
+            {
+              "title": "GET /api/admin/smartoffice/stats",
+              "file": "smartoffice-api.spec.ts",
+              "line": 18,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "should return 401 for unauthenticated requests",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "timedOut",
+                          "duration": 40078,
+                          "error": {
+                            "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
+                            "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:10:8",
+                            "location": {
+                              "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                              "column": 8,
+                              "line": 10
+                            },
+                            "snippet": "\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'SmartOffice API Endpoints'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m   \u001b[90m// Setup: Create an admin user session\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m   test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m     \u001b[90m// Navigate to login page\u001b[39m\n \u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/login'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m\u001b[0m"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                                "column": 8,
+                                "line": 10
+                              },
+                              "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n   8 | test.describe('SmartOffice API Endpoints', () => {\n   9 |   // Setup: Create an admin user session\n> 10 |   test.beforeEach(async ({ page }) => {\n     |        ^\n  11 |     // Navigate to login page\n  12 |     await page.goto('/login');\n  13 |\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:10:8"
+                            },
+                            {
+                              "location": {
+                                "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                                "column": 16,
+                                "line": 12
+                              },
+                              "message": "Error: page.goto: net::ERR_ABORTED; maybe frame was detached?\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3050/login\", waiting until \"load\"\u001b[22m\n\n\n  10 |   test.beforeEach(async ({ page }) => {\n  11 |     // Navigate to login page\n> 12 |     await page.goto('/login');\n     |                ^\n  13 |\n  14 |     // TODO: Replace with actual admin credentials from test environment\n  15 |     // For now, we'll test that the endpoints exist and return proper responses\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:12:16"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-03-21T16:04:11.060Z",
+                          "annotations": [],
+                          "attachments": [],
+                          "errorLocation": {
+                            "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                            "column": 8,
+                            "line": 10
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "06b42f404e951c65eab3-6f7481dd58e503e0852d",
+                  "file": "smartoffice-api.spec.ts",
+                  "line": 19,
+                  "column": 9
+                },
+                {
+                  "title": "should return stats with proper structure",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
+                          "status": "timedOut",
+                          "duration": 40063,
+                          "error": {
+                            "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
+                            "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:10:8",
+                            "location": {
+                              "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                              "column": 8,
+                              "line": 10
+                            },
+                            "snippet": "\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'SmartOffice API Endpoints'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m   \u001b[90m// Setup: Create an admin user session\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m   test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m     \u001b[90m// Navigate to login page\u001b[39m\n \u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/login'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m\u001b[0m"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                                "column": 8,
+                                "line": 10
+                              },
+                              "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n   8 | test.describe('SmartOffice API Endpoints', () => {\n   9 |   // Setup: Create an admin user session\n> 10 |   test.beforeEach(async ({ page }) => {\n     |        ^\n  11 |     // Navigate to login page\n  12 |     await page.goto('/login');\n  13 |\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:10:8"
+                            },
+                            {
+                              "location": {
+                                "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                                "column": 16,
+                                "line": 12
+                              },
+                              "message": "Error: page.goto: net::ERR_ABORTED; maybe frame was detached?\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3050/login\", waiting until \"load\"\u001b[22m\n\n\n  10 |   test.beforeEach(async ({ page }) => {\n  11 |     // Navigate to login page\n> 12 |     await page.goto('/login');\n     |                ^\n  13 |\n  14 |     // TODO: Replace with actual admin credentials from test environment\n  15 |     // For now, we'll test that the endpoints exist and return proper responses\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:12:16"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-03-21T16:04:11.309Z",
+                          "annotations": [],
+                          "attachments": [],
+                          "errorLocation": {
+                            "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                            "column": 8,
+                            "line": 10
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "06b42f404e951c65eab3-530a63cdea2fd3fd7183",
+                  "file": "smartoffice-api.spec.ts",
+                  "line": 24,
+                  "column": 9
+                },
+                {
+                  "title": "should return valid numeric values",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 2,
+                          "status": "timedOut",
+                          "duration": 40080,
+                          "error": {
+                            "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
+                            "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:10:8",
+                            "location": {
+                              "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                              "column": 8,
+                              "line": 10
+                            },
+                            "snippet": "\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'SmartOffice API Endpoints'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m   \u001b[90m// Setup: Create an admin user session\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m   test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m     \u001b[90m// Navigate to login page\u001b[39m\n \u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/login'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m\u001b[0m"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                                "column": 8,
+                                "line": 10
+                              },
+                              "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n   8 | test.describe('SmartOffice API Endpoints', () => {\n   9 |   // Setup: Create an admin user session\n> 10 |   test.beforeEach(async ({ page }) => {\n     |        ^\n  11 |     // Navigate to login page\n  12 |     await page.goto('/login');\n  13 |\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:10:8"
+                            },
+                            {
+                              "location": {
+                                "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                                "column": 16,
+                                "line": 12
+                              },
+                              "message": "Error: page.goto: net::ERR_ABORTED; maybe frame was detached?\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3050/login\", waiting until \"load\"\u001b[22m\n\n\n  10 |   test.beforeEach(async ({ page }) => {\n  11 |     // Navigate to login page\n> 12 |     await page.goto('/login');\n     |                ^\n  13 |\n  14 |     // TODO: Replace with actual admin credentials from test environment\n  15 |     // For now, we'll test that the endpoints exist and return proper responses\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:12:16"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-03-21T16:04:11.187Z",
+                          "annotations": [],
+                          "attachments": [],
+                          "errorLocation": {
+                            "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                            "column": 8,
+                            "line": 10
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "06b42f404e951c65eab3-647b296432435de9241c",
+                  "file": "smartoffice-api.spec.ts",
+                  "line": 50,
+                  "column": 9
+                },
+                {
+                  "title": "should handle database errors gracefully",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 3,
+                          "status": "timedOut",
+                          "duration": 40070,
+                          "error": {
+                            "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
+                            "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:10:8",
+                            "location": {
+                              "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                              "column": 8,
+                              "line": 10
+                            },
+                            "snippet": "\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'SmartOffice API Endpoints'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m   \u001b[90m// Setup: Create an admin user session\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m   test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m     \u001b[90m// Navigate to login page\u001b[39m\n \u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/login'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m\u001b[0m"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                                "column": 8,
+                                "line": 10
+                              },
+                              "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n   8 | test.describe('SmartOffice API Endpoints', () => {\n   9 |   // Setup: Create an admin user session\n> 10 |   test.beforeEach(async ({ page }) => {\n     |        ^\n  11 |     // Navigate to login page\n  12 |     await page.goto('/login');\n  13 |\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:10:8"
+                            },
+                            {
+                              "location": {
+                                "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                                "column": 16,
+                                "line": 12
+                              },
+                              "message": "Error: page.goto: net::ERR_ABORTED; maybe frame was detached?\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3050/login\", waiting until \"load\"\u001b[22m\n\n\n  10 |   test.beforeEach(async ({ page }) => {\n  11 |     // Navigate to login page\n> 12 |     await page.goto('/login');\n     |                ^\n  13 |\n  14 |     // TODO: Replace with actual admin credentials from test environment\n  15 |     // For now, we'll test that the endpoints exist and return proper responses\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:12:16"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-03-21T16:04:11.645Z",
+                          "annotations": [],
+                          "attachments": [],
+                          "errorLocation": {
+                            "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                            "column": 8,
+                            "line": 10
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "06b42f404e951c65eab3-a37863b9cabe06870d69",
+                  "file": "smartoffice-api.spec.ts",
+                  "line": 67,
+                  "column": 9
+                }
+              ]
+            },
+            {
+              "title": "POST /api/admin/smartoffice/sync",
+              "file": "smartoffice-api.spec.ts",
+              "line": 79,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "should return 401 for unauthenticated requests",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 6,
+                          "parallelIndex": 1,
+                          "status": "timedOut",
+                          "duration": 40061,
+                          "error": {
+                            "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
+                            "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:10:8",
+                            "location": {
+                              "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                              "column": 8,
+                              "line": 10
+                            },
+                            "snippet": "\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'SmartOffice API Endpoints'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m   \u001b[90m// Setup: Create an admin user session\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m   test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m     \u001b[90m// Navigate to login page\u001b[39m\n \u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/login'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m\u001b[0m"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                                "column": 8,
+                                "line": 10
+                              },
+                              "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n   8 | test.describe('SmartOffice API Endpoints', () => {\n   9 |   // Setup: Create an admin user session\n> 10 |   test.beforeEach(async ({ page }) => {\n     |        ^\n  11 |     // Navigate to login page\n  12 |     await page.goto('/login');\n  13 |\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:10:8"
+                            },
+                            {
+                              "location": {
+                                "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                                "column": 16,
+                                "line": 12
+                              },
+                              "message": "Error: page.goto: net::ERR_ABORTED; maybe frame was detached?\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3050/login\", waiting until \"load\"\u001b[22m\n\n\n  10 |   test.beforeEach(async ({ page }) => {\n  11 |     // Navigate to login page\n> 12 |     await page.goto('/login');\n     |                ^\n  13 |\n  14 |     // TODO: Replace with actual admin credentials from test environment\n  15 |     // For now, we'll test that the endpoints exist and return proper responses\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:12:16"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-03-21T16:04:57.544Z",
+                          "annotations": [],
+                          "attachments": [],
+                          "errorLocation": {
+                            "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                            "column": 8,
+                            "line": 10
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "06b42f404e951c65eab3-2f75198eed986b61830d",
+                  "file": "smartoffice-api.spec.ts",
+                  "line": 80,
+                  "column": 9
+                },
+                {
+                  "title": "should return 403 for non-admin users",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 4,
+                          "parallelIndex": 3,
+                          "status": "timedOut",
+                          "duration": 40105,
+                          "error": {
+                            "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
+                            "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:10:8",
+                            "location": {
+                              "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                              "column": 8,
+                              "line": 10
+                            },
+                            "snippet": "\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'SmartOffice API Endpoints'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m   \u001b[90m// Setup: Create an admin user session\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m   test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m     \u001b[90m// Navigate to login page\u001b[39m\n \u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/login'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m\u001b[0m"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                                "column": 8,
+                                "line": 10
+                              },
+                              "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n   8 | test.describe('SmartOffice API Endpoints', () => {\n   9 |   // Setup: Create an admin user session\n> 10 |   test.beforeEach(async ({ page }) => {\n     |        ^\n  11 |     // Navigate to login page\n  12 |     await page.goto('/login');\n  13 |\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:10:8"
+                            },
+                            {
+                              "location": {
+                                "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                                "column": 16,
+                                "line": 12
+                              },
+                              "message": "Error: page.goto: net::ERR_ABORTED; maybe frame was detached?\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3050/login\", waiting until \"load\"\u001b[22m\n\n\n  10 |   test.beforeEach(async ({ page }) => {\n  11 |     // Navigate to login page\n> 12 |     await page.goto('/login');\n     |                ^\n  13 |\n  14 |     // TODO: Replace with actual admin credentials from test environment\n  15 |     // For now, we'll test that the endpoints exist and return proper responses\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:12:16"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-03-21T16:04:57.565Z",
+                          "annotations": [],
+                          "attachments": [],
+                          "errorLocation": {
+                            "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                            "column": 8,
+                            "line": 10
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "06b42f404e951c65eab3-c950ebb8d164f38509f9",
+                  "file": "smartoffice-api.spec.ts",
+                  "line": 85,
+                  "column": 9
+                },
+                {
+                  "title": "should accept sync request from admin",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 5,
+                          "parallelIndex": 0,
+                          "status": "timedOut",
+                          "duration": 40063,
+                          "error": {
+                            "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
+                            "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:10:8",
+                            "location": {
+                              "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                              "column": 8,
+                              "line": 10
+                            },
+                            "snippet": "\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'SmartOffice API Endpoints'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m   \u001b[90m// Setup: Create an admin user session\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m   test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m     \u001b[90m// Navigate to login page\u001b[39m\n \u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/login'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m\u001b[0m"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                                "column": 8,
+                                "line": 10
+                              },
+                              "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n   8 | test.describe('SmartOffice API Endpoints', () => {\n   9 |   // Setup: Create an admin user session\n> 10 |   test.beforeEach(async ({ page }) => {\n     |        ^\n  11 |     // Navigate to login page\n  12 |     await page.goto('/login');\n  13 |\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:10:8"
+                            },
+                            {
+                              "location": {
+                                "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                                "column": 16,
+                                "line": 12
+                              },
+                              "message": "Error: page.goto: net::ERR_ABORTED; maybe frame was detached?\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3050/login\", waiting until \"load\"\u001b[22m\n\n\n  10 |   test.beforeEach(async ({ page }) => {\n  11 |     // Navigate to login page\n> 12 |     await page.goto('/login');\n     |                ^\n  13 |\n  14 |     // TODO: Replace with actual admin credentials from test environment\n  15 |     // For now, we'll test that the endpoints exist and return proper responses\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:12:16"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-03-21T16:04:57.562Z",
+                          "annotations": [],
+                          "attachments": [],
+                          "errorLocation": {
+                            "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                            "column": 8,
+                            "line": 10
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "06b42f404e951c65eab3-47d6e650bad258fdd88e",
+                  "file": "smartoffice-api.spec.ts",
+                  "line": 91,
+                  "column": 9
+                },
+                {
+                  "title": "should return sync results with proper structure",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 7,
+                          "parallelIndex": 2,
+                          "status": "timedOut",
+                          "duration": 40106,
+                          "error": {
+                            "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
+                            "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:10:8",
+                            "location": {
+                              "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                              "column": 8,
+                              "line": 10
+                            },
+                            "snippet": "\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'SmartOffice API Endpoints'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m   \u001b[90m// Setup: Create an admin user session\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m   test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m     \u001b[90m// Navigate to login page\u001b[39m\n \u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/login'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m\u001b[0m"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                                "column": 8,
+                                "line": 10
+                              },
+                              "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n   8 | test.describe('SmartOffice API Endpoints', () => {\n   9 |   // Setup: Create an admin user session\n> 10 |   test.beforeEach(async ({ page }) => {\n     |        ^\n  11 |     // Navigate to login page\n  12 |     await page.goto('/login');\n  13 |\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:10:8"
+                            },
+                            {
+                              "location": {
+                                "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                                "column": 16,
+                                "line": 12
+                              },
+                              "message": "Error: page.goto: net::ERR_ABORTED; maybe frame was detached?\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3050/login\", waiting until \"load\"\u001b[22m\n\n\n  10 |   test.beforeEach(async ({ page }) => {\n  11 |     // Navigate to login page\n> 12 |     await page.goto('/login');\n     |                ^\n  13 |\n  14 |     // TODO: Replace with actual admin credentials from test environment\n  15 |     // For now, we'll test that the endpoints exist and return proper responses\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:12:16"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-03-21T16:04:57.556Z",
+                          "annotations": [],
+                          "attachments": [],
+                          "errorLocation": {
+                            "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                            "column": 8,
+                            "line": 10
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "06b42f404e951c65eab3-717991d5be7db03196d6",
+                  "file": "smartoffice-api.spec.ts",
+                  "line": 106,
+                  "column": 9
+                },
+                {
+                  "title": "should handle SmartOffice API errors gracefully",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 10,
+                          "parallelIndex": 2,
+                          "status": "timedOut",
+                          "duration": 40030,
+                          "error": {
+                            "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
+                            "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:10:8",
+                            "location": {
+                              "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                              "column": 8,
+                              "line": 10
+                            },
+                            "snippet": "\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'SmartOffice API Endpoints'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m   \u001b[90m// Setup: Create an admin user session\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m   test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m     \u001b[90m// Navigate to login page\u001b[39m\n \u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/login'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m\u001b[0m"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                                "column": 8,
+                                "line": 10
+                              },
+                              "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n   8 | test.describe('SmartOffice API Endpoints', () => {\n   9 |   // Setup: Create an admin user session\n> 10 |   test.beforeEach(async ({ page }) => {\n     |        ^\n  11 |     // Navigate to login page\n  12 |     await page.goto('/login');\n  13 |\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:10:8"
+                            },
+                            {
+                              "location": {
+                                "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                                "column": 16,
+                                "line": 12
+                              },
+                              "message": "Error: page.goto: net::ERR_ABORTED; maybe frame was detached?\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3050/login\", waiting until \"load\"\u001b[22m\n\n\n  10 |   test.beforeEach(async ({ page }) => {\n  11 |     // Navigate to login page\n> 12 |     await page.goto('/login');\n     |                ^\n  13 |\n  14 |     // TODO: Replace with actual admin credentials from test environment\n  15 |     // For now, we'll test that the endpoints exist and return proper responses\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:12:16"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-03-21T16:05:40.576Z",
+                          "annotations": [],
+                          "attachments": [],
+                          "errorLocation": {
+                            "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                            "column": 8,
+                            "line": 10
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "06b42f404e951c65eab3-12fe36e16f57b139737c",
+                  "file": "smartoffice-api.spec.ts",
+                  "line": 127,
+                  "column": 9
+                },
+                {
+                  "title": "should not allow concurrent syncs",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 9,
+                          "parallelIndex": 0,
+                          "status": "timedOut",
+                          "duration": 40028,
+                          "error": {
+                            "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
+                            "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:10:8",
+                            "location": {
+                              "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                              "column": 8,
+                              "line": 10
+                            },
+                            "snippet": "\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'SmartOffice API Endpoints'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m   \u001b[90m// Setup: Create an admin user session\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m   test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m     \u001b[90m// Navigate to login page\u001b[39m\n \u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/login'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m\u001b[0m"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                                "column": 8,
+                                "line": 10
+                              },
+                              "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n   8 | test.describe('SmartOffice API Endpoints', () => {\n   9 |   // Setup: Create an admin user session\n> 10 |   test.beforeEach(async ({ page }) => {\n     |        ^\n  11 |     // Navigate to login page\n  12 |     await page.goto('/login');\n  13 |\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:10:8"
+                            },
+                            {
+                              "location": {
+                                "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                                "column": 16,
+                                "line": 12
+                              },
+                              "message": "Error: page.goto: net::ERR_ABORTED; maybe frame was detached?\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3050/login\", waiting until \"load\"\u001b[22m\n\n\n  10 |   test.beforeEach(async ({ page }) => {\n  11 |     // Navigate to login page\n> 12 |     await page.goto('/login');\n     |                ^\n  13 |\n  14 |     // TODO: Replace with actual admin credentials from test environment\n  15 |     // For now, we'll test that the endpoints exist and return proper responses\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:12:16"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-03-21T16:05:40.539Z",
+                          "annotations": [],
+                          "attachments": [],
+                          "errorLocation": {
+                            "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                            "column": 8,
+                            "line": 10
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "06b42f404e951c65eab3-782f74cb877b04e879b6",
+                  "file": "smartoffice-api.spec.ts",
+                  "line": 138,
+                  "column": 9
+                }
+              ]
+            },
+            {
+              "title": "API Rate Limiting",
+              "file": "smartoffice-api.spec.ts",
+              "line": 153,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "should handle rapid requests",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 8,
+                          "parallelIndex": 3,
+                          "status": "timedOut",
+                          "duration": 40033,
+                          "error": {
+                            "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
+                            "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:10:8",
+                            "location": {
+                              "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                              "column": 8,
+                              "line": 10
+                            },
+                            "snippet": "\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'SmartOffice API Endpoints'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m   \u001b[90m// Setup: Create an admin user session\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m   test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m     \u001b[90m// Navigate to login page\u001b[39m\n \u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/login'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m\u001b[0m"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                                "column": 8,
+                                "line": 10
+                              },
+                              "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n   8 | test.describe('SmartOffice API Endpoints', () => {\n   9 |   // Setup: Create an admin user session\n> 10 |   test.beforeEach(async ({ page }) => {\n     |        ^\n  11 |     // Navigate to login page\n  12 |     await page.goto('/login');\n  13 |\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:10:8"
+                            },
+                            {
+                              "location": {
+                                "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                                "column": 16,
+                                "line": 12
+                              },
+                              "message": "Error: page.goto: net::ERR_ABORTED; maybe frame was detached?\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3050/login\", waiting until \"load\"\u001b[22m\n\n\n  10 |   test.beforeEach(async ({ page }) => {\n  11 |     // Navigate to login page\n> 12 |     await page.goto('/login');\n     |                ^\n  13 |\n  14 |     // TODO: Replace with actual admin credentials from test environment\n  15 |     // For now, we'll test that the endpoints exist and return proper responses\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:12:16"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-03-21T16:05:40.538Z",
+                          "annotations": [],
+                          "attachments": [],
+                          "errorLocation": {
+                            "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                            "column": 8,
+                            "line": 10
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "06b42f404e951c65eab3-152dc4547e3d9b830454",
+                  "file": "smartoffice-api.spec.ts",
+                  "line": 154,
+                  "column": 9
+                }
+              ]
+            },
+            {
+              "title": "API Error Handling",
+              "file": "smartoffice-api.spec.ts",
+              "line": 169,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "should return JSON for all responses",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 11,
+                          "parallelIndex": 1,
+                          "status": "timedOut",
+                          "duration": 40028,
+                          "error": {
+                            "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
+                            "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:10:8",
+                            "location": {
+                              "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                              "column": 8,
+                              "line": 10
+                            },
+                            "snippet": "\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'SmartOffice API Endpoints'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m   \u001b[90m// Setup: Create an admin user session\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m   test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m     \u001b[90m// Navigate to login page\u001b[39m\n \u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/login'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m\u001b[0m"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                                "column": 8,
+                                "line": 10
+                              },
+                              "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n   8 | test.describe('SmartOffice API Endpoints', () => {\n   9 |   // Setup: Create an admin user session\n> 10 |   test.beforeEach(async ({ page }) => {\n     |        ^\n  11 |     // Navigate to login page\n  12 |     await page.goto('/login');\n  13 |\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:10:8"
+                            },
+                            {
+                              "location": {
+                                "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                                "column": 16,
+                                "line": 12
+                              },
+                              "message": "Error: page.goto: net::ERR_ABORTED; maybe frame was detached?\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3050/login\", waiting until \"load\"\u001b[22m\n\n\n  10 |   test.beforeEach(async ({ page }) => {\n  11 |     // Navigate to login page\n> 12 |     await page.goto('/login');\n     |                ^\n  13 |\n  14 |     // TODO: Replace with actual admin credentials from test environment\n  15 |     // For now, we'll test that the endpoints exist and return proper responses\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:12:16"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-03-21T16:05:40.543Z",
+                          "annotations": [],
+                          "attachments": [],
+                          "errorLocation": {
+                            "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                            "column": 8,
+                            "line": 10
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "06b42f404e951c65eab3-c3861eb93146a5b3104c",
+                  "file": "smartoffice-api.spec.ts",
+                  "line": 170,
+                  "column": 9
+                },
+                {
+                  "title": "should include CORS headers",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 12,
+                          "parallelIndex": 3,
+                          "status": "timedOut",
+                          "duration": 40064,
+                          "error": {
+                            "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
+                            "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:10:8",
+                            "location": {
+                              "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                              "column": 8,
+                              "line": 10
+                            },
+                            "snippet": "\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'SmartOffice API Endpoints'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m   \u001b[90m// Setup: Create an admin user session\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m   test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m     \u001b[90m// Navigate to login page\u001b[39m\n \u001b[90m 12 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/login'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m\u001b[0m"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                                "column": 8,
+                                "line": 10
+                              },
+                              "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n   8 | test.describe('SmartOffice API Endpoints', () => {\n   9 |   // Setup: Create an admin user session\n> 10 |   test.beforeEach(async ({ page }) => {\n     |        ^\n  11 |     // Navigate to login page\n  12 |     await page.goto('/login');\n  13 |\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:10:8"
+                            },
+                            {
+                              "location": {
+                                "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                                "column": 16,
+                                "line": 12
+                              },
+                              "message": "Error: page.goto: net::ERR_ABORTED; maybe frame was detached?\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3050/login\", waiting until \"load\"\u001b[22m\n\n\n  10 |   test.beforeEach(async ({ page }) => {\n  11 |     // Navigate to login page\n> 12 |     await page.goto('/login');\n     |                ^\n  13 |\n  14 |     // TODO: Replace with actual admin credentials from test environment\n  15 |     // For now, we'll test that the endpoints exist and return proper responses\n    at C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts:12:16"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-03-21T16:06:22.227Z",
+                          "annotations": [],
+                          "attachments": [],
+                          "errorLocation": {
+                            "file": "C:\\dev\\1 - Apex Pre-Launch Site\\tests\\e2e\\smartoffice-api.spec.ts",
+                            "column": 8,
+                            "line": 10
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "06b42f404e951c65eab3-2d02cb375192ae4c38bf",
+                  "file": "smartoffice-api.spec.ts",
+                  "line": 185,
+                  "column": 9
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-03-21T16:04:01.567Z",
+    "duration": 181199.212,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 13,
+    "flaky": 0
+  }
+}
