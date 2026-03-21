@@ -9,15 +9,15 @@ import { z } from 'zod';
 // =============================================
 
 export const locationTypeSchema = z.enum(['virtual', 'physical', 'hybrid'], {
-  errorMap: () => ({ message: 'Location type must be virtual, physical, or hybrid' }),
+  message: 'Location type must be virtual, physical, or hybrid',
 });
 
 export const meetingStatusSchema = z.enum(['draft', 'active', 'closed', 'completed', 'canceled'], {
-  errorMap: () => ({ message: 'Invalid meeting status' }),
+  message: 'Invalid meeting status',
 });
 
 export const registrationStatusSchema = z.enum(['pending', 'confirmed', 'not_going', 'needs_followup'], {
-  errorMap: () => ({ message: 'Invalid registration status' }),
+  message: 'Invalid registration status',
 });
 
 export const timezoneSchema = z.string().default('America/Chicago');
