@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS public.smartoffice_commissions (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   smartoffice_id TEXT NOT NULL UNIQUE, -- SmartOffice CommPayable ID
   policy_number TEXT,
-  current_role TEXT,
+  agent_role TEXT, -- Changed from 'current_role' (reserved keyword) to 'agent_role'
   receivable NUMERIC(12, 2),
   payable_due_date DATE,
   paid_amount NUMERIC(12, 2),
