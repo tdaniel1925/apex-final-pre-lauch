@@ -719,7 +719,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                 <div className="section-title section-title-center">
                   <span className="section-sub-title wow fadeInUp">The Apex Product Suite</span>
                   <h2 className="text-anime-style-3" data-cursor="-opaque">Five AI-Powered Platforms.<br />One Marketing Department.<br />Unlimited Growth.</h2>
-                  <p className="wow fadeInUp" data-wow-delay="0.2s">Choose the tier that fits your business — from entry-level presence to elite omnichannel dominance. All products include AI-generated content, landing pages, and analytics. Member pricing shown (retail pricing available).</p>
+                  <p className="wow fadeInUp" data-wow-delay="0.2s">Choose the tier that fits your business — from entry-level presence to elite omnichannel dominance. All products include AI-generated content, landing pages, and analytics. Pricing available after signup.</p>
                 </div>
               </div>
             </div>
@@ -737,8 +737,6 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                             <div style={{fontSize: '14px', fontWeight: '600', color: '#2B4C7E', marginBottom: '8px'}}>💡 PULSEGUARD</div>
                             <h3 style={{fontSize: '22px', fontWeight: '700', color: '#1a2f50', marginBottom: '4px'}}>Entry Tier</h3>
                             <p style={{fontSize: '14px', color: '#6b7280', marginBottom: '16px'}}>Your digital foundation</p>
-                            <div style={{fontSize: '32px', fontWeight: '800', color: '#2B4C7E'}}>$79<span style={{fontSize: '16px', fontWeight: '400', color: '#6b7280'}}>/mo</span></div>
-                            <div style={{fontSize: '13px', color: '#6b7280'}}>$59 member price</div>
                           </div>
                           <div className="pricing-item-content" style={{padding: '24px'}}>
                             <p style={{fontSize: '15px', color: '#4b5563', lineHeight: '1.6', marginBottom: '20px'}}>
@@ -782,12 +780,10 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                             <div style={{fontSize: '14px', fontWeight: '600', color: '#2B4C7E', marginBottom: '8px'}}>📈 PULSEFLOW</div>
                             <h3 style={{fontSize: '22px', fontWeight: '700', color: '#1a2f50', marginBottom: '4px'}}>Growth Tier</h3>
                             <p style={{fontSize: '14px', color: '#6b7280', marginBottom: '16px'}}>Scale your content engine</p>
-                            <div style={{fontSize: '32px', fontWeight: '800', color: '#2B4C7E'}}>$149<span style={{fontSize: '16px', fontWeight: '400', color: '#6b7280'}}>/mo</span></div>
-                            <div style={{fontSize: '13px', color: '#6b7280'}}>$129 member price</div>
                           </div>
                           <div className="pricing-item-content" style={{padding: '24px'}}>
                             <p style={{fontSize: '15px', color: '#4b5563', lineHeight: '1.6', marginBottom: '20px'}}>
-                              Replace $300-800/month in disconnected tools. Perfect for growing businesses ready to systemize.
+                              Unified marketing automation that replaces multiple disconnected tools. Perfect for growing businesses ready to systemize.
                             </p>
                           </div>
                           <div className="pricing-item-list" style={{padding: '0 24px 24px'}}>
@@ -833,8 +829,6 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                             <div style={{fontSize: '14px', fontWeight: '600', color: '#2B4C7E', marginBottom: '8px'}}>🎙️ PULSEDRIVE</div>
                             <h3 style={{fontSize: '22px', fontWeight: '700', color: '#1a2f50', marginBottom: '4px'}}>Professional Tier</h3>
                             <p style={{fontSize: '14px', color: '#6b7280', marginBottom: '16px'}}>Your podcast. Your voice. Autopilot.</p>
-                            <div style={{fontSize: '32px', fontWeight: '800', color: '#2B4C7E'}}>$299<span style={{fontSize: '16px', fontWeight: '400', color: '#6b7280'}}>/mo</span></div>
-                            <div style={{fontSize: '13px', color: '#6b7280'}}>$219 member price</div>
                           </div>
                           <div className="pricing-item-content" style={{padding: '24px'}}>
                             <p style={{fontSize: '15px', color: '#4b5563', lineHeight: '1.6', marginBottom: '20px'}}>
@@ -878,12 +872,10 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                             <div style={{fontSize: '14px', fontWeight: '600', color: '#ffffff', marginBottom: '8px'}}>👑 PULSECOMMAND</div>
                             <h3 style={{fontSize: '22px', fontWeight: '700', color: '#ffffff', marginBottom: '4px'}}>Elite Tier</h3>
                             <p style={{fontSize: '14px', color: '#e0e0e0', marginBottom: '16px'}}>Unlimited. Omnichannel. Elite.</p>
-                            <div style={{fontSize: '32px', fontWeight: '800', color: '#ffffff'}}>$499<span style={{fontSize: '16px', fontWeight: '400', color: '#e0e0e0'}}>/mo</span></div>
-                            <div style={{fontSize: '13px', color: '#e0e0e0'}}>$349 member price</div>
                           </div>
                           <div className="pricing-item-content" style={{padding: '24px'}}>
                             <p style={{fontSize: '15px', color: '#4b5563', lineHeight: '1.6', marginBottom: '20px'}}>
-                              Fortune 500 marketing operation for $349/month. Agency builders and top producers run this.
+                              Fortune 500-level marketing operation. Agency builders and top producers run this tier.
                             </p>
                           </div>
                           <div className="pricing-item-list" style={{padding: '0 24px 24px'}}>
@@ -927,8 +919,6 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                             <div style={{fontSize: '14px', fontWeight: '600', color: '#ffffff', marginBottom: '8px'}}>📊 SMARTLOOK XL</div>
                             <h3 style={{fontSize: '22px', fontWeight: '700', color: '#ffffff', marginBottom: '4px'}}>Smart Office</h3>
                             <p style={{fontSize: '14px', color: '#e0e0e0', marginBottom: '16px'}}>Business intelligence dashboard</p>
-                            <div style={{fontSize: '32px', fontWeight: '800', color: '#ffffff'}}>$99<span style={{fontSize: '16px', fontWeight: '400', color: '#e0e0e0'}}>/mo</span></div>
-                            <div style={{fontSize: '13px', color: '#e0e0e0'}}>Member price (no retail)</div>
                           </div>
                           <div className="pricing-item-content" style={{padding: '24px'}}>
                             <p style={{fontSize: '15px', color: '#4b5563', lineHeight: '1.6', marginBottom: '20px'}}>
