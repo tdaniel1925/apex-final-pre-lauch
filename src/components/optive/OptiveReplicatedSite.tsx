@@ -332,15 +332,18 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   <div className="section-title" style={{textAlign: 'left'}}>
                     <span className="section-sub-title wow fadeInUp">
                       {distributor.slug === 'apex'
-                        ? 'AI-Powered Technology for Business Growth'
-                        : `AI-Powered Marketing with ${distributor.first_name} ${distributor.last_name}`
+                        ? 'AI-Powered Technology for Real People'
+                        : `Building with ${distributor.first_name} ${distributor.last_name}`
                       }
                     </span>
                     <h1 className="text-anime-style-3" data-cursor="-opaque">
-                      AI-Powered Marketing.<br />Real Business Growth.<br />Built for You.
+                      Two Paths to Financial Freedom.<br />One Platform That Works.
                     </h1>
                     <p className="wow fadeInUp" data-wow-delay="0.1s" style={{color: '#fff', fontSize: '18px', marginTop: '20px', maxWidth: '600px', lineHeight: '1.6'}}>
-                      Apex delivers enterprise-level marketing automation to small businesses — with AI-generated content, landing pages, podcasts, and video production. All done for you.
+                      Whether you're helping businesses grow with AI-powered marketing or protecting families with insurance — you're building recurring income doing work that matters.
+                    </p>
+                    <p className="wow fadeInUp" data-wow-delay="0.15s" style={{color: 'rgba(255, 255, 255, 0.9)', fontSize: '16px', marginTop: '12px', maxWidth: '600px', lineHeight: '1.6'}}>
+                      No quotas. No pressure. Just real value for real people.
                     </p>
 
                     {/* Trust Bar */}
@@ -355,25 +358,25 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                         <svg style={{width: '20px', height: '20px'}} fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                         </svg>
-                        AI-Generated Content
+                        Build Recurring Income
                       </div>
                       <div style={{display: 'flex', alignItems: 'center', gap: '8px', color: '#fff', fontSize: '15px'}}>
                         <svg style={{width: '20px', height: '20px'}} fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                         </svg>
-                        Automated Posting
+                        Technology Does the Heavy Lifting
                       </div>
                       <div style={{display: 'flex', alignItems: 'center', gap: '8px', color: '#fff', fontSize: '15px'}}>
                         <svg style={{width: '20px', height: '20px'}} fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                         </svg>
-                        Landing Pages Included
+                        Training & Support Included
                       </div>
                       <div style={{display: 'flex', alignItems: 'center', gap: '8px', color: '#fff', fontSize: '15px'}}>
                         <svg style={{width: '20px', height: '20px'}} fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                         </svg>
-                        No Setup Required
+                        Work From Anywhere
                       </div>
                     </div>
 
@@ -434,7 +437,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                             fontWeight: '700',
                             marginBottom: '6px'
                           }}>
-                            AI Technology
+                            AI Technology Advocate
                           </h3>
                           <p style={{
                             color: 'rgba(255, 255, 255, 0.9)',
@@ -442,14 +445,14 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                             marginBottom: '8px',
                             lineHeight: '1.5'
                           }}>
-                            AI-powered marketing solutions for business growth
+                            Help businesses compete with Fortune 500 marketing — powered by AI, delivered by you.
                           </p>
                           <div style={{
                             color: '#fbbf24',
                             fontSize: '13px',
                             fontWeight: '600'
                           }}>
-                            Learn more →
+                            No tech skills needed →
                           </div>
                         </div>
                       </div>
@@ -485,7 +488,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                             fontWeight: '700',
                             marginBottom: '6px'
                           }}>
-                            Insurance Career
+                            Insurance Professional
                           </h3>
                           <p style={{
                             color: 'rgba(255, 255, 255, 0.9)',
@@ -493,14 +496,14 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                             marginBottom: '8px',
                             lineHeight: '1.5'
                           }}>
-                            Life, annuities, ancillary products + top-tier contracts
+                            Protect what matters most — families, futures, and legacies with top-tier contracts and real support.
                           </p>
                           <div style={{
                             color: '#fbbf24',
                             fontSize: '13px',
                             fontWeight: '600'
                           }}>
-                            License required →
+                            We'll help you get licensed →
                           </div>
                         </div>
                       </div>
@@ -514,7 +517,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                     gap: '12px',
                     marginTop: '24px'
                   }}>
-                    <a href="#products" className="btn-default" style={{
+                    <a href="#how-it-works" className="btn-default" style={{
                       background: '#ffffff',
                       color: '#2B4C7E',
                       borderColor: '#ffffff',
@@ -524,7 +527,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                       textAlign: 'center',
                       width: '100%'
                     }}>
-                      View Products
+                      Watch How It Works
                     </a>
                     <a href={signupUrl} className="btn-default" style={{
                       background: 'transparent',
@@ -537,7 +540,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                       textAlign: 'center',
                       width: '100%'
                     }}>
-                      {distributor.slug === 'apex' ? 'Join as Distributor' : `Join ${distributor.first_name}'s Team`}
+                      Join the Movement
                     </a>
                   </div>
                 </div>
@@ -547,97 +550,166 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
         </div>
         {/* Hero Section End */}
 
-        {/* The Problem Section Start */}
+        {/* The Vision Section Start */}
         <div style={{background: '#ffffff', padding: '80px 0'}}>
           <div className="container">
             <div className="row section-row">
               <div className="col-lg-12">
                 <div className="section-title section-title-center">
-                  <span className="section-sub-title wow fadeInUp" style={{color: '#2B4C7E'}}>The Problem Every Business Owner Has</span>
+                  <span className="section-sub-title wow fadeInUp" style={{color: '#2B4C7E'}}>The Old Model Is Broken</span>
                   <h2 className="text-anime-style-3" data-cursor="-opaque" style={{color: '#1a2f50', marginBottom: '20px'}}>
-                    You're Spending $300–$1,500/Month on Software.<br />But Where's Your Marketing?
+                    The New American Dream Isn't a Job.<br />It's Ownership.
                   </h2>
                 </div>
               </div>
             </div>
 
             <div className="row justify-content-center">
-              <div className="col-lg-8">
+              <div className="col-lg-10">
                 <div className="wow fadeInUp" data-wow-delay="0.2s">
-                  <p style={{fontSize: '18px', lineHeight: '1.8', color: '#4b5563', textAlign: 'center', marginBottom: '40px'}}>
-                    Most business owners spend hundreds per month on disconnected software subscriptions — and very little of it actually generates leads or grows their business.
+                  <p style={{fontSize: '20px', lineHeight: '1.8', color: '#1f2937', textAlign: 'center', marginBottom: '24px', fontWeight: '500'}}>
+                    The traditional 9-5 gave us stability. But it took our time, capped our income, and left us with nothing to show when we stopped working.
                   </p>
 
-                  <div style={{background: '#f8f9fa', borderRadius: '12px', padding: '40px', border: '2px solid #e5e7eb'}}>
-                    <h3 style={{color: '#2B4C7E', fontSize: '20px', fontWeight: '700', marginBottom: '24px', textAlign: 'center'}}>
-                      You Need:
+                  <p style={{fontSize: '18px', lineHeight: '1.8', color: '#4b5563', textAlign: 'center', marginBottom: '40px'}}>
+                    What if you could build something different?
+                  </p>
+
+                  <div style={{background: '#f8f9fa', borderRadius: '16px', padding: '48px 40px', marginBottom: '48px'}}>
+                    <h3 style={{color: '#2B4C7E', fontSize: '22px', fontWeight: '700', marginBottom: '32px', textAlign: 'center'}}>
+                      What if you could:
                     </h3>
                     <div className="row">
-                      <div className="col-md-6" style={{marginBottom: '16px'}}>
-                        <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
-                          <svg style={{width: '24px', height: '24px', color: '#2B4C7E', flexShrink: 0, marginTop: '2px'}} fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                          </svg>
-                          <span style={{fontSize: '16px', color: '#1f2937'}}>A website that converts visitors to leads</span>
+                      <div className="col-md-6" style={{marginBottom: '24px'}}>
+                        <div style={{display: 'flex', alignItems: 'start', gap: '16px'}}>
+                          <div style={{width: '40px', height: '40px', background: '#2B4C7E', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+                            <svg style={{width: '20px', height: '20px', color: '#ffffff'}} fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                          </div>
+                          <span style={{fontSize: '17px', color: '#1f2937', lineHeight: '1.6', paddingTop: '6px'}}>Help people solve real problems</span>
                         </div>
                       </div>
-                      <div className="col-md-6" style={{marginBottom: '16px'}}>
-                        <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
-                          <svg style={{width: '24px', height: '24px', color: '#2B4C7E', flexShrink: 0, marginTop: '2px'}} fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                          </svg>
-                          <span style={{fontSize: '16px', color: '#1f2937'}}>Social media content posted consistently</span>
+                      <div className="col-md-6" style={{marginBottom: '24px'}}>
+                        <div style={{display: 'flex', alignItems: 'start', gap: '16px'}}>
+                          <div style={{width: '40px', height: '40px', background: '#2B4C7E', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+                            <svg style={{width: '20px', height: '20px', color: '#ffffff'}} fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                          </div>
+                          <span style={{fontSize: '17px', color: '#1f2937', lineHeight: '1.6', paddingTop: '6px'}}>Use technology to amplify your impact</span>
                         </div>
                       </div>
-                      <div className="col-md-6" style={{marginBottom: '16px'}}>
-                        <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
-                          <svg style={{width: '24px', height: '24px', color: '#2B4C7E', flexShrink: 0, marginTop: '2px'}} fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                          </svg>
-                          <span style={{fontSize: '16px', color: '#1f2937'}}>Email campaigns that nurture prospects</span>
+                      <div className="col-md-6" style={{marginBottom: '24px'}}>
+                        <div style={{display: 'flex', alignItems: 'start', gap: '16px'}}>
+                          <div style={{width: '40px', height: '40px', background: '#2B4C7E', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+                            <svg style={{width: '20px', height: '20px', color: '#ffffff'}} fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                          </div>
+                          <span style={{fontSize: '17px', color: '#1f2937', lineHeight: '1.6', paddingTop: '6px'}}>Build income that compounds over time</span>
                         </div>
                       </div>
-                      <div className="col-md-6" style={{marginBottom: '16px'}}>
-                        <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
-                          <svg style={{width: '24px', height: '24px', color: '#2B4C7E', flexShrink: 0, marginTop: '2px'}} fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                          </svg>
-                          <span style={{fontSize: '16px', color: '#1f2937'}}>SEO content that brings organic traffic</span>
-                        </div>
-                      </div>
-                      <div className="col-md-6" style={{marginBottom: '16px'}}>
-                        <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
-                          <svg style={{width: '24px', height: '24px', color: '#2B4C7E', flexShrink: 0, marginTop: '2px'}} fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                          </svg>
-                          <span style={{fontSize: '16px', color: '#1f2937'}}>Lead tracking and analytics</span>
-                        </div>
-                      </div>
-                      <div className="col-md-6" style={{marginBottom: '16px'}}>
-                        <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
-                          <svg style={{width: '24px', height: '24px', color: '#2B4C7E', flexShrink: 0, marginTop: '2px'}} fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                          </svg>
-                          <span style={{fontSize: '16px', color: '#1f2937'}}>Time to actually run your business</span>
+                      <div className="col-md-6" style={{marginBottom: '24px'}}>
+                        <div style={{display: 'flex', alignItems: 'start', gap: '16px'}}>
+                          <div style={{width: '40px', height: '40px', background: '#2B4C7E', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+                            <svg style={{width: '20px', height: '20px', color: '#ffffff'}} fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                          </div>
+                          <span style={{fontSize: '17px', color: '#1f2937', lineHeight: '1.6', paddingTop: '6px'}}>Own your schedule and your future</span>
                         </div>
                       </div>
                     </div>
+                  </div>
 
-                    <div style={{marginTop: '32px', textAlign: 'center', padding: '24px', background: '#ffffff', borderRadius: '8px', border: '2px solid #2B4C7E'}}>
-                      <p style={{fontSize: '20px', fontWeight: '700', color: '#2B4C7E', marginBottom: '8px'}}>
-                        Apex Delivers All of This — Powered by AI
-                      </p>
-                      <p style={{fontSize: '16px', color: '#4b5563', margin: 0}}>
-                        For less than what you're paying for one disconnected tool.
-                      </p>
+                  {/* 3-Column Comparison Table */}
+                  <div className="row" style={{marginBottom: '40px'}}>
+                    <div className="col-md-4" style={{marginBottom: '20px'}}>
+                      <div style={{background: '#f8f9fa', borderRadius: '12px', padding: '32px 24px', height: '100%', border: '2px solid #e5e7eb'}}>
+                        <h4 style={{fontSize: '18px', fontWeight: '700', color: '#6b7280', marginBottom: '24px', textAlign: 'center'}}>Traditional Job</h4>
+                        <div style={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
+                          <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                            <span style={{fontSize: '20px'}}>⏰</span>
+                            <span style={{fontSize: '15px', color: '#6b7280', lineHeight: '1.5'}}>Trade time for money</span>
+                          </div>
+                          <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                            <span style={{fontSize: '20px'}}>📊</span>
+                            <span style={{fontSize: '15px', color: '#6b7280', lineHeight: '1.5'}}>Income capped by hours</span>
+                          </div>
+                          <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                            <span style={{fontSize: '20px'}}>👔</span>
+                            <span style={{fontSize: '15px', color: '#6b7280', lineHeight: '1.5'}}>Someone else's business</span>
+                          </div>
+                          <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                            <span style={{fontSize: '20px'}}>🔒</span>
+                            <span style={{fontSize: '15px', color: '#6b7280', lineHeight: '1.5'}}>No equity, no upside</span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
+                    <div className="col-md-4" style={{marginBottom: '20px'}}>
+                      <div style={{background: '#f8f9fa', borderRadius: '12px', padding: '32px 24px', height: '100%', border: '2px solid #e5e7eb'}}>
+                        <h4 style={{fontSize: '18px', fontWeight: '700', color: '#6b7280', marginBottom: '24px', textAlign: 'center'}}>Gig Economy</h4>
+                        <div style={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
+                          <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                            <span style={{fontSize: '20px'}}>⏰</span>
+                            <span style={{fontSize: '15px', color: '#6b7280', lineHeight: '1.5'}}>Trade time for money</span>
+                          </div>
+                          <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                            <span style={{fontSize: '20px'}}>📊</span>
+                            <span style={{fontSize: '15px', color: '#6b7280', lineHeight: '1.5'}}>Income capped by hours</span>
+                          </div>
+                          <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                            <span style={{fontSize: '20px'}}>🚗</span>
+                            <span style={{fontSize: '15px', color: '#6b7280', lineHeight: '1.5'}}>Work for the platform</span>
+                          </div>
+                          <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                            <span style={{fontSize: '20px'}}>🔒</span>
+                            <span style={{fontSize: '15px', color: '#6b7280', lineHeight: '1.5'}}>No benefits, no security</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-md-4" style={{marginBottom: '20px'}}>
+                      <div style={{background: 'linear-gradient(135deg, #2B4C7E 0%, #1a2c4e 100%)', borderRadius: '12px', padding: '32px 24px', height: '100%', border: '3px solid #2B4C7E', boxShadow: '0 8px 24px rgba(43, 76, 126, 0.25)'}}>
+                        <h4 style={{fontSize: '18px', fontWeight: '700', color: '#fbbf24', marginBottom: '24px', textAlign: 'center'}}>Apex Model</h4>
+                        <div style={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
+                          <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                            <span style={{fontSize: '20px'}}>🎯</span>
+                            <span style={{fontSize: '15px', color: '#ffffff', lineHeight: '1.5', fontWeight: '600'}}>Build recurring value</span>
+                          </div>
+                          <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                            <span style={{fontSize: '20px'}}>📈</span>
+                            <span style={{fontSize: '15px', color: '#ffffff', lineHeight: '1.5', fontWeight: '600'}}>Income compounds</span>
+                          </div>
+                          <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                            <span style={{fontSize: '20px'}}>🏗️</span>
+                            <span style={{fontSize: '15px', color: '#ffffff', lineHeight: '1.5', fontWeight: '600'}}>You own your business</span>
+                          </div>
+                          <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                            <span style={{fontSize: '20px'}}>✨</span>
+                            <span style={{fontSize: '15px', color: '#ffffff', lineHeight: '1.5', fontWeight: '600'}}>Residual income that lasts</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style={{textAlign: 'center', marginTop: '48px'}}>
+                    <p style={{fontSize: '22px', fontWeight: '600', color: '#2B4C7E', marginBottom: '8px'}}>
+                      That's not a dream. That's Apex.
+                    </p>
+                    <a href="#opportunity" style={{display: 'inline-block', marginTop: '16px', padding: '12px 32px', background: '#2B4C7E', color: '#ffffff', borderRadius: '8px', textDecoration: 'none', fontWeight: '600', fontSize: '16px', transition: 'all 0.3s ease'}}>
+                      See How It Works →
+                    </a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        {/* The Problem Section End */}
+        {/* The Vision Section End */}
 
         {/* Product Showcase Section Start */}
         <div className="our-pricing" style={{background: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)'}} id="products">
