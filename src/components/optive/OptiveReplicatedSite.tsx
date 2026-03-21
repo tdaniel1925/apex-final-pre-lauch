@@ -1330,6 +1330,344 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
         </div>
         {/* How It Works Section End */}
 
+        {/* The Apex Difference Section Start */}
+        <div style={{background: 'linear-gradient(135deg, #1a2c4e 0%, #2B4C7E 100%)', padding: '80px 0', color: '#fff'}}>
+          <div className="container">
+            <div className="row section-row">
+              <div className="col-lg-12">
+                <div className="section-title section-title-center">
+                  <span className="section-sub-title wow fadeInUp" style={{color: '#93c5fd'}}>Why Apex Works</span>
+                  <h2 className="text-anime-style-3" data-cursor="-opaque" style={{color: '#ffffff'}}>
+                    This Isn't Another "Side Hustle."<br />It's a Real Business Model.
+                  </h2>
+                  <p className="wow fadeInUp" data-wow-delay="0.2s" style={{color: '#e0e7ff', maxWidth: '900px', margin: '0 auto 60px auto', fontSize: '18px', lineHeight: '1.7'}}>
+                    We're not here to hype you up with income claims and fake promises. We're here to give you the tools, training, and support to build something that lasts. Here's what makes Apex different:
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="row">
+              {/* Card 1: Recurring Income */}
+              <div className="col-lg-4 col-md-6" style={{marginBottom: '30px'}}>
+                <div className="wow fadeInUp" style={{
+                  background: 'rgba(255,255,255,0.1)',
+                  borderRadius: '16px',
+                  padding: '40px',
+                  backdropFilter: 'blur(10px)',
+                  border: '2px solid rgba(255,255,255,0.2)',
+                  height: '100%'
+                }}>
+                  <div style={{fontSize: '48px', marginBottom: '20px', textAlign: 'center'}}>💰</div>
+                  <h3 style={{fontSize: '24px', fontWeight: '700', color: '#fbbf24', marginBottom: '16px', textAlign: 'center'}}>
+                    Recurring Income
+                  </h3>
+                  <p style={{fontSize: '18px', fontWeight: '600', color: '#ffffff', marginBottom: '12px'}}>
+                    Your Work Compounds
+                  </p>
+                  <p style={{fontSize: '15px', color: '#e0e7ff', lineHeight: '1.7', marginBottom: 0}}>
+                    Traditional sales: You sell once, earn once, start over. Apex model: You help once, earn monthly as long as they succeed. One customer can pay you for years.
+                  </p>
+                </div>
+              </div>
+
+              {/* Card 2: Real Value */}
+              <div className="col-lg-4 col-md-6" style={{marginBottom: '30px'}}>
+                <div className="wow fadeInUp" data-wow-delay="0.1s" style={{
+                  background: 'rgba(255,255,255,0.1)',
+                  borderRadius: '16px',
+                  padding: '40px',
+                  backdropFilter: 'blur(10px)',
+                  border: '2px solid rgba(255,255,255,0.2)',
+                  height: '100%'
+                }}>
+                  <div style={{fontSize: '48px', marginBottom: '20px', textAlign: 'center'}}>✨</div>
+                  <h3 style={{fontSize: '24px', fontWeight: '700', color: '#fbbf24', marginBottom: '16px', textAlign: 'center'}}>
+                    Real Value
+                  </h3>
+                  <p style={{fontSize: '18px', fontWeight: '600', color: '#ffffff', marginBottom: '12px'}}>
+                    You're Solving Actual Problems
+                  </p>
+                  <p style={{fontSize: '15px', color: '#e0e7ff', lineHeight: '1.7', marginBottom: 0}}>
+                    You're not selling hype. You're bringing solutions that work: Businesses get marketing that drives real results. Families get financial protection and peace of mind. When you deliver value, customers stay. And you earn.
+                  </p>
+                </div>
+              </div>
+
+              {/* Card 3: Technology Advantage */}
+              <div className="col-lg-4 col-md-6" style={{marginBottom: '30px'}}>
+                <div className="wow fadeInUp" data-wow-delay="0.2s" style={{
+                  background: 'rgba(255,255,255,0.1)',
+                  borderRadius: '16px',
+                  padding: '40px',
+                  backdropFilter: 'blur(10px)',
+                  border: '2px solid rgba(255,255,255,0.2)',
+                  height: '100%'
+                }}>
+                  <div style={{fontSize: '48px', marginBottom: '20px', textAlign: 'center'}}>🤖</div>
+                  <h3 style={{fontSize: '24px', fontWeight: '700', color: '#fbbf24', marginBottom: '16px', textAlign: 'center'}}>
+                    Technology Advantage
+                  </h3>
+                  <p style={{fontSize: '18px', fontWeight: '600', color: '#ffffff', marginBottom: '12px'}}>
+                    AI Does the Heavy Lifting
+                  </p>
+                  <p style={{fontSize: '15px', color: '#e0e7ff', lineHeight: '1.7', marginBottom: 0}}>
+                    You don't need to be a marketer, a designer, or a tech expert. AI generates the content. AI builds the campaigns. AI handles the automation. Your job: Be the human connection.
+                  </p>
+                </div>
+              </div>
+
+              {/* Card 4: Dual Opportunity */}
+              <div className="col-lg-4 col-md-6" style={{marginBottom: '30px'}}>
+                <div className="wow fadeInUp" data-wow-delay="0.3s" style={{
+                  background: 'rgba(255,255,255,0.1)',
+                  borderRadius: '16px',
+                  padding: '40px',
+                  backdropFilter: 'blur(10px)',
+                  border: '2px solid rgba(255,255,255,0.2)',
+                  height: '100%'
+                }}>
+                  <div style={{fontSize: '48px', marginBottom: '20px', textAlign: 'center'}}>🛤️</div>
+                  <h3 style={{fontSize: '24px', fontWeight: '700', color: '#fbbf24', marginBottom: '16px', textAlign: 'center'}}>
+                    Dual Opportunity
+                  </h3>
+                  <p style={{fontSize: '18px', fontWeight: '600', color: '#ffffff', marginBottom: '12px'}}>
+                    Two Paths, One Platform
+                  </p>
+                  <p style={{fontSize: '15px', color: '#e0e7ff', lineHeight: '1.7', marginBottom: 0}}>
+                    Choose one path. Or do both. Start with AI. Add insurance later. The flexibility is yours. Most platforms lock you into one income stream. Apex gives you options.
+                  </p>
+                </div>
+              </div>
+
+              {/* Card 5: Training & Support */}
+              <div className="col-lg-4 col-md-6" style={{marginBottom: '30px'}}>
+                <div className="wow fadeInUp" data-wow-delay="0.4s" style={{
+                  background: 'rgba(255,255,255,0.1)',
+                  borderRadius: '16px',
+                  padding: '40px',
+                  backdropFilter: 'blur(10px)',
+                  border: '2px solid rgba(255,255,255,0.2)',
+                  height: '100%'
+                }}>
+                  <div style={{fontSize: '48px', marginBottom: '20px', textAlign: 'center'}}>🎓</div>
+                  <h3 style={{fontSize: '24px', fontWeight: '700', color: '#fbbf24', marginBottom: '16px', textAlign: 'center'}}>
+                    Training & Support
+                  </h3>
+                  <p style={{fontSize: '18px', fontWeight: '600', color: '#ffffff', marginBottom: '12px'}}>
+                    You're Not Alone
+                  </p>
+                  <ul style={{fontSize: '15px', color: '#e0e7ff', lineHeight: '1.7', marginBottom: 0, paddingLeft: '20px'}}>
+                    <li>Live training events every week</li>
+                    <li>Online courses and product certifications</li>
+                    <li>Mentorship from experienced leaders</li>
+                    <li>Back-office tools and marketing materials</li>
+                    <li>Community of people building together</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Card 6: No Inventory */}
+              <div className="col-lg-4 col-md-6" style={{marginBottom: '30px'}}>
+                <div className="wow fadeInUp" data-wow-delay="0.5s" style={{
+                  background: 'rgba(255,255,255,0.1)',
+                  borderRadius: '16px',
+                  padding: '40px',
+                  backdropFilter: 'blur(10px)',
+                  border: '2px solid rgba(255,255,255,0.2)',
+                  height: '100%'
+                }}>
+                  <div style={{fontSize: '48px', marginBottom: '20px', textAlign: 'center'}}>📦</div>
+                  <h3 style={{fontSize: '24px', fontWeight: '700', color: '#fbbf24', marginBottom: '16px', textAlign: 'center'}}>
+                    No Inventory. No Overhead.
+                  </h3>
+                  <p style={{fontSize: '18px', fontWeight: '600', color: '#ffffff', marginBottom: '12px'}}>
+                    Low Risk, High Upside
+                  </p>
+                  <ul style={{fontSize: '15px', color: '#e0e7ff', lineHeight: '1.7', marginBottom: 0, paddingLeft: '20px'}}>
+                    <li>No products to stock</li>
+                    <li>No office to rent</li>
+                    <li>No employees to manage</li>
+                    <li>Work from home, coffee shop, anywhere</li>
+                  </ul>
+                  <p style={{fontSize: '15px', color: '#e0e7ff', lineHeight: '1.7', marginTop: '12px', marginBottom: 0, fontWeight: '600'}}>
+                    This is a business you can run from your phone.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* The Apex Difference Section End */}
+
+        {/* Who This Is For Section Start */}
+        <div style={{background: '#ffffff', padding: '80px 0'}}>
+          <div className="container">
+            <div className="row section-row">
+              <div className="col-lg-12">
+                <div className="section-title section-title-center">
+                  <h2 className="text-anime-style-3" data-cursor="-opaque" style={{color: '#1a2f50', marginBottom: '24px'}}>
+                    Is Apex Right for You?
+                  </h2>
+                  <p className="wow fadeInUp" data-wow-delay="0.2s" style={{color: '#475569', maxWidth: '700px', margin: '0 auto 60px auto', fontSize: '18px', lineHeight: '1.7'}}>
+                    Apex isn't for everyone. And that's okay. Here's who tends to thrive in our community:
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Ideal Member Profiles */}
+            <div className="row" style={{marginBottom: '60px'}}>
+              <div className="col-lg-10 mx-auto">
+
+                {/* Profile 1 */}
+                <div className="wow fadeInUp" style={{
+                  background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)',
+                  border: '3px solid #2B4C7E',
+                  borderRadius: '12px',
+                  padding: '32px',
+                  marginBottom: '24px'
+                }}>
+                  <div style={{display: 'flex', alignItems: 'start', gap: '16px'}}>
+                    <div style={{fontSize: '36px', flexShrink: 0}}>✅</div>
+                    <div>
+                      <h3 style={{fontSize: '22px', fontWeight: '700', color: '#1a2c4e', marginBottom: '12px'}}>
+                        Parents Who Want Flexibility
+                      </h3>
+                      <p style={{fontSize: '16px', color: '#475569', lineHeight: '1.7', marginBottom: 0}}>
+                        You want to be present for your kids — but also earn real income. Apex lets you work around your life, not the other way around.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Profile 2 */}
+                <div className="wow fadeInUp" data-wow-delay="0.1s" style={{
+                  background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)',
+                  border: '3px solid #2B4C7E',
+                  borderRadius: '12px',
+                  padding: '32px',
+                  marginBottom: '24px'
+                }}>
+                  <div style={{display: 'flex', alignItems: 'start', gap: '16px'}}>
+                    <div style={{fontSize: '36px', flexShrink: 0}}>✅</div>
+                    <div>
+                      <h3 style={{fontSize: '22px', fontWeight: '700', color: '#1a2c4e', marginBottom: '12px'}}>
+                        Entrepreneurs Who See the AI Revolution
+                      </h3>
+                      <p style={{fontSize: '16px', color: '#475569', lineHeight: '1.7', marginBottom: 0}}>
+                        You know AI is changing everything. You want to ride the wave, not get left behind. Apex puts you on the cutting edge.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Profile 3 */}
+                <div className="wow fadeInUp" data-wow-delay="0.2s" style={{
+                  background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)',
+                  border: '3px solid #2B4C7E',
+                  borderRadius: '12px',
+                  padding: '32px',
+                  marginBottom: '24px'
+                }}>
+                  <div style={{display: 'flex', alignItems: 'start', gap: '16px'}}>
+                    <div style={{fontSize: '36px', flexShrink: 0}}>✅</div>
+                    <div>
+                      <h3 style={{fontSize: '22px', fontWeight: '700', color: '#1a2c4e', marginBottom: '12px'}}>
+                        Insurance Agents Looking for Better Contracts
+                      </h3>
+                      <p style={{fontSize: '16px', color: '#475569', lineHeight: '1.7', marginBottom: 0}}>
+                        Tired of captive contracts and low commissions? Apex offers top-tier contracts, better support, and dual income paths.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Profile 4 */}
+                <div className="wow fadeInUp" data-wow-delay="0.3s" style={{
+                  background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)',
+                  border: '3px solid #2B4C7E',
+                  borderRadius: '12px',
+                  padding: '32px',
+                  marginBottom: '24px'
+                }}>
+                  <div style={{display: 'flex', alignItems: 'start', gap: '16px'}}>
+                    <div style={{fontSize: '36px', flexShrink: 0}}>✅</div>
+                    <div>
+                      <h3 style={{fontSize: '22px', fontWeight: '700', color: '#1a2c4e', marginBottom: '12px'}}>
+                        People Tired of Trading Time for Money
+                      </h3>
+                      <p style={{fontSize: '16px', color: '#475569', lineHeight: '1.7', marginBottom: 0}}>
+                        You're done with hourly wages and salary caps. You want income that compounds — where your work today pays you for years.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Profile 5 */}
+                <div className="wow fadeInUp" data-wow-delay="0.4s" style={{
+                  background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)',
+                  border: '3px solid #2B4C7E',
+                  borderRadius: '12px',
+                  padding: '32px',
+                  marginBottom: '24px'
+                }}>
+                  <div style={{display: 'flex', alignItems: 'start', gap: '16px'}}>
+                    <div style={{fontSize: '36px', flexShrink: 0}}>✅</div>
+                    <div>
+                      <h3 style={{fontSize: '22px', fontWeight: '700', color: '#1a2c4e', marginBottom: '12px'}}>
+                        Anyone Who Wants to Build Something That Lasts
+                      </h3>
+                      <p style={{fontSize: '16px', color: '#475569', lineHeight: '1.7', marginBottom: 0}}>
+                        You're not looking for quick cash or a "side hustle." You want to build a real business with residual income.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Not Right For */}
+            <div className="row">
+              <div className="col-lg-10 mx-auto">
+                <div className="wow fadeInUp" data-wow-delay="0.5s" style={{
+                  background: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)',
+                  border: '3px solid #dc2626',
+                  borderRadius: '12px',
+                  padding: '40px',
+                  textAlign: 'center'
+                }}>
+                  <h3 style={{fontSize: '24px', fontWeight: '700', color: '#1a2c4e', marginBottom: '24px'}}>
+                    Not Right For:
+                  </h3>
+                  <div style={{display: 'flex', flexDirection: 'column', gap: '12px', textAlign: 'left', maxWidth: '600px', margin: '0 auto 20px auto'}}>
+                    <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                      <span style={{fontSize: '20px', flexShrink: 0}}>❌</span>
+                      <span style={{fontSize: '16px', color: '#475569', lineHeight: '1.7'}}>People looking to "get rich quick"</span>
+                    </div>
+                    <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                      <span style={{fontSize: '20px', flexShrink: 0}}>❌</span>
+                      <span style={{fontSize: '16px', color: '#475569', lineHeight: '1.7'}}>People who won't help others succeed</span>
+                    </div>
+                    <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                      <span style={{fontSize: '20px', flexShrink: 0}}>❌</span>
+                      <span style={{fontSize: '16px', color: '#475569', lineHeight: '1.7'}}>People who expect passive income without any work</span>
+                    </div>
+                    <div style={{display: 'flex', alignItems: 'start', gap: '12px'}}>
+                      <span style={{fontSize: '20px', flexShrink: 0}}>❌</span>
+                      <span style={{fontSize: '16px', color: '#475569', lineHeight: '1.7'}}>People who don't believe in the value we deliver</span>
+                    </div>
+                  </div>
+                  <p style={{fontSize: '17px', color: '#1a2c4e', fontWeight: '600', marginBottom: 0}}>
+                    This takes effort. But it's effort that compounds.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* Who This Is For Section End */}
+
         {/* Insurance Section Start */}
         <div style={{background: '#ffffff', padding: '80px 0'}} id="insurance">
           <div className="container">
