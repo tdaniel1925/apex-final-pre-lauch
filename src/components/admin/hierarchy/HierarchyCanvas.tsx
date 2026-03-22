@@ -7,11 +7,27 @@
 // =============================================
 
 import { useState, useEffect, useRef } from 'react';
-import type { Distributor } from '@/lib/types';
 import MatrixNode from './MatrixNode';
 import NodeDetailPanel from './NodeDetailPanel';
 
-interface TreeNode extends Distributor {
+// Simplified tree node type for hierarchy visualization
+export interface TreeNode {
+  id: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  slug: string;
+  rep_number: string | null;
+  status: string;
+  profile_image?: string | null;
+  profile_photo_url?: string | null;
+  matrix_parent_id: string | null;
+  matrix_position: number | null;
+  matrix_depth: number;
+  sponsor_id: string | null;
+  personal_bv_monthly?: number | null;
+  group_bv_monthly?: number | null;
+  created_at: string;
   children?: TreeNode[];
   childCount?: number;
 }
@@ -88,12 +104,12 @@ export default function HierarchyCanvas({ rootDistributor, maxDepth = 3 }: Hiera
   };
 
   // Render tree recursively
-  const renderTree = (node: TreeNode, depth: number = 0, parentX: number = 400, index: number = 0, siblingCount: number = 1): JSX.Element[] => {
+  const renderTree = (node: TreeNode, depth: number = 0, parentX: number = 400, index: number = 0, siblingCount: number = 1): React.ReactElement[] => {
     if (depth > maxDepth) return [];
 
     const { x, y } = calculateLayout(node, depth, parentX, index, siblingCount);
 
-    const elements: JSX.Element[] = [];
+    const elements: React.ReactElement[] = [];
 
     // Render children first (so they appear behind)
     if (node.children && node.children.length > 0 && depth < maxDepth) {

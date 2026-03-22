@@ -7,10 +7,31 @@
 // =============================================
 
 import { useEffect } from 'react';
-import type { Distributor } from '@/lib/types';
+
+// Simplified distributor type for detail panel
+interface DistributorNode {
+  id: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  slug: string;
+  rep_number: string | null;
+  status?: string;
+  phone?: string | null;
+  company_name?: string | null;
+  profile_image?: string | null;
+  profile_photo_url?: string | null;
+  matrix_parent_id: string | null;
+  matrix_position: number | null;
+  matrix_depth: number;
+  sponsor_id: string | null;
+  personal_bv_monthly?: number | null;
+  group_bv_monthly?: number | null;
+  created_at: string;
+}
 
 interface NodeDetailPanelProps {
-  distributor: Distributor | null;
+  distributor: DistributorNode | null;
   isOpen: boolean;
   onClose: () => void;
 }
@@ -69,9 +90,9 @@ export default function NodeDetailPanel({ distributor, isOpen, onClose }: NodeDe
                   border: '3px solid #e2e8f0',
                 }}
               >
-                {distributor.profile_image ? (
+                {(distributor.profile_image || distributor.profile_photo_url) ? (
                   <img
-                    src={distributor.profile_image}
+                    src={(distributor.profile_image || distributor.profile_photo_url) as string}
                     alt={`${distributor.first_name} ${distributor.last_name}`}
                     className="w-full h-full object-cover"
                   />

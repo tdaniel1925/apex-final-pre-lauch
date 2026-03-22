@@ -7,10 +7,25 @@
 // =============================================
 
 import { useState } from 'react';
-import type { Distributor } from '@/lib/types';
+
+// Simplified distributor type for node display
+interface DistributorNode {
+  id: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  slug: string;
+  rep_number: string | null;
+  status?: string;
+  profile_image?: string | null;
+  profile_photo_url?: string | null;
+  personal_bv_monthly?: number | null;
+  group_bv_monthly?: number | null;
+  created_at: string;
+}
 
 interface MatrixNodeProps {
-  distributor: Distributor;
+  distributor: DistributorNode;
   tier?: 'national' | 'regional' | 'district' | 'field';
   isSelected?: boolean;
   isDimmed?: boolean;
@@ -85,9 +100,9 @@ export default function MatrixNode({
                 background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
               }}
             >
-              {distributor.profile_image ? (
+              {(distributor.profile_image || distributor.profile_photo_url) ? (
                 <img
-                  src={distributor.profile_image}
+                  src={(distributor.profile_image || distributor.profile_photo_url) as string}
                   alt={`${distributor.first_name} ${distributor.last_name}`}
                   className="w-full h-full object-cover"
                 />
