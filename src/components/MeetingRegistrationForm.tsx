@@ -104,7 +104,18 @@ export default function MeetingRegistrationForm({
     return (
       <div className="min-h-screen bg-slate-50 py-12 px-4">
         <div className="max-w-2xl mx-auto">
-          <div className="bg-white shadow-lg rounded-lg p-8">
+          <div className="bg-white shadow-lg rounded-lg p-8 relative">
+            {/* Close Button */}
+            <button
+              onClick={() => window.close()}
+              className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition"
+              title="Close window"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
             <div className="text-center mb-6">
               <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
                 <CheckCircle className="w-10 h-10 text-green-600" />
@@ -156,8 +167,8 @@ export default function MeetingRegistrationForm({
               </ul>
             </div>
 
-            {calendarUrl && (
-              <div className="flex justify-center">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              {calendarUrl && (
                 <a
                   href={calendarUrl}
                   download
@@ -166,8 +177,14 @@ export default function MeetingRegistrationForm({
                   <Download className="w-5 h-5" />
                   Add to Calendar
                 </a>
-              </div>
-            )}
+              )}
+              <button
+                onClick={() => window.close()}
+                className="inline-flex items-center gap-2 border border-slate-300 text-slate-700 px-6 py-3 rounded-lg hover:bg-slate-50 transition font-medium"
+              >
+                Done
+              </button>
+            </div>
           </div>
         </div>
       </div>
