@@ -62,7 +62,21 @@ export const timestampSchema = z.string().refine(
 /**
  * URL validation (optional field)
  */
-export const optionalUrlSchema = z.string().url('Invalid URL format').optional().or(z.literal(''));
+export const optionalUrlSchema = z
+  .string()
+  .optional()
+  .refine(
+    (val) => {
+      if (!val || val === '') return true; // Allow empty/undefined
+      try {
+        new URL(val);
+        return true;
+      } catch {
+        return false;
+      }
+    },
+    { message: 'Invalid URL format' }
+  );
 
 /**
  * Slug validation (URL-safe characters only)
