@@ -104,6 +104,15 @@ export default function MeetingRegistrationForm({
     return (
       <div className="min-h-screen bg-slate-50 py-12 px-4">
         <div className="max-w-2xl mx-auto">
+          {/* Apex Logo */}
+          <div className="flex justify-center mb-6">
+            <img
+              src="/apex-logo.png"
+              alt="Apex Affinity Group"
+              className="h-16 w-auto"
+            />
+          </div>
+
           <div className="bg-white shadow-lg rounded-lg p-8 relative">
             {/* Close Button */}
             <button
@@ -123,8 +132,11 @@ export default function MeetingRegistrationForm({
               <h1 className="text-3xl font-bold text-slate-900 mb-2">
                 Registration Confirmed!
               </h1>
+              <p className="text-xl font-semibold text-[#2c5aa0] mb-2">
+                You are now registered for {distributor.firstName} {distributor.lastName}'s event!
+              </p>
               <p className="text-lg text-slate-600">
-                You're all set for {meeting.title}
+                {meeting.title}
               </p>
             </div>
 
@@ -195,11 +207,23 @@ export default function MeetingRegistrationForm({
   return (
     <div className="min-h-screen bg-slate-50 py-12 px-4">
       <div className="max-w-4xl mx-auto">
+        {/* Apex Logo */}
+        <div className="flex justify-center mb-6">
+          <img
+            src="/apex-logo.png"
+            alt="Apex Affinity Group"
+            className="h-16 w-auto"
+          />
+        </div>
+
         {/* Event Header */}
         <div className="bg-white shadow-lg rounded-lg p-8 mb-6">
-          <h1 className="text-3xl font-bold text-slate-900 mb-4">
-            {meeting.title}
+          <h1 className="text-2xl font-bold text-[#2c5aa0] text-center mb-2">
+            Register Now For {distributor.firstName} {distributor.lastName}'s Event
           </h1>
+          <h2 className="text-3xl font-bold text-slate-900 mb-4">
+            {meeting.title}
+          </h2>
 
           {meeting.description && (
             <p className="text-slate-600 mb-6 text-lg">{meeting.description}</p>
