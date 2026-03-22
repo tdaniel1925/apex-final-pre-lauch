@@ -31,7 +31,7 @@ export async function GET(request: NextRequest) {
     // Get distributor
     const { data: distributor, error: distError } = await supabase
       .from('distributors')
-      .select('id')
+      .select('id, slug')
       .eq('auth_user_id', user.id)
       .single();
 
@@ -96,10 +96,16 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Failed to fetch meetings' }, { status: 500 });
     }
 
+    // Add distributor slug to each meeting for URL generation
+    const meetingsWithSlug = (meetings || []).map(meeting => ({
+      ...meeting,
+      distributor_slug: distributor.slug,
+    }));
+
     return NextResponse.json({
       success: true,
       data: {
-        meetings: meetings as MeetingEvent[],
+        meetings: meetingsWithSlug,
         total: count || 0,
       },
     });

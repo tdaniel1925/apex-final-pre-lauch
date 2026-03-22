@@ -19,6 +19,7 @@ export type RegistrationStatus = 'pending' | 'confirmed' | 'not_going' | 'needs_
 export interface MeetingEvent {
   id: string;
   distributor_id: string;
+  distributor_slug?: string; // Added by API for URL generation (not in database)
 
   // Meeting details
   title: string;

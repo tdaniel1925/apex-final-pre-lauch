@@ -30,8 +30,10 @@ export default function MeetingCard({ meeting, onDeleted }: MeetingCardProps) {
   // Format time
   const formattedTime = meeting.event_time.substring(0, 5);
 
-  // Build registration URL (need to get distributor slug - we'll show relative URL)
-  const registrationPath = `/register/${meeting.registration_slug}`;
+  // Build registration URL
+  const registrationPath = meeting.distributor_slug
+    ? `/${meeting.distributor_slug}/register/${meeting.registration_slug}`
+    : `/register/${meeting.registration_slug}`; // Fallback for backwards compatibility
 
   // Capacity info
   const spotsRemaining = meeting.max_attendees
