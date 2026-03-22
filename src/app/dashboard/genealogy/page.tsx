@@ -21,11 +21,11 @@ interface PageProps {
 }
 
 /**
- * Recursively builds enrollment tree from members table
- * Uses enroller_id to construct the tree hierarchy
+ * Recursively builds enrollment tree from distributors table
+ * Uses sponsor_id to construct the tree hierarchy (CORRECT SOURCE OF TRUTH)
  */
 async function buildEnrollmentTree(
-  enrollerId: string,
+  sponsorDistributorId: string,
   depth: number = 0,
   maxDepth: number = 10
 ): Promise<MemberNode[]> {
@@ -33,32 +33,35 @@ async function buildEnrollmentTree(
 
   const serviceClient = createServiceClient();
 
-  // Fetch all direct enrollees
+  // Fetch all direct enrollees from ENROLLMENT TREE (distributors.sponsor_id)
+  // CRITICAL: Use distributors.sponsor_id NOT members.enroller_id!
   const { data: directEnrollees, error } = await serviceClient
-    .from('members')
+    .from('distributors')
     .select(`
-      member_id,
+      id,
+      sponsor_id,
+      first_name,
+      last_name,
       email,
-      full_name,
-      enroller_id,
-      tech_rank,
-      highest_tech_rank,
-      personal_credits_monthly,
-      team_credits_monthly,
-      enrollment_date,
+      slug,
+      rep_number,
+      profile_photo_url,
+      created_at,
       status,
-      distributor:distributors!members_distributor_id_fkey (
-        id,
-        first_name,
-        last_name,
-        slug,
-        rep_number,
-        profile_photo_url
+      member:members!members_distributor_id_fkey (
+        member_id,
+        full_name,
+        tech_rank,
+        highest_tech_rank,
+        personal_credits_monthly,
+        team_credits_monthly,
+        enrollment_date,
+        status
       )
     `)
-    .eq('enroller_id', enrollerId)
+    .eq('sponsor_id', sponsorDistributorId)
     .eq('status', 'active')
-    .order('enrollment_date', { ascending: true });
+    .order('created_at', { ascending: true });
 
   if (error || !directEnrollees) {
     // Log error but don't expose to client
@@ -67,35 +70,38 @@ async function buildEnrollmentTree(
 
   // Build nodes recursively
   const nodes: MemberNode[] = [];
-  for (const member of directEnrollees) {
-    // Recursively fetch children
+  for (const distributor of directEnrollees) {
+    // Extract member data (it's an array from Supabase join)
+    const memberData = Array.isArray(distributor.member)
+      ? distributor.member[0]
+      : distributor.member;
+
+    // Skip if no member record (shouldn't happen for active distributors)
+    if (!memberData) continue;
+
+    // Recursively fetch children (use distributor.id for sponsor_id lookup)
     const children = await buildEnrollmentTree(
-      member.member_id,
+      distributor.id,
       depth + 1,
       maxDepth
     );
 
-    // Type assertion for distributor (it's an array from Supabase join)
-    const distributor = Array.isArray(member.distributor)
-      ? member.distributor[0]
-      : member.distributor;
-
     nodes.push({
-      member_id: member.member_id,
-      full_name: member.full_name,
-      email: member.email,
-      tech_rank: member.tech_rank,
-      personal_credits_monthly: member.personal_credits_monthly || 0,
-      team_credits_monthly: member.team_credits_monthly || 0,
-      enrollment_date: member.enrollment_date,
-      status: member.status,
-      distributor: distributor || {
-        id: '',
-        first_name: '',
-        last_name: '',
-        slug: '',
-        rep_number: null,
-        profile_photo_url: null,
+      member_id: memberData.member_id,
+      full_name: memberData.full_name || `${distributor.first_name} ${distributor.last_name}`,
+      email: distributor.email,
+      tech_rank: memberData.tech_rank,
+      personal_credits_monthly: memberData.personal_credits_monthly || 0,
+      team_credits_monthly: memberData.team_credits_monthly || 0,
+      enrollment_date: memberData.enrollment_date || distributor.created_at,
+      status: memberData.status,
+      distributor: {
+        id: distributor.id,
+        first_name: distributor.first_name,
+        last_name: distributor.last_name,
+        slug: distributor.slug,
+        rep_number: distributor.rep_number,
+        profile_photo_url: distributor.profile_photo_url,
       },
       children,
       depth,
@@ -190,9 +196,10 @@ export default async function UserGenealogyPage({ searchParams }: PageProps) {
   const params = await searchParams;
   const maxDepth = parseInt(params.depth || '10');
 
-  // Build enrollment tree starting from this member
+  // Build enrollment tree starting from this distributor
+  // Use distributor.id (not member_id) because we're querying distributors.sponsor_id
   const enrollmentTree = await buildEnrollmentTree(
-    memberData.member_id,
+    userData.id,
     0,
     maxDepth
   );

@@ -13,7 +13,7 @@ import {
   TechRank,
   InsuranceRank,
   getRankValue,
-  RANK_GRACE_PERIOD_MONTHS,
+  PAY_LEVEL_GRACE_PERIOD_MONTHS,
   NEW_REP_RANK_LOCK_MONTHS,
   TechRankRequirements,
   DownlineRequirement,
@@ -120,7 +120,7 @@ export function evaluateTechRank(
       action: 'promote',
       effectiveDate,
       graceMonthsUsed: 0,
-      graceMonthsRemaining: RANK_GRACE_PERIOD_MONTHS,
+      graceMonthsRemaining: PAY_LEVEL_GRACE_PERIOD_MONTHS,
       isRankLocked: false,
       reasons,
     };
@@ -138,7 +138,7 @@ export function evaluateTechRank(
         qualifiedRank: member.currentTechRank,
         action: 'rank_locked',
         graceMonthsUsed: 0,
-        graceMonthsRemaining: RANK_GRACE_PERIOD_MONTHS,
+        graceMonthsRemaining: PAY_LEVEL_GRACE_PERIOD_MONTHS,
         isRankLocked: true,
         reasons,
       };
@@ -146,11 +146,11 @@ export function evaluateTechRank(
 
     // Apply grace period
     const graceMonthsUsed = member.techGraceMonths + 1;
-    const graceMonthsRemaining = Math.max(0, RANK_GRACE_PERIOD_MONTHS - graceMonthsUsed);
+    const graceMonthsRemaining = Math.max(0, PAY_LEVEL_GRACE_PERIOD_MONTHS - graceMonthsUsed);
 
-    if (graceMonthsUsed < RANK_GRACE_PERIOD_MONTHS) {
+    if (graceMonthsUsed < PAY_LEVEL_GRACE_PERIOD_MONTHS) {
       reasons.push(
-        `Grace period: ${graceMonthsUsed}/${RANK_GRACE_PERIOD_MONTHS} months used. No demotion yet.`
+        `Grace period: ${graceMonthsUsed}/${PAY_LEVEL_GRACE_PERIOD_MONTHS} months used. No demotion yet.`
       );
       return {
         currentRank: member.currentTechRank,
@@ -188,7 +188,7 @@ export function evaluateTechRank(
     qualifiedRank: member.currentTechRank,
     action: 'maintain',
     graceMonthsUsed: 0,
-    graceMonthsRemaining: RANK_GRACE_PERIOD_MONTHS,
+    graceMonthsRemaining: PAY_LEVEL_GRACE_PERIOD_MONTHS,
     isRankLocked,
     reasons,
   };

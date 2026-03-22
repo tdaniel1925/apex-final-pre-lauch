@@ -28,7 +28,7 @@ import {
   WATERFALL_CONFIG,
   BUSINESS_CENTER_CONFIG,
   OVERRIDE_QUALIFICATION_MIN_CREDITS,
-  RANK_GRACE_PERIOD_MONTHS,
+  PAY_LEVEL_GRACE_PERIOD_MONTHS,
   NEW_REP_RANK_LOCK_MONTHS,
   LEADERSHIP_POOL_ELIGIBLE_RANK,
   BONUS_POOL_DISTRIBUTION_METHOD,
@@ -464,7 +464,7 @@ export async function getCompensationConstants(): Promise<CompensationConstants>
     // Fallback to hardcoded config
     return {
       overrideQualificationMinCredits: OVERRIDE_QUALIFICATION_MIN_CREDITS,
-      rankGracePeriodMonths: RANK_GRACE_PERIOD_MONTHS,
+      rankGracePeriodMonths: PAY_LEVEL_GRACE_PERIOD_MONTHS,
       newRepRankLockMonths: NEW_REP_RANK_LOCK_MONTHS,
       leadershipPoolEligibleRank: LEADERSHIP_POOL_ELIGIBLE_RANK,
       bonusPoolDistributionMethod: BONUS_POOL_DISTRIBUTION_METHOD,
@@ -477,7 +477,7 @@ export async function getCompensationConstants(): Promise<CompensationConstants>
     // Always fallback to hardcoded
     return {
       overrideQualificationMinCredits: OVERRIDE_QUALIFICATION_MIN_CREDITS,
-      rankGracePeriodMonths: RANK_GRACE_PERIOD_MONTHS,
+      rankGracePeriodMonths: PAY_LEVEL_GRACE_PERIOD_MONTHS,
       newRepRankLockMonths: NEW_REP_RANK_LOCK_MONTHS,
       leadershipPoolEligibleRank: LEADERSHIP_POOL_ELIGIBLE_RANK,
       bonusPoolDistributionMethod: BONUS_POOL_DISTRIBUTION_METHOD,

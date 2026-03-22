@@ -27,6 +27,7 @@ export interface Member {
   full_name: string;
   email: string;
   tech_rank: TechRank;
+  paying_rank: TechRank;  // Payment level (used for commission calculations)
   personal_bv_monthly: number;
   override_qualified: boolean;
 }
@@ -42,7 +43,8 @@ export interface CompensationMember {
   member_id: string;
   full_name: string;
   email: string;
-  tech_rank: TechRank;
+  tech_rank: TechRank;               // Current/display rank
+  paying_rank: TechRank;             // Payment level (USED FOR COMMISSION RATES!)
   personal_credits_monthly: number;  // members.personal_credits_monthly
   override_qualified: boolean;        // members.override_qualified
 }
@@ -143,7 +145,7 @@ export async function calculateOverridesForSale(
   // =============================================
 
   if (sellerMember.sponsor_id) {
-    const { data: sponsor, error } = await supabase
+    const { data: sponsor, error} = await supabase
       .from('distributors')
       .select(`
         id,
@@ -151,6 +153,7 @@ export async function calculateOverridesForSale(
           member_id,
           full_name,
           tech_rank,
+          paying_rank,
           personal_credits_monthly,
           override_qualified
         )
@@ -200,6 +203,7 @@ export async function calculateOverridesForSale(
           member_id,
           full_name,
           tech_rank,
+          paying_rank,
           personal_credits_monthly,
           override_qualified
         )
@@ -229,7 +233,8 @@ export async function calculateOverridesForSale(
     }
 
     // Get override rate for this rank at this level
-    const schedule = OVERRIDE_SCHEDULES[uplineMember.tech_rank as TechRank];
+    // IMPORTANT: Use paying_rank (not tech_rank) for commission calculations!
+    const schedule = OVERRIDE_SCHEDULES[uplineMember.paying_rank as TechRank];
     const rate = schedule[level] || 0;
 
     if (rate > 0) {
