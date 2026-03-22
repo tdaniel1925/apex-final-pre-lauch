@@ -28,6 +28,7 @@ interface MatrixMember {
   created_at: string;
   children?: MatrixMember[];
   childCount?: number;
+  enrollment_level?: number; // Level in enrollment tree (1, 2, 3, 4)
 }
 
 interface HybridMatrixData {
@@ -149,7 +150,7 @@ export default function HybridMatrixView({ distributorId }: HybridMatrixViewProp
       member.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
       member.rep_number?.toLowerCase().includes(searchTerm.toLowerCase());
 
-    const matchesLevel = filterLevel === null || member.matrix_depth === filterLevel;
+    const matchesLevel = filterLevel === null || (member.enrollment_level || member.matrix_depth) === filterLevel;
 
     return matchesSearch && matchesLevel;
   });
@@ -324,7 +325,7 @@ export default function HybridMatrixView({ distributorId }: HybridMatrixViewProp
                         {member.rep_number || '—'}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-300">
-                        {member.matrix_depth}
+                        {member.enrollment_level || '—'}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span

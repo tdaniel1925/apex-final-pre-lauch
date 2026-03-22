@@ -1,8 +1,11 @@
 // =============================================
 // Hybrid Matrix API Route
 // Efficient data fetching for hybrid view:
-// - Levels 1-2: Full tree structure for visual
+// - Levels 1-2: Full ENROLLMENT tree structure for visual
 // - Levels 3+: Flat list for table
+//
+// CRITICAL: Uses sponsor_id (ENROLLMENT TREE) not matrix_parent_id
+// This matches Team and Genealogy views for consistency
 // =============================================
 
 import { NextRequest, NextResponse } from 'next/server';
@@ -27,6 +30,7 @@ interface MatrixMember {
   created_at: string;
   children?: MatrixMember[];
   childCount?: number;
+  enrollment_level?: number; // Level in enrollment tree (1, 2, 3, 4)
 }
 
 interface HybridMatrixResponse {
@@ -75,34 +79,39 @@ export async function GET(request: NextRequest) {
 
     const root = rootData as MatrixMember;
 
-    // Fetch level 1 (direct downline)
+    // Fetch level 1 (direct enrollees) using ENROLLMENT TREE (sponsor_id)
+    // CRITICAL: Use sponsor_id NOT matrix_parent_id to match Team/Genealogy views
     const { data: level1Data, error: level1Error } = await supabase
       .from('distributors')
       .select('*')
-      .eq('matrix_parent_id', distributorId)
+      .eq('sponsor_id', distributorId)
       .eq('status', 'active')
-      .order('matrix_position', { ascending: true });
+      .order('created_at', { ascending: true });
 
     const level1 = (level1Data as MatrixMember[]) || [];
+    // Add enrollment level to each member
+    level1.forEach(m => m.enrollment_level = 1);
 
-    // Fetch level 2 (grandchildren)
+    // Fetch level 2 (grandchildren) using ENROLLMENT TREE (sponsor_id)
     let level2: MatrixMember[] = [];
     if (level1.length > 0) {
       const level1Ids = level1.map(m => m.id);
       const { data: level2Data } = await supabase
         .from('distributors')
         .select('*')
-        .in('matrix_parent_id', level1Ids)
+        .in('sponsor_id', level1Ids)
         .eq('status', 'active')
-        .order('matrix_parent_id', { ascending: true })
-        .order('matrix_position', { ascending: true });
+        .order('sponsor_id', { ascending: true })
+        .order('created_at', { ascending: true });
 
       level2 = (level2Data as MatrixMember[]) || [];
+      // Add enrollment level to each member
+      level2.forEach(m => m.enrollment_level = 2);
     }
 
     // Attach children to level1 for visual tree
     level1.forEach(parent => {
-      parent.children = level2.filter(child => child.matrix_parent_id === parent.id);
+      parent.children = level2.filter(child => child.sponsor_id === parent.id);
       parent.childCount = parent.children.length;
     });
 
@@ -110,39 +119,58 @@ export async function GET(request: NextRequest) {
     root.childCount = level1.length;
 
     // Fetch all distributors at level 3+ for table view
-    const { data: deepLevelsData } = await supabase
-      .from('distributors')
-      .select('*')
-      .eq('status', 'active')
-      .gte('matrix_depth', root.matrix_depth + 3)
-      .order('matrix_depth', { ascending: true })
-      .order('created_at', { ascending: true })
-      .limit(1000); // Cap at 1000 for performance
+    // Fetch enrollees beyond level 2 (limit to levels 3-4 for performance)
+    let deepLevels: MatrixMember[] = [];
 
-    const deepLevels = (deepLevelsData as MatrixMember[]) || [];
+    if (level2.length > 0) {
+      const level2Ids = level2.map(m => m.id);
 
-    // Calculate stats
-    const { count: totalTeam } = await supabase
-      .from('distributors')
-      .select('*', { count: 'exact', head: true })
-      .eq('status', 'active');
+      // Get level 3 enrollees
+      const { data: level3Data } = await supabase
+        .from('distributors')
+        .select('*')
+        .in('sponsor_id', level2Ids)
+        .eq('status', 'active')
+        .order('created_at', { ascending: true })
+        .limit(500);
 
-    const { count: activeMembers } = await supabase
-      .from('distributors')
-      .select('*', { count: 'exact', head: true })
-      .eq('status', 'active')
-      .gte('matrix_depth', root.matrix_depth + 1);
+      if (level3Data && level3Data.length > 0) {
+        deepLevels = level3Data as MatrixMember[];
+        // Add enrollment level to each member
+        deepLevels.forEach(m => m.enrollment_level = 3);
 
-    // Get max depth
-    const { data: maxDepthData } = await supabase
-      .from('distributors')
-      .select('matrix_depth')
-      .eq('status', 'active')
-      .order('matrix_depth', { ascending: false })
-      .limit(1)
-      .single();
+        // Get level 4 enrollees (limited for performance)
+        const level3Ids = level3Data.map((d: any) => d.id);
+        const { data: level4Data } = await supabase
+          .from('distributors')
+          .select('*')
+          .in('sponsor_id', level3Ids)
+          .eq('status', 'active')
+          .order('created_at', { ascending: true })
+          .limit(500);
 
-    const maxDepth = maxDepthData?.matrix_depth || 0;
+        if (level4Data) {
+          const level4Members = level4Data as MatrixMember[];
+          // Add enrollment level to each member
+          level4Members.forEach(m => m.enrollment_level = 4);
+          deepLevels = [...deepLevels, ...level4Members];
+        }
+      }
+    }
+
+    // Calculate stats based on enrollment tree
+    // Total team = all enrollees we've fetched (level 1 + 2 + deep levels)
+    const totalTeamCount = level1.length + level2.length + deepLevels.length;
+
+    // Active members = those with activity in the fetched enrollees
+    const activeMembers = [... level1, ...level2, ...deepLevels].filter(
+      m => (m.personal_bv_monthly || 0) > 0
+    ).length;
+
+    // Max depth = number of levels we've fetched (1, 2, 3, 4)
+    let maxDepth = 1;
+    if (level2.length > 0) maxDepth = 2;
+    if (deepLevels.length > 0) maxDepth = 4; // We fetch up to level 4
 
     // Calculate total BV (if we have BV data)
     let totalBV = 0;
@@ -157,8 +185,8 @@ export async function GET(request: NextRequest) {
       level2,
       deepLevels,
       stats: {
-        totalTeam: totalTeam || 0,
-        activeMembers: activeMembers || 0,
+        totalTeam: totalTeamCount,
+        activeMembers,
         totalBV,
         maxDepth,
       },
