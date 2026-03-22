@@ -171,7 +171,7 @@ export default function HierarchyCanvas({ rootDistributor, maxDepth = 3 }: Hiera
   };
 
   return (
-    <div className="relative w-full h-full bg-slate-50">
+    <div className="relative w-full h-full bg-slate-50 overflow-hidden">
       {/* Frosted Top Bar */}
       <header
         className="absolute top-0 left-0 right-0 z-50 backdrop-blur-sm bg-white/90 border-b border-slate-200"
@@ -246,7 +246,7 @@ export default function HierarchyCanvas({ rootDistributor, maxDepth = 3 }: Hiera
       {/* Canvas Container */}
       <div
         ref={canvasRef}
-        className="absolute inset-0 overflow-hidden cursor-move"
+        className="absolute inset-0 overflow-hidden cursor-move bg-slate-50"
         style={{ paddingTop: '48px' }}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
@@ -254,7 +254,7 @@ export default function HierarchyCanvas({ rootDistributor, maxDepth = 3 }: Hiera
         onMouseLeave={handleMouseUp}
       >
         <div
-          className="relative w-full h-full"
+          className="relative w-full h-full bg-slate-50"
           style={{
             transform: `translate(${panOffset.x}px, ${panOffset.y}px) scale(${zoomLevel})`,
             transformOrigin: 'top left',

@@ -66,8 +66,8 @@ export default function NodeDetailPanel({ distributor, isOpen, onClose }: NodeDe
     <>
       {/* Backdrop */}
       <div
-        className={`fixed inset-0 bg-black transition-opacity duration-300 z-40 ${
-          isOpen ? 'bg-opacity-30' : 'bg-opacity-0 pointer-events-none'
+        className={`fixed inset-0 bg-black transition-opacity duration-300 ${
+          isOpen ? 'bg-opacity-30 z-40' : 'bg-opacity-0 pointer-events-none -z-10'
         }`}
         onClick={onClose}
       />
