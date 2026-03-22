@@ -27,11 +27,24 @@ export interface Member {
   full_name: string;
   email: string;
   tech_rank: TechRank;
-  enroller_id: string | null;
-  matrix_parent_id: string | null;
-  matrix_depth: number;
   personal_bv_monthly: number;
   override_qualified: boolean;
+}
+
+export interface CompensationMember {
+  // Distributor info (from distributors table)
+  distributor_id: string;
+  sponsor_id: string | null;        // Enrollment tree (distributors.sponsor_id)
+  matrix_parent_id: string | null;  // Matrix tree (distributors.matrix_parent_id)
+  matrix_depth: number;              // distributors.matrix_depth
+
+  // Member info (from members table via JOIN)
+  member_id: string;
+  full_name: string;
+  email: string;
+  tech_rank: TechRank;
+  personal_credits_monthly: number;  // members.personal_credits_monthly
+  override_qualified: boolean;        // members.override_qualified
 }
 
 export type TechRank =
@@ -115,7 +128,7 @@ const OVERRIDE_POOL_PERCENTAGE = 0.40;
  */
 export async function calculateOverridesForSale(
   sale: Sale,
-  sellerMember: Member
+  sellerMember: CompensationMember
 ): Promise<OverrideCalculationResult> {
   const supabase = await createClient();
 
@@ -126,31 +139,46 @@ export async function calculateOverridesForSale(
   const paidUplineIds = new Set<string>(); // Track who's been paid (no double-dipping)
 
   // =============================================
-  // STEP 1: ENROLLER OVERRIDE (30%) - Check First!
+  // STEP 1: ENROLLMENT OVERRIDE (30%) - Check First!
   // =============================================
 
-  if (sellerMember.enroller_id) {
-    const { data: enroller, error } = await supabase
-      .from('members')
-      .select('*')
-      .eq('member_id', sellerMember.enroller_id)
+  if (sellerMember.sponsor_id) {
+    const { data: sponsor, error } = await supabase
+      .from('distributors')
+      .select(`
+        id,
+        member:members!members_distributor_id_fkey (
+          member_id,
+          full_name,
+          tech_rank,
+          personal_credits_monthly,
+          override_qualified
+        )
+      `)
+      .eq('id', sellerMember.sponsor_id)
       .single();
 
-    if (!error && enroller && isQualifiedForOverrides(enroller.personal_bv_monthly)) {
-      // Pay enroller 30% of override pool
-      const amount = overridePool * 0.30;
+    if (error || !sponsor || !sponsor.member) {
+      // No sponsor or error fetching - continue to matrix overrides
+    } else {
+      const sponsorMember = Array.isArray(sponsor.member) ? sponsor.member[0] : sponsor.member;
 
-      payments.push({
-        upline_member_id: enroller.member_id,
-        upline_member_name: enroller.full_name,
-        override_type: 'L1_enroller',
-        override_rate: 0.30,
-        override_amount: Number(amount.toFixed(2)),
-        bv: sale.bv,
-      });
+      if (sponsorMember && isQualifiedForOverrides(sponsorMember.personal_credits_monthly)) {
+        // Pay sponsor 30% of override pool
+        const amount = overridePool * 0.30;
 
-      // Mark enroller as paid (no double-dipping!)
-      paidUplineIds.add(enroller.member_id);
+        payments.push({
+          upline_member_id: sponsorMember.member_id,
+          upline_member_name: sponsorMember.full_name,
+          override_type: 'L1_enroller',
+          override_rate: 0.30,
+          override_amount: Number(amount.toFixed(2)),
+          bv: sale.bv,
+        });
+
+        // Mark sponsor as paid (no double-dipping!)
+        paidUplineIds.add(sponsorMember.member_id);
+      }
     }
   }
 
@@ -158,30 +186,44 @@ export async function calculateOverridesForSale(
   // STEP 2: MATRIX DEPTH OVERRIDES (L2-L5)
   // =============================================
 
-  // Walk up the matrix tree (matrix_parent_id)
-  let currentMemberId = sellerMember.matrix_parent_id;
+  // Walk up the matrix tree (distributors.matrix_parent_id)
+  let currentDistributorId = sellerMember.matrix_parent_id;
   let level = 1; // Start at L1 (but we'll skip to L2 for matrix)
 
-  while (currentMemberId && level <= 5) {
-    const { data: uplineMember, error } = await supabase
-      .from('members')
-      .select('*')
-      .eq('member_id', currentMemberId)
+  while (currentDistributorId && level <= 5) {
+    const { data: uplineDistributor, error } = await supabase
+      .from('distributors')
+      .select(`
+        id,
+        matrix_parent_id,
+        member:members!members_distributor_id_fkey (
+          member_id,
+          full_name,
+          tech_rank,
+          personal_credits_monthly,
+          override_qualified
+        )
+      `)
+      .eq('id', currentDistributorId)
       .single();
 
-    if (error || !uplineMember) break;
+    if (error || !uplineDistributor || !uplineDistributor.member) break;
+
+    const uplineMember = Array.isArray(uplineDistributor.member)
+      ? uplineDistributor.member[0]
+      : uplineDistributor.member;
 
     // Skip if already paid as enroller (no double-dipping!)
     if (paidUplineIds.has(uplineMember.member_id)) {
-      currentMemberId = uplineMember.matrix_parent_id;
+      currentDistributorId = uplineDistributor.matrix_parent_id;
       level++;
       continue;
     }
 
     // Check if qualified for overrides (50+ BV monthly)
-    if (!isQualifiedForOverrides(uplineMember.personal_bv_monthly)) {
+    if (!isQualifiedForOverrides(uplineMember.personal_credits_monthly)) {
       // COMPRESSION: Skip unqualified upline, move to next
-      currentMemberId = uplineMember.matrix_parent_id;
+      currentDistributorId = uplineDistributor.matrix_parent_id;
       level++;
       continue;
     }
@@ -205,8 +247,8 @@ export async function calculateOverridesForSale(
       paidUplineIds.add(uplineMember.member_id);
     }
 
-    // Move up the tree
-    currentMemberId = uplineMember.matrix_parent_id;
+    // Move up the matrix tree
+    currentDistributorId = uplineDistributor.matrix_parent_id;
     level++;
   }
 
@@ -231,7 +273,7 @@ export async function calculateOverridesForSale(
  * @returns Aggregated override payments by member
  */
 export async function calculateOverridesForSales(
-  sales: Array<{ sale: Sale; seller: Member }>
+  sales: Array<{ sale: Sale; seller: CompensationMember }>
 ): Promise<Record<string, { member_name: string; total_overrides: number; payments: OverridePayment[] }>> {
   const aggregated: Record<string, { member_name: string; total_overrides: number; payments: OverridePayment[] }> = {};
 
@@ -309,38 +351,40 @@ export function getOverrideRate(rank: TechRank, level: number): number {
 // =============================================
 
 /**
- * Determine matrix level between upline and downline member
+ * Determine matrix level between upline and downline distributor
  *
- * @param uplineMember - Upline member
- * @param downlineMember - Downline member (seller)
+ * @param uplineDistributorId - Upline distributor ID
+ * @param downlineDistributorId - Downline distributor ID (seller)
  * @returns Level (1-5) or null if not in upline
  */
 export async function getMatrixLevel(
-  uplineMember: Member,
-  downlineMember: Member
+  uplineDistributorId: string,
+  downlineDistributorId: string
 ): Promise<number | null> {
   // Walk up from downline to see if we reach upline
   const supabase = await createClient();
 
-  let currentMemberId = downlineMember.matrix_parent_id;
-  let level = 1;
+  let currentDistributorId = downlineDistributorId;
+  let level = 0;
 
-  while (currentMemberId && level <= 5) {
-    if (currentMemberId === uplineMember.member_id) {
+  while (currentDistributorId && level < 5) {
+    // Get current distributor's matrix parent
+    const { data: current, error } = await supabase
+      .from('distributors')
+      .select('matrix_parent_id')
+      .eq('id', currentDistributorId)
+      .single();
+
+    if (error || !current || !current.matrix_parent_id) break;
+
+    level++;
+
+    // Check if this parent is our upline
+    if (current.matrix_parent_id === uplineDistributorId) {
       return level;
     }
 
-    // Get next parent
-    const { data: parent, error } = await supabase
-      .from('members')
-      .select('matrix_parent_id')
-      .eq('member_id', currentMemberId)
-      .single();
-
-    if (error || !parent) break;
-
-    currentMemberId = parent.matrix_parent_id;
-    level++;
+    currentDistributorId = current.matrix_parent_id;
   }
 
   return null; // Not in upline
@@ -357,7 +401,7 @@ export async function getMatrixLevel(
  */
 export async function generateOverrideBreakdown(
   sale: Sale,
-  sellerMember: Member
+  sellerMember: CompensationMember
 ): Promise<{
   sale_info: {
     product: string;
@@ -366,8 +410,8 @@ export async function generateOverrideBreakdown(
     override_pool: number;
   };
   enroller_check: {
-    enroller_id: string | null;
-    enroller_name: string | null;
+    sponsor_id: string | null;
+    sponsor_name: string | null;
     qualified: boolean;
     paid: number;
   };
@@ -399,8 +443,8 @@ export async function generateOverrideBreakdown(
       override_pool: Number(overridePool.toFixed(2)),
     },
     enroller_check: {
-      enroller_id: sellerMember.enroller_id,
-      enroller_name: null, // Would fetch from result
+      sponsor_id: sellerMember.sponsor_id,
+      sponsor_name: null, // Would fetch from result
       qualified: false,
       paid: 0,
     },

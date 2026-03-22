@@ -187,11 +187,16 @@ export function calculateOverride(
 /**
  * Calculate overrides for all upline members
  *
- * This traverses the matrix/enroller tree and calculates overrides for each level
+ * IMPORTANT: The uplineMembers array should be built by the CALLER:
+ * - If member is sponsor: isEnroller = true → L1 rate (30%)
+ * - If member is in matrix tree: isEnroller = false → Matrix rate by rank/level
+ *
+ * This function does NOT traverse trees - it receives pre-built upline array.
+ * The CALLER is responsible for walking the correct tree (enrollment vs matrix).
  *
  * @param sale - Sale information
- * @param uplineMembers - Upline members ordered from L1 to L5
- * @param enrollerId - Seller's enroller ID
+ * @param uplineMembers - Upline members ordered from L1 to L5 (built by caller)
+ * @param enrollerId - Seller's sponsor member ID
  * @returns Array of override results
  */
 export function calculateAllOverrides(
