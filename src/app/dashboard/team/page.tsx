@@ -71,79 +71,75 @@ export default async function TeamPage() {
     );
   }
 
-  const currentMemberId = distributor.member.member_id;
+  const currentDistributorId = distributor.id;
 
   // Debug logging
-  console.log('[Team Page] Current member ID:', currentMemberId);
-  console.log('[Team Page] Distributor ID:', distributor.id);
+  console.log('[Team Page] Current distributor ID:', currentDistributorId);
 
-  // Get all L1 direct enrollees
-  const { data: teamMembers, error: teamError } = await serviceClient
-    .from('members')
+  // Get all L1 direct enrollees from ENROLLMENT TREE (distributors.sponsor_id)
+  // CRITICAL: Use distributors.sponsor_id NOT members.enroller_id!
+  const { data: teamDistributors, error: teamError } = await serviceClient
+    .from('distributors')
     .select(
       `
-      member_id,
-      distributor_id,
-      full_name,
+      id,
+      first_name,
+      last_name,
       email,
-      tech_rank,
-      personal_credits_monthly,
-      enrollment_date,
-      override_qualified,
-      distributor:distributors!members_distributor_id_fkey (
-        id,
-        slug,
-        rep_number
+      slug,
+      rep_number,
+      created_at,
+      member:members!members_distributor_id_fkey (
+        member_id,
+        tech_rank,
+        personal_credits_monthly,
+        enrollment_date,
+        override_qualified
       )
     `
     )
-    .eq('enroller_id', currentMemberId)
+    .eq('sponsor_id', currentDistributorId)
     .eq('status', 'active')
-    .order('enrollment_date', { ascending: false });
+    .order('created_at', { ascending: false });
 
-  console.log('[Team Page] Team members query result:', teamMembers);
-  console.log('[Team Page] Team members count:', teamMembers?.length || 0);
+  console.log('[Team Page] Team distributors query result:', teamDistributors);
+  console.log('[Team Page] Team distributors count:', teamDistributors?.length || 0);
   console.log('[Team Page] Team query error:', teamError);
 
   if (teamError) {
-    console.error('[Team Page] Error fetching team members:', teamError);
+    console.error('[Team Page] Error fetching team distributors:', teamError);
   }
 
-  const members = teamMembers || [];
+  const teamMembers = teamDistributors || [];
 
-  // Get personal enrollee counts for each member
+  // Get personal enrollee counts for each team member
   const membersWithStats: TeamMemberData[] = await Promise.all(
-    members.map(async (member) => {
-      // Count how many people this member has personally enrolled
+    teamMembers.map(async (dist) => {
+      // Count how many people this distributor has personally enrolled (from enrollment tree)
       const { count } = await serviceClient
-        .from('members')
+        .from('distributors')
         .select('*', { count: 'exact', head: true })
-        .eq('enroller_id', member.member_id);
+        .eq('sponsor_id', dist.id)
+        .eq('status', 'active');
 
-      // Supabase may return distributor as array or object depending on query
-      const distArray = member.distributor as unknown as Array<{
-        id: string;
-        slug: string;
-        rep_number: number;
-      }>;
-      const dist: { slug?: string; rep_number?: number | null } | undefined = Array.isArray(
-        distArray
-      )
-        ? distArray[0]
-        : (member.distributor as { slug?: string; rep_number?: number | null } | undefined);
+      // Extract member data (handle array vs object)
+      const memberData = Array.isArray(dist.member) ? dist.member[0] : dist.member;
 
       return {
-        memberId: member.member_id,
-        distributorId: member.distributor_id,
-        fullName: member.full_name,
-        email: member.email,
+        memberId: memberData?.member_id || null,
+        distributorId: dist.id,
+        fullName: `${dist.first_name} ${dist.last_name}`,
+        email: dist.email,
         slug: dist?.slug || '',
         repNumber: dist?.rep_number || null,
-        techRank: member.tech_rank,
-        personalCreditsMonthly: member.personal_credits_monthly,
+        slug: dist.slug,
+        repNumber: dist.rep_number,
+        techRank: memberData?.tech_rank || null,
+        personalCreditsMonthly: memberData?.personal_credits_monthly || 0,
         personalEnrolleeCount: count || 0,
-        enrollmentDate: member.enrollment_date,
-        isActive: member.personal_credits_monthly >= 50,
+        enrollmentDate: memberData?.enrollment_date || dist.created_at,
+        isActive: (memberData?.personal_credits_monthly || 0) >= 50,
+        overrideQualified: memberData?.override_qualified || false,
       };
     })
   );

@@ -22,11 +22,13 @@ interface TreeNode {
   matrix_position: number | null;
   matrix_depth: number;
   sponsor_id: string | null;
-  personal_bv_monthly?: number | null;
-  group_bv_monthly?: number | null;
   created_at: string;
   children?: TreeNode[];
   childCount?: number;
+  member?: {
+    personal_credits_monthly: number | null;
+    team_credits_monthly: number | null;
+  } | null;
 }
 
 export async function GET(request: NextRequest) {
@@ -41,10 +43,16 @@ export async function GET(request: NextRequest) {
     let rootDistributor: TreeNode;
 
     if (rootId) {
-      // Fetch specific distributor as root
+      // Fetch specific distributor as root with member data (BV)
       const { data, error } = await supabase
         .from('distributors')
-        .select('*')
+        .select(`
+          *,
+          member:members!members_distributor_id_fkey (
+            personal_credits_monthly,
+            team_credits_monthly
+          )
+        `)
         .eq('id', rootId)
         .eq('status', 'active')
         .single();
@@ -55,10 +63,16 @@ export async function GET(request: NextRequest) {
 
       rootDistributor = data as TreeNode;
     } else {
-      // Get the top-level distributor (depth 0)
+      // Get the top-level distributor (depth 0) with member data (BV)
       const { data, error } = await supabase
         .from('distributors')
-        .select('*')
+        .select(`
+          *,
+          member:members!members_distributor_id_fkey (
+            personal_credits_monthly,
+            team_credits_monthly
+          )
+        `)
         .eq('matrix_depth', 0)
         .eq('status', 'active')
         .limit(1)
@@ -86,7 +100,13 @@ export async function GET(request: NextRequest) {
 
       const { data, error } = await supabase
         .from('distributors')
-        .select('*')
+        .select(`
+          *,
+          member:members!members_distributor_id_fkey (
+            personal_credits_monthly,
+            team_credits_monthly
+          )
+        `)
         .eq('matrix_parent_id', parentId)
         .eq('status', 'active')
         .order('matrix_position', { ascending: true });
