@@ -120,6 +120,17 @@ export default function AdminSidebar() {
             </svg>
           ),
         },
+        {
+          name: 'Hierarchy Canvas',
+          href: '/admin/hierarchy',
+          icon: (
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2 17l10 5 10-5" opacity="0.5" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2 12l10 5 10-5" opacity="0.7" />
+            </svg>
+          ),
+        },
       ],
     },
     {
