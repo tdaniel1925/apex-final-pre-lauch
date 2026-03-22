@@ -36,7 +36,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     // Get distributor
     const { data: distributor, error: distError } = await supabase
       .from('distributors')
-      .select('id')
+      .select('id, slug')
       .eq('auth_user_id', user.id)
       .single();
 
@@ -56,9 +56,15 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       return NextResponse.json({ error: 'Meeting not found' }, { status: 404 });
     }
 
+    // Add distributor slug for URL generation
+    const meetingWithSlug = {
+      ...meeting,
+      distributor_slug: distributor.slug,
+    };
+
     return NextResponse.json({
       success: true,
-      data: meeting as MeetingEvent,
+      data: meetingWithSlug as MeetingEvent,
     });
 
   } catch (error) {
@@ -86,7 +92,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
     // Get distributor
     const { data: distributor, error: distError } = await supabase
       .from('distributors')
-      .select('id')
+      .select('id, slug')
       .eq('auth_user_id', user.id)
       .single();
 
@@ -177,9 +183,15 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
       return NextResponse.json({ error: 'Failed to update meeting' }, { status: 500 });
     }
 
+    // Add distributor slug for URL generation
+    const meetingWithSlug = {
+      ...updatedMeeting,
+      distributor_slug: distributor.slug,
+    };
+
     return NextResponse.json({
       success: true,
-      data: updatedMeeting as MeetingEvent,
+      data: meetingWithSlug as MeetingEvent,
     });
 
   } catch (error) {

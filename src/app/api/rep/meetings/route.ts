@@ -232,10 +232,16 @@ export async function POST(request: NextRequest) {
     // Build registration URL
     const registrationUrl = `https://reachtheapex.net/${distributor.slug}/register/${meeting.registration_slug}`;
 
+    // Add distributor slug to meeting for URL generation
+    const meetingWithSlug = {
+      ...meeting,
+      distributor_slug: distributor.slug,
+    };
+
     return NextResponse.json({
       success: true,
       data: {
-        meeting: meeting as MeetingEvent,
+        meeting: meetingWithSlug as MeetingEvent,
         registrationUrl,
       },
     }, { status: 201 });
