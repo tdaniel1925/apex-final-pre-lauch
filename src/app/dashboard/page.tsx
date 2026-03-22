@@ -86,7 +86,7 @@ export default async function DashboardPage() {
 
   // If no distributor record, check if they're an admin
   if (error || !distributor) {
-    console.error('Error loading distributor:', error);
+    // Error loading distributor record - check if admin
 
     const adminUser = await getAdminUser();
 
@@ -115,23 +115,33 @@ export default async function DashboardPage() {
   const personalCredits = dist.member?.personal_credits_monthly ?? 0;
   const teamCredits = dist.member?.team_credits_monthly ?? 0;
   const currentRank = dist.member?.tech_rank ?? 'starter';
+  const memberId = dist.member?.member_id;
 
   // Calculate monthly earnings
   // Query earnings_ledger for current month, status='approved'
-  const startOfMonth = new Date();
-  startOfMonth.setDate(1);
-  startOfMonth.setHours(0, 0, 0, 0);
+  // Only query if member_id exists
+  let monthlyEarnings = 0;
 
-  const { data: earnings } = await serviceClient
-    .from('earnings_ledger')
-    .select('amount_usd')
-    .eq('member_id', dist.member?.member_id ?? '')
-    .eq('status', 'approved')
-    .gte('created_at', startOfMonth.toISOString())
-    .order('created_at', { ascending: false });
+  if (memberId) {
+    const startOfMonth = new Date();
+    startOfMonth.setDate(1);
+    startOfMonth.setHours(0, 0, 0, 0);
 
-  // Sum all approved earnings for this month
-  const monthlyEarnings = earnings?.reduce((sum, e) => sum + (e.amount_usd || 0), 0) || 0;
+    const { data: earnings, error: earningsError } = await serviceClient
+      .from('earnings_ledger')
+      .select('amount_usd')
+      .eq('member_id', memberId)
+      .eq('status', 'approved')
+      .gte('created_at', startOfMonth.toISOString())
+      .order('created_at', { ascending: false });
+
+    if (earningsError) {
+      // Error fetching earnings - will default to 0
+    }
+
+    // Sum all approved earnings for this month
+    monthlyEarnings = earnings?.reduce((sum, e) => sum + (e.amount_usd || 0), 0) || 0;
+  }
 
   // Fetch activity feed data server-side (to avoid concurrent auth token usage)
   const { data: activityData } = await serviceClient
@@ -162,21 +172,27 @@ export default async function DashboardPage() {
     .limit(50);
 
   // Transform activity data
-  const initialActivities = (activityData || []).map((activity: any) => ({
-    id: activity.id,
-    actor_id: activity.actor_id,
-    actor_name: activity.actor ? `${activity.actor.first_name} ${activity.actor.last_name}` : 'Unknown',
-    actor_slug: activity.actor?.slug || '',
-    actor_photo_url: activity.actor?.profile_photo_url || null,
-    target_id: activity.target_id,
-    target_name: activity.target ? `${activity.target.first_name} ${activity.target.last_name}` : null,
-    event_type: activity.event_type,
-    event_title: activity.event_title,
-    event_description: activity.event_description,
-    metadata: activity.metadata || {},
-    depth_from_root: activity.depth_from_root,
-    created_at: activity.created_at,
-  }));
+  const initialActivities = (activityData || []).map((activity) => {
+    // Extract actor data (Supabase returns arrays for joined tables)
+    const actorData = Array.isArray(activity.actor) ? activity.actor[0] : activity.actor;
+    const targetData = Array.isArray(activity.target) ? activity.target[0] : activity.target;
+
+    return {
+      id: activity.id,
+      actor_id: activity.actor_id,
+      actor_name: actorData ? `${actorData.first_name} ${actorData.last_name}` : 'Unknown',
+      actor_slug: actorData?.slug || '',
+      actor_photo_url: actorData?.profile_photo_url || null,
+      target_id: activity.target_id,
+      target_name: targetData ? `${targetData.first_name} ${targetData.last_name}` : null,
+      event_type: activity.event_type,
+      event_title: activity.event_title,
+      event_description: activity.event_description,
+      metadata: activity.metadata || {},
+      depth_from_root: activity.depth_from_root,
+      created_at: activity.created_at,
+    };
+  });
 
   // Calculate rank progress
   const nextRank = getNextRank(currentRank);

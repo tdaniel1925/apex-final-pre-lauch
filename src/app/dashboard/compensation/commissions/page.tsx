@@ -11,11 +11,11 @@ import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 
 const commissions = [
-  { product: 'PulseGuard', memberPrice: 59, memberEarns: 16.48, retailPrice: 79, retailEarns: 22.06 },
-  { product: 'PulseFlow', memberPrice: 129, memberEarns: 36.03, retailPrice: 149, retailEarns: 41.62 },
-  { product: 'PulseDrive', memberPrice: 219, memberEarns: 61.17, retailPrice: 299, retailEarns: 83.51 },
-  { product: 'PulseCommand', memberPrice: 349, memberEarns: 97.48, retailPrice: 499, retailEarns: 139.37 },
-  { product: 'SmartLook', memberPrice: 99, memberEarns: 27.65, retailPrice: 99, retailEarns: 27.65 },
+  { product: 'PulseGuard', memberPrice: 59, memberEarns: 16.46, retailPrice: 79, retailEarns: 22.04 },
+  { product: 'PulseFlow', memberPrice: 129, memberEarns: 35.99, retailPrice: 149, retailEarns: 41.57 },
+  { product: 'PulseDrive', memberPrice: 219, memberEarns: 61.10, retailPrice: 299, retailEarns: 83.42 },
+  { product: 'PulseCommand', memberPrice: 349, memberEarns: 97.37, retailPrice: 499, retailEarns: 139.22 },
+  { product: 'SmartLook', memberPrice: 99, memberEarns: 27.62, retailPrice: 99, retailEarns: 27.62 },
   { product: 'Business Center', memberPrice: 39, memberEarns: 10.00, retailPrice: null, retailEarns: null },
 ];
 
@@ -236,17 +236,17 @@ export default function CommissionsPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
               <div className="text-sm text-slate-600 mb-2">10 Sales/Month</div>
-              <div className="text-lg font-bold text-slate-900 mb-1">$276.50</div>
+              <div className="text-lg font-bold text-slate-900 mb-1">$164.60</div>
               <div className="text-xs text-slate-500">10 × PulseGuard (member)</div>
             </div>
             <div>
               <div className="text-sm text-slate-600 mb-2">20 Sales/Month</div>
-              <div className="text-lg font-bold text-slate-900 mb-1">$720.60</div>
+              <div className="text-lg font-bold text-slate-900 mb-1">$719.80</div>
               <div className="text-xs text-slate-500">20 × PulseFlow (member)</div>
             </div>
             <div>
               <div className="text-sm text-slate-600 mb-2">5 Premium Sales</div>
-              <div className="text-lg font-bold text-slate-900 mb-1">$696.85</div>
+              <div className="text-lg font-bold text-slate-900 mb-1">$696.10</div>
               <div className="text-xs text-slate-500">5 × PulseCommand (retail)</div>
             </div>
           </div>

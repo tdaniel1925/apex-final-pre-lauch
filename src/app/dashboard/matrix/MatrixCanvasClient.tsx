@@ -55,7 +55,7 @@ export default function MatrixCanvasClient({ distributorId }: MatrixCanvasClient
 
   if (loading) {
     return (
-      <div className="h-screen w-full flex items-center justify-center bg-slate-900">
+      <div className="h-screen w-full flex items-center justify-center bg-slate-900" data-testid="matrix-loading">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4" />
           <p className="text-sm text-slate-400">Loading your matrix...</p>
@@ -66,7 +66,7 @@ export default function MatrixCanvasClient({ distributorId }: MatrixCanvasClient
 
   if (error) {
     return (
-      <div className="h-screen w-full flex items-center justify-center bg-slate-900">
+      <div className="h-screen w-full flex items-center justify-center bg-slate-900" data-testid="matrix-error">
         <div className="text-center max-w-md">
           <svg
             className="w-16 h-16 text-red-400 mx-auto mb-4"
@@ -82,10 +82,11 @@ export default function MatrixCanvasClient({ distributorId }: MatrixCanvasClient
             />
           </svg>
           <h3 className="text-lg font-bold text-white mb-2">Failed to Load Matrix</h3>
-          <p className="text-sm text-slate-400 mb-4">{error}</p>
+          <p className="text-sm text-slate-400 mb-4" data-testid="matrix-error-message">{error}</p>
           <button
             onClick={() => window.location.reload()}
             className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 font-medium"
+            data-testid="matrix-retry-button"
           >
             Retry
           </button>
@@ -96,7 +97,7 @@ export default function MatrixCanvasClient({ distributorId }: MatrixCanvasClient
 
   if (!treeData) {
     return (
-      <div className="h-screen w-full flex items-center justify-center bg-slate-900">
+      <div className="h-screen w-full flex items-center justify-center bg-slate-900" data-testid="matrix-empty">
         <div className="text-center">
           <svg
             className="w-16 h-16 text-slate-600 mx-auto mb-4"
@@ -118,5 +119,9 @@ export default function MatrixCanvasClient({ distributorId }: MatrixCanvasClient
     );
   }
 
-  return <HierarchyCanvas rootDistributor={treeData} maxDepth={3} />;
+  return (
+    <div data-testid="matrix-canvas">
+      <HierarchyCanvas rootDistributor={treeData} maxDepth={3} />
+    </div>
+  );
 }

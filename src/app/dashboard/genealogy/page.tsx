@@ -166,8 +166,7 @@ export default async function UserGenealogyPage({ searchParams }: PageProps) {
     .single();
 
   if (userError || !userData) {
-    console.error('Genealogy page - user data error:', userError);
-    // User data fetch failed - redirect to login instead of signup (they're already authenticated)
+    // User data fetch failed - redirect to dashboard (they're already authenticated)
     redirect('/dashboard');
   }
 
@@ -194,7 +193,15 @@ export default async function UserGenealogyPage({ searchParams }: PageProps) {
   }
 
   const params = await searchParams;
-  const maxDepth = parseInt(params.depth || '10');
+  const requestedDepth = parseInt(params.depth || '10');
+
+  // Validate depth parameter (must be between 1 and 20)
+  const maxDepth = Math.min(Math.max(1, requestedDepth), 20);
+
+  // Redirect if invalid depth was requested
+  if (requestedDepth < 1 || requestedDepth > 20 || isNaN(requestedDepth)) {
+    redirect(`/dashboard/genealogy?depth=${maxDepth}`);
+  }
 
   // Build enrollment tree starting from this distributor
   // Use distributor.id (not member_id) because we're querying distributors.sponsor_id
@@ -272,7 +279,7 @@ export default async function UserGenealogyPage({ searchParams }: PageProps) {
 
       {/* Empty State */}
       {enrollmentTree.length === 0 ? (
-        <div className="bg-white rounded-lg shadow p-12 text-center">
+        <div className="bg-white rounded-lg shadow p-12 text-center" data-testid="genealogy-empty-state">
           <div className="text-6xl mb-4 text-slate-300">👥</div>
           <h3 className="text-xl font-semibold text-slate-900 mb-2">
             No Enrollees Yet
@@ -291,10 +298,12 @@ export default async function UserGenealogyPage({ searchParams }: PageProps) {
       ) : (
         <>
           {/* Tree View */}
-          <GenealogyWithModal tree={enrollmentTree} maxInitialDepth={3} />
+          <div data-testid="genealogy-tree-container">
+            <GenealogyWithModal tree={enrollmentTree} maxInitialDepth={3} />
+          </div>
 
           {/* Depth Controls */}
-          <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+          <div className="bg-slate-50 border border-slate-200 rounded-lg p-4" data-testid="genealogy-depth-controls">
             <p className="text-sm text-slate-700 mb-3 font-medium">
               Tree Depth Settings
             </p>
@@ -308,6 +317,7 @@ export default async function UserGenealogyPage({ searchParams }: PageProps) {
                       ? 'bg-blue-600 text-white'
                       : 'bg-white text-blue-600 border border-blue-600 hover:bg-blue-50'
                   }`}
+                  data-testid={`depth-${depthOption}`}
                 >
                   {depthOption} Levels
                 </a>

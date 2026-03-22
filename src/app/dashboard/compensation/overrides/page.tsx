@@ -25,13 +25,13 @@ const overrideSchedule = [
 const exampleProduct = {
   name: 'PulseCommand',
   retailPrice: 499,
-  overridePool: 92.91,
+  overridePool: 87.82, // 499 × 44% × 40% = 87.82
   levels: [
-    { level: 'L1', percent: '30%', amount: 27.87, description: 'Personal enrollees always get this rate' },
-    { level: 'L2', percent: '25%', amount: 23.23, description: 'Crown/Elite only' },
-    { level: 'L3', percent: '20%', amount: 18.58, description: 'Crown/Elite only' },
-    { level: 'L4', percent: '15%', amount: 13.94, description: 'Crown/Elite only' },
-    { level: 'L5', percent: '10%', amount: 9.29, description: 'Crown/Elite only' },
+    { level: 'L1', percent: '30%', amount: 26.35, description: 'Personal enrollees always get this rate' },
+    { level: 'L2', percent: '25%', amount: 21.96, description: 'Crown/Elite only' },
+    { level: 'L3', percent: '20%', amount: 17.56, description: 'Crown/Elite only' },
+    { level: 'L4', percent: '15%', amount: 13.17, description: 'Crown/Elite only' },
+    { level: 'L5', percent: '10%', amount: 8.78, description: 'Crown/Elite only' },
   ],
 };
 

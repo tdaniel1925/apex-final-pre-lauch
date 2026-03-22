@@ -71,10 +71,10 @@ export default async function TeamPage() {
     );
   }
 
+  // Extract member data (handle array vs object)
+  const memberData = Array.isArray(distributor.member) ? distributor.member[0] : distributor.member;
   const currentDistributorId = distributor.id;
-
-  // Debug logging
-  console.log('[Team Page] Current distributor ID:', currentDistributorId);
+  const currentMemberId = memberData?.member_id;
 
   // Get all L1 direct enrollees from ENROLLMENT TREE (distributors.sponsor_id)
   // CRITICAL: Use distributors.sponsor_id NOT members.enroller_id!
@@ -102,47 +102,46 @@ export default async function TeamPage() {
     .eq('status', 'active')
     .order('created_at', { ascending: false });
 
-  console.log('[Team Page] Team distributors query result:', teamDistributors);
-  console.log('[Team Page] Team distributors count:', teamDistributors?.length || 0);
-  console.log('[Team Page] Team query error:', teamError);
-
   if (teamError) {
-    console.error('[Team Page] Error fetching team distributors:', teamError);
+    // Error fetching team distributors - will show empty state
   }
 
   const teamMembers = teamDistributors || [];
 
-  // Get personal enrollee counts for each team member
-  const membersWithStats: TeamMemberData[] = await Promise.all(
-    teamMembers.map(async (dist) => {
-      // Count how many people this distributor has personally enrolled (from enrollment tree)
-      const { count } = await serviceClient
-        .from('distributors')
-        .select('*', { count: 'exact', head: true })
-        .eq('sponsor_id', dist.id)
-        .eq('status', 'active');
+  // OPTIMIZED: Get personal enrollee counts for all team members in a single query
+  // This replaces the N+1 query problem where we queried each member individually
+  const { data: allEnrollees } = await serviceClient
+    .from('distributors')
+    .select('sponsor_id')
+    .in('sponsor_id', teamMembers.map(d => d.id))
+    .eq('status', 'active');
 
-      // Extract member data (handle array vs object)
-      const memberData = Array.isArray(dist.member) ? dist.member[0] : dist.member;
+  // Build a map of distributor_id -> enrollee count
+  const enrolleeCountMap = (allEnrollees || []).reduce((acc, row) => {
+    acc[row.sponsor_id] = (acc[row.sponsor_id] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
 
-      return {
-        memberId: memberData?.member_id || null,
-        distributorId: dist.id,
-        fullName: `${dist.first_name} ${dist.last_name}`,
-        email: dist.email,
-        slug: dist?.slug || '',
-        repNumber: dist?.rep_number || null,
-        slug: dist.slug,
-        repNumber: dist.rep_number,
-        techRank: memberData?.tech_rank || null,
-        personalCreditsMonthly: memberData?.personal_credits_monthly || 0,
-        personalEnrolleeCount: count || 0,
-        enrollmentDate: memberData?.enrollment_date || dist.created_at,
-        isActive: (memberData?.personal_credits_monthly || 0) >= 50,
-        overrideQualified: memberData?.override_qualified || false,
-      };
-    })
-  );
+  // Build member stats without individual queries
+  const membersWithStats: TeamMemberData[] = teamMembers.map((dist) => {
+    // Extract member data (handle array vs object)
+    const memberData = Array.isArray(dist.member) ? dist.member[0] : dist.member;
+
+    return {
+      memberId: memberData?.member_id || null,
+      distributorId: dist.id,
+      fullName: `${dist.first_name} ${dist.last_name}`,
+      email: dist.email,
+      slug: dist.slug || '',
+      repNumber: dist.rep_number || null,
+      techRank: memberData?.tech_rank || null,
+      personalCreditsMonthly: memberData?.personal_credits_monthly || 0,
+      personalEnrolleeCount: enrolleeCountMap[dist.id] || 0,
+      enrollmentDate: memberData?.enrollment_date || dist.created_at,
+      isActive: (memberData?.personal_credits_monthly || 0) >= 50,
+      overrideQualified: memberData?.override_qualified || false,
+    };
+  });
 
   // Calculate stats for header
   const totalPersonalEnrollees = membersWithStats.length;
