@@ -105,47 +105,45 @@ export async function GET(
       .select('id')
       .eq('matrix_parent_id', distributorId);
 
-    // Get L1 enrollees count (if member exists)
+    // Get L1 enrollees count from distributors table (SINGLE SOURCE OF TRUTH)
     let l1Count = 0;
     let totalDownlineCount = 0;
 
-    if (distributor.member && distributor.member[0]) {
-      const memberId = distributor.member[0].member_id;
+    // L1 direct enrollees - count distributors where sponsor_id = this distributor's ID
+    const { data: l1Enrollees } = await supabase
+      .from('distributors')
+      .select('id')
+      .eq('sponsor_id', distributorId)
+      .eq('status', 'active');
 
-      // L1 direct enrollees
-      const { data: l1Enrollees } = await supabase
-        .from('members')
-        .select('member_id')
-        .eq('enroller_id', memberId);
+    l1Count = l1Enrollees?.length || 0;
 
-      l1Count = l1Enrollees?.length || 0;
+    // Total downline (recursive) - get all distributors for traversal
+    const { data: allDistributors } = await supabase
+      .from('distributors')
+      .select('id, sponsor_id')
+      .eq('status', 'active');
 
-      // Total downline (recursive)
-      const { data: allMembers } = await supabase
-        .from('members')
-        .select('member_id, enroller_id');
+    if (allDistributors) {
+      const getDownlineCount = (sponsorId: string): number => {
+        let count = 0;
+        const queue = [sponsorId];
+        const visited = new Set<string>();
 
-      if (allMembers) {
-        const getDownlineCount = (enrollerId: string): number => {
-          let count = 0;
-          const queue = [enrollerId];
-          const visited = new Set<string>();
+        while (queue.length > 0) {
+          const currentId = queue.shift()!;
+          if (visited.has(currentId)) continue;
+          visited.add(currentId);
 
-          while (queue.length > 0) {
-            const currentId = queue.shift()!;
-            if (visited.has(currentId)) continue;
-            visited.add(currentId);
+          const children = allDistributors.filter(d => d.sponsor_id === currentId);
+          count += children.length;
+          children.forEach(child => queue.push(child.id));
+        }
 
-            const children = allMembers.filter(m => m.enroller_id === currentId);
-            count += children.length;
-            children.forEach(child => queue.push(child.member_id));
-          }
+        return count;
+      };
 
-          return count;
-        };
-
-        totalDownlineCount = getDownlineCount(memberId);
-      }
+      totalDownlineCount = getDownlineCount(distributorId);
     }
 
     // Build response

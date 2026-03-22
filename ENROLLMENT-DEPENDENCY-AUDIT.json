@@ -1,0 +1,67 @@
+{
+  "timestamp": "2026-03-22T08:35:46.565Z",
+  "summary": {
+    "total": 7,
+    "errors": 7,
+    "warnings": 0,
+    "info": 0
+  },
+  "findings": [
+    {
+      "file": "src\\lib\\compensation\\override-calculator.ts",
+      "line": 167,
+      "code": ".from('members')",
+      "severity": "ERROR",
+      "issue": "Using members.enroller_id for enrollment tree data",
+      "fix": "Use distributors.sponsor_id instead (single source of truth)"
+    },
+    {
+      "file": "src\\app\\dashboard\\team\\page.tsx",
+      "line": 82,
+      "code": ".from('members')",
+      "severity": "ERROR",
+      "issue": "Using members.enroller_id for enrollment tree data",
+      "fix": "Use distributors.sponsor_id instead (single source of truth)"
+    },
+    {
+      "file": "src\\app\\dashboard\\genealogy\\page.tsx",
+      "line": 38,
+      "code": ".from('members')",
+      "severity": "ERROR",
+      "issue": "Using members.enroller_id for enrollment tree data",
+      "fix": "Use distributors.sponsor_id instead (single source of truth)"
+    },
+    {
+      "file": "src\\app\\api\\signup\\route.ts",
+      "line": 313,
+      "code": ".from('members')",
+      "severity": "ERROR",
+      "issue": "Using members.enroller_id for enrollment tree data",
+      "fix": "Use distributors.sponsor_id instead (single source of truth)"
+    },
+    {
+      "file": "src\\app\\api\\signup\\route.ts",
+      "line": 324,
+      "code": ".from('members')",
+      "severity": "ERROR",
+      "issue": "Using members.enroller_id for enrollment tree data",
+      "fix": "Use distributors.sponsor_id instead (single source of truth)"
+    },
+    {
+      "file": "src\\app\\api\\dashboard\\team\\route.ts",
+      "line": 41,
+      "code": ".from('members')",
+      "severity": "ERROR",
+      "issue": "Using members.enroller_id for enrollment tree data",
+      "fix": "Use distributors.sponsor_id instead (single source of truth)"
+    },
+    {
+      "file": "src\\app\\api\\dashboard\\downline\\route.ts",
+      "line": 59,
+      "code": ".from('members')",
+      "severity": "ERROR",
+      "issue": "Using members.enroller_id for enrollment tree data",
+      "fix": "Use distributors.sponsor_id instead (single source of truth)"
+    }
+  ]
+}

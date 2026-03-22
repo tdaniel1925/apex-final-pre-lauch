@@ -1,22 +1,28 @@
 import { createClient } from '@/lib/supabase/server';
 import { NextResponse } from 'next/server';
 
-interface Member {
-  member_id: string;
+interface Distributor {
+  id: string;
   first_name: string;
   last_name: string;
   email: string;
-  enroller_id: string | null;
-  tech_rank: string | null;
-  personal_credits_monthly: number;
-  team_credits_monthly: number;
-  override_qualified: boolean;
+  slug: string;
+  rep_number: string | null;
+  sponsor_id: string | null;
+  status: string;
   created_at: string;
+  member?: {
+    member_id: string;
+    tech_rank: string | null;
+    personal_credits_monthly: number;
+    team_credits_monthly: number;
+    override_qualified: boolean;
+  } | null;
 }
 
-interface MemberNode extends Member {
+interface DistributorNode extends Distributor {
   level: number;
-  children: MemberNode[];
+  children: DistributorNode[];
 }
 
 /**
@@ -40,74 +46,87 @@ export async function GET() {
       );
     }
 
-    // Get user's member record
-    const { data: member, error: memberError } = await supabase
-      .from('members')
-      .select('member_id, first_name, last_name, email')
-      .eq('distributor_id', user.id)
+    // Get user's distributor record
+    const { data: distributor, error: distributorError } = await supabase
+      .from('distributors')
+      .select('id, first_name, last_name, email')
+      .eq('auth_user_id', user.id)
       .single();
 
-    if (memberError || !member) {
+    if (distributorError || !distributor) {
       return NextResponse.json(
-        { error: 'Member record not found' },
+        { error: 'Distributor record not found' },
         { status: 404 }
       );
     }
 
-    // Get all members (RLS will filter to user's downline automatically)
-    const { data: allMembers, error: membersError } = await supabase
-      .from('members')
+    // Get all distributors with member data (SINGLE SOURCE OF TRUTH)
+    const { data: allDistributors, error: distributorsError } = await supabase
+      .from('distributors')
       .select(`
-        member_id,
+        id,
         first_name,
         last_name,
         email,
-        enroller_id,
-        tech_rank,
-        personal_credits_monthly,
-        team_credits_monthly,
-        override_qualified,
-        created_at
-      `);
+        slug,
+        rep_number,
+        sponsor_id,
+        status,
+        created_at,
+        member:members!members_distributor_id_fkey (
+          member_id,
+          tech_rank,
+          personal_credits_monthly,
+          team_credits_monthly,
+          override_qualified
+        )
+      `)
+      .eq('status', 'active');
 
-    if (membersError) {
-      console.error('Error fetching members:', membersError);
+    if (distributorsError) {
+      console.error('Error fetching distributors:', distributorsError);
       return NextResponse.json(
         { error: 'Failed to fetch downline data' },
         { status: 500 }
       );
     }
 
-    // Build hierarchical tree structure
-    const buildTree = (enrollerId: string | null, level: number = 1): MemberNode[] => {
-      if (!allMembers) return [];
+    // Normalize member data (handle array vs object)
+    const normalizedDistributors = allDistributors?.map(d => ({
+      ...d,
+      member: Array.isArray(d.member) ? d.member[0] : d.member,
+    }));
 
-      return allMembers
-        .filter(m => m.enroller_id === enrollerId)
-        .map(m => ({
-          ...m,
+    // Build hierarchical tree structure using sponsor_id
+    const buildTree = (sponsorId: string | null, level: number = 1): DistributorNode[] => {
+      if (!normalizedDistributors) return [];
+
+      return normalizedDistributors
+        .filter(d => d.sponsor_id === sponsorId)
+        .map(d => ({
+          ...d,
           level,
-          children: buildTree(m.member_id, level + 1),
+          children: buildTree(d.id, level + 1),
         }))
         .sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime());
     };
 
-    const downlineTree = buildTree(member.member_id, 1);
+    const downlineTree = buildTree(distributor.id, 1);
 
     // Calculate comprehensive stats
-    const calculateStats = (nodes: MemberNode[]): any => {
+    const calculateStats = (nodes: DistributorNode[]): any => {
       let totalMembers = 0;
       let levelCounts: Record<number, number> = {};
       let totalPersonalCredits = 0;
       let totalTeamCredits = 0;
       let overrideQualified = 0;
 
-      const traverse = (node: MemberNode) => {
+      const traverse = (node: DistributorNode) => {
         totalMembers++;
         levelCounts[node.level] = (levelCounts[node.level] || 0) + 1;
-        totalPersonalCredits += node.personal_credits_monthly || 0;
-        totalTeamCredits += node.team_credits_monthly || 0;
-        if (node.override_qualified) overrideQualified++;
+        totalPersonalCredits += node.member?.personal_credits_monthly || 0;
+        totalTeamCredits += node.member?.team_credits_monthly || 0;
+        if (node.member?.override_qualified) overrideQualified++;
 
         node.children.forEach(traverse);
       };
@@ -127,11 +146,11 @@ export async function GET() {
     const stats = calculateStats(downlineTree);
 
     // Flatten tree for easier display (optional)
-    const flattenTree = (nodes: MemberNode[]): Member[] => {
-      const result: Member[] = [];
-      const traverse = (node: MemberNode) => {
-        const { children, level, ...memberData } = node;
-        result.push(memberData);
+    const flattenTree = (nodes: DistributorNode[]): Distributor[] => {
+      const result: Distributor[] = [];
+      const traverse = (node: DistributorNode) => {
+        const { children, level, ...distributorData } = node;
+        result.push(distributorData);
         children.forEach(traverse);
       };
       nodes.forEach(traverse);
@@ -142,11 +161,11 @@ export async function GET() {
 
     return NextResponse.json({
       success: true,
-      member: {
-        member_id: member.member_id,
-        first_name: member.first_name,
-        last_name: member.last_name,
-        email: member.email,
+      distributor: {
+        id: distributor.id,
+        first_name: distributor.first_name,
+        last_name: distributor.last_name,
+        email: distributor.email,
       },
       downline: {
         tree: downlineTree,        // Hierarchical structure

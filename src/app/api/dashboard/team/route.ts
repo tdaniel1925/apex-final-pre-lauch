@@ -21,36 +21,42 @@ export async function GET() {
       );
     }
 
-    // Get user's member record
-    const { data: member, error: memberError } = await supabase
-      .from('members')
-      .select('member_id, first_name, last_name, email')
-      .eq('distributor_id', user.id)
+    // Get user's distributor record
+    const { data: distributor, error: distributorError } = await supabase
+      .from('distributors')
+      .select('id, first_name, last_name, email')
+      .eq('auth_user_id', user.id)
       .single();
 
-    if (memberError || !member) {
+    if (distributorError || !distributor) {
       return NextResponse.json(
-        { error: 'Member record not found' },
+        { error: 'Distributor record not found' },
         { status: 404 }
       );
     }
 
-    // Get L1 direct enrollees
-    // This will work after RLS policies are applied
-    const { data: team, error: teamError } = await supabase
-      .from('members')
+    // Get L1 direct enrollees from distributors table (SINGLE SOURCE OF TRUTH)
+    const { data: enrollees, error: teamError } = await supabase
+      .from('distributors')
       .select(`
-        member_id,
+        id,
         first_name,
         last_name,
         email,
-        tech_rank,
-        personal_credits_monthly,
-        team_credits_monthly,
-        override_qualified,
-        created_at
+        slug,
+        rep_number,
+        status,
+        created_at,
+        member:members!members_distributor_id_fkey (
+          member_id,
+          tech_rank,
+          personal_credits_monthly,
+          team_credits_monthly,
+          override_qualified
+        )
       `)
-      .eq('enroller_id', member.member_id)
+      .eq('sponsor_id', distributor.id)
+      .eq('status', 'active')
       .order('created_at', { ascending: false });
 
     if (teamError) {
@@ -61,24 +67,44 @@ export async function GET() {
       );
     }
 
+    // Transform enrollees to include member data
+    const team = enrollees?.map(e => {
+      const memberData = Array.isArray(e.member) ? e.member[0] : e.member;
+      return {
+        distributor_id: e.id,
+        first_name: e.first_name,
+        last_name: e.last_name,
+        email: e.email,
+        slug: e.slug,
+        rep_number: e.rep_number,
+        status: e.status,
+        created_at: e.created_at,
+        member_id: memberData?.member_id || null,
+        tech_rank: memberData?.tech_rank || null,
+        personal_credits_monthly: memberData?.personal_credits_monthly || 0,
+        team_credits_monthly: memberData?.team_credits_monthly || 0,
+        override_qualified: memberData?.override_qualified || false,
+      };
+    }) || [];
+
     // Calculate team stats
     const stats = {
-      total_members: team?.length || 0,
-      active_members: team?.filter(m => m.tech_rank !== null).length || 0,
-      total_personal_credits: team?.reduce((sum, m) => sum + (m.personal_credits_monthly || 0), 0) || 0,
-      total_team_credits: team?.reduce((sum, m) => sum + (m.team_credits_monthly || 0), 0) || 0,
-      override_qualified_count: team?.filter(m => m.override_qualified).length || 0,
+      total_members: team.length,
+      active_members: team.filter(m => m.tech_rank !== null).length,
+      total_personal_credits: team.reduce((sum, m) => sum + (m.personal_credits_monthly || 0), 0),
+      total_team_credits: team.reduce((sum, m) => sum + (m.team_credits_monthly || 0), 0),
+      override_qualified_count: team.filter(m => m.override_qualified).length,
     };
 
     return NextResponse.json({
       success: true,
-      member: {
-        member_id: member.member_id,
-        first_name: member.first_name,
-        last_name: member.last_name,
-        email: member.email,
+      distributor: {
+        id: distributor.id,
+        first_name: distributor.first_name,
+        last_name: distributor.last_name,
+        email: distributor.email,
       },
-      team: team || [],
+      team,
       stats,
     });
 
