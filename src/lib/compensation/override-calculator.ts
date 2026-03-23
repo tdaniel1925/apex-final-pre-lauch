@@ -71,7 +71,7 @@ export interface Sale {
 export interface OverridePayment {
   upline_member_id: string;
   upline_member_name: string;
-  override_type: 'L1_enroller' | `L${number}_matrix`;
+  override_type: 'L1_enrollment' | 'L2_matrix' | 'L3_matrix' | 'L4_matrix' | 'L5_matrix';
   override_rate: number;
   override_amount: number;
   bv: number;
@@ -90,26 +90,29 @@ export interface OverrideCalculationResult {
 /**
  * Override schedules for each Tech Ladder rank
  *
- * L1 = Always 30% (enroller override)
- * L2-L5 = Based on rank (matrix depth overrides)
+ * CRITICAL: Dual-Tree System
+ * - L1 = ENROLLMENT TREE (sponsor_id) - Always 30% for all ranks
+ * - L2-L5 = MATRIX TREE (matrix_parent_id) - Varies by rank
+ *
+ * Source of Truth: src/app/dashboard/compensation/overrides/page.tsx
  *
  * Key:
- * - [0] = L1 (30% for all ranks, enroller tree)
- * - [1] = L2 (matrix)
- * - [2] = L3 (matrix)
- * - [3] = L4 (matrix)
- * - [4] = L5 (matrix)
+ * - [0] = L1 (30% for all ranks, from enrollment tree via sponsor_id)
+ * - [1] = L2 (matrix tree via matrix_parent_id, varies by rank)
+ * - [2] = L3 (matrix tree via matrix_parent_id, varies by rank)
+ * - [3] = L4 (matrix tree via matrix_parent_id, varies by rank)
+ * - [4] = L5 (matrix tree via matrix_parent_id, varies by rank)
  */
 const OVERRIDE_SCHEDULES: Record<TechRank, number[]> = {
-  starter: [0.30, 0, 0, 0, 0], // L1 only (30%)
-  bronze: [0.30, 0.25, 0, 0, 0], // L1 (30%), L2 (25%)
-  silver: [0.30, 0.25, 0.20, 0, 0], // L1-L3
-  gold: [0.30, 0.25, 0.20, 0.15, 0], // L1-L4
-  platinum: [0.30, 0.25, 0.20, 0.15, 0.10], // L1-L5
-  ruby: [0.30, 0.25, 0.20, 0.15, 0.10], // L1-L5
-  diamond: [0.30, 0.25, 0.20, 0.15, 0.10], // L1-L5
-  crown: [0.30, 0.25, 0.20, 0.15, 0.10], // L1-L5
-  elite: [0.30, 0.25, 0.20, 0.15, 0.10], // L1-L5
+  starter: [0.30, 0, 0, 0, 0],          // L1: 30%, L2-L5: none
+  bronze: [0.30, 0.05, 0, 0, 0],        // L1: 30%, L2: 5%, L3-L5: none
+  silver: [0.30, 0.10, 0.05, 0, 0],     // L1: 30%, L2: 10%, L3: 5%, L4-L5: none
+  gold: [0.30, 0.15, 0.10, 0.05, 0],    // L1: 30%, L2: 15%, L3: 10%, L4: 5%, L5: none
+  platinum: [0.30, 0.18, 0.12, 0.08, 0.03], // L1: 30%, L2: 18%, L3: 12%, L4: 8%, L5: 3%
+  ruby: [0.30, 0.20, 0.15, 0.10, 0.05],     // L1: 30%, L2: 20%, L3: 15%, L4: 10%, L5: 5%
+  diamond: [0.30, 0.22, 0.18, 0.12, 0.08],  // L1: 30%, L2: 22%, L3: 18%, L4: 12%, L5: 8%
+  crown: [0.30, 0.25, 0.20, 0.15, 0.10],    // L1: 30%, L2: 25%, L3: 20%, L4: 15%, L5: 10%
+  elite: [0.30, 0.25, 0.20, 0.15, 0.10],    // L1: 30%, L2: 25%, L3: 20%, L4: 15%, L5: 10%
 };
 
 /**
@@ -173,7 +176,7 @@ export async function calculateOverridesForSale(
         payments.push({
           upline_member_id: sponsorMember.member_id,
           upline_member_name: sponsorMember.full_name,
-          override_type: 'L1_enroller',
+          override_type: 'L1_enrollment',
           override_rate: 0.30,
           override_amount: Number(amount.toFixed(2)),
           bv: sale.bv,
@@ -240,10 +243,14 @@ export async function calculateOverridesForSale(
     if (rate > 0) {
       const amount = overridePool * rate;
 
+      // Map level to explicit override type (CRITICAL: Must match OverridePayment type)
+      const overrideTypes = ['L2_matrix', 'L3_matrix', 'L4_matrix', 'L5_matrix'] as const;
+      const overrideType = overrideTypes[level - 1]; // level 1 = L2, level 2 = L3, etc.
+
       payments.push({
         upline_member_id: uplineMember.member_id,
         upline_member_name: uplineMember.full_name,
-        override_type: `L${level + 1}_matrix`, // L2-L5
+        override_type: overrideType,
         override_rate: rate,
         override_amount: Number(amount.toFixed(2)),
         bv: sale.bv,

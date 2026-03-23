@@ -25,12 +25,15 @@ interface MatrixMember {
   matrix_position: number | null;
   matrix_depth: number;
   sponsor_id: string | null;
-  personal_bv_monthly?: number | null;
-  group_bv_monthly?: number | null;
   created_at: string;
   children?: MatrixMember[];
   childCount?: number;
   enrollment_level?: number; // Level in enrollment tree (1, 2, 3, 4)
+  // Live member data (NOT cached)
+  member?: {
+    personal_credits_monthly: number | null;
+    team_credits_monthly: number | null;
+  } | null;
 }
 
 interface HybridMatrixResponse {
@@ -62,10 +65,16 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Fetch root distributor
+    // Fetch root distributor with live member data
     const { data: rootData, error: rootError } = await supabase
       .from('distributors')
-      .select('*')
+      .select(`
+        *,
+        member:members!members_distributor_id_fkey (
+          personal_credits_monthly,
+          team_credits_monthly
+        )
+      `)
       .eq('id', distributorId)
       .eq('status', 'active')
       .single();
@@ -83,7 +92,13 @@ export async function GET(request: NextRequest) {
     // CRITICAL: Use sponsor_id NOT matrix_parent_id to match Team/Genealogy views
     const { data: level1Data, error: level1Error } = await supabase
       .from('distributors')
-      .select('*')
+      .select(`
+        *,
+        member:members!members_distributor_id_fkey (
+          personal_credits_monthly,
+          team_credits_monthly
+        )
+      `)
       .eq('sponsor_id', distributorId)
       .eq('status', 'active')
       .order('created_at', { ascending: true });
@@ -98,7 +113,13 @@ export async function GET(request: NextRequest) {
       const level1Ids = level1.map(m => m.id);
       const { data: level2Data } = await supabase
         .from('distributors')
-        .select('*')
+        .select(`
+          *,
+          member:members!members_distributor_id_fkey (
+            personal_credits_monthly,
+            team_credits_monthly
+          )
+        `)
         .in('sponsor_id', level1Ids)
         .eq('status', 'active')
         .order('sponsor_id', { ascending: true })
@@ -128,7 +149,13 @@ export async function GET(request: NextRequest) {
       // Get level 3 enrollees
       const { data: level3Data } = await supabase
         .from('distributors')
-        .select('*')
+        .select(`
+          *,
+          member:members!members_distributor_id_fkey (
+            personal_credits_monthly,
+            team_credits_monthly
+          )
+        `)
         .in('sponsor_id', level2Ids)
         .eq('status', 'active')
         .order('created_at', { ascending: true })
@@ -143,7 +170,13 @@ export async function GET(request: NextRequest) {
         const level3Ids = level3Data.map((d: any) => d.id);
         const { data: level4Data } = await supabase
           .from('distributors')
-          .select('*')
+          .select(`
+            *,
+            member:members!members_distributor_id_fkey (
+              personal_credits_monthly,
+              team_credits_monthly
+            )
+          `)
           .in('sponsor_id', level3Ids)
           .eq('status', 'active')
           .order('created_at', { ascending: true })
@@ -162,9 +195,9 @@ export async function GET(request: NextRequest) {
     // Total team = all enrollees we've fetched (level 1 + 2 + deep levels)
     const totalTeamCount = level1.length + level2.length + deepLevels.length;
 
-    // Active members = those with activity in the fetched enrollees
+    // Active members = those with activity in the fetched enrollees (using live member data)
     const activeMembers = [... level1, ...level2, ...deepLevels].filter(
-      m => (m.personal_bv_monthly || 0) > 0
+      m => (m.member?.personal_credits_monthly || 0) > 0
     ).length;
 
     // Max depth = number of levels we've fetched (1, 2, 3, 4)
@@ -172,10 +205,10 @@ export async function GET(request: NextRequest) {
     if (level2.length > 0) maxDepth = 2;
     if (deepLevels.length > 0) maxDepth = 4; // We fetch up to level 4
 
-    // Calculate total BV (if we have BV data)
+    // Calculate total BV from live member data (NOT cached)
     let totalBV = 0;
-    if (root.group_bv_monthly) {
-      totalBV = root.group_bv_monthly;
+    if (root.member?.team_credits_monthly) {
+      totalBV = root.member.team_credits_monthly;
     }
 
     const response: HybridMatrixResponse = {

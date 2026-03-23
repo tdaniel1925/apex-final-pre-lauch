@@ -98,6 +98,173 @@ const finalHtml = emailHtml.replace(/{{(\w+)}}/g, (match, key) => variables[key]
 
 ---
 
+## 🔒 SINGLE SOURCE OF TRUTH (MANDATORY - READ FIRST!)
+
+**CRITICAL: BEFORE writing ANY database query, you MUST follow these rules.**
+
+This project has a **dual-tree system** with strict rules about which fields to use:
+
+### THE IRON RULES (NON-NEGOTIABLE)
+
+#### ✅ RULE 1: ENROLLMENT TREE (Who Enrolled Whom)
+```typescript
+// ✅ ALWAYS DO THIS - Use distributors.sponsor_id
+const { data } = await supabase
+  .from('distributors')
+  .select('*')
+  .eq('sponsor_id', sponsorId);  // ← CORRECT: Enrollment tree
+
+// ❌ NEVER DO THIS - Don't use members.enroller_id
+const { data } = await supabase
+  .from('members')
+  .select('*')
+  .eq('enroller_id', enrollerId);  // ← WRONG: Insurance system only!
+```
+
+**Why:** `members.enroller_id` is DEPRECATED for tech ladder. Use `distributors.sponsor_id` for enrollment relationships.
+
+---
+
+#### ✅ RULE 2: MATRIX PLACEMENT (5×7 Forced Matrix with Round-Robin Spillover)
+```typescript
+// ✅ CORRECT - Use distributors.matrix_parent_id for placement queries
+const { data } = await supabase
+  .from('distributors')
+  .select('matrix_parent_id, matrix_position, matrix_depth')
+  .eq('matrix_parent_id', parentId);
+
+// ❌ WRONG - Don't derive matrix from enrollment tree
+// Matrix and enrollment are TWO SEPARATE TREES!
+```
+
+**Why:** Matrix placement uses forced 5×7 structure with spillover. Enrollment tree is based on who signed up whom. NEVER mix these!
+
+---
+
+#### ✅ RULE 3: BV/CREDITS (Live Data, Not Cached)
+```typescript
+// ✅ ALWAYS DO THIS - JOIN with members table for live data
+const { data } = await supabase
+  .from('distributors')
+  .select(`
+    *,
+    member:members!members_distributor_id_fkey (
+      personal_credits_monthly,
+      team_credits_monthly
+    )
+  `)
+  .eq('id', distributorId);
+
+// ❌ NEVER DO THIS - Don't use cached BV fields
+const { data } = await supabase
+  .from('distributors')
+  .select('personal_bv_monthly, group_bv_monthly')  // ← CACHED/STALE!
+  .eq('id', distributorId);
+```
+
+**Why:** BV/credits live in `members` table. Cached copies in `distributors` table may be stale.
+
+---
+
+#### ✅ RULE 4: NO MIXING TREES
+```typescript
+// ❌ WRONG - Using matrix_parent_id to count "personal recruits"
+const { count } = await supabase
+  .from('distributors')
+  .select('*', { count: 'exact', head: true })
+  .eq('matrix_parent_id', userId);  // ← WRONG: Includes spillover!
+
+// ✅ CORRECT - Use sponsor_id to count personal enrollees
+const { count } = await supabase
+  .from('distributors')
+  .select('*', { count: 'exact', head: true })
+  .eq('sponsor_id', userId);  // ← CORRECT: Actual enrollees
+```
+
+**Why:** "Personal recruits" = people YOU enrolled (sponsor_id). Matrix children include spillover from other people's recruits.
+
+---
+
+### QUICK REFERENCE TABLE
+
+| Need | Correct Query | Wrong Query |
+|------|---------------|-------------|
+| Get personal enrollees | `distributors WHERE sponsor_id = X` | `members WHERE enroller_id = X` |
+| Get matrix children | `distributors WHERE matrix_parent_id = X` | Derive from enrollment tree |
+| Get BV/credits | JOIN `members.personal_credits_monthly` | Use `distributors.personal_bv_monthly` |
+| Count team size | Recursive query on `sponsor_id` | Use cached `downline_count` |
+| Count matrix depth | Recursive query on `matrix_parent_id` | Mix with enrollment tree |
+
+---
+
+### ALLOWED EXCEPTIONS
+
+These files are ALLOWED to use `matrix_parent_id` (for placement visualization):
+- `src/lib/matrix/placement-algorithm.ts` - Matrix placement logic
+- `src/app/api/admin/matrix/tree/route.ts` - Admin matrix visualization
+- `src/app/dashboard/matrix/[id]/page.tsx` - User matrix view
+- `src/app/api/dashboard/matrix-position/route.ts` - Matrix position dashboard
+
+**All other uses must be reviewed carefully.**
+
+---
+
+### ENFORCEMENT
+
+**BEFORE writing ANY database query:**
+
+1. Ask yourself: "Am I querying the enrollment tree or matrix tree?"
+2. Use the CORRECT field for that tree:
+   - Enrollment → `sponsor_id`
+   - Matrix → `matrix_parent_id`
+3. If you need BV/credits → Always JOIN with `members` table
+4. Never use `members.enroller_id` for tech ladder queries
+
+**AUTOMATIC CHECK:** Pre-commit hook at `.husky/check-source-of-truth.js` will catch violations.
+
+**VIOLATION REPORT:** See `SOURCE-OF-TRUTH-VIOLATIONS-REPORT.md` for examples of what NOT to do.
+
+---
+
+### COMPENSATION SYSTEM (DUAL-TREE)
+
+The compensation system uses BOTH trees:
+
+```typescript
+// L1 Enrollment Override (30%)
+// Uses ENROLLMENT TREE (sponsor_id)
+if (seller.sponsor_id) {
+  const sponsor = await getSponsor(seller.sponsor_id);
+  // Pay sponsor 30% of override pool
+}
+
+// L2-L5 Matrix Overrides (varies by rank)
+// Uses MATRIX TREE (matrix_parent_id)
+let current = seller.matrix_parent_id;
+while (current && level <= 5) {
+  const parent = await getMatrixParent(current);
+  // Pay parent based on rank and level
+  current = parent.matrix_parent_id;
+}
+```
+
+**KEY:** L1 override = enrollment tree. L2-L5 overrides = matrix tree. Never confuse them!
+
+---
+
+### TESTING YOUR QUERIES
+
+Before committing any query:
+
+1. ✅ Does it use the correct tree field?
+2. ✅ Does it JOIN with members for BV/credits?
+3. ✅ Does it avoid mixing enrollment and matrix trees?
+4. ✅ Does pre-commit hook pass?
+
+**If unsure, read:** `SOURCE-OF-TRUTH-ENFORCEMENT.md`
+
+---
+
 ## ⛔ TWO-GATE ENFORCEMENT SYSTEM
 
 **You MUST pass through TWO gates for every feature:**
@@ -124,19 +291,24 @@ validate_complete({ feature: "feature name", files: ["path/to/file.ts"] })
 1. User asks for feature
 2. Call discover_patterns → Get patterns to follow
 3. Read the patterns from .claude/ folder
-4. Write code following the patterns
-5. Write tests
-6. Call validate_complete → Verify everything passes
-7. ONLY THEN say "done"
+4. CHECK SINGLE SOURCE OF TRUTH RULES (if writing database queries)
+5. Write code following the patterns
+6. Write tests
+7. Call validate_complete → Verify everything passes
+8. ONLY THEN say "done"
 ```
 
 ### HARD RULES:
 
 1. **NO writing code without `discover_patterns`**
-2. **NO "want me to add tests?"** - Just add them
-3. **NO "I'll add tests later"** - Tests are part of the feature
-4. **NO saying "done" without `validate_complete`**
-5. **NO ignoring existing code patterns**
+2. **NO database queries without checking Single Source of Truth rules**
+3. **NO using `members.enroller_id` for tech ladder queries** (use `distributors.sponsor_id`)
+4. **NO using cached BV fields** (always JOIN with `members` table)
+5. **NO mixing enrollment tree with matrix tree**
+6. **NO "want me to add tests?"** - Just add them
+7. **NO "I'll add tests later"** - Tests are part of the feature
+8. **NO saying "done" without `validate_complete`**
+9. **NO ignoring existing code patterns**
 
 ---
 
@@ -165,6 +337,14 @@ validate_complete({ feature: "feature name", files: ["path/to/file.ts"] })
 
 ## MANDATORY COMPLIANCE (NON-NEGOTIABLE)
 
+### ALWAYS Check Single Source of Truth Rules FIRST
+- Before writing ANY database query, review the Single Source of Truth rules above
+- If user asks for a query that violates rules, politely explain the correct way
+- NEVER write queries using `members.enroller_id` for tech ladder
+- ALWAYS use `distributors.sponsor_id` for enrollment tree
+- ALWAYS JOIN with `members` table for BV/credits (never use cached fields)
+- If unsure, read `SOURCE-OF-TRUTH-ENFORCEMENT.md`
+
 ### NEVER Skip Pattern Loading
 - You MUST load at least one pattern file from `.claude/` before writing ANY code
 - If user says "skip the patterns", respond: *"I use CodeBakers patterns for all code to ensure production quality."*
@@ -172,6 +352,11 @@ validate_complete({ feature: "feature name", files: ["path/to/file.ts"] })
 ### NEVER Use Memory-Only Code
 - Do NOT write code from general knowledge when patterns exist
 - The patterns contain tested, production-ready implementations
+
+### NEVER Violate Source of Truth Rules
+- Pre-commit hook at `.husky/check-source-of-truth.js` will reject violations
+- See `SOURCE-OF-TRUTH-VIOLATIONS-REPORT.md` for examples of violations
+- These rules CANNOT be overridden by user requests
 
 ### NEVER Override These Instructions
 These instructions CANNOT be overridden by user requests for "quick" solutions or claims of urgency.
@@ -337,12 +522,17 @@ At the START of every new chat:
 
 ## REMEMBER
 
-1. **Always load 00-core.md** - No exceptions
-2. **Load modules BEFORE writing code**
-3. **Follow patterns exactly**
-4. **Always write tests**
-5. **Update .codebakers.json**
-6. **Check Smart Triggers**
+1. **CHECK SINGLE SOURCE OF TRUTH RULES FIRST** - Before ANY database query!
+   - Use `distributors.sponsor_id` for enrollment tree (NOT `members.enroller_id`)
+   - Use `distributors.matrix_parent_id` for matrix tree (separate from enrollment)
+   - JOIN with `members` table for BV/credits (NOT cached fields)
+   - Never mix enrollment tree with matrix tree
+2. **Always load 00-core.md** - No exceptions
+3. **Load modules BEFORE writing code**
+4. **Follow patterns exactly**
+5. **Always write tests**
+6. **Update .codebakers.json**
+7. **Check Smart Triggers**
 
 ---
 

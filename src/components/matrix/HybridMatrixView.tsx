@@ -23,12 +23,15 @@ interface MatrixMember {
   matrix_position: number | null;
   matrix_depth: number;
   sponsor_id: string | null;
-  personal_bv_monthly?: number | null;
-  group_bv_monthly?: number | null;
   created_at: string;
   children?: MatrixMember[];
   childCount?: number;
   enrollment_level?: number; // Level in enrollment tree (1, 2, 3, 4)
+  // Live member data (NOT cached)
+  member?: {
+    personal_credits_monthly: number | null;
+    team_credits_monthly: number | null;
+  } | null;
 }
 
 interface HybridMatrixData {

@@ -35,6 +35,7 @@
     "tests",
     "scripts",
     "supabase/migrations_temp",
+    "_VIOLATIONS_QUARANTINE",
     "**/*.sql",
     "*.sql"
   ]
