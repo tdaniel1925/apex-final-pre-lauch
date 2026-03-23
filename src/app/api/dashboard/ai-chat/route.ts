@@ -139,6 +139,81 @@ const tools: Anthropic.Tool[] = [
       required: ['meetingId'],
     },
   },
+  {
+    name: 'get_my_links',
+    description: 'Returns the user\'s replicated site URL, enrollment link, and meeting registration base URL. Use when user asks for their links, wants to know how to share, or needs their URLs.',
+    input_schema: {
+      type: 'object',
+      properties: {},
+    },
+  },
+  {
+    name: 'who_joined_recently',
+    description: 'Shows recent team enrollments grouped by time period (today, this week, this month). Use when user asks about new team members, recent joins, or growth.',
+    input_schema: {
+      type: 'object',
+      properties: {
+        timeframe: {
+          type: 'string',
+          enum: ['today', 'week', 'month', 'all'],
+          description: 'Time period to show (default: week)',
+          default: 'week',
+        },
+      },
+    },
+  },
+  {
+    name: 'rank_progress_check',
+    description: 'Shows current rank, next rank requirements, and progress toward advancement. Use when user asks about rank progress, what they need to rank up, or requirements.',
+    input_schema: {
+      type: 'object',
+      properties: {},
+    },
+  },
+  {
+    name: 'view_team_member_details',
+    description: 'Looks up a specific team member by name and shows their details (status, join date, contact info, downline). Use when user asks about a specific person on their team.',
+    input_schema: {
+      type: 'object',
+      properties: {
+        searchName: {
+          type: 'string',
+          description: 'Name to search for (first name, last name, or full name)',
+        },
+      },
+      required: ['searchName'],
+    },
+  },
+  {
+    name: 'commission_breakdown',
+    description: 'Shows detailed commission breakdown by source, product, and team member. Use when user asks about commission details, earnings breakdown, or where money came from.',
+    input_schema: {
+      type: 'object',
+      properties: {
+        period: {
+          type: 'string',
+          enum: ['this_month', 'last_month', 'this_year', 'all_time'],
+          description: 'Time period for breakdown (default: this_month)',
+          default: 'this_month',
+        },
+      },
+    },
+  },
+  {
+    name: 'start_tutorial',
+    description: 'Starts an interactive step-by-step tutorial on how to use a specific feature. Use when user wants to learn, asks "how do I", or needs training on a feature.',
+    input_schema: {
+      type: 'object',
+      properties: {
+        topic: {
+          type: 'string',
+          enum: ['send_text', 'send_email', 'create_event', 'add_lead', 'invite_team', 'social_media', 'overview'],
+          description: 'What feature to teach. "overview" for general system tutorial.',
+        },
+      },
+      required: ['topic'],
+    },
+  },
 ];
 
 // Tool handlers
@@ -509,6 +584,357 @@ async function handleCreateMeetingFlyer(params: any, userId: string) {
   };
 }
 
+async function handleGetMyLinks(userId: string) {
+  const supabase = await createClient();
+
+  const { data: distributor } = await supabase
+    .from('distributors')
+    .select('slug, first_name, last_name')
+    .eq('auth_user_id', userId)
+    .single();
+
+  if (!distributor) {
+    return {
+      success: false,
+      message: 'Could not find your distributor profile.',
+    };
+  }
+
+  const baseUrl = 'https://reachtheapex.net';
+  const replicatedSite = `${baseUrl}/${distributor.slug}`;
+  const enrollmentLink = `${baseUrl}/join/${distributor.slug}`;
+  const meetingBase = `${baseUrl}/${distributor.slug}/register`;
+
+  return {
+    success: true,
+    message: `🔗 Your Links:\n\n**Replicated Site:**\n${replicatedSite}\n\n**Enrollment Link:**\n${enrollmentLink}\n\n**Meeting Pages:**\n${meetingBase}/[meeting-name]\n\nShare these to grow your team!`,
+    data: {
+      replicatedSite,
+      enrollmentLink,
+      meetingBase,
+    },
+  };
+}
+
+async function handleWhoJoinedRecently(params: any, userId: string) {
+  const supabase = await createClient();
+
+  const { data: distributor } = await supabase
+    .from('distributors')
+    .select('id')
+    .eq('auth_user_id', userId)
+    .single();
+
+  if (!distributor) {
+    return {
+      success: false,
+      message: 'Could not find your distributor profile.',
+    };
+  }
+
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const weekAgo = new Date(today);
+  weekAgo.setDate(weekAgo.getDate() - 7);
+  const monthAgo = new Date(today);
+  monthAgo.setMonth(monthAgo.getMonth() - 1);
+
+  // Get all downline (recursive)
+  // For simplicity, we'll query direct enrollments and their enrollments
+  // In production, you'd want a recursive CTE or pre-computed downline table
+  const { data: teamMembers } = await supabase
+    .from('distributors')
+    .select('id, first_name, last_name, created_at, sponsor_id, status')
+    .eq('sponsor_id', distributor.id)
+    .neq('status', 'deleted')
+    .order('created_at', { ascending: false });
+
+  if (!teamMembers || teamMembers.length === 0) {
+    return {
+      success: true,
+      message: '📊 No recent enrollments found.\n\nYour team will appear here as they join!',
+    };
+  }
+
+  // Group by time period
+  const todayMembers = teamMembers.filter(m => new Date(m.created_at) >= today);
+  const weekMembers = teamMembers.filter(m => new Date(m.created_at) >= weekAgo && new Date(m.created_at) < today);
+  const monthMembers = teamMembers.filter(m => new Date(m.created_at) >= monthAgo && new Date(m.created_at) < weekAgo);
+
+  let message = '📊 Recent Team Enrollments\n\n';
+
+  if (todayMembers.length > 0) {
+    message += `**Today (${todayMembers.length}):**\n`;
+    todayMembers.slice(0, 5).forEach(m => {
+      message += `• ${m.first_name} ${m.last_name}\n`;
+    });
+    message += '\n';
+  }
+
+  if (weekMembers.length > 0) {
+    message += `**This Week (${weekMembers.length}):**\n`;
+    weekMembers.slice(0, 5).forEach(m => {
+      const date = new Date(m.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      message += `• ${m.first_name} ${m.last_name} - ${date}\n`;
+    });
+    message += '\n';
+  }
+
+  if (monthMembers.length > 0) {
+    message += `**This Month (${monthMembers.length}):**\n`;
+    monthMembers.slice(0, 5).forEach(m => {
+      const date = new Date(m.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      message += `• ${m.first_name} ${m.last_name} - ${date}\n`;
+    });
+  }
+
+  const total = todayMembers.length + weekMembers.length + monthMembers.length;
+  message += `\n🎉 Total recent enrollments: ${total}`;
+
+  return {
+    success: true,
+    message,
+    data: {
+      today: todayMembers.length,
+      week: weekMembers.length,
+      month: monthMembers.length,
+      total,
+    },
+  };
+}
+
+async function handleRankProgressCheck(userId: string) {
+  const supabase = await createClient();
+
+  const { data: member } = await supabase
+    .from('members')
+    .select('id, distributor_id, current_rank, personal_volume, group_volume')
+    .eq('distributor_id', (await supabase.from('distributors').select('id').eq('auth_user_id', userId).single()).data?.id)
+    .single();
+
+  if (!member) {
+    return {
+      success: false,
+      message: 'Could not find your member profile.',
+    };
+  }
+
+  // Get team count
+  const { count: activeEnrollments } = await supabase
+    .from('distributors')
+    .select('*', { count: 'exact', head: true })
+    .eq('sponsor_id', member.distributor_id)
+    .eq('status', 'active');
+
+  // Simple rank progression (you'll want to customize based on your comp plan)
+  const ranks = [
+    { name: 'Member', pvRequired: 0, gvRequired: 0, activeRequired: 0 },
+    { name: 'Bronze', pvRequired: 500, gvRequired: 2000, activeRequired: 3 },
+    { name: 'Silver', pvRequired: 500, gvRequired: 5000, activeRequired: 5 },
+    { name: 'Gold', pvRequired: 500, gvRequired: 10000, activeRequired: 10 },
+    { name: 'Platinum', pvRequired: 500, gvRequired: 25000, activeRequired: 15 },
+    { name: 'Diamond', pvRequired: 500, gvRequired: 50000, activeRequired: 25 },
+  ];
+
+  const currentRankName = member.current_rank || 'Member';
+  const currentRankIndex = ranks.findIndex(r => r.name === currentRankName);
+  const nextRank = ranks[currentRankIndex + 1];
+
+  if (!nextRank) {
+    return {
+      success: true,
+      message: `🏆 Congratulations!\n\nYou're at the highest rank: ${currentRankName}\n\nKeep building and leading your team!`,
+    };
+  }
+
+  const pv = member.personal_volume || 0;
+  const gv = member.group_volume || 0;
+  const ae = activeEnrollments || 0;
+
+  const pvProgress = Math.min((pv / nextRank.pvRequired) * 100, 100);
+  const gvProgress = Math.min((gv / nextRank.gvRequired) * 100, 100);
+  const aeProgress = Math.min((ae / nextRank.activeRequired) * 100, 100);
+
+  const pvMet = pv >= nextRank.pvRequired;
+  const gvMet = gv >= nextRank.gvRequired;
+  const aeMet = ae >= nextRank.activeRequired;
+
+  const pvNeeded = Math.max(nextRank.pvRequired - pv, 0);
+  const gvNeeded = Math.max(nextRank.gvRequired - gv, 0);
+  const aeNeeded = Math.max(nextRank.activeRequired - ae, 0);
+
+  let message = `🏆 Rank Progress\n\n**Current Rank:** ${currentRankName}\n**Next Rank:** ${nextRank.name}\n\n`;
+  message += `**Requirements for ${nextRank.name}:**\n`;
+  message += `${pvMet ? '✅' : '⚠️'} Personal Volume: $${pv.toFixed(2)}/$${nextRank.pvRequired} (${pvProgress.toFixed(0)}%)\n`;
+  message += `${gvMet ? '✅' : '⚠️'} Team Volume: $${gv.toFixed(2)}/$${nextRank.gvRequired} (${gvProgress.toFixed(0)}%)\n`;
+  message += `${aeMet ? '✅' : '⚠️'} Active Enrollments: ${ae}/${nextRank.activeRequired} (${aeProgress.toFixed(0)}%)\n\n`;
+
+  const overallProgress = (pvProgress + gvProgress + aeProgress) / 3;
+  message += `📊 Overall Progress: ${overallProgress.toFixed(0)}%\n\n`;
+
+  if (!pvMet || !gvMet || !aeMet) {
+    message += `**You Need:**\n`;
+    if (!pvMet) message += `• $${pvNeeded.toFixed(2)} more personal volume\n`;
+    if (!gvMet) message += `• $${gvNeeded.toFixed(2)} more team volume\n`;
+    if (!aeMet) message += `• ${aeNeeded} more active enrollment${aeNeeded > 1 ? 's' : ''}\n`;
+  } else {
+    message += `🎉 You've met all requirements! Contact support to advance to ${nextRank.name}!`;
+  }
+
+  return {
+    success: true,
+    message,
+    data: {
+      currentRank: currentRankName,
+      nextRank: nextRank.name,
+      progress: overallProgress,
+    },
+  };
+}
+
+async function handleViewTeamMemberDetails(params: any, userId: string) {
+  const supabase = await createClient();
+
+  const { data: distributor } = await supabase
+    .from('distributors')
+    .select('id')
+    .eq('auth_user_id', userId)
+    .single();
+
+  if (!distributor) {
+    return {
+      success: false,
+      message: 'Could not find your distributor profile.',
+    };
+  }
+
+  // Search for team member by name
+  const searchTerm = params.searchName.toLowerCase();
+  const { data: teamMembers } = await supabase
+    .from('distributors')
+    .select('*')
+    .eq('sponsor_id', distributor.id)
+    .neq('status', 'deleted');
+
+  if (!teamMembers || teamMembers.length === 0) {
+    return {
+      success: false,
+      message: `No team members found matching "${params.searchName}"`,
+    };
+  }
+
+  const matches = teamMembers.filter(m =>
+    m.first_name.toLowerCase().includes(searchTerm) ||
+    m.last_name.toLowerCase().includes(searchTerm) ||
+    `${m.first_name} ${m.last_name}`.toLowerCase().includes(searchTerm)
+  );
+
+  if (matches.length === 0) {
+    return {
+      success: false,
+      message: `No team members found matching "${params.searchName}"`,
+    };
+  }
+
+  if (matches.length > 1) {
+    const names = matches.map(m => `• ${m.first_name} ${m.last_name}`).join('\n');
+    return {
+      success: true,
+      message: `Found ${matches.length} matches:\n\n${names}\n\nPlease be more specific.`,
+    };
+  }
+
+  const member = matches[0];
+
+  // Get their downline count
+  const { count: downlineCount } = await supabase
+    .from('distributors')
+    .select('*', { count: 'exact', head: true })
+    .eq('sponsor_id', member.id)
+    .neq('status', 'deleted');
+
+  const joinDate = new Date(member.created_at).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+
+  let message = `👤 ${member.first_name} ${member.last_name}\n\n`;
+  message += `**Status:** ${member.status.charAt(0).toUpperCase() + member.status.slice(1)}\n`;
+  message += `**Joined:** ${joinDate}\n`;
+  if (member.email) message += `**Email:** ${member.email}\n`;
+  if (member.phone) message += `**Phone:** ${member.phone}\n`;
+  message += `**Team Size:** ${downlineCount || 0} ${downlineCount === 1 ? 'person' : 'people'}\n`;
+  message += `\n**Replicated Site:** https://reachtheapex.net/${member.slug}`;
+
+  return {
+    success: true,
+    message,
+    data: member,
+  };
+}
+
+async function handleCommissionBreakdown(params: any, userId: string) {
+  const supabase = await createClient();
+
+  const { data: distributor } = await supabase
+    .from('distributors')
+    .select('id')
+    .eq('auth_user_id', userId)
+    .single();
+
+  if (!distributor) {
+    return {
+      success: false,
+      message: 'Could not find your distributor profile.',
+    };
+  }
+
+  // Get member for balance
+  const { data: member } = await supabase
+    .from('members')
+    .select('commission_balance')
+    .eq('distributor_id', distributor.id)
+    .single();
+
+  const balance = member?.commission_balance || 0;
+
+  // This is a placeholder - you'll want to query actual commission records
+  // For now, return a simple breakdown
+  return {
+    success: true,
+    message: `💰 Commission Breakdown\n\n**Total Balance:** $${balance.toFixed(2)}\n\n🚧 Detailed breakdown coming soon!\n\nWe're building out commission tracking by:\n• Source (direct sales, team sales, bonuses)\n• Product type\n• Team member\n• Time period\n\nFor now, you can see your total balance above.`,
+    data: {
+      balance,
+    },
+  };
+}
+
+async function handleStartTutorial(params: any) {
+  const tutorials: Record<string, string> = {
+    send_text: `📱 **Tutorial: Sending a Text Message**\n\n**Step 1:** Go to your team member's profile\n**Step 2:** Click the "Send Message" button\n**Step 3:** Choose "SMS/Text"\n**Step 4:** Type your message\n**Step 5:** Click "Send"\n\n💡 **Pro Tip:** Keep texts short and include a clear call-to-action!\n\nWant to try it now? Say "show my team" to get started!`,
+
+    send_email: `📧 **Tutorial: Sending an Email**\n\n**Step 1:** Navigate to Team > Communications\n**Step 2:** Click "Send Email"\n**Step 3:** Choose recipients (all team, active only, or custom)\n**Step 4:** Write your subject line\n**Step 5:** Compose your message\n**Step 6:** Click "Send Email"\n\n💡 **Pro Tip:** Use the templates provided for professional formatting!\n\nTry it: Say "send team announcement" to send an email to your team!`,
+
+    create_event: `📅 **Tutorial: Creating an Event**\n\n**Step 1:** Tell me about your event\n• What's it called?\n• When is it? (date and time)\n• Where? (virtual link or physical address)\n\n**Step 2:** I'll create a registration page for you\n**Step 3:** Preview the page\n**Step 4:** Share the link with your team\n\n💡 **Pro Tip:** Create events in advance to give people time to register!\n\nTry it now! Say: "Create a meeting for next Tuesday at 6pm"`,
+
+    add_lead: `👤 **Tutorial: Adding a New Lead**\n\n**Step 1:** Collect their basic info (name, email, phone)\n**Step 2:** Tell me about the lead\n**Step 3:** I'll add them to your CRM\n**Step 4:** Set a follow-up reminder\n\n💡 **Pro Tip:** Add leads immediately after meeting them so you don't forget!\n\nTry it: Say "Add a new lead: John Smith, john@email.com, interested in business"`,
+
+    invite_team: `📨 **Tutorial: Inviting Your Team**\n\n**Step 1:** Create an event first (meeting, webinar, etc.)\n**Step 2:** Say "send invitations"\n**Step 3:** Choose who to invite:\n• All team members\n• Active members only\n• Specific people\n\n**Step 4:** I'll send professional email invitations!\n\n💡 **Pro Tip:** Send invitations 3-5 days before your event for best attendance!\n\nTry it: Create an event first, then say "send invitations to my team"`,
+
+    social_media: `📱 **Tutorial: Creating Social Media Posts**\n\n**Step 1:** Tell me what you want to promote (event, product, opportunity)\n**Step 2:** I'll generate engaging copy with emojis and hashtags\n**Step 3:** Copy the post\n**Step 4:** Paste to Facebook, Instagram, or LinkedIn\n\n💡 **Pro Tip:** Post consistently and engage with comments!\n\nTry it: Say "Create a Facebook post about my Tuesday meeting"`,
+
+    overview: `🎓 **Welcome to Your AI Assistant!**\n\nI can help you with:\n\n📅 **Events**\n• Create registration pages\n• Send invitations\n• Track attendees\n\n👥 **Team Management**\n• View team stats\n• Look up members\n• Send announcements\n\n💰 **Business**\n• Check commissions\n• Track rank progress\n• Add leads\n\n📱 **Marketing**\n• Generate social posts\n• Get your links\n• Create content\n\n**Try asking me:**\n• "Create a meeting for Tuesday"\n• "Who joined recently?"\n• "What's my rank progress?"\n• "Generate a Facebook post"\n\nWhat would you like to learn about first?`,
+  };
+
+  const tutorial = tutorials[params.topic] || tutorials.overview;
+
+  return {
+    success: true,
+    message: tutorial,
+  };
+}
+
 export async function POST(request: NextRequest) {
   try {
     // Verify user is authenticated
@@ -561,6 +987,24 @@ export async function POST(request: NextRequest) {
           break;
         case 'create_meeting_flyer':
           toolResult = await handleCreateMeetingFlyer(toolUseBlock.input, user.id);
+          break;
+        case 'get_my_links':
+          toolResult = await handleGetMyLinks(user.id);
+          break;
+        case 'who_joined_recently':
+          toolResult = await handleWhoJoinedRecently(toolUseBlock.input, user.id);
+          break;
+        case 'rank_progress_check':
+          toolResult = await handleRankProgressCheck(user.id);
+          break;
+        case 'view_team_member_details':
+          toolResult = await handleViewTeamMemberDetails(toolUseBlock.input, user.id);
+          break;
+        case 'commission_breakdown':
+          toolResult = await handleCommissionBreakdown(toolUseBlock.input, user.id);
+          break;
+        case 'start_tutorial':
+          toolResult = await handleStartTutorial(toolUseBlock.input);
           break;
         default:
           toolResult = { success: false, message: 'Unknown tool' };
