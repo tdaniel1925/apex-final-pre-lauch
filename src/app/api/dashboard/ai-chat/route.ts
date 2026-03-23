@@ -23,42 +23,46 @@ const tools: Anthropic.Tool[] = [
       properties: {
         title: {
           type: 'string',
-          description: 'The title/name of the meeting or event',
+          description: 'The title/name of the meeting or event (e.g., "Home Meeting", "Business Overview")',
         },
         description: {
           type: 'string',
-          description: 'Brief description of what the meeting is about',
+          description: 'Brief description of what the meeting is about (optional but recommended)',
         },
         eventDate: {
           type: 'string',
-          description: 'Date of the event in YYYY-MM-DD format',
+          description: 'Date of the event in YYYY-MM-DD format. Convert relative dates like "Tuesday", "next Thursday", "March 25th" to YYYY-MM-DD format based on current date.',
         },
         eventTime: {
           type: 'string',
-          description: 'Time of the event in HH:MM format (24-hour)',
+          description: 'Time of the event in HH:MM format (24-hour). Convert 12-hour times like "6:30 PM" to 24-hour format (e.g., "18:30"). Convert times like "6pm" to "18:00".',
         },
         eventTimezone: {
           type: 'string',
-          description: 'Timezone (default: America/Chicago)',
+          description: 'Timezone for the event. Common values: America/Chicago (Central), America/New_York (Eastern), America/Los_Angeles (Pacific). Default: America/Chicago',
           default: 'America/Chicago',
         },
         durationMinutes: {
           type: 'number',
-          description: 'Duration of the event in minutes (default: 60)',
+          description: 'Duration of the event in minutes. Convert "1 hour" to 60, "90 minutes" to 90, "2 hours" to 120. Default: 60',
           default: 60,
         },
         locationType: {
           type: 'string',
-          enum: ['virtual', 'physical'],
-          description: 'Whether the event is virtual or in-person',
+          enum: ['virtual', 'physical', 'hybrid'],
+          description: 'Type of meeting location: "virtual" for online-only (Zoom/Teams), "physical" for in-person only, "hybrid" for both online and in-person options',
         },
         virtualLink: {
           type: 'string',
-          description: 'Zoom/Teams link if virtual meeting',
+          description: 'Zoom/Teams/Google Meet link for virtual or hybrid meetings. Required if locationType is virtual or hybrid.',
+        },
+        physicalAddress: {
+          type: 'string',
+          description: 'Full physical address for in-person or hybrid meetings (e.g., "281 Main Street, Dallas, Texas 77494"). Required if locationType is physical or hybrid.',
         },
         maxAttendees: {
           type: 'number',
-          description: 'Maximum number of attendees (optional)',
+          description: 'Maximum number of attendees allowed to register (optional). Leave empty for unlimited.',
         },
       },
       required: ['title', 'eventDate', 'eventTime', 'locationType'],
@@ -100,15 +104,63 @@ async function handleCreateMeetingRegistration(params: any, userId: string) {
     };
   }
 
+  // Validate location-specific requirements
+  if (params.locationType === 'virtual' && !params.virtualLink) {
+    return {
+      success: false,
+      message: '❌ Virtual meetings require a Zoom/Teams link. Please provide the meeting link.',
+    };
+  }
+
+  if (params.locationType === 'physical' && !params.physicalAddress) {
+    return {
+      success: false,
+      message: '❌ In-person meetings require a physical address. Please provide the meeting location.',
+    };
+  }
+
+  if (params.locationType === 'hybrid' && (!params.virtualLink || !params.physicalAddress)) {
+    return {
+      success: false,
+      message: '❌ Hybrid meetings require both a virtual link AND a physical address. Please provide both.',
+    };
+  }
+
+  // Validate date is not in the past
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const eventDate = new Date(params.eventDate);
+  eventDate.setHours(0, 0, 0, 0);
+
+  if (eventDate < today) {
+    return {
+      success: false,
+      message: `❌ The event date (${params.eventDate}) is in the past. Please choose a future date.`,
+    };
+  }
+
   // Generate slug from title
-  const slug = params.title
+  let slug = params.title
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-|-$/g, '');
 
+  // Check if slug already exists for this distributor
+  const { data: existingMeeting } = await supabase
+    .from('meeting_events')
+    .select('id')
+    .eq('distributor_id', distributor.id)
+    .eq('registration_slug', slug)
+    .single();
+
+  // If slug exists, append timestamp to make it unique
+  if (existingMeeting) {
+    slug = `${slug}-${Date.now()}`;
+  }
+
   // Parse physical address if provided
   let physicalAddress = null;
-  if (params.locationType === 'physical' && params.physicalAddress) {
+  if ((params.locationType === 'physical' || params.locationType === 'hybrid') && params.physicalAddress) {
     physicalAddress = params.physicalAddress;
   }
 
@@ -137,15 +189,25 @@ async function handleCreateMeetingRegistration(params: any, userId: string) {
   if (error) {
     return {
       success: false,
-      message: `Failed to create meeting: ${error.message}`,
+      message: `❌ Failed to create meeting: ${error.message}`,
     };
   }
 
   const registrationUrl = `https://reachtheapex.net/${distributor.slug}/register/${slug}`;
 
+  // Build success message based on location type
+  let locationInfo = '';
+  if (params.locationType === 'virtual') {
+    locationInfo = `🔗 Virtual: ${params.virtualLink}`;
+  } else if (params.locationType === 'physical') {
+    locationInfo = `📍 Location: ${physicalAddress}`;
+  } else if (params.locationType === 'hybrid') {
+    locationInfo = `📍 In-Person: ${physicalAddress}\n🔗 Virtual: ${params.virtualLink}`;
+  }
+
   return {
     success: true,
-    message: `✅ Registration page created successfully!\n\n📍 Your page: ${registrationUrl}\n📅 ${params.title}\n🗓️ ${params.eventDate} at ${params.eventTime}\n\nWould you like to:\n• Preview the page\n• Send invitations\n• Create a flyer`,
+    message: `✅ Registration page created successfully!\n\n🔗 Your page: ${registrationUrl}\n\n📅 ${params.title}\n🗓️ ${params.eventDate} at ${params.eventTime} ${params.eventTimezone || 'America/Chicago'}\n⏱️ Duration: ${params.durationMinutes || 60} minutes\n${locationInfo}${params.maxAttendees ? `\n👥 Max attendees: ${params.maxAttendees}` : ''}\n\nWhat would you like to do next?\n• Preview the registration page\n• Send invitations to your team\n• Create a promotional flyer`,
     data: {
       meeting,
       url: registrationUrl,
