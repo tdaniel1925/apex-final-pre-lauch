@@ -9,6 +9,7 @@
 import { useState, useRef, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import MermaidDiagram from '@/components/MermaidDiagram';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -95,9 +96,18 @@ function MarkdownMessage({ content, isUser }: { content: string; isUser: boolean
             />
           ),
 
-          // Custom code styles
+          // Custom code styles with Mermaid diagram support
           code: ({node, ...props}: any) => {
             const inline = !(props.className && props.className.includes('language-'));
+            const isMermaid = props.className && props.className.includes('language-mermaid');
+
+            // Render Mermaid diagrams
+            if (isMermaid && props.children) {
+              const chart = String(props.children).trim();
+              return <MermaidDiagram chart={chart} className="my-4" />;
+            }
+
+            // Regular code blocks
             return inline ?
               <code className={`px-1 py-0.5 rounded ${isUser ? 'bg-blue-700' : 'bg-gray-200'}`} {...props} /> :
               <code className={`block px-3 py-2 rounded my-2 ${isUser ? 'bg-blue-700' : 'bg-gray-200'}`} {...props} />;
