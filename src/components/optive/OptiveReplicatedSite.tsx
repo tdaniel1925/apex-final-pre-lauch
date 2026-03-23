@@ -28,29 +28,57 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
     setMounted(true);
   }, []);
 
-  // Countdown Timer for Next Live Event
+  // Countdown Timer for Next Live Event (Tuesday/Thursday at 6:30 PM Central)
   useEffect(() => {
-    // Set next event time - every Monday at 8:00 PM EST
     const getNextEventDate = () => {
+      // Get current time in Central timezone
       const now = new Date();
-      const dayOfWeek = now.getDay(); // 0 = Sunday, 1 = Monday
-      const daysUntilMonday = dayOfWeek === 0 ? 1 : dayOfWeek === 1 ? 7 : (8 - dayOfWeek);
+      const centralTime = new Date(now.toLocaleString('en-US', { timeZone: 'America/Chicago' }));
+      const dayOfWeek = centralTime.getDay(); // 0 = Sunday, 2 = Tuesday, 4 = Thursday
+      const hours = centralTime.getHours();
+      const minutes = centralTime.getMinutes();
+      const currentMinutes = hours * 60 + minutes;
 
-      const nextMonday = new Date(now);
-      nextMonday.setDate(now.getDate() + daysUntilMonday);
-      nextMonday.setHours(20, 0, 0, 0); // 8:00 PM
+      const eventTime = 18 * 60 + 30; // 6:30 PM in minutes
 
-      // If it's Monday but past 8 PM, set to next Monday
-      if (dayOfWeek === 1 && now.getHours() >= 20) {
-        nextMonday.setDate(nextMonday.getDate() + 7);
+      let nextEventDay: number;
+
+      // If we're on Tuesday before event time, event is today
+      if (dayOfWeek === 2 && currentMinutes < eventTime) {
+        nextEventDay = 0;
+      }
+      // If we're on Tuesday after event time, next event is Thursday
+      else if (dayOfWeek === 2 && currentMinutes >= eventTime) {
+        nextEventDay = 2;
+      }
+      // If we're on Thursday before event time, event is today
+      else if (dayOfWeek === 4 && currentMinutes < eventTime) {
+        nextEventDay = 0;
+      }
+      // If we're on Thursday after event time, next event is next Tuesday
+      else if (dayOfWeek === 4 && currentMinutes >= eventTime) {
+        nextEventDay = 5;
+      }
+      // Otherwise, calculate days until next Tuesday or Thursday
+      else {
+        const daysUntilTuesday = (2 - dayOfWeek + 7) % 7 || 7;
+        const daysUntilThursday = (4 - dayOfWeek + 7) % 7 || 7;
+        nextEventDay = daysUntilTuesday < daysUntilThursday ? daysUntilTuesday : daysUntilThursday;
       }
 
-      return nextMonday;
+      // Create the next event date
+      const nextEvent = new Date(centralTime);
+      nextEvent.setDate(centralTime.getDate() + nextEventDay);
+      nextEvent.setHours(18, 30, 0, 0); // 6:30 PM Central
+
+      return nextEvent;
     };
 
     const calculateTimeLeft = () => {
       const eventDate = getNextEventDate();
-      const difference = eventDate.getTime() - new Date().getTime();
+      const now = new Date();
+      const centralNow = new Date(now.toLocaleString('en-US', { timeZone: 'America/Chicago' }));
+      const difference = eventDate.getTime() - centralNow.getTime();
 
       if (difference > 0) {
         return {
