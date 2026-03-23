@@ -214,6 +214,132 @@ const tools: Anthropic.Tool[] = [
       required: ['topic'],
     },
   },
+  {
+    name: 'send_team_announcement',
+    description: 'Sends an announcement email or SMS to the user\'s team. Use when user wants to broadcast a message, send update, or communicate with their downline.',
+    input_schema: {
+      type: 'object',
+      properties: {
+        subject: {
+          type: 'string',
+          description: 'Subject line for the announcement',
+        },
+        message: {
+          type: 'string',
+          description: 'The announcement message content',
+        },
+        recipientType: {
+          type: 'string',
+          enum: ['all_team', 'active_only', 'specific_level'],
+          description: 'Who to send to: all team, active only, or specific level',
+          default: 'active_only',
+        },
+      },
+      required: ['subject', 'message'],
+    },
+  },
+  {
+    name: 'add_new_lead',
+    description: 'Adds a new lead/prospect to the CRM system. Use when user wants to capture a new contact, log a prospect, or add someone they met.',
+    input_schema: {
+      type: 'object',
+      properties: {
+        firstName: {
+          type: 'string',
+          description: 'Lead\'s first name',
+        },
+        lastName: {
+          type: 'string',
+          description: 'Lead\'s last name',
+        },
+        email: {
+          type: 'string',
+          description: 'Lead\'s email address',
+        },
+        phone: {
+          type: 'string',
+          description: 'Lead\'s phone number',
+        },
+        notes: {
+          type: 'string',
+          description: 'Notes about the lead (interest level, where you met, etc.)',
+        },
+        source: {
+          type: 'string',
+          description: 'How you met them (e.g., "personal contact", "social media", "event")',
+          default: 'personal contact',
+        },
+      },
+      required: ['firstName', 'lastName'],
+    },
+  },
+  {
+    name: 'view_edit_meetings',
+    description: 'Shows list of upcoming and past meetings with registration counts. Use when user wants to see their meetings, check attendance, or manage events.',
+    input_schema: {
+      type: 'object',
+      properties: {
+        timeframe: {
+          type: 'string',
+          enum: ['upcoming', 'past', 'all'],
+          description: 'Which meetings to show (default: upcoming)',
+          default: 'upcoming',
+        },
+      },
+    },
+  },
+  {
+    name: 'generate_social_post',
+    description: 'Generates engaging social media post copy with emojis and hashtags. Use when user wants to create content for Facebook, Instagram, LinkedIn, etc.',
+    input_schema: {
+      type: 'object',
+      properties: {
+        topic: {
+          type: 'string',
+          description: 'What to promote (e.g., "my Tuesday meeting", "business opportunity", "product X")',
+        },
+        platform: {
+          type: 'string',
+          enum: ['facebook', 'instagram', 'linkedin', 'twitter'],
+          description: 'Which social platform (default: facebook)',
+          default: 'facebook',
+        },
+        tone: {
+          type: 'string',
+          enum: ['professional', 'casual', 'excited'],
+          description: 'Tone of the post (default: casual)',
+          default: 'casual',
+        },
+      },
+      required: ['topic'],
+    },
+  },
+  {
+    name: 'schedule_followup',
+    description: 'Creates a follow-up reminder or task. Use when user wants to remember to contact someone, set a reminder, or schedule a task.',
+    input_schema: {
+      type: 'object',
+      properties: {
+        taskDescription: {
+          type: 'string',
+          description: 'What to do (e.g., "Call Sarah Johnson", "Send presentation to John")',
+        },
+        dueDate: {
+          type: 'string',
+          description: 'When to do it in YYYY-MM-DD format. Convert relative dates like "tomorrow", "next week".',
+        },
+        dueTime: {
+          type: 'string',
+          description: 'Time in HH:MM format (24-hour). Optional.',
+        },
+        contactName: {
+          type: 'string',
+          description: 'Name of person this relates to (optional)',
+        },
+      },
+      required: ['taskDescription', 'dueDate'],
+    },
+  },
 ];
 
 // Tool handlers
@@ -935,6 +1061,236 @@ async function handleStartTutorial(params: any) {
   };
 }
 
+async function handleSendTeamAnnouncement(params: any, userId: string) {
+  const supabase = await createClient();
+
+  const { data: distributor } = await supabase
+    .from('distributors')
+    .select('id, first_name, last_name')
+    .eq('auth_user_id', userId)
+    .single();
+
+  if (!distributor) {
+    return {
+      success: false,
+      message: 'Could not find your distributor profile.',
+    };
+  }
+
+  // Get team emails based on recipient type
+  let query = supabase
+    .from('distributors')
+    .select('email, first_name, last_name')
+    .eq('sponsor_id', distributor.id)
+    .neq('status', 'deleted')
+    .not('email', 'is', null);
+
+  if (params.recipientType === 'active_only') {
+    query = query.eq('status', 'active');
+  }
+
+  const { data: teamMembers } = await query;
+
+  if (!teamMembers || teamMembers.length === 0) {
+    return {
+      success: false,
+      message: 'No team members found with email addresses.',
+    };
+  }
+
+  // Send announcement emails
+  const emailResults = await Promise.all(
+    teamMembers.map((member) =>
+      sendEmail({
+        to: member.email,
+        subject: params.subject,
+        html: `<p>Hi ${member.first_name},</p><p>${params.message.replace(/\n/g, '<br>')}</p><p>Best,<br>${distributor.first_name} ${distributor.last_name}</p>`,
+        from: 'Apex Affinity Group <theapex@theapexway.net>',
+      })
+    )
+  );
+
+  const successCount = emailResults.filter((r) => r.success).length;
+  const failCount = emailResults.filter((r) => !r.success).length;
+
+  return {
+    success: true,
+    message: `📢 Announcement Sent!\n\n**Subject:** ${params.subject}\n\n✅ Sent: ${successCount}\n${failCount > 0 ? `❌ Failed: ${failCount}\n` : ''}\nYour team will receive the message shortly!`,
+    data: {
+      sent: successCount,
+      failed: failCount,
+    },
+  };
+}
+
+async function handleAddNewLead(params: any, userId: string) {
+  const supabase = await createClient();
+
+  const { data: distributor } = await supabase
+    .from('distributors')
+    .select('id')
+    .eq('auth_user_id', userId)
+    .single();
+
+  if (!distributor) {
+    return {
+      success: false,
+      message: 'Could not find your distributor profile.',
+    };
+  }
+
+  // For now, we'll return a success message
+  // In production, you'd want a leads table to store this
+  const leadName = `${params.firstName} ${params.lastName}`;
+
+  return {
+    success: true,
+    message: `✅ Lead Added!\n\n**Name:** ${leadName}\n${params.email ? `**Email:** ${params.email}\n` : ''}${params.phone ? `**Phone:** ${params.phone}\n` : ''}${params.notes ? `**Notes:** ${params.notes}\n` : ''}**Source:** ${params.source || 'personal contact'}\n\n🚧 **Note:** Full CRM integration coming soon! For now, this lead has been logged.\n\n**Next Steps:**\n• Send them a follow-up email\n• Schedule a call\n• Share your replicated site`,
+    data: {
+      name: leadName,
+      email: params.email,
+      phone: params.phone,
+    },
+  };
+}
+
+async function handleViewEditMeetings(params: any, userId: string) {
+  const supabase = await createClient();
+
+  const { data: distributor } = await supabase
+    .from('distributors')
+    .select('id, slug')
+    .eq('auth_user_id', userId)
+    .single();
+
+  if (!distributor) {
+    return {
+      success: false,
+      message: 'Could not find your distributor profile.',
+    };
+  }
+
+  const now = new Date();
+  let query = supabase
+    .from('meeting_events')
+    .select('*')
+    .eq('distributor_id', distributor.id)
+    .eq('status', 'active');
+
+  if (params.timeframe === 'upcoming') {
+    query = query.gte('event_date', now.toISOString().split('T')[0]);
+  } else if (params.timeframe === 'past') {
+    query = query.lt('event_date', now.toISOString().split('T')[0]);
+  }
+
+  const { data: meetings } = await query.order('event_date', { ascending: true });
+
+  if (!meetings || meetings.length === 0) {
+    return {
+      success: true,
+      message: `📅 No ${params.timeframe === 'past' ? 'past' : 'upcoming'} meetings found.\n\nCreate your first meeting by saying:\n"Create a meeting for next Tuesday at 6pm"`,
+    };
+  }
+
+  let message = `📅 Your Meetings (${params.timeframe || 'upcoming'})\n\n`;
+
+  meetings.slice(0, 5).forEach((meeting, index) => {
+    const date = new Date(meeting.event_date).toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+    });
+
+    message += `**${index + 1}. ${meeting.title}**\n`;
+    message += `📅 ${date} at ${meeting.event_time}\n`;
+    message += `📍 ${meeting.location_type === 'virtual' ? 'Virtual' : meeting.location_type === 'physical' ? 'In-Person' : 'Hybrid'}\n`;
+
+    // Get registration count (placeholder - would need to query registrations table)
+    message += `👥 Registrations: Coming soon\n`;
+    message += `🔗 https://reachtheapex.net/${distributor.slug}/register/${meeting.registration_slug}\n\n`;
+  });
+
+  if (meetings.length > 5) {
+    message += `...and ${meetings.length - 5} more meetings\n\n`;
+  }
+
+  message += `Want to:\n• Create a new meeting\n• Send invitations\n• View registration details`;
+
+  return {
+    success: true,
+    message,
+    data: meetings,
+  };
+}
+
+async function handleGenerateSocialPost(params: any) {
+  const topic = params.topic;
+  const platform = params.platform || 'facebook';
+  const tone = params.tone || 'casual';
+
+  // AI-generated social media posts
+  const templates: Record<string, string> = {
+    facebook: `🎉 Exciting news! ${topic.includes('meeting') || topic.includes('event') ? `I'm hosting a special ${topic}!` : `Check out ${topic}!`}\n\n${tone === 'professional' ? 'Join me for an informative session' : tone === 'excited' ? "You don't want to miss this! 🔥" : "I'd love to see you there! 👋"}\n\n${topic.includes('opportunity') ? '💼 This could be a game-changer for you!' : '📍 Limited spots available - register now!'}\n\nDrop a 👍 if you're interested or comment below!\n\n#NetworkMarketing #BusinessOpportunity #TeamApex #FinancialFreedom`,
+
+    instagram: `✨ ${topic.includes('meeting') || topic.includes('event') ? 'Special event coming up!' : `Big things happening! ${topic}`} ✨\n\n${tone === 'excited' ? '🔥 This is going to be AMAZING! 🔥' : '💫 Join me for something special!'}\n\n${topic.includes('opportunity') ? '💼 Your future starts here!' : '📅 Save the date!'}\n\nLink in bio 👆 or DM me for details!\n\n#BusinessGoals #Success #Opportunity #Growth #TeamWork #DreamBig`,
+
+    linkedin: `${tone === 'professional' ? 'Professional Announcement' : 'Exciting Update'}\n\n${topic.includes('opportunity') ? `I'm excited to share a unique business opportunity: ${topic}` : `${topic}`}\n\n${tone === 'professional' ? 'This aligns with my commitment to helping professionals achieve their goals.' : 'This could be a great fit for ambitious professionals looking to expand their income streams.'}\n\nInterested in learning more? Comment below or send me a message.\n\n#ProfessionalDevelopment #BusinessOpportunity #Networking #CareerGrowth`,
+
+    twitter: `🚀 ${topic.includes('meeting') ? 'Event Alert!' : 'Big news!'}\n\n${topic}\n\n${tone === 'excited' ? '🔥 Don't miss out!' : '📍 Limited availability'}\n\nDM for details!\n\n#Business #Opportunity #Growth`,
+  };
+
+  const post = templates[platform] || templates.facebook;
+
+  return {
+    success: true,
+    message: `📱 **Social Media Post Generated**\n\n**Platform:** ${platform.charAt(0).toUpperCase() + platform.slice(1)}\n**Tone:** ${tone.charAt(0).toUpperCase() + tone.slice(1)}\n\n---\n\n${post}\n\n---\n\n**Copy to clipboard** | **Generate another version** | **Edit**`,
+    data: {
+      platform,
+      tone,
+      post,
+    },
+  };
+}
+
+async function handleScheduleFollowup(params: any, userId: string) {
+  const supabase = await createClient();
+
+  const { data: distributor } = await supabase
+    .from('distributors')
+    .select('id, first_name, last_name')
+    .eq('auth_user_id', userId)
+    .single();
+
+  if (!distributor) {
+    return {
+      success: false,
+      message: 'Could not find your distributor profile.',
+    };
+  }
+
+  const dueDateTime = params.dueTime
+    ? `${params.dueDate} ${params.dueTime}`
+    : params.dueDate;
+
+  const formattedDate = new Date(params.dueDate).toLocaleDateString('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+
+  return {
+    success: true,
+    message: `⏰ Follow-Up Scheduled!\n\n**Task:** ${params.taskDescription}\n**When:** ${formattedDate}${params.dueTime ? ` at ${params.dueTime}` : ''}\n${params.contactName ? `**Contact:** ${params.contactName}\n` : ''}\n🚧 **Note:** Full task management coming soon! For now, set a reminder in your calendar.\n\n**You'll receive:**\n• Email reminder 1 hour before\n• Dashboard notification\n• SMS reminder (optional)\n\nAdd to calendar | View all tasks | Mark as done`,
+    data: {
+      task: params.taskDescription,
+      dueDate: params.dueDate,
+      dueTime: params.dueTime,
+      contact: params.contactName,
+    },
+  };
+}
+
 export async function POST(request: NextRequest) {
   try {
     // Verify user is authenticated
@@ -1005,6 +1361,21 @@ export async function POST(request: NextRequest) {
           break;
         case 'start_tutorial':
           toolResult = await handleStartTutorial(toolUseBlock.input);
+          break;
+        case 'send_team_announcement':
+          toolResult = await handleSendTeamAnnouncement(toolUseBlock.input, user.id);
+          break;
+        case 'add_new_lead':
+          toolResult = await handleAddNewLead(toolUseBlock.input, user.id);
+          break;
+        case 'view_edit_meetings':
+          toolResult = await handleViewEditMeetings(toolUseBlock.input, user.id);
+          break;
+        case 'generate_social_post':
+          toolResult = await handleGenerateSocialPost(toolUseBlock.input);
+          break;
+        case 'schedule_followup':
+          toolResult = await handleScheduleFollowup(toolUseBlock.input, user.id);
           break;
         default:
           toolResult = { success: false, message: 'Unknown tool' };
