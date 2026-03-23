@@ -23,6 +23,72 @@ export default async function AIChatTestPage() {
     redirect('/login');
   }
 
+  // Fetch user context for personalized greeting
+  const { data: distributor } = await supabase
+    .from('distributors')
+    .select('id, first_name, last_name, slug, current_rank, personal_bv_monthly, status, created_at, sponsor_id')
+    .eq('auth_user_id', user.id)
+    .single();
+
+  // Get team count
+  const { count: teamCount } = await supabase
+    .from('distributors')
+    .select('id', { count: 'exact', head: true })
+    .eq('sponsor_id', distributor?.id || '')
+    .neq('status', 'deleted');
+
+  // Get recent team joins (last 7 days)
+  const sevenDaysAgo = new Date();
+  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+
+  const { count: recentJoins } = await supabase
+    .from('distributors')
+    .select('id', { count: 'exact', head: true })
+    .eq('sponsor_id', distributor?.id || '')
+    .gte('created_at', sevenDaysAgo.toISOString());
+
+  // Get monthly commissions
+  const startOfMonth = new Date();
+  startOfMonth.setDate(1);
+  startOfMonth.setHours(0, 0, 0, 0);
+
+  const { data: commissions } = await supabase
+    .from('commissions')
+    .select('amount')
+    .eq('distributor_id', distributor?.id || '')
+    .gte('created_at', startOfMonth.toISOString());
+
+  const monthlyCommissions = commissions?.reduce((sum, c) => sum + c.amount, 0) || 0;
+
+  // Calculate rank progress
+  const rankRequirements: Record<string, { personal: number; group: number; next: string }> = {
+    starter: { personal: 150, group: 300, next: 'Bronze' },
+    bronze: { personal: 500, group: 1500, next: 'Silver' },
+    silver: { personal: 1200, group: 5000, next: 'Gold' },
+    gold: { personal: 2000, group: 15000, next: 'Platinum' },
+    platinum: { personal: 3000, group: 30000, next: 'Ruby' },
+    ruby: { personal: 4000, group: 60000, next: 'Diamond' },
+    diamond: { personal: 5000, group: 120000, next: 'Crown' },
+    crown: { personal: 6000, group: 250000, next: 'Elite' },
+  };
+
+  const currentRank = distributor?.current_rank || 'starter';
+  const requirements = rankRequirements[currentRank];
+  const personalBV = distributor?.personal_bv_monthly || 0;
+  const personalProgress = requirements ? Math.min(100, Math.round((personalBV / requirements.personal) * 100)) : 0;
+
+  // Build initial context
+  const initialContext = {
+    firstName: distributor?.first_name || 'there',
+    currentRank,
+    personalBV,
+    teamCount: teamCount || 0,
+    monthlyCommissions,
+    recentJoins: recentJoins || 0,
+    nextRank: requirements?.next || null,
+    personalProgress,
+  };
+
   return (
     <div className="p-6">
       {/* Test Banner */}
@@ -39,7 +105,7 @@ export default async function AIChatTestPage() {
       </div>
 
       {/* AI Chat Interface */}
-      <AIChatInterface />
+      <AIChatInterface initialContext={initialContext} />
 
       {/* Instructions */}
       <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">

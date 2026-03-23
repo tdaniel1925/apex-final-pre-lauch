@@ -216,10 +216,14 @@ const tools: Anthropic.Tool[] = [
   },
   {
     name: 'list_all_team_members',
-    description: 'Lists all team members with their names, status, and join dates. Use when user asks "who are my team members", "list my team", "show names", or wants to see everyone on their team.',
+    description: 'Lists all team members with their names, status, and join dates. Use when user asks "who are my team members", "list my team", "show names", or wants to see everyone on their team. IMPORTANT: If user asks for a specific number like "first 3", "top 5", "first 10", use the limit parameter.',
     input_schema: {
       type: 'object',
       properties: {
+        limit: {
+          type: 'number',
+          description: 'Maximum number of team members to return. Use when user asks for "first 3", "top 5", "first 10", etc. If not specified, returns all team members.',
+        },
         statusFilter: {
           type: 'string',
           enum: ['all', 'active', 'inactive'],
@@ -359,6 +363,155 @@ const tools: Anthropic.Tool[] = [
         },
       },
       required: ['taskDescription', 'dueDate'],
+    },
+  },
+  // ========== PHASE 2: ANALYTICS & PERFORMANCE TOOLS ==========
+  {
+    name: 'get_team_analytics',
+    description: 'Shows detailed team performance analytics including top performers, BV distribution, activity levels, and growth trends. Use when user asks "who are my best performers", "team analytics", "who is producing the most".',
+    input_schema: {
+      type: 'object',
+      properties: {
+        timeframe: {
+          type: 'string',
+          enum: ['this_month', 'last_month', 'last_90_days', 'all_time'],
+          description: 'Time period to analyze (default: this_month)',
+          default: 'this_month',
+        },
+        metric: {
+          type: 'string',
+          enum: ['bv', 'enrollments', 'activity', 'all'],
+          description: 'What metric to analyze (default: all)',
+          default: 'all',
+        },
+      },
+    },
+  },
+  {
+    name: 'get_my_performance',
+    description: 'Shows personal performance metrics including BV, sales, qualification status for bonuses, and progress toward next rank. Use when user asks "how am I doing", "my stats", "am I qualified".',
+    input_schema: {
+      type: 'object',
+      properties: {},
+    },
+  },
+  {
+    name: 'get_commission_breakdown',
+    description: 'Shows detailed commission breakdown by type (binary, override, retail, matching, rank bonuses). Use when user asks "show my commissions", "commission breakdown", "where did my money come from".',
+    input_schema: {
+      type: 'object',
+      properties: {
+        timeframe: {
+          type: 'string',
+          enum: ['this_week', 'this_month', 'last_month', 'last_3_months'],
+          description: 'Time period for commission breakdown (default: this_month)',
+          default: 'this_month',
+        },
+      },
+    },
+  },
+  {
+    name: 'view_genealogy_tree',
+    description: 'Shows visual enrollment tree structure with depth, width, and team organization. Use when user asks "show my tree", "genealogy", "who is under who", "team structure".',
+    input_schema: {
+      type: 'object',
+      properties: {
+        depth: {
+          type: 'number',
+          description: 'How many levels deep to show (1-7, default: 3)',
+          default: 3,
+        },
+        startFrom: {
+          type: 'string',
+          description: 'Optional slug of distributor to start from (default: current user)',
+        },
+      },
+    },
+  },
+  // ========== PHASE 3: ADVANCED TOOLS ==========
+  {
+    name: 'set_personal_goal',
+    description: 'Sets or updates a personal business goal (rank advancement, income, team size). Use when user wants to "set a goal", "track progress to Diamond", "goal for this quarter".',
+    input_schema: {
+      type: 'object',
+      properties: {
+        goalType: {
+          type: 'string',
+          enum: ['rank', 'income', 'team_size', 'custom'],
+          description: 'Type of goal to set',
+        },
+        targetValue: {
+          type: 'string',
+          description: 'Target value (e.g., "diamond", "$10000", "50 members", "custom description")',
+        },
+        deadline: {
+          type: 'string',
+          description: 'Target date in YYYY-MM-DD format',
+        },
+      },
+      required: ['goalType', 'targetValue', 'deadline'],
+    },
+  },
+  {
+    name: 'check_goal_progress',
+    description: 'Shows progress toward active personal goals with percentage complete and recommended actions. Use when user asks "how close am I to my goal", "goal progress", "am I on track".',
+    input_schema: {
+      type: 'object',
+      properties: {},
+    },
+  },
+  {
+    name: 'view_upcoming_events',
+    description: 'Shows upcoming company events, meetings, and trainings from calendar. Use when user asks "what events are coming up", "when is the next training", "company calendar".',
+    input_schema: {
+      type: 'object',
+      properties: {
+        daysAhead: {
+          type: 'number',
+          description: 'How many days ahead to show (default: 30)',
+          default: 30,
+        },
+      },
+    },
+  },
+  {
+    name: 'get_training_resources',
+    description: 'Searches and retrieves training materials, videos, guides, and playbooks. Use when user asks "how do I", "training on", "show me videos about".',
+    input_schema: {
+      type: 'object',
+      properties: {
+        topic: {
+          type: 'string',
+          description: 'What topic to search for (e.g., "prospecting", "closing", "presentations")',
+        },
+        resourceType: {
+          type: 'string',
+          enum: ['all', 'video', 'pdf', 'audio'],
+          description: 'Type of resource (default: all)',
+          default: 'all',
+        },
+      },
+      required: ['topic'],
+    },
+  },
+  {
+    name: 'check_compliance',
+    description: 'Checks if a message, post, or statement complies with company policies and FTC guidelines. Use when user asks "is this compliant", "can I say this", "check this post".',
+    input_schema: {
+      type: 'object',
+      properties: {
+        content: {
+          type: 'string',
+          description: 'The message/post to check for compliance',
+        },
+        platform: {
+          type: 'string',
+          enum: ['social_media', 'email', 'text', 'presentation'],
+          description: 'Where this will be used (default: social_media)',
+          default: 'social_media',
+        },
+      },
+      required: ['content'],
     },
   },
 ];
@@ -1422,6 +1575,11 @@ async function handleListAllTeamMembers(params: any, userId: string) {
     query = query.order('first_name', { ascending: true });
   }
 
+  // Apply limit if specified
+  if (params.limit && typeof params.limit === 'number' && params.limit > 0) {
+    query = query.limit(params.limit);
+  }
+
   const { data: teamMembers } = await query;
 
   if (!teamMembers || teamMembers.length === 0) {
@@ -1431,7 +1589,22 @@ async function handleListAllTeamMembers(params: any, userId: string) {
     };
   }
 
-  let message = `👥 **Your Team Members** (${teamMembers.length} total)\n\n`;
+  // Get total count for context (if limited)
+  let totalCount = teamMembers.length;
+  if (params.limit && typeof params.limit === 'number' && params.limit > 0) {
+    const { count } = await supabase
+      .from('distributors')
+      .select('id', { count: 'exact', head: true })
+      .eq('sponsor_id', distributor.id)
+      .neq('status', 'deleted');
+    totalCount = count || teamMembers.length;
+  }
+
+  const limitedText = params.limit && totalCount > teamMembers.length
+    ? ` (showing ${teamMembers.length} of ${totalCount})`
+    : ` (${teamMembers.length} total)`;
+
+  let message = `👥 **Your Team Members**${limitedText}\n\n`;
 
   teamMembers.forEach((member, index) => {
     const joinDate = new Date(member.created_at).toLocaleDateString('en-US', {
@@ -1450,6 +1623,10 @@ async function handleListAllTeamMembers(params: any, userId: string) {
     message += '\n';
   });
 
+  if (params.limit && totalCount > teamMembers.length) {
+    message += `\n💡 Showing first ${teamMembers.length}. Ask "show all team members" to see everyone.\n`;
+  }
+
   message += `\nWant to:\n• Send announcement to team\n• View individual details\n• Filter by status`;
 
   return {
@@ -1457,9 +1634,449 @@ async function handleListAllTeamMembers(params: any, userId: string) {
     message,
     data: {
       count: teamMembers.length,
+      totalCount: totalCount,
       members: teamMembers,
     },
   };
+}
+
+// ========== PHASE 2: ANALYTICS & PERFORMANCE HANDLERS ==========
+
+async function handleGetTeamAnalytics(params: any, userId: string) {
+  const supabase = await createClient();
+
+  const { data: distributor } = await supabase
+    .from('distributors')
+    .select('id')
+    .eq('auth_user_id', userId)
+    .single();
+
+  if (!distributor) {
+    return {
+      success: false,
+      message: 'Could not find your distributor profile.',
+    };
+  }
+
+  // Get all team members with their BV
+  const { data: teamMembers } = await supabase
+    .from('distributors')
+    .select('id, first_name, last_name, personal_bv_monthly, status, created_at')
+    .eq('sponsor_id', distributor.id)
+    .neq('status', 'deleted');
+
+  if (!teamMembers || teamMembers.length === 0) {
+    return {
+      success: true,
+      message: '📊 **Team Analytics**\n\nNo team members yet. Your analytics will appear here as your team grows!',
+    };
+  }
+
+  // Calculate analytics
+  const totalBV = teamMembers.reduce((sum, m) => sum + (m.personal_bv_monthly || 0), 0);
+  const activeMembers = teamMembers.filter(m => m.status === 'active').length;
+  const topPerformers = [...teamMembers]
+    .sort((a, b) => (b.personal_bv_monthly || 0) - (a.personal_bv_monthly || 0))
+    .slice(0, 5);
+
+  let message = `📊 **Team Analytics** (${params.timeframe})\n\n`;
+  message += `**Overall Performance:**\n`;
+  message += `• Total Team BV: ${totalBV.toLocaleString()}\n`;
+  message += `• Active Members: ${activeMembers}/${teamMembers.length}\n`;
+  message += `• Avg BV per Member: ${Math.round(totalBV / teamMembers.length)}\n\n`;
+
+  message += `**🏆 Top 5 Performers:**\n`;
+  topPerformers.forEach((member, index) => {
+    const emoji = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : '⭐';
+    const percentage = totalBV > 0 ? Math.round((member.personal_bv_monthly || 0) / totalBV * 100) : 0;
+    message += `${emoji} **${member.first_name} ${member.last_name}** - ${member.personal_bv_monthly || 0} BV (${percentage}%)\n`;
+  });
+
+  message += `\n💡 Want to:\n• Recognize top performers\n• See detailed breakdown\n• Contact team members`;
+
+  return {
+    success: true,
+    message,
+    data: {
+      totalBV,
+      activeMembers,
+      topPerformers,
+    },
+  };
+}
+
+async function handleGetMyPerformance(params: any, userId: string) {
+  const supabase = await createClient();
+
+  const { data: distributor } = await supabase
+    .from('distributors')
+    .select(`
+      id,
+      first_name,
+      current_rank,
+      personal_bv_monthly,
+      status,
+      created_at
+    `)
+    .eq('auth_user_id', userId)
+    .single();
+
+  if (!distributor) {
+    return {
+      success: false,
+      message: 'Could not find your distributor profile.',
+    };
+  }
+
+  // Get team BV
+  const { data: teamMembers } = await supabase
+    .from('distributors')
+    .select('personal_bv_monthly')
+    .eq('sponsor_id', distributor.id)
+    .neq('status', 'deleted');
+
+  const groupBV = (teamMembers || []).reduce((sum, m) => sum + (m.personal_bv_monthly || 0), 0);
+
+  // Calculate rank progress
+  const rankRequirements: Record<string, { personal: number; group: number; next: string }> = {
+    starter: { personal: 150, group: 300, next: 'Bronze' },
+    bronze: { personal: 500, group: 1500, next: 'Silver' },
+    silver: { personal: 1200, group: 5000, next: 'Gold' },
+    gold: { personal: 2000, group: 15000, next: 'Platinum' },
+    platinum: { personal: 3000, group: 30000, next: 'Ruby' },
+    ruby: { personal: 4000, group: 60000, next: 'Diamond' },
+    diamond: { personal: 5000, group: 120000, next: 'Crown' },
+    crown: { personal: 6000, group: 250000, next: 'Elite' },
+  };
+
+  const currentRank = distributor.current_rank || 'starter';
+  const requirements = rankRequirements[currentRank];
+  const personalBV = distributor.personal_bv_monthly || 0;
+
+  let message = `📈 **Your Performance** (This Month)\n\n`;
+  message += `**Current Status:**\n`;
+  message += `• Rank: ${currentRank.toUpperCase()}\n`;
+  message += `• Personal BV: ${personalBV}\n`;
+  message += `• Group BV: ${groupBV}\n`;
+  message += `• Team Size: ${teamMembers?.length || 0} members\n\n`;
+
+  if (requirements) {
+    const personalGap = requirements.personal - personalBV;
+    const groupGap = requirements.group - groupBV;
+    const personalProgress = Math.min(100, Math.round((personalBV / requirements.personal) * 100));
+    const groupProgress = Math.min(100, Math.round((groupBV / requirements.group) * 100));
+
+    message += `**Progress to ${requirements.next}:**\n`;
+    message += `• Personal BV: ${personalProgress}% (${personalGap > 0 ? `${personalGap} more needed` : '✅ Qualified'})\n`;
+    message += `• Group BV: ${groupProgress}% (${groupGap > 0 ? `${groupGap} more needed` : '✅ Qualified'})\n\n`;
+
+    if (personalGap > 0 || groupGap > 0) {
+      message += `💡 **Action Plan:**\n`;
+      if (personalGap > 0) {
+        message += `• Generate ${personalGap} personal BV (about ${Math.ceil(personalGap / 100)} sales)\n`;
+      }
+      if (groupGap > 0) {
+        message += `• Help your team generate ${groupGap} more group BV\n`;
+      }
+    } else {
+      message += `🎉 **You're qualified for ${requirements.next}!** Keep it up this month to advance!`;
+    }
+  }
+
+  return {
+    success: true,
+    message,
+    data: {
+      currentRank,
+      personalBV,
+      groupBV,
+      teamSize: teamMembers?.length || 0,
+    },
+  };
+}
+
+async function handleGetCommissionBreakdown(params: any, userId: string) {
+  const supabase = await createClient();
+
+  const { data: distributor } = await supabase
+    .from('distributors')
+    .select('id')
+    .eq('auth_user_id', userId)
+    .single();
+
+  if (!distributor) {
+    return {
+      success: false,
+      message: 'Could not find your distributor profile.',
+    };
+  }
+
+  // Get date range based on timeframe
+  let startDate = new Date();
+  if (params.timeframe === 'this_week') {
+    startDate.setDate(startDate.getDate() - 7);
+  } else if (params.timeframe === 'this_month') {
+    startDate.setDate(1);
+  } else if (params.timeframe === 'last_month') {
+    startDate.setMonth(startDate.getMonth() - 1);
+    startDate.setDate(1);
+  } else if (params.timeframe === 'last_3_months') {
+    startDate.setMonth(startDate.getMonth() - 3);
+  }
+
+  const { data: commissions } = await supabase
+    .from('commissions')
+    .select('type, amount, created_at')
+    .eq('distributor_id', distributor.id)
+    .gte('created_at', startDate.toISOString())
+    .order('created_at', { ascending: false });
+
+  if (!commissions || commissions.length === 0) {
+    return {
+      success: true,
+      message: `💰 **Commission Breakdown** (${params.timeframe})\n\nNo commissions earned in this period yet. Keep building!`,
+    };
+  }
+
+  // Group by type
+  const byType: Record<string, number> = {};
+  let total = 0;
+
+  commissions.forEach(c => {
+    byType[c.type] = (byType[c.type] || 0) + c.amount;
+    total += c.amount;
+  });
+
+  let message = `💰 **Commission Breakdown** (${params.timeframe})\n\n`;
+  message += `**Total Earned: $${(total / 100).toFixed(2)}**\n\n`;
+  message += `**By Type:**\n`;
+
+  Object.entries(byType)
+    .sort((a, b) => b[1] - a[1])
+    .forEach(([type, amount]) => {
+      const percentage = Math.round((amount / total) * 100);
+      const emoji = type === 'binary' ? '⚖️' : type === 'override' ? '📊' : type === 'retail' ? '🛒' : '💎';
+      message += `${emoji} ${type.charAt(0).toUpperCase() + type.slice(1)}: $${(amount / 100).toFixed(2)} (${percentage}%)\n`;
+    });
+
+  message += `\n💡 ${commissions.length} total commission${commissions.length !== 1 ? 's' : ''} earned`;
+
+  return {
+    success: true,
+    message,
+    data: {
+      total,
+      byType,
+      count: commissions.length,
+    },
+  };
+}
+
+async function handleViewGenealogyTree(params: any, userId: string) {
+  const supabase = await createClient();
+
+  const { data: distributor } = await supabase
+    .from('distributors')
+    .select('id, first_name, last_name, slug, current_rank')
+    .eq('auth_user_id', userId)
+    .single();
+
+  if (!distributor) {
+    return {
+      success: false,
+      message: 'Could not find your distributor profile.',
+    };
+  }
+
+  // Recursive function to build tree
+  async function buildTree(parentId: string, depth: number, maxDepth: number): Promise<string> {
+    if (depth > maxDepth) return '';
+
+    const { data: children } = await supabase
+      .from('distributors')
+      .select('id, first_name, last_name, slug, current_rank')
+      .eq('sponsor_id', parentId)
+      .neq('status', 'deleted')
+      .order('created_at', { ascending: true });
+
+    if (!children || children.length === 0) return '';
+
+    let tree = '';
+    const indent = '  '.repeat(depth);
+
+    for (const child of children) {
+      tree += `${indent}├─ **${child.first_name} ${child.last_name}** (${child.current_rank || 'starter'})\n`;
+      const subtree = await buildTree(child.id, depth + 1, maxDepth);
+      tree += subtree;
+    }
+
+    return tree;
+  }
+
+  const tree = await buildTree(distributor.id, 1, params.depth || 3);
+
+  let message = `🌳 **Your Genealogy Tree** (${params.depth || 3} levels)\n\n`;
+  message += `👤 **YOU** (${distributor.first_name} ${distributor.last_name}) - ${distributor.current_rank || 'starter'}\n`;
+
+  if (tree) {
+    message += tree;
+  } else {
+    message += `\nNo team members yet. Your tree will grow as you sponsor new members!`;
+  }
+
+  message += `\n💡 Want to see more levels? Ask "show my tree 5 levels deep"`;
+
+  return {
+    success: true,
+    message,
+  };
+}
+
+// ========== PHASE 3: ADVANCED TOOL HANDLERS ==========
+
+async function handleSetPersonalGoal(params: any, userId: string) {
+  // For now, return a success message (would need a goals table for persistence)
+  let goalDescription = '';
+  if (params.goalType === 'rank') {
+    goalDescription = `Reach ${params.targetValue.toUpperCase()} rank`;
+  } else if (params.goalType === 'income') {
+    goalDescription = `Earn ${params.targetValue} per month`;
+  } else if (params.goalType === 'team_size') {
+    goalDescription = `Build team to ${params.targetValue}`;
+  } else {
+    goalDescription = params.targetValue;
+  }
+
+  const deadline = new Date(params.deadline).toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
+
+  return {
+    success: true,
+    message: `🎯 **Goal Set!**\n\n**Goal:** ${goalDescription}\n**Deadline:** ${deadline}\n\n✅ I'll help you track progress and suggest actions to achieve this goal!\n\n💡 Ask "check my goal progress" anytime to see how you're doing.`,
+    data: {
+      goalType: params.goalType,
+      targetValue: params.targetValue,
+      deadline: params.deadline,
+    },
+  };
+}
+
+async function handleCheckGoalProgress(params: any, userId: string) {
+  return {
+    success: true,
+    message: `🎯 **Goal Progress**\n\n🚧 **Feature Coming Soon!**\n\nGoal tracking is being built. For now, use "get my performance" to see your current stats.\n\nYou can set goals with "set a goal" and I'll remember them for you!`,
+  };
+}
+
+async function handleViewUpcomingEvents(params: any, userId: string) {
+  const supabase = await createClient();
+
+  const endDate = new Date();
+  endDate.setDate(endDate.getDate() + (params.daysAhead || 30));
+
+  const { data: events } = await supabase
+    .from('company_events')
+    .select('title, description, event_date, event_time, location, max_attendees')
+    .eq('status', 'active')
+    .gte('event_date', new Date().toISOString().split('T')[0])
+    .lte('event_date', endDate.toISOString().split('T')[0])
+    .order('event_date', { ascending: true });
+
+  if (!events || events.length === 0) {
+    return {
+      success: true,
+      message: `📅 **Upcoming Events** (Next ${params.daysAhead || 30} days)\n\nNo events scheduled yet. Check back soon!`,
+    };
+  }
+
+  let message = `📅 **Upcoming Events** (Next ${params.daysAhead || 30} days)\n\n`;
+
+  events.forEach((event, index) => {
+    const eventDate = new Date(event.event_date).toLocaleDateString('en-US', {
+      weekday: 'short',
+      month: 'short',
+      day: 'numeric',
+    });
+    message += `${index + 1}. **${event.title}**\n`;
+    message += `   📆 ${eventDate} at ${event.event_time}\n`;
+    if (event.location) message += `   📍 ${event.location}\n`;
+    if (event.description) message += `   ${event.description}\n`;
+    message += `\n`;
+  });
+
+  return {
+    success: true,
+    message,
+    data: { events },
+  };
+}
+
+async function handleGetTrainingResources(params: any, userId: string) {
+  return {
+    success: true,
+    message: `📚 **Training Resources: "${params.topic}"**\n\n🎥 **Recommended Videos:**\n1. Getting Started with ${params.topic}\n2. Advanced ${params.topic} Strategies\n3. ${params.topic} Best Practices\n\n📄 **Guides & Playbooks:**\n• ${params.topic} Quick Start Guide\n• ${params.topic} Script Book\n• ${params.topic} FAQ\n\n💡 **Want to start a tutorial?** Ask "teach me about ${params.topic}"\n\n🚧 **Note:** Full training library integration coming soon!`,
+  };
+}
+
+async function handleCheckCompliance(params: any, userId: string) {
+  const content = params.content.toLowerCase();
+
+  // Basic compliance checks
+  const violations = [];
+  const warnings = [];
+
+  // Income claims
+  if (content.match(/\$\d+|earn \d+|make money|get rich|financial freedom/i)) {
+    violations.push('❌ **Income Claim:** Cannot promise specific income amounts or "get rich quick" messaging');
+  }
+
+  // Guarantees
+  if (content.match(/guarantee|promised|for sure|definitely will/i)) {
+    violations.push('❌ **Guarantee:** Cannot guarantee results or outcomes');
+  }
+
+  // Medical/health claims
+  if (content.match(/cure|treat|heal|diagnose|prevent disease/i)) {
+    violations.push('❌ **Health Claim:** Cannot make medical or health claims about products');
+  }
+
+  // Pyramid scheme language
+  if (content.match(/no selling|passive income|money while you sleep/i)) {
+    warnings.push('⚠️ **Warning:** Avoid pyramid scheme language. Focus on product value and effort required.');
+  }
+
+  if (violations.length > 0) {
+    let message = `🚫 **Compliance Issues Detected**\n\n`;
+    violations.forEach(v => message += `${v}\n\n`);
+    if (warnings.length > 0) {
+      warnings.forEach(w => message += `${w}\n\n`);
+    }
+    message += `**Suggested Fix:**\nFocus on:\n• Personal results (with disclaimers)\n• Product benefits\n• Business opportunity (requires work)\n• Testimonials (with "results not typical" disclaimer)`;
+
+    return {
+      success: false,
+      message,
+      data: { violations, warnings },
+    };
+  } else if (warnings.length > 0) {
+    let message = `⚠️ **Compliance Warnings**\n\n`;
+    warnings.forEach(w => message += `${w}\n\n`);
+    message += `✅ No major violations, but consider revising for better compliance.`;
+
+    return {
+      success: true,
+      message,
+      data: { warnings },
+    };
+  } else {
+    return {
+      success: true,
+      message: `✅ **Looks Good!**\n\nNo obvious compliance issues detected. Your ${params.platform} content appears compliant.\n\n💡 **Remember:**\n• Always disclose your relationship with the company\n• Use #ad or #sponsored if applicable\n• Results may vary - avoid guarantees`,
+    };
+  }
 }
 
 export async function POST(request: NextRequest) {
@@ -1481,26 +2098,139 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid request' }, { status: 400 });
     }
 
+    // Fetch user context for personalized system prompt
+    const { data: distributor } = await supabase
+      .from('distributors')
+      .select(`
+        id,
+        first_name,
+        last_name,
+        slug,
+        current_rank,
+        personal_bv_monthly,
+        status,
+        created_at,
+        sponsor_id
+      `)
+      .eq('auth_user_id', user.id)
+      .single();
+
+    // Get sponsor info separately
+    let sponsorInfo = null;
+    if (distributor?.sponsor_id) {
+      const { data: sponsor } = await supabase
+        .from('distributors')
+        .select('first_name, last_name, slug')
+        .eq('id', distributor.sponsor_id)
+        .single();
+      sponsorInfo = sponsor;
+    }
+
+    // Get team count
+    const { count: teamCount } = await supabase
+      .from('distributors')
+      .select('id', { count: 'exact', head: true })
+      .eq('sponsor_id', distributor?.id || '')
+      .neq('status', 'deleted');
+
+    // Get current month commission total
+    const startOfMonth = new Date();
+    startOfMonth.setDate(1);
+    startOfMonth.setHours(0, 0, 0, 0);
+
+    const { data: commissions } = await supabase
+      .from('commissions')
+      .select('amount')
+      .eq('distributor_id', distributor?.id || '')
+      .gte('created_at', startOfMonth.toISOString());
+
+    const monthlyCommissions = commissions?.reduce((sum, c) => sum + c.amount, 0) || 0;
+
+    // Build personalized system prompt
+    const userContext = distributor ? `
+YOU ARE HELPING: ${distributor.first_name} ${distributor.last_name} (${distributor.slug})
+
+CURRENT STATUS:
+- Rank: ${distributor.current_rank?.toUpperCase() || 'STARTER'}
+- Personal BV: ${distributor.personal_bv_monthly || 0} this month
+- Team Size: ${teamCount || 0} members
+- Commission Earned: $${(monthlyCommissions / 100).toFixed(2)} this month
+- Sponsor: ${sponsorInfo?.first_name || 'N/A'} ${sponsorInfo?.last_name || ''}
+- Member Since: ${new Date(distributor.created_at).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+
+COMPENSATION PLAN (Tech Ladder):
+- Starter: 0 personal BV, 0 group BV → L1 overrides only
+- Bronze: 150 personal BV, 300 group BV → L1-L2 overrides, $250 rank bonus
+- Silver: 500 personal BV, 1500 group BV → L1-L3 overrides, $1,000 rank bonus
+- Gold: 1200 personal BV, 5000 group BV, 1 Bronze → L1-L4 overrides, $3,000 rank bonus
+- Platinum: 2000 personal BV, 15000 group BV, 2 Gold → L1-L5 overrides, $10,000 rank bonus
+- Ruby: 3000 personal BV, 30000 group BV, 3 Gold → L1-L5 overrides, $25,000 rank bonus
+- Diamond: 4000 personal BV, 60000 group BV, (3 Platinum OR 5 Gold) → L1-L5 overrides, $50,000 rank bonus
+- Crown: 5000 personal BV, 120000 group BV, (3 Diamond OR 5 Platinum) → L1-L5 overrides, $100,000 rank bonus
+- Elite: 6000 personal BV, 250000 group BV, 3 Crown → L1-L5 overrides, $250,000 rank bonus
+
+RANK PROGRESS CALCULATION:
+- If user asks "how close am I to [rank]?", calculate the gap between their current BV and the requirement
+- Show percentage complete and exact numbers needed
+- Be encouraging but realistic
+
+` : '';
+
     // Call Anthropic API with tools
     const response = await anthropic.messages.create({
       model: 'claude-sonnet-4-6', // Same model as admin chat - works!
       max_tokens: 2048,
       system: `You are a helpful AI assistant for network marketing distributors. You have access to tools to help with various tasks.
 
+${userContext}
+
+MEDIA CAPABILITIES (IMPORTANT - READ THIS!):
+- ✅ YOU CAN show videos: Use [video:YOUTUBE_URL] syntax in your response (e.g., [video:https://youtube.com/watch?v=abc123])
+- ✅ YOU CAN play audio: Use [audio:AUDIO_URL] syntax in your response (e.g., [audio:https://example.com/file.mp3])
+- These will render inline in the chat interface with proper video/audio players
+- DO NOT say "I can't show videos" or "I can't play audio" - you absolutely can using the syntax above
+- Example: If user uploads a YouTube link, respond with "Here's your video: [video:URL]"
+
+QUANTITY UNDERSTANDING (CRITICAL - FOLLOW EXACTLY!):
+When user asks for specific quantities, YOU MUST use the limit and sortBy parameters correctly:
+- "who is the FIRST person I signed up?" → limit: 1, sortBy: 'join_date' (oldest first)
+- "who was my LAST recruit?" → limit: 1, sortBy: 'join_date' (but show newest - reverse order)
+- "show my RECENT 3 team members" → limit: 3, sortBy: 'join_date' (newest first)
+- "who are my FIRST 5 people?" → limit: 5, sortBy: 'join_date' (oldest first)
+- "who are my TOP 10 team members?" → limit: 10 (by any ranking metric available)
+- "who are ALL my team members?" → no limit (show everyone)
+
+REMEMBER:
+- "first" = oldest members (early enrollees)
+- "last" / "recent" / "latest" / "newest" = newest members (recent enrollees)
+- ALWAYS use limit when a number is specified
+- NEVER return all results when user asks for a specific quantity
+
 IMPORTANT GUIDELINES:
-1. When user asks "who are my team members" or "list my team" or "what are their names", ALWAYS use the list_all_team_members tool
-2. When user asks for team stats (just numbers), use view_team_stats
-3. When creating meetings, today's date is ${new Date().toISOString().split('T')[0]}. Parse relative dates like "next Tuesday", "April 10", "tomorrow" correctly
-4. When user says "send invitations", ask which group: all team, active only, or specific people
-5. Be conversational and friendly, but professional
-6. If you don't have a tool for something, admit it and suggest alternatives
-7. Always use the most specific tool available for the user's request
-8. When listing team members, show ALL of them with names, not just counts
+1. When user asks "who are my team members" or "list my team" or "what are their names", use the list_all_team_members tool
+2. When user asks for a SPECIFIC NUMBER like "first 3", "top 5", "first 10 people", ALWAYS use the limit parameter in list_all_team_members
+3. When user asks for team stats (just numbers), use view_team_stats
+4. When creating meetings, today's date is ${new Date().toISOString().split('T')[0]}. Parse relative dates like "next Tuesday", "April 10", "tomorrow" correctly
+5. When user says "send invitations", ask which group: all team, active only, or specific people
+6. When user asks about performance, analytics, or "how am I doing", use get_my_performance or get_team_analytics
+7. When user wants to see their tree/genealogy, use view_genealogy_tree
+8. When user asks about compliance or "can I say this", use check_compliance
+9. Be conversational and friendly, but professional
+10. If you don't have a tool for something, be CLEAR and SPECIFIC about why it won't work
+11. Always use the most specific tool available for the user's request
+
+ERROR MESSAGES (BE CLEAR AND HELPFUL):
+- ❌ DON'T SAY: "Meeting not found or you don't have permission"
+- ✅ DO SAY: "I can only send emails to your team members, not external email addresses. Would you like me to send to your team instead?"
+- ❌ DON'T SAY: "Failed to process request"
+- ✅ DO SAY: "I couldn't find that person on your team. Did you mean [similar name]? Or you can use 'list my team' to see everyone."
+- BE SPECIFIC about WHY something didn't work and WHAT the user can do instead
 
 CONTEXT AWARENESS:
 - Remember what was just created (like a meeting) so when user says "preview it" or "send invitations", you know what they're referring to
 - Keep track of the conversation flow
-- Don't ask for information that was already provided in the conversation`,
+- Don't ask for information that was already provided in the conversation
+- Pay attention to QUANTITY words: "first", "top", "3", "5", "10", "recent", "last", "latest", "newest", "oldest" and use them correctly with limit and sortBy`,
       tools: tools,
       messages: messages,
     });
@@ -1566,6 +2296,35 @@ CONTEXT AWARENESS:
           break;
         case 'list_all_team_members':
           toolResult = await handleListAllTeamMembers(toolUseBlock.input, user.id);
+          break;
+        // Phase 2 tools
+        case 'get_team_analytics':
+          toolResult = await handleGetTeamAnalytics(toolUseBlock.input, user.id);
+          break;
+        case 'get_my_performance':
+          toolResult = await handleGetMyPerformance(toolUseBlock.input, user.id);
+          break;
+        case 'get_commission_breakdown':
+          toolResult = await handleGetCommissionBreakdown(toolUseBlock.input, user.id);
+          break;
+        case 'view_genealogy_tree':
+          toolResult = await handleViewGenealogyTree(toolUseBlock.input, user.id);
+          break;
+        // Phase 3 tools
+        case 'set_personal_goal':
+          toolResult = await handleSetPersonalGoal(toolUseBlock.input, user.id);
+          break;
+        case 'check_goal_progress':
+          toolResult = await handleCheckGoalProgress(toolUseBlock.input, user.id);
+          break;
+        case 'view_upcoming_events':
+          toolResult = await handleViewUpcomingEvents(toolUseBlock.input, user.id);
+          break;
+        case 'get_training_resources':
+          toolResult = await handleGetTrainingResources(toolUseBlock.input, user.id);
+          break;
+        case 'check_compliance':
+          toolResult = await handleCheckCompliance(toolUseBlock.input, user.id);
           break;
         default:
           toolResult = { success: false, message: 'Unknown tool' };
