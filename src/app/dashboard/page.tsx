@@ -19,6 +19,7 @@ import CompensationStatsWidget from '@/components/dashboard/CompensationStatsWid
 import ActivityFeed from '@/components/dashboard/ActivityFeed';
 import DashboardClient from '@/components/dashboard/DashboardClient';
 import CopyReferralButton from '@/components/dashboard/CopyReferralButton';
+import AIPhoneStats from '@/components/dashboard/AIPhoneStats';
 import type { Distributor } from '@/lib/types';
 import { ArrowRight, Users, FileText, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
@@ -232,6 +233,8 @@ export default async function DashboardPage() {
             monthlyEarnings={monthlyEarnings}
           />
 
+n          {/* AI Phone Stats */}
+          <AIPhoneStats distributorId={dist.id} />
           {/* Rank Progress Bar */}
           {nextRank && (
             <div className="bg-white rounded-lg shadow-md p-6 border border-slate-200">

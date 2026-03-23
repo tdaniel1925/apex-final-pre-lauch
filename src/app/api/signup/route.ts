@@ -506,7 +506,42 @@ export async function POST(request: NextRequest) {
       console.error('[Signup] Replicated site creation failed:', replicationError);
     }
 
-    // Step 9: Return success
+    // Step 8.6: Provision AI phone number asynchronously
+    // This runs in the background and errors are logged but don't fail signup
+    let aiPhoneProvisioned = false;
+    try {
+      console.log('[Signup] Provisioning AI phone for distributor:', distributor.id);
+
+      // Call provisioning API
+      const provisionResponse = await fetch(
+        `${process.env.NEXT_PUBLIC_APP_URL}/api/signup/provision-ai`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            distributorId: distributor.id,
+            firstName: distributor.first_name,
+            lastName: distributor.last_name,
+            phone: distributor.phone || '',
+            sponsorSlug: data.sponsor_slug,
+          }),
+        }
+      );
+
+      const provisionResult = await provisionResponse.json();
+
+      if (provisionResult.success) {
+        console.log('[Signup] AI phone provisioned successfully:', provisionResult.phoneNumber);
+        aiPhoneProvisioned = true;
+      } else {
+        console.error('[Signup] AI phone provisioning failed:', provisionResult.error);
+      }
+    } catch (aiProvisionError) {
+      // Log error but don't fail signup - AI can be provisioned manually later
+      console.error('[Signup] AI phone provisioning error:', aiProvisionError);
+    }
+
+    // Step 9: Return success with redirect to welcome page if AI was provisioned
     return NextResponse.json(
       {
         success: true,
@@ -517,6 +552,10 @@ export async function POST(request: NextRequest) {
             position: distributor.matrix_position,
             depth: distributor.matrix_depth,
           },
+          aiPhoneProvisioned,
+          redirectUrl: aiPhoneProvisioned
+            ? `/signup/welcome?distributorId=${distributor.id}`
+            : undefined,
         },
         message: 'Account created successfully! Welcome to Apex Affinity Group.',
       } as ApiResponse,
