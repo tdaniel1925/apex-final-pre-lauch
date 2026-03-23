@@ -4,9 +4,10 @@
 
 'use client';
 
-import { useState } from 'react';
-import { X, MapPin, Video, Calendar } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { X, MapPin, Video, Calendar, Eye } from 'lucide-react';
 import { slugify } from '@/lib/utils/meeting-slug-generator';
+import RegistrationPagePreviewModal from './RegistrationPagePreviewModal';
 
 interface CreateMeetingModalProps {
   onClose: () => void;
@@ -32,6 +33,37 @@ export default function CreateMeetingModal({ onClose, onSuccess }: CreateMeeting
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showPreviewModal, setShowPreviewModal] = useState(false);
+  const [currentUser, setCurrentUser] = useState<{
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string | null;
+    slug: string;
+  } | null>(null);
+
+  // Fetch current user on mount
+  useEffect(() => {
+    fetchCurrentUser();
+  }, []);
+
+  const fetchCurrentUser = async () => {
+    try {
+      const response = await fetch('/api/rep/profile');
+      if (response.ok) {
+        const data = await response.json();
+        setCurrentUser({
+          firstName: data.first_name,
+          lastName: data.last_name,
+          email: data.email,
+          phone: data.phone || null,
+          slug: data.slug,
+        });
+      }
+    } catch (error) {
+      console.error('[CreateMeetingModal] Error fetching user:', error);
+    }
+  };
 
   // Auto-generate slug from title
   const handleTitleChange = (title: string) => {
@@ -40,6 +72,38 @@ export default function CreateMeetingModal({ onClose, onSuccess }: CreateMeeting
       title,
       registrationSlug: slugify(title) || formData.registrationSlug,
     });
+  };
+
+  // Handle preview registration page
+  const handlePreview = () => {
+    // Validate required fields
+    if (!formData.title || formData.title.trim().length < 3) {
+      setError('Meeting title is required (minimum 3 characters)');
+      return;
+    }
+    if (!formData.eventDate || !formData.eventTime) {
+      setError('Event date and time are required');
+      return;
+    }
+    if (!formData.registrationSlug) {
+      setError('Registration slug is required');
+      return;
+    }
+    if (formData.locationType === 'virtual' && !formData.virtualLink.trim()) {
+      setError('Virtual meeting link is required for virtual meetings');
+      return;
+    }
+    if (formData.locationType === 'physical' && !formData.physicalAddress.trim()) {
+      setError('Physical address is required for in-person meetings');
+      return;
+    }
+    if (!currentUser) {
+      setError('Unable to load user data for preview');
+      return;
+    }
+
+    setError(null);
+    setShowPreviewModal(true);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -362,6 +426,15 @@ export default function CreateMeetingModal({ onClose, onSuccess }: CreateMeeting
               Cancel
             </button>
             <button
+              type="button"
+              onClick={handlePreview}
+              disabled={isSubmitting || !currentUser}
+              className="px-6 py-2 border-2 border-[#2c5aa0] text-[#2c5aa0] rounded-lg hover:bg-blue-50 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+            >
+              <Eye className="w-4 h-4" />
+              Preview Page
+            </button>
+            <button
               type="submit"
               disabled={isSubmitting}
               className="px-6 py-2 bg-[#2c5aa0] text-white rounded-lg hover:bg-[#234780] transition disabled:opacity-50 disabled:cursor-not-allowed"
@@ -370,6 +443,24 @@ export default function CreateMeetingModal({ onClose, onSuccess }: CreateMeeting
             </button>
           </div>
         </form>
+
+        {/* Preview Modal */}
+        {currentUser && (
+          <RegistrationPagePreviewModal
+            isOpen={showPreviewModal}
+            onClose={() => setShowPreviewModal(false)}
+            formData={formData}
+            distributorData={currentUser}
+            onCreateMeeting={() => {
+              setShowPreviewModal(false);
+              // Trigger form submission
+              const form = document.querySelector('form') as HTMLFormElement;
+              if (form) {
+                form.requestSubmit();
+              }
+            }}
+          />
+        )}
       </div>
     </div>
   );

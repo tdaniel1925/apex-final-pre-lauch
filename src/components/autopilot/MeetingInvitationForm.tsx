@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import { z } from 'zod';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Send, Loader2, Check, AlertCircle, Plus, X, Calendar, Users as UsersIcon } from 'lucide-react';
+import { Send, Loader2, Check, AlertCircle, Plus, X, Calendar, Users as UsersIcon, Eye } from 'lucide-react';
+import InvitationPreviewModal from './InvitationPreviewModal';
 import {
   UNLIMITED_INVITES,
   MAX_BULK_RECIPIENTS,
@@ -72,6 +73,8 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
   const [invitationType, setInvitationType] = useState<'personal' | 'company_event'>('personal');
   const [companyEvents, setCompanyEvents] = useState<CompanyEvent[]>([]);
   const [loadingEvents, setLoadingEvents] = useState(false);
+  const [showPreviewModal, setShowPreviewModal] = useState(false);
+  const [currentUser, setCurrentUser] = useState<{ name: string; email: string } | null>(null);
 
   const [formData, setFormData] = useState<InvitationFormData>({
     recipients: [{ recipient_email: '', recipient_name: '', recipient_phone: '' }],
@@ -86,10 +89,11 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
 
   const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
 
-  // Fetch remaining invites and company events on mount
+  // Fetch remaining invites, company events, and current user on mount
   useEffect(() => {
     fetchRemainingInvites();
     fetchCompanyEvents();
+    fetchCurrentUser();
   }, []);
 
   /**
@@ -127,13 +131,30 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
         const data = await response.json();
         if (data.data) {
           setCompanyEvents(data.data);
-          console.log('[MeetingInvitationForm] Loaded company events:', data.data.length);
         }
       }
     } catch (error) {
       console.error('[MeetingInvitationForm] Error fetching company events:', error);
     } finally {
       setLoadingEvents(false);
+    }
+  };
+
+  /**
+   * Fetch current user data for preview functionality
+   */
+  const fetchCurrentUser = async () => {
+    try {
+      const response = await fetch('/api/rep/profile');
+      if (response.ok) {
+        const data = await response.json();
+        setCurrentUser({
+          name: `${data.first_name} ${data.last_name}`,
+          email: data.email,
+        });
+      }
+    } catch (error) {
+      console.error('[MeetingInvitationForm] Error fetching user:', error);
     }
   };
 
@@ -239,6 +260,31 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
         return newErrors;
       });
     }
+  };
+
+  /**
+   * Handle preview invitation email
+   */
+  const handlePreview = () => {
+    // Validate required fields
+    if (!formData.meeting_title || formData.meeting_title.trim().length < 3) {
+      setError('Meeting title is required (minimum 3 characters)');
+      return;
+    }
+    if (!formData.meeting_date_time) {
+      setError('Meeting date and time are required');
+      return;
+    }
+    if (formData.recipients.length === 0 || !formData.recipients[0].recipient_email) {
+      setError('At least one recipient is required for preview');
+      return;
+    }
+    if (!currentUser) {
+      setError('Unable to load user data for preview');
+      return;
+    }
+
+    setShowPreviewModal(true);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -761,6 +807,16 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
         {/* Action Buttons */}
         <div className="flex gap-3 pt-4">
           <Button
+            type="button"
+            onClick={handlePreview}
+            disabled={isSubmitting || isLimitReached || !currentUser}
+            variant="outline"
+            className="flex-1"
+          >
+            <Eye className="w-4 h-4 mr-2" />
+            Preview Invitation
+          </Button>
+          <Button
             type="submit"
             disabled={isSubmitting || isLimitReached}
             className="flex-1 bg-gold hover:bg-gold/90 text-navy-900"
@@ -790,6 +846,25 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
           )}
         </div>
       </form>
+
+      {/* Preview Modal */}
+      {currentUser && (
+        <InvitationPreviewModal
+          isOpen={showPreviewModal}
+          onClose={() => setShowPreviewModal(false)}
+          formData={formData}
+          distributorName={currentUser.name}
+          distributorEmail={currentUser.email}
+          onSendAll={() => {
+            setShowPreviewModal(false);
+            // Trigger form submission
+            const form = document.querySelector('form') as HTMLFormElement;
+            if (form) {
+              form.requestSubmit();
+            }
+          }}
+        />
+      )}
     </Card>
   );
 }

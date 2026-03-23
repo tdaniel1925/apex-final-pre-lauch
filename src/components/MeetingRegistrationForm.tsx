@@ -34,11 +34,13 @@ interface DistributorData {
 interface MeetingRegistrationFormProps {
   meeting: MeetingData;
   distributor: DistributorData;
+  previewMode?: boolean;
 }
 
 export default function MeetingRegistrationForm({
   meeting,
   distributor,
+  previewMode = false,
 }: MeetingRegistrationFormProps) {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -73,6 +75,12 @@ export default function MeetingRegistrationForm({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // In preview mode, do nothing
+    if (previewMode) {
+      return;
+    }
+
     setError(null);
     setIsSubmitting(true);
 
@@ -442,13 +450,23 @@ export default function MeetingRegistrationForm({
               </div>
             )}
 
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full bg-[#2c5aa0] text-white py-3 px-6 rounded-lg hover:bg-[#234780] transition font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isSubmitting ? 'Registering...' : 'Complete Registration'}
-            </button>
+            {!previewMode && (
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-[#2c5aa0] text-white py-3 px-6 rounded-lg hover:bg-[#234780] transition font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isSubmitting ? 'Registering...' : 'Complete Registration'}
+              </button>
+            )}
+
+            {previewMode && (
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-center">
+                <p className="text-sm text-blue-800">
+                  This is a preview. Prospects will click "Complete Registration" to register for your event.
+                </p>
+              </div>
+            )}
           </form>
         </div>
       </div>
