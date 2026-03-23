@@ -14,6 +14,11 @@ interface Message {
   timestamp: Date;
 }
 
+interface PreviewModal {
+  isOpen: boolean;
+  url: string;
+}
+
 export default function AIChatInterface() {
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -24,6 +29,7 @@ export default function AIChatInterface() {
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [previewModal, setPreviewModal] = useState<PreviewModal>({ isOpen: false, url: '' });
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Auto-scroll to bottom when new messages arrive
@@ -80,8 +86,8 @@ export default function AIChatInterface() {
 
         // Handle special actions
         if (data.data?.action === 'open_url' && data.data?.url) {
-          // Open URL in new tab
-          window.open(data.data.url, '_blank');
+          // Open URL in modal instead of new tab
+          setPreviewModal({ isOpen: true, url: data.data.url });
         }
       }
     } catch (error) {
@@ -188,6 +194,63 @@ export default function AIChatInterface() {
           💡 Try: "I need to create a registration page for my Tuesday meeting"
         </p>
       </div>
+
+      {/* Preview Modal */}
+      {previewModal.isOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
+          <div className="relative w-full max-w-6xl h-[90vh] bg-white rounded-lg shadow-2xl flex flex-col">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 bg-gray-50 rounded-t-lg">
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">👀</span>
+                <div>
+                  <h3 className="text-lg font-bold text-gray-900">Registration Page Preview</h3>
+                  <p className="text-sm text-gray-600">{previewModal.url}</p>
+                </div>
+              </div>
+              <button
+                onClick={() => setPreviewModal({ isOpen: false, url: '' })}
+                className="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg font-medium transition-colors"
+              >
+                Close
+              </button>
+            </div>
+
+            {/* Modal Content - iframe */}
+            <div className="flex-1 overflow-hidden">
+              <iframe
+                src={previewModal.url}
+                className="w-full h-full border-0"
+                title="Registration Page Preview"
+              />
+            </div>
+
+            {/* Modal Footer */}
+            <div className="flex items-center justify-between px-6 py-4 border-t border-gray-200 bg-gray-50 rounded-b-lg">
+              <p className="text-sm text-gray-600">
+                Share this link with your team to start getting registrations
+              </p>
+              <div className="flex gap-3">
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(previewModal.url);
+                    alert('Link copied to clipboard!');
+                  }}
+                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
+                >
+                  Copy Link
+                </button>
+                <button
+                  onClick={() => window.open(previewModal.url, '_blank')}
+                  className="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg font-medium transition-colors"
+                >
+                  Open in New Tab
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

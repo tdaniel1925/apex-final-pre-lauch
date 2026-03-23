@@ -215,6 +215,27 @@ const tools: Anthropic.Tool[] = [
     },
   },
   {
+    name: 'list_all_team_members',
+    description: 'Lists all team members with their names, status, and join dates. Use when user asks "who are my team members", "list my team", "show names", or wants to see everyone on their team.',
+    input_schema: {
+      type: 'object',
+      properties: {
+        statusFilter: {
+          type: 'string',
+          enum: ['all', 'active', 'inactive'],
+          description: 'Filter by status (default: all)',
+          default: 'all',
+        },
+        sortBy: {
+          type: 'string',
+          enum: ['name', 'join_date', 'status'],
+          description: 'How to sort the list (default: name)',
+          default: 'name',
+        },
+      },
+    },
+  },
+  {
     name: 'send_team_announcement',
     description: 'Sends an announcement email or SMS to the user\'s team. Use when user wants to broadcast a message, send update, or communicate with their downline.',
     input_schema: {
@@ -1362,6 +1383,85 @@ async function handleScheduleFollowup(params: any, userId: string) {
   };
 }
 
+async function handleListAllTeamMembers(params: any, userId: string) {
+  const supabase = await createClient();
+
+  const { data: distributor } = await supabase
+    .from('distributors')
+    .select('id')
+    .eq('auth_user_id', userId)
+    .single();
+
+  if (!distributor) {
+    return {
+      success: false,
+      message: 'Could not find your distributor profile.',
+    };
+  }
+
+  // Get all team members
+  let query = supabase
+    .from('distributors')
+    .select('id, first_name, last_name, email, phone, status, created_at')
+    .eq('sponsor_id', distributor.id)
+    .neq('status', 'deleted');
+
+  // Apply status filter
+  if (params.statusFilter === 'active') {
+    query = query.eq('status', 'active');
+  } else if (params.statusFilter === 'inactive') {
+    query = query.neq('status', 'active');
+  }
+
+  // Apply sorting
+  if (params.sortBy === 'join_date') {
+    query = query.order('created_at', { ascending: false });
+  } else if (params.sortBy === 'status') {
+    query = query.order('status', { ascending: true });
+  } else {
+    query = query.order('first_name', { ascending: true });
+  }
+
+  const { data: teamMembers } = await query;
+
+  if (!teamMembers || teamMembers.length === 0) {
+    return {
+      success: true,
+      message: '👥 No team members found.\n\nYour team will appear here as they join!',
+    };
+  }
+
+  let message = `👥 **Your Team Members** (${teamMembers.length} total)\n\n`;
+
+  teamMembers.forEach((member, index) => {
+    const joinDate = new Date(member.created_at).toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+    });
+
+    const statusEmoji = member.status === 'active' ? '✅' : '⚠️';
+
+    message += `${index + 1}. ${statusEmoji} **${member.first_name} ${member.last_name}**\n`;
+    message += `   Status: ${member.status.charAt(0).toUpperCase() + member.status.slice(1)}\n`;
+    message += `   Joined: ${joinDate}\n`;
+    if (member.email) message += `   Email: ${member.email}\n`;
+    if (member.phone) message += `   Phone: ${member.phone}\n`;
+    message += '\n';
+  });
+
+  message += `\nWant to:\n• Send announcement to team\n• View individual details\n• Filter by status`;
+
+  return {
+    success: true,
+    message,
+    data: {
+      count: teamMembers.length,
+      members: teamMembers,
+    },
+  };
+}
+
 export async function POST(request: NextRequest) {
   try {
     // Verify user is authenticated
@@ -1384,7 +1484,23 @@ export async function POST(request: NextRequest) {
     // Call Anthropic API with tools
     const response = await anthropic.messages.create({
       model: 'claude-sonnet-4-6', // Same model as admin chat - works!
-      max_tokens: 1024,
+      max_tokens: 2048,
+      system: `You are a helpful AI assistant for network marketing distributors. You have access to tools to help with various tasks.
+
+IMPORTANT GUIDELINES:
+1. When user asks "who are my team members" or "list my team" or "what are their names", ALWAYS use the list_all_team_members tool
+2. When user asks for team stats (just numbers), use view_team_stats
+3. When creating meetings, today's date is ${new Date().toISOString().split('T')[0]}. Parse relative dates like "next Tuesday", "April 10", "tomorrow" correctly
+4. When user says "send invitations", ask which group: all team, active only, or specific people
+5. Be conversational and friendly, but professional
+6. If you don't have a tool for something, admit it and suggest alternatives
+7. Always use the most specific tool available for the user's request
+8. When listing team members, show ALL of them with names, not just counts
+
+CONTEXT AWARENESS:
+- Remember what was just created (like a meeting) so when user says "preview it" or "send invitations", you know what they're referring to
+- Keep track of the conversation flow
+- Don't ask for information that was already provided in the conversation`,
       tools: tools,
       messages: messages,
     });
@@ -1447,6 +1563,9 @@ export async function POST(request: NextRequest) {
           break;
         case 'schedule_followup':
           toolResult = await handleScheduleFollowup(toolUseBlock.input, user.id);
+          break;
+        case 'list_all_team_members':
+          toolResult = await handleListAllTeamMembers(toolUseBlock.input, user.id);
           break;
         default:
           toolResult = { success: false, message: 'Unknown tool' };
