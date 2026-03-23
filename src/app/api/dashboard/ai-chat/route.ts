@@ -1229,14 +1229,85 @@ async function handleGenerateSocialPost(params: any) {
   const tone = params.tone || 'casual';
 
   // AI-generated social media posts
+  let facebookPost = '🎉 Exciting news! ';
+  if (topic.includes('meeting') || topic.includes('event')) {
+    facebookPost += `I'm hosting a special event!\n\n`;
+  } else {
+    facebookPost += `${topic}\n\n`;
+  }
+  if (tone === 'professional') {
+    facebookPost += 'Join me for an informative session.\n\n';
+  } else if (tone === 'excited') {
+    facebookPost += "You don't want to miss this!\n\n";
+  } else {
+    facebookPost += "I'd love to see you there!\n\n";
+  }
+  if (topic.includes('opportunity')) {
+    facebookPost += '💼 This could be a game-changer for you!\n\n';
+  } else {
+    facebookPost += '📍 Limited spots available - register now!\n\n';
+  }
+  facebookPost += 'Drop a 👍 if you\'re interested or comment below!\n\n';
+  facebookPost += '#NetworkMarketing #BusinessOpportunity #TeamApex #FinancialFreedom';
+
+  let instagramPost = '✨ ';
+  if (topic.includes('meeting') || topic.includes('event')) {
+    instagramPost += 'Special event coming up! ✨\n\n';
+  } else {
+    instagramPost += `Big things happening! ${topic} ✨\n\n`;
+  }
+  if (tone === 'excited') {
+    instagramPost += '🔥 This is going to be AMAZING! 🔥\n\n';
+  } else {
+    instagramPost += '💫 Join me for something special!\n\n';
+  }
+  if (topic.includes('opportunity')) {
+    instagramPost += '💼 Your future starts here!\n\n';
+  } else {
+    instagramPost += '📅 Save the date!\n\n';
+  }
+  instagramPost += 'Link in bio 👆 or DM me for details!\n\n';
+  instagramPost += '#BusinessGoals #Success #Opportunity #Growth #TeamWork #DreamBig';
+
+  let linkedinPost = '';
+  if (tone === 'professional') {
+    linkedinPost += 'Professional Announcement\n\n';
+  } else {
+    linkedinPost += 'Exciting Update\n\n';
+  }
+  if (topic.includes('opportunity')) {
+    linkedinPost += `I'm excited to share a unique business opportunity: ${topic}\n\n`;
+  } else {
+    linkedinPost += `${topic}\n\n`;
+  }
+  if (tone === 'professional') {
+    linkedinPost += 'This aligns with my commitment to helping professionals achieve their goals.\n\n';
+  } else {
+    linkedinPost += 'This could be a great fit for ambitious professionals looking to expand their income streams.\n\n';
+  }
+  linkedinPost += 'Interested in learning more? Comment below or send me a message.\n\n';
+  linkedinPost += '#ProfessionalDevelopment #BusinessOpportunity #Networking #CareerGrowth';
+
+  let twitterPost = '🚀 ';
+  if (topic.includes('meeting')) {
+    twitterPost += 'Event Alert!\n\n';
+  } else {
+    twitterPost += 'Big news!\n\n';
+  }
+  twitterPost += `${topic}\n\n`;
+  if (tone === 'excited') {
+    twitterPost += '🔥 Don\'t miss out!\n\n';
+  } else {
+    twitterPost += '📍 Limited availability\n\n';
+  }
+  twitterPost += 'DM for details!\n\n';
+  twitterPost += '#Business #Opportunity #Growth';
+
   const templates: Record<string, string> = {
-    facebook: `🎉 Exciting news! ${topic.includes('meeting') || topic.includes('event') ? `I'm hosting a special ${topic}!` : `Check out ${topic}!`}\n\n${tone === 'professional' ? 'Join me for an informative session' : tone === 'excited' ? "You don't want to miss this! 🔥" : "I'd love to see you there! 👋"}\n\n${topic.includes('opportunity') ? '💼 This could be a game-changer for you!' : '📍 Limited spots available - register now!'}\n\nDrop a 👍 if you're interested or comment below!\n\n#NetworkMarketing #BusinessOpportunity #TeamApex #FinancialFreedom`,
-
-    instagram: `✨ ${topic.includes('meeting') || topic.includes('event') ? 'Special event coming up!' : `Big things happening! ${topic}`} ✨\n\n${tone === 'excited' ? '🔥 This is going to be AMAZING! 🔥' : '💫 Join me for something special!'}\n\n${topic.includes('opportunity') ? '💼 Your future starts here!' : '📅 Save the date!'}\n\nLink in bio 👆 or DM me for details!\n\n#BusinessGoals #Success #Opportunity #Growth #TeamWork #DreamBig`,
-
-    linkedin: `${tone === 'professional' ? 'Professional Announcement' : 'Exciting Update'}\n\n${topic.includes('opportunity') ? `I'm excited to share a unique business opportunity: ${topic}` : `${topic}`}\n\n${tone === 'professional' ? 'This aligns with my commitment to helping professionals achieve their goals.' : 'This could be a great fit for ambitious professionals looking to expand their income streams.'}\n\nInterested in learning more? Comment below or send me a message.\n\n#ProfessionalDevelopment #BusinessOpportunity #Networking #CareerGrowth`,
-
-    twitter: `🚀 ${topic.includes('meeting') ? 'Event Alert!' : 'Big news!'}\n\n${topic}\n\n${tone === 'excited' ? '🔥 Don't miss out!' : '📍 Limited availability'}\n\nDM for details!\n\n#Business #Opportunity #Growth`,
+    facebook: facebookPost,
+    instagram: instagramPost,
+    linkedin: linkedinPost,
+    twitter: twitterPost,
   };
 
   const post = templates[platform] || templates.facebook;
