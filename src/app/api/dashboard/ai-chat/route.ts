@@ -106,22 +106,30 @@ async function handleCreateMeetingRegistration(params: any, userId: string) {
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-|-$/g, '');
 
-  // Create meeting in database
+  // Parse physical address if provided
+  let physicalAddress = null;
+  if (params.locationType === 'physical' && params.physicalAddress) {
+    physicalAddress = params.physicalAddress;
+  }
+
+  // Create meeting in database (meeting_events = personal meetings, NOT company_events)
   const { data: meeting, error } = await supabase
-    .from('company_events')
+    .from('meeting_events')
     .insert({
       distributor_id: distributor.id,
       title: params.title,
       description: params.description || null,
+      custom_message: null, // Optional custom message for registration page
       event_date: params.eventDate,
       event_time: params.eventTime,
       event_timezone: params.eventTimezone || 'America/Chicago',
       duration_minutes: params.durationMinutes || 60,
       location_type: params.locationType,
       virtual_link: params.virtualLink || null,
-      max_attendees: params.maxAttendees || null,
+      physical_address: physicalAddress,
       registration_slug: slug,
-      is_active: true,
+      status: 'active',
+      max_attendees: params.maxAttendees || null,
     })
     .select()
     .single();
