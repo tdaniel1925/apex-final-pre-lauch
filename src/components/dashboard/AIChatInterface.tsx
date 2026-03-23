@@ -270,6 +270,7 @@ export default function AIChatInterface({ initialContext, onClose, isModal = fal
       const response = await fetch('/api/dashboard/ai-chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include', // Ensure session cookies are sent
         body: JSON.stringify({
           messages: [...messages, userMessage].map((m) => ({
             role: m.role,
@@ -281,11 +282,16 @@ export default function AIChatInterface({ initialContext, onClose, isModal = fal
       const data = await response.json();
 
       if (data.error) {
+        // Special handling for auth errors
+        const errorMessage = data.error === 'Unauthorized'
+          ? '🔒 Session expired. Please refresh the page to log in again.'
+          : `❌ Error: ${data.error}`;
+
         setMessages((prev) => [
           ...prev,
           {
             role: 'assistant',
-            content: `❌ Error: ${data.error}`,
+            content: errorMessage,
             timestamp: new Date(),
           },
         ]);
