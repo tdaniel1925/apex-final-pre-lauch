@@ -103,6 +103,7 @@ export default function DashboardV2() {
       const response = await fetch('/api/dashboard/ai-chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include', // Ensure session cookies are sent
         body: JSON.stringify({
           messages: [...messages, userMessage].map((m) => ({
             role: m.role,
@@ -114,124 +115,30 @@ export default function DashboardV2() {
       const data = await response.json();
 
       if (data.error) {
+        // Special handling for auth errors
+        const errorMessage = data.error === 'Unauthorized'
+          ? '🔒 Session expired. Please refresh the page to log in again.'
+          : `❌ Error: ${data.error}`;
+
         setMessages((prev) => [
           ...prev,
           {
             role: 'assistant',
-            content: `❌ Error: ${data.error}`,
+            content: errorMessage,
             timestamp: new Date(),
           },
         ]);
       } else {
-        // Handle demo responses with rich components
+        // Display AI response (real data from API)
         const assistantMessage: Message = {
           role: 'assistant',
           content: data.message,
           timestamp: new Date(),
         };
 
-        // Add demo components based on user intent
-        if (input.toLowerCase().includes('team') || input.toLowerCase().includes('performers')) {
-          assistantMessage.components = [
-            {
-              type: 'team',
-              data: [
-                {
-                  memberId: '1',
-                  name: 'Sarah Johnson',
-                  rank: 'Gold Partner',
-                  stats: { personalBV: 1450, teamSize: 23, monthlyEarnings: 285000 },
-                },
-                {
-                  memberId: '2',
-                  name: 'Mike Chen',
-                  rank: 'Silver Partner',
-                  stats: { personalBV: 980, teamSize: 15, monthlyEarnings: 152000 },
-                },
-                {
-                  memberId: '3',
-                  name: 'Emily Rodriguez',
-                  rank: 'Bronze Partner',
-                  stats: { personalBV: 720, teamSize: 8, monthlyEarnings: 98000 },
-                },
-              ],
-            },
-          ];
-        } else if (input.toLowerCase().includes('stats') || input.toLowerCase().includes('performance')) {
-          assistantMessage.components = [
-            {
-              type: 'stats',
-              data: [
-                { label: 'Personal BV', value: '$1,450', change: { amount: '+$320', percentage: 28, direction: 'up' }, icon: '💰' },
-                { label: 'Team Size', value: '47', change: { amount: '+5', percentage: 12, direction: 'up' }, icon: '👥' },
-                { label: 'Monthly Earnings', value: '$2,850', change: { amount: '+$420', percentage: 17, direction: 'up' }, icon: '💵', variant: 'success' },
-                { label: 'Rank Progress', value: '73%', icon: '🎯' },
-              ],
-            },
-            {
-              type: 'chart',
-              data: {
-                title: 'Last 7 Days Performance',
-                description: 'Personal BV trend',
-                chartData: [
-                  { day: 'Mon', bv: 180 },
-                  { day: 'Tue', bv: 220 },
-                  { day: 'Wed', bv: 195 },
-                  { day: 'Thu', bv: 260 },
-                  { day: 'Fri', bv: 240 },
-                  { day: 'Sat', bv: 280 },
-                  { day: 'Sun', bv: 310 },
-                ],
-                type: 'line',
-                dataKey: 'bv',
-                xAxisKey: 'day',
-              },
-            },
-          ];
-        } else if (input.toLowerCase().includes('matrix')) {
-          assistantMessage.components = [
-            {
-              type: 'matrix',
-              data: {
-                id: 'user-1',
-                name: 'You',
-                rank: 'Gold Partner',
-                personalBV: 1450,
-                teamSize: 47,
-                children: [
-                  {
-                    id: 'user-2',
-                    name: 'Sarah J.',
-                    rank: 'Silver',
-                    personalBV: 980,
-                    teamSize: 23,
-                    children: [
-                      { id: 'user-5', name: 'John D.', rank: 'Bronze', personalBV: 520, teamSize: 8 },
-                      { id: 'user-6', name: 'Amy L.', rank: 'Bronze', personalBV: 460, teamSize: 5 },
-                    ],
-                  },
-                  {
-                    id: 'user-3',
-                    name: 'Mike C.',
-                    rank: 'Silver',
-                    personalBV: 920,
-                    teamSize: 15,
-                    children: [
-                      { id: 'user-7', name: 'Chris P.', rank: 'Associate', personalBV: 280, teamSize: 3 },
-                    ],
-                  },
-                  {
-                    id: 'user-4',
-                    name: 'Emily R.',
-                    rank: 'Bronze',
-                    personalBV: 720,
-                    teamSize: 9,
-                  },
-                ],
-              },
-            },
-          ];
-        }
+        // TODO: Parse AI response for visual component data
+        // The AI API should return data in a structured format that can be rendered as cards/charts
+        // For now, just show the text response
 
         setMessages((prev) => [...prev, assistantMessage]);
       }
