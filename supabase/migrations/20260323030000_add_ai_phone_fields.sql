@@ -88,7 +88,7 @@ CREATE POLICY "Distributors can view their own call logs"
     EXISTS (
       SELECT 1 FROM distributors
       WHERE distributors.id = auth.uid()::uuid
-      AND distributors.role = 'admin'
+      AND distributors.is_admin = TRUE
     )
   );
 
