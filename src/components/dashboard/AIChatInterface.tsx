@@ -77,6 +77,12 @@ export default function AIChatInterface() {
             timestamp: new Date(),
           },
         ]);
+
+        // Handle special actions
+        if (data.data?.action === 'open_url' && data.data?.url) {
+          // Open URL in new tab
+          window.open(data.data.url, '_blank');
+        }
       }
     } catch (error) {
       setMessages((prev) => [

@@ -7,6 +7,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 import Anthropic from '@anthropic-ai/sdk';
+import { sendEmail } from '@/lib/email/resend';
+import fs from 'fs/promises';
+import path from 'path';
 
 // Initialize Anthropic client
 const anthropic = new Anthropic({
@@ -82,6 +85,58 @@ const tools: Anthropic.Tool[] = [
     input_schema: {
       type: 'object',
       properties: {},
+    },
+  },
+  {
+    name: 'preview_registration_page',
+    description: 'Opens the registration page for a meeting that was just created. Use this when user wants to preview or see their registration page.',
+    input_schema: {
+      type: 'object',
+      properties: {
+        registrationUrl: {
+          type: 'string',
+          description: 'The full registration URL (from the create_meeting_registration response)',
+        },
+      },
+      required: ['registrationUrl'],
+    },
+  },
+  {
+    name: 'send_meeting_invitations',
+    description: 'Sends email invitations to the user\'s team members for a meeting. Use this when user wants to invite their team or send invitations.',
+    input_schema: {
+      type: 'object',
+      properties: {
+        meetingId: {
+          type: 'string',
+          description: 'The meeting ID (from the create_meeting_registration response data)',
+        },
+        recipientType: {
+          type: 'string',
+          enum: ['all_team', 'active_only', 'specific'],
+          description: 'Who to send to: all_team (everyone), active_only (only active members), or specific (custom list)',
+        },
+        customEmails: {
+          type: 'array',
+          items: { type: 'string' },
+          description: 'Array of email addresses if recipientType is "specific"',
+        },
+      },
+      required: ['meetingId', 'recipientType'],
+    },
+  },
+  {
+    name: 'create_meeting_flyer',
+    description: 'Generates a promotional flyer (PDF) for the meeting with all details. Use this when user wants to create marketing materials or a flyer.',
+    input_schema: {
+      type: 'object',
+      properties: {
+        meetingId: {
+          type: 'string',
+          description: 'The meeting ID (from the create_meeting_registration response data)',
+        },
+      },
+      required: ['meetingId'],
     },
   },
 ];
@@ -207,10 +262,12 @@ async function handleCreateMeetingRegistration(params: any, userId: string) {
 
   return {
     success: true,
-    message: `✅ Registration page created successfully!\n\n🔗 Your page: ${registrationUrl}\n\n📅 ${params.title}\n🗓️ ${params.eventDate} at ${params.eventTime} ${params.eventTimezone || 'America/Chicago'}\n⏱️ Duration: ${params.durationMinutes || 60} minutes\n${locationInfo}${params.maxAttendees ? `\n👥 Max attendees: ${params.maxAttendees}` : ''}\n\nYou can now visit the page to see your registration form. Share the link with your team to start getting registrations!`,
+    message: `✅ Registration page created successfully!\n\n🔗 Your page: ${registrationUrl}\n\n📅 ${params.title}\n🗓️ ${params.eventDate} at ${params.eventTime} ${params.eventTimezone || 'America/Chicago'}\n⏱️ Duration: ${params.durationMinutes || 60} minutes\n${locationInfo}${params.maxAttendees ? `\n👥 Max attendees: ${params.maxAttendees}` : ''}\n\nWhat would you like to do next?\n• Preview the registration page\n• Send invitations to your team\n• Create a promotional flyer`,
     data: {
       meeting,
       url: registrationUrl,
+      meetingId: meeting.id,
+      registrationUrl,
     },
   };
 }
@@ -284,6 +341,174 @@ async function handleCheckCommissionBalance(userId: string) {
   };
 }
 
+async function handlePreviewRegistrationPage(params: any) {
+  // Simply return the URL - the frontend will handle opening it
+  return {
+    success: true,
+    message: `🔗 Opening your registration page:\n\n${params.registrationUrl}\n\nYou can share this link with anyone you want to invite!`,
+    data: {
+      url: params.registrationUrl,
+      action: 'open_url',
+    },
+  };
+}
+
+async function handleSendMeetingInvitations(params: any, userId: string) {
+  const supabase = await createClient();
+
+  // Get user's distributor info
+  const { data: distributor } = await supabase
+    .from('distributors')
+    .select('id, first_name, last_name, email')
+    .eq('auth_user_id', userId)
+    .single();
+
+  if (!distributor) {
+    return {
+      success: false,
+      message: 'Could not find your distributor profile.',
+    };
+  }
+
+  // Get meeting details
+  const { data: meeting } = await supabase
+    .from('meeting_events')
+    .select('*')
+    .eq('id', params.meetingId)
+    .eq('distributor_id', distributor.id)
+    .single();
+
+  if (!meeting) {
+    return {
+      success: false,
+      message: 'Meeting not found or you don\'t have permission to send invitations for it.',
+    };
+  }
+
+  // Get recipients based on type
+  let recipients: { email: string }[] = [];
+
+  if (params.recipientType === 'specific' && params.customEmails) {
+    recipients = params.customEmails.map((email: string) => ({ email }));
+  } else {
+    // Get team members
+    let query = supabase
+      .from('distributors')
+      .select('email')
+      .eq('sponsor_id', distributor.id)
+      .neq('status', 'deleted')
+      .not('email', 'is', null);
+
+    if (params.recipientType === 'active_only') {
+      query = query.eq('status', 'active');
+    }
+
+    const { data: teamMembers } = await query;
+    recipients = teamMembers || [];
+  }
+
+  if (recipients.length === 0) {
+    return {
+      success: false,
+      message: 'No recipients found. Your team may not have email addresses on file.',
+    };
+  }
+
+  // Load email templates
+  const baseTemplate = await fs.readFile(
+    path.join(process.cwd(), 'src/lib/email/templates/base-email-template.html'),
+    'utf-8'
+  );
+  const contentTemplate = await fs.readFile(
+    path.join(process.cwd(), 'src/lib/email/templates/meeting-invitation.html'),
+    'utf-8'
+  );
+
+  // Build registration URL
+  const { data: dist } = await supabase
+    .from('distributors')
+    .select('slug')
+    .eq('id', distributor.id)
+    .single();
+
+  const registrationUrl = `https://reachtheapex.net/${dist?.slug}/register/${meeting.registration_slug}`;
+
+  // Format location details
+  let locationDetails = '';
+  if (meeting.location_type === 'virtual') {
+    locationDetails = `Virtual Meeting: ${meeting.virtual_link}`;
+  } else if (meeting.location_type === 'physical') {
+    locationDetails = meeting.physical_address || 'To be announced';
+  } else if (meeting.location_type === 'hybrid') {
+    locationDetails = `In-Person: ${meeting.physical_address}\nVirtual: ${meeting.virtual_link}`;
+  }
+
+  // Replace variables in content template
+  let emailContent = contentTemplate
+    .replace(/{{host_name}}/g, `${distributor.first_name} ${distributor.last_name}`)
+    .replace(/{{meeting_title}}/g, meeting.title)
+    .replace(/{{event_date}}/g, new Date(meeting.event_date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }))
+    .replace(/{{event_time}}/g, meeting.event_time)
+    .replace(/{{event_timezone}}/g, meeting.event_timezone)
+    .replace(/{{duration_minutes}}/g, meeting.duration_minutes.toString())
+    .replace(/{{location_details}}/g, locationDetails)
+    .replace(/{{description}}/g, meeting.description || '')
+    .replace(/{{registration_url}}/g, registrationUrl)
+    .replace(/{{max_attendees}}/g, meeting.max_attendees?.toString() || '');
+
+  // Handle conditional sections (simplified - just remove if not needed)
+  if (!meeting.description) {
+    emailContent = emailContent.replace(/{{#if description}}[\s\S]*?{{\/if}}/g, '');
+  } else {
+    emailContent = emailContent.replace(/{{#if description}}/g, '').replace(/{{\/if}}/g, '');
+  }
+
+  if (!meeting.max_attendees) {
+    emailContent = emailContent.replace(/{{#if max_attendees}}[\s\S]*?{{\/if}}/g, '');
+  } else {
+    emailContent = emailContent.replace(/{{#if max_attendees}}/g, '').replace(/{{\/if}}/g, '');
+  }
+
+  // Merge with base template
+  const finalHtml = baseTemplate
+    .replace('{{email_title}}', `Invitation: ${meeting.title}`)
+    .replace('{{email_content}}', emailContent)
+    .replace(/{{unsubscribe_url}}/g, 'https://theapexway.net/unsubscribe');
+
+  // Send emails
+  const emailResults = await Promise.all(
+    recipients.map((recipient) =>
+      sendEmail({
+        to: recipient.email,
+        subject: `You're Invited: ${meeting.title}`,
+        html: finalHtml,
+        from: 'Apex Affinity Group <theapex@theapexway.net>',
+      })
+    )
+  );
+
+  const successCount = emailResults.filter((r) => r.success).length;
+  const failCount = emailResults.filter((r) => !r.success).length;
+
+  return {
+    success: true,
+    message: `📧 Invitations sent!\n\n✅ Sent: ${successCount}\n${failCount > 0 ? `❌ Failed: ${failCount}\n` : ''}\nYour team members will receive an email with the registration link.`,
+    data: {
+      sent: successCount,
+      failed: failCount,
+    },
+  };
+}
+
+async function handleCreateMeetingFlyer(params: any, userId: string) {
+  // For now, return a message that this feature is coming soon
+  // In the future, we can integrate PDF generation
+  return {
+    success: false,
+    message: '🚧 Flyer creation is coming soon!\n\nFor now, you can:\n• Share the registration link directly\n• Create a custom flyer using Canva\n• Use the meeting details to promote on social media',
+  };
+}
+
 export async function POST(request: NextRequest) {
   try {
     // Verify user is authenticated
@@ -327,6 +552,15 @@ export async function POST(request: NextRequest) {
           break;
         case 'check_commission_balance':
           toolResult = await handleCheckCommissionBalance(user.id);
+          break;
+        case 'preview_registration_page':
+          toolResult = await handlePreviewRegistrationPage(toolUseBlock.input);
+          break;
+        case 'send_meeting_invitations':
+          toolResult = await handleSendMeetingInvitations(toolUseBlock.input, user.id);
+          break;
+        case 'create_meeting_flyer':
+          toolResult = await handleCreateMeetingFlyer(toolUseBlock.input, user.id);
           break;
         default:
           toolResult = { success: false, message: 'Unknown tool' };
