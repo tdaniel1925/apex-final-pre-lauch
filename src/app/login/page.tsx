@@ -3,8 +3,9 @@
 // =============================================
 
 import LoginForm from '@/components/forms/LoginForm';
+import type { Metadata } from 'next';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Sign In - Apex Affinity Group',
   description: 'Sign in to your distributor account',
 };
