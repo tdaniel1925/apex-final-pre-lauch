@@ -265,6 +265,35 @@ export function getRankBonus(rank: TechRank): number {
 }
 
 /**
+ * Check if a rep qualifies for a specific override level
+ * Based on prior month rank
+ *
+ * @param priorMonthRank - Rep's rank from prior month (any type)
+ * @param level - Override level (1-7)
+ * @param teamBV - Team BV (optional, for level 6-7 qualification)
+ * @returns True if qualified for this level
+ */
+export function qualifiesForOverrideLevel(
+  priorMonthRank: any,
+  level: number,
+  teamBV: number = 0
+): boolean {
+  // No prior month rank = new rep = doesn't qualify
+  if (!priorMonthRank) {
+    return false;
+  }
+
+  // Handle INACTIVE rank
+  if (priorMonthRank === 'INACTIVE') {
+    return false;
+  }
+
+  // For now, basic qualification based on level
+  // This is a stub until full override qualification logic is implemented
+  return true;
+}
+
+/**
  * Helper: Months Between Two Dates
  */
 function monthsBetween(start: Date, end: Date): number {
