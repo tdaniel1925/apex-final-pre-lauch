@@ -14,7 +14,7 @@ const SPECIAL_EVENT = {
 };
 
 interface EventSchedule {
-  day: 'Tuesday' | 'Thursday' | 'Monday' | 'Wednesday' | 'Friday' | 'Saturday' | 'Sunday';
+  day: 'Sunday' | 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday';
   time: string;
   title: string;
   description: string;
@@ -150,14 +150,42 @@ export default function LiveEventsPage() {
       } else {
         setIsLive(false);
         setIsEventStarted(false);
-        setCountdown('');
+
+        // Calculate days until next event
         const daysUntilTuesday = (2 - dayOfWeek + 7) % 7 || 7;
         const daysUntilThursday = (4 - dayOfWeek + 7) % 7 || 7;
 
+        let nextEventDay: number;
+        let nextEventSchedule: EventSchedule;
+
         if (daysUntilTuesday < daysUntilThursday) {
-          setNextEvent(SCHEDULE[0]);
+          nextEventDay = daysUntilTuesday;
+          nextEventSchedule = SCHEDULE[0];
         } else {
-          setNextEvent(SCHEDULE[1]);
+          nextEventDay = daysUntilThursday;
+          nextEventSchedule = SCHEDULE[1];
+        }
+
+        setNextEvent(nextEventSchedule);
+
+        // Calculate exact time until next event
+        const nextEventDate = new Date(centralTime);
+        nextEventDate.setDate(nextEventDate.getDate() + nextEventDay);
+        nextEventDate.setHours(18, 30, 0, 0); // 6:30 PM
+
+        const msUntilEvent = nextEventDate.getTime() - centralTime.getTime();
+        const totalHours = Math.floor(msUntilEvent / (1000 * 60 * 60));
+        const totalMinutes = Math.floor((msUntilEvent % (1000 * 60 * 60)) / (1000 * 60));
+
+        // Format countdown based on time remaining
+        if (totalHours >= 24) {
+          const days = Math.floor(totalHours / 24);
+          const hours = totalHours % 24;
+          setCountdown(`${days} day${days !== 1 ? 's' : ''}, ${hours} hour${hours !== 1 ? 's' : ''}`);
+        } else if (totalHours > 0) {
+          setCountdown(`${totalHours} hour${totalHours !== 1 ? 's' : ''}, ${totalMinutes} minute${totalMinutes !== 1 ? 's' : ''}`);
+        } else {
+          setCountdown(`${totalMinutes} minute${totalMinutes !== 1 ? 's' : ''}`);
         }
       }
     }
@@ -416,9 +444,16 @@ See you there!`;
                   </svg>
                   Not Live
                 </div>
-                <p style={{ color: 'rgba(255, 255, 255, 0.8)', fontSize: '1.125rem' }}>
-                  Next event: <strong style={{ color: 'white' }}>{nextEvent?.title}</strong> — {nextEvent?.day} at {nextEvent?.time} CT
-                </p>
+                <div style={{ color: 'rgba(255, 255, 255, 0.8)', fontSize: '1.125rem' }}>
+                  <p style={{ marginBottom: '8px' }}>
+                    Next event: <strong style={{ color: 'white' }}>{nextEvent?.title}</strong> — {nextEvent?.day} at {nextEvent?.time} CT
+                  </p>
+                  {countdown && (
+                    <p style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#FCD34D' }}>
+                      {countdown}
+                    </p>
+                  )}
+                </div>
               </div>
             )}
           </div>
