@@ -14,7 +14,7 @@ const SPECIAL_EVENT = {
 };
 
 interface EventSchedule {
-  day: 'Tuesday' | 'Thursday';
+  day: 'Sunday' | 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday';
   time: string;
   title: string;
   description: string;
@@ -68,19 +68,23 @@ export default function LiveEventsPage() {
           const eventStart = eventHour * 60 + eventMinute;
           const eventEnd = eventStart + 60; // 1 hour event
 
+          // Format special event details
+          const specialEventDetails = {
+            day: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][dayOfWeek] as any,
+            time: SPECIAL_EVENT.time.replace(/(\d+):(\d+)/, (_, h, m) => {
+              const hour = parseInt(h);
+              const ampm = hour >= 12 ? 'PM' : 'AM';
+              const displayHour = hour > 12 ? hour - 12 : hour === 0 ? 12 : hour;
+              return `${displayHour}:${m} ${ampm}`;
+            }),
+            title: SPECIAL_EVENT.title,
+            description: SPECIAL_EVENT.description
+          };
+
+          // If room is open (live)
           if (currentMinutes >= roomOpen && currentMinutes < eventEnd) {
             setIsLive(true);
-            setNextEvent({
-              day: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][dayOfWeek] as any,
-              time: SPECIAL_EVENT.time.replace(/(\d+):(\d+)/, (_, h, m) => {
-                const hour = parseInt(h);
-                const ampm = hour >= 12 ? 'PM' : 'AM';
-                const displayHour = hour > 12 ? hour - 12 : hour === 0 ? 12 : hour;
-                return `${displayHour}:${m} ${ampm}`;
-              }),
-              title: SPECIAL_EVENT.title,
-              description: SPECIAL_EVENT.description
-            });
+            setNextEvent(specialEventDetails);
 
             if (currentMinutes >= eventStart) {
               setIsEventStarted(true);
@@ -91,6 +95,29 @@ export default function LiveEventsPage() {
               const minutesLeft = Math.floor(totalSecondsUntilStart / 60);
               const secondsLeft = totalSecondsUntilStart % 60;
               setCountdown(`${minutesLeft}:${secondsLeft.toString().padStart(2, '0')}`);
+            }
+            return;
+          }
+
+          // If event is later today (not live yet, but show it as upcoming)
+          if (currentMinutes < roomOpen) {
+            setIsLive(false);
+            setIsEventStarted(false);
+            setNextEvent(specialEventDetails);
+
+            // Calculate exact time until event starts
+            const nextEventDate = new Date(centralTime);
+            nextEventDate.setHours(eventHour, eventMinute, 0, 0);
+
+            const msUntilEvent = nextEventDate.getTime() - centralTime.getTime();
+            const totalHours = Math.floor(msUntilEvent / (1000 * 60 * 60));
+            const totalMinutes = Math.floor((msUntilEvent % (1000 * 60 * 60)) / (1000 * 60));
+
+            // Format countdown based on time remaining
+            if (totalHours >= 1) {
+              setCountdown(`${totalHours} hour${totalHours !== 1 ? 's' : ''}, ${totalMinutes} minute${totalMinutes !== 1 ? 's' : ''}`);
+            } else {
+              setCountdown(`${totalMinutes} minute${totalMinutes !== 1 ? 's' : ''}`);
             }
             return;
           }
