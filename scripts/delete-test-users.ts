@@ -1,90 +1,111 @@
-import { createClient } from '@supabase/supabase-js';
+// =============================================
+// Delete Test Users
+// Remove test accounts from database
+// =============================================
+
+import { createServiceClient } from '../src/lib/supabase/service';
 import * as dotenv from 'dotenv';
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+// Load environment variables
+dotenv.config({ path: '.env.local' });
 
-dotenv.config({ path: join(__dirname, '../.env.local') });
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
-
-const supabase = createClient(supabaseUrl, supabaseServiceKey);
-
-const DRY_RUN = process.env.DRY_RUN === 'true';
+const TEST_USERS_TO_DELETE = [
+  'team5@test.apex.com',
+  'team4@test.apex.com',
+  'team3@test.apex.com',
+  'team2@test.apex.com',
+  'team1@test.apex.com',
+  'test.distributor@apex.com',
+  'test.personal.1773887814902@apextest.com',
+  'rep-rep2b-1773878782063-3csyeo@example.com',
+  'rep-rep1a-1773878778894-e18z5c@example.com',
+  'rep-rep5-1773878725012-qkm1v9@example.com',
+  'rep-rep4-1773878722114-2u3z1m@example.com',
+  'rep-rep3-1773878719139-t00osr@example.com',
+  'rep-rep2-1773878716406-2ov35a@example.com',
+  'rep-rep1-1773878712617-gm9wj@example.com',
+  'sponsor-echo-1773878708751-ixjukn@example.com',
+  'test-1773878306756-ipq4vv@example.com',
+  'test.personal.1773865190573@apextest.com',
+  'test.personal.1773864050879@apextest.com',
+  'sarah.johnson.test1773864046840@example.com',
+  'test.personal.1773864031315@apextest.com',
+  'john.smith.test1773864018033@example.com',
+];
 
 async function deleteTestUsers() {
-  console.log('\n=== DELETE TEST USERS ===\n');
+  console.log('🗑️  Starting Test User Deletion...\n');
+  console.log(`Total users to delete: ${TEST_USERS_TO_DELETE.length}\n`);
 
-  if (DRY_RUN) {
-    console.log('🔍 DRY RUN MODE - No changes will be made\n');
-  }
+  const supabase = createServiceClient();
+  let deleted = 0;
+  let notFound = 0;
+  let errors = 0;
 
-  // Find test users by email patterns
-  const { data: testUsers, error } = await supabase
-    .from('distributors')
-    .select('id, first_name, last_name, email, status')
-    .eq('status', 'active')
-    .or(
-      'email.ilike.%test%,' +
-      'email.ilike.%@example.com%,' +
-      'email.ilike.%@apextest.com%,' +
-      'email.ilike.rep-rep%,' +
-      'email.ilike.team%@test.apex.com'
-    );
+  for (const email of TEST_USERS_TO_DELETE) {
+    try {
+      console.log(`Processing: ${email}`);
 
-  if (error) {
-    console.error('Error:', error);
-    return;
-  }
+      // 1. Find the member record
+      const { data: member, error: findError } = await supabase
+        .from('members')
+        .select('member_id, distributor_id, full_name')
+        .eq('email', email)
+        .single();
 
-  if (!testUsers || testUsers.length === 0) {
-    console.log('✅ No test users found to delete.');
-    return;
-  }
+      if (findError || !member) {
+        console.log(`  ⚠️  Not found in database`);
+        notFound++;
+        continue;
+      }
 
-  console.log(`Found ${testUsers.length} test users to delete:\n`);
+      console.log(`  Found: ${member.full_name} (Member ID: ${member.member_id})`);
 
-  testUsers.forEach((u, i) => {
-    console.log(`${i + 1}. ${u.first_name} ${u.last_name} (${u.email})`);
-  });
+      // 2. Delete member (cascade will handle related records)
+      const { error: deleteError } = await supabase
+        .from('members')
+        .delete()
+        .eq('member_id', member.member_id);
 
-  console.log('\n' + '='.repeat(60) + '\n');
+      if (deleteError) {
+        console.log(`  ❌ Delete failed: ${deleteError.message}`);
+        errors++;
+        continue;
+      }
 
-  if (DRY_RUN) {
-    console.log('ℹ️  This was a DRY RUN. To actually delete, run:');
-    console.log('   npx tsx scripts/delete-test-users.ts\n');
-    return;
-  }
+      // 3. Delete distributor record
+      const { error: distError } = await supabase
+        .from('distributors')
+        .delete()
+        .eq('id', member.distributor_id);
 
-  // Actually delete (set status to 'deleted')
-  let successCount = 0;
-  let failCount = 0;
+      if (distError) {
+        console.log(`  ⚠️  Distributor delete warning: ${distError.message}`);
+      }
 
-  for (const user of testUsers) {
-    const { error: deleteError } = await supabase
-      .from('distributors')
-      .update({
-        status: 'deleted',
-        deleted_at: new Date().toISOString(),
-      })
-      .eq('id', user.id);
+      console.log(`  ✅ Deleted successfully`);
+      deleted++;
 
-    if (deleteError) {
-      console.log(`❌ Failed to delete ${user.first_name} ${user.last_name}: ${deleteError.message}`);
-      failCount++;
-    } else {
-      console.log(`✅ Deleted ${user.first_name} ${user.last_name}`);
-      successCount++;
+      // Small delay to avoid rate limiting
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+    } catch (error) {
+      console.log(`  ❌ Error: ${error}`);
+      errors++;
     }
+
+    console.log('');
   }
 
-  console.log('\n' + '='.repeat(60));
-  console.log(`\n✅ Successfully deleted: ${successCount}`);
-  console.log(`❌ Failed: ${failCount}`);
-  console.log(`📊 Total processed: ${testUsers.length}\n`);
+  console.log('='.repeat(60));
+  console.log('📊 DELETION REPORT');
+  console.log('='.repeat(60));
+  console.log(`Total processed:     ${TEST_USERS_TO_DELETE.length}`);
+  console.log(`✅ Deleted:          ${deleted}`);
+  console.log(`⚠️  Not found:        ${notFound}`);
+  console.log(`❌ Errors:           ${errors}`);
+  console.log('='.repeat(60));
 }
 
-deleteTestUsers();
+// Run script
+deleteTestUsers().catch(console.error);
