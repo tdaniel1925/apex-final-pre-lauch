@@ -5,6 +5,14 @@ import Link from 'next/link';
 
 const MEETING_LINK = 'https://teams.microsoft.com/meet/26528832746280?p=Zh81sDMA5eWoCOYWTz';
 
+// SPECIAL EVENT OVERRIDE - Set to null when no special event
+const SPECIAL_EVENT = {
+  date: '2026-03-24', // YYYY-MM-DD format
+  time: '18:30', // 24-hour format (6:30 PM = 18:30)
+  title: 'Special CEO Interview - Bill Propper',
+  description: 'Exclusive interview with our CEO Bill Propper discussing the Apex Vision, Revolutionary AI Technology, and Insurance Ladder to Success.'
+};
+
 interface EventSchedule {
   day: 'Tuesday' | 'Thursday';
   time: string;
@@ -46,6 +54,48 @@ export default function LiveEventsPage() {
       const minutes = centralTime.getMinutes();
       const seconds = centralTime.getSeconds();
       const currentMinutes = hours * 60 + minutes;
+
+      // Check for special event first
+      if (SPECIAL_EVENT) {
+        const specialDate = new Date(SPECIAL_EVENT.date + 'T00:00:00');
+        const centralToday = new Date(centralTime.getFullYear(), centralTime.getMonth(), centralTime.getDate());
+        const [eventHour, eventMinute] = SPECIAL_EVENT.time.split(':').map(Number);
+
+        const isSpecialEventToday = specialDate.getTime() === centralToday.getTime();
+
+        if (isSpecialEventToday) {
+          const roomOpen = (eventHour * 60) - 30; // 30 minutes before event
+          const eventStart = eventHour * 60 + eventMinute;
+          const eventEnd = eventStart + 60; // 1 hour event
+
+          if (currentMinutes >= roomOpen && currentMinutes < eventEnd) {
+            setIsLive(true);
+            setNextEvent({
+              day: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][dayOfWeek] as any,
+              time: SPECIAL_EVENT.time.replace(/(\d+):(\d+)/, (_, h, m) => {
+                const hour = parseInt(h);
+                const ampm = hour >= 12 ? 'PM' : 'AM';
+                const displayHour = hour > 12 ? hour - 12 : hour === 0 ? 12 : hour;
+                return `${displayHour}:${m} ${ampm}`;
+              }),
+              title: SPECIAL_EVENT.title,
+              description: SPECIAL_EVENT.description
+            });
+
+            if (currentMinutes >= eventStart) {
+              setIsEventStarted(true);
+              setCountdown('');
+            } else {
+              setIsEventStarted(false);
+              const totalSecondsUntilStart = (eventStart - currentMinutes) * 60 - seconds;
+              const minutesLeft = Math.floor(totalSecondsUntilStart / 60);
+              const secondsLeft = totalSecondsUntilStart % 60;
+              setCountdown(`${minutesLeft}:${secondsLeft.toString().padStart(2, '0')}`);
+            }
+            return;
+          }
+        }
+      }
 
       const roomOpen = 18 * 60; // 6:00 PM - Room opens
       const eventStart = 18 * 60 + 30; // 6:30 PM - Event starts
