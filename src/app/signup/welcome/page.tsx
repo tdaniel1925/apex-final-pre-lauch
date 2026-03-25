@@ -5,7 +5,7 @@
  * Shown immediately after signup to introduce new distributor to their AI assistant
  */
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { Phone, Sparkles, Clock, ArrowRight, CheckCircle } from 'lucide-react'
@@ -18,7 +18,7 @@ interface AIProvisioningStatus {
   trialExpiresAt?: string
 }
 
-export default function WelcomePage() {
+function WelcomeContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const distributorId = searchParams.get('distributorId')
@@ -284,5 +284,20 @@ export default function WelcomePage() {
         }
       `}</style>
     </div>
+  )
+}
+
+export default function WelcomePage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-purple-600 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-slate-600">Loading your welcome page...</p>
+        </div>
+      </div>
+    }>
+      <WelcomeContent />
+    </Suspense>
   )
 }
