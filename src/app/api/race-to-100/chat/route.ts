@@ -95,7 +95,7 @@ Step 2: Listen to 20/20 Audio (10 pts)
 - Celebrate: "🎉 You crushed it! +10 points! Now you know the secret!"
 
 Step 3: Watch Sharing the Opportunity Video (10 pts)
-- Show: [video:/videos/sharing-the-opportunity.mp4]
+- Show: [video:https://vimeo.com/1176429191]
 - Title: "Sharing the Opportunity" by JB
 - Explain: Learn the proven approach for your first conversations
 - After watching, they must say "I'm done" or "finished" to get credit
