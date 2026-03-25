@@ -50,8 +50,8 @@ function generateTestEmail(): string {
 }
 
 function generateTestPhone(): string {
-  // Generate random US phone number (555 area code for testing)
-  const areaCode = '555'
+  // Generate random US phone number (214 area code - Dallas, real area code for VAPI)
+  const areaCode = '214'
   const exchange = Math.floor(Math.random() * 900) + 100
   const lineNumber = Math.floor(Math.random() * 9000) + 1000
   return `${areaCode}${exchange}${lineNumber}`

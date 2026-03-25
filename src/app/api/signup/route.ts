@@ -305,67 +305,8 @@ export async function POST(request: NextRequest) {
     // Track distributor for rollback
     distributorId = distributor.id;
 
-    // Step 7.5: Create member record (for compensation tracking)
-    // Look up sponsor's member_id if sponsor exists
-    let enrollerMemberId: string | null = null;
-    if (sponsorId) {
-      const { data: sponsorMember } = await serviceClient
-        .from('members')
-        .select('member_id')
-        .eq('distributor_id', sponsorId)
-        .single();
-
-      if (sponsorMember) {
-        enrollerMemberId = sponsorMember.member_id;
-      }
-    }
-
-    const { error: memberError } = await serviceClient
-      .from('members')
-      .insert({
-        distributor_id: distributor.id,
-        email: distributor.email,
-        full_name: `${distributor.first_name} ${distributor.last_name}`,
-        enroller_id: enrollerMemberId, // Set to sponsor's member_id (FK to members.member_id)
-        sponsor_id: enrollerMemberId, // Set to sponsor's member_id (FK to members.member_id)
-        status: 'active',
-        enrollment_date: distributor.created_at,
-        tech_rank: 'starter',
-        highest_tech_rank: 'starter',
-        insurance_rank: 'inactive',
-        highest_insurance_rank: 'inactive',
-        personal_credits_monthly: 0,
-        team_credits_monthly: 0,
-        tech_personal_credits_monthly: 0,
-        tech_team_credits_monthly: 0,
-        insurance_personal_credits_monthly: 0,
-        insurance_team_credits_monthly: 0,
-        override_qualified: false,
-      });
-
-    if (memberError) {
-      console.error('Member creation error:', memberError);
-
-      // Rollback: Delete auth user and distributor
-      console.log('[ROLLBACK] Member creation failed, deleting auth user and distributor');
-      await serviceClient.auth.admin.deleteUser(authUserId!);
-      await serviceClient
-        .from('distributors')
-        .delete()
-        .eq('id', distributorId!);
-
-      authUserId = null;
-      distributorId = null;
-
-      return NextResponse.json(
-        {
-          success: false,
-          error: 'Failed to create member profile',
-          message: 'Account creation failed. Please try again.',
-        } as ApiResponse,
-        { status: 500 }
-      );
-    }
+    // NOTE: Member record is already created by create_distributor_atomic RPC function
+    // No need to create it again here (doing so causes duplicate key error)
 
     // Step 7.6: Store Tax ID (SSN or EIN) in tax_info table
     if (data.registration_type === 'personal' && data.ssn) {
