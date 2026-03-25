@@ -12,6 +12,7 @@
     "test:ui": "vitest --ui",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
+    "test:signup": "tsx scripts/test-signup-e2e.ts",
     "verify:stage-1": "node scripts/verify-stage-1.js",
     "seed:master": "tsx scripts/seed-master.ts",
     "seed:emails": "tsx scripts/seed-email-templates.ts",
