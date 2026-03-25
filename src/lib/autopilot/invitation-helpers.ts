@@ -45,6 +45,20 @@ export interface MeetingInvitation {
  */
 export async function canSendInvitation(distributorId: string): Promise<boolean> {
   try {
+    // Check if admin has globally disabled restrictions
+    const supabase = createServiceClient();
+    const { data: setting } = await supabase
+      .from('system_settings')
+      .select('value')
+      .eq('key', 'disable_invitation_restrictions')
+      .single();
+
+    // If restrictions are disabled globally, allow send
+    if (setting && setting.value === 'true') {
+      return true;
+    }
+
+    // Otherwise check normal limits
     const hasReached = await hasReachedLimit(distributorId, 'email');
     return !hasReached;
   } catch (error) {

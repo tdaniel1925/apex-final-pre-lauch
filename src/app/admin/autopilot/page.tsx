@@ -5,6 +5,7 @@
 
 import { requireAdmin } from '@/lib/auth/admin';
 import { AutopilotOverview } from '@/components/admin/AutopilotOverview';
+import InvitationSettingsToggle from '@/components/admin/InvitationSettingsToggle';
 
 export default async function AdminAutopilotPage() {
   await requireAdmin();
@@ -17,6 +18,11 @@ export default async function AdminAutopilotPage() {
           <p className="mt-2 text-slate-600">
             AI-powered prospecting system for distributors
           </p>
+        </div>
+
+        {/* Invitation Restrictions Toggle */}
+        <div className="mb-8">
+          <InvitationSettingsToggle />
         </div>
 
         <AutopilotOverview />
