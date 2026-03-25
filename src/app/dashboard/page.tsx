@@ -214,10 +214,10 @@ export default async function DashboardPage() {
   return (
     <DashboardClient distributor={dist}>
       <div className="min-h-screen bg-slate-50">
-        <div className="max-w-7xl mx-auto p-6 space-y-6">
+        <div className="max-w-7xl mx-auto p-3 sm:p-4 md:p-6 space-y-4 sm:space-y-6">
           {/* Welcome Header */}
-          <div className="mb-6">
-            <h1 className="text-3xl font-bold text-slate-900">
+          <div className="mb-4 sm:mb-6">
+            <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">
               Welcome back, {dist.first_name}
             </h1>
             <p className="text-sm text-slate-600 mt-1">@{dist.slug}</p>
@@ -237,22 +237,23 @@ export default async function DashboardPage() {
             monthlyEarnings={monthlyEarnings}
           />
 
-n          {/* AI Phone Stats */}
+          {/* AI Phone Stats */}
           <AIPhoneStats distributorId={dist.id} />
+
           {/* Rank Progress Bar */}
           {nextRank && (
-            <div className="bg-white rounded-lg shadow-md p-6 border border-slate-200">
-              <div className="flex items-center justify-between mb-3">
+            <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 border border-slate-200">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3 gap-2">
                 <div>
-                  <h3 className="text-lg font-semibold text-slate-900">
+                  <h3 className="text-base sm:text-lg font-semibold text-slate-900">
                     Progress to {nextRank.charAt(0).toUpperCase() + nextRank.slice(1)}
                   </h3>
                   <p className="text-sm text-slate-600">
                     {creditsNeeded.toLocaleString()} credits needed
                   </p>
                 </div>
-                <div className="text-right">
-                  <p className="text-2xl font-bold text-slate-900">
+                <div className="text-left sm:text-right">
+                  <p className="text-xl sm:text-2xl font-bold text-slate-900">
                     {progressPercent.toFixed(0)}%
                   </p>
                 </div>
@@ -272,19 +273,19 @@ n          {/* AI Phone Stats */}
           )}
 
           {/* Quick Actions - 4 Buttons */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {/* Enroll New Member */}
             <Link
               href={`/${dist.slug}`}
-              className="group bg-white rounded-lg shadow-md p-6 border border-slate-200 hover:border-slate-400 hover:shadow-lg transition-all"
+              className="group bg-white rounded-lg shadow-md p-4 sm:p-6 border border-slate-200 hover:border-slate-400 hover:shadow-lg transition-all min-h-[120px] flex flex-col"
             >
               <div className="flex items-center justify-between">
-                <div className="p-3 bg-slate-100 rounded-lg group-hover:bg-slate-200 transition-colors">
-                  <Users className="w-6 h-6 text-slate-700" />
+                <div className="p-2.5 sm:p-3 bg-slate-100 rounded-lg group-hover:bg-slate-200 transition-colors">
+                  <Users className="w-5 h-5 sm:w-6 sm:h-6 text-slate-700" />
                 </div>
-                <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-slate-600 transition-colors" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 group-hover:text-slate-600 transition-colors" />
               </div>
-              <h3 className="mt-4 text-lg font-semibold text-slate-900">
+              <h3 className="mt-3 sm:mt-4 text-base sm:text-lg font-semibold text-slate-900">
                 Enroll New Member
               </h3>
               <p className="text-sm text-slate-600 mt-1">
@@ -298,15 +299,15 @@ n          {/* AI Phone Stats */}
             {/* View Compensation Plan */}
             <Link
               href="/compensation"
-              className="group bg-white rounded-lg shadow-md p-6 border border-slate-200 hover:border-slate-400 hover:shadow-lg transition-all"
+              className="group bg-white rounded-lg shadow-md p-4 sm:p-6 border border-slate-200 hover:border-slate-400 hover:shadow-lg transition-all min-h-[120px] flex flex-col"
             >
               <div className="flex items-center justify-between">
-                <div className="p-3 bg-slate-100 rounded-lg group-hover:bg-slate-200 transition-colors">
-                  <FileText className="w-6 h-6 text-slate-700" />
+                <div className="p-2.5 sm:p-3 bg-slate-100 rounded-lg group-hover:bg-slate-200 transition-colors">
+                  <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-slate-700" />
                 </div>
-                <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-slate-600 transition-colors" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 group-hover:text-slate-600 transition-colors" />
               </div>
-              <h3 className="mt-4 text-lg font-semibold text-slate-900">
+              <h3 className="mt-3 sm:mt-4 text-base sm:text-lg font-semibold text-slate-900">
                 View Compensation Plan
               </h3>
               <p className="text-sm text-slate-600 mt-1">
@@ -317,15 +318,15 @@ n          {/* AI Phone Stats */}
             {/* Contact Support */}
             <Link
               href="/support"
-              className="group bg-white rounded-lg shadow-md p-6 border border-slate-200 hover:border-slate-400 hover:shadow-lg transition-all"
+              className="group bg-white rounded-lg shadow-md p-4 sm:p-6 border border-slate-200 hover:border-slate-400 hover:shadow-lg transition-all min-h-[120px] flex flex-col"
             >
               <div className="flex items-center justify-between">
-                <div className="p-3 bg-slate-100 rounded-lg group-hover:bg-slate-200 transition-colors">
-                  <MessageCircle className="w-6 h-6 text-slate-700" />
+                <div className="p-2.5 sm:p-3 bg-slate-100 rounded-lg group-hover:bg-slate-200 transition-colors">
+                  <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 text-slate-700" />
                 </div>
-                <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-slate-600 transition-colors" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 group-hover:text-slate-600 transition-colors" />
               </div>
-              <h3 className="mt-4 text-lg font-semibold text-slate-900">
+              <h3 className="mt-3 sm:mt-4 text-base sm:text-lg font-semibold text-slate-900">
                 Contact Support
               </h3>
               <p className="text-sm text-slate-600 mt-1">
@@ -336,13 +337,13 @@ n          {/* AI Phone Stats */}
 
           {/* Recent Activity Feed */}
           <div className="bg-white rounded-lg shadow-md border border-slate-200">
-            <div className="p-6 border-b border-slate-200">
-              <h2 className="text-xl font-bold text-slate-900">Recent Activity</h2>
+            <div className="p-4 sm:p-6 border-b border-slate-200">
+              <h2 className="text-lg sm:text-xl font-bold text-slate-900">Recent Activity</h2>
               <p className="text-sm text-slate-600 mt-1">
                 Latest updates from your organization
               </p>
             </div>
-            <div className="p-6">
+            <div className="p-4 sm:p-6">
               <ActivityFeed distributorId={dist.id} initialActivities={initialActivities} />
             </div>
           </div>

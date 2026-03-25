@@ -3,12 +3,13 @@
 // =============================================
 // Admin Portal Sidebar Navigation
 // Organized with collapsible categories
+// Mobile-responsive with hamburger menu
 // =============================================
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { signOut } from '@/app/actions/auth';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface NavItem {
   name: string;
@@ -27,6 +28,24 @@ export default function AdminSidebar() {
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(
     new Set(['Core', 'Distributors', 'Events', 'Communications'])
   );
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
+
+  // Prevent scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
 
   const toggleCategory = (categoryName: string) => {
     const newExpanded = new Set(expandedCategories);
@@ -340,9 +359,46 @@ export default function AdminSidebar() {
   ];
 
   return (
-    <aside className="w-52 bg-gray-900 text-white h-screen sticky top-0 flex flex-col">
-      {/* Admin Portal Header */}
-      <div className="flex-shrink-0 p-3">
+    <>
+      {/* Mobile Menu Button */}
+      <button
+        onClick={() => setIsMobileMenuOpen(true)}
+        className="lg:hidden fixed top-4 left-4 z-40 p-2 bg-gray-900 text-white rounded-lg shadow-lg hover:bg-gray-800 transition-colors"
+        aria-label="Open menu"
+      >
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+
+      {/* Mobile Overlay */}
+      {isMobileMenuOpen && (
+        <div
+          className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
+
+      {/* Sidebar */}
+      <aside className={`
+        w-64 bg-gray-900 text-white h-screen flex flex-col
+        fixed lg:sticky top-0 z-50 lg:z-auto
+        transition-transform duration-300 ease-in-out
+        ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
+      `}>
+        {/* Mobile Close Button */}
+        <button
+          onClick={() => setIsMobileMenuOpen(false)}
+          className="lg:hidden absolute top-4 right-4 p-2 text-gray-400 hover:text-white"
+          aria-label="Close menu"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        {/* Admin Portal Header */}
+        <div className="flex-shrink-0 p-3">
         <div className="text-center mb-2">
           <img
             src="/apex-logo-white.png"
@@ -440,5 +496,6 @@ export default function AdminSidebar() {
         </form>
       </div>
     </aside>
+    </>
   );
 }

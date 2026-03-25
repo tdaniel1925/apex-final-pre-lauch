@@ -115,44 +115,44 @@ export default async function AdminDashboardPage() {
   const level0A = level0AResult.data;
 
   return (
-    <div className="p-4">
+    <div className="p-4 lg:p-8 pt-16 lg:pt-4">
       {/* Welcome Header */}
-      <div className="mb-4">
-        <h1 className="text-2xl font-bold text-gray-900">
+      <div className="mb-4 lg:mb-6">
+        <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900">
           Admin Dashboard
         </h1>
-        <p className="text-sm text-gray-600 mt-0.5">
+        <p className="text-xs sm:text-sm text-gray-600 mt-0.5">
           Welcome back, {admin.first_name}! Here&apos;s your system overview.
         </p>
       </div>
 
       {/* Level 0A Banner - Apex Affinity Team */}
       {level0A && (
-        <div className="mb-4">
+        <div className="mb-4 lg:mb-6">
           <a
             href={`/admin/distributors/${level0A.id}`}
-            className="block bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg shadow-lg p-4 hover:shadow-xl transition-all cursor-pointer"
+            className="block bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg shadow-lg p-3 sm:p-4 hover:shadow-xl transition-all cursor-pointer"
           >
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
-                  <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center flex-shrink-0">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
                 </div>
-                <div>
-                  <h2 className="text-xl font-bold text-white">
+                <div className="min-w-0 flex-1">
+                  <h2 className="text-base sm:text-lg lg:text-xl font-bold text-white truncate">
                     🏆 {level0A.first_name} {level0A.last_name}
                   </h2>
-                  <p className="text-sm text-blue-100">
+                  <p className="text-xs sm:text-sm text-blue-100 truncate">
                     Level 0A - Corporate Override & Bonus Position
                   </p>
-                  <p className="text-xs text-blue-200 mt-0.5">
+                  <p className="text-[10px] sm:text-xs text-blue-200 mt-0.5 hidden sm:block">
                     All commissions, overrides, and always bonus qualified
                   </p>
                 </div>
               </div>
-              <div className="hidden md:flex items-center gap-2 text-white">
+              <div className="hidden lg:flex items-center gap-2 text-white flex-shrink-0">
                 <span className="text-sm font-medium">View Organization</span>
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -164,7 +164,7 @@ export default async function AdminDashboardPage() {
       )}
 
       {/* Key Metrics Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3 mb-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 mb-4 lg:mb-6">
         <StatCard
           title="Total Distributors"
           value={totalDistributors || 0}
@@ -252,30 +252,30 @@ export default async function AdminDashboardPage() {
       </div>
 
       {/* Recent Distributors */}
-      <div className="bg-white rounded-lg shadow overflow-hidden mb-4">
-        <div className="p-3 border-b border-gray-200">
-          <h2 className="text-lg font-bold text-gray-900">Recent Signups</h2>
+      <div className="bg-white rounded-lg shadow overflow-hidden mb-4 lg:mb-6">
+        <div className="p-3 lg:p-4 border-b border-gray-200">
+          <h2 className="text-base sm:text-lg font-bold text-gray-900">Recent Signups</h2>
           <p className="text-xs text-gray-600 mt-0.5">Latest 10 distributors</p>
         </div>
 
         {recentDistributors.data && recentDistributors.data.length > 0 ? (
           <div className="overflow-x-auto">
-            <table className="w-full">
+            <table className="w-full min-w-[600px]">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  <th className="px-2 sm:px-3 py-2 text-left text-[10px] sm:text-xs font-medium text-gray-500 uppercase">
                     Name
                   </th>
-                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  <th className="px-2 sm:px-3 py-2 text-left text-[10px] sm:text-xs font-medium text-gray-500 uppercase hidden sm:table-cell">
                     Email
                   </th>
-                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  <th className="px-2 sm:px-3 py-2 text-left text-[10px] sm:text-xs font-medium text-gray-500 uppercase">
                     Username
                   </th>
-                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  <th className="px-2 sm:px-3 py-2 text-left text-[10px] sm:text-xs font-medium text-gray-500 uppercase">
                     Position
                   </th>
-                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  <th className="px-2 sm:px-3 py-2 text-left text-[10px] sm:text-xs font-medium text-gray-500 uppercase">
                     Joined
                   </th>
                 </tr>
@@ -283,24 +283,24 @@ export default async function AdminDashboardPage() {
               <tbody className="bg-white divide-y divide-gray-200">
                 {recentDistributors.data!.map((dist) => (
                   <tr key={dist.id} className="hover:bg-gray-50">
-                    <td className="px-3 py-2 whitespace-nowrap">
-                      <div className="text-xs font-medium text-gray-900">
+                    <td className="px-2 sm:px-3 py-2 whitespace-nowrap">
+                      <div className="text-[10px] sm:text-xs font-medium text-gray-900">
                         {dist.first_name} {dist.last_name}
                       </div>
                     </td>
-                    <td className="px-3 py-2 whitespace-nowrap">
-                      <div className="text-xs text-gray-500">{dist.email}</div>
+                    <td className="px-2 sm:px-3 py-2 whitespace-nowrap hidden sm:table-cell">
+                      <div className="text-[10px] sm:text-xs text-gray-500">{dist.email}</div>
                     </td>
-                    <td className="px-3 py-2 whitespace-nowrap">
-                      <div className="text-xs text-gray-900">@{dist.slug}</div>
+                    <td className="px-2 sm:px-3 py-2 whitespace-nowrap">
+                      <div className="text-[10px] sm:text-xs text-gray-900">@{dist.slug}</div>
                     </td>
-                    <td className="px-3 py-2 whitespace-nowrap">
-                      <div className="text-xs font-semibold text-blue-600">
+                    <td className="px-2 sm:px-3 py-2 whitespace-nowrap">
+                      <div className="text-[10px] sm:text-xs font-semibold text-blue-600">
                         Rep #{dist.rep_number ?? 'N/A'}
                       </div>
                     </td>
-                    <td className="px-3 py-2 whitespace-nowrap">
-                      <div className="text-xs text-gray-500">
+                    <td className="px-2 sm:px-3 py-2 whitespace-nowrap">
+                      <div className="text-[10px] sm:text-xs text-gray-500">
                         {new Date(dist.created_at).toLocaleDateString()}
                       </div>
                     </td>
@@ -317,14 +317,14 @@ export default async function AdminDashboardPage() {
       </div>
 
       {/* Quick Actions */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
         <a
           href="/admin/distributors"
-          className="bg-white rounded-lg shadow p-4 hover:shadow-lg transition-shadow cursor-pointer"
+          className="bg-white rounded-lg shadow p-3 sm:p-4 hover:shadow-lg transition-shadow cursor-pointer min-h-[44px] flex items-center"
         >
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="flex items-center gap-2 sm:gap-3 flex-1">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -333,20 +333,20 @@ export default async function AdminDashboardPage() {
                 />
               </svg>
             </div>
-            <div>
-              <h3 className="text-sm font-semibold text-gray-900">Manage Distributors</h3>
-              <p className="text-xs text-gray-600">View, edit, and manage users</p>
+            <div className="min-w-0">
+              <h3 className="text-xs sm:text-sm font-semibold text-gray-900 truncate">Manage Distributors</h3>
+              <p className="text-[10px] sm:text-xs text-gray-600 truncate">View, edit, and manage users</p>
             </div>
           </div>
         </a>
 
         <a
           href="/admin/prospects"
-          className="bg-white rounded-lg shadow p-4 hover:shadow-lg transition-shadow cursor-pointer"
+          className="bg-white rounded-lg shadow p-3 sm:p-4 hover:shadow-lg transition-shadow cursor-pointer min-h-[44px] flex items-center"
         >
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="flex items-center gap-2 sm:gap-3 flex-1">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center flex-shrink-0">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -355,20 +355,20 @@ export default async function AdminDashboardPage() {
                 />
               </svg>
             </div>
-            <div>
-              <h3 className="text-sm font-semibold text-gray-900">Manage Prospects</h3>
-              <p className="text-xs text-gray-600">View and manage signups</p>
+            <div className="min-w-0">
+              <h3 className="text-xs sm:text-sm font-semibold text-gray-900 truncate">Manage Prospects</h3>
+              <p className="text-[10px] sm:text-xs text-gray-600 truncate">View and manage signups</p>
             </div>
           </div>
         </a>
 
         <a
           href="/admin/email-templates"
-          className="bg-white rounded-lg shadow p-4 hover:shadow-lg transition-shadow cursor-pointer"
+          className="bg-white rounded-lg shadow p-3 sm:p-4 hover:shadow-lg transition-shadow cursor-pointer min-h-[44px] flex items-center"
         >
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-red-100 text-red-600 rounded-full flex items-center justify-center">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="flex items-center gap-2 sm:gap-3 flex-1">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-red-100 text-red-600 rounded-full flex items-center justify-center flex-shrink-0">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -377,20 +377,20 @@ export default async function AdminDashboardPage() {
                 />
               </svg>
             </div>
-            <div>
-              <h3 className="text-sm font-semibold text-gray-900">Email Templates</h3>
-              <p className="text-xs text-gray-600">Manage nurture campaigns</p>
+            <div className="min-w-0">
+              <h3 className="text-xs sm:text-sm font-semibold text-gray-900 truncate">Email Templates</h3>
+              <p className="text-[10px] sm:text-xs text-gray-600 truncate">Manage nurture campaigns</p>
             </div>
           </div>
         </a>
 
         <a
           href="/admin/genealogy"
-          className="bg-white rounded-lg shadow p-4 hover:shadow-lg transition-shadow cursor-pointer"
+          className="bg-white rounded-lg shadow p-3 sm:p-4 hover:shadow-lg transition-shadow cursor-pointer min-h-[44px] flex items-center"
         >
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="flex items-center gap-2 sm:gap-3 flex-1">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center flex-shrink-0">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -399,20 +399,20 @@ export default async function AdminDashboardPage() {
                 />
               </svg>
             </div>
-            <div>
-              <h3 className="text-sm font-semibold text-gray-900">View Genealogy</h3>
-              <p className="text-xs text-gray-600">Visualize network structure</p>
+            <div className="min-w-0">
+              <h3 className="text-xs sm:text-sm font-semibold text-gray-900 truncate">View Genealogy</h3>
+              <p className="text-[10px] sm:text-xs text-gray-600 truncate">Visualize network structure</p>
             </div>
           </div>
         </a>
 
         <a
           href="/admin/reports"
-          className="bg-white rounded-lg shadow p-4 hover:shadow-lg transition-shadow cursor-pointer"
+          className="bg-white rounded-lg shadow p-3 sm:p-4 hover:shadow-lg transition-shadow cursor-pointer min-h-[44px] flex items-center"
         >
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="flex items-center gap-2 sm:gap-3 flex-1">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -421,9 +421,9 @@ export default async function AdminDashboardPage() {
                 />
               </svg>
             </div>
-            <div>
-              <h3 className="text-sm font-semibold text-gray-900">Generate Reports</h3>
-              <p className="text-xs text-gray-600">View analytics and insights</p>
+            <div className="min-w-0">
+              <h3 className="text-xs sm:text-sm font-semibold text-gray-900 truncate">Generate Reports</h3>
+              <p className="text-[10px] sm:text-xs text-gray-600 truncate">View analytics and insights</p>
             </div>
           </div>
         </a>

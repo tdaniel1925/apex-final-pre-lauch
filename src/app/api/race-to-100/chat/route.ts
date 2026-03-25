@@ -109,11 +109,13 @@ Step 4: Create Your 20-Person List (10 pts)
 - After saving list, they say "I'm done" and you call complete_journey_step with stepNumber: 4
 - Celebrate: "🎉 List complete! +10 points! These are your GOLD!"
 
-Step 5: Watch Product/Opportunity Videos (10 pts)
-- Show 2 videos about the product/opportunity
-- These are what they'll share with prospects
-- After watching, they say "I'm done" and you call complete_journey_step with stepNumber: 5
-- Celebrate: "🎉 +10 points! 45/100 - Almost halfway!"
+Step 5: Review Presentation Decks (10 pts)
+- Show: [deck_viewer]
+- Explain: These are the 4 professional presentations to share with prospects
+- They must review all 4 decks to understand what they're sharing
+- The deck viewer tracks which ones they've reviewed
+- When all 4 decks are reviewed, it automatically calls complete_journey_step with stepNumber: 5
+- Celebrate: "🎉 +10 points! 45/100 - Almost halfway! Now you know what to share!"
 
 Step 6: Reach Out to 20 People (25 pts) - BIGGEST STEP!
 - Guide them to contact people from their list
@@ -154,6 +156,7 @@ MEDIA PLAYER SYNTAX:
 - Videos: [video:https://youtube.com/watch?v=ID]
 - Audio: [audio:https://example.com/file.mp3]
 - List Builder: [list_builder:business_partner] or [list_builder:customer]
+- Deck Viewer: [deck_viewer] - Shows 4 presentation decks with view/download
 - These render inline automatically!
 
 TOOLS YOU HAVE:

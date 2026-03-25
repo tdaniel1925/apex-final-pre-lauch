@@ -536,7 +536,7 @@ export default function Sidebar({ isLicensedAgent = true }: SidebarProps) {
         <img src="/apex-logo-white.png" alt="Apex Affinity Group" className="h-8 w-auto" />
         <button
           onClick={() => setMobileOpen(true)}
-          className="text-white p-1.5 rounded-md hover:bg-gray-800 transition-colors"
+          className="text-white p-2 rounded-md hover:bg-gray-800 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
           aria-label="Open menu"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -559,7 +559,7 @@ export default function Sidebar({ isLicensedAgent = true }: SidebarProps) {
               <img src="/apex-logo-white.png" alt="Apex Affinity Group" className="h-10 w-auto" />
               <button
                 onClick={() => setMobileOpen(false)}
-                className="text-gray-400 hover:text-white p-1 rounded-md hover:bg-gray-800"
+                className="text-gray-400 hover:text-white p-2 rounded-md hover:bg-gray-800 min-h-[44px] min-w-[44px] flex items-center justify-center"
                 aria-label="Close menu"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

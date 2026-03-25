@@ -166,11 +166,11 @@ export default async function TeamPage() {
     : 0;
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
+    <div className="p-3 sm:p-4 md:p-6 max-w-7xl mx-auto">
       {/* Page Header */}
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-slate-900">My Team</h1>
-        <p className="text-slate-600 mt-1">
+      <div className="mb-4 sm:mb-6">
+        <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">My Team</h1>
+        <p className="text-slate-600 mt-1 text-sm sm:text-base">
           Your Level 1 direct enrollees and team performance
         </p>
       </div>
@@ -184,9 +184,9 @@ export default async function TeamPage() {
       />
 
       {/* Team Members Section */}
-      <div className="team-list bg-white border border-slate-200 rounded-lg p-6 shadow-sm" data-testid="team-list">
-        <div className="mb-6">
-          <h2 className="text-xl font-bold text-slate-900">Team Members</h2>
+      <div className="team-list bg-white border border-slate-200 rounded-lg p-4 sm:p-6 shadow-sm" data-testid="team-list">
+        <div className="mb-4 sm:mb-6">
+          <h2 className="text-lg sm:text-xl font-bold text-slate-900">Team Members</h2>
           <p className="text-sm text-slate-600 mt-1">
             {membersWithStats.length} direct enrollee{membersWithStats.length !== 1 ? 's' : ''}
           </p>

@@ -5,6 +5,7 @@ import { Send, Loader2 } from 'lucide-react';
 import VideoPlayer from '../chatbot/VideoPlayer';
 import AudioPlayer from '../chatbot/AudioPlayer';
 import InteractiveListBuilder from '../chatbot/InteractiveListBuilder';
+import PresentationDeckViewer from '../chatbot/PresentationDeckViewer';
 
 interface JourneyProgress {
   id: string;
@@ -225,6 +226,14 @@ export default function CoachChat({
             key={`list-${match.index}`}
             distributorId={distributorId}
             listType={listType}
+            onComplete={onStepComplete}
+          />
+        );
+      } else if (match[0] === '[deck_viewer]') {
+        parts.push(
+          <PresentationDeckViewer
+            key={`deck-viewer-${match.index}`}
+            distributorId={distributorId}
             onComplete={onStepComplete}
           />
         );

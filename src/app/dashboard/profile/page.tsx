@@ -164,9 +164,9 @@ export default async function ProfilePage() {
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Header */}
-      <header className="bg-white border-b border-slate-200 px-8 py-6">
+      <header className="bg-white border-b border-slate-200 px-4 sm:px-6 md:px-8 py-4 sm:py-6">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-2xl font-bold text-slate-900">Profile</h1>
+          <h1 className="text-xl sm:text-2xl font-bold text-slate-900">Profile</h1>
           <p className="text-sm text-slate-500 mt-1">
             View your account information and compensation statistics
           </p>
@@ -174,28 +174,28 @@ export default async function ProfilePage() {
       </header>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-8 py-8">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-6 md:py-8">
         {/* Profile Header Card */}
-        <Card className="mb-6">
-          <CardContent className="pt-6">
-            <div className="flex items-start gap-6">
+        <Card className="mb-4 sm:mb-6">
+          <CardContent className="pt-4 sm:pt-6">
+            <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
               {/* Avatar */}
-              <Avatar size="lg" className="size-24">
+              <Avatar size="lg" className="size-20 sm:size-24">
                 {distributor.profile_photo_url ? (
                   <AvatarImage src={distributor.profile_photo_url} alt={`${distributor.first_name} ${distributor.last_name}`} />
                 ) : null}
-                <AvatarFallback className="text-xl">{initials}</AvatarFallback>
+                <AvatarFallback className="text-lg sm:text-xl">{initials}</AvatarFallback>
               </Avatar>
 
               {/* Header Info */}
-              <div className="flex-1">
-                <h2 className="text-2xl font-bold text-slate-900">
+              <div className="flex-1 w-full sm:w-auto">
+                <h2 className="text-xl sm:text-2xl font-bold text-slate-900">
                   {distributor.first_name} {distributor.last_name}
                 </h2>
                 <p className="text-slate-600 mt-1">Rep #{distributor.rep_number || 'Pending'}</p>
 
                 {/* Rank Badges */}
-                <div className="flex gap-3 mt-4">
+                <div className="flex flex-wrap gap-2 sm:gap-3 mt-3 sm:mt-4">
                   {member && (
                     <>
                       <div>
