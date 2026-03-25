@@ -174,9 +174,9 @@ You are ${firstName}'s secret weapon. Be awesome!`
  * Voice configuration for network marketing AI
  */
 export const NETWORK_MARKETING_VOICE_CONFIG = {
-  provider: 'openai',
-  voiceId: 'alloy', // Professional, friendly, neutral
-  model: 'gpt-4',
+  provider: 'vapi',
+  voiceId: 'Elliot', // VAPI Elliot voice - professional male voice
+  model: 'gpt-4o-mini', // Cheaper GPT model
   temperature: 0.7,
   firstMessage: "Hi! Thanks for calling. How can I help you today?",
   firstMessageMode: 'assistant-speaks-first' as const,

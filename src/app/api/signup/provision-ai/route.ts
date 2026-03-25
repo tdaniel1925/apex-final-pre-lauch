@@ -102,7 +102,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<Provision
       name: `${firstName} ${lastName} - Apex AI`,
       model: {
         provider: 'openai',
-        model: 'gpt-4',
+        model: 'gpt-4o-mini', // Using cheaper GPT-4o-mini model
         systemPrompt,
       },
       voice: {
