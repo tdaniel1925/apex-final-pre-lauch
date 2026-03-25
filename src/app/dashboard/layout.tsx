@@ -4,7 +4,6 @@
 // =============================================
 
 import Sidebar from '@/components/dashboard/Sidebar';
-import AIFloatingButton from '@/components/dashboard/AIFloatingButton';
 import { Toaster } from 'sonner';
 import { createClient } from '@/lib/supabase/server';
 import { createServiceClient } from '@/lib/supabase/service';
@@ -41,8 +40,6 @@ export default async function DashboardLayout({
       <main className="flex-1 pt-14 md:pt-0 min-w-0">
         {children}
       </main>
-      {/* AI Chat Assistant - Floating Button */}
-      <AIFloatingButton />
     </div>
   );
 }

@@ -6,7 +6,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Calendar, Clock, MapPin, Video, Users, CheckCircle, Download } from 'lucide-react';
+import { Calendar, Clock, MapPin, Video, CheckCircle, Download } from 'lucide-react';
 
 interface MeetingData {
   id: string;
@@ -67,11 +67,6 @@ export default function MeetingRegistrationForm({
 
   // Format time (remove seconds if present)
   const formattedTime = meeting.eventTime.substring(0, 5);
-
-  // Calculate spots remaining
-  const spotsRemaining = meeting.maxAttendees
-    ? meeting.maxAttendees - meeting.totalRegistered
-    : null;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -238,8 +233,15 @@ export default function MeetingRegistrationForm({
           )}
 
           {meeting.customMessage && (
-            <div className="bg-blue-50 border-l-4 border-[#2c5aa0] p-4 mb-6">
-              <p className="text-slate-700">{meeting.customMessage}</p>
+            <div className="bg-gradient-to-r from-slate-50 to-blue-50 border-l-4 border-[#2c5aa0] p-6 rounded-r-lg mb-6 shadow-sm">
+              <h3 className="text-xl font-semibold text-slate-900 mb-3">
+                About This Meeting
+              </h3>
+              <div className="prose prose-slate max-w-none">
+                <p className="text-slate-700 leading-relaxed whitespace-pre-wrap">
+                  {meeting.customMessage}
+                </p>
+              </div>
             </div>
           )}
 
@@ -289,16 +291,6 @@ export default function MeetingRegistrationForm({
               </div>
             )}
           </div>
-
-          {/* Spots Remaining */}
-          {spotsRemaining !== null && (
-            <div className="flex items-center gap-2 text-sm">
-              <Users className="w-4 h-4 text-[#2c5aa0]" />
-              <span className="text-slate-600">
-                {spotsRemaining} {spotsRemaining === 1 ? 'spot' : 'spots'} remaining
-              </span>
-            </div>
-          )}
 
           {/* Host Info */}
           <div className="border-t border-slate-200 mt-6 pt-6">

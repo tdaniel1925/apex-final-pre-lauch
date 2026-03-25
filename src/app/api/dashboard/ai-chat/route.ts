@@ -32,6 +32,10 @@ const tools: Anthropic.Tool[] = [
           type: 'string',
           description: 'Brief description of what the meeting is about (optional but recommended)',
         },
+        customMessage: {
+          type: 'string',
+          description: 'Custom welcome message to display on the registration page. This is typically generated using the generate_meeting_description tool first, then included here. Should be compelling and personalized.',
+        },
         eventDate: {
           type: 'string',
           description: 'Date of the event in YYYY-MM-DD format. Convert relative dates like "Tuesday", "next Thursday", "March 25th" to YYYY-MM-DD format based on current date.',
@@ -69,6 +73,39 @@ const tools: Anthropic.Tool[] = [
         },
       },
       required: ['title', 'eventDate', 'eventTime', 'locationType'],
+    },
+  },
+  {
+    name: 'generate_meeting_description',
+    description: 'Generates a compelling, professional description/message for a meeting registration page. Use this BEFORE creating the meeting to craft the perfect message based on meeting purpose, audience, and details. The user will see a preview and can request changes before finalizing.',
+    input_schema: {
+      type: 'object',
+      properties: {
+        meetingPurpose: {
+          type: 'string',
+          description: 'What is this meeting about? (e.g., "Business overview presentation", "Home meeting to explain the opportunity", "Training on lead generation")',
+        },
+        targetAudience: {
+          type: 'string',
+          description: 'Who is this meeting for? (e.g., "New prospects interested in the business", "My team members", "Local community", "Family and friends")',
+        },
+        keyPoints: {
+          type: 'array',
+          items: { type: 'string' },
+          description: 'Key points or topics that will be covered (e.g., ["Income potential", "Product benefits", "Getting started"])',
+        },
+        tone: {
+          type: 'string',
+          enum: ['professional', 'friendly', 'casual', 'inspiring', 'educational'],
+          description: 'Desired tone for the message. Default: friendly',
+          default: 'friendly',
+        },
+        specialNotes: {
+          type: 'string',
+          description: 'Any special information to include (e.g., "Refreshments provided", "Bring a guest", "Q&A session included")',
+        },
+      },
+      required: ['meetingPurpose', 'targetAudience'],
     },
   },
   {
@@ -558,6 +595,92 @@ const tools: Anthropic.Tool[] = [
 ];
 
 // Tool handlers
+async function handleGenerateMeetingDescription(params: any, userId: string) {
+  const supabase = await createClient();
+
+  // Get user's distributor info for personalization
+  const { data: distributor } = await supabase
+    .from('distributors')
+    .select('first_name, last_name')
+    .eq('auth_user_id', userId)
+    .single();
+
+  const hostName = distributor
+    ? `${distributor.first_name} ${distributor.last_name}`
+    : 'your host';
+
+  // Build the prompt for Claude to generate the description
+  const descriptionPrompt = `Generate a compelling, professional description for a meeting registration page.
+
+Meeting Purpose: ${params.meetingPurpose}
+Target Audience: ${params.targetAudience}
+${params.keyPoints && params.keyPoints.length > 0 ? `Key Topics:\n${params.keyPoints.map((p: string) => `- ${p}`).join('\n')}` : ''}
+${params.specialNotes ? `Special Information: ${params.specialNotes}` : ''}
+Desired Tone: ${params.tone || 'friendly'}
+Host: ${hostName}
+
+Create a 2-3 paragraph custom message that will appear on the registration page. The message should:
+1. Welcome attendees and create excitement about the meeting
+2. Clearly communicate what they'll learn and why it matters
+3. Use the specified tone (${params.tone || 'friendly'})
+4. Be personal and inviting
+5. End with an encouraging call to action to register
+
+DO NOT include:
+- Generic greetings like "Dear" or "Hello"
+- Placeholder text like "[Your Name]"
+- Sign-offs like "Sincerely" or "Best regards"
+
+The message should flow naturally as if it's part of the registration page, not an email or letter.`;
+
+  try {
+    // Use Anthropic to generate the description
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'x-api-key': process.env.ANTHROPIC_API_KEY || '',
+        'anthropic-version': '2023-06-01',
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: 'claude-3-5-sonnet-20241022',
+        max_tokens: 1024,
+        temperature: 0.7,
+        messages: [
+          {
+            role: 'user',
+            content: descriptionPrompt,
+          },
+        ],
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Anthropic API error: ${response.statusText}`);
+    }
+
+    const result = await response.json();
+    const generatedDescription = result.content[0].text;
+
+    return {
+      success: true,
+      message: `✨ **Generated Meeting Description:**\n\n${generatedDescription}\n\n---\n\n**Does this look good?**\n\nYou can:\n• Say "yes" or "looks good" to use this description\n• Ask me to change specific parts (e.g., "make it more professional" or "add more about the income opportunity")\n• Say "regenerate" to create a completely new version`,
+      data: {
+        description: generatedDescription,
+        meetingPurpose: params.meetingPurpose,
+        targetAudience: params.targetAudience,
+        tone: params.tone || 'friendly',
+      },
+    };
+  } catch (error) {
+    console.error('Error generating meeting description:', error);
+    return {
+      success: false,
+      message: '❌ I had trouble generating the description. Please try again or write your own custom message.',
+    };
+  }
+}
+
 async function handleCreateMeetingRegistration(params: any, userId: string) {
   const supabase = await createClient();
 
@@ -642,7 +765,7 @@ async function handleCreateMeetingRegistration(params: any, userId: string) {
       distributor_id: distributor.id,
       title: params.title,
       description: params.description || null,
-      custom_message: null, // Optional custom message for registration page
+      custom_message: params.customMessage || null, // Optional custom message for registration page
       event_date: params.eventDate,
       event_time: params.eventTime,
       event_timezone: params.eventTimezone || 'America/Chicago',
@@ -2547,6 +2670,42 @@ IMPORTANT GUIDELINES:
 10. If you don't have a tool for something, be CLEAR and SPECIFIC about why it won't work
 11. Always use the most specific tool available for the user's request
 
+MEETING CREATION WORKFLOW (FOLLOW THIS PROCESS):
+When user wants to create a meeting registration page, follow this conversational flow:
+
+**STEP 1: Gather Information** (ask one question at a time)
+1. Ask: "What is this meeting about?" (e.g., business overview, training, home meeting)
+2. Ask: "Who is this meeting for?" (e.g., prospects, team members, community)
+3. Ask: "What key topics will you cover?" (e.g., income opportunity, product benefits)
+4. Ask: "Any special details to include?" (e.g., refreshments provided, bring a guest)
+5. Ask: "What tone would you like?" (professional, friendly, casual, inspiring, educational)
+
+**STEP 2: Generate Description**
+- Use generate_meeting_description tool with the information gathered
+- Show the generated description to user
+- Ask: "Does this look good?"
+
+**STEP 3: Iterative Refinement** (if needed)
+- If user says "yes" or "looks good" → proceed to STEP 4
+- If user requests changes → ask what to change, regenerate with feedback, show preview again
+- Repeat until approved
+
+**STEP 4: Get Meeting Details**
+- Now ask for: date, time, location type (virtual/physical/hybrid)
+- Ask for virtual link (if virtual/hybrid) or physical address (if physical/hybrid)
+- Ask for: duration, max attendees (optional)
+
+**STEP 5: Create Meeting**
+- Use create_meeting_registration tool with the approved custom message
+- Include the customMessage parameter with the approved description from STEP 2
+- Show success message with registration URL
+
+**IMPORTANT:**
+- ALWAYS generate a description first using generate_meeting_description
+- NEVER skip the preview/approval step
+- Allow multiple rounds of refinement
+- Be patient and conversational
+
 ERROR MESSAGES (BE CLEAR AND HELPFUL):
 - ❌ DON'T SAY: "Meeting not found or you don't have permission"
 - ✅ DO SAY: "I can only send emails to your team members, not external email addresses. Would you like me to send to your team instead?"
@@ -2573,6 +2732,9 @@ CONTEXT AWARENESS:
       switch (toolUseBlock.name) {
         case 'create_meeting_registration':
           toolResult = await handleCreateMeetingRegistration(toolUseBlock.input, user.id);
+          break;
+        case 'generate_meeting_description':
+          toolResult = await handleGenerateMeetingDescription(toolUseBlock.input, user.id);
           break;
         case 'view_team_stats':
           toolResult = await handleViewTeamStats(user.id);

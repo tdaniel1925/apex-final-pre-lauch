@@ -10,6 +10,7 @@ import { useState, useRef, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import MermaidDiagram from '@/components/MermaidDiagram';
+import { Mic, MicOff } from 'lucide-react';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -22,11 +23,12 @@ interface PreviewModal {
   url: string;
 }
 
-// Custom markdown renderer with video/audio support
+// Custom markdown renderer with video/audio/iframe support
 function MarkdownMessage({ content, isUser }: { content: string; isUser: boolean }) {
   // Detect video URLs (YouTube, Vimeo, etc.)
   const videoRegex = /\[video:([^\]]+)\]/g;
   const audioRegex = /\[audio:([^\]]+)\]/g;
+  const iframeRegex = /\[(?:preview|iframe):([^\]]+)\]/g;
 
   let processedContent = content;
   const mediaElements: React.ReactElement[] = [];
@@ -70,6 +72,27 @@ function MarkdownMessage({ content, isUser }: { content: string; isUser: boolean
       </div>
     );
     processedContent = processedContent.replace(audioMatch[0], `\n\n__AUDIO_${audioMatch.index}__\n\n`);
+  }
+
+  // Extract and process iframe/preview embeds
+  let iframeMatch;
+  while ((iframeMatch = iframeRegex.exec(content)) !== null) {
+    const iframeUrl = iframeMatch[1];
+    mediaElements.push(
+      <div key={`iframe-${iframeMatch.index}`} className="my-3">
+        <div className="relative w-full" style={{ paddingBottom: '75%' }}>
+          <iframe
+            className="absolute top-0 left-0 w-full h-full rounded-lg border border-gray-300"
+            src={iframeUrl}
+            title="Preview"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+      </div>
+    );
+    processedContent = processedContent.replace(iframeMatch[0], `\n\n__IFRAME_${iframeMatch.index}__\n\n`);
   }
 
   return (
@@ -117,7 +140,7 @@ function MarkdownMessage({ content, isUser }: { content: string; isUser: boolean
           p: ({node, ...props}) => {
             const text = (props.children as any)?.toString() || '';
             // Check if this is a placeholder for media
-            if (text.includes('__VIDEO_') || text.includes('__AUDIO_')) {
+            if (text.includes('__VIDEO_') || text.includes('__AUDIO_') || text.includes('__IFRAME_')) {
               const index = parseInt(text.match(/\d+/)?.[0] || '0');
               return mediaElements.find(el => el.key?.toString().includes(index.toString())) || null;
             }
@@ -255,12 +278,46 @@ export default function AIChatInterface({ initialContext, onClose, isModal = fal
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [previewModal, setPreviewModal] = useState<PreviewModal>({ isOpen: false, url: '' });
+  const [isRecording, setIsRecording] = useState(false);
+  const [isSpeechSupported, setIsSpeechSupported] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const recognitionRef = useRef<any>(null);
 
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
+
+  // Initialize Web Speech API
+  useEffect(() => {
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    setIsSpeechSupported(!!SpeechRecognition);
+
+    if (SpeechRecognition) {
+      const recognition = new SpeechRecognition();
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      recognition.lang = 'en-US';
+
+      recognition.onresult = (event: any) => {
+        const transcript = event.results[0][0].transcript;
+        // Append to input value
+        setInput((prev) => prev + (prev ? ' ' : '') + transcript);
+        setIsRecording(false);
+      };
+
+      recognition.onerror = (event: any) => {
+        console.error('Speech recognition error:', event.error);
+        setIsRecording(false);
+      };
+
+      recognition.onend = () => {
+        setIsRecording(false);
+      };
+
+      recognitionRef.current = recognition;
+    }
+  }, []);
 
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
@@ -339,6 +396,18 @@ export default function AIChatInterface({ initialContext, onClose, isModal = fal
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       handleSend();
+    }
+  };
+
+  // Handle microphone click
+  const handleVoiceInput = () => {
+    if (!recognitionRef.current) return;
+
+    if (isRecording) {
+      recognitionRef.current.stop();
+    } else {
+      recognitionRef.current.start();
+      setIsRecording(true);
     }
   };
 
@@ -469,6 +538,19 @@ export default function AIChatInterface({ initialContext, onClose, isModal = fal
               {input.length > 0 && <span>{input.length}</span>}
             </div>
           </div>
+
+          <button
+            onClick={handleVoiceInput}
+            disabled={!isSpeechSupported || isLoading}
+            className="p-3 text-gray-500 hover:text-blue-600 transition disabled:opacity-30 disabled:cursor-not-allowed rounded-2xl hover:bg-gray-100"
+            title={!isSpeechSupported ? "Voice input not supported in your browser" : isRecording ? "Stop recording" : "Start voice input"}
+          >
+            {isRecording ? (
+              <MicOff className="w-5 h-5 text-red-500 animate-pulse" />
+            ) : (
+              <Mic className="w-5 h-5" />
+            )}
+          </button>
 
           <button
             onClick={handleSend}

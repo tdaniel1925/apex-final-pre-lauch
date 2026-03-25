@@ -5,8 +5,9 @@
 'use client';
 
 import { useState } from 'react';
-import { Calendar, Clock, MapPin, Video, Users, ExternalLink, Copy, Trash2, CheckCircle } from 'lucide-react';
+import { Calendar, Clock, MapPin, Video, Users, ExternalLink, Copy, Trash2, CheckCircle, Edit } from 'lucide-react';
 import type { MeetingEvent } from '@/types/meeting';
+import EditMeetingModal from './EditMeetingModal';
 
 interface MeetingCardProps {
   meeting: MeetingEvent;
@@ -17,6 +18,7 @@ export default function MeetingCard({ meeting, onDeleted }: MeetingCardProps) {
   const [showRegistrations, setShowRegistrations] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
 
   // Format date
   const eventDate = new Date(meeting.event_date);
@@ -99,14 +101,23 @@ export default function MeetingCard({ meeting, onDeleted }: MeetingCardProps) {
           <h4 className="text-lg font-semibold text-slate-900 mb-1">{meeting.title}</h4>
           {getStatusBadge()}
         </div>
-        <button
-          onClick={handleDelete}
-          disabled={isDeleting}
-          className="text-red-500 hover:text-red-700 transition disabled:opacity-50"
-          title="Delete meeting"
-        >
-          <Trash2 className="w-4 h-4" />
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setShowEditModal(true)}
+            className="text-[#2c5aa0] hover:text-[#234780] transition"
+            title="Edit meeting"
+          >
+            <Edit className="w-4 h-4" />
+          </button>
+          <button
+            onClick={handleDelete}
+            disabled={isDeleting}
+            className="text-red-500 hover:text-red-700 transition disabled:opacity-50"
+            title="Delete meeting"
+          >
+            <Trash2 className="w-4 h-4" />
+          </button>
+        </div>
       </div>
 
       {/* Description */}
@@ -232,6 +243,18 @@ export default function MeetingCard({ meeting, onDeleted }: MeetingCardProps) {
         <div className="mt-4 border-t border-slate-200 pt-4">
           <RegistrationsList meetingId={meeting.id} />
         </div>
+      )}
+
+      {/* Edit Meeting Modal */}
+      {showEditModal && (
+        <EditMeetingModal
+          meeting={meeting}
+          onClose={() => setShowEditModal(false)}
+          onSuccess={() => {
+            setShowEditModal(false);
+            onDeleted(); // Reuse the same refresh callback
+          }}
+        />
       )}
     </div>
   );
