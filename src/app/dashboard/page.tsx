@@ -20,6 +20,7 @@ import ActivityFeed from '@/components/dashboard/ActivityFeed';
 import DashboardClient from '@/components/dashboard/DashboardClient';
 import CopyReferralButton from '@/components/dashboard/CopyReferralButton';
 import AIPhoneStats from '@/components/dashboard/AIPhoneStats';
+import RaceTo100Banner from '@/components/dashboard/RaceTo100Banner';
 import type { Distributor } from '@/lib/types';
 import { ArrowRight, Users, FileText, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
@@ -221,6 +222,9 @@ export default async function DashboardPage() {
             </h1>
             <p className="text-sm text-slate-600 mt-1">@{dist.slug}</p>
           </div>
+
+          {/* Race to 100 Banner */}
+          <RaceTo100Banner distributorId={dist.id} />
 
           {/* Training Audio Player */}
           <TrainingAudioPlayer />
