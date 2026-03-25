@@ -181,7 +181,7 @@ export default function RaceTo100Modal({
           </div>
 
           {/* Mobile Toggle Buttons */}
-          <div className="flex lg:hidden border-b border-slate-200 bg-slate-50">
+          <div className="flex lg:hidden border-b border-slate-200 bg-slate-50 flex-shrink-0">
             <button
               onClick={() => {
                 setShowStepsSidebar(!showStepsSidebar);
@@ -211,7 +211,7 @@ export default function RaceTo100Modal({
           </div>
 
           {/* Main Body */}
-          <div className="flex flex-1 overflow-hidden relative">
+          <div className="flex flex-1 overflow-hidden relative min-h-0">
             {/* Left Sidebar - Steps (Desktop always visible, Mobile conditional) */}
             <div
               className={`
@@ -229,7 +229,7 @@ export default function RaceTo100Modal({
             </div>
 
             {/* Chat Panel - Always visible, adjusts for sidebars */}
-            <div className="flex-1 flex flex-col overflow-hidden min-w-0">
+            <div className="flex-1 flex flex-col overflow-hidden min-w-0 relative">
               <CoachChat
                 distributorId={distributor.id}
                 distributorName={distributor.first_name}
