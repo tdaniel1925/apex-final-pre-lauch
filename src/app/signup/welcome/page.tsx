@@ -5,7 +5,7 @@
  * Shown immediately after signup to introduce new distributor to their AI assistant
  */
 
-import { useEffect, useState, Suspense } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { Phone, Sparkles, Clock, ArrowRight, CheckCircle } from 'lucide-react'
@@ -18,7 +18,7 @@ interface AIProvisioningStatus {
   trialExpiresAt?: string
 }
 
-function WelcomePageContent() {
+export default function WelcomePage() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const distributorId = searchParams.get('distributorId')
@@ -195,17 +195,19 @@ function WelcomePageContent() {
             Here&apos;s What to Do Next:
           </h3>
 
-          <div className="flex gap-4 p-4 bg-blue-50 rounded-lg">
-            <div className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">
+          <div className="flex gap-4 p-4 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg border-2 border-purple-200">
+            <div className="flex-shrink-0 w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold">
               1
             </div>
             <div>
               <h4 className="font-semibold text-slate-900 mb-1">
-                Call Your AI Now
+                Call Your Apex Voice Agent Now
               </h4>
+              <p className="text-slate-600 text-sm mb-2">
+                Your AI assistant will give you a personalized welcome and show you what it can do! This first call is special - it&apos;s designed to wow you with AI-powered conversation.
+              </p>
               <p className="text-slate-600 text-sm">
-                Test it out! Call the number above and see how your AI answers.
-                It&apos;s trained to sell prospects on joining Apex.
+                💡 After your first call, it will handle prospect calls 24/7 and send you SMS notifications.
               </p>
             </div>
           </div>
@@ -282,20 +284,5 @@ function WelcomePageContent() {
         }
       `}</style>
     </div>
-  )
-}
-
-export default function WelcomePage() {
-  return (
-    <Suspense fallback={
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-slate-100 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-slate-600">Loading...</p>
-        </div>
-      </div>
-    }>
-      <WelcomePageContent />
-    </Suspense>
   )
 }

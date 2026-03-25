@@ -536,6 +536,25 @@ const tools: Anthropic.Tool[] = [
       required: ['content'],
     },
   },
+  {
+    name: 'customize_voice_agent',
+    description: 'Customizes the VAPI voice agent for PAID tier users. IMPORTANT: Only use this if user has business_center_tier !== "free". If FREE tier user asks, explain they need to upgrade to Business Center first. Use when user wants to reprogram their AI phone assistant, change what it says to callers, or customize voice agent behavior.',
+    input_schema: {
+      type: 'object',
+      properties: {
+        customPrompt: {
+          type: 'string',
+          description: 'The custom instructions for what the voice agent should say and do when PROSPECTS call (not when owner calls). Be specific about greeting, topics to discuss, services to mention, and how to handle inquiries.',
+        },
+        previewMode: {
+          type: 'boolean',
+          description: 'If true, show preview without updating. If false, apply the update immediately. ALWAYS start with previewMode=true to show user what will happen.',
+          default: true,
+        },
+      },
+      required: ['customPrompt'],
+    },
+  },
 ];
 
 // Tool handlers
@@ -2220,6 +2239,135 @@ async function handleCheckCompliance(params: any, userId: string) {
   }
 }
 
+async function handleCustomizeVoiceAgent(params: any, userId: string, distributor: any) {
+  const { customPrompt, previewMode = true } = params;
+
+  // Check if user has PAID tier
+  if (distributor.business_center_tier === 'free' || !distributor.business_center_tier) {
+    return {
+      success: false,
+      message: `❌ **Voice Agent Customization Not Available**\n\nYou're currently on the FREE tier, which only includes the basic Apex-focused voice agent.\n\nTo customize your voice agent:\n✅ Upgrade to Business Center ($39/month)\n✅ Get full control over what your AI says\n✅ Program it to discuss your other businesses\n✅ Create custom greetings and responses\n\nWould you like to learn more about Business Center?`,
+    };
+  }
+
+  // Check if user has voice agent provisioned
+  if (!distributor.vapi_assistant_id) {
+    return {
+      success: false,
+      message: `❌ **No Voice Agent Found**\n\nYour voice agent hasn't been provisioned yet. Please contact support.`,
+    };
+  }
+
+  if (previewMode) {
+    // Show preview of what will be updated
+    return {
+      success: true,
+      message: `📋 **Voice Agent Customization Preview**\n\n**Your Custom Programming:**\n\n"${customPrompt}"\n\n---\n\n**What will happen:**\n• When PROSPECTS call your AI phone number (${distributor.ai_phone_number}), they'll experience this custom programming\n• When YOU call your own number, you'll still get your personalized Owner Mode greeting\n• SMS notifications will still be sent for prospect calls\n\n✅ **Looks good?** Let me know if you want to:\n• Apply this update\n• Make changes first\n• Cancel`,
+      data: {
+        preview: customPrompt,
+        phoneNumber: distributor.ai_phone_number,
+      },
+    };
+  }
+
+  // Apply the update - regenerate VAPI prompt and update assistant
+  try {
+    const supabase = await createClient();
+
+    // Import VAPI functions
+    const { generateNetworkMarketingPrompt } = await import('@/lib/vapi/prompts/network-marketing');
+
+    // Get full distributor data needed for prompt
+    const { data: fullDistributor } = await supabase
+      .from('distributors')
+      .select('first_name, last_name, slug, phone, bio, first_call_completed, business_center_tier, sponsor_id')
+      .eq('id', distributor.id)
+      .single();
+
+    if (!fullDistributor) {
+      return {
+        success: false,
+        message: '❌ Failed to fetch distributor data',
+      };
+    }
+
+    // Get sponsor name
+    let sponsorName = 'your sponsor';
+    if (fullDistributor.sponsor_id) {
+      const { data: sponsor } = await supabase
+        .from('distributors')
+        .select('first_name, last_name')
+        .eq('id', fullDistributor.sponsor_id)
+        .single();
+      if (sponsor) {
+        sponsorName = `${sponsor.first_name} ${sponsor.last_name}`;
+      }
+    }
+
+    const replicatedSiteUrl = `${process.env.NEXT_PUBLIC_APP_URL}/${fullDistributor.slug}`;
+
+    // Generate updated prompt with custom prospect programming
+    const updatedPrompt = generateNetworkMarketingPrompt({
+      firstName: fullDistributor.first_name,
+      lastName: fullDistributor.last_name,
+      sponsorName,
+      replicatedSiteUrl,
+      distributorPhone: fullDistributor.phone,
+      distributorBio: fullDistributor.bio || undefined,
+      firstCallCompleted: fullDistributor.first_call_completed || false,
+      businessCenterTier: fullDistributor.business_center_tier,
+      customProspectPrompt: customPrompt, // ← Custom programming
+    });
+
+    // Update VAPI assistant via API
+    const vapiResponse = await fetch(`https://api.vapi.ai/assistant/${distributor.vapi_assistant_id}`, {
+      method: 'PATCH',
+      headers: {
+        'Authorization': `Bearer ${process.env.VAPI_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: {
+          provider: 'openai',
+          model: 'gpt-4o-mini',
+          messages: [
+            {
+              role: 'system',
+              content: updatedPrompt,
+            },
+          ],
+        },
+      }),
+    });
+
+    if (!vapiResponse.ok) {
+      const error = await vapiResponse.text();
+      console.error('[AI Chat] Failed to update VAPI assistant:', error);
+      return {
+        success: false,
+        message: `❌ **Update Failed**\n\nCouldn't update your voice agent. Please try again or contact support.\n\nError: ${error}`,
+      };
+    }
+
+    console.log(`[AI Chat] Successfully updated VAPI assistant for ${fullDistributor.first_name} ${fullDistributor.last_name}`);
+
+    return {
+      success: true,
+      message: `✅ **Voice Agent Updated Successfully!**\n\nYour Apex Voice Agent (${distributor.ai_phone_number}) has been reprogrammed with your custom instructions.\n\n**What's changed:**\n• Prospect calls will now follow your custom programming\n• Your Owner Mode greeting remains unchanged\n• SMS notifications still work\n\n💡 **Test it out:** Have someone call your AI phone number to hear the new programming!`,
+      data: {
+        phoneNumber: distributor.ai_phone_number,
+        updatedAt: new Date().toISOString(),
+      },
+    };
+  } catch (error: any) {
+    console.error('[AI Chat] Error updating voice agent:', error);
+    return {
+      success: false,
+      message: `❌ **Update Failed**\n\nAn error occurred while updating your voice agent: ${error.message}`,
+    };
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     // Verify user is authenticated
@@ -2251,7 +2399,10 @@ export async function POST(request: NextRequest) {
         personal_bv_monthly,
         status,
         created_at,
-        sponsor_id
+        sponsor_id,
+        business_center_tier,
+        ai_phone_number,
+        vapi_assistant_id
       `)
       .eq('auth_user_id', user.id)
       .single();
@@ -2298,6 +2449,14 @@ CURRENT STATUS:
 - Commission Earned: $${(monthlyCommissions / 100).toFixed(2)} this month
 - Sponsor: ${sponsorInfo?.first_name || 'N/A'} ${sponsorInfo?.last_name || ''}
 - Member Since: ${new Date(distributor.created_at).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+- Business Center Tier: ${distributor.business_center_tier?.toUpperCase() || 'FREE'}
+- Apex Voice Agent: ${distributor.ai_phone_number || 'Not Provisioned'}
+
+VOICE AGENT CUSTOMIZATION:
+- If business_center_tier is "free": User can ONLY get basic Apex-focused voice agent (cannot customize)
+- If business_center_tier is NOT "free": User has PAID tier and can customize their voice agent
+- Use the customize_voice_agent tool ONLY if user has PAID tier
+- If FREE tier user asks to customize: Explain they need to upgrade to Business Center ($39/month) first
 
 COMPENSATION PLAN (Tech Ladder):
 - Starter: 0 personal BV, 0 group BV → L1 overrides only
@@ -2497,6 +2656,9 @@ CONTEXT AWARENESS:
           break;
         case 'check_compliance':
           toolResult = await handleCheckCompliance(toolUseBlock.input, user.id);
+          break;
+        case 'customize_voice_agent':
+          toolResult = await handleCustomizeVoiceAgent(toolUseBlock.input, user.id, distributor);
           break;
         default:
           toolResult = { success: false, message: 'Unknown tool' };

@@ -24,6 +24,8 @@ interface VapiAssistantConfig {
     provider: string
     model: string
   }
+  serverUrl?: string
+  serverUrlSecret?: string
 }
 
 interface VapiPhoneNumberConfig {

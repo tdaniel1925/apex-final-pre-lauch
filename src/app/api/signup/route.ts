@@ -177,7 +177,10 @@ export async function POST(request: NextRequest) {
     }
 
     // Step 5: Create auth user with email confirmation
-    const { data: authData, error: authError } = await supabase.auth.signUp({
+    let authData: any;
+    let authError: any;
+
+    const signUpResult = await supabase.auth.signUp({
       email: data.email,
       password: data.password,
       options: {
@@ -188,6 +191,9 @@ export async function POST(request: NextRequest) {
         },
       },
     });
+
+    authData = signUpResult.data;
+    authError = signUpResult.error;
 
     if (authError || !authData.user) {
       // Handle case where auth user exists but no distributor (orphaned auth user)
@@ -200,38 +206,52 @@ export async function POST(request: NextRequest) {
           .single();
 
         if (!existingDist) {
-          // Auth user exists but no distributor - orphaned account, clean it up
-          console.log('Cleaning up orphaned auth user for email:', data.email);
+          // Auth user exists but no distributor - orphaned account
+          console.log('Orphaned auth user detected for email:', data.email);
+          console.log('Attempting to complete the signup with existing auth user...');
 
-          // Get the auth user ID to delete
+          // Try to find the orphaned user
           const { data: { users } } = await serviceClient.auth.admin.listUsers();
           const orphanedUser = users?.find(u => u.email === data.email);
 
           if (orphanedUser) {
-            await serviceClient.auth.admin.deleteUser(orphanedUser.id);
-            console.log('Deleted orphaned auth user, please try signing up again');
-          }
+            // Found the orphaned user - complete the signup by creating distributor
+            console.log('Found orphaned auth user:', orphanedUser.id);
+            console.log('Completing signup by creating distributor record...');
 
-          return NextResponse.json(
-            {
-              success: false,
-              error: 'Account cleanup required',
-              message: 'An incomplete signup was detected and cleaned up. Please try again.',
-            } as ApiResponse,
-            { status: 409 }
-          );
+            // Use the existing auth user ID and continue with the normal flow
+            authUserId = orphanedUser.id;
+
+            // Jump to distributor creation (we'll set authData to simulate successful auth)
+            authData = { user: orphanedUser } as any;
+          } else {
+            // Not found in listUsers - likely soft-deleted (grace period)
+            console.log('Orphaned auth user is soft-deleted (grace period active)');
+
+            return NextResponse.json(
+              {
+                success: false,
+                error: 'Account in grace period',
+                message: 'This email was recently used. Please use a different email address or contact support.',
+              } as ApiResponse,
+              { status: 409 }
+            );
+          }
         }
       }
 
-      console.error('Auth error:', authError);
-      return NextResponse.json(
-        {
-          success: false,
-          error: 'Failed to create account',
-          message: authError?.message || 'Could not create user account',
-        } as ApiResponse,
-        { status: 500 }
-      );
+      // If we didn't recover by finding an orphaned user, return error
+      if (!authData || !authData.user) {
+        console.error('Auth error:', authError);
+        return NextResponse.json(
+          {
+            success: false,
+            error: 'Failed to create account',
+            message: authError?.message || 'Could not create user account',
+          } as ApiResponse,
+          { status: 500 }
+        );
+      }
     }
 
     // Track auth user for rollback
@@ -279,6 +299,7 @@ export async function POST(request: NextRequest) {
         p_city: data.city,
         p_state: data.state,
         p_zip: data.zip,
+        p_bio: data.bio || null, // Bio for AI Voice Agent personalization
       }
     );
 

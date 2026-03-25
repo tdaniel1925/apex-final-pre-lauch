@@ -25,6 +25,7 @@ export default function SignupForm({ sponsorSlug, sponsorName }: SignupFormProps
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [retryCountdown, setRetryCountdown] = useState<number | null>(null);
   const [slugCheckStatus, setSlugCheckStatus] = useState<'idle' | 'checking' | 'available' | 'taken'>('idle');
   const [slugSuggestions, setSlugSuggestions] = useState<string[]>([]);
   const [showPassword, setShowPassword] = useState(false);
@@ -89,6 +90,23 @@ export default function SignupForm({ sponsorSlug, sponsorName }: SignupFormProps
     return () => clearTimeout(timeoutId);
   }, [watchSlug]);
 
+  // Retry countdown timer for soft-deleted users
+  useEffect(() => {
+    if (retryCountdown === null || retryCountdown <= 0) return;
+
+    const intervalId = setInterval(() => {
+      setRetryCountdown((prev) => {
+        if (prev === null || prev <= 1) {
+          setSubmitError(null); // Clear error when countdown reaches 0
+          return null;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, [retryCountdown]);
+
   // Password strength indicator
   const getPasswordStrength = (password: string): number => {
     if (!password) return 0;
@@ -118,6 +136,12 @@ export default function SignupForm({ sponsorSlug, sponsorName }: SignupFormProps
 
       if (!response.ok || !result.success) {
         setSubmitError(result.message || 'Signup failed. Please try again.');
+
+        // Handle retry countdown for soft-deleted users
+        if (result.retryAfter) {
+          setRetryCountdown(result.retryAfter);
+        }
+
         return;
       }
 
@@ -613,6 +637,30 @@ export default function SignupForm({ sponsorSlug, sponsorName }: SignupFormProps
           </p>
         </div>
 
+        {/* Bio (Optional - for AI Voice Agent personalization) */}
+        <div>
+          <label htmlFor="bio" className="block text-sm font-medium text-gray-700 mb-1">
+            Tell us about yourself (Optional)
+          </label>
+          <textarea
+            {...register('bio')}
+            id="bio"
+            rows={3}
+            maxLength={500}
+            placeholder="Example: I'm a former teacher passionate about helping families protect what matters most..."
+            className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#2B4C7E] focus:border-transparent resize-none ${
+              errors.bio ? 'border-red-500' : 'border-gray-300'
+            }`}
+            disabled={isSubmitting}
+          />
+          {errors.bio && (
+            <p className="mt-1 text-sm text-red-600">{errors.bio.message}</p>
+          )}
+          <p className="mt-1 text-xs text-gray-500">
+            This helps personalize your AI Voice Agent. Share 1-2 sentences about your background or interests. (Max 500 characters)
+          </p>
+        </div>
+
         {/* Date of Birth (Only for Personal Registration) */}
         {watchRegistrationType === 'personal' && (
           <div>
@@ -882,6 +930,14 @@ export default function SignupForm({ sponsorSlug, sponsorName }: SignupFormProps
         {submitError && (
           <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
             <p className="text-sm text-red-800">{submitError}</p>
+            {retryCountdown !== null && retryCountdown > 0 && (
+              <div className="mt-2 flex items-center gap-2">
+                <div className="w-4 h-4 border-2 border-red-600 border-t-transparent rounded-full animate-spin" />
+                <p className="text-sm text-red-700 font-medium">
+                  You can retry in {retryCountdown} second{retryCountdown !== 1 ? 's' : ''}...
+                </p>
+              </div>
+            )}
           </div>
         )}
 

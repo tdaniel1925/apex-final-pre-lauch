@@ -4,12 +4,14 @@
 // =============================================
 
 import { redirect } from 'next/navigation';
+import Link from 'next/link';
 import { createClient } from '@/lib/supabase/server';
 import { createServiceClient } from '@/lib/supabase/service';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
+import { Phone } from 'lucide-react';
 import ProfileEditForm from '@/components/dashboard/ProfileEditForm';
 
 export const metadata = {
@@ -223,6 +225,66 @@ export default async function ProfilePage() {
             </div>
           </CardContent>
         </Card>
+
+        {/* Apex Voice Agent Card */}
+        {distributor.ai_phone_number && (
+          <Card className="mb-4 sm:mb-6 border-2 border-purple-200 bg-gradient-to-r from-purple-50 to-blue-50">
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <Phone className="w-6 h-6 text-purple-600" />
+                <CardTitle className="text-slate-900">Apex Voice Agent</CardTitle>
+              </div>
+              <CardDescription>Your 24/7 AI-powered phone assistant</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                {/* Phone Number Display */}
+                <div>
+                  <label className="text-sm font-medium text-slate-600">Your AI Phone Number</label>
+                  <p className="text-2xl font-bold text-purple-600 mt-1">
+                    {distributor.ai_phone_number}
+                  </p>
+                </div>
+
+                {/* Subscription Status */}
+                <div>
+                  <label className="text-sm font-medium text-slate-600">Subscription</label>
+                  <div className="mt-1">
+                    {distributor.business_center_tier === 'free' ? (
+                      <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-slate-200 text-slate-700">
+                        FREE Tier (Apex Only)
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-purple-600 text-white">
+                        PAID Tier (Customizable)
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Customize Link (PAID tier only) */}
+                {distributor.business_center_tier !== 'free' && (
+                  <div>
+                    <Link
+                      href="/dashboard/ai-assistant?customize=voice"
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg font-medium hover:bg-purple-700 transition"
+                    >
+                      Customize Voice Agent
+                    </Link>
+                  </div>
+                )}
+
+                {/* Info */}
+                <div className="pt-4 border-t border-purple-200">
+                  <p className="text-sm text-slate-600">
+                    💡 <strong>Owner Mode:</strong> Call your own number to hear your personalized welcome. <br/>
+                    📞 <strong>Prospect Mode:</strong> When others call, your agent handles inquiries 24/7 and sends you SMS notifications.
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Tabbed Content */}
         <Tabs defaultValue="personal">

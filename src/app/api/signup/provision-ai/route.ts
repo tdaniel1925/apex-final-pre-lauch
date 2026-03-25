@@ -77,10 +77,10 @@ export async function POST(request: NextRequest): Promise<NextResponse<Provision
       }
     }
 
-    // Get distributor's replicated site URL
+    // Get distributor's info for prompt personalization
     const { data: distributor } = await supabase
       .from('distributors')
-      .select('slug')
+      .select('slug, bio, phone, first_call_completed, business_center_tier')
       .eq('id', distributorId)
       .single()
 
@@ -88,15 +88,19 @@ export async function POST(request: NextRequest): Promise<NextResponse<Provision
       ? `${process.env.NEXT_PUBLIC_APP_URL}/${distributor.slug}`
       : `${process.env.NEXT_PUBLIC_APP_URL}/signup`
 
-    // Step 1: Generate personalized AI prompt
+    // Step 1: Generate personalized AI prompt with caller detection
     const systemPrompt = generateNetworkMarketingPrompt({
       firstName,
       lastName,
       sponsorName,
       replicatedSiteUrl,
+      distributorPhone: distributor?.phone || phone, // For caller ID detection
+      distributorBio: distributor?.bio || undefined, // For Owner Mode personalization
+      firstCallCompleted: distributor?.first_call_completed || false, // Show welcome or not
+      businessCenterTier: distributor?.business_center_tier || 'free', // FREE vs PAID tier
     })
 
-    // Step 2: Create VAPI assistant
+    // Step 2: Create VAPI assistant with webhook
     console.log('   Creating VAPI assistant...')
     const assistant = await createVapiAssistant({
       name: `${firstName} ${lastName} - Apex AI`,
@@ -116,6 +120,9 @@ export async function POST(request: NextRequest): Promise<NextResponse<Provision
         provider: NETWORK_MARKETING_VOICE_CONFIG.transcriber.provider,
         model: NETWORK_MARKETING_VOICE_CONFIG.transcriber.model,
       },
+      // Webhook for call events (SMS notifications, first call tracking)
+      serverUrl: `${process.env.NEXT_PUBLIC_APP_URL}/api/vapi/webhooks`,
+      serverUrlSecret: process.env.VAPI_WEBHOOK_SECRET,
     })
 
     console.log(`   ✅ Created VAPI assistant: ${assistant.id}`)
