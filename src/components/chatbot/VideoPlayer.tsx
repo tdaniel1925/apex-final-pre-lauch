@@ -33,6 +33,7 @@ export default function VideoPlayer({ url, distributorId, videoName, onComplete 
   };
 
   const videoId = getYouTubeId(url);
+  const isLocalVideo = url.startsWith('/') || url.startsWith('./');
 
   const handlePlay = () => {
     setIsPlaying(true);
@@ -47,6 +48,43 @@ export default function VideoPlayer({ url, distributorId, videoName, onComplete 
     }
   };
 
+  const handleVideoProgress = (e: React.SyntheticEvent<HTMLVideoElement>) => {
+    const video = e.currentTarget;
+    if (video.duration > 0) {
+      const percentWatched = (video.currentTime / video.duration) * 100;
+      if (percentWatched >= 90 && !hasWatched) {
+        markAsWatched();
+      }
+    }
+  };
+
+  // Local MP4 video player
+  if (isLocalVideo) {
+    return (
+      <div className="my-3">
+        <div className="relative w-full aspect-video rounded-lg overflow-hidden bg-black">
+          <video
+            controls
+            className="w-full h-full"
+            onTimeUpdate={handleVideoProgress}
+            onEnded={markAsWatched}
+          >
+            <source src={url} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+
+        {hasWatched && (
+          <div className="mt-2 flex items-center gap-2 text-sm text-green-600">
+            <CheckCircle className="w-4 h-4" />
+            <span>Video watched!</span>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  // External link fallback (non-YouTube, non-local)
   if (!videoId) {
     return (
       <div className="my-3 p-4 bg-slate-100 border border-slate-300 rounded-lg">
@@ -59,6 +97,7 @@ export default function VideoPlayer({ url, distributorId, videoName, onComplete 
     );
   }
 
+  // YouTube video player
   return (
     <div className="my-3">
       {!isPlaying ? (
