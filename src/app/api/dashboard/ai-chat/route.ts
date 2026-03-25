@@ -102,8 +102,22 @@ const tools: Anthropic.Tool[] = [
     },
   },
   {
+    name: 'preview_meeting_invitation',
+    description: 'Shows a preview of the meeting invitation email before sending. Use this when user wants to see what the invitation looks like or before sending.',
+    input_schema: {
+      type: 'object',
+      properties: {
+        meetingId: {
+          type: 'string',
+          description: 'The meeting ID to preview invitation for',
+        },
+      },
+      required: ['meetingId'],
+    },
+  },
+  {
     name: 'send_meeting_invitations',
-    description: 'Sends email invitations to the user\'s team members for a meeting. Use this when user wants to invite their team or send invitations.',
+    description: 'Sends email invitations to the user\'s team members for a meeting. Use this when user wants to invite their team or send invitations. If user has requested changes to the invitation, include customSubject and/or customHtml.',
     input_schema: {
       type: 'object',
       properties: {
@@ -120,6 +134,14 @@ const tools: Anthropic.Tool[] = [
           type: 'array',
           items: { type: 'string' },
           description: 'Array of email addresses if recipientType is "specific"',
+        },
+        customSubject: {
+          type: 'string',
+          description: 'Optional custom email subject line if user requested changes',
+        },
+        customHtml: {
+          type: 'string',
+          description: 'Optional custom email body HTML if user requested changes to the content',
         },
       },
       required: ['meetingId', 'recipientType'],
@@ -728,6 +750,113 @@ async function handlePreviewRegistrationPage(params: any) {
   };
 }
 
+async function handlePreviewMeetingInvitation(params: any, userId: string) {
+  const supabase = await createClient();
+
+  // Get user's distributor info
+  const { data: distributor } = await supabase
+    .from('distributors')
+    .select('id, first_name, last_name, email')
+    .eq('auth_user_id', userId)
+    .single();
+
+  if (!distributor) {
+    return {
+      success: false,
+      message: 'Could not find your distributor profile.',
+    };
+  }
+
+  // Get meeting details
+  const { data: meeting } = await supabase
+    .from('meeting_events')
+    .select('*')
+    .eq('id', params.meetingId)
+    .eq('distributor_id', distributor.id)
+    .single();
+
+  if (!meeting) {
+    return {
+      success: false,
+      message: 'Meeting not found or you don\'t have permission to preview it.',
+    };
+  }
+
+  // Load email templates
+  const baseTemplate = await fs.readFile(
+    path.join(process.cwd(), 'src/lib/email/templates/base-email-template.html'),
+    'utf-8'
+  );
+  const contentTemplate = await fs.readFile(
+    path.join(process.cwd(), 'src/lib/email/templates/meeting-invitation.html'),
+    'utf-8'
+  );
+
+  // Build registration URL
+  const { data: dist } = await supabase
+    .from('distributors')
+    .select('slug')
+    .eq('id', distributor.id)
+    .single();
+
+  const registrationUrl = `https://reachtheapex.net/${dist?.slug}/register/${meeting.registration_slug}`;
+
+  // Format location details
+  let locationDetails = '';
+  if (meeting.location_type === 'virtual') {
+    locationDetails = `Virtual Meeting: ${meeting.virtual_link}`;
+  } else if (meeting.location_type === 'physical') {
+    locationDetails = meeting.physical_address || 'To be announced';
+  } else if (meeting.location_type === 'hybrid') {
+    locationDetails = `In-Person: ${meeting.physical_address}\nVirtual: ${meeting.virtual_link}`;
+  }
+
+  // Replace variables in content template
+  let emailContent = contentTemplate
+    .replace(/{{host_name}}/g, `${distributor.first_name} ${distributor.last_name}`)
+    .replace(/{{meeting_title}}/g, meeting.title)
+    .replace(/{{event_date}}/g, new Date(meeting.event_date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }))
+    .replace(/{{event_time}}/g, meeting.event_time)
+    .replace(/{{event_timezone}}/g, meeting.event_timezone)
+    .replace(/{{duration_minutes}}/g, meeting.duration_minutes.toString())
+    .replace(/{{location_details}}/g, locationDetails)
+    .replace(/{{description}}/g, meeting.description || '')
+    .replace(/{{registration_url}}/g, registrationUrl)
+    .replace(/{{max_attendees}}/g, meeting.max_attendees?.toString() || '');
+
+  // Handle conditional sections
+  if (!meeting.description) {
+    emailContent = emailContent.replace(/{{#if description}}[\s\S]*?{{\/if}}/g, '');
+  } else {
+    emailContent = emailContent.replace(/{{#if description}}/g, '').replace(/{{\/if}}/g, '');
+  }
+
+  if (!meeting.max_attendees) {
+    emailContent = emailContent.replace(/{{#if max_attendees}}[\s\S]*?{{\/if}}/g, '');
+  } else {
+    emailContent = emailContent.replace(/{{#if max_attendees}}/g, '').replace(/{{\/if}}/g, '');
+  }
+
+  // Merge with base template
+  const finalHtml = baseTemplate
+    .replace('{{email_title}}', `Invitation: ${meeting.title}`)
+    .replace('{{email_content}}', emailContent)
+    .replace(/{{unsubscribe_url}}/g, 'https://theapexway.net/unsubscribe');
+
+  const subject = `You're Invited: ${meeting.title}`;
+
+  // Return preview
+  return {
+    success: true,
+    message: `📧 **Email Preview**\n\n**Subject:** ${subject}\n\n**Meeting:** ${meeting.title}\n**Date:** ${new Date(meeting.event_date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}\n**Time:** ${meeting.event_time} ${meeting.event_timezone}\n**Location:** ${locationDetails}\n\n*The email will be sent with your professional Apex template.*\n\nWould you like to:\n• **Send it now** - Say "send invitations to [all team/active only/specific people]"\n• **Edit the subject** - Say "change the subject to..."\n• **Edit the message** - Say "change [specific part] to..."\n• **Cancel** - Say "cancel" or "go back"`,
+    data: {
+      subject,
+      html: finalHtml,
+      meetingId: params.meetingId,
+    },
+  };
+}
+
 async function handleSendMeetingInvitations(params: any, userId: string) {
   const supabase = await createClient();
 
@@ -789,73 +918,85 @@ async function handleSendMeetingInvitations(params: any, userId: string) {
     };
   }
 
-  // Load email templates
-  const baseTemplate = await fs.readFile(
-    path.join(process.cwd(), 'src/lib/email/templates/base-email-template.html'),
-    'utf-8'
-  );
-  const contentTemplate = await fs.readFile(
-    path.join(process.cwd(), 'src/lib/email/templates/meeting-invitation.html'),
-    'utf-8'
-  );
+  // Use custom HTML if provided, otherwise generate from template
+  let finalHtml: string;
+  let subject: string;
 
-  // Build registration URL
-  const { data: dist } = await supabase
-    .from('distributors')
-    .select('slug')
-    .eq('id', distributor.id)
-    .single();
-
-  const registrationUrl = `https://reachtheapex.net/${dist?.slug}/register/${meeting.registration_slug}`;
-
-  // Format location details
-  let locationDetails = '';
-  if (meeting.location_type === 'virtual') {
-    locationDetails = `Virtual Meeting: ${meeting.virtual_link}`;
-  } else if (meeting.location_type === 'physical') {
-    locationDetails = meeting.physical_address || 'To be announced';
-  } else if (meeting.location_type === 'hybrid') {
-    locationDetails = `In-Person: ${meeting.physical_address}\nVirtual: ${meeting.virtual_link}`;
-  }
-
-  // Replace variables in content template
-  let emailContent = contentTemplate
-    .replace(/{{host_name}}/g, `${distributor.first_name} ${distributor.last_name}`)
-    .replace(/{{meeting_title}}/g, meeting.title)
-    .replace(/{{event_date}}/g, new Date(meeting.event_date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }))
-    .replace(/{{event_time}}/g, meeting.event_time)
-    .replace(/{{event_timezone}}/g, meeting.event_timezone)
-    .replace(/{{duration_minutes}}/g, meeting.duration_minutes.toString())
-    .replace(/{{location_details}}/g, locationDetails)
-    .replace(/{{description}}/g, meeting.description || '')
-    .replace(/{{registration_url}}/g, registrationUrl)
-    .replace(/{{max_attendees}}/g, meeting.max_attendees?.toString() || '');
-
-  // Handle conditional sections (simplified - just remove if not needed)
-  if (!meeting.description) {
-    emailContent = emailContent.replace(/{{#if description}}[\s\S]*?{{\/if}}/g, '');
+  if (params.customHtml) {
+    // User has edited the invitation
+    finalHtml = params.customHtml;
+    subject = params.customSubject || `You're Invited: ${meeting.title}`;
   } else {
-    emailContent = emailContent.replace(/{{#if description}}/g, '').replace(/{{\/if}}/g, '');
-  }
+    // Load email templates
+    const baseTemplate = await fs.readFile(
+      path.join(process.cwd(), 'src/lib/email/templates/base-email-template.html'),
+      'utf-8'
+    );
+    const contentTemplate = await fs.readFile(
+      path.join(process.cwd(), 'src/lib/email/templates/meeting-invitation.html'),
+      'utf-8'
+    );
 
-  if (!meeting.max_attendees) {
-    emailContent = emailContent.replace(/{{#if max_attendees}}[\s\S]*?{{\/if}}/g, '');
-  } else {
-    emailContent = emailContent.replace(/{{#if max_attendees}}/g, '').replace(/{{\/if}}/g, '');
-  }
+    // Build registration URL
+    const { data: dist } = await supabase
+      .from('distributors')
+      .select('slug')
+      .eq('id', distributor.id)
+      .single();
 
-  // Merge with base template
-  const finalHtml = baseTemplate
-    .replace('{{email_title}}', `Invitation: ${meeting.title}`)
-    .replace('{{email_content}}', emailContent)
-    .replace(/{{unsubscribe_url}}/g, 'https://theapexway.net/unsubscribe');
+    const registrationUrl = `https://reachtheapex.net/${dist?.slug}/register/${meeting.registration_slug}`;
+
+    // Format location details
+    let locationDetails = '';
+    if (meeting.location_type === 'virtual') {
+      locationDetails = `Virtual Meeting: ${meeting.virtual_link}`;
+    } else if (meeting.location_type === 'physical') {
+      locationDetails = meeting.physical_address || 'To be announced';
+    } else if (meeting.location_type === 'hybrid') {
+      locationDetails = `In-Person: ${meeting.physical_address}\nVirtual: ${meeting.virtual_link}`;
+    }
+
+    // Replace variables in content template
+    let emailContent = contentTemplate
+      .replace(/{{host_name}}/g, `${distributor.first_name} ${distributor.last_name}`)
+      .replace(/{{meeting_title}}/g, meeting.title)
+      .replace(/{{event_date}}/g, new Date(meeting.event_date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }))
+      .replace(/{{event_time}}/g, meeting.event_time)
+      .replace(/{{event_timezone}}/g, meeting.event_timezone)
+      .replace(/{{duration_minutes}}/g, meeting.duration_minutes.toString())
+      .replace(/{{location_details}}/g, locationDetails)
+      .replace(/{{description}}/g, meeting.description || '')
+      .replace(/{{registration_url}}/g, registrationUrl)
+      .replace(/{{max_attendees}}/g, meeting.max_attendees?.toString() || '');
+
+    // Handle conditional sections
+    if (!meeting.description) {
+      emailContent = emailContent.replace(/{{#if description}}[\s\S]*?{{\/if}}/g, '');
+    } else {
+      emailContent = emailContent.replace(/{{#if description}}/g, '').replace(/{{\/if}}/g, '');
+    }
+
+    if (!meeting.max_attendees) {
+      emailContent = emailContent.replace(/{{#if max_attendees}}[\s\S]*?{{\/if}}/g, '');
+    } else {
+      emailContent = emailContent.replace(/{{#if max_attendees}}/g, '').replace(/{{\/if}}/g, '');
+    }
+
+    // Merge with base template
+    finalHtml = baseTemplate
+      .replace('{{email_title}}', `Invitation: ${meeting.title}`)
+      .replace('{{email_content}}', emailContent)
+      .replace(/{{unsubscribe_url}}/g, 'https://theapexway.net/unsubscribe');
+
+    subject = params.customSubject || `You're Invited: ${meeting.title}`;
+  }
 
   // Send emails
   const emailResults = await Promise.all(
     recipients.map((recipient) =>
       sendEmail({
         to: recipient.email,
-        subject: `You're Invited: ${meeting.title}`,
+        subject,
         html: finalHtml,
         from: 'Apex Affinity Group <theapex@theapexway.net>',
       })
@@ -2282,6 +2423,9 @@ CONTEXT AWARENESS:
           break;
         case 'preview_registration_page':
           toolResult = await handlePreviewRegistrationPage(toolUseBlock.input);
+          break;
+        case 'preview_meeting_invitation':
+          toolResult = await handlePreviewMeetingInvitation(toolUseBlock.input, user.id);
           break;
         case 'send_meeting_invitations':
           toolResult = await handleSendMeetingInvitations(toolUseBlock.input, user.id);
