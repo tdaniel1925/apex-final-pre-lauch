@@ -29,6 +29,9 @@ const testEmailSchema = z.object({
   meeting_location: z.string().optional(),
   meeting_link: z.string().optional(),
   distributor_name: z.string().min(1),
+  // Custom email content (edited in preview)
+  custom_subject: z.string().optional(),
+  custom_html: z.string().optional(),
 });
 
 export async function POST(request: NextRequest) {
@@ -64,6 +67,8 @@ export async function POST(request: NextRequest) {
       meeting_location,
       meeting_link,
       distributor_name,
+      custom_subject,
+      custom_html,
     } = validationResult.data;
 
     // Generate temporary invitation ID for test email
@@ -103,8 +108,8 @@ export async function POST(request: NextRequest) {
 
     const calendarFile = generateCalendarFile(testInvitation as MeetingInvitation);
 
-    // Render email HTML
-    const emailHtml = await render(
+    // Render email HTML (use custom if provided, otherwise generate from template)
+    const emailHtml = custom_html || await render(
       MeetingInvitationEmail({
         recipientName: recipient_name,
         distributorName: distributor_name,
@@ -123,7 +128,7 @@ export async function POST(request: NextRequest) {
     // Send test email to authenticated user only
     const result = await sendEmail({
       to: recipient_email, // User's email (passed from frontend)
-      subject: `[TEST] ${distributor_name} invites you to ${meeting_title}`,
+      subject: custom_subject || `[TEST] ${distributor_name} invites you to ${meeting_title}`,
       html: emailHtml,
       from: `${distributor_name} via Apex <theapex@theapexway.net>`,
       attachments: [

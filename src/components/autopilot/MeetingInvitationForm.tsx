@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Send, Loader2, Check, AlertCircle, Plus, X, Calendar, Users as UsersIcon, Eye } from 'lucide-react';
 import InvitationPreviewModal from './InvitationPreviewModal';
+import EditableInvitationPreview from './EditableInvitationPreview';
 import {
   UNLIMITED_INVITES,
   MAX_BULK_RECIPIENTS,
@@ -75,6 +76,7 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
   const [loadingEvents, setLoadingEvents] = useState(false);
   const [showPreviewModal, setShowPreviewModal] = useState(false);
   const [currentUser, setCurrentUser] = useState<{ name: string; email: string } | null>(null);
+  const [customizations, setCustomizations] = useState<{ subject?: string; bodyHtml?: string } | null>(null);
 
   const [formData, setFormData] = useState<InvitationFormData>({
     recipients: [{ recipient_email: '', recipient_name: '', recipient_phone: '' }],
@@ -354,6 +356,11 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
         body: JSON.stringify({
           ...formData,
           meeting_date_time: meetingDateISO,
+          // Include custom subject/body if edited in preview
+          ...(customizations && {
+            custom_subject: customizations.subject,
+            custom_html: customizations.bodyHtml,
+          }),
         }),
       });
 
@@ -847,21 +854,24 @@ export function MeetingInvitationForm({ onSuccess, onCancel }: MeetingInvitation
         </div>
       </form>
 
-      {/* Preview Modal */}
+      {/* Preview Modal - Editable */}
       {currentUser && (
-        <InvitationPreviewModal
+        <EditableInvitationPreview
           isOpen={showPreviewModal}
           onClose={() => setShowPreviewModal(false)}
           formData={formData}
           distributorName={currentUser.name}
           distributorEmail={currentUser.email}
-          onSendAll={() => {
+          onSendAll={(customizations) => {
+            setCustomizations(customizations || null);
             setShowPreviewModal(false);
-            // Trigger form submission
-            const form = document.querySelector('form') as HTMLFormElement;
-            if (form) {
-              form.requestSubmit();
-            }
+            // Trigger form submission after brief delay to allow state update
+            setTimeout(() => {
+              const form = document.querySelector('form') as HTMLFormElement;
+              if (form) {
+                form.requestSubmit();
+              }
+            }, 10);
           }}
         />
       )}

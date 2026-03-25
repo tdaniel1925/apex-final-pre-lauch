@@ -34,6 +34,9 @@ const bulkInvitationSchema = z.object({
   meeting_link: z.string().url('Invalid URL').optional().or(z.literal('')),
   invitation_type: z.enum(['personal', 'company_event']).optional(),
   company_event_id: z.string().uuid().optional().nullable(),
+  // Custom email content (edited in preview)
+  custom_subject: z.string().optional(),
+  custom_html: z.string().optional(),
 });
 
 /**
@@ -220,6 +223,8 @@ export async function POST(request: NextRequest) {
         const emailResult = await sendMeetingInvitationEmail({
           invitation,
           distributorName,
+          customSubject: data.custom_subject,
+          customHtml: data.custom_html,
         });
 
         if (!emailResult.success) {

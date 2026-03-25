@@ -19,17 +19,23 @@ import {
 interface SendMeetingInvitationParams {
   invitation: MeetingInvitation;
   distributorName: string;
+  customSubject?: string;
+  customHtml?: string;
 }
 
 /**
  * Send meeting invitation email with calendar attachment
  * @param invitation - The invitation record with meeting details
  * @param distributorName - Full name of the distributor sending the invitation
+ * @param customSubject - Optional custom email subject (edited in preview)
+ * @param customHtml - Optional custom email body HTML (edited in preview)
  * @returns Result object with success status
  */
 export async function sendMeetingInvitationEmail({
   invitation,
   distributorName,
+  customSubject,
+  customHtml,
 }: SendMeetingInvitationParams) {
   try {
     // Generate entrance page link (invitees click this to enter the meeting)
@@ -47,10 +53,10 @@ export async function sendMeetingInvitationEmail({
     // Generate calendar file for easy calendar import
     const calendarFile = generateCalendarFile(invitation);
 
-    // Render email HTML
+    // Render email HTML (use custom if provided, otherwise generate from template)
     // Note: Use meetingEntranceLink instead of direct meeting link
     // This ensures we track attendance when users click "Enter Room"
-    const emailHtml = await render(
+    const emailHtml = customHtml || await render(
       MeetingInvitationEmail({
         recipientName: invitation.recipient_name,
         distributorName,
@@ -69,7 +75,7 @@ export async function sendMeetingInvitationEmail({
     // Send email via Resend with calendar attachment
     const result = await sendEmail({
       to: invitation.recipient_email,
-      subject: `${distributorName} invites you to ${invitation.meeting_title}`,
+      subject: customSubject || `${distributorName} invites you to ${invitation.meeting_title}`,
       html: emailHtml,
       from: `${distributorName} via Apex <theapex@theapexway.net>`,
       attachments: [
