@@ -22,7 +22,7 @@ export default function ChatHeader({
   notificationCount = 0,
 }: ChatHeaderProps) {
   return (
-    <header className="sticky top-0 z-30 px-4 lg:px-6 py-0 bg-gradient-to-br from-[#2c5aa0] via-[#1a4075] to-[#2c5aa0] shadow-lg">
+    <header className="sticky top-0 z-30 px-4 lg:px-6 py-0 shadow-lg" style={{ backgroundColor: '#1e40af' }}>
       {/* Top Row */}
       <div className="flex items-center justify-between h-16">
         {/* Left: Menu + Title */}

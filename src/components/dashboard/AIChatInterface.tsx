@@ -504,7 +504,7 @@ export default function AIChatInterface({ initialContext, onClose, isModal = fal
       {/* Main Chat Container */}
       <div className={isModal ? 'fixed inset-0 md:inset-4 lg:inset-8 xl:inset-16 flex flex-col bg-white md:rounded-2xl shadow-2xl animate-slideUp' : 'flex flex-col h-[calc(100vh-8rem)] bg-white rounded-lg shadow-lg'}>
         {/* Modern Header */}
-        <div className="relative px-4 md:px-6 py-4 md:py-5 border-b border-gray-200/80 bg-gradient-to-br from-blue-600 via-blue-700 to-purple-700">
+        <div className="relative px-4 md:px-6 py-4 md:py-5 border-b border-gray-200/80" style={{ backgroundColor: '#1e40af' }}>
           <div className="flex items-center justify-between">
             {/* Left: AI Branding */}
             <div className="flex items-center gap-3">
@@ -695,7 +695,7 @@ export default function AIChatInterface({ initialContext, onClose, isModal = fal
         <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fadeIn p-4">
           <div className="relative w-full max-w-6xl h-[90vh] bg-white rounded-2xl shadow-2xl flex flex-col animate-slideUp">
             {/* Modal Header - Modern Gradient */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200/80 bg-gradient-to-br from-blue-600 via-blue-700 to-purple-700 rounded-t-2xl">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200/80 rounded-t-2xl" style={{ backgroundColor: '#1e40af' }}>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center border border-white/20">
                   <span className="text-xl">👀</span>
