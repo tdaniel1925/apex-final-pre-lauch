@@ -111,7 +111,8 @@ export async function checkSponsorEligibility(sponsorId: string): Promise<Sponso
     }
 
     const isLicensed = sponsor.is_licensed_agent || false;
-    const insuranceRank = sponsor.member?.insurance_rank || 'inactive';
+    const member = Array.isArray(sponsor.member) ? sponsor.member[0] : sponsor.member;
+    const insuranceRank = member?.insurance_rank || 'inactive';
 
     // Level 3 = Sr. Associate
     // Level 3+ = sr_associate, agent, sr_agent, mga, associate_mga, senior_mga, etc.
