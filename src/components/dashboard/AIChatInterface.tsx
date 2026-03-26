@@ -290,16 +290,20 @@ export default function AIChatInterface({ initialContext, onClose, isModal = fal
 
   // Initialize Web Speech API
   useEffect(() => {
+    console.log('🎤 Initializing Web Speech API...');
     const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    console.log('🎤 SpeechRecognition available:', !!SpeechRecognition);
     setIsSpeechSupported(!!SpeechRecognition);
 
     if (SpeechRecognition) {
+      console.log('✅ Setting up speech recognition...');
       const recognition = new SpeechRecognition();
       recognition.continuous = false;
       recognition.interimResults = false;
       recognition.lang = 'en-US';
 
       recognition.onresult = (event: any) => {
+        console.log('✅ Speech recognized:', event.results[0][0].transcript);
         const transcript = event.results[0][0].transcript;
         // Append to input value
         setInput((prev) => prev + (prev ? ' ' : '') + transcript);
@@ -307,15 +311,19 @@ export default function AIChatInterface({ initialContext, onClose, isModal = fal
       };
 
       recognition.onerror = (event: any) => {
-        console.error('Speech recognition error:', event.error);
+        console.error('❌ Speech recognition error:', event.error);
         setIsRecording(false);
       };
 
       recognition.onend = () => {
+        console.log('🛑 Speech recognition ended');
         setIsRecording(false);
       };
 
       recognitionRef.current = recognition;
+      console.log('✅ Speech recognition setup complete');
+    } else {
+      console.warn('⚠️ Web Speech API not supported in this browser');
     }
   }, []);
 
@@ -401,13 +409,27 @@ export default function AIChatInterface({ initialContext, onClose, isModal = fal
 
   // Handle microphone click
   const handleVoiceInput = () => {
-    if (!recognitionRef.current) return;
+    console.log('🎤 Microphone button clicked!');
+    console.log('🎤 Speech supported:', isSpeechSupported);
+    console.log('🎤 Recognition ref:', recognitionRef.current);
+    console.log('🎤 Currently recording:', isRecording);
 
-    if (isRecording) {
-      recognitionRef.current.stop();
-    } else {
-      recognitionRef.current.start();
-      setIsRecording(true);
+    if (!recognitionRef.current) {
+      console.error('❌ No speech recognition available');
+      return;
+    }
+
+    try {
+      if (isRecording) {
+        console.log('🛑 Stopping recording...');
+        recognitionRef.current.stop();
+      } else {
+        console.log('▶️ Starting recording...');
+        recognitionRef.current.start();
+        setIsRecording(true);
+      }
+    } catch (error) {
+      console.error('❌ Speech recognition error:', error);
     }
   };
 
