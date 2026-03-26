@@ -350,6 +350,7 @@ async function handleRetailCheckout(session: Stripe.Checkout.Session) {
         total_cents: session.amount_total || 0,
         total_bv: Math.round(totalBV / 100),
         is_personal_purchase: false,
+        stripe_session_id: session.id,
         stripe_payment_intent_id: session.payment_intent as string,
         payment_method: 'card',
         payment_status: 'paid',
