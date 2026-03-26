@@ -6,9 +6,9 @@
 
 import { createClient } from '@/lib/supabase/server';
 import { notFound, redirect } from 'next/navigation';
-import { cookies } from 'next/headers';
 import { Metadata } from 'next';
 import ServicePageClient from '@/components/services/ServicePageClient';
+import RepAttributionWrapper from './wrapper';
 
 interface PageProps {
   params: Promise<{
@@ -85,16 +85,6 @@ export default async function RepServicesPage({ params }: PageProps) {
     );
   }
 
-  // Set rep attribution cookie (30 days)
-  const cookieStore = await cookies();
-  cookieStore.set('rep_attribution', slug, {
-    maxAge: 30 * 24 * 60 * 60, // 30 days
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
-    path: '/',
-  });
-
   // Get active products
   const { data: products } = await supabase
     .from('products')
@@ -103,15 +93,17 @@ export default async function RepServicesPage({ params }: PageProps) {
     .order('display_order');
 
   return (
-    <ServicePageClient
-      products={products || []}
-      distributor={{
-        id: distributor.id,
-        name: `${distributor.first_name} ${distributor.last_name}`,
-        slug: distributor.slug,
-        email: distributor.email,
-        phone: distributor.phone,
-      }}
-    />
+    <RepAttributionWrapper slug={slug}>
+      <ServicePageClient
+        products={products || []}
+        distributor={{
+          id: distributor.id,
+          name: `${distributor.first_name} ${distributor.last_name}`,
+          slug: distributor.slug,
+          email: distributor.email,
+          phone: distributor.phone,
+        }}
+      />
+    </RepAttributionWrapper>
   );
 }
