@@ -14,9 +14,10 @@ import { formatPhoneForDisplay } from '@/lib/utils/format-phone';
 
 interface OptiveReplicatedSiteProps {
   distributor: Distributor;
+  isMainSite?: boolean; // If true, hide all signup/join buttons
 }
 
-export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSiteProps) {
+export default function OptiveReplicatedSite({ distributor, isMainSite = false }: OptiveReplicatedSiteProps) {
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [pricingToggle, setPricingToggle] = useState(false);
@@ -315,9 +316,11 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                     }}>
                       Login
                     </a>
-                    <a href={signupUrl} className="btn-default" style={{background: '#2B4C7E', backgroundColor: '#2B4C7E', backgroundImage: 'none', borderColor: '#2B4C7E', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}>
-                      <i className="fa-solid fa-arrow-right"></i> {distributor.slug === 'apex' ? 'Get Started' : 'Join My Team'}
-                    </a>
+                    {!isMainSite && (
+                      <a href={signupUrl} className="btn-default" style={{background: '#2B4C7E', backgroundColor: '#2B4C7E', backgroundImage: 'none', borderColor: '#2B4C7E', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}>
+                        <i className="fa-solid fa-arrow-right"></i> {distributor.slug === 'apex' ? 'Get Started' : 'Join My Team'}
+                      </a>
+                    )}
                   </div>
                   {/* Header Btn End */}
                 </div>
@@ -561,6 +564,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                     }}>
                       <i className="fa-solid fa-play-circle"></i> Watch How It Works
                     </a>
+                    {!isMainSite && (
                     <a href={signupUrl} className="btn-default" style={{
                       background: 'transparent',
                       color: '#ffffff',
@@ -578,6 +582,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                     }}>
                       <i className="fa-solid fa-arrow-right"></i> Join the Movement
                     </a>
+                    )}
                   </div>
                 </div>
               </div>
@@ -804,7 +809,9 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                             </ul>
                           </div>
                           <div className="pricing-item-btn" style={{padding: '0 24px 24px'}}>
+                            {!isMainSite && (
                             <a href={signupUrl} className="btn-default" style={{width: '100%', textAlign: 'center', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}><i className="fa-solid fa-arrow-right"></i> Learn More</a>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -847,7 +854,9 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                             </ul>
                           </div>
                           <div className="pricing-item-btn" style={{padding: '0 24px 24px'}}>
+                            {!isMainSite && (
                             <a href={signupUrl} className="btn-default" style={{width: '100%', textAlign: 'center', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}><i className="fa-solid fa-arrow-right"></i> Learn More</a>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -896,7 +905,9 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                             </ul>
                           </div>
                           <div className="pricing-item-btn" style={{padding: '0 24px 24px'}}>
+                            {!isMainSite && (
                             <a href={signupUrl} className="btn-default" style={{width: '100%', textAlign: 'center', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}><i className="fa-solid fa-arrow-right"></i> Learn More</a>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -943,7 +954,9 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                             </ul>
                           </div>
                           <div className="pricing-item-btn" style={{padding: '0 24px 24px'}}>
+                            {!isMainSite && (
                             <a href={signupUrl} className="btn-default" style={{width: '100%', textAlign: 'center', background: '#8B5CF6', borderColor: '#8B5CF6', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}><i className="fa-solid fa-arrow-right"></i> Learn More</a>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -990,7 +1003,9 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                             </ul>
                           </div>
                           <div className="pricing-item-btn" style={{padding: '0 24px 24px'}}>
+                            {!isMainSite && (
                             <a href={signupUrl} className="btn-default" style={{width: '100%', textAlign: 'center', background: '#059669', borderColor: '#059669', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}><i className="fa-solid fa-arrow-right"></i> Learn More</a>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -1130,6 +1145,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
             <div className="row" style={{marginTop: '50px'}}>
               <div className="col-lg-12 text-center">
                 <div className="wow fadeInUp" data-wow-delay="0.4s">
+                  {!isMainSite && (
                   <a href={signupUrl} className="btn-default" style={{
                     background: '#fbbf24',
                     color: '#1a2c4e',
@@ -1145,6 +1161,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                   }}>
                     <i className="fa-solid fa-arrow-right"></i> Join the Movement
                   </a>
+                  )}
                   <p style={{marginTop: '16px', color: '#e0e7ff', fontSize: '15px'}}>
                     Choose your path. Get&nbsp;trained. Start&nbsp;building.
                   </p>
@@ -1935,6 +1952,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
 
                   {/* CTA */}
                   <div style={{marginTop: '40px'}}>
+                    {!isMainSite && (
                     <a href={signupUrl} className="btn-default" style={{
                       background: '#8B5CF6',
                       color: '#fff',
@@ -1951,6 +1969,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                     }}>
                       <i className="fa-solid fa-user-tie"></i> {distributor.slug === 'apex' ? 'Join as Licensed Agent' : `Join ${distributor.first_name}'s Agency`}
                     </a>
+                    )}
                     <a href="#products" className="btn-default" style={{
                       background: 'transparent',
                       color: '#2B4C7E',
@@ -2124,9 +2143,11 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                       When agents are properly equipped, trained, and supported — they show up differently for their clients. They close coverage gaps that could devastate families. They build trust that lasts decades. They become pillars in their communities. That's the real mission behind everything Apex Affinity Group does. We invest in you so you can invest in the people who need you most.
                     </p>
                     <div className="wow fadeInUp" data-wow-delay="0.4s" style={{marginTop: '40px', display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap'}}>
+                      {!isMainSite && (
                       <a href={signupUrl} className="btn-default" style={{background: '#ffffff', color: '#2B4C7E', borderColor: '#ffffff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}>
                         <i className="fa-solid fa-arrow-right"></i> {distributor.slug === 'apex' ? 'Get Started' : 'Join the Mission'}
                       </a>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -2356,9 +2377,11 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
 
                       {/* CTA Button */}
                       <div style={{marginTop: '32px'}}>
+                        {!isMainSite && (
                         <a href={signupUrl} className="btn-default" style={{background: '#2B4C7E', borderColor: '#2B4C7E', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}>
                           <i className="fa-solid fa-user-plus"></i> Join {distributor.first_name}'s Team
                         </a>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -2438,6 +2461,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
 
                   {/* Two CTA Buttons */}
                   <div style={{display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '40px'}}>
+                    {!isMainSite && (
                     <a href={signupUrl} className="btn-default" style={{
                       background: '#fbbf24',
                       color: '#1a2c4e',
@@ -2454,6 +2478,7 @@ export default function OptiveReplicatedSite({ distributor }: OptiveReplicatedSi
                     }}>
                       <i className="fa-solid fa-arrow-right"></i> Join the Movement
                     </a>
+                    )}
                     <a href="#how-it-works" className="btn-default" style={{
                       background: 'transparent',
                       color: '#ffffff',

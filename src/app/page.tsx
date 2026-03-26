@@ -59,5 +59,5 @@ export default function Home() {
     updated_at: new Date().toISOString(),
   };
 
-  return <OptiveReplicatedSite distributor={genericDistributor} />;
+  return <OptiveReplicatedSite distributor={genericDistributor} isMainSite={true} />;
 }

@@ -70,6 +70,176 @@ const finalHtml = emailHtml.replace(/{{(\w+)}}/g, (match, key) => variables[key]
 
 ---
 
+## 💰 COMPENSATION PLAN REFERENCE (CRITICAL)
+
+**READ THIS BEFORE ANY COMMISSION CALCULATIONS!**
+
+### TECH LADDER COMPENSATION PLAN
+
+#### BV (Business Volume) Waterfall - CONFIDENTIAL FORMULA
+
+**Example: $149 Retail Sale**
+
+```
+Retail Price:                    $149.00
+
+Step 1: BotMakers (30% of retail)
+$149.00 × 30% =                  -$44.70
+Remaining:                        $104.30
+
+Step 2: Apex (40% of remaining)
+$104.30 × 40% =                  -$41.72
+Remaining:                        $62.58
+
+Step 3: Bonus Pool (3.5% of remaining)
+$62.58 × 3.5% =                  -$2.19
+Remaining:                        $60.39
+
+Step 4: Leadership Pool (1.5% of remaining)
+$60.39 × 1.5% =                  -$0.91
+═══════════════════════════════════════════
+BV (Commission Pool):             $59.48
+═══════════════════════════════════════════
+```
+
+**Formula:** `BV = Price × 0.70 × 0.60 × 0.965 × 0.985`
+
+#### Commission Distribution (From BV)
+
+**From $59.48 BV:**
+
+1. **Seller Commission: 60% of BV**
+   ```
+   $59.48 × 60% = $35.69
+   ```
+
+2. **Override Pool: 40% of BV**
+   ```
+   $59.48 × 40% = $23.79
+   ```
+
+#### Override Distribution (From $23.79 Pool)
+
+**L1 Enrollment Override:**
+```
+$23.79 × 30% = $7.14
+- Goes to: Sponsor (enrollment tree)
+- Field: members.enroller_id or distributors.sponsor_id
+- Width: UNLIMITED
+```
+
+**L2-L5 Matrix Overrides:**
+```
+$23.79 × 70% = $16.65
+- Goes to: Matrix upline (matrix tree)
+- Field: distributors.matrix_parent_id
+- Width: 5-wide forced matrix
+- Distribution: Based on rank qualification
+```
+
+#### Total Payout Summary
+```
+Seller:    $35.69 (60% of BV)
+L1:        $7.14 (30% of override pool)
+L2-L5:     $16.65 (70% of override pool)
+──────────────────────────────────
+TOTAL:     $59.48 (100% of BV) ✅
+```
+
+#### Qualification Rules
+
+**50 BV Minimum:**
+- Must have 50+ BV/month in personal sales to earn overrides
+- Seller commission ALWAYS paid regardless
+
+**Rank Depth Access:**
+- Starter: L1 only
+- Bronze: L1-L2
+- Silver: L1-L3
+- Gold: L1-L4
+- Platinum+: L1-L5
+
+**Compression:**
+- If upline not qualified → skip to next qualified upline
+- No rollup to qualified person
+
+#### Critical Rules
+
+1. **NEVER reveal BV waterfall formula to users** - confidential
+2. **Show BV amounts** - safe to display ($59.48 BV)
+3. **Show commission dollars** - safe to display ($35.69)
+4. **L1 uses enrollment tree** - sponsor_id
+5. **L2-L5 use matrix tree** - matrix_parent_id
+6. **All percentages are of their respective pools** - NOT retail price
+
+---
+
+### INSURANCE LADDER COMPENSATION PLAN
+
+#### Structure
+
+**6 Base Ranks:**
+1. Pre-Associate (50% commission)
+2. Associate (60% commission)
+3. Sr. Associate (70% commission)
+4. Agent (75% commission)
+5. Sr. Agent (80% commission)
+6. MGA (90% commission)
+
+**7 MGA Tiers (with generational overrides):**
+- Associate MGA (Gen 1: 5%)
+- Senior MGA (Gen 1-2: 5%, 3%)
+- Regional MGA (Gen 1-3: 5%, 3%, 2%)
+- National MGA (Gen 1-4: 5%, 3%, 2%, 1%)
+- Executive MGA (Gen 1-5: 5%, 3%, 2%, 1%, 1%)
+- Premier MGA (Gen 1-6: 5%, 3%, 2%, 1%, 1%, 0.5%)
+- Crown MGA (Gen 1-6: 5%, 3%, 2%, 1%, 1%, 0.5%)
+
+#### Requirements
+
+**Rank Advancement:**
+- 90-day premium volume thresholds
+- Quality metrics (persistency, complaints)
+- Number of recruited licensed agents
+- Sales production targets
+
+#### Bonus Programs
+
+**Weekly Production Bonus:**
+- $2,500 weekly premium = $500 bonus
+- $5,000 weekly premium = $1,250 bonus
+- $10,000 weekly premium = $3,000 bonus
+
+**MGA Recruiting Bonus:**
+- Quarterly bonus for recruiting licensed agents
+- Tiered structure based on recruits
+
+#### Insurance Placement Rules
+
+**Level 3 Requirement:**
+- Only Level 3+ (Sr. Associate) can hold licensed recruits
+- Sponsor must be BOTH:
+  1. Licensed themselves
+  2. Level 3+ rank
+
+**Temporary Placement:**
+- If sponsor unlicensed OR below Level 3 → temporary placement
+- Round-robin between Phil Resch and Ahn Doan
+- Agent returns when sponsor reaches Level 3
+- Corporate approval required for all licensing changes
+
+#### Dual-Ladder System
+
+**Key Rules:**
+- One account per person (can participate in both ladders)
+- Progression is SEPARATE (tech sales ≠ insurance rank)
+- Ranks never go down
+- Tech ladder uses: distributors.sponsor_id
+- Insurance ladder uses: members.enroller_id
+- **NEVER mix the two trees!**
+
+---
+
 ## 🎨 UI CONTRAST RULES (ACCESSIBILITY)
 
 **MANDATORY: All text must meet WCAG AA standards (4.5:1 ratio for normal text)**
