@@ -1,7 +1,7 @@
 'use client';
 
 import { Sparkles, MessageSquare } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import AIModalChat from './AIModalChat';
 
 interface AIAssistantBannerProps {
@@ -10,9 +10,38 @@ interface AIAssistantBannerProps {
 
 export default function AIAssistantBanner({ firstName = 'there' }: AIAssistantBannerProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [unreadCount, setUnreadCount] = useState(0);
+
+  // Fetch unread proactive messages count
+  useEffect(() => {
+    async function fetchUnreadCount() {
+      try {
+        const response = await fetch('/api/dashboard/ai-chat/proactive-messages', {
+          credentials: 'include',
+        });
+
+        if (response.ok) {
+          const { count } = await response.json();
+          setUnreadCount(count || 0);
+        }
+      } catch (error) {
+        console.error('Error fetching unread count:', error);
+      }
+    }
+
+    // Fetch immediately
+    fetchUnreadCount();
+
+    // Poll every 60 seconds
+    const interval = setInterval(fetchUnreadCount, 60000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const handleOpenChat = () => {
     setIsModalOpen(true);
+    // Reset unread count when opening chat
+    setUnreadCount(0);
   };
 
   return (
@@ -38,12 +67,23 @@ export default function AIAssistantBanner({ firstName = 'there' }: AIAssistantBa
         <div className="relative z-10 flex items-center justify-between">
           {/* Left side - Icon and Text */}
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+            <div className="relative w-14 h-14 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
               <MessageSquare className="w-7 h-7 text-white" />
+              {/* Red Badge Notification */}
+              {unreadCount > 0 && (
+                <div className="absolute -top-1 -right-1 min-w-[24px] h-6 bg-red-500 rounded-full flex items-center justify-center shadow-lg border-2 border-white z-10 px-1.5">
+                  <span className="text-white text-xs font-bold">{unreadCount > 9 ? '9+' : unreadCount}</span>
+                </div>
+              )}
             </div>
             <div>
               <h3 className="text-xl font-bold text-white leading-tight flex items-center gap-2">
                 ✨ AI Assistant Available
+                {unreadCount > 0 && (
+                  <span className="ml-1 px-2 py-0.5 bg-white/20 rounded-full text-xs animate-pulse">
+                    {unreadCount} new {unreadCount === 1 ? 'message' : 'messages'}
+                  </span>
+                )}
               </h3>
               <p className="text-white/90 text-sm font-medium mt-1">
                 Hi {firstName}! I'm here to help answer questions and guide your journey

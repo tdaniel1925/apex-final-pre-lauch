@@ -16,6 +16,32 @@ const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY || '',
 });
 
+/**
+ * Load knowledge base files for codebase knowledge
+ */
+async function loadKnowledgeBase(): Promise<string> {
+  try {
+    const knowledgeDir = path.join(process.cwd(), 'src/lib/chatbot/knowledge');
+    const files = [
+      'back-office-guide.md',
+      'meeting-registration-guide.md',
+      'commission-guide.md'
+    ];
+
+    const content = await Promise.all(
+      files.map(async (file) => {
+        const filePath = path.join(knowledgeDir, file);
+        return await fs.readFile(filePath, 'utf-8');
+      })
+    );
+
+    return content.join('\n\n---\n\n');
+  } catch (error) {
+    console.error('Error loading knowledge base:', error);
+    return '';
+  }
+}
+
 // Define available tools
 const tools: Anthropic.Tool[] = [
   {
@@ -2504,7 +2530,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { messages } = await request.json();
+    const { messages, userLanguage = 'en' } = await request.json();
 
     if (!messages || !Array.isArray(messages)) {
       return NextResponse.json({ error: 'Invalid request' }, { status: 400 });
@@ -2599,6 +2625,19 @@ RANK PROGRESS CALCULATION:
 
 ` : '';
 
+    // Load knowledge base for codebase knowledge
+    const knowledgeBase = await loadKnowledgeBase();
+
+    // Language name mapping
+    const languageNames: Record<string, string> = {
+      en: 'English',
+      es: 'Spanish (Español)',
+      fr: 'French (Français)',
+      pt: 'Portuguese (Português)',
+      de: 'German (Deutsch)',
+      ja: 'Japanese (日本語)'
+    };
+
     // Call Anthropic API with tools
     const response = await anthropic.messages.create({
       model: 'claude-sonnet-4-6', // Same model as admin chat - works!
@@ -2606,6 +2645,35 @@ RANK PROGRESS CALCULATION:
       system: `You are a helpful AI assistant for network marketing distributors. You have access to tools to help with various tasks.
 
 ${userContext}
+
+## CODEBASE KNOWLEDGE (Back Office Help)
+
+When users ask "how do I..." questions about using the Apex back office, dashboard, or features, use this knowledge base to provide step-by-step guidance:
+
+${knowledgeBase}
+
+## LANGUAGE SUPPORT
+
+- User's preferred language: ${userLanguage}
+- ALWAYS respond in ${languageNames[userLanguage] || 'English'}
+- If user switches languages mid-conversation, match their language immediately
+- Supported languages: English (en), Spanish (es), French (fr), Portuguese (pt), German (de), Japanese (ja)
+- Keep technical terms and proper nouns in English (e.g., "Business Center", "BV", rank names)
+
+## WEB SEARCH POLICY (CRITICAL - READ THIS!)
+
+You CANNOT search the web or provide general ChatGPT-style information outside of Apex Affinity Group.
+
+If a user asks for:
+- "What's the weather?"
+- General knowledge questions
+- Current events
+- Information not related to Apex Affinity Group
+
+Respond with:
+"I'm your Apex business assistant! I specialize in helping with your back office, team, commissions, and business growth. For general questions like that, I'd recommend using Claude or ChatGPT. But I'm here 24/7 for anything Apex-related! What can I help you with today?"
+
+NEVER attempt to answer general knowledge questions. Stay focused on Apex business tasks only.
 
 MEDIA CAPABILITIES (IMPORTANT - READ THIS!):
 - ✅ YOU CAN show videos: Use [video:YOUTUBE_URL] syntax in your response (e.g., [video:https://youtube.com/watch?v=abc123])

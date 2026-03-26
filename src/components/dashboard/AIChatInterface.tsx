@@ -281,6 +281,7 @@ export default function AIChatInterface({ initialContext, onClose, isModal = fal
   const [isRecording, setIsRecording] = useState(false);
   const [isSpeechSupported, setIsSpeechSupported] = useState(false);
   const [micPermissionDenied, setMicPermissionDenied] = useState(false);
+  const [userLanguage, setUserLanguage] = useState('en');
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const recognitionRef = useRef<any>(null);
 
@@ -341,6 +342,50 @@ export default function AIChatInterface({ initialContext, onClose, isModal = fal
     }
   }, []);
 
+  // Load proactive messages on mount
+  useEffect(() => {
+    async function loadProactiveMessages() {
+      try {
+        const response = await fetch('/api/dashboard/ai-chat/proactive-messages', {
+          credentials: 'include',
+        });
+
+        if (!response.ok) {
+          console.error('Failed to fetch proactive messages:', response.statusText);
+          return;
+        }
+
+        const { messages: proactiveMessages } = await response.json();
+
+        if (proactiveMessages && proactiveMessages.length > 0) {
+          // Prepend proactive messages to conversation (they should appear first)
+          setMessages((prev) => [
+            ...proactiveMessages.map((msg: any) => ({
+              role: 'assistant' as const,
+              content: msg.message_content,
+              timestamp: new Date(msg.triggered_at),
+            })),
+            ...prev,
+          ]);
+
+          // Mark messages as read
+          await fetch('/api/dashboard/ai-chat/proactive-messages', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+            body: JSON.stringify({
+              messageIds: proactiveMessages.map((m: any) => m.id),
+            }),
+          });
+        }
+      } catch (error) {
+        console.error('Error loading proactive messages:', error);
+      }
+    }
+
+    loadProactiveMessages();
+  }, []);
+
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
 
@@ -361,6 +406,7 @@ export default function AIChatInterface({ initialContext, onClose, isModal = fal
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include', // Ensure session cookies are sent
         body: JSON.stringify({
+          userLanguage,
           messages: [...messages, userMessage].map((m) => ({
             role: m.role,
             content: m.content,
@@ -472,6 +518,23 @@ export default function AIChatInterface({ initialContext, onClose, isModal = fal
                   <span>Online · Ready to help</span>
                 </div>
               </div>
+            </div>
+
+            {/* Middle: Language Selector */}
+            <div className="flex items-center gap-2">
+              <select
+                value={userLanguage}
+                onChange={(e) => setUserLanguage(e.target.value)}
+                className="bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-white/30 hover:bg-white/20 transition-colors cursor-pointer"
+                aria-label="Select language"
+              >
+                <option value="en" className="bg-blue-700 text-white">🇺🇸 English</option>
+                <option value="es" className="bg-blue-700 text-white">🇪🇸 Español</option>
+                <option value="fr" className="bg-blue-700 text-white">🇫🇷 Français</option>
+                <option value="pt" className="bg-blue-700 text-white">🇧🇷 Português</option>
+                <option value="de" className="bg-blue-700 text-white">🇩🇪 Deutsch</option>
+                <option value="ja" className="bg-blue-700 text-white">🇯🇵 日本語</option>
+              </select>
             </div>
 
             {/* Right: Close Button (if modal) */}
