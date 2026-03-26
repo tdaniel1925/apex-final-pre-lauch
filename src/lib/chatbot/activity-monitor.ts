@@ -1,6 +1,6 @@
 // Activity monitoring service for proactive AI engagement
 import { createClient } from '@/lib/supabase/server';
-import { createServiceClient } from '@/lib/supabase/admin';
+import { createServiceClient } from '@/lib/supabase/service';
 
 interface UserActivity {
   lastLogin: Date | null;

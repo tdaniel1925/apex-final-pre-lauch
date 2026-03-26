@@ -1,6 +1,6 @@
 // Inngest functions for proactive AI engagement
 import { inngest } from '../client';
-import { createServiceClient } from '@/lib/supabase/admin';
+import { createServiceClient } from '@/lib/supabase/service';
 import { analyzeUserActivity, createProactiveMessage } from '@/lib/chatbot/activity-monitor';
 
 /**
