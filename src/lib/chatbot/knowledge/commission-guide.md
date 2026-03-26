@@ -17,19 +17,14 @@ Apex uses a **dual-tree compensation system**:
 
 ### CRITICAL: Understanding BV (Business Volume)
 
-**BV is the commission pool after all deductions.** ALL commissions are calculated from BV, NOT retail price.
+**BV (Business Volume) is the commission pool.** ALL commissions are calculated from BV, NOT retail price.
 
-**BV Waterfall for $149 Product:**
-```
-Step 1: BotMakers (30% of $149): $44.70 → Remaining: $104.30
-Step 2: Apex (30% of remaining): $31.29 → Remaining: $73.01
-Step 3: Leadership Pool (1.5%): $1.10 → Remaining: $71.91
-Step 4: Bonus Pool (3.5%): $2.52 → BV: $69.39
-```
+**Example: $149 Product**
+- BV = $69.39
+- Seller Commission: 60% of BV = $41.63
+- Override Pool: 40% of BV = $27.76 (distributed L1-L5)
 
-**From BV ($69.39):**
-- Seller gets 60% = $41.63
-- Override Pool gets 40% = $27.76 (distributed L1-L5)
+**Note:** The exact BV calculation method is confidential company information.
 
 ## Personal Sales Commission (Seller)
 
@@ -110,7 +105,7 @@ Ask the AI: "Show me my matrix commissions" or "Break down my commissions by lev
 ## Business Volume (BV) System
 
 ### What Is BV?
-**BV = The commission pool available after all deductions (BotMakers, Apex, Leadership Pool, Bonus Pool)**
+**BV = The commission pool available after company deductions**
 
 BV is used for:
 1. **Volume Tracking**: Personal BV and Group BV for rank qualification
