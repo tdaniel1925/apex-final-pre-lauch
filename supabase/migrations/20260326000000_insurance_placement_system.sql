@@ -4,17 +4,17 @@
 -- Purpose: Implement temporary placement and corporate approval workflow
 -- =============================================
 
--- Add placement tracking fields to insurance_agents table
-ALTER TABLE insurance_agents
-ADD COLUMN IF NOT EXISTS original_enroller_id uuid REFERENCES members(id),
+-- Add placement tracking fields to members table (insurance data lives here)
+ALTER TABLE public.members
+ADD COLUMN IF NOT EXISTS original_enroller_id uuid REFERENCES public.members(member_id),
 ADD COLUMN IF NOT EXISTS temporary_placement boolean DEFAULT false,
 ADD COLUMN IF NOT EXISTS temporary_placement_reason text,
 ADD COLUMN IF NOT EXISTS placed_with_fallback_at timestamptz;
 
-COMMENT ON COLUMN insurance_agents.original_enroller_id IS 'Who the agent should return to when sponsor reaches Level 3';
-COMMENT ON COLUMN insurance_agents.temporary_placement IS 'Is this agent temporarily placed with Phil/Ahn?';
-COMMENT ON COLUMN insurance_agents.temporary_placement_reason IS 'Why temporarily placed: sponsor_unlicensed or sponsor_below_level_3';
-COMMENT ON COLUMN insurance_agents.placed_with_fallback_at IS 'When the agent was placed with Phil/Ahn';
+COMMENT ON COLUMN public.members.original_enroller_id IS 'Who the agent should return to when sponsor reaches Level 3';
+COMMENT ON COLUMN public.members.temporary_placement IS 'Is this agent temporarily placed with Phil/Ahn?';
+COMMENT ON COLUMN public.members.temporary_placement_reason IS 'Why temporarily placed: sponsor_unlicensed or sponsor_below_level_3';
+COMMENT ON COLUMN public.members.placed_with_fallback_at IS 'When the agent was placed with Phil/Ahn';
 
 -- Create insurance_placement_change_requests table
 CREATE TABLE IF NOT EXISTS insurance_placement_change_requests (
@@ -47,8 +47,8 @@ CREATE INDEX IF NOT EXISTS idx_placement_requests_status ON insurance_placement_
 CREATE INDEX IF NOT EXISTS idx_placement_requests_type ON insurance_placement_change_requests(request_type);
 CREATE INDEX IF NOT EXISTS idx_placement_requests_created ON insurance_placement_change_requests(created_at DESC);
 
-CREATE INDEX IF NOT EXISTS idx_insurance_agents_temporary ON insurance_agents(temporary_placement) WHERE temporary_placement = true;
-CREATE INDEX IF NOT EXISTS idx_insurance_agents_original_enroller ON insurance_agents(original_enroller_id) WHERE original_enroller_id IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_members_temporary_placement ON public.members(temporary_placement) WHERE temporary_placement = true;
+CREATE INDEX IF NOT EXISTS idx_members_original_enroller ON public.members(original_enroller_id) WHERE original_enroller_id IS NOT NULL;
 
 -- Create trigger for updated_at
 CREATE OR REPLACE FUNCTION update_insurance_placement_requests_updated_at()
