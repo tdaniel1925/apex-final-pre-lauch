@@ -175,38 +175,58 @@ Amy Bob Carol ⬜ ⬜
 **Commission Breakdown**:
 
 #### 1. Seller Commission (Your Personal Sales)
+
+**CORRECT BV WATERFALL FORMULA:**
 ```
 Your sale: PulseCommand at $149/month
 Retail: $149.00
-- BotMakers (15%): $22.35
-- Apex Margin (13%): $19.37
-- Bonus Pool (3.5%): $5.22
-- Leadership Pool (1.5%): $2.24
-= Commission Pool: $99.82
+STEP 1: BotMakers (30% of retail): $44.70
+        Remaining: $104.30
+STEP 2: Apex (30% of remaining): $31.29
+        Remaining: $73.01
+STEP 3: Leadership Pool (1.5% of remaining): $1.10
+        Remaining: $71.91
+STEP 4: Bonus Pool (3.5% of remaining): $2.52
+        BV (Commission Pool): $69.39
 
 YOU EARN:
-- Seller Commission (60% of $99.82) = $59.89/month per subscription
+- Seller Commission (60% of BV) = $41.63/month per subscription
 ```
+
+**CRITICAL:** ALL commissions calculated from BV ($69.39), NOT retail price ($149)
 
 #### 2. Enrollment Overrides (Your Direct Recruits)
 ```
 You recruited 5 people who each sell $149/month
-Commission Pool per sale: $99.82
-YOUR L1 OVERRIDE: 30% of $99.82 = $29.95/person
+BV (Commission Pool) per sale: $69.39
+YOUR L1 OVERRIDE: 30% of BV = 30% of $69.39 = $20.82/person
 
-Total from 5 directs: $29.95 × 5 = $149.75/month
+Total from 5 directs: $20.82 × 5 = $104.10/month
 ```
+
+**Note:** L1 enrollment override is 30% of BV, not retail price
 
 #### 3. Matrix Depth Overrides (Gold Rank = L1-L4)
 ```
-Matrix Level 1 (5 people): $99.82 × 30% × 5 = $149.73
-Matrix Level 2 (25 people): $99.82 × 15% × 25 = $373.58
-Matrix Level 3 (125 people): $99.82 × 10% × 125 = $1,247.75
-Matrix Level 4 (625 people): $99.82 × 5% × 625 = $3,119.38
+BV per sale: $69.39
+Override Pool (40% of BV): $27.76
 
-Total Matrix Overrides: $4,890.44/month
+Gold rank override schedule:
+- L1: 30% of Override Pool = $8.33/person
+- L2: 15% of Override Pool = $4.16/person
+- L3: 10% of Override Pool = $2.78/person
+- L4: 5% of Override Pool = $1.39/person
+
+Matrix Level 1 (5 people): 5 × $8.33 = $41.65
+Matrix Level 2 (25 people): 25 × $4.16 = $104.00
+Matrix Level 3 (125 people): 125 × $2.78 = $347.50
+Matrix Level 4 (625 people): 625 × $1.39 = $868.75
+
+Total Matrix Overrides: $1,361.90/month
 (if matrix is full and everyone is active)
 ```
+
+**Important:** Matrix overrides are percentages of the Override Pool (40% of BV), not retail price
 
 #### 4. Rank Bonus
 ```
@@ -214,10 +234,12 @@ One-time when you hit Gold: $3,000
 ```
 
 ### Total Potential Monthly Income (Gold Rank):
-- Seller Commissions: $59.89
-- Enrollment Overrides: $149.75
-- Matrix Overrides: $4,890.44
-- **TOTAL: ~$5,100/month**
+- Seller Commissions: $41.63
+- Enrollment Overrides: $104.10
+- Matrix Overrides: $1,361.90
+- **TOTAL: ~$1,507.63/month**
+
+**Note:** This assumes full matrix with all positions active. Actual income will vary based on team size and activity.
 
 ---
 
@@ -271,34 +293,44 @@ matrix_depth INTEGER     -- How deep (0-7)
 
 ---
 
-## 📈 WATERFALL (REVENUE SPLIT)
+## 📈 WATERFALL (REVENUE SPLIT) - CORRECTED
+
+**SINGLE SOURCE OF TRUTH FOR BV WATERFALL:**
 
 For every tech product sale, revenue splits as follows:
 
 ### Standard Products (PulseGuard, PulseFlow, etc.):
 ```
 $149.00 Retail Price
-├─ BotMakers (15%): $22.35
-├─ Apex Margin (13%): $19.37
-├─ Bonus Pool (3.5%): $5.22
-├─ Leadership Pool (1.5%): $2.24
-└─ Commission Pool (68.5%): $99.82
-    ├─ Seller (60% of pool): $59.89
-    └─ Override Pool (40% of pool): $39.93
-        └─ Distributed to upline (L1-L5)
+STEP 1: BotMakers (30% of retail): $44.70
+        Remaining: $104.30
+STEP 2: Apex (30% of remaining): $31.29
+        Remaining: $73.01
+STEP 3: Leadership Pool (1.5% of remaining): $1.10
+        Remaining: $71.91
+STEP 4: Bonus Pool (3.5% of remaining): $2.52
+        BV (Commission Pool): $69.39
+            ├─ Seller (60% of BV): $41.63
+            └─ Override Pool (40% of BV): $27.76
+                └─ Distributed to upline (L1-L5)
 ```
 
-### Business Center ($39/month fixed):
+**CRITICAL RULE:** ALL commissions (seller + overrides) are calculated from BV ($69.39), NOT retail price ($149.00)
+
+### Business Center ($39/month fixed - EXCEPTION):
 ```
-$39.00 Retail Price
-├─ BotMakers: $5.85
-├─ Apex: $5.07
-├─ Bonus Pool: $1.37
-├─ Leadership Pool: $0.59
-└─ Commission Pool: $26.12
-    ├─ Seller: $15.67
-    └─ Override Pool: $10.45
+$39.00 Retail Price (Fixed Split, NOT Waterfall)
+├─ BotMakers: $11.00
+├─ Apex: $8.00
+├─ Seller: $10.00
+├─ Sponsor: $8.00 (flat bonus to direct enroller)
+├─ Costs: $2.00
+└─ Override Pool: $0.00 (NO override pool for BC)
+    Bonus Pool: $0.00 (NO bonus pool for BC)
+    Leadership Pool: $0.00 (NO leadership pool for BC)
 ```
+
+**Business Center does NOT use the standard waterfall. It has fixed dollar amounts.**
 
 ---
 

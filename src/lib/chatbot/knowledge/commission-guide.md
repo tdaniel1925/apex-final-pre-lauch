@@ -9,28 +9,64 @@ Apex uses a **dual-tree compensation system**:
 ### Quick Overview
 
 **You earn commissions from:**
-- Your personal sales (L1 Override - 30%)
-- Your team's sales (L2-L5 Matrix Overrides - varies by rank)
-- Rank advancement bonuses
-- Leadership bonuses (at higher ranks)
+- Your personal sales (seller commission - 60% of BV)
+- Your team's sales through enrollment overrides (L1 - 30% of BV for direct enrollees)
+- Your team's sales through matrix overrides (L2-L5 - varies by rank, % of Override Pool)
+- Rank advancement bonuses (one-time)
+- Leadership bonuses (Elite rank only)
 
-## Personal Sales Override (L1)
+### CRITICAL: Understanding BV (Business Volume)
+
+**BV is the commission pool after all deductions.** ALL commissions are calculated from BV, NOT retail price.
+
+**BV Waterfall for $149 Product:**
+```
+Step 1: BotMakers (30% of $149): $44.70 → Remaining: $104.30
+Step 2: Apex (30% of remaining): $31.29 → Remaining: $73.01
+Step 3: Leadership Pool (1.5%): $1.10 → Remaining: $71.91
+Step 4: Bonus Pool (3.5%): $2.52 → BV: $69.39
+```
+
+**From BV ($69.39):**
+- Seller gets 60% = $41.63
+- Override Pool gets 40% = $27.76 (distributed L1-L5)
+
+## Personal Sales Commission (Seller)
 
 ### What It Is
-- 30% commission on YOUR personal sales
-- This is your "enrollment override"
-- Paid on sales from people YOU personally enrolled
+- 60% of BV on YOUR personal sales
+- This is what YOU earn when you sell a product
+- Paid monthly on recurring subscriptions
+
+### Example
+```
+You sell PulseFlow at $149/month (retail)
+BV = $69.39
+Your Seller Commission: 60% of $69.39 = $41.63/month
+```
+
+### How to Check Your Seller Earnings
+Ask the AI: "Show me my personal sales commissions" or "What's my seller commission?"
+
+## Enrollment Override (L1)
+
+### What It Is
+- 30% of BV on sales made by people YOU personally enrolled
+- This is your "direct enrollment override"
+- Applies to ALL your direct enrollees (unlimited)
+- Paid from the Override Pool (40% of BV)
 
 ### Example
 ```
 You enroll Sarah
-Sarah purchases Apex Membership ($45/month)
-
-Your L1 Override: $13.50/month (30% of $45)
+Sarah sells PulseFlow at $149/month
+BV = $69.39
+Override Pool = 40% of $69.39 = $27.76
+Your L1 Override: 30% of BV = 30% of $69.39 = $20.82/month
 ```
 
 ### How to Check Your L1 Earnings
-Ask the AI: "Show me my personal sales commissions" or "What's my L1 override?"
+Ask the AI: "Show me my enrollment overrides" or "What's my L1 override?"
 
 ## Matrix Overrides (L2-L5)
 
@@ -54,14 +90,18 @@ The matrix is a 5×7 **forced matrix** with automatic spillover:
 ### Example: Gold Rank Commission
 ```
 Matrix Position:
-- You (Gold Rank)
-  - L2: 5 people (each purchases $45/month)
-  - L3: 25 people (each purchases $45/month)
+- You (Gold Rank - unlocks L1-L4)
+  - L2: 5 people (each sells PulseFlow $149 = $69.39 BV)
+  - L3: 25 people (each sells PulseFlow $149 = $69.39 BV)
 
-Your Matrix Overrides:
-- L2: 5 × $45 × 5% = $11.25/month
-- L3: 25 × $45 × 3% = $33.75/month
-Total Matrix: $45/month
+Override Pool per sale: 40% of $69.39 = $27.76
+
+Your Matrix Overrides (from Override Pool):
+- L2: 5 × ($27.76 × 15%) = 5 × $4.16 = $20.80/month
+- L3: 25 × ($27.76 × 10%) = 25 × $2.78 = $69.50/month
+Total Matrix: $90.30/month
+
+Note: L1 override is enrollment-based (30% of BV), not matrix-based
 ```
 
 ### How to Check Matrix Earnings
@@ -70,13 +110,28 @@ Ask the AI: "Show me my matrix commissions" or "Break down my commissions by lev
 ## Business Volume (BV) System
 
 ### What Is BV?
-Business Volume is how we track sales activity:
-- **Personal BV**: Sales from YOUR enrollees (L1)
-- **Team BV**: Sales from your entire organization (L1-L5)
+**BV = The commission pool available after all deductions (BotMakers, Apex, Leadership Pool, Bonus Pool)**
 
-### BV Values
-- Apex Membership: $45/month = 45 BV
-- Additional products: Check product details
+BV is used for:
+1. **Volume Tracking**: Personal BV and Group BV for rank qualification
+2. **Commission Calculation**: All commissions are % of BV (not retail price)
+
+### BV Calculation
+**Standard Products:**
+```
+BV = (Retail Price × 0.70 × 0.70 × 0.95)
+```
+
+**Example Products:**
+- PulseGuard Retail ($79): BV = $36
+- PulseFlow Retail ($149): BV = $69
+- PulseDrive Retail ($299): BV = $139
+- PulseCommand Retail ($499): BV = $232
+- Business Center ($39): BV = $39 (fixed exception)
+
+### Personal BV vs Group BV
+- **Personal BV**: Sum of BV from YOUR direct sales
+- **Team BV**: Personal BV + all downline BV (entire enrollment tree)
 
 ### Checking Your BV
 Ask the AI:
