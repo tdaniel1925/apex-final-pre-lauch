@@ -56,16 +56,25 @@ export interface WaterfallResult {
 /**
  * Calculate revenue waterfall for a sale
  *
- * From spec:
- * STEP 1: Customer pays PRICE (retail or member)
- * STEP 2: BotMakers takes 30% of price = ADJUSTED GROSS
+ * CORRECTED WATERFALL (Single Source of Truth):
+ * STEP 1: Customer pays RETAIL PRICE
+ * STEP 2: BotMakers takes 30% of retail = ADJUSTED GROSS
  * STEP 3: Apex takes 30% of Adjusted Gross = REMAINDER
- * STEP 4: 5% of Remainder → BONUS POOL
- * STEP 5: 1.5% of Remainder → LEADERSHIP POOL
- *         = COMMISSION POOL (Remainder - 5% - 1.5%)
- * STEP 6: Seller gets 60% of Commission Pool (~27.5% effective)
- * STEP 7: Override Pool gets 40% of Commission Pool
- *         → Distributed across 5 levels
+ * STEP 4: Leadership Pool takes 1.5% of Remainder
+ * STEP 5: Bonus Pool takes 3.5% of Remainder
+ * STEP 6: BV = Remaining amount (this is what commissions are paid from)
+ * STEP 7: Seller gets 60% of BV
+ * STEP 8: Override Pool gets 40% of BV → Distributed across 5 levels
+ *
+ * Example $149 product:
+ * - BotMakers: $44.70 (30% of $149)
+ * - Remaining: $104.30
+ * - Apex: $31.29 (30% of $104.30)
+ * - Remaining: $73.01
+ * - Leadership: $1.10 (1.5% of $73.01)
+ * - Remaining: $71.91
+ * - Bonus: $2.52 (3.5% of $71.91)
+ * - BV: $69.39 ← ALL COMMISSIONS CALCULATED FROM THIS
  *
  * @param priceCents - Sale price in cents (retail or member)
  * @param productType - 'standard' or 'business_center'
@@ -93,21 +102,25 @@ export function calculateWaterfall(
     };
   }
 
-  // Standard Waterfall Calculation
+  // Standard Waterfall Calculation (CORRECTED ORDER)
+  // Step 1: BotMakers takes 30% of retail
   const botmakersFeeCents = Math.round(priceCents * WATERFALL_CONFIG.BOTMAKERS_FEE_PCT);
   const adjustedGrossCents = priceCents - botmakersFeeCents;
 
+  // Step 2: Apex takes 30% of adjusted gross
   const apexTakeCents = Math.round(adjustedGrossCents * WATERFALL_CONFIG.APEX_TAKE_PCT);
-  const remainderCents = adjustedGrossCents - apexTakeCents;
+  let remainderCents = adjustedGrossCents - apexTakeCents;
 
-  // Separate pools (5% + 1.5%)
+  // Step 3: Leadership Pool takes 1.5% of remainder
+  const leadershipPoolCents = Math.round(remainderCents * WATERFALL_CONFIG.LEADERSHIP_POOL_PCT);
+  remainderCents = remainderCents - leadershipPoolCents;
+
+  // Step 4: Bonus Pool takes 3.5% of remainder (after leadership)
   const bonusPoolCents = Math.round(remainderCents * WATERFALL_CONFIG.BONUS_POOL_PCT);
-  const leadershipPoolCents = Math.round(
-    remainderCents * WATERFALL_CONFIG.LEADERSHIP_POOL_PCT
-  );
+  remainderCents = remainderCents - bonusPoolCents;
 
-  // Commission Pool = Remainder - Both Pools
-  const commissionPoolCents = remainderCents - bonusPoolCents - leadershipPoolCents;
+  // Step 5: BV = What's left (this is the commission pool)
+  const commissionPoolCents = remainderCents;
 
   // Seller (60%) and Override Pool (40%) split
   const sellerCommissionCents = Math.round(
@@ -172,17 +185,19 @@ Business Center Waterfall (Fixed Split):
   }
 
   return `
-Standard Waterfall:
-  Price:              ${format(result.priceCents)}
-  BotMakers Fee:      ${format(result.botmakersFeeCents)} (30% of price)
-  Adjusted Gross:     ${format(result.adjustedGrossCents)}
-  Apex Take:          ${format(result.apexTakeCents)} (30% of adj. gross)
-  Remainder:          ${format(result.remainderCents)}
-  Bonus Pool:         ${format(result.bonusPoolCents)} (3.5% of remainder)
-  Leadership Pool:    ${format(result.leadershipPoolCents)} (1.5% of remainder)
-  Commission Pool:    ${format(result.commissionPoolCents)}
-  Seller Commission:  ${format(result.sellerCommissionCents)} (60% of comm. pool)
-  Override Pool:      ${format(result.overridePoolCents)} (40% of comm. pool)
+Standard Waterfall (BV Calculation):
+  Retail Price:       ${format(result.priceCents)}
+  - BotMakers (30%):  ${format(result.botmakersFeeCents)}
+  = Remaining:        ${format(result.adjustedGrossCents)}
+  - Apex (30%):       ${format(result.apexTakeCents)}
+  = Remaining:        ${format(result.remainderCents)}
+  - Leadership (1.5%):${format(result.leadershipPoolCents)}
+  - Bonus (3.5%):     ${format(result.bonusPoolCents)}
+  ═══════════════════════════════════
+  = BV (Comm Pool):   ${format(result.commissionPoolCents)}
+  ═══════════════════════════════════
+  Seller (60% of BV): ${format(result.sellerCommissionCents)}
+  Override (40% BV):  ${format(result.overridePoolCents)}
   Effective %:        ${result.effectivePercentage.toFixed(2)}%
 `.trim();
 }

@@ -229,13 +229,35 @@ export const NEW_REP_RANK_LOCK_MONTHS = 6; // 6-month lock on rank advancement f
  * - Direct Commission: 60% of 45.815% = 27.489%
  * - Override Pool: 40% of 45.815% = 18.326%
  */
+/**
+ * WATERFALL CONFIGURATION - SINGLE SOURCE OF TRUTH
+ *
+ * BV (Business Volume) Calculation:
+ * 1. BotMakers: 30% of retail price
+ * 2. Apex: 30% of remaining (after BotMakers)
+ * 3. Leadership Pool: 1.5% of remaining (after Apex)
+ * 4. Bonus Pool: 3.5% of remaining (after Leadership)
+ * 5. BV = Everything remaining
+ *
+ * Example $149 product:
+ * - BotMakers: $44.70 (30% of $149)
+ * - Remaining: $104.30
+ * - Apex: $31.29 (30% of $104.30)
+ * - Remaining: $73.01
+ * - Leadership: $1.10 (1.5% of $73.01)
+ * - Remaining: $71.91
+ * - Bonus: $2.52 (3.5% of $71.91)
+ * - BV: $69.39
+ *
+ * ALL commissions calculated from BV ($69.39), NOT retail price ($149)
+ */
 export const WATERFALL_CONFIG = {
   BOTMAKERS_FEE_PCT: 0.30, // 30% of retail price
-  APEX_TAKE_PCT: 0.30, // 30% of adjusted gross (after BotMakers)
-  BONUS_POOL_PCT: 0.05, // 5% of remainder (after BotMakers + Apex)
-  LEADERSHIP_POOL_PCT: 0.015, // 1.5% of remainder (after BotMakers + Apex)
-  SELLER_COMMISSION_PCT: 0.60, // 60% of field compensation
-  OVERRIDE_POOL_PCT: 0.40, // 40% of field compensation
+  APEX_TAKE_PCT: 0.30, // 30% of remaining (after BotMakers)
+  LEADERSHIP_POOL_PCT: 0.015, // 1.5% of remaining (after Apex)
+  BONUS_POOL_PCT: 0.035, // 3.5% of remaining (after Leadership)
+  SELLER_COMMISSION_PCT: 0.60, // 60% of BV
+  OVERRIDE_POOL_PCT: 0.40, // 40% of BV
 } as const;
 
 /**
