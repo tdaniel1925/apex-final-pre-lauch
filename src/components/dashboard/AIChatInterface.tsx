@@ -280,6 +280,7 @@ export default function AIChatInterface({ initialContext, onClose, isModal = fal
   const [previewModal, setPreviewModal] = useState<PreviewModal>({ isOpen: false, url: '' });
   const [isRecording, setIsRecording] = useState(false);
   const [isSpeechSupported, setIsSpeechSupported] = useState(false);
+  const [micPermissionDenied, setMicPermissionDenied] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const recognitionRef = useRef<any>(null);
 
@@ -313,6 +314,19 @@ export default function AIChatInterface({ initialContext, onClose, isModal = fal
       recognition.onerror = (event: any) => {
         console.error('❌ Speech recognition error:', event.error);
         setIsRecording(false);
+
+        if (event.error === 'not-allowed') {
+          setMicPermissionDenied(true);
+          // Show user-friendly message in chat
+          setMessages((prev) => [
+            ...prev,
+            {
+              role: 'assistant',
+              content: '🎤 **Microphone Access Required**\n\nTo use voice input, please allow microphone access:\n\n1. Click the 🔒 icon in your browser\'s address bar\n2. Find "Microphone" permissions\n3. Select "Allow"\n4. Refresh the page and try again\n\nOr continue typing your messages below!',
+              timestamp: new Date(),
+            },
+          ]);
+        }
       };
 
       recognition.onend = () => {
@@ -565,12 +579,20 @@ export default function AIChatInterface({ initialContext, onClose, isModal = fal
             onClick={handleVoiceInput}
             disabled={!isSpeechSupported || isLoading}
             className="p-3 text-gray-500 hover:text-blue-600 transition disabled:opacity-30 disabled:cursor-not-allowed rounded-2xl hover:bg-gray-100"
-            title={!isSpeechSupported ? "Voice input not supported in your browser" : isRecording ? "Stop recording" : "Start voice input"}
+            title={
+              !isSpeechSupported
+                ? "Voice input not supported in your browser"
+                : micPermissionDenied
+                ? "Microphone permission denied. Click address bar lock icon to allow."
+                : isRecording
+                ? "Stop recording"
+                : "Start voice input"
+            }
           >
             {isRecording ? (
               <MicOff className="w-5 h-5 text-red-500 animate-pulse" />
             ) : (
-              <Mic className="w-5 h-5" />
+              <Mic className={`w-5 h-5 ${micPermissionDenied ? 'text-orange-500' : ''}`} />
             )}
           </button>
 
