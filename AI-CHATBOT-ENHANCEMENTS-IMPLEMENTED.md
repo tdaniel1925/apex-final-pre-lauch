@@ -50,13 +50,17 @@
 - **GET**: Fetch unread proactive messages
 - **POST**: Mark messages as read
 
-**Background Jobs:**
-- Created `src/lib/inngest/functions/proactive-engagement.ts`
+**Background Jobs (OPTIONAL - Not Deployed):**
+- Background jobs require Inngest installation and setup
 - **Scheduled**: Check all users every 6 hours
 - **Event-driven**: Check on specific actions (signup, login, meeting created)
 - **Daily cleanup**: Remove messages older than 30 days
 
-**Note:** Requires Inngest installation (`npm install inngest`)
+**Note:** Proactive messages work manually via API endpoint. Background automation is optional and requires:
+  - `npm install inngest`
+  - Create `src/lib/inngest/client.ts`
+  - Create `src/lib/inngest/functions/proactive-engagement.ts`
+  - Set up Inngest API route and environment variables
 
 ---
 
