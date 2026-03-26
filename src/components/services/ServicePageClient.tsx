@@ -34,9 +34,11 @@ export default function ServicePageClient({ products, distributor }: Props) {
   const [addingToCart, setAddingToCart] = useState<string | null>(null);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [checkingOut, setCheckingOut] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleAddToCart = async (productId: string) => {
     setAddingToCart(productId);
+    setError(null); // Clear previous errors
 
     try {
       const response = await fetch('/api/cart/add', {
@@ -49,11 +51,12 @@ export default function ServicePageClient({ products, distributor }: Props) {
         // Open cart drawer
         setIsCartOpen(true);
       } else {
-        alert('Failed to add to cart');
+        const errorData = await response.json().catch(() => ({ error: 'Failed to add to cart' }));
+        setError(errorData.error || 'Failed to add to cart');
       }
     } catch (error) {
       console.error('Error adding to cart:', error);
-      alert('Failed to add to cart');
+      setError('Failed to add to cart. Please try again.');
     } finally {
       setAddingToCart(null);
     }
@@ -61,6 +64,7 @@ export default function ServicePageClient({ products, distributor }: Props) {
 
   const handleCheckout = async () => {
     setCheckingOut(true);
+    setError(null); // Clear previous errors
 
     try {
       const response = await fetch('/api/checkout/retail', {
@@ -74,13 +78,13 @@ export default function ServicePageClient({ products, distributor }: Props) {
           window.location.href = url;
         }
       } else {
-        const error = await response.json();
-        alert(error.error || 'Failed to create checkout session');
+        const errorData = await response.json().catch(() => ({ error: 'Failed to create checkout session' }));
+        setError(errorData.error || 'Failed to create checkout session');
         setCheckingOut(false);
       }
     } catch (error) {
       console.error('Error creating checkout:', error);
-      alert('Failed to create checkout session');
+      setError('Failed to create checkout session. Please try again.');
       setCheckingOut(false);
     }
   };
@@ -149,6 +153,28 @@ export default function ServicePageClient({ products, distributor }: Props) {
       {/* Products Grid */}
       <section className="py-16">
         <div className="container mx-auto px-4">
+          {/* Error Message */}
+          {error && (
+            <div className="max-w-7xl mx-auto mb-6 p-4 bg-red-50 border-2 border-red-200 rounded-lg flex items-start gap-3">
+              <svg className="w-6 h-6 text-red-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div className="flex-1">
+                <h3 className="font-semibold text-red-900 mb-1">Error</h3>
+                <p className="text-red-800 text-sm">{error}</p>
+              </div>
+              <button
+                onClick={() => setError(null)}
+                className="text-red-600 hover:text-red-800 transition-colors"
+                aria-label="Dismiss error"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          )}
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {products.map((product) => (
               <div
