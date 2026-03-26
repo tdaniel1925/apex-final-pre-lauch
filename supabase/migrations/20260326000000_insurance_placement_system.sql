@@ -19,17 +19,17 @@ COMMENT ON COLUMN public.members.placed_with_fallback_at IS 'When the agent was 
 -- Create insurance_placement_change_requests table
 CREATE TABLE IF NOT EXISTS insurance_placement_change_requests (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  agent_id uuid NOT NULL REFERENCES members(id) ON DELETE CASCADE,
-  requested_by uuid NOT NULL REFERENCES members(id) ON DELETE CASCADE,
+  agent_id uuid NOT NULL REFERENCES public.members(member_id) ON DELETE CASCADE,
+  requested_by uuid NOT NULL REFERENCES public.members(member_id) ON DELETE CASCADE,
   request_type text NOT NULL CHECK (request_type IN ('license_status_change', 'return_to_sponsor', 'manual_placement')),
   current_status text, -- Current licensing_status if applicable
   proposed_status text, -- Proposed licensing_status if applicable
-  current_enroller_id uuid REFERENCES members(id),
-  proposed_enroller_id uuid REFERENCES members(id),
+  current_enroller_id uuid REFERENCES public.members(member_id),
+  proposed_enroller_id uuid REFERENCES public.members(member_id),
   reason text,
   documentation_url text, -- Link to uploaded license docs
   status text NOT NULL DEFAULT 'pending' CHECK (status IN ('pending', 'approved', 'rejected')),
-  reviewed_by uuid REFERENCES members(id),
+  reviewed_by uuid REFERENCES public.members(member_id),
   reviewed_at timestamptz,
   rejection_reason text,
   created_at timestamptz DEFAULT now(),
