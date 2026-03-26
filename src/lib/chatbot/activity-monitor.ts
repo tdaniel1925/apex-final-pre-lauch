@@ -248,7 +248,7 @@ export async function createProactiveMessage(
  * Get unread proactive messages for a user
  */
 export async function getUnreadMessages(distributorId: string) {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data, error } = await supabase
     .from('ai_proactive_messages')
@@ -269,7 +269,7 @@ export async function getUnreadMessages(distributorId: string) {
  * Mark messages as read
  */
 export async function markMessagesAsRead(messageIds: string[]) {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { error } = await supabase
     .from('ai_proactive_messages')
