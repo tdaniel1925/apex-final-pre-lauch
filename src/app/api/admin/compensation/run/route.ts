@@ -157,18 +157,200 @@ export async function POST(request: NextRequest) {
           }
 
           // Step 3: Calculate commissions for all sales in period
-          // Note: In production, this would query orders table and calculate:
-          // - Waterfall for each sale
-          // - Seller commission (60% of commission pool)
-          // - Override commissions (L1-L5 based on rank and enroller rule)
-          // - Accumulate bonus pool (3.5%) and leadership pool (1.5%)
+          // Security Fix #5: Implements rank depth enforcement via calculateOverride()
+          const { data: orders, error: ordersError } = await supabase
+            .from('orders')
+            .select(`
+              *,
+              order_items (
+                *,
+                product:products (*)
+              )
+            `)
+            .gte('created_at', periodStart)
+            .lt('created_at', periodEnd)
+            .eq('status', 'completed');
+
+          if (ordersError) {
+            throw new Error(`Failed to fetch orders: ${ordersError.message}`);
+          }
+
+          let totalSalesCents = 0;
+          let totalSellerCommissionsCents = 0;
+          let totalOverridesCents = 0;
+          let totalBonusPoolCents = 0;
+          let totalLeadershipPoolCents = 0;
+
+          const earningsToInsert = [];
+
+          for (const order of orders || []) {
+            // Get buyer's member record
+            const { data: buyer } = await supabase
+              .from('members')
+              .select('*, distributor:distributors!members_distributor_id_fkey(*)')
+              .eq('member_id', order.member_id)
+              .single();
+
+            if (!buyer) continue;
+
+            // Calculate waterfall for each order item
+            for (const item of order.order_items) {
+              const itemTotalCents = item.unit_price_cents * item.quantity;
+              const waterfall = calculateWaterfall(itemTotalCents, item.product.product_type || 'standard');
+
+              totalSalesCents += waterfall.priceCents;
+              totalBonusPoolCents += waterfall.bonusPoolCents;
+              totalLeadershipPoolCents += waterfall.leadershipPoolCents;
+
+              // Seller commission (60% of commission pool)
+              const sellerCommissionCents = waterfall.sellerCommissionCents;
+              totalSellerCommissionsCents += sellerCommissionCents;
+
+              earningsToInsert.push({
+                member_id: buyer.member_id,
+                run_id: runId,
+                run_date: runDate,
+                pay_period_start: periodStart,
+                pay_period_end: periodEnd,
+                earning_type: 'seller_commission',
+                base_amount_cents: sellerCommissionCents,
+                final_amount_cents: sellerCommissionCents,
+                metadata: {
+                  order_id: order.id,
+                  product_id: item.product_id,
+                  quantity: item.quantity,
+                },
+              });
+
+              // Calculate overrides (L1-L5)
+              const overridePoolCents = waterfall.overridePoolCents;
+
+              // L1: Enroller override (30% of pool via sponsor_id - enrollment tree)
+              if (buyer.distributor.sponsor_id) {
+                const { data: sponsor } = await supabase
+                  .from('members')
+                  .select('*, distributor:distributors!members_distributor_id_fkey(*)')
+                  .eq('distributor_id', buyer.distributor.sponsor_id)
+                  .single();
+
+                if (sponsor) {
+                  const l1Override = calculateOverride(
+                    {
+                      memberId: sponsor.member_id,
+                      techRank: sponsor.tech_rank,
+                      personalCreditsMonthly: sponsor.personal_credits_monthly,
+                      overrideQualified: sponsor.personal_credits_monthly >= 50,
+                    },
+                    {
+                      orderId: order.id,
+                      sellerMemberId: buyer.member_id,
+                      priceCents: itemTotalCents,
+                      productType: item.product.product_type || 'standard',
+                    },
+                    true, // isEnroller = true
+                    1 // level = 1
+                  );
+
+                  if (l1Override.amountCents > 0) {
+                    totalOverridesCents += l1Override.amountCents;
+                    earningsToInsert.push({
+                      member_id: sponsor.member_id,
+                      run_id: runId,
+                      run_date: runDate,
+                      pay_period_start: periodStart,
+                      pay_period_end: periodEnd,
+                      earning_type: 'override_commission',
+                      base_amount_cents: l1Override.amountCents,
+                      final_amount_cents: l1Override.amountCents,
+                      metadata: {
+                        level: 1,
+                        rule: l1Override.rule,
+                        seller_member_id: buyer.member_id,
+                        percentage: l1Override.percentage,
+                        rank: l1Override.memberTechRank,
+                      },
+                    });
+                  }
+                }
+              }
+
+              // L2-L5: Matrix overrides (via matrix_parent_id - matrix tree)
+              let currentMatrixParentId = buyer.distributor.matrix_parent_id;
+              let level = 2;
+
+              while (currentMatrixParentId && level <= 5) {
+                const { data: matrixParent } = await supabase
+                  .from('members')
+                  .select('*, distributor:distributors!members_distributor_id_fkey(*)')
+                  .eq('distributor_id', currentMatrixParentId)
+                  .single();
+
+                if (!matrixParent) break;
+
+                const override = calculateOverride(
+                  {
+                    memberId: matrixParent.member_id,
+                    techRank: matrixParent.tech_rank,
+                    personalCreditsMonthly: matrixParent.personal_credits_monthly,
+                    overrideQualified: matrixParent.personal_credits_monthly >= 50,
+                  },
+                  {
+                    orderId: order.id,
+                    sellerMemberId: buyer.member_id,
+                    priceCents: itemTotalCents,
+                    productType: item.product.product_type || 'standard',
+                  },
+                  false, // isEnroller = false
+                  level
+                );
+
+                // Rank depth enforcement happens here automatically!
+                // calculateOverride() returns 0 if rank doesn't unlock this level
+                if (override.amountCents > 0) {
+                  totalOverridesCents += override.amountCents;
+                  earningsToInsert.push({
+                    member_id: matrixParent.member_id,
+                    run_id: runId,
+                    run_date: runDate,
+                    pay_period_start: periodStart,
+                    pay_period_end: periodEnd,
+                    earning_type: 'override_commission',
+                    base_amount_cents: override.amountCents,
+                    final_amount_cents: override.amountCents,
+                    metadata: {
+                      level,
+                      rule: override.rule,
+                      seller_member_id: buyer.member_id,
+                      percentage: override.percentage,
+                      rank: override.memberTechRank,
+                    },
+                  });
+                }
+
+                currentMatrixParentId = matrixParent.distributor.matrix_parent_id;
+                level++;
+              }
+            }
+          }
+
+          // Insert all earnings (if not dry run)
+          if (!dryRun && earningsToInsert.length > 0) {
+            const { error: insertError } = await supabase
+              .from('earnings_ledger')
+              .insert(earningsToInsert);
+
+            if (insertError) {
+              throw new Error(`Failed to insert earnings: ${insertError.message}`);
+            }
+          }
 
           const commissionsSummary = {
-            totalSales: 0,
-            totalSellerCommissions: 0,
-            totalOverrides: 0,
-            totalBonusPool: 0,
-            totalLeadershipPool: 0,
+            totalSales: totalSalesCents / 100,
+            totalSellerCommissions: totalSellerCommissionsCents / 100,
+            totalOverrides: totalOverridesCents / 100,
+            totalBonusPool: totalBonusPoolCents / 100,
+            totalLeadershipPool: totalLeadershipPoolCents / 100,
+            earningsCount: earningsToInsert.length,
           };
 
           // Update status to completed
@@ -178,8 +360,8 @@ export async function POST(request: NextRequest) {
               status: 'completed',
               completed_at: new Date().toISOString(),
               members_processed: members?.length ?? 0,
-              commissions_calculated: 0, // Would be actual count
-              total_amount_cents: 0, // Would be actual total
+              commissions_calculated: earningsToInsert.length,
+              total_amount_cents: totalSalesCents,
             })
             .eq('run_id', runId);
 
