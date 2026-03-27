@@ -44,3 +44,8 @@ next-env.d.ts
 # Large video files
 /videos/
 /public/videos/*.mp4
+
+# Backup files
+*.backup
+*_OLD_BACKUP/
+*_BACKUP/

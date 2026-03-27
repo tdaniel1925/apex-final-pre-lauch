@@ -457,6 +457,37 @@ async function handleRetailCheckout(session: Stripe.Checkout.Session) {
     }
 
     // Clear cart
+    // CHECK IF ORDER CONTAINS ZOWEE PRODUCTS - Provision if needed
+    const zoweeItems = cart.items.filter((item: any) =>
+      item.product_slug?.startsWith('zowee-')
+    );
+
+    if (zoweeItems.length > 0) {
+      console.log('🤖 Zowee product detected, provisioning service...');
+
+      try {
+        // Call Zowee provisioning API
+        const provisionResponse = await fetch(
+          `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/zowee/provision`,
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ orderId: order.id })
+          }
+        );
+
+        if (provisionResponse.ok) {
+          console.log('✅ Zowee service provisioned successfully');
+        } else {
+          const error = await provisionResponse.text();
+          console.error('❌ Zowee provisioning failed:', error);
+        }
+      } catch (error) {
+        console.error('❌ Error calling Zowee provisioning API:', error);
+        // Don't fail the order if provisioning fails - we can retry later
+      }
+    }
+
     await supabase
       .from('cart_sessions')
       .update({ items: [] })
