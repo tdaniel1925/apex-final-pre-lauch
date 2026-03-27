@@ -11,6 +11,7 @@ import { calculateWaterfall } from '@/lib/compensation/waterfall';
 import { evaluateTechRank } from '@/lib/compensation/rank';
 import { calculateOverride } from '@/lib/compensation/override-resolution';
 import { calculateRankBonus } from '@/lib/compensation/bonus-programs';
+import { withCompensationLock } from '@/lib/compensation/run-lock';
 
 /**
  * Run Monthly Compensation Calculation
@@ -24,6 +25,9 @@ import { calculateRankBonus } from '@/lib/compensation/bonus-programs';
  * 4. Awards rank bonuses for new promotions
  * 5. Accumulates bonus pool (3.5%) and leadership pool (1.5%)
  * 6. Returns summary for admin review before approval
+ *
+ * Security: Uses PostgreSQL advisory locks to prevent race conditions
+ * See: SECURITY-FIX-2-COMPENSATION-MUTEX-PLAN.md
  *
  * Note: This is a simplified implementation for Phase 4.
  * Full production implementation would include:
@@ -51,76 +55,178 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const runDate = new Date().toISOString();
-    const runId = crypto.randomUUID();
-
-    // Step 1: Get all active members
-    const { data: members, error: membersError } = await supabase
-      .from('members')
-      .select('*')
-      .eq('status', 'active');
-
-    if (membersError) {
+    // Get authenticated admin user
+    const { data: { user }, error: authError } = await supabase.auth.getUser();
+    if (authError || !user) {
       return NextResponse.json(
-        { error: 'Failed to fetch members', details: membersError.message },
+        { error: 'Unauthorized' },
+        { status: 401 }
+      );
+    }
+
+    // Check if run already exists for this period
+    const { data: existingRun } = await supabase
+      .from('compensation_run_status')
+      .select('id, status, run_id')
+      .eq('period_start', periodStart)
+      .eq('period_end', periodEnd)
+      .in('status', ['in_progress', 'pending'])
+      .maybeSingle();
+
+    if (existingRun) {
+      return NextResponse.json(
+        {
+          error: 'A compensation run is already in progress for this period',
+          existingRunId: existingRun.run_id,
+          status: existingRun.status,
+        },
+        { status: 409 } // Conflict
+      );
+    }
+
+    const runId = crypto.randomUUID();
+    const runDate = new Date().toISOString();
+
+    // Create run status record
+    const { error: insertError } = await supabase
+      .from('compensation_run_status')
+      .insert({
+        run_id: runId,
+        period_start: periodStart,
+        period_end: periodEnd,
+        status: 'pending',
+        initiated_by: user.id,
+        initiated_at: runDate,
+        dry_run: dryRun,
+      });
+
+    if (insertError) {
+      console.error('[CompRun] Failed to create run status:', insertError);
+      return NextResponse.json(
+        { error: 'Failed to initialize compensation run' },
         { status: 500 }
       );
     }
 
-    // Step 2: Evaluate ranks for all members
-    const rankEvaluations = []; // Placeholder - would use evaluateTechRank()
-    const promotions = [];
-    const demotions = [];
-    const rankBonuses = [];
+    // Execute compensation run with PostgreSQL advisory lock
+    const result = await withCompensationLock(
+      periodStart,
+      periodEnd,
+      async () => {
+        // Update status to in_progress
+        await supabase
+          .from('compensation_run_status')
+          .update({
+            status: 'in_progress',
+            started_at: new Date().toISOString(),
+          })
+          .eq('run_id', runId);
 
-    for (const member of members || []) {
-      // Example: Evaluate rank (simplified)
-      // In production, this would:
-      // - Get sponsored members
-      // - Call evaluateTechRank()
-      // - Check for promotion/demotion
-      // - Calculate rank bonus if promoted
+        try {
+                // Step 1: Get all active members
+          const { data: members, error: membersError } = await supabase
+            .from('members')
+            .select('*')
+            .eq('status', 'active');
 
-      // For now, just track current state
-      rankEvaluations.push({
-        memberId: member.member_id,
-        currentRank: member.tech_rank,
-        qualifiedRank: member.tech_rank, // Would be calculated
-        action: 'maintain',
-      });
+          if (membersError) {
+            throw new Error(`Failed to fetch members: ${membersError.message}`);
+          }
+
+          // Step 2: Evaluate ranks for all members
+          const rankEvaluations = []; // Placeholder - would use evaluateTechRank()
+          const promotions = [];
+          const demotions = [];
+          const rankBonuses = [];
+
+          for (const member of members || []) {
+            // Example: Evaluate rank (simplified)
+            // In production, this would:
+            // - Get sponsored members
+            // - Call evaluateTechRank()
+            // - Check for promotion/demotion
+            // - Calculate rank bonus if promoted
+
+            // For now, just track current state
+            rankEvaluations.push({
+              memberId: member.member_id,
+              currentRank: member.tech_rank,
+              qualifiedRank: member.tech_rank, // Would be calculated
+              action: 'maintain',
+            });
+          }
+
+          // Step 3: Calculate commissions for all sales in period
+          // Note: In production, this would query orders table and calculate:
+          // - Waterfall for each sale
+          // - Seller commission (60% of commission pool)
+          // - Override commissions (L1-L5 based on rank and enroller rule)
+          // - Accumulate bonus pool (3.5%) and leadership pool (1.5%)
+
+          const commissionsSummary = {
+            totalSales: 0,
+            totalSellerCommissions: 0,
+            totalOverrides: 0,
+            totalBonusPool: 0,
+            totalLeadershipPool: 0,
+          };
+
+          // Update status to completed
+          await supabase
+            .from('compensation_run_status')
+            .update({
+              status: 'completed',
+              completed_at: new Date().toISOString(),
+              members_processed: members?.length ?? 0,
+              commissions_calculated: 0, // Would be actual count
+              total_amount_cents: 0, // Would be actual total
+            })
+            .eq('run_id', runId);
+
+          // Return results
+          return {
+            runId,
+            runDate,
+            periodStart,
+            periodEnd,
+            dryRun,
+            summary: {
+              membersEvaluated: members?.length ?? 0,
+              promotions: promotions.length,
+              demotions: demotions.length,
+              rankBonuses: rankBonuses.length,
+              commissions: commissionsSummary,
+            },
+          };
+        } catch (error) {
+          // Mark run as failed
+          await supabase
+            .from('compensation_run_status')
+            .update({
+              status: 'failed',
+              completed_at: new Date().toISOString(),
+              error_message: error instanceof Error ? error.message : 'Unknown error',
+            })
+            .eq('run_id', runId);
+
+          throw error;
+        }
+      }
+    );
+
+    // Check if lock acquisition failed
+    if (!result.success) {
+      return NextResponse.json(
+        { error: result.error },
+        { status: 409 } // Conflict
+      );
     }
 
-    // Step 3: Calculate commissions for all sales in period
-    // Note: In production, this would query orders table and calculate:
-    // - Waterfall for each sale
-    // - Seller commission (60% of commission pool)
-    // - Override commissions (L1-L5 based on rank and enroller rule)
-    // - Accumulate bonus pool (3.5%) and leadership pool (1.5%)
-
-    const commissionsSummary = {
-      totalSales: 0,
-      totalSellerCommissions: 0,
-      totalOverrides: 0,
-      totalBonusPool: 0,
-      totalLeadershipPool: 0,
-    };
-
-    // Step 4: Summary response
+    // Return successful response
     return NextResponse.json(
       {
         success: true,
-        runId,
-        runDate,
-        periodStart,
-        periodEnd,
-        dryRun,
-        summary: {
-          membersEvaluated: members?.length ?? 0,
-          promotions: promotions.length,
-          demotions: demotions.length,
-          rankBonuses: rankBonuses.length,
-          commissions: commissionsSummary,
-        },
+        ...result.data,
         message: dryRun
           ? 'Dry run complete. Set dryRun=false to commit changes.'
           : 'Commission run complete. Changes committed to database.',
