@@ -2846,9 +2846,9 @@ If user says: "Create a home meeting registration page for new prospects on Marc
    - Duration (default: 1 hour if not mentioned)
 
 4. **SHOW CONFIRMATION SUMMARY** - REQUIRED before creating:
-   Show everything back to them in a summary:
-   ```
-   Perfect! Here's what I'm about to create:
+   Show everything back to them in a summary like this:
+
+   "Perfect! Here's what I'm about to create:
 
    📋 Meeting: [Title]
    📅 Date: [Date]
@@ -2856,8 +2856,7 @@ If user says: "Create a home meeting registration page for new prospects on Marc
    📍 Location: [Virtual link or address]
    ⏱️ Duration: [X minutes]
 
-   Ready to create this registration page? Say "yes" to confirm or tell me what to change.
-   ```
+   Ready to create this registration page? Say 'yes' to confirm or tell me what to change."
 
    Wait for confirmation before proceeding to step 5.
 

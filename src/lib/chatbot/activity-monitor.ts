@@ -90,19 +90,15 @@ async function calculateActivity(distributor: any): Promise<UserActivity> {
     distributor.member?.team_credits_monthly || 0
   );
 
-  // Check for unread AI messages
-  const { count: unreadCount } = await supabase
-    .from('ai_proactive_messages')
-    .select('*', { count: 'exact', head: true })
-    .eq('distributor_id', distributor.id)
-    .is('read_at', null);
+  // Proactive messages feature disabled - table not yet created
+  // TODO: Create ai_proactive_messages table to enable this feature
 
   return {
     lastLogin,
     recentSignups: recentSignups || 0,
     rankProgress,
     inactiveDays,
-    hasUnreadMessages: (unreadCount || 0) > 0,
+    hasUnreadMessages: false,
     currentRank: distributor.current_rank,
     personalBV: distributor.member?.personal_credits_monthly || 0,
     teamBV: distributor.member?.team_credits_monthly || 0,
@@ -220,66 +216,25 @@ export async function createProactiveMessage(
   distributorId: string,
   message: ProactiveMessage
 ): Promise<boolean> {
-  const supabase = createServiceClient();
-
-  try {
-    const { error } = await supabase
-      .from('ai_proactive_messages')
-      .insert({
-        distributor_id: distributorId,
-        message_type: message.type,
-        message_content: message.message,
-        triggered_at: new Date().toISOString(),
-      });
-
-    if (error) {
-      console.error('Error creating proactive message:', error);
-      return false;
-    }
-
-    return true;
-  } catch (error) {
-    console.error('Error in createProactiveMessage:', error);
-    return false;
-  }
+  // Proactive messages feature disabled - table not yet created
+  // TODO: Create ai_proactive_messages table to enable this feature
+  return true;
 }
 
 /**
  * Get unread proactive messages for a user
  */
 export async function getUnreadMessages(distributorId: string) {
-  const supabase = await createClient();
-
-  const { data, error } = await supabase
-    .from('ai_proactive_messages')
-    .select('*')
-    .eq('distributor_id', distributorId)
-    .is('read_at', null)
-    .order('triggered_at', { ascending: false });
-
-  if (error) {
-    console.error('Error fetching unread messages:', error);
-    return [];
-  }
-
-  return data || [];
+  // Proactive messages feature disabled - table not yet created
+  // TODO: Create ai_proactive_messages table to enable this feature
+  return [];
 }
 
 /**
  * Mark messages as read
  */
 export async function markMessagesAsRead(messageIds: string[]) {
-  const supabase = await createClient();
-
-  const { error } = await supabase
-    .from('ai_proactive_messages')
-    .update({ read_at: new Date().toISOString() })
-    .in('id', messageIds);
-
-  if (error) {
-    console.error('Error marking messages as read:', error);
-    return false;
-  }
-
+  // Proactive messages feature disabled - table not yet created
+  // TODO: Create ai_proactive_messages table to enable this feature
   return true;
 }
