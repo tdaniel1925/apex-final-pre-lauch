@@ -236,8 +236,7 @@ def monthly_rank_evaluation():
 
 ### Demotion Rules
 
-- **Grace period:** 2 months below requirements before demotion
-- **6-month rank lock:** New reps who achieve a rank in first 6 months are locked (no demotion) for 6 months
+- **Grace period:** 30 days below requirements before demotion
 - **Minimum floor:** Starter rank always (seller commission ~27.9% always available)
 - **Re-qualification:** Any subsequent month, no waiting period
 
@@ -536,7 +535,6 @@ MLM_PROTECTIONS = {
     'bc_non_waterfall': True,          # BC uses fixed split, no override pool
     'compression': True,               # Inactive in chain = compresses up
     'no_breakaway': True,              # Upline keeps overrides when downline matches rank
-    'rank_lock_6mo': True,             # New reps: first rank locked for 6 months
     'widow_hardship_12mo': True,       # 12-month income continuation to beneficiary
     'annual_recertification': True,    # Compliance training required annually
     'anti_raiding': True,              # Cross-line recruiting prohibited

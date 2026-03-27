@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server';
 import { NextResponse } from 'next/server';
+import { getCurrentDistributorId } from '@/middleware/org-validation';
 
 /**
  * GET /api/dashboard/matrix-position
@@ -10,17 +11,20 @@ import { NextResponse } from 'next/server';
  * - Matrix children (up to 5)
  * - Sponsor information
  * - Rep number and status
+ *
+ * Security: Uses organization validation to prevent cross-org access
+ * See: SECURITY-FIX-1-ORG-VALIDATION-PLAN.md
  */
 export async function GET() {
   try {
     const supabase = await createClient();
 
-    // Get authenticated user
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
+    // Get authenticated user's distributor ID with org validation
+    const { distributorId, error: authError } = await getCurrentDistributorId();
 
-    if (authError || !user) {
+    if (authError || !distributorId) {
       return NextResponse.json(
-        { error: 'Unauthorized' },
+        { error: authError || 'Unauthorized' },
         { status: 401 }
       );
     }
@@ -42,7 +46,7 @@ export async function GET() {
         sponsor_id,
         created_at
       `)
-      .eq('email', user.email)
+      .eq('id', distributorId)
       .single();
 
     if (distError || !distributor) {

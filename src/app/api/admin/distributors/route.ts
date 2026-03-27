@@ -10,6 +10,7 @@ import {
   createDistributor,
   type DistributorFilters,
 } from '@/lib/admin/distributor-service';
+import { findNextAvailablePosition } from '@/lib/matrix/placement-algorithm';
 
 // GET /api/admin/distributors - List distributors with filters
 export async function GET(request: NextRequest) {
@@ -46,6 +47,7 @@ export async function GET(request: NextRequest) {
 }
 
 // POST /api/admin/distributors - Create new distributor
+// Security Fix #3: Finds matrix placement first, then creates atomically
 export async function POST(request: NextRequest) {
   const admin = await getAdminUser();
   if (!admin) {
@@ -54,7 +56,31 @@ export async function POST(request: NextRequest) {
 
   try {
     const body = await request.json();
-    const result = await createDistributor(body, admin.admin.id);
+
+    // Validate sponsor_id is provided
+    if (!body.sponsor_id) {
+      return NextResponse.json({ error: 'Sponsor is required' }, { status: 400 });
+    }
+
+    // Find available matrix position
+    const placement = await findNextAvailablePosition(body.sponsor_id);
+    if (!placement) {
+      return NextResponse.json(
+        { error: 'Matrix is full (all 19,531 positions filled)' },
+        { status: 400 }
+      );
+    }
+
+    // Call atomic creation with placement info
+    const result = await createDistributor(
+      {
+        ...body,
+        matrix_parent_id: placement.parent_id,
+        matrix_position: placement.position,
+        matrix_depth: placement.depth,
+      },
+      admin.admin.id
+    );
 
     if (!result.success) {
       return NextResponse.json({ error: result.error }, { status: 400 });
@@ -62,7 +88,10 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(result.distributor, { status: 201 });
   } catch (error: any) {
-    console.error('Error creating distributor:', error);
-    return NextResponse.json({ error: 'Failed to create distributor' }, { status: 500 });
+    console.error('[Admin/Distributors] Error creating distributor:', error);
+    return NextResponse.json(
+      { error: 'Failed to create distributor', details: error.message },
+      { status: 500 }
+    );
   }
 }

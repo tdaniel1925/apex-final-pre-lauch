@@ -199,15 +199,14 @@ export function getRankValue(rank: TechRank): number {
 export const OVERRIDE_QUALIFICATION_MIN_CREDITS = 50;
 
 /**
- * Grace Periods and Rank Locks
+ * Grace Period for Rank Demotion
  *
  * IMPORTANT DISTINCTION:
  * - tech_rank: Can drop after grace period (for display purposes)
  * - paying_rank: Drops to highest qualified level after grace period (determines commission rates)
  * - highest_tech_rank: NEVER drops (lifetime achievement)
  */
-export const PAY_LEVEL_GRACE_PERIOD_MONTHS = 2; // 2 months below requirements before PAYMENT LEVEL drops
-export const NEW_REP_RANK_LOCK_MONTHS = 6; // 6-month lock on rank advancement for new reps
+export const PAY_LEVEL_GRACE_PERIOD_DAYS = 30; // 30 days below requirements before PAYMENT LEVEL drops
 
 /**
  * Waterfall Percentages

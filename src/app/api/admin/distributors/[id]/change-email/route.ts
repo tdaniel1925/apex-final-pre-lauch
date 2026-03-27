@@ -81,15 +81,33 @@ export async function POST(
       );
     }
 
-    // Check if email is already in use
+    // Security Fix #4: Check if email is already in use (distributors table)
+    const { data: existingDistributor } = await serviceClient
+      .from('distributors')
+      .select('id, first_name, last_name')
+      .eq('email', newEmail.toLowerCase())
+      .neq('id', distributorId) // Exclude current distributor
+      .maybeSingle();
+
+    if (existingDistributor) {
+      return NextResponse.json(
+        {
+          error: 'This email address is already in use by another distributor',
+          details: `Email is assigned to ${existingDistributor.first_name} ${existingDistributor.last_name}`,
+        },
+        { status: 400 }
+      );
+    }
+
+    // Also check if email exists in auth users
     const { data: existingUser } = await serviceClient.auth.admin.listUsers();
-    const emailExists = existingUser?.users.some(
+    const emailExistsInAuth = existingUser?.users.some(
       (user) => user.email?.toLowerCase() === newEmail.toLowerCase()
     );
 
-    if (emailExists) {
+    if (emailExistsInAuth) {
       return NextResponse.json(
-        { error: 'This email address is already in use' },
+        { error: 'This email address is already in use in authentication system' },
         { status: 400 }
       );
     }

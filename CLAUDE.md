@@ -72,105 +72,108 @@ const finalHtml = emailHtml.replace(/{{(\w+)}}/g, (match, key) => variables[key]
 
 ## 💰 COMPENSATION PLAN REFERENCE (CRITICAL)
 
-**READ THIS BEFORE ANY COMMISSION CALCULATIONS!**
+**⚠️ SINGLE SOURCE OF TRUTH:** `APEX_COMP_ENGINE_SPEC_FINAL.md`
 
-### TECH LADDER COMPENSATION PLAN
+**BEFORE writing ANY compensation-related code, you MUST:**
+1. Read `APEX_COMP_ENGINE_SPEC_FINAL.md`
+2. Verify the specific section relevant to your task
+3. Follow the SPEC file exactly - do NOT use general knowledge
+4. Code implementation in `src/lib/compensation/` follows the SPEC file exactly
 
-#### BV (Business Volume) Waterfall - CONFIDENTIAL FORMULA
+### What's in the SPEC File:
 
-**Example: $149 Retail Sale**
+**Section 1: BV Waterfall**
+- Exact percentages for BotMakers, Apex, pools
+- Business Center exception ($39 fixed split)
+- Complete calculation formulas
 
+**Section 2: Products & BV**
+- Product pricing (member vs retail)
+- BV calculation per product
+- BV multipliers and exceptions
+
+**Section 3: Database Schema**
+- `members` table structure
+- `distributors` table structure
+- All foreign key relationships
+- Field definitions (personal_bv_monthly, team_bv_monthly, etc.)
+
+**Section 4: Rank Requirements**
+- All 9 tech ladder ranks
+- Personal BV requirements
+- Team BV requirements
+- Downline rank requirements
+- Rank bonuses ($250 - $30,000)
+
+**Section 5: Override Calculation**
+- 50 BV minimum qualification
+- Override schedules by rank (L1-L5)
+- Enroller override rule (30% L1)
+- Compression logic
+- Matrix vs enrollment tree rules
+
+**Section 6: Dual Ladder System**
+- Tech ladder (all reps)
+- Insurance ladder (licensed agents only)
+- Cross-credit rules
+- Separation rules
+
+**Section 7: Bonus & Leadership Pools**
+- Bonus pool distribution (3.5%)
+- Leadership pool shares (1.5%)
+- Eligibility requirements
+
+**Section 8: Commission Calculation Order**
+- Step-by-step monthly run process
+- Rank evaluation timing
+- Payment processing
+
+**Section 9: MLM Compliance**
+- 50 BV minimum
+- 30-day grace period
+- Promotions next month
+- Anti-frontloading rules
+- Refund clawback
+- All FTC compliance requirements
+
+**Section 10: Database Tables & Functions**
+- Complete schema
+- Stored procedures
+- Triggers
+- Indexes
+
+### Critical Implementation Rules:
+
+**Trees & Data Sources:**
+1. **L1 Override:** Use `distributors.sponsor_id` (enrollment tree)
+2. **L2-L5 Overrides:** Use `distributors.matrix_parent_id` (matrix tree)
+3. **Live BV Data:** Use `members.personal_bv_monthly` (NOT cached fields)
+4. **Team BV Data:** Use `members.team_bv_monthly` (NOT cached fields)
+5. **NEVER mix enrollment tree with matrix tree**
+
+**Code Modules:**
+- `src/lib/compensation/config.ts` - All constants from SPEC
+- `src/lib/compensation/bv-calculator.ts` - BV calculation logic
+- `src/lib/compensation/override-calculator.ts` - Override distribution
+- `src/lib/compensation/waterfall.ts` - Revenue waterfall
+- `src/lib/compensation/types.ts` - TypeScript types
+
+### When Implementing Comp Features:
+
+```typescript
+// ✅ CORRECT: Read SPEC file first
+// 1. Open APEX_COMP_ENGINE_SPEC_FINAL.md
+// 2. Find relevant section (e.g., Section 5 for overrides)
+// 3. Implement EXACTLY as specified
+// 4. Cross-reference with existing code in src/lib/compensation/
+
+// ❌ WRONG: Using general MLM knowledge or assumptions
+// Do NOT assume standard MLM formulas apply
+// Do NOT use percentages from other comp plans
+// Do NOT mix up enrollment tree with matrix tree
 ```
-Retail Price:                    $149.00
 
-Step 1: BotMakers (30% of retail)
-$149.00 × 30% =                  -$44.70
-Remaining:                        $104.30
-
-Step 2: Apex (40% of remaining)
-$104.30 × 40% =                  -$41.72
-Remaining:                        $62.58
-
-Step 3: Bonus Pool (3.5% of remaining)
-$62.58 × 3.5% =                  -$2.19
-Remaining:                        $60.39
-
-Step 4: Leadership Pool (1.5% of remaining)
-$60.39 × 1.5% =                  -$0.91
-═══════════════════════════════════════════
-BV (Commission Pool):             $59.48
-═══════════════════════════════════════════
-```
-
-**Formula:** `BV = Price × 0.70 × 0.60 × 0.965 × 0.985`
-
-#### Commission Distribution (From BV)
-
-**From $59.48 BV:**
-
-1. **Seller Commission: 60% of BV**
-   ```
-   $59.48 × 60% = $35.69
-   ```
-
-2. **Override Pool: 40% of BV**
-   ```
-   $59.48 × 40% = $23.79
-   ```
-
-#### Override Distribution (From $23.79 Pool)
-
-**L1 Enrollment Override:**
-```
-$23.79 × 30% = $7.14
-- Goes to: Sponsor (enrollment tree)
-- Field: members.enroller_id or distributors.sponsor_id
-- Width: UNLIMITED
-```
-
-**L2-L5 Matrix Overrides:**
-```
-$23.79 × 70% = $16.65
-- Goes to: Matrix upline (matrix tree)
-- Field: distributors.matrix_parent_id
-- Width: 5-wide forced matrix
-- Distribution: Based on rank qualification
-```
-
-#### Total Payout Summary
-```
-Seller:    $35.69 (60% of BV)
-L1:        $7.14 (30% of override pool)
-L2-L5:     $16.65 (70% of override pool)
-──────────────────────────────────
-TOTAL:     $59.48 (100% of BV) ✅
-```
-
-#### Qualification Rules
-
-**50 BV Minimum:**
-- Must have 50+ BV/month in personal sales to earn overrides
-- Seller commission ALWAYS paid regardless
-
-**Rank Depth Access:**
-- Starter: L1 only
-- Bronze: L1-L2
-- Silver: L1-L3
-- Gold: L1-L4
-- Platinum+: L1-L5
-
-**Compression:**
-- If upline not qualified → skip to next qualified upline
-- No rollup to qualified person
-
-#### Critical Rules
-
-1. **NEVER reveal BV waterfall formula to users** - confidential
-2. **Show BV amounts** - safe to display ($59.48 BV)
-3. **Show commission dollars** - safe to display ($35.69)
-4. **L1 uses enrollment tree** - sponsor_id
-5. **L2-L5 use matrix tree** - matrix_parent_id
-6. **All percentages are of their respective pools** - NOT retail price
+**NEVER write compensation code without reading the SPEC file first!**
 
 ---
 

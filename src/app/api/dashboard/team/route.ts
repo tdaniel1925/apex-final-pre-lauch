@@ -1,31 +1,34 @@
 import { createClient } from '@/lib/supabase/server';
 import { NextResponse } from 'next/server';
+import { getCurrentDistributorId } from '@/middleware/org-validation';
 
 /**
  * GET /api/dashboard/team
  *
  * Returns the user's direct enrollees (L1 team members)
- * Requires RLS policies to be in place for downline access
+ *
+ * Security: Uses organization validation to prevent cross-org access
+ * See: SECURITY-FIX-1-ORG-VALIDATION-PLAN.md
  */
 export async function GET() {
   try {
     const supabase = await createClient();
 
-    // Get authenticated user
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
+    // Get authenticated user's distributor ID with org validation
+    const { distributorId, error: authError } = await getCurrentDistributorId();
 
-    if (authError || !user) {
+    if (authError || !distributorId) {
       return NextResponse.json(
-        { error: 'Unauthorized' },
+        { error: authError || 'Unauthorized' },
         { status: 401 }
       );
     }
 
-    // Get user's distributor record
+    // Get user's distributor details
     const { data: distributor, error: distributorError } = await supabase
       .from('distributors')
       .select('id, first_name, last_name, email')
-      .eq('auth_user_id', user.id)
+      .eq('id', distributorId)
       .single();
 
     if (distributorError || !distributor) {
@@ -36,6 +39,8 @@ export async function GET() {
     }
 
     // Get L1 direct enrollees from distributors table (SINGLE SOURCE OF TRUTH)
+    // Note: This query only returns data for the authenticated user's own team
+    // No cross-organization access is possible since we use distributorId directly
     const { data: enrollees, error: teamError } = await supabase
       .from('distributors')
       .select(`
@@ -55,7 +60,7 @@ export async function GET() {
           override_qualified
         )
       `)
-      .eq('sponsor_id', distributor.id)
+      .eq('sponsor_id', distributorId)
       .eq('status', 'active')
       .order('created_at', { ascending: false });
 

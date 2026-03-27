@@ -34,7 +34,7 @@ export interface WaterfallResult {
   // Step 4: Remainder (adjusted gross - Apex)
   remainderCents: number;
 
-  // Step 5: Bonus Pool (5% of remainder)
+  // Step 5: Bonus Pool (3.5% of remainder)
   bonusPoolCents: number;
 
   // Step 6: Leadership Pool (1.5% of remainder)
