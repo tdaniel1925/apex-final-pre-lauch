@@ -9,11 +9,17 @@ import { createClient } from '@/lib/supabase/server';
 import { cookies } from 'next/headers';
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2026-01-28.clover',
-});
+function getStripe() {
+  if (!process.env.STRIPE_SECRET_KEY) {
+    throw new Error('STRIPE_SECRET_KEY is not configured');
+  }
+  return new Stripe(process.env.STRIPE_SECRET_KEY, {
+    apiVersion: '2026-01-28.clover',
+  });
+}
 
 export async function POST(request: NextRequest) {
+  const stripe = getStripe();
   try {
     const cookieStore = await cookies();
     const sessionId = cookieStore.get('cart_session')?.value;
