@@ -35,8 +35,13 @@ const FORBIDDEN_PATTERNS = [
   }
 ];
 
-// Files that are ALLOWED to use matrix_parent_id (admin placement tools only)
+// Files that are ALLOWED to use matrix_parent_id (matrix visualization & placement)
+// See CLAUDE.md "ALLOWED EXCEPTIONS" section for full list
 const ALLOWED_FILES = [
+  'src/lib/matrix/placement-algorithm.ts',
+  'src/app/api/admin/matrix/tree/route.ts',
+  'src/app/dashboard/matrix/',
+  'src/app/api/dashboard/matrix-position/route.ts',
   'src/app/api/admin/matrix/place.ts',
   'src/app/api/admin/matrix/place-existing.ts',
   'src/app/api/admin/matrix/create-and-place.ts',

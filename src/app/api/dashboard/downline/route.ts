@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server';
 import { NextResponse } from 'next/server';
+import { getCurrentDistributorId } from '@/middleware/org-validation';
 
 interface Distributor {
   id: string;
@@ -30,27 +31,29 @@ interface DistributorNode extends Distributor {
  *
  * Returns the user's entire downline tree (all levels)
  * Includes hierarchical structure with levels
- * Requires RLS policies to be in place for downline access
+ *
+ * Security: Uses organization validation to prevent cross-org access
+ * See: SECURITY-FIX-1-ORG-VALIDATION-PLAN.md
  */
 export async function GET() {
   try {
     const supabase = await createClient();
 
-    // Get authenticated user
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
+    // Get authenticated user's distributor ID with org validation
+    const { distributorId, error: authError } = await getCurrentDistributorId();
 
-    if (authError || !user) {
+    if (authError || !distributorId) {
       return NextResponse.json(
-        { error: 'Unauthorized' },
+        { error: authError || 'Unauthorized' },
         { status: 401 }
       );
     }
 
-    // Get user's distributor record
+    // Get user's distributor details
     const { data: distributor, error: distributorError } = await supabase
       .from('distributors')
       .select('id, first_name, last_name, email')
-      .eq('auth_user_id', user.id)
+      .eq('id', distributorId)
       .single();
 
     if (distributorError || !distributor) {
@@ -111,7 +114,9 @@ export async function GET() {
         .sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime());
     };
 
-    const downlineTree = buildTree(distributor.id, 1);
+    // Build downline tree starting from authenticated user's ID
+    // No cross-organization access possible since we use distributorId directly
+    const downlineTree = buildTree(distributorId, 1);
 
     // Calculate comprehensive stats
     const calculateStats = (nodes: DistributorNode[]): any => {
