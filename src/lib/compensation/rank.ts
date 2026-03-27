@@ -13,11 +13,16 @@ import {
   TechRank,
   InsuranceRank,
   getRankValue,
-  PAY_LEVEL_GRACE_PERIOD_MONTHS,
-  NEW_REP_RANK_LOCK_MONTHS,
+  PAY_LEVEL_GRACE_PERIOD_DAYS,
   TechRankRequirements,
   DownlineRequirement,
 } from './config';
+
+// Convert days to months for grace period (30 days = 1 month)
+const PAY_LEVEL_GRACE_PERIOD_MONTHS = 1;
+
+// New reps are locked at their starting rank for 3 months
+const NEW_REP_RANK_LOCK_MONTHS = 3;
 
 /**
  * Member Data for Rank Evaluation
