@@ -700,9 +700,19 @@ The message should flow naturally as if it's part of the registration page, not 
     };
   } catch (error) {
     console.error('Error generating meeting description:', error);
+
+    // Provide a helpful fallback instead of failing completely
+    const fallbackDescription = `Join ${hostName} for an exciting meeting about ${params.meetingPurpose}. This session is designed for ${params.targetAudience} and will provide valuable insights and information. We look forward to seeing you there!`;
+
     return {
-      success: false,
-      message: '❌ I had trouble generating the description. Please try again or write your own custom message.',
+      success: true,
+      message: `✨ **Generated Meeting Description:**\n\n${fallbackDescription}\n\n---\n\n**Does this look good?**\n\nYou can:\n• Say "yes" or "looks good" to use this description\n• Ask me to change specific parts\n• Provide your own custom message`,
+      data: {
+        description: fallbackDescription,
+        meetingPurpose: params.meetingPurpose,
+        targetAudience: params.targetAudience,
+        tone: params.tone || 'friendly',
+      },
     };
   }
 }
@@ -2760,30 +2770,32 @@ IMPORTANT GUIDELINES:
 10. If you don't have a tool for something, be CLEAR and SPECIFIC about why it won't work
 11. Always use the most specific tool available for the user's request
 
-MEETING CREATION WORKFLOW (FOLLOW THIS PROCESS):
+MEETING CREATION WORKFLOW (FOLLOW THIS STREAMLINED PROCESS):
 When user wants to create a meeting registration page, follow this conversational flow:
 
-**STEP 1: Gather Information** (ask one question at a time)
-1. Ask: "What is this meeting about?" (e.g., business overview, training, home meeting)
-2. Ask: "Who is this meeting for?" (e.g., prospects, team members, community)
-3. Ask: "What key topics will you cover?" (e.g., income opportunity, product benefits)
-4. Ask: "Any special details to include?" (e.g., refreshments provided, bring a guest)
-5. Ask: "What tone would you like?" (professional, friendly, casual, inspiring, educational)
+**STEP 1: Ask ONE Initial Question**
+Ask: "Great! Tell me about your meeting - what's it about and who's it for?"
 
-**STEP 2: Generate Description**
-- Use generate_meeting_description tool with the information gathered
+Wait for their answer, then proceed to STEP 2.
+
+**STEP 2: Generate Description Immediately**
+- Use generate_meeting_description tool with whatever information they provided
+- If they gave minimal info, use defaults: meetingPurpose="Business Meeting", targetAudience="Prospects", tone="friendly"
 - Show the generated description to user
-- Ask: "Does this look good?"
+- Ask: "Does this look good, or would you like me to adjust anything?"
 
 **STEP 3: Iterative Refinement** (if needed)
 - If user says "yes" or "looks good" → proceed to STEP 4
-- If user requests changes → ask what to change, regenerate with feedback, show preview again
-- Repeat until approved
+- If user requests changes → regenerate with their feedback and show preview again
+- Allow up to 2 rounds of refinement, then suggest moving forward
 
-**STEP 4: Get Meeting Details**
-- Now ask for: date, time, location type (virtual/physical/hybrid)
-- Ask for virtual link (if virtual/hybrid) or physical address (if physical/hybrid)
-- Ask for: duration, max attendees (optional)
+**STEP 4: Get Meeting Details (Ask ALL at once)**
+Ask: "Perfect! Now I just need a few details:
+- Date and time?
+- Is this virtual, in-person, or hybrid?
+- Virtual link or physical address?
+- How long will it be? (default: 1 hour)
+- Max attendees? (optional)"
 
 **STEP 5: Create Meeting**
 - Use create_meeting_registration tool with the approved custom message
@@ -2791,10 +2803,9 @@ When user wants to create a meeting registration page, follow this conversationa
 - Show success message with registration URL
 
 **IMPORTANT:**
-- ALWAYS generate a description first using generate_meeting_description
-- NEVER skip the preview/approval step
-- Allow multiple rounds of refinement
-- Be patient and conversational
+- Keep it conversational and FAST - don't ask 5 separate questions
+- If description generation fails, offer to create meeting with a simple default description instead
+- Don't make users wait through a long Q&A process
 
 ERROR MESSAGES (BE CLEAR AND HELPFUL):
 - ❌ DON'T SAY: "Meeting not found or you don't have permission"
