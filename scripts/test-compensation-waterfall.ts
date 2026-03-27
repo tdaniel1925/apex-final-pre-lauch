@@ -17,7 +17,7 @@ console.log('  1. BotMakers (30%):', '$' + (standard.botmakersFeeCents / 100).to
 console.log('  2. Adjusted Gross:', '$' + (standard.adjustedGrossCents / 100).toFixed(2), `(${((standard.adjustedGrossCents / standard.priceCents) * 100).toFixed(2)}%)`);
 console.log('  3. Apex (30% of AG):', '$' + (standard.apexTakeCents / 100).toFixed(2), `(${((standard.apexTakeCents / standard.priceCents) * 100).toFixed(2)}%)`);
 console.log('  4. Remainder:', '$' + (standard.remainderCents / 100).toFixed(2), `(${((standard.remainderCents / standard.priceCents) * 100).toFixed(2)}%)`);
-console.log('  5. Bonus Pool (5%):', '$' + (standard.bonusPoolCents / 100).toFixed(2), `(${((standard.bonusPoolCents / standard.priceCents) * 100).toFixed(2)}%)`);
+console.log('  5. Bonus Pool (3.5%):', '$' + (standard.bonusPoolCents / 100).toFixed(2), `(${((standard.bonusPoolCents / standard.priceCents) * 100).toFixed(2)}%)`);
 console.log('  6. Leadership Pool (1.5%):', '$' + (standard.leadershipPoolCents / 100).toFixed(2), `(${((standard.leadershipPoolCents / standard.priceCents) * 100).toFixed(2)}%)`);
 console.log('  7. Commission Pool:', '$' + (standard.commissionPoolCents / 100).toFixed(2), `(${((standard.commissionPoolCents / standard.priceCents) * 100).toFixed(2)}%)`);
 console.log('  8. Seller Commission (60%):', '$' + (standard.sellerCommissionCents / 100).toFixed(2), `(${((standard.sellerCommissionCents / standard.priceCents) * 100).toFixed(2)}%)`);
@@ -52,7 +52,7 @@ const errors: string[] = [];
 // Standard Product Checks
 if (standard.botmakersFeeCents !== 3000) errors.push('❌ BotMakers should be $30.00');
 if (standard.apexTakeCents !== 2100) errors.push('❌ Apex should be $21.00');
-if (standard.bonusPoolCents !== 245) errors.push('❌ Bonus Pool should be $2.45 (5% of $49)');
+if (standard.bonusPoolCents !== 172) errors.push('❌ Bonus Pool should be $1.72 (3.5% of $49)');
 if (standard.leadershipPoolCents !== 74) errors.push('❌ Leadership Pool should be $0.74 (1.5% of $49)');
 
 // Business Center Checks
@@ -70,7 +70,7 @@ if (errors.length > 0) {
   console.log('\nStandard Product Summary:');
   console.log('  • BotMakers: 30% of retail');
   console.log('  • Apex: 30% of adjusted gross (21% of retail)');
-  console.log('  • Bonus Pool: 5% of remainder (2.45% of retail)');
+  console.log('  • Bonus Pool: 3.5% of remainder (1.72% of retail)');
   console.log('  • Field Compensation: 60% direct, 40% overrides');
 
   console.log('\nBusiness Center Summary:');
