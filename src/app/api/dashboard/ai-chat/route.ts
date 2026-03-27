@@ -64,7 +64,7 @@ const tools: Anthropic.Tool[] = [
         },
         eventDate: {
           type: 'string',
-          description: 'Date of the event in YYYY-MM-DD format. Convert relative dates like "Tuesday", "next Thursday", "March 25th" to YYYY-MM-DD format based on current date.',
+          description: 'Date of the event. Pass through exactly what the user says (e.g., "next Monday", "tomorrow", "in 3 weeks", "2026-04-15"). The server will parse it automatically. DO NOT try to convert dates yourself - just pass the user\'s input as-is.',
         },
         eventTime: {
           type: 'string',
@@ -734,6 +734,28 @@ async function handleCreateMeetingRegistration(params: any, userId: string) {
     };
   }
 
+  // Parse and normalize the date if it's in natural language
+  const { parseNaturalDate, isFutureDate, getRelativeDateDescription } = await import('@/lib/utils/date-parser');
+
+  const parsedDate = parseNaturalDate(params.eventDate);
+  if (!parsedDate) {
+    return {
+      success: false,
+      message: `❌ I couldn't understand the date "${params.eventDate}". Try formats like: "next Monday", "tomorrow", "in 2 weeks", or "2026-04-15".`,
+    };
+  }
+
+  // Use the parsed date
+  const eventDate = parsedDate;
+
+  // Validate date is not in the past
+  if (!isFutureDate(eventDate)) {
+    return {
+      success: false,
+      message: `❌ The event date (${eventDate}) is in the past. Please choose a future date.`,
+    };
+  }
+
   // Validate location-specific requirements
   if (params.locationType === 'virtual' && !params.virtualLink) {
     return {
@@ -753,19 +775,6 @@ async function handleCreateMeetingRegistration(params: any, userId: string) {
     return {
       success: false,
       message: '❌ Hybrid meetings require both a virtual link AND a physical address. Please provide both.',
-    };
-  }
-
-  // Validate date is not in the past
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  const eventDate = new Date(params.eventDate);
-  eventDate.setHours(0, 0, 0, 0);
-
-  if (eventDate < today) {
-    return {
-      success: false,
-      message: `❌ The event date (${params.eventDate}) is in the past. Please choose a future date.`,
     };
   }
 
@@ -802,7 +811,7 @@ async function handleCreateMeetingRegistration(params: any, userId: string) {
       title: params.title,
       description: params.description || null,
       custom_message: params.customMessage || null, // Optional custom message for registration page
-      event_date: params.eventDate,
+      event_date: eventDate, // Use parsed date instead of params.eventDate
       event_time: params.eventTime,
       event_timezone: params.eventTimezone || 'America/Chicago',
       duration_minutes: params.durationMinutes || 60,
