@@ -211,7 +211,7 @@ export async function GET(request: NextRequest) {
           last30days: count30days || 0,
           total: totalCount || 0,
         },
-        emailId: result.data?.id,
+        emailId: result.id,
       },
     });
   } catch (error) {
