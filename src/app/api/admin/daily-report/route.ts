@@ -129,19 +129,24 @@ export async function POST(request: NextRequest) {
     const topStateDisplay = topState ? `${topState[0]} (${topState[1]} reps)` : 'N/A';
 
     // Format signup data for template
-    const formattedSignups = (newSignups || []).map((signup) => ({
-      name: `${signup.first_name} ${signup.last_name}`,
-      email: signup.email || 'No email',
-      phone: signup.phone,
-      sponsor_name: signup.sponsor
-        ? `${signup.sponsor.first_name} ${signup.sponsor.last_name}`
-        : 'Direct',
-      signup_time: new Date(signup.created_at).toLocaleTimeString('en-US', {
-        hour: 'numeric',
-        minute: '2-digit',
-        hour12: true,
-      }),
-    }));
+    const formattedSignups = (newSignups || []).map((signup) => {
+      // Handle sponsor - Supabase returns it as an array for foreign key joins
+      const sponsor = Array.isArray(signup.sponsor) ? signup.sponsor[0] : signup.sponsor;
+
+      return {
+        name: `${signup.first_name} ${signup.last_name}`,
+        email: signup.email || 'No email',
+        phone: signup.phone,
+        sponsor_name: sponsor
+          ? `${sponsor.first_name} ${sponsor.last_name}`
+          : 'Direct',
+        signup_time: new Date(signup.created_at).toLocaleTimeString('en-US', {
+          hour: 'numeric',
+          minute: '2-digit',
+          hour12: true,
+        }),
+      };
+    });
 
     // Build report data
     const reportData: DailyReportData = {
