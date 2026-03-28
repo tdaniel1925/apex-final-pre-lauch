@@ -7,6 +7,7 @@
 
 import { useState } from 'react';
 import { Calendar, Clock, MapPin, Video, CheckCircle, Download } from 'lucide-react';
+import { formatLocalDate } from '@/lib/utils/date';
 
 interface MeetingData {
   id: string;
@@ -56,14 +57,8 @@ export default function MeetingRegistrationForm({
   const [error, setError] = useState<string | null>(null);
   const [calendarUrl, setCalendarUrl] = useState<string | null>(null);
 
-  // Format date for display
-  const eventDate = new Date(meeting.eventDate);
-  const formattedDate = eventDate.toLocaleDateString('en-US', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
+  // Format date for display (using local date parser to avoid timezone issues)
+  const formattedDate = formatLocalDate(meeting.eventDate);
 
   // Format time (remove seconds if present)
   const formattedTime = meeting.eventTime.substring(0, 5);

@@ -11,6 +11,7 @@ import { sendTrackedEmail } from '@/lib/services/resend-tracked';
 import type { MeetingRegistration, CreateRegistrationResponse } from '@/types/meeting';
 import { Ratelimit } from '@upstash/ratelimit';
 import { Redis } from '@upstash/redis';
+import { formatLocalDate } from '@/lib/utils/date';
 
 interface RouteParams {
   params: Promise<{
@@ -234,14 +235,8 @@ async function sendConfirmationEmail({
   try {
     const supabase = createServiceClient();
 
-    // Format date and time
-    const eventDate = new Date(meeting.event_date);
-    const formattedDate = eventDate.toLocaleDateString('en-US', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    });
+    // Format date and time (using local date parser to avoid timezone issues)
+    const formattedDate = formatLocalDate(meeting.event_date);
 
     // Build email content
     const emailHtml = `
