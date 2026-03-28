@@ -39,6 +39,7 @@ const FORBIDDEN_PATTERNS = [
 // See CLAUDE.md "ALLOWED EXCEPTIONS" section for full list
 const ALLOWED_FILES = [
   'src/lib/matrix/placement-algorithm.ts',
+  'src/lib/genealogy/tree-utils.ts',  // Core dual-tree utilities (MUST use both trees)
   'src/app/api/admin/matrix/tree/route.ts',
   'src/app/dashboard/matrix/',
   'src/app/api/dashboard/matrix-position/route.ts',

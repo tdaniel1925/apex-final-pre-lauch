@@ -372,8 +372,9 @@ const { count } = await supabase
 
 ### ALLOWED EXCEPTIONS
 
-These files are ALLOWED to use `matrix_parent_id` (for placement visualization):
+These files are ALLOWED to use `matrix_parent_id` (for placement visualization and core utilities):
 - `src/lib/matrix/placement-algorithm.ts` - Matrix placement logic
+- `src/lib/genealogy/tree-utils.ts` - Core dual-tree utilities (MUST use both trees)
 - `src/app/api/admin/matrix/tree/route.ts` - Admin matrix visualization
 - `src/app/dashboard/matrix/[id]/page.tsx` - User matrix view
 - `src/app/api/dashboard/matrix-position/route.ts` - Matrix position dashboard
