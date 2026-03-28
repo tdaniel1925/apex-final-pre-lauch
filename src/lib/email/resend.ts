@@ -4,7 +4,7 @@
 // =============================================
 
 interface SendEmailParams {
-  to: string;
+  to: string | string[];
   subject: string;
   html: string;
   from?: string;
@@ -22,7 +22,7 @@ interface SendEmailResponse {
 
 /**
  * Send email via Resend with optional attachments
- * @param to - Recipient email address
+ * @param to - Recipient email address (single or array for multiple recipients)
  * @param subject - Email subject line
  * @param html - HTML email content
  * @param from - Sender email address
