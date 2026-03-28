@@ -1986,10 +1986,19 @@ async function handleGetTeamAnalytics(params: any, userId: string) {
     };
   }
 
-  // Get all team members with their BV
+  // Get all team members with their BV (live data from members table)
   const { data: teamMembers } = await supabase
     .from('distributors')
-    .select('id, first_name, last_name, personal_bv_monthly, status, created_at')
+    .select(`
+      id,
+      first_name,
+      last_name,
+      status,
+      created_at,
+      member:members!members_distributor_id_fkey (
+        personal_credits_monthly
+      )
+    `)
     .eq('sponsor_id', distributor.id)
     .neq('status', 'deleted');
 
@@ -2001,10 +2010,17 @@ async function handleGetTeamAnalytics(params: any, userId: string) {
   }
 
   // Calculate analytics
-  const totalBV = teamMembers.reduce((sum, m) => sum + (m.personal_bv_monthly || 0), 0);
+  const totalBV = teamMembers.reduce((sum, m) => {
+    const memberData = Array.isArray(m.member) ? m.member[0] : m.member;
+    return sum + (memberData?.personal_credits_monthly || 0);
+  }, 0);
   const activeMembers = teamMembers.filter(m => m.status === 'active').length;
   const topPerformers = [...teamMembers]
-    .sort((a, b) => (b.personal_bv_monthly || 0) - (a.personal_bv_monthly || 0))
+    .sort((a, b) => {
+      const aMember = Array.isArray(a.member) ? a.member[0] : a.member;
+      const bMember = Array.isArray(b.member) ? b.member[0] : b.member;
+      return (bMember?.personal_credits_monthly || 0) - (aMember?.personal_credits_monthly || 0);
+    })
     .slice(0, 5);
 
   let message = `📊 **Team Analytics** (${params.timeframe})\n\n`;
@@ -2016,8 +2032,10 @@ async function handleGetTeamAnalytics(params: any, userId: string) {
   message += `**🏆 Top 5 Performers:**\n`;
   topPerformers.forEach((member, index) => {
     const emoji = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : '⭐';
-    const percentage = totalBV > 0 ? Math.round((member.personal_bv_monthly || 0) / totalBV * 100) : 0;
-    message += `${emoji} **${member.first_name} ${member.last_name}** - ${member.personal_bv_monthly || 0} BV (${percentage}%)\n`;
+    const memberData = Array.isArray(member.member) ? member.member[0] : member.member;
+    const personalBV = memberData?.personal_credits_monthly || 0;
+    const percentage = totalBV > 0 ? Math.round(personalBV / totalBV * 100) : 0;
+    message += `${emoji} **${member.first_name} ${member.last_name}** - ${personalBV} BV (${percentage}%)\n`;
   });
 
   message += `\n💡 Want to:\n• Recognize top performers\n• See detailed breakdown\n• Contact team members`;
@@ -2042,9 +2060,11 @@ async function handleGetMyPerformance(params: any, userId: string) {
       id,
       first_name,
       current_rank,
-      personal_bv_monthly,
       status,
-      created_at
+      created_at,
+      member:members!members_distributor_id_fkey (
+        personal_credits_monthly
+      )
     `)
     .eq('auth_user_id', userId)
     .single();
@@ -2056,14 +2076,21 @@ async function handleGetMyPerformance(params: any, userId: string) {
     };
   }
 
-  // Get team BV
+  // Get team BV (live data from members table)
   const { data: teamMembers } = await supabase
     .from('distributors')
-    .select('personal_bv_monthly')
+    .select(`
+      member:members!members_distributor_id_fkey (
+        personal_credits_monthly
+      )
+    `)
     .eq('sponsor_id', distributor.id)
     .neq('status', 'deleted');
 
-  const groupBV = (teamMembers || []).reduce((sum, m) => sum + (m.personal_bv_monthly || 0), 0);
+  const groupBV = (teamMembers || []).reduce((sum, m) => {
+    const memberData = Array.isArray(m.member) ? m.member[0] : m.member;
+    return sum + (memberData?.personal_credits_monthly || 0);
+  }, 0);
 
   // Calculate rank progress
   const rankRequirements: Record<string, { personal: number; group: number; next: string }> = {
@@ -2079,7 +2106,8 @@ async function handleGetMyPerformance(params: any, userId: string) {
 
   const currentRank = distributor.current_rank || 'starter';
   const requirements = rankRequirements[currentRank];
-  const personalBV = distributor.personal_bv_monthly || 0;
+  const distributorMember = Array.isArray(distributor.member) ? distributor.member[0] : distributor.member;
+  const personalBV = distributorMember?.personal_credits_monthly || 0;
 
   let message = `📈 **Your Performance** (This Month)\n\n`;
   message += `**Current Status:**\n`;
@@ -2564,13 +2592,15 @@ export async function POST(request: NextRequest) {
         last_name,
         slug,
         current_rank,
-        personal_bv_monthly,
         status,
         created_at,
         sponsor_id,
         business_center_tier,
         ai_phone_number,
-        vapi_assistant_id
+        vapi_assistant_id,
+        member:members!members_distributor_id_fkey (
+          personal_credits_monthly
+        )
       `)
       .eq('auth_user_id', user.id)
       .single();
@@ -2607,12 +2637,13 @@ export async function POST(request: NextRequest) {
     const monthlyCommissions = commissions?.reduce((sum, c) => sum + c.amount, 0) || 0;
 
     // Build personalized system prompt
+    const distributorMember = distributor ? (Array.isArray(distributor.member) ? distributor.member[0] : distributor.member) : null;
     const userContext = distributor ? `
 YOU ARE HELPING: ${distributor.first_name} ${distributor.last_name} (${distributor.slug})
 
 CURRENT STATUS:
 - Rank: ${distributor.current_rank?.toUpperCase() || 'STARTER'}
-- Personal BV: ${distributor.personal_bv_monthly || 0} this month
+- Personal BV: ${distributorMember?.personal_credits_monthly || 0} this month
 - Team Size: ${teamCount || 0} members
 - Commission Earned: $${(monthlyCommissions / 100).toFixed(2)} this month
 - Sponsor: ${sponsorInfo?.first_name || 'N/A'} ${sponsorInfo?.last_name || ''}
