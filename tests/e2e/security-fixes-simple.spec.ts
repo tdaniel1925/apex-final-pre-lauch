@@ -6,7 +6,7 @@
 import { test, expect } from '@playwright/test';
 import { createServiceClient } from '@/lib/supabase/service';
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3050';
 
 test.describe('Security Fixes - Database Level Tests', () => {
 

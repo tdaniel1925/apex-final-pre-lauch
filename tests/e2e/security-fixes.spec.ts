@@ -7,7 +7,7 @@ import { test, expect } from '@playwright/test';
 import { createServiceClient } from '@/lib/supabase/service';
 
 // Test configuration
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3050';
 
 // Test data IDs (will be created in beforeAll)
 let testData: {

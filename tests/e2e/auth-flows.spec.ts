@@ -7,7 +7,7 @@ import { test, expect } from '@playwright/test';
 import { createClient } from '@supabase/supabase-js';
 
 // Test configuration
-const BASE_URL = process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:3000';
+const BASE_URL = process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:3050';
 const TEST_EMAIL_PREFIX = 'test-';
 const TEST_PASSWORD = 'TestPass123!';
 

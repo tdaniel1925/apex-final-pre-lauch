@@ -20,7 +20,7 @@ import { test, expect, Page } from '@playwright/test';
 import { createClient } from '@supabase/supabase-js';
 
 // Test configuration
-const BASE_URL = process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:3000';
+const BASE_URL = process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:3050';
 
 // Supabase client for test data setup and verification
 const supabase = createClient(
