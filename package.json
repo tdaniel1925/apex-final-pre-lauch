@@ -14,6 +14,8 @@
     "test:e2e:ui": "playwright test --ui",
     "test:signup": "tsx scripts/test-signup-e2e.ts",
     "setup:test": "node scripts/setup-test-env.js",
+    "create-test-dist": "tsx scripts/create-test-distributor.ts",
+    "check-compliance": "tsx scripts/check-compliance.ts",
     "verify:stage-1": "node scripts/verify-stage-1.js",
     "seed:master": "tsx scripts/seed-master.ts",
     "seed:emails": "tsx scripts/seed-email-templates.ts",
