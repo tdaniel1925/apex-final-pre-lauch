@@ -1,0 +1,95 @@
+{
+  "totalReps": 72,
+  "emailsSent": 72,
+  "emailsFailed": 0,
+  "smsSent": 35,
+  "smsFailed": 21,
+  "errors": [
+    {
+      "email": "team5@test.apex.com",
+      "error": "SMS: Invalid 'To' Phone Number: +1555XXXX"
+    },
+    {
+      "email": "team4@test.apex.com",
+      "error": "SMS: Invalid 'To' Phone Number: +1555XXXX"
+    },
+    {
+      "email": "team3@test.apex.com",
+      "error": "SMS: Invalid 'To' Phone Number: +1555XXXX"
+    },
+    {
+      "email": "team2@test.apex.com",
+      "error": "SMS: Invalid 'To' Phone Number: +1555XXXX"
+    },
+    {
+      "email": "team1@test.apex.com",
+      "error": "SMS: Invalid 'To' Phone Number: +1555XXXX"
+    },
+    {
+      "email": "test.distributor@apex.com",
+      "error": "SMS: Invalid 'To' Phone Number: +1555XXXX"
+    },
+    {
+      "email": "test.personal.1773887814902@apextest.com",
+      "error": "SMS: Invalid 'To' Phone Number: +1555123XXXX"
+    },
+    {
+      "email": "rep-rep2b-1773878782063-3csyeo@example.com",
+      "error": "SMS: Invalid 'To' Phone Number: +1555123XXXX"
+    },
+    {
+      "email": "rep-rep1a-1773878778894-e18z5c@example.com",
+      "error": "SMS: Invalid 'To' Phone Number: +1555123XXXX"
+    },
+    {
+      "email": "rep-rep5-1773878725012-qkm1v9@example.com",
+      "error": "SMS: Invalid 'To' Phone Number: +1555123XXXX"
+    },
+    {
+      "email": "rep-rep4-1773878722114-2u3z1m@example.com",
+      "error": "SMS: Invalid 'To' Phone Number: +1555123XXXX"
+    },
+    {
+      "email": "rep-rep3-1773878719139-t00osr@example.com",
+      "error": "SMS: Invalid 'To' Phone Number: +1555123XXXX"
+    },
+    {
+      "email": "rep-rep2-1773878716406-2ov35a@example.com",
+      "error": "SMS: Invalid 'To' Phone Number: +1555123XXXX"
+    },
+    {
+      "email": "rep-rep1-1773878712617-gm9wj@example.com",
+      "error": "SMS: Invalid 'To' Phone Number: +1555123XXXX"
+    },
+    {
+      "email": "sponsor-echo-1773878708751-ixjukn@example.com",
+      "error": "SMS: Invalid 'To' Phone Number: +1555123XXXX"
+    },
+    {
+      "email": "test-1773878306756-ipq4vv@example.com",
+      "error": "SMS: Invalid 'To' Phone Number: +1555123XXXX"
+    },
+    {
+      "email": "test.personal.1773865190573@apextest.com",
+      "error": "SMS: Invalid 'To' Phone Number: +1555123XXXX"
+    },
+    {
+      "email": "test.personal.1773864050879@apextest.com",
+      "error": "SMS: Invalid 'To' Phone Number: +1555123XXXX"
+    },
+    {
+      "email": "sarah.johnson.test1773864046840@example.com",
+      "error": "SMS: Invalid 'To' Phone Number: +1555987XXXX"
+    },
+    {
+      "email": "test.personal.1773864031315@apextest.com",
+      "error": "SMS: Invalid 'To' Phone Number: +1555123XXXX"
+    },
+    {
+      "email": "john.smith.test1773864018033@example.com",
+      "error": "SMS: Invalid 'To' Phone Number: +1555123XXXX"
+    }
+  ],
+  "startTime": "2026-03-24T22:37:29.068Z",
+  "endTime": "2026-03-24T22:38:42.914Z"
+}

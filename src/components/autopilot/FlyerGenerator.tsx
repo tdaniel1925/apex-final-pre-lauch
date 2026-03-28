@@ -289,7 +289,7 @@ export function FlyerGenerator({ onSuccess }: FlyerGeneratorProps) {
             </Alert>
           )}
 
-          <Button type="submit" disabled={generating || (isAtLimit ?? undefined)} className="w-full">
+          <Button type="submit" disabled={generating || (isAtLimit ?? false)} className="w-full">
             {generating ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />

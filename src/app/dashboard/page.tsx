@@ -13,11 +13,15 @@
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { createServiceClient } from '@/lib/supabase/service';
+import { getAdminUser } from '@/lib/auth/admin';
 import TrainingAudioPlayer from '@/components/dashboard/TrainingAudioPlayer';
 import CompensationStatsWidget from '@/components/dashboard/CompensationStatsWidget';
 import ActivityFeed from '@/components/dashboard/ActivityFeed';
 import DashboardClient from '@/components/dashboard/DashboardClient';
 import CopyReferralButton from '@/components/dashboard/CopyReferralButton';
+import AIPhoneStats from '@/components/dashboard/AIPhoneStats';
+import RaceTo100Banner from '@/components/dashboard/RaceTo100Banner';
+import AIAssistantBanner from '@/components/dashboard/AIAssistantBanner';
 import type { Distributor } from '@/lib/types';
 import { ArrowRight, Users, FileText, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
@@ -83,8 +87,18 @@ export default async function DashboardPage() {
     .eq('auth_user_id', user.id)
     .single();
 
+  // If no distributor record, check if they're an admin
   if (error || !distributor) {
-    console.error('Error loading distributor:', error);
+    // Error loading distributor record - check if admin
+
+    const adminUser = await getAdminUser();
+
+    // If they're an admin, redirect to admin dashboard
+    if (adminUser) {
+      redirect('/admin');
+    }
+
+    // Otherwise, they need to complete signup
     redirect('/signup');
   }
 
@@ -104,23 +118,33 @@ export default async function DashboardPage() {
   const personalCredits = dist.member?.personal_credits_monthly ?? 0;
   const teamCredits = dist.member?.team_credits_monthly ?? 0;
   const currentRank = dist.member?.tech_rank ?? 'starter';
+  const memberId = dist.member?.member_id;
 
   // Calculate monthly earnings
   // Query earnings_ledger for current month, status='approved'
-  const startOfMonth = new Date();
-  startOfMonth.setDate(1);
-  startOfMonth.setHours(0, 0, 0, 0);
+  // Only query if member_id exists
+  let monthlyEarnings = 0;
 
-  const { data: earnings } = await serviceClient
-    .from('earnings_ledger')
-    .select('amount_usd')
-    .eq('member_id', dist.member?.member_id ?? '')
-    .eq('status', 'approved')
-    .gte('created_at', startOfMonth.toISOString())
-    .order('created_at', { ascending: false });
+  if (memberId) {
+    const startOfMonth = new Date();
+    startOfMonth.setDate(1);
+    startOfMonth.setHours(0, 0, 0, 0);
 
-  // Sum all approved earnings for this month
-  const monthlyEarnings = earnings?.reduce((sum, e) => sum + (e.amount_usd || 0), 0) || 0;
+    const { data: earnings, error: earningsError } = await serviceClient
+      .from('earnings_ledger')
+      .select('amount_usd')
+      .eq('member_id', memberId)
+      .eq('status', 'approved')
+      .gte('created_at', startOfMonth.toISOString())
+      .order('created_at', { ascending: false });
+
+    if (earningsError) {
+      // Error fetching earnings - will default to 0
+    }
+
+    // Sum all approved earnings for this month
+    monthlyEarnings = earnings?.reduce((sum, e) => sum + (e.amount_usd || 0), 0) || 0;
+  }
 
   // Fetch activity feed data server-side (to avoid concurrent auth token usage)
   const { data: activityData } = await serviceClient
@@ -151,21 +175,27 @@ export default async function DashboardPage() {
     .limit(50);
 
   // Transform activity data
-  const initialActivities = (activityData || []).map((activity: any) => ({
-    id: activity.id,
-    actor_id: activity.actor_id,
-    actor_name: activity.actor ? `${activity.actor.first_name} ${activity.actor.last_name}` : 'Unknown',
-    actor_slug: activity.actor?.slug || '',
-    actor_photo_url: activity.actor?.profile_photo_url || null,
-    target_id: activity.target_id,
-    target_name: activity.target ? `${activity.target.first_name} ${activity.target.last_name}` : null,
-    event_type: activity.event_type,
-    event_title: activity.event_title,
-    event_description: activity.event_description,
-    metadata: activity.metadata || {},
-    depth_from_root: activity.depth_from_root,
-    created_at: activity.created_at,
-  }));
+  const initialActivities = (activityData || []).map((activity) => {
+    // Extract actor data (Supabase returns arrays for joined tables)
+    const actorData = Array.isArray(activity.actor) ? activity.actor[0] : activity.actor;
+    const targetData = Array.isArray(activity.target) ? activity.target[0] : activity.target;
+
+    return {
+      id: activity.id,
+      actor_id: activity.actor_id,
+      actor_name: actorData ? `${actorData.first_name} ${actorData.last_name}` : 'Unknown',
+      actor_slug: actorData?.slug || '',
+      actor_photo_url: actorData?.profile_photo_url || null,
+      target_id: activity.target_id,
+      target_name: targetData ? `${targetData.first_name} ${targetData.last_name}` : null,
+      event_type: activity.event_type,
+      event_title: activity.event_title,
+      event_description: activity.event_description,
+      metadata: activity.metadata || {},
+      depth_from_root: activity.depth_from_root,
+      created_at: activity.created_at,
+    };
+  });
 
   // Calculate rank progress
   const nextRank = getNextRank(currentRank);
@@ -185,14 +215,20 @@ export default async function DashboardPage() {
   return (
     <DashboardClient distributor={dist}>
       <div className="min-h-screen bg-slate-50">
-        <div className="max-w-7xl mx-auto p-6 space-y-6">
+        <div className="max-w-7xl mx-auto p-3 sm:p-4 md:p-6 space-y-4 sm:space-y-6">
           {/* Welcome Header */}
-          <div className="mb-6">
-            <h1 className="text-3xl font-bold text-slate-900">
+          <div className="mb-4 sm:mb-6">
+            <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">
               Welcome back, {dist.first_name}
             </h1>
             <p className="text-sm text-slate-600 mt-1">@{dist.slug}</p>
           </div>
+
+          {/* Race to 100 Banner */}
+          <RaceTo100Banner distributorId={dist.id} />
+
+          {/* AI Assistant Banner */}
+          <AIAssistantBanner firstName={dist.first_name} />
 
           {/* Training Audio Player */}
           <TrainingAudioPlayer />
@@ -205,20 +241,23 @@ export default async function DashboardPage() {
             monthlyEarnings={monthlyEarnings}
           />
 
+          {/* AI Phone Stats */}
+          <AIPhoneStats distributorId={dist.id} />
+
           {/* Rank Progress Bar */}
           {nextRank && (
-            <div className="bg-white rounded-lg shadow-md p-6 border border-slate-200">
-              <div className="flex items-center justify-between mb-3">
+            <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 border border-slate-200">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3 gap-2">
                 <div>
-                  <h3 className="text-lg font-semibold text-slate-900">
+                  <h3 className="text-base sm:text-lg font-semibold text-slate-900">
                     Progress to {nextRank.charAt(0).toUpperCase() + nextRank.slice(1)}
                   </h3>
                   <p className="text-sm text-slate-600">
                     {creditsNeeded.toLocaleString()} credits needed
                   </p>
                 </div>
-                <div className="text-right">
-                  <p className="text-2xl font-bold text-slate-900">
+                <div className="text-left sm:text-right">
+                  <p className="text-xl sm:text-2xl font-bold text-slate-900">
                     {progressPercent.toFixed(0)}%
                   </p>
                 </div>
@@ -238,19 +277,19 @@ export default async function DashboardPage() {
           )}
 
           {/* Quick Actions - 4 Buttons */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {/* Enroll New Member */}
             <Link
               href={`/${dist.slug}`}
-              className="group bg-white rounded-lg shadow-md p-6 border border-slate-200 hover:border-slate-400 hover:shadow-lg transition-all"
+              className="group bg-white rounded-lg shadow-md p-4 sm:p-6 border border-slate-200 hover:border-slate-400 hover:shadow-lg transition-all min-h-[120px] flex flex-col"
             >
               <div className="flex items-center justify-between">
-                <div className="p-3 bg-slate-100 rounded-lg group-hover:bg-slate-200 transition-colors">
-                  <Users className="w-6 h-6 text-slate-700" />
+                <div className="p-2.5 sm:p-3 bg-slate-100 rounded-lg group-hover:bg-slate-200 transition-colors">
+                  <Users className="w-5 h-5 sm:w-6 sm:h-6 text-slate-700" />
                 </div>
-                <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-slate-600 transition-colors" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 group-hover:text-slate-600 transition-colors" />
               </div>
-              <h3 className="mt-4 text-lg font-semibold text-slate-900">
+              <h3 className="mt-3 sm:mt-4 text-base sm:text-lg font-semibold text-slate-900">
                 Enroll New Member
               </h3>
               <p className="text-sm text-slate-600 mt-1">
@@ -264,15 +303,15 @@ export default async function DashboardPage() {
             {/* View Compensation Plan */}
             <Link
               href="/compensation"
-              className="group bg-white rounded-lg shadow-md p-6 border border-slate-200 hover:border-slate-400 hover:shadow-lg transition-all"
+              className="group bg-white rounded-lg shadow-md p-4 sm:p-6 border border-slate-200 hover:border-slate-400 hover:shadow-lg transition-all min-h-[120px] flex flex-col"
             >
               <div className="flex items-center justify-between">
-                <div className="p-3 bg-slate-100 rounded-lg group-hover:bg-slate-200 transition-colors">
-                  <FileText className="w-6 h-6 text-slate-700" />
+                <div className="p-2.5 sm:p-3 bg-slate-100 rounded-lg group-hover:bg-slate-200 transition-colors">
+                  <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-slate-700" />
                 </div>
-                <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-slate-600 transition-colors" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 group-hover:text-slate-600 transition-colors" />
               </div>
-              <h3 className="mt-4 text-lg font-semibold text-slate-900">
+              <h3 className="mt-3 sm:mt-4 text-base sm:text-lg font-semibold text-slate-900">
                 View Compensation Plan
               </h3>
               <p className="text-sm text-slate-600 mt-1">
@@ -283,15 +322,15 @@ export default async function DashboardPage() {
             {/* Contact Support */}
             <Link
               href="/support"
-              className="group bg-white rounded-lg shadow-md p-6 border border-slate-200 hover:border-slate-400 hover:shadow-lg transition-all"
+              className="group bg-white rounded-lg shadow-md p-4 sm:p-6 border border-slate-200 hover:border-slate-400 hover:shadow-lg transition-all min-h-[120px] flex flex-col"
             >
               <div className="flex items-center justify-between">
-                <div className="p-3 bg-slate-100 rounded-lg group-hover:bg-slate-200 transition-colors">
-                  <MessageCircle className="w-6 h-6 text-slate-700" />
+                <div className="p-2.5 sm:p-3 bg-slate-100 rounded-lg group-hover:bg-slate-200 transition-colors">
+                  <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 text-slate-700" />
                 </div>
-                <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-slate-600 transition-colors" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 group-hover:text-slate-600 transition-colors" />
               </div>
-              <h3 className="mt-4 text-lg font-semibold text-slate-900">
+              <h3 className="mt-3 sm:mt-4 text-base sm:text-lg font-semibold text-slate-900">
                 Contact Support
               </h3>
               <p className="text-sm text-slate-600 mt-1">
@@ -302,13 +341,13 @@ export default async function DashboardPage() {
 
           {/* Recent Activity Feed */}
           <div className="bg-white rounded-lg shadow-md border border-slate-200">
-            <div className="p-6 border-b border-slate-200">
-              <h2 className="text-xl font-bold text-slate-900">Recent Activity</h2>
+            <div className="p-4 sm:p-6 border-b border-slate-200">
+              <h2 className="text-lg sm:text-xl font-bold text-slate-900">Recent Activity</h2>
               <p className="text-sm text-slate-600 mt-1">
                 Latest updates from your organization
               </p>
             </div>
-            <div className="p-6">
+            <div className="p-4 sm:p-6">
               <ActivityFeed distributorId={dist.id} initialActivities={initialActivities} />
             </div>
           </div>

@@ -209,8 +209,10 @@ export default async function TrainingVideosPage() {
     redirect('/login');
   }
 
-  // Get distributor info
-  const { data: distributor } = await supabase
+  // Get distributor info - use service client to bypass RLS
+  const { createServiceClient } = await import('@/lib/supabase/service');
+  const serviceClient = createServiceClient();
+  const { data: distributor } = await serviceClient
     .from('distributors')
     .select('id, auth_user_id, first_name, last_name, rank')
     .eq('auth_user_id', user.id)

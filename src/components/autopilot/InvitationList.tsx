@@ -23,7 +23,7 @@ interface InvitationListProps {
 
 type FilterStatus = 'all' | 'sent' | 'opened' | 'responded_yes' | 'responded_no' | 'responded_maybe' | 'expired';
 
-const statusConfig = {
+const statusConfig: Record<string, { label: string; color: string }> = {
   draft: { label: 'Draft', color: 'bg-gray-100 text-gray-700' },
   sent: { label: 'Sent', color: 'bg-blue-100 text-blue-700' },
   opened: { label: 'Opened', color: 'bg-purple-100 text-purple-700' },
@@ -32,6 +32,12 @@ const statusConfig = {
   responded_maybe: { label: 'Maybe', color: 'bg-yellow-100 text-yellow-700' },
   expired: { label: 'Expired', color: 'bg-gray-100 text-gray-500' },
   canceled: { label: 'Canceled', color: 'bg-gray-100 text-gray-500' },
+  failed: { label: 'Failed', color: 'bg-red-100 text-red-700' },
+};
+
+// Fallback for unknown statuses
+const getStatusDisplay = (status: string) => {
+  return statusConfig[status] || { label: 'Unknown', color: 'bg-gray-100 text-gray-500' };
 };
 
 export function InvitationList({ onRefresh }: InvitationListProps) {
@@ -197,8 +203,8 @@ export function InvitationList({ onRefresh }: InvitationListProps) {
                     <h3 className="text-lg font-semibold text-navy-900">
                       {invitation.meeting_title}
                     </h3>
-                    <Badge className={statusConfig[invitation.status].color}>
-                      {statusConfig[invitation.status].label}
+                    <Badge className={getStatusDisplay(invitation.status).color}>
+                      {getStatusDisplay(invitation.status).label}
                     </Badge>
                   </div>
 

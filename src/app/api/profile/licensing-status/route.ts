@@ -1,7 +1,7 @@
 // =============================================
-// User Licensing Status Update API
+// User Licensing Status Change Request API
 // POST /api/profile/licensing-status
-// Users can update their own licensing status
+// Users submit requests for corporate approval
 // =============================================
 
 import { NextRequest, NextResponse } from 'next/server';
@@ -12,19 +12,21 @@ import type { ApiResponse } from '@/lib/types';
 /**
  * POST /api/profile/licensing-status
  *
- * Updates the current user's licensing status
+ * Creates a change request for corporate approval (NO immediate update)
  *
  * Body:
  *   - licensing_status: 'licensed' | 'non_licensed'
+ *   - reason?: string (optional explanation)
+ *   - documentation_url?: string (license docs URL)
  *
  * Response:
- *   - distributor: Updated distributor object
+ *   - request: Created placement change request
  *   - message: Success message
  */
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { licensing_status } = body;
+    const { licensing_status, reason, documentation_url } = body;
 
     // Validate licensing_status
     if (!licensing_status || !['licensed', 'non_licensed'].includes(licensing_status)) {
@@ -55,7 +57,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Get current distributor to check existing status
+    // Get current distributor
     const { data: currentDistributor } = await supabase
       .from('distributors')
       .select('id, licensing_status')
@@ -73,64 +75,78 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // If status hasn't changed, return success without updating
+    // If status hasn't changed, return success without creating request
     if (currentDistributor.licensing_status === licensing_status) {
       return NextResponse.json(
         {
           success: true,
-          data: { distributor: currentDistributor },
-          message: 'Licensing status unchanged',
+          data: { unchanged: true },
+          message: 'Licensing status unchanged - no request needed',
         } as ApiResponse,
         { status: 200 }
       );
     }
 
-    // Prepare update data
-    const updateData: any = {
-      licensing_status,
-      licensing_status_set_at: new Date().toISOString(),
-    };
-
-    // If changing to non_licensed, clear verification fields
-    if (licensing_status === 'non_licensed') {
-      updateData.licensing_verified = false;
-      updateData.licensing_verified_at = null;
-      updateData.licensing_verified_by = null;
-    }
-
-    // If changing to licensed, set verified to false (awaiting verification)
-    if (licensing_status === 'licensed') {
-      updateData.licensing_verified = false;
-    }
-
-    // Update using service client to bypass RLS
+    // Check for existing pending request (limit to 1 pending request at a time)
     const serviceClient = createServiceClient();
-    const { data: distributor, error: updateError } = await serviceClient
-      .from('distributors')
-      .update(updateData)
-      .eq('auth_user_id', user.id)
-      .select()
+    const { data: existingRequest } = await serviceClient
+      .from('insurance_placement_change_requests')
+      .select('id, status, created_at')
+      .eq('agent_id', currentDistributor.id)
+      .eq('request_type', 'license_status_change')
+      .eq('status', 'pending')
       .single();
 
-    if (updateError || !distributor) {
-      console.error('Licensing status update error:', updateError);
+    if (existingRequest) {
       return NextResponse.json(
         {
           success: false,
-          error: 'Update failed',
-          message: 'Failed to update licensing status',
+          error: 'Pending request exists',
+          message: 'You already have a pending license status change request. Please wait for corporate approval.',
+          data: { existingRequest },
+        } as ApiResponse,
+        { status: 409 } // Conflict
+      );
+    }
+
+    // Create placement change request
+    const { data: changeRequest, error: requestError } = await serviceClient
+      .from('insurance_placement_change_requests')
+      .insert({
+        agent_id: currentDistributor.id,
+        requested_by: currentDistributor.id,
+        request_type: 'license_status_change',
+        current_status: currentDistributor.licensing_status,
+        proposed_status: licensing_status,
+        reason: reason || `Requesting to change status to ${licensing_status}`,
+        documentation_url,
+        status: 'pending',
+      })
+      .select()
+      .single();
+
+    if (requestError || !changeRequest) {
+      console.error('Error creating placement change request:', requestError);
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'Request creation failed',
+          message: 'Failed to create placement change request',
         } as ApiResponse,
         { status: 500 }
       );
     }
 
+    // TODO: Send email notification to corporate admins
+    // await sendAdminNotification(changeRequest);
+
     return NextResponse.json(
       {
         success: true,
-        data: { distributor },
-        message: 'Licensing status updated successfully',
+        data: { request: changeRequest },
+        message: 'License status change request submitted for review. You will be notified when it is approved or rejected.',
       } as ApiResponse,
-      { status: 200 }
+      { status: 201 }
     );
   } catch (error) {
     console.error('Licensing status API error:', error);

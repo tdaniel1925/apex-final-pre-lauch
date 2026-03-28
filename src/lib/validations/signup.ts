@@ -150,6 +150,14 @@ const baseSignupFields = {
     .regex(/^\d{5}(-\d{4})?$/, 'ZIP code must be in format 12345 or 12345-6789')
     .trim(),
 
+  // Bio (optional - for AI Voice Agent personalization)
+  bio: z
+    .string()
+    .max(500, 'Bio must be less than 500 characters')
+    .trim()
+    .optional()
+    .or(z.literal('')),
+
   // Sponsor and licensing
   sponsor_slug: z.string().optional(),
   licensing_status: z.enum(['licensed', 'non_licensed']),

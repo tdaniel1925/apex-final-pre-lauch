@@ -6,6 +6,7 @@
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { createServiceClient } from '@/lib/supabase/service';
+import { getAdminUser } from '@/lib/auth/admin';
 import StoreClient from '@/components/dashboard/StoreClient';
 import { Package, CheckCircle, Clock } from 'lucide-react';
 
@@ -35,8 +36,18 @@ export default async function StorePage() {
     .eq('auth_user_id', user.id)
     .single();
 
+  // If no distributor record, check if they're an admin
   if (error || !distributor) {
     console.error('Error loading distributor:', error);
+
+    const adminUser = await getAdminUser();
+
+    // If they're an admin, redirect to admin dashboard
+    if (adminUser) {
+      redirect('/admin');
+    }
+
+    // Otherwise, they need to complete signup
     redirect('/signup');
   }
 
@@ -126,7 +137,7 @@ export default async function StorePage() {
                       <div className="mb-4">
                         <div className="flex items-baseline gap-2">
                           <span className="text-2xl font-bold text-slate-900">
-                            ${(product.wholesale_price_cents / 100).toFixed(2)}
+                            ${(product.wholesale_price_cents / 100).toFixed(0)}
                           </span>
                           {product.is_subscription && (
                             <span className="text-sm text-slate-600">
@@ -135,7 +146,7 @@ export default async function StorePage() {
                           )}
                         </div>
                         <p className="text-xs text-slate-500 mt-1">
-                          Earn {product.bv || 0} credits
+                          Earn {product.bv || 0} BV credits
                         </p>
                       </div>
 
@@ -164,12 +175,20 @@ export default async function StorePage() {
                             Access Service
                           </a>
                         </div>
+                      ) : product.slug === 'business-center' ? (
+                        <button
+                          type="button"
+                          disabled
+                          className="w-full px-4 py-2 bg-slate-400 text-white rounded-lg cursor-not-allowed font-medium"
+                        >
+                          Available April 1
+                        </button>
                       ) : (
                         <StoreClient
                           productId={product.id}
                           distributorId={distributor.id}
                           productName={product.name}
-                          price={(product.wholesale_price_cents / 100).toFixed(2)}
+                          price={(product.wholesale_price_cents / 100).toFixed(0)}
                           isSubscription={product.is_subscription}
                         />
                       )}

@@ -5,6 +5,7 @@
 
 import { createServiceClient } from '@/lib/supabase/service';
 import type { Distributor, DistributorInsert, DistributorUpdate } from '@/lib/types';
+import { logAdminAction } from './audit-logger';
 
 export interface DistributorFilters {
   status?: 'active' | 'suspended' | 'deleted' | 'all';
@@ -123,9 +124,18 @@ export async function getDistributorById(id: string): Promise<Distributor | null
 
 /**
  * Create a new distributor manually (admin only)
+ *
+ * Security Fix #3: Uses atomic placement function to prevent orphaned records.
+ * Both distributor and member records are created in a single transaction.
+ *
+ * See: SECURITY-FIX-3-ATOMIC-PLACEMENT-PLAN.md
  */
 export async function createDistributor(
-  distributorData: Partial<DistributorInsert>,
+  distributorData: Partial<DistributorInsert> & {
+    matrix_parent_id: string;
+    matrix_position: number;
+    matrix_depth: number;
+  },
   adminId: string
 ): Promise<{ success: boolean; distributor?: Distributor; error?: string }> {
   const serviceClient = createServiceClient();
@@ -135,46 +145,68 @@ export async function createDistributor(
     return { success: false, error: 'Email, first name, and last name are required' };
   }
 
-  // Check if email already exists
-  const { data: existing } = await serviceClient
-    .from('distributors')
-    .select('id')
-    .eq('email', distributorData.email)
-    .single();
-
-  if (existing) {
-    return { success: false, error: 'Email already exists' };
+  if (!distributorData.sponsor_id) {
+    return { success: false, error: 'Sponsor is required' };
   }
 
-  // Check if slug already exists (if provided)
-  if (distributorData.slug) {
-    const { data: existingSlug } = await serviceClient
-      .from('distributors')
-      .select('id')
-      .eq('slug', distributorData.slug)
-      .single();
-
-    if (existingSlug) {
-      return { success: false, error: 'Username already exists' };
-    }
+  if (
+    !distributorData.matrix_parent_id ||
+    distributorData.matrix_position === undefined ||
+    distributorData.matrix_depth === undefined
+  ) {
+    return { success: false, error: 'Matrix placement information is required' };
   }
 
-  // Create distributor
-  const { data, error } = await serviceClient
-    .from('distributors')
-    .insert({
-      ...distributorData,
-      status: 'active',
-    })
-    .select()
-    .single();
+  // Call atomic placement function
+  const { data, error } = await serviceClient.rpc('create_and_place_distributor', {
+    p_email: distributorData.email,
+    p_first_name: distributorData.first_name,
+    p_last_name: distributorData.last_name,
+    p_phone: distributorData.phone || null,
+    p_slug: distributorData.slug || null,
+    p_sponsor_id: distributorData.sponsor_id,
+    p_referrer_id: null, // Not in current schema
+    p_address_line1: distributorData.address_line1 || null,
+    p_address_line2: distributorData.address_line2 || null,
+    p_city: distributorData.city || null,
+    p_state: distributorData.state || null,
+    p_zip: distributorData.zip || null,
+    p_country: null, // Not in current schema
+    p_matrix_parent_id: distributorData.matrix_parent_id,
+    p_matrix_position: distributorData.matrix_position,
+    p_matrix_depth: distributorData.matrix_depth,
+  });
 
   if (error) {
-    console.error('Error creating distributor:', error);
+    console.error('[DistributorService] Atomic creation failed:', error);
     return { success: false, error: 'Failed to create distributor' };
   }
 
-  return { success: true, distributor: data };
+  // Parse result from function
+  const result = data?.[0];
+  if (!result || !result.success) {
+    return { success: false, error: result?.error || 'Unknown error' };
+  }
+
+  // Fetch created distributor
+  const { data: distributor, error: fetchError } = await serviceClient
+    .from('distributors')
+    .select('*')
+    .eq('id', result.distributor_id)
+    .single();
+
+  if (fetchError || !distributor) {
+    console.error('[DistributorService] Failed to fetch created distributor:', fetchError);
+    return { success: false, error: 'Distributor created but failed to fetch' };
+  }
+
+  console.log('[DistributorService] Distributor created atomically:', {
+    distributorId: result.distributor_id,
+    memberId: result.member_id,
+    matrixPosition: `${distributorData.matrix_parent_id}:${distributorData.matrix_position}`,
+  });
+
+  return { success: true, distributor };
 }
 
 /**
@@ -269,9 +301,17 @@ export async function activateDistributor(
  */
 export async function deleteDistributor(
   id: string,
-  adminId: string
+  adminId: string,
+  adminEmail: string
 ): Promise<{ success: boolean; error?: string }> {
   const serviceClient = createServiceClient();
+
+  // Get distributor data before deletion for audit log
+  const { data: distributor } = await serviceClient
+    .from('distributors')
+    .select('*')
+    .eq('id', id)
+    .single();
 
   const { error } = await serviceClient
     .from('distributors')
@@ -284,8 +324,31 @@ export async function deleteDistributor(
 
   if (error) {
     console.error('Error deleting distributor:', error);
+
+    // Log failed deletion
+    await logAdminAction({
+      adminId,
+      adminEmail,
+      action: 'DELETE_DISTRIBUTOR',
+      entityType: 'distributor',
+      entityId: id,
+      status: 'failure',
+      errorMessage: error.message,
+    });
+
     return { success: false, error: 'Failed to delete distributor' };
   }
+
+  // Log successful deletion
+  await logAdminAction({
+    adminId,
+    adminEmail,
+    action: 'DELETE_DISTRIBUTOR',
+    entityType: 'distributor',
+    entityId: id,
+    oldValue: distributor || undefined,
+    status: 'success',
+  });
 
   return { success: true };
 }
@@ -296,9 +359,17 @@ export async function deleteDistributor(
  */
 export async function permanentlyDeleteDistributor(
   id: string,
-  adminId: string
+  adminId: string,
+  adminEmail: string
 ): Promise<{ success: boolean; error?: string; downlineCount?: number }> {
   const serviceClient = createServiceClient();
+
+  // Get distributor data before deletion for audit log
+  const { data: distributor } = await serviceClient
+    .from('distributors')
+    .select('*')
+    .eq('id', id)
+    .single();
 
   // First, check if they have any downline
   const { data: downline, error: downlineError } = await serviceClient
@@ -312,13 +383,24 @@ export async function permanentlyDeleteDistributor(
   }
 
   if (downline && downline.length > 0) {
+    // Log blocked deletion attempt
+    await logAdminAction({
+      adminId,
+      adminEmail,
+      action: 'DELETE_DISTRIBUTOR',
+      entityType: 'distributor',
+      entityId: id,
+      status: 'failure',
+      errorMessage: `Cannot delete: ${downline.length} people in downline`,
+      metadata: { downlineCount: downline.length, permanent: true },
+    });
+
     return {
       success: false,
       error: `Cannot delete: This distributor has ${downline.length} people in their downline. Please reassign or delete them first.`,
       downlineCount: downline.length,
     };
   }
-
 
   // Permanently delete from database
   const { error } = await serviceClient
@@ -328,8 +410,33 @@ export async function permanentlyDeleteDistributor(
 
   if (error) {
     console.error('Error permanently deleting distributor:', error);
+
+    // Log failed permanent deletion
+    await logAdminAction({
+      adminId,
+      adminEmail,
+      action: 'DELETE_DISTRIBUTOR',
+      entityType: 'distributor',
+      entityId: id,
+      status: 'failure',
+      errorMessage: error.message,
+      metadata: { permanent: true },
+    });
+
     return { success: false, error: 'Failed to permanently delete distributor' };
   }
+
+  // Log successful permanent deletion
+  await logAdminAction({
+    adminId,
+    adminEmail,
+    action: 'DELETE_DISTRIBUTOR',
+    entityType: 'distributor',
+    entityId: id,
+    oldValue: distributor || undefined,
+    status: 'success',
+    metadata: { permanent: true },
+  });
 
   return { success: true };
 }

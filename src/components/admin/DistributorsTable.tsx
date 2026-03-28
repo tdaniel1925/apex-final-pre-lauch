@@ -87,8 +87,8 @@ export default function DistributorsTable({
   return (
     <div className="bg-white rounded-lg shadow overflow-hidden">
       {/* Filters */}
-      <div className="p-3 border-b border-gray-200">
-        <div className="flex gap-2">
+      <div className="p-3 lg:p-4 border-b border-gray-200">
+        <div className="flex flex-col sm:flex-row gap-2">
           {/* Search */}
           <form onSubmit={handleSearch} className="flex-1 relative">
             <input
@@ -96,7 +96,7 @@ export default function DistributorsTable({
               placeholder="Search by name, email, or username..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full px-3 py-1.5 pr-8 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 sm:py-1.5 pr-8 text-xs sm:text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent min-h-[44px] sm:min-h-0"
             />
             {isSearching && (
               <div className="absolute right-2 top-1/2 -translate-y-1/2">
@@ -142,7 +142,7 @@ export default function DistributorsTable({
           <select
             value={status}
             onChange={(e) => handleStatusChange(e.target.value)}
-            className="px-3 py-1.5 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent min-w-[120px]"
+            className="px-3 py-2 sm:py-1.5 text-xs sm:text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent min-w-[100px] sm:min-w-[120px] min-h-[44px] sm:min-h-0"
           >
             <option value="all">All Status</option>
             <option value="active">Active</option>
@@ -159,35 +159,35 @@ export default function DistributorsTable({
 
       {/* Table */}
       {distributors.length === 0 ? (
-        <div className="p-8 text-center text-gray-500">
-          <p className="text-sm font-semibold mb-1">No distributors found</p>
-          <p className="text-xs">Try adjusting your search or filters</p>
+        <div className="p-6 sm:p-8 text-center text-gray-500">
+          <p className="text-xs sm:text-sm font-semibold mb-1">No distributors found</p>
+          <p className="text-[10px] sm:text-xs">Try adjusting your search or filters</p>
         </div>
       ) : (
         <>
           <div className="overflow-x-auto">
-            <table className="w-full">
+            <table className="w-full min-w-[640px]">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  <th className="px-2 sm:px-3 py-2 text-left text-[10px] sm:text-xs font-medium text-gray-500 uppercase">
                     Name
                   </th>
-                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  <th className="px-2 sm:px-3 py-2 text-left text-[10px] sm:text-xs font-medium text-gray-500 uppercase hidden md:table-cell">
                     Email
                   </th>
-                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  <th className="px-2 sm:px-3 py-2 text-left text-[10px] sm:text-xs font-medium text-gray-500 uppercase">
                     Username
                   </th>
-                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  <th className="px-2 sm:px-3 py-2 text-left text-[10px] sm:text-xs font-medium text-gray-500 uppercase">
                     Matrix
                   </th>
-                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  <th className="px-2 sm:px-3 py-2 text-left text-[10px] sm:text-xs font-medium text-gray-500 uppercase">
                     Status
                   </th>
-                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  <th className="px-2 sm:px-3 py-2 text-left text-[10px] sm:text-xs font-medium text-gray-500 uppercase hidden sm:table-cell">
                     Joined
                   </th>
-                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  <th className="px-2 sm:px-3 py-2 text-left text-[10px] sm:text-xs font-medium text-gray-500 uppercase">
                     Actions
                   </th>
                 </tr>
@@ -195,48 +195,48 @@ export default function DistributorsTable({
               <tbody className="bg-white divide-y divide-gray-200">
                 {distributors.map((dist) => (
                   <tr key={dist.id} className="hover:bg-gray-50">
-                    <td className="px-3 py-2 whitespace-nowrap">
-                      <div className="text-xs font-medium text-gray-900">
+                    <td className="px-2 sm:px-3 py-2 whitespace-nowrap">
+                      <div className="text-[10px] sm:text-xs font-medium text-gray-900">
                         {dist.first_name} {dist.last_name}
                       </div>
                       {dist.company_name && (
-                        <div className="text-xs text-gray-500">{dist.company_name}</div>
+                        <div className="text-[10px] sm:text-xs text-gray-500 hidden lg:block">{dist.company_name}</div>
                       )}
                     </td>
-                    <td className="px-3 py-2 whitespace-nowrap">
-                      <div className="text-xs text-gray-500">{dist.email}</div>
+                    <td className="px-2 sm:px-3 py-2 whitespace-nowrap hidden md:table-cell">
+                      <div className="text-[10px] sm:text-xs text-gray-500">{dist.email}</div>
                     </td>
-                    <td className="px-3 py-2 whitespace-nowrap">
-                      <div className="text-xs text-gray-900">@{dist.slug}</div>
+                    <td className="px-2 sm:px-3 py-2 whitespace-nowrap">
+                      <div className="text-[10px] sm:text-xs text-gray-900">@{dist.slug}</div>
                     </td>
-                    <td className="px-3 py-2 whitespace-nowrap">
-                      <div className="text-xs">
+                    <td className="px-2 sm:px-3 py-2 whitespace-nowrap">
+                      <div className="text-[10px] sm:text-xs">
                         <span className="font-semibold text-blue-600">
                           Rep #{dist.rep_number ?? 'N/A'}
                         </span>
-                        <span className="text-gray-500 ml-1">
+                        <span className="text-gray-500 ml-1 hidden sm:inline">
                           L{dist.matrix_depth || 0}
                         </span>
                       </div>
                     </td>
-                    <td className="px-3 py-2 whitespace-nowrap">
+                    <td className="px-2 sm:px-3 py-2 whitespace-nowrap">
                       <span
-                        className={`px-1.5 py-0.5 text-xs font-semibold rounded-full ${getStatusBadge(
+                        className={`px-1 sm:px-1.5 py-0.5 text-[10px] sm:text-xs font-semibold rounded-full ${getStatusBadge(
                           dist.status || 'active'
                         )}`}
                       >
                         {dist.status || 'active'}
                       </span>
                     </td>
-                    <td className="px-3 py-2 whitespace-nowrap">
-                      <div className="text-xs text-gray-500">
+                    <td className="px-2 sm:px-3 py-2 whitespace-nowrap hidden sm:table-cell">
+                      <div className="text-[10px] sm:text-xs text-gray-500">
                         {new Date(dist.created_at).toLocaleDateString()}
                       </div>
                     </td>
-                    <td className="px-3 py-2 whitespace-nowrap text-xs">
+                    <td className="px-2 sm:px-3 py-2 whitespace-nowrap text-[10px] sm:text-xs">
                       <a
                         href={`/admin/distributors/${dist.id}`}
-                        className="text-blue-600 hover:text-blue-900 font-medium"
+                        className="text-blue-600 hover:text-blue-900 font-medium inline-block py-1 px-2 min-h-[32px] flex items-center"
                       >
                         View
                       </a>
@@ -249,21 +249,23 @@ export default function DistributorsTable({
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <div className="px-3 py-2 border-t border-gray-200 flex items-center justify-between">
+            <div className="px-3 lg:px-4 py-3 border-t border-gray-200 flex items-center justify-between gap-2">
               <button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
-                className="px-3 py-1.5 border border-gray-300 rounded-md text-xs font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-3 sm:px-4 py-2 border border-gray-300 rounded-md text-xs sm:text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px]"
               >
-                Previous
+                <span className="hidden sm:inline">Previous</span>
+                <span className="sm:hidden">Prev</span>
               </button>
-              <span className="text-xs text-gray-700">
-                Page {currentPage} of {totalPages}
+              <span className="text-xs sm:text-sm text-gray-700 px-2">
+                <span className="hidden sm:inline">Page </span>{currentPage}<span className="hidden sm:inline"> of {totalPages}</span>
+                <span className="sm:hidden">/{totalPages}</span>
               </span>
               <button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className="px-3 py-1.5 border border-gray-300 rounded-md text-xs font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-3 sm:px-4 py-2 border border-gray-300 rounded-md text-xs sm:text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px]"
               >
                 Next
               </button>

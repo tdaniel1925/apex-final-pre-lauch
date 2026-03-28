@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hierarchy Canvas — Node Detail Panel Open - Exported from UXMagic Copilot">
+    <title>Hierarchy Canvas — Node Detail Panel Open</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['var(--font-heading-name)', 'sans-serif'],
+            body: ['var(--font-body-name)', 'sans-serif'],
+            mono: ['IBM Plex Mono', 'monospace'],
+          },
+          spacing: {
+            base: 'var(--space-base)',
+          },
+          borderRadius: {
+            small: 'var(--radius-small)',
+            large: 'var(--radius-large)',
+          },
+          boxShadow: {
+            custom: 'var(--shadow-custom)',
+            'custom-hover': 'var(--shadow-custom-hover)',
+          },
+          colors: {
+            slate: {
+              50: '#f8fafc',
+              100: '#f1f5f9',
+              200: '#e2e8f0',
+              300: '#cbd5e1',
+              400: '#94a3b8',
+              500: '#64748b',
+              600: '#475569',
+              700: '#334155',
+              800: '#1e293b',
+              900: '#0f172a',
+            },
+          },
+        }
+      }
+    }
+  
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Additional meta tags for better SEO and performance -->
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+<div style="height: auto; min-height: 100%; display: flex; flex-direction: column; background: #f8fafc;">
+
+  <!-- FROSTED TOP BAR -->
+  <header class="frosted-bar flex-shrink-0 flex items-center justify-between px-4" style="height: 48px; z-index: 50;">
+    <div class="flex items-center gap-4">
+      <div class="flex items-center gap-2 mr-2">
+        <div class="w-7 h-7 rounded-small flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #e91e63, #ad1457);">
+          <svg width="14" height="14" viewBox="0 0 20 20" fill="none">
+            <rect x="2" y="2" width="7" height="7" rx="1" fill="white" opacity="0.9"></rect>
+            <rect x="11" y="2" width="7" height="7" rx="1" fill="white" opacity="0.7"></rect>
+            <rect x="2" y="11" width="7" height="7" rx="1" fill="white" opacity="0.7"></rect>
+            <rect x="11" y="11" width="7" height="7" rx="1" fill="white" opacity="0.5"></rect>
+          </svg>
+        </div>
+        <div>
+          <span class="font-heading text-slate-900 font-bold text-sm tracking-wide">NexaMLM</span>
+          <span class="text-xs font-semibold ml-1.5" style="color: #e91e63; letter-spacing: 0.5px;">HIERARCHY</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-1">
+        <a href="/api/copilot/prototype/3d98be98-c642-435e-afec-80f4355dfa51/hierarchy-canvas-default-view" class="flex items-center gap-1.5 px-2.5 py-1 rounded-small text-xs font-medium text-slate-500 hover:text-slate-800 transition-colors">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M12 2L2 7l10 5 10-5-10-5z" opacity="0.5"></path><path d="M2 17l10 5 10-5" opacity="0.5"></path></svg>
+          Canvas
+        </a>
+        <a href="/api/copilot/prototype/3d98be98-c642-435e-afec-80f4355dfa51/hierarchy-canvas-node-detail-panel-open" class="flex items-center gap-1.5 px-2.5 py-1 rounded-small text-xs font-semibold" style="background: #eff6ff; color: #3b82f6; border: 1px solid #bfdbfe;">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+          Node Detail
+        </a>
+        <a href="/api/copilot/prototype/3d98be98-c642-435e-afec-80f4355dfa51/full-profile-rep-detail-page" class="flex items-center gap-1.5 px-2.5 py-1 rounded-small text-xs font-medium text-slate-500 hover:text-slate-800 transition-colors">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          Rep Profile
+        </a>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <a href="/api/copilot/prototype/3d98be98-c642-435e-afec-80f4355dfa51/search-filter-overlay" class="flex items-center gap-2 canvas-search px-3 py-1.5" style="min-width: 260px; cursor: pointer;">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <span style="color: #64748b; font-size: 0.75rem;">Search nodes, reps, regions...</span>
+        <div class="ml-auto flex items-center gap-1">
+          <kbd class="px-1.5 py-0.5 rounded text-xs font-mono" style="background: #e2e8f0; color: #64748b; font-size: 0.6rem; border: 1px solid #cbd5e1;">⌘K</kbd>
+        </div>
+      </a>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <div class="flex items-center gap-1.5 mr-1">
+        <button class="tier-pill" style="background: #fce7f3; color: #db2777; border: 1px solid #fbcfe8;">
+          <span class="w-1.5 h-1.5 rounded-full" style="background: #e91e63;"></span>National
+        </button>
+        <button class="tier-pill" style="background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe;">
+          <span class="w-1.5 h-1.5 rounded-full" style="background: #3b82f6;"></span>Regional
+        </button>
+        <button class="tier-pill" style="background: #fffbeb; color: #d97706; border: 1px solid #fde68a;">
+          <span class="w-1.5 h-1.5 rounded-full" style="background: #f59e0b;"></span>District
+        </button>
+        <button class="tier-pill" style="background: #ecfdf5; color: #059669; border: 1px solid #a7f3d0;">
+          <span class="w-1.5 h-1.5 rounded-full" style="background: #10b981;"></span>Field
+        </button>
+      </div>
+      <div class="w-px h-5" style="background: #e2e8f0;"></div>
+      <div class="flex items-center gap-1">
+        <button class="ctrl-btn" title="Zoom Out">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+        </button>
+        <div class="zoom-indicator px-2.5 py-1">
+          <span class="font-mono-val text-xs font-bold" style="color: #64748b;">100%</span>
+        </div>
+        <button class="ctrl-btn" title="Zoom In">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+        </button>
+      </div>
+      <div class="w-px h-5" style="background: #e2e8f0;"></div>
+      <div class="flex items-center gap-1">
+        <button class="ctrl-btn active" title="Hierarchy View">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+        </button>
+        <button class="ctrl-btn" title="Radial View">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="4"></circle></svg>
+        </button>
+      </div>
+      <div class="w-px h-5" style="background: #e2e8f0;"></div>
+      <button class="ctrl-btn" title="Export">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+      </button>
+      <div class="flex items-center gap-1.5 px-2 py-1 rounded-small" style="background: #ecfdf5; border: 1px solid #a7f3d0;">
+        <div class="w-1.5 h-1.5 rounded-full bg-emerald-500" style="animation: pulse 2s infinite;"></div>
+        <span class="text-xs font-semibold" style="color: #059669;">Live</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- CANVAS AREA -->
+  <div class="canvas-area dot-grid flex-1" style="position: relative; min-height: 900px;">
+
+    <!-- SVG CONNECTIONS -->
+    <svg style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;">
+      <!-- National → Regional West (highlighted - selected path) -->
+      <path class="connection-path highlighted" d="M 460,148 C 460,200 180,220 180,272"></path>
+      <!-- National → Regional Central (dimmed) -->
+      <path class="connection-path dimmed" d="M 460,148 C 460,200 460,220 460,272"></path>
+      <!-- National → Regional East (dimmed) -->
+      <path class="connection-path dimmed" d="M 460,148 C 460,200 740,220 740,272"></path>
+
+      <!-- Regional West → District connections (highlighted) -->
+      <path class="connection-path highlighted" d="M 180,352 C 180,400 60,420 60,472"></path>
+      <path class="connection-path highlighted" d="M 180,352 C 180,400 200,420 200,472"></path>
+      <path class="connection-path highlighted" d="M 180,352 C 180,400 340,420 340,472"></path>
+
+      <!-- Regional Central → District (dimmed) -->
+      <path class="connection-path dimmed" d="M 460,352 C 460,400 420,420 420,472"></path>
+      <path class="connection-path dimmed" d="M 460,352 C 460,400 530,420 530,472"></path>
+
+      <!-- Regional East → District (dimmed) -->
+      <path class="connection-path dimmed" d="M 740,352 C 740,400 680,420 680,472"></path>
+      <path class="connection-path dimmed" d="M 740,352 C 740,400 810,420 810,472"></path>
+
+      <!-- District → Field (dimmed) -->
+      <path class="connection-path dimmed" d="M 60,552 C 60,590 40,610 40,650"></path>
+      <path class="connection-path dimmed" d="M 60,552 C 60,590 80,610 80,650"></path>
+      <path class="connection-path dimmed" d="M 200,552 C 200,590 180,610 180,650"></path>
+      <path class="connection-path dimmed" d="M 200,552 C 200,590 220,610 220,650"></path>
+      <path class="connection-path dimmed" d="M 340,552 C 340,590 320,610 320,650"></path>
+      <path class="connection-path dimmed" d="M 340,552 C 340,590 360,610 360,650"></path>
+      <path class="connection-path dimmed" d="M 420,552 C 420,590 420,610 420,650"></path>
+      <path class="connection-path dimmed" d="M 530,552 C 530,590 530,610 530,650"></path>
+      <path class="connection-path dimmed" d="M 680,552 C 680,590 660,610 660,650"></path>
+      <path class="connection-path dimmed" d="M 680,552 C 680,590 700,610 700,650"></path>
+      <path class="connection-path dimmed" d="M 810,552 C 810,590 810,610 810,650"></path>
+    </svg>
+
+    <!-- ============================================================ -->
+    <!-- TIER 1: NATIONAL DIRECTOR -->
+    <!-- ============================================================ -->
+    <div class="hierarchy-node node-dimmed" style="left: 360px; top: 60px; width: 200px; z-index: 10;">
+      <div class="node-card tier-national">
+        <div class="px-3 py-2.5">
+          <div class="flex items-center gap-2 mb-2">
+            <div class="relative flex-shrink-0">
+              <div class="w-9 h-9 rounded-full overflow-hidden" style="border: 2px solid #fce7f3;">
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&amp;h=80&amp;fit=crop&amp;crop=face" alt="National Director" class="w-full h-full object-cover">
+              </div>
+              <div class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full status-dot-online"></div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="text-slate-900 font-semibold text-xs truncate" style="font-size: 0.72rem;">James Whitfield</div>
+              <div class="font-mono-val text-xs truncate" style="color: #db2777; font-size: 0.6rem;">#JW-00001</div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between mb-1.5">
+            <span class="text-xs font-bold uppercase tracking-wide" style="color: #db2777; font-size: 0.58rem;">National Director</span>
+            <span class="collapsed-badge">18,492 reps</span>
+          </div>
+          <div class="grid grid-cols-2 gap-1">
+            <div style="background: #f8fafc; border-radius: 4px; padding: 3px 6px; border: 1px solid #f1f5f9;">
+              <div class="font-mono-val text-slate-800 font-bold" style="font-size: 0.65rem;">$284K</div>
+              <div style="color: #64748b; font-size: 0.55rem;">Monthly BV</div>
+            </div>
+            <div style="background: #f8fafc; border-radius: 4px; padding: 3px 6px; border: 1px solid #f1f5f9;">
+              <div class="font-mono-val text-slate-800 font-bold" style="font-size: 0.65rem;">$48.2K</div>
+              <div style="color: #64748b; font-size: 0.55rem;">Commission</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- TIER 2: REGIONAL MANAGERS -->
+    <!-- ============================================================ -->
+
+    <!-- Regional West — SELECTED NODE -->
+    <div class="hierarchy-node" style="left: 80px; top: 272px; width: 200px; z-index: 20;">
+      <div class="node-card tier-regional selected-node">
+        <div class="px-3 py-2.5">
+          <div class="flex items-center gap-2 mb-2">
+            <div class="relative flex-shrink-0">
+              <div class="w-8 h-8 rounded-full overflow-hidden" style="border: 2px solid #3b82f6;">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&amp;h=80&amp;fit=crop&amp;crop=face" alt="Regional West" class="w-full h-full object-cover">
+              </div>
+              <div class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full status-dot-online"></div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="text-slate-900 font-semibold truncate" style="font-size: 0.7rem;">Rachel Kim</div>
+              <div class="font-mono-val truncate" style="color: #3b82f6; font-size: 0.58rem;">#RK-11029</div>
+            </div>
+            <!-- Selected indicator -->
+            <div class="flex-shrink-0 w-4 h-4 rounded-full flex items-center justify-center" style="background: #eff6ff; border: 1px solid #bfdbfe;">
+              <div class="w-1.5 h-1.5 rounded-full" style="background: #3b82f6;"></div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between mb-1.5">
+            <span class="font-bold uppercase tracking-wide" style="color: #3b82f6; font-size: 0.56rem;">Regional · West</span>
+            <span class="collapsed-badge">6,240 reps</span>
+          </div>
+          <div class="grid grid-cols-2 gap-1">
+            <div style="background: #eff6ff; border-radius: 4px; padding: 3px 6px; border: 1px solid #bfdbfe;">
+              <div class="font-mono-val text-slate-900 font-bold" style="font-size: 0.63rem;">$94K</div>
+              <div style="color: #64748b; font-size: 0.53rem;">Team BV</div>
+            </div>
+            <div style="background: #eff6ff; border-radius: 4px; padding: 3px 6px; border: 1px solid #bfdbfe;">
+              <div class="font-mono-val text-slate-900 font-bold" style="font-size: 0.63rem;">$16.8K</div>
+              <div style="color: #64748b; font-size: 0.53rem;">Comm.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Regional Central — dimmed -->
+    <div class="hierarchy-node node-dimmed" style="left: 360px; top: 272px; width: 200px; z-index: 10;">
+      <div class="node-card tier-regional">
+        <div class="px-3 py-2.5">
+          <div class="flex items-center gap-2 mb-2">
+            <div class="relative flex-shrink-0">
+              <div class="w-8 h-8 rounded-full overflow-hidden" style="border: 2px solid #bfdbfe;">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&amp;h=80&amp;fit=crop&amp;crop=face" alt="Regional Central" class="w-full h-full object-cover">
+              </div>
+              <div class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full status-dot-online"></div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="text-slate-900 font-semibold truncate" style="font-size: 0.7rem;">Marcus Johnson</div>
+              <div class="font-mono-val truncate" style="color: #3b82f6; font-size: 0.58rem;">#MJ-48291</div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between mb-1.5">
+            <span class="font-bold uppercase tracking-wide" style="color: #3b82f6; font-size: 0.56rem;">Regional · Central</span>
+            <span class="collapsed-badge">7,180 reps</span>
+          </div>
+          <div class="grid grid-cols-2 gap-1">
+            <div style="background: #f8fafc; border-radius: 4px; padding: 3px 6px; border: 1px solid #f1f5f9;">
+              <div class="font-mono-val text-slate-800 font-bold" style="font-size: 0.63rem;">$108K</div>
+              <div style="color: #64748b; font-size: 0.53rem;">Team BV</div>
+            </div>
+            <div style="background: #f8fafc; border-radius: 4px; padding: 3px 6px; border: 1px solid #f1f5f9;">
+              <div class="font-mono-val text-slate-800 font-bold" style="font-size: 0.63rem;">$19.4K</div>
+              <div style="color: #64748b; font-size: 0.53rem;">Comm.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Regional East — dimmed -->
+    <div class="hierarchy-node node-dimmed" style="left: 640px; top: 272px; width: 200px; z-index: 10;">
+      <div class="node-card tier-regional">
+        <div class="px-3 py-2.5">
+          <div class="flex items-center gap-2 mb-2">
+            <div class="relative flex-shrink-0">
+              <div class="w-8 h-8 rounded-full overflow-hidden" style="border: 2px solid #bfdbfe;">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&amp;h=80&amp;fit=crop&amp;crop=face" alt="Regional East" class="w-full h-full object-cover">
+              </div>
+              <div class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full status-dot-away"></div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="text-slate-900 font-semibold truncate" style="font-size: 0.7rem;">Tom Bradley</div>
+              <div class="font-mono-val truncate" style="color: #3b82f6; font-size: 0.58rem;">#TB-67341</div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between mb-1.5">
+            <span class="font-bold uppercase tracking-wide" style="color: #3b82f6; font-size: 0.56rem;">Regional · East</span>
+            <span class="collapsed-badge">5,072 reps</span>
+          </div>
+          <div class="grid grid-cols-2 gap-1">
+            <div style="background: #f8fafc; border-radius: 4px; padding: 3px 6px; border: 1px solid #f1f5f9;">
+              <div class="font-mono-val text-slate-800 font-bold" style="font-size: 0.63rem;">$82K</div>
+              <div style="color: #64748b; font-size: 0.53rem;">Team BV</div>
+            </div>
+            <div style="background: #f8fafc; border-radius: 4px; padding: 3px 6px; border: 1px solid #f1f5f9;">
+              <div class="font-mono-val text-slate-800 font-bold" style="font-size: 0.63rem;">$14.2K</div>
+              <div style="color: #64748b; font-size: 0.53rem;">Comm.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- TIER 3: DISTRICT LEADS (highlighted under West) -->
+    <!-- ============================================================ -->
+
+    <!-- District NW — highlighted -->
+    <div class="hierarchy-node" style="left: 0px; top: 472px; width: 175px; z-index: 10;">
+      <div class="node-card tier-district" style="border: 1px solid #93c5fd; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);">
+        <div class="px-2.5 py-2">
+          <div class="flex items-center gap-1.5 mb-1.5">
+            <div class="relative flex-shrink-0">
+              <div class="w-7 h-7 rounded-full overflow-hidden" style="border: 1.5px solid #f59e0b;">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=60&amp;h=60&amp;fit=crop&amp;crop=face" alt="" class="w-full h-full object-cover">
+              </div>
+              <div class="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full status-dot-online"></div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="text-slate-900 font-semibold truncate" style="font-size: 0.67rem;">Lisa Torres</div>
+              <div class="font-mono-val truncate" style="color: #d97706; font-size: 0.56rem;">#LT-58204</div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="font-bold uppercase" style="color: #d97706; font-size: 0.54rem;">District · NW</span>
+            <span class="collapsed-badge">847 reps</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- District WC — highlighted -->
+    <div class="hierarchy-node" style="left: 140px; top: 472px; width: 175px; z-index: 10;">
+      <div class="node-card tier-district" style="border: 1px solid #93c5fd; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);">
+        <div class="px-2.5 py-2">
+          <div class="flex items-center gap-1.5 mb-1.5">
+            <div class="relative flex-shrink-0">
+              <div class="w-7 h-7 rounded-full overflow-hidden" style="border: 1.5px solid #f59e0b;">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=60&amp;h=60&amp;fit=crop&amp;crop=face" alt="" class="w-full h-full object-cover">
+              </div>
+              <div class="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full status-dot-online"></div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="text-slate-900 font-semibold truncate" style="font-size: 0.67rem;">David Chen</div>
+              <div class="font-mono-val truncate" style="color: #d97706; font-size: 0.56rem;">#DC-72034</div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="font-bold uppercase" style="color: #d97706; font-size: 0.54rem;">District · WC</span>
+            <span class="collapsed-badge">1,240 reps</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- District SW — highlighted -->
+    <div class="hierarchy-node" style="left: 280px; top: 472px; width: 175px; z-index: 10;">
+      <div class="node-card tier-district" style="border: 1px solid #93c5fd; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);">
+        <div class="px-2.5 py-2">
+          <div class="flex items-center gap-1.5 mb-1.5">
+            <div class="relative flex-shrink-0">
+              <div class="w-7 h-7 rounded-full overflow-hidden" style="border: 1.5px solid #f59e0b;">
+                <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=60&amp;h=60&amp;fit=crop&amp;crop=face" alt="" class="w-full h-full object-cover">
+              </div>
+              <div class="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full status-dot-away"></div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="text-slate-900 font-semibold truncate" style="font-size: 0.67rem;">Jennifer Park</div>
+              <div class="font-mono-val truncate" style="color: #d97706; font-size: 0.56rem;">#JP-91847</div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="font-bold uppercase" style="color: #d97706; font-size: 0.54rem;">District · SW</span>
+            <span class="collapsed-badge">920 reps</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- District CN — dimmed -->
+    <div class="hierarchy-node node-dimmed" style="left: 360px; top: 472px; width: 175px; z-index: 10;">
+      <div class="node-card tier-district">
+        <div class="px-2.5 py-2">
+          <div class="flex items-center gap-1.5 mb-1.5">
+            <div class="relative flex-shrink-0">
+              <div class="w-7 h-7 rounded-full overflow-hidden" style="border: 1.5px solid #fde68a;">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=60&amp;h=60&amp;fit=crop&amp;crop=face" alt="" class="w-full h-full object-cover">
+              </div>
+              <div class="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full status-dot-online"></div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="text-slate-900 font-semibold truncate" style="font-size: 0.67rem;">Sarah Mitchell</div>
+              <div class="font-mono-val truncate" style="color: #d97706; font-size: 0.56rem;">#SM-30192</div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="font-bold uppercase" style="color: #d97706; font-size: 0.54rem;">District · CN</span>
+            <span class="collapsed-badge">3,420 reps</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- District CS — dimmed -->
+    <div class="hierarchy-node node-dimmed" style="left: 480px; top: 472px; width: 175px; z-index: 10;">
+      <div class="node-card tier-district">
+        <div class="px-2.5 py-2">
+          <div class="flex items-center gap-1.5 mb-1.5">
+            <div class="relative flex-shrink-0">
+              <div class="w-7 h-7 rounded-full overflow-hidden" style="border: 1.5px solid #fde68a;">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=60&amp;h=60&amp;fit=crop&amp;crop=face" alt="" class="w-full h-full object-cover">
+              </div>
+              <div class="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full status-dot-online"></div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="text-slate-900 font-semibold truncate" style="font-size: 0.67rem;">Alex Rivera</div>
+              <div class="font-mono-val truncate" style="color: #d97706; font-size: 0.56rem;">#AR-84920</div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="font-bold uppercase" style="color: #d97706; font-size: 0.54rem;">District · CS</span>
+            <span class="collapsed-badge">3,760 reps</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- District EN — dimmed -->
+    <div class="hierarchy-node node-dimmed" style="left: 620px; top: 472px; width: 175px; z-index: 10;">
+      <div class="node-card tier-district">
+        <div class="px-2.5 py-2">
+          <div class="flex items-center gap-1.5 mb-1.5">
+            <div class="relative flex-shrink-0">
+              <div class="w-7 h-7 rounded-full" style="border: 1.5px solid #fde68a; background: #f1f5f9; display: flex; align-items: center; justify-content: center;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              </div>
+              <div class="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full status-dot-offline"></div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="text-slate-900 font-semibold truncate" style="font-size: 0.67rem;">Greg Harris</div>
+              <div class="font-mono-val truncate" style="color: #d97706; font-size: 0.56rem;">#GH-20481</div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="font-bold uppercase" style="color: #d97706; font-size: 0.54rem;">District · EN</span>
+            <span class="collapsed-badge">2,180 reps</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- District ES — dimmed -->
+    <div class="hierarchy-node node-dimmed" style="left: 760px; top: 472px; width: 175px; z-index: 10;">
+      <div class="node-card tier-district">
+        <div class="px-2.5 py-2">
+          <div class="flex items-center gap-1.5 mb-1.5">
+            <div class="relative flex-shrink-0">
+              <div class="w-7 h-7 rounded-full overflow-hidden" style="border: 1.5px solid #fde68a;">
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=60&amp;h=60&amp;fit=crop&amp;crop=face" alt="" class="w-full h-full object-cover">
+              </div>
+              <div class="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full status-dot-online"></div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="text-slate-900 font-semibold truncate" style="font-size: 0.67rem;">Mark Stevens</div>
+              <div class="font-mono-val truncate" style="color: #d97706; font-size: 0.56rem;">#MS-39201</div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="font-bold uppercase" style="color: #d97706; font-size: 0.54rem;">District · ES</span>
+            <span class="collapsed-badge">2,892 reps</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- TIER 4: FIELD REPS (dimmed) -->
+    <!-- ============================================================ -->
+    <div class="hierarchy-node node-dimmed" style="left: 10px; top: 650px; width: 130px; z-index: 10;">
+      <div class="node-card tier-field">
+        <div class="px-2 py-1.5">
+          <div class="flex items-center gap-1.5">
+            <div class="w-6 h-6 rounded-full overflow-hidden flex-shrink-0" style="border: 1.5px solid #a7f3d0;">
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&amp;h=50&amp;fit=crop&amp;crop=face" alt="" class="w-full h-full object-cover">
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="text-slate-900 font-semibold truncate" style="font-size: 0.62rem;">Amy Wilson</div>
+              <div class="font-mono-val" style="color: #059669; font-size: 0.52rem;">#AW-33201</div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between mt-1">
+            <span style="color: #059669; font-size: 0.5rem; font-weight: 700; text-transform: uppercase;">Field Rep</span>
+            <span class="font-mono-val text-slate-800 font-bold" style="font-size: 0.58rem;">210 BV</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hierarchy-node node-dimmed" style="left: 155px; top: 650px; width: 130px; z-index: 10;">
+      <div class="node-card tier-field">
+        <div class="px-2 py-1.5">
+          <div class="flex items-center gap-1.5">
+            <div class="w-6 h-6 rounded-full overflow-hidden flex-shrink-0" style="border: 1.5px solid #a7f3d0;">
+              <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=50&amp;h=50&amp;fit=crop&amp;crop=face" alt="" class="w-full h-full object-cover">
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="text-slate-900 font-semibold truncate" style="font-size: 0.62rem;">Carlos Mendez</div>
+              <div class="font-mono-val" style="color: #059669; font-size: 0.52rem;">#CM-44820</div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between mt-1">
+            <span style="color: #059669; font-size: 0.5rem; font-weight: 700; text-transform: uppercase;">Field Rep</span>
+            <span class="font-mono-val text-slate-800 font-bold" style="font-size: 0.58rem;">180 BV</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hierarchy-node node-dimmed" style="left: 300px; top: 650px; width: 130px; z-index: 10;">
+      <div class="node-card tier-field">
+        <div class="px-2 py-1.5">
+          <div class="flex items-center gap-1.5">
+            <div class="w-6 h-6 rounded-full overflow-hidden flex-shrink-0" style="border: 1.5px solid #a7f3d0;">
+              <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=50&amp;h=50&amp;fit=crop&amp;crop=face" alt="" class="w-full h-full object-cover">
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="text-slate-900 font-semibold truncate" style="font-size: 0.62rem;">Priya Nair</div>
+              <div class="font-mono-val" style="color: #059669; font-size: 0.52rem;">#PN-55102</div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between mt-1">
+            <span style="color: #059669; font-size: 0.5rem; font-weight: 700; text-transform: uppercase;">Field Rep</span>
+            <span class="font-mono-val text-slate-800 font-bold" style="font-size: 0.58rem;">340 BV</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tier Labels -->
+    <div style="position: absolute; left: 12px; top: 88px; z-index: 5;">
+      <div style="position: absolute; top: 0; left: 0; display: flex; align-items: center; gap: 5px;">
+        <div style="width: 2px; height: 80px; background: #fbcfe8; border-radius: 1px;"></div>
+        <span style="color: #db2777; font-size: 0.55rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; writing-mode: vertical-rl; transform: rotate(180deg);">Tier 1</span>
+      </div>
+      <div style="position: absolute; top: 212px; left: 0; display: flex; align-items: center; gap: 5px;">
+        <div style="width: 2px; height: 80px; background: #bfdbfe; border-radius: 1px;"></div>
+        <span style="color: #2563eb; font-size: 0.55rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; writing-mode: vertical-rl; transform: rotate(180deg);">Tier 2</span>
+      </div>
+      <div style="position: absolute; top: 412px; left: 0; display: flex; align-items: center; gap: 5px;">
+        <div style="width: 2px; height: 80px; background: #fde68a; border-radius: 1px;"></div>
+        <span style="color: #d97706; font-size: 0.55rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; writing-mode: vertical-rl; transform: rotate(180deg);">Tier 3</span>
+      </div>
+      <div style="position: absolute; top: 590px; left: 0; display: flex; align-items: center; gap: 5px;">
+        <div style="width: 2px; height: 80px; background: #a7f3d0; border-radius: 1px;"></div>
+        <span style="color: #059669; font-size: 0.55rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; writing-mode: vertical-rl; transform: rotate(180deg);">Tier 4</span>
+      </div>
+    </div>
+
+    <!-- Minimap -->
+    <div class="minimap" style="position: absolute; bottom: 20px; left: 20px; width: 160px; height: 90px; z-index: 50; overflow: hidden;">
+      <div style="padding: 5px 8px 3px; border-bottom: 1px solid #e2e8f0;">
+        <span style="color: #64748b; font-size: 0.55rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Minimap</span>
+      </div>
+      <div style="position: relative; width: 100%; height: 66px; background: #f1f5f9;">
+        <div class="mini-node" style="left: 72px; top: 4px; width: 14px; height: 7px; background: #db2777;"></div>
+        <div class="mini-node" style="left: 20px; top: 16px; width: 14px; height: 7px; background: #3b82f6; box-shadow: 0 0 4px rgba(59, 130, 246, 0.4);"></div>
+        <div class="mini-node" style="left: 72px; top: 16px; width: 14px; height: 7px; background: #93c5fd;"></div>
+        <div class="mini-node" style="left: 120px; top: 16px; width: 14px; height: 7px; background: #93c5fd;"></div>
+        <div class="mini-node" style="left: 4px; top: 30px; width: 9px; height: 5px; background: #f59e0b;"></div>
+        <div class="mini-node" style="left: 16px; top: 30px; width: 9px; height: 5px; background: #f59e0b;"></div>
+        <div class="mini-node" style="left: 28px; top: 30px; width: 9px; height: 5px; background: #f59e0b;"></div>
+        <div class="mini-node" style="left: 62px; top: 30px; width: 9px; height: 5px; background: #fcd34d;"></div>
+        <div class="mini-node" style="left: 74px; top: 30px; width: 9px; height: 5px; background: #fcd34d;"></div>
+        <div class="mini-node" style="left: 108px; top: 30px; width: 9px; height: 5px; background: #fcd34d;"></div>
+        <div class="mini-node" style="left: 120px; top: 30px; width: 9px; height: 5px; background: #fcd34d;"></div>
+        <svg style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;">
+          <line x1="79" y1="7" x2="27" y2="16" stroke="#93c5fd" stroke-width="1"></line>
+          <line x1="79" y1="7" x2="79" y2="16" stroke="#cbd5e1" stroke-width="0.5"></line>
+          <line x1="79" y1="7" x2="127" y2="16" stroke="#cbd5e1" stroke-width="0.5"></line>
+          <line x1="27" y1="20" x2="8" y2="30" stroke="#93c5fd" stroke-width="0.8"></line>
+          <line x1="27" y1="20" x2="20" y2="30" stroke="#93c5fd" stroke-width="0.8"></line>
+          <line x1="27" y1="20" x2="32" y2="30" stroke="#93c5fd" stroke-width="0.8"></line>
+        </svg>
+        <div style="position: absolute; top: 2px; left: 2px; width: 50px; height: 60px; border: 1px solid #3b82f6; border-radius: 2px; background: rgba(59, 130, 246, 0.05);"></div>
+      </div>
+    </div>
+
+    <!-- Zoom indicator -->
+    <div class="zoom-indicator" style="position: absolute; bottom: 20px; left: 200px; z-index: 50; padding: 5px 10px; display: flex; align-items: center; gap: 8px;">
+      <span class="font-mono-val font-bold" style="color: #64748b; font-size: 0.7rem;">100%</span>
+      <div style="width: 1px; height: 14px; background: #e2e8f0;"></div>
+      <div class="flex items-center gap-1.5">
+        <div class="w-1.5 h-1.5 rounded-full" style="background: #3b82f6;"></div>
+        <span style="color: #3b82f6; font-size: 0.6rem; font-weight: 600;">1 node selected</span>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- FROSTED DETAIL PANEL (380px, slides in from right) -->
+    <!-- ============================================================ -->
+    <div class="detail-panel-container scrollbar-thin" style="overflow-y: auto;">
+
+      <!-- Panel Header: Close + breadcrumb -->
+      <div class="flex-shrink-0 flex items-center justify-between px-4 py-3" style="border-bottom: 1px solid #e2e8f0; background: rgba(255, 255, 255, 0.8);">
+        <div class="flex items-center gap-2">
+          <div class="w-1.5 h-1.5 rounded-full" style="background: #3b82f6; box-shadow: 0 0 4px rgba(59, 130, 246, 0.5);"></div>
+          <span style="color: #3b82f6; font-size: 0.7rem; font-weight: 600;">Node Selected</span>
+          <span style="color: #cbd5e1; font-size: 0.7rem;">·</span>
+          <span style="color: #64748b; font-size: 0.7rem;">Regional West</span>
+        </div>
+        <button onclick="closePanel()" style="width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 5px; color: #64748b; cursor: pointer;">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <!-- REP AVATAR HEADER -->
+      <div class="flex-shrink-0 px-4 py-4" style="background: linear-gradient(180deg, #eff6ff 0%, #ffffff 100%); border-bottom: 1px solid #e2e8f0;">
+        <div class="flex items-start gap-3">
+          <div class="relative flex-shrink-0">
+            <div class="w-14 h-14 rounded-large overflow-hidden" style="border: 2px solid #3b82f6; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&amp;h=120&amp;fit=crop&amp;crop=face" alt="Rachel Kim" class="w-full h-full object-cover">
+            </div>
+            <div class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full status-dot-online" style="border: 2px solid #ffffff;"></div>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 mb-0.5">
+              <h2 class="font-heading text-slate-900 font-bold" style="font-size: 0.95rem; letter-spacing: var(--letter-spacing-heading);">Rachel Kim</h2>
+              <span style="background: #eff6ff; border: 1px solid #bfdbfe; color: #3b82f6; font-size: 0.58rem; font-weight: 700; padding: 1px 6px; border-radius: 10px; text-transform: uppercase; letter-spacing: 0.5px;">Platinum</span>
+            </div>
+            <div class="font-mono-val" style="color: #3b82f6; font-size: 0.65rem; margin-bottom: 4px;">#RK-11029</div>
+            <div style="color: #64748b; font-size: 0.68rem;">Regional Manager · West</div>
+            <div class="flex items-center gap-3 mt-2">
+              <div class="flex items-center gap-1">
+                <div class="w-1.5 h-1.5 rounded-full" style="background: #10b981;"></div>
+                <span style="color: #059669; font-size: 0.62rem; font-weight: 600;">Active</span>
+              </div>
+              <span style="color: #cbd5e1; font-size: 0.62rem;">·</span>
+              <span style="color: #64748b; font-size: 0.62rem;">Enrolled Aug 2021</span>
+              <span style="color: #cbd5e1; font-size: 0.62rem;">·</span>
+              <span style="color: #64748b; font-size: 0.62rem;">3.8 yrs</span>
+            </div>
+          </div>
+          <div class="flex flex-col gap-1.5 flex-shrink-0">
+            <button style="width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; color: #64748b; cursor: pointer;">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            </button>
+            <button style="width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; color: #64748b; cursor: pointer;">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 KPI CHIPS -->
+      <div class="flex-shrink-0 px-4 py-3" style="border-bottom: 1px solid #e2e8f0;">
+        <div class="flex gap-2">
+          <!-- Quota Attainment -->
+          <div class="kpi-chip">
+            <div class="font-mono-val font-bold" style="color: #059669; font-size: 0.85rem;">118%</div>
+            <div style="color: #64748b; font-size: 0.58rem; margin-top: 2px;">Quota Attain.</div>
+            <div class="flex items-center justify-center gap-1 mt-1">
+              <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
+              <span style="color: #059669; font-size: 0.55rem; font-weight: 600;">+12%</span>
+            </div>
+          </div>
+          <!-- Deals Closed -->
+          <div class="kpi-chip">
+            <div class="font-mono-val font-bold" style="color: #3b82f6; font-size: 0.85rem;">247</div>
+            <div style="color: #64748b; font-size: 0.58rem; margin-top: 2px;">Deals Closed</div>
+            <div class="flex items-center justify-center gap-1 mt-1">
+              <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
+              <span style="color: #3b82f6; font-size: 0.55rem; font-weight: 600;">+31 MoM</span>
+            </div>
+          </div>
+          <!-- Pipeline Value -->
+          <div class="kpi-chip">
+            <div class="font-mono-val font-bold" style="color: #d97706; font-size: 0.85rem;">$94K</div>
+            <div style="color: #64748b; font-size: 0.58rem; margin-top: 2px;">Pipeline Val.</div>
+            <div class="flex items-center justify-center gap-1 mt-1">
+              <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
+              <span style="color: #d97706; font-size: 0.55rem; font-weight: 600;">+$8.2K</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 12-MONTH SPARKLINE CHART -->
+      <div class="flex-shrink-0 px-4 py-3" style="border-bottom: 1px solid #e2e8f0;">
+        <div class="flex items-center justify-between mb-2.5">
+          <span style="color: #64748b; font-size: 0.68rem; font-weight: 600;">12-Month Performance</span>
+          <div class="flex items-center gap-3">
+            <div class="flex items-center gap-1">
+              <div class="w-2 h-2 rounded-full" style="background: #3b82f6;"></div>
+              <span style="color: #64748b; font-size: 0.58rem;">Team BV</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <div class="w-2 h-2 rounded-full" style="background: #10b981;"></div>
+              <span style="color: #64748b; font-size: 0.58rem;">Comm.</span>
+            </div>
+          </div>
+        </div>
+        <!-- Sparkline bars -->
+        <div style="height: 56px; display: flex; align-items: flex-end; gap: 3px; padding-bottom: 2px;">
+          <!-- Month bars: Jul–Jun -->
+          <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:1px;">
+            <div style="width:100%; border-radius:2px 2px 0 0; background: #bfdbfe; height: 28px;"></div>
+            <div style="width:100%; border-radius:2px 2px 0 0; background: #a7f3d0; height: 14px;"></div>
+          </div>
+          <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:1px;">
+            <div style="width:100%; border-radius:2px 2px 0 0; background: #bfdbfe; height: 32px;"></div>
+            <div style="width:100%; border-radius:2px 2px 0 0; background: #a7f3d0; height: 16px;"></div>
+          </div>
+          <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:1px;">
+            <div style="width:100%; border-radius:2px 2px 0 0; background: #bfdbfe; height: 24px;"></div>
+            <div style="width:100%; border-radius:2px 2px 0 0; background: #a7f3d0; height: 12px;"></div>
+          </div>
+          <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:1px;">
+            <div style="width:100%; border-radius:2px 2px 0 0; background: #bfdbfe; height: 36px;"></div>
+            <div style="width:100%; border-radius:2px 2px 0 0; background: #a7f3d0; height: 18px;"></div>
+          </div>
+          <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:1px;">
+            <div style="width:100%; border-radius:2px 2px 0 0; background: #bfdbfe; height: 30px;"></div>
+            <div style="width:100%; border-radius:2px 2px 0 0; background: #a7f3d0; height: 15px;"></div>
+          </div>
+          <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:1px;">
+            <div style="width:100%; border-radius:2px 2px 0 0; background: #bfdbfe; height: 40px;"></div>
+            <div style="width:100%; border-radius:2px 2px 0 0; background: #a7f3d0; height: 20px;"></div>
+          </div>
+          <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:1px;">
+            <div style="width:100%; border-radius:2px 2px 0 0; background: #bfdbfe; height: 34px;"></div>
+            <div style="width:100%; border-radius:2px 2px 0 0; background: #a7f3d0; height: 17px;"></div>
+          </div>
+          <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:1px;">
+            <div style="width:100%; border-radius:2px 2px 0 0; background: #bfdbfe; height: 44px;"></div>
+            <div style="width:100%; border-radius:2px 2px 0 0; background: #a7f3d0; height: 22px;"></div>
+          </div>
+          <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:1px;">
+            <div style="width:100%; border-radius:2px 2px 0 0; background: #bfdbfe; height: 38px;"></div>
+            <div style="width:100%; border-radius:2px 2px 0 0; background: #a7f3d0; height: 19px;"></div>
+          </div>
+          <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:1px;">
+            <div style="width:100%; border-radius:2px 2px 0 0; background: #bfdbfe; height: 48px;"></div>
+            <div style="width:100%; border-radius:2px 2px 0 0; background: #a7f3d0; height: 24px;"></div>
+          </div>
+          <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:1px;">
+            <div style="width:100%; border-radius:2px 2px 0 0; background: #bfdbfe; height: 42px;"></div>
+            <div style="width:100%; border-radius:2px 2px 0 0; background: #a7f3d0; height: 21px;"></div>
+          </div>
+          <!-- Current month highlighted -->
+          <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:1px;">
+            <div style="width:100%; border-radius:2px 2px 0 0; background: #3b82f6; height: 52px; box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);"></div>
+            <div style="width:100%; border-radius:2px 2px 0 0; background: #10b981; height: 26px; box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);"></div>
+          </div>
+        </div>
+        <!-- Month labels -->
+        <div style="display: flex; gap: 3px; margin-top: 4px;">
+          <div style="flex:1; text-align:center; color: #94a3b8; font-size: 0.48rem;">J</div>
+          <div style="flex:1; text-align:center; color: #94a3b8; font-size: 0.48rem;">A</div>
+          <div style="flex:1; text-align:center; color: #94a3b8; font-size: 0.48rem;">S</div>
+          <div style="flex:1; text-align:center; color: #94a3b8; font-size: 0.48rem;">O</div>
+          <div style="flex:1; text-align:center; color: #94a3b8; font-size: 0.48rem;">N</div>
+          <div style="flex:1; text-align:center; color: #94a3b8; font-size: 0.48rem;">D</div>
+          <div style="flex:1; text-align:center; color: #94a3b8; font-size: 0.48rem;">J</div>
+          <div style="flex:1; text-align:center; color: #94a3b8; font-size: 0.48rem;">F</div>
+          <div style="flex:1; text-align:center; color: #94a3b8; font-size: 0.48rem;">M</div>
+          <div style="flex:1; text-align:center; color: #94a3b8; font-size: 0.48rem;">A</div>
+          <div style="flex:1; text-align:center; color: #94a3b8; font-size: 0.48rem;">M</div>
+          <div style="flex:1; text-align:center; color: #3b82f6; font-size: 0.48rem; font-weight: 700;">J</div>
+        </div>
+      </div>
+
+      <!-- STRUCTURED METADATA -->
+      <div class="flex-shrink-0 px-4 py-3" style="border-bottom: 1px solid #e2e8f0;">
+        <div class="flex items-center justify-between mb-2">
+          <span style="color: #64748b; font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Details</span>
+          <button style="color: #3b82f6; font-size: 0.62rem; font-weight: 600; background: none; border: none; cursor: pointer;">Edit</button>
+        </div>
+        <div>
+          <div class="meta-row">
+            <span style="color: #64748b; font-size: 0.68rem;">Rep ID</span>
+            <span class="font-mono-val" style="color: #475569; font-size: 0.68rem; font-weight: 600;">#RK-11029</span>
+          </div>
+          <div class="meta-row">
+            <span style="color: #64748b; font-size: 0.68rem;">Email</span>
+            <span style="color: #3b82f6; font-size: 0.68rem;">rachel.kim@nexamlm.com</span>
+          </div>
+          <div class="meta-row">
+            <span style="color: #64748b; font-size: 0.68rem;">Phone</span>
+            <span style="color: #475569; font-size: 0.68rem;">+1 (415) 555-0291</span>
+          </div>
+          <div class="meta-row">
+            <span style="color: #64748b; font-size: 0.68rem;">Region</span>
+            <span style="color: #475569; font-size: 0.68rem;">West Coast</span>
+          </div>
+          <div class="meta-row">
+            <span style="color: #64748b; font-size: 0.68rem;">Sponsor</span>
+            <span style="color: #3b82f6; font-size: 0.68rem;">#JW-00001 James Whitfield</span>
+          </div>
+          <div class="meta-row">
+            <span style="color: #64748b; font-size: 0.68rem;">Rank</span>
+            <div class="flex items-center gap-1.5">
+              <span style="background: #eff6ff; border: 1px solid #bfdbfe; color: #3b82f6; font-size: 0.6rem; font-weight: 700; padding: 1px 6px; border-radius: 10px;">💎 Platinum</span>
+            </div>
+          </div>
+          <div class="meta-row">
+            <span style="color: #64748b; font-size: 0.68rem;">Enrolled</span>
+            <span style="color: #475569; font-size: 0.68rem;">Aug 14, 2021</span>
+          </div>
+          <div class="meta-row">
+            <span style="color: #64748b; font-size: 0.68rem;">Last Active</span>
+            <div class="flex items-center gap-1.5">
+              <div class="w-1.5 h-1.5 rounded-full" style="background: #10b981;"></div>
+              <span style="color: #059669; font-size: 0.68rem;">Today, 8:14 AM</span>
+            </div>
+          </div>
+          <div class="meta-row">
+            <span style="color: #64748b; font-size: 0.68rem;">Autoship</span>
+            <span style="color: #059669; font-size: 0.68rem;">✓ Active · $240/mo</span>
+          </div>
+          <div class="meta-row">
+            <span style="color: #64748b; font-size: 0.68rem;">Compliance</span>
+            <span style="color: #059669; font-size: 0.68rem;">✓ Clean</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- DIRECT REPORTS LIST -->
+      <div class="flex-shrink-0" style="border-bottom: 1px solid #e2e8f0;">
+        <div class="flex items-center justify-between px-4 py-2.5">
+          <span style="color: #64748b; font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Direct Reports</span>
+          <div class="flex items-center gap-2">
+            <span style="color: #64748b; font-size: 0.62rem;">3 of 3 districts</span>
+            <div style="background: #eff6ff; border: 1px solid #bfdbfe; color: #3b82f6; font-size: 0.58rem; font-weight: 700; padding: 1px 6px; border-radius: 10px;">6,240 reps</div>
+          </div>
+        </div>
+
+        <!-- Direct Report Row 1 -->
+        <a href="/api/copilot/prototype/3d98be98-c642-435e-afec-80f4355dfa51/hierarchy-canvas-node-detail-panel-open" class="direct-report-row" style="text-decoration: none;">
+          <div class="relative flex-shrink-0">
+            <div class="w-8 h-8 rounded-full overflow-hidden" style="border: 1.5px solid #f59e0b;">
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=60&amp;h=60&amp;fit=crop&amp;crop=face" alt="" class="w-full h-full object-cover">
+            </div>
+            <div class="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full status-dot-online"></div>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-1.5">
+              <span style="color: #0f172a; font-size: 0.72rem; font-weight: 600;">Lisa Torres</span>
+              <span style="background: #fffbeb; color: #d97706; font-size: 0.55rem; font-weight: 700; padding: 0px 5px; border-radius: 8px;">NW</span>
+            </div>
+            <div class="flex items-center gap-2 mt-0.5">
+              <span class="font-mono-val" style="color: #64748b; font-size: 0.6rem;">#LT-58204</span>
+              <span style="color: #cbd5e1; font-size: 0.6rem;">·</span>
+              <span style="color: #64748b; font-size: 0.6rem;">847 reps</span>
+            </div>
+          </div>
+          <div class="flex flex-col items-end gap-0.5 flex-shrink-0">
+            <span class="font-mono-val" style="color: #059669; font-size: 0.68rem; font-weight: 700;">$3.9K</span>
+            <span style="color: #64748b; font-size: 0.55rem;">comm.</span>
+          </div>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" class="flex-shrink-0"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </a>
+
+        <!-- Direct Report Row 2 -->
+        <a href="/api/copilot/prototype/3d98be98-c642-435e-afec-80f4355dfa51/hierarchy-canvas-node-detail-panel-open" class="direct-report-row" style="text-decoration: none;">
+          <div class="relative flex-shrink-0">
+            <div class="w-8 h-8 rounded-full overflow-hidden" style="border: 1.5px solid #f59e0b;">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=60&amp;h=60&amp;fit=crop&amp;crop=face" alt="" class="w-full h-full object-cover">
+            </div>
+            <div class="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full status-dot-online"></div>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-1.5">
+              <span style="color: #0f172a; font-size: 0.72rem; font-weight: 600;">David Chen</span>
+              <span style="background: #fffbeb; color: #d97706; font-size: 0.55rem; font-weight: 700; padding: 0px 5px; border-radius: 8px;">WC</span>
+            </div>
+            <div class="flex items-center gap-2 mt-0.5">
+              <span class="font-mono-val" style="color: #64748b; font-size: 0.6rem;">#DC-72034</span>
+              <span style="color: #cbd5e1; font-size: 0.6rem;">·</span>
+              <span style="color: #64748b; font-size: 0.6rem;">1,240 reps</span>
+            </div>
+          </div>
+          <div class="flex flex-col items-end gap-0.5 flex-shrink-0">
+            <span class="font-mono-val" style="color: #059669; font-size: 0.68rem; font-weight: 700;">$4.2K</span>
+            <span style="color: #64748b; font-size: 0.55rem;">comm.</span>
+          </div>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" class="flex-shrink-0"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </a>
+
+        <!-- Direct Report Row 3 -->
+        <a href="/api/copilot/prototype/3d98be98-c642-435e-afec-80f4355dfa51/hierarchy-canvas-node-detail-panel-open" class="direct-report-row" style="text-decoration: none;">
+          <div class="relative flex-shrink-0">
+            <div class="w-8 h-8 rounded-full overflow-hidden" style="border: 1.5px solid #f59e0b;">
+              <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=60&amp;h=60&amp;fit=crop&amp;crop=face" alt="" class="w-full h-full object-cover">
+            </div>
+            <div class="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full status-dot-away"></div>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-1.5">
+              <span style="color: #0f172a; font-size: 0.72rem; font-weight: 600;">Jennifer Park</span>
+              <span style="background: #fffbeb; color: #d97706; font-size: 0.55rem; font-weight: 700; padding: 0px 5px; border-radius: 8px;">SW</span>
+            </div>
+            <div class="flex items-center gap-2 mt-0.5">
+              <span class="font-mono-val" style="color: #64748b; font-size: 0.6rem;">#JP-91847</span>
+              <span style="color: #cbd5e1; font-size: 0.6rem;">·</span>
+              <span style="color: #64748b; font-size: 0.6rem;">920 reps</span>
+            </div>
+          </div>
+          <div class="flex flex-col items-end gap-0.5 flex-shrink-0">
+            <span class="font-mono-val" style="color: #059669; font-size: 0.68rem; font-weight: 700;">$3.4K</span>
+            <span style="color: #64748b; font-size: 0.55rem;">comm.</span>
+          </div>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" class="flex-shrink-0"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </a>
+      </div>
+
+      <!-- VIEW FULL PROFILE CTA -->
+      <div class="flex-shrink-0 px-4 py-4" style="margin-top: auto;">
+        <a href="/api/copilot/prototype/3d98be98-c642-435e-afec-80f4355dfa51/full-profile-rep-detail-page" class="block w-full py-3 rounded-large text-center font-heading font-bold text-white text-sm" style="background: linear-gradient(135deg, #2563eb, #3b82f6); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25); letter-spacing: var(--letter-spacing-heading); text-decoration: none; transition: all 0.15s ease;">
+          View Full Profile
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display: inline-block; margin-left: 6px; vertical-align: middle;"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
+        </a>
+        <div class="flex items-center gap-2 mt-2.5">
+          <button style="flex:1; padding: 7px; border-radius: var(--radius-small); background: #ffffff; border: 1px solid #e2e8f0; color: #64748b; font-size: 0.68rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px;">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            Message
+          </button>
+          <button style="flex:1; padding: 7px; border-radius: var(--radius-small); background: #ffffff; border: 1px solid #e2e8f0; color: #64748b; font-size: 0.68rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px;">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+            Genealogy
+          </button>
+          <button style="flex:1; padding: 7px; border-radius: var(--radius-small); background: #ffffff; border: 1px solid #e2e8f0; color: #64748b; font-size: 0.68rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px;">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+            Edit
+          </button>
+        </div>
+      </div>
+
+    </div>
+    <!-- END DETAIL PANEL -->
+
+  </div>
+  <!-- END CANVAS AREA -->
+
+</div>
+
+<script>
+  function closePanel() {
+    window.location.href = '/api/copilot/prototype/3d98be98-c642-435e-afec-80f4355dfa51/hierarchy-canvas-default-view';
+  }
+</script>
+
+<script data-iframe-messenger="true">function initIframeMessenger(debugMode) {
+      
+      var log = function(message, data) {
+        if (debugMode) {
+          console.log('[IframeMessengerClient] ' + message, data || '');
+        }
+      };
+
+      var notifyReady = function() {
+        var message = {
+          type: 'IFRAME_READY',
+          timestamp: Date.now(),
+        };
+        window.parent.postMessage(message, '*');
+        log('Sent IFRAME_READY to parent');
+      };
+
+      (function injectAssetHighlightStyle() {
+        if (document.getElementById('uxmagic-asset-highlight-style')) return;
+        var style = document.createElement('style');
+        style.id = 'uxmagic-asset-highlight-style';
+        style.textContent = '@keyframes uxmagic-asset-highlight-blink { 0%, 100% { border-color: #2A0DBA; opacity: 1; } 50% { border-color: rgba(42, 13, 186, 0.35); opacity: 0.6; } } .uxmagic-asset-highlight { border: 3px dashed #2A0DBA; box-sizing: border-box; animation: uxmagic-asset-highlight-blink 1.2s ease-in-out infinite; }';
+        var target = document.head || document.documentElement;
+        if (target) target.appendChild(style);
+      })();
+
+      var setImageHighlight = function(payload) {
+        try {
+          if (!payload || typeof payload.imageSrc !== 'string') return false;
+          var imageSrc = payload.imageSrc;
+          var highlight = payload.highlight === true;
+          var className = 'uxmagic-asset-highlight';
+          var imgs = document.querySelectorAll('img');
+          for (var i = 0; i < imgs.length; i++) {
+            if (imgs[i].src === imageSrc) {
+              if (highlight) imgs[i].classList.add(className);
+              else imgs[i].classList.remove(className);
+            }
+          }
+          return true;
+        } catch (e) {
+          log('Error in setImageHighlight: ' + e.message);
+          return false;
+        }
+      };
+
+      var updateCSSVariables = function(variables) {
+        try {
+          log('updateCSSVariables called', { variableCount: Object.keys(variables).length, variables: variables });
+          var root = document.documentElement;
+          var style = root.style;
+          var updatedCount = 0;
+          var skippedCount = 0;
+          
+          for (var name in variables) {
+            if (variables.hasOwnProperty(name)) {
+              var value = variables[name];
+              
+              if (!name.startsWith('--')) {
+                log('Skipping variable (does not start with --): ' + name);
+                skippedCount++;
+                continue;
+              }
+
+              if (/[{};\n\/]/.test(value)) {
+                log('Skipping variable (invalid characters in value): ' + name + ' = ' + value);
+                skippedCount++;
+                continue;
+              }
+              
+              var oldValue = style.getPropertyValue(name);
+              log('Updating CSS variable: ' + name + ' = "' + value + '" (old value: "' + oldValue + '")');
+              style.setProperty(name, value);
+              var newValue = style.getPropertyValue(name);
+              log('CSS variable updated successfully: ' + name + ' = "' + newValue + '"');
+              updatedCount++;
+            }
+          }
+          
+          log('updateCSSVariables completed', { updated: updatedCount, skipped: skippedCount, total: Object.keys(variables).length });
+          return true;
+        } catch (error) {
+          log('Error in updateCSSVariables: ' + error.message, error);
+          return false;
+        }
+      };
+
+      var getCSSVariables = function() {
+        log('getCSSVariables called');
+        var variables = {};
+        
+        // First, get CSS variables from inline styles (set via updateCSSVariables)
+        try {
+          var root = document.documentElement;
+          var rootStyle = root.style;
+          if (rootStyle) {
+            log('Reading CSS variables from inline styles');
+            for (var i = 0; i < rootStyle.length; i++) {
+              var propName = rootStyle[i];
+              if (propName.startsWith('--')) {
+                var propValue = rootStyle.getPropertyValue(propName);
+                if (propValue) {
+                  variables[propName] = propValue.trim();
+                  log('Found inline CSS variable: ' + propName + ' = "' + propValue.trim() + '"');
+                }
+              }
+            }
+          }
+          
+          // Also check computed styles for specific UI-related variables we care about
+          // This ensures we get variables even if they were set in a way that doesn't show in root.style
+          log('Checking computed styles for UI variables');
+          var computedStyle = window.getComputedStyle(root);
+          var uiVariables = [
+            '--space-base',
+            '--border-radius-card',
+            '--border-radius-button',
+            '--box-shadow',
+            '--radius-small',
+            '--radius-large'
+          ];
+          for (var v = 0; v < uiVariables.length; v++) {
+            var varName = uiVariables[v];
+            if (!variables.hasOwnProperty(varName)) {
+              var varValue = computedStyle.getPropertyValue(varName);
+              if (varValue) {
+                variables[varName] = varValue.trim();
+                log('Found computed CSS variable: ' + varName + ' = "' + varValue.trim() + '"');
+              }
+            }
+          }
+        } catch (e) {
+          log('Error reading inline/computed styles: ' + e.message);
+          // If style access fails, continue to stylesheet reading
+        }
+        
+        // Also get CSS variables from :root{} selector in stylesheets
+        try {
+          log('Reading CSS variables from stylesheets');
+          var styleSheets = document.styleSheets;
+          var stylesheetCount = 0;
+          for (var s = 0; s < styleSheets.length; s++) {
+            try {
+              var sheet = styleSheets[s];
+              var rules = sheet.cssRules || sheet.rules;
+              if (!rules) continue;
+              
+              for (var r = 0; r < rules.length; r++) {
+                var rule = rules[r];
+                // Only get variables from :root selector
+                if (rule.type === 1 && rule.style) { // CSSStyleRule
+                  var selector = rule.selectorText;
+                  if (selector && selector.trim() === ':root') {
+                    var ruleStyle = rule.style;
+                    if (ruleStyle) {
+                      for (var j = 0; j < ruleStyle.length; j++) {
+                        var propName = ruleStyle[j];
+                        if (propName.startsWith('--')) {
+                          var propValue = ruleStyle.getPropertyValue(propName);
+                          // Only add if not already set (inline styles take precedence)
+                          if (propValue && !variables.hasOwnProperty(propName)) {
+                            variables[propName] = propValue.trim();
+                            log('Found stylesheet CSS variable: ' + propName + ' = "' + propValue.trim() + '"');
+                          }
+                        }
+                      }
+                      stylesheetCount++;
+                    }
+                  }
+                }
+              }
+            } catch (e) {
+              log('Error reading stylesheet ' + s + ': ' + e.message);
+              // Cross-origin stylesheets may throw errors, skip them
+              continue;
+            }
+          }
+          log('Processed ' + stylesheetCount + ' stylesheets with :root selectors');
+        } catch (e) {
+          log('Error reading stylesheets: ' + e.message);
+          // If stylesheet access fails, return what we have from inline styles
+        }
+        
+        log('getCSSVariables completed', { variableCount: Object.keys(variables).length, variables: variables });
+        return variables;
+      };
+
+      var getImages = function() {
+        try {
+          log('getImages called');
+          var images = [];
+          var imgElements = document.querySelectorAll('img');
+          log('Found ' + imgElements.length + ' image elements');
+          
+          for (var i = 0; i < imgElements.length; i++) {
+            var img = imgElements[i];
+            var altVal = img.alt || img.getAttribute('alt') || '';
+            var isLogo = img.getAttribute('data-logo-light') === 'true' || (typeof altVal === 'string' && altVal.toLowerCase().trim() === 'logo');
+            var imageInfo = {
+              src: img.src || img.getAttribute('src') || '',
+              alt: altVal,
+              width: img.width || img.getAttribute('width') || null,
+              height: img.height || img.getAttribute('height') || null,
+              naturalWidth: img.naturalWidth || null,
+              naturalHeight: img.naturalHeight || null,
+              isLogo: isLogo,
+            };
+            
+            // Only include images with a valid src
+            if (imageInfo.src) {
+              images.push(imageInfo);
+              log('Found image: ' + imageInfo.src + ' (alt: "' + imageInfo.alt + '", isLogo: ' + isLogo + ', size: ' + imageInfo.width + 'x' + imageInfo.height + ')');
+            }
+          }
+          
+          log('getImages completed', { imageCount: images.length });
+          return images;
+        } catch (error) {
+          log('Error getting images: ' + error.message, error);
+          return [];
+        }
+      };
+
+      var updateDataAttribute = function(update) {
+        try {
+          log('updateDataAttribute called', update);
+          if (!update || !update.selector || !update.attribute || update.value === undefined) {
+            log('Invalid update payload', update);
+            return false;
+          }
+
+          var elements = document.querySelectorAll(update.selector);
+          if (elements.length === 0) {
+            log('No elements found for selector: ' + update.selector);
+            return false;
+          }
+
+          log('Found ' + elements.length + ' element(s) for selector: ' + update.selector);
+          elements.forEach(function(element, index) {
+            var oldValue = element.getAttribute(update.attribute);
+            if (update.attribute === 'src' && element.tagName === 'IMG') {
+              element.setAttribute('src', update.value);
+              log('Updated element ' + (index + 1) + ' attribute: ' + update.attribute + ' = "' + update.value + '" (old: "' + oldValue + '")');
+            } else {
+              element.setAttribute(update.attribute, update.value);
+              log('Updated element ' + (index + 1) + ' attribute: ' + update.attribute + ' = "' + update.value + '" (old: "' + oldValue + '")');
+            }
+          });
+
+          log('updateDataAttribute completed successfully');
+          return true;
+        } catch (error) {
+          log('Error updating data attribute: ' + error.message, error);
+          return false;
+        }
+      };
+
+      var checkStyleGuide = function() {
+        try {
+          log('checkStyleGuide called');
+          var variables = getCSSVariables();
+          var noStyleGuide = false;
+          
+          // Define required color variables
+          var requiredBaseColors = [
+            '--color-background-base',
+            '--color-neutral-base',
+            '--color-primary-base',
+            '--color-secondary-base',
+            '--color-tertiary-base'
+          ];
+          
+          var colorShades = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900'];
+          var colorTypes = ['primary', 'secondary', 'tertiary', 'background', 'neutral'];
+          
+          var requiredVariables = requiredBaseColors.slice();
+          
+          // Add all shade variables
+          for (var c = 0; c < colorTypes.length; c++) {
+            var colorType = colorTypes[c];
+            for (var s = 0; s < colorShades.length; s++) {
+              var shade = colorShades[s];
+              requiredVariables.push('--color-' + colorType + '-' + shade);
+            }
+          }
+          
+          log('Checking for ' + requiredVariables.length + ' required color variables');
+          
+          // Check 1: Verify all required variables exist and have valid RGB format
+          var missingVariables = [];
+          var invalidFormatVariables = [];
+          
+          for (var i = 0; i < requiredVariables.length; i++) {
+            var varName = requiredVariables[i];
+            if (!variables.hasOwnProperty(varName)) {
+              missingVariables.push(varName);
+              log('Missing variable: ' + varName);
+            } else {
+              var varValue = variables[varName];
+              // Normalize whitespace: replace all whitespace sequences with single space, then trim
+              var normalizedValue = varValue.replace(/s+/g, ' ').trim();
+              
+              // Check if it matches RGB format: three numbers separated by spaces
+              // More robust: split by whitespace and validate we have exactly 3 numbers
+              var parts = normalizedValue.split(/s+/);
+              var isValid = false;
+              
+              if (parts.length === 3) {
+                // Check if all parts are valid numbers between 0-255
+                var allValidNumbers = true;
+                for (var p = 0; p < parts.length; p++) {
+                  var num = parseInt(parts[p], 10);
+                  if (isNaN(num) || num < 0 || num > 255) {
+                    allValidNumbers = false;
+                    break;
+                  }
+                }
+                isValid = allValidNumbers;
+              }
+              
+              if (!isValid) {
+                invalidFormatVariables.push(varName);
+                log('Invalid format for variable: ' + varName + ' = "' + varValue + '" (normalized: "' + normalizedValue + '", parts: [' + parts.join(', ') + '], expected RGB format "R G B" where R, G, B are 0-255)');
+              } else {
+                log('Valid format for variable: ' + varName + ' = "' + normalizedValue + '"');
+              }
+            }
+          }
+          
+          if (missingVariables.length > 0 || invalidFormatVariables.length > 0) {
+            log('Style guide check failed: missing or invalid format variables', {
+              missing: missingVariables,
+              invalidFormat: invalidFormatVariables
+            });
+            noStyleGuide = true;
+          }
+          
+          // Check 2: Verify Tailwind is loaded and configured
+          var tailwindLoaded = false;
+          var tailwindConfigured = false;
+          
+          // Check if Tailwind CDN is loaded
+          try {
+            var scripts = document.querySelectorAll('script[src*="tailwindcss"]');
+            if (scripts.length > 0) {
+              tailwindLoaded = true;
+              log('Tailwind CDN script found');
+            }
+            
+            // Check if window.tailwind exists (for CDN version)
+            if (typeof window.tailwind !== 'undefined') {
+              tailwindLoaded = true;
+              log('window.tailwind found');
+            }
+          } catch (e) {
+            log('Error checking Tailwind scripts: ' + e.message);
+          }
+          
+          // If Tailwind is loaded and all required variables exist with correct format,
+          // consider it properly configured (Tailwind CDN automatically uses CSS variables from :root)
+          if (tailwindLoaded && missingVariables.length === 0 && invalidFormatVariables.length === 0) {
+            tailwindConfigured = true;
+            log('Tailwind loaded and all required color variables present with correct format');
+          } else if (tailwindLoaded) {
+            log('Tailwind loaded but color variables missing or invalid format');
+          } else {
+            log('Tailwind not detected');
+          }
+          
+          // If Tailwind is not loaded or not properly configured, set noStyleGuide to true
+          if (!tailwindLoaded || !tailwindConfigured) {
+            log('Style guide check failed: Tailwind not loaded or not configured properly');
+            noStyleGuide = true;
+          }
+          
+          log('checkStyleGuide completed', { 
+            noStyleGuide: noStyleGuide,
+            missingVariables: missingVariables.length,
+            invalidFormatVariables: invalidFormatVariables.length,
+            tailwindLoaded: tailwindLoaded,
+            tailwindConfigured: tailwindConfigured
+          });
+          
+          return {
+            noStyleGuide: noStyleGuide,
+            missingVariables: missingVariables,
+            invalidFormatVariables: invalidFormatVariables,
+            tailwindLoaded: tailwindLoaded,
+            tailwindConfigured: tailwindConfigured
+          };
+        } catch (error) {
+          log('Error in checkStyleGuide: ' + error.message, error);
+          return {
+            noStyleGuide: true,
+            error: error.message
+          };
+        }
+      };
+
+      var handleMessage = function(event) {
+        var message = event.data;
+
+        if (!message || typeof message !== 'object' || !message.type) {
+          log('Received invalid message (missing type or not an object)', message);
+          return;
+        }
+
+        log('Received message: ' + message.type, { messageId: message.messageId, payload: message.payload });
+
+        var response = {
+          success: false,
+          messageId: message.messageId,
+        };
+
+        try {
+          switch (message.type) {
+            case 'UPDATE_CSS_VARS':
+              log('Handling UPDATE_CSS_VARS message');
+              if (message.payload && typeof message.payload === 'object') {
+                var success = updateCSSVariables(message.payload);
+                response.success = success;
+                if (!success) {
+                  response.error = 'Failed to update CSS variables';
+                  log('UPDATE_CSS_VARS failed');
+                } else {
+                  log('UPDATE_CSS_VARS succeeded');
+                }
+              } else {
+                response.error = 'Invalid payload for UPDATE_CSS_VARS';
+                log('UPDATE_CSS_VARS failed: invalid payload', message.payload);
+              }
+              break;
+
+            case 'GET_CSS_VARS':
+              log('Handling GET_CSS_VARS message');
+              response.success = true;
+              response.data = getCSSVariables();
+              log('GET_CSS_VARS completed', { variableCount: Object.keys(response.data).length });
+              break;
+
+            case 'GET_IMAGES':
+              log('Handling GET_IMAGES message');
+              response.success = true;
+              response.data = getImages();
+              log('GET_IMAGES completed', { imageCount: response.data.length });
+              break;
+
+            case 'UPDATE_DATA_ATTRIBUTE':
+              log('Handling UPDATE_DATA_ATTRIBUTE message');
+              if (message.payload && typeof message.payload === 'object') {
+                var success = updateDataAttribute(message.payload);
+                response.success = success;
+                if (!success) {
+                  response.error = 'Failed to update data attribute';
+                  log('UPDATE_DATA_ATTRIBUTE failed');
+                } else {
+                  log('UPDATE_DATA_ATTRIBUTE succeeded');
+                }
+              } else {
+                response.error = 'Invalid payload for UPDATE_DATA_ATTRIBUTE';
+                log('UPDATE_DATA_ATTRIBUTE failed: invalid payload', message.payload);
+              }
+              break;
+
+            case 'CHECK_STYLE_GUIDE':
+              log('Handling CHECK_STYLE_GUIDE message');
+              response.success = true;
+              response.data = checkStyleGuide();
+              log('CHECK_STYLE_GUIDE completed', response.data);
+              break;
+
+            case 'IFRAME_READY':
+              log('Received IFRAME_READY message (ignoring)');
+              return;
+
+            case 'REQUEST_READY':
+              log('Handling REQUEST_READY message');
+              // Respond with IFRAME_READY when requested
+              notifyReady();
+              return;
+
+            case 'SET_IMAGE_HIGHLIGHT':
+              log('Handling SET_IMAGE_HIGHLIGHT message');
+              if (message.payload && typeof message.payload === 'object') {
+                var success = setImageHighlight(message.payload);
+                response.success = success;
+              } else {
+                response.error = 'Invalid payload for SET_IMAGE_HIGHLIGHT';
+                response.success = false;
+              }
+              break;
+
+            default:
+              response.error = 'Unknown message type: ' + message.type;
+              log('Unknown message type received: ' + message.type);
+          }
+        } catch (error) {
+          response.success = false;
+          response.error = error.message || 'Unknown error';
+          log('Error handling message: ' + error.message, error);
+        }
+
+        if (message.messageId) {
+          log('Sending response for messageId: ' + message.messageId, response);
+          window.parent.postMessage(response, '*');
+        }
+      };
+
+      window.addEventListener('message', handleMessage);
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', notifyReady);
+      } else {
+        notifyReady();
+      }
+
+      return {
+        updateCSSVariables: updateCSSVariables,
+        getCSSVariables: getCSSVariables,
+        notifyReady: notifyReady,
+        checkStyleGuide: checkStyleGuide,
+      };
+    }
+
+    initIframeMessenger(false);</script>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

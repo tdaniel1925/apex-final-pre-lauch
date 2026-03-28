@@ -1,0 +1,98 @@
+***************************Request to fetch Advisor Information***************************
+
+<request version='1.0'>
+    <header>
+        <office></office>
+        <user></user>
+        <password></password>
+    </header>
+    <search>
+        <object>
+            <Agent id="Agent.40.735">
+                <HireDate/>
+                <Status/>
+                <Code/>
+                <MktManager/>
+                <Type/>
+				<Supervisor>
+				<FirstName/>
+				<LastName/>
+				</Supervisor>
+            <Contact>
+                <LastName/>
+                <FirstName/>
+                <Source/>
+                <SubSource/>
+                <Title/>
+                <Greeting/>
+                <ContactSubType/>
+                <NPN/>
+				<TaxID/> 
+                <MarketPrivacy/>
+                <EMailPrivacy/>
+                <PhonePrivacy/>
+                <MailPrivacy/>
+                <CreatedOn/>
+            <Phones>
+            <Phone>
+				<PhoneType/>
+                <CountryCode/>
+                <AreaCode/>
+                <Number/>
+                <Extension/>
+                </Phone>
+            </Phones>
+            <WebAddresses>
+            <WebAddress>
+                <WebAddressType/>
+                <Address/>
+                <ModifiedOn/>
+            </WebAddress>
+            </WebAddresses>
+            </Contact>
+            </Agent>
+		</object>
+    </search>
+  </request>
+  
+  
+ ***************************Request to fetch Advisor Cont/Appt. Information***************************
+
+  
+<request version='1.0'>
+    <header>
+        <office></office>
+        <user></user>
+        <password></password>
+    </header>
+    <search>
+        <object>
+            <AdvContract>
+                <MgrContractId/>
+                <CarrierObj>
+                    <Name/>
+                </CarrierObj>
+                <Status/>
+                <Agent>
+                    <Contact>
+                        <LastName/>
+                        <FirstLastName/>
+                        <SubSource/>
+                    </Contact>
+                </Agent>
+                <ContractNo/>
+                <ContractObj>
+                    <ContractName/>
+                    <ContractType/>
+                </ContractObj>
+                <EffDate/>
+                <ExpDate/>
+            </AdvContract>
+        </object>
+        <condition>
+            <expr prop='ContractNo' op='eq'>
+                <v>2343333</v>
+            </expr>
+        </condition>
+    </search>
+</request>   

@@ -338,16 +338,20 @@ export function maskSensitiveData(value: string, visibleDigits: number = 4): str
 }
 
 /**
- * Format phone number for display
+ * Format phone number for display (1-xxx-xxx-xxxx)
+ * @deprecated Import from @/lib/utils/format-phone instead
  */
 export function formatPhoneNumber(phone: string): string {
+  if (!phone) return '';
   const cleaned = phone.replace(/\D/g, '');
-  if (cleaned.length === 10) {
-    return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3, 6)}-${cleaned.slice(6)}`;
-  }
+
+  // Handle different lengths
   if (cleaned.length === 11 && cleaned.startsWith('1')) {
-    return `+1 (${cleaned.slice(1, 4)}) ${cleaned.slice(4, 7)}-${cleaned.slice(7)}`;
+    return `${cleaned[0]}-${cleaned.slice(1, 4)}-${cleaned.slice(4, 7)}-${cleaned.slice(7)}`;
+  } else if (cleaned.length === 10) {
+    return `1-${cleaned.slice(0, 3)}-${cleaned.slice(3, 6)}-${cleaned.slice(6)}`;
   }
+
   return phone;
 }
 

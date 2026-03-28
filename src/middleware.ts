@@ -95,27 +95,43 @@ export async function middleware(request: NextRequest) {
         return NextResponse.redirect(redirectUrl);
       }
 
-      // Check is_admin in distributors table
-      const { data: distributor, error: roleError } = await supabase
-        .from('distributors')
-        .select('is_admin')
-        .eq('email', user.email)
-        .single();
+      // Check if user is in admins table (takes precedence)
+      const { data: adminRecord, error: adminError } = await supabase
+        .from('admins')
+        .select('id, role')
+        .eq('auth_user_id', user.id)
+        .maybeSingle();
 
-      console.log('Admin check:', {
-        email: user.email,
-        distributor,
-        roleError: roleError?.message,
-        isAdmin: distributor?.is_admin,
-      });
+      // If user is in admins table, grant access
+      if (adminRecord) {
+        console.log('Admin route: Access granted via admins table', {
+          email: user.email,
+          role: adminRecord.role,
+        });
+        // Allow through
+      } else {
+        // Fall back to checking is_admin in distributors table
+        const { data: distributor, error: roleError } = await supabase
+          .from('distributors')
+          .select('is_admin')
+          .eq('auth_user_id', user.id)
+          .maybeSingle();
 
-      if (roleError || !distributor || !distributor.is_admin) {
-        console.log('Admin route: Not admin or error, redirecting to dashboard');
-        // Unauthorized - redirect to dashboard
-        return NextResponse.redirect(new URL('/dashboard', request.url));
+        console.log('Admin check:', {
+          email: user.email,
+          distributor,
+          roleError: roleError?.message,
+          isAdmin: distributor?.is_admin,
+        });
+
+        if (!distributor || !distributor.is_admin) {
+          console.log('Admin route: Not admin, redirecting to dashboard');
+          // Unauthorized - redirect to dashboard
+          return NextResponse.redirect(new URL('/dashboard', request.url));
+        }
+
+        console.log('Admin route: Access granted via distributors table');
       }
-
-      console.log('Admin route: Access granted');
     }
   } catch (error) {
     // If middleware fails, continue without auth refresh

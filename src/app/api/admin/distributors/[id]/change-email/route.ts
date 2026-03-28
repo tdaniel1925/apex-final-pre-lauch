@@ -7,6 +7,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getAdminUser } from '@/lib/auth/admin';
 import { createServiceClient } from '@/lib/supabase/service';
 import { Resend } from 'resend';
+import { logAdminActionWithContext } from '@/lib/admin/audit-logger';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -81,20 +82,55 @@ export async function POST(
       );
     }
 
-    // Check if email is already in use
-    const { data: existingUser } = await serviceClient.auth.admin.listUsers();
-    const emailExists = existingUser?.users.some(
-      (user) => user.email?.toLowerCase() === newEmail.toLowerCase()
-    );
+    // Security Fix #4: Check if email is already in use (distributors table)
+    const { data: existingDistributor } = await serviceClient
+      .from('distributors')
+      .select('id, first_name, last_name')
+      .eq('email', newEmail.toLowerCase())
+      .neq('id', distributorId) // Exclude current distributor
+      .maybeSingle();
 
-    if (emailExists) {
+    if (existingDistributor) {
       return NextResponse.json(
-        { error: 'This email address is already in use' },
+        {
+          error: 'This email address is already in use by another distributor',
+          details: `Email is assigned to ${existingDistributor.first_name} ${existingDistributor.last_name}`,
+        },
         { status: 400 }
       );
     }
 
-    // Update email in Supabase Auth (immediate, no verification needed)
+    // Also check if email exists in auth users
+    const { data: existingUser } = await serviceClient.auth.admin.listUsers();
+    const emailExistsInAuth = existingUser?.users.some(
+      (user) => user.email?.toLowerCase() === newEmail.toLowerCase()
+    );
+
+    if (emailExistsInAuth) {
+      return NextResponse.json(
+        { error: 'This email address is already in use in authentication system' },
+        { status: 400 }
+      );
+    }
+
+    // FIX: Use transaction function to update distributors + members atomically
+    // Then update auth separately with proper rollback handling
+    console.log('Updating email atomically in database for distributor:', distributorId);
+    const { data: dbResult, error: dbError } = await serviceClient
+      .rpc('update_distributor_email', {
+        p_distributor_id: distributorId,
+        p_new_email: newEmail
+      });
+
+    if (dbError) {
+      console.error('Error updating distributor email in database:', dbError);
+      return NextResponse.json(
+        { error: `Failed to update email in database: ${dbError.message}` },
+        { status: 500 }
+      );
+    }
+
+    // Now update auth (happens after DB to ensure we can rollback if this fails)
     console.log('Updating auth email for user:', distributor.auth_user_id);
     const { error: authError } = await serviceClient.auth.admin.updateUserById(
       distributor.auth_user_id,
@@ -106,26 +142,28 @@ export async function POST(
 
     if (authError) {
       console.error('Error updating auth email:', authError);
+
+      // Rollback database changes using the transaction function
+      await serviceClient.rpc('update_distributor_email', {
+        p_distributor_id: distributorId,
+        p_new_email: distributor.email // Restore old email
+      });
+
+      // Log failed email change
+      await logAdminActionWithContext(request, {
+        adminId: adminUser.user.id,
+        adminEmail: adminUser.user.email || 'unknown',
+        action: 'CHANGE_EMAIL',
+        entityType: 'distributor',
+        entityId: distributorId,
+        oldValue: { email: distributor.email },
+        newValue: { email: newEmail },
+        status: 'failure',
+        errorMessage: authError.message || 'Unknown error',
+      });
+
       return NextResponse.json(
         { error: `Failed to update email in authentication system: ${authError.message || 'Unknown error'}` },
-        { status: 500 }
-      );
-    }
-
-    // Update email in distributors table
-    const { error: dbError } = await serviceClient
-      .from('distributors')
-      .update({ email: newEmail })
-      .eq('id', distributorId);
-
-    if (dbError) {
-      console.error('Error updating distributor email:', dbError);
-      // Try to rollback auth change
-      await serviceClient.auth.admin.updateUserById(distributor.auth_user_id, {
-        email: distributor.email,
-      });
-      return NextResponse.json(
-        { error: 'Failed to update email in database' },
         { status: 500 }
       );
     }
@@ -139,6 +177,18 @@ export async function POST(
         new_email: newEmail,
         changed_by_admin: true,
       },
+    });
+
+    // Log successful email change to admin audit log
+    await logAdminActionWithContext(request, {
+      adminId: adminUser.user.id,
+      adminEmail: adminUser.user.email || 'unknown',
+      action: 'CHANGE_EMAIL',
+      entityType: 'distributor',
+      entityId: distributorId,
+      oldValue: { email: distributor.email },
+      newValue: { email: newEmail },
+      status: 'success',
     });
 
     // Send notification email to the new address

@@ -2,25 +2,15 @@
 // DUAL-LADDER COMPENSATION ENGINE - CONFIGURATION
 // =============================================
 // Source: APEX_COMP_ENGINE_SPEC_FINAL.md
-// Updated: March 19, 2026
+// Phase: 3 (Build New TypeScript Code)
+// Agent: 3A
 // =============================================
 
-// ============================================================================
-// TECH LADDER - 9 RANKS
-// ============================================================================
-
-export type TechRank =
-  | 'starter'
-  | 'bronze'
-  | 'silver'
-  | 'gold'
-  | 'platinum'
-  | 'ruby'
-  | 'diamond'
-  | 'crown'
-  | 'elite';
-
-export const TECH_RANKS: readonly TechRank[] = [
+/**
+ * Tech Ladder Ranks (9 ranks)
+ * Order: Lowest to highest (for rank_value calculations)
+ */
+export const TECH_RANKS = [
   'starter',
   'bronze',
   'silver',
@@ -32,32 +22,45 @@ export const TECH_RANKS: readonly TechRank[] = [
   'elite',
 ] as const;
 
-// ============================================================================
-// PRODUCT TYPES
-// ============================================================================
+export type TechRank = (typeof TECH_RANKS)[number];
 
-export type ProductType = 'standard' | 'business_center';
+/**
+ * Insurance Ladder Ranks (7 ranks)
+ * Order: Lowest to highest
+ */
+export const INSURANCE_RANKS = [
+  'inactive',
+  'associate',
+  'manager',
+  'director',
+  'senior_director',
+  'executive_director',
+  'mga',
+] as const;
 
-// ============================================================================
-// DOWNLINE REQUIREMENTS
-// ============================================================================
+export type InsuranceRank = (typeof INSURANCE_RANKS)[number];
 
-export interface DownlineRequirement {
-  [rank: string]: number; // e.g., { bronze: 1, silver: 2 }
-}
-
-// ============================================================================
-// TECH RANK REQUIREMENTS
-// ============================================================================
-// From spec lines 165-176
-
+/**
+ * Tech Rank Requirements
+ *
+ * From spec:
+ * - personal: Personal credits required per month
+ * - group: Group (team) credits required per month
+ * - downline: Sponsored member rank requirements (OR conditions for Diamond/Elite)
+ * - bonus: One-time rank advancement bonus (cents)
+ * - overrideDepth: Number of override levels unlocked (1-5)
+ */
 export interface TechRankRequirements {
   name: TechRank;
   personal: number; // Personal credits/month
   group: number; // Group credits/month
-  downline?: DownlineRequirement | DownlineRequirement[]; // Supports OR conditions
-  bonus: number; // Rank bonus in cents
-  overrideDepth: number; // 1-5
+  downline?: DownlineRequirement | DownlineRequirement[]; // OR conditions
+  bonus: number; // One-time rank bonus (cents)
+  overrideDepth: number; // 1-5 levels
+}
+
+export interface DownlineRequirement {
+  [rank: string]: number; // e.g., { bronze: 1 } = need 1 Bronze sponsored member
 }
 
 export const TECH_RANK_REQUIREMENTS: TechRankRequirements[] = [
@@ -65,54 +68,60 @@ export const TECH_RANK_REQUIREMENTS: TechRankRequirements[] = [
     name: 'starter',
     personal: 0,
     group: 0,
-    bonus: 0,
-    overrideDepth: 1,
+    downline: undefined,
+    bonus: 0, // No bonus for starter
+    overrideDepth: 1, // L1 only
   },
   {
     name: 'bronze',
     personal: 150,
     group: 300,
+    downline: undefined,
     bonus: 25000, // $250
-    overrideDepth: 2,
+    overrideDepth: 2, // L1-L2
   },
   {
     name: 'silver',
     personal: 500,
     group: 1500,
+    downline: undefined,
     bonus: 100000, // $1,000
-    overrideDepth: 3,
+    overrideDepth: 3, // L1-L3
   },
   {
     name: 'gold',
     personal: 1200,
     group: 5000,
-    downline: { bronze: 1 }, // 1 Bronze (sponsored)
+    downline: { bronze: 1 }, // 1 Bronze sponsored
     bonus: 300000, // $3,000
-    overrideDepth: 4,
+    overrideDepth: 4, // L1-L4
   },
   {
     name: 'platinum',
     personal: 2500,
     group: 15000,
-    downline: { silver: 2 }, // 2 Silvers (sponsored)
+    downline: { silver: 2 }, // 2 Silvers sponsored
     bonus: 750000, // $7,500
-    overrideDepth: 5,
+    overrideDepth: 5, // L1-L5
   },
   {
     name: 'ruby',
     personal: 4000,
     group: 30000,
-    downline: { gold: 2 }, // 2 Golds (sponsored)
+    downline: { gold: 2 }, // 2 Golds sponsored
     bonus: 1200000, // $12,000
-    overrideDepth: 5,
+    overrideDepth: 5, // L1-L5
   },
   {
     name: 'diamond',
     personal: 5000,
     group: 50000,
-    downline: [{ gold: 3 }, { platinum: 2 }], // 3 Golds OR 2 Platinums
+    downline: [
+      { gold: 3 }, // 3 Golds OR
+      { platinum: 2 }, // 2 Platinums
+    ],
     bonus: 1800000, // $18,000
-    overrideDepth: 5,
+    overrideDepth: 5, // L1-L5
   },
   {
     name: 'crown',
@@ -120,100 +129,50 @@ export const TECH_RANK_REQUIREMENTS: TechRankRequirements[] = [
     group: 75000,
     downline: { platinum: 2, gold: 1 }, // 2 Plat + 1 Gold
     bonus: 2200000, // $22,000
-    overrideDepth: 5,
+    overrideDepth: 5, // L1-L5
   },
   {
     name: 'elite',
     personal: 8000,
     group: 120000,
-    downline: [{ platinum: 3 }, { diamond: 2 }], // 3 Plat OR 2 Diamonds
+    downline: [
+      { platinum: 3 }, // 3 Platinums OR
+      { diamond: 2 }, // 2 Diamonds
+    ],
     bonus: 3000000, // $30,000
-    overrideDepth: 5,
+    overrideDepth: 5, // L1-L5 + Leadership Pool
   },
 ];
 
-// ============================================================================
-// RANKED OVERRIDE SCHEDULES
-// ============================================================================
-// From spec lines 259-270
-// % of Override Pool (not % of price)
-
+/**
+ * Ranked Override Schedules
+ *
+ * Each rank has different override percentages for L1-L5.
+ * These are percentages of the OVERRIDE POOL, not the retail price.
+ *
+ * From spec:
+ * - L1 is ALWAYS 30% for all ranks (Enroller Override Rule)
+ * - Higher ranks unlock deeper levels with higher percentages
+ */
 export const RANKED_OVERRIDE_SCHEDULES: Record<
   TechRank,
   [number, number, number, number, number]
 > = {
-  starter: [0.30, 0.0, 0.0, 0.0, 0.0],
-  bronze: [0.30, 0.05, 0.0, 0.0, 0.0],
-  silver: [0.30, 0.10, 0.05, 0.0, 0.0],
-  gold: [0.30, 0.15, 0.10, 0.05, 0.0],
-  platinum: [0.30, 0.18, 0.12, 0.08, 0.03],
-  ruby: [0.30, 0.20, 0.15, 0.10, 0.05],
-  diamond: [0.30, 0.22, 0.18, 0.12, 0.08],
-  crown: [0.30, 0.25, 0.20, 0.15, 0.10],
-  elite: [0.30, 0.25, 0.20, 0.15, 0.10],
+  starter: [0.30, 0.0, 0.0, 0.0, 0.0], // L1 only
+  bronze: [0.30, 0.05, 0.0, 0.0, 0.0], // L1-L2
+  silver: [0.30, 0.10, 0.05, 0.0, 0.0], // L1-L3
+  gold: [0.30, 0.15, 0.10, 0.05, 0.0], // L1-L4
+  platinum: [0.30, 0.18, 0.12, 0.08, 0.03], // L1-L5
+  ruby: [0.30, 0.20, 0.15, 0.10, 0.05], // L1-L5 (higher %s)
+  diamond: [0.30, 0.22, 0.18, 0.12, 0.08], // L1-L5 (higher %s)
+  crown: [0.30, 0.25, 0.20, 0.15, 0.10], // L1-L5 (highest non-Elite)
+  elite: [0.30, 0.25, 0.20, 0.15, 0.10], // L1-L5 (same as Crown)
 };
-
-// ============================================================================
-// WATERFALL CONFIGURATION
-// ============================================================================
-// From spec lines 9-23
-
-export const WATERFALL_CONFIG = {
-  BOTMAKERS_FEE_PCT: 0.30, // 30% of price
-  APEX_TAKE_PCT: 0.30, // 30% of adjusted gross
-  BONUS_POOL_PCT: 0.035, // 3.5% of remainder
-  LEADERSHIP_POOL_PCT: 0.015, // 1.5% of remainder
-  SELLER_COMMISSION_PCT: 0.60, // 60% of commission pool
-  OVERRIDE_POOL_PCT: 0.40, // 40% of commission pool
-};
-
-// ============================================================================
-// BUSINESS CENTER CONFIGURATION
-// ============================================================================
-// From spec lines 27-39
-
-export const BUSINESS_CENTER_CONFIG = {
-  PRICE_CENTS: 3900, // $39.00
-  BOTMAKERS_FEE_CENTS: 1100, // $11.00
-  APEX_TAKE_CENTS: 800, // $8.00
-  SELLER_COMMISSION_CENTS: 1000, // $10.00
-  SPONSOR_BONUS_CENTS: 800, // $8.00
-  COSTS_CENTS: 200, // $2.00
-  OVERRIDE_POOL_CENTS: 0, // No override pool
-  BONUS_POOL_CENTS: 0, // No bonus pool
-  LEADERSHIP_POOL_CENTS: 0, // No leadership pool
-  CREDITS: 39, // Fixed credits
-};
-
-// ============================================================================
-// COMPENSATION CONSTANTS
-// ============================================================================
-
-export const OVERRIDE_QUALIFICATION_MIN_CREDITS = 50;
-export const RANK_GRACE_PERIOD_MONTHS = 2;
-export const NEW_REP_RANK_LOCK_MONTHS = 6;
-export const LEADERSHIP_POOL_ELIGIBLE_RANK: TechRank = 'elite';
-export const BONUS_POOL_DISTRIBUTION_METHOD = 'equal_share' as const;
-export const ENROLLER_OVERRIDE_RATE = 0.30;
-export const INSURANCE_TO_TECH_CROSSCREDIT_PCT = 0.0; // Removed per spec line 388
-
-// ============================================================================
-// COMMISSION RUN CONFIGURATION
-// ============================================================================
-
-export const COMMISSION_RUN_CONFIG = {
-  PROMOTION_EFFECTIVE_DELAY_MONTHS: 1,
-  RANK_BONUS_ONE_TIME_ONLY: true,
-};
-
-// ============================================================================
-// HELPER FUNCTIONS
-// ============================================================================
 
 /**
  * Get override percentage for a specific rank and level
- * @param rank Tech rank
- * @param level Override level (1-5)
+ * @param rank - Tech rank
+ * @param level - Override level (1-5)
  * @returns Percentage (0.0-0.30) or 0 if level not unlocked
  */
 export function getOverridePercentage(rank: TechRank, level: number): number {
@@ -222,54 +181,252 @@ export function getOverridePercentage(rank: TechRank, level: number): number {
 }
 
 /**
- * Get rank value for comparisons
- * @param rank Tech rank
- * @returns Numeric value (0 = starter, 8 = elite)
+ * Get rank value (for comparisons)
+ * @param rank - Tech rank
+ * @returns Numeric value (0-8)
  */
 export function getRankValue(rank: TechRank): number {
   return TECH_RANKS.indexOf(rank);
 }
 
-// ============================================================================
-// LEGACY TYPES (for backwards compatibility)
-// ============================================================================
-// Keep old types for existing code that hasn't been updated yet
+/**
+ * Override Qualification - 50 Credit Minimum
+ *
+ * From spec:
+ * "Must generate 50+ personal credits/month to earn overrides and bonuses"
+ * If below 50 credits: seller commission still paid, but overrides = $0, bonuses = $0
+ */
+export const OVERRIDE_QUALIFICATION_MIN_CREDITS = 50;
 
-export type Rank = 'INACTIVE' | 'ASSOCIATE' | 'BRONZE' | 'SILVER' | 'GOLD' | 'PLATINUM';
+/**
+ * Grace Period for Rank Demotion
+ *
+ * IMPORTANT DISTINCTION:
+ * - tech_rank: Can drop after grace period (for display purposes)
+ * - paying_rank: Drops to highest qualified level after grace period (determines commission rates)
+ * - highest_tech_rank: NEVER drops (lifetime achievement)
+ */
+export const PAY_LEVEL_GRACE_PERIOD_DAYS = 30; // 30 days below requirements before PAYMENT LEVEL drops
 
-export const RANK_ID_MAP: Record<string, number> = {
-  INACTIVE: -1,
-  ASSOCIATE: 0,
-  BRONZE: 1,
-  SILVER: 2,
-  GOLD: 3,
-  PLATINUM: 4,
-};
+/**
+ * Waterfall Percentages
+ *
+ * From spec:
+ * 1. BotMakers takes 30% of retail price
+ * 2. Apex takes 30% of adjusted gross (after BotMakers) = 21% of retail
+ * 3. Bonus Pool: 5% of remainder (after BotMakers + Apex)
+ * 4. Leadership Pool: 1.5% of remainder (after BotMakers + Apex)
+ * 5. Seller gets 60% of field compensation
+ * 6. Override pool gets 40% of field compensation
+ *
+ * Calculation:
+ * - 100% retail
+ * - BotMakers: 30% → leaves 70%
+ * - Apex: 30% of 70% = 21% → leaves 49%
+ * - Bonus Pool: 5% of 49% = 2.45% → leaves 46.55%
+ * - Leadership Pool: 1.5% of 49% = 0.735% → leaves 45.815%
+ * - Direct Commission: 60% of 45.815% = 27.489%
+ * - Override Pool: 40% of 45.815% = 18.326%
+ */
+/**
+ * WATERFALL CONFIGURATION - SINGLE SOURCE OF TRUTH
+ *
+ * BV (Business Volume) Calculation:
+ * 1. BotMakers: 30% of retail price
+ * 2. Apex: 30% of remaining (after BotMakers)
+ * 3. Leadership Pool: 1.5% of remaining (after Apex)
+ * 4. Bonus Pool: 3.5% of remaining (after Leadership)
+ * 5. BV = Everything remaining
+ *
+ * Example $149 product:
+ * - BotMakers: $44.70 (30% of $149)
+ * - Remaining: $104.30
+ * - Apex: $31.29 (30% of $104.30)
+ * - Remaining: $73.01
+ * - Leadership: $1.10 (1.5% of $73.01)
+ * - Remaining: $71.91
+ * - Bonus: $2.52 (3.5% of $71.91)
+ * - BV: $69.39
+ *
+ * ALL commissions calculated from BV ($69.39), NOT retail price ($149)
+ */
+export const WATERFALL_CONFIG = {
+  BOTMAKERS_FEE_PCT: 0.30, // 30% of retail price
+  APEX_TAKE_PCT: 0.30, // 30% of remaining (after BotMakers)
+  LEADERSHIP_POOL_PCT: 0.015, // 1.5% of remaining (after Apex)
+  BONUS_POOL_PCT: 0.035, // 3.5% of remaining (after Leadership)
+  SELLER_COMMISSION_PCT: 0.60, // 60% of BV
+  OVERRIDE_POOL_PCT: 0.40, // 40% of BV
+} as const;
 
-// ============================================================================
-// PRODUCT PRICING (for reference)
-// ============================================================================
+/**
+ * Business Center Exception
+ *
+ * From spec:
+ * Business Center $39/mo does NOT flow through standard waterfall.
+ * Fixed dollar amounts:
+ * - BotMakers: $11
+ * - Apex: $8
+ * - Rep (seller): $10
+ * - Sponsor: $8
+ * - Costs: $2
+ * - Override Pool: NONE
+ * - Bonus Pool: NONE
+ * - Leadership Pool: NONE
+ * - Credits: 39 (fixed)
+ */
+export const BUSINESS_CENTER_CONFIG = {
+  PRICE_CENTS: 3900, // $39
+  BOTMAKERS_FEE_CENTS: 1100, // $11
+  APEX_TAKE_CENTS: 800, // $8
+  SELLER_COMMISSION_CENTS: 1000, // $10
+  SPONSOR_BONUS_CENTS: 800, // $8
+  COSTS_CENTS: 200, // $2
+  OVERRIDE_POOL_CENTS: 0, // No override pool
+  BONUS_POOL_CENTS: 0, // No bonus pool
+  LEADERSHIP_POOL_CENTS: 0, // No leadership pool
+  CREDITS: 39, // Fixed production credits
+} as const;
 
-export const PRODUCT_PRICES: Record<
-  string,
-  { member: number; retail: number; bv: number }
-> = {
-  PULSEGUARD: { member: 59, retail: 79, bv: 59 },
-  PULSEFLOW: { member: 109, retail: 149, bv: 109 },
-  PULSEDRIVE: { member: 219, retail: 299, bv: 219 },
-  PULSECOMMAND: { member: 349, retail: 469, bv: 349 },
-  SMARTLOCK: { member: 95, retail: 135, bv: 95 },
-  BIZCENTER: { member: 39, retail: 39, bv: 39 },
-};
+/**
+ * Leadership Pool (1.5%) - Elite Members Only
+ *
+ * From spec:
+ * - Leadership pool is divided among Elite members only
+ * - Based on production points (personal + team credits)
+ * - Proportional share: member's points / total Elite points
+ */
+export const LEADERSHIP_POOL_ELIGIBLE_RANK: TechRank = 'elite';
 
-// ============================================================================
-// ROUNDING HELPERS
-// ============================================================================
+/**
+ * Bonus Pool (3.5%) - Rank Bonus Earners
+ *
+ * From spec:
+ * - Bonus pool is divided EQUALLY among all members who earned rank bonuses in the period
+ * - Equal share: total pool / number of qualified members
+ */
+export const BONUS_POOL_DISTRIBUTION_METHOD = 'equal_share' as const;
 
-export function round2(value: number): number {
-  return Math.round(value * 100) / 100;
+/**
+ * Product Types
+ */
+export type ProductType = 'standard' | 'business_center';
+
+/**
+ * Enroller Override Rule
+ *
+ * From spec:
+ * "CRITICAL RULE: IF org_member.enroller_id == rep.member_id:
+ *   → ALWAYS use L1 rate (30% of override pool)
+ *   → Regardless of matrix position
+ *   → Regardless of rep's rank"
+ *
+ * enroller_id is IMMUTABLE. Set at enrollment. Never changes.
+ */
+export const ENROLLER_OVERRIDE_RATE = 0.30; // Always L1 (30%)
+
+/**
+ * Insurance Cross-Credit
+ *
+ * From spec:
+ * - 0.5% of insurance ladder credits cross-credited to tech ladder
+ * - Bill's % from tech ladder credited to insurance ladder (configurable per member)
+ */
+export const INSURANCE_TO_TECH_CROSSCREDIT_PCT = 0.005; // 0.5%
+
+/**
+ * Commission Run Settings
+ */
+export const COMMISSION_RUN_CONFIG = {
+  // Promotions take effect next month
+  PROMOTION_EFFECTIVE_DELAY_MONTHS: 1,
+  // Rank bonuses paid once per rank per lifetime
+  RANK_BONUS_ONE_TIME_ONLY: true,
+} as const;
+
+// =============================================
+// ASYNC WRAPPER FUNCTIONS (Future Database-Driven)
+// =============================================
+// These functions provide a migration path to database-driven config
+// Currently return hardcoded values, but can be swapped to DB queries
+// Use these in new code for forward compatibility
+// =============================================
+
+/**
+ * Get tech ranks (async for future DB loading)
+ * @returns Array of tech ranks
+ */
+export async function getTechRanksAsync(): Promise<readonly TechRank[]> {
+  // FUTURE: Load from database via config-loader
+  return TECH_RANKS;
 }
 
-export function floor2(value: number): number {
-  return Math.floor(value * 100) / 100;
+/**
+ * Get tech rank requirements (async for future DB loading)
+ * @returns Array of rank requirements
+ */
+export async function getTechRankRequirementsAsync(): Promise<TechRankRequirements[]> {
+  // FUTURE: Load from database via config-loader
+  return TECH_RANK_REQUIREMENTS;
 }
+
+/**
+ * Get override schedule for a specific rank (async for future DB loading)
+ * @param rank - Tech rank
+ * @returns Override percentages for L1-L5
+ */
+export async function getOverrideScheduleAsync(
+  rank: TechRank
+): Promise<[number, number, number, number, number]> {
+  // FUTURE: Load from database via config-loader
+  return RANKED_OVERRIDE_SCHEDULES[rank];
+}
+
+/**
+ * Get waterfall configuration (async for future DB loading)
+ * @param productType - Product type ('standard' or 'business_center')
+ * @returns Waterfall percentages or Business Center fixed amounts
+ */
+export async function getWaterfallConfigAsync(productType: ProductType = 'standard') {
+  // FUTURE: Load from database via config-loader
+  if (productType === 'business_center') {
+    return BUSINESS_CENTER_CONFIG;
+  }
+  return WATERFALL_CONFIG;
+}
+
+/**
+ * Type Guards
+ */
+export function isTechRank(value: string): value is TechRank {
+  return TECH_RANKS.includes(value as TechRank);
+}
+
+export function isInsuranceRank(value: string): value is InsuranceRank {
+  return INSURANCE_RANKS.includes(value as InsuranceRank);
+}
+
+/**
+ * Rank Display Names
+ */
+export const TECH_RANK_DISPLAY_NAMES: Record<TechRank, string> = {
+  starter: 'Starter',
+  bronze: 'Bronze',
+  silver: 'Silver',
+  gold: 'Gold',
+  platinum: 'Platinum',
+  ruby: 'Ruby',
+  diamond: 'Diamond',
+  crown: 'Crown',
+  elite: 'Elite',
+};
+
+export const INSURANCE_RANK_DISPLAY_NAMES: Record<InsuranceRank, string> = {
+  inactive: 'Inactive',
+  associate: 'Associate',
+  manager: 'Manager',
+  director: 'Director',
+  senior_director: 'Senior Director',
+  executive_director: 'Executive Director',
+  mga: 'MGA',
+};

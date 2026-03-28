@@ -167,6 +167,23 @@ export default async function TrainingPage() {
         </div>
       </div>
 
+      {/* Quick Navigation */}
+      <div className="bg-white border border-slate-200 rounded-xl p-6 mb-8 shadow-sm">
+        <h2 className="text-lg font-semibold text-slate-900 mb-4">Training Resources</h2>
+        <div className="flex flex-wrap gap-3">
+          <Link
+            href="/dashboard/training/videos"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg transition-colors text-sm font-medium"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Training Videos
+          </Link>
+        </div>
+      </div>
+
       {/* Progress Tracker */}
       <div className="bg-white border border-slate-200 rounded-xl p-6 mb-8 shadow-sm">
         <div className="flex items-center justify-between mb-4">

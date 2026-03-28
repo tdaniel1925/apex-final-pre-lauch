@@ -53,12 +53,12 @@ export const MeetingInvitationEmail = ({
       <Preview>{previewText}</Preview>
       <Body style={main}>
         <Container style={container}>
-          {/* Header with Apex Branding */}
+          {/* Header with Apex Logo */}
           <Section style={header}>
             <Img
-              src="https://reachtheapex.net/apex-logo.png"
+              src="https://theapexway.net/apex-logo-full.png"
               alt="Apex Affinity Group"
-              width="200"
+              width="300"
               height="auto"
               style={logo}
             />
@@ -162,11 +162,26 @@ export const MeetingInvitationEmail = ({
 
           {/* Footer */}
           <Section style={footer}>
+            <Text style={footerText}>
+              <strong>Apex Affinity Group</strong>
+            </Text>
+            <Text style={footerSmall}>
+              AI-Powered Lead Autopilot | theapexway.net
+            </Text>
             <Text style={footerSmall}>
               This invitation was sent by {distributorName} through Apex Affinity Group.
             </Text>
-            <Text style={footerSmall}>
-              Apex Affinity Group | Building Your Future Together
+          </Section>
+
+          {/* Unsubscribe Footer (Spam Compliance) */}
+          <Section style={unsubscribeSection}>
+            <Text style={unsubscribeText}>
+              You're receiving this email because {distributorName} sent you a meeting invitation.
+            </Text>
+            <Text style={unsubscribeText}>
+              <a href="{{unsubscribe_url}}" style={unsubscribeLink}>Unsubscribe</a> |{' '}
+              <a href="https://theapexway.net/privacy" style={unsubscribeLink}>Privacy Policy</a> |{' '}
+              <a href="https://theapexway.net/contact" style={unsubscribeLink}>Contact Us</a>
             </Text>
           </Section>
 
@@ -357,4 +372,22 @@ const footerSmall = {
   lineHeight: '1.5',
   margin: '4px 0',
   textAlign: 'center' as const,
+};
+
+const unsubscribeSection = {
+  backgroundColor: '#f3f4f6',
+  padding: '20px 32px',
+  textAlign: 'center' as const,
+};
+
+const unsubscribeText = {
+  color: '#6b7280',
+  fontSize: '11px',
+  lineHeight: '1.6',
+  margin: '4px 0',
+};
+
+const unsubscribeLink = {
+  color: '#6b7280',
+  textDecoration: 'underline',
 };

@@ -1,0 +1,238 @@
+{
+	"info": {
+		"_postman_id": "a1c42136-9a68-4fb3-85ee-2be99372e87f",
+		"name": "3MarkApex",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35000882"
+	},
+	"item": [
+		{
+			"name": "Policy Search Without Condition",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sitename",
+						"value": "PREPRODNEW",
+						"description": "Please add the site name provided by the SmartOffice team in the value field.",
+						"type": "default"
+					},
+					{
+						"key": "username",
+						"value": "PREPRODNEW_SDC_UAT_tdaniel",
+						"description": "Please add the user name provided by the SmartOffice team in the value field .",
+						"type": "default"
+					},
+					{
+						"key": "api-key",
+						"value": "fa0fc95d45e2405ca006a1bfe5d09b1f",
+						"description": "Please add the API Key provided by the SmartOffice team in the value field.",
+						"type": "default"
+					},
+					{
+						"key": "api-secret",
+						"value": "n2vcZOBHpfoFYDxm4xHKlTaQOvLpoe77",
+						"description": "Please add the API Secret provided by the SmartOffice team in the value field.",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<request version='1.0'>\r\n    <header>\r\n        <office></office>\r\n        <user></user>\r\n        <password></password>\r\n        <keepsession>true</keepsession>\r\n    </header>\r\n    <search searchid=\"\" total=\"true\" pagesize=\"100\">\r\n        <object>\r\n            <Policy >\r\n                <Insured/>\r\n                <CreatedOn/>\r\n                <PolicyNumber/>\r\n                <CarrierName/>\r\n                <Owner/>\r\n                <Payor/>\r\n                <Beneficary/>\r\n                <IssuedDate/>\r\n                <AnnualPremium/>\r\n                <PremiumMode/>\r\n                <Premium/>\r\n                <PlanName/>\r\n            </Policy>\r\n        </object>\r\n    </search>\r\n</request>\r\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.sandbox.smartofficecrm.com/3markapex/v1/send",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sandbox",
+						"smartofficecrm",
+						"com"
+					],
+					"path": [
+						"3markapex",
+						"v1",
+						"send"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Policy Search With Condition",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sitename",
+						"value": "PREPRODNEW",
+						"description": "Please add the site name provided by the SmartOffice team in the value field.",
+						"type": "default"
+					},
+					{
+						"key": "username",
+						"value": "PREPRODNEW_SDC_UAT_tdaniel",
+						"description": "Please add the user name provided by the SmartOffice team in the value field .",
+						"type": "default"
+					},
+					{
+						"key": "api-key",
+						"value": "fa0fc95d45e2405ca006a1bfe5d09b1f",
+						"description": "Please add the API Key provided by the SmartOffice team in the value field.",
+						"type": "default"
+					},
+					{
+						"key": "api-secret",
+						"value": "n2vcZOBHpfoFYDxm4xHKlTaQOvLpoe77",
+						"description": "Please add the API Secret provided by the SmartOffice team in the value field.",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<request version='1.0'>\r\n    <header>\r\n        <office></office>\r\n        <user></user>\r\n        <password></password>\r\n        <keepsession>true</keepsession>\r\n    </header>\r\n    <search searchid=\"\" total=\"true\" pagesize=\"100\" >\r\n        <object>\r\n            <Policy >\r\n                <Insured/>\r\n                <CreatedOn/>\r\n                <PolicyNumber/>\r\n                <CarrierName/>\r\n                <Owner/>\r\n                <Payor/>\r\n                <Beneficary/>\r\n                <IssuedDate/>\r\n                <AnnualPremium/>\r\n                <PremiumMode/>\r\n                <Premium/>\r\n                <PlanName/>\r\n            </Policy>\r\n        </object>\r\n        <condition>\r\n            <expr prop='CreatedOn' op='lt'>\r\n                <v>2025-09-20</v>\r\n            </expr>\r\n        </condition>\r\n    </search>\r\n</request>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.sandbox.smartofficecrm.com/3markapex/v1/send",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sandbox",
+						"smartofficecrm",
+						"com"
+					],
+					"path": [
+						"3markapex",
+						"v1",
+						"send"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Contact With Condition",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sitename",
+						"value": "PREPRODNEW",
+						"description": "Please add the site name provided by the SmartOffice team in the value field.",
+						"type": "default"
+					},
+					{
+						"key": "username",
+						"value": "PREPRODNEW_SDC_UAT_tdaniel",
+						"description": "Please add the user name provided by the SmartOffice team in the value field .",
+						"type": "default"
+					},
+					{
+						"key": "api-key",
+						"value": "fa0fc95d45e2405ca006a1bfe5d09b1f",
+						"description": "Please add the API Key provided by the SmartOffice team in the value field.",
+						"type": "default"
+					},
+					{
+						"key": "api-secret",
+						"value": "n2vcZOBHpfoFYDxm4xHKlTaQOvLpoe77",
+						"description": "Please add the API Secret provided by the SmartOffice team in the value field.",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<request version=\"1.0\">\r\n    <header>\r\n        <office/>\r\n        <user/>\r\n        <password/>\r\n        <keepsession>true</keepsession>\r\n    </header>\r\n    <search searchid=\"\" total=\"true\" pagesize=\"100\">\r\n        <object>\r\n            <Contact>\r\n                <FirstName/>\r\n                <LastName/>\r\n                <TaxID/>\r\n                <Person>\r\n                    <Dob/>\r\n                    <Gender/>\r\n                    <Occupation/>\r\n                </Person>\r\n                <Addresses>\r\n                    <Address>\r\n                        <Line1/>\r\n                        <City/>\r\n                    </Address>\r\n                </Addresses>\r\n                <Phones>\r\n                    <Phone>\r\n                        <PhoneType/>\r\n                        <CountryCode/>\r\n                        <AreaCode/>\r\n                        <Number/>\r\n                        <Extension/>\r\n                    </Phone>\r\n                </Phones>\r\n                <WebAddresses>\r\n                    <WebAddress>\r\n                        <WebAddressType/>\r\n                        <Address/>\r\n                    </WebAddress>\r\n                </WebAddresses>\r\n            </Contact>\r\n        </object>\r\n        <condition>\r\n            <expr prop='Contact.ClientType' op='eq'>\r\n                <v>7</v>\r\n            </expr>\r\n        </condition>\r\n    </search>\r\n</request>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.sandbox.smartofficecrm.com/3markapex/v1/send",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sandbox",
+						"smartofficecrm",
+						"com"
+					],
+					"path": [
+						"3markapex",
+						"v1",
+						"send"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Agent",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sitename",
+						"value": "PREPRODNEW",
+						"description": "Please add the site name provided by the SmartOffice team in the value field.",
+						"type": "default"
+					},
+					{
+						"key": "username",
+						"value": "PREPRODNEW_SDC_UAT_tdaniel",
+						"description": "Please add the user name provided by the SmartOffice team in the value field .",
+						"type": "default"
+					},
+					{
+						"key": "api-key",
+						"value": "fa0fc95d45e2405ca006a1bfe5d09b1f",
+						"description": "Please add the API Key provided by the SmartOffice team in the value field.",
+						"type": "default"
+					},
+					{
+						"key": "api-secret",
+						"value": "n2vcZOBHpfoFYDxm4xHKlTaQOvLpoe77",
+						"description": "Please add the API Secret provided by the SmartOffice team in the value field.",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<request version=\"1.0\">\r\n    <header>\r\n        <office/>\r\n        <user/>\r\n        <password/>\r\n    </header>\r\n    <search searchid=\"\" total=\"true\" pagesize=\"100\">\r\n        <object>\r\n            <Agent>\r\n                <Status></Status>\r\n                <Contact>\r\n                    <FirstName/>\r\n                <LastName/>\r\n                <TaxID/>\r\n                <Person>\r\n                    <Dob/>\r\n                    <Gender/>\r\n                    <Occupation/>\r\n                </Person>\r\n                <Addresses>\r\n                    <Address>\r\n                        <Line1/>\r\n                        <City/>\r\n                    </Address>\r\n                </Addresses>\r\n                <Phones>\r\n                    <Phone>\r\n                        <PhoneType/>\r\n                        <CountryCode/>\r\n                        <AreaCode/>\r\n                        <Number/>\r\n                        <Extension/>\r\n                    </Phone>\r\n                </Phones>\r\n                <WebAddresses>\r\n                    <WebAddress>\r\n                        <WebAddressType/>\r\n                        <Address/>\r\n                    </WebAddress>\r\n                </WebAddresses>\r\n                </Contact>\r\n            </Agent>\r\n        </object>\r\n    </search>\r\n</request>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.sandbox.smartofficecrm.com/3markapex/v1/send",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sandbox",
+						"smartofficecrm",
+						"com"
+					],
+					"path": [
+						"3markapex",
+						"v1",
+						"send"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

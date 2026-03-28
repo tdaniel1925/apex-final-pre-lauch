@@ -129,14 +129,14 @@ export default function ActivityFeed({ distributorId, initialActivities = [] }: 
         </div>
 
         {/* Filters */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
           {/* Event Type Filter */}
           <div>
             <label className="block text-xs font-medium text-gray-700 mb-1">Event Type</label>
             <select
               value={eventTypeFilter}
               onChange={(e) => setEventTypeFilter(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 min-h-[44px]"
             >
               <option value="all">All Events</option>
               <option value="signup">New Signups</option>
@@ -151,7 +151,7 @@ export default function ActivityFeed({ distributorId, initialActivities = [] }: 
             <select
               value={periodFilter}
               onChange={(e) => setPeriodFilter(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 min-h-[44px]"
             >
               <option value="today">Today</option>
               <option value="week">This Week</option>
@@ -161,7 +161,7 @@ export default function ActivityFeed({ distributorId, initialActivities = [] }: 
           </div>
 
           {/* Depth Filter */}
-          <div>
+          <div className="sm:col-span-2 md:col-span-1">
             <label className="block text-xs font-medium text-gray-700 mb-1">
               Max Depth (Level {maxDepthFilter})
             </label>
@@ -171,7 +171,7 @@ export default function ActivityFeed({ distributorId, initialActivities = [] }: 
               max="7"
               value={maxDepthFilter}
               onChange={(e) => setMaxDepthFilter(parseInt(e.target.value))}
-              className="w-full"
+              className="w-full h-[44px]"
             />
           </div>
         </div>

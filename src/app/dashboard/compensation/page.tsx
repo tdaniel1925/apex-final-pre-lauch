@@ -2,7 +2,8 @@
 
 // =============================================
 // Compensation Plan Overview - Dual Ladder System
-// Professional layout based on APEX_COMP_ENGINE_SPEC_FINAL.md
+// Professional layout with Mermaid diagrams
+// Updated: BV (Business Volume) terminology
 // =============================================
 
 import { useState, useEffect } from 'react';
@@ -14,8 +15,8 @@ const compensationSections = [
   {
     id: 'tech-ladder',
     title: 'Technology Ladder',
-    subtitle: '9 Ranks • Credit-Based Advancement',
-    description: 'Build your income through technology product sales and team development. Advance through 9 ranks from Starter to Elite based on personal and group production credits.',
+    subtitle: '9 Ranks • BV-Based Advancement',
+    description: 'Build your income through technology product sales and team development. Advance through 9 ranks from Starter to Elite based on personal and group Business Volume (BV).',
     href: '/dashboard/compensation/tech-ladder',
     category: 'Dual Ladder System',
   },
@@ -29,9 +30,9 @@ const compensationSections = [
   },
   {
     id: 'products',
-    title: 'Products & Credits',
+    title: 'Products & BV',
     subtitle: '6 Products • Member & Retail Pricing',
-    description: 'Understand our product lineup, pricing structure, and how production credits are calculated for rank advancement and qualification.',
+    description: 'Understand our product lineup, pricing structure, and how Business Volume (BV) is calculated for rank advancement and qualification.',
     href: '/dashboard/compensation/products',
     category: 'Core Concepts',
   },
@@ -111,6 +112,31 @@ export default function CompensationOverviewPage() {
     checkAuth();
   }, [router]);
 
+  useEffect(() => {
+    // Load Mermaid dynamically
+    const loadMermaid = async () => {
+      if (typeof window !== 'undefined') {
+        const mermaid = (await import('mermaid')).default;
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'default',
+          themeVariables: {
+            primaryColor: '#1e40af',
+            primaryTextColor: '#fff',
+            primaryBorderColor: '#1e3a8a',
+            lineColor: '#475569',
+            secondaryColor: '#3b82f6',
+            tertiaryColor: '#60a5fa',
+          }
+        });
+        mermaid.contentLoaded();
+      }
+    };
+    if (isAuthenticated) {
+      loadMermaid();
+    }
+  }, [isAuthenticated]);
+
   const filteredSections = compensationSections.filter((section) => {
     const matchesSearch =
       searchQuery === '' ||
@@ -134,19 +160,19 @@ export default function CompensationOverviewPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 text-white">
+      {/* Header - Solid Blue */}
+      <div className="bg-[#1e40af] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="max-w-3xl">
             <h1 className="text-4xl font-bold mb-4">Compensation Plan</h1>
-            <p className="text-xl text-slate-200 leading-relaxed mb-6">
+            <p className="text-xl text-blue-100 leading-relaxed mb-6">
               Our dual-ladder compensation system provides multiple pathways to financial success.
               Build income through technology products, insurance sales, or both.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/dashboard/compensation/calculator"
-                className="inline-flex items-center px-6 py-3 bg-white text-slate-900 font-semibold rounded-lg hover:bg-slate-100 transition-colors"
+                className="inline-flex items-center px-6 py-3 bg-white text-[#1e40af] font-semibold rounded-lg hover:bg-blue-50 transition-colors"
               >
                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
@@ -155,7 +181,7 @@ export default function CompensationOverviewPage() {
               </Link>
               <Link
                 href="/dashboard/compensation/glossary"
-                className="inline-flex items-center px-6 py-3 bg-slate-700/50 text-white font-semibold rounded-lg hover:bg-slate-700 transition-colors border border-slate-600"
+                className="inline-flex items-center px-6 py-3 bg-blue-700 text-white font-semibold rounded-lg hover:bg-blue-800 transition-colors border-2 border-blue-600"
               >
                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
@@ -189,6 +215,118 @@ export default function CompensationOverviewPage() {
         </div>
       </div>
 
+      {/* Mermaid Diagram Section - Dual Ladder Overview */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+        <div className="bg-white rounded-xl shadow-lg p-8">
+          <h2 className="text-2xl font-bold text-slate-900 mb-6 text-center">Dual-Ladder System Overview</h2>
+          <div className="overflow-x-auto">
+            <div className="mermaid">
+{`graph TB
+    subgraph "Technology Ladder"
+        A[Starter<br/>100 Personal BV<br/>400 Group BV] --> B[Builder<br/>250 Personal BV<br/>1,000 Group BV]
+        B --> C[Leader<br/>500 Personal BV<br/>2,500 Group BV]
+        C --> D[Manager<br/>750 Personal BV<br/>5,000 Group BV]
+        D --> E[Director<br/>1,000 Personal BV<br/>10,000 Group BV]
+        E --> F[Executive<br/>1,500 Personal BV<br/>25,000 Group BV]
+        F --> G[Senior Executive<br/>2,000 Personal BV<br/>50,000 Group BV]
+        G --> H[Premier<br/>2,500 Personal BV<br/>100,000 Group BV]
+        H --> I[Elite<br/>3,000 Personal BV<br/>250,000 Group BV]
+    end
+
+    subgraph "Insurance Ladder"
+        J[Pre-Associate<br/>Licensed Agent] --> K[Associate<br/>$500 Personal AP]
+        K --> L[Senior Associate<br/>$1,000 Personal AP]
+        L --> M[Premier Associate<br/>$2,000 Personal AP]
+        M --> N[MGA<br/>$3,000 Personal AP]
+        N --> O[Senior MGA<br/>$5,000 Personal AP]
+        O --> P[Premier MGA<br/>$10,000 Personal AP]
+    end
+
+    style A fill:#1e40af,stroke:#1e3a8a,color:#fff
+    style B fill:#1e40af,stroke:#1e3a8a,color:#fff
+    style C fill:#1e40af,stroke:#1e3a8a,color:#fff
+    style D fill:#1e40af,stroke:#1e3a8a,color:#fff
+    style E fill:#1e40af,stroke:#1e3a8a,color:#fff
+    style F fill:#1e40af,stroke:#1e3a8a,color:#fff
+    style G fill:#1e40af,stroke:#1e3a8a,color:#fff
+    style H fill:#1e40af,stroke:#1e3a8a,color:#fff
+    style I fill:#1e40af,stroke:#1e3a8a,color:#fff
+    style J fill:#3b82f6,stroke:#2563eb,color:#fff
+    style K fill:#3b82f6,stroke:#2563eb,color:#fff
+    style L fill:#3b82f6,stroke:#2563eb,color:#fff
+    style M fill:#3b82f6,stroke:#2563eb,color:#fff
+    style N fill:#3b82f6,stroke:#2563eb,color:#fff
+    style O fill:#3b82f6,stroke:#2563eb,color:#fff
+    style P fill:#3b82f6,stroke:#2563eb,color:#fff`}
+            </div>
+          </div>
+          <p className="text-sm text-slate-600 text-center mt-6">
+            <strong>BV = Business Volume</strong> (Tech products) • <strong>AP = Annualized Premium</strong> (Insurance sales)
+          </p>
+        </div>
+      </div>
+
+      {/* Mermaid Diagram - Commission Flow */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+        <div className="bg-white rounded-xl shadow-lg p-8">
+          <h2 className="text-2xl font-bold text-slate-900 mb-6 text-center">How Compensation Flows</h2>
+          <div className="overflow-x-auto">
+            <div className="mermaid">
+{`graph LR
+    A[Product Sale] --> B[Direct Commission<br/>27.9% to Seller]
+    A --> C[Override Pool<br/>L1-L5 Upline]
+    A --> D[Bonus Pool<br/>3.5% of Revenue]
+    A --> E[Leadership Pool<br/>1.5% of Revenue]
+
+    B --> F[Immediate Payout]
+    C --> G[Rank-Based Payouts]
+    D --> H[Trips, Cars, Fast Start]
+    E --> I[Early Leaders Only]
+
+    style A fill:#1e40af,stroke:#1e3a8a,color:#fff
+    style B fill:#3b82f6,stroke:#2563eb,color:#fff
+    style C fill:#3b82f6,stroke:#2563eb,color:#fff
+    style D fill:#3b82f6,stroke:#2563eb,color:#fff
+    style E fill:#3b82f6,stroke:#2563eb,color:#fff
+    style F fill:#60a5fa,stroke:#3b82f6,color:#fff
+    style G fill:#60a5fa,stroke:#3b82f6,color:#fff
+    style H fill:#60a5fa,stroke:#3b82f6,color:#fff
+    style I fill:#60a5fa,stroke:#3b82f6,color:#fff`}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Mermaid Diagram - Override Structure */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+        <div className="bg-white rounded-xl shadow-lg p-8">
+          <h2 className="text-2xl font-bold text-slate-900 mb-6 text-center">5-Level Override Structure</h2>
+          <div className="overflow-x-auto">
+            <div className="mermaid">
+{`graph TD
+    A[You: Make a Sale] --> B[L1: Your Sponsor<br/>30% Override]
+    B --> C[L2: Matrix Parent<br/>10-20% Override]
+    C --> D[L3: Matrix Grandparent<br/>5-15% Override]
+    D --> E[L4: Matrix Great-Grandparent<br/>5-10% Override]
+    E --> F[L5: Matrix G-G-Grandparent<br/>5% Override]
+
+    style A fill:#1e40af,stroke:#1e3a8a,color:#fff
+    style B fill:#3b82f6,stroke:#2563eb,color:#fff
+    style C fill:#3b82f6,stroke:#2563eb,color:#fff
+    style D fill:#3b82f6,stroke:#2563eb,color:#fff
+    style E fill:#3b82f6,stroke:#2563eb,color:#fff
+    style F fill:#3b82f6,stroke:#2563eb,color:#fff`}
+            </div>
+          </div>
+          <div className="mt-6 bg-blue-50 border-l-4 border-[#1e40af] p-4">
+            <p className="text-sm text-slate-700">
+              <strong>Key Rule:</strong> L1 override (30%) always goes to your enrollment sponsor, regardless of matrix placement.
+              L2-L5 overrides follow the matrix tree (5×7 forced matrix structure).
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* Filter Bar */}
       <div className="sticky top-0 z-30 bg-white border-b border-slate-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -205,7 +343,7 @@ export default function CompensationOverviewPage() {
                 placeholder="Search compensation topics..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="block w-full pl-10 pr-3 py-2.5 border border-slate-300 rounded-lg bg-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-slate-500"
+                className="block w-full pl-10 pr-3 py-2.5 border border-slate-300 rounded-lg bg-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#1e40af] focus:border-[#1e40af]"
               />
               {searchQuery && (
                 <button
@@ -228,7 +366,7 @@ export default function CompensationOverviewPage() {
                 onClick={() => setActiveCategory(category)}
                 className={`px-4 py-2 rounded-lg text-sm font-semibold whitespace-nowrap transition-all ${
                   activeCategory === category
-                    ? 'bg-slate-900 text-white shadow-md'
+                    ? 'bg-[#1e40af] text-white shadow-md'
                     : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                 }`}
               >
@@ -247,7 +385,7 @@ export default function CompensationOverviewPage() {
                   setSearchQuery('');
                   setActiveCategory('All');
                 }}
-                className="ml-3 text-slate-700 hover:text-slate-900 font-semibold"
+                className="ml-3 text-[#1e40af] hover:text-blue-800 font-semibold"
               >
                 Clear filters
               </button>
@@ -262,17 +400,17 @@ export default function CompensationOverviewPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {filteredSections.map((section) => (
               <Link key={section.id} href={section.href} className="group block">
-                <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border-2 border-transparent hover:border-slate-300 h-full">
+                <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border-2 border-transparent hover:border-[#1e40af] h-full">
                   <div className="p-6">
                     {/* Category Badge */}
                     <div className="mb-4">
-                      <span className="inline-block px-3 py-1 bg-slate-100 text-slate-700 text-xs font-semibold rounded-full">
+                      <span className="inline-block px-3 py-1 bg-blue-50 text-[#1e40af] text-xs font-semibold rounded-full">
                         {section.category}
                       </span>
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-slate-700 transition-colors">
+                    <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-[#1e40af] transition-colors">
                       {section.title}
                     </h3>
 
@@ -287,7 +425,7 @@ export default function CompensationOverviewPage() {
                     </p>
 
                     {/* Learn More Link */}
-                    <div className="flex items-center text-slate-700 text-sm font-semibold group-hover:translate-x-1 transition-transform">
+                    <div className="flex items-center text-[#1e40af] text-sm font-semibold group-hover:translate-x-1 transition-transform">
                       Learn More
                       <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -296,7 +434,7 @@ export default function CompensationOverviewPage() {
                   </div>
 
                   {/* Bottom Border Accent */}
-                  <div className="h-1 bg-gradient-to-r from-slate-600 to-slate-800" />
+                  <div className="h-1 bg-[#1e40af]" />
                 </div>
               </Link>
             ))}
@@ -318,7 +456,7 @@ export default function CompensationOverviewPage() {
                 setSearchQuery('');
                 setActiveCategory('All');
               }}
-              className="bg-slate-900 text-white px-6 py-2 rounded-lg font-semibold hover:bg-slate-800 transition-colors"
+              className="bg-[#1e40af] text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-800 transition-colors"
             >
               Clear all filters
             </button>
@@ -326,23 +464,23 @@ export default function CompensationOverviewPage() {
         )}
       </div>
 
-      {/* CTA Section */}
-      <div className="bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 text-white py-16 mt-8">
+      {/* CTA Section - Solid Blue */}
+      <div className="bg-[#1e40af] text-white py-16 mt-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Build Your Income?</h2>
-          <p className="text-xl text-slate-200 mb-8">
+          <p className="text-xl text-blue-100 mb-8">
             Use our calculator to estimate your potential earnings, or explore each section to understand how our compensation plan works.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/dashboard/compensation/calculator"
-              className="bg-white text-slate-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-slate-100 transition-colors"
+              className="bg-white text-[#1e40af] px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-50 transition-colors"
             >
               Calculate My Potential
             </Link>
             <Link
               href="/dashboard/team"
-              className="bg-slate-700/50 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-slate-700 transition-colors border-2 border-slate-600"
+              className="bg-blue-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-800 transition-colors border-2 border-blue-600"
             >
               View My Team
             </Link>

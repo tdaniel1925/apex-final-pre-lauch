@@ -1,0 +1,763 @@
+{
+  "timestamp": "2026-03-22T08:44:56.184Z",
+  "summary": {
+    "total": 62,
+    "critical": 1,
+    "high": 9,
+    "medium": 52,
+    "low": 0
+  },
+  "by_category": {
+    "Downline Counts": [
+      {
+        "category": "Downline Counts",
+        "severity": "MEDIUM",
+        "file": "src\\lib\\types\\index.ts",
+        "line": 104,
+        "issue": "Using cached count field",
+        "currentSource": "Cached count column",
+        "correctSource": "COUNT query on distributors.sponsor_id",
+        "code": "downline_count: number;",
+        "impact": "Count may be stale if not updated via trigger"
+      },
+      {
+        "category": "Downline Counts",
+        "severity": "MEDIUM",
+        "file": "src\\components\\distributor\\DistributorDetailsModal.tsx",
+        "line": 43,
+        "issue": "Using cached count field",
+        "currentSource": "Cached count column",
+        "correctSource": "COUNT query on distributors.sponsor_id",
+        "code": "l1_count: number;",
+        "impact": "Count may be stale if not updated via trigger"
+      },
+      {
+        "category": "Downline Counts",
+        "severity": "MEDIUM",
+        "file": "src\\components\\distributor\\DistributorDetailsModal.tsx",
+        "line": 295,
+        "issue": "Using cached count field",
+        "currentSource": "Cached count column",
+        "correctSource": "COUNT query on distributors.sponsor_id",
+        "code": "{details.team.l1_count}",
+        "impact": "Count may be stale if not updated via trigger"
+      },
+      {
+        "category": "Downline Counts",
+        "severity": "MEDIUM",
+        "file": "src\\app\\api\\distributor\\[id]\\details\\route.ts",
+        "line": 177,
+        "issue": "Using cached count field",
+        "currentSource": "Cached count column",
+        "correctSource": "COUNT query on distributors.sponsor_id",
+        "code": "l1_count: l1Count,",
+        "impact": "Count may be stale if not updated via trigger"
+      }
+    ],
+    "Data Flow": [
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\lib\\stripe\\autopilot-helpers.ts",
+        "line": 1,
+        "issue": "Querying autopilot_subscriptions table 4 times in same file",
+        "currentSource": "4 separate queries to autopilot_subscriptions",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('autopilot_subscriptions') appears 4 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\lib\\matrix\\placement-algorithm.ts",
+        "line": 1,
+        "issue": "Querying members table 6 times in same file",
+        "currentSource": "6 separate queries to members",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('members') appears 6 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\lib\\smartoffice\\sync-service.ts",
+        "line": 1,
+        "issue": "Querying smartoffice_agents table 10 times in same file",
+        "currentSource": "10 separate queries to smartoffice_agents",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('smartoffice_agents') appears 10 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\lib\\smartoffice\\sync-service.ts",
+        "line": 1,
+        "issue": "Querying smartoffice_policies table 4 times in same file",
+        "currentSource": "4 separate queries to smartoffice_policies",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('smartoffice_policies') appears 4 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\lib\\smartoffice\\sync-service.ts",
+        "line": 1,
+        "issue": "Querying smartoffice_sync_logs table 4 times in same file",
+        "currentSource": "4 separate queries to smartoffice_sync_logs",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('smartoffice_sync_logs') appears 4 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\lib\\genealogy\\tree-service.ts",
+        "line": 1,
+        "issue": "Querying distributors table 6 times in same file",
+        "currentSource": "6 separate queries to distributors",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('distributors') appears 6 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\lib\\enrollees\\enrollee-counter.ts",
+        "line": 1,
+        "issue": "Querying distributors table 4 times in same file",
+        "currentSource": "4 separate queries to distributors",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('distributors') appears 4 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\lib\\db\\autopilot-subscription-queries.ts",
+        "line": 1,
+        "issue": "Querying autopilot_subscriptions table 6 times in same file",
+        "currentSource": "6 separate queries to autopilot_subscriptions",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('autopilot_subscriptions') appears 6 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\lib\\email\\campaign-service.ts",
+        "line": 1,
+        "issue": "Querying email_campaigns table 5 times in same file",
+        "currentSource": "5 separate queries to email_campaigns",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('email_campaigns') appears 5 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\lib\\admin\\matrix-manager.ts",
+        "line": 1,
+        "issue": "Querying distributors table 15 times in same file",
+        "currentSource": "15 separate queries to distributors",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('distributors') appears 15 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\lib\\admin\\entity-resolver.ts",
+        "line": 1,
+        "issue": "Querying distributors table 4 times in same file",
+        "currentSource": "4 separate queries to distributors",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('distributors') appears 4 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\lib\\admin\\distributor-service.ts",
+        "line": 1,
+        "issue": "Querying distributors table 11 times in same file",
+        "currentSource": "11 separate queries to distributors",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('distributors') appears 11 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\lib\\admin\\command-executor.ts",
+        "line": 1,
+        "issue": "Querying distributors table 7 times in same file",
+        "currentSource": "7 separate queries to distributors",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('distributors') appears 7 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\lib\\admin\\command-executor.ts",
+        "line": 1,
+        "issue": "Querying distributor_activity_log table 4 times in same file",
+        "currentSource": "4 separate queries to distributor_activity_log",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('distributor_activity_log') appears 4 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\lib\\admin\\ai-database-access.ts",
+        "line": 1,
+        "issue": "Querying distributors table 4 times in same file",
+        "currentSource": "4 separate queries to distributors",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('distributors') appears 4 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\components\\dashboard\\Road500Banner.tsx",
+        "line": 1,
+        "issue": "Querying distributors table 4 times in same file",
+        "currentSource": "4 separate queries to distributors",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('distributors') appears 4 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\app\\admin\\page.tsx",
+        "line": 1,
+        "issue": "Querying distributors table 7 times in same file",
+        "currentSource": "7 separate queries to distributors",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('distributors') appears 7 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\lib\\integrations\\user-sync\\service.ts",
+        "line": 1,
+        "issue": "Querying distributor_replicated_sites table 6 times in same file",
+        "currentSource": "6 separate queries to distributor_replicated_sites",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('distributor_replicated_sites') appears 6 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\lib\\compensation\\_OLD_BACKUP\\commission-run.ts",
+        "line": 1,
+        "issue": "Querying reps table 6 times in same file",
+        "currentSource": "6 separate queries to reps",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('reps') appears 6 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\lib\\compensation\\_OLD_BACKUP\\commission-run.ts",
+        "line": 1,
+        "issue": "Querying cab_records table 4 times in same file",
+        "currentSource": "4 separate queries to cab_records",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('cab_records') appears 4 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\lib\\compensation\\_OLD_BACKUP\\commission-run.ts",
+        "line": 1,
+        "issue": "Querying commission_runs table 4 times in same file",
+        "currentSource": "4 separate queries to commission_runs",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('commission_runs') appears 4 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\lib\\compensation\\_OLD_BACKUP\\cab-state-machine.ts",
+        "line": 1,
+        "issue": "Querying cab_records table 9 times in same file",
+        "currentSource": "9 separate queries to cab_records",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('cab_records') appears 9 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\lib\\compensation\\_OLD_BACKUP\\cab-state-machine.ts",
+        "line": 1,
+        "issue": "Querying subscriptions table 6 times in same file",
+        "currentSource": "6 separate queries to subscriptions",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('subscriptions') appears 6 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\lib\\compensation\\_OLD_BACKUP\\bonuses.ts",
+        "line": 1,
+        "issue": "Querying reps table 4 times in same file",
+        "currentSource": "4 separate queries to reps",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('reps') appears 4 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\app\\api\\signup\\route.ts",
+        "line": 1,
+        "issue": "Querying distributors table 10 times in same file",
+        "currentSource": "10 separate queries to distributors",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('distributors') appears 10 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\app\\dashboard\\matrix\\[id]\\page.tsx",
+        "line": 1,
+        "issue": "Querying distributors table 5 times in same file",
+        "currentSource": "5 separate queries to distributors",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('distributors') appears 5 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\app\\api\\training\\progress\\route.ts",
+        "line": 1,
+        "issue": "Querying training_progress table 4 times in same file",
+        "currentSource": "4 separate queries to training_progress",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('training_progress') appears 4 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\app\\api\\training\\progress\\route.ts",
+        "line": 1,
+        "issue": "Querying training_streaks table 4 times in same file",
+        "currentSource": "4 separate queries to training_streaks",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('training_streaks') appears 4 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\app\\api\\training\\subscription\\route.ts",
+        "line": 1,
+        "issue": "Querying training_subscriptions table 5 times in same file",
+        "currentSource": "5 separate queries to training_subscriptions",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('training_subscriptions') appears 5 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\app\\api\\dashboard\\matrix-position\\route.ts",
+        "line": 1,
+        "issue": "Querying distributors table 4 times in same file",
+        "currentSource": "4 separate queries to distributors",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('distributors') appears 4 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\app\\api\\autopilot\\flyers\\route.ts",
+        "line": 1,
+        "issue": "Querying event_flyers table 4 times in same file",
+        "currentSource": "4 separate queries to event_flyers",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('event_flyers') appears 4 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\app\\api\\rep\\meetings\\[id]\\route.ts",
+        "line": 1,
+        "issue": "Querying meeting_events table 5 times in same file",
+        "currentSource": "5 separate queries to meeting_events",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('meeting_events') appears 5 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\app\\api\\distributor\\[id]\\details\\route.ts",
+        "line": 1,
+        "issue": "Querying distributors table 6 times in same file",
+        "currentSource": "6 separate queries to distributors",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('distributors') appears 6 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\app\\api\\autopilot\\crm\\pipeline\\route.ts",
+        "line": 1,
+        "issue": "Querying crm_pipeline table 4 times in same file",
+        "currentSource": "4 separate queries to crm_pipeline",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('crm_pipeline') appears 4 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\app\\api\\admin\\smartoffice\\reports\\route.ts",
+        "line": 1,
+        "issue": "Querying smartoffice_agents table 6 times in same file",
+        "currentSource": "6 separate queries to smartoffice_agents",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('smartoffice_agents') appears 6 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\app\\api\\admin\\smartoffice\\reports\\route.ts",
+        "line": 1,
+        "issue": "Querying smartoffice_policies table 4 times in same file",
+        "currentSource": "4 separate queries to smartoffice_policies",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('smartoffice_policies') appears 4 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\app\\api\\admin\\matrix\\tree\\route.ts",
+        "line": 1,
+        "issue": "Querying distributors table 6 times in same file",
+        "currentSource": "6 separate queries to distributors",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('distributors') appears 6 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\app\\api\\admin\\events\\[id]\\route.ts",
+        "line": 1,
+        "issue": "Querying company_events table 6 times in same file",
+        "currentSource": "6 separate queries to company_events",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('company_events') appears 6 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\app\\api\\admin\\matrix\\create-and-place\\route.ts",
+        "line": 1,
+        "issue": "Querying distributors table 5 times in same file",
+        "currentSource": "5 separate queries to distributors",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('distributors') appears 5 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\app\\api\\admin\\integrations\\[id]\\route.ts",
+        "line": 1,
+        "issue": "Querying integrations table 5 times in same file",
+        "currentSource": "5 separate queries to integrations",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('integrations') appears 5 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\app\\api\\admin\\business-card-templates\\[id]\\route.ts",
+        "line": 1,
+        "issue": "Querying business_card_templates table 4 times in same file",
+        "currentSource": "4 separate queries to business_card_templates",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('business_card_templates') appears 4 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\app\\api\\autopilot\\social\\posts\\[id]\\route.ts",
+        "line": 1,
+        "issue": "Querying social_posts table 5 times in same file",
+        "currentSource": "5 separate queries to social_posts",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('social_posts') appears 5 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\app\\api\\autopilot\\crm\\contacts\\[id]\\route.ts",
+        "line": 1,
+        "issue": "Querying crm_contacts table 4 times in same file",
+        "currentSource": "4 separate queries to crm_contacts",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('crm_contacts') appears 4 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\app\\api\\admin\\prospects\\[id]\\convert\\route.ts",
+        "line": 1,
+        "issue": "Querying distributors table 6 times in same file",
+        "currentSource": "6 separate queries to distributors",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('distributors') appears 6 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\app\\api\\admin\\integrations\\product-mappings\\[id]\\route.ts",
+        "line": 1,
+        "issue": "Querying integration_product_mappings table 4 times in same file",
+        "currentSource": "4 separate queries to integration_product_mappings",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('integration_product_mappings') appears 4 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\app\\api\\autopilot\\social\\posts\\[id]\\post-now\\route.ts",
+        "line": 1,
+        "issue": "Querying social_posts table 5 times in same file",
+        "currentSource": "5 separate queries to social_posts",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('social_posts') appears 5 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\app\\api\\autopilot\\team\\training\\shared\\[id]\\route.ts",
+        "line": 1,
+        "issue": "Querying training_shares table 4 times in same file",
+        "currentSource": "4 separate queries to training_shares",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('training_shares') appears 4 times",
+        "impact": "N+1 query problem, poor performance"
+      },
+      {
+        "category": "Data Flow",
+        "severity": "MEDIUM",
+        "file": "src\\app\\api\\admin\\distributors\\[id]\\notes\\[noteId]\\route.ts",
+        "line": 1,
+        "issue": "Querying admin_notes table 4 times in same file",
+        "currentSource": "4 separate queries to admin_notes",
+        "correctSource": "Single query with proper JOINs or data structure",
+        "code": "from('admin_notes') appears 4 times",
+        "impact": "N+1 query problem, poor performance"
+      }
+    ],
+    "Matrix Placement": [
+      {
+        "category": "Matrix Placement",
+        "severity": "HIGH",
+        "file": "src\\lib\\compensation\\override-resolution.ts",
+        "line": 73,
+        "issue": "Computing matrix placement from enrollment tree",
+        "currentSource": "Derived from enroller_id",
+        "correctSource": "distributors.matrix_parent_id + matrix_position",
+        "code": "* @param matrixLevel - Position in matrix (1-5), only used if not enroller",
+        "impact": "Matrix and enrollment are separate - this will be wrong"
+      },
+      {
+        "category": "Matrix Placement",
+        "severity": "HIGH",
+        "file": "src\\lib\\compensation\\override-resolution.ts",
+        "line": 80,
+        "issue": "Computing matrix placement from enrollment tree",
+        "currentSource": "Derived from enroller_id",
+        "correctSource": "distributors.matrix_parent_id + matrix_position",
+        "code": "matrixLevel?: number",
+        "impact": "Matrix and enrollment are separate - this will be wrong"
+      },
+      {
+        "category": "Matrix Placement",
+        "severity": "HIGH",
+        "file": "src\\lib\\compensation\\override-resolution.ts",
+        "line": 88,
+        "issue": "Computing matrix placement from enrollment tree",
+        "currentSource": "Derived from enroller_id",
+        "correctSource": "distributors.matrix_parent_id + matrix_position",
+        "code": "level: isEnroller ? 1 : (matrixLevel ?? 0),",
+        "impact": "Matrix and enrollment are separate - this will be wrong"
+      },
+      {
+        "category": "Matrix Placement",
+        "severity": "HIGH",
+        "file": "src\\lib\\compensation\\override-resolution.ts",
+        "line": 190,
+        "issue": "Computing matrix placement from enrollment tree",
+        "currentSource": "Derived from enroller_id",
+        "correctSource": "distributors.matrix_parent_id + matrix_position",
+        "code": "* This traverses the matrix/enroller tree and calculates overrides for each level",
+        "impact": "Matrix and enrollment are separate - this will be wrong"
+      },
+      {
+        "category": "Matrix Placement",
+        "severity": "HIGH",
+        "file": "src\\lib\\compensation\\override-resolution.ts",
+        "line": 206,
+        "issue": "Computing matrix placement from enrollment tree",
+        "currentSource": "Derived from enroller_id",
+        "correctSource": "distributors.matrix_parent_id + matrix_position",
+        "code": "const matrixLevel = i + 1; // L1, L2, L3, L4, L5",
+        "impact": "Matrix and enrollment are separate - this will be wrong"
+      },
+      {
+        "category": "Matrix Placement",
+        "severity": "HIGH",
+        "file": "src\\lib\\compensation\\override-resolution.ts",
+        "line": 209,
+        "issue": "Computing matrix placement from enrollment tree",
+        "currentSource": "Derived from enroller_id",
+        "correctSource": "distributors.matrix_parent_id + matrix_position",
+        "code": "const result = calculateOverride(member, sale, isEnroller, matrixLevel);",
+        "impact": "Matrix and enrollment are separate - this will be wrong"
+      },
+      {
+        "category": "Matrix Placement",
+        "severity": "HIGH",
+        "file": "src\\lib\\compensation\\override-calculator.ts",
+        "line": 59,
+        "issue": "Computing matrix placement from enrollment tree",
+        "currentSource": "Derived from enroller_id",
+        "correctSource": "distributors.matrix_parent_id + matrix_position",
+        "code": "override_type: 'L1_enroller' | `L${number}_matrix`;",
+        "impact": "Matrix and enrollment are separate - this will be wrong"
+      }
+    ],
+    "Enrollment Tree": [
+      {
+        "category": "Enrollment Tree",
+        "severity": "CRITICAL",
+        "file": "src\\app\\dashboard\\team\\page.tsx",
+        "line": 119,
+        "issue": "Using members.enroller_id for enrollment tree queries",
+        "currentSource": "members.enroller_id",
+        "correctSource": "distributors.sponsor_id",
+        "code": ".from('members')",
+        "impact": "Enrollment counts and trees will be incorrect"
+      }
+    ],
+    "BV/Credits": [
+      {
+        "category": "BV/Credits",
+        "severity": "HIGH",
+        "file": "src\\app\\api\\admin\\matrix\\tree\\route.ts",
+        "line": 25,
+        "issue": "Using cached BV fields from distributors table",
+        "currentSource": "distributors.personal_bv_monthly",
+        "correctSource": "members.personal_credits_monthly (via JOIN)",
+        "code": "personal_bv_monthly?: number | null;",
+        "impact": "Stale data if members table updated but distributors not synced"
+      },
+      {
+        "category": "BV/Credits",
+        "severity": "HIGH",
+        "file": "src\\app\\api\\admin\\matrix\\tree\\route.ts",
+        "line": 26,
+        "issue": "Using cached BV fields from distributors table",
+        "currentSource": "distributors.personal_bv_monthly",
+        "correctSource": "members.personal_credits_monthly (via JOIN)",
+        "code": "group_bv_monthly?: number | null;",
+        "impact": "Stale data if members table updated but distributors not synced"
+      }
+    ]
+  },
+  "source_of_truth_rules": {
+    "enrollment_tree": {
+      "correct": "distributors.sponsor_id",
+      "wrong": [
+        "members.enroller_id",
+        "enrollment_stats",
+        "cached sponsor data"
+      ],
+      "category": "Enrollment Tree"
+    },
+    "matrix_tree": {
+      "correct": "distributors.matrix_parent_id + matrix_position",
+      "wrong": [
+        "cached matrix data",
+        "computed from enrollments"
+      ],
+      "category": "Matrix Placement"
+    },
+    "user_identity": {
+      "correct": "distributors.auth_user_id (maps to auth.users.id)",
+      "wrong": [
+        "members.distributor_id duplicate lookups",
+        "cached user data"
+      ],
+      "category": "User Identity"
+    },
+    "rep_numbers": {
+      "correct": "distributors.rep_number",
+      "wrong": [
+        "members.rep_number",
+        "cached rep numbers"
+      ],
+      "category": "Rep Numbers"
+    },
+    "bv_credits": {
+      "correct": "members.personal_credits_monthly + team_credits_monthly",
+      "wrong": [
+        "distributors BV fields",
+        "cached BV in separate table"
+      ],
+      "category": "BV/Credits"
+    },
+    "member_stats": {
+      "correct": "members table (tech_rank, override_qualified, etc)",
+      "wrong": [
+        "distributor_stats table",
+        "cached member data"
+      ],
+      "category": "Member Stats"
+    },
+    "downline_counts": {
+      "correct": "COUNT query on distributors.sponsor_id (computed on demand)",
+      "wrong": [
+        "enrollment_stats.l1_direct",
+        "cached counts in distributors"
+      ],
+      "category": "Downline Counts"
+    }
+  }
+}

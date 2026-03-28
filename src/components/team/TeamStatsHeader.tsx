@@ -21,7 +21,7 @@ export default function TeamStatsHeader({
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
       {/* Total Personal Enrollees */}
-      <div className="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
+      <div className="team-stat bg-white border border-slate-200 rounded-lg p-6 shadow-sm" data-testid="team-stat">
         <p className="text-xs font-semibold text-slate-600 uppercase tracking-wide mb-2">
           Total Personal Enrollees
         </p>
@@ -30,7 +30,7 @@ export default function TeamStatsHeader({
       </div>
 
       {/* Active This Month */}
-      <div className="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
+      <div className="team-stat bg-white border border-slate-200 rounded-lg p-6 shadow-sm" data-testid="team-stat">
         <p className="text-xs font-semibold text-slate-600 uppercase tracking-wide mb-2">
           Active This Month
         </p>
@@ -39,7 +39,7 @@ export default function TeamStatsHeader({
       </div>
 
       {/* Total Team Credits */}
-      <div className="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
+      <div className="team-stat bg-white border border-slate-200 rounded-lg p-6 shadow-sm" data-testid="team-stat">
         <p className="text-xs font-semibold text-slate-600 uppercase tracking-wide mb-2">
           Total Team Credits
         </p>
@@ -48,7 +48,7 @@ export default function TeamStatsHeader({
       </div>
 
       {/* L1 Override Earnings */}
-      <div className="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
+      <div className="team-stat bg-white border border-slate-200 rounded-lg p-6 shadow-sm" data-testid="team-stat">
         <p className="text-xs font-semibold text-slate-600 uppercase tracking-wide mb-2">
           L1 Override Earnings
         </p>

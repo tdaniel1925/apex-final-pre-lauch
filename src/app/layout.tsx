@@ -42,6 +42,7 @@ export default function RootLayout({
       </head>
       <body
         className={`${publicSans.variable} ${monaSans.variable} antialiased font-[family-name:var(--font-public-sans)]`}
+        suppressHydrationWarning
       >
         {children}
       </body>

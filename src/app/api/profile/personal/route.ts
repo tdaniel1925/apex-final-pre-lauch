@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
+import { formatPhoneToE164 } from '@/lib/utils/format-phone';
 
 export async function PUT(request: NextRequest) {
   try {
@@ -30,13 +31,16 @@ export async function PUT(request: NextRequest) {
       timezone,
     } = body;
 
+    // Convert phone to E.164 format for consistent storage
+    const formattedPhone = phone ? formatPhoneToE164(phone) : null;
+
     // Update user_profiles table (basic info)
     const { error: profileError } = await supabase
       .from('user_profiles')
       .update({
         first_name,
         last_name,
-        phone,
+        phone: formattedPhone,
         city,
         state,
         updated_at: new Date().toISOString(),

@@ -77,7 +77,8 @@ export default async function DashboardV3Page() {
       .order('created_at', { ascending: false })
       .limit(10),
 
-    // Get matrix children
+    // Get matrix children (ALLOWED: Matrix visualization uses matrix_parent_id)
+    // This is correct - showing 5×7 forced matrix structure, not enrollment tree
     serviceClient
       .from('distributors')
       .select('id, first_name, last_name, created_at, licensing_status, matrix_position')

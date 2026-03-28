@@ -177,7 +177,10 @@ export async function POST(request: NextRequest) {
     }
 
     // Step 5: Create auth user with email confirmation
-    const { data: authData, error: authError } = await supabase.auth.signUp({
+    let authData: any;
+    let authError: any;
+
+    const signUpResult = await supabase.auth.signUp({
       email: data.email,
       password: data.password,
       options: {
@@ -188,6 +191,9 @@ export async function POST(request: NextRequest) {
         },
       },
     });
+
+    authData = signUpResult.data;
+    authError = signUpResult.error;
 
     if (authError || !authData.user) {
       // Handle case where auth user exists but no distributor (orphaned auth user)
@@ -200,38 +206,52 @@ export async function POST(request: NextRequest) {
           .single();
 
         if (!existingDist) {
-          // Auth user exists but no distributor - orphaned account, clean it up
-          console.log('Cleaning up orphaned auth user for email:', data.email);
+          // Auth user exists but no distributor - orphaned account
+          console.log('Orphaned auth user detected for email:', data.email);
+          console.log('Attempting to complete the signup with existing auth user...');
 
-          // Get the auth user ID to delete
+          // Try to find the orphaned user
           const { data: { users } } = await serviceClient.auth.admin.listUsers();
           const orphanedUser = users?.find(u => u.email === data.email);
 
           if (orphanedUser) {
-            await serviceClient.auth.admin.deleteUser(orphanedUser.id);
-            console.log('Deleted orphaned auth user, please try signing up again');
-          }
+            // Found the orphaned user - complete the signup by creating distributor
+            console.log('Found orphaned auth user:', orphanedUser.id);
+            console.log('Completing signup by creating distributor record...');
 
-          return NextResponse.json(
-            {
-              success: false,
-              error: 'Account cleanup required',
-              message: 'An incomplete signup was detected and cleaned up. Please try again.',
-            } as ApiResponse,
-            { status: 409 }
-          );
+            // Use the existing auth user ID and continue with the normal flow
+            authUserId = orphanedUser.id;
+
+            // Jump to distributor creation (we'll set authData to simulate successful auth)
+            authData = { user: orphanedUser } as any;
+          } else {
+            // Not found in listUsers - likely soft-deleted (grace period)
+            console.log('Orphaned auth user is soft-deleted (grace period active)');
+
+            return NextResponse.json(
+              {
+                success: false,
+                error: 'Account in grace period',
+                message: 'This email was recently used. Please use a different email address or contact support.',
+              } as ApiResponse,
+              { status: 409 }
+            );
+          }
         }
       }
 
-      console.error('Auth error:', authError);
-      return NextResponse.json(
-        {
-          success: false,
-          error: 'Failed to create account',
-          message: authError?.message || 'Could not create user account',
-        } as ApiResponse,
-        { status: 500 }
-      );
+      // If we didn't recover by finding an orphaned user, return error
+      if (!authData || !authData.user) {
+        console.error('Auth error:', authError);
+        return NextResponse.json(
+          {
+            success: false,
+            error: 'Failed to create account',
+            message: authError?.message || 'Could not create user account',
+          } as ApiResponse,
+          { status: 500 }
+        );
+      }
     }
 
     // Track auth user for rollback
@@ -288,6 +308,7 @@ export async function POST(request: NextRequest) {
         p_city: data.city,
         p_state: data.state,
         p_zip: data.zip,
+        p_bio: data.bio || null, // Bio for AI Voice Agent personalization
       }
     );
 
@@ -324,53 +345,8 @@ export async function POST(request: NextRequest) {
     // Track distributor for rollback
     distributorId = distributor.id;
 
-    // Step 7.5: Create member record (for compensation tracking)
-    const { error: memberError } = await serviceClient
-      .from('members')
-      .insert({
-        distributor_id: distributor.id,
-        email: distributor.email,
-        full_name: `${distributor.first_name} ${distributor.last_name}`,
-        enroller_id: null, // Will be updated later when enroller's member record exists
-        sponsor_id: null, // Will be updated later when sponsor's member record exists
-        status: 'active',
-        enrollment_date: distributor.created_at,
-        tech_rank: 'starter',
-        highest_tech_rank: 'starter',
-        insurance_rank: 'inactive',
-        highest_insurance_rank: 'inactive',
-        personal_credits_monthly: 0,
-        team_credits_monthly: 0,
-        tech_personal_credits_monthly: 0,
-        tech_team_credits_monthly: 0,
-        insurance_personal_credits_monthly: 0,
-        insurance_team_credits_monthly: 0,
-        override_qualified: false,
-      });
-
-    if (memberError) {
-      console.error('Member creation error:', memberError);
-
-      // Rollback: Delete auth user and distributor
-      console.log('[ROLLBACK] Member creation failed, deleting auth user and distributor');
-      await serviceClient.auth.admin.deleteUser(authUserId!);
-      await serviceClient
-        .from('distributors')
-        .delete()
-        .eq('id', distributorId!);
-
-      authUserId = null;
-      distributorId = null;
-
-      return NextResponse.json(
-        {
-          success: false,
-          error: 'Failed to create member profile',
-          message: 'Account creation failed. Please try again.',
-        } as ApiResponse,
-        { status: 500 }
-      );
-    }
+    // NOTE: Member record is already created by create_distributor_atomic RPC function
+    // No need to create it again here (doing so causes duplicate key error)
 
     // Step 7.6: Store Tax ID (SSN or EIN) in tax_info table
     if (data.registration_type === 'personal' && data.ssn) {
@@ -511,7 +487,42 @@ export async function POST(request: NextRequest) {
       console.error('[Signup] Replicated site creation failed:', replicationError);
     }
 
-    // Step 9: Return success
+    // Step 8.6: Provision AI phone number asynchronously
+    // This runs in the background and errors are logged but don't fail signup
+    let aiPhoneProvisioned = false;
+    try {
+      console.log('[Signup] Provisioning AI phone for distributor:', distributor.id);
+
+      // Call provisioning API
+      const provisionResponse = await fetch(
+        `${process.env.NEXT_PUBLIC_APP_URL}/api/signup/provision-ai`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            distributorId: distributor.id,
+            firstName: distributor.first_name,
+            lastName: distributor.last_name,
+            phone: distributor.phone || '',
+            sponsorSlug: data.sponsor_slug,
+          }),
+        }
+      );
+
+      const provisionResult = await provisionResponse.json();
+
+      if (provisionResult.success) {
+        console.log('[Signup] AI phone provisioned successfully:', provisionResult.phoneNumber);
+        aiPhoneProvisioned = true;
+      } else {
+        console.error('[Signup] AI phone provisioning failed:', provisionResult.error);
+      }
+    } catch (aiProvisionError) {
+      // Log error but don't fail signup - AI can be provisioned manually later
+      console.error('[Signup] AI phone provisioning error:', aiProvisionError);
+    }
+
+    // Step 9: Return success with redirect to welcome page if AI was provisioned
     return NextResponse.json(
       {
         success: true,
@@ -522,6 +533,10 @@ export async function POST(request: NextRequest) {
             position: distributor.matrix_position,
             depth: distributor.matrix_depth,
           },
+          aiPhoneProvisioned,
+          redirectUrl: aiPhoneProvisioned
+            ? `/signup/welcome?distributorId=${distributor.id}`
+            : undefined,
         },
         message: 'Account created successfully! Welcome to Apex Affinity Group.',
       } as ApiResponse,

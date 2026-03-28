@@ -8,6 +8,10 @@ interface SendEmailParams {
   subject: string;
   html: string;
   from?: string;
+  attachments?: Array<{
+    filename: string;
+    content: string; // base64 encoded
+  }>;
 }
 
 interface SendEmailResponse {
@@ -17,13 +21,19 @@ interface SendEmailResponse {
 }
 
 /**
- * Send email via Resend
+ * Send email via Resend with optional attachments
+ * @param to - Recipient email address
+ * @param subject - Email subject line
+ * @param html - HTML email content
+ * @param from - Sender email address
+ * @param attachments - Optional file attachments (base64 encoded)
  */
 export async function sendEmail({
   to,
   subject,
   html,
   from = 'Apex Affinity Group <theapex@theapexway.net>',
+  attachments,
 }: SendEmailParams): Promise<SendEmailResponse> {
   try {
     const RESEND_API_KEY = process.env.RESEND_API_KEY;
@@ -36,6 +46,19 @@ export async function sendEmail({
       };
     }
 
+    // Build email payload
+    const emailPayload: any = {
+      from,
+      to: [to],
+      subject,
+      html,
+    };
+
+    // Add attachments if provided
+    if (attachments && attachments.length > 0) {
+      emailPayload.attachments = attachments;
+    }
+
     // Call Resend API
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
@@ -43,12 +66,7 @@ export async function sendEmail({
         'Content-Type': 'application/json',
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
-      body: JSON.stringify({
-        from,
-        to: [to],
-        subject,
-        html,
-      }),
+      body: JSON.stringify(emailPayload),
     });
 
     const data = await response.json();

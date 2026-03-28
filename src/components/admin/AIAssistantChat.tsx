@@ -28,7 +28,7 @@ export default function AIAssistantChat() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
-      content: 'Hi! I\'m your AI assistant. I can help you manage distributors using plain English commands.\n\nTry:\n• "move rep John Smith under Jane Doe"\n• "suspend distributor john@email.com"\n• "search for reps in Texas"\n• Type "help" for more examples',
+      content: 'Hi! I can help manage distributors.\n\nTry:\n• "move rep John under Jane"\n• "suspend john@email.com"\n• "search reps in Texas"\n• Type "help" for more',
     },
   ]);
   const [input, setInput] = useState('');
@@ -231,13 +231,13 @@ export default function AIAssistantChat() {
 
   // Expanded state - chat panel
   return (
-    <div className="fixed bottom-6 right-6 w-[420px] h-[650px] bg-white rounded-lg shadow-2xl flex flex-col z-50 border border-gray-200">
+    <div className="fixed bottom-6 right-6 w-[420px] h-[500px] bg-white rounded-lg shadow-2xl flex flex-col z-50 border border-gray-200">
       {/* Header */}
-      <div className="bg-blue-600 text-white px-4 py-3 rounded-t-lg flex items-center justify-between">
+      <div className="bg-blue-600 text-white px-3 py-2 rounded-t-lg flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+          <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
             <svg
-              className="w-5 h-5"
+              className="w-4 h-4"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -251,8 +251,7 @@ export default function AIAssistantChat() {
             </svg>
           </div>
           <div>
-            <div className="font-semibold text-sm">AI Admin Assistant</div>
-            <div className="text-xs text-blue-200">Powered by Claude</div>
+            <div className="font-semibold text-sm">AI Assistant</div>
           </div>
         </div>
         <button
@@ -261,7 +260,7 @@ export default function AIAssistantChat() {
           aria-label="Close chat"
         >
           <svg
-            className="w-5 h-5"
+            className="w-4 h-4"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -277,7 +276,7 @@ export default function AIAssistantChat() {
       </div>
 
       {/* Messages area */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-2">
+      <div className="flex-1 overflow-y-auto p-3 space-y-2">
         {messages.map((message, index) => (
           <ChatMessage key={index} {...message} />
         ))}
@@ -294,15 +293,15 @@ export default function AIAssistantChat() {
 
         {/* Loading indicator */}
         {isLoading && (
-          <div className="flex justify-start mb-4">
-            <div className="bg-gray-100 rounded-lg px-4 py-3">
+          <div className="flex justify-start mb-2">
+            <div className="bg-gray-100 rounded-lg px-3 py-2">
               <div className="flex items-center gap-2">
                 <div className="flex space-x-1">
-                  <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce"></div>
-                  <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                  <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                  <div className="w-1.5 h-1.5 bg-gray-500 rounded-full animate-bounce"></div>
+                  <div className="w-1.5 h-1.5 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                  <div className="w-1.5 h-1.5 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                 </div>
-                <span className="text-xs text-gray-600">AI is thinking...</span>
+                <span className="text-xs text-gray-600">Thinking...</span>
               </div>
             </div>
           </div>
@@ -312,25 +311,25 @@ export default function AIAssistantChat() {
       </div>
 
       {/* Input area */}
-      <div className="border-t border-gray-200 p-4">
+      <div className="border-t border-gray-200 p-3">
         <div className="flex gap-2">
           <textarea
             ref={inputRef}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyPress}
-            placeholder="Type a command or ask a question..."
-            className="flex-1 px-3 py-2 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-            rows={2}
+            placeholder="Type a command..."
+            className="flex-1 px-2 py-1.5 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+            rows={1}
             disabled={isLoading || isExecuting}
           />
           <button
             onClick={handleSendMessage}
             disabled={!input.trim() || isLoading || isExecuting}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors self-end"
+            className="px-3 py-1.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors self-end"
           >
             <svg
-              className="w-5 h-5"
+              className="w-4 h-4"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -343,9 +342,6 @@ export default function AIAssistantChat() {
               />
             </svg>
           </button>
-        </div>
-        <div className="mt-2 text-xs text-gray-500">
-          Press Enter to send, Shift+Enter for new line
         </div>
       </div>
     </div>

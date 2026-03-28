@@ -6,6 +6,7 @@
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { createServiceClient } from '@/lib/supabase/service';
+import { getAdminUser } from '@/lib/auth/admin';
 import TeamStatsHeader from '@/components/team/TeamStatsHeader';
 import TeamMemberCard, { type TeamMemberData } from '@/components/team/TeamMemberCard';
 import TeamWithModal from '@/components/team/TeamWithModal';
@@ -45,7 +46,16 @@ export default async function TeamPage() {
     .eq('auth_user_id', user.id)
     .single();
 
+  // If no distributor record, check if they're an admin
   if (distError || !distributor) {
+    const adminUser = await getAdminUser();
+
+    // If they're an admin, redirect to admin dashboard
+    if (adminUser) {
+      redirect('/admin');
+    }
+
+    // Otherwise, they need to complete signup
     redirect('/signup');
   }
 
@@ -61,73 +71,77 @@ export default async function TeamPage() {
     );
   }
 
-  const currentMemberId = distributor.member.member_id;
+  // Extract member data (handle array vs object)
+  const memberData = Array.isArray(distributor.member) ? distributor.member[0] : distributor.member;
+  const currentDistributorId = distributor.id;
+  const currentMemberId = memberData?.member_id;
 
-  // Get all L1 direct enrollees
-  const { data: teamMembers, error: teamError } = await serviceClient
-    .from('members')
+  // Get all L1 direct enrollees from ENROLLMENT TREE (distributors.sponsor_id)
+  // CRITICAL: Use distributors.sponsor_id NOT members.enroller_id!
+  const { data: teamDistributors, error: teamError } = await serviceClient
+    .from('distributors')
     .select(
       `
-      member_id,
-      distributor_id,
-      full_name,
+      id,
+      first_name,
+      last_name,
       email,
-      tech_rank,
-      personal_credits_monthly,
-      enrollment_date,
-      override_qualified,
-      distributor:distributors!members_distributor_id_fkey (
-        id,
-        slug,
-        rep_number
+      slug,
+      rep_number,
+      created_at,
+      member:members!members_distributor_id_fkey (
+        member_id,
+        tech_rank,
+        personal_credits_monthly,
+        enrollment_date,
+        override_qualified
       )
     `
     )
-    .eq('enroller_id', currentMemberId)
-    .order('enrollment_date', { ascending: false });
+    .eq('sponsor_id', currentDistributorId)
+    .eq('status', 'active')
+    .order('created_at', { ascending: false });
 
   if (teamError) {
-    // Error logged, continue with empty array
+    // Error fetching team distributors - will show empty state
   }
 
-  const members = teamMembers || [];
+  const teamMembers = teamDistributors || [];
 
-  // Get personal enrollee counts for each member
-  const membersWithStats: TeamMemberData[] = await Promise.all(
-    members.map(async (member) => {
-      // Count how many people this member has personally enrolled
-      const { count } = await serviceClient
-        .from('members')
-        .select('*', { count: 'exact', head: true })
-        .eq('enroller_id', member.member_id);
+  // OPTIMIZED: Get personal enrollee counts for all team members in a single query
+  // This replaces the N+1 query problem where we queried each member individually
+  const { data: allEnrollees } = await serviceClient
+    .from('distributors')
+    .select('sponsor_id')
+    .in('sponsor_id', teamMembers.map(d => d.id))
+    .eq('status', 'active');
 
-      // Supabase may return distributor as array or object depending on query
-      const distArray = member.distributor as unknown as Array<{
-        id: string;
-        slug: string;
-        rep_number: number;
-      }>;
-      const dist: { slug?: string; rep_number?: number | null } | undefined = Array.isArray(
-        distArray
-      )
-        ? distArray[0]
-        : (member.distributor as { slug?: string; rep_number?: number | null } | undefined);
+  // Build a map of distributor_id -> enrollee count
+  const enrolleeCountMap = (allEnrollees || []).reduce((acc, row) => {
+    acc[row.sponsor_id] = (acc[row.sponsor_id] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
 
-      return {
-        memberId: member.member_id,
-        distributorId: member.distributor_id,
-        fullName: member.full_name,
-        email: member.email,
-        slug: dist?.slug || '',
-        repNumber: dist?.rep_number || null,
-        techRank: member.tech_rank,
-        personalCreditsMonthly: member.personal_credits_monthly,
-        personalEnrolleeCount: count || 0,
-        enrollmentDate: member.enrollment_date,
-        isActive: member.personal_credits_monthly >= 50,
-      };
-    })
-  );
+  // Build member stats without individual queries
+  const membersWithStats: TeamMemberData[] = teamMembers.map((dist) => {
+    // Extract member data (handle array vs object)
+    const memberData = Array.isArray(dist.member) ? dist.member[0] : dist.member;
+
+    return {
+      memberId: memberData?.member_id || null,
+      distributorId: dist.id,
+      fullName: `${dist.first_name} ${dist.last_name}`,
+      email: dist.email,
+      slug: dist.slug || '',
+      repNumber: dist.rep_number || null,
+      techRank: memberData?.tech_rank || null,
+      personalCreditsMonthly: memberData?.personal_credits_monthly || 0,
+      personalEnrolleeCount: enrolleeCountMap[dist.id] || 0,
+      enrollmentDate: memberData?.enrollment_date || dist.created_at,
+      isActive: (memberData?.personal_credits_monthly || 0) >= 50,
+      overrideQualified: memberData?.override_qualified || false,
+    };
+  });
 
   // Calculate stats for header
   const totalPersonalEnrollees = membersWithStats.length;
@@ -152,11 +166,11 @@ export default async function TeamPage() {
     : 0;
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
+    <div className="p-3 sm:p-4 md:p-6 max-w-7xl mx-auto">
       {/* Page Header */}
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-slate-900">My Team</h1>
-        <p className="text-slate-600 mt-1">
+      <div className="mb-4 sm:mb-6">
+        <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">My Team</h1>
+        <p className="text-slate-600 mt-1 text-sm sm:text-base">
           Your Level 1 direct enrollees and team performance
         </p>
       </div>
@@ -170,9 +184,9 @@ export default async function TeamPage() {
       />
 
       {/* Team Members Section */}
-      <div className="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
-        <div className="mb-6">
-          <h2 className="text-xl font-bold text-slate-900">Team Members</h2>
+      <div className="team-list bg-white border border-slate-200 rounded-lg p-4 sm:p-6 shadow-sm" data-testid="team-list">
+        <div className="mb-4 sm:mb-6">
+          <h2 className="text-lg sm:text-xl font-bold text-slate-900">Team Members</h2>
           <p className="text-sm text-slate-600 mt-1">
             {membersWithStats.length} direct enrollee{membersWithStats.length !== 1 ? 's' : ''}
           </p>

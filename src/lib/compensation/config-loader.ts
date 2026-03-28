@@ -28,8 +28,7 @@ import {
   WATERFALL_CONFIG,
   BUSINESS_CENTER_CONFIG,
   OVERRIDE_QUALIFICATION_MIN_CREDITS,
-  RANK_GRACE_PERIOD_MONTHS,
-  NEW_REP_RANK_LOCK_MONTHS,
+  PAY_LEVEL_GRACE_PERIOD_DAYS,
   LEADERSHIP_POOL_ELIGIBLE_RANK,
   BONUS_POOL_DISTRIBUTION_METHOD,
   ENROLLER_OVERRIDE_RATE,
@@ -96,8 +95,7 @@ export interface BusinessCenterConfig {
 
 export interface CompensationConstants {
   overrideQualificationMinCredits: number;
-  rankGracePeriodMonths: number;
-  newRepRankLockMonths: number;
+  rankGracePeriodDays: number;
   leadershipPoolEligibleRank: TechRank;
   bonusPoolDistributionMethod: 'equal_share';
   enrollerOverrideRate: number;
@@ -465,8 +463,7 @@ export async function getCompensationConstants(): Promise<CompensationConstants>
     // Fallback to hardcoded config
     return {
       overrideQualificationMinCredits: OVERRIDE_QUALIFICATION_MIN_CREDITS,
-      rankGracePeriodMonths: RANK_GRACE_PERIOD_MONTHS,
-      newRepRankLockMonths: NEW_REP_RANK_LOCK_MONTHS,
+      rankGracePeriodDays: PAY_LEVEL_GRACE_PERIOD_DAYS,
       leadershipPoolEligibleRank: LEADERSHIP_POOL_ELIGIBLE_RANK,
       bonusPoolDistributionMethod: BONUS_POOL_DISTRIBUTION_METHOD,
       enrollerOverrideRate: ENROLLER_OVERRIDE_RATE,
@@ -478,8 +475,7 @@ export async function getCompensationConstants(): Promise<CompensationConstants>
     // Always fallback to hardcoded
     return {
       overrideQualificationMinCredits: OVERRIDE_QUALIFICATION_MIN_CREDITS,
-      rankGracePeriodMonths: RANK_GRACE_PERIOD_MONTHS,
-      newRepRankLockMonths: NEW_REP_RANK_LOCK_MONTHS,
+      rankGracePeriodDays: PAY_LEVEL_GRACE_PERIOD_DAYS,
       leadershipPoolEligibleRank: LEADERSHIP_POOL_ELIGIBLE_RANK,
       bonusPoolDistributionMethod: BONUS_POOL_DISTRIBUTION_METHOD,
       enrollerOverrideRate: ENROLLER_OVERRIDE_RATE,

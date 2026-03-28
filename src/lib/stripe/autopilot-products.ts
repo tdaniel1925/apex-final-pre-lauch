@@ -35,6 +35,7 @@ export interface AutopilotProduct {
   description: string;
   priceMonthly: number; // in dollars
   priceCents: number; // in cents for Stripe
+  bvValue: number; // Business Volume (BV) - 1:1 with price for autopilot
   stripePriceId: string; // Stripe Price ID (use env var)
   stripeProductId?: string; // Stripe Product ID (optional)
   features: AutopilotFeature[];
@@ -67,6 +68,7 @@ export const AUTOPILOT_PRODUCTS: Record<AutopilotTier, AutopilotProduct> = {
     description: 'Start tracking meeting invitations with basic features',
     priceMonthly: 0,
     priceCents: 0,
+    bvValue: 0, // No BV for free tier
     stripePriceId: '', // No Stripe price for free tier
     features: [
       {
@@ -117,8 +119,9 @@ export const AUTOPILOT_PRODUCTS: Record<AutopilotTier, AutopilotProduct> = {
     name: 'Social Connector',
     displayName: 'Social Connector',
     description: 'Boost your reach with social media posting and custom event flyers',
-    priceMonthly: 9,
-    priceCents: 900,
+    priceMonthly: 39,
+    priceCents: 3900,
+    bvValue: 39, // 1:1 BV ratio - $39 = 39 BV
     stripePriceId: process.env.STRIPE_AUTOPILOT_SOCIAL_PRICE_ID || '',
     features: [
       {
@@ -177,6 +180,7 @@ export const AUTOPILOT_PRODUCTS: Record<AutopilotTier, AutopilotProduct> = {
     description: 'Complete CRM with SMS campaigns and AI-powered lead scoring',
     priceMonthly: 79,
     priceCents: 7900,
+    bvValue: 79, // 1:1 BV ratio - $79 = 79 BV
     stripePriceId: process.env.STRIPE_AUTOPILOT_PRO_PRICE_ID || '',
     features: [
       {
@@ -249,6 +253,7 @@ export const AUTOPILOT_PRODUCTS: Record<AutopilotTier, AutopilotProduct> = {
     description: 'Unlimited everything plus team collaboration and training library',
     priceMonthly: 119,
     priceCents: 11900,
+    bvValue: 119, // 1:1 BV ratio - $119 = 119 BV
     stripePriceId: process.env.STRIPE_AUTOPILOT_TEAM_PRICE_ID || '',
     features: [
       {

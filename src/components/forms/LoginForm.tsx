@@ -69,13 +69,26 @@ export default function LoginForm() {
         </div>
       </div>
 
-      {/* Reset Password Link */}
-      <div className="flex justify-end">
+      {/* Remember Me Checkbox */}
+      <div className="flex items-center justify-between">
+        <label className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            name="rememberMe"
+            defaultChecked
+            className="w-4 h-4 text-[#2B4C7E] border-gray-300 rounded focus:ring-[#2B4C7E]"
+            disabled={isPending}
+          />
+          <span className="text-sm text-gray-700">
+            Remember me for 180 days
+          </span>
+        </label>
+
         <a
           href="/forgot-password"
           className="text-sm text-[#2B4C7E] font-medium hover:underline"
         >
-          Reset your password here
+          Reset password
         </a>
       </div>
 
