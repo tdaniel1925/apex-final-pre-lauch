@@ -374,16 +374,5 @@ export type EarningsLedgerInsert = Omit<EarningsLedger, 'earning_id' | 'created_
 export type OrderInsert = Omit<Order, 'id' | 'order_number' | 'created_at' | 'updated_at'>;
 
 // =============================================
-// EXPORTS
+// NOTE: All types are already exported at their definitions
 // =============================================
-
-export type {
-  Distributor,
-  Member,
-  EarningsLedger,
-  Order,
-  OrderItem,
-  Product,
-  CABClawbackQueue,
-  CompensationRunStatus,
-};
