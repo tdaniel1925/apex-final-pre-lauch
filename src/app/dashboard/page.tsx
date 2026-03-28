@@ -228,7 +228,7 @@ export default async function DashboardPage() {
           <RaceTo100Banner distributorId={dist.id} />
 
           {/* AI Assistant Banner */}
-          <AIAssistantBanner firstName={dist.first_name} />
+          <AIAssistantBanner />
 
           {/* Training Audio Player */}
           <TrainingAudioPlayer />
