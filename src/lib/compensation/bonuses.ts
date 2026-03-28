@@ -2,7 +2,7 @@
 // Source: mlm-config.json, 02_commission_examples.md
 
 import type { Rep, Rank, BVSnapshot, CommissionLineItem } from './types';
-import { COMP_PLAN_CONFIG, RANK_ID_MAP, round2 } from './config';
+import { RANK_ID_MAP, round2 } from './config';
 
 /**
  * BONUS TYPES (all from mlm-config.json)
@@ -295,7 +295,7 @@ export function calculateGoldAccelerator(rep: Rep): number {
   const notPaid = !rep.gold_accelerator_paid;
 
   if (isGold && notPaid) {
-    return COMP_PLAN_CONFIG.bonuses.gold_accelerator;  // $3,467
+    return 3467;  // $3,467 Gold Accelerator bonus
   }
 
   return 0;
@@ -336,10 +336,10 @@ export async function markGoldAcceleratorPaid(repId: string, db: any): Promise<v
 export function calculateInfinityBonus(rep: Rep, secondOrgBV: number): number {
   const isPlatinum = rep.current_rank === 'PLATINUM';
   const secondOrgActive = rep.infinity_org_active;
-  const meetsThreshold = secondOrgBV >= COMP_PLAN_CONFIG.bonuses.infinity_bonus.second_org_bv_threshold;
+  const meetsThreshold = secondOrgBV >= 2500;  // $2,500 BV threshold
 
   if (isPlatinum && secondOrgActive && meetsThreshold) {
-    return COMP_PLAN_CONFIG.bonuses.infinity_bonus.monthly_amount;  // $500
+    return 500;  // $500/month Infinity Bonus
   }
 
   return 0;
