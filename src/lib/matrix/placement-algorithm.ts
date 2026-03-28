@@ -22,11 +22,12 @@ export interface MatrixPlacement {
 }
 
 export interface MatrixNode {
-  member_id: string;
+  id: string; // distributor_id
   matrix_parent_id: string | null;
   matrix_position: number | null;
   matrix_depth: number;
-  full_name: string;
+  first_name: string;
+  last_name: string;
 }
 
 export interface PlacementResult {
@@ -59,35 +60,35 @@ const MAX_DEPTH = 7;
  * Uses breadth-first search to find the shallowest available position.
  * Algorithm: Left-to-right, top-to-bottom placement.
  *
- * @param sponsorId - Member ID of the sponsor (enroller)
+ * @param sponsorDistributorId - Distributor ID of the sponsor (enroller)
  * @returns MatrixPlacement or null if matrix is full
  *
  * @example
  * ```typescript
- * const placement = await findNextAvailablePosition('sponsor-uuid');
+ * const placement = await findNextAvailablePosition('distributor-uuid');
  * if (placement) {
- *   // Place new member at placement.parent_id, position placement.position
+ *   // Place new distributor at placement.parent_id, position placement.position
  * }
  * ```
  */
 export async function findNextAvailablePosition(
-  sponsorId: string
+  sponsorDistributorId: string
 ): Promise<MatrixPlacement | null> {
   const supabase = await createClient();
 
   // Initialize queue with sponsor
-  const queue: Array<{ member_id: string; depth: number }> = [
-    { member_id: sponsorId, depth: 0 },
+  const queue: Array<{ distributor_id: string; depth: number }> = [
+    { distributor_id: sponsorDistributorId, depth: 0 },
   ];
 
   while (queue.length > 0) {
     const current = queue.shift()!;
 
-    // Get all children of current node
+    // Get all children of current node (from distributors table)
     const { data: children, error } = await supabase
-      .from('members')
-      .select('member_id, matrix_position, matrix_depth, full_name')
-      .eq('matrix_parent_id', current.member_id)
+      .from('distributors')
+      .select('id, matrix_position, matrix_depth, first_name, last_name')
+      .eq('matrix_parent_id', current.distributor_id)
       .eq('status', 'active')
       .order('matrix_position', { ascending: true });
 
@@ -102,7 +103,7 @@ export async function findNextAvailablePosition(
       const nextPosition = children ? children.length + 1 : 1;
 
       return {
-        parent_id: current.member_id,
+        parent_id: current.distributor_id,
         position: nextPosition,
         depth: current.depth + 1,
       };
@@ -112,7 +113,7 @@ export async function findNextAvailablePosition(
     if (current.depth + 1 < MAX_DEPTH) {
       for (const child of children) {
         queue.push({
-          member_id: child.member_id,
+          distributor_id: child.id,
           depth: current.depth + 1,
         });
       }
@@ -124,19 +125,19 @@ export async function findNextAvailablePosition(
 }
 
 /**
- * Place a new member in the matrix
+ * Place a new distributor in the matrix
  *
- * @param memberId - New member to place
- * @param sponsorId - Sponsor (enroller) who recruited them
+ * @param distributorId - New distributor to place
+ * @param sponsorDistributorId - Sponsor (enroller) who recruited them
  * @returns PlacementResult with success status and placement details
  */
-export async function placeNewMemberInMatrix(
-  memberId: string,
-  sponsorId: string
+export async function placeNewDistributorInMatrix(
+  distributorId: string,
+  sponsorDistributorId: string
 ): Promise<PlacementResult> {
   try {
     // Find next available position
-    const placement = await findNextAvailablePosition(sponsorId);
+    const placement = await findNextAvailablePosition(sponsorDistributorId);
 
     if (!placement) {
       return {
@@ -145,22 +146,22 @@ export async function placeNewMemberInMatrix(
       };
     }
 
-    // Update member with matrix placement
+    // Update distributor with matrix placement
     const supabase = await createClient();
     const { error } = await supabase
-      .from('members')
+      .from('distributors')
       .update({
         matrix_parent_id: placement.parent_id,
         matrix_position: placement.position,
         matrix_depth: placement.depth,
         updated_at: new Date().toISOString(),
       })
-      .eq('member_id', memberId);
+      .eq('id', distributorId);
 
     if (error) {
       return {
         success: false,
-        error: `Failed to update member: ${error.message}`,
+        error: `Failed to update distributor: ${error.message}`,
       };
     }
 
@@ -177,20 +178,20 @@ export async function placeNewMemberInMatrix(
 }
 
 /**
- * Get all matrix children for a member (direct downline in matrix)
+ * Get all matrix children for a distributor (direct downline in matrix)
  *
- * @param memberId - Member ID
+ * @param distributorId - Distributor ID
  * @returns Array of matrix children (max 5)
  */
 export async function getMatrixChildren(
-  memberId: string
+  distributorId: string
 ): Promise<MatrixNode[]> {
   const supabase = await createClient();
 
   const { data, error } = await supabase
-    .from('members')
-    .select('member_id, matrix_parent_id, matrix_position, matrix_depth, full_name')
-    .eq('matrix_parent_id', memberId)
+    .from('distributors')
+    .select('id, matrix_parent_id, matrix_position, matrix_depth, first_name, last_name')
+    .eq('matrix_parent_id', distributorId)
     .eq('status', 'active')
     .order('matrix_position', { ascending: true });
 
@@ -203,30 +204,31 @@ export async function getMatrixChildren(
 }
 
 /**
- * Check if a member's matrix positions are full (all 5 positions filled)
+ * Check if a distributor's matrix positions are full (all 5 positions filled)
  *
- * @param memberId - Member ID
+ * @param distributorId - Distributor ID
  * @returns true if all 5 positions filled
  */
-export async function isMatrixPositionFull(memberId: string): Promise<boolean> {
-  const children = await getMatrixChildren(memberId);
+export async function isMatrixPositionFull(distributorId: string): Promise<boolean> {
+  const children = await getMatrixChildren(distributorId);
   return children.length >= MATRIX_WIDTH;
 }
 
 /**
- * Get matrix level information (how many members at each level)
+ * Get matrix level information (how many distributors at each level)
  *
- * @param rootMemberId - Root member ID (usually the viewing member)
- * @returns Object with member counts per level
+ * @param rootDistributorId - Root distributor ID (usually the viewing distributor)
+ * @returns Object with distributor counts per level
  */
 export async function getMatrixLevelCounts(
-  rootMemberId: string
+  rootDistributorId: string
 ): Promise<Record<number, number>> {
   const supabase = await createClient();
 
-  // Get all members in this matrix tree
+  // Get all distributors in this matrix tree
+  // NOTE: This RPC function may need to be updated to query distributors table
   const { data, error } = await supabase.rpc('get_matrix_downline', {
-    root_member_id: rootMemberId,
+    root_distributor_id: rootDistributorId,
   });
 
   if (error || !data) {
@@ -234,10 +236,10 @@ export async function getMatrixLevelCounts(
     return {};
   }
 
-  // Count members per level
+  // Count distributors per level
   const counts: Record<number, number> = {};
-  for (const member of data) {
-    const level = member.matrix_depth;
+  for (const distributor of data) {
+    const level = distributor.matrix_depth;
     counts[level] = (counts[level] || 0) + 1;
   }
 
@@ -249,12 +251,12 @@ export async function getMatrixLevelCounts(
 // =============================================
 
 /**
- * Calculate matrix statistics for a member
+ * Calculate matrix statistics for a distributor
  *
- * @param memberId - Member ID
+ * @param distributorId - Distributor ID
  * @returns Statistics object
  */
-export async function getMatrixStatistics(memberId: string): Promise<{
+export async function getMatrixStatistics(distributorId: string): Promise<{
   total_downline: number;
   positions_filled: number;
   positions_available: number;
@@ -265,16 +267,16 @@ export async function getMatrixStatistics(memberId: string): Promise<{
 
   // Get total downline count
   const { count: totalDownline, error: countError } = await supabase
-    .from('members')
+    .from('distributors')
     .select('*', { count: 'exact', head: true })
-    .or(`matrix_parent_id.eq.${memberId}`);
+    .eq('matrix_parent_id', distributorId);
 
   if (countError) {
     console.error('Error counting downline:', countError);
   }
 
   // Get level counts
-  const levelCounts = await getMatrixLevelCounts(memberId);
+  const levelCounts = await getMatrixLevelCounts(distributorId);
 
   // Calculate deepest level
   const deepestLevel = Math.max(0, ...Object.keys(levelCounts).map(Number));
@@ -331,15 +333,15 @@ export async function validateMatrixPlacement(
   // Check parent exists
   const supabase = await createClient();
   const { data: parent, error: parentError } = await supabase
-    .from('members')
-    .select('member_id, matrix_depth')
-    .eq('member_id', placement.parent_id)
+    .from('distributors')
+    .select('id, matrix_depth')
+    .eq('id', placement.parent_id)
     .single();
 
   if (parentError || !parent) {
     return {
       valid: false,
-      error: 'Parent member not found',
+      error: 'Parent distributor not found',
     };
   }
 
@@ -353,8 +355,8 @@ export async function validateMatrixPlacement(
 
   // Check position is not already occupied
   const { data: existing, error: existingError } = await supabase
-    .from('members')
-    .select('member_id')
+    .from('distributors')
+    .select('id')
     .eq('matrix_parent_id', placement.parent_id)
     .eq('matrix_position', placement.position)
     .single();
@@ -375,7 +377,7 @@ export async function validateMatrixPlacement(
 
 export default {
   findNextAvailablePosition,
-  placeNewMemberInMatrix,
+  placeNewDistributorInMatrix,
   getMatrixChildren,
   isMatrixPositionFull,
   getMatrixLevelCounts,
