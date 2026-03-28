@@ -33,6 +33,10 @@ import { cookies } from 'next/headers';
 export async function createClient() {
   const cookieStore = await cookies();
 
+  // Determine if we're on the actual production domain (not Vercel preview)
+  const isActualProduction = process.env.VERCEL_ENV === 'production' &&
+    process.env.VERCEL_URL?.includes('reachtheapex.net');
+
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -47,7 +51,8 @@ export async function createClient() {
               name,
               value,
               ...options,
-              domain: process.env.NODE_ENV === 'production' ? '.reachtheapex.net' : undefined,
+              // Only set domain for actual production domain, not Vercel previews
+              domain: isActualProduction ? '.reachtheapex.net' : undefined,
               sameSite: 'lax',
               secure: process.env.NODE_ENV === 'production',
             });
@@ -62,7 +67,8 @@ export async function createClient() {
               name,
               value: '',
               ...options,
-              domain: process.env.NODE_ENV === 'production' ? '.reachtheapex.net' : undefined,
+              // Only set domain for actual production domain, not Vercel previews
+              domain: isActualProduction ? '.reachtheapex.net' : undefined,
               sameSite: 'lax',
               secure: process.env.NODE_ENV === 'production',
             });
