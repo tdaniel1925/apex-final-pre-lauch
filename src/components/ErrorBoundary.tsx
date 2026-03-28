@@ -1,75 +1,141 @@
 'use client';
 
 import React, { Component, ReactNode } from 'react';
-import { useRouter } from 'next/navigation';
+import { AlertTriangle, RefreshCw, Home } from 'lucide-react';
 
-interface Props {
+interface ErrorBoundaryProps {
   children: ReactNode;
-  fallback?: ReactNode;
   fallbackTitle?: string;
   fallbackMessage?: string;
   showHomeButton?: boolean;
 }
 
-interface State {
+interface ErrorBoundaryState {
   hasError: boolean;
-  error?: Error;
+  error: Error | null;
+  errorInfo: React.ErrorInfo | null;
 }
 
-/**
- * ErrorBoundary component to catch and display React errors
- * Prevents entire app from crashing when a component throws
- */
-export default class ErrorBoundary extends Component<Props, State> {
-  constructor(props: Props) {
+export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  constructor(props: ErrorBoundaryProps) {
     super(props);
-    this.state = { hasError: false };
+    this.state = {
+      hasError: false,
+      error: null,
+      errorInfo: null,
+    };
   }
 
-  static getDerivedStateFromError(error: Error): State {
-    return { hasError: true, error };
+  static getDerivedStateFromError(error: Error): Partial<ErrorBoundaryState> {
+    return {
+      hasError: true,
+      error,
+    };
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    // Log error to console for debugging
     console.error('ErrorBoundary caught an error:', error, errorInfo);
+
+    // Update state with error details
+    this.setState({
+      error,
+      errorInfo,
+    });
+
+    // In production, you could send this to an error reporting service
+    // Example: Sentry.captureException(error, { extra: errorInfo });
   }
 
-  handleHomeClick = () => {
-    window.location.href = '/dashboard';
+  handleReset = () => {
+    this.setState({
+      hasError: false,
+      error: null,
+      errorInfo: null,
+    });
+  };
+
+  handleGoHome = () => {
+    window.location.href = '/dashboard/home';
   };
 
   render() {
     if (this.state.hasError) {
-      if (this.props.fallback) {
-        return this.props.fallback;
-      }
-
-      const title = this.props.fallbackTitle || 'Something went wrong';
-      const message = this.props.fallbackMessage || this.state.error?.message || 'An unexpected error occurred';
+      const {
+        fallbackTitle = 'Something went wrong',
+        fallbackMessage = 'An unexpected error occurred. Please try again.',
+        showHomeButton = true,
+      } = this.props;
 
       return (
-        <div className="p-6 bg-red-50 border border-red-200 rounded-lg">
-          <h2 className="text-lg font-semibold text-red-900 mb-2">
-            {title}
-          </h2>
-          <p className="text-sm text-red-700 mb-4">
-            {message}
-          </p>
-          <div className="flex gap-2">
-            <button
-              onClick={() => this.setState({ hasError: false })}
-              className="px-4 py-2 bg-red-600 text-white rounded-lg text-sm font-medium hover:bg-red-700 transition-colors"
-            >
-              Try again
-            </button>
-            {this.props.showHomeButton && (
-              <button
-                onClick={this.handleHomeClick}
-                className="px-4 py-2 bg-slate-600 text-white rounded-lg text-sm font-medium hover:bg-slate-700 transition-colors"
-              >
-                Return Home
-              </button>
+        <div className="min-h-screen flex items-center justify-center p-4 bg-slate-50">
+          <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-6 border-2 border-red-200">
+            {/* Icon */}
+            <div className="flex justify-center mb-4">
+              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center">
+                <AlertTriangle className="w-8 h-8 text-red-600" />
+              </div>
+            </div>
+
+            {/* Title */}
+            <h2 className="text-xl font-bold text-slate-900 text-center mb-2">
+              {fallbackTitle}
+            </h2>
+
+            {/* Message */}
+            <p className="text-slate-600 text-center mb-6">
+              {fallbackMessage}
+            </p>
+
+            {/* Error Details (Development Only) */}
+            {process.env.NODE_ENV === 'development' && this.state.error && (
+              <div className="mb-6 p-4 bg-red-50 rounded-lg border border-red-200">
+                <p className="text-xs font-mono text-red-800 mb-2 font-semibold">
+                  Error Details:
+                </p>
+                <p className="text-xs font-mono text-red-700 break-words">
+                  {this.state.error.toString()}
+                </p>
+                {this.state.errorInfo && (
+                  <details className="mt-2">
+                    <summary className="text-xs text-red-700 cursor-pointer hover:text-red-800">
+                      Component Stack
+                    </summary>
+                    <pre className="text-xs mt-2 text-red-600 overflow-x-auto whitespace-pre-wrap">
+                      {this.state.errorInfo.componentStack}
+                    </pre>
+                  </details>
+                )}
+              </div>
             )}
+
+            {/* Action Buttons */}
+            <div className="flex gap-3">
+              <button
+                onClick={this.handleReset}
+                className="flex-1 px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium flex items-center justify-center gap-2 transition-colors"
+              >
+                <RefreshCw className="w-4 h-4" />
+                Try Again
+              </button>
+              {showHomeButton && (
+                <button
+                  onClick={this.handleGoHome}
+                  className="flex-1 px-4 py-3 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors"
+                >
+                  <Home className="w-4 h-4" />
+                  Go Home
+                </button>
+              )}
+            </div>
+
+            {/* Support Info */}
+            <p className="text-xs text-slate-500 text-center mt-4">
+              If this problem persists, please contact{' '}
+              <a href="mailto:support@theapexway.net" className="text-blue-600 hover:underline">
+                support@theapexway.net
+              </a>
+            </p>
           </div>
         </div>
       );

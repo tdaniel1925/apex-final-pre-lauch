@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dashboard Preview - Exported from UXMagic Copilot">
+    <title>Dashboard Preview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['var(--font-heading-name)', 'sans-serif'],
+                        body: ['var(--font-body-name)', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            200: '#a7f3d0',
+                            300: '#6ee7b7',
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                        },
+                        secondary: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            200: '#fed7aa',
+                            300: '#fdba74',
+                            400: '#fb923c',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12',
+                        },
+                        neutral: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        },
+                        background: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                        }
+                    },
+                    spacing: {
+                        base: 'var(--space-base)',
+                    },
+                    borderRadius: {
+                        small: 'var(--radius-small)',
+                        large: 'var(--radius-large)',
+                    },
+                    boxShadow: {
+                        custom: 'var(--shadow-custom)',
+                        'custom-hover': 'var(--shadow-custom-hover)',
+                    },
+                }
+            }
+        }
+    
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+<!-- TOP NAVIGATION -->
+<nav class="bg-white/90 backdrop-blur-md border-b border-neutral-200 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <div class="w-9 h-9 logo-mark rounded-small flex items-center justify-center text-white">
+                <i class="ri-bar-chart-box-fill text-lg"></i>
+            </div>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/hero-landing-page" class="font-heading font-bold text-xl text-neutral-900 tracking-tight">SmartViz</a>
+        </div>
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/hero-landing-page" class="nav-link text-sm font-medium text-neutral-500">Home</a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/features-showcase" class="nav-link text-sm font-medium text-neutral-500">Features</a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/dashboard-preview" class="nav-link text-sm font-semibold text-neutral-900 border-b-2 border-primary-500 pb-0.5">Dashboard</a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/chat-bot-reports-demo" class="nav-link text-sm font-medium text-neutral-500">AI Reports</a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/pricing-cta" class="nav-link text-sm font-medium text-neutral-500">Pricing</a>
+        </div>
+        <div class="flex items-center gap-3">
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/chat-bot-reports-demo" class="hidden md:inline-flex items-center text-sm font-semibold text-neutral-600 hover:text-neutral-900 transition-colors">
+                Sign In
+            </a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/pricing-cta" class="inline-flex items-center gap-2 px-5 py-2.5 bg-neutral-900 text-white rounded-small text-sm font-semibold hover:bg-neutral-700 transition-colors shadow-custom">
+                Get Started Free
+                <i class="ri-arrow-right-line text-xs"></i>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO INTRO SECTION -->
+<section class="bg-white py-20 max-h-[480px] overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+        <div class="flex justify-center mb-6">
+            <div class="badge-pill inline-flex items-center gap-2 px-4 py-2 rounded-full">
+                <span class="w-2 h-2 rounded-full bg-primary-500 live-dot"></span>
+                <span class="text-xs font-semibold text-primary-700">Live dashboard — powered by office_data_q4.xlsx</span>
+            </div>
+        </div>
+        <h1 class="font-heading text-5xl md:text-6xl font-extrabold text-neutral-900 leading-tight mb-5" style="letter-spacing: var(--letter-spacing-heading);">
+            Your Data, Beautifully<br>
+            <span class="text-primary-500">Visualized in Real Time</span>
+        </h1>
+        <p class="text-lg text-neutral-500 max-w-2xl mx-auto mb-10 leading-relaxed">
+            See exactly how SmartViz transforms raw spreadsheet data into an interactive, insight-rich dashboard — charts, KPIs, and tables all auto-generated.
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-4">
+            <div class="flex items-center gap-2 px-4 py-2 bg-neutral-50 border border-neutral-200 rounded-full">
+                <i class="ri-file-excel-line text-green-600 text-sm"></i>
+                <span class="text-sm font-semibold text-neutral-700">office_data_q4.xlsx</span>
+                <span class="text-neutral-300">·</span>
+                <span class="text-xs text-neutral-500">1,248 rows · 4 sheets</span>
+            </div>
+            <div class="flex items-center gap-2 px-4 py-2 bg-primary-50 border border-primary-100 rounded-full">
+                <span class="w-2 h-2 rounded-full bg-primary-500 live-dot"></span>
+                <span class="text-sm font-semibold text-primary-700">Auto-refreshed 2 min ago</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FULL DASHBOARD SCREENSHOT SECTION -->
+<section class="section-dark-gradient py-16 max-h-[1100px] overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6">
+        <!-- Section Label -->
+        <div class="flex items-center justify-between mb-10">
+            <div>
+                <h2 class="font-heading text-3xl font-extrabold text-white mb-2" style="letter-spacing: var(--letter-spacing-heading);">Smart Office Dashboard</h2>
+                <p class="text-neutral-400 text-base">Full interactive view — auto-generated from your spreadsheet</p>
+            </div>
+            <div class="hidden md:flex items-center gap-3">
+                <button class="tab-btn active px-4 py-2 rounded-small text-sm font-semibold transition-all">Overview</button>
+                <button class="tab-btn px-4 py-2 rounded-small text-sm font-semibold transition-all">HR</button>
+                <button class="tab-btn px-4 py-2 rounded-small text-sm font-semibold transition-all">Finance</button>
+                <button class="tab-btn px-4 py-2 rounded-small text-sm font-semibold transition-all">Operations</button>
+            </div>
+        </div>
+
+        <!-- Dashboard Frame -->
+        <div class="dashboard-frame rounded-large overflow-hidden glow-green">
+            <!-- Browser Chrome -->
+            <div class="bg-neutral-100 border-b border-neutral-200 px-5 py-3 flex items-center gap-4">
+                <div class="flex gap-1.5">
+                    <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                </div>
+                <div class="flex-1 bg-white rounded-small px-4 py-1.5 flex items-center gap-2 border border-neutral-200 max-w-sm mx-auto">
+                    <i class="ri-lock-line text-neutral-400 text-xs"></i>
+                    <span class="text-xs text-neutral-500">app.smartviz.io/dashboard/smart-office</span>
+                    <span class="ml-auto flex items-center gap-1">
+                        <span class="w-1.5 h-1.5 rounded-full bg-primary-500 live-dot"></span>
+                        <span class="text-primary-600 font-semibold" style="font-size:9px">LIVE</span>
+                    </span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button class="px-3 py-1 bg-neutral-900 text-white rounded text-xs font-semibold flex items-center gap-1">
+                        <i class="ri-share-line text-xs"></i>Share
+                    </button>
+                    <button class="px-3 py-1 bg-white border border-neutral-200 text-neutral-600 rounded text-xs font-semibold flex items-center gap-1">
+                        <i class="ri-download-line text-xs"></i>Export
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dashboard Content -->
+            <div class="bg-background-50 p-5">
+
+                <!-- Dashboard Header Row -->
+                <div class="flex items-center justify-between mb-5">
+                    <div>
+                        <h3 class="font-heading font-extrabold text-neutral-900 text-xl" style="letter-spacing: var(--letter-spacing-heading);">Smart Office Overview</h3>
+                        <p class="text-neutral-500 text-xs mt-0.5">Q4 2023 · Sourced from office_data_q4.xlsx · 4 sheets merged</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-neutral-200 rounded-small">
+                            <i class="ri-calendar-line text-neutral-400 text-xs"></i>
+                            <span class="text-xs font-semibold text-neutral-700">Oct – Dec 2023</span>
+                            <i class="ri-arrow-down-s-line text-neutral-400 text-xs"></i>
+                        </div>
+                        <div class="flex items-center gap-1.5 px-3 py-1.5 bg-primary-50 border border-primary-100 rounded-small">
+                            <span class="w-1.5 h-1.5 rounded-full bg-primary-500 live-dot"></span>
+                            <span class="text-xs font-semibold text-primary-700">Live Sync</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KPI Cards Row -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+                    <div class="kpi-card bg-white rounded-large border border-neutral-200 p-4 shadow-custom">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="w-9 h-9 rounded-large bg-primary-50 flex items-center justify-center">
+                                <i class="ri-money-dollar-circle-line text-primary-600"></i>
+                            </div>
+                            <span class="flex items-center gap-1 text-xs font-bold text-primary-600 bg-primary-50 px-2 py-0.5 rounded-full">
+                                <i class="ri-arrow-up-line text-xs"></i>+15.2%
+                            </span>
+                        </div>
+                        <p class="text-xs text-neutral-500 mb-1">Total Revenue</p>
+                        <p class="font-heading font-extrabold text-2xl text-neutral-900">$2.4M</p>
+                        <div class="mt-2 h-1 bg-neutral-100 rounded-full overflow-hidden">
+                            <div class="h-full bg-primary-500 rounded-full metric-bar" style="width:76%"></div>
+                        </div>
+                        <p class="text-neutral-400 mt-1" style="font-size:10px">76% of annual target</p>
+                    </div>
+                    <div class="kpi-card bg-white rounded-large border border-neutral-200 p-4 shadow-custom">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="w-9 h-9 rounded-large bg-blue-50 flex items-center justify-center">
+                                <i class="ri-team-line text-blue-600"></i>
+                            </div>
+                            <span class="flex items-center gap-1 text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">
+                                <i class="ri-arrow-up-line text-xs"></i>+12
+                            </span>
+                        </div>
+                        <p class="text-xs text-neutral-500 mb-1">Total Employees</p>
+                        <p class="font-heading font-extrabold text-2xl text-neutral-900">248</p>
+                        <div class="mt-2 h-1 bg-neutral-100 rounded-full overflow-hidden">
+                            <div class="h-full bg-blue-500 rounded-full metric-bar" style="width:62%"></div>
+                        </div>
+                        <p class="text-neutral-400 mt-1" style="font-size:10px">Across 5 departments</p>
+                    </div>
+                    <div class="kpi-card bg-white rounded-large border border-neutral-200 p-4 shadow-custom">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="w-9 h-9 rounded-large bg-secondary-50 flex items-center justify-center">
+                                <i class="ri-building-line text-secondary-600"></i>
+                            </div>
+                            <span class="flex items-center gap-1 text-xs font-bold text-red-500 bg-red-50 px-2 py-0.5 rounded-full">
+                                <i class="ri-arrow-down-line text-xs"></i>-3.1%
+                            </span>
+                        </div>
+                        <p class="text-xs text-neutral-500 mb-1">Office Utilization</p>
+                        <p class="font-heading font-extrabold text-2xl text-neutral-900">78%</p>
+                        <div class="mt-2 h-1 bg-neutral-100 rounded-full overflow-hidden">
+                            <div class="h-full bg-secondary-400 rounded-full metric-bar" style="width:78%"></div>
+                        </div>
+                        <p class="text-neutral-400 mt-1" style="font-size:10px">Avg. desk occupancy</p>
+                    </div>
+                    <div class="kpi-card bg-white rounded-large border border-neutral-200 p-4 shadow-custom">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="w-9 h-9 rounded-large bg-purple-50 flex items-center justify-center">
+                                <i class="ri-star-line text-purple-600"></i>
+                            </div>
+                            <span class="flex items-center gap-1 text-xs font-bold text-primary-600 bg-primary-50 px-2 py-0.5 rounded-full">
+                                <i class="ri-arrow-up-line text-xs"></i>+4.2%
+                            </span>
+                        </div>
+                        <p class="text-xs text-neutral-500 mb-1">Avg. Performance</p>
+                        <p class="font-heading font-extrabold text-2xl text-neutral-900">84.6%</p>
+                        <div class="mt-2 h-1 bg-neutral-100 rounded-full overflow-hidden">
+                            <div class="h-full bg-purple-500 rounded-full metric-bar" style="width:85%"></div>
+                        </div>
+                        <p class="text-neutral-400 mt-1" style="font-size:10px">Team performance score</p>
+                    </div>
+                </div>
+
+                <!-- Charts Row -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-5">
+
+                    <!-- Revenue Trend Chart -->
+                    <div class="lg:col-span-2 bg-white rounded-large border border-neutral-200 p-5 shadow-custom">
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <h4 class="font-heading font-bold text-neutral-900 text-sm">Monthly Revenue Trend</h4>
+                                <p class="text-neutral-400 text-xs mt-0.5">Jan – Dec 2023 · Auto-detected from Sheet 1</p>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-primary-500"></span>
+                                    <span class="text-xs text-neutral-500">Revenue</span>
+                                </div>
+                                <div class="flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-secondary-400"></span>
+                                    <span class="text-xs text-neutral-500">Expenses</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="h-48 w-full overflow-hidden">
+                            <canvas id="revTrendChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Department Donut -->
+                    <div class="bg-white rounded-large border border-neutral-200 p-5 shadow-custom">
+                        <div class="mb-4">
+                            <h4 class="font-heading font-bold text-neutral-900 text-sm">Budget by Department</h4>
+                            <p class="text-neutral-400 text-xs mt-0.5">Q4 2023 · Sheet 2</p>
+                        </div>
+                        <div class="h-36 w-full overflow-hidden flex items-center justify-center">
+                            <canvas id="deptDonutChart"></canvas>
+                        </div>
+                        <div class="mt-3 space-y-2">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-primary-500"></span>
+                                    <span class="text-xs text-neutral-600">Engineering</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-neutral-900">$4.2M</span>
+                                    <span class="text-xs text-neutral-400">40%</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-secondary-400"></span>
+                                    <span class="text-xs text-neutral-600">Sales</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-neutral-900">$3.1M</span>
+                                    <span class="text-xs text-neutral-400">25%</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+                                    <span class="text-xs text-neutral-600">Marketing</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-neutral-900">$2.4M</span>
+                                    <span class="text-xs text-neutral-400">20%</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-purple-400"></span>
+                                    <span class="text-xs text-neutral-600">Other</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-neutral-900">$1.8M</span>
+                                    <span class="text-xs text-neutral-400">15%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Second Charts Row -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-5">
+
+                    <!-- Bar Chart: Dept Revenue -->
+                    <div class="bg-white rounded-large border border-neutral-200 p-5 shadow-custom">
+                        <div class="mb-4">
+                            <h4 class="font-heading font-bold text-neutral-900 text-sm">Dept. Revenue Q4</h4>
+                            <p class="text-neutral-400 text-xs mt-0.5">Compared to Q3</p>
+                        </div>
+                        <div class="h-40 w-full overflow-hidden">
+                            <canvas id="deptBarChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Performance Heatmap-style -->
+                    <div class="bg-white rounded-large border border-neutral-200 p-5 shadow-custom">
+                        <div class="mb-4">
+                            <h4 class="font-heading font-bold text-neutral-900 text-sm">Performance Scores</h4>
+                            <p class="text-neutral-400 text-xs mt-0.5">By department · Q4 2023</p>
+                        </div>
+                        <div class="space-y-3">
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-xs font-semibold text-neutral-700">Engineering</span>
+                                    <span class="text-xs font-bold text-neutral-900">91%</span>
+                                </div>
+                                <div class="h-2 bg-neutral-100 rounded-full overflow-hidden">
+                                    <div class="h-full bg-primary-500 rounded-full metric-bar" style="width:91%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-xs font-semibold text-neutral-700">Sales</span>
+                                    <span class="text-xs font-bold text-neutral-900">87%</span>
+                                </div>
+                                <div class="h-2 bg-neutral-100 rounded-full overflow-hidden">
+                                    <div class="h-full bg-blue-500 rounded-full metric-bar" style="width:87%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-xs font-semibold text-neutral-700">Marketing</span>
+                                    <span class="text-xs font-bold text-neutral-900">82%</span>
+                                </div>
+                                <div class="h-2 bg-neutral-100 rounded-full overflow-hidden">
+                                    <div class="h-full bg-secondary-400 rounded-full metric-bar" style="width:82%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-xs font-semibold text-neutral-700">Operations</span>
+                                    <span class="text-xs font-bold text-neutral-900">79%</span>
+                                </div>
+                                <div class="h-2 bg-neutral-100 rounded-full overflow-hidden">
+                                    <div class="h-full bg-purple-500 rounded-full metric-bar" style="width:79%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-xs font-semibold text-neutral-700">HR</span>
+                                    <span class="text-xs font-bold text-neutral-900">84%</span>
+                                </div>
+                                <div class="h-2 bg-neutral-100 rounded-full overflow-hidden">
+                                    <div class="h-full bg-teal-500 rounded-full metric-bar" style="width:84%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Office Utilization Area Chart -->
+                    <div class="bg-white rounded-large border border-neutral-200 p-5 shadow-custom">
+                        <div class="mb-4">
+                            <h4 class="font-heading font-bold text-neutral-900 text-sm">Office Utilization</h4>
+                            <p class="text-neutral-400 text-xs mt-0.5">Weekly avg. desk occupancy</p>
+                        </div>
+                        <div class="h-40 w-full overflow-hidden">
+                            <canvas id="utilizationChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Table Section -->
+                <div class="bg-white rounded-large border border-neutral-200 shadow-custom overflow-hidden">
+                    <div class="flex items-center justify-between px-5 py-4 border-b border-neutral-100">
+                        <div>
+                            <h4 class="font-heading font-bold text-neutral-900 text-sm">Employee Data Table</h4>
+                            <p class="text-neutral-400 text-xs mt-0.5">Sheet 3 · 248 employees · Sorted by performance</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="relative">
+                                <i class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400 text-xs"></i>
+                                <input type="text" placeholder="Search employees..." class="pl-8 pr-3 py-1.5 bg-neutral-50 border border-neutral-200 rounded-small text-xs text-neutral-700 w-40 focus:outline-none focus:ring-1 focus:ring-primary-500">
+                            </div>
+                            <button class="flex items-center gap-1.5 px-3 py-1.5 bg-neutral-100 text-neutral-600 rounded-small text-xs font-semibold hover:bg-neutral-200 transition-colors">
+                                <i class="ri-filter-line text-xs"></i>Filter
+                            </button>
+                            <button class="flex items-center gap-1.5 px-3 py-1.5 bg-neutral-900 text-white rounded-small text-xs font-semibold hover:bg-neutral-700 transition-colors">
+                                <i class="ri-download-line text-xs"></i>Export
+                            </button>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead class="bg-neutral-50 border-b border-neutral-100">
+                                <tr>
+                                    <th class="px-5 py-3 text-xs font-bold text-neutral-500 uppercase tracking-wider">Employee</th>
+                                    <th class="px-5 py-3 text-xs font-bold text-neutral-500 uppercase tracking-wider">Department</th>
+                                    <th class="px-5 py-3 text-xs font-bold text-neutral-500 uppercase tracking-wider">Salary</th>
+                                    <th class="px-5 py-3 text-xs font-bold text-neutral-500 uppercase tracking-wider">Performance</th>
+                                    <th class="px-5 py-3 text-xs font-bold text-neutral-500 uppercase tracking-wider">Hire Date</th>
+                                    <th class="px-5 py-3 text-xs font-bold text-neutral-500 uppercase tracking-wider">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-neutral-100">
+                                <tr class="table-row transition-colors">
+                                    <td class="px-5 py-3">
+                                        <div class="flex items-center gap-3">
+                                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=32&amp;h=32&amp;fit=facearea&amp;facepad=2&amp;q=80" alt="Sarah" class="w-8 h-8 rounded-full border border-neutral-200">
+                                            <div>
+                                                <p class="text-sm font-semibold text-neutral-900">Sarah Wilson</p>
+                                                <p class="text-xs text-neutral-400">EMP-0042</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-5 py-3"><span class="px-2 py-1 bg-primary-50 text-primary-700 rounded-full text-xs font-bold">Engineering</span></td>
+                                    <td class="px-5 py-3 text-sm font-semibold text-neutral-800">$124,000</td>
+                                    <td class="px-5 py-3">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-16 h-1.5 bg-neutral-100 rounded-full overflow-hidden">
+                                                <div class="h-full bg-primary-500 rounded-full" style="width:96%"></div>
+                                            </div>
+                                            <span class="text-xs font-bold text-primary-600">96%</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-5 py-3 text-xs text-neutral-500">Mar 15, 2019</td>
+                                    <td class="px-5 py-3"><span class="px-2 py-1 bg-green-50 text-green-700 rounded-full text-xs font-bold">Active</span></td>
+                                </tr>
+                                <tr class="table-row transition-colors">
+                                    <td class="px-5 py-3">
+                                        <div class="flex items-center gap-3">
+                                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&amp;h=32&amp;fit=facearea&amp;facepad=2&amp;q=80" alt="James" class="w-8 h-8 rounded-full border border-neutral-200">
+                                            <div>
+                                                <p class="text-sm font-semibold text-neutral-900">James Carter</p>
+                                                <p class="text-xs text-neutral-400">EMP-0018</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-5 py-3"><span class="px-2 py-1 bg-secondary-50 text-secondary-700 rounded-full text-xs font-bold">Sales</span></td>
+                                    <td class="px-5 py-3 text-sm font-semibold text-neutral-800">$98,500</td>
+                                    <td class="px-5 py-3">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-16 h-1.5 bg-neutral-100 rounded-full overflow-hidden">
+                                                <div class="h-full bg-secondary-400 rounded-full" style="width:89%"></div>
+                                            </div>
+                                            <span class="text-xs font-bold text-secondary-600">89%</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-5 py-3 text-xs text-neutral-500">Jul 22, 2020</td>
+                                    <td class="px-5 py-3"><span class="px-2 py-1 bg-green-50 text-green-700 rounded-full text-xs font-bold">Active</span></td>
+                                </tr>
+                                <tr class="table-row transition-colors">
+                                    <td class="px-5 py-3">
+                                        <div class="flex items-center gap-3">
+                                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&amp;h=32&amp;fit=facearea&amp;facepad=2&amp;q=80" alt="Maya" class="w-8 h-8 rounded-full border border-neutral-200">
+                                            <div>
+                                                <p class="text-sm font-semibold text-neutral-900">Maya Patel</p>
+                                                <p class="text-xs text-neutral-400">EMP-0067</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-5 py-3"><span class="px-2 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-bold">Marketing</span></td>
+                                    <td class="px-5 py-3 text-sm font-semibold text-neutral-800">$87,200</td>
+                                    <td class="px-5 py-3">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-16 h-1.5 bg-neutral-100 rounded-full overflow-hidden">
+                                                <div class="h-full bg-blue-500 rounded-full" style="width:82%"></div>
+                                            </div>
+                                            <span class="text-xs font-bold text-blue-600">82%</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-5 py-3 text-xs text-neutral-500">Jan 10, 2021</td>
+                                    <td class="px-5 py-3"><span class="px-2 py-1 bg-green-50 text-green-700 rounded-full text-xs font-bold">Active</span></td>
+                                </tr>
+                                <tr class="table-row transition-colors">
+                                    <td class="px-5 py-3">
+                                        <div class="flex items-center gap-3">
+                                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=32&amp;h=32&amp;fit=facearea&amp;facepad=2&amp;q=80" alt="Tom" class="w-8 h-8 rounded-full border border-neutral-200">
+                                            <div>
+                                                <p class="text-sm font-semibold text-neutral-900">Tom Nguyen</p>
+                                                <p class="text-xs text-neutral-400">EMP-0091</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-5 py-3"><span class="px-2 py-1 bg-purple-50 text-purple-700 rounded-full text-xs font-bold">Operations</span></td>
+                                    <td class="px-5 py-3 text-sm font-semibold text-neutral-800">$76,800</td>
+                                    <td class="px-5 py-3">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-16 h-1.5 bg-neutral-100 rounded-full overflow-hidden">
+                                                <div class="h-full bg-yellow-400 rounded-full" style="width:58%"></div>
+                                            </div>
+                                            <span class="text-xs font-bold text-yellow-600">58%</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-5 py-3 text-xs text-neutral-500">Sep 5, 2022</td>
+                                    <td class="px-5 py-3"><span class="px-2 py-1 bg-yellow-50 text-yellow-700 rounded-full text-xs font-bold">Review</span></td>
+                                </tr>
+                                <tr class="table-row transition-colors">
+                                    <td class="px-5 py-3">
+                                        <div class="flex items-center gap-3">
+                                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=32&amp;h=32&amp;fit=facearea&amp;facepad=2&amp;q=80" alt="Priya" class="w-8 h-8 rounded-full border border-neutral-200">
+                                            <div>
+                                                <p class="text-sm font-semibold text-neutral-900">Priya Sharma</p>
+                                                <p class="text-xs text-neutral-400">EMP-0033</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-5 py-3"><span class="px-2 py-1 bg-teal-50 text-teal-700 rounded-full text-xs font-bold">HR</span></td>
+                                    <td class="px-5 py-3 text-sm font-semibold text-neutral-800">$82,400</td>
+                                    <td class="px-5 py-3">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-16 h-1.5 bg-neutral-100 rounded-full overflow-hidden">
+                                                <div class="h-full bg-teal-500 rounded-full" style="width:91%"></div>
+                                            </div>
+                                            <span class="text-xs font-bold text-teal-600">91%</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-5 py-3 text-xs text-neutral-500">Feb 28, 2018</td>
+                                    <td class="px-5 py-3"><span class="px-2 py-1 bg-green-50 text-green-700 rounded-full text-xs font-bold">Active</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="px-5 py-3 border-t border-neutral-100 flex items-center justify-between bg-neutral-50">
+                        <p class="text-xs text-neutral-500">Showing 5 of 248 employees · Sorted by performance desc.</p>
+                        <div class="flex items-center gap-2">
+                            <button class="px-3 py-1.5 bg-white border border-neutral-200 rounded-small text-xs font-semibold text-neutral-600 hover:bg-neutral-50 transition-colors">Previous</button>
+                            <button class="px-3 py-1.5 bg-neutral-900 text-white rounded-small text-xs font-semibold hover:bg-neutral-700 transition-colors">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating Badges -->
+        <div class="flex flex-wrap items-center justify-center gap-4 mt-8">
+            <div class="floating-badge bg-white rounded-large shadow-custom-hover border border-neutral-200 px-4 py-3 flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center">
+                    <i class="ri-magic-line text-primary-600 text-sm"></i>
+                </div>
+                <div>
+                    <p class="font-heading font-bold text-neutral-900 text-xs">Auto-generated</p>
+                    <p class="text-neutral-400" style="font-size:10px">No manual setup needed</p>
+                </div>
+            </div>
+            <div class="floating-badge bg-white rounded-large shadow-custom-hover border border-neutral-200 px-4 py-3 flex items-center gap-3" style="animation-delay:0.5s">
+                <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
+                    <i class="ri-refresh-line text-blue-600 text-sm"></i>
+                </div>
+                <div>
+                    <p class="font-heading font-bold text-neutral-900 text-xs">Live Sync</p>
+                    <p class="text-neutral-400" style="font-size:10px">Updates in real time</p>
+                </div>
+            </div>
+            <div class="floating-badge bg-white rounded-large shadow-custom-hover border border-neutral-200 px-4 py-3 flex items-center gap-3" style="animation-delay:1s">
+                <div class="w-8 h-8 rounded-full bg-secondary-100 flex items-center justify-center">
+                    <i class="ri-share-line text-secondary-600 text-sm"></i>
+                </div>
+                <div>
+                    <p class="font-heading font-bold text-neutral-900 text-xs">One-click Share</p>
+                    <p class="text-neutral-400" style="font-size:10px">Secure shareable link</p>
+                </div>
+            </div>
+            <div class="floating-badge bg-white rounded-large shadow-custom-hover border border-neutral-200 px-4 py-3 flex items-center gap-3" style="animation-delay:1.5s">
+                <div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center">
+                    <i class="ri-bar-chart-2-line text-purple-600 text-sm"></i>
+                </div>
+                <div>
+                    <p class="font-heading font-bold text-neutral-900 text-xs">12 Chart Types</p>
+                    <p class="text-neutral-400" style="font-size:10px">Fully customizable</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- LIVE METRICS STRIP -->
+<section class="bg-white py-16 max-h-[360px] overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-10">
+            <h2 class="font-heading text-3xl font-extrabold text-neutral-900 mb-3" style="letter-spacing: var(--letter-spacing-heading);">Live Office Metrics at a Glance</h2>
+            <p class="text-neutral-500 text-base">Sample data from office_data_q4.xlsx — exactly what you'd see after uploading your file</p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="text-center p-6 bg-background-50 rounded-large border border-neutral-200">
+                <div class="w-12 h-12 rounded-large bg-primary-100 flex items-center justify-center mx-auto mb-3">
+                    <i class="ri-user-line text-primary-600 text-xl"></i>
+                </div>
+                <p class="font-heading font-extrabold text-3xl text-neutral-900 mb-1">248</p>
+                <p class="text-sm text-neutral-500">Total Employees</p>
+                <p class="text-xs text-primary-600 font-semibold mt-1">+12 this quarter</p>
+            </div>
+            <div class="text-center p-6 bg-background-50 rounded-large border border-neutral-200">
+                <div class="w-12 h-12 rounded-large bg-secondary-100 flex items-center justify-center mx-auto mb-3">
+                    <i class="ri-money-dollar-circle-line text-secondary-600 text-xl"></i>
+                </div>
+                <p class="font-heading font-extrabold text-3xl text-neutral-900 mb-1">$11.5M</p>
+                <p class="text-sm text-neutral-500">Total Payroll</p>
+                <p class="text-xs text-secondary-600 font-semibold mt-1">Across 5 departments</p>
+            </div>
+            <div class="text-center p-6 bg-background-50 rounded-large border border-neutral-200">
+                <div class="w-12 h-12 rounded-large bg-blue-100 flex items-center justify-center mx-auto mb-3">
+                    <i class="ri-building-4-line text-blue-600 text-xl"></i>
+                </div>
+                <p class="font-heading font-extrabold text-3xl text-neutral-900 mb-1">78%</p>
+                <p class="text-sm text-neutral-500">Desk Utilization</p>
+                <p class="text-xs text-red-500 font-semibold mt-1">-3.1% vs last quarter</p>
+            </div>
+            <div class="text-center p-6 bg-background-50 rounded-large border border-neutral-200">
+                <div class="w-12 h-12 rounded-large bg-purple-100 flex items-center justify-center mx-auto mb-3">
+                    <i class="ri-award-line text-purple-600 text-xl"></i>
+                </div>
+                <p class="font-heading font-extrabold text-3xl text-neutral-900 mb-1">84.6%</p>
+                <p class="text-sm text-neutral-500">Avg. Performance</p>
+                <p class="text-xs text-primary-600 font-semibold mt-1">+4.2% improvement</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- DATA QUALITY ALERTS SECTION -->
+<section class="bg-background-100 py-16 max-h-[500px] overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-yellow-50 border border-yellow-200 rounded-full mb-5">
+                    <i class="ri-alert-line text-yellow-600 text-xs"></i>
+                    <span class="text-xs font-bold text-yellow-700 uppercase tracking-wide">Smart Alerts</span>
+                </div>
+                <h2 class="font-heading text-4xl font-extrabold text-neutral-900 mb-5 leading-tight" style="letter-spacing: var(--letter-spacing-heading);">
+                    Data Quality<br>Insights Built In
+                </h2>
+                <p class="text-neutral-500 text-lg leading-relaxed mb-8">
+                    SmartViz automatically flags anomalies, missing values, and outliers — so your dashboard always reflects clean, trustworthy data.
+                </p>
+                <div class="flex items-center gap-4">
+                    <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/chat-bot-reports-demo" class="inline-flex items-center gap-2 px-6 py-3 bg-neutral-900 text-white rounded-small text-sm font-bold hover:bg-neutral-700 transition-colors shadow-custom">
+                        <i class="ri-robot-line"></i>
+                        Ask AI About Alerts
+                        <i class="ri-arrow-right-line text-xs"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="space-y-3">
+                <div class="bg-white rounded-large border border-yellow-200 p-4 shadow-custom flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-large bg-yellow-100 flex items-center justify-center shrink-0">
+                        <i class="ri-alert-line text-yellow-600"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between mb-1">
+                            <p class="font-heading font-bold text-neutral-900 text-sm">Missing Values Detected</p>
+                            <span class="px-2 py-0.5 bg-yellow-50 text-yellow-700 rounded-full text-xs font-bold">Warning</span>
+                        </div>
+                        <p class="text-xs text-neutral-500">2 missing values in "Department" column (rows 142, 387). Auto-filled with nearest match.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-large border border-red-200 p-4 shadow-custom flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-large bg-red-100 flex items-center justify-center shrink-0">
+                        <i class="ri-error-warning-line text-red-600"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between mb-1">
+                            <p class="font-heading font-bold text-neutral-900 text-sm">Duplicate Row Found</p>
+                            <span class="px-2 py-0.5 bg-red-50 text-red-700 rounded-full text-xs font-bold">Critical</span>
+                        </div>
+                        <p class="text-xs text-neutral-500">1 duplicate employee record found (EMP-0091). Merged automatically to prevent double-counting.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-large border border-primary-200 p-4 shadow-custom flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-large bg-primary-100 flex items-center justify-center shrink-0">
+                        <i class="ri-line-chart-line text-primary-600"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between mb-1">
+                            <p class="font-heading font-bold text-neutral-900 text-sm">Outlier Detected</p>
+                            <span class="px-2 py-0.5 bg-primary-50 text-primary-700 rounded-full text-xs font-bold">Info</span>
+                        </div>
+                        <p class="text-xs text-neutral-500">Salary value $0 for EMP-0204 appears anomalous. Flagged for review — excluded from averages.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-large border border-green-200 p-4 shadow-custom flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-large bg-green-100 flex items-center justify-center shrink-0">
+                        <i class="ri-checkbox-circle-line text-green-600"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between mb-1">
+                            <p class="font-heading font-bold text-neutral-900 text-sm">Data Validation Passed</p>
+                            <span class="px-2 py-0.5 bg-green-50 text-green-700 rounded-full text-xs font-bold">Passed</span>
+                        </div>
+                        <p class="text-xs text-neutral-500">1,245 of 1,248 rows passed all validation checks. Overall data quality score: 99.8%.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="bg-neutral-900 py-16 max-h-[320px] overflow-hidden">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-primary-500/20 border border-primary-500/30 rounded-full mb-6">
+            <i class="ri-rocket-line text-primary-400 text-sm"></i>
+            <span class="text-xs font-semibold text-primary-300">Ready to see your own data like this?</span>
+        </div>
+        <h2 class="font-heading text-4xl font-extrabold text-white mb-4" style="letter-spacing: var(--letter-spacing-heading);">
+            Upload Your Spreadsheet<br>and Go Live in Minutes
+        </h2>
+        <p class="text-neutral-400 text-lg mb-8">
+            No setup, no code, no waiting. Just drop your file and watch SmartViz do the rest.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/pricing-cta" class="inline-flex items-center gap-2.5 px-8 py-4 bg-primary-500 text-white rounded-small text-base font-bold hover:bg-primary-600 transition-colors shadow-custom">
+                <i class="ri-upload-cloud-2-line"></i>
+                Start Free — Upload Now
+            </a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/chat-bot-reports-demo" class="inline-flex items-center gap-2.5 px-8 py-4 bg-white/10 text-white rounded-small text-base font-semibold border border-white/20 hover:bg-white/20 transition-colors">
+                <i class="ri-robot-line text-primary-400"></i>
+                Explore AI Reports
+                <i class="ri-arrow-right-line text-xs"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-white border-t border-neutral-100 py-8 max-h-[120px]">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-2">
+            <div class="w-7 h-7 logo-mark rounded flex items-center justify-center text-white">
+                <i class="ri-bar-chart-box-fill text-sm"></i>
+            </div>
+            <span class="font-heading font-bold text-neutral-900 text-sm">SmartViz</span>
+            <span class="text-neutral-300 mx-2">·</span>
+            <span class="text-xs text-neutral-400">© 2024 SmartViz Inc.</span>
+        </div>
+        <div class="flex items-center gap-6">
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/hero-landing-page" class="text-xs text-neutral-500 hover:text-neutral-900 transition-colors">Home</a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/features-showcase" class="text-xs text-neutral-500 hover:text-neutral-900 transition-colors">Features</a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/dashboard-preview" class="text-xs text-neutral-900 font-semibold">Dashboard</a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/chat-bot-reports-demo" class="text-xs text-neutral-500 hover:text-neutral-900 transition-colors">AI Reports</a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/pricing-cta" class="text-xs text-neutral-500 hover:text-neutral-900 transition-colors">Pricing</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // Revenue Trend Chart
+        const ctx1 = document.getElementById('revTrendChart').getContext('2d');
+        const gradRev = ctx1.createLinearGradient(0, 0, 0, 190);
+        gradRev.addColorStop(0, 'rgba(16,185,129,0.18)');
+        gradRev.addColorStop(1, 'rgba(16,185,129,0)');
+        const gradExp = ctx1.createLinearGradient(0, 0, 0, 190);
+        gradExp.addColorStop(0, 'rgba(249,115,22,0.15)');
+        gradExp.addColorStop(1, 'rgba(249,115,22,0)');
+
+        new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+                datasets: [
+                    {
+                        label: 'Revenue',
+                        data: [165,178,166,189,192,205,218,212,228,242,255,268],
+                        borderColor: '#10b981',
+                        backgroundColor: gradRev,
+                        borderWidth: 2.5,
+                        tension: 0.4,
+                        fill: true,
+                        pointRadius: 3,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#10b981',
+                        pointBorderWidth: 2
+                    },
+                    {
+                        label: 'Expenses',
+                        data: [95,102,98,108,110,115,120,118,124,130,136,142],
+                        borderColor: '#fb923c',
+                        backgroundColor: gradExp,
+                        borderWidth: 2.5,
+                        tension: 0.4,
+                        fill: true,
+                        pointRadius: 3,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#fb923c',
+                        pointBorderWidth: 2
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: '#1e293b',
+                        padding: 10,
+                        titleFont: { family: "'Plus Jakarta Sans', sans-serif", size: 12 },
+                        bodyFont: { family: "'Inter', sans-serif", size: 11 },
+                        cornerRadius: 8
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        grid: { color: '#f1f5f9', drawBorder: false },
+                        ticks: { font: { family: "'Inter', sans-serif", size: 10 }, color: '#94a3b8', callback: v => '$' + v + 'k' }
+                    },
+                    x: {
+                        grid: { display: false, drawBorder: false },
+                        ticks: { font: { family: "'Inter', sans-serif", size: 10 }, color: '#94a3b8' }
+                    }
+                },
+                interaction: { intersect: false, mode: 'index' }
+            }
+        });
+
+        // Department Donut Chart
+        const ctx2 = document.getElementById('deptDonutChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'doughnut',
+            data: {
+                labels: ['Engineering', 'Sales', 'Marketing', 'Other'],
+                datasets: [{
+                    data: [40, 25, 20, 15],
+                    backgroundColor: ['#10b981', '#fb923c', '#60a5fa', '#c084fc'],
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '72%',
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: '#1e293b',
+                        padding: 10,
+                        titleFont: { family: "'Plus Jakarta Sans', sans-serif", size: 12 },
+                        bodyFont: { family: "'Inter', sans-serif", size: 11 },
+                        cornerRadius: 8
+                    }
+                }
+            }
+        });
+
+        // Department Bar Chart
+        const ctx3 = document.getElementById('deptBarChart').getContext('2d');
+        new Chart(ctx3, {
+            type: 'bar',
+            data: {
+                labels: ['Eng', 'Sales', 'Mktg', 'Ops', 'HR'],
+                datasets: [
+                    {
+                        label: 'Q4',
+                        data: [4.2, 3.1, 2.4, 1.8, 1.2],
+                        backgroundColor: '#10b981',
+                        borderRadius: 6,
+                        barPercentage: 0.5
+                    },
+                    {
+                        label: 'Q3',
+                        data: [3.8, 2.9, 2.1, 1.6, 1.1],
+                        backgroundColor: '#e2e8f0',
+                        borderRadius: 6,
+                        barPercentage: 0.5
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: '#1e293b',
+                        padding: 10,
+                        titleFont: { family: "'Plus Jakarta Sans', sans-serif", size: 12 },
+                        bodyFont: { family: "'Inter', sans-serif", size: 11 },
+                        cornerRadius: 8,
+                        callbacks: { label: ctx => '$' + ctx.raw + 'M' }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: '#f1f5f9', drawBorder: false },
+                        ticks: { font: { family: "'Inter', sans-serif", size: 10 }, color: '#94a3b8', callback: v => '$' + v + 'M' }
+                    },
+                    x: {
+                        grid: { display: false, drawBorder: false },
+                        ticks: { font: { family: "'Inter', sans-serif", size: 10 }, color: '#94a3b8' }
+                    }
+                }
+            }
+        });
+
+        // Utilization Area Chart
+        const ctx4 = document.getElementById('utilizationChart').getContext('2d');
+        const gradUtil = ctx4.createLinearGradient(0, 0, 0, 160);
+        gradUtil.addColorStop(0, 'rgba(96,165,250,0.2)');
+        gradUtil.addColorStop(1, 'rgba(96,165,250,0)');
+
+        new Chart(ctx4, {
+            type: 'line',
+            data: {
+                labels: ['W1','W2','W3','W4','W5','W6','W7','W8','W9','W10','W11','W12'],
+                datasets: [{
+                    label: 'Utilization',
+                    data: [72, 75, 80, 78, 82, 85, 79, 76, 81, 78, 74, 78],
+                    borderColor: '#60a5fa',
+                    backgroundColor: gradUtil,
+                    borderWidth: 2.5,
+                    tension: 0.4,
+                    fill: true,
+                    pointRadius: 2,
+                    pointBackgroundColor: '#fff',
+                    pointBorderColor: '#60a5fa',
+                    pointBorderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: '#1e293b',
+                        padding: 10,
+                        titleFont: { family: "'Plus Jakarta Sans', sans-serif", size: 12 },
+                        bodyFont: { family: "'Inter', sans-serif", size: 11 },
+                        cornerRadius: 8,
+                        callbacks: { label: ctx => ctx.raw + '%' }
+                    }
+                },
+                scales: {
+                    y: {
+                        min: 60,
+                        max: 100,
+                        grid: { color: '#f1f5f9', drawBorder: false },
+                        ticks: { font: { family: "'Inter', sans-serif", size: 10 }, color: '#94a3b8', callback: v => v + '%' }
+                    },
+                    x: {
+                        grid: { display: false, drawBorder: false },
+                        ticks: { font: { family: "'Inter', sans-serif", size: 10 }, color: '#94a3b8' }
+                    }
+                },
+                interaction: { intersect: false, mode: 'index' }
+            }
+        });
+
+        // Tab switching
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    });
+</script>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

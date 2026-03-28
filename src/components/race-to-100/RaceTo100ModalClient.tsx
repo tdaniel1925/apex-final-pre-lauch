@@ -53,7 +53,7 @@ export default function RaceTo100ModalClient({
 
   const handleClose = () => {
     setIsOpen(false);
-    router.push('/dashboard');
+    router.push('/dashboard/home');
   };
 
   return (

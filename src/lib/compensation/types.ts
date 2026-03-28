@@ -1,739 +1,321 @@
-// =============================================
-// DUAL-LADDER COMPENSATION ENGINE - TYPES
-// =============================================
-// Source: APEX_COMP_ENGINE_SPEC_FINAL.md
-// Phase: 3 (Build New TypeScript Code)
-// Agent: 2 (TypeScript Type Architect)
-// =============================================
+// Apex Affinity Group - TypeScript Types
+// Generated from database schema and documentation
 
-/**
- * Product types in the compensation system
- *
- * - standard: PulseGuard, PulseFlow, PulseDrive, PulseCommand, SmartLook
- * - business_center: Fixed $39/mo product with special commission rules
- */
-export type ProductType = 'standard' | 'business_center';
+// ============================================================================
+// ENUMS
+// ============================================================================
 
-/**
- * Member status values
- */
-export type MemberStatus = 'active' | 'inactive' | 'suspended' | 'terminated';
+export type RepStatus = 'PENDING' | 'ACTIVE' | 'SUSPENDED' | 'TERMINATED';
+export type Rank = 'INACTIVE' | 'ASSOCIATE' | 'BRONZE' | 'SILVER' | 'GOLD' | 'PLATINUM';
+export type ProductType = 'PULSEMARKET' | 'PULSEFLOW' | 'PULSEDRIVE' | 'PULSECOMMAND' | 'SMARTLOCK' | 'BIZCENTER';
+export type PriceType = 'MEMBER' | 'RETAIL';
+export type SubscriptionStatus = 'PENDING' | 'ACTIVE' | 'SUSPENDED' | 'CANCELLED';
+export type CABState = 'PENDING' | 'EARNED' | 'VOIDED' | 'VOIDED_CAP' | 'CLAWBACK';
+export type CommissionRunStatus = 'PENDING' | 'PROCESSING' | 'LOCKED';
+export type LineItemType =
+  | 'SELLER' | 'SELLER_BIZ' | 'BIZ_REFERRAL'
+  | 'OVERRIDE_L1' | 'OVERRIDE_L2' | 'OVERRIDE_L3' | 'OVERRIDE_L4' | 'OVERRIDE_L5' | 'OVERRIDE_L6' | 'OVERRIDE_L7'
+  | 'OVERRIDE_COMPRESSED'
+  | 'CAB_EARNED' | 'CAB_CLAWBACK' | 'CAB_CLAWBACK_CARRYFORWARD'
+  | 'BONUS_VOLUME_KICKER' | 'BONUS_PVB' | 'BONUS_TVB' | 'BONUS_RETENTION' | 'BONUS_MATCHING'
+  | 'BONUS_CHECK_MATCH' | 'BONUS_GRS' | 'BONUS_GOLD_ACCELERATOR' | 'BONUS_INFINITY' | 'BONUS_CAR_ALLOWANCE'
+  | 'CORRECTION';
+export type AdminRole = 'SUPER_ADMIN' | 'FINANCE' | 'OPERATIONS' | 'SUPPORT' | 'REP';
 
-/**
- * Commission run processing status
- */
-export type CommissionRunStatus = 'pending' | 'processing' | 'completed' | 'locked' | 'failed';
+// ============================================================================
+// DATABASE MODELS
+// ============================================================================
 
-/**
- * Audit log action types
- */
-export type AuditAction =
-  | 'created'
-  | 'updated'
-  | 'activated'
-  | 'deactivated'
-  | 'deleted';
+export interface Rep {
+  rep_id: string;
+  full_name: string;
+  email: string;
+  phone: string | null;
+  ssn_last4: string | null;
+  date_of_birth: Date;
+  enrollment_date: Date;
+  status: RepStatus;
 
-// =============================================
-// COMPENSATION PLAN CONFIGURATION
-// =============================================
+  // Genealogy
+  enroller_id: string | null;  // personal sponsor (permanent)
+  placement_parent_id: string | null;  // matrix position
+  placement_position: number | null;  // 1-5
+  matrix_path: string | null;
 
-/**
- * Top-level compensation plan configuration
- *
- * Represents a versioned compensation plan with an effective date.
- * Multiple versions can exist, but only one should be active at a time.
- *
- * @example
- * {
- *   id: '123e4567-e89b-12d3-a456-426614174000',
- *   name: 'Q1 2026 Plan',
- *   version: 1,
- *   effectiveDate: '2026-01-01T00:00:00Z',
- *   isActive: true,
- *   description: 'Standard dual-ladder plan for Q1 2026'
- * }
- */
-export interface CompensationPlanConfig {
-  /** Unique identifier for this plan configuration */
-  id: string;
+  // Rank
+  current_rank: Rank;
+  prior_month_rank: Rank | null;
+  consecutive_platinum_days: number;
 
-  /** Human-readable plan name (e.g., "Q1 2026 Plan", "Standard Plan v2") */
-  name: string;
+  // Special programs
+  infinity_org_active: boolean;
+  second_org_root_rep_id: string | null;
+  gold_accelerator_paid: boolean;
+  car_allowance_active: boolean;
+  car_allowance_consecutive_months: number;
 
-  /** Incremental version number (1, 2, 3...) */
-  version: number;
+  // Financial
+  clawback_carry_forward_balance: number;
+  commission_carry_forward: number;
 
-  /** ISO 8601 date when this plan becomes effective */
-  effectiveDate: string;
+  // Compliance
+  rep_agreement_version: string | null;
+  rep_agreement_signed_at: Date | null;
 
-  /** User ID who created this configuration (optional for system-created plans) */
-  createdBy?: string;
-
-  /** ISO 8601 timestamp when configuration was created */
-  createdAt: string;
-
-  /** ISO 8601 timestamp when configuration was last updated */
-  updatedAt: string;
-
-  /** Whether this plan is currently active (only one should be active) */
-  isActive: boolean;
-
-  /** Optional description of this plan or what changed */
-  description?: string;
+  // Audit
+  created_at: Date;
+  updated_at: Date;
+  terminated_at: Date | null;
+  termination_reason: string | null;
 }
 
-// =============================================
-// TECH RANK CONFIGURATION
-// =============================================
+export interface Subscription {
+  subscription_id: string;
+  rep_id: string;
+  customer_email: string;
+  customer_name: string;
 
-/**
- * Configuration for a single tech ladder rank
- *
- * Defines all requirements and benefits for achieving a specific rank:
- * - Credit requirements (personal + group)
- * - Downline requirements (sponsored members at specific ranks)
- * - One-time rank bonus
- * - Override schedule (L1-L5 percentages)
- * - Grace period and rank lock rules
- *
- * @example
- * {
- *   id: 'rank-silver-123',
- *   planConfigId: 'plan-123',
- *   rankName: 'silver',
- *   rankOrder: 2,
- *   personalCreditsRequired: 500,
- *   groupCreditsRequired: 1500,
- *   downlineRequirements: null,
- *   rankBonusCents: 100000, // $1,000
- *   overrideSchedule: [0.30, 0.10, 0.05, 0.00, 0.00],
- *   gracePeriodMonths: 2,
- *   rankLockMonths: 6
- * }
- */
-export interface TechRankConfig {
-  /** Unique identifier for this rank configuration */
-  id: string;
+  // Product
+  product_id: ProductType;
+  price_type: PriceType | null;
+  actual_price_paid: number;
+  member_price: number;  // locked at enrollment
+  bv_value: number;  // always = member_price
 
-  /** Reference to parent compensation plan */
-  planConfigId: string;
+  // Status
+  status: SubscriptionStatus;
+  enrollment_date: Date;
+  cancellation_date: Date | null;
+  suspension_date: Date | null;
 
-  /**
-   * Rank name (one of the 9 tech ranks)
-   * @see TECH_RANKS in config.ts
-   */
-  rankName: string;
+  // Payment failure handling
+  payment_failed_date: Date | null;
+  recovery_deadline: Date | null;
 
-  /**
-   * Rank order/level (0-8)
-   * 0 = starter, 1 = bronze, 2 = silver, ... 8 = elite
-   */
-  rankOrder: number;
-
-  /** Minimum personal production credits required per month */
-  personalCreditsRequired: number;
-
-  /** Minimum group (team) production credits required per month */
-  groupCreditsRequired: number;
-
-  /**
-   * Downline rank requirements (sponsored members only)
-   *
-   * @example
-   * // Gold requires 1 Bronze sponsored
-   * { "bronze": 1 }
-   *
-   * @example
-   * // Diamond requires 3 Golds OR 2 Platinums (OR condition)
-   * [{ "gold": 3 }, { "platinum": 2 }]
-   */
-  downlineRequirements?: Record<string, number> | Record<string, number>[];
-
-  /**
-   * One-time rank advancement bonus (in cents)
-   * Paid once per rank per lifetime
-   */
-  rankBonusCents: number;
-
-  /**
-   * Override percentages for levels L1-L5
-   *
-   * Format: [L1, L2, L3, L4, L5]
-   * - L1 is always 0.30 (30%) for all ranks (Enroller Override Rule)
-   * - Higher ranks unlock deeper levels with higher percentages
-   * - Percentages are of the OVERRIDE POOL, not retail price
-   *
-   * @example
-   * // Silver rank: L1-L3 unlocked
-   * [0.30, 0.10, 0.05, 0.00, 0.00]
-   *
-   * @example
-   * // Platinum rank: L1-L5 unlocked
-   * [0.30, 0.18, 0.12, 0.08, 0.03]
-   */
-  overrideSchedule: [number, number, number, number, number];
-
-  /**
-   * Grace period in months before demotion (default: 2)
-   * Member has this many months below requirements before rank decreases
-   */
-  gracePeriodMonths: number;
-
-  /**
-   * Rank lock period in months for new reps (default: 6)
-   * New members cannot be demoted for this period
-   */
-  rankLockMonths: number;
+  created_at: Date;
+  updated_at: Date;
 }
 
-// =============================================
-// WATERFALL CONFIGURATION
-// =============================================
+export interface CABRecord {
+  cab_id: string;
+  rep_id: string;
+  subscription_id: string;
 
-/**
- * Revenue waterfall configuration per product type
- *
- * Defines how revenue is split between:
- * - BotMakers (platform fee)
- * - Apex (company margin)
- * - Bonus Pool (3.5% for rank achievers)
- * - Leadership Pool (1.5% for Elite members)
- * - Seller Commission (60% of commission pool)
- * - Override Pool (40% of commission pool)
- *
- * Standard products use percentage-based waterfall.
- * Business Center uses fixed dollar amounts.
- *
- * @see WATERFALL_CONFIG in config.ts for standard waterfall
- * @see BUSINESS_CENTER_CONFIG in config.ts for fixed amounts
- */
-export interface WaterfallConfig {
-  /** Unique identifier for this waterfall configuration */
-  id: string;
+  // Timing
+  enrollment_date: Date;
+  release_eligible_date: Date;  // enrollment_date + 60 days
 
-  /** Reference to parent compensation plan */
-  planConfigId: string;
+  // State
+  state: CABState;
+  amount: number;
+  trigger_reason: string | null;
 
-  /** Product type this waterfall applies to */
-  productType: ProductType;
+  // Commission run linkage
+  released_in_run_id: string | null;
+  clawback_applied_run_id: string | null;
 
-  /** BotMakers platform fee percentage (0.0-1.0) */
-  botmakersPct: number;
-
-  /** Apex company margin percentage (0.0-1.0) */
-  apexPct: number;
-
-  /** Bonus pool percentage (0.0-1.0, typically 0.035 = 3.5%) */
-  bonusPoolPct: number;
-
-  /** Leadership pool percentage (0.0-1.0, typically 0.015 = 1.5%) */
-  leadershipPoolPct: number;
-
-  /** Seller commission percentage of commission pool (0.0-1.0, typically 0.60 = 60%) */
-  sellerCommissionPct: number;
-
-  /** Override pool percentage of commission pool (0.0-1.0, typically 0.40 = 40%) */
-  overridePoolPct: number;
+  created_at: Date;
+  updated_at: Date;
 }
 
-// =============================================
-// BONUS PROGRAM CONFIGURATION
-// =============================================
-
-/**
- * Configuration for bonus programs
- *
- * Supports various bonus types:
- * - Rank bonuses (one-time for rank advancement)
- * - Bonus pool sharing (equal share among qualified members)
- * - Leadership pool (proportional for Elite members)
- * - Custom bonus programs (flexible JSON config)
- *
- * @example
- * {
- *   id: 'bonus-rank-123',
- *   planConfigId: 'plan-123',
- *   programName: 'rank_advancement_bonuses',
- *   enabled: true,
- *   configJson: {
- *     oneTimeOnly: true,
- *     requiresOverrideQualification: true
- *   }
- * }
- *
- * @example
- * {
- *   id: 'bonus-leadership-123',
- *   planConfigId: 'plan-123',
- *   programName: 'leadership_pool',
- *   enabled: true,
- *   configJson: {
- *     eligibleRanks: ['elite'],
- *     distributionMethod: 'proportional_by_production'
- *   }
- * }
- */
-export interface BonusProgramConfig {
-  /** Unique identifier for this bonus program */
-  id: string;
-
-  /** Reference to parent compensation plan */
-  planConfigId: string;
-
-  /**
-   * Program identifier
-   *
-   * Common programs:
-   * - 'rank_advancement_bonuses'
-   * - 'bonus_pool_sharing'
-   * - 'leadership_pool'
-   * - 'sponsor_bonus' (Business Center only)
-   */
-  programName: string;
-
-  /** Whether this program is currently active */
-  enabled: boolean;
-
-  /**
-   * Flexible JSON configuration specific to this program
-   * Schema varies by programName
-   */
-  configJson: Record<string, unknown>;
-}
-
-// =============================================
-// AUDIT LOG
-// =============================================
-
-/**
- * Audit log entry for compensation configuration changes
- *
- * Tracks all administrative changes to compensation plans:
- * - Plan creation/updates
- * - Activation/deactivation
- * - Field-level changes
- *
- * @example
- * {
- *   id: 'audit-123',
- *   adminId: 'user-456',
- *   action: 'updated',
- *   configId: 'plan-789',
- *   changes: {
- *     bonusPoolPct: { old: 0.035, new: 0.04 }
- *   },
- *   timestamp: '2026-03-16T10:30:00Z'
- * }
- */
-export interface CompensationConfigAuditLog {
-  /** Unique identifier for this audit entry */
-  id: string;
-
-  /** User ID who performed the action (null for system actions) */
-  adminId?: string;
-
-  /** Type of action performed */
-  action: AuditAction;
-
-  /** ID of the config that was changed (if applicable) */
-  configId?: string;
-
-  /**
-   * Detailed changes (for 'updated' actions)
-   * Format: { fieldName: { old: value, new: value } }
-   */
-  changes?: Record<string, { old: unknown; new: unknown }>;
-
-  /** ISO 8601 timestamp when action occurred */
-  timestamp: string;
-
-  /** Optional notes or reason for change */
-  notes?: string;
-}
-
-// =============================================
-// COMPOSITE TYPES
-// =============================================
-
-/**
- * Full compensation configuration with all related data
- *
- * Combines all configuration tables into a single object
- * for easier access and validation.
- *
- * Used by commission run engine to load active configuration.
- */
-export interface FullCompensationConfig {
-  /** The compensation plan metadata */
-  plan: CompensationPlanConfig;
-
-  /** All tech rank configurations for this plan (9 ranks) */
-  techRanks: TechRankConfig[];
-
-  /** Waterfall configurations (standard + business_center) */
-  waterfalls: WaterfallConfig[];
-
-  /** All bonus programs for this plan */
-  bonusPrograms: BonusProgramConfig[];
-}
-
-// =============================================
-// API REQUEST/RESPONSE TYPES
-// =============================================
-
-/**
- * Request to create a new compensation plan configuration
- */
-export interface CreateConfigRequest {
-  /** Human-readable plan name */
-  name: string;
-
-  /** Optional description */
-  description?: string;
-
-  /** ISO 8601 date when plan becomes effective */
-  effectiveDate: string;
-
-  /**
-   * Whether to copy from existing plan (optional)
-   * If provided, copies all rank/waterfall/bonus configs from that plan
-   */
-  copyFromPlanId?: string;
-}
-
-/**
- * Response after creating a new compensation plan
- */
-export interface CreateConfigResponse {
-  /** The created plan configuration */
-  plan: CompensationPlanConfig;
-
-  /** Whether data was copied from another plan */
-  copiedFrom?: string;
-}
-
-/**
- * Request to update an existing compensation plan
- */
-export interface UpdateConfigRequest {
-  /** New plan name (optional) */
-  name?: string;
-
-  /** New description (optional) */
-  description?: string;
-
-  /** New effective date (optional) */
-  effectiveDate?: string;
-}
-
-/**
- * Request to activate a specific compensation plan
- * Deactivates all other plans automatically
- */
-export interface ActivateConfigRequest {
-  /** ID of the plan to activate */
-  configId: string;
-
-  /** Optional reason for activation */
-  reason?: string;
-}
-
-/**
- * Response after activating a plan
- */
-export interface ActivateConfigResponse {
-  /** The activated plan */
-  activatedPlan: CompensationPlanConfig;
-
-  /** IDs of plans that were deactivated */
-  deactivatedPlanIds: string[];
-}
-
-/**
- * Request to update tech rank configuration
- */
-export interface UpdateTechRankRequest {
-  /** New personal credits requirement (optional) */
-  personalCreditsRequired?: number;
-
-  /** New group credits requirement (optional) */
-  groupCreditsRequired?: number;
-
-  /** New downline requirements (optional) */
-  downlineRequirements?: Record<string, number> | Record<string, number>[];
-
-  /** New rank bonus amount in cents (optional) */
-  rankBonusCents?: number;
-
-  /** New override schedule (optional) */
-  overrideSchedule?: [number, number, number, number, number];
-
-  /** New grace period in months (optional) */
-  gracePeriodMonths?: number;
-
-  /** New rank lock period in months (optional) */
-  rankLockMonths?: number;
-}
-
-/**
- * Request to update waterfall configuration
- */
-export interface UpdateWaterfallRequest {
-  /** New BotMakers percentage (optional) */
-  botmakersPct?: number;
-
-  /** New Apex percentage (optional) */
-  apexPct?: number;
-
-  /** New bonus pool percentage (optional) */
-  bonusPoolPct?: number;
-
-  /** New leadership pool percentage (optional) */
-  leadershipPoolPct?: number;
-
-  /** New seller commission percentage (optional) */
-  sellerCommissionPct?: number;
-
-  /** New override pool percentage (optional) */
-  overridePoolPct?: number;
-}
-
-// =============================================
-// COMMISSION RUN TYPES
-// =============================================
-
-/**
- * Commission run record
- *
- * Represents a monthly commission calculation cycle.
- * Immutable after locking.
- */
-export interface CommissionRun {
-  /** Unique identifier for this commission run */
-  id: string;
-
-  /** Month (1-12) this run is for */
+export interface BVSnapshot {
+  snapshot_id: string;
+  rep_id: string;
   month: number;
-
-  /** Year this run is for */
   year: number;
+  personal_bv: number;
+  team_bv: number;
+  snapshot_date: Date;
+  created_at: Date;
+}
 
-  /** Current processing status */
+export interface RankSnapshot {
+  rank_snapshot_id: string;
+  rep_id: string;
+  month: number;
+  year: number;
+  rank: Rank;
+  personal_bv_at_snapshot: number;
+  team_bv_at_snapshot: number;
+  snapshot_date: Date;
+  created_at: Date;
+}
+
+export interface CommissionRun {
+  run_id: string;
+  month: number;
+  year: number;
   status: CommissionRunStatus;
 
-  /** Compensation plan used for this run */
-  planConfigId: string;
+  // Aggregates
+  total_reps: number | null;
+  total_payout: number | null;
+  total_seller_commissions: number | null;
+  total_overrides: number | null;
+  total_cab_released: number | null;
+  total_cab_clawbacks: number | null;
+  total_bonuses: number | null;
+  total_carry_forwards: number | null;
+  total_botmakers: number | null;
+  total_apex: number | null;
+  total_bonus_pool_contributions: number | null;
 
-  /** ISO 8601 timestamp when run was created */
-  createdAt: string;
-
-  /** ISO 8601 timestamp when processing started */
-  processingStartedAt?: string;
-
-  /** ISO 8601 timestamp when processing completed */
-  completedAt?: string;
-
-  /** ISO 8601 timestamp when run was locked (immutable) */
-  lockedAt?: string;
-
-  /** User who locked the run */
-  lockedBy?: string;
-
-  /** Total members processed */
-  totalMembers?: number;
-
-  /** Total payout amount in cents */
-  totalPayoutCents?: number;
-
-  /** Total seller commissions in cents */
-  totalSellerCommissionsCents?: number;
-
-  /** Total override commissions in cents */
-  totalOverridesCents?: number;
-
-  /** Total rank bonuses paid in cents */
-  totalRankBonusesCents?: number;
-
-  /** Total bonus pool distributions in cents */
-  totalBonusPoolCents?: number;
-
-  /** Total leadership pool distributions in cents */
-  totalLeadershipPoolCents?: number;
-
-  /** Processing errors (if status = 'failed') */
-  errors?: string[];
+  processed_at: Date | null;
+  locked_at: Date | null;
+  created_at: Date;
 }
 
-/**
- * Individual earning line item within a commission run
- */
-export interface EarningLineItem {
-  /** Unique identifier */
-  id: string;
+export interface CommissionLineItem {
+  line_item_id: string;
+  run_id: string;
+  rep_id: string;
+  line_type: LineItemType;
+  amount: number;  // negative for clawbacks
 
-  /** Commission run this belongs to */
-  runId: string;
+  // Optional linkages
+  subscription_id: string | null;
+  cab_id: string | null;
+  source_rep_id: string | null;
+  override_level: number | null;
+  compressed: boolean;
 
-  /** Member who earned this */
-  memberId: string;
-
-  /**
-   * Type of earning
-   *
-   * Common types:
-   * - 'seller_commission' - Direct sales commission
-   * - 'override_l1' through 'override_l5' - Override levels
-   * - 'rank_bonus' - One-time rank advancement bonus
-   * - 'bonus_pool_share' - Share of bonus pool
-   * - 'leadership_pool_share' - Share of leadership pool
-   * - 'sponsor_bonus' - Business Center sponsor bonus
-   */
-  earningType: string;
-
-  /** Amount in cents (can be negative for clawbacks) */
-  amountCents: number;
-
-  /** Source transaction ID (subscription, sale, etc.) */
-  sourceTransactionId?: string;
-
-  /** Source member ID (for overrides - who generated the sale) */
-  sourceMemberId?: string;
-
-  /** Override level (1-5, if applicable) */
-  overrideLevel?: number;
-
-  /** Product type (if applicable) */
-  productType?: ProductType;
-
-  /** Notes or calculation details */
-  notes?: string;
-
-  /** ISO 8601 timestamp when created */
-  createdAt: string;
+  notes: string | null;
+  created_at: Date;
 }
 
-// =============================================
-// VALIDATION TYPES
-// =============================================
-
-/**
- * Validation result for compensation configuration
- */
-export interface ConfigValidationResult {
-  /** Whether configuration is valid */
-  valid: boolean;
-
-  /** Validation errors (if any) */
-  errors: ConfigValidationError[];
-
-  /** Validation warnings (non-blocking issues) */
-  warnings: ConfigValidationWarning[];
+export interface BonusPoolRecord {
+  pool_record_id: string;
+  month: number;
+  year: number;
+  contributions: number;
+  distributions: number;
+  balance: number;  // computed
+  pool_rate: number;
+  auto_trigger_active: boolean;
+  created_at: Date;
 }
 
-/**
- * Validation error
- */
-export interface ConfigValidationError {
-  /** Field or section with error */
-  field: string;
+// ============================================================================
+// CALCULATION TYPES
+// ============================================================================
 
-  /** Error message */
-  message: string;
-
-  /** Current invalid value */
-  currentValue?: unknown;
-
-  /** Expected value or constraint */
-  expected?: string;
+export interface WaterfallResult {
+  grossPrice: number;
+  botmakersFee: number;
+  bonusPoolContribution: number;
+  apexMargin: number;
+  fieldRemainder: number;
+  sellerCommission: number;
+  overridePool: number;
+  overrideLevels: {
+    L1: number;
+    L2: number;
+    L3: number;
+    L4: number;
+    L5: number;
+    L6?: number;  // Powerline only
+    L7?: number;  // Powerline only
+  };
 }
 
-/**
- * Validation warning
- */
-export interface ConfigValidationWarning {
-  /** Field or section with warning */
-  field: string;
-
-  /** Warning message */
-  message: string;
-
-  /** Suggestion for improvement */
-  suggestion?: string;
+export interface BizCenterSplit {
+  sellerAmount: number;  // $10
+  enrollerAmount: number;  // $8
 }
 
-// =============================================
-// TYPE GUARDS
-// =============================================
-
-/**
- * Check if value is a valid ProductType
- */
-export function isProductType(value: unknown): value is ProductType {
-  return value === 'standard' || value === 'business_center';
+export interface RankRequirements {
+  rank: Rank;
+  personalBVMin: number;
+  teamBVMin: number;
 }
 
-/**
- * Check if value is a valid MemberStatus
- */
-export function isMemberStatus(value: unknown): value is MemberStatus {
-  return (
-    value === 'active' ||
-    value === 'inactive' ||
-    value === 'suspended' ||
-    value === 'terminated'
-  );
+export interface OverrideRecipient {
+  rep: Rep;
+  level: number;
+  amount: number;
+  compressed: boolean;
+  originalLevel?: number;  // if compressed, what level it was supposed to be
 }
 
-/**
- * Check if value is a valid CommissionRunStatus
- */
-export function isCommissionRunStatus(value: unknown): value is CommissionRunStatus {
-  return (
-    value === 'pending' ||
-    value === 'processing' ||
-    value === 'completed' ||
-    value === 'locked' ||
-    value === 'failed'
-  );
+export interface CommissionCalculationResult {
+  rep_id: string;
+  month: number;
+  year: number;
+
+  // Seller commissions
+  seller_commissions: CommissionLineItem[];
+
+  // Override commissions
+  override_commissions: CommissionLineItem[];
+
+  // CABs
+  cabs_earned: CommissionLineItem[];
+  cabs_clawback: CommissionLineItem[];
+
+  // Bonuses
+  bonuses: CommissionLineItem[];
+
+  // Totals
+  gross_total: number;
+  clawbacks_total: number;
+  net_payout: number;
+  carry_forward: number;
 }
 
-/**
- * Check if value is a valid AuditAction
- */
-export function isAuditAction(value: unknown): value is AuditAction {
-  return (
-    value === 'created' ||
-    value === 'updated' ||
-    value === 'activated' ||
-    value === 'deactivated' ||
-    value === 'deleted'
-  );
+// ============================================================================
+// CONFIGURATION
+// ============================================================================
+
+export interface CompPlanConfig {
+  waterfall: {
+    botmakers_fee_pct: number;
+    bonus_pool_pct: number;
+    apex_margin_pct: number;
+    seller_commission_pct: number;
+    override_pool_pct: number;
+  };
+  override_percentages: {
+    standard: {
+      L1: number;
+      L2: number;
+      L3: number;
+      L4: number;
+      L5: number;
+    };
+    powerline: {
+      L1: number;
+      L2: number;
+      L3: number;
+      L4: number;
+      L5: number;
+      L6: number;
+      L7: number;
+    };
+  };
+  rank_thresholds: {
+    INACTIVE: { personal_bv: number; team_bv: number };
+    ASSOCIATE: { personal_bv: number; team_bv: number };
+    BRONZE: { personal_bv: number; team_bv: number };
+    SILVER: { personal_bv: number; team_bv: number };
+    GOLD: { personal_bv: number; team_bv: number };
+    PLATINUM: { personal_bv: number; team_bv: number };
+  };
+  bonuses: {
+    cab: {
+      amount: number;
+      retention_days: number;
+      monthly_cap: number;
+    };
+    gold_accelerator: number;
+    infinity_bonus: {
+      monthly_amount: number;
+      required_consecutive_platinum_days: number;
+      second_org_bv_threshold: number;
+    };
+  };
+  powerline: {
+    threshold_bv: number;
+    required_rank: Rank;
+  };
+  minimum_payout: number;
 }
-
-// =============================================
-// UTILITY TYPES
-// =============================================
-
-/**
- * Partial update type for any config entity
- */
-export type PartialUpdate<T> = Partial<Omit<T, 'id' | 'createdAt' | 'updatedAt'>>;
-
-/**
- * ID reference types for foreign keys
- */
-export type PlanConfigId = string;
-export type MemberId = string;
-export type RunId = string;
-export type TransactionId = string;
-
-/**
- * Override level (1-5)
- */
-export type OverrideLevel = 1 | 2 | 3 | 4 | 5;
-
-/**
- * Month (1-12)
- */
-export type Month = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;

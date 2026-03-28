@@ -58,8 +58,6 @@ export default function RaceTo100Modal({
   const [journeyProgress, setJourneyProgress] = useState(initialProgress);
   const [journeySteps, setJourneySteps] = useState(initialSteps);
   const [pendingMessage, setPendingMessage] = useState<string | null>(null);
-  const [showStepsSidebar, setShowStepsSidebar] = useState(false);
-  const [showToolsSidebar, setShowToolsSidebar] = useState(false);
 
   // Refresh progress from server
   const refreshProgress = async () => {
@@ -97,7 +95,6 @@ export default function RaceTo100Modal({
 
   const handleTopicClick = (topic: RaceTopic) => {
     setPendingMessage(topic.prompt);
-    setShowToolsSidebar(false); // Close sidebar on mobile after selection
   };
 
   // Close on ESC key
@@ -138,32 +135,32 @@ export default function RaceTo100Modal({
       />
 
       {/* Modal */}
-      <div className="fixed inset-0 z-50 flex items-center justify-center md:p-4">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
         <div
-          className="w-full max-w-7xl h-full md:h-[95vh] bg-white md:rounded-lg shadow-2xl flex flex-col"
+          className="w-full max-w-7xl h-[95vh] bg-white rounded-lg shadow-2xl flex flex-col"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
-          <div className="flex items-center justify-between px-3 sm:px-5 py-3 sm:py-3.5 border-b border-slate-200 flex-shrink-0">
-            <div className="flex items-center gap-2 sm:gap-3 min-w-0">
-              <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
-                <Trophy className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+          <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-200 flex-shrink-0">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
+                <Trophy className="w-5 h-5 text-white" />
               </div>
-              <div className="min-w-0">
-                <h2 className="text-base sm:text-lg font-bold text-slate-900 truncate">Race to 100</h2>
-                <p className="text-[10px] sm:text-xs text-slate-600 truncate hidden sm:block">Your journey to your first sale</p>
+              <div>
+                <h2 className="text-lg font-bold text-slate-900">Race to 100</h2>
+                <p className="text-xs text-slate-600">Your journey to your first sale</p>
               </div>
             </div>
-            <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
+            <div className="flex items-center gap-4">
               <div className="text-right">
-                <div className="text-xl sm:text-2xl font-bold text-slate-900 leading-none">
+                <div className="text-2xl font-bold text-slate-900 leading-none">
                   {totalPoints}/100
                 </div>
-                <div className="text-[9px] sm:text-[10px] text-slate-600 mt-0.5">points</div>
+                <div className="text-[10px] text-slate-600 mt-0.5">points</div>
               </div>
               <button
                 onClick={onClose}
-                className="p-2 hover:bg-gray-100 rounded transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+                className="p-1.5 hover:bg-gray-100 rounded transition-colors"
                 aria-label="Close"
               >
                 <X className="w-5 h-5 text-gray-600" />
@@ -172,7 +169,7 @@ export default function RaceTo100Modal({
           </div>
 
           {/* Progress Section */}
-          <div className="px-3 sm:px-5 py-3 sm:py-4 border-b border-slate-200 flex-shrink-0">
+          <div className="px-5 py-4 border-b border-slate-200 flex-shrink-0">
             <ProgressTracker
               totalPoints={totalPoints}
               currentStep={currentStep}
@@ -180,56 +177,18 @@ export default function RaceTo100Modal({
             />
           </div>
 
-          {/* Mobile Toggle Buttons */}
-          <div className="flex lg:hidden border-b border-slate-200 bg-slate-50 flex-shrink-0">
-            <button
-              onClick={() => {
-                setShowStepsSidebar(!showStepsSidebar);
-                setShowToolsSidebar(false);
-              }}
-              className={`flex-1 px-3 py-3 text-sm font-medium transition-colors min-h-[44px] ${
-                showStepsSidebar
-                  ? 'bg-white text-blue-600 border-b-2 border-blue-600'
-                  : 'text-slate-600 hover:bg-white'
-              }`}
-            >
-              Steps ({journeySteps.filter(s => s.is_completed).length}/{journeySteps.length})
-            </button>
-            <button
-              onClick={() => {
-                setShowToolsSidebar(!showToolsSidebar);
-                setShowStepsSidebar(false);
-              }}
-              className={`flex-1 px-3 py-3 text-sm font-medium transition-colors min-h-[44px] ${
-                showToolsSidebar
-                  ? 'bg-white text-blue-600 border-b-2 border-blue-600'
-                  : 'text-slate-600 hover:bg-white'
-              }`}
-            >
-              Tools & Help
-            </button>
-          </div>
-
           {/* Main Body */}
-          <div className="flex flex-1 overflow-hidden relative min-h-0">
-            {/* Left Sidebar - Steps (Desktop always visible, Mobile conditional) */}
-            <div
-              className={`
-                absolute lg:relative inset-y-0 left-0 z-30
-                w-[280px] sm:w-[300px] lg:w-[260px] lg:min-w-[260px]
-                border-r border-slate-200 flex flex-col overflow-hidden bg-white
-                transform transition-transform duration-300 ease-in-out
-                ${showStepsSidebar ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
-              `}
-            >
+          <div className="flex flex-1 overflow-hidden">
+            {/* Sidebar */}
+            <div className="w-[260px] min-w-[260px] border-r border-slate-200 flex flex-col overflow-hidden bg-white">
               <StepChecklist
                 steps={journeySteps}
                 currentStep={currentStep}
               />
             </div>
 
-            {/* Chat Panel - Always visible, adjusts for sidebars */}
-            <div className="flex-1 flex flex-col overflow-hidden min-w-0 relative">
+            {/* Chat Panel */}
+            <div className="flex-1 flex flex-col overflow-hidden">
               <CoachChat
                 distributorId={distributor.id}
                 distributorName={distributor.first_name}
@@ -241,29 +200,8 @@ export default function RaceTo100Modal({
               />
             </div>
 
-            {/* Right Sidebar - Tools (Desktop always visible, Mobile conditional) */}
-            <div
-              className={`
-                absolute lg:relative inset-y-0 right-0 z-30
-                w-[280px] sm:w-[300px] lg:w-auto
-                border-l border-slate-200 bg-white
-                transform transition-transform duration-300 ease-in-out
-                ${showToolsSidebar ? 'translate-x-0' : 'translate-x-full lg:translate-x-0'}
-              `}
-            >
-              <RaceToolsAccordion onTopicClick={handleTopicClick} />
-            </div>
-
-            {/* Mobile Overlay for sidebars */}
-            {(showStepsSidebar || showToolsSidebar) && (
-              <div
-                className="lg:hidden absolute inset-0 bg-black/30 z-20"
-                onClick={() => {
-                  setShowStepsSidebar(false);
-                  setShowToolsSidebar(false);
-                }}
-              />
-            )}
+            {/* Help Topics Accordion (Right) */}
+            <RaceToolsAccordion onTopicClick={handleTopicClick} />
           </div>
         </div>
       </div>

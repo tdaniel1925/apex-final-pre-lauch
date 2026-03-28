@@ -382,9 +382,10 @@ describe('Config Loader - Compensation Constants', () => {
     expect(constants.enrollerOverrideRate).toBe(0.30);
   });
 
-  it('should have insurance to tech crosscredit of 0.5%', async () => {
+  it('should have insurance to tech crosscredit removed (0%)', async () => {
     const constants = await getCompensationConstants();
-    expect(constants.insuranceToTechCrosscreditPct).toBe(0.005);
+    // Per spec line 388: "REMOVED FOR LEGAL COMPLIANCE"
+    expect(constants.insuranceToTechCrosscreditPct).toBe(0);
   });
 });
 

@@ -97,7 +97,7 @@ export default function RaceTo100Client({
       <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-200 flex-shrink-0">
         <div className="flex flex-col gap-0.5">
           <Link
-            href="/dashboard"
+            href="/dashboard/home"
             className="text-xs text-slate-600 hover:text-slate-900 no-underline"
           >
             <ArrowLeft className="inline w-3 h-3 mr-1" />

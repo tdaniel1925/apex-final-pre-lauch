@@ -274,6 +274,15 @@ export async function POST(request: NextRequest) {
 
     // Step 6 + 7: Atomically find placement AND insert distributor in one
     // PostgreSQL transaction with advisory lock — eliminates race condition
+    console.log('[SIGNUP] Calling create_distributor_atomic with params:', {
+      auth_user_id: authData.user.id,
+      first_name: data.first_name,
+      last_name: data.last_name,
+      email: data.email,
+      slug: data.slug,
+      sponsor_id: sponsorId,
+    });
+
     const { data: distributorRows, error: distributorError } = await serviceClient.rpc(
       'create_distributor_atomic',
       {
@@ -303,10 +312,19 @@ export async function POST(request: NextRequest) {
       }
     );
 
+    console.log('[SIGNUP] RPC response:', {
+      hasData: !!distributorRows,
+      hasError: !!distributorError,
+      errorCode: distributorError?.code,
+      errorMessage: distributorError?.message
+    });
+
     const distributor = Array.isArray(distributorRows) ? distributorRows[0] : distributorRows;
 
     if (distributorError || !distributor) {
       console.error('Distributor creation error:', distributorError);
+      console.error('Full error details:', JSON.stringify(distributorError, null, 2));
+      console.error('Distributor data:', distributor);
 
       // Rollback: Delete auth user if distributor creation failed
       console.log('[ROLLBACK] Distributor creation failed, deleting auth user:', authUserId);
@@ -317,7 +335,8 @@ export async function POST(request: NextRequest) {
         {
           success: false,
           error: 'Failed to create distributor',
-          message: 'Account creation failed. Please try again.',
+          message: `Account creation failed: ${distributorError?.message || 'Unknown error'}. Please try again.`,
+          details: process.env.NODE_ENV === 'development' ? distributorError : undefined,
         } as ApiResponse,
         { status: 500 }
       );
@@ -524,7 +543,8 @@ export async function POST(request: NextRequest) {
       { status: 201 }
     );
   } catch (error) {
-    console.error('Signup API error:', error);
+    console.error('[SIGNUP] Unexpected error in signup route:', error);
+    console.error('[SIGNUP] Error stack:', error instanceof Error ? error.stack : 'No stack trace');
 
     // CRITICAL: Rollback any partial data
     const serviceClient = createServiceClient();
@@ -556,6 +576,9 @@ export async function POST(request: NextRequest) {
         success: false,
         error: 'Signup failed',
         message: error instanceof Error ? error.message : 'Unknown error occurred',
+        ...(process.env.NODE_ENV === 'development' && {
+          stack: error instanceof Error ? error.stack : undefined
+        })
       } as ApiResponse,
       { status: 500 }
     );

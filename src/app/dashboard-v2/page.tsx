@@ -1,397 +1,813 @@
 'use client';
 
 // =============================================
-// AI Command Center Dashboard v2
-// Full-screen chat-based dashboard with sliding sidebar
-// Apex blue theme, mobile-first responsive
+// Dashboard V2 - Direct Template Conversion
+// Converted from SmartViz template HTML
 // =============================================
 
-import { useState, useRef, useEffect } from 'react';
-import SlidingSidebar from '@/components/dashboard-v2/SlidingSidebar';
-import ChatHeader from '@/components/dashboard-v2/ChatHeader';
-import QuickActionBar from '@/components/dashboard-v2/QuickActionBar';
-import StatCard from '@/components/dashboard-v2/chat/StatCard';
-import ButtonGrid from '@/components/dashboard-v2/chat/ButtonGrid';
-import TeamMemberCard from '@/components/dashboard-v2/chat/TeamMemberCard';
-import ChartCard from '@/components/dashboard-v2/chat/ChartCard';
-import MatrixVisualization from '@/components/dashboard-v2/chat/MatrixVisualization';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-
-interface Message {
-  role: 'user' | 'assistant';
-  content: string;
-  timestamp: Date;
-  components?: Array<{
-    type: 'stats' | 'buttons' | 'team' | 'chart' | 'matrix';
-    data: any;
-  }>;
-}
-
-// Custom markdown renderer
-function MarkdownMessage({ content, isUser }: { content: string; isUser: boolean }) {
-  return (
-    <div className={`markdown-content ${isUser ? 'text-white' : 'text-gray-900'}`}>
-      <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
-        components={{
-          h1: ({ node, ...props }) => <h1 className="text-2xl font-bold my-2" {...props} />,
-          h2: ({ node, ...props }) => <h2 className="text-xl font-bold my-2" {...props} />,
-          h3: ({ node, ...props }) => <h3 className="text-lg font-bold my-2" {...props} />,
-          ul: ({ node, ...props }) => <ul className="list-disc list-inside my-2 space-y-1" {...props} />,
-          ol: ({ node, ...props }) => <ol className="list-decimal list-inside my-2 space-y-1" {...props} />,
-          a: ({ node, ...props }) => (
-            <a
-              className={`underline ${isUser ? 'text-blue-100 hover:text-white' : 'text-[#2c5aa0] hover:text-[#1a4075]'}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              {...props}
-            />
-          ),
-          code: ({ node, ...props }: any) => {
-            const inline = !(props.className && props.className.includes('language-'));
-            return inline ? (
-              <code className={`px-1 py-0.5 rounded ${isUser ? 'bg-blue-700' : 'bg-gray-200'}`} {...props} />
-            ) : (
-              <code className={`block px-3 py-2 rounded my-2 ${isUser ? 'bg-blue-700' : 'bg-gray-200'}`} {...props} />
-            );
-          },
-          p: ({ node, ...props }) => <p className="my-1" {...props} />,
-          strong: ({ node, ...props }) => <strong className="font-bold" {...props} />,
-          em: ({ node, ...props }) => <em className="italic" {...props} />,
-        }}
-      >
-        {content}
-      </ReactMarkdown>
-    </div>
-  );
-}
+import Link from 'next/link';
+import { useEffect } from 'react';
+import '../template-v2.css';
 
 export default function DashboardV2() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      role: 'assistant',
-      content: "👋 **Hey there!** Welcome to your AI Command Center!\n\n**What can I help with today?**\n• View your team performance\n• Check commission breakdown\n• Show your matrix tree\n• Create meeting registration\n• Generate marketing content\n\nJust ask me anything! 😊",
-      timestamp: new Date(),
-    },
-  ]);
-  const [input, setInput] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-
-  // Auto-scroll to bottom
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
+    // Wait for Chart.js to load
+    if (typeof window !== 'undefined' && (window as any).Chart) {
+      const Chart = (window as any).Chart;
 
-  const handleSend = async () => {
-    if (!input.trim() || isLoading) return;
+      // Revenue Trend Chart
+      const ctx1 = (document.getElementById('revTrendChart') as HTMLCanvasElement)?.getContext('2d');
+      if (ctx1) {
+        const gradRev = ctx1.createLinearGradient(0, 0, 0, 190);
+        gradRev.addColorStop(0, 'rgba(16,185,129,0.18)');
+        gradRev.addColorStop(1, 'rgba(16,185,129,0)');
+        const gradExp = ctx1.createLinearGradient(0, 0, 0, 190);
+        gradExp.addColorStop(0, 'rgba(249,115,22,0.15)');
+        gradExp.addColorStop(1, 'rgba(249,115,22,0)');
 
-    const userMessage: Message = {
-      role: 'user',
-      content: input,
-      timestamp: new Date(),
-    };
-
-    setMessages((prev) => [...prev, userMessage]);
-    setInput('');
-    setIsLoading(true);
-
-    try {
-      // Call AI API
-      const response = await fetch('/api/dashboard/ai-chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include', // Ensure session cookies are sent
-        body: JSON.stringify({
-          messages: [...messages, userMessage].map((m) => ({
-            role: m.role,
-            content: m.content,
-          })),
-        }),
-      });
-
-      const data = await response.json();
-
-      if (data.error) {
-        // Special handling for auth errors
-        const errorMessage = data.error === 'Unauthorized'
-          ? '🔒 Session expired. Please refresh the page to log in again.'
-          : `❌ Error: ${data.error}`;
-
-        setMessages((prev) => [
-          ...prev,
-          {
-            role: 'assistant',
-            content: errorMessage,
-            timestamp: new Date(),
+        new Chart(ctx1, {
+          type: 'line',
+          data: {
+            labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+            datasets: [
+              {
+                label: 'Revenue',
+                data: [165,178,166,189,192,205,218,212,228,242,255,268],
+                borderColor: '#10b981',
+                backgroundColor: gradRev,
+                borderWidth: 2.5,
+                tension: 0.4,
+                fill: true,
+                pointRadius: 3,
+                pointBackgroundColor: '#fff',
+                pointBorderColor: '#10b981',
+                pointBorderWidth: 2
+              },
+              {
+                label: 'Expenses',
+                data: [95,102,98,108,110,115,120,118,124,130,136,142],
+                borderColor: '#fb923c',
+                backgroundColor: gradExp,
+                borderWidth: 2.5,
+                tension: 0.4,
+                fill: true,
+                pointRadius: 3,
+                pointBackgroundColor: '#fff',
+                pointBorderColor: '#fb923c',
+                pointBorderWidth: 2
+              }
+            ]
           },
-        ]);
-      } else {
-        // Display AI response (real data from API)
-        const assistantMessage: Message = {
-          role: 'assistant',
-          content: data.message,
-          timestamp: new Date(),
-        };
-
-        // TODO: Parse AI response for visual component data
-        // The AI API should return data in a structured format that can be rendered as cards/charts
-        // For now, just show the text response
-
-        setMessages((prev) => [...prev, assistantMessage]);
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                backgroundColor: '#1e293b',
+                padding: 10,
+                titleFont: { family: "'Plus Jakarta Sans', sans-serif", size: 12 },
+                bodyFont: { family: "'Inter', sans-serif", size: 11 },
+                cornerRadius: 8
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: false,
+                grid: { color: '#f1f5f9', drawBorder: false },
+                ticks: { font: { family: "'Inter', sans-serif", size: 10 }, color: '#94a3b8', callback: (v: any) => '$' + v + 'k' }
+              },
+              x: {
+                grid: { display: false, drawBorder: false },
+                ticks: { font: { family: "'Inter', sans-serif", size: 10 }, color: '#94a3b8' }
+              }
+            },
+            interaction: { intersect: false, mode: 'index' }
+          }
+        });
       }
-    } catch (error) {
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: 'assistant',
-          content: '❌ Sorry, something went wrong. Please try again.',
-          timestamp: new Date(),
-        },
-      ]);
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      handleSend();
-    }
-  };
+      // Department Donut Chart
+      const ctx2 = (document.getElementById('deptDonutChart') as HTMLCanvasElement)?.getContext('2d');
+      if (ctx2) {
+        new Chart(ctx2, {
+          type: 'doughnut',
+          data: {
+            labels: ['Engineering', 'Sales', 'Marketing', 'Other'],
+            datasets: [{
+              data: [40, 25, 20, 15],
+              backgroundColor: ['#10b981', '#fb923c', '#60a5fa', '#c084fc'],
+              borderWidth: 0,
+              hoverOffset: 4
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '72%',
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                backgroundColor: '#1e293b',
+                padding: 10,
+                titleFont: { family: "'Plus Jakarta Sans', sans-serif", size: 12 },
+                bodyFont: { family: "'Inter', sans-serif", size: 11 },
+                cornerRadius: 8
+              }
+            }
+          }
+        });
+      }
 
-  const handleQuickAction = (actionId: string) => {
-    const actionMessages: Record<string, string> = {
-      team: 'Show me my top team performers',
-      earnings: 'Show my commission breakdown',
-      stats: 'Show my performance stats',
-      events: 'Show upcoming events',
-      messages: 'Show recent messages',
-      matrix: 'Show my matrix tree',
-      training: 'Show available training',
-      compliance: 'Check my recent posts for compliance',
-    };
+      // Department Bar Chart
+      const ctx3 = (document.getElementById('deptBarChart') as HTMLCanvasElement)?.getContext('2d');
+      if (ctx3) {
+        new Chart(ctx3, {
+          type: 'bar',
+          data: {
+            labels: ['Eng', 'Sales', 'Mktg', 'Ops', 'HR'],
+            datasets: [
+              {
+                label: 'Q4',
+                data: [4.2, 3.1, 2.4, 1.8, 1.2],
+                backgroundColor: '#10b981',
+                borderRadius: 6,
+                barPercentage: 0.5
+              },
+              {
+                label: 'Q3',
+                data: [3.8, 2.9, 2.1, 1.6, 1.1],
+                backgroundColor: '#e2e8f0',
+                borderRadius: 6,
+                barPercentage: 0.5
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                backgroundColor: '#1e293b',
+                padding: 10,
+                titleFont: { family: "'Plus Jakarta Sans', sans-serif", size: 12 },
+                bodyFont: { family: "'Inter', sans-serif", size: 11 },
+                cornerRadius: 8,
+                callbacks: { label: (ctx: any) => '$' + ctx.raw + 'M' }
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid: { color: '#f1f5f9', drawBorder: false },
+                ticks: { font: { family: "'Inter', sans-serif", size: 10 }, color: '#94a3b8', callback: (v: any) => '$' + v + 'M' }
+              },
+              x: {
+                grid: { display: false, drawBorder: false },
+                ticks: { font: { family: "'Inter', sans-serif", size: 10 }, color: '#94a3b8' }
+              }
+            }
+          }
+        });
+      }
 
-    if (actionMessages[actionId]) {
-      setInput(actionMessages[actionId]);
+      // Utilization Area Chart
+      const ctx4 = (document.getElementById('utilizationChart') as HTMLCanvasElement)?.getContext('2d');
+      if (ctx4) {
+        const gradUtil = ctx4.createLinearGradient(0, 0, 0, 160);
+        gradUtil.addColorStop(0, 'rgba(96,165,250,0.2)');
+        gradUtil.addColorStop(1, 'rgba(96,165,250,0)');
+
+        new Chart(ctx4, {
+          type: 'line',
+          data: {
+            labels: ['W1','W2','W3','W4','W5','W6','W7','W8','W9','W10','W11','W12'],
+            datasets: [{
+              label: 'Utilization',
+              data: [72, 75, 80, 78, 82, 85, 79, 76, 81, 78, 74, 78],
+              borderColor: '#60a5fa',
+              backgroundColor: gradUtil,
+              borderWidth: 2.5,
+              tension: 0.4,
+              fill: true,
+              pointRadius: 2,
+              pointBackgroundColor: '#fff',
+              pointBorderColor: '#60a5fa',
+              pointBorderWidth: 2
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                backgroundColor: '#1e293b',
+                padding: 10,
+                titleFont: { family: "'Plus Jakarta Sans', sans-serif", size: 12 },
+                bodyFont: { family: "'Inter', sans-serif", size: 11 },
+                cornerRadius: 8,
+                callbacks: { label: (ctx: any) => ctx.raw + '%' }
+              }
+            },
+            scales: {
+              y: {
+                min: 60,
+                max: 100,
+                grid: { color: '#f1f5f9', drawBorder: false },
+                ticks: { font: { family: "'Inter', sans-serif", size: 10 }, color: '#94a3b8', callback: (v: any) => v + '%' }
+              },
+              x: {
+                grid: { display: false, drawBorder: false },
+                ticks: { font: { family: "'Inter', sans-serif", size: 10 }, color: '#94a3b8' }
+              }
+            },
+            interaction: { intersect: false, mode: 'index' }
+          }
+        });
+      }
     }
-  };
+  }, []);
 
   return (
-    <div className="flex h-screen bg-gray-50 overflow-hidden">
-      {/* Sidebar */}
-      <SlidingSidebar
-        isOpen={sidebarOpen}
-        onClose={() => setSidebarOpen(false)}
-        userName="Alex Martinez"
-        userRank="Gold Partner"
-      />
+    <>
+      {/* TOP NAVIGATION */}
+      <nav className="bg-white/90 backdrop-blur-md border-b border-neutral-200 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 logo-mark rounded-small flex items-center justify-center text-white">
+              <i className="ri-bar-chart-box-fill text-lg"></i>
+            </div>
+            <Link href="/dashboard" className="font-heading font-bold text-xl text-neutral-900 tracking-tight">Apex Affinity</Link>
+          </div>
+          <div className="hidden md:flex items-center gap-8">
+            <Link href="/dashboard" className="nav-link text-sm font-medium text-neutral-500">Home</Link>
+            <Link href="/dashboard-v2" className="nav-link text-sm font-semibold text-neutral-900 border-b-2 border-primary-500 pb-0.5">Dashboard</Link>
+            <Link href="/profile-v2" className="nav-link text-sm font-medium text-neutral-500">Profile</Link>
+            <Link href="/reports-v2" className="nav-link text-sm font-medium text-neutral-500">Reports</Link>
+          </div>
+          <div className="flex items-center gap-3">
+            <Link href="/dashboard" className="inline-flex items-center gap-2 px-5 py-2.5 bg-neutral-900 text-white rounded-small text-sm font-semibold hover:bg-neutral-700 transition-colors shadow-custom">
+              Back to Dashboard
+              <i className="ri-arrow-right-line text-xs"></i>
+            </Link>
+          </div>
+        </div>
+      </nav>
 
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Header */}
-        <ChatHeader
-          onMenuClick={() => setSidebarOpen(true)}
-          showNotifications
-          notificationCount={3}
-        />
+      {/* HERO INTRO SECTION */}
+      <section className="bg-white py-20 max-h-[480px] overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <div className="flex justify-center mb-6">
+            <div className="badge-pill inline-flex items-center gap-2 px-4 py-2 rounded-full">
+              <span className="w-2 h-2 rounded-full bg-primary-500 live-dot"></span>
+              <span className="text-xs font-semibold text-primary-700">Live dashboard — powered by your network data</span>
+            </div>
+          </div>
+          <h1 className="font-heading text-5xl md:text-6xl font-extrabold text-neutral-900 leading-tight mb-5" style={{letterSpacing: 'var(--letter-spacing-heading)'}}>
+            Your Data, Beautifully<br />
+            <span className="text-primary-500">Visualized in Real Time</span>
+          </h1>
+          <p className="text-lg text-neutral-500 max-w-2xl mx-auto mb-10 leading-relaxed">
+            See exactly how this transforms your distributor network data into an interactive, insight-rich dashboard — charts, KPIs, and tables all auto-generated.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <div className="flex items-center gap-2 px-4 py-2 bg-neutral-50 border border-neutral-200 rounded-full">
+              <i className="ri-team-line text-primary-600 text-sm"></i>
+              <span className="text-sm font-semibold text-neutral-700">1,248 Distributors</span>
+              <span className="text-neutral-300">·</span>
+              <span className="text-xs text-neutral-500">Active network</span>
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 bg-primary-50 border border-primary-100 rounded-full">
+              <span className="w-2 h-2 rounded-full bg-primary-500 live-dot"></span>
+              <span className="text-sm font-semibold text-primary-700">Auto-refreshed 2 min ago</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        {/* Quick Actions */}
-        <QuickActionBar onActionClick={handleQuickAction} />
+      {/* FULL DASHBOARD SCREENSHOT SECTION */}
+      <section className="section-dark-gradient py-16 max-h-[1100px] overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
+          {/* Section Label */}
+          <div className="flex items-center justify-between mb-10">
+            <div>
+              <h2 className="font-heading text-3xl font-extrabold text-white mb-2" style={{letterSpacing: 'var(--letter-spacing-heading)'}}>Network Dashboard Overview</h2>
+              <p className="text-neutral-400 text-base">Full interactive view — auto-generated from your data</p>
+            </div>
+            <div className="hidden md:flex items-center gap-3">
+              <button className="tab-btn active px-4 py-2 rounded-small text-sm font-semibold transition-all">Overview</button>
+              <button className="tab-btn px-4 py-2 rounded-small text-sm font-semibold transition-all">Performance</button>
+              <button className="tab-btn px-4 py-2 rounded-small text-sm font-semibold transition-all">Growth</button>
+              <button className="tab-btn px-4 py-2 rounded-small text-sm font-semibold transition-all">Licensing</button>
+            </div>
+          </div>
 
-        {/* Messages Area */}
-        <div className="flex-1 overflow-y-auto px-4 lg:px-6 py-6 space-y-6">
-          {messages.map((message, index) => (
-            <div key={index} className="animate-fadeInUp">
-              {/* Message Bubble */}
-              <div
-                className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} mb-4`}
-              >
-                <div
-                  className={`max-w-[85%] md:max-w-[75%] rounded-2xl px-4 md:px-5 py-3 md:py-3.5 shadow-sm ${
-                    message.role === 'user'
-                      ? 'bg-gradient-to-br from-[#2c5aa0] to-[#1a4075] text-white'
-                      : 'bg-white border border-gray-200 text-gray-900'
-                  }`}
-                >
-                  {message.role === 'assistant' && (
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className="w-6 h-6 bg-gradient-to-br from-[#2c5aa0] to-[#1a4075] rounded-full flex items-center justify-center text-xs">
-                        ✨
-                      </div>
-                      <span className="text-xs font-medium text-gray-600">Apex AI</span>
+          {/* Dashboard Frame */}
+          <div className="dashboard-frame rounded-large overflow-hidden glow-green">
+            {/* Browser Chrome */}
+            <div className="bg-neutral-100 border-b border-neutral-200 px-5 py-3 flex items-center gap-4">
+              <div className="flex gap-1.5">
+                <div className="w-3 h-3 rounded-full bg-red-400"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
+                <div className="w-3 h-3 rounded-full bg-green-400"></div>
+              </div>
+              <div className="flex-1 bg-white rounded-small px-4 py-1.5 flex items-center gap-2 border border-neutral-200 max-w-sm mx-auto">
+                <i className="ri-lock-line text-neutral-400 text-xs"></i>
+                <span className="text-xs text-neutral-500">app.apexaffinity.io/dashboard</span>
+                <span className="ml-auto flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary-500 live-dot"></span>
+                  <span className="text-primary-600 font-semibold" style={{fontSize:'9px'}}>LIVE</span>
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <button className="px-3 py-1 bg-neutral-900 text-white rounded text-xs font-semibold flex items-center gap-1">
+                  <i className="ri-share-line text-xs"></i>Share
+                </button>
+                <button className="px-3 py-1 bg-white border border-neutral-200 text-neutral-600 rounded text-xs font-semibold flex items-center gap-1">
+                  <i className="ri-download-line text-xs"></i>Export
+                </button>
+              </div>
+            </div>
+
+            {/* Dashboard Content */}
+            <div className="bg-background-50 p-5">
+              {/* Dashboard Header Row */}
+              <div className="flex items-center justify-between mb-5">
+                <div>
+                  <h3 className="font-heading font-extrabold text-neutral-900 text-xl" style={{letterSpacing: 'var(--letter-spacing-heading)'}}>Network Overview</h3>
+                  <p className="text-neutral-500 text-xs mt-0.5">Q4 2023 · Real-time distributor metrics</p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-neutral-200 rounded-small">
+                    <i className="ri-calendar-line text-neutral-400 text-xs"></i>
+                    <span className="text-xs font-semibold text-neutral-700">Oct – Dec 2023</span>
+                    <i className="ri-arrow-down-s-line text-neutral-400 text-xs"></i>
+                  </div>
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 bg-primary-50 border border-primary-100 rounded-small">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary-500 live-dot"></span>
+                    <span className="text-xs font-semibold text-primary-700">Live Sync</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* KPI Cards Row */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+                <div className="kpi-card bg-white rounded-large border border-neutral-200 p-4 shadow-custom">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="w-9 h-9 rounded-large bg-primary-50 flex items-center justify-center">
+                      <i className="ri-money-dollar-circle-line text-primary-600"></i>
                     </div>
-                  )}
+                    <span className="flex items-center gap-1 text-xs font-bold text-primary-600 bg-primary-50 px-2 py-0.5 rounded-full">
+                      <i className="ri-arrow-up-line text-xs"></i>+15.2%
+                    </span>
+                  </div>
+                  <p className="text-xs text-neutral-500 mb-1">Total Revenue</p>
+                  <p className="font-heading font-extrabold text-2xl text-neutral-900">$2.4M</p>
+                  <div className="mt-2 h-1 bg-neutral-100 rounded-full overflow-hidden">
+                    <div className="h-full bg-primary-500 rounded-full metric-bar" style={{width:'76%'}}></div>
+                  </div>
+                  <p className="text-neutral-400 mt-1" style={{fontSize:'10px'}}>76% of annual target</p>
+                </div>
+                <div className="kpi-card bg-white rounded-large border border-neutral-200 p-4 shadow-custom">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="w-9 h-9 rounded-large bg-blue-50 flex items-center justify-center">
+                      <i className="ri-team-line text-blue-600"></i>
+                    </div>
+                    <span className="flex items-center gap-1 text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">
+                      <i className="ri-arrow-up-line text-xs"></i>+12
+                    </span>
+                  </div>
+                  <p className="text-xs text-neutral-500 mb-1">Total Distributors</p>
+                  <p className="font-heading font-extrabold text-2xl text-neutral-900">1,248</p>
+                  <div className="mt-2 h-1 bg-neutral-100 rounded-full overflow-hidden">
+                    <div className="h-full bg-blue-500 rounded-full metric-bar" style={{width:'62%'}}></div>
+                  </div>
+                  <p className="text-neutral-400 mt-1" style={{fontSize:'10px'}}>Across 7 matrix levels</p>
+                </div>
+                <div className="kpi-card bg-white rounded-large border border-neutral-200 p-4 shadow-custom">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="w-9 h-9 rounded-large bg-secondary-50 flex items-center justify-center">
+                      <i className="ri-award-line text-secondary-600"></i>
+                    </div>
+                    <span className="flex items-center gap-1 text-xs font-bold text-red-500 bg-red-50 px-2 py-0.5 rounded-full">
+                      <i className="ri-arrow-down-line text-xs"></i>-3.1%
+                    </span>
+                  </div>
+                  <p className="text-xs text-neutral-500 mb-1">Licensed Agents</p>
+                  <p className="font-heading font-extrabold text-2xl text-neutral-900">342</p>
+                  <div className="mt-2 h-1 bg-neutral-100 rounded-full overflow-hidden">
+                    <div className="h-full bg-secondary-400 rounded-full metric-bar" style={{width:'27%'}}></div>
+                  </div>
+                  <p className="text-neutral-400 mt-1" style={{fontSize:'10px'}}>27% of total network</p>
+                </div>
+                <div className="kpi-card bg-white rounded-large border border-neutral-200 p-4 shadow-custom">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="w-9 h-9 rounded-large bg-purple-50 flex items-center justify-center">
+                      <i className="ri-star-line text-purple-600"></i>
+                    </div>
+                    <span className="flex items-center gap-1 text-xs font-bold text-primary-600 bg-primary-50 px-2 py-0.5 rounded-full">
+                      <i className="ri-arrow-up-line text-xs"></i>+4.2%
+                    </span>
+                  </div>
+                  <p className="text-xs text-neutral-500 mb-1">Avg. Performance</p>
+                  <p className="font-heading font-extrabold text-2xl text-neutral-900">84.6%</p>
+                  <div className="mt-2 h-1 bg-neutral-100 rounded-full overflow-hidden">
+                    <div className="h-full bg-purple-500 rounded-full metric-bar" style={{width:'85%'}}></div>
+                  </div>
+                  <p className="text-neutral-400 mt-1" style={{fontSize:'10px'}}>Team performance score</p>
+                </div>
+              </div>
 
-                  <MarkdownMessage content={message.content} isUser={message.role === 'user'} />
+              {/* Charts Row */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-5">
+                {/* Revenue Trend Chart */}
+                <div className="lg:col-span-2 bg-white rounded-large border border-neutral-200 p-5 shadow-custom">
+                  <div className="flex items-center justify-between mb-4">
+                    <div>
+                      <h4 className="font-heading font-bold text-neutral-900 text-sm">Monthly Revenue Trend</h4>
+                      <p className="text-neutral-400 text-xs mt-0.5">Jan – Dec 2023 · Commission data</p>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-primary-500"></span>
+                        <span className="text-xs text-neutral-500">Revenue</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-secondary-400"></span>
+                        <span className="text-xs text-neutral-500">Expenses</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="h-48 w-full overflow-hidden">
+                    <canvas id="revTrendChart"></canvas>
+                  </div>
+                </div>
 
-                  <div
-                    className={`text-[10px] md:text-xs mt-2 ${
-                      message.role === 'user' ? 'text-blue-100 text-right' : 'text-gray-400'
-                    }`}
-                  >
-                    {message.timestamp.toLocaleTimeString([], {
-                      hour: '2-digit',
-                      minute: '2-digit',
-                    })}
+                {/* Department Donut */}
+                <div className="bg-white rounded-large border border-neutral-200 p-5 shadow-custom">
+                  <div className="mb-4">
+                    <h4 className="font-heading font-bold text-neutral-900 text-sm">Network by Level</h4>
+                    <p className="text-neutral-400 text-xs mt-0.5">Q4 2023 · Matrix depth</p>
+                  </div>
+                  <div className="h-36 w-full overflow-hidden flex items-center justify-center">
+                    <canvas id="deptDonutChart"></canvas>
+                  </div>
+                  <div className="mt-3 space-y-2">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-primary-500"></span>
+                        <span className="text-xs text-neutral-600">Level 1-2</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-bold text-neutral-900">420</span>
+                        <span className="text-xs text-neutral-400">40%</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-secondary-400"></span>
+                        <span className="text-xs text-neutral-600">Level 3-4</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-bold text-neutral-900">312</span>
+                        <span className="text-xs text-neutral-400">25%</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-blue-400"></span>
+                        <span className="text-xs text-neutral-600">Level 5-6</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-bold text-neutral-900">250</span>
+                        <span className="text-xs text-neutral-400">20%</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-purple-400"></span>
+                        <span className="text-xs text-neutral-600">Level 7+</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-bold text-neutral-900">187</span>
+                        <span className="text-xs text-neutral-400">15%</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* Rich Components */}
-              {message.components && (
-                <div className="space-y-4 mb-4">
-                  {message.components.map((component, idx) => {
-                    if (component.type === 'stats') {
-                      return (
-                        <div key={idx} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                          {component.data.map((stat: any, statIdx: number) => (
-                            <StatCard key={statIdx} {...stat} />
-                          ))}
-                        </div>
-                      );
-                    }
-
-                    if (component.type === 'team') {
-                      return (
-                        <div key={idx} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                          {component.data.map((member: any) => (
-                            <TeamMemberCard
-                              key={member.memberId}
-                              {...member}
-                              onViewProfile={(id) => console.log('View profile:', id)}
-                              onMessage={(id) => console.log('Message:', id)}
-                              onCall={(id) => console.log('Call:', id)}
-                            />
-                          ))}
-                        </div>
-                      );
-                    }
-
-                    if (component.type === 'chart') {
-                      return (
-                        <ChartCard
-                          key={idx}
-                          title={component.data.title}
-                          description={component.data.description}
-                          data={component.data.chartData}
-                          type={component.data.type}
-                          dataKey={component.data.dataKey}
-                          xAxisKey={component.data.xAxisKey}
-                        />
-                      );
-                    }
-
-                    if (component.type === 'matrix') {
-                      return (
-                        <MatrixVisualization
-                          key={idx}
-                          rootNode={component.data}
-                          onNodeClick={(id) => console.log('Node clicked:', id)}
-                        />
-                      );
-                    }
-
-                    return null;
-                  })}
+              {/* Second Charts Row */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-5">
+                {/* Bar Chart */}
+                <div className="bg-white rounded-large border border-neutral-200 p-5 shadow-custom">
+                  <div className="mb-4">
+                    <h4 className="font-heading font-bold text-neutral-900 text-sm">Dept. Revenue Q4</h4>
+                    <p className="text-neutral-400 text-xs mt-0.5">Compared to Q3</p>
+                  </div>
+                  <div className="h-40 w-full overflow-hidden">
+                    <canvas id="deptBarChart"></canvas>
+                  </div>
                 </div>
-              )}
-            </div>
-          ))}
 
-          {/* Typing Indicator */}
-          {isLoading && (
-            <div className="flex justify-start animate-fadeInUp">
-              <div className="bg-white border border-gray-200 rounded-2xl px-5 py-4 shadow-sm">
-                <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 bg-gradient-to-br from-[#2c5aa0] to-[#1a4075] rounded-full flex items-center justify-center text-xs">
-                    ✨
+                {/* Performance Scores */}
+                <div className="bg-white rounded-large border border-neutral-200 p-5 shadow-custom">
+                  <div className="mb-4">
+                    <h4 className="font-heading font-bold text-neutral-900 text-sm">Performance Scores</h4>
+                    <p className="text-neutral-400 text-xs mt-0.5">By department · Q4 2023</p>
                   </div>
-                  <div className="flex gap-1">
-                    <div className="w-2 h-2 bg-[#2c5aa0] rounded-full animate-bounce"></div>
-                    <div className="w-2 h-2 bg-[#2c5aa0] rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                    <div className="w-2 h-2 bg-[#2c5aa0] rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                  <div className="space-y-3">
+                    <div>
+                      <div className="flex justify-between mb-1">
+                        <span className="text-xs font-semibold text-neutral-700">Engineering</span>
+                        <span className="text-xs font-bold text-neutral-900">91%</span>
+                      </div>
+                      <div className="h-2 bg-neutral-100 rounded-full overflow-hidden">
+                        <div className="h-full bg-primary-500 rounded-full metric-bar" style={{width:'91%'}}></div>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="flex justify-between mb-1">
+                        <span className="text-xs font-semibold text-neutral-700">Sales</span>
+                        <span className="text-xs font-bold text-neutral-900">87%</span>
+                      </div>
+                      <div className="h-2 bg-neutral-100 rounded-full overflow-hidden">
+                        <div className="h-full bg-blue-500 rounded-full metric-bar" style={{width:'87%'}}></div>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="flex justify-between mb-1">
+                        <span className="text-xs font-semibold text-neutral-700">Marketing</span>
+                        <span className="text-xs font-bold text-neutral-900">82%</span>
+                      </div>
+                      <div className="h-2 bg-neutral-100 rounded-full overflow-hidden">
+                        <div className="h-full bg-secondary-400 rounded-full metric-bar" style={{width:'82%'}}></div>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="flex justify-between mb-1">
+                        <span className="text-xs font-semibold text-neutral-700">Operations</span>
+                        <span className="text-xs font-bold text-neutral-900">79%</span>
+                      </div>
+                      <div className="h-2 bg-neutral-100 rounded-full overflow-hidden">
+                        <div className="h-full bg-purple-500 rounded-full metric-bar" style={{width:'79%'}}></div>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="flex justify-between mb-1">
+                        <span className="text-xs font-semibold text-neutral-700">HR</span>
+                        <span className="text-xs font-bold text-neutral-900">84%</span>
+                      </div>
+                      <div className="h-2 bg-neutral-100 rounded-full overflow-hidden">
+                        <div className="h-full bg-teal-500 rounded-full metric-bar" style={{width:'84%'}}></div>
+                      </div>
+                    </div>
                   </div>
-                  <span className="text-xs text-gray-500 ml-1">AI is thinking...</span>
+                </div>
+
+                {/* Utilization Chart */}
+                <div className="bg-white rounded-large border border-neutral-200 p-5 shadow-custom">
+                  <div className="mb-4">
+                    <h4 className="font-heading font-bold text-neutral-900 text-sm">Network Growth</h4>
+                    <p className="text-neutral-400 text-xs mt-0.5">Weekly new distributors</p>
+                  </div>
+                  <div className="h-40 w-full overflow-hidden">
+                    <canvas id="utilizationChart"></canvas>
+                  </div>
+                </div>
+              </div>
+
+              {/* Data Table Section */}
+              <div className="bg-white rounded-large border border-neutral-200 shadow-custom overflow-hidden">
+                <div className="flex items-center justify-between px-5 py-4 border-b border-neutral-100">
+                  <div>
+                    <h4 className="font-heading font-bold text-neutral-900 text-sm">Top Distributors</h4>
+                    <p className="text-neutral-400 text-xs mt-0.5">Last 30 days · Sorted by performance</p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="relative">
+                      <i className="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400 text-xs"></i>
+                      <input type="text" placeholder="Search distributors..." className="pl-8 pr-3 py-1.5 bg-neutral-50 border border-neutral-200 rounded-small text-xs text-neutral-700 w-40 focus:outline-none focus:ring-1 focus:ring-primary-500" />
+                    </div>
+                    <button className="flex items-center gap-1.5 px-3 py-1.5 bg-neutral-100 text-neutral-600 rounded-small text-xs font-semibold hover:bg-neutral-200 transition-colors">
+                      <i className="ri-filter-line text-xs"></i>Filter
+                    </button>
+                    <button className="flex items-center gap-1.5 px-3 py-1.5 bg-neutral-900 text-white rounded-small text-xs font-semibold hover:bg-neutral-700 transition-colors">
+                      <i className="ri-download-line text-xs"></i>Export
+                    </button>
+                  </div>
+                </div>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left">
+                    <thead className="bg-neutral-50 border-b border-neutral-100">
+                      <tr>
+                        <th className="px-5 py-3 text-xs font-bold text-neutral-500 uppercase tracking-wider">Distributor</th>
+                        <th className="px-5 py-3 text-xs font-bold text-neutral-500 uppercase tracking-wider">Level</th>
+                        <th className="px-5 py-3 text-xs font-bold text-neutral-500 uppercase tracking-wider">Commission</th>
+                        <th className="px-5 py-3 text-xs font-bold text-neutral-500 uppercase tracking-wider">Performance</th>
+                        <th className="px-5 py-3 text-xs font-bold text-neutral-500 uppercase tracking-wider">Join Date</th>
+                        <th className="px-5 py-3 text-xs font-bold text-neutral-500 uppercase tracking-wider">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-neutral-100">
+                      <tr className="table-row transition-colors">
+                        <td className="px-5 py-3">
+                          <div className="flex items-center gap-3">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=32&h=32&fit=facearea&facepad=2&q=80" alt="Sarah" className="w-8 h-8 rounded-full border border-neutral-200" />
+                            <div>
+                              <p className="text-sm font-semibold text-neutral-900">Sarah Wilson</p>
+                              <p className="text-xs text-neutral-400">REP-0042</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-5 py-3"><span className="px-2 py-1 bg-primary-50 text-primary-700 rounded-full text-xs font-bold">Level 2</span></td>
+                        <td className="px-5 py-3 text-sm font-semibold text-neutral-800">$8,240</td>
+                        <td className="px-5 py-3">
+                          <div className="flex items-center gap-2">
+                            <div className="w-16 h-1.5 bg-neutral-100 rounded-full overflow-hidden">
+                              <div className="h-full bg-primary-500 rounded-full" style={{width:'96%'}}></div>
+                            </div>
+                            <span className="text-xs font-bold text-primary-600">96%</span>
+                          </div>
+                        </td>
+                        <td className="px-5 py-3 text-xs text-neutral-500">Mar 15, 2022</td>
+                        <td className="px-5 py-3"><span className="px-2 py-1 bg-green-50 text-green-700 rounded-full text-xs font-bold">Active</span></td>
+                      </tr>
+                      <tr className="table-row transition-colors">
+                        <td className="px-5 py-3">
+                          <div className="flex items-center gap-3">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&h=32&fit=facearea&facepad=2&q=80" alt="James" className="w-8 h-8 rounded-full border border-neutral-200" />
+                            <div>
+                              <p className="text-sm font-semibold text-neutral-900">James Carter</p>
+                              <p className="text-xs text-neutral-400">REP-0018</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-5 py-3"><span className="px-2 py-1 bg-secondary-50 text-secondary-700 rounded-full text-xs font-bold">Level 3</span></td>
+                        <td className="px-5 py-3 text-sm font-semibold text-neutral-800">$7,650</td>
+                        <td className="px-5 py-3">
+                          <div className="flex items-center gap-2">
+                            <div className="w-16 h-1.5 bg-neutral-100 rounded-full overflow-hidden">
+                              <div className="h-full bg-secondary-400 rounded-full" style={{width:'89%'}}></div>
+                            </div>
+                            <span className="text-xs font-bold text-secondary-600">89%</span>
+                          </div>
+                        </td>
+                        <td className="px-5 py-3 text-xs text-neutral-500">Jul 22, 2021</td>
+                        <td className="px-5 py-3"><span className="px-2 py-1 bg-green-50 text-green-700 rounded-full text-xs font-bold">Active</span></td>
+                      </tr>
+                      <tr className="table-row transition-colors">
+                        <td className="px-5 py-3">
+                          <div className="flex items-center gap-3">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=facearea&facepad=2&q=80" alt="Maya" className="w-8 h-8 rounded-full border border-neutral-200" />
+                            <div>
+                              <p className="text-sm font-semibold text-neutral-900">Maya Patel</p>
+                              <p className="text-xs text-neutral-400">REP-0067</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-5 py-3"><span className="px-2 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-bold">Level 4</span></td>
+                        <td className="px-5 py-3 text-sm font-semibold text-neutral-800">$6,920</td>
+                        <td className="px-5 py-3">
+                          <div className="flex items-center gap-2">
+                            <div className="w-16 h-1.5 bg-neutral-100 rounded-full overflow-hidden">
+                              <div className="h-full bg-blue-500 rounded-full" style={{width:'82%'}}></div>
+                            </div>
+                            <span className="text-xs font-bold text-blue-600">82%</span>
+                          </div>
+                        </td>
+                        <td className="px-5 py-3 text-xs text-neutral-500">Jan 10, 2021</td>
+                        <td className="px-5 py-3"><span className="px-2 py-1 bg-green-50 text-green-700 rounded-full text-xs font-bold">Active</span></td>
+                      </tr>
+                      <tr className="table-row transition-colors">
+                        <td className="px-5 py-3">
+                          <div className="flex items-center gap-3">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=32&h=32&fit=facearea&facepad=2&q=80" alt="Tom" className="w-8 h-8 rounded-full border border-neutral-200" />
+                            <div>
+                              <p className="text-sm font-semibold text-neutral-900">Tom Nguyen</p>
+                              <p className="text-xs text-neutral-400">REP-0091</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-5 py-3"><span className="px-2 py-1 bg-purple-50 text-purple-700 rounded-full text-xs font-bold">Level 5</span></td>
+                        <td className="px-5 py-3 text-sm font-semibold text-neutral-800">$5,800</td>
+                        <td className="px-5 py-3">
+                          <div className="flex items-center gap-2">
+                            <div className="w-16 h-1.5 bg-neutral-100 rounded-full overflow-hidden">
+                              <div className="h-full bg-yellow-400 rounded-full" style={{width:'58%'}}></div>
+                            </div>
+                            <span className="text-xs font-bold text-yellow-600">58%</span>
+                          </div>
+                        </td>
+                        <td className="px-5 py-3 text-xs text-neutral-500">Sep 5, 2022</td>
+                        <td className="px-5 py-3"><span className="px-2 py-1 bg-yellow-50 text-yellow-700 rounded-full text-xs font-bold">Review</span></td>
+                      </tr>
+                      <tr className="table-row transition-colors">
+                        <td className="px-5 py-3">
+                          <div className="flex items-center gap-3">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=32&h=32&fit=facearea&facepad=2&q=80" alt="Priya" className="w-8 h-8 rounded-full border border-neutral-200" />
+                            <div>
+                              <p className="text-sm font-semibold text-neutral-900">Priya Sharma</p>
+                              <p className="text-xs text-neutral-400">REP-0033</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-5 py-3"><span className="px-2 py-1 bg-teal-50 text-teal-700 rounded-full text-xs font-bold">Level 2</span></td>
+                        <td className="px-5 py-3 text-sm font-semibold text-neutral-800">$7,240</td>
+                        <td className="px-5 py-3">
+                          <div className="flex items-center gap-2">
+                            <div className="w-16 h-1.5 bg-neutral-100 rounded-full overflow-hidden">
+                              <div className="h-full bg-teal-500 rounded-full" style={{width:'91%'}}></div>
+                            </div>
+                            <span className="text-xs font-bold text-teal-600">91%</span>
+                          </div>
+                        </td>
+                        <td className="px-5 py-3 text-xs text-neutral-500">Feb 28, 2020</td>
+                        <td className="px-5 py-3"><span className="px-2 py-1 bg-green-50 text-green-700 rounded-full text-xs font-bold">Active</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div className="px-5 py-3 border-t border-neutral-100 flex items-center justify-between bg-neutral-50">
+                  <p className="text-xs text-neutral-500">Showing 5 of 1,248 distributors · Sorted by performance desc.</p>
+                  <div className="flex items-center gap-2">
+                    <button className="px-3 py-1.5 bg-white border border-neutral-200 rounded-small text-xs font-semibold text-neutral-600 hover:bg-neutral-50 transition-colors">Previous</button>
+                    <button className="px-3 py-1.5 bg-neutral-900 text-white rounded-small text-xs font-semibold hover:bg-neutral-700 transition-colors">Next</button>
+                  </div>
                 </div>
               </div>
             </div>
-          )}
+          </div>
 
-          <div ref={messagesEndRef} />
-        </div>
-
-        {/* Input Area */}
-        <div className="px-4 md:px-6 py-4 md:py-5 border-t border-gray-200 bg-white">
-          <div className="flex gap-2 md:gap-3">
-            <div className="flex-1 relative">
-              <textarea
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={handleKeyPress}
-                placeholder="Ask me anything..."
-                className="w-full px-4 md:px-5 py-3 md:py-3.5 border-2 border-gray-200 rounded-2xl resize-none focus:outline-none focus:ring-2 focus:ring-[#2c5aa0] focus:border-transparent transition-all text-sm md:text-base bg-gray-50 focus:bg-white"
-                rows={1}
-                disabled={isLoading}
-                style={{ minHeight: '48px', maxHeight: '120px' }}
-                onInput={(e) => {
-                  const target = e.target as HTMLTextAreaElement;
-                  target.style.height = 'auto';
-                  target.style.height = Math.min(target.scrollHeight, 120) + 'px';
-                }}
-              />
+          {/* Floating Badges */}
+          <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
+            <div className="floating-badge bg-white rounded-large shadow-custom-hover border border-neutral-200 px-4 py-3 flex items-center gap-3">
+              <div className="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center">
+                <i className="ri-magic-line text-primary-600 text-sm"></i>
+              </div>
+              <div>
+                <p className="font-heading font-bold text-neutral-900 text-xs">Auto-generated</p>
+                <p className="text-neutral-400" style={{fontSize:'10px'}}>No manual setup needed</p>
+              </div>
             </div>
-
-            <button
-              onClick={handleSend}
-              disabled={!input.trim() || isLoading}
-              className="px-5 md:px-6 py-3 bg-gradient-to-r from-[#2c5aa0] to-[#1a4075] text-white rounded-2xl font-medium hover:from-[#1a4075] hover:to-[#2c5aa0] disabled:from-gray-300 disabled:to-gray-400 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-xl disabled:shadow-none flex items-center gap-2 min-w-[48px] justify-center"
-            >
-              {isLoading ? (
-                <svg className="animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-              ) : (
-                <>
-                  <span className="hidden md:inline">Send</span>
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                  </svg>
-                </>
-              )}
-            </button>
-          </div>
-
-          <div className="mt-2 md:mt-3 flex items-center gap-2 text-xs text-gray-500">
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span className="hidden md:inline">Press Enter to send • Shift+Enter for new line</span>
-            <span className="md:hidden">Tap send or press Enter</span>
+            <div className="floating-badge bg-white rounded-large shadow-custom-hover border border-neutral-200 px-4 py-3 flex items-center gap-3" style={{animationDelay:'0.5s'}}>
+              <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
+                <i className="ri-refresh-line text-blue-600 text-sm"></i>
+              </div>
+              <div>
+                <p className="font-heading font-bold text-neutral-900 text-xs">Live Sync</p>
+                <p className="text-neutral-400" style={{fontSize:'10px'}}>Updates in real time</p>
+              </div>
+            </div>
+            <div className="floating-badge bg-white rounded-large shadow-custom-hover border border-neutral-200 px-4 py-3 flex items-center gap-3" style={{animationDelay:'1s'}}>
+              <div className="w-8 h-8 rounded-full bg-secondary-100 flex items-center justify-center">
+                <i className="ri-share-line text-secondary-600 text-sm"></i>
+              </div>
+              <div>
+                <p className="font-heading font-bold text-neutral-900 text-xs">One-click Share</p>
+                <p className="text-neutral-400" style={{fontSize:'10px'}}>Secure shareable link</p>
+              </div>
+            </div>
+            <div className="floating-badge bg-white rounded-large shadow-custom-hover border border-neutral-200 px-4 py-3 flex items-center gap-3" style={{animationDelay:'1.5s'}}>
+              <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center">
+                <i className="ri-bar-chart-2-line text-purple-600 text-sm"></i>
+              </div>
+              <div>
+                <p className="font-heading font-bold text-neutral-900 text-xs">12 Chart Types</p>
+                <p className="text-neutral-400" style={{fontSize:'10px'}}>Fully customizable</p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <style jsx global>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .animate-fadeInUp {
-          animation: fadeInUp 0.5s ease-out forwards;
-        }
-      `}</style>
-    </div>
+      {/* CTA SECTION */}
+      <section className="bg-neutral-900 py-16 max-h-[320px] overflow-hidden">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-500/20 border border-primary-500/30 rounded-full mb-6">
+            <i className="ri-rocket-line text-primary-400 text-sm"></i>
+            <span className="text-xs font-semibold text-primary-300">Ready to see your real data like this?</span>
+          </div>
+          <h2 className="font-heading text-4xl font-extrabold text-white mb-4" style={{letterSpacing: 'var(--letter-spacing-heading)'}}>
+            This Could Be Your<br />Actual Dashboard
+          </h2>
+          <p className="text-neutral-400 text-lg mb-8">
+            Click below to return to your real dashboard with your actual network data.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link href="/dashboard" className="inline-flex items-center gap-2.5 px-8 py-4 bg-primary-500 text-white rounded-small text-base font-bold hover:bg-primary-600 transition-colors shadow-custom">
+              <i className="ri-dashboard-line"></i>
+              View Real Dashboard
+            </Link>
+            <Link href="/profile-v2" className="inline-flex items-center gap-2.5 px-8 py-4 bg-white/10 text-white rounded-small text-base font-semibold border border-white/20 hover:bg-white/20 transition-colors">
+              View Profile V2
+              <i className="ri-arrow-right-line text-xs"></i>
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

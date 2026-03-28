@@ -42,6 +42,7 @@ const ALLOWED_FILES = [
   'src/lib/genealogy/tree-utils.ts',  // Core dual-tree utilities (MUST use both trees)
   'src/app/api/admin/matrix/tree/route.ts',
   'src/app/dashboard/matrix/',
+  'src/app/dashboard-v3/page.tsx',  // Dashboard v3 shows BOTH trees (enrollment + matrix)
   'src/app/api/dashboard/matrix-position/route.ts',
   'src/app/api/admin/matrix/place.ts',
   'src/app/api/admin/matrix/place-existing.ts',

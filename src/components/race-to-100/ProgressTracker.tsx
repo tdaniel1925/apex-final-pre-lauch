@@ -1,5 +1,7 @@
 'use client';
 
+import Image from 'next/image';
+
 interface ProgressTrackerProps {
   totalPoints: number;
   currentStep: number;
@@ -9,6 +11,14 @@ interface ProgressTrackerProps {
 export default function ProgressTracker({ totalPoints, currentStep, isCompleted }: ProgressTrackerProps) {
   const percentage = totalPoints;
   const runnerPosition = `${Math.min(percentage, 95)}%`;
+
+  // Determine runner size/animation based on progress
+  const getRunnerSize = () => {
+    if (percentage < 25) return 18; // Walking
+    if (percentage < 50) return 20; // Jogging
+    if (percentage < 75) return 22; // Running
+    return 24; // Sprinting
+  };
 
   // Motivational message
   const getMessage = () => {
@@ -43,33 +53,18 @@ export default function ProgressTracker({ totalPoints, currentStep, isCompleted 
         <div className="absolute top-0 bottom-0 w-px bg-slate-300 pointer-events-none" style={{ left: '50%' }} />
         <div className="absolute top-0 bottom-0 w-px bg-slate-300 pointer-events-none" style={{ left: '75%' }} />
 
-        {/* Progress Indicator - Clean circular marker */}
+        {/* Runner - PNG Image */}
         <div
-          className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 transition-all duration-[800ms] ease-out pointer-events-none z-10"
+          className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 transition-all duration-[800ms] ease-out pointer-events-none"
           style={{ left: runnerPosition }}
         >
-          <div className="relative">
-            {/* Outer glow ring */}
-            <div className="absolute inset-0 w-7 h-7 bg-white rounded-full opacity-60 blur-sm" />
-
-            {/* Main indicator circle */}
-            <div className="relative w-7 h-7 bg-gradient-to-br from-white to-blue-50 rounded-full border-2 border-[#2B4C7E] shadow-lg flex items-center justify-center">
-              {/* Right-pointing arrow */}
-              <svg
-                className="w-3.5 h-3.5 text-[#2B4C7E]"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={3}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </div>
-          </div>
+          <Image
+            src="/running-man.png"
+            alt="Running man"
+            width={getRunnerSize()}
+            height={getRunnerSize()}
+            className="drop-shadow-md"
+          />
         </div>
       </div>
 

@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="New Frame - Exported from UXMagic Copilot">
+    <title>New Frame</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['var(--font-heading-name)', 'sans-serif'],
+                        body: ['var(--font-body-name)', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            200: '#a7f3d0',
+                            300: '#6ee7b7',
+                            400: '#34d399',
+                            500: '#10b981', // Main Green
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                        },
+                        secondary: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            200: '#fed7aa',
+                            300: '#fdba74',
+                            400: '#fb923c',
+                            500: '#f97316', // Orange Accent
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12',
+                        },
+                        neutral: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        },
+                        background: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                        }
+                    },
+                    spacing: {
+                        base: 'var(--space-base)',
+                    },
+                    borderRadius: {
+                        small: 'var(--radius-small)',
+                        large: 'var(--radius-large)',
+                    },
+                    boxShadow: {
+                        custom: 'var(--shadow-custom)',
+                        'custom-hover': 'var(--shadow-custom-hover)',
+                    },
+                }
+            }
+        }
+    
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+    <div class="flex flex-col lg:flex-row min-h-screen">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="w-full lg:w-72 bg-white border-r border-neutral-200 flex flex-col z-20">
+            <div class="p-6 flex items-center gap-3">
+                <div class="w-10 h-10 bg-neutral-900 rounded-small flex items-center justify-center text-white">
+                    <i class="ri-bar-chart-box-fill text-xl"></i>
+                </div>
+                <span class="font-heading font-bold text-xl text-neutral-900">SmartViz</span>
+            </div>
+
+            <nav class="flex-1 px-4 py-4 space-y-1 overflow-y-auto">
+                <div class="mb-6">
+                    <p class="px-4 text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-2">Main</p>
+                    <a href="#" class="flex items-center gap-3 px-4 py-3 bg-neutral-900 text-white rounded-small shadow-custom transition-all">
+                        <i class="ri-dashboard-line"></i>
+                        <span class="font-medium">Dashboard</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-4 py-3 text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 rounded-small transition-all">
+                        <i class="ri-file-excel-line"></i>
+                        <span class="font-medium">Data Sources</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-4 py-3 text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 rounded-small transition-all">
+                        <i class="ri-robot-line"></i>
+                        <span class="font-medium">AI Analysis</span>
+                        <span class="ml-auto bg-primary-100 text-primary-700 text-xs px-2 py-0.5 rounded-full font-bold">NEW</span>
+                    </a>
+                </div>
+
+                <div class="mb-6">
+                    <p class="px-4 text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-2">Management</p>
+                    <a href="#" class="flex items-center gap-3 px-4 py-3 text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 rounded-small transition-all">
+                        <i class="ri-upload-cloud-line"></i>
+                        <span class="font-medium">Manual Upload</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-4 py-3 text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 rounded-small transition-all">
+                        <i class="ri-links-line"></i>
+                        <span class="font-medium">Integrations</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-4 py-3 text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 rounded-small transition-all">
+                        <i class="ri-user-settings-line"></i>
+                        <span class="font-medium">Profile &amp; Plan</span>
+                    </a>
+                </div>
+            </nav>
+
+            <div class="p-4 mt-auto">
+                <div class="bg-primary-500 rounded-large p-5 text-white relative overflow-hidden shadow-custom">
+                    <div class="absolute top-0 right-0 -mt-2 -mr-2 w-16 h-16 bg-white opacity-20 rounded-full"></div>
+                    <div class="relative z-10">
+                        <h4 class="font-heading font-bold text-lg mb-1">Pro Plan</h4>
+                        <p class="text-primary-50 text-sm mb-3 opacity-90">Unlock advanced AI insights</p>
+                        <button class="w-full bg-white text-primary-600 font-bold py-2 rounded-small text-sm hover:bg-primary-50 transition-colors">Upgrade Now</button>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-3 mt-6 px-2">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="User" class="w-10 h-10 rounded-full border-2 border-white shadow-sm">
+                    <div>
+                        <p class="text-sm font-bold text-neutral-900">Sarah Wilson</p>
+                        <p class="text-xs text-neutral-500">sarah@company.com</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 flex flex-col min-w-0 overflow-hidden">
+            
+            <!-- Header -->
+            <header class="bg-white/80 backdrop-blur-md border-b border-neutral-200 sticky top-0 z-10">
+                <div class="px-6 py-4 flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <h1 class="font-heading text-2xl font-bold text-neutral-900">Dashboard</h1>
+                        <span class="hidden md:inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary-50 text-primary-700 border border-primary-100">
+                            <span class="w-2 h-2 rounded-full bg-primary-500 mr-2 animate-pulse"></span>
+                            Live Data
+                        </span>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <div class="relative hidden md:block">
+                            <i class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400"></i>
+                            <input type="text" placeholder="Search reports, data..." class="pl-10 pr-4 py-2 bg-neutral-50 border-none rounded-full text-sm w-64 focus:ring-2 focus:ring-primary-500 focus:bg-white transition-all">
+                        </div>
+                        <button class="w-10 h-10 rounded-full bg-white border border-neutral-200 flex items-center justify-center text-neutral-600 hover:bg-neutral-50 hover:text-primary-600 transition-colors relative">
+                            <i class="ri-notification-3-line text-lg"></i>
+                            <span class="absolute top-2 right-2.5 w-2 h-2 bg-secondary-500 rounded-full border border-white"></span>
+                        </button>
+                        <button class="lg:hidden w-10 h-10 rounded-full bg-neutral-900 text-white flex items-center justify-center">
+                            <i class="ri-menu-line"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <div class="flex-1 overflow-y-auto p-6">
+                
+                <!-- Email Ingestion Banner -->
+                <section class="mb-8 bg-neutral-900 rounded-large p-6 md:p-8 text-white relative overflow-hidden shadow-custom">
+                    <div class="absolute right-0 top-0 h-full w-1/2 bg-gradient-to-l from-primary-900/50 to-transparent pointer-events-none"></div>
+                    <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                        <div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="px-2 py-1 bg-primary-500/20 text-primary-300 text-xs font-bold rounded uppercase tracking-wider">Smart Ingest</span>
+                                <span class="text-neutral-400 text-sm">Active</span>
+                            </div>
+                            <h2 class="font-heading text-2xl md:text-3xl font-bold mb-2">Email your spreadsheets directly</h2>
+                            <p class="text-neutral-400 max-w-xl">Send any SmartOffice export to your dedicated address. Our AI will parse, categorize, and visualize the data instantly.</p>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-sm border border-white/10 rounded-lg p-4 flex items-center gap-3 min-w-[300px]">
+                            <div class="w-10 h-10 rounded-full bg-primary-500 flex items-center justify-center text-white shrink-0">
+                                <i class="ri-mail-send-line text-xl"></i>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-xs text-neutral-400 mb-1">Your dedicated upload address</p>
+                                <div class="flex items-center gap-2">
+                                    <code class="text-sm font-mono text-white truncate">upload-sarah.w@smartviz.io</code>
+                                    <button class="text-neutral-400 hover:text-white"><i class="ri-file-copy-line"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Stats Grid -->
+                <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-large shadow-custom hover:shadow-custom-hover transition-shadow">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-10 h-10 rounded-full bg-primary-50 text-primary-600 flex items-center justify-center">
+                                <i class="ri-file-excel-2-line text-xl"></i>
+                            </div>
+                            <span class="text-xs font-bold text-primary-600 bg-primary-50 px-2 py-1 rounded-full">+12%</span>
+                        </div>
+                        <h3 class="text-neutral-500 text-sm font-medium mb-1">Processed Sheets</h3>
+                        <p class="font-heading text-3xl font-bold text-neutral-900">1,284</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-large shadow-custom hover:shadow-custom-hover transition-shadow">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-10 h-10 rounded-full bg-secondary-50 text-secondary-600 flex items-center justify-center">
+                                <i class="ri-database-2-line text-xl"></i>
+                            </div>
+                            <span class="text-xs font-bold text-secondary-600 bg-secondary-50 px-2 py-1 rounded-full">98.5%</span>
+                        </div>
+                        <h3 class="text-neutral-500 text-sm font-medium mb-1">Data Accuracy</h3>
+                        <p class="font-heading text-3xl font-bold text-neutral-900">99.9%</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-large shadow-custom hover:shadow-custom-hover transition-shadow">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-10 h-10 rounded-full bg-neutral-100 text-neutral-600 flex items-center justify-center">
+                                <i class="ri-time-line text-xl"></i>
+                            </div>
+                            <span class="text-xs font-bold text-neutral-600 bg-neutral-100 px-2 py-1 rounded-full">-45m</span>
+                        </div>
+                        <h3 class="text-neutral-500 text-sm font-medium mb-1">Time Saved</h3>
+                        <p class="font-heading text-3xl font-bold text-neutral-900">142h</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-large shadow-custom hover:shadow-custom-hover transition-shadow">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-10 h-10 rounded-full bg-primary-50 text-primary-600 flex items-center justify-center">
+                                <i class="ri-robot-2-line text-xl"></i>
+                            </div>
+                            <span class="text-xs font-bold text-primary-600 bg-primary-50 px-2 py-1 rounded-full">New</span>
+                        </div>
+                        <h3 class="text-neutral-500 text-sm font-medium mb-1">AI Insights</h3>
+                        <p class="font-heading text-3xl font-bold text-neutral-900">24</p>
+                    </div>
+                </section>
+
+                <!-- Main Dashboard Content -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                    
+                    <!-- Chart Section -->
+                    <section class="lg:col-span-2 bg-white p-6 rounded-large shadow-custom">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="font-heading text-lg font-bold text-neutral-900">Revenue vs. Expenses</h3>
+                            <div class="flex gap-2">
+                                <button class="px-3 py-1 text-xs font-medium bg-neutral-900 text-white rounded-full">Monthly</button>
+                                <button class="px-3 py-1 text-xs font-medium text-neutral-500 hover:bg-neutral-100 rounded-full">Quarterly</button>
+                            </div>
+                        </div>
+                        <div class="h-80 w-full">
+                            <canvas id="revenueChart"></canvas>
+                        </div>
+                    </section>
+
+                    <!-- AI Chat / Insights -->
+                    <section class="bg-white p-6 rounded-large shadow-custom flex flex-col">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                                <h3 class="font-heading text-lg font-bold text-neutral-900">AI Analyst</h3>
+                            </div>
+                            <button class="text-neutral-400 hover:text-neutral-600"><i class="ri-more-fill"></i></button>
+                        </div>
+                        
+                        <div class="flex-1 bg-neutral-50 rounded-lg p-4 mb-4 overflow-y-auto max-h-[300px]">
+                            <div class="flex gap-3 mb-4">
+                                <div class="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 shrink-0">
+                                    <i class="ri-robot-line text-sm"></i>
+                                </div>
+                                <div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm text-sm text-neutral-600">
+                                    <p>I've analyzed the "Q3_Sales.xlsx" file you just emailed. Revenue is up 15% but operational costs spiked in August. Want a breakdown?</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-3 mb-4 flex-row-reverse">
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" class="w-8 h-8 rounded-full shrink-0">
+                                <div class="bg-neutral-900 text-white p-3 rounded-lg rounded-tr-none shadow-sm text-sm">
+                                    <p>Yes, show me the top 3 cost drivers for August.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-3 mb-2">
+                                <div class="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 shrink-0">
+                                    <i class="ri-robot-line text-sm"></i>
+                                </div>
+                                <div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm text-sm text-neutral-600">
+                                    <p class="mb-2">Here are the primary cost drivers:</p>
+                                    <ul class="list-disc pl-4 space-y-1">
+                                        <li>Marketing Ad Spend (+22%)</li>
+                                        <li>Software Licenses (+8%)</li>
+                                        <li>Travel Expenses (+5%)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="relative">
+                            <input type="text" placeholder="Ask about your data..." class="w-full pl-4 pr-10 py-3 bg-white border border-neutral-200 rounded-lg text-sm focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                            <button class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-neutral-900 text-white rounded-md flex items-center justify-center hover:bg-neutral-700 transition-colors">
+                                <i class="ri-send-plane-fill text-xs"></i>
+                            </button>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Recent Files Table -->
+                <section class="bg-white rounded-large shadow-custom overflow-hidden mb-8">
+                    <div class="p-6 border-b border-neutral-100 flex items-center justify-between">
+                        <h3 class="font-heading text-lg font-bold text-neutral-900">Recent Data Sources</h3>
+                        <div class="flex gap-2">
+                            <button class="flex items-center gap-2 px-4 py-2 bg-neutral-50 text-neutral-600 rounded-lg text-sm font-medium hover:bg-neutral-100">
+                                <i class="ri-filter-3-line"></i> Filter
+                            </button>
+                            <button class="flex items-center gap-2 px-4 py-2 bg-primary-500 text-white rounded-lg text-sm font-medium hover:bg-primary-600">
+                                <i class="ri-upload-cloud-line"></i> Upload New
+                            </button>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead class="bg-neutral-50 text-neutral-500 text-xs uppercase font-semibold">
+                                <tr>
+                                    <th class="px-6 py-4">File Name</th>
+                                    <th class="px-6 py-4">Source</th>
+                                    <th class="px-6 py-4">Date Received</th>
+                                    <th class="px-6 py-4">Status</th>
+                                    <th class="px-6 py-4">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-neutral-100">
+                                <tr class="hover:bg-neutral-50/50 transition-colors">
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 rounded bg-green-100 text-green-600 flex items-center justify-center">
+                                                <i class="ri-file-excel-fill"></i>
+                                            </div>
+                                            <span class="font-medium text-neutral-900">Q3_Financials_Final.xlsx</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-2 text-sm text-neutral-600">
+                                            <i class="ri-mail-line"></i> Email
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm text-neutral-600">Oct 24, 2023 • 10:42 AM</td>
+                                    <td class="px-6 py-4">
+                                        <span class="px-2 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700">Processed</span>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <button class="text-neutral-400 hover:text-primary-600 transition-colors">View Report</button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-neutral-50/50 transition-colors">
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 rounded bg-green-100 text-green-600 flex items-center justify-center">
+                                                <i class="ri-file-excel-fill"></i>
+                                            </div>
+                                            <span class="font-medium text-neutral-900">Inventory_Status_Oct.csv</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-2 text-sm text-neutral-600">
+                                            <i class="ri-upload-cloud-line"></i> Manual
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm text-neutral-600">Oct 23, 2023 • 04:15 PM</td>
+                                    <td class="px-6 py-4">
+                                        <span class="px-2 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700">Processed</span>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <button class="text-neutral-400 hover:text-primary-600 transition-colors">View Report</button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-neutral-50/50 transition-colors">
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 rounded bg-orange-100 text-orange-600 flex items-center justify-center">
+                                                <i class="ri-error-warning-fill"></i>
+                                            </div>
+                                            <span class="font-medium text-neutral-900">Employee_List_V2.xlsx</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-2 text-sm text-neutral-600">
+                                            <i class="ri-mail-line"></i> Email
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm text-neutral-600">Oct 22, 2023 • 09:30 AM</td>
+                                    <td class="px-6 py-4">
+                                        <span class="px-2 py-1 rounded-full text-xs font-bold bg-orange-100 text-orange-700">Needs Review</span>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <button class="text-orange-500 hover:text-orange-700 font-medium transition-colors">Fix Issues</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Integrations & Manual Upload Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <section class="bg-white p-6 rounded-large shadow-custom">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-heading text-lg font-bold text-neutral-900">Manual Upload</h3>
+                            <i class="ri-upload-cloud-2-line text-neutral-400 text-xl"></i>
+                        </div>
+                        <div class="border-2 border-dashed border-neutral-200 rounded-lg p-8 text-center hover:border-primary-400 hover:bg-primary-50/30 transition-all cursor-pointer">
+                            <div class="w-12 h-12 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="ri-add-line text-2xl"></i>
+                            </div>
+                            <p class="font-medium text-neutral-900 mb-1">Click to upload or drag and drop</p>
+                            <p class="text-sm text-neutral-500">XLSX, CSV, or XML (Max 25MB)</p>
+                        </div>
+                    </section>
+
+                    <section class="bg-white p-6 rounded-large shadow-custom">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-heading text-lg font-bold text-neutral-900">Active Integrations</h3>
+                            <button class="text-primary-600 text-sm font-medium hover:underline">Manage All</button>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between p-3 border border-neutral-100 rounded-lg hover:bg-neutral-50 transition-colors">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-[#0078D4] rounded flex items-center justify-center text-white">
+                                        <i class="ri-microsoft-fill text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-sm text-neutral-900">SmartOffice 365</p>
+                                        <p class="text-xs text-neutral-500">Last sync: 2 mins ago</p>
+                                    </div>
+                                </div>
+                                <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                            </div>
+                            <div class="flex items-center justify-between p-3 border border-neutral-100 rounded-lg hover:bg-neutral-50 transition-colors">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-[#635BFF] rounded flex items-center justify-center text-white">
+                                        <i class="ri-bank-card-fill text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-sm text-neutral-900">Stripe Payments</p>
+                                        <p class="text-xs text-neutral-500">Active Subscription</p>
+                                    </div>
+                                </div>
+                                <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Chart.js Initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('revenueChart').getContext('2d');
+            
+            // Gradient for the chart
+            const gradientRevenue = ctx.createLinearGradient(0, 0, 0, 400);
+            gradientRevenue.addColorStop(0, 'rgba(16, 185, 129, 0.2)');
+            gradientRevenue.addColorStop(1, 'rgba(16, 185, 129, 0)');
+
+            const gradientExpenses = ctx.createLinearGradient(0, 0, 0, 400);
+            gradientExpenses.addColorStop(0, 'rgba(249, 115, 22, 0.2)');
+            gradientExpenses.addColorStop(1, 'rgba(249, 115, 22, 0)');
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                    datasets: [
+                        {
+                            label: 'Revenue',
+                            data: [65, 78, 66, 89, 92, 105, 118],
+                            borderColor: '#10b981', // Primary Green
+                            backgroundColor: gradientRevenue,
+                            borderWidth: 3,
+                            tension: 0.4,
+                            fill: true,
+                            pointRadius: 4,
+                            pointBackgroundColor: '#fff',
+                            pointBorderColor: '#10b981',
+                            pointBorderWidth: 2
+                        },
+                        {
+                            label: 'Expenses',
+                            data: [45, 52, 48, 58, 60, 65, 70],
+                            borderColor: '#f97316', // Secondary Orange
+                            backgroundColor: gradientExpenses,
+                            borderWidth: 3,
+                            tension: 0.4,
+                            fill: true,
+                            pointRadius: 4,
+                            pointBackgroundColor: '#fff',
+                            pointBorderColor: '#f97316',
+                            pointBorderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            align: 'end',
+                            labels: {
+                                usePointStyle: true,
+                                boxWidth: 8,
+                                font: {
+                                    family: "'Inter', sans-serif",
+                                    size: 12
+                                }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: '#1e293b',
+                            padding: 12,
+                            titleFont: {
+                                family: "'Plus Jakarta Sans', sans-serif",
+                                size: 13
+                            },
+                            bodyFont: {
+                                family: "'Inter', sans-serif",
+                                size: 12
+                            },
+                            cornerRadius: 8,
+                            displayColors: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: '#f1f5f9',
+                                drawBorder: false,
+                            },
+                            ticks: {
+                                font: {
+                                    family: "'Inter', sans-serif",
+                                    size: 11
+                                },
+                                color: '#64748b'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false,
+                                drawBorder: false,
+                            },
+                            ticks: {
+                                font: {
+                                    family: "'Inter', sans-serif",
+                                    size: 11
+                                },
+                                color: '#64748b'
+                            }
+                        }
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: 'index',
+                    },
+                }
+            });
+        });
+    </script>
+
+
+    <script src="script.js"></script>
+</body>
+</html>

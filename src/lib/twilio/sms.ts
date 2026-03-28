@@ -1,64 +1,67 @@
-// =============================================
-// Twilio SMS Utility
-// Send SMS notifications via Twilio
-// =============================================
+/**
+ * Twilio SMS Utilities
+ * Send SMS via Twilio API
+ */
 
-import { getTwilioClient, getTwilioPhoneNumber } from './client'
+const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID
+const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN
 
-export interface SendSMSOptions {
-  to: string
-  message: string
-  from?: string
+export interface SendSMSParams {
+  to: string // Recipient phone number
+  from: string // Sender phone number (Twilio number)
+  body: string // Message content
 }
 
-export interface SendSMSResult {
+export interface SMSResponse {
   success: boolean
-  messageSid?: string
+  messageId?: string
   error?: string
 }
 
 /**
- * Send an SMS message via Twilio
+ * Send SMS via Twilio
  */
-export async function sendSMS(options: SendSMSOptions): Promise<SendSMSResult> {
-  const { to, message, from } = options
+export async function sendSMS(params: SendSMSParams): Promise<SMSResponse> {
+  const { to, from, body } = params
 
   try {
-    const client = getTwilioClient()
-
-    if (!client) {
-      console.error('[SMS] Twilio client not configured')
-      return {
-        success: false,
-        error: 'Twilio not configured',
-      }
+    // Validate environment variables
+    if (!TWILIO_ACCOUNT_SID || !TWILIO_AUTH_TOKEN) {
+      throw new Error('Twilio credentials not configured')
     }
 
-    const fromNumber = from || getTwilioPhoneNumber()
-
-    if (!fromNumber) {
-      console.error('[SMS] No Twilio phone number configured')
-      return {
-        success: false,
-        error: 'No Twilio phone number configured',
+    // Send SMS via Twilio API
+    const response = await fetch(
+      `https://api.twilio.com/2010-04-01/Accounts/${TWILIO_ACCOUNT_SID}/Messages.json`,
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': `Basic ${Buffer.from(
+            `${TWILIO_ACCOUNT_SID}:${TWILIO_AUTH_TOKEN}`
+          ).toString('base64')}`,
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+          To: to,
+          From: from,
+          Body: body,
+        }),
       }
+    )
+
+    if (!response.ok) {
+      const error = await response.json()
+      throw new Error(error.message || `Twilio API error: ${response.status}`)
     }
 
-    // Send SMS
-    const result = await client.messages.create({
-      body: message,
-      from: fromNumber,
-      to,
-    })
-
-    console.log(`[SMS] Sent message to ${to}: ${result.sid}`)
+    const data = await response.json()
 
     return {
       success: true,
-      messageSid: result.sid,
+      messageId: data.sid,
     }
   } catch (error: any) {
-    console.error('[SMS] Failed to send message:', error)
+    console.error('[Twilio SMS] Error sending SMS:', error)
     return {
       success: false,
       error: error.message || 'Failed to send SMS',
@@ -67,20 +70,28 @@ export async function sendSMS(options: SendSMSOptions): Promise<SendSMSResult> {
 }
 
 /**
- * Send SMS notification about a prospect call
+ * Normalize phone number to E.164 format
+ * Handles: (214) 555-1234, 214-555-1234, 2145551234, +12145551234
  */
-export async function sendProspectCallNotification(
-  distributorPhone: string,
-  callerNumber: string,
-  transcript: string
-): Promise<SendSMSResult> {
-  // Truncate transcript to keep SMS short
-  const shortTranscript = transcript.length > 150 ? transcript.substring(0, 150) + '...' : transcript
+export function normalizePhoneNumber(phone: string): string {
+  // Remove all non-digit characters
+  const digits = phone.replace(/\D/g, '')
 
-  const message = `New call from ${callerNumber}: ${shortTranscript}`
+  // If 10 digits, add +1 (US)
+  if (digits.length === 10) {
+    return `+1${digits}`
+  }
 
-  return sendSMS({
-    to: distributorPhone,
-    message,
-  })
+  // If 11 digits starting with 1, add +
+  if (digits.length === 11 && digits.startsWith('1')) {
+    return `+${digits}`
+  }
+
+  // Already has +
+  if (phone.startsWith('+')) {
+    return phone
+  }
+
+  // Default: assume US and add +1
+  return `+1${digits}`
 }

@@ -33,6 +33,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link
+          href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+          rel="stylesheet"
+        />
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+      </head>
       <body
         className={`${publicSans.variable} ${monaSans.variable} antialiased font-[family-name:var(--font-public-sans)]`}
         suppressHydrationWarning

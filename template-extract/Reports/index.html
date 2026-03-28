@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Reports - Exported from UXMagic Copilot">
+    <title>Reports</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['var(--font-heading-name)', 'sans-serif'],
+                        body: ['var(--font-body-name)', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            200: '#a7f3d0',
+                            300: '#6ee7b7',
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                        },
+                        secondary: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            200: '#fed7aa',
+                            300: '#fdba74',
+                            400: '#fb923c',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12',
+                        },
+                        neutral: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        },
+                        background: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                        }
+                    },
+                    spacing: {
+                        base: 'var(--space-base)',
+                    },
+                    borderRadius: {
+                        small: 'var(--radius-small)',
+                        large: 'var(--radius-large)',
+                    },
+                    boxShadow: {
+                        custom: 'var(--shadow-custom)',
+                        'custom-hover': 'var(--shadow-custom-hover)',
+                    },
+                }
+            }
+        }
+    
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+<div class="flex flex-col lg:flex-row">
+
+    <!-- Sidebar Navigation -->
+    <aside class="w-full lg:w-72 bg-white border-r border-neutral-200 flex flex-col z-20">
+        <div class="p-6 flex items-center gap-3">
+            <div class="w-10 h-10 bg-neutral-900 rounded-small flex items-center justify-center text-white">
+                <i class="ri-bar-chart-box-fill text-xl"></i>
+            </div>
+            <span class="font-heading font-bold text-xl text-neutral-900">SmartViz</span>
+        </div>
+
+        <nav class="flex-1 px-4 py-4 space-y-1 overflow-y-auto">
+            <div class="mb-6">
+                <p class="px-4 text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-2">Main</p>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 rounded-small transition-all">
+                    <i class="ri-dashboard-line"></i>
+                    <span class="font-medium">Dashboard</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 rounded-small transition-all">
+                    <i class="ri-file-excel-line"></i>
+                    <span class="font-medium">Data Sources</span>
+                </a>
+                <a href="/api/copilot/prototype/09dc877b-2028-42d5-9657-9be56806fed4/ai-chatbot" class="flex items-center gap-3 px-4 py-3 text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 rounded-small transition-all">
+                    <i class="ri-robot-line"></i>
+                    <span class="font-medium">AI Analysis</span>
+                    <span class="ml-auto bg-primary-100 text-primary-700 text-xs px-2 py-0.5 rounded-full font-bold">NEW</span>
+                </a>
+            </div>
+
+            <div class="mb-6">
+                <p class="px-4 text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-2">Management</p>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 rounded-small transition-all">
+                    <i class="ri-upload-cloud-line"></i>
+                    <span class="font-medium">Manual Upload</span>
+                </a>
+                <a href="/api/copilot/prototype/09dc877b-2028-42d5-9657-9be56806fed4/integrations" class="flex items-center gap-3 px-4 py-3 text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 rounded-small transition-all">
+                    <i class="ri-links-line"></i>
+                    <span class="font-medium">Integrations</span>
+                </a>
+                <a href="/api/copilot/prototype/09dc877b-2028-42d5-9657-9be56806fed4/profile-payment-settings" class="flex items-center gap-3 px-4 py-3 text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 rounded-small transition-all">
+                    <i class="ri-user-settings-line"></i>
+                    <span class="font-medium">Profile &amp; Plan</span>
+                </a>
+                <a href="/api/copilot/prototype/09dc877b-2028-42d5-9657-9be56806fed4/reports" class="flex items-center gap-3 px-4 py-3 bg-neutral-900 text-white rounded-small shadow-custom transition-all">
+                    <i class="ri-file-chart-line"></i>
+                    <span class="font-medium">Reports</span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="p-4 mt-auto">
+            <div class="bg-primary-500 rounded-large p-5 text-white relative overflow-hidden shadow-custom">
+                <div class="absolute top-0 right-0 -mt-2 -mr-2 w-16 h-16 bg-white opacity-20 rounded-full"></div>
+                <div class="relative z-10">
+                    <h4 class="font-heading font-bold text-lg mb-1">Pro Plan</h4>
+                    <p class="text-primary-50 text-sm mb-3 opacity-90">Unlock advanced AI insights</p>
+                    <button class="w-full bg-white text-primary-600 font-bold py-2 rounded-small text-sm hover:bg-primary-50 transition-colors">Upgrade Now</button>
+                </div>
+            </div>
+            <div class="flex items-center gap-3 mt-6 px-2">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="User" class="w-10 h-10 rounded-full border-2 border-white shadow-sm">
+                <div>
+                    <p class="text-sm font-bold text-neutral-900">Sarah Wilson</p>
+                    <p class="text-xs text-neutral-500">sarah@company.com</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col min-w-0">
+
+        <!-- Header -->
+        <header class="bg-white/80 backdrop-blur-md border-b border-neutral-200 sticky top-0 z-10">
+            <div class="px-6 py-4 flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <h1 class="font-heading text-2xl font-bold text-neutral-900">Reports</h1>
+                    <span class="hidden md:inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary-50 text-primary-700 border border-primary-100">
+                        <span class="w-2 h-2 rounded-full bg-primary-500 mr-2"></span>
+                        18 Reports
+                    </span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="relative hidden md:block">
+                        <i class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400"></i>
+                        <input type="text" placeholder="Search reports..." class="pl-10 pr-4 py-2 bg-neutral-50 border-none rounded-full text-sm w-56 focus:ring-2 focus:ring-primary-500 focus:bg-white transition-all">
+                    </div>
+                    <button onclick="openCreateModal()" class="flex items-center gap-2 px-4 py-2 bg-neutral-900 text-white rounded-small text-sm font-semibold hover:bg-neutral-700 transition-colors shadow-custom">
+                        <i class="ri-add-line"></i>
+                        <span class="hidden md:inline">New Report</span>
+                    </button>
+                    <button class="w-10 h-10 rounded-full bg-white border border-neutral-200 flex items-center justify-center text-neutral-600 hover:bg-neutral-50 hover:text-primary-600 transition-colors relative">
+                        <i class="ri-notification-3-line text-lg"></i>
+                        <span class="absolute top-2 right-2.5 w-2 h-2 bg-secondary-500 rounded-full border border-white"></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="px-6 flex gap-1 border-t border-neutral-100 overflow-x-auto">
+                <button onclick="setFilter('all', this)" class="filter-tab active px-4 py-3 text-sm font-medium border-b-2 whitespace-nowrap transition-all">All Reports</button>
+                <button onclick="setFilter('financial', this)" class="filter-tab px-4 py-3 text-sm font-medium border-b-2 whitespace-nowrap transition-all">Financial</button>
+                <button onclick="setFilter('sales', this)" class="filter-tab px-4 py-3 text-sm font-medium border-b-2 whitespace-nowrap transition-all">Sales</button>
+                <button onclick="setFilter('operations', this)" class="filter-tab px-4 py-3 text-sm font-medium border-b-2 whitespace-nowrap transition-all">Operations</button>
+                <button onclick="setFilter('hr', this)" class="filter-tab px-4 py-3 text-sm font-medium border-b-2 whitespace-nowrap transition-all">HR</button>
+                <button onclick="setFilter('scheduled', this)" class="filter-tab px-4 py-3 text-sm font-medium border-b-2 whitespace-nowrap transition-all">Scheduled</button>
+            </div>
+        </header>
+
+        <div class="flex-1 p-6">
+
+            <!-- Summary KPI Cards -->
+            <section class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 max-h-[160px]">
+                <div class="bg-white rounded-large shadow-custom p-5">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-9 h-9 rounded-full bg-primary-50 text-primary-600 flex items-center justify-center">
+                            <i class="ri-file-chart-line"></i>
+                        </div>
+                        <span class="text-sm text-neutral-500">Total Reports</span>
+                    </div>
+                    <p class="font-heading text-2xl font-bold text-neutral-900">18</p>
+                    <p class="text-xs text-neutral-400 mt-1">+3 this month</p>
+                </div>
+                <div class="bg-white rounded-large shadow-custom p-5">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-9 h-9 rounded-full bg-secondary-50 text-secondary-600 flex items-center justify-center">
+                            <i class="ri-time-line"></i>
+                        </div>
+                        <span class="text-sm text-neutral-500">Scheduled</span>
+                    </div>
+                    <p class="font-heading text-2xl font-bold text-neutral-900">6</p>
+                    <p class="text-xs text-neutral-400 mt-1">Auto-generated</p>
+                </div>
+                <div class="bg-white rounded-large shadow-custom p-5">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-9 h-9 rounded-full bg-green-50 text-green-600 flex items-center justify-center">
+                            <i class="ri-download-line"></i>
+                        </div>
+                        <span class="text-sm text-neutral-500">Exports</span>
+                    </div>
+                    <p class="font-heading text-2xl font-bold text-neutral-900">142</p>
+                    <p class="text-xs text-neutral-400 mt-1">This quarter</p>
+                </div>
+                <div class="bg-white rounded-large shadow-custom p-5">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-9 h-9 rounded-full bg-neutral-100 text-neutral-600 flex items-center justify-center">
+                            <i class="ri-share-line"></i>
+                        </div>
+                        <span class="text-sm text-neutral-500">Shared</span>
+                    </div>
+                    <p class="font-heading text-2xl font-bold text-neutral-900">9</p>
+                    <p class="text-xs text-neutral-400 mt-1">With team</p>
+                </div>
+            </section>
+
+            <!-- Date Range + Filters Bar -->
+            <section class="bg-white rounded-large shadow-custom p-4 mb-6 max-h-[100px]">
+                <div class="flex flex-wrap items-center gap-3">
+                    <div class="flex items-center gap-2">
+                        <i class="ri-calendar-line text-neutral-400 text-sm"></i>
+                        <span class="text-sm font-semibold text-neutral-700">Date Range:</span>
+                    </div>
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <button onclick="setDateRange('7d', this)" class="date-range-btn px-3 py-1.5 text-xs font-semibold rounded-full bg-neutral-100 text-neutral-600 hover:bg-neutral-200 transition-colors">7 Days</button>
+                        <button onclick="setDateRange('30d', this)" class="date-range-btn px-3 py-1.5 text-xs font-semibold rounded-full bg-neutral-900 text-white transition-colors">30 Days</button>
+                        <button onclick="setDateRange('90d', this)" class="date-range-btn px-3 py-1.5 text-xs font-semibold rounded-full bg-neutral-100 text-neutral-600 hover:bg-neutral-200 transition-colors">90 Days</button>
+                        <button onclick="setDateRange('ytd', this)" class="date-range-btn px-3 py-1.5 text-xs font-semibold rounded-full bg-neutral-100 text-neutral-600 hover:bg-neutral-200 transition-colors">YTD</button>
+                        <button onclick="setDateRange('custom', this)" class="date-range-btn px-3 py-1.5 text-xs font-semibold rounded-full bg-neutral-100 text-neutral-600 hover:bg-neutral-200 transition-colors">Custom</button>
+                    </div>
+                    <div id="custom-date-range" class="hidden items-center gap-2">
+                        <input type="date" class="date-input px-3 py-1.5 bg-neutral-50 border border-neutral-200 rounded-small text-xs text-neutral-700 focus:ring-2 focus:ring-primary-500 focus:border-transparent" value="2023-10-01">
+                        <span class="text-neutral-400 text-xs">to</span>
+                        <input type="date" class="date-input px-3 py-1.5 bg-neutral-50 border border-neutral-200 rounded-small text-xs text-neutral-700 focus:ring-2 focus:ring-primary-500 focus:border-transparent" value="2023-10-31">
+                        <button class="px-3 py-1.5 bg-primary-500 text-white rounded-small text-xs font-semibold hover:bg-primary-600 transition-colors">Apply</button>
+                    </div>
+                    <div class="ml-auto flex items-center gap-2">
+                        <select class="px-3 py-1.5 bg-neutral-50 border border-neutral-200 rounded-small text-xs text-neutral-700 focus:ring-2 focus:ring-primary-500 focus:border-transparent appearance-none pr-7">
+                            <option>All Sources</option>
+                            <option>Stripe</option>
+                            <option>HubSpot</option>
+                            <option>Google Analytics</option>
+                            <option>Manual Upload</option>
+                        </select>
+                        <button class="flex items-center gap-1.5 px-3 py-1.5 bg-neutral-50 border border-neutral-200 rounded-small text-xs font-semibold text-neutral-600 hover:bg-neutral-100 transition-colors">
+                            <i class="ri-sort-desc"></i>Sort
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Charts Overview Row -->
+            <section class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6 max-h-[420px]">
+
+                <!-- Revenue Trend Chart -->
+                <div class="lg:col-span-2 bg-white rounded-large shadow-custom p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <h2 class="font-heading text-base font-bold text-neutral-900">Revenue Overview</h2>
+                            <p class="text-xs text-neutral-500 mt-0.5">Oct 2023 · Monthly breakdown</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-primary-500"></span>
+                                <span class="text-xs text-neutral-500">Revenue</span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-secondary-400"></span>
+                                <span class="text-xs text-neutral-500">Expenses</span>
+                            </div>
+                            <div class="flex gap-1 ml-2">
+                                <button class="w-7 h-7 rounded bg-neutral-100 text-neutral-600 flex items-center justify-center hover:bg-neutral-200 transition-colors text-xs">
+                                    <i class="ri-bar-chart-2-line"></i>
+                                </button>
+                                <button class="w-7 h-7 rounded bg-neutral-900 text-white flex items-center justify-center text-xs">
+                                    <i class="ri-line-chart-line"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="h-56 w-full overflow-hidden">
+                        <canvas id="revenueOverviewChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Report Type Distribution -->
+                <div class="bg-white rounded-large shadow-custom p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <h2 class="font-heading text-base font-bold text-neutral-900">Report Types</h2>
+                            <p class="text-xs text-neutral-500 mt-0.5">Distribution by category</p>
+                        </div>
+                    </div>
+                    <div class="h-40 w-full overflow-hidden flex items-center justify-center">
+                        <canvas id="reportTypeChart"></canvas>
+                    </div>
+                    <div class="mt-3 space-y-2">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-primary-500"></span>
+                                <span class="text-xs text-neutral-600">Financial</span>
+                            </div>
+                            <span class="text-xs font-bold text-neutral-900">7</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-secondary-400"></span>
+                                <span class="text-xs text-neutral-600">Sales</span>
+                            </div>
+                            <span class="text-xs font-bold text-neutral-900">5</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-blue-400"></span>
+                                <span class="text-xs text-neutral-600">Operations</span>
+                            </div>
+                            <span class="text-xs font-bold text-neutral-900">4</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-purple-400"></span>
+                                <span class="text-xs text-neutral-600">HR</span>
+                            </div>
+                            <span class="text-xs font-bold text-neutral-900">2</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Report List -->
+            <section class="mb-6 max-h-[1200px]">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="font-heading text-lg font-bold text-neutral-900">All Reports</h2>
+                    <div class="flex items-center gap-2">
+                        <button onclick="setView('grid')" id="view-grid" class="w-8 h-8 rounded bg-neutral-900 text-white flex items-center justify-center transition-colors">
+                            <i class="ri-grid-line text-sm"></i>
+                        </button>
+                        <button onclick="setView('list')" id="view-list" class="w-8 h-8 rounded bg-neutral-100 text-neutral-600 flex items-center justify-center hover:bg-neutral-200 transition-colors">
+                            <i class="ri-list-check text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Grid View -->
+                <div id="reports-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+
+                    <!-- Report Card 1 - Q3 Financial Summary -->
+                    <div class="report-card bg-white rounded-large shadow-custom border border-neutral-100 overflow-hidden hover:shadow-custom-hover">
+                        <div class="h-32 bg-gradient-to-br from-primary-500 to-primary-700 p-4 relative overflow-hidden">
+                            <div class="absolute inset-0 opacity-10">
+                                <svg viewBox="0 0 200 80" class="w-full h-full" preserveAspectRatio="none">
+                                    <polyline points="0,60 30,45 60,50 90,30 120,35 150,20 180,25 200,15" fill="none" stroke="white" stroke-width="2"></polyline>
+                                    <polygon points="0,60 30,45 60,50 90,30 120,35 150,20 180,25 200,15 200,80 0,80" fill="white" opacity="0.3"></polygon>
+                                </svg>
+                            </div>
+                            <div class="relative z-10 flex items-start justify-between">
+                                <div>
+                                    <span class="px-2 py-0.5 bg-white/20 text-white text-xs font-bold rounded-full">Financial</span>
+                                    <p class="text-white/70 text-xs mt-2">Q3 2023</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-white font-heading font-bold text-xl">$2.4M</p>
+                                    <p class="text-primary-200 text-xs">+15.2% YoY</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-heading font-bold text-neutral-900 text-sm mb-1">Q3 Financial Summary</h3>
+                            <p class="text-xs text-neutral-500 mb-3">Revenue, expenses &amp; profit margins for Q3 2023</p>
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="flex items-center gap-1 text-xs text-neutral-500"><i class="ri-refresh-line text-primary-500"></i>Updated 2h ago</span>
+                                <span class="text-neutral-300">·</span>
+                                <span class="flex items-center gap-1 text-xs text-neutral-500"><i class="ri-pages-line"></i>12 pages</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button onclick="exportReport('Q3 Financial Summary', 'pdf')" class="export-btn flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-neutral-900 text-white rounded-small text-xs font-semibold hover:bg-neutral-700 transition-colors shadow-custom">
+                                    <i class="ri-file-pdf-line"></i>PDF
+                                </button>
+                                <button onclick="exportReport('Q3 Financial Summary', 'csv')" class="export-btn flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-neutral-100 text-neutral-700 rounded-small text-xs font-semibold hover:bg-neutral-200 transition-colors">
+                                    <i class="ri-file-excel-line"></i>CSV
+                                </button>
+                                <button class="w-8 h-8 rounded-small bg-neutral-100 text-neutral-600 flex items-center justify-center hover:bg-neutral-200 transition-colors">
+                                    <i class="ri-more-2-fill text-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Report Card 2 - Sales Performance -->
+                    <div class="report-card bg-white rounded-large shadow-custom border border-neutral-100 overflow-hidden hover:shadow-custom-hover">
+                        <div class="h-32 bg-gradient-to-br from-secondary-400 to-secondary-600 p-4 relative overflow-hidden">
+                            <div class="absolute inset-0 opacity-10">
+                                <svg viewBox="0 0 200 80" class="w-full h-full" preserveAspectRatio="none">
+                                    <polyline points="0,70 25,55 50,60 75,40 100,45 125,25 150,30 175,15 200,20" fill="none" stroke="white" stroke-width="2"></polyline>
+                                    <polygon points="0,70 25,55 50,60 75,40 100,45 125,25 150,30 175,15 200,20 200,80 0,80" fill="white" opacity="0.3"></polygon>
+                                </svg>
+                            </div>
+                            <div class="relative z-10 flex items-start justify-between">
+                                <div>
+                                    <span class="px-2 py-0.5 bg-white/20 text-white text-xs font-bold rounded-full">Sales</span>
+                                    <p class="text-white/70 text-xs mt-2">Oct 2023</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-white font-heading font-bold text-xl">847</p>
+                                    <p class="text-secondary-100 text-xs">Deals closed</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-heading font-bold text-neutral-900 text-sm mb-1">Sales Performance Report</h3>
+                            <p class="text-xs text-neutral-500 mb-3">Pipeline, conversion rates &amp; rep performance</p>
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="flex items-center gap-1 text-xs text-neutral-500"><i class="ri-refresh-line text-primary-500"></i>Updated 30m ago</span>
+                                <span class="text-neutral-300">·</span>
+                                <span class="flex items-center gap-1 text-xs text-neutral-500"><i class="ri-pages-line"></i>8 pages</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button onclick="exportReport('Sales Performance', 'pdf')" class="export-btn flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-neutral-900 text-white rounded-small text-xs font-semibold hover:bg-neutral-700 transition-colors shadow-custom">
+                                    <i class="ri-file-pdf-line"></i>PDF
+                                </button>
+                                <button onclick="exportReport('Sales Performance', 'csv')" class="export-btn flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-neutral-100 text-neutral-700 rounded-small text-xs font-semibold hover:bg-neutral-200 transition-colors">
+                                    <i class="ri-file-excel-line"></i>CSV
+                                </button>
+                                <button class="w-8 h-8 rounded-small bg-neutral-100 text-neutral-600 flex items-center justify-center hover:bg-neutral-200 transition-colors">
+                                    <i class="ri-more-2-fill text-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Report Card 3 - Inventory Status -->
+                    <div class="report-card bg-white rounded-large shadow-custom border border-neutral-100 overflow-hidden hover:shadow-custom-hover">
+                        <div class="h-32 bg-gradient-to-br from-blue-500 to-blue-700 p-4 relative overflow-hidden">
+                            <div class="absolute inset-0 opacity-10">
+                                <svg viewBox="0 0 200 80" class="w-full h-full" preserveAspectRatio="none">
+                                    <rect x="10" y="40" width="20" height="40" fill="white" opacity="0.6"></rect>
+                                    <rect x="40" y="25" width="20" height="55" fill="white" opacity="0.6"></rect>
+                                    <rect x="70" y="35" width="20" height="45" fill="white" opacity="0.6"></rect>
+                                    <rect x="100" y="15" width="20" height="65" fill="white" opacity="0.6"></rect>
+                                    <rect x="130" y="30" width="20" height="50" fill="white" opacity="0.6"></rect>
+                                    <rect x="160" y="20" width="20" height="60" fill="white" opacity="0.6"></rect>
+                                </svg>
+                            </div>
+                            <div class="relative z-10 flex items-start justify-between">
+                                <div>
+                                    <span class="px-2 py-0.5 bg-white/20 text-white text-xs font-bold rounded-full">Operations</span>
+                                    <p class="text-white/70 text-xs mt-2">Oct 2023</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-white font-heading font-bold text-xl">94.2%</p>
+                                    <p class="text-blue-100 text-xs">Stock accuracy</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-heading font-bold text-neutral-900 text-sm mb-1">Inventory Status Report</h3>
+                            <p class="text-xs text-neutral-500 mb-3">Stock levels, turnover &amp; reorder alerts</p>
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="flex items-center gap-1 text-xs text-neutral-500"><i class="ri-refresh-line text-primary-500"></i>Updated 1h ago</span>
+                                <span class="text-neutral-300">·</span>
+                                <span class="flex items-center gap-1 text-xs text-neutral-500"><i class="ri-pages-line"></i>6 pages</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button onclick="exportReport('Inventory Status', 'pdf')" class="export-btn flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-neutral-900 text-white rounded-small text-xs font-semibold hover:bg-neutral-700 transition-colors shadow-custom">
+                                    <i class="ri-file-pdf-line"></i>PDF
+                                </button>
+                                <button onclick="exportReport('Inventory Status', 'csv')" class="export-btn flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-neutral-100 text-neutral-700 rounded-small text-xs font-semibold hover:bg-neutral-200 transition-colors">
+                                    <i class="ri-file-excel-line"></i>CSV
+                                </button>
+                                <button class="w-8 h-8 rounded-small bg-neutral-100 text-neutral-600 flex items-center justify-center hover:bg-neutral-200 transition-colors">
+                                    <i class="ri-more-2-fill text-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Report Card 4 - Employee Headcount -->
+                    <div class="report-card bg-white rounded-large shadow-custom border border-neutral-100 overflow-hidden hover:shadow-custom-hover">
+                        <div class="h-32 bg-gradient-to-br from-purple-500 to-purple-700 p-4 relative overflow-hidden">
+                            <div class="absolute inset-0 flex items-end gap-1 px-4 pb-2 opacity-20">
+                                <div class="flex-1 bg-white rounded-t" style="height:40%"></div>
+                                <div class="flex-1 bg-white rounded-t" style="height:60%"></div>
+                                <div class="flex-1 bg-white rounded-t" style="height:50%"></div>
+                                <div class="flex-1 bg-white rounded-t" style="height:75%"></div>
+                                <div class="flex-1 bg-white rounded-t" style="height:65%"></div>
+                                <div class="flex-1 bg-white rounded-t" style="height:80%"></div>
+                            </div>
+                            <div class="relative z-10 flex items-start justify-between">
+                                <div>
+                                    <span class="px-2 py-0.5 bg-white/20 text-white text-xs font-bold rounded-full">HR</span>
+                                    <p class="text-white/70 text-xs mt-2">Nov 2023</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-white font-heading font-bold text-xl">248</p>
+                                    <p class="text-purple-100 text-xs">Total employees</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-heading font-bold text-neutral-900 text-sm mb-1">Employee Headcount Report</h3>
+                            <p class="text-xs text-neutral-500 mb-3">Headcount, attrition &amp; department breakdown</p>
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="flex items-center gap-1 text-xs text-neutral-500"><i class="ri-refresh-line text-primary-500"></i>Updated 3h ago</span>
+                                <span class="text-neutral-300">·</span>
+                                <span class="flex items-center gap-1 text-xs text-neutral-500"><i class="ri-pages-line"></i>5 pages</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button onclick="exportReport('Employee Headcount', 'pdf')" class="export-btn flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-neutral-900 text-white rounded-small text-xs font-semibold hover:bg-neutral-700 transition-colors shadow-custom">
+                                    <i class="ri-file-pdf-line"></i>PDF
+                                </button>
+                                <button onclick="exportReport('Employee Headcount', 'csv')" class="export-btn flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-neutral-100 text-neutral-700 rounded-small text-xs font-semibold hover:bg-neutral-200 transition-colors">
+                                    <i class="ri-file-excel-line"></i>CSV
+                                </button>
+                                <button class="w-8 h-8 rounded-small bg-neutral-100 text-neutral-600 flex items-center justify-center hover:bg-neutral-200 transition-colors">
+                                    <i class="ri-more-2-fill text-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Report Card 5 - Customer Acquisition -->
+                    <div class="report-card bg-white rounded-large shadow-custom border border-neutral-100 overflow-hidden hover:shadow-custom-hover">
+                        <div class="h-32 bg-gradient-to-br from-teal-500 to-teal-700 p-4 relative overflow-hidden">
+                            <div class="absolute inset-0 opacity-10">
+                                <svg viewBox="0 0 200 80" class="w-full h-full" preserveAspectRatio="none">
+                                    <circle cx="40" cy="50" r="25" fill="white"></circle>
+                                    <circle cx="100" cy="35" r="30" fill="white"></circle>
+                                    <circle cx="160" cy="45" r="20" fill="white"></circle>
+                                </svg>
+                            </div>
+                            <div class="relative z-10 flex items-start justify-between">
+                                <div>
+                                    <span class="px-2 py-0.5 bg-white/20 text-white text-xs font-bold rounded-full">Sales</span>
+                                    <p class="text-white/70 text-xs mt-2">Oct 2023</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-white font-heading font-bold text-xl">1,284</p>
+                                    <p class="text-teal-100 text-xs">New customers</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-heading font-bold text-neutral-900 text-sm mb-1">Customer Acquisition Report</h3>
+                            <p class="text-xs text-neutral-500 mb-3">CAC, LTV &amp; channel attribution analysis</p>
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="flex items-center gap-1 text-xs text-neutral-500"><i class="ri-refresh-line text-primary-500"></i>Updated 5h ago</span>
+                                <span class="text-neutral-300">·</span>
+                                <span class="flex items-center gap-1 text-xs text-neutral-500"><i class="ri-pages-line"></i>9 pages</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button onclick="exportReport('Customer Acquisition', 'pdf')" class="export-btn flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-neutral-900 text-white rounded-small text-xs font-semibold hover:bg-neutral-700 transition-colors shadow-custom">
+                                    <i class="ri-file-pdf-line"></i>PDF
+                                </button>
+                                <button onclick="exportReport('Customer Acquisition', 'csv')" class="export-btn flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-neutral-100 text-neutral-700 rounded-small text-xs font-semibold hover:bg-neutral-200 transition-colors">
+                                    <i class="ri-file-excel-line"></i>CSV
+                                </button>
+                                <button class="w-8 h-8 rounded-small bg-neutral-100 text-neutral-600 flex items-center justify-center hover:bg-neutral-200 transition-colors">
+                                    <i class="ri-more-2-fill text-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Report Card 6 - Scheduled: Weekly Digest -->
+                    <div class="report-card bg-white rounded-large shadow-custom border border-primary-100 overflow-hidden hover:shadow-custom-hover">
+                        <div class="h-32 bg-gradient-to-br from-neutral-800 to-neutral-900 p-4 relative overflow-hidden">
+                            <div class="absolute inset-0 opacity-5">
+                                <svg viewBox="0 0 200 80" class="w-full h-full" preserveAspectRatio="none">
+                                    <polyline points="0,50 40,30 80,40 120,20 160,35 200,15" fill="none" stroke="white" stroke-width="3"></polyline>
+                                </svg>
+                            </div>
+                            <div class="relative z-10 flex items-start justify-between">
+                                <div>
+                                    <span class="px-2 py-0.5 bg-primary-500/30 text-primary-300 text-xs font-bold rounded-full">Scheduled</span>
+                                    <p class="text-neutral-400 text-xs mt-2">Every Monday</p>
+                                </div>
+                                <div class="text-right">
+                                    <div class="w-9 h-9 rounded-full bg-primary-500/20 flex items-center justify-center">
+                                        <i class="ri-time-line text-primary-400 text-lg"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="absolute bottom-3 left-4 right-4">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-primary-500 animate-pulse"></span>
+                                    <span class="text-xs text-neutral-400">Next run: Mon, Nov 27 · 8:00 AM</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-heading font-bold text-neutral-900 text-sm mb-1">Weekly Business Digest</h3>
+                            <p class="text-xs text-neutral-500 mb-3">Auto-generated summary sent to team every Monday</p>
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="flex items-center gap-1 text-xs text-primary-600 font-semibold"><i class="ri-mail-send-line"></i>Auto-email enabled</span>
+                                <span class="text-neutral-300">·</span>
+                                <span class="flex items-center gap-1 text-xs text-neutral-500"><i class="ri-team-line"></i>5 recipients</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button onclick="exportReport('Weekly Digest', 'pdf')" class="export-btn flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-neutral-900 text-white rounded-small text-xs font-semibold hover:bg-neutral-700 transition-colors shadow-custom">
+                                    <i class="ri-file-pdf-line"></i>PDF
+                                </button>
+                                <button class="export-btn flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-primary-50 text-primary-700 rounded-small text-xs font-semibold hover:bg-primary-100 transition-colors">
+                                    <i class="ri-settings-3-line"></i>Schedule
+                                </button>
+                                <button class="w-8 h-8 rounded-small bg-neutral-100 text-neutral-600 flex items-center justify-center hover:bg-neutral-200 transition-colors">
+                                    <i class="ri-more-2-fill text-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- List View (hidden by default) -->
+                <div id="reports-list" class="hidden bg-white rounded-large shadow-custom overflow-hidden">
+                    <table class="w-full text-left">
+                        <thead class="bg-neutral-50 text-neutral-500 text-xs uppercase font-semibold">
+                            <tr>
+                                <th class="px-6 py-4">Report Name</th>
+                                <th class="px-6 py-4">Type</th>
+                                <th class="px-6 py-4">Last Updated</th>
+                                <th class="px-6 py-4">Pages</th>
+                                <th class="px-6 py-4">Export</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-neutral-100">
+                            <tr class="hover:bg-neutral-50/50 transition-colors">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-small bg-primary-100 text-primary-600 flex items-center justify-center"><i class="ri-file-chart-line text-sm"></i></div>
+                                        <span class="font-medium text-neutral-900 text-sm">Q3 Financial Summary</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4"><span class="px-2 py-1 rounded-full text-xs font-bold bg-primary-50 text-primary-700">Financial</span></td>
+                                <td class="px-6 py-4 text-sm text-neutral-500">2h ago</td>
+                                <td class="px-6 py-4 text-sm text-neutral-600">12</td>
+                                <td class="px-6 py-4">
+                                    <div class="flex gap-2">
+                                        <button onclick="exportReport('Q3 Financial Summary', 'pdf')" class="flex items-center gap-1 px-3 py-1.5 bg-neutral-900 text-white rounded-small text-xs font-semibold hover:bg-neutral-700 transition-colors"><i class="ri-file-pdf-line"></i>PDF</button>
+                                        <button onclick="exportReport('Q3 Financial Summary', 'csv')" class="flex items-center gap-1 px-3 py-1.5 bg-neutral-100 text-neutral-700 rounded-small text-xs font-semibold hover:bg-neutral-200 transition-colors"><i class="ri-file-excel-line"></i>CSV</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50/50 transition-colors">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-small bg-secondary-100 text-secondary-600 flex items-center justify-center"><i class="ri-bar-chart-line text-sm"></i></div>
+                                        <span class="font-medium text-neutral-900 text-sm">Sales Performance Report</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4"><span class="px-2 py-1 rounded-full text-xs font-bold bg-secondary-50 text-secondary-700">Sales</span></td>
+                                <td class="px-6 py-4 text-sm text-neutral-500">30m ago</td>
+                                <td class="px-6 py-4 text-sm text-neutral-600">8</td>
+                                <td class="px-6 py-4">
+                                    <div class="flex gap-2">
+                                        <button onclick="exportReport('Sales Performance', 'pdf')" class="flex items-center gap-1 px-3 py-1.5 bg-neutral-900 text-white rounded-small text-xs font-semibold hover:bg-neutral-700 transition-colors"><i class="ri-file-pdf-line"></i>PDF</button>
+                                        <button onclick="exportReport('Sales Performance', 'csv')" class="flex items-center gap-1 px-3 py-1.5 bg-neutral-100 text-neutral-700 rounded-small text-xs font-semibold hover:bg-neutral-200 transition-colors"><i class="ri-file-excel-line"></i>CSV</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50/50 transition-colors">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-small bg-blue-100 text-blue-600 flex items-center justify-center"><i class="ri-stack-line text-sm"></i></div>
+                                        <span class="font-medium text-neutral-900 text-sm">Inventory Status Report</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4"><span class="px-2 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-700">Operations</span></td>
+                                <td class="px-6 py-4 text-sm text-neutral-500">1h ago</td>
+                                <td class="px-6 py-4 text-sm text-neutral-600">6</td>
+                                <td class="px-6 py-4">
+                                    <div class="flex gap-2">
+                                        <button onclick="exportReport('Inventory Status', 'pdf')" class="flex items-center gap-1 px-3 py-1.5 bg-neutral-900 text-white rounded-small text-xs font-semibold hover:bg-neutral-700 transition-colors"><i class="ri-file-pdf-line"></i>PDF</button>
+                                        <button onclick="exportReport('Inventory Status', 'csv')" class="flex items-center gap-1 px-3 py-1.5 bg-neutral-100 text-neutral-700 rounded-small text-xs font-semibold hover:bg-neutral-200 transition-colors"><i class="ri-file-excel-line"></i>CSV</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50/50 transition-colors">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-small bg-purple-100 text-purple-600 flex items-center justify-center"><i class="ri-team-line text-sm"></i></div>
+                                        <span class="font-medium text-neutral-900 text-sm">Employee Headcount Report</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4"><span class="px-2 py-1 rounded-full text-xs font-bold bg-purple-50 text-purple-700">HR</span></td>
+                                <td class="px-6 py-4 text-sm text-neutral-500">3h ago</td>
+                                <td class="px-6 py-4 text-sm text-neutral-600">5</td>
+                                <td class="px-6 py-4">
+                                    <div class="flex gap-2">
+                                        <button onclick="exportReport('Employee Headcount', 'pdf')" class="flex items-center gap-1 px-3 py-1.5 bg-neutral-900 text-white rounded-small text-xs font-semibold hover:bg-neutral-700 transition-colors"><i class="ri-file-pdf-line"></i>PDF</button>
+                                        <button onclick="exportReport('Employee Headcount', 'csv')" class="flex items-center gap-1 px-3 py-1.5 bg-neutral-100 text-neutral-700 rounded-small text-xs font-semibold hover:bg-neutral-200 transition-colors"><i class="ri-file-excel-line"></i>CSV</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50/50 transition-colors">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-small bg-teal-100 text-teal-600 flex items-center justify-center"><i class="ri-user-add-line text-sm"></i></div>
+                                        <span class="font-medium text-neutral-900 text-sm">Customer Acquisition Report</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4"><span class="px-2 py-1 rounded-full text-xs font-bold bg-secondary-50 text-secondary-700">Sales</span></td>
+                                <td class="px-6 py-4 text-sm text-neutral-500">5h ago</td>
+                                <td class="px-6 py-4 text-sm text-neutral-600">9</td>
+                                <td class="px-6 py-4">
+                                    <div class="flex gap-2">
+                                        <button onclick="exportReport('Customer Acquisition', 'pdf')" class="flex items-center gap-1 px-3 py-1.5 bg-neutral-900 text-white rounded-small text-xs font-semibold hover:bg-neutral-700 transition-colors"><i class="ri-file-pdf-line"></i>PDF</button>
+                                        <button onclick="exportReport('Customer Acquisition', 'csv')" class="flex items-center gap-1 px-3 py-1.5 bg-neutral-100 text-neutral-700 rounded-small text-xs font-semibold hover:bg-neutral-200 transition-colors"><i class="ri-file-excel-line"></i>CSV</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-neutral-50/50 transition-colors">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-small bg-neutral-100 text-neutral-600 flex items-center justify-center"><i class="ri-time-line text-sm"></i></div>
+                                        <span class="font-medium text-neutral-900 text-sm">Weekly Business Digest</span>
+                                        <span class="px-1.5 py-0.5 bg-primary-100 text-primary-700 text-xs font-bold rounded-full">Auto</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4"><span class="px-2 py-1 rounded-full text-xs font-bold bg-neutral-100 text-neutral-700">Scheduled</span></td>
+                                <td class="px-6 py-4 text-sm text-neutral-500">Mon 8:00 AM</td>
+                                <td class="px-6 py-4 text-sm text-neutral-600">4</td>
+                                <td class="px-6 py-4">
+                                    <div class="flex gap-2">
+                                        <button onclick="exportReport('Weekly Digest', 'pdf')" class="flex items-center gap-1 px-3 py-1.5 bg-neutral-900 text-white rounded-small text-xs font-semibold hover:bg-neutral-700 transition-colors"><i class="ri-file-pdf-line"></i>PDF</button>
+                                        <button class="flex items-center gap-1 px-3 py-1.5 bg-primary-50 text-primary-700 rounded-small text-xs font-semibold hover:bg-primary-100 transition-colors"><i class="ri-settings-3-line"></i>Schedule</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Bulk Export Section -->
+            <section class="bg-neutral-900 rounded-large p-6 mb-6 relative overflow-hidden max-h-[200px]">
+                <div class="absolute right-0 top-0 h-full w-1/3 bg-gradient-to-l from-primary-900/40 to-transparent pointer-events-none"></div>
+                <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <i class="ri-download-cloud-line text-primary-400 text-lg"></i>
+                            <h2 class="font-heading text-lg font-bold text-white">Bulk Export</h2>
+                        </div>
+                        <p class="text-neutral-400 text-sm">Export all reports at once or select specific ones for batch download.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <button onclick="bulkExport('pdf')" class="flex items-center gap-2 px-5 py-2.5 bg-white text-neutral-900 rounded-small text-sm font-bold hover:bg-neutral-100 transition-colors shadow-custom">
+                            <i class="ri-file-pdf-2-line text-red-500"></i>
+                            Export All as PDF
+                        </button>
+                        <button onclick="bulkExport('csv')" class="flex items-center gap-2 px-5 py-2.5 bg-primary-500 text-white rounded-small text-sm font-bold hover:bg-primary-600 transition-colors shadow-custom">
+                            <i class="ri-file-excel-2-line"></i>
+                            Export All as CSV
+                        </button>
+                        <button class="flex items-center gap-2 px-5 py-2.5 bg-white/10 text-white rounded-small text-sm font-semibold hover:bg-white/20 transition-colors border border-white/10">
+                            <i class="ri-mail-send-line"></i>
+                            Email Reports
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Scheduled Reports -->
+            <section class="bg-white rounded-large shadow-custom overflow-hidden mb-6 max-h-[400px]">
+                <div class="p-6 border-b border-neutral-100 flex items-center justify-between">
+                    <div>
+                        <h2 class="font-heading text-lg font-bold text-neutral-900">Scheduled Reports</h2>
+                        <p class="text-sm text-neutral-500 mt-0.5">Automated report generation &amp; delivery</p>
+                    </div>
+                    <button class="flex items-center gap-2 px-4 py-2 bg-neutral-900 text-white rounded-small text-sm font-semibold hover:bg-neutral-700 transition-colors shadow-custom">
+                        <i class="ri-add-line"></i>Add Schedule
+                    </button>
+                </div>
+                <div class="divide-y divide-neutral-100">
+                    <div class="flex items-center justify-between px-6 py-4 hover:bg-neutral-50/50 transition-colors">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-small bg-primary-50 text-primary-600 flex items-center justify-center">
+                                <i class="ri-calendar-check-line"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-neutral-900 text-sm">Weekly Business Digest</p>
+                                <p class="text-xs text-neutral-500">Every Monday at 8:00 AM · 5 recipients</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs text-neutral-500">Next: Nov 27</span>
+                            <span class="px-2 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700">Active</span>
+                            <button class="w-8 h-8 rounded-small bg-neutral-100 text-neutral-600 flex items-center justify-center hover:bg-neutral-200 transition-colors">
+                                <i class="ri-settings-3-line text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between px-6 py-4 hover:bg-neutral-50/50 transition-colors">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-small bg-secondary-50 text-secondary-600 flex items-center justify-center">
+                                <i class="ri-calendar-check-line"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-neutral-900 text-sm">Monthly Financial Report</p>
+                                <p class="text-xs text-neutral-500">1st of every month · 3 recipients</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs text-neutral-500">Next: Dec 1</span>
+                            <span class="px-2 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700">Active</span>
+                            <button class="w-8 h-8 rounded-small bg-neutral-100 text-neutral-600 flex items-center justify-center hover:bg-neutral-200 transition-colors">
+                                <i class="ri-settings-3-line text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between px-6 py-4 hover:bg-neutral-50/50 transition-colors">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-small bg-blue-50 text-blue-600 flex items-center justify-center">
+                                <i class="ri-calendar-check-line"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-neutral-900 text-sm">Daily Sales Summary</p>
+                                <p class="text-xs text-neutral-500">Every day at 6:00 PM · 8 recipients</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs text-neutral-500">Next: Today</span>
+                            <span class="px-2 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700">Active</span>
+                            <button class="w-8 h-8 rounded-small bg-neutral-100 text-neutral-600 flex items-center justify-center hover:bg-neutral-200 transition-colors">
+                                <i class="ri-settings-3-line text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between px-6 py-4 hover:bg-neutral-50/50 transition-colors">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-small bg-neutral-100 text-neutral-500 flex items-center justify-center">
+                                <i class="ri-calendar-check-line"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-neutral-900 text-sm">Quarterly HR Report</p>
+                                <p class="text-xs text-neutral-500">End of each quarter · 2 recipients</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs text-neutral-500">Next: Dec 31</span>
+                            <span class="px-2 py-1 rounded-full text-xs font-bold bg-neutral-100 text-neutral-600">Paused</span>
+                            <button class="w-8 h-8 rounded-small bg-neutral-100 text-neutral-600 flex items-center justify-center hover:bg-neutral-200 transition-colors">
+                                <i class="ri-settings-3-line text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+</div>
+
+<!-- Export Toast Notification -->
+<div id="export-toast" class="fixed bottom-6 right-6 z-50 hidden">
+    <div class="bg-neutral-900 text-white px-5 py-3.5 rounded-large shadow-custom-hover flex items-center gap-3 min-w-[280px]">
+        <div class="w-8 h-8 rounded-full bg-primary-500 flex items-center justify-center shrink-0">
+            <i class="ri-download-line text-sm"></i>
+        </div>
+        <div>
+            <p id="toast-title" class="text-sm font-bold">Exporting report...</p>
+            <p id="toast-sub" class="text-xs text-neutral-400">Preparing your file</p>
+        </div>
+        <button onclick="document.getElementById('export-toast').classList.add('hidden')" class="ml-auto text-neutral-400 hover:text-white transition-colors">
+            <i class="ri-close-line"></i>
+        </button>
+    </div>
+</div>
+
+<!-- Create Report Modal -->
+<div id="create-modal" class="hidden fixed inset-0 bg-neutral-900/50 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-large shadow-custom-hover w-full max-w-lg p-6" onclick="event.stopPropagation()">
+        <div class="flex items-center justify-between mb-6">
+            <div>
+                <h3 class="font-heading text-xl font-bold text-neutral-900">Create New Report</h3>
+                <p class="text-sm text-neutral-500 mt-0.5">Configure your report settings</p>
+            </div>
+            <button onclick="closeCreateModal()" class="w-9 h-9 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-500 hover:bg-neutral-200 transition-colors">
+                <i class="ri-close-line"></i>
+            </button>
+        </div>
+        <div class="space-y-4">
+            <div>
+                <label class="block text-sm font-semibold text-neutral-700 mb-1.5">Report Name</label>
+                <input type="text" placeholder="e.g. Q4 Financial Summary" class="w-full px-4 py-2.5 bg-neutral-50 border border-neutral-200 rounded-small text-sm text-neutral-700 focus:ring-2 focus:ring-primary-500 focus:border-transparent focus:bg-white transition-all">
+            </div>
+            <div>
+                <label class="block text-sm font-semibold text-neutral-700 mb-1.5">Report Type</label>
+                <select class="w-full px-4 py-2.5 bg-neutral-50 border border-neutral-200 rounded-small text-sm text-neutral-700 focus:ring-2 focus:ring-primary-500 focus:border-transparent focus:bg-white transition-all appearance-none">
+                    <option>Financial</option>
+                    <option>Sales</option>
+                    <option>Operations</option>
+                    <option>HR</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-sm font-semibold text-neutral-700 mb-1.5">Data Source</label>
+                <select class="w-full px-4 py-2.5 bg-neutral-50 border border-neutral-200 rounded-small text-sm text-neutral-700 focus:ring-2 focus:ring-primary-500 focus:border-transparent focus:bg-white transition-all appearance-none">
+                    <option>All Sources</option>
+                    <option>Stripe</option>
+                    <option>HubSpot</option>
+                    <option>Google Analytics</option>
+                    <option>Manual Upload</option>
+                </select>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+                <div>
+                    <label class="block text-sm font-semibold text-neutral-700 mb-1.5">Start Date</label>
+                    <input type="date" class="w-full px-4 py-2.5 bg-neutral-50 border border-neutral-200 rounded-small text-sm text-neutral-700 focus:ring-2 focus:ring-primary-500 focus:border-transparent focus:bg-white transition-all" value="2023-10-01">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-neutral-700 mb-1.5">End Date</label>
+                    <input type="date" class="w-full px-4 py-2.5 bg-neutral-50 border border-neutral-200 rounded-small text-sm text-neutral-700 focus:ring-2 focus:ring-primary-500 focus:border-transparent focus:bg-white transition-all" value="2023-10-31">
+                </div>
+            </div>
+            <div>
+                <label class="block text-sm font-semibold text-neutral-700 mb-2">Export Format</label>
+                <div class="flex gap-3">
+                    <label class="flex-1 flex items-center gap-2 p-3 bg-neutral-50 border border-neutral-200 rounded-small cursor-pointer hover:bg-neutral-100 transition-colors">
+                        <input type="checkbox" checked="" class="w-4 h-4 accent-primary-500">
+                        <i class="ri-file-pdf-line text-red-500"></i>
+                        <span class="text-sm text-neutral-700 font-medium">PDF</span>
+                    </label>
+                    <label class="flex-1 flex items-center gap-2 p-3 bg-neutral-50 border border-neutral-200 rounded-small cursor-pointer hover:bg-neutral-100 transition-colors">
+                        <input type="checkbox" checked="" class="w-4 h-4 accent-primary-500">
+                        <i class="ri-file-excel-line text-green-600"></i>
+                        <span class="text-sm text-neutral-700 font-medium">CSV</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="flex gap-3 mt-6">
+            <button onclick="closeCreateModal()" class="flex-1 px-4 py-2.5 bg-neutral-100 text-neutral-700 rounded-small text-sm font-semibold hover:bg-neutral-200 transition-colors">Cancel</button>
+            <button onclick="generateReport()" class="flex-1 px-4 py-2.5 bg-neutral-900 text-white rounded-small text-sm font-semibold hover:bg-neutral-700 transition-colors shadow-custom">Generate Report</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // Revenue Overview Chart
+        const ctx1 = document.getElementById('revenueOverviewChart').getContext('2d');
+        const gradRev = ctx1.createLinearGradient(0, 0, 0, 220);
+        gradRev.addColorStop(0, 'rgba(16,185,129,0.18)');
+        gradRev.addColorStop(1, 'rgba(16,185,129,0)');
+        const gradExp = ctx1.createLinearGradient(0, 0, 0, 220);
+        gradExp.addColorStop(0, 'rgba(249,115,22,0.15)');
+        gradExp.addColorStop(1, 'rgba(249,115,22,0)');
+
+        new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct'],
+                datasets: [
+                    {
+                        label: 'Revenue',
+                        data: [65,78,66,89,92,105,118,112,128,142],
+                        borderColor: '#10b981',
+                        backgroundColor: gradRev,
+                        borderWidth: 2.5,
+                        tension: 0.4,
+                        fill: true,
+                        pointRadius: 3,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#10b981',
+                        pointBorderWidth: 2
+                    },
+                    {
+                        label: 'Expenses',
+                        data: [45,52,48,58,60,65,70,68,74,80],
+                        borderColor: '#fb923c',
+                        backgroundColor: gradExp,
+                        borderWidth: 2.5,
+                        tension: 0.4,
+                        fill: true,
+                        pointRadius: 3,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#fb923c',
+                        pointBorderWidth: 2
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: '#1e293b',
+                        padding: 10,
+                        titleFont: { family: "'Plus Jakarta Sans', sans-serif", size: 12 },
+                        bodyFont: { family: "'Inter', sans-serif", size: 11 },
+                        cornerRadius: 8,
+                        displayColors: true
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        grid: { color: '#f1f5f9', drawBorder: false },
+                        ticks: { font: { family: "'Inter', sans-serif", size: 10 }, color: '#94a3b8', callback: v => '$' + v + 'k' }
+                    },
+                    x: {
+                        grid: { display: false, drawBorder: false },
+                        ticks: { font: { family: "'Inter', sans-serif", size: 10 }, color: '#94a3b8' }
+                    }
+                },
+                interaction: { intersect: false, mode: 'index' }
+            }
+        });
+
+        // Report Type Donut Chart
+        const ctx2 = document.getElementById('reportTypeChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'doughnut',
+            data: {
+                labels: ['Financial', 'Sales', 'Operations', 'HR'],
+                datasets: [{
+                    data: [7, 5, 4, 2],
+                    backgroundColor: ['#10b981', '#fb923c', '#60a5fa', '#c084fc'],
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '70%',
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: '#1e293b',
+                        padding: 10,
+                        titleFont: { family: "'Plus Jakarta Sans', sans-serif", size: 12 },
+                        bodyFont: { family: "'Inter', sans-serif", size: 11 },
+                        cornerRadius: 8
+                    }
+                }
+            }
+        });
+    });
+
+    function setFilter(type, btn) {
+        document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+    }
+
+    function setDateRange(range, btn) {
+        document.querySelectorAll('.date-range-btn').forEach(b => {
+            b.classList.remove('bg-neutral-900', 'text-white');
+            b.classList.add('bg-neutral-100', 'text-neutral-600');
+        });
+        btn.classList.remove('bg-neutral-100', 'text-neutral-600');
+        btn.classList.add('bg-neutral-900', 'text-white');
+        const customRange = document.getElementById('custom-date-range');
+        if (range === 'custom') {
+            customRange.classList.remove('hidden');
+            customRange.classList.add('flex');
+        } else {
+            customRange.classList.add('hidden');
+            customRange.classList.remove('flex');
+        }
+    }
+
+    function setView(view) {
+        const grid = document.getElementById('reports-grid');
+        const list = document.getElementById('reports-list');
+        const btnGrid = document.getElementById('view-grid');
+        const btnList = document.getElementById('view-list');
+        if (view === 'grid') {
+            grid.classList.remove('hidden');
+            list.classList.add('hidden');
+            btnGrid.classList.remove('bg-neutral-100', 'text-neutral-600');
+            btnGrid.classList.add('bg-neutral-900', 'text-white');
+            btnList.classList.remove('bg-neutral-900', 'text-white');
+            btnList.classList.add('bg-neutral-100', 'text-neutral-600');
+        } else {
+            grid.classList.add('hidden');
+            list.classList.remove('hidden');
+            btnList.classList.remove('bg-neutral-100', 'text-neutral-600');
+            btnList.classList.add('bg-neutral-900', 'text-white');
+            btnGrid.classList.remove('bg-neutral-900', 'text-white');
+            btnGrid.classList.add('bg-neutral-100', 'text-neutral-600');
+        }
+    }
+
+    function exportReport(name, format) {
+        const toast = document.getElementById('export-toast');
+        const title = document.getElementById('toast-title');
+        const sub = document.getElementById('toast-sub');
+        title.textContent = 'Exporting "' + name + '"';
+        sub.textContent = 'Preparing ' + format.toUpperCase() + ' file...';
+        toast.classList.remove('hidden');
+        setTimeout(() => {
+            title.textContent = 'Export complete!';
+            sub.textContent = name + '.' + format + ' is ready to download';
+        }, 1500);
+        setTimeout(() => {
+            toast.classList.add('hidden');
+        }, 4000);
+    }
+
+    function bulkExport(format) {
+        const toast = document.getElementById('export-toast');
+        const title = document.getElementById('toast-title');
+        const sub = document.getElementById('toast-sub');
+        title.textContent = 'Bulk export started';
+        sub.textContent = 'Preparing all reports as ' + format.toUpperCase() + '...';
+        toast.classList.remove('hidden');
+        setTimeout(() => {
+            title.textContent = 'Bulk export complete!';
+            sub.textContent = '18 reports packaged as ' + format.toUpperCase();
+        }, 2000);
+        setTimeout(() => {
+            toast.classList.add('hidden');
+        }, 5000);
+    }
+
+    function openCreateModal() {
+        document.getElementById('create-modal').classList.remove('hidden');
+    }
+
+    function closeCreateModal() {
+        document.getElementById('create-modal').classList.add('hidden');
+    }
+
+    function generateReport() {
+        closeCreateModal();
+        exportReport('New Report', 'pdf');
+    }
+
+    document.getElementById('create-modal').addEventListener('click', function(e) {
+        if (e.target === this) closeCreateModal();
+    });
+</script>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

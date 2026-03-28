@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Chat Bot & Reports Demo - Exported from UXMagic Copilot">
+    <title>Chat Bot & Reports Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['var(--font-heading-name)', 'sans-serif'],
+                        body: ['var(--font-body-name)', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            200: '#a7f3d0',
+                            300: '#6ee7b7',
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                        },
+                        secondary: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            200: '#fed7aa',
+                            300: '#fdba74',
+                            400: '#fb923c',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12',
+                        },
+                        neutral: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        },
+                        background: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                        }
+                    },
+                    spacing: {
+                        base: 'var(--space-base)',
+                    },
+                    borderRadius: {
+                        small: 'var(--radius-small)',
+                        large: 'var(--radius-large)',
+                    },
+                    boxShadow: {
+                        custom: 'var(--shadow-custom)',
+                        'custom-hover': 'var(--shadow-custom-hover)',
+                    },
+                }
+            }
+        }
+    
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+<!-- TOP NAVIGATION -->
+<nav class="bg-white/90 backdrop-blur-md border-b border-neutral-200 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <div class="w-9 h-9 logo-mark rounded-small flex items-center justify-center text-white">
+                <i class="ri-bar-chart-box-fill text-lg"></i>
+            </div>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/hero-landing-page" class="font-heading font-bold text-xl text-neutral-900 tracking-tight">SmartViz</a>
+        </div>
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/hero-landing-page" class="nav-link text-sm font-medium text-neutral-500">Home</a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/features-showcase" class="nav-link text-sm font-medium text-neutral-500">Features</a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/dashboard-preview" class="nav-link text-sm font-medium text-neutral-500">Dashboard</a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/chat-bot-reports-demo" class="nav-link text-sm font-semibold text-neutral-900 border-b-2 border-primary-500 pb-0.5">AI Reports</a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/pricing-cta" class="nav-link text-sm font-medium text-neutral-500">Pricing</a>
+        </div>
+        <div class="flex items-center gap-3">
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/chat-bot-reports-demo" class="hidden md:inline-flex items-center text-sm font-semibold text-neutral-600 hover:text-neutral-900 transition-colors">
+                Sign In
+            </a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/pricing-cta" class="inline-flex items-center gap-2 px-5 py-2.5 bg-neutral-900 text-white rounded-small text-sm font-semibold hover:bg-neutral-700 transition-colors shadow-custom">
+                Get Started Free
+                <i class="ri-arrow-right-line text-xs"></i>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="bg-white py-20 max-h-[460px] overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+        <div class="flex justify-center mb-6">
+            <div class="badge-pill inline-flex items-center gap-2 px-4 py-2 rounded-full">
+                <i class="ri-robot-line text-primary-600 text-sm"></i>
+                <span class="text-xs font-semibold text-primary-700">Powered by GPT-4 · Trained on your spreadsheet data</span>
+            </div>
+        </div>
+        <h1 class="font-heading text-5xl md:text-6xl font-extrabold text-neutral-900 leading-tight mb-5" style="letter-spacing: var(--letter-spacing-heading);">
+            Ask Anything. Get<br>
+            <span class="text-primary-500">Beautiful Reports Instantly.</span>
+        </h1>
+        <p class="text-lg text-neutral-500 max-w-2xl mx-auto mb-10 leading-relaxed">
+            SmartViz's AI understands your spreadsheet data. Ask questions in plain English and watch it generate stunning, branded reports with charts, summaries, and insights — in seconds.
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-6">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center">
+                    <i class="ri-message-3-line text-primary-600 text-sm"></i>
+                </div>
+                <span class="text-sm font-semibold text-neutral-700">Natural language queries</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
+                    <i class="ri-file-chart-line text-blue-600 text-sm"></i>
+                </div>
+                <span class="text-sm font-semibold text-neutral-700">Auto-generated PDF reports</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-secondary-100 flex items-center justify-center">
+                    <i class="ri-palette-line text-secondary-600 text-sm"></i>
+                </div>
+                <span class="text-sm font-semibold text-neutral-700">Branded layouts &amp; charts</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SPLIT SCREEN DEMO SECTION -->
+<section class="section-dark-gradient py-16 max-h-[1400px] overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="flex items-center justify-between mb-10">
+            <div>
+                <h2 class="font-heading text-3xl font-extrabold text-white mb-2" style="letter-spacing: var(--letter-spacing-heading);">Live Demo — Try It Yourself</h2>
+                <p class="text-neutral-400 text-base">Chat with your data on the left · See the generated report on the right</p>
+            </div>
+            <div class="hidden md:flex items-center gap-2 px-4 py-2 bg-white/10 border border-white/20 rounded-full">
+                <span class="w-2 h-2 rounded-full bg-primary-400 live-dot"></span>
+                <span class="text-xs font-semibold text-neutral-300">office_data_q4.xlsx · 1,248 rows loaded</span>
+            </div>
+        </div>
+
+        <!-- Split Screen Container -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+            <!-- LEFT: AI CHATBOT -->
+            <div class="flex flex-col rounded-large overflow-hidden shadow-custom-hover" style="box-shadow: 0 30px 80px -10px rgba(15,23,42,0.4), 0 0 0 1px rgba(226,232,240,0.15);">
+                <!-- Chat Header -->
+                <div class="bg-neutral-900 border-b border-neutral-700 px-5 py-4 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-small bg-primary-500 flex items-center justify-center">
+                            <i class="ri-robot-2-line text-white text-lg"></i>
+                        </div>
+                        <div>
+                            <p class="font-heading font-bold text-white text-sm">SmartViz AI</p>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-primary-400 live-dot"></span>
+                                <span class="text-xs text-neutral-400">Analyzing office_data_q4.xlsx</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button class="w-8 h-8 rounded-small bg-white/10 text-neutral-400 flex items-center justify-center hover:bg-white/20 transition-colors">
+                            <i class="ri-refresh-line text-sm"></i>
+                        </button>
+                        <button class="w-8 h-8 rounded-small bg-white/10 text-neutral-400 flex items-center justify-center hover:bg-white/20 transition-colors">
+                            <i class="ri-more-2-fill text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Chat Context Bar -->
+                <div class="bg-neutral-800 border-b border-neutral-700 px-5 py-2.5 flex items-center gap-3">
+                    <div class="flex items-center gap-2 px-3 py-1.5 bg-neutral-700 rounded-full">
+                        <i class="ri-file-excel-line text-primary-400 text-xs"></i>
+                        <span class="text-xs font-semibold text-neutral-300">office_data_q4.xlsx</span>
+                    </div>
+                    <div class="flex items-center gap-2 px-3 py-1.5 bg-neutral-700 rounded-full">
+                        <i class="ri-database-2-line text-blue-400 text-xs"></i>
+                        <span class="text-xs font-semibold text-neutral-300">4 sheets · 1,248 rows</span>
+                    </div>
+                    <div class="ml-auto flex items-center gap-1.5 px-3 py-1.5 bg-primary-500/20 border border-primary-500/30 rounded-full">
+                        <span class="w-1.5 h-1.5 rounded-full bg-primary-400 live-dot"></span>
+                        <span class="text-xs font-semibold text-primary-300">Context loaded</span>
+                    </div>
+                </div>
+
+                <!-- Chat Messages -->
+                <div class="bg-neutral-900 flex-1 p-5 space-y-5 overflow-y-auto" style="min-height: 480px;">
+
+                    <!-- AI Welcome Message -->
+                    <div class="chat-bubble-ai flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-primary-500 flex items-center justify-center shrink-0 mt-0.5">
+                            <i class="ri-robot-2-line text-white text-sm"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="bg-neutral-800 border border-neutral-700 rounded-large rounded-tl-small p-4 max-w-sm">
+                                <p class="text-sm text-neutral-200 leading-relaxed">
+                                    👋 Hi! I've analyzed your spreadsheet <span class="text-primary-400 font-semibold">office_data_q4.xlsx</span>. I found <span class="font-semibold text-white">1,248 employee records</span> across 4 sheets covering Q4 2023.
+                                </p>
+                                <p class="text-sm text-neutral-200 leading-relaxed mt-2">
+                                    What would you like to know? I can answer questions, generate charts, or create a full PDF report.
+                                </p>
+                            </div>
+                            <p class="text-xs text-neutral-600 mt-1.5 ml-1">SmartViz AI · Just now</p>
+                        </div>
+                    </div>
+
+                    <!-- User Message 1 -->
+                    <div class="chat-bubble-user flex items-start gap-3 flex-row-reverse">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=32&amp;h=32&amp;fit=facearea&amp;facepad=2&amp;q=80" alt="User" class="w-8 h-8 rounded-full shrink-0 mt-0.5">
+                        <div class="flex-1 flex flex-col items-end">
+                            <div class="bg-primary-600 rounded-large rounded-tr-small p-4 max-w-xs">
+                                <p class="text-sm text-white leading-relaxed">What's the average salary by department?</p>
+                            </div>
+                            <p class="text-xs text-neutral-600 mt-1.5 mr-1">You · 2 min ago</p>
+                        </div>
+                    </div>
+
+                    <!-- AI Response 1 with data -->
+                    <div class="chat-bubble-ai flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-primary-500 flex items-center justify-center shrink-0 mt-0.5">
+                            <i class="ri-robot-2-line text-white text-sm"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="bg-neutral-800 border border-neutral-700 rounded-large rounded-tl-small p-4 max-w-sm">
+                                <p class="text-sm text-neutral-200 leading-relaxed mb-3">
+                                    Here's the average salary breakdown by department from your Q4 data:
+                                </p>
+                                <div class="space-y-2.5">
+                                    <div>
+                                        <div class="flex justify-between mb-1">
+                                            <span class="text-xs font-semibold text-neutral-300">Engineering</span>
+                                            <span class="text-xs font-bold text-white">$118,400</span>
+                                        </div>
+                                        <div class="h-1.5 bg-neutral-700 rounded-full overflow-hidden">
+                                            <div class="h-full bg-primary-500 rounded-full" style="width:95%"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between mb-1">
+                                            <span class="text-xs font-semibold text-neutral-300">Sales</span>
+                                            <span class="text-xs font-bold text-white">$94,200</span>
+                                        </div>
+                                        <div class="h-1.5 bg-neutral-700 rounded-full overflow-hidden">
+                                            <div class="h-full bg-secondary-400 rounded-full" style="width:76%"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between mb-1">
+                                            <span class="text-xs font-semibold text-neutral-300">Marketing</span>
+                                            <span class="text-xs font-bold text-white">$86,700</span>
+                                        </div>
+                                        <div class="h-1.5 bg-neutral-700 rounded-full overflow-hidden">
+                                            <div class="h-full bg-blue-400 rounded-full" style="width:70%"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between mb-1">
+                                            <span class="text-xs font-semibold text-neutral-300">Operations</span>
+                                            <span class="text-xs font-bold text-white">$79,300</span>
+                                        </div>
+                                        <div class="h-1.5 bg-neutral-700 rounded-full overflow-hidden">
+                                            <div class="h-full bg-purple-400 rounded-full" style="width:64%"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between mb-1">
+                                            <span class="text-xs font-semibold text-neutral-300">HR</span>
+                                            <span class="text-xs font-bold text-white">$82,400</span>
+                                        </div>
+                                        <div class="h-1.5 bg-neutral-700 rounded-full overflow-hidden">
+                                            <div class="h-full bg-teal-400 rounded-full" style="width:67%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-3 pt-3 border-t border-neutral-700 flex items-center justify-between">
+                                    <span class="text-xs text-neutral-500">Company avg: <span class="text-white font-bold">$92,200</span></span>
+                                    <button class="flex items-center gap-1 px-2.5 py-1 bg-primary-500/20 border border-primary-500/30 rounded-full text-xs font-semibold text-primary-300 hover:bg-primary-500/30 transition-colors">
+                                        <i class="ri-file-chart-line text-xs"></i>Add to Report
+                                    </button>
+                                </div>
+                            </div>
+                            <p class="text-xs text-neutral-600 mt-1.5 ml-1">SmartViz AI · 1 min ago</p>
+                        </div>
+                    </div>
+
+                    <!-- User Message 2 -->
+                    <div class="chat-bubble-user flex items-start gap-3 flex-row-reverse">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=32&amp;h=32&amp;fit=facearea&amp;facepad=2&amp;q=80" alt="User" class="w-8 h-8 rounded-full shrink-0 mt-0.5">
+                        <div class="flex-1 flex flex-col items-end">
+                            <div class="bg-primary-600 rounded-large rounded-tr-small p-4 max-w-xs">
+                                <p class="text-sm text-white leading-relaxed">Which department has the highest performance score and why?</p>
+                            </div>
+                            <p class="text-xs text-neutral-600 mt-1.5 mr-1">You · Just now</p>
+                        </div>
+                    </div>
+
+                    <!-- AI Response 2 -->
+                    <div class="chat-bubble-ai flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-primary-500 flex items-center justify-center shrink-0 mt-0.5">
+                            <i class="ri-robot-2-line text-white text-sm"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="bg-neutral-800 border border-neutral-700 rounded-large rounded-tl-small p-4 max-w-sm">
+                                <div class="flex items-center gap-2 mb-3">
+                                    <div class="w-7 h-7 rounded-full bg-primary-500/20 flex items-center justify-center">
+                                        <i class="ri-award-line text-primary-400 text-sm"></i>
+                                    </div>
+                                    <p class="text-sm font-bold text-white">Engineering leads at 91%</p>
+                                </div>
+                                <p class="text-sm text-neutral-300 leading-relaxed mb-3">
+                                    Engineering has the highest average performance score. Key contributing factors from your data:
+                                </p>
+                                <div class="space-y-2">
+                                    <div class="flex items-start gap-2">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-primary-400 mt-1.5 shrink-0"></span>
+                                        <p class="text-xs text-neutral-300"><span class="text-white font-semibold">Low turnover</span> — only 2 departures in Q4 vs. 8 in Sales</p>
+                                    </div>
+                                    <div class="flex items-start gap-2">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-primary-400 mt-1.5 shrink-0"></span>
+                                        <p class="text-xs text-neutral-300"><span class="text-white font-semibold">High tenure</span> — avg. 4.2 years vs. company avg. of 2.8 years</p>
+                                    </div>
+                                    <div class="flex items-start gap-2">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-primary-400 mt-1.5 shrink-0"></span>
+                                        <p class="text-xs text-neutral-300"><span class="text-white font-semibold">Training hours</span> — 24 hrs/quarter vs. company avg. of 16 hrs</p>
+                                    </div>
+                                </div>
+                                <div class="mt-3 pt-3 border-t border-neutral-700">
+                                    <button class="w-full flex items-center justify-center gap-2 px-3 py-2 bg-primary-500 text-white rounded-small text-xs font-bold hover:bg-primary-600 transition-colors">
+                                        <i class="ri-magic-line"></i>
+                                        Generate Full Performance Report
+                                    </button>
+                                </div>
+                            </div>
+                            <p class="text-xs text-neutral-600 mt-1.5 ml-1">SmartViz AI · Just now</p>
+                        </div>
+                    </div>
+
+                    <!-- Typing Indicator -->
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-primary-500 flex items-center justify-center shrink-0">
+                            <i class="ri-robot-2-line text-white text-sm"></i>
+                        </div>
+                        <div class="bg-neutral-800 border border-neutral-700 rounded-large rounded-tl-small px-4 py-3 flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-neutral-400 typing-dot"></span>
+                            <span class="w-2 h-2 rounded-full bg-neutral-400 typing-dot"></span>
+                            <span class="w-2 h-2 rounded-full bg-neutral-400 typing-dot"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Suggestion Chips -->
+                <div class="bg-neutral-800 border-t border-neutral-700 px-5 py-3">
+                    <p class="text-xs text-neutral-500 mb-2 font-semibold uppercase tracking-wider">Suggested questions</p>
+                    <div class="flex flex-wrap gap-2">
+                        <button class="suggestion-chip px-3 py-1.5 bg-neutral-700 border border-neutral-600 text-neutral-300 rounded-full text-xs font-medium transition-all">
+                            Show revenue trend
+                        </button>
+                        <button class="suggestion-chip px-3 py-1.5 bg-neutral-700 border border-neutral-600 text-neutral-300 rounded-full text-xs font-medium transition-all">
+                            Top 5 performers
+                        </button>
+                        <button class="suggestion-chip px-3 py-1.5 bg-neutral-700 border border-neutral-600 text-neutral-300 rounded-full text-xs font-medium transition-all">
+                            Budget vs actual
+                        </button>
+                        <button class="suggestion-chip px-3 py-1.5 bg-neutral-700 border border-neutral-600 text-neutral-300 rounded-full text-xs font-medium transition-all">
+                            Generate full report
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Chat Input -->
+                <div class="bg-neutral-800 border-t border-neutral-700 px-5 py-4">
+                    <div class="flex items-center gap-3 bg-neutral-700 border border-neutral-600 rounded-large px-4 py-3 focus-within:border-primary-500 transition-colors">
+                        <i class="ri-message-3-line text-neutral-400 text-sm shrink-0"></i>
+                        <input type="text" placeholder="Ask anything about your data..." class="flex-1 bg-transparent text-sm text-neutral-200 placeholder-neutral-500 focus:outline-none">
+                        <div class="flex items-center gap-2">
+                            <button class="w-7 h-7 rounded-full bg-neutral-600 text-neutral-400 flex items-center justify-center hover:bg-neutral-500 transition-colors">
+                                <i class="ri-attachment-2 text-xs"></i>
+                            </button>
+                            <button class="w-8 h-8 rounded-full bg-primary-500 text-white flex items-center justify-center hover:bg-primary-600 transition-colors">
+                                <i class="ri-send-plane-fill text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT: GENERATED REPORT PREVIEW -->
+            <div class="flex flex-col rounded-large overflow-hidden" style="box-shadow: 0 30px 80px -10px rgba(15,23,42,0.4), 0 0 0 1px rgba(226,232,240,0.15);">
+                <!-- Report Header Bar -->
+                <div class="bg-neutral-100 border-b border-neutral-200 px-5 py-3 flex items-center gap-4">
+                    <div class="flex gap-1.5">
+                        <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                    </div>
+                    <div class="flex-1 bg-white rounded-small px-4 py-1.5 flex items-center gap-2 border border-neutral-200 max-w-xs mx-auto">
+                        <i class="ri-file-pdf-line text-red-400 text-xs"></i>
+                        <span class="text-xs text-neutral-500">Q4_Performance_Report_2023.pdf</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button class="px-3 py-1 bg-neutral-900 text-white rounded text-xs font-semibold flex items-center gap-1">
+                            <i class="ri-download-line text-xs"></i>Download
+                        </button>
+                        <button class="px-3 py-1 bg-white border border-neutral-200 text-neutral-600 rounded text-xs font-semibold flex items-center gap-1">
+                            <i class="ri-share-line text-xs"></i>Share
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Report Page -->
+                <div class="report-page flex-1 overflow-y-auto" style="min-height: 640px;">
+
+                    <!-- Report Cover / Header -->
+                    <div class="bg-gradient-to-br from-neutral-900 to-neutral-800 px-8 py-8 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-48 h-48 bg-primary-500 opacity-10 rounded-full -translate-y-12 translate-x-12"></div>
+                        <div class="absolute bottom-0 left-0 w-32 h-32 bg-secondary-400 opacity-10 rounded-full translate-y-8 -translate-x-8"></div>
+                        <div class="relative z-10">
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-8 h-8 logo-mark rounded flex items-center justify-center text-white">
+                                        <i class="ri-bar-chart-box-fill text-sm"></i>
+                                    </div>
+                                    <span class="font-heading font-bold text-white text-sm">SmartViz</span>
+                                </div>
+                                <span class="px-3 py-1 bg-primary-500/20 border border-primary-500/30 rounded-full text-xs font-bold text-primary-300">AI Generated</span>
+                            </div>
+                            <h2 class="font-heading text-2xl font-extrabold text-white mb-2" style="letter-spacing: var(--letter-spacing-heading);">Q4 2023 Performance Report</h2>
+                            <p class="text-neutral-400 text-sm mb-4">Smart Office Inc. · Generated from office_data_q4.xlsx · Nov 27, 2023</p>
+                            <div class="flex flex-wrap gap-4">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-7 h-7 rounded-full bg-primary-500/20 flex items-center justify-center">
+                                        <i class="ri-user-line text-primary-400 text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-neutral-500">Employees</p>
+                                        <p class="text-sm font-bold text-white">248</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-7 h-7 rounded-full bg-secondary-500/20 flex items-center justify-center">
+                                        <i class="ri-money-dollar-circle-line text-secondary-400 text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-neutral-500">Total Revenue</p>
+                                        <p class="text-sm font-bold text-white">$2.4M</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-7 h-7 rounded-full bg-blue-500/20 flex items-center justify-center">
+                                        <i class="ri-star-line text-blue-400 text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-neutral-500">Avg. Performance</p>
+                                        <p class="text-sm font-bold text-white">84.6%</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-7 h-7 rounded-full bg-purple-500/20 flex items-center justify-center">
+                                        <i class="ri-building-line text-purple-400 text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-neutral-500">Departments</p>
+                                        <p class="text-sm font-bold text-white">5</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Report Body -->
+                    <div class="bg-white px-8 py-6 space-y-6">
+
+                        <!-- Executive Summary -->
+                        <div>
+                            <div class="flex items-center gap-2 mb-3">
+                                <div class="w-1 h-5 bg-primary-500 rounded-full"></div>
+                                <h3 class="font-heading font-bold text-neutral-900 text-base" style="letter-spacing: var(--letter-spacing-heading);">Executive Summary</h3>
+                            </div>
+                            <div class="report-highlight rounded-large p-4">
+                                <p class="text-sm text-neutral-700 leading-relaxed">
+                                    Q4 2023 demonstrated strong organizational performance with a <strong class="text-neutral-900">15.2% revenue increase</strong> year-over-year. Engineering maintained the highest performance score at <strong class="text-neutral-900">91%</strong>, while overall employee satisfaction improved by <strong class="text-neutral-900">4.2%</strong>. Key areas for improvement include Operations department performance (79%) and office utilization which declined 3.1% to 78%.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Revenue Chart in Report -->
+                        <div>
+                            <div class="flex items-center gap-2 mb-3">
+                                <div class="w-1 h-5 bg-secondary-400 rounded-full"></div>
+                                <h3 class="font-heading font-bold text-neutral-900 text-base" style="letter-spacing: var(--letter-spacing-heading);">Revenue &amp; Expense Trend</h3>
+                            </div>
+                            <div class="border border-neutral-200 rounded-large p-4">
+                                <div class="flex items-center justify-between mb-3">
+                                    <div class="flex items-center gap-4">
+                                        <div class="flex items-center gap-1.5">
+                                            <span class="w-2.5 h-2.5 rounded-full bg-primary-500"></span>
+                                            <span class="text-xs text-neutral-500">Revenue</span>
+                                        </div>
+                                        <div class="flex items-center gap-1.5">
+                                            <span class="w-2.5 h-2.5 rounded-full bg-secondary-400"></span>
+                                            <span class="text-xs text-neutral-500">Expenses</span>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs text-neutral-400">Q4 2023 · Monthly</span>
+                                </div>
+                                <div class="h-40 w-full overflow-hidden">
+                                    <canvas id="reportRevenueChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Department Performance -->
+                        <div>
+                            <div class="flex items-center gap-2 mb-3">
+                                <div class="w-1 h-5 bg-blue-500 rounded-full"></div>
+                                <h3 class="font-heading font-bold text-neutral-900 text-base" style="letter-spacing: var(--letter-spacing-heading);">Department Performance Scores</h3>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="border border-neutral-200 rounded-large p-4">
+                                    <div class="flex items-center justify-between mb-1">
+                                        <span class="text-xs font-semibold text-neutral-700">Engineering</span>
+                                        <span class="text-xs font-bold text-primary-600">91%</span>
+                                    </div>
+                                    <div class="h-2 bg-neutral-100 rounded-full overflow-hidden mb-2">
+                                        <div class="h-full bg-primary-500 rounded-full metric-bar" style="width:91%"></div>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <i class="ri-arrow-up-line text-primary-500 text-xs"></i>
+                                        <span class="text-xs text-primary-600 font-semibold">+3.2% vs Q3</span>
+                                    </div>
+                                </div>
+                                <div class="border border-neutral-200 rounded-large p-4">
+                                    <div class="flex items-center justify-between mb-1">
+                                        <span class="text-xs font-semibold text-neutral-700">Sales</span>
+                                        <span class="text-xs font-bold text-blue-600">87%</span>
+                                    </div>
+                                    <div class="h-2 bg-neutral-100 rounded-full overflow-hidden mb-2">
+                                        <div class="h-full bg-blue-500 rounded-full metric-bar" style="width:87%"></div>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <i class="ri-arrow-up-line text-primary-500 text-xs"></i>
+                                        <span class="text-xs text-primary-600 font-semibold">+5.1% vs Q3</span>
+                                    </div>
+                                </div>
+                                <div class="border border-neutral-200 rounded-large p-4">
+                                    <div class="flex items-center justify-between mb-1">
+                                        <span class="text-xs font-semibold text-neutral-700">Marketing</span>
+                                        <span class="text-xs font-bold text-secondary-600">82%</span>
+                                    </div>
+                                    <div class="h-2 bg-neutral-100 rounded-full overflow-hidden mb-2">
+                                        <div class="h-full bg-secondary-400 rounded-full metric-bar" style="width:82%"></div>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <i class="ri-arrow-up-line text-primary-500 text-xs"></i>
+                                        <span class="text-xs text-primary-600 font-semibold">+1.8% vs Q3</span>
+                                    </div>
+                                </div>
+                                <div class="border border-neutral-200 rounded-large p-4">
+                                    <div class="flex items-center justify-between mb-1">
+                                        <span class="text-xs font-semibold text-neutral-700">Operations</span>
+                                        <span class="text-xs font-bold text-yellow-600">79%</span>
+                                    </div>
+                                    <div class="h-2 bg-neutral-100 rounded-full overflow-hidden mb-2">
+                                        <div class="h-full bg-yellow-400 rounded-full metric-bar" style="width:79%"></div>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <i class="ri-arrow-down-line text-red-500 text-xs"></i>
+                                        <span class="text-xs text-red-500 font-semibold">-2.4% vs Q3</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Salary Distribution Donut -->
+                        <div>
+                            <div class="flex items-center gap-2 mb-3">
+                                <div class="w-1 h-5 bg-purple-500 rounded-full"></div>
+                                <h3 class="font-heading font-bold text-neutral-900 text-base" style="letter-spacing: var(--letter-spacing-heading);">Salary Distribution by Department</h3>
+                            </div>
+                            <div class="border border-neutral-200 rounded-large p-4 flex items-center gap-6">
+                                <div class="h-36 w-36 shrink-0 overflow-hidden">
+                                    <canvas id="reportSalaryDonut"></canvas>
+                                </div>
+                                <div class="flex-1 space-y-2.5">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-2">
+                                            <span class="w-2.5 h-2.5 rounded-full bg-primary-500"></span>
+                                            <span class="text-xs text-neutral-600">Engineering</span>
+                                        </div>
+                                        <div class="text-right">
+                                            <span class="text-xs font-bold text-neutral-900">$118,400</span>
+                                            <span class="text-xs text-neutral-400 ml-1">avg</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-2">
+                                            <span class="w-2.5 h-2.5 rounded-full bg-secondary-400"></span>
+                                            <span class="text-xs text-neutral-600">Sales</span>
+                                        </div>
+                                        <div class="text-right">
+                                            <span class="text-xs font-bold text-neutral-900">$94,200</span>
+                                            <span class="text-xs text-neutral-400 ml-1">avg</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-2">
+                                            <span class="w-2.5 h-2.5 rounded-full bg-blue-400"></span>
+                                            <span class="text-xs text-neutral-600">Marketing</span>
+                                        </div>
+                                        <div class="text-right">
+                                            <span class="text-xs font-bold text-neutral-900">$86,700</span>
+                                            <span class="text-xs text-neutral-400 ml-1">avg</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-2">
+                                            <span class="w-2.5 h-2.5 rounded-full bg-purple-400"></span>
+                                            <span class="text-xs text-neutral-600">Operations</span>
+                                        </div>
+                                        <div class="text-right">
+                                            <span class="text-xs font-bold text-neutral-900">$79,300</span>
+                                            <span class="text-xs text-neutral-400 ml-1">avg</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-2">
+                                            <span class="w-2.5 h-2.5 rounded-full bg-teal-400"></span>
+                                            <span class="text-xs text-neutral-600">HR</span>
+                                        </div>
+                                        <div class="text-right">
+                                            <span class="text-xs font-bold text-neutral-900">$82,400</span>
+                                            <span class="text-xs text-neutral-400 ml-1">avg</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- AI Insights Section -->
+                        <div>
+                            <div class="flex items-center gap-2 mb-3">
+                                <div class="w-1 h-5 bg-primary-500 rounded-full"></div>
+                                <h3 class="font-heading font-bold text-neutral-900 text-base" style="letter-spacing: var(--letter-spacing-heading);">AI-Generated Insights</h3>
+                                <span class="px-2 py-0.5 bg-primary-50 text-primary-700 rounded-full text-xs font-bold">Auto</span>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex items-start gap-3 p-3 bg-primary-50 border border-primary-100 rounded-large">
+                                    <i class="ri-lightbulb-line text-primary-600 text-sm mt-0.5 shrink-0"></i>
+                                    <p class="text-xs text-neutral-700 leading-relaxed"><span class="font-bold text-neutral-900">Revenue growth accelerating:</span> Q4 revenue of $2.4M represents a 15.2% YoY increase, outpacing the industry average of 8.3%.</p>
+                                </div>
+                                <div class="flex items-start gap-3 p-3 bg-yellow-50 border border-yellow-100 rounded-large">
+                                    <i class="ri-alert-line text-yellow-600 text-sm mt-0.5 shrink-0"></i>
+                                    <p class="text-xs text-neutral-700 leading-relaxed"><span class="font-bold text-neutral-900">Operations needs attention:</span> Performance score dropped 2.4% to 79% — consider targeted training programs for Q1 2024.</p>
+                                </div>
+                                <div class="flex items-start gap-3 p-3 bg-blue-50 border border-blue-100 rounded-large">
+                                    <i class="ri-bar-chart-line text-blue-600 text-sm mt-0.5 shrink-0"></i>
+                                    <p class="text-xs text-neutral-700 leading-relaxed"><span class="font-bold text-neutral-900">Salary equity opportunity:</span> Engineering earns 49% more than Operations on average — review compensation bands for retention risk.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Report Footer -->
+                        <div class="border-t border-neutral-200 pt-4 flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <div class="w-6 h-6 logo-mark rounded flex items-center justify-center text-white">
+                                    <i class="ri-bar-chart-box-fill text-xs"></i>
+                                </div>
+                                <span class="text-xs text-neutral-400">Generated by SmartViz AI · Nov 27, 2023</span>
+                            </div>
+                            <span class="text-xs text-neutral-400">Page 1 of 12</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature Callouts Below Split Screen -->
+        <div class="flex flex-wrap items-center justify-center gap-4 mt-10">
+            <div class="floating-badge bg-white rounded-large shadow-custom-hover border border-neutral-200 px-4 py-3 flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center">
+                    <i class="ri-magic-line text-primary-600 text-sm"></i>
+                </div>
+                <div>
+                    <p class="font-heading font-bold text-neutral-900 text-xs">GPT-4 Powered</p>
+                    <p class="text-neutral-400" style="font-size:10px">Understands context &amp; nuance</p>
+                </div>
+            </div>
+            <div class="floating-badge bg-white rounded-large shadow-custom-hover border border-neutral-200 px-4 py-3 flex items-center gap-3" style="animation-delay:0.5s">
+                <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
+                    <i class="ri-file-pdf-line text-blue-600 text-sm"></i>
+                </div>
+                <div>
+                    <p class="font-heading font-bold text-neutral-900 text-xs">Instant PDF Export</p>
+                    <p class="text-neutral-400" style="font-size:10px">Branded, print-ready reports</p>
+                </div>
+            </div>
+            <div class="floating-badge bg-white rounded-large shadow-custom-hover border border-neutral-200 px-4 py-3 flex items-center gap-3" style="animation-delay:1s">
+                <div class="w-8 h-8 rounded-full bg-secondary-100 flex items-center justify-center">
+                    <i class="ri-shield-check-line text-secondary-600 text-sm"></i>
+                </div>
+                <div>
+                    <p class="font-heading font-bold text-neutral-900 text-xs">Data Private &amp; Secure</p>
+                    <p class="text-neutral-400" style="font-size:10px">Your data never trains AI models</p>
+                </div>
+            </div>
+            <div class="floating-badge bg-white rounded-large shadow-custom-hover border border-neutral-200 px-4 py-3 flex items-center gap-3" style="animation-delay:1.5s">
+                <div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center">
+                    <i class="ri-translate-2 text-purple-600 text-sm"></i>
+                </div>
+                <div>
+                    <p class="font-heading font-bold text-neutral-900 text-xs">Plain English Queries</p>
+                    <p class="text-neutral-400" style="font-size:10px">No SQL or formulas needed</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS SECTION -->
+<section class="bg-white py-20 max-h-[600px] overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-14">
+            <div class="inline-flex items-center gap-2 px-4 py-2 bg-primary-50 border border-primary-100 rounded-full mb-5">
+                <i class="ri-question-line text-primary-600 text-sm"></i>
+                <span class="text-xs font-semibold text-primary-700">How it works</span>
+            </div>
+            <h2 class="font-heading text-4xl font-extrabold text-neutral-900 mb-4" style="letter-spacing: var(--letter-spacing-heading);">From Question to Report<br>in Three Steps</h2>
+            <p class="text-neutral-500 text-lg max-w-xl mx-auto">No training required. Just upload, ask, and download.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="text-center">
+                <div class="w-16 h-16 rounded-large bg-primary-50 border-2 border-primary-100 flex items-center justify-center mx-auto mb-5 shadow-custom">
+                    <i class="ri-upload-cloud-2-line text-primary-600 text-2xl"></i>
+                </div>
+                <div class="w-8 h-8 rounded-full bg-primary-500 text-white font-heading font-bold text-sm flex items-center justify-center mx-auto -mt-2 mb-4 shadow-custom">1</div>
+                <h3 class="font-heading font-bold text-neutral-900 text-lg mb-2" style="letter-spacing: var(--letter-spacing-heading);">Upload Your Spreadsheet</h3>
+                <p class="text-neutral-500 text-sm leading-relaxed">Drop any .xlsx, .csv, or .xls file. SmartViz parses all sheets and builds a full data context automatically.</p>
+            </div>
+            <div class="text-center">
+                <div class="w-16 h-16 rounded-large bg-secondary-50 border-2 border-secondary-100 flex items-center justify-center mx-auto mb-5 shadow-custom">
+                    <i class="ri-message-3-line text-secondary-600 text-2xl"></i>
+                </div>
+                <div class="w-8 h-8 rounded-full bg-secondary-500 text-white font-heading font-bold text-sm flex items-center justify-center mx-auto -mt-2 mb-4 shadow-custom">2</div>
+                <h3 class="font-heading font-bold text-neutral-900 text-lg mb-2" style="letter-spacing: var(--letter-spacing-heading);">Ask in Plain English</h3>
+                <p class="text-neutral-500 text-sm leading-relaxed">Type any question about your data. The AI understands context, relationships, and trends across all your sheets.</p>
+            </div>
+            <div class="text-center">
+                <div class="w-16 h-16 rounded-large bg-blue-50 border-2 border-blue-100 flex items-center justify-center mx-auto mb-5 shadow-custom">
+                    <i class="ri-file-chart-2-line text-blue-600 text-2xl"></i>
+                </div>
+                <div class="w-8 h-8 rounded-full bg-blue-500 text-white font-heading font-bold text-sm flex items-center justify-center mx-auto -mt-2 mb-4 shadow-custom">3</div>
+                <h3 class="font-heading font-bold text-neutral-900 text-lg mb-2" style="letter-spacing: var(--letter-spacing-heading);">Get a Beautiful Report</h3>
+                <p class="text-neutral-500 text-sm leading-relaxed">Download a fully branded PDF with charts, summaries, and AI insights — ready to share with your team or stakeholders.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- REPORT TYPES SHOWCASE -->
+<section class="bg-background-100 py-20 max-h-[700px] overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-12">
+            <h2 class="font-heading text-4xl font-extrabold text-neutral-900 mb-4" style="letter-spacing: var(--letter-spacing-heading);">Every Report Type, Auto-Generated</h2>
+            <p class="text-neutral-500 text-lg max-w-xl mx-auto">SmartViz recognizes your data type and picks the best report format automatically.</p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="bg-white rounded-large border border-neutral-200 p-5 shadow-custom text-center hover:shadow-custom-hover transition-all">
+                <div class="w-12 h-12 rounded-large bg-primary-100 flex items-center justify-center mx-auto mb-3">
+                    <i class="ri-money-dollar-circle-line text-primary-600 text-xl"></i>
+                </div>
+                <h4 class="font-heading font-bold text-neutral-900 text-sm mb-1">Financial</h4>
+                <p class="text-xs text-neutral-500">P&amp;L, cash flow, budget vs actual</p>
+            </div>
+            <div class="bg-white rounded-large border border-neutral-200 p-5 shadow-custom text-center hover:shadow-custom-hover transition-all">
+                <div class="w-12 h-12 rounded-large bg-secondary-100 flex items-center justify-center mx-auto mb-3">
+                    <i class="ri-bar-chart-line text-secondary-600 text-xl"></i>
+                </div>
+                <h4 class="font-heading font-bold text-neutral-900 text-sm mb-1">Sales</h4>
+                <p class="text-xs text-neutral-500">Pipeline, conversion, rep performance</p>
+            </div>
+            <div class="bg-white rounded-large border border-neutral-200 p-5 shadow-custom text-center hover:shadow-custom-hover transition-all">
+                <div class="w-12 h-12 rounded-large bg-blue-100 flex items-center justify-center mx-auto mb-3">
+                    <i class="ri-team-line text-blue-600 text-xl"></i>
+                </div>
+                <h4 class="font-heading font-bold text-neutral-900 text-sm mb-1">HR &amp; People</h4>
+                <p class="text-xs text-neutral-500">Headcount, performance, attrition</p>
+            </div>
+            <div class="bg-white rounded-large border border-neutral-200 p-5 shadow-custom text-center hover:shadow-custom-hover transition-all">
+                <div class="w-12 h-12 rounded-large bg-purple-100 flex items-center justify-center mx-auto mb-3">
+                    <i class="ri-settings-3-line text-purple-600 text-xl"></i>
+                </div>
+                <h4 class="font-heading font-bold text-neutral-900 text-sm mb-1">Operations</h4>
+                <p class="text-xs text-neutral-500">Inventory, utilization, efficiency</p>
+            </div>
+            <div class="bg-white rounded-large border border-neutral-200 p-5 shadow-custom text-center hover:shadow-custom-hover transition-all">
+                <div class="w-12 h-12 rounded-large bg-teal-100 flex items-center justify-center mx-auto mb-3">
+                    <i class="ri-user-add-line text-teal-600 text-xl"></i>
+                </div>
+                <h4 class="font-heading font-bold text-neutral-900 text-sm mb-1">Customer</h4>
+                <p class="text-xs text-neutral-500">CAC, LTV, churn, NPS scores</p>
+            </div>
+            <div class="bg-white rounded-large border border-neutral-200 p-5 shadow-custom text-center hover:shadow-custom-hover transition-all">
+                <div class="w-12 h-12 rounded-large bg-yellow-100 flex items-center justify-center mx-auto mb-3">
+                    <i class="ri-line-chart-line text-yellow-600 text-xl"></i>
+                </div>
+                <h4 class="font-heading font-bold text-neutral-900 text-sm mb-1">Marketing</h4>
+                <p class="text-xs text-neutral-500">Campaign ROI, traffic, conversions</p>
+            </div>
+            <div class="bg-white rounded-large border border-neutral-200 p-5 shadow-custom text-center hover:shadow-custom-hover transition-all">
+                <div class="w-12 h-12 rounded-large bg-red-100 flex items-center justify-center mx-auto mb-3">
+                    <i class="ri-stock-line text-red-600 text-xl"></i>
+                </div>
+                <h4 class="font-heading font-bold text-neutral-900 text-sm mb-1">Inventory</h4>
+                <p class="text-xs text-neutral-500">Stock levels, turnover, reorders</p>
+            </div>
+            <div class="bg-white rounded-large border border-neutral-200 p-5 shadow-custom text-center hover:shadow-custom-hover transition-all">
+                <div class="w-12 h-12 rounded-large bg-neutral-100 flex items-center justify-center mx-auto mb-3">
+                    <i class="ri-time-line text-neutral-600 text-xl"></i>
+                </div>
+                <h4 class="font-heading font-bold text-neutral-900 text-sm mb-1">Scheduled</h4>
+                <p class="text-xs text-neutral-500">Auto-email weekly/monthly digests</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="bg-neutral-900 py-16 max-h-[320px] overflow-hidden">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-primary-500/20 border border-primary-500/30 rounded-full mb-6">
+            <i class="ri-rocket-line text-primary-400 text-sm"></i>
+            <span class="text-xs font-semibold text-primary-300">Ready to generate your first AI report?</span>
+        </div>
+        <h2 class="font-heading text-4xl font-extrabold text-white mb-4" style="letter-spacing: var(--letter-spacing-heading);">
+            Start Asking Questions<br>About Your Data Today
+        </h2>
+        <p class="text-neutral-400 text-lg mb-8">
+            Upload your spreadsheet and get your first AI-generated report in under 60 seconds.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/pricing-cta" class="inline-flex items-center gap-2.5 px-8 py-4 bg-primary-500 text-white rounded-small text-base font-bold hover:bg-primary-600 transition-colors shadow-custom">
+                <i class="ri-upload-cloud-2-line"></i>
+                Try Free — No Credit Card
+            </a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/dashboard-preview" class="inline-flex items-center gap-2.5 px-8 py-4 bg-white/10 text-white rounded-small text-base font-semibold border border-white/20 hover:bg-white/20 transition-colors">
+                <i class="ri-dashboard-line text-neutral-300"></i>
+                View Dashboard Demo
+                <i class="ri-arrow-right-line text-xs"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-white border-t border-neutral-100 py-8 max-h-[120px]">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-2">
+            <div class="w-7 h-7 logo-mark rounded flex items-center justify-center text-white">
+                <i class="ri-bar-chart-box-fill text-sm"></i>
+            </div>
+            <span class="font-heading font-bold text-neutral-900 text-sm">SmartViz</span>
+            <span class="text-neutral-300 mx-2">·</span>
+            <span class="text-xs text-neutral-400">© 2024 SmartViz Inc.</span>
+        </div>
+        <div class="flex items-center gap-6">
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/hero-landing-page" class="text-xs text-neutral-500 hover:text-neutral-900 transition-colors">Home</a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/features-showcase" class="text-xs text-neutral-500 hover:text-neutral-900 transition-colors">Features</a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/dashboard-preview" class="text-xs text-neutral-500 hover:text-neutral-900 transition-colors">Dashboard</a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/chat-bot-reports-demo" class="text-xs text-neutral-900 font-semibold">AI Reports</a>
+            <a href="/api/copilot/prototype/c2df6dcd-98eb-4a01-bf3e-4d552e7af393/pricing-cta" class="text-xs text-neutral-500 hover:text-neutral-900 transition-colors">Pricing</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // Report Revenue Chart
+        const ctx1 = document.getElementById('reportRevenueChart').getContext('2d');
+        const gradRev = ctx1.createLinearGradient(0, 0, 0, 160);
+        gradRev.addColorStop(0, 'rgba(16,185,129,0.18)');
+        gradRev.addColorStop(1, 'rgba(16,185,129,0)');
+        const gradExp = ctx1.createLinearGradient(0, 0, 0, 160);
+        gradExp.addColorStop(0, 'rgba(249,115,22,0.15)');
+        gradExp.addColorStop(1, 'rgba(249,115,22,0)');
+
+        new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: ['Oct W1','Oct W2','Oct W3','Oct W4','Nov W1','Nov W2','Nov W3','Nov W4','Dec W1','Dec W2','Dec W3','Dec W4'],
+                datasets: [
+                    {
+                        label: 'Revenue',
+                        data: [185, 192, 198, 205, 210, 218, 225, 232, 238, 245, 252, 268],
+                        borderColor: '#10b981',
+                        backgroundColor: gradRev,
+                        borderWidth: 2,
+                        tension: 0.4,
+                        fill: true,
+                        pointRadius: 2,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#10b981',
+                        pointBorderWidth: 1.5
+                    },
+                    {
+                        label: 'Expenses',
+                        data: [110, 115, 112, 118, 122, 125, 128, 132, 135, 138, 140, 142],
+                        borderColor: '#fb923c',
+                        backgroundColor: gradExp,
+                        borderWidth: 2,
+                        tension: 0.4,
+                        fill: true,
+                        pointRadius: 2,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#fb923c',
+                        pointBorderWidth: 1.5
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: '#1e293b',
+                        padding: 8,
+                        titleFont: { family: "'Plus Jakarta Sans', sans-serif", size: 11 },
+                        bodyFont: { family: "'Inter', sans-serif", size: 10 },
+                        cornerRadius: 6
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        grid: { color: '#f1f5f9', drawBorder: false },
+                        ticks: { font: { family: "'Inter', sans-serif", size: 9 }, color: '#94a3b8', callback: v => '$' + v + 'k' }
+                    },
+                    x: {
+                        grid: { display: false, drawBorder: false },
+                        ticks: { font: { family: "'Inter', sans-serif", size: 9 }, color: '#94a3b8', maxRotation: 0, maxTicksLimit: 6 }
+                    }
+                },
+                interaction: { intersect: false, mode: 'index' }
+            }
+        });
+
+        // Salary Donut Chart
+        const ctx2 = document.getElementById('reportSalaryDonut').getContext('2d');
+        new Chart(ctx2, {
+            type: 'doughnut',
+            data: {
+                labels: ['Engineering', 'Sales', 'Marketing', 'Operations', 'HR'],
+                datasets: [{
+                    data: [35, 25, 18, 12, 10],
+                    backgroundColor: ['#10b981', '#fb923c', '#60a5fa', '#c084fc', '#2dd4bf'],
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '68%',
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: '#1e293b',
+                        padding: 8,
+                        titleFont: { family: "'Plus Jakarta Sans', sans-serif", size: 11 },
+                        bodyFont: { family: "'Inter', sans-serif", size: 10 },
+                        cornerRadius: 6
+                    }
+                }
+            }
+        });
+    });
+</script>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

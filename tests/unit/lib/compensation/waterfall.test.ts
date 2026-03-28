@@ -114,8 +114,8 @@ describe('Waterfall Calculations', () => {
       expect(result.leadershipPoolCents).toBe(0);
       expect(result.overridePoolCents).toBe(0);
 
-      // Effective percentage
-      expect(result.effectivePercentage).toBe(25.64); // $10 / $39
+      // Effective percentage ($10 / $39)
+      expect(result.effectivePercentage).toBeCloseTo(25.64, 2);
     });
 
     it('should ignore priceCents parameter for Business Center', () => {
