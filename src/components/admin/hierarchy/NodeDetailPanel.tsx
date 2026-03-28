@@ -25,8 +25,15 @@ interface DistributorNode {
   matrix_position: number | null;
   matrix_depth: number;
   sponsor_id: string | null;
+
+  // ⚠️ CACHED FIELDS - Display only, may be stale
+  // For live BV data, JOIN with members table:
+  // members.personal_credits_monthly, members.team_credits_monthly
+  /** @deprecated Display only - cached/stale, use members.personal_credits_monthly for live data */
   personal_bv_monthly?: number | null;
+  /** @deprecated Display only - cached/stale, use members.team_credits_monthly for live data */
   group_bv_monthly?: number | null;
+
   created_at: string;
 }
 
