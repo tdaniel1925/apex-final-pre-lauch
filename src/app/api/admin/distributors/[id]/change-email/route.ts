@@ -7,6 +7,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getAdminUser } from '@/lib/auth/admin';
 import { createServiceClient } from '@/lib/supabase/service';
 import { Resend } from 'resend';
+import { logAdminActionWithContext } from '@/lib/admin/audit-logger';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -148,6 +149,19 @@ export async function POST(
         p_new_email: distributor.email // Restore old email
       });
 
+      // Log failed email change
+      await logAdminActionWithContext(request, {
+        adminId: adminUser.user.id,
+        adminEmail: adminUser.user.email || 'unknown',
+        action: 'CHANGE_EMAIL',
+        entityType: 'distributor',
+        entityId: distributorId,
+        oldValue: { email: distributor.email },
+        newValue: { email: newEmail },
+        status: 'failure',
+        errorMessage: authError.message || 'Unknown error',
+      });
+
       return NextResponse.json(
         { error: `Failed to update email in authentication system: ${authError.message || 'Unknown error'}` },
         { status: 500 }
@@ -163,6 +177,18 @@ export async function POST(
         new_email: newEmail,
         changed_by_admin: true,
       },
+    });
+
+    // Log successful email change to admin audit log
+    await logAdminActionWithContext(request, {
+      adminId: adminUser.user.id,
+      adminEmail: adminUser.user.email || 'unknown',
+      action: 'CHANGE_EMAIL',
+      entityType: 'distributor',
+      entityId: distributorId,
+      oldValue: { email: distributor.email },
+      newValue: { email: newEmail },
+      status: 'success',
     });
 
     // Send notification email to the new address

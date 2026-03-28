@@ -1,0 +1,125 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e2]:
+  - navigation [ref=e3]:
+    - generic [ref=e5]:
+      - link "PulseAgent" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - img [ref=e8]
+        - generic [ref=e10]: PulseAgent
+      - link "Already have an account? Sign in" [ref=e12] [cursor=pointer]:
+        - /url: /login
+  - generic [ref=e14]:
+    - generic [ref=e15]:
+      - img [ref=e17]
+      - heading "Create your account" [level=1] [ref=e19]
+      - paragraph [ref=e20]: Start your free trial — no credit card required
+    - generic [ref=e21]:
+      - generic [ref=e22]:
+        - img [ref=e23]
+        - generic [ref=e26]: Free 14-day trial
+      - generic [ref=e28]:
+        - img [ref=e29]
+        - generic [ref=e32]: No credit card
+      - generic [ref=e34]:
+        - img [ref=e35]
+        - generic [ref=e39]: Cancel anytime
+    - generic [ref=e41]:
+      - generic [ref=e42]:
+        - generic [ref=e43]:
+          - generic [ref=e44]: Business name
+          - generic [ref=e45]:
+            - img [ref=e46]
+            - textbox "Business name" [active] [ref=e50]:
+              - /placeholder: Acme Chiropractic
+        - generic [ref=e51]:
+          - generic [ref=e52]: Work email
+          - generic [ref=e53]:
+            - img [ref=e54]
+            - textbox "Work email" [ref=e57]:
+              - /placeholder: you@yourbusiness.com
+        - generic [ref=e58]:
+          - generic [ref=e59]: Industry
+          - generic [ref=e60]:
+            - img
+            - combobox "Industry" [ref=e61]:
+              - option "Select your industry…" [disabled] [selected]
+              - option "Chiropractic"
+              - option "Dentistry"
+              - option "Physical Therapy"
+              - option "Medical Practice"
+              - option "Mental Health / Therapy"
+              - option "Optometry"
+              - option "Law Firm"
+              - option "Personal Injury"
+              - option "Family Law"
+              - option "Estate Planning"
+              - option "Financial Advisor"
+              - option "Insurance Agency"
+              - option "Accounting / CPA"
+              - option "Mortgage / Lending"
+              - option "Real Estate Agent"
+              - option "Property Management"
+              - option "Gym / Fitness Studio"
+              - option "Personal Trainer"
+              - option "Yoga / Pilates"
+              - option "Nutrition / Dietitian"
+              - option "Restaurant / Food"
+              - option "Retail"
+              - option "Home Services"
+              - option "Other"
+        - generic [ref=e62]:
+          - generic [ref=e63]: Password
+          - generic [ref=e64]:
+            - img [ref=e65]
+            - textbox "Password" [ref=e68]:
+              - /placeholder: Min. 8 characters
+            - button [ref=e69] [cursor=pointer]:
+              - img [ref=e70]
+        - paragraph [ref=e79]: Enter a password to see strength
+        - generic [ref=e80]:
+          - checkbox "I agree to the Terms of Service and Privacy Policy" [ref=e81]
+          - generic [ref=e82]:
+            - text: I agree to the
+            - link "Terms of Service" [ref=e83] [cursor=pointer]:
+              - /url: "#"
+            - text: and
+            - link "Privacy Policy" [ref=e84] [cursor=pointer]:
+              - /url: "#"
+        - button "Create Account" [ref=e85] [cursor=pointer]:
+          - text: Create Account
+          - img [ref=e86]
+      - generic [ref=e90]: OR SIGN UP WITH
+      - generic [ref=e92]:
+        - button "Google Google" [ref=e93] [cursor=pointer]:
+          - img "Google" [ref=e94]
+          - text: Google
+        - button "Microsoft Microsoft" [ref=e95] [cursor=pointer]:
+          - img "Microsoft" [ref=e96]
+          - text: Microsoft
+    - paragraph [ref=e97]:
+      - text: Already have an account?
+      - link "Sign in →" [ref=e98] [cursor=pointer]:
+        - /url: /login
+    - generic [ref=e99]:
+      - paragraph [ref=e100]:
+        - img [ref=e101]
+        - text: What happens after you sign up
+      - generic [ref=e104]:
+        - generic [ref=e105]:
+          - generic [ref=e106]: "1"
+          - generic [ref=e107]:
+            - paragraph [ref=e108]: 5-minute onboarding
+            - paragraph [ref=e109]: Tell us about your business and target audience
+        - generic [ref=e110]:
+          - generic [ref=e111]: "2"
+          - generic [ref=e112]:
+            - paragraph [ref=e113]: AI generates your first month
+            - paragraph [ref=e114]: 30–150 posts created and ready to review
+        - generic [ref=e115]:
+          - generic [ref=e116]: "3"
+          - generic [ref=e117]:
+            - paragraph [ref=e118]: Daily email at 8am
+            - paragraph [ref=e119]: Post in 30 seconds — copy, paste, done
+```

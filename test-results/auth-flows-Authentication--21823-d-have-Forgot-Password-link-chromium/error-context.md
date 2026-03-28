@@ -1,0 +1,72 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e2]:
+  - navigation [ref=e3]:
+    - generic [ref=e5]:
+      - link "PulseAgent" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - img [ref=e8]
+        - generic [ref=e10]: PulseAgent
+      - link "Need help? Contact Support" [ref=e11] [cursor=pointer]:
+        - /url: "#"
+  - generic [ref=e13]:
+    - generic [ref=e14]:
+      - img [ref=e16]
+      - heading "Welcome back" [level=1] [ref=e18]
+      - paragraph [ref=e19]: Sign in to your PulseAgent account
+    - generic [ref=e20]:
+      - generic [ref=e21]:
+        - button "Magic Link" [ref=e22] [cursor=pointer]:
+          - img [ref=e23]
+          - text: Magic Link
+        - button "Password" [ref=e26] [cursor=pointer]:
+          - img [ref=e27]
+          - text: Password
+      - generic [ref=e31]:
+        - paragraph [ref=e32]: Enter your email and we'll send you a secure sign-in link. No password needed.
+        - generic [ref=e33]:
+          - generic [ref=e34]: Email address
+          - generic [ref=e35]:
+            - img [ref=e36]
+            - textbox "you@company.com" [ref=e39]
+        - button "Send Magic Link" [ref=e40] [cursor=pointer]:
+          - img [ref=e41]
+          - text: Send Magic Link
+        - paragraph [ref=e44]: Check your spam folder if you don't see it within 60 seconds.
+      - generic [ref=e48]: OR CONTINUE WITH
+      - generic [ref=e50]:
+        - button "Google Google" [ref=e51] [cursor=pointer]:
+          - img "Google" [ref=e52]
+          - text: Google
+        - button "Microsoft Microsoft" [ref=e53] [cursor=pointer]:
+          - img "Microsoft" [ref=e54]
+          - text: Microsoft
+      - paragraph [ref=e56]:
+        - text: Don't have an account?
+        - link "Start free trial" [ref=e57] [cursor=pointer]:
+          - /url: /signup
+    - generic [ref=e58]:
+      - generic [ref=e59]:
+        - img [ref=e60]
+        - text: SSL Secured
+      - generic [ref=e63]:
+        - img [ref=e64]
+        - text: SOC 2 Compliant
+      - generic [ref=e67]:
+        - img [ref=e68]
+        - text: No tracking
+  - contentinfo [ref=e73]:
+    - generic [ref=e74]:
+      - generic [ref=e75]:
+        - img [ref=e77]
+        - generic [ref=e79]: PulseAgent
+      - generic [ref=e80]:
+        - link "Privacy Policy" [ref=e81] [cursor=pointer]:
+          - /url: "#"
+        - link "Terms of Service" [ref=e82] [cursor=pointer]:
+          - /url: "#"
+        - link "Contact Support" [ref=e83] [cursor=pointer]:
+          - /url: "#"
+      - paragraph [ref=e84]: © 2024 PulseAgent. All rights reserved.
+```

@@ -10,6 +10,7 @@ import {
   updateDistributor,
   deleteDistributor,
 } from '@/lib/admin/distributor-service';
+import { checkPermission } from '@/lib/admin/rbac';
 
 // GET /api/admin/distributors/[id] - Get single distributor
 export async function GET(
@@ -72,14 +73,18 @@ export async function DELETE(
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  // Only super admins can delete accounts
-  if (!hasAdminRole(admin.admin, 'super_admin')) {
-    return NextResponse.json({ error: 'Only super admins can delete accounts' }, { status: 403 });
+  // Check RBAC permission
+  const canDelete = await checkPermission(admin.user.id, 'delete_distributors');
+  if (!canDelete) {
+    return NextResponse.json(
+      { error: 'Permission denied: delete_distributors required' },
+      { status: 403 }
+    );
   }
 
   try {
-    const { id } = await params;
-    const result = await deleteDistributor(id, admin.admin.id);
+    const { id} = await params;
+    const result = await deleteDistributor(id, admin.user.id, admin.user.email);
 
     if (!result.success) {
       return NextResponse.json({ error: result.error }, { status: 400 });

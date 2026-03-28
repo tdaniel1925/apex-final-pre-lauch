@@ -5,57 +5,98 @@
 
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
-import { Download, Search, FileText, Image as ImageIcon, File } from 'lucide-react';
+import { Download, Search, FileText, Image as ImageIcon, File, Loader2 } from 'lucide-react';
 
 // Download file structure
 interface DownloadFile {
   id: string;
-  fileName: string;
-  fileType: string;
+  file_name: string;
+  file_type: string;
   purpose: string;
-  filePath: string;
-  dateAdded: string;
+  file_url: string;
+  category: string;
+  created_at: string;
 }
 
-// Hardcoded downloads list (will be managed in admin later)
-const DOWNLOADS: DownloadFile[] = [
-  {
-    id: '1',
-    fileName: 'General - Apex Flyer.pptx',
-    fileType: 'PowerPoint',
-    purpose: 'Event invitation flyer for Tuesday/Thursday online events',
-    filePath: '/General - Apex Flyer.pptx',
-    dateAdded: '2026-03-19',
-  },
-];
+interface PaginationData {
+  page: number;
+  pageSize: number;
+  total: number;
+  totalPages: number;
+}
 
 const ITEMS_PER_PAGE = 10;
 
 export default function DownloadsPage() {
+  const [downloads, setDownloads] = useState<DownloadFile[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [pagination, setPagination] = useState<PaginationData>({
+    page: 1,
+    pageSize: ITEMS_PER_PAGE,
+    total: 0,
+    totalPages: 0,
+  });
 
-  // Filter downloads based on search query
-  const filteredDownloads = useMemo(() => {
-    if (!searchQuery.trim()) return DOWNLOADS;
+  // Fetch downloads from API
+  useEffect(() => {
+    fetchDownloads();
+  }, [currentPage, searchQuery]);
 
-    const query = searchQuery.toLowerCase();
-    return DOWNLOADS.filter(
-      (download) =>
-        download.fileName.toLowerCase().includes(query) ||
-        download.fileType.toLowerCase().includes(query) ||
-        download.purpose.toLowerCase().includes(query)
-    );
-  }, [searchQuery]);
+  const fetchDownloads = async () => {
+    try {
+      setLoading(true);
+      setError(null);
 
-  // Paginate filtered results
-  const totalPages = Math.ceil(filteredDownloads.length / ITEMS_PER_PAGE);
-  const paginatedDownloads = useMemo(() => {
-    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-    return filteredDownloads.slice(startIndex, startIndex + ITEMS_PER_PAGE);
-  }, [filteredDownloads, currentPage]);
+      const params = new URLSearchParams({
+        page: currentPage.toString(),
+        pageSize: ITEMS_PER_PAGE.toString(),
+      });
+
+      if (searchQuery.trim()) {
+        params.append('search', searchQuery.trim());
+      }
+
+      const response = await fetch(`/api/dashboard/downloads?${params}`);
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch downloads');
+      }
+
+      const data = await response.json();
+      setDownloads(data.downloads || []);
+      setPagination(data.pagination);
+    } catch (err) {
+      console.error('Error fetching downloads:', err);
+      setError('Failed to load downloads. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Track download
+  const handleDownload = async (download: DownloadFile) => {
+    try {
+      // Track download in background
+      fetch(`/api/dashboard/downloads/${download.id}/track`, {
+        method: 'POST',
+      }).catch((err) => console.error('Error tracking download:', err));
+
+      // Trigger browser download
+      const link = document.createElement('a');
+      link.href = download.file_url;
+      link.download = download.file_name;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (err) {
+      console.error('Error downloading file:', err);
+    }
+  };
 
   // Reset to page 1 when search changes
   const handleSearchChange = (value: string) => {
@@ -112,6 +153,13 @@ export default function DownloadsPage() {
           </div>
         </div>
 
+        {/* Error Message */}
+        {error && (
+          <div className="mb-6 bg-red-50 border border-red-200 rounded-lg p-4">
+            <p className="text-sm text-red-800">{error}</p>
+          </div>
+        )}
+
         {/* Downloads Table */}
         <div className="bg-white rounded-lg shadow overflow-hidden">
           <div className="overflow-x-auto">
@@ -133,32 +181,40 @@ export default function DownloadsPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-200">
-                {paginatedDownloads.length > 0 ? (
-                  paginatedDownloads.map((download) => (
+                {loading ? (
+                  <tr>
+                    <td colSpan={4} className="px-6 py-12 text-center">
+                      <div className="flex flex-col items-center gap-3">
+                        <Loader2 className="w-8 h-8 text-slate-400 animate-spin" />
+                        <p className="text-slate-500">Loading downloads...</p>
+                      </div>
+                    </td>
+                  </tr>
+                ) : downloads.length > 0 ? (
+                  downloads.map((download) => (
                     <tr key={download.id} className="hover:bg-slate-50 transition-colors">
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-3">
-                          {getFileIcon(download.fileType)}
+                          {getFileIcon(download.file_type)}
                           <span className="text-sm font-medium text-slate-900">
-                            {download.fileName}
+                            {download.file_name}
                           </span>
                         </div>
                       </td>
                       <td className="px-6 py-4">
-                        <span className="text-sm text-slate-600">{download.fileType}</span>
+                        <span className="text-sm text-slate-600">{download.file_type}</span>
                       </td>
                       <td className="px-6 py-4">
                         <span className="text-sm text-slate-600">{download.purpose}</span>
                       </td>
                       <td className="px-6 py-4">
-                        <a
-                          href={download.filePath}
-                          download
+                        <button
+                          onClick={() => handleDownload(download)}
                           className="inline-flex items-center gap-2 px-4 py-2 bg-[#2B4C7E] text-white text-sm font-medium rounded-lg hover:bg-[#1a2c4e] transition-colors"
                         >
                           <Download className="w-4 h-4" />
                           Download
-                        </a>
+                        </button>
                       </td>
                     </tr>
                   ))
@@ -182,13 +238,13 @@ export default function DownloadsPage() {
           </div>
 
           {/* Pagination */}
-          {totalPages > 1 && (
+          {pagination.totalPages > 1 && !loading && (
             <div className="px-6 py-4 bg-slate-50 border-t border-slate-200">
               <div className="flex items-center justify-between">
                 <p className="text-sm text-slate-600">
-                  Showing {((currentPage - 1) * ITEMS_PER_PAGE) + 1} to{' '}
-                  {Math.min(currentPage * ITEMS_PER_PAGE, filteredDownloads.length)} of{' '}
-                  {filteredDownloads.length} downloads
+                  Showing {((pagination.page - 1) * pagination.pageSize) + 1} to{' '}
+                  {Math.min(pagination.page * pagination.pageSize, pagination.total)} of{' '}
+                  {pagination.total} downloads
                 </p>
                 <div className="flex items-center gap-2">
                   <button
@@ -198,22 +254,36 @@ export default function DownloadsPage() {
                   >
                     Previous
                   </button>
-                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                    <button
-                      key={page}
-                      onClick={() => setCurrentPage(page)}
-                      className={`px-3 py-1 border rounded-md text-sm font-medium transition-colors ${
-                        currentPage === page
-                          ? 'bg-[#2B4C7E] text-white border-[#2B4C7E]'
-                          : 'border-slate-300 text-slate-700 hover:bg-slate-100'
-                      }`}
-                    >
-                      {page}
-                    </button>
-                  ))}
+                  {Array.from({ length: Math.min(5, pagination.totalPages) }, (_, i) => {
+                    // Show first 2, current page, and last 2
+                    let pageNum;
+                    if (pagination.totalPages <= 5) {
+                      pageNum = i + 1;
+                    } else if (currentPage <= 3) {
+                      pageNum = i + 1;
+                    } else if (currentPage >= pagination.totalPages - 2) {
+                      pageNum = pagination.totalPages - 4 + i;
+                    } else {
+                      pageNum = currentPage - 2 + i;
+                    }
+
+                    return (
+                      <button
+                        key={pageNum}
+                        onClick={() => setCurrentPage(pageNum)}
+                        className={`px-3 py-1 border rounded-md text-sm font-medium transition-colors ${
+                          currentPage === pageNum
+                            ? 'bg-[#2B4C7E] text-white border-[#2B4C7E]'
+                            : 'border-slate-300 text-slate-700 hover:bg-slate-100'
+                        }`}
+                      >
+                        {pageNum}
+                      </button>
+                    );
+                  })}
                   <button
-                    onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))}
-                    disabled={currentPage === totalPages}
+                    onClick={() => setCurrentPage((prev) => Math.min(pagination.totalPages, prev + 1))}
+                    disabled={currentPage === pagination.totalPages}
                     className="px-3 py-1 border border-slate-300 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   >
                     Next

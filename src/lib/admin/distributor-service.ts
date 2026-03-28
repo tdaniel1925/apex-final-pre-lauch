@@ -5,6 +5,7 @@
 
 import { createServiceClient } from '@/lib/supabase/service';
 import type { Distributor, DistributorInsert, DistributorUpdate } from '@/lib/types';
+import { logAdminAction } from './audit-logger';
 
 export interface DistributorFilters {
   status?: 'active' | 'suspended' | 'deleted' | 'all';
@@ -300,9 +301,17 @@ export async function activateDistributor(
  */
 export async function deleteDistributor(
   id: string,
-  adminId: string
+  adminId: string,
+  adminEmail: string
 ): Promise<{ success: boolean; error?: string }> {
   const serviceClient = createServiceClient();
+
+  // Get distributor data before deletion for audit log
+  const { data: distributor } = await serviceClient
+    .from('distributors')
+    .select('*')
+    .eq('id', id)
+    .single();
 
   const { error } = await serviceClient
     .from('distributors')
@@ -315,8 +324,31 @@ export async function deleteDistributor(
 
   if (error) {
     console.error('Error deleting distributor:', error);
+
+    // Log failed deletion
+    await logAdminAction({
+      adminId,
+      adminEmail,
+      action: 'DELETE_DISTRIBUTOR',
+      entityType: 'distributor',
+      entityId: id,
+      status: 'failure',
+      errorMessage: error.message,
+    });
+
     return { success: false, error: 'Failed to delete distributor' };
   }
+
+  // Log successful deletion
+  await logAdminAction({
+    adminId,
+    adminEmail,
+    action: 'DELETE_DISTRIBUTOR',
+    entityType: 'distributor',
+    entityId: id,
+    oldValue: distributor || undefined,
+    status: 'success',
+  });
 
   return { success: true };
 }
@@ -327,9 +359,17 @@ export async function deleteDistributor(
  */
 export async function permanentlyDeleteDistributor(
   id: string,
-  adminId: string
+  adminId: string,
+  adminEmail: string
 ): Promise<{ success: boolean; error?: string; downlineCount?: number }> {
   const serviceClient = createServiceClient();
+
+  // Get distributor data before deletion for audit log
+  const { data: distributor } = await serviceClient
+    .from('distributors')
+    .select('*')
+    .eq('id', id)
+    .single();
 
   // First, check if they have any downline
   const { data: downline, error: downlineError } = await serviceClient
@@ -343,13 +383,24 @@ export async function permanentlyDeleteDistributor(
   }
 
   if (downline && downline.length > 0) {
+    // Log blocked deletion attempt
+    await logAdminAction({
+      adminId,
+      adminEmail,
+      action: 'DELETE_DISTRIBUTOR',
+      entityType: 'distributor',
+      entityId: id,
+      status: 'failure',
+      errorMessage: `Cannot delete: ${downline.length} people in downline`,
+      metadata: { downlineCount: downline.length, permanent: true },
+    });
+
     return {
       success: false,
       error: `Cannot delete: This distributor has ${downline.length} people in their downline. Please reassign or delete them first.`,
       downlineCount: downline.length,
     };
   }
-
 
   // Permanently delete from database
   const { error } = await serviceClient
@@ -359,8 +410,33 @@ export async function permanentlyDeleteDistributor(
 
   if (error) {
     console.error('Error permanently deleting distributor:', error);
+
+    // Log failed permanent deletion
+    await logAdminAction({
+      adminId,
+      adminEmail,
+      action: 'DELETE_DISTRIBUTOR',
+      entityType: 'distributor',
+      entityId: id,
+      status: 'failure',
+      errorMessage: error.message,
+      metadata: { permanent: true },
+    });
+
     return { success: false, error: 'Failed to permanently delete distributor' };
   }
+
+  // Log successful permanent deletion
+  await logAdminAction({
+    adminId,
+    adminEmail,
+    action: 'DELETE_DISTRIBUTOR',
+    entityType: 'distributor',
+    entityId: id,
+    oldValue: distributor || undefined,
+    status: 'success',
+    metadata: { permanent: true },
+  });
 
   return { success: true };
 }

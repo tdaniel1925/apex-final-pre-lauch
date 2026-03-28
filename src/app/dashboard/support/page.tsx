@@ -73,29 +73,86 @@ export default function SupportPage() {
 
     setIsSubmitting(true);
 
-    // TODO: Implement actual submission to support system
-    // For now, just simulate a delay
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      // Upload screenshots first if any
+      const attachments = [];
 
-    console.log('Support Request:', {
-      type: supportType,
-      subject,
-      description,
-      screenshots: screenshots.map((s) => s.file.name),
-    });
+      if (screenshots.length > 0) {
+        for (const screenshot of screenshots) {
+          const formData = new FormData();
+          formData.append('file', screenshot.file);
 
-    setSubmitSuccess(true);
-    setIsSubmitting(false);
+          const uploadResponse = await fetch('/api/support/upload', {
+            method: 'POST',
+            body: formData,
+          });
 
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setSupportType('question');
-      setSubject('');
-      setDescription('');
-      setScreenshots([]);
-      setPastedImage(null);
-      setSubmitSuccess(false);
-    }, 3000);
+          if (uploadResponse.ok) {
+            const uploadData = await uploadResponse.json();
+            attachments.push({
+              file_name: screenshot.file.name,
+              file_url: uploadData.url,
+              file_size_bytes: screenshot.file.size,
+              mime_type: screenshot.file.type,
+              storage_bucket: uploadData.bucket,
+              storage_path: uploadData.path,
+            });
+          } else {
+            console.error('Failed to upload screenshot:', screenshot.file.name);
+          }
+        }
+      }
+
+      // Prepare ticket data
+      const ticketData = {
+        subject: subject.trim(),
+        description: description.trim(),
+        ticket_type: supportType,
+        browser_info: {
+          userAgent: navigator.userAgent,
+          platform: navigator.platform,
+          language: navigator.language,
+        },
+        device_info: {
+          screenWidth: window.screen.width,
+          screenHeight: window.screen.height,
+          windowWidth: window.innerWidth,
+          windowHeight: window.innerHeight,
+        },
+        attachments,
+      };
+
+      const response = await fetch('/api/support/tickets', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(ticketData),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to submit ticket');
+      }
+
+      const ticket = await response.json();
+      console.log('Ticket created:', ticket.ticket_number);
+
+      setSubmitSuccess(true);
+
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        setSupportType('question');
+        setSubject('');
+        setDescription('');
+        setScreenshots([]);
+        setPastedImage(null);
+        setSubmitSuccess(false);
+      }, 3000);
+    } catch (error: any) {
+      console.error('Error submitting ticket:', error);
+      alert(error.message || 'Failed to submit support request. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -116,10 +173,20 @@ export default function SupportPage() {
 
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-slate-900">Support Center</h1>
-          <p className="text-slate-600 mt-1">
-            Report bugs, ask questions, or provide feedback. We're here to help!
-          </p>
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold text-slate-900">Support Center</h1>
+              <p className="text-slate-600 mt-1">
+                Report bugs, ask questions, or provide feedback. We're here to help!
+              </p>
+            </div>
+            <Link
+              href="/dashboard/support/tickets"
+              className="px-4 py-2 border border-[#2B4C7E] text-[#2B4C7E] rounded-lg hover:bg-blue-50 transition-colors"
+            >
+              View My Tickets
+            </Link>
+          </div>
         </div>
 
         {/* Success Message */}

@@ -13,11 +13,14 @@ import {
   TechRank,
   InsuranceRank,
   getRankValue,
-  PAY_LEVEL_GRACE_PERIOD_MONTHS,
-  NEW_REP_RANK_LOCK_MONTHS,
+  PAY_LEVEL_GRACE_PERIOD_DAYS,
   TechRankRequirements,
   DownlineRequirement,
 } from './config';
+
+// Define locally instead of importing (not exported from config)
+const PAY_LEVEL_GRACE_PERIOD_MONTHS = 1;
+const NEW_REP_RANK_LOCK_MONTHS = 3;
 
 /**
  * Member Data for Rank Evaluation

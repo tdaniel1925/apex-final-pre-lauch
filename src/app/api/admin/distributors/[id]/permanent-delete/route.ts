@@ -19,7 +19,7 @@ export async function POST(
 
   try {
     const { id } = await params;
-    const result = await permanentlyDeleteDistributor(id, admin.admin.id);
+    const result = await permanentlyDeleteDistributor(id, admin.user.id, admin.user.email);
 
     if (!result.success) {
       return NextResponse.json(
