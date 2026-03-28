@@ -14,13 +14,26 @@ import Stripe from 'stripe';
 import { createClient } from '@supabase/supabase-js';
 import { processOrderClawback } from '@/lib/compensation/clawback-processor';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2026-01-28.clover',
-});
-
-const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET_REFUND!;
+// Lazy initialization - only create Stripe client when needed
+function getStripeClient() {
+  if (!process.env.STRIPE_SECRET_KEY) {
+    throw new Error('STRIPE_SECRET_KEY not configured');
+  }
+  return new Stripe(process.env.STRIPE_SECRET_KEY, {
+    apiVersion: '2026-01-28.clover',
+  });
+}
 
 export async function POST(request: NextRequest) {
+  const stripe = getStripeClient();
+  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET_REFUND;
+
+  if (!webhookSecret) {
+    return NextResponse.json(
+      { error: 'Webhook secret not configured' },
+      { status: 500 }
+    );
+  }
   try {
     const body = await request.text();
     const headersList = await headers();
