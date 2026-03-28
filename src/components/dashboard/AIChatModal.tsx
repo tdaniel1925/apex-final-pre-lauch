@@ -42,7 +42,12 @@ const STORAGE_KEY = 'ai-chat-sessions';
 function MessageContent({ content }: { content: string }) {
   // Check for Mermaid diagrams
   if (content.includes('```mermaid')) {
-    return <MermaidDiagram content={content} />;
+    // Extract mermaid code from markdown fence
+    const mermaidMatch = content.match(/```mermaid\n([\s\S]*?)\n```/);
+    if (mermaidMatch) {
+      const chart = mermaidMatch[1];
+      return <MermaidDiagram chart={chart} />;
+    }
   }
 
   // Parse for media content
