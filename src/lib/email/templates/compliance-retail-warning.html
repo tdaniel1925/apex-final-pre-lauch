@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retail Sales Compliance Alert</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f5f5f5;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f5f5f5; padding: 20px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+          <!-- Header -->
+          <tr>
+            <td style="background: linear-gradient(135deg, #2c5aa0 0%, #1a3a6b 100%); padding: 40px 30px; border-radius: 8px 8px 0 0;">
+              <h1 style="margin: 0; color: #ffffff; font-size: 24px; font-weight: bold;">⚠️ Action Required: Retail Sales Compliance</h1>
+            </td>
+          </tr>
+
+          <!-- Content -->
+          <tr>
+            <td style="padding: 40px 30px;">
+              <p style="margin: 0 0 20px 0; color: #212529; font-size: 16px; line-height: 1.5;">
+                Dear {{distributor_name}},
+              </p>
+
+              <p style="margin: 0 0 20px 0; color: #212529; font-size: 16px; line-height: 1.5;">
+                Your retail sales percentage this month is <strong style="color: #dc3545;">{{retail_percentage}}%</strong>, which is below the required <strong>70%</strong>.
+              </p>
+
+              <p style="margin: 0 0 20px 0; color: #212529; font-size: 16px; line-height: 1.5;">
+                To qualify for overrides next month, you need <strong style="color: #2c5aa0;">{{shortfall_bv}} more retail BV</strong> from customer sales.
+              </p>
+
+              <!-- Status Box -->
+              <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f8f9fa; border-left: 4px solid #dc3545; margin: 30px 0; border-radius: 4px;">
+                <tr>
+                  <td style="padding: 20px;">
+                    <h3 style="margin: 0 0 15px 0; color: #212529; font-size: 18px; font-weight: bold;">Current Status</h3>
+                    <table width="100%" cellpadding="5" cellspacing="0">
+                      <tr>
+                        <td style="color: #6c757d; font-size: 14px;">Retail BV:</td>
+                        <td align="right" style="color: #212529; font-size: 14px; font-weight: bold;">{{retail_bv}}</td>
+                      </tr>
+                      <tr>
+                        <td style="color: #6c757d; font-size: 14px;">Self-Purchase BV:</td>
+                        <td align="right" style="color: #212529; font-size: 14px; font-weight: bold;">{{self_purchase_bv}}</td>
+                      </tr>
+                      <tr>
+                        <td style="color: #6c757d; font-size: 14px; border-top: 1px solid #dee2e6; padding-top: 10px;">Total BV:</td>
+                        <td align="right" style="color: #212529; font-size: 14px; font-weight: bold; border-top: 1px solid #dee2e6; padding-top: 10px;">{{total_bv}}</td>
+                      </tr>
+                      <tr>
+                        <td style="color: #6c757d; font-size: 14px;">Retail %:</td>
+                        <td align="right" style="color: #dc3545; font-size: 16px; font-weight: bold;">{{retail_percentage}}%</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Action Required -->
+              <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #fff3cd; border-left: 4px solid #ffc107; margin: 20px 0; border-radius: 4px;">
+                <tr>
+                  <td style="padding: 20px;">
+                    <h3 style="margin: 0 0 10px 0; color: #856404; font-size: 16px; font-weight: bold;">📋 What You Need to Do</h3>
+                    <p style="margin: 0; color: #856404; font-size: 14px; line-height: 1.5;">
+                      Focus on retail customer sales to reach the 70% requirement. Share your storefront link with customers and promote retail purchases.
+                    </p>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin: 0 0 20px 0; color: #212529; font-size: 16px; line-height: 1.5;">
+                Remember: <strong>70% of your monthly BV must come from retail customers</strong> (non-distributors) to qualify for override commissions. This ensures our compensation plan is driven by actual retail sales, not just recruitment.
+              </p>
+
+              <!-- CTA Button -->
+              <table width="100%" cellpadding="0" cellspacing="0" style="margin: 30px 0;">
+                <tr>
+                  <td align="center">
+                    <a href="{{dashboard_url}}" style="display: inline-block; padding: 14px 32px; background-color: #2c5aa0; color: #ffffff; text-decoration: none; font-weight: bold; font-size: 16px; border-radius: 4px;">View Dashboard</a>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin: 20px 0 0 0; color: #6c757d; font-size: 14px; line-height: 1.5;">
+                Questions? Contact support at <a href="mailto:support@theapexway.net" style="color: #2c5aa0; text-decoration: none;">support@theapexway.net</a>
+              </p>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background-color: #f8f9fa; padding: 30px; border-radius: 0 0 8px 8px; border-top: 1px solid #dee2e6;">
+              <p style="margin: 0; color: #6c757d; font-size: 12px; text-align: center; line-height: 1.5;">
+                © {{year}} The Apex Way. All rights reserved.<br>
+                <a href="https://theapexway.net/compliance" style="color: #2c5aa0; text-decoration: none;">FTC Compliance Guidelines</a>
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

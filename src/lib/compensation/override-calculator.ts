@@ -17,6 +17,7 @@
 
 import { createClient } from '@/lib/supabase/server';
 import { isQualifiedForOverrides, MINIMUM_BV_FOR_OVERRIDES } from './bv-calculator';
+import { checkOverrideQualificationWithRetail } from '@/lib/compliance/retail-validation';
 
 // =============================================
 // TYPES
@@ -169,21 +170,28 @@ export async function calculateOverridesForSale(
     } else {
       const sponsorMember = Array.isArray(sponsor.member) ? sponsor.member[0] : sponsor.member;
 
-      if (sponsorMember && isQualifiedForOverrides(sponsorMember.personal_credits_monthly)) {
-        // Pay sponsor 30% of override pool
-        const amount = overridePool * 0.30;
+      if (sponsorMember) {
+        // Check both BV minimum and 70% retail compliance
+        const qualification = await checkOverrideQualificationWithRetail(sponsor.id);
 
-        payments.push({
-          upline_member_id: sponsorMember.member_id,
-          upline_member_name: sponsorMember.full_name,
-          override_type: 'L1_enrollment',
-          override_rate: 0.30,
-          override_amount: Number(amount.toFixed(2)),
-          bv: sale.bv,
-        });
+        if (qualification.qualified) {
+          // Pay sponsor 30% of override pool
+          const amount = overridePool * 0.30;
 
-        // Mark sponsor as paid (no double-dipping!)
-        paidUplineIds.add(sponsorMember.member_id);
+          payments.push({
+            upline_member_id: sponsorMember.member_id,
+            upline_member_name: sponsorMember.full_name,
+            override_type: 'L1_enrollment',
+            override_rate: 0.30,
+            override_amount: Number(amount.toFixed(2)),
+            bv: sale.bv,
+          });
+
+          // Mark sponsor as paid (no double-dipping!)
+          paidUplineIds.add(sponsorMember.member_id);
+        } else {
+          console.log(`L1 override skipped for ${sponsorMember.full_name}: ${qualification.reason}`);
+        }
       }
     }
   }
@@ -227,9 +235,12 @@ export async function calculateOverridesForSale(
       continue;
     }
 
-    // Check if qualified for overrides (50+ BV monthly)
-    if (!isQualifiedForOverrides(uplineMember.personal_credits_monthly)) {
+    // Check if qualified for overrides (50+ BV monthly AND 70% retail compliance)
+    const qualification = await checkOverrideQualificationWithRetail(uplineDistributor.id);
+
+    if (!qualification.qualified) {
       // COMPRESSION: Skip unqualified upline, move to next
+      console.log(`Matrix L${level + 1} override skipped for ${uplineMember.full_name}: ${qualification.reason}`);
       currentDistributorId = uplineDistributor.matrix_parent_id;
       level++;
       continue;
@@ -316,6 +327,9 @@ export async function calculateOverridesForSales(
 /**
  * Check if member qualifies for overrides this month
  *
+ * @deprecated Use checkOverrideQualificationWithRetail from compliance module instead
+ * This function only checks BV minimum, not 70% retail compliance
+ *
  * @param member - Member to check
  * @returns Qualification status with reason
  */
@@ -332,7 +346,7 @@ export function checkOverrideQualification(member: Member): {
 
   return {
     qualified: true,
-    reason: 'Qualified',
+    reason: 'Qualified (BV only - does not check 70% retail compliance)',
   };
 }
 

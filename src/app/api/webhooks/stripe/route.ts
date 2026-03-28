@@ -3,6 +3,7 @@ import Stripe from 'stripe';
 import { createServiceClient } from '@/lib/supabase/service';
 import { sendEmail } from '@/lib/email/resend';
 import { generateOrderReceiptHTML, generateOrderReceiptSubject } from '@/lib/email/order-receipt';
+import { calculateCreditedBV } from '@/lib/compliance/anti-frontloading';
 
 // Force dynamic rendering - prevent build-time analysis
 export const dynamic = 'force-dynamic';
@@ -177,6 +178,36 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
     }
 
     console.log('Order created successfully:', order.id);
+
+    // Credit BV to distributor with anti-frontloading check
+    if (metadata.is_personal_purchase === 'true') {
+      const { data: member } = await supabase
+        .from('members')
+        .select('member_id, personal_credits_monthly')
+        .eq('distributor_id', metadata.distributor_id)
+        .single();
+
+      if (member) {
+        const baseBV = parseInt(metadata.bv_amount);
+
+        // Apply anti-frontloading rule
+        const { credited_bv, reason } = await calculateCreditedBV(
+          metadata.distributor_id,
+          metadata.product_id,
+          baseBV
+        );
+
+        // Update member BV with credited amount only
+        await supabase
+          .from('members')
+          .update({
+            personal_credits_monthly: (member.personal_credits_monthly || 0) + credited_bv,
+          })
+          .eq('member_id', member.member_id);
+
+        console.log(`✅ BV credited: ${credited_bv}/${baseBV}. ${reason}`);
+      }
+    }
 
     // Log order activity to admin activity log
     try {
@@ -394,8 +425,7 @@ async function handleRetailCheckout(session: Stripe.Checkout.Session) {
       }
     }
 
-    // Update seller BV and create commission
-    const sellerCommission = Math.round(totalBV * 0.60);
+    // Update seller BV and create commission with anti-frontloading
     const { data: sellerMember } = await supabase
       .from('members')
       .select('member_id, personal_credits_monthly')
@@ -403,12 +433,38 @@ async function handleRetailCheckout(session: Stripe.Checkout.Session) {
       .single();
 
     if (sellerMember) {
+      // Apply anti-frontloading per product
+      let totalCreditedBV = 0;
+      const bvLog: string[] = [];
+
+      for (const item of cart.items) {
+        const baseBV = Math.round((item.bv_cents * item.quantity) / 100);
+
+        // Check if this product purchase counts toward BV
+        const { credited_bv, reason } = await calculateCreditedBV(
+          metadata.rep_distributor_id,
+          item.product_id,
+          baseBV
+        );
+
+        totalCreditedBV += credited_bv;
+        bvLog.push(`${item.product_name}: ${credited_bv}/${baseBV} BV - ${reason}`);
+      }
+
+      // Update member BV with total credited amount
       await supabase
         .from('members')
         .update({
-          personal_credits_monthly: (sellerMember.personal_credits_monthly || 0) + Math.round(totalBV / 100),
+          personal_credits_monthly: (sellerMember.personal_credits_monthly || 0) + totalCreditedBV,
         })
         .eq('member_id', sellerMember.member_id);
+
+      console.log(`✅ Retail sale BV credited: ${totalCreditedBV}/${Math.round(totalBV / 100)}`);
+      bvLog.forEach(log => console.log(`  ${log}`));
+
+      // Calculate commission based on TOTAL BV (not credited BV)
+      // Commission is 60% of total BV, regardless of anti-frontloading
+      const sellerCommission = Math.round(totalBV * 0.60);
 
       await supabase.from('earnings_ledger').insert({
         member_id: sellerMember.member_id,
