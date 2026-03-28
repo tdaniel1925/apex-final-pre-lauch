@@ -28,7 +28,7 @@ export interface Member {
   email: string;
   tech_rank: TechRank;
   paying_rank: TechRank;  // Payment level (used for commission calculations)
-  personal_bv_monthly: number;
+  personal_credits_monthly: number;
   override_qualified: boolean;
 }
 
@@ -323,10 +323,10 @@ export function checkOverrideQualification(member: Member): {
   qualified: boolean;
   reason: string;
 } {
-  if (member.personal_bv_monthly < MINIMUM_BV_FOR_OVERRIDES) {
+  if (member.personal_credits_monthly < MINIMUM_BV_FOR_OVERRIDES) {
     return {
       qualified: false,
-      reason: `Personal BV (${member.personal_bv_monthly}) is below minimum (${MINIMUM_BV_FOR_OVERRIDES})`,
+      reason: `Personal BV (${member.personal_credits_monthly}) is below minimum (${MINIMUM_BV_FOR_OVERRIDES})`,
     };
   }
 

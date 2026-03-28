@@ -398,7 +398,7 @@ async function handleRetailCheckout(session: Stripe.Checkout.Session) {
     const sellerCommission = Math.round(totalBV * 0.60);
     const { data: sellerMember } = await supabase
       .from('members')
-      .select('member_id, personal_bv_monthly')
+      .select('member_id, personal_credits_monthly')
       .eq('distributor_id', metadata.rep_distributor_id)
       .single();
 
@@ -406,7 +406,7 @@ async function handleRetailCheckout(session: Stripe.Checkout.Session) {
       await supabase
         .from('members')
         .update({
-          personal_bv_monthly: (sellerMember.personal_bv_monthly || 0) + Math.round(totalBV / 100),
+          personal_credits_monthly: (sellerMember.personal_credits_monthly || 0) + Math.round(totalBV / 100),
         })
         .eq('member_id', sellerMember.member_id);
 
@@ -434,11 +434,11 @@ async function handleRetailCheckout(session: Stripe.Checkout.Session) {
       if (sponsor?.sponsor_id) {
         const { data: l1Member } = await supabase
           .from('members')
-          .select('member_id, personal_bv_monthly')
+          .select('member_id, personal_credits_monthly')
           .eq('distributor_id', sponsor.sponsor_id)
           .single();
 
-        if (l1Member && l1Member.personal_bv_monthly >= 50) {
+        if (l1Member && l1Member.personal_credits_monthly >= 50) {
           await supabase.from('earnings_ledger').insert({
             member_id: l1Member.member_id,
             earning_type: 'override',
