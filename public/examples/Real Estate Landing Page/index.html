@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Real Estate Landing Page - Exported from UXMagic Copilot">
+    <title>Real Estate Landing Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+tailwind.config={theme:{extend:{colors:{
+'i1':'#5C6AC4','i1l':'#EEF0FF','i1d':'#2D2D3A',
+'f2':'#7DAF8A','f2l':'#EAF4EC','f2g':'#C9A84C','f2gl':'#F7EDD0','f2d':'#2A3240',
+'w3':'#FAF7F2','w3r':'#D4A5A5','w3t':'#C47C5A',
+'r4':'#C4B49A','r4g':'#2D5016','r4s':'#F5EFE4',
+'l5':'#4A6FA5','l5l':'#E8EEF7','l5d':'#1E2A3A',
+'e6':'#FDFAF6','e6t':'#D4B896','e6b':'#E8C4B8','e6e':'#2C1A0E',
+'ed7':'#F5A623','ed7l':'#FEF3DC','ed7s':'#4A90D9','ed7sl':'#E8F2FC',
+'t8':'#2E86AB','t8l':'#E0F0F7','t8s':'#E8D5B0','t8c':'#F4845F',
+'h9':'#E8614A','h9l':'#FDECEA','h9g':'#F5F3F0','h9d':'#1C1C1E',
+'c10':'#3D6B4F','c10l':'#E8F0EB','c10s':'#A8C5DA','c10a':'#DDD0B8','c10b':'#FAFAF7',
+'eo':'#C8622A','eol':'#FDF0E8','eod':'#1E0E06','eom':'#8B3A1A','eos':'#F5E6D3','eog':'#D4A853','eogl':'#FBF3DC','eob':'#FAF5EF',
+'hx':'#8B7355','hxl':'#F5F0E8','hxd':'#1A1410','hxm':'#5C4A32','hxs':'#EDE8DF','hxg':'#B8A898','hxc':'#2C2420','hxw':'#FAF8F5',
+},fontFamily:{
+'pf':['"Playfair Display"','serif'],
+'cg':['"Cormorant Garamond"','serif'],
+'sg':['"Space Grotesk"','sans-serif'],
+'bar':['Barlow','sans-serif'],
+'barc':['"Barlow Condensed"','sans-serif'],
+'beb':['"Bebas Neue"','sans-serif'],
+'nun':['Nunito','sans-serif'],
+'lb':['"Libre Baskerville"','serif'],
+'man':['Manrope','sans-serif'],
+'lor':['Lora','serif'],
+'int':['Inter','sans-serif'],
+'lat':['Lato','sans-serif'],
+},boxShadow:{
+'sm2':'0 2px 8px rgba(0,0,0,0.06)',
+'md2':'0 8px 30px rgba(0,0,0,0.08)',
+'lg2':'0 20px 60px rgba(0,0,0,0.12)',
+'warm':'0 8px 30px rgba(139,115,85,0.18)',
+'warm-lg':'0 20px 60px rgba(139,115,85,0.15)',
+}}}}
+
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+<!-- FLOW NAVIGATION BAR -->
+<div style="background:#1A1410;border-bottom:1px solid rgba(139,115,85,0.3)">
+<div class="overflow-x-auto no-sb">
+<div class="flex items-center gap-1.5 px-4 py-2 min-w-max">
+<span class="text-[10px] font-bold uppercase tracking-widest mr-2 flex-shrink-0 font-int" style="color:rgba(139,115,85,0.55)">6 Landing Pages:</span>
+<a href="/api/copilot/prototype/5776e7d4-fc9f-4634-bb32-35324702b7e9/healthcare-landing-page" class="text-xs font-bold px-3 py-1.5 rounded font-int whitespace-nowrap transition-colors" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.45);border:1px solid rgba(255,255,255,0.1)">01 Healthcare</a>
+<a href="/api/copilot/prototype/5776e7d4-fc9f-4634-bb32-35324702b7e9/fintech-landing-page" class="text-xs font-bold px-3 py-1.5 rounded font-int whitespace-nowrap transition-colors" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.45);border:1px solid rgba(255,255,255,0.1)">02 Fintech</a>
+<a href="/api/copilot/prototype/5776e7d4-fc9f-4634-bb32-35324702b7e9/e-commerce-landing-page" class="text-xs font-bold px-3 py-1.5 rounded font-int whitespace-nowrap transition-colors" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.45);border:1px solid rgba(255,255,255,0.1)">03 E-Commerce</a>
+<a href="/api/copilot/prototype/5776e7d4-fc9f-4634-bb32-35324702b7e9/saas-landing-page" class="text-xs font-bold px-3 py-1.5 rounded font-int whitespace-nowrap transition-colors" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.45);border:1px solid rgba(255,255,255,0.1)">04 SaaS</a>
+<a href="/api/copilot/prototype/5776e7d4-fc9f-4634-bb32-35324702b7e9/food-restaurant-landing-page" class="text-xs font-bold px-3 py-1.5 rounded font-int whitespace-nowrap transition-colors" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.45);border:1px solid rgba(255,255,255,0.1)">05 Food &amp; Restaurant</a>
+<a href="/api/copilot/prototype/5776e7d4-fc9f-4634-bb32-35324702b7e9/real-estate-landing-page" class="text-xs font-bold px-3 py-1.5 rounded font-int whitespace-nowrap" style="background:rgba(139,115,85,0.25);color:#C4A882;border:1px solid rgba(139,115,85,0.5)">06 Real Estate ✦</a>
+</div>
+</div>
+</div>
+
+<!-- ANNOUNCEMENT TICKER -->
+<div class="ticker-wrap py-2.5" style="background:linear-gradient(90deg,#8B7355,#5C4A32)">
+<div class="ticker-inner">
+<span class="text-white text-xs font-semibold font-lat px-8 opacity-90">✦ New listing: Penthouse at The Meridian — $4.2M</span>
+<span class="text-white text-xs font-semibold font-lat px-8 opacity-90">🏆 #1 Luxury Real Estate Agency — Forbes 2024</span>
+<span class="text-white text-xs font-semibold font-lat px-8 opacity-90">✦ Private viewings available by appointment</span>
+<span class="text-white text-xs font-semibold font-lat px-8 opacity-90">🔑 Over $2.8B in transactions completed this year</span>
+<span class="text-white text-xs font-semibold font-lat px-8 opacity-90">✦ New listing: Penthouse at The Meridian — $4.2M</span>
+<span class="text-white text-xs font-semibold font-lat px-8 opacity-90">🏆 #1 Luxury Real Estate Agency — Forbes 2024</span>
+<span class="text-white text-xs font-semibold font-lat px-8 opacity-90">✦ Private viewings available by appointment</span>
+<span class="text-white text-xs font-semibold font-lat px-8 opacity-90">🔑 Over $2.8B in transactions completed this year</span>
+</div>
+</div>
+
+<!-- MAIN NAVIGATION -->
+<nav class="bg-hxw border-b sticky top-0 z-40 shadow-sm2" style="border-color:rgba(139,115,85,0.15)">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="flex flex-col items-center">
+<span class="font-cg text-2xl font-semibold tracking-[0.12em]" style="color:#1A1410;line-height:1">HALCYON</span>
+<span class="text-[9px] font-lat tracking-[0.3em] uppercase" style="color:#8B7355">Luxury Real Estate</span>
+</div>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a href="#buy" class="text-sm font-medium text-gray-500 nav-link font-lat tracking-wide">Buy</a>
+<a href="#sell" class="text-sm font-medium text-gray-500 nav-link font-lat tracking-wide">Sell</a>
+<a href="#properties" class="text-sm font-medium text-gray-500 nav-link font-lat tracking-wide">Properties</a>
+<a href="#agents" class="text-sm font-medium text-gray-500 nav-link font-lat tracking-wide">Our Agents</a>
+<a href="#about" class="text-sm font-medium text-gray-500 nav-link font-lat tracking-wide">About</a>
+</div>
+<div class="flex items-center gap-3">
+<a href="tel:+18005551234" class="hidden md:flex items-center gap-1.5 text-sm font-medium text-gray-500 hover:text-hx font-lat transition-colors" style="color:#5C4A32">
+<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+1-800-555-1234
+</a>
+<a href="#contact" class="hx-grad text-white text-sm font-semibold px-5 py-2.5 rounded font-lat hover:opacity-90 transition-opacity min-h-[44px] flex items-center shadow-warm tracking-wide">Book a Viewing</a>
+</div>
+</div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="relative overflow-hidden" style="max-height:820px">
+<div class="absolute inset-0 z-0">
+<img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&amp;w=2075&amp;auto=format&amp;fit=crop" alt="Luxury Property" class="w-full h-full object-cover">
+<div class="hero-overlay absolute inset-0"></div>
+</div>
+<div class="relative z-10 max-w-7xl mx-auto px-6 py-28 lg:py-40">
+<div class="max-w-2xl">
+<div class="inline-flex items-center gap-2 mb-6 px-4 py-2" style="background:rgba(139,115,85,0.2);border:1px solid rgba(139,115,85,0.4)">
+<span class="w-1.5 h-1.5 bg-hxg" style="background:#B8A898"></span>
+<span class="text-xs font-bold font-lat tracking-[0.2em] uppercase" style="color:#C4A882">Forbes #1 Luxury Agency 2024</span>
+</div>
+<h1 class="font-cg text-5xl lg:text-[80px] font-light text-white leading-[1.05] tracking-wide mb-6">
+Where exceptional<br>homes find<br><em class="not-italic font-semibold" style="color:#C4A882">exceptional people.</em>
+</h1>
+<p class="text-gray-300 text-lg leading-relaxed mb-10 max-w-lg font-lat font-light">Curated luxury properties across the world's most coveted addresses. Private, discreet, and uncompromising in quality.</p>
+
+<!-- Search Widget -->
+<div class="bg-white rounded-sm p-5 shadow-warm-lg max-w-2xl" style="border:1px solid rgba(139,115,85,0.15)">
+<div class="flex gap-2 mb-4">
+<button class="tab-btn active text-xs font-bold px-4 py-2 border font-lat tracking-widest uppercase" style="border-color:#8B7355">Buy</button>
+<button class="tab-btn text-xs font-bold px-4 py-2 border border-gray-200 text-gray-500 font-lat tracking-widest uppercase">Rent</button>
+<button class="tab-btn text-xs font-bold px-4 py-2 border border-gray-200 text-gray-500 font-lat tracking-widest uppercase">Sell</button>
+</div>
+<div class="grid md:grid-cols-3 gap-3 mb-3">
+<div>
+<label class="block text-xs font-bold text-gray-500 font-lat mb-1.5 uppercase tracking-widest">Location</label>
+<input type="text" placeholder="City, neighbourhood, postcode" class="search-input w-full px-3 py-2.5 border border-gray-200 text-sm font-lat focus:outline-none min-h-[44px]">
+</div>
+<div>
+<label class="block text-xs font-bold text-gray-500 font-lat mb-1.5 uppercase tracking-widest">Property Type</label>
+<select class="search-input w-full px-3 py-2.5 border border-gray-200 text-sm font-lat focus:outline-none min-h-[44px] bg-white">
+<option>Any type</option>
+<option>Penthouse</option>
+<option>Villa</option>
+<option>Townhouse</option>
+<option>Estate</option>
+</select>
+</div>
+<div>
+<label class="block text-xs font-bold text-gray-500 font-lat mb-1.5 uppercase tracking-widest">Budget</label>
+<select class="search-input w-full px-3 py-2.5 border border-gray-200 text-sm font-lat focus:outline-none min-h-[44px] bg-white">
+<option>Any price</option>
+<option>$1M – $2M</option>
+<option>$2M – $5M</option>
+<option>$5M – $10M</option>
+<option>$10M+</option>
+</select>
+</div>
+</div>
+<button class="w-full hx-grad text-white text-sm font-bold py-3.5 font-lat hover:opacity-90 transition-opacity min-h-[44px] tracking-widest uppercase shadow-warm">Search Properties</button>
+</div>
+
+<!-- Trust Signals -->
+<div class="flex flex-wrap gap-6 mt-8">
+<div class="flex items-center gap-2">
+<span class="text-sm" style="color:#C4A882">★★★★★</span>
+<span class="text-white text-sm font-lat opacity-80">4.98 · 1,200+ reviews</span>
+</div>
+<div class="flex items-center gap-2">
+<svg class="w-4 h-4" style="color:#C4A882" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+<span class="text-white text-sm font-lat opacity-80">Verified luxury listings only</span>
+</div>
+<div class="flex items-center gap-2">
+<svg class="w-4 h-4" style="color:#C4A882" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+<span class="text-white text-sm font-lat opacity-80">Fully discreet &amp; confidential</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating badge -->
+<div class="absolute bottom-8 right-8 hidden lg:block">
+<div class="rounded-sm px-6 py-5 text-center shadow-warm-lg" style="background:rgba(26,20,16,0.9);border:1px solid rgba(139,115,85,0.4)">
+<p class="text-xs font-lat tracking-widest uppercase mb-1" style="color:rgba(196,168,130,0.7)">Portfolio Value</p>
+<p class="text-white text-2xl font-bold font-cg">$2.8B+</p>
+<p class="text-xs font-lat mt-0.5" style="color:rgba(196,168,130,0.7)">Transactions in 2024</p>
+</div>
+</div>
+</section>
+
+<!-- STATS BAND -->
+<section style="background:#1A1410;padding:24px 0">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-0">
+<div class="text-center px-6 py-2">
+<p class="text-2xl font-bold font-cg" style="color:#C4A882">3,200+</p>
+<p class="text-xs font-lat uppercase tracking-widest mt-1" style="color:rgba(255,255,255,0.45)">Luxury Listings</p>
+</div>
+<div class="text-center px-6 py-2 stat-divider">
+<p class="text-2xl font-bold font-cg" style="color:#C4A882">98%</p>
+<p class="text-xs font-lat uppercase tracking-widest mt-1" style="color:rgba(255,255,255,0.45)">Client Satisfaction</p>
+</div>
+<div class="text-center px-6 py-2 stat-divider">
+<p class="text-2xl font-bold font-cg" style="color:#C4A882">42</p>
+<p class="text-xs font-lat uppercase tracking-widest mt-1" style="color:rgba(255,255,255,0.45)">Global Markets</p>
+</div>
+<div class="text-center px-6 py-2 stat-divider">
+<p class="text-2xl font-bold font-cg" style="color:#C4A882">18 yrs</p>
+<p class="text-xs font-lat uppercase tracking-widest mt-1" style="color:rgba(255,255,255,0.45)">Of Excellence</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FEATURED PROPERTIES SECTION -->
+<section id="properties" style="background:#FAF8F5;padding:88px 0;max-height:1200px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-4">
+<div>
+<p class="text-xs font-bold font-lat tracking-[0.25em] uppercase mb-3" style="color:#8B7355">Featured Properties</p>
+<h2 class="font-cg text-4xl lg:text-5xl font-light mb-3" style="color:#1A1410">Curated for the<br>discerning buyer.</h2>
+<p class="text-gray-500 text-base font-lat font-light max-w-lg">Each property is personally vetted by our senior advisors. Only the finest make our portfolio.</p>
+</div>
+<a href="#" class="inline-flex items-center gap-2 text-sm font-bold font-lat tracking-widest uppercase border-b-2 pb-1 self-start md:self-auto" style="color:#8B7355;border-color:#8B7355">
+View All Properties
+<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+</a>
+</div>
+
+<!-- Property Grid -->
+<div class="grid md:grid-cols-3 gap-8">
+<!-- Property Card 1 -->
+<div class="bg-white prop-card overflow-hidden shadow-sm2 card-hover" style="border:1px solid rgba(139,115,85,0.1)">
+<div class="relative overflow-hidden" style="height:240px">
+<img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Clifton Manor" class="prop-img w-full h-full object-cover">
+<div class="absolute top-4 left-4 px-3 py-1.5 text-xs font-bold font-lat tracking-widest uppercase" style="background:#8B7355;color:white">New Listing</div>
+<div class="absolute top-4 right-4 px-3 py-1.5 text-xs font-bold font-lat" style="background:rgba(26,20,16,0.85);color:white">For Sale</div>
+</div>
+<div class="p-6">
+<div class="flex items-start justify-between mb-2">
+<div>
+<h3 class="font-cg text-xl font-semibold mb-0.5" style="color:#1A1410">Clifton Manor</h3>
+<p class="text-xs font-lat tracking-wide" style="color:#8B7355">Mayfair, London</p>
+</div>
+<p class="font-cg text-xl font-bold flex-shrink-0 ml-3" style="color:#5C4A32">£6.8M</p>
+</div>
+<p class="text-gray-500 text-sm font-lat font-light leading-relaxed mb-4">A magnificent Georgian townhouse spanning five floors with private garden, original period features, and contemporary interiors by award-winning designers.</p>
+<div class="flex items-center gap-4 py-3 mb-4" style="border-top:1px solid rgba(139,115,85,0.12);border-bottom:1px solid rgba(139,115,85,0.12)">
+<div class="flex items-center gap-1.5 text-xs font-lat text-gray-500">
+<svg class="w-3.5 h-3.5" style="color:#8B7355" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+5 Beds
+</div>
+<div class="flex items-center gap-1.5 text-xs font-lat text-gray-500">
+<svg class="w-3.5 h-3.5" style="color:#8B7355" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+4 Baths
+</div>
+<div class="flex items-center gap-1.5 text-xs font-lat text-gray-500">
+<svg class="w-3.5 h-3.5" style="color:#8B7355" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+4,200 sq ft
+</div>
+</div>
+<button class="w-full text-xs font-bold font-lat tracking-widest uppercase py-3 transition-all" style="border:1px solid rgba(139,115,85,0.4);color:#8B7355">Request Private Viewing</button>
+</div>
+</div>
+
+<!-- Property Card 2 -->
+<div class="bg-white prop-card overflow-hidden shadow-sm2 card-hover" style="border:1px solid rgba(139,115,85,0.1)">
+<div class="relative overflow-hidden" style="height:240px">
+<img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="The Penthouse" class="prop-img w-full h-full object-cover">
+<div class="absolute top-4 left-4 px-3 py-1.5 text-xs font-bold font-lat tracking-widest uppercase" style="background:#1A1410;color:#C4A882">Exclusive</div>
+<div class="absolute top-4 right-4 px-3 py-1.5 text-xs font-bold font-lat" style="background:rgba(26,20,16,0.85);color:white">For Sale</div>
+</div>
+<div class="p-6">
+<div class="flex items-start justify-between mb-2">
+<div>
+<h3 class="font-cg text-xl font-semibold mb-0.5" style="color:#1A1410">The Penthouse</h3>
+<p class="text-xs font-lat tracking-wide" style="color:#8B7355">Central Park West, NYC</p>
+</div>
+<p class="font-cg text-xl font-bold flex-shrink-0 ml-3" style="color:#5C4A32">$12.5M</p>
+</div>
+<p class="text-gray-500 text-sm font-lat font-light leading-relaxed mb-4">Full-floor penthouse with 360° Central Park views, private rooftop terrace, chef's kitchen, and bespoke finishes throughout. White-glove building.</p>
+<div class="flex items-center gap-4 py-3 mb-4" style="border-top:1px solid rgba(139,115,85,0.12);border-bottom:1px solid rgba(139,115,85,0.12)">
+<div class="flex items-center gap-1.5 text-xs font-lat text-gray-500">
+<svg class="w-3.5 h-3.5" style="color:#8B7355" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+4 Beds
+</div>
+<div class="flex items-center gap-1.5 text-xs font-lat text-gray-500">
+<svg class="w-3.5 h-3.5" style="color:#8B7355" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+4.5 Baths
+</div>
+<div class="flex items-center gap-1.5 text-xs font-lat text-gray-500">
+<svg class="w-3.5 h-3.5" style="color:#8B7355" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+6,800 sq ft
+</div>
+</div>
+<button class="w-full text-xs font-bold font-lat tracking-widest uppercase py-3 transition-all" style="border:1px solid rgba(139,115,85,0.4);color:#8B7355">Request Private Viewing</button>
+</div>
+</div>
+
+<!-- Property Card 3 -->
+<div class="bg-white prop-card overflow-hidden shadow-sm2 card-hover" style="border:1px solid rgba(139,115,85,0.1)">
+<div class="relative overflow-hidden" style="height:240px">
+<img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Villa Serena" class="prop-img w-full h-full object-cover">
+<div class="absolute top-4 left-4 px-3 py-1.5 text-xs font-bold font-lat tracking-widest uppercase" style="background:#8B7355;color:white">Price Reduced</div>
+<div class="absolute top-4 right-4 px-3 py-1.5 text-xs font-bold font-lat" style="background:rgba(26,20,16,0.85);color:white">For Sale</div>
+</div>
+<div class="p-6">
+<div class="flex items-start justify-between mb-2">
+<div>
+<h3 class="font-cg text-xl font-semibold mb-0.5" style="color:#1A1410">Villa Serena</h3>
+<p class="text-xs font-lat tracking-wide" style="color:#8B7355">Cap d'Antibes, Côte d'Azur</p>
+</div>
+<p class="font-cg text-xl font-bold flex-shrink-0 ml-3" style="color:#5C4A32">€18.9M</p>
+</div>
+<p class="text-gray-500 text-sm font-lat font-light leading-relaxed mb-4">Exceptional Provençal villa with panoramic sea views, 12-metre infinity pool, private beach access, and 1.2 hectares of landscaped gardens.</p>
+<div class="flex items-center gap-4 py-3 mb-4" style="border-top:1px solid rgba(139,115,85,0.12);border-bottom:1px solid rgba(139,115,85,0.12)">
+<div class="flex items-center gap-1.5 text-xs font-lat text-gray-500">
+<svg class="w-3.5 h-3.5" style="color:#8B7355" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+7 Beds
+</div>
+<div class="flex items-center gap-1.5 text-xs font-lat text-gray-500">
+<svg class="w-3.5 h-3.5" style="color:#8B7355" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+6 Baths
+</div>
+<div class="flex items-center gap-1.5 text-xs font-lat text-gray-500">
+<svg class="w-3.5 h-3.5" style="color:#8B7355" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+9,400 sq ft
+</div>
+</div>
+<button class="w-full text-xs font-bold font-lat tracking-widest uppercase py-3 transition-all" style="border:1px solid rgba(139,115,85,0.4);color:#8B7355">Request Private Viewing</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- WHY HALCYON SECTION -->
+<section id="about" style="background:white;padding:88px 0;max-height:900px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid lg:grid-cols-2 gap-20 items-center">
+<div>
+<p class="text-xs font-bold font-lat tracking-[0.25em] uppercase mb-4" style="color:#8B7355">The Halcyon Difference</p>
+<h2 class="font-cg text-4xl lg:text-5xl font-light mb-6" style="color:#1A1410">Eighteen years of<br>unrivalled expertise.</h2>
+<p class="text-gray-600 text-base leading-relaxed font-lat mb-5 font-light">Founded in 2006 by former Christie's specialists, Halcyon was built on the belief that exceptional properties deserve exceptional representation. We operate at the intersection of art, architecture, and real estate.</p>
+<p class="text-gray-600 text-base leading-relaxed font-lat mb-8 font-light">Our advisors are not salespeople — they are trusted confidants who understand that acquiring a home of this calibre is one of life's most significant decisions. We take that responsibility seriously.</p>
+<div class="grid grid-cols-3 gap-6 mb-8 py-8" style="border-top:1px solid rgba(139,115,85,0.15);border-bottom:1px solid rgba(139,115,85,0.15)">
+<div>
+<p class="text-3xl font-bold font-cg mb-1" style="color:#8B7355">$2.8B</p>
+<p class="text-xs text-gray-500 font-lat uppercase tracking-wide">Sold in 2024</p>
+</div>
+<div>
+<p class="text-3xl font-bold font-cg mb-1" style="color:#8B7355">42</p>
+<p class="text-xs text-gray-500 font-lat uppercase tracking-wide">Global Markets</p>
+</div>
+<div>
+<p class="text-3xl font-bold font-cg mb-1" style="color:#8B7355">4.98★</p>
+<p class="text-xs text-gray-500 font-lat uppercase tracking-wide">Client Rating</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 flex items-center justify-center flex-shrink-0 mt-0.5" style="background:#F5F0E8">
+<svg class="w-5 h-5" style="color:#8B7355" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+</div>
+<div>
+<h4 class="font-lat font-bold text-gray-800 mb-0.5">Absolute Discretion</h4>
+<p class="text-sm text-gray-500 font-lat font-light">All transactions handled with complete confidentiality. NDA available upon request.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 flex items-center justify-center flex-shrink-0 mt-0.5" style="background:#F5F0E8">
+<svg class="w-5 h-5" style="color:#8B7355" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+</div>
+<div>
+<h4 class="font-lat font-bold text-gray-800 mb-0.5">Global Network</h4>
+<p class="text-sm text-gray-500 font-lat font-light">Access to off-market properties through our exclusive network of 42 international offices.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 flex items-center justify-center flex-shrink-0 mt-0.5" style="background:#F5F0E8">
+<svg class="w-5 h-5" style="color:#8B7355" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+</div>
+<div>
+<h4 class="font-lat font-bold text-gray-800 mb-0.5">Best Price Guarantee</h4>
+<p class="text-sm text-gray-500 font-lat font-light">Our negotiation expertise consistently achieves above-market results for both buyers and sellers.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Luxury interior" class="object-cover w-full shadow-md2" style="height:260px">
+<img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Luxury property" class="object-cover w-full shadow-md2 mt-10" style="height:260px">
+<img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Property exterior" class="object-cover w-full shadow-md2 -mt-6" style="height:200px">
+<div class="flex items-center justify-center p-6" style="background:#F5F0E8">
+<div class="text-center">
+<p class="font-cg text-4xl font-light mb-2" style="color:#8B7355">Forbes</p>
+<p class="text-xs font-lat tracking-widest uppercase text-gray-500 mb-1">#1 Luxury Agency</p>
+<p class="text-xs font-lat text-gray-400">2022 · 2023 · 2024</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- AGENT TRUST SIGNALS -->
+<section id="agents" style="background:#FAF8F5;padding:88px 0;max-height:900px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-14">
+<p class="text-xs font-bold font-lat tracking-[0.25em] uppercase mb-4" style="color:#8B7355">Our Senior Advisors</p>
+<h2 class="font-cg text-4xl lg:text-5xl font-light mb-4" style="color:#1A1410">Trusted by the world's<br>most discerning clients.</h2>
+<p class="text-gray-500 text-base font-lat font-light max-w-xl mx-auto">Our advisors average 14 years of luxury real estate experience. They are not just agents — they are your personal advocates.</p>
+</div>
+<div class="grid md:grid-cols-4 gap-6">
+<!-- Agent 1 -->
+<div class="bg-white p-6 text-center shadow-sm2 agent-card transition-shadow" style="border:1px solid rgba(139,115,85,0.1)">
+<div class="relative inline-block mb-4">
+<img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&amp;w=200&amp;auto=format&amp;fit=crop" alt="James Whitmore" class="w-20 h-20 object-cover mx-auto" style="border:2px solid rgba(139,115,85,0.3)">
+<div class="absolute -bottom-1 -right-1 w-6 h-6 flex items-center justify-center" style="background:#8B7355">
+<svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+</div>
+</div>
+<h3 class="font-cg text-lg font-semibold mb-0.5" style="color:#1A1410">James Whitmore</h3>
+<p class="text-xs font-lat tracking-wide mb-3" style="color:#8B7355">Senior Director, London</p>
+<p class="text-xs text-gray-500 font-lat font-light leading-relaxed mb-4">Specialist in Mayfair, Belgravia &amp; Knightsbridge. £480M+ in career sales.</p>
+<div class="flex items-center justify-center gap-1 mb-3">
+<span class="text-xs" style="color:#B8A898">★★★★★</span>
+<span class="text-xs text-gray-400 font-lat">4.99</span>
+</div>
+<a href="#contact" class="block text-xs font-bold font-lat tracking-widest uppercase py-2.5 transition-all" style="border:1px solid rgba(139,115,85,0.35);color:#8B7355">Contact James</a>
+</div>
+<!-- Agent 2 -->
+<div class="bg-white p-6 text-center shadow-sm2 agent-card transition-shadow" style="border:1px solid rgba(139,115,85,0.1)">
+<div class="relative inline-block mb-4">
+<img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&amp;w=200&amp;auto=format&amp;fit=crop" alt="Isabelle Laurent" class="w-20 h-20 object-cover mx-auto" style="border:2px solid rgba(139,115,85,0.3)">
+<div class="absolute -bottom-1 -right-1 w-6 h-6 flex items-center justify-center" style="background:#8B7355">
+<svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+</div>
+</div>
+<h3 class="font-cg text-lg font-semibold mb-0.5" style="color:#1A1410">Isabelle Laurent</h3>
+<p class="text-xs font-lat tracking-wide mb-3" style="color:#8B7355">Senior Director, Paris</p>
+<p class="text-xs text-gray-500 font-lat font-light leading-relaxed mb-4">Côte d'Azur &amp; Paris 8ème specialist. €620M+ in career transactions.</p>
+<div class="flex items-center justify-center gap-1 mb-3">
+<span class="text-xs" style="color:#B8A898">★★★★★</span>
+<span class="text-xs text-gray-400 font-lat">4.98</span>
+</div>
+<a href="#contact" class="block text-xs font-bold font-lat tracking-widest uppercase py-2.5 transition-all" style="border:1px solid rgba(139,115,85,0.35);color:#8B7355">Contact Isabelle</a>
+</div>
+<!-- Agent 3 -->
+<div class="bg-white p-6 text-center shadow-sm2 agent-card transition-shadow" style="border:1px solid rgba(139,115,85,0.1)">
+<div class="relative inline-block mb-4">
+<img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&amp;w=200&amp;auto=format&amp;fit=crop" alt="Marcus Chen" class="w-20 h-20 object-cover mx-auto" style="border:2px solid rgba(139,115,85,0.3)">
+<div class="absolute -bottom-1 -right-1 w-6 h-6 flex items-center justify-center" style="background:#8B7355">
+<svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+</div>
+</div>
+<h3 class="font-cg text-lg font-semibold mb-0.5" style="color:#1A1410">Marcus Chen</h3>
+<p class="text-xs font-lat tracking-wide mb-3" style="color:#8B7355">Senior Director, New York</p>
+<p class="text-xs text-gray-500 font-lat font-light leading-relaxed mb-4">Manhattan ultra-luxury specialist. $890M+ in career sales. 16 years experience.</p>
+<div class="flex items-center justify-center gap-1 mb-3">
+<span class="text-xs" style="color:#B8A898">★★★★★</span>
+<span class="text-xs text-gray-400 font-lat">4.97</span>
+</div>
+<a href="#contact" class="block text-xs font-bold font-lat tracking-widest uppercase py-2.5 transition-all" style="border:1px solid rgba(139,115,85,0.35);color:#8B7355">Contact Marcus</a>
+</div>
+<!-- Agent 4 -->
+<div class="bg-white p-6 text-center shadow-sm2 agent-card transition-shadow" style="border:1px solid rgba(139,115,85,0.1)">
+<div class="relative inline-block mb-4">
+<img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&amp;w=200&amp;auto=format&amp;fit=crop" alt="Sophia Reyes" class="w-20 h-20 object-cover mx-auto" style="border:2px solid rgba(139,115,85,0.3)">
+<div class="absolute -bottom-1 -right-1 w-6 h-6 flex items-center justify-center" style="background:#8B7355">
+<svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+</div>
+</div>
+<h3 class="font-cg text-lg font-semibold mb-0.5" style="color:#1A1410">Sophia Reyes</h3>
+<p class="text-xs font-lat tracking-wide mb-3" style="color:#8B7355">Senior Director, Dubai</p>
+<p class="text-xs text-gray-500 font-lat font-light leading-relaxed mb-4">Palm Jumeirah &amp; Downtown Dubai expert. AED 2.1B+ in career transactions.</p>
+<div class="flex items-center justify-center gap-1 mb-3">
+<span class="text-xs" style="color:#B8A898">★★★★★</span>
+<span class="text-xs text-gray-400 font-lat">4.99</span>
+</div>
+<a href="#contact" class="block text-xs font-bold font-lat tracking-widest uppercase py-2.5 transition-all" style="border:1px solid rgba(139,115,85,0.35);color:#8B7355">Contact Sophia</a>
+</div>
+</div>
+
+<!-- Trust Badges -->
+<div class="mt-12 flex flex-wrap items-center justify-center gap-8 py-8" style="border-top:1px solid rgba(139,115,85,0.15)">
+<div class="text-center">
+<p class="text-xs font-lat tracking-widest uppercase text-gray-400 mb-1">Member of</p>
+<p class="font-cg text-base font-semibold" style="color:#5C4A32">Christie's International</p>
+</div>
+<div class="w-px h-10" style="background:rgba(139,115,85,0.2)"></div>
+<div class="text-center">
+<p class="text-xs font-lat tracking-widest uppercase text-gray-400 mb-1">Certified by</p>
+<p class="font-cg text-base font-semibold" style="color:#5C4A32">RICS · NAEA · NAR</p>
+</div>
+<div class="w-px h-10" style="background:rgba(139,115,85,0.2)"></div>
+<div class="text-center">
+<p class="text-xs font-lat tracking-widest uppercase text-gray-400 mb-1">Recognised by</p>
+<p class="font-cg text-base font-semibold" style="color:#5C4A32">Forbes · FT · The Times</p>
+</div>
+<div class="w-px h-10" style="background:rgba(139,115,85,0.2)"></div>
+<div class="text-center">
+<p class="text-xs font-lat tracking-widest uppercase text-gray-400 mb-1">Regulated by</p>
+<p class="font-cg text-base font-semibold" style="color:#5C4A32">FCA · HMRC · FinCEN</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section style="background:#1A1410;padding:88px 0;max-height:700px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-12">
+<p class="text-xs font-bold font-lat tracking-[0.25em] uppercase mb-4" style="color:rgba(196,168,130,0.6)">Client Testimonials</p>
+<h2 class="font-cg text-4xl lg:text-5xl font-light text-white">Words from our clients.</h2>
+</div>
+<div class="grid md:grid-cols-3 gap-6 mb-10">
+<div class="p-8" style="background:rgba(139,115,85,0.1);border:1px solid rgba(139,115,85,0.2)">
+<div class="flex items-center gap-1 mb-5">
+<span class="text-sm" style="color:#C4A882">★★★★★</span>
+</div>
+<p class="text-sm leading-relaxed font-lat mb-6 font-light" style="color:rgba(255,255,255,0.78)">"Halcyon found us our dream home in Mayfair before it even reached the open market. Their discretion and expertise are unmatched. We would not use anyone else."</p>
+<div class="flex items-center gap-3">
+<img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&amp;w=100&amp;auto=format&amp;fit=crop" alt="Lord Ashworth" class="w-11 h-11 object-cover flex-shrink-0" style="border:1px solid rgba(139,115,85,0.4)">
+<div>
+<p class="text-sm font-semibold font-cg text-white">Lord Edward Ashworth</p>
+<p class="text-xs font-lat mt-0.5" style="color:rgba(255,255,255,0.4)">London, United Kingdom</p>
+</div>
+</div>
+</div>
+<div class="p-8" style="background:rgba(196,168,130,0.08);border:1px solid rgba(196,168,130,0.2)">
+<div class="flex items-center gap-1 mb-5">
+<span class="text-sm" style="color:#C4A882">★★★★★</span>
+</div>
+<p class="text-sm leading-relaxed font-lat mb-6 font-light" style="color:rgba(255,255,255,0.78)">"The sale of our Côte d'Azur estate was handled with extraordinary professionalism. Halcyon achieved 12% above our asking price. Truly exceptional."</p>
+<div class="flex items-center gap-3">
+<img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&amp;w=100&amp;auto=format&amp;fit=crop" alt="Madame Fontaine" class="w-11 h-11 object-cover flex-shrink-0" style="border:1px solid rgba(139,115,85,0.4)">
+<div>
+<p class="text-sm font-semibold font-cg text-white">Madame Hélène Fontaine</p>
+<p class="text-xs font-lat mt-0.5" style="color:rgba(255,255,255,0.4)">Paris &amp; Antibes, France</p>
+</div>
+</div>
+</div>
+<div class="p-8" style="background:rgba(139,115,85,0.1);border:1px solid rgba(139,115,85,0.2)">
+<div class="flex items-center gap-1 mb-5">
+<span class="text-sm" style="color:#C4A882">★★★★★</span>
+</div>
+<p class="text-sm leading-relaxed font-lat mb-6 font-light" style="color:rgba(255,255,255,0.78)">"Marcus guided us through the acquisition of our Central Park penthouse with complete confidence. His market knowledge is second to none. A truly trusted advisor."</p>
+<div class="flex items-center gap-3">
+<img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&amp;w=100&amp;auto=format&amp;fit=crop" alt="Mr. Harrington" class="w-11 h-11 object-cover flex-shrink-0" style="border:1px solid rgba(139,115,85,0.4)">
+<div>
+<p class="text-sm font-semibold font-cg text-white">Mr. Robert Harrington III</p>
+<p class="text-xs font-lat mt-0.5" style="color:rgba(255,255,255,0.4)">New York, United States</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Review stats -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="p-5 text-center" style="background:rgba(139,115,85,0.12);border:1px solid rgba(139,115,85,0.2)">
+<p class="text-3xl font-bold font-cg" style="color:#C4A882">4.98</p>
+<p class="text-xs font-lat text-white opacity-50 mt-1">Average Rating</p>
+</div>
+<div class="p-5 text-center" style="background:rgba(196,168,130,0.08);border:1px solid rgba(196,168,130,0.2)">
+<p class="text-3xl font-bold font-cg" style="color:#C4A882">1,200+</p>
+<p class="text-xs font-lat text-white opacity-50 mt-1">Verified Reviews</p>
+</div>
+<div class="p-5 text-center" style="background:rgba(139,115,85,0.12);border:1px solid rgba(139,115,85,0.2)">
+<p class="text-3xl font-bold font-cg" style="color:#C4A882">97%</p>
+<p class="text-xs font-lat text-white opacity-50 mt-1">Recommend Us</p>
+</div>
+<div class="p-5 text-center" style="background:rgba(196,168,130,0.08);border:1px solid rgba(196,168,130,0.2)">
+<p class="text-3xl font-bold font-cg" style="color:#C4A882">84%</p>
+<p class="text-xs font-lat text-white opacity-50 mt-1">Repeat Clients</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CONTACT / CTA SECTION -->
+<section id="contact" style="background:#FAF8F5;padding:88px 0;max-height:900px">
+<div class="max-w-6xl mx-auto px-6">
+<div class="grid lg:grid-cols-2 gap-16 items-start">
+<div>
+<p class="text-xs font-bold font-lat tracking-[0.25em] uppercase mb-4" style="color:#8B7355">Private Consultation</p>
+<h2 class="font-cg text-4xl lg:text-5xl font-light mb-5" style="color:#1A1410">Begin your property<br>journey today.</h2>
+<p class="text-gray-600 text-base leading-relaxed font-lat mb-8 font-light">Whether you are seeking to acquire, sell, or simply explore the market, our senior advisors are available for a private, no-obligation consultation at your convenience.</p>
+<div class="space-y-5 mb-8">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 flex items-center justify-center flex-shrink-0" style="background:#F5F0E8">
+<svg class="w-5 h-5" style="color:#8B7355" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+</div>
+<div>
+<h4 class="font-lat font-bold text-gray-800 mb-0.5">Telephone</h4>
+<p class="text-sm text-gray-500 font-lat">1-800-555-1234 · Available 24/7</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 flex items-center justify-center flex-shrink-0" style="background:#F5F0E8">
+<svg class="w-5 h-5" style="color:#8B7355" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+</div>
+<div>
+<h4 class="font-lat font-bold text-gray-800 mb-0.5">Email</h4>
+<p class="text-sm text-gray-500 font-lat">advisors@halcyon.com</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 flex items-center justify-center flex-shrink-0" style="background:#F5F0E8">
+<svg class="w-5 h-5" style="color:#8B7355" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+</div>
+<div>
+<h4 class="font-lat font-bold text-gray-800 mb-0.5">Global Offices</h4>
+<p class="text-sm text-gray-500 font-lat">London · New York · Paris · Dubai · Hong Kong</p>
+</div>
+</div>
+</div>
+<!-- Awards -->
+<div class="p-5 flex items-center gap-4" style="background:white;border:1px solid rgba(139,115,85,0.15)">
+<div class="w-12 h-12 flex items-center justify-center flex-shrink-0" style="background:#F5F0E8">
+<svg class="w-6 h-6" style="color:#8B7355" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
+</div>
+<div>
+<p class="text-xs text-gray-400 font-lat uppercase tracking-widest">Recognised Excellence</p>
+<p class="font-cg font-semibold text-base" style="color:#1A1410">Forbes #1 Luxury Real Estate Agency 2024</p>
+</div>
+</div>
+</div>
+
+<!-- Contact Form -->
+<div class="bg-white p-8 shadow-md2" style="border:1px solid rgba(139,115,85,0.12)">
+<h3 class="font-cg text-2xl font-semibold mb-2" style="color:#1A1410">Request a Consultation</h3>
+<p class="text-sm text-gray-500 font-lat font-light mb-6">All enquiries are treated with complete confidentiality.</p>
+<form onsubmit="return false" class="space-y-4">
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-xs font-bold text-gray-600 font-lat mb-1.5 uppercase tracking-widest">First Name</label>
+<input type="text" placeholder="Edward" class="search-input w-full px-4 py-3 border border-gray-200 text-sm font-lat focus:outline-none min-h-[44px]">
+</div>
+<div>
+<label class="block text-xs font-bold text-gray-600 font-lat mb-1.5 uppercase tracking-widest">Last Name</label>
+<input type="text" placeholder="Ashworth" class="search-input w-full px-4 py-3 border border-gray-200 text-sm font-lat focus:outline-none min-h-[44px]">
+</div>
+</div>
+<div>
+<label class="block text-xs font-bold text-gray-600 font-lat mb-1.5 uppercase tracking-widest">Email Address</label>
+<input type="email" placeholder="edward@example.com" class="search-input w-full px-4 py-3 border border-gray-200 text-sm font-lat focus:outline-none min-h-[44px]">
+</div>
+<div>
+<label class="block text-xs font-bold text-gray-600 font-lat mb-1.5 uppercase tracking-widest">Telephone</label>
+<input type="tel" placeholder="+1 (555) 000-0000" class="search-input w-full px-4 py-3 border border-gray-200 text-sm font-lat focus:outline-none min-h-[44px]">
+</div>
+<div>
+<label class="block text-xs font-bold text-gray-600 font-lat mb-1.5 uppercase tracking-widest">I am looking to</label>
+<select class="search-input w-full px-4 py-3 border border-gray-200 text-sm font-lat focus:outline-none min-h-[44px] bg-white">
+<option>Buy a property</option>
+<option>Sell a property</option>
+<option>Both buy and sell</option>
+<option>Rental investment</option>
+<option>Portfolio advisory</option>
+</select>
+</div>
+<div>
+<label class="block text-xs font-bold text-gray-600 font-lat mb-1.5 uppercase tracking-widest">Budget Range</label>
+<select class="search-input w-full px-4 py-3 border border-gray-200 text-sm font-lat focus:outline-none min-h-[44px] bg-white">
+<option>Prefer not to say</option>
+<option>$1M – $3M</option>
+<option>$3M – $7M</option>
+<option>$7M – $15M</option>
+<option>$15M – $30M</option>
+<option>$30M+</option>
+</select>
+</div>
+<div>
+<label class="block text-xs font-bold text-gray-600 font-lat mb-1.5 uppercase tracking-widest">Message</label>
+<textarea placeholder="Tell us about your requirements, preferred locations, or any specific properties of interest..." class="search-input w-full px-4 py-3 border border-gray-200 text-sm font-lat focus:outline-none resize-none" rows="3"></textarea>
+</div>
+<button type="submit" class="w-full hx-grad text-white text-sm font-bold py-4 font-lat hover:opacity-90 transition-opacity min-h-[44px] shadow-warm tracking-widest uppercase">Submit Enquiry</button>
+</form>
+<p class="text-xs text-gray-400 font-lat text-center mt-4">Strictly confidential · Response within 2 hours · NDA available</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- NEWSLETTER / MARKET INTELLIGENCE CTA -->
+<section style="background:linear-gradient(135deg,#1A1410 0%,#2C2420 100%);padding:80px 0;max-height:480px">
+<div class="max-w-3xl mx-auto px-6 text-center">
+<div class="inline-flex items-center gap-2 mb-6 px-4 py-2" style="background:rgba(196,168,130,0.12);border:1px solid rgba(196,168,130,0.25)">
+<span class="w-1.5 h-1.5" style="background:#C4A882"></span>
+<span class="text-xs font-bold font-lat tracking-[0.2em] uppercase" style="color:#C4A882">Market Intelligence</span>
+</div>
+<h2 class="font-cg text-4xl lg:text-5xl font-light text-white mb-4">Stay ahead of the<br>luxury market.</h2>
+<p class="text-gray-400 text-lg font-lat mb-8 font-light">Receive our exclusive quarterly market report, off-market opportunities, and curated property intelligence — delivered to your inbox.</p>
+<form onsubmit="return false" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mb-4">
+<input type="email" placeholder="Your email address" class="flex-1 px-5 py-3.5 text-sm font-lat focus:outline-none min-h-[44px]" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);color:white">
+<button type="submit" class="hx-grad text-white text-sm font-bold px-7 py-3.5 font-lat hover:opacity-90 transition-opacity whitespace-nowrap min-h-[44px] shadow-warm tracking-widest uppercase">Subscribe</button>
+</form>
+<p class="text-xs font-lat" style="color:rgba(255,255,255,0.3)">Quarterly dispatch · Strictly confidential · Unsubscribe anytime</p>
+<div class="flex items-center justify-center gap-8 mt-10 flex-wrap">
+<div class="text-center">
+<p class="text-2xl font-bold font-cg" style="color:#C4A882">4.98★</p>
+<p class="text-xs font-lat text-gray-500 mt-0.5">Client Rating</p>
+</div>
+<div class="w-px h-10" style="background:rgba(139,115,85,0.3)"></div>
+<div class="text-center">
+<p class="text-2xl font-bold font-cg" style="color:#C4A882">Forbes #1</p>
+<p class="text-xs font-lat text-gray-500 mt-0.5">Luxury Agency 2024</p>
+</div>
+<div class="w-px h-10" style="background:rgba(139,115,85,0.3)"></div>
+<div class="text-center">
+<p class="text-2xl font-bold font-cg" style="color:#C4A882">$2.8B+</p>
+<p class="text-xs font-lat text-gray-500 mt-0.5">Sold in 2024</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#0F0C0A;padding:64px 0">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid md:grid-cols-5 gap-8 mb-10">
+<div class="md:col-span-2">
+<div class="mb-5">
+<span class="font-cg text-2xl font-semibold tracking-[0.12em] text-white">HALCYON</span>
+<span class="block text-[9px] font-lat tracking-[0.3em] uppercase mt-0.5" style="color:#8B7355">Luxury Real Estate</span>
+</div>
+<p class="text-sm font-lat leading-relaxed mb-5 font-light" style="color:rgba(255,255,255,0.4)">The world's most trusted luxury real estate advisory. Eighteen years of unrivalled expertise across 42 global markets.</p>
+<div class="space-y-2">
+<div class="flex items-center gap-2">
+<svg class="w-4 h-4 flex-shrink-0" style="color:#8B7355" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+<span class="text-sm font-lat" style="color:rgba(255,255,255,0.45)">1-800-555-1234</span>
+</div>
+<div class="flex items-center gap-2">
+<svg class="w-4 h-4 flex-shrink-0" style="color:#8B7355" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+<span class="text-sm font-lat" style="color:rgba(255,255,255,0.45)">advisors@halcyon.com</span>
+</div>
+</div>
+</div>
+<div>
+<p class="text-sm font-bold font-cg mb-4 text-white tracking-wide">Properties</p>
+<div class="space-y-2">
+<a href="#" class="block text-sm font-lat transition-colors font-light" style="color:rgba(255,255,255,0.4)">Buy</a>
+<a href="#" class="block text-sm font-lat transition-colors font-light" style="color:rgba(255,255,255,0.4)">Rent</a>
+<a href="#" class="block text-sm font-lat transition-colors font-light" style="color:rgba(255,255,255,0.4)">Off-Market</a>
+<a href="#" class="block text-sm font-lat transition-colors font-light" style="color:rgba(255,255,255,0.4)">New Developments</a>
+</div>
+</div>
+<div>
+<p class="text-sm font-bold font-cg mb-4 text-white tracking-wide">Services</p>
+<div class="space-y-2">
+<a href="#" class="block text-sm font-lat transition-colors font-light" style="color:rgba(255,255,255,0.4)">Sell Your Property</a>
+<a href="#" class="block text-sm font-lat transition-colors font-light" style="color:rgba(255,255,255,0.4)">Valuation</a>
+<a href="#" class="block text-sm font-lat transition-colors font-light" style="color:rgba(255,255,255,0.4)">Investment Advisory</a>
+<a href="#" class="block text-sm font-lat transition-colors font-light" style="color:rgba(255,255,255,0.4)">Property Management</a>
+</div>
+</div>
+<div>
+<p class="text-sm font-bold font-cg mb-4 text-white tracking-wide">Company</p>
+<div class="space-y-2">
+<a href="#" class="block text-sm font-lat transition-colors font-light" style="color:rgba(255,255,255,0.4)">About Halcyon</a>
+<a href="#" class="block text-sm font-lat transition-colors font-light" style="color:rgba(255,255,255,0.4)">Our Advisors</a>
+<a href="#" class="block text-sm font-lat transition-colors font-light" style="color:rgba(255,255,255,0.4)">Press</a>
+<a href="#" class="block text-sm font-lat transition-colors font-light" style="color:rgba(255,255,255,0.4)">Careers</a>
+</div>
+</div>
+</div>
+<div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style="border-top:1px solid rgba(139,115,85,0.2)">
+<p class="text-sm font-lat" style="color:rgba(255,255,255,0.25)">© 2024 Halcyon Luxury Real Estate. All rights reserved. Equal Housing Opportunity.</p>
+<div class="flex items-center gap-4">
+<a href="/api/copilot/prototype/5776e7d4-fc9f-4634-bb32-35324702b7e9/food-restaurant-landing-page" class="text-xs font-lat transition-colors" style="color:rgba(255,255,255,0.3)">← Food &amp; Restaurant</a>
+<span class="text-xs font-lat" style="color:rgba(139,115,85,0.5)">|</span>
+<span class="text-xs font-lat" style="color:#C4A882">Real Estate ✦ Final Screen</span>
+</div>
+</div>
+</div>
+</footer>
+
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

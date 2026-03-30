@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="E-Commerce Landing Page - Exported from UXMagic Copilot">
+    <title>E-Commerce Landing Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+tailwind.config={theme:{extend:{colors:{
+'i1':'#5C6AC4','i1l':'#EEF0FF','i1d':'#2D2D3A',
+'f2':'#7DAF8A','f2l':'#EAF4EC','f2g':'#C9A84C','f2gl':'#F7EDD0','f2d':'#2A3240',
+'w3':'#FAF7F2','w3r':'#D4A5A5','w3t':'#C47C5A',
+'r4':'#C4B49A','r4g':'#2D5016','r4s':'#F5EFE4',
+'l5':'#4A6FA5','l5l':'#E8EEF7','l5d':'#1E2A3A',
+'e6':'#FDFAF6','e6t':'#D4B896','e6b':'#E8C4B8','e6e':'#2C1A0E',
+'ed7':'#F5A623','ed7l':'#FEF3DC','ed7s':'#4A90D9','ed7sl':'#E8F2FC',
+'t8':'#2E86AB','t8l':'#E0F0F7','t8s':'#E8D5B0','t8c':'#F4845F',
+'h9':'#E8614A','h9l':'#FDECEA','h9g':'#F5F3F0','h9d':'#1C1C1E',
+'c10':'#3D6B4F','c10l':'#E8F0EB','c10s':'#A8C5DA','c10a':'#DDD0B8','c10b':'#FAFAF7',
+'zp':'#FF4D00','zpl':'#FFF0EB','zpd':'#1A0A00','zps':'#FFB800','zpsl':'#FFF8E0','zpg':'#00C48C','zpgl':'#E0FFF6',
+},fontFamily:{
+'pf':['"Playfair Display"','serif'],
+'cg':['"Cormorant Garamond"','serif'],
+'sg':['"Space Grotesk"','sans-serif'],
+'bar':['Barlow','sans-serif'],
+'barc':['"Barlow Condensed"','sans-serif'],
+'beb':['"Bebas Neue"','sans-serif'],
+'nun':['Nunito','sans-serif'],
+'lb':['"Libre Baskerville"','serif'],
+'man':['Manrope','sans-serif'],
+'lor':['Lora','serif'],
+'int':['Inter','sans-serif'],
+'lat':['Lato','sans-serif'],
+},boxShadow:{
+'sm2':'0 2px 8px rgba(0,0,0,0.06)',
+'md2':'0 8px 30px rgba(0,0,0,0.08)',
+'lg2':'0 20px 60px rgba(0,0,0,0.12)',
+}}}}
+
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+<!-- FLOW NAVIGATION BAR -->
+<div style="background:#1A0A00;border-bottom:2px solid #FF4D00">
+<div class="overflow-x-auto no-sb">
+<div class="flex items-center gap-1.5 px-4 py-2 min-w-max">
+<span class="text-[10px] font-bold uppercase tracking-widest mr-2 flex-shrink-0 font-int" style="color:rgba(255,77,0,0.6)">6 Landing Pages:</span>
+<a href="/api/copilot/prototype/5776e7d4-fc9f-4634-bb32-35324702b7e9/healthcare-landing-page" class="text-xs font-bold px-3 py-1.5 rounded font-int whitespace-nowrap transition-colors" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.1)">01 Healthcare</a>
+<a href="/api/copilot/prototype/5776e7d4-fc9f-4634-bb32-35324702b7e9/fintech-landing-page" class="text-xs font-bold px-3 py-1.5 rounded font-int whitespace-nowrap transition-colors" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.1)">02 Fintech</a>
+<a href="/api/copilot/prototype/5776e7d4-fc9f-4634-bb32-35324702b7e9/e-commerce-landing-page" class="text-xs font-bold px-3 py-1.5 rounded font-int whitespace-nowrap" style="background:rgba(255,77,0,0.2);color:#FF4D00;border:1px solid rgba(255,77,0,0.5)">03 E-Commerce</a>
+<a href="/api/copilot/prototype/5776e7d4-fc9f-4634-bb32-35324702b7e9/saas-landing-page" class="text-xs font-bold px-3 py-1.5 rounded font-int whitespace-nowrap transition-colors" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.1)">04 SaaS</a>
+<a href="/api/copilot/prototype/5776e7d4-fc9f-4634-bb32-35324702b7e9/food-restaurant-landing-page" class="text-xs font-bold px-3 py-1.5 rounded font-int whitespace-nowrap transition-colors" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.1)">05 Food &amp; Restaurant</a>
+<a href="/api/copilot/prototype/5776e7d4-fc9f-4634-bb32-35324702b7e9/real-estate-landing-page" class="text-xs font-bold px-3 py-1.5 rounded font-int whitespace-nowrap transition-colors" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.1)">06 Real Estate</a>
+</div>
+</div>
+</div>
+
+<!-- PROMO TICKER -->
+<div class="ticker-wrap py-2" style="background:#FF4D00">
+<div class="ticker-inner">
+<span class="text-white text-xs font-bold font-int px-8">🔥 FLASH SALE — UP TO 60% OFF TODAY ONLY</span>
+<span class="text-white text-xs font-bold font-int px-8">✨ FREE SHIPPING ON ORDERS OVER $49</span>
+<span class="text-white text-xs font-bold font-int px-8">🎁 BUY 2 GET 1 FREE ON ALL ACCESSORIES</span>
+<span class="text-white text-xs font-bold font-int px-8">⚡ NEW ARRIVALS EVERY MONDAY</span>
+<span class="text-white text-xs font-bold font-int px-8">🔥 FLASH SALE — UP TO 60% OFF TODAY ONLY</span>
+<span class="text-white text-xs font-bold font-int px-8">✨ FREE SHIPPING ON ORDERS OVER $49</span>
+<span class="text-white text-xs font-bold font-int px-8">🎁 BUY 2 GET 1 FREE ON ALL ACCESSORIES</span>
+<span class="text-white text-xs font-bold font-int px-8">⚡ NEW ARRIVALS EVERY MONDAY</span>
+</div>
+</div>
+
+<!-- MAIN NAV -->
+<nav class="bg-white border-b border-gray-100 sticky top-0 z-40 shadow-sm2">
+<div class="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between py-3">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 zest-grad">
+<span class="text-white font-extrabold text-lg font-beb">Z</span>
+</div>
+<span class="font-beb text-2xl tracking-widest" style="color:#1A0A00">ZEST</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a href="#" class="text-sm font-semibold text-gray-600 hover:text-zp font-int transition-colors">New Arrivals</a>
+<a href="#" class="text-sm font-semibold text-gray-600 hover:text-zp font-int transition-colors">Women</a>
+<a href="#" class="text-sm font-semibold text-gray-600 hover:text-zp font-int transition-colors">Men</a>
+<a href="#" class="text-sm font-semibold text-gray-600 hover:text-zp font-int transition-colors">Accessories</a>
+<a href="#" class="text-sm font-semibold text-gray-600 hover:text-zp font-int transition-colors">Sale</a>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center gap-2 bg-gray-50 rounded-full px-4 py-2 border border-gray-200">
+<svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+<input type="text" placeholder="Search products..." class="bg-transparent text-sm font-int focus:outline-none w-36 text-gray-600">
+</div>
+<button class="relative p-2 text-gray-600 hover:text-zp transition-colors">
+<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+</button>
+<button class="relative p-2 text-gray-600 hover:text-zp transition-colors">
+<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+<span class="count-badge">3</span>
+</button>
+<button class="btn-cart text-sm font-bold px-5 py-2.5 rounded-full font-int min-h-[44px]">Sign In</button>
+</div>
+</div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="relative overflow-hidden" style="background:linear-gradient(135deg,#1A0A00 0%,#2D1500 50%,#1A0A00 100%);padding-top:60px;padding-bottom:60px">
+<div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+<div class="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl opacity-30" style="background:radial-gradient(circle,#FF4D00,transparent)"></div>
+<div class="absolute bottom-0 left-0 w-72 h-72 rounded-full blur-3xl opacity-20" style="background:radial-gradient(circle,#FFB800,transparent)"></div>
+<div class="absolute top-1/2 left-1/2 w-64 h-64 rounded-full blur-3xl opacity-10" style="background:radial-gradient(circle,#00C48C,transparent)"></div>
+<div class="absolute inset-0 opacity-[0.04]" style="background-image:radial-gradient(circle,rgba(255,77,0,0.4) 1px,transparent 1px);background-size:32px 32px"></div>
+</div>
+<div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center relative z-10">
+<div>
+<div class="inline-flex items-center gap-2 text-xs font-bold px-3 py-1.5 rounded-full mb-6 font-int uppercase tracking-wider" style="background:rgba(255,77,0,0.15);color:#FF4D00;border:1px solid rgba(255,77,0,0.4)">
+<span class="w-1.5 h-1.5 rounded-full animate-pulse" style="background:#FF4D00"></span>
+Summer Sale — Up to 60% Off
+</div>
+<h1 class="font-beb text-6xl lg:text-[80px] leading-none tracking-widest mb-6 text-white">
+STYLE<br>
+<span class="zest-text-grad">WITHOUT</span><br>
+LIMITS.
+</h1>
+<p class="text-lg leading-relaxed mb-8 max-w-md font-int" style="color:rgba(255,255,255,0.65)">Discover thousands of trending styles, exclusive drops, and unbeatable deals. Fashion that moves as fast as you do — delivered to your door in 2 days.</p>
+<div class="flex flex-col sm:flex-row gap-3 max-w-md mb-6">
+<input type="email" placeholder="Enter your email for 20% off" class="flex-1 px-4 py-3 rounded-full text-sm font-int focus:outline-none min-h-[44px]" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,77,0,0.3);color:white">
+<button class="btn-cart text-sm font-bold px-6 py-3 rounded-full font-int whitespace-nowrap min-h-[44px]">Claim Offer</button>
+</div>
+<p class="text-xs font-int mb-8" style="color:rgba(255,255,255,0.35)">No spam · Unsubscribe anytime · New subscribers only</p>
+<div class="flex flex-wrap gap-6 pt-6" style="border-top:1px solid rgba(255,77,0,0.2)">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(255,77,0,0.15);border:1px solid rgba(255,77,0,0.3)">
+<svg class="w-4 h-4" style="color:#FF4D00" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
+</div>
+<span class="text-sm font-int" style="color:rgba(255,255,255,0.6)">Free 2-Day Shipping</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(255,184,0,0.15);border:1px solid rgba(255,184,0,0.3)">
+<svg class="w-4 h-4" style="color:#FFB800" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+</div>
+<span class="text-sm font-int" style="color:rgba(255,255,255,0.6)">Easy 30-Day Returns</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(0,196,140,0.15);border:1px solid rgba(0,196,140,0.3)">
+<svg class="w-4 h-4" style="color:#00C48C" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+</div>
+<span class="text-sm font-int" style="color:rgba(255,255,255,0.6)">Secure Checkout</span>
+</div>
+</div>
+</div>
+
+<!-- Hero Visual: Product Showcase -->
+<div class="relative hidden lg:block">
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="w-80 h-80 rounded-full blur-3xl opacity-25" style="background:#FF4D00"></div>
+</div>
+<div class="relative grid grid-cols-2 gap-4">
+<!-- Main product card -->
+<div class="col-span-2 relative rounded-2xl overflow-hidden shadow-lg2 card-hover" style="background:#2D1500;border:1px solid rgba(255,77,0,0.3)">
+<img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Featured Fashion" class="w-full h-52 object-cover opacity-90">
+<div class="absolute inset-0 flex flex-col justify-end p-5" style="background:linear-gradient(to top,rgba(26,10,0,0.9) 0%,transparent 60%)">
+<div class="flex items-center justify-between">
+<div>
+<span class="badge-sale mr-2">-40% OFF</span>
+<p class="text-white font-bold font-int text-base mt-2">Summer Collection Drop</p>
+<p class="text-sm font-int" style="color:rgba(255,255,255,0.6)">Starting from $29.99</p>
+</div>
+<button class="btn-cart text-xs font-bold px-4 py-2 rounded-full font-int min-h-[36px]">Shop Now</button>
+</div>
+</div>
+</div>
+<!-- Two smaller cards -->
+<div class="relative rounded-xl overflow-hidden shadow-md2 card-hover" style="background:#2D1500;border:1px solid rgba(255,184,0,0.25)">
+<img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&amp;w=400&amp;auto=format&amp;fit=crop" alt="Sneakers" class="w-full h-32 object-cover opacity-90">
+<div class="p-3">
+<span class="badge-new">NEW</span>
+<p class="text-white font-bold font-int text-sm mt-1.5">Air Boost Pro</p>
+<div class="flex items-center justify-between mt-1">
+<p class="font-bold font-int" style="color:#FF4D00">$89.99</p>
+<p class="text-xs line-through font-int" style="color:rgba(255,255,255,0.3)">$149</p>
+</div>
+</div>
+</div>
+<div class="relative rounded-xl overflow-hidden shadow-md2 card-hover" style="background:#2D1500;border:1px solid rgba(0,196,140,0.25)">
+<img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&amp;w=400&amp;auto=format&amp;fit=crop" alt="Bag" class="w-full h-32 object-cover opacity-90">
+<div class="p-3">
+<span class="badge-hot">🔥 HOT</span>
+<p class="text-white font-bold font-int text-sm mt-1.5">Street Tote Bag</p>
+<div class="flex items-center justify-between mt-1">
+<p class="font-bold font-int" style="color:#FFB800">$44.99</p>
+<p class="text-xs line-through font-int" style="color:rgba(255,255,255,0.3)">$75</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating stats -->
+<div class="absolute -top-4 -right-4 rounded-xl shadow-md2 px-4 py-2.5" style="background:#FF4D00">
+<p class="text-white text-xs font-int opacity-80">Happy Customers</p>
+<p class="font-bold font-int text-white text-lg">2.4M+ ⭐</p>
+</div>
+<div class="absolute -bottom-4 -left-4 rounded-xl shadow-md2 px-4 py-2.5" style="background:white">
+<p class="text-gray-500 text-xs font-int">Today's Orders</p>
+<p class="font-bold font-int text-zp text-lg">12,847 🛍️</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- STATS BAND -->
+<section style="background:#FF4D00;padding:24px 0">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+<div>
+<p class="text-2xl font-extrabold font-beb text-white tracking-widest">2.4M+</p>
+<p class="text-xs font-int text-white opacity-80 uppercase tracking-wider">Happy Shoppers</p>
+</div>
+<div>
+<p class="text-2xl font-extrabold font-beb text-white tracking-widest">50K+</p>
+<p class="text-xs font-int text-white opacity-80 uppercase tracking-wider">Products</p>
+</div>
+<div>
+<p class="text-2xl font-extrabold font-beb text-white tracking-widest">4.9★</p>
+<p class="text-xs font-int text-white opacity-80 uppercase tracking-wider">Avg. Rating</p>
+</div>
+<div>
+<p class="text-2xl font-extrabold font-beb text-white tracking-widest">2-Day</p>
+<p class="text-xs font-int text-white opacity-80 uppercase tracking-wider">Free Delivery</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CATEGORY GRID -->
+<section style="background:#FAFAFA;padding:64px 0">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex items-center justify-between mb-10">
+<div>
+<p class="text-xs font-bold font-int tracking-widest uppercase mb-1" style="color:#FF4D00">Shop by Category</p>
+<h2 class="font-beb text-4xl lg:text-5xl tracking-widest" style="color:#1A0A00">FIND YOUR STYLE</h2>
+</div>
+<a href="#" class="text-sm font-bold font-int flex items-center gap-1.5 transition-colors" style="color:#FF4D00">
+View All Categories
+<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="relative rounded-2xl overflow-hidden card-hover cursor-pointer group" style="height:220px">
+<img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="Women's Fashion" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+<div class="absolute inset-0 flex flex-col justify-end p-5" style="background:linear-gradient(to top,rgba(26,10,0,0.85) 0%,transparent 55%)">
+<p class="text-white font-extrabold font-beb text-xl tracking-widest">WOMEN</p>
+<p class="text-xs font-int" style="color:rgba(255,255,255,0.7)">8,400+ styles</p>
+</div>
+<div class="absolute top-3 right-3 badge-sale">-50%</div>
+</div>
+<div class="relative rounded-2xl overflow-hidden card-hover cursor-pointer group" style="height:220px">
+<img src="https://images.unsplash.com/photo-1516257984-b1b4d707412e?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="Men's Fashion" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+<div class="absolute inset-0 flex flex-col justify-end p-5" style="background:linear-gradient(to top,rgba(26,10,0,0.85) 0%,transparent 55%)">
+<p class="text-white font-extrabold font-beb text-xl tracking-widest">MEN</p>
+<p class="text-xs font-int" style="color:rgba(255,255,255,0.7)">6,200+ styles</p>
+</div>
+<div class="absolute top-3 right-3 badge-new">NEW</div>
+</div>
+<div class="relative rounded-2xl overflow-hidden card-hover cursor-pointer group" style="height:220px">
+<img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="Sneakers" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+<div class="absolute inset-0 flex flex-col justify-end p-5" style="background:linear-gradient(to top,rgba(26,10,0,0.85) 0%,transparent 55%)">
+<p class="text-white font-extrabold font-beb text-xl tracking-widest">SNEAKERS</p>
+<p class="text-xs font-int" style="color:rgba(255,255,255,0.7)">3,100+ pairs</p>
+</div>
+<div class="absolute top-3 right-3 badge-hot">🔥 HOT</div>
+</div>
+<div class="relative rounded-2xl overflow-hidden card-hover cursor-pointer group" style="height:220px">
+<img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="Accessories" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+<div class="absolute inset-0 flex flex-col justify-end p-5" style="background:linear-gradient(to top,rgba(26,10,0,0.85) 0%,transparent 55%)">
+<p class="text-white font-extrabold font-beb text-xl tracking-widest">ACCESSORIES</p>
+<p class="text-xs font-int" style="color:rgba(255,255,255,0.7)">4,800+ items</p>
+</div>
+<div class="absolute top-3 right-3 badge-sale">-40%</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- PROMOTIONAL BANNER -->
+<section style="padding:0">
+<div class="max-w-7xl mx-auto px-6 py-8">
+<div class="grid md:grid-cols-2 gap-4">
+<!-- Banner 1 -->
+<div class="relative rounded-2xl overflow-hidden" style="background:linear-gradient(135deg,#FF4D00,#FFB800);padding:40px 36px;min-height:180px">
+<div class="absolute right-0 top-0 bottom-0 w-48 opacity-20 pointer-events-none" aria-hidden="true">
+<svg viewBox="0 0 200 200" class="w-full h-full"><circle cx="150" cy="100" r="80" fill="white"></circle><circle cx="150" cy="100" r="50" fill="white"></circle></svg>
+</div>
+<div class="relative z-10">
+<span class="text-white text-xs font-bold font-int uppercase tracking-widest opacity-80">Limited Time</span>
+<h3 class="font-beb text-4xl text-white tracking-widest mt-1 mb-2">FLASH SALE</h3>
+<p class="text-white text-sm font-int opacity-90 mb-4">Up to 60% off on 2,000+ items. Ends in 24 hours!</p>
+<div class="flex items-center gap-3 mb-4">
+<div class="bg-white bg-opacity-20 rounded-lg px-3 py-2 text-center">
+<p class="text-white font-extrabold font-beb text-2xl leading-none">08</p>
+<p class="text-white text-xs font-int opacity-70">HRS</p>
+</div>
+<span class="text-white font-bold text-xl">:</span>
+<div class="bg-white bg-opacity-20 rounded-lg px-3 py-2 text-center">
+<p class="text-white font-extrabold font-beb text-2xl leading-none">42</p>
+<p class="text-white text-xs font-int opacity-70">MIN</p>
+</div>
+<span class="text-white font-bold text-xl">:</span>
+<div class="bg-white bg-opacity-20 rounded-lg px-3 py-2 text-center">
+<p class="text-white font-extrabold font-beb text-2xl leading-none">17</p>
+<p class="text-white text-xs font-int opacity-70">SEC</p>
+</div>
+</div>
+<button class="bg-white text-zp text-sm font-extrabold px-6 py-2.5 rounded-full font-int hover:bg-opacity-90 transition-opacity min-h-[40px]">Shop Flash Sale →</button>
+</div>
+</div>
+<!-- Banner 2 -->
+<div class="relative rounded-2xl overflow-hidden" style="background:linear-gradient(135deg,#1A0A00,#2D1500);padding:40px 36px;min-height:180px;border:1px solid rgba(255,77,0,0.3)">
+<div class="absolute right-4 top-4 bottom-4 w-40 opacity-30 pointer-events-none" aria-hidden="true">
+<svg viewBox="0 0 200 200" class="w-full h-full"><path d="M100,20 L180,80 L180,160 L100,180 L20,160 L20,80 Z" fill="none" stroke="#FF4D00" stroke-width="2"></path><path d="M100,50 L155,90 L155,150 L100,160 L45,150 L45,90 Z" fill="none" stroke="#FFB800" stroke-width="1.5"></path></svg>
+</div>
+<div class="relative z-10">
+<span class="text-xs font-bold font-int uppercase tracking-widest" style="color:#FFB800">Exclusive Members</span>
+<h3 class="font-beb text-4xl text-white tracking-widest mt-1 mb-2">VIP ACCESS</h3>
+<p class="text-sm font-int mb-4" style="color:rgba(255,255,255,0.7)">Join ZEST+ for early access to drops, extra 20% off, and free express shipping.</p>
+<div class="flex items-center gap-3 mb-4">
+<div class="flex items-center gap-1.5 text-xs font-bold font-int" style="color:#00C48C">
+<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+Early access to drops
+</div>
+<div class="flex items-center gap-1.5 text-xs font-bold font-int" style="color:#00C48C">
+<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+Free express shipping
+</div>
+</div>
+<button class="btn-cart text-sm font-extrabold px-6 py-2.5 rounded-full font-int min-h-[40px]">Join ZEST+ Free →</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- TRENDING PRODUCTS GRID -->
+<section style="background:#fff;padding:64px 0">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex items-center justify-between mb-10">
+<div>
+<p class="text-xs font-bold font-int tracking-widest uppercase mb-1" style="color:#FF4D00">🔥 Trending Now</p>
+<h2 class="font-beb text-4xl lg:text-5xl tracking-widest" style="color:#1A0A00">BEST SELLERS</h2>
+</div>
+<div class="flex items-center gap-2">
+<button class="text-xs font-bold px-4 py-2 rounded-full font-int border" style="background:#FF4D00;color:white;border-color:#FF4D00">All</button>
+<button class="text-xs font-bold px-4 py-2 rounded-full font-int border border-gray-200 text-gray-600 hover:border-zp hover:text-zp transition-colors">Women</button>
+<button class="text-xs font-bold px-4 py-2 rounded-full font-int border border-gray-200 text-gray-600 hover:border-zp hover:text-zp transition-colors">Men</button>
+<button class="text-xs font-bold px-4 py-2 rounded-full font-int border border-gray-200 text-gray-600 hover:border-zp hover:text-zp transition-colors">Shoes</button>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+<!-- Product 1 -->
+<div class="bg-white rounded-2xl overflow-hidden shadow-sm2 border border-gray-100 card-hover">
+<div class="relative overflow-hidden" style="height:220px">
+<img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&amp;w=500&amp;auto=format&amp;fit=crop" alt="Product 1" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+<div class="absolute top-3 left-3 flex flex-col gap-1.5">
+<span class="badge-sale">-35%</span>
+</div>
+<button class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm2 hover:bg-red-50 transition-colors">
+<svg class="w-4 h-4 text-gray-400 hover:text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+</button>
+</div>
+<div class="p-4">
+<p class="text-xs text-gray-400 font-int mb-1">Women's Collection</p>
+<p class="font-bold text-gray-900 font-int text-sm mb-2">Floral Wrap Dress</p>
+<div class="flex items-center gap-1 mb-2">
+<span class="star-filled text-xs">★★★★★</span>
+<span class="text-xs text-gray-400 font-int">(284)</span>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<span class="font-extrabold font-int" style="color:#FF4D00">$39.99</span>
+<span class="text-xs line-through text-gray-400 font-int ml-1.5">$61.99</span>
+</div>
+<button class="btn-cart text-xs font-bold px-3 py-1.5 rounded-full font-int min-h-[32px]">Add</button>
+</div>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="bg-white rounded-2xl overflow-hidden shadow-sm2 border border-gray-100 card-hover">
+<div class="relative overflow-hidden" style="height:220px">
+<img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&amp;w=500&amp;auto=format&amp;fit=crop" alt="Product 2" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+<div class="absolute top-3 left-3 flex flex-col gap-1.5">
+<span class="badge-hot">🔥 HOT</span>
+</div>
+<button class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm2 hover:bg-red-50 transition-colors">
+<svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+</button>
+</div>
+<div class="p-4">
+<p class="text-xs text-gray-400 font-int mb-1">Footwear</p>
+<p class="font-bold text-gray-900 font-int text-sm mb-2">Air Boost Pro X</p>
+<div class="flex items-center gap-1 mb-2">
+<span class="star-filled text-xs">★★★★★</span>
+<span class="text-xs text-gray-400 font-int">(1,204)</span>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<span class="font-extrabold font-int" style="color:#FF4D00">$89.99</span>
+<span class="text-xs line-through text-gray-400 font-int ml-1.5">$149</span>
+</div>
+<button class="btn-cart text-xs font-bold px-3 py-1.5 rounded-full font-int min-h-[32px]">Add</button>
+</div>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="bg-white rounded-2xl overflow-hidden shadow-sm2 border border-gray-100 card-hover">
+<div class="relative overflow-hidden" style="height:220px">
+<img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&amp;w=500&amp;auto=format&amp;fit=crop" alt="Product 3" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+<div class="absolute top-3 left-3 flex flex-col gap-1.5">
+<span class="badge-new">NEW</span>
+</div>
+<button class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm2 hover:bg-red-50 transition-colors">
+<svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+</button>
+</div>
+<div class="p-4">
+<p class="text-xs text-gray-400 font-int mb-1">Men's Collection</p>
+<p class="font-bold text-gray-900 font-int text-sm mb-2">Utility Cargo Jacket</p>
+<div class="flex items-center gap-1 mb-2">
+<span class="star-filled text-xs">★★★★</span>
+<span class="text-xs text-gray-400 font-int">(87)</span>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<span class="font-extrabold font-int" style="color:#FF4D00">$74.99</span>
+</div>
+<button class="btn-cart text-xs font-bold px-3 py-1.5 rounded-full font-int min-h-[32px]">Add</button>
+</div>
+</div>
+</div>
+<!-- Product 4 -->
+<div class="bg-white rounded-2xl overflow-hidden shadow-sm2 border border-gray-100 card-hover">
+<div class="relative overflow-hidden" style="height:220px">
+<img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&amp;w=500&amp;auto=format&amp;fit=crop" alt="Product 4" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+<div class="absolute top-3 left-3 flex flex-col gap-1.5">
+<span class="badge-sale">-25%</span>
+</div>
+<button class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm2 hover:bg-red-50 transition-colors">
+<svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+</button>
+</div>
+<div class="p-4">
+<p class="text-xs text-gray-400 font-int mb-1">Accessories</p>
+<p class="font-bold text-gray-900 font-int text-sm mb-2">Street Tote Bag</p>
+<div class="flex items-center gap-1 mb-2">
+<span class="star-filled text-xs">★★★★★</span>
+<span class="text-xs text-gray-400 font-int">(432)</span>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<span class="font-extrabold font-int" style="color:#FF4D00">$44.99</span>
+<span class="text-xs line-through text-gray-400 font-int ml-1.5">$59.99</span>
+</div>
+<button class="btn-cart text-xs font-bold px-3 py-1.5 rounded-full font-int min-h-[32px]">Add</button>
+</div>
+</div>
+</div>
+<!-- Product 5 -->
+<div class="bg-white rounded-2xl overflow-hidden shadow-sm2 border border-gray-100 card-hover">
+<div class="relative overflow-hidden" style="height:220px">
+<img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?q=80&amp;w=500&amp;auto=format&amp;fit=crop" alt="Product 5" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+<div class="absolute top-3 left-3 flex flex-col gap-1.5">
+<span class="badge-hot">🔥 HOT</span>
+</div>
+<button class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm2 hover:bg-red-50 transition-colors">
+<svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+</button>
+</div>
+<div class="p-4">
+<p class="text-xs text-gray-400 font-int mb-1">Women's Collection</p>
+<p class="font-bold text-gray-900 font-int text-sm mb-2">Linen Co-ord Set</p>
+<div class="flex items-center gap-1 mb-2">
+<span class="star-filled text-xs">★★★★★</span>
+<span class="text-xs text-gray-400 font-int">(621)</span>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<span class="font-extrabold font-int" style="color:#FF4D00">$54.99</span>
+<span class="text-xs line-through text-gray-400 font-int ml-1.5">$89</span>
+</div>
+<button class="btn-cart text-xs font-bold px-3 py-1.5 rounded-full font-int min-h-[32px]">Add</button>
+</div>
+</div>
+</div>
+<!-- Product 6 -->
+<div class="bg-white rounded-2xl overflow-hidden shadow-sm2 border border-gray-100 card-hover">
+<div class="relative overflow-hidden" style="height:220px">
+<img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&amp;w=500&amp;auto=format&amp;fit=crop" alt="Product 6" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+<div class="absolute top-3 left-3 flex flex-col gap-1.5">
+<span class="badge-new">NEW</span>
+</div>
+<button class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm2 hover:bg-red-50 transition-colors">
+<svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+</button>
+</div>
+<div class="p-4">
+<p class="text-xs text-gray-400 font-int mb-1">Accessories</p>
+<p class="font-bold text-gray-900 font-int text-sm mb-2">Minimalist Watch</p>
+<div class="flex items-center gap-1 mb-2">
+<span class="star-filled text-xs">★★★★★</span>
+<span class="text-xs text-gray-400 font-int">(189)</span>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<span class="font-extrabold font-int" style="color:#FF4D00">$119.99</span>
+</div>
+<button class="btn-cart text-xs font-bold px-3 py-1.5 rounded-full font-int min-h-[32px]">Add</button>
+</div>
+</div>
+</div>
+<!-- Product 7 -->
+<div class="bg-white rounded-2xl overflow-hidden shadow-sm2 border border-gray-100 card-hover">
+<div class="relative overflow-hidden" style="height:220px">
+<img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&amp;w=500&amp;auto=format&amp;fit=crop" alt="Product 7" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+<div class="absolute top-3 left-3 flex flex-col gap-1.5">
+<span class="badge-sale">-45%</span>
+</div>
+<button class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm2 hover:bg-red-50 transition-colors">
+<svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+</button>
+</div>
+<div class="p-4">
+<p class="text-xs text-gray-400 font-int mb-1">Men's Collection</p>
+<p class="font-bold text-gray-900 font-int text-sm mb-2">Oversized Graphic Tee</p>
+<div class="flex items-center gap-1 mb-2">
+<span class="star-filled text-xs">★★★★</span>
+<span class="text-xs text-gray-400 font-int">(342)</span>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<span class="font-extrabold font-int" style="color:#FF4D00">$24.99</span>
+<span class="text-xs line-through text-gray-400 font-int ml-1.5">$44.99</span>
+</div>
+<button class="btn-cart text-xs font-bold px-3 py-1.5 rounded-full font-int min-h-[32px]">Add</button>
+</div>
+</div>
+</div>
+<!-- Product 8 -->
+<div class="bg-white rounded-2xl overflow-hidden shadow-sm2 border border-gray-100 card-hover">
+<div class="relative overflow-hidden" style="height:220px">
+<img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&amp;w=500&amp;auto=format&amp;fit=crop" alt="Product 8" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+<div class="absolute top-3 left-3 flex flex-col gap-1.5">
+<span class="badge-hot">🔥 HOT</span>
+</div>
+<button class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm2 hover:bg-red-50 transition-colors">
+<svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+</button>
+</div>
+<div class="p-4">
+<p class="text-xs text-gray-400 font-int mb-1">Accessories</p>
+<p class="font-bold text-gray-900 font-int text-sm mb-2">Leather Crossbody</p>
+<div class="flex items-center gap-1 mb-2">
+<span class="star-filled text-xs">★★★★★</span>
+<span class="text-xs text-gray-400 font-int">(508)</span>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<span class="font-extrabold font-int" style="color:#FF4D00">$69.99</span>
+<span class="text-xs line-through text-gray-400 font-int ml-1.5">$99</span>
+</div>
+<button class="btn-cart text-xs font-bold px-3 py-1.5 rounded-full font-int min-h-[32px]">Add</button>
+</div>
+</div>
+</div>
+</div>
+<div class="text-center mt-10">
+<button class="btn-cart text-base font-extrabold px-10 py-4 rounded-full font-int min-h-[52px]">Load More Products</button>
+</div>
+</div>
+</section>
+
+<!-- WHY ZEST SECTION -->
+<section style="background:#FAFAFA;padding:64px 0">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-12">
+<p class="text-xs font-bold font-int tracking-widest uppercase mb-2" style="color:#FF4D00">Why Shop With Us</p>
+<h2 class="font-beb text-4xl lg:text-5xl tracking-widest" style="color:#1A0A00">THE ZEST PROMISE</h2>
+</div>
+<div class="grid md:grid-cols-4 gap-6">
+<div class="bg-white rounded-2xl p-6 text-center shadow-sm2 border border-gray-100 card-hover">
+<div class="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4" style="background:#FFF0EB">
+<svg class="w-7 h-7" style="color:#FF4D00" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
+</div>
+<h3 class="font-extrabold text-gray-900 font-int mb-2">Free 2-Day Shipping</h3>
+<p class="text-sm text-gray-500 font-int leading-relaxed">On all orders over $49. Express delivery available at checkout.</p>
+</div>
+<div class="bg-white rounded-2xl p-6 text-center shadow-sm2 border border-gray-100 card-hover">
+<div class="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4" style="background:#FFF8E0">
+<svg class="w-7 h-7" style="color:#FFB800" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+</div>
+<h3 class="font-extrabold text-gray-900 font-int mb-2">Easy 30-Day Returns</h3>
+<p class="text-sm text-gray-500 font-int leading-relaxed">Not happy? Return it hassle-free within 30 days for a full refund.</p>
+</div>
+<div class="bg-white rounded-2xl p-6 text-center shadow-sm2 border border-gray-100 card-hover">
+<div class="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4" style="background:#E0FFF6">
+<svg class="w-7 h-7" style="color:#00C48C" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+</div>
+<h3 class="font-extrabold text-gray-900 font-int mb-2">Secure Payments</h3>
+<p class="text-sm text-gray-500 font-int leading-relaxed">256-bit SSL encryption. Pay with card, PayPal, Apple Pay, or Klarna.</p>
+</div>
+<div class="bg-white rounded-2xl p-6 text-center shadow-sm2 border border-gray-100 card-hover">
+<div class="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4" style="background:#FFF0EB">
+<svg class="w-7 h-7" style="color:#FF4D00" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+</div>
+<h3 class="font-extrabold text-gray-900 font-int mb-2">24/7 Support</h3>
+<p class="text-sm text-gray-500 font-int leading-relaxed">Our team is always here to help via chat, email, or phone.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section style="background:#1A0A00;padding:64px 0">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-12">
+<p class="text-xs font-bold font-int tracking-widest uppercase mb-2" style="color:#FF4D00">Customer Love</p>
+<h2 class="font-beb text-4xl lg:text-5xl tracking-widest text-white">WHAT THEY SAY</h2>
+</div>
+<div class="grid md:grid-cols-3 gap-6">
+<div class="rounded-2xl p-8" style="background:rgba(255,77,0,0.08);border:1px solid rgba(255,77,0,0.2)">
+<div class="flex items-center gap-1 mb-4">
+<span class="star-filled text-sm">★★★★★</span>
+</div>
+<p class="text-sm leading-relaxed font-int mb-6" style="color:rgba(255,255,255,0.75)">"Ordered on Monday, arrived Wednesday. The quality is incredible for the price. I've already placed 3 more orders. ZEST is my go-to now!"</p>
+<div class="flex items-center gap-3">
+<img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&amp;w=100&amp;auto=format&amp;fit=crop" alt="Sofia M" class="w-10 h-10 rounded-full object-cover flex-shrink-0">
+<div>
+<p class="text-sm font-bold font-int text-white">Sofia Martinez</p>
+<p class="text-xs font-int" style="color:rgba(255,255,255,0.4)">Verified Buyer · 12 orders</p>
+</div>
+</div>
+</div>
+<div class="rounded-2xl p-8" style="background:rgba(255,184,0,0.08);border:1px solid rgba(255,184,0,0.2)">
+<div class="flex items-center gap-1 mb-4">
+<span class="star-filled text-sm">★★★★★</span>
+</div>
+<p class="text-sm leading-relaxed font-int mb-6" style="color:rgba(255,255,255,0.75)">"The flash sale prices are unreal. Got a pair of sneakers for $89 that retail for $200 elsewhere. The ZEST+ membership pays for itself in one order."</p>
+<div class="flex items-center gap-3">
+<img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&amp;w=100&amp;auto=format&amp;fit=crop" alt="James K" class="w-10 h-10 rounded-full object-cover flex-shrink-0">
+<div>
+<p class="text-sm font-bold font-int text-white">James Kim</p>
+<p class="text-xs font-int" style="color:rgba(255,255,255,0.4)">Verified Buyer · 28 orders</p>
+</div>
+</div>
+</div>
+<div class="rounded-2xl p-8" style="background:rgba(0,196,140,0.08);border:1px solid rgba(0,196,140,0.2)">
+<div class="flex items-center gap-1 mb-4">
+<span class="star-filled text-sm">★★★★★</span>
+</div>
+<p class="text-sm leading-relaxed font-int mb-6" style="color:rgba(255,255,255,0.75)">"Returns are so easy — I was refunded in 2 days. The app is super smooth and I love the style recommendations. Honestly the best online shopping experience."</p>
+<div class="flex items-center gap-3">
+<img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&amp;w=100&amp;auto=format&amp;fit=crop" alt="Priya S" class="w-10 h-10 rounded-full object-cover flex-shrink-0">
+<div>
+<p class="text-sm font-bold font-int text-white">Priya Sharma</p>
+<p class="text-xs font-int" style="color:rgba(255,255,255,0.4)">Verified Buyer · 41 orders</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Review stats -->
+<div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="rounded-xl p-5 text-center" style="background:rgba(255,77,0,0.1);border:1px solid rgba(255,77,0,0.2)">
+<p class="text-3xl font-extrabold font-beb tracking-widest" style="color:#FF4D00">4.9</p>
+<p class="text-xs font-int text-white opacity-60 mt-1">Average Rating</p>
+</div>
+<div class="rounded-xl p-5 text-center" style="background:rgba(255,184,0,0.1);border:1px solid rgba(255,184,0,0.2)">
+<p class="text-3xl font-extrabold font-beb tracking-widest" style="color:#FFB800">284K</p>
+<p class="text-xs font-int text-white opacity-60 mt-1">Reviews</p>
+</div>
+<div class="rounded-xl p-5 text-center" style="background:rgba(0,196,140,0.1);border:1px solid rgba(0,196,140,0.2)">
+<p class="text-3xl font-extrabold font-beb tracking-widest" style="color:#00C48C">97%</p>
+<p class="text-xs font-int text-white opacity-60 mt-1">Recommend Us</p>
+</div>
+<div class="rounded-xl p-5 text-center" style="background:rgba(255,77,0,0.1);border:1px solid rgba(255,77,0,0.2)">
+<p class="text-3xl font-extrabold font-beb tracking-widest" style="color:#FF4D00">2.4M</p>
+<p class="text-xs font-int text-white opacity-60 mt-1">Happy Shoppers</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- APP DOWNLOAD + CTA -->
+<section style="background:linear-gradient(135deg,#FF4D00 0%,#FFB800 100%);padding:64px 0">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid lg:grid-cols-2 gap-12 items-center">
+<div>
+<p class="text-white text-xs font-bold font-int tracking-widest uppercase opacity-80 mb-3">Download the App</p>
+<h2 class="font-beb text-4xl lg:text-5xl text-white tracking-widest mb-4">SHOP SMARTER<br>ON THE GO</h2>
+<p class="text-white opacity-90 text-lg font-int mb-8">Get exclusive app-only deals, track your orders in real time, and discover personalized style picks — all from your phone.</p>
+<div class="flex flex-wrap gap-3 mb-6">
+<div class="flex items-center gap-2 bg-white bg-opacity-15 px-5 py-3 rounded-xl font-int text-sm font-bold text-white border border-white border-opacity-30 min-h-[44px]">
+<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"></path></svg>
+App Store
+</div>
+<div class="flex items-center gap-2 bg-white bg-opacity-15 px-5 py-3 rounded-xl font-int text-sm font-bold text-white border border-white border-opacity-30 min-h-[44px]">
+<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.64.22.99.14l12.12-6.99-2.54-2.54-10.57 9.39zm-1.8-20.3C1.14 3.8 1 4.18 1 4.68v14.64c0 .5.14.88.38 1.22l.07.06 8.2-8.2v-.19L1.45 3.4l-.07.06zm18.12 9.09l-2.32-1.34-2.83 2.83 2.83 2.83 2.35-1.35c.67-.39.67-1.02-.03-1.97zm-17.3 9.46l10.57-9.39-2.54-2.54-8.03 4.63v7.3z"></path></svg>
+Google Play
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+<span class="text-white text-sm font-int opacity-90">4.9★ on App Store</span>
+</div>
+<div class="flex items-center gap-2">
+<svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+<span class="text-white text-sm font-int opacity-90">2.4M+ users</span>
+</div>
+</div>
+</div>
+<!-- Newsletter CTA -->
+<div class="bg-white bg-opacity-15 rounded-2xl p-8 border border-white border-opacity-20">
+<h3 class="font-beb text-2xl text-white tracking-widest mb-2">GET 20% OFF YOUR FIRST ORDER</h3>
+<p class="text-white opacity-80 text-sm font-int mb-5">Subscribe to our newsletter and unlock an exclusive welcome discount.</p>
+<form onsubmit="return false" class="flex flex-col sm:flex-row gap-3">
+<input type="email" placeholder="Enter your email address" class="flex-1 px-4 py-3 rounded-full text-sm font-int focus:outline-none min-h-[44px] text-gray-800" style="background:white">
+<button type="submit" class="bg-white bg-opacity-0 border-2 border-white text-white text-sm font-extrabold px-6 py-3 rounded-full font-int whitespace-nowrap min-h-[44px] hover:bg-white hover:text-zp transition-all">Claim 20% Off</button>
+</form>
+<p class="text-white opacity-50 text-xs mt-3 font-int">No spam · Unsubscribe anytime · New subscribers only</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#1A0A00;padding:64px 0">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid md:grid-cols-5 gap-8 mb-10">
+<div class="md:col-span-2">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 zest-grad">
+<span class="text-white font-extrabold text-lg font-beb">Z</span>
+</div>
+<span class="font-beb text-2xl tracking-widest text-white">ZEST</span>
+</div>
+<p class="text-sm font-int leading-relaxed mb-4" style="color:rgba(255,255,255,0.45)">Style without limits. Discover thousands of trending styles, exclusive drops, and unbeatable deals — delivered to your door in 2 days.</p>
+<div class="flex gap-2 flex-wrap">
+<span class="text-xs font-bold px-2.5 py-1 rounded font-int" style="background:rgba(255,77,0,0.15);color:#FF4D00;border:1px solid rgba(255,77,0,0.3)">Free Shipping</span>
+<span class="text-xs font-bold px-2.5 py-1 rounded font-int" style="background:rgba(255,184,0,0.15);color:#FFB800;border:1px solid rgba(255,184,0,0.3)">Easy Returns</span>
+<span class="text-xs font-bold px-2.5 py-1 rounded font-int" style="background:rgba(0,196,140,0.15);color:#00C48C;border:1px solid rgba(0,196,140,0.3)">Secure Pay</span>
+</div>
+</div>
+<div>
+<p class="text-sm font-bold font-int mb-4 text-white">Shop</p>
+<div class="space-y-2">
+<a href="#" class="block text-sm font-int transition-colors" style="color:rgba(255,255,255,0.45)">New Arrivals</a>
+<a href="#" class="block text-sm font-int transition-colors" style="color:rgba(255,255,255,0.45)">Women</a>
+<a href="#" class="block text-sm font-int transition-colors" style="color:rgba(255,255,255,0.45)">Men</a>
+<a href="#" class="block text-sm font-int transition-colors" style="color:rgba(255,255,255,0.45)">Accessories</a>
+<a href="#" class="block text-sm font-int transition-colors" style="color:rgba(255,255,255,0.45)">Sale</a>
+</div>
+</div>
+<div>
+<p class="text-sm font-bold font-int mb-4 text-white">Company</p>
+<div class="space-y-2">
+<a href="#" class="block text-sm font-int transition-colors" style="color:rgba(255,255,255,0.45)">About Us</a>
+<a href="#" class="block text-sm font-int transition-colors" style="color:rgba(255,255,255,0.45)">Careers</a>
+<a href="#" class="block text-sm font-int transition-colors" style="color:rgba(255,255,255,0.45)">Press</a>
+<a href="#" class="block text-sm font-int transition-colors" style="color:rgba(255,255,255,0.45)">Blog</a>
+</div>
+</div>
+<div>
+<p class="text-sm font-bold font-int mb-4 text-white">Support</p>
+<div class="space-y-2">
+<a href="#" class="block text-sm font-int transition-colors" style="color:rgba(255,255,255,0.45)">Help Center</a>
+<a href="#" class="block text-sm font-int transition-colors" style="color:rgba(255,255,255,0.45)">Track Order</a>
+<a href="#" class="block text-sm font-int transition-colors" style="color:rgba(255,255,255,0.45)">Returns</a>
+<a href="#" class="block text-sm font-int transition-colors" style="color:rgba(255,255,255,0.45)">Privacy Policy</a>
+</div>
+</div>
+</div>
+<div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style="border-top:1px solid rgba(255,77,0,0.15)">
+<p class="text-sm font-int" style="color:rgba(255,255,255,0.3)">© 2024 ZEST Fashion Inc. All rights reserved.</p>
+<div class="flex items-center gap-4">
+<a href="/api/copilot/prototype/5776e7d4-fc9f-4634-bb32-35324702b7e9/fintech-landing-page" class="text-xs font-int transition-colors" style="color:rgba(255,255,255,0.35)">← Fintech</a>
+<a href="/api/copilot/prototype/5776e7d4-fc9f-4634-bb32-35324702b7e9/saas-landing-page" class="text-xs font-int transition-colors" style="color:#FF4D00">Next: SaaS →</a>
+</div>
+</div>
+</div>
+</footer>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>
