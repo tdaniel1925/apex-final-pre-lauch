@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Minimal SaaS Productivity Tool - Exported from UXMagic Copilot">
+    <title>Minimal SaaS Productivity Tool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+tailwind.config={theme:{extend:{colors:{
+'cobalt':'#2563EB','cobalt-light':'#EFF6FF','cobalt-mid':'#BFDBFE','cobalt-dark':'#1D4ED8','cobalt-deeper':'#1E40AF',
+'gray-50':'#F9FAFB','gray-100':'#F3F4F6','gray-200':'#E5E7EB','gray-300':'#D1D5DB','gray-400':'#9CA3AF','gray-500':'#6B7280','gray-600':'#4B5563','gray-700':'#374151','gray-800':'#1F2937','gray-900':'#111827',
+'i1':'#5C6AC4','i1l':'#EEF0FF','i1d':'#2D2D3A',
+'f2':'#7DAF8A','f2l':'#EAF4EC','f2g':'#C9A84C','f2gl':'#F7EDD0','f2d':'#2A3240',
+'w3':'#FAF7F2','w3r':'#D4A5A5','w3t':'#C47C5A',
+'r4':'#C4B49A','r4g':'#2D5016','r4s':'#F5EFE4',
+'l5':'#4A6FA5','l5l':'#E8EEF7','l5d':'#1E2A3A',
+'e6':'#FDFAF6','e6t':'#D4B896','e6b':'#E8C4B8','e6e':'#2C1A0E',
+'ed7':'#F5A623','ed7l':'#FEF3DC','ed7s':'#4A90D9','ed7sl':'#E8F2FC',
+'t8':'#2E86AB','t8l':'#E0F0F7','t8s':'#E8D5B0','t8c':'#F4845F',
+'h9':'#E8614A','h9l':'#FDECEA','h9g':'#F5F3F0','h9d':'#1C1C1E',
+'c10':'#3D6B4F','c10l':'#E8F0EB','c10s':'#A8C5DA','c10a':'#DDD0B8','c10b':'#FAFAF7',
+'eo':'#C8622A','eol':'#FDF0E8','eod':'#1E0E06','eom':'#8B3A1A','eos':'#F5E6D3','eog':'#D4A853','eogl':'#FBF3DC','eob':'#FAF5EF',
+'hx':'#8B7355','hxl':'#F5F0E8','hxd':'#1A1410','hxm':'#5C4A32','hxs':'#EDE8DF','hxg':'#B8A898','hxc':'#2C2420','hxw':'#FAF8F5',
+},fontFamily:{
+'syne':['Syne','sans-serif'],
+'inter':['Inter','sans-serif'],
+'heading':['Syne','sans-serif'],
+'body':['Inter','sans-serif'],
+'pf':['"Playfair Display"','serif'],
+'cg':['"Cormorant Garamond"','serif'],
+'sg':['"Space Grotesk"','sans-serif'],
+'bar':['Barlow','sans-serif'],
+'barc':['"Barlow Condensed"','sans-serif'],
+'beb':['"Bebas Neue"','sans-serif'],
+'nun':['Nunito','sans-serif'],
+'lb':['"Libre Baskerville"','serif'],
+'man':['Manrope','sans-serif'],
+'lor':['Lora','serif'],
+'int':['Inter','sans-serif'],
+'lat':['Lato','sans-serif'],
+},boxShadow:{
+'sm2':'0 2px 8px rgba(0,0,0,0.06)',
+'md2':'0 8px 30px rgba(0,0,0,0.08)',
+'lg2':'0 20px 60px rgba(0,0,0,0.12)',
+'cobalt-sm':'0 2px 12px rgba(37,99,235,0.12)',
+'cobalt-md':'0 8px 32px rgba(37,99,235,0.18)',
+'cobalt-lg':'0 20px 60px rgba(37,99,235,0.15)',
+'warm':'0 8px 30px rgba(139,115,85,0.18)',
+'warm-lg':'0 20px 60px rgba(139,115,85,0.15)',
+}}}}
+
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+<!-- FLOW NAVIGATION BAR -->
+<div style="background:#F9FAFB;border-bottom:1px solid #E5E7EB">
+<div class="overflow-x-auto no-sb">
+<div class="flex items-center gap-1.5 px-5 py-2.5 min-w-max">
+<span class="text-[10px] font-semibold uppercase tracking-widest mr-2 flex-shrink-0 font-inter" style="color:#9CA3AF;font-family:'Inter',sans-serif">10 Design Styles:</span>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/brutalist-architecture-firm" class="flow-link">01 Brutalist</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/pastel-wellness-app" class="flow-link">02 Wellness</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/neon-fintech-platform" class="flow-link">03 Fintech</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/organic-food-brand" class="flow-link">04 Organic</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/minimal-saas-productivity-tool" class="flow-link active">05 SaaS ✦</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/kids-education-app" class="flow-link">06 Kids</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/luxury-real-estate-agency" class="flow-link">07 Luxury</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/retro-music-streaming" class="flow-link">08 Retro</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/modern-medical-clinic" class="flow-link">09 Medical</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/vibrant-travel-agency" class="flow-link">10 Travel</a>
+</div>
+</div>
+</div>
+
+<!-- MAIN NAVIGATION -->
+<nav style="background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1px solid #F3F4F6;position:sticky;top:0;z-index:40">
+<div class="max-w-6xl mx-auto px-6 flex items-center justify-between" style="height:64px">
+<div class="flex items-center gap-2.5">
+<div class="logo-mark">
+<svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+</div>
+<span class="font-heading font-bold text-lg" style="color:#111827;letter-spacing:-0.02em;font-family:'Syne',sans-serif">Flowdesk</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a href="#features" class="saas-nav-link">Features</a>
+<a href="#how-it-works" class="saas-nav-link">How it works</a>
+<a href="#pricing" class="saas-nav-link">Pricing</a>
+<a href="#testimonials" class="saas-nav-link">Customers</a>
+<a href="#integrations" class="saas-nav-link">Integrations</a>
+</div>
+<div class="flex items-center gap-3">
+<a href="#" class="saas-nav-link hidden md:block">Log in</a>
+<a href="#pricing" class="btn-primary min-h-[40px] flex items-center">Start free trial</a>
+</div>
+</div>
+</nav>
+
+<!-- HERO SECTION -->
+<section style="background:#FFFFFF;padding:96px 0 80px;max-height:900px">
+<div class="max-w-6xl mx-auto px-6">
+<div class="grid lg:grid-cols-2 gap-16 items-center">
+<div>
+<div class="inline-flex items-center gap-2 mb-6 px-3 py-1.5" style="background:#EFF6FF;border-radius:20px">
+<span style="width:6px;height:6px;background:#2563EB;border-radius:50%;display:inline-block"></span>
+<span class="font-inter text-xs font-semibold" style="color:#2563EB;font-family:'Inter',sans-serif">Now with AI-powered task automation</span>
+</div>
+<h1 class="font-heading font-bold mb-6" style="font-family:'Syne',sans-serif;font-size:52px;line-height:1.1;letter-spacing:-0.03em;color:#111827">
+The project<br>workspace your<br><span style="color:#2563EB">team actually uses.</span>
+</h1>
+<p class="font-body text-lg mb-8 leading-relaxed" style="font-family:'Inter',sans-serif;color:#6B7280;max-width:440px;line-height:1.7">Flowdesk brings tasks, docs, and team communication into one clean, focused workspace. No clutter. No noise. Just work.</p>
+<div class="flex flex-wrap gap-3 mb-10">
+<a href="#pricing" class="btn-primary min-h-[48px] flex items-center gap-2 text-sm">
+Start free — no card needed
+<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+</a>
+<a href="#features" class="btn-secondary min-h-[48px] flex items-center gap-2 text-sm">
+See how it works
+</a>
+</div>
+<div class="flex flex-wrap items-center gap-6">
+<div class="flex items-center gap-2">
+<div class="flex -space-x-2">
+<img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&amp;w=60&amp;auto=format&amp;fit=crop&amp;crop=face" alt="" class="w-7 h-7 object-cover" style="border-radius:50%;border:2px solid white">
+<img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&amp;w=60&amp;auto=format&amp;fit=crop&amp;crop=face" alt="" class="w-7 h-7 object-cover" style="border-radius:50%;border:2px solid white">
+<img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&amp;w=60&amp;auto=format&amp;fit=crop&amp;crop=face" alt="" class="w-7 h-7 object-cover" style="border-radius:50%;border:2px solid white">
+<div class="w-7 h-7 flex items-center justify-center text-xs font-semibold" style="background:#EFF6FF;border-radius:50%;border:2px solid white;color:#2563EB;font-family:'Inter',sans-serif">+</div>
+</div>
+<span class="font-inter text-sm" style="color:#6B7280;font-family:'Inter',sans-serif">Trusted by <strong style="color:#374151">14,000+</strong> teams</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span style="color:#F59E0B;font-size:13px">★★★★★</span>
+<span class="font-inter text-sm" style="color:#6B7280;font-family:'Inter',sans-serif">4.9 on G2</span>
+</div>
+</div>
+</div>
+
+<!-- Hero Dashboard Mockup -->
+<div class="float-saas">
+<div class="hero-dashboard">
+<!-- Dashboard Header -->
+<div class="flex items-center justify-between px-4 py-3" style="border-bottom:1px solid #F3F4F6">
+<div class="flex items-center gap-2">
+<div class="logo-mark" style="width:22px;height:22px;border-radius:5px">
+<svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+</div>
+<span class="font-syne font-bold text-xs" style="color:#111827;font-family:'Syne',sans-serif">Flowdesk</span>
+</div>
+<div class="flex items-center gap-2">
+<div style="width:6px;height:6px;background:#22C55E;border-radius:50%"></div>
+<span class="font-inter text-xs" style="color:#9CA3AF;font-family:'Inter',sans-serif">Design Sprint Q4</span>
+</div>
+</div>
+<!-- Dashboard Body -->
+<div class="flex" style="height:340px">
+<!-- Sidebar -->
+<div class="dashboard-sidebar p-3 flex flex-col gap-1">
+<div class="dash-nav-item active">
+<svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+Overview
+</div>
+<div class="dash-nav-item">
+<svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+Tasks
+</div>
+<div class="dash-nav-item">
+<svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+Timeline
+</div>
+<div class="dash-nav-item">
+<svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+Reports
+</div>
+<div class="dash-nav-item">
+<svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+Team
+</div>
+<div class="mt-auto">
+<div class="p-2.5" style="background:#EFF6FF;border-radius:8px">
+<p class="font-inter text-[10px] font-semibold mb-1" style="color:#2563EB;font-family:'Inter',sans-serif">Sprint Progress</p>
+<div class="progress-bar mb-1"><div class="progress-fill" style="width:68%"></div></div>
+<p class="font-inter text-[10px]" style="color:#6B7280;font-family:'Inter',sans-serif">68% complete</p>
+</div>
+</div>
+</div>
+<!-- Main Content -->
+<div class="dashboard-main p-4 overflow-hidden">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-syne font-bold text-sm" style="color:#111827;font-family:'Syne',sans-serif">Active Tasks</h3>
+<div class="flex items-center gap-2">
+<span class="font-inter text-xs px-2 py-1" style="background:#EFF6FF;color:#2563EB;border-radius:4px;font-family:'Inter',sans-serif">+ Add task</span>
+</div>
+</div>
+<!-- Task rows -->
+<div class="task-row">
+<div class="task-dot" style="background:#22C55E"></div>
+<span class="font-inter text-xs flex-1" style="color:#374151;font-family:'Inter',sans-serif">Design system audit</span>
+<span class="font-inter text-[10px] px-2 py-0.5" style="background:#F0FDF4;color:#16A34A;border-radius:4px;font-family:'Inter',sans-serif">Done</span>
+</div>
+<div class="task-row">
+<div class="task-dot" style="background:#2563EB"></div>
+<span class="font-inter text-xs flex-1" style="color:#374151;font-family:'Inter',sans-serif">Onboarding flow redesign</span>
+<span class="font-inter text-[10px] px-2 py-0.5" style="background:#EFF6FF;color:#2563EB;border-radius:4px;font-family:'Inter',sans-serif">In progress</span>
+</div>
+<div class="task-row">
+<div class="task-dot" style="background:#F59E0B"></div>
+<span class="font-inter text-xs flex-1" style="color:#374151;font-family:'Inter',sans-serif">API documentation update</span>
+<span class="font-inter text-[10px] px-2 py-0.5" style="background:#FFFBEB;color:#D97706;border-radius:4px;font-family:'Inter',sans-serif">Review</span>
+</div>
+<div class="task-row">
+<div class="task-dot" style="background:#E5E7EB"></div>
+<span class="font-inter text-xs flex-1" style="color:#9CA3AF;font-family:'Inter',sans-serif">Q4 roadmap planning</span>
+<span class="font-inter text-[10px] px-2 py-0.5" style="background:#F9FAFB;color:#9CA3AF;border-radius:4px;font-family:'Inter',sans-serif">Backlog</span>
+</div>
+<div class="task-row" style="border-bottom:none">
+<div class="task-dot" style="background:#E5E7EB"></div>
+<span class="font-inter text-xs flex-1" style="color:#9CA3AF;font-family:'Inter',sans-serif">User interview synthesis</span>
+<span class="font-inter text-[10px] px-2 py-0.5" style="background:#F9FAFB;color:#9CA3AF;border-radius:4px;font-family:'Inter',sans-serif">Backlog</span>
+</div>
+<!-- Mini stats row -->
+<div class="grid grid-cols-3 gap-2 mt-4">
+<div class="p-2.5 text-center" style="background:#F9FAFB;border-radius:6px">
+<p class="font-syne font-bold text-base" style="color:#111827;font-family:'Syne',sans-serif">24</p>
+<p class="font-inter text-[10px]" style="color:#9CA3AF;font-family:'Inter',sans-serif">Open</p>
+</div>
+<div class="p-2.5 text-center" style="background:#EFF6FF;border-radius:6px">
+<p class="font-syne font-bold text-base" style="color:#2563EB;font-family:'Syne',sans-serif">8</p>
+<p class="font-inter text-[10px]" style="color:#93C5FD;font-family:'Inter',sans-serif">In Progress</p>
+</div>
+<div class="p-2.5 text-center" style="background:#F0FDF4;border-radius:6px">
+<p class="font-syne font-bold text-base" style="color:#16A34A;font-family:'Syne',sans-serif">41</p>
+<p class="font-inter text-[10px]" style="color:#86EFAC;font-family:'Inter',sans-serif">Completed</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</section>
+
+<!-- SOCIAL PROOF LOGOS -->
+<section style="background:#F9FAFB;padding:40px 0;border-top:1px solid #F3F4F6;border-bottom:1px solid #F3F4F6;max-height:140px">
+<div class="max-w-6xl mx-auto px-6">
+<p class="font-inter text-xs font-medium text-center mb-6" style="color:#9CA3AF;font-family:'Inter',sans-serif;letter-spacing:0.06em;text-transform:uppercase">Trusted by teams at</p>
+<div class="flex flex-wrap items-center justify-center gap-10">
+<span class="font-syne font-bold text-lg" style="color:#D1D5DB;font-family:'Syne',sans-serif">Stripe</span>
+<span class="font-syne font-bold text-lg" style="color:#D1D5DB;font-family:'Syne',sans-serif">Notion</span>
+<span class="font-syne font-bold text-lg" style="color:#D1D5DB;font-family:'Syne',sans-serif">Linear</span>
+<span class="font-syne font-bold text-lg" style="color:#D1D5DB;font-family:'Syne',sans-serif">Vercel</span>
+<span class="font-syne font-bold text-lg" style="color:#D1D5DB;font-family:'Syne',sans-serif">Figma</span>
+<span class="font-syne font-bold text-lg" style="color:#D1D5DB;font-family:'Syne',sans-serif">Loom</span>
+</div>
+</div>
+</section>
+
+<!-- FEATURES SECTION -->
+<section id="features" style="background:#FFFFFF;padding:96px 0;max-height:1100px">
+<div class="max-w-6xl mx-auto px-6">
+<div class="text-center mb-16">
+<p class="section-label mb-4">Features</p>
+<h2 class="font-heading font-bold mb-5" style="font-family:'Syne',sans-serif;font-size:40px;letter-spacing:-0.025em;color:#111827;line-height:1.15">Everything your team needs.<br>Nothing they don't.</h2>
+<p class="font-body text-lg max-w-xl mx-auto" style="font-family:'Inter',sans-serif;color:#6B7280;line-height:1.7">Built for focus. Designed for clarity. Flowdesk removes the friction between planning and doing.</p>
+</div>
+
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+<!-- Feature 1 -->
+<div class="feature-card">
+<div class="w-10 h-10 flex items-center justify-center mb-5" style="background:#EFF6FF;border-radius:8px">
+<svg class="w-5 h-5" style="color:#2563EB" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+</div>
+<h3 class="font-heading font-bold text-base mb-2" style="font-family:'Syne',sans-serif;color:#111827">Smart Task Management</h3>
+<p class="font-body text-sm leading-relaxed" style="font-family:'Inter',sans-serif;color:#6B7280;line-height:1.7">Create, assign, and track tasks with intelligent priority sorting. Subtasks, dependencies, and due dates — all in one view.</p>
+</div>
+<!-- Feature 2 -->
+<div class="feature-card">
+<div class="w-10 h-10 flex items-center justify-center mb-5" style="background:#EFF6FF;border-radius:8px">
+<svg class="w-5 h-5" style="color:#2563EB" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+</div>
+<h3 class="font-heading font-bold text-base mb-2" style="font-family:'Syne',sans-serif;color:#111827">Timeline &amp; Gantt View</h3>
+<p class="font-body text-sm leading-relaxed" style="font-family:'Inter',sans-serif;color:#6B7280;line-height:1.7">Visualise your project schedule with drag-and-drop timelines. Spot bottlenecks before they become blockers.</p>
+</div>
+<!-- Feature 3 -->
+<div class="feature-card">
+<div class="w-10 h-10 flex items-center justify-center mb-5" style="background:#EFF6FF;border-radius:8px">
+<svg class="w-5 h-5" style="color:#2563EB" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+</div>
+<h3 class="font-heading font-bold text-base mb-2" style="font-family:'Syne',sans-serif;color:#111827">Team Collaboration</h3>
+<p class="font-body text-sm leading-relaxed" style="font-family:'Inter',sans-serif;color:#6B7280;line-height:1.7">Comments, mentions, and real-time updates keep everyone aligned. No more status meetings or lost Slack threads.</p>
+</div>
+<!-- Feature 4 -->
+<div class="feature-card">
+<div class="w-10 h-10 flex items-center justify-center mb-5" style="background:#EFF6FF;border-radius:8px">
+<svg class="w-5 h-5" style="color:#2563EB" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+</div>
+<h3 class="font-heading font-bold text-base mb-2" style="font-family:'Syne',sans-serif;color:#111827">Analytics &amp; Reporting</h3>
+<p class="font-body text-sm leading-relaxed" style="font-family:'Inter',sans-serif;color:#6B7280;line-height:1.7">Velocity charts, burndown reports, and workload views. Understand your team's capacity and delivery patterns.</p>
+</div>
+<!-- Feature 5 -->
+<div class="feature-card">
+<div class="w-10 h-10 flex items-center justify-center mb-5" style="background:#EFF6FF;border-radius:8px">
+<svg class="w-5 h-5" style="color:#2563EB" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+</div>
+<h3 class="font-heading font-bold text-base mb-2" style="font-family:'Syne',sans-serif;color:#111827">AI Automation</h3>
+<p class="font-body text-sm leading-relaxed" style="font-family:'Inter',sans-serif;color:#6B7280;line-height:1.7">Auto-assign tasks, generate summaries, and surface blockers before they slow you down. Powered by GPT-4.</p>
+</div>
+<!-- Feature 6 -->
+<div class="feature-card">
+<div class="w-10 h-10 flex items-center justify-center mb-5" style="background:#EFF6FF;border-radius:8px">
+<svg class="w-5 h-5" style="color:#2563EB" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+</div>
+<h3 class="font-heading font-bold text-base mb-2" style="font-family:'Syne',sans-serif;color:#111827">Enterprise Security</h3>
+<p class="font-body text-sm leading-relaxed" style="font-family:'Inter',sans-serif;color:#6B7280;line-height:1.7">SOC 2 Type II certified. SSO, SAML, custom roles, and audit logs. Security your IT team will actually approve.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how-it-works" style="background:#F9FAFB;padding:96px 0;max-height:800px">
+<div class="max-w-6xl mx-auto px-6">
+<div class="text-center mb-16">
+<p class="section-label mb-4">How it works</p>
+<h2 class="font-heading font-bold mb-5" style="font-family:'Syne',sans-serif;font-size:40px;letter-spacing:-0.025em;color:#111827;line-height:1.15">Up and running<br>in under 5 minutes.</h2>
+<p class="font-body text-base max-w-lg mx-auto" style="font-family:'Inter',sans-serif;color:#6B7280;line-height:1.7">No lengthy onboarding. No consultants. Just sign up, invite your team, and start shipping.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="text-center">
+<div class="w-12 h-12 flex items-center justify-center mx-auto mb-5" style="background:#2563EB;border-radius:10px">
+<span class="font-syne font-bold text-white text-lg" style="font-family:'Syne',sans-serif">1</span>
+</div>
+<h3 class="font-heading font-bold text-base mb-3" style="font-family:'Syne',sans-serif;color:#111827">Create your workspace</h3>
+<p class="font-body text-sm leading-relaxed" style="font-family:'Inter',sans-serif;color:#6B7280;line-height:1.7">Sign up with your work email. Your workspace is ready instantly — no configuration required.</p>
+</div>
+<div class="text-center">
+<div class="w-12 h-12 flex items-center justify-center mx-auto mb-5" style="background:#2563EB;border-radius:10px">
+<span class="font-syne font-bold text-white text-lg" style="font-family:'Syne',sans-serif">2</span>
+</div>
+<h3 class="font-heading font-bold text-base mb-3" style="font-family:'Syne',sans-serif;color:#111827">Invite your team</h3>
+<p class="font-body text-sm leading-relaxed" style="font-family:'Inter',sans-serif;color:#6B7280;line-height:1.7">Add teammates by email or share a link. Set roles and permissions in seconds. Everyone's in.</p>
+</div>
+<div class="text-center">
+<div class="w-12 h-12 flex items-center justify-center mx-auto mb-5" style="background:#2563EB;border-radius:10px">
+<span class="font-syne font-bold text-white text-lg" style="font-family:'Syne',sans-serif">3</span>
+</div>
+<h3 class="font-heading font-bold text-base mb-3" style="font-family:'Syne',sans-serif;color:#111827">Start shipping work</h3>
+<p class="font-body text-sm leading-relaxed" style="font-family:'Inter',sans-serif;color:#6B7280;line-height:1.7">Create projects, assign tasks, and track progress. Your team will wonder how they worked without it.</p>
+</div>
+</div>
+<!-- Stats row -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-14">
+<div class="stat-card text-center">
+<p class="font-heading font-bold text-3xl mb-1" style="font-family:'Syne',sans-serif;color:#111827">14K+</p>
+<p class="font-body text-xs uppercase tracking-widest" style="font-family:'Inter',sans-serif;color:#9CA3AF">Teams</p>
+</div>
+<div class="stat-card text-center">
+<p class="font-heading font-bold text-3xl mb-1" style="font-family:'Syne',sans-serif;color:#111827">2.4M</p>
+<p class="font-body text-xs uppercase tracking-widest" style="font-family:'Inter',sans-serif;color:#9CA3AF">Tasks completed</p>
+</div>
+<div class="stat-card text-center">
+<p class="font-heading font-bold text-3xl mb-1" style="font-family:'Syne',sans-serif;color:#111827">99.9%</p>
+<p class="font-body text-xs uppercase tracking-widest" style="font-family:'Inter',sans-serif;color:#9CA3AF">Uptime SLA</p>
+</div>
+<div class="stat-card text-center">
+<p class="font-heading font-bold text-3xl mb-1" style="font-family:'Syne',sans-serif;color:#111827">4.9★</p>
+<p class="font-body text-xs uppercase tracking-widest" style="font-family:'Inter',sans-serif;color:#9CA3AF">G2 Rating</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- PRICING SECTION -->
+<section id="pricing" style="background:#FFFFFF;padding:96px 0;max-height:1100px">
+<div class="max-w-6xl mx-auto px-6">
+<div class="text-center mb-16">
+<p class="section-label mb-4">Pricing</p>
+<h2 class="font-heading font-bold mb-5" style="font-family:'Syne',sans-serif;font-size:40px;letter-spacing:-0.025em;color:#111827;line-height:1.15">Simple, transparent pricing.</h2>
+<p class="font-body text-base max-w-lg mx-auto" style="font-family:'Inter',sans-serif;color:#6B7280;line-height:1.7">Start free. Upgrade when you need to. No hidden fees, no surprise invoices.</p>
+<div class="inline-flex items-center gap-1 mt-6 p-1" style="background:#F3F4F6;border-radius:8px">
+<button class="font-inter text-sm font-medium px-4 py-2" style="background:white;color:#111827;border-radius:6px;box-shadow:0 1px 4px rgba(0,0,0,0.08);font-family:'Inter',sans-serif">Monthly</button>
+<button class="font-inter text-sm font-medium px-4 py-2" style="color:#6B7280;font-family:'Inter',sans-serif">Annual <span style="color:#2563EB;font-weight:600">−20%</span></button>
+</div>
+</div>
+
+<div class="grid md:grid-cols-3 gap-6">
+<!-- Free Plan -->
+<div class="pricing-card">
+<p class="font-inter text-xs font-semibold uppercase tracking-widest mb-4" style="color:#9CA3AF;font-family:'Inter',sans-serif">Free</p>
+<div class="flex items-end gap-1 mb-2">
+<span class="font-heading font-bold text-4xl" style="font-family:'Syne',sans-serif;color:#111827">$0</span>
+<span class="font-inter text-sm mb-1.5" style="color:#9CA3AF;font-family:'Inter',sans-serif">/month</span>
+</div>
+<p class="font-inter text-sm mb-6" style="color:#9CA3AF;font-family:'Inter',sans-serif">Up to 5 members</p>
+<div class="divider mb-6"></div>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-3">
+<div class="check-icon"><svg class="w-3 h-3" style="color:#2563EB" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg></div>
+<span class="font-inter text-sm" style="color:#374151;font-family:'Inter',sans-serif">5 active projects</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="check-icon"><svg class="w-3 h-3" style="color:#2563EB" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg></div>
+<span class="font-inter text-sm" style="color:#374151;font-family:'Inter',sans-serif">Basic task management</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="check-icon"><svg class="w-3 h-3" style="color:#2563EB" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg></div>
+<span class="font-inter text-sm" style="color:#374151;font-family:'Inter',sans-serif">List &amp; board views</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="check-icon"><svg class="w-3 h-3" style="color:#2563EB" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg></div>
+<span class="font-inter text-sm" style="color:#374151;font-family:'Inter',sans-serif">2 GB file storage</span>
+</li>
+<li class="flex items-center gap-3">
+<div style="width:18px;height:18px;border-radius:50%;background:#F3F4F6;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+<svg class="w-3 h-3" style="color:#D1D5DB" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+</div>
+<span class="font-inter text-sm" style="color:#D1D5DB;font-family:'Inter',sans-serif">Timeline view</span>
+</li>
+<li class="flex items-center gap-3">
+<div style="width:18px;height:18px;border-radius:50%;background:#F3F4F6;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+<svg class="w-3 h-3" style="color:#D1D5DB" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+</div>
+<span class="font-inter text-sm" style="color:#D1D5DB;font-family:'Inter',sans-serif">AI automation</span>
+</li>
+</ul>
+<a href="#" class="btn-secondary w-full min-h-[44px] flex items-center justify-center text-sm">Get started free</a>
+</div>
+
+<!-- Pro Plan (Featured) -->
+<div class="pricing-card featured relative">
+<div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 text-xs font-semibold" style="background:#111827;color:white;border-radius:20px;font-family:'Inter',sans-serif;white-space:nowrap">Most popular</div>
+<p class="font-inter text-xs font-semibold uppercase tracking-widest mb-4" style="color:rgba(255,255,255,0.6);font-family:'Inter',sans-serif">Pro</p>
+<div class="flex items-end gap-1 mb-2">
+<span class="font-heading font-bold text-4xl text-white" style="font-family:'Syne',sans-serif">$16</span>
+<span class="font-inter text-sm mb-1.5 text-white opacity-60" style="font-family:'Inter',sans-serif">/user/month</span>
+</div>
+<p class="font-inter text-sm mb-6 text-white opacity-60" style="font-family:'Inter',sans-serif">Unlimited members</p>
+<div style="height:1px;background:rgba(255,255,255,0.15);margin-bottom:24px"></div>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-3">
+<div class="check-icon-white"><svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg></div>
+<span class="font-inter text-sm text-white" style="font-family:'Inter',sans-serif">Unlimited projects</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="check-icon-white"><svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg></div>
+<span class="font-inter text-sm text-white" style="font-family:'Inter',sans-serif">Timeline &amp; Gantt view</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="check-icon-white"><svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg></div>
+<span class="font-inter text-sm text-white" style="font-family:'Inter',sans-serif">Advanced analytics</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="check-icon-white"><svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg></div>
+<span class="font-inter text-sm text-white" style="font-family:'Inter',sans-serif">AI task automation</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="check-icon-white"><svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg></div>
+<span class="font-inter text-sm text-white" style="font-family:'Inter',sans-serif">100 GB storage</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="check-icon-white"><svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg></div>
+<span class="font-inter text-sm text-white" style="font-family:'Inter',sans-serif">Priority support</span>
+</li>
+</ul>
+<a href="#" class="w-full min-h-[44px] flex items-center justify-center text-sm font-semibold" style="background:white;color:#2563EB;border-radius:6px;font-family:'Inter',sans-serif;transition:all 0.2s">Start free trial</a>
+</div>
+
+<!-- Enterprise Plan -->
+<div class="pricing-card">
+<p class="font-inter text-xs font-semibold uppercase tracking-widest mb-4" style="color:#9CA3AF;font-family:'Inter',sans-serif">Enterprise</p>
+<div class="flex items-end gap-1 mb-2">
+<span class="font-heading font-bold text-4xl" style="font-family:'Syne',sans-serif;color:#111827">Custom</span>
+</div>
+<p class="font-inter text-sm mb-6" style="color:#9CA3AF;font-family:'Inter',sans-serif">For large organisations</p>
+<div class="divider mb-6"></div>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-3">
+<div class="check-icon"><svg class="w-3 h-3" style="color:#2563EB" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg></div>
+<span class="font-inter text-sm" style="color:#374151;font-family:'Inter',sans-serif">Everything in Pro</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="check-icon"><svg class="w-3 h-3" style="color:#2563EB" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg></div>
+<span class="font-inter text-sm" style="color:#374151;font-family:'Inter',sans-serif">SSO &amp; SAML</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="check-icon"><svg class="w-3 h-3" style="color:#2563EB" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg></div>
+<span class="font-inter text-sm" style="color:#374151;font-family:'Inter',sans-serif">Custom roles &amp; permissions</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="check-icon"><svg class="w-3 h-3" style="color:#2563EB" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg></div>
+<span class="font-inter text-sm" style="color:#374151;font-family:'Inter',sans-serif">Audit logs &amp; compliance</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="check-icon"><svg class="w-3 h-3" style="color:#2563EB" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg></div>
+<span class="font-inter text-sm" style="color:#374151;font-family:'Inter',sans-serif">Dedicated CSM</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="check-icon"><svg class="w-3 h-3" style="color:#2563EB" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg></div>
+<span class="font-inter text-sm" style="color:#374151;font-family:'Inter',sans-serif">SLA guarantee</span>
+</li>
+</ul>
+<a href="#" class="btn-secondary w-full min-h-[44px] flex items-center justify-center text-sm">Contact sales</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" style="background:#F9FAFB;padding:96px 0;max-height:900px">
+<div class="max-w-6xl mx-auto px-6">
+<div class="text-center mb-16">
+<p class="section-label mb-4">Testimonials</p>
+<h2 class="font-heading font-bold mb-5" style="font-family:'Syne',sans-serif;font-size:40px;letter-spacing:-0.025em;color:#111827;line-height:1.15">Loved by product teams<br>everywhere.</h2>
+</div>
+<div class="grid md:grid-cols-3 gap-5">
+<!-- Testimonial 1 -->
+<div class="testimonial-card">
+<div class="flex items-center gap-1 mb-4">
+<span style="color:#F59E0B;font-size:13px">★★★★★</span>
+</div>
+<p class="font-body text-sm leading-relaxed mb-5" style="font-family:'Inter',sans-serif;color:#374151;line-height:1.75">"We replaced Jira, Notion, and Asana with Flowdesk. Our team's velocity went up 40% in the first month. The interface is so clean it actually makes you want to work."</p>
+<div class="flex items-center gap-3">
+<img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&amp;w=80&amp;auto=format&amp;fit=crop&amp;crop=face" alt="Alex Kim" class="w-9 h-9 object-cover flex-shrink-0" style="border-radius:50%">
+<div>
+<p class="font-heading font-semibold text-sm" style="font-family:'Syne',sans-serif;color:#111827">Alex Kim</p>
+<p class="font-body text-xs" style="font-family:'Inter',sans-serif;color:#9CA3AF">Head of Product, Stripe</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="testimonial-card" style="background:#EFF6FF;border-color:#BFDBFE">
+<div class="flex items-center gap-1 mb-4">
+<span style="color:#F59E0B;font-size:13px">★★★★★</span>
+</div>
+<p class="font-body text-sm leading-relaxed mb-5" style="font-family:'Inter',sans-serif;color:#374151;line-height:1.75">"The AI automation alone saves our team 3 hours a week. It auto-assigns tasks based on workload and flags blockers before standups. It's like having an extra PM."</p>
+<div class="flex items-center gap-3">
+<img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&amp;w=80&amp;auto=format&amp;fit=crop&amp;crop=face" alt="Sarah Chen" class="w-9 h-9 object-cover flex-shrink-0" style="border-radius:50%">
+<div>
+<p class="font-heading font-semibold text-sm" style="font-family:'Syne',sans-serif;color:#111827">Sarah Chen</p>
+<p class="font-body text-xs" style="font-family:'Inter',sans-serif;color:#6B7280">Engineering Lead, Vercel</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 3 -->
+<div class="testimonial-card">
+<div class="flex items-center gap-1 mb-4">
+<span style="color:#F59E0B;font-size:13px">★★★★★</span>
+</div>
+<p class="font-body text-sm leading-relaxed mb-5" style="font-family:'Inter',sans-serif;color:#374151;line-height:1.75">"Finally a project tool that doesn't feel like enterprise software from 2012. Flowdesk is fast, minimal, and actually enjoyable to use. Our designers love it."</p>
+<div class="flex items-center gap-3">
+<img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&amp;w=80&amp;auto=format&amp;fit=crop&amp;crop=face" alt="Marcus Webb" class="w-9 h-9 object-cover flex-shrink-0" style="border-radius:50%">
+<div>
+<p class="font-heading font-semibold text-sm" style="font-family:'Syne',sans-serif;color:#111827">Marcus Webb</p>
+<p class="font-body text-xs" style="font-family:'Inter',sans-serif;color:#9CA3AF">Design Director, Figma</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- INTEGRATIONS -->
+<section id="integrations" style="background:#FFFFFF;padding:80px 0;max-height:600px">
+<div class="max-w-6xl mx-auto px-6">
+<div class="text-center mb-12">
+<p class="section-label mb-4">Integrations</p>
+<h2 class="font-heading font-bold mb-4" style="font-family:'Syne',sans-serif;font-size:36px;letter-spacing:-0.025em;color:#111827">Works with your stack.</h2>
+<p class="font-body text-base" style="font-family:'Inter',sans-serif;color:#6B7280">Connect Flowdesk to the tools you already use. 80+ integrations available.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-3">
+<div class="integration-badge">
+<img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&amp;w=40&amp;auto=format&amp;fit=crop" alt="Slack" class="w-5 h-5 object-cover" style="border-radius:4px">
+Slack
+</div>
+<div class="integration-badge">
+<img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&amp;w=40&amp;auto=format&amp;fit=crop" alt="GitHub" class="w-5 h-5 object-cover" style="border-radius:4px">
+GitHub
+</div>
+<div class="integration-badge">
+<img src="https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?q=80&amp;w=40&amp;auto=format&amp;fit=crop" alt="Figma" class="w-5 h-5 object-cover" style="border-radius:4px">
+Figma
+</div>
+<div class="integration-badge">
+<img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&amp;w=40&amp;auto=format&amp;fit=crop" alt="Notion" class="w-5 h-5 object-cover" style="border-radius:4px">
+Notion
+</div>
+<div class="integration-badge">
+<div class="w-5 h-5 flex items-center justify-center" style="background:#EFF6FF;border-radius:4px">
+<svg class="w-3 h-3" style="color:#2563EB" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+</div>
+Google Workspace
+</div>
+<div class="integration-badge">
+<div class="w-5 h-5 flex items-center justify-center" style="background:#F3F4F6;border-radius:4px">
+<svg class="w-3 h-3" style="color:#374151" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.069A1 1 0 0121 8.82v6.36a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+</div>
+Loom
+</div>
+<div class="integration-badge">
+<div class="w-5 h-5 flex items-center justify-center" style="background:#F3F4F6;border-radius:4px">
+<svg class="w-3 h-3" style="color:#374151" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+</div>
+Zapier
+</div>
+<div class="integration-badge">
+<div class="w-5 h-5 flex items-center justify-center" style="background:#F3F4F6;border-radius:4px">
+<svg class="w-3 h-3" style="color:#374151" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+</div>
+GitLab
+</div>
+<div class="integration-badge" style="color:#2563EB;border-color:#BFDBFE;background:#EFF6FF">
+<svg class="w-4 h-4" style="color:#2563EB" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+View all 80+
+</div>
+</div>
+</div>
+</section>
+
+<!-- CTA SECTION -->
+<section style="background:#111827;padding:96px 0;max-height:520px">
+<div class="max-w-3xl mx-auto px-6 text-center">
+<p class="section-label mb-5" style="color:rgba(147,197,253,0.8)">Get started today</p>
+<h2 class="font-heading font-bold text-white mb-5" style="font-family:'Syne',sans-serif;font-size:44px;letter-spacing:-0.025em;line-height:1.1">
+Your team deserves<br>better tools.
+</h2>
+<p class="font-body text-lg mb-10 max-w-xl mx-auto" style="font-family:'Inter',sans-serif;color:#9CA3AF;line-height:1.7">Start your free 14-day trial. No credit card required. Cancel anytime. Set up in under 5 minutes.</p>
+<div class="flex flex-col sm:flex-row gap-3 justify-center mb-8">
+<a href="#pricing" class="btn-primary min-h-[52px] flex items-center justify-center gap-2 text-sm px-8">
+Start free trial — 14 days
+<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+</a>
+<a href="#" class="min-h-[52px] flex items-center justify-center gap-2 text-sm px-8 font-semibold" style="background:rgba(255,255,255,0.08);color:white;border:1px solid rgba(255,255,255,0.15);border-radius:6px;font-family:'Inter',sans-serif;transition:all 0.2s">
+Book a demo
+</a>
+</div>
+<div class="flex flex-wrap items-center justify-center gap-6">
+<div class="flex items-center gap-2">
+<svg class="w-4 h-4" style="color:#4ADE80" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+<span class="font-inter text-sm" style="color:#9CA3AF;font-family:'Inter',sans-serif">No credit card</span>
+</div>
+<div class="flex items-center gap-2">
+<svg class="w-4 h-4" style="color:#4ADE80" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+<span class="font-inter text-sm" style="color:#9CA3AF;font-family:'Inter',sans-serif">14-day free trial</span>
+</div>
+<div class="flex items-center gap-2">
+<svg class="w-4 h-4" style="color:#4ADE80" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+<span class="font-inter text-sm" style="color:#9CA3AF;font-family:'Inter',sans-serif">Cancel anytime</span>
+</div>
+<div class="flex items-center gap-2">
+<svg class="w-4 h-4" style="color:#4ADE80" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+<span class="font-inter text-sm" style="color:#9CA3AF;font-family:'Inter',sans-serif">SOC 2 certified</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#FFFFFF;padding:64px 0;border-top:1px solid #F3F4F6">
+<div class="max-w-6xl mx-auto px-6">
+<div class="grid md:grid-cols-5 gap-8 mb-10">
+<div class="md:col-span-2">
+<div class="flex items-center gap-2.5 mb-5">
+<div class="logo-mark">
+<svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+</div>
+<span class="font-heading font-bold text-lg" style="font-family:'Syne',sans-serif;color:#111827;letter-spacing:-0.02em">Flowdesk</span>
+</div>
+<p class="font-body text-sm leading-relaxed mb-5" style="font-family:'Inter',sans-serif;color:#9CA3AF;line-height:1.7;max-width:280px">The project management workspace built for modern product teams. Clean, fast, and actually enjoyable to use.</p>
+<div class="flex items-center gap-2">
+<div style="width:8px;height:8px;background:#22C55E;border-radius:50%"></div>
+<span class="font-inter text-xs" style="color:#9CA3AF;font-family:'Inter',sans-serif">All systems operational</span>
+</div>
+</div>
+<div>
+<p class="font-heading font-semibold text-sm mb-4" style="font-family:'Syne',sans-serif;color:#111827">Product</p>
+<div class="space-y-2.5">
+<a href="#features" class="block font-body text-sm" style="font-family:'Inter',sans-serif;color:#6B7280">Features</a>
+<a href="#pricing" class="block font-body text-sm" style="font-family:'Inter',sans-serif;color:#6B7280">Pricing</a>
+<a href="#integrations" class="block font-body text-sm" style="font-family:'Inter',sans-serif;color:#6B7280">Integrations</a>
+<a href="#" class="block font-body text-sm" style="font-family:'Inter',sans-serif;color:#6B7280">Changelog</a>
+<a href="#" class="block font-body text-sm" style="font-family:'Inter',sans-serif;color:#6B7280">Roadmap</a>
+</div>
+</div>
+<div>
+<p class="font-heading font-semibold text-sm mb-4" style="font-family:'Syne',sans-serif;color:#111827">Company</p>
+<div class="space-y-2.5">
+<a href="#" class="block font-body text-sm" style="font-family:'Inter',sans-serif;color:#6B7280">About</a>
+<a href="#" class="block font-body text-sm" style="font-family:'Inter',sans-serif;color:#6B7280">Blog</a>
+<a href="#" class="block font-body text-sm" style="font-family:'Inter',sans-serif;color:#6B7280">Careers</a>
+<a href="#" class="block font-body text-sm" style="font-family:'Inter',sans-serif;color:#6B7280">Press</a>
+</div>
+</div>
+<div>
+<p class="font-heading font-semibold text-sm mb-4" style="font-family:'Syne',sans-serif;color:#111827">Flow</p>
+<div class="space-y-2.5">
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/brutalist-architecture-firm" class="block font-body text-sm" style="font-family:'Inter',sans-serif;color:#6B7280">← 01 Brutalist</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/pastel-wellness-app" class="block font-body text-sm" style="font-family:'Inter',sans-serif;color:#6B7280">← 02 Wellness</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/neon-fintech-platform" class="block font-body text-sm" style="font-family:'Inter',sans-serif;color:#6B7280">← 03 Fintech</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/organic-food-brand" class="block font-body text-sm" style="font-family:'Inter',sans-serif;color:#6B7280">← 04 Organic</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/kids-education-app" class="block font-body text-sm" style="font-family:'Inter',sans-serif;color:#2563EB;font-weight:500">→ 06 Kids</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/luxury-real-estate-agency" class="block font-body text-sm" style="font-family:'Inter',sans-serif;color:#2563EB;font-weight:500">→ 07 Luxury</a>
+</div>
+</div>
+</div>
+<div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style="border-top:1px solid #F3F4F6">
+<p class="font-body text-xs" style="font-family:'Inter',sans-serif;color:#D1D5DB">© 2024 Flowdesk Inc. All rights reserved. SOC 2 Type II Certified.</p>
+<div class="flex items-center gap-4">
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/organic-food-brand" class="font-body text-xs" style="font-family:'Inter',sans-serif;color:#9CA3AF">← Organic Food</a>
+<span class="font-body text-xs" style="color:#E5E7EB">|</span>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/kids-education-app" class="font-body text-xs font-semibold" style="font-family:'Inter',sans-serif;color:#2563EB">Next: Kids App →</a>
+</div>
+</div>
+</div>
+</footer>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

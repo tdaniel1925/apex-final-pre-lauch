@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Retro Music Streaming - Exported from UXMagic Copilot">
+    <title>Retro Music Streaming</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+tailwind.config={theme:{extend:{colors:{
+'i1':'#5C6AC4','i1l':'#EEF0FF','i1d':'#2D2D3A',
+'f2':'#7DAF8A','f2l':'#EAF4EC','f2g':'#C9A84C','f2gl':'#F7EDD0','f2d':'#2A3240',
+'w3':'#FAF7F2','w3r':'#D4A5A5','w3t':'#C47C5A',
+'r4':'#C4B49A','r4g':'#2D5016','r4s':'#F5EFE4',
+'l5':'#4A6FA5','l5l':'#E8EEF7','l5d':'#1E2A3A',
+'e6':'#FDFAF6','e6t':'#D4B896','e6b':'#E8C4B8','e6e':'#2C1A0E',
+'ed7':'#F5A623','ed7l':'#FEF3DC','ed7s':'#4A90D9','ed7sl':'#E8F2FC',
+'t8':'#2E86AB','t8l':'#E0F0F7','t8s':'#E8D5B0','t8c':'#F4845F',
+'h9':'#E8614A','h9l':'#FDECEA','h9g':'#F5F3F0','h9d':'#1C1C1E',
+'c10':'#3D6B4F','c10l':'#E8F0EB','c10s':'#A8C5DA','c10a':'#DDD0B8','c10b':'#FAFAF7',
+'eo':'#C8622A','eol':'#FDF0E8','eod':'#1E0E06','eom':'#8B3A1A','eos':'#F5E6D3','eog':'#D4A853','eogl':'#FBF3DC','eob':'#FAF5EF',
+'hx':'#8B7355','hxl':'#F5F0E8','hxd':'#1A1410','hxm':'#5C4A32','hxs':'#EDE8DF','hxg':'#B8A898','hxc':'#2C2420','hxw':'#FAF8F5',
+'rt':'#C8622A','rtl':'#FDF0E8','rtd':'#1E0E06','rtm':'#8B3A1A','rts':'#F5E6D3','rtg':'#2D5016','rtgl':'#E8F0EB','rtc':'#F5F0E0','rto':'#E8A020','rtob':'#FFF8E8',
+},fontFamily:{
+'pf':['"Playfair Display"','serif'],
+'cg':['"Cormorant Garamond"','serif'],
+'sg':['"Space Grotesk"','sans-serif'],
+'bar':['Barlow','sans-serif'],
+'barc':['"Barlow Condensed"','sans-serif'],
+'beb':['"Bebas Neue"','sans-serif'],
+'nun':['Nunito','sans-serif'],
+'lb':['"Libre Baskerville"','serif'],
+'man':['Manrope','sans-serif'],
+'lor':['Lora','serif'],
+'int':['Inter','sans-serif'],
+'lat':['Lato','sans-serif'],
+'kar':['Karla','sans-serif'],
+},boxShadow:{
+'sm2':'0 2px 8px rgba(0,0,0,0.06)',
+'md2':'0 8px 30px rgba(0,0,0,0.08)',
+'lg2':'0 20px 60px rgba(0,0,0,0.12)',
+'warm':'0 8px 30px rgba(139,115,85,0.18)',
+'warm-lg':'0 20px 60px rgba(139,115,85,0.15)',
+'retro':'4px 4px 0px #1E0E06',
+'retro-lg':'6px 6px 0px #1E0E06',
+'retro-rust':'4px 4px 0px #C8622A',
+'retro-green':'4px 4px 0px #2D5016',
+}}}}
+
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+<!-- FLOW NAVIGATION BAR -->
+<div style="background:#1E0E06;border-bottom:3px solid #C8622A">
+<div class="overflow-x-auto no-sb">
+<div class="flex items-center gap-1.5 px-4 py-2 min-w-max">
+<span class="text-[10px] font-bold uppercase tracking-widest mr-2 flex-shrink-0 font-beb" style="color:rgba(232,160,32,0.7)">10 Design Styles:</span>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/brutalist-architecture-firm" class="flow-link-retro" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.45)">01 Brutalist</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/pastel-wellness-app" class="flow-link-retro" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.45)">02 Wellness</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/neon-fintech-platform" class="flow-link-retro" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.45)">03 Fintech</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/organic-food-brand" class="flow-link-retro" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.45)">04 Organic</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/minimal-saas-productivity-tool" class="flow-link-retro" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.45)">05 SaaS</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/kids-education-app" class="flow-link-retro" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.45)">06 Kids</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/luxury-real-estate-agency" class="flow-link-retro" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.45)">07 Luxury</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/retro-music-streaming" class="flow-link-retro" style="background:rgba(200,98,42,0.35);color:#E8A020;border-color:rgba(200,98,42,0.7)">08 Retro ♪</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/modern-medical-clinic" class="flow-link-retro" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.45)">09 Medical</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/vibrant-travel-agency" class="flow-link-retro" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.45)">10 Travel</a>
+</div>
+</div>
+</div>
+
+<!-- ANNOUNCEMENT TICKER -->
+<div class="ticker-wrap py-2" style="background:#C8622A;border-bottom:3px solid #1E0E06">
+<div class="ticker-inner">
+<span class="font-beb text-sm px-8 tracking-widest" style="color:#F5F0E0">♪ NOW SPINNING: Fleetwood Mac — Rumours ♪</span>
+<span class="font-beb text-sm px-8 tracking-widest" style="color:#F5F0E0">★ 50 MILLION TRACKS — ALL GENRES — ALL ERAS ★</span>
+<span class="font-beb text-sm px-8 tracking-widest" style="color:#F5F0E0">♫ FREE 30-DAY TRIAL — NO CREDIT CARD NEEDED ♫</span>
+<span class="font-beb text-sm px-8 tracking-widest" style="color:#F5F0E0">◉ HI-FI LOSSLESS AUDIO — FEEL EVERY GROOVE ◉</span>
+<span class="font-beb text-sm px-8 tracking-widest" style="color:#F5F0E0">♪ NOW SPINNING: Fleetwood Mac — Rumours ♪</span>
+<span class="font-beb text-sm px-8 tracking-widest" style="color:#F5F0E0">★ 50 MILLION TRACKS — ALL GENRES — ALL ERAS ★</span>
+<span class="font-beb text-sm px-8 tracking-widest" style="color:#F5F0E0">♫ FREE 30-DAY TRIAL — NO CREDIT CARD NEEDED ♫</span>
+<span class="font-beb text-sm px-8 tracking-widest" style="color:#F5F0E0">◉ HI-FI LOSSLESS AUDIO — FEEL EVERY GROOVE ◉</span>
+</div>
+</div>
+
+<!-- MAIN NAVIGATION -->
+<nav style="background:#F5F0E0;border-bottom:4px solid #1E0E06;position:sticky;top:0;z-index:40">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 flex items-center justify-center" style="background:#C8622A;border:3px solid #1E0E06;box-shadow:3px 3px 0px #1E0E06">
+<span class="font-beb text-xl" style="color:#F5F0E0">GB</span>
+</div>
+<div>
+<span class="font-beb text-3xl tracking-wider" style="color:#1E0E06;line-height:1">GROOVEBOX</span>
+<span class="block text-[9px] font-kar font-bold tracking-[0.3em] uppercase" style="color:#C8622A">Retro Music Streaming</span>
+</div>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a href="#discover" class="retro-nav-link">Discover</a>
+<a href="#genres" class="retro-nav-link">Genres</a>
+<a href="#charts" class="retro-nav-link">Charts</a>
+<a href="#radio" class="retro-nav-link">Radio</a>
+<a href="#pricing" class="retro-nav-link">Pricing</a>
+</div>
+<div class="flex items-center gap-3">
+<button class="btn-retro-outline px-5 py-2 text-base min-h-[44px]">Sign In</button>
+<button class="btn-retro px-5 py-2 text-base min-h-[44px]">Start Free Trial</button>
+</div>
+</div>
+</nav>
+
+<!-- SECTION DIVIDER -->
+<div class="section-divider"></div>
+
+<!-- HERO SECTION -->
+<section style="background:#F5F0E0;padding:0;max-height:900px;overflow:hidden">
+<div class="max-w-7xl mx-auto px-6 py-16">
+<div class="grid lg:grid-cols-2 gap-12 items-center">
+<!-- Left: Hero Copy -->
+<div>
+<!-- Retro badge -->
+<div class="inline-flex items-center gap-2 mb-6 px-4 py-2" style="background:#E8A020;border:3px solid #1E0E06;box-shadow:3px 3px 0px #1E0E06">
+<span class="font-beb text-sm tracking-widest" style="color:#1E0E06">★ OVER 50 MILLION TRACKS ★</span>
+</div>
+<h1 class="font-beb leading-none mb-4" style="font-size:clamp(60px,8vw,110px);color:#1E0E06;-webkit-text-stroke:0px">
+FEEL THE<br>
+<span style="color:#C8622A;-webkit-text-stroke:2px #1E0E06">GROOVE</span><br>
+AGAIN.
+</h1>
+<p class="font-kar text-lg leading-relaxed mb-8 max-w-lg" style="color:#3D2010;font-weight:500">Stream 50 million tracks in glorious Hi-Fi audio. From 70s funk to 80s synth-pop, we've got every era covered. Dust off your ears — music sounds better here.</p>
+
+<!-- CTA Buttons -->
+<div class="flex flex-wrap gap-4 mb-10">
+<button class="btn-retro px-8 py-3 text-xl min-h-[52px]">▶ Start Listening Free</button>
+<button class="btn-retro-green px-8 py-3 text-xl min-h-[52px]">Browse Catalog</button>
+</div>
+
+<!-- Trust signals -->
+<div class="flex flex-wrap gap-6">
+<div class="flex items-center gap-2">
+<span class="font-beb text-2xl" style="color:#C8622A">♪</span>
+<span class="font-kar font-bold text-sm" style="color:#3D2010">50M+ Tracks</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-beb text-2xl" style="color:#2D5016">◉</span>
+<span class="font-kar font-bold text-sm" style="color:#3D2010">Hi-Fi Lossless Audio</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-beb text-2xl" style="color:#E8A020">★</span>
+<span class="font-kar font-bold text-sm" style="color:#3D2010">4.9 · 2M+ Reviews</span>
+</div>
+</div>
+</div>
+
+<!-- Right: Vinyl Record + Now Playing -->
+<div class="flex flex-col items-center gap-8">
+<!-- Big Vinyl -->
+<div class="relative" style="width:280px;height:280px">
+<div class="vinyl vinyl-spin w-full h-full">
+<div class="vinyl-label">
+<div class="text-center">
+<p class="font-beb text-xs tracking-widest" style="color:#F5F0E0;line-height:1.2">RUMOURS</p>
+<p class="font-kar text-[9px] font-bold" style="color:rgba(245,240,224,0.7)">FLEETWOOD MAC</p>
+</div>
+<div class="vinyl-hole"></div>
+</div>
+</div>
+<!-- Tonearm -->
+<div style="position:absolute;top:-10px;right:-20px;width:80px;height:3px;background:#1E0E06;transform:rotate(25deg);transform-origin:right center;border-radius:2px">
+<div style="position:absolute;right:0;top:-4px;width:10px;height:10px;border-radius:50%;background:#C8622A;border:2px solid #1E0E06"></div>
+</div>
+</div>
+
+<!-- Now Playing Card -->
+<div class="retro-card p-5 w-full max-w-sm">
+<div class="flex items-center gap-2 mb-3">
+<!-- Waveform animation -->
+<div class="flex items-end gap-0.5" style="height:28px">
+<div class="wave-bar" style="animation-delay:0s"></div>
+<div class="wave-bar" style="animation-delay:0.1s"></div>
+<div class="wave-bar" style="animation-delay:0.2s"></div>
+<div class="wave-bar" style="animation-delay:0.3s"></div>
+<div class="wave-bar" style="animation-delay:0.4s"></div>
+<div class="wave-bar" style="animation-delay:0.5s"></div>
+<div class="wave-bar" style="animation-delay:0.3s"></div>
+<div class="wave-bar" style="animation-delay:0.1s"></div>
+</div>
+<span class="font-beb text-sm tracking-widest ml-2" style="color:#C8622A">NOW PLAYING</span>
+</div>
+<div class="flex items-center gap-4 mb-4">
+<img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&amp;w=100&amp;auto=format&amp;fit=crop" alt="Album art" class="w-14 h-14 object-cover" style="border:3px solid #1E0E06">
+<div>
+<p class="font-beb text-lg tracking-wide" style="color:#1E0E06;line-height:1.1">The Chain</p>
+<p class="font-kar text-sm font-bold" style="color:#C8622A">Fleetwood Mac</p>
+<p class="font-kar text-xs" style="color:#8B5E3C">Rumours · 1977</p>
+</div>
+</div>
+<!-- Progress bar -->
+<div class="progress-track mb-2">
+<div class="progress-fill" style="width:42%"></div>
+</div>
+<div class="flex justify-between mb-3">
+<span class="font-kar text-xs font-bold" style="color:#8B5E3C">1:47</span>
+<span class="font-kar text-xs font-bold" style="color:#8B5E3C">4:29</span>
+</div>
+<!-- Controls -->
+<div class="flex items-center justify-center gap-5">
+<button class="font-beb text-xl transition-colors" style="color:#8B5E3C">⏮</button>
+<button class="w-10 h-10 flex items-center justify-center font-beb text-lg" style="background:#C8622A;border:3px solid #1E0E06;color:#F5F0E0;box-shadow:3px 3px 0px #1E0E06">⏸</button>
+<button class="font-beb text-xl transition-colors" style="color:#8B5E3C">⏭</button>
+<button class="font-beb text-sm transition-colors" style="color:#2D5016">♡</button>
+<button class="font-beb text-sm transition-colors" style="color:#8B5E3C">⋯</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SECTION DIVIDER -->
+<div class="section-divider"></div>
+
+<!-- STATS BAND -->
+<section style="background:#1E0E06;padding:20px 0">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-0">
+<div class="text-center px-6 py-3" style="border-right:2px solid rgba(200,98,42,0.3)">
+<p class="font-beb text-4xl tracking-wide" style="color:#E8A020">50M+</p>
+<p class="font-kar text-xs font-bold uppercase tracking-widest mt-1" style="color:rgba(245,240,224,0.5)">Tracks Available</p>
+</div>
+<div class="text-center px-6 py-3" style="border-right:2px solid rgba(200,98,42,0.3)">
+<p class="font-beb text-4xl tracking-wide" style="color:#E8A020">Hi-Fi</p>
+<p class="font-kar text-xs font-bold uppercase tracking-widest mt-1" style="color:rgba(245,240,224,0.5)">Lossless Audio</p>
+</div>
+<div class="text-center px-6 py-3" style="border-right:2px solid rgba(200,98,42,0.3)">
+<p class="font-beb text-4xl tracking-wide" style="color:#E8A020">12M+</p>
+<p class="font-kar text-xs font-bold uppercase tracking-widest mt-1" style="color:rgba(245,240,224,0.5)">Active Listeners</p>
+</div>
+<div class="text-center px-6 py-3">
+<p class="font-beb text-4xl tracking-wide" style="color:#E8A020">70s–Now</p>
+<p class="font-kar text-xs font-bold uppercase tracking-widest mt-1" style="color:rgba(245,240,224,0.5)">Every Era Covered</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SECTION DIVIDER -->
+<div class="section-divider"></div>
+
+<!-- FEATURED ALBUMS / DISCOVER -->
+<section id="discover" style="background:#F5F0E0;padding:80px 0;max-height:1100px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+<div>
+<div class="inline-flex items-center gap-2 mb-3 px-3 py-1" style="background:#2D5016;border:2px solid #1E0E06">
+<span class="font-beb text-xs tracking-widest" style="color:#F5F0E0">◉ HOT RIGHT NOW</span>
+</div>
+<h2 class="font-beb leading-none" style="font-size:clamp(40px,5vw,72px);color:#1E0E06">FEATURED<br><span style="color:#C8622A">ALBUMS</span></h2>
+</div>
+<a href="#" class="btn-retro-outline px-6 py-2 text-base self-start md:self-auto">View All Albums →</a>
+</div>
+
+<!-- Album Grid -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+<!-- Album 1 -->
+<div class="retro-card overflow-hidden groovy-hover">
+<div class="relative overflow-hidden" style="height:200px">
+<img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&amp;w=400&amp;auto=format&amp;fit=crop" alt="Classic Rock" class="w-full h-full object-cover">
+<div class="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity" style="background:rgba(30,14,6,0.7)">
+<button class="w-14 h-14 flex items-center justify-center font-beb text-2xl" style="background:#C8622A;border:3px solid #F5F0E0;color:#F5F0E0">▶</button>
+</div>
+<div class="absolute top-3 left-3 retro-badge px-2 py-1 text-xs">NEW</div>
+</div>
+<div class="p-4">
+<p class="font-beb text-lg tracking-wide leading-tight" style="color:#1E0E06">Rumours</p>
+<p class="font-kar text-sm font-bold" style="color:#C8622A">Fleetwood Mac</p>
+<p class="font-kar text-xs mt-1" style="color:#8B5E3C">Rock · 1977 · 11 tracks</p>
+<div class="flex items-center justify-between mt-3">
+<div class="flex items-center gap-1">
+<span class="font-beb text-xs" style="color:#E8A020">★★★★★</span>
+</div>
+<button class="font-beb text-xs px-3 py-1" style="background:#C8622A;border:2px solid #1E0E06;color:#F5F0E0;box-shadow:2px 2px 0px #1E0E06">PLAY</button>
+</div>
+</div>
+</div>
+
+<!-- Album 2 -->
+<div class="retro-card overflow-hidden groovy-hover">
+<div class="relative overflow-hidden" style="height:200px">
+<img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&amp;w=400&amp;auto=format&amp;fit=crop" alt="Soul Music" class="w-full h-full object-cover">
+<div class="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity" style="background:rgba(30,14,6,0.7)">
+<button class="w-14 h-14 flex items-center justify-center font-beb text-2xl" style="background:#C8622A;border:3px solid #F5F0E0;color:#F5F0E0">▶</button>
+</div>
+<div class="absolute top-3 left-3 retro-badge px-2 py-1 text-xs">HOT</div>
+</div>
+<div class="p-4">
+<p class="font-beb text-lg tracking-wide leading-tight" style="color:#1E0E06">What's Going On</p>
+<p class="font-kar text-sm font-bold" style="color:#C8622A">Marvin Gaye</p>
+<p class="font-kar text-xs mt-1" style="color:#8B5E3C">Soul · 1971 · 9 tracks</p>
+<div class="flex items-center justify-between mt-3">
+<div class="flex items-center gap-1">
+<span class="font-beb text-xs" style="color:#E8A020">★★★★★</span>
+</div>
+<button class="font-beb text-xs px-3 py-1" style="background:#C8622A;border:2px solid #1E0E06;color:#F5F0E0;box-shadow:2px 2px 0px #1E0E06">PLAY</button>
+</div>
+</div>
+</div>
+
+<!-- Album 3 -->
+<div class="retro-card overflow-hidden groovy-hover">
+<div class="relative overflow-hidden" style="height:200px">
+<img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&amp;w=400&amp;auto=format&amp;fit=crop" alt="Funk" class="w-full h-full object-cover">
+<div class="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity" style="background:rgba(30,14,6,0.7)">
+<button class="w-14 h-14 flex items-center justify-center font-beb text-2xl" style="background:#C8622A;border:3px solid #F5F0E0;color:#F5F0E0">▶</button>
+</div>
+<div class="absolute top-3 left-3" style="background:#2D5016;border:2px solid #1E0E06;padding:2px 8px">
+<span class="font-beb text-xs" style="color:#F5F0E0">CLASSIC</span>
+</div>
+</div>
+<div class="p-4">
+<p class="font-beb text-lg tracking-wide leading-tight" style="color:#1E0E06">Off the Wall</p>
+<p class="font-kar text-sm font-bold" style="color:#C8622A">Michael Jackson</p>
+<p class="font-kar text-xs mt-1" style="color:#8B5E3C">Funk/Pop · 1979 · 10 tracks</p>
+<div class="flex items-center justify-between mt-3">
+<div class="flex items-center gap-1">
+<span class="font-beb text-xs" style="color:#E8A020">★★★★★</span>
+</div>
+<button class="font-beb text-xs px-3 py-1" style="background:#C8622A;border:2px solid #1E0E06;color:#F5F0E0;box-shadow:2px 2px 0px #1E0E06">PLAY</button>
+</div>
+</div>
+</div>
+
+<!-- Album 4 -->
+<div class="retro-card overflow-hidden groovy-hover">
+<div class="relative overflow-hidden" style="height:200px">
+<img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&amp;w=400&amp;auto=format&amp;fit=crop" alt="Jazz" class="w-full h-full object-cover">
+<div class="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity" style="background:rgba(30,14,6,0.7)">
+<button class="w-14 h-14 flex items-center justify-center font-beb text-2xl" style="background:#C8622A;border:3px solid #F5F0E0;color:#F5F0E0">▶</button>
+</div>
+<div class="absolute top-3 left-3 retro-badge px-2 py-1 text-xs">STAFF PICK</div>
+</div>
+<div class="p-4">
+<p class="font-beb text-lg tracking-wide leading-tight" style="color:#1E0E06">Kind of Blue</p>
+<p class="font-kar text-sm font-bold" style="color:#C8622A">Miles Davis</p>
+<p class="font-kar text-xs mt-1" style="color:#8B5E3C">Jazz · 1959 · 5 tracks</p>
+<div class="flex items-center justify-between mt-3">
+<div class="flex items-center gap-1">
+<span class="font-beb text-xs" style="color:#E8A020">★★★★★</span>
+</div>
+<button class="font-beb text-xs px-3 py-1" style="background:#C8622A;border:2px solid #1E0E06;color:#F5F0E0;box-shadow:2px 2px 0px #1E0E06">PLAY</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Second row -->
+<div class="grid grid-cols-2 md:grid-cols-3 gap-6 mt-6">
+<div class="retro-card overflow-hidden groovy-hover">
+<div class="relative overflow-hidden" style="height:180px">
+<img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?q=80&amp;w=400&amp;auto=format&amp;fit=crop" alt="Disco" class="w-full h-full object-cover">
+<div class="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity" style="background:rgba(30,14,6,0.7)">
+<button class="w-14 h-14 flex items-center justify-center font-beb text-2xl" style="background:#C8622A;border:3px solid #F5F0E0;color:#F5F0E0">▶</button>
+</div>
+</div>
+<div class="p-4">
+<p class="font-beb text-lg tracking-wide leading-tight" style="color:#1E0E06">Saturday Night Fever</p>
+<p class="font-kar text-sm font-bold" style="color:#C8622A">Bee Gees</p>
+<p class="font-kar text-xs mt-1" style="color:#8B5E3C">Disco · 1977 · 17 tracks</p>
+</div>
+</div>
+<div class="retro-card overflow-hidden groovy-hover">
+<div class="relative overflow-hidden" style="height:180px">
+<img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?q=80&amp;w=400&amp;auto=format&amp;fit=crop" alt="Blues" class="w-full h-full object-cover">
+<div class="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity" style="background:rgba(30,14,6,0.7)">
+<button class="w-14 h-14 flex items-center justify-center font-beb text-2xl" style="background:#C8622A;border:3px solid #F5F0E0;color:#F5F0E0">▶</button>
+</div>
+</div>
+<div class="p-4">
+<p class="font-beb text-lg tracking-wide leading-tight" style="color:#1E0E06">Tapestry</p>
+<p class="font-kar text-sm font-bold" style="color:#C8622A">Carole King</p>
+<p class="font-kar text-xs mt-1" style="color:#8B5E3C">Pop/Folk · 1971 · 13 tracks</p>
+</div>
+</div>
+<div class="retro-card overflow-hidden groovy-hover">
+<div class="relative overflow-hidden" style="height:180px">
+<img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&amp;w=400&amp;auto=format&amp;fit=crop" alt="Rock" class="w-full h-full object-cover">
+<div class="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity" style="background:rgba(30,14,6,0.7)">
+<button class="w-14 h-14 flex items-center justify-center font-beb text-2xl" style="background:#C8622A;border:3px solid #F5F0E0;color:#F5F0E0">▶</button>
+</div>
+</div>
+<div class="p-4">
+<p class="font-beb text-lg tracking-wide leading-tight" style="color:#1E0E06">Led Zeppelin IV</p>
+<p class="font-kar text-sm font-bold" style="color:#C8622A">Led Zeppelin</p>
+<p class="font-kar text-xs mt-1" style="color:#8B5E3C">Rock · 1971 · 8 tracks</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SECTION DIVIDER -->
+<div class="section-divider"></div>
+
+<!-- GENRES SECTION -->
+<section id="genres" style="background:#1E0E06;padding:80px 0;max-height:700px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-12">
+<div class="inline-flex items-center gap-2 mb-4 px-4 py-2" style="background:rgba(200,98,42,0.2);border:3px solid rgba(200,98,42,0.5)">
+<span class="font-beb text-sm tracking-widest" style="color:#E8A020">♪ BROWSE BY GENRE</span>
+</div>
+<h2 class="font-beb leading-none" style="font-size:clamp(40px,5vw,72px);color:#F5F0E0">EVERY SOUND,<br><span style="color:#C8622A">EVERY ERA</span></h2>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<!-- Genre cards -->
+<div class="p-6 text-center cursor-pointer transition-all hover:scale-105" style="background:#C8622A;border:3px solid #E8A020;box-shadow:4px 4px 0px #E8A020">
+<div class="font-beb text-5xl mb-3" style="color:#F5F0E0">♪</div>
+<p class="font-beb text-2xl tracking-wide" style="color:#F5F0E0">FUNK</p>
+<p class="font-kar text-xs font-bold mt-1" style="color:rgba(245,240,224,0.6)">2.4M tracks</p>
+</div>
+<div class="p-6 text-center cursor-pointer transition-all hover:scale-105" style="background:#2D5016;border:3px solid #E8A020;box-shadow:4px 4px 0px #E8A020">
+<div class="font-beb text-5xl mb-3" style="color:#F5F0E0">♫</div>
+<p class="font-beb text-2xl tracking-wide" style="color:#F5F0E0">SOUL</p>
+<p class="font-kar text-xs font-bold mt-1" style="color:rgba(245,240,224,0.6)">3.1M tracks</p>
+</div>
+<div class="p-6 text-center cursor-pointer transition-all hover:scale-105" style="background:#8B3A1A;border:3px solid #E8A020;box-shadow:4px 4px 0px #E8A020">
+<div class="font-beb text-5xl mb-3" style="color:#F5F0E0">◉</div>
+<p class="font-beb text-2xl tracking-wide" style="color:#F5F0E0">ROCK</p>
+<p class="font-kar text-xs font-bold mt-1" style="color:rgba(245,240,224,0.6)">8.7M tracks</p>
+</div>
+<div class="p-6 text-center cursor-pointer transition-all hover:scale-105" style="background:#D4A853;border:3px solid #1E0E06;box-shadow:4px 4px 0px #E8A020">
+<div class="font-beb text-5xl mb-3" style="color:#1E0E06">♬</div>
+<p class="font-beb text-2xl tracking-wide" style="color:#1E0E06">JAZZ</p>
+<p class="font-kar text-xs font-bold mt-1" style="color:rgba(30,14,6,0.6)">1.8M tracks</p>
+</div>
+<div class="p-6 text-center cursor-pointer transition-all hover:scale-105" style="background:#3D2010;border:3px solid #E8A020;box-shadow:4px 4px 0px #E8A020">
+<div class="font-beb text-5xl mb-3" style="color:#E8A020">♩</div>
+<p class="font-beb text-2xl tracking-wide" style="color:#F5F0E0">BLUES</p>
+<p class="font-kar text-xs font-bold mt-1" style="color:rgba(245,240,224,0.6)">1.2M tracks</p>
+</div>
+<div class="p-6 text-center cursor-pointer transition-all hover:scale-105" style="background:#C8622A;border:3px solid #2D5016;box-shadow:4px 4px 0px #2D5016">
+<div class="font-beb text-5xl mb-3" style="color:#F5F0E0">✦</div>
+<p class="font-beb text-2xl tracking-wide" style="color:#F5F0E0">DISCO</p>
+<p class="font-kar text-xs font-bold mt-1" style="color:rgba(245,240,224,0.6)">980K tracks</p>
+</div>
+<div class="p-6 text-center cursor-pointer transition-all hover:scale-105" style="background:#2D5016;border:3px solid #C8622A;box-shadow:4px 4px 0px #C8622A">
+<div class="font-beb text-5xl mb-3" style="color:#F5F0E0">⚡</div>
+<p class="font-beb text-2xl tracking-wide" style="color:#F5F0E0">PUNK</p>
+<p class="font-kar text-xs font-bold mt-1" style="color:rgba(245,240,224,0.6)">760K tracks</p>
+</div>
+<div class="p-6 text-center cursor-pointer transition-all hover:scale-105" style="background:#E8A020;border:3px solid #1E0E06;box-shadow:4px 4px 0px #C8622A">
+<div class="font-beb text-5xl mb-3" style="color:#1E0E06">♪</div>
+<p class="font-beb text-2xl tracking-wide" style="color:#1E0E06">POP</p>
+<p class="font-kar text-xs font-bold mt-1" style="color:rgba(30,14,6,0.6)">12M tracks</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SECTION DIVIDER -->
+<div class="section-divider"></div>
+
+<!-- CHARTS + RADIO SECTION -->
+<section id="charts" style="background:#FDF0E8;padding:80px 0;max-height:900px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid lg:grid-cols-2 gap-12">
+<!-- Top Charts -->
+<div>
+<div class="flex items-center gap-3 mb-8">
+<div class="px-3 py-1" style="background:#C8622A;border:3px solid #1E0E06">
+<span class="font-beb text-sm tracking-widest" style="color:#F5F0E0">★ TOP CHARTS</span>
+</div>
+<h2 class="font-beb text-4xl" style="color:#1E0E06">THIS WEEK'S<br><span style="color:#C8622A">HOT 100</span></h2>
+</div>
+<div class="space-y-3">
+<!-- Track 1 -->
+<div class="flex items-center gap-4 p-4" style="background:white;border:3px solid #1E0E06;box-shadow:3px 3px 0px #C8622A">
+<span class="font-beb text-3xl w-10 text-center" style="color:#C8622A">1</span>
+<img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&amp;w=60&amp;auto=format&amp;fit=crop" alt="Track" class="w-12 h-12 object-cover" style="border:2px solid #1E0E06">
+<div class="flex-1">
+<p class="font-beb text-base tracking-wide" style="color:#1E0E06">Dreams</p>
+<p class="font-kar text-sm font-bold" style="color:#C8622A">Fleetwood Mac</p>
+</div>
+<div class="text-right">
+<p class="font-kar text-xs font-bold" style="color:#8B5E3C">4:17</p>
+<p class="font-beb text-xs" style="color:#2D5016">▲ 2</p>
+</div>
+<button class="w-9 h-9 flex items-center justify-center font-beb" style="background:#C8622A;border:2px solid #1E0E06;color:#F5F0E0;font-size:14px">▶</button>
+</div>
+<!-- Track 2 -->
+<div class="flex items-center gap-4 p-4" style="background:white;border:3px solid #1E0E06;box-shadow:3px 3px 0px #1E0E06">
+<span class="font-beb text-3xl w-10 text-center" style="color:#8B5E3C">2</span>
+<img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&amp;w=60&amp;auto=format&amp;fit=crop" alt="Track" class="w-12 h-12 object-cover" style="border:2px solid #1E0E06">
+<div class="flex-1">
+<p class="font-beb text-base tracking-wide" style="color:#1E0E06">Let's Stay Together</p>
+<p class="font-kar text-sm font-bold" style="color:#C8622A">Al Green</p>
+</div>
+<div class="text-right">
+<p class="font-kar text-xs font-bold" style="color:#8B5E3C">3:18</p>
+<p class="font-beb text-xs" style="color:#C8622A">▼ 1</p>
+</div>
+<button class="w-9 h-9 flex items-center justify-center font-beb" style="background:#1E0E06;border:2px solid #1E0E06;color:#F5F0E0;font-size:14px">▶</button>
+</div>
+<!-- Track 3 -->
+<div class="flex items-center gap-4 p-4" style="background:white;border:3px solid #1E0E06;box-shadow:3px 3px 0px #1E0E06">
+<span class="font-beb text-3xl w-10 text-center" style="color:#8B5E3C">3</span>
+<img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&amp;w=60&amp;auto=format&amp;fit=crop" alt="Track" class="w-12 h-12 object-cover" style="border:2px solid #1E0E06">
+<div class="flex-1">
+<p class="font-beb text-base tracking-wide" style="color:#1E0E06">Superstition</p>
+<p class="font-kar text-sm font-bold" style="color:#C8622A">Stevie Wonder</p>
+</div>
+<div class="text-right">
+<p class="font-kar text-xs font-bold" style="color:#8B5E3C">4:26</p>
+<p class="font-beb text-xs" style="color:#2D5016">▲ 5</p>
+</div>
+<button class="w-9 h-9 flex items-center justify-center font-beb" style="background:#1E0E06;border:2px solid #1E0E06;color:#F5F0E0;font-size:14px">▶</button>
+</div>
+<!-- Track 4 -->
+<div class="flex items-center gap-4 p-4" style="background:white;border:3px solid #1E0E06;box-shadow:3px 3px 0px #1E0E06">
+<span class="font-beb text-3xl w-10 text-center" style="color:#8B5E3C">4</span>
+<img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&amp;w=60&amp;auto=format&amp;fit=crop" alt="Track" class="w-12 h-12 object-cover" style="border:2px solid #1E0E06">
+<div class="flex-1">
+<p class="font-beb text-base tracking-wide" style="color:#1E0E06">Bohemian Rhapsody</p>
+<p class="font-kar text-sm font-bold" style="color:#C8622A">Queen</p>
+</div>
+<div class="text-right">
+<p class="font-kar text-xs font-bold" style="color:#8B5E3C">5:55</p>
+<p class="font-beb text-xs" style="color:#8B5E3C">—</p>
+</div>
+<button class="w-9 h-9 flex items-center justify-center font-beb" style="background:#1E0E06;border:2px solid #1E0E06;color:#F5F0E0;font-size:14px">▶</button>
+</div>
+<!-- Track 5 -->
+<div class="flex items-center gap-4 p-4" style="background:white;border:3px solid #1E0E06;box-shadow:3px 3px 0px #1E0E06">
+<span class="font-beb text-3xl w-10 text-center" style="color:#8B5E3C">5</span>
+<img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?q=80&amp;w=60&amp;auto=format&amp;fit=crop" alt="Track" class="w-12 h-12 object-cover" style="border:2px solid #1E0E06">
+<div class="flex-1">
+<p class="font-beb text-base tracking-wide" style="color:#1E0E06">Stayin' Alive</p>
+<p class="font-kar text-sm font-bold" style="color:#C8622A">Bee Gees</p>
+</div>
+<div class="text-right">
+<p class="font-kar text-xs font-bold" style="color:#8B5E3C">4:45</p>
+<p class="font-beb text-xs" style="color:#2D5016">▲ 3</p>
+</div>
+<button class="w-9 h-9 flex items-center justify-center font-beb" style="background:#1E0E06;border:2px solid #1E0E06;color:#F5F0E0;font-size:14px">▶</button>
+</div>
+</div>
+</div>
+
+<!-- Radio Stations -->
+<div id="radio">
+<div class="flex items-center gap-3 mb-8">
+<div class="px-3 py-1" style="background:#2D5016;border:3px solid #1E0E06">
+<span class="font-beb text-sm tracking-widest" style="color:#F5F0E0">◉ LIVE RADIO</span>
+</div>
+<h2 class="font-beb text-4xl" style="color:#1E0E06">GROOVEBOX<br><span style="color:#2D5016">RADIO</span></h2>
+</div>
+<div class="grid grid-cols-1 gap-4">
+<!-- Radio Station 1 -->
+<div class="p-5 flex items-center gap-5" style="background:#1E0E06;border:3px solid #C8622A;box-shadow:4px 4px 0px #C8622A">
+<div class="w-16 h-16 flex items-center justify-center flex-shrink-0" style="background:#C8622A;border:3px solid #F5F0E0">
+<span class="font-beb text-2xl" style="color:#F5F0E0">70s</span>
+</div>
+<div class="flex-1">
+<p class="font-beb text-xl tracking-wide" style="color:#F5F0E0">GROOVEBOX 70s FM</p>
+<p class="font-kar text-sm font-bold" style="color:rgba(245,240,224,0.6)">Funk · Soul · Disco · Rock</p>
+<div class="flex items-center gap-2 mt-1">
+<div class="w-2 h-2 rounded-full" style="background:#2D5016;animation:pulse 1.5s infinite"></div>
+<span class="font-kar text-xs font-bold" style="color:#E8A020">LIVE · 24,891 listeners</span>
+</div>
+</div>
+<button class="btn-retro px-4 py-2 text-base">▶ TUNE IN</button>
+</div>
+<!-- Radio Station 2 -->
+<div class="p-5 flex items-center gap-5" style="background:#2D5016;border:3px solid #E8A020;box-shadow:4px 4px 0px #E8A020">
+<div class="w-16 h-16 flex items-center justify-center flex-shrink-0" style="background:#E8A020;border:3px solid #1E0E06">
+<span class="font-beb text-2xl" style="color:#1E0E06">80s</span>
+</div>
+<div class="flex-1">
+<p class="font-beb text-xl tracking-wide" style="color:#F5F0E0">GROOVEBOX 80s FM</p>
+<p class="font-kar text-sm font-bold" style="color:rgba(245,240,224,0.6)">Synth-Pop · New Wave · Hair Metal</p>
+<div class="flex items-center gap-2 mt-1">
+<div class="w-2 h-2 rounded-full" style="background:#C8622A;animation:pulse 1.5s infinite"></div>
+<span class="font-kar text-xs font-bold" style="color:#E8A020">LIVE · 18,234 listeners</span>
+</div>
+</div>
+<button class="btn-retro-green px-4 py-2 text-base">▶ TUNE IN</button>
+</div>
+<!-- Radio Station 3 -->
+<div class="p-5 flex items-center gap-5" style="background:#8B3A1A;border:3px solid #D4A853;box-shadow:4px 4px 0px #D4A853">
+<div class="w-16 h-16 flex items-center justify-center flex-shrink-0" style="background:#D4A853;border:3px solid #1E0E06">
+<span class="font-beb text-xl" style="color:#1E0E06">JAZZ</span>
+</div>
+<div class="flex-1">
+<p class="font-beb text-xl tracking-wide" style="color:#F5F0E0">GROOVEBOX JAZZ CAFÉ</p>
+<p class="font-kar text-sm font-bold" style="color:rgba(245,240,224,0.6)">Bebop · Cool Jazz · Fusion</p>
+<div class="flex items-center gap-2 mt-1">
+<div class="w-2 h-2 rounded-full" style="background:#E8A020;animation:pulse 1.5s infinite"></div>
+<span class="font-kar text-xs font-bold" style="color:#E8A020">LIVE · 9,102 listeners</span>
+</div>
+</div>
+<button class="btn-retro px-4 py-2 text-base">▶ TUNE IN</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SECTION DIVIDER -->
+<div class="section-divider"></div>
+
+<!-- FEATURES / WHY GROOVEBOX -->
+<section style="background:#F5F0E0;padding:80px 0;max-height:800px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-12">
+<div class="inline-flex items-center gap-2 mb-4 px-4 py-2" style="background:#E8A020;border:3px solid #1E0E06;box-shadow:3px 3px 0px #1E0E06">
+<span class="font-beb text-sm tracking-widest" style="color:#1E0E06">★ WHY GROOVEBOX? ★</span>
+</div>
+<h2 class="font-beb leading-none" style="font-size:clamp(40px,5vw,72px);color:#1E0E06">MUSIC THE WAY<br><span style="color:#C8622A">IT WAS MEANT</span><br>TO SOUND.</h2>
+</div>
+<div class="grid md:grid-cols-3 gap-6">
+<!-- Feature 1 -->
+<div class="retro-card-rust p-8 text-center">
+<div class="w-20 h-20 mx-auto mb-5 flex items-center justify-center" style="background:#C8622A;border:4px solid #1E0E06;box-shadow:4px 4px 0px #1E0E06;border-radius:50%">
+<span class="font-beb text-3xl" style="color:#F5F0E0">◉</span>
+</div>
+<h3 class="font-beb text-2xl tracking-wide mb-3" style="color:#1E0E06">HI-FI LOSSLESS</h3>
+<p class="font-kar text-base leading-relaxed" style="color:#3D2010">Stream in crystal-clear lossless audio up to 24-bit/192kHz. Hear every detail the artist intended — from the warmth of the bass to the shimmer of the cymbals.</p>
+</div>
+<!-- Feature 2 -->
+<div class="retro-card-green p-8 text-center">
+<div class="w-20 h-20 mx-auto mb-5 flex items-center justify-center" style="background:#2D5016;border:4px solid #1E0E06;box-shadow:4px 4px 0px #1E0E06;border-radius:50%">
+<span class="font-beb text-3xl" style="color:#F5F0E0">♪</span>
+</div>
+<h3 class="font-beb text-2xl tracking-wide mb-3" style="color:#1E0E06">CURATED PLAYLISTS</h3>
+<p class="font-kar text-base leading-relaxed" style="color:#3D2010">Hand-crafted playlists by music historians and DJs who actually lived through the eras. No algorithm can replace a human ear that's been around the block.</p>
+</div>
+<!-- Feature 3 -->
+<div class="retro-card p-8 text-center">
+<div class="w-20 h-20 mx-auto mb-5 flex items-center justify-center" style="background:#E8A020;border:4px solid #1E0E06;box-shadow:4px 4px 0px #1E0E06;border-radius:50%">
+<span class="font-beb text-3xl" style="color:#1E0E06">★</span>
+</div>
+<h3 class="font-beb text-2xl tracking-wide mb-3" style="color:#1E0E06">OFFLINE LISTENING</h3>
+<p class="font-kar text-base leading-relaxed" style="color:#3D2010">Download your favorite albums and playlists for offline listening. Take the groove with you wherever you go — no Wi-Fi required, just pure music bliss.</p>
+</div>
+</div>
+
+<!-- Cassette tape decorative element -->
+<div class="mt-12 p-8 flex flex-col md:flex-row items-center gap-8" style="background:#1E0E06;border:4px solid #C8622A;box-shadow:6px 6px 0px #C8622A">
+<div class="flex-shrink-0">
+<!-- Cassette illustration -->
+<div class="cassette p-4" style="width:160px;background:#3D2010">
+<div class="flex justify-between items-center mb-3">
+<div class="w-8 h-8 rounded-full" style="background:#1E0E06;border:2px solid #C8622A"></div>
+<div class="flex-1 mx-3 h-2" style="background:#C8622A;border-radius:1px"></div>
+<div class="w-8 h-8 rounded-full" style="background:#1E0E06;border:2px solid #C8622A"></div>
+</div>
+<div class="text-center py-2 px-3" style="background:#C8622A;border:2px solid #E8A020">
+<p class="font-beb text-xs tracking-widest" style="color:#F5F0E0">GROOVEBOX</p>
+<p class="font-kar text-[9px] font-bold" style="color:rgba(245,240,224,0.7)">HI-FI AUDIO</p>
+</div>
+<div class="flex justify-between mt-3">
+<div class="w-4 h-4" style="background:#1E0E06;border:1px solid #C8622A"></div>
+<div class="w-4 h-4" style="background:#1E0E06;border:1px solid #C8622A"></div>
+</div>
+</div>
+</div>
+<div class="text-center md:text-left">
+<p class="font-beb text-3xl tracking-wide mb-2" style="color:#E8A020">THE GROOVEBOX GUARANTEE</p>
+<p class="font-kar text-base leading-relaxed" style="color:rgba(245,240,224,0.8)">If you don't love the sound quality within 30 days, we'll refund every penny. No questions asked. We're that confident in our audio fidelity.</p>
+<div class="flex flex-wrap gap-4 mt-4">
+<div class="flex items-center gap-2">
+<span class="font-beb text-lg" style="color:#C8622A">✓</span>
+<span class="font-kar text-sm font-bold" style="color:rgba(245,240,224,0.7)">30-Day Free Trial</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-beb text-lg" style="color:#C8622A">✓</span>
+<span class="font-kar text-sm font-bold" style="color:rgba(245,240,224,0.7)">Cancel Anytime</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-beb text-lg" style="color:#C8622A">✓</span>
+<span class="font-kar text-sm font-bold" style="color:rgba(245,240,224,0.7)">No Credit Card Needed</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SECTION DIVIDER -->
+<div class="section-divider"></div>
+
+<!-- PRICING SECTION -->
+<section id="pricing" style="background:#FDF0E8;padding:80px 0;max-height:900px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-12">
+<div class="inline-flex items-center gap-2 mb-4 px-4 py-2" style="background:#C8622A;border:3px solid #1E0E06;box-shadow:3px 3px 0px #1E0E06">
+<span class="font-beb text-sm tracking-widest" style="color:#F5F0E0">◉ PICK YOUR PLAN</span>
+</div>
+<h2 class="font-beb leading-none" style="font-size:clamp(40px,5vw,72px);color:#1E0E06">SIMPLE,<br><span style="color:#C8622A">GROOVY</span><br>PRICING.</h2>
+</div>
+<div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+<!-- Free Plan -->
+<div class="retro-card p-8">
+<div class="mb-2 px-3 py-1 inline-block" style="background:#F5F0E0;border:2px solid #1E0E06">
+<span class="font-beb text-xs tracking-widest" style="color:#8B5E3C">FREE TIER</span>
+</div>
+<h3 class="font-beb text-3xl tracking-wide mb-1" style="color:#1E0E06">LISTENER</h3>
+<div class="flex items-end gap-1 mb-6">
+<span class="font-beb text-5xl" style="color:#1E0E06">$0</span>
+<span class="font-kar text-base font-bold mb-2" style="color:#8B5E3C">/month</span>
+</div>
+<div class="space-y-3 mb-8">
+<div class="flex items-center gap-3">
+<span class="font-beb text-lg" style="color:#2D5016">✓</span>
+<span class="font-kar text-sm font-bold" style="color:#3D2010">Ad-supported streaming</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-beb text-lg" style="color:#2D5016">✓</span>
+<span class="font-kar text-sm font-bold" style="color:#3D2010">Standard audio quality</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-beb text-lg" style="color:#2D5016">✓</span>
+<span class="font-kar text-sm font-bold" style="color:#3D2010">Access to all genres</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-beb text-lg" style="color:#C8622A">✗</span>
+<span class="font-kar text-sm" style="color:#8B5E3C">Offline downloads</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-beb text-lg" style="color:#C8622A">✗</span>
+<span class="font-kar text-sm" style="color:#8B5E3C">Hi-Fi lossless audio</span>
+</div>
+</div>
+<button class="btn-retro-outline w-full py-3 text-lg">START FREE</button>
+</div>
+
+<!-- Pro Plan (Featured) -->
+<div class="p-8" style="background:#C8622A;border:4px solid #1E0E06;box-shadow:6px 6px 0px #1E0E06;position:relative">
+<div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+<div class="retro-badge px-4 py-1 text-sm">★ MOST POPULAR ★</div>
+</div>
+<div class="mb-2 px-3 py-1 inline-block" style="background:rgba(245,240,224,0.2);border:2px solid rgba(245,240,224,0.4)">
+<span class="font-beb text-xs tracking-widest" style="color:#F5F0E0">PREMIUM</span>
+</div>
+<h3 class="font-beb text-3xl tracking-wide mb-1" style="color:#F5F0E0">GROOVER</h3>
+<div class="flex items-end gap-1 mb-6">
+<span class="font-beb text-5xl" style="color:#F5F0E0">$9</span>
+<span class="font-kar text-base font-bold mb-2" style="color:rgba(245,240,224,0.7)">.99/month</span>
+</div>
+<div class="space-y-3 mb-8">
+<div class="flex items-center gap-3">
+<span class="font-beb text-lg" style="color:#E8A020">✓</span>
+<span class="font-kar text-sm font-bold" style="color:#F5F0E0">Ad-free streaming</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-beb text-lg" style="color:#E8A020">✓</span>
+<span class="font-kar text-sm font-bold" style="color:#F5F0E0">Hi-Fi lossless audio</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-beb text-lg" style="color:#E8A020">✓</span>
+<span class="font-kar text-sm font-bold" style="color:#F5F0E0">Unlimited downloads</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-beb text-lg" style="color:#E8A020">✓</span>
+<span class="font-kar text-sm font-bold" style="color:#F5F0E0">Exclusive radio stations</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-beb text-lg" style="color:#E8A020">✓</span>
+<span class="font-kar text-sm font-bold" style="color:#F5F0E0">Curated playlists</span>
+</div>
+</div>
+<button class="w-full py-3 text-lg font-beb tracking-widest" style="background:#F5F0E0;border:3px solid #1E0E06;color:#C8622A;box-shadow:4px 4px 0px #1E0E06;transition:all 0.1s">START 30-DAY TRIAL</button>
+</div>
+
+<!-- Family Plan -->
+<div class="retro-card p-8">
+<div class="mb-2 px-3 py-1 inline-block" style="background:#2D5016;border:2px solid #1E0E06">
+<span class="font-beb text-xs tracking-widest" style="color:#F5F0E0">FAMILY</span>
+</div>
+<h3 class="font-beb text-3xl tracking-wide mb-1" style="color:#1E0E06">BAND</h3>
+<div class="flex items-end gap-1 mb-6">
+<span class="font-beb text-5xl" style="color:#1E0E06">$14</span>
+<span class="font-kar text-base font-bold mb-2" style="color:#8B5E3C">.99/month</span>
+</div>
+<div class="space-y-3 mb-8">
+<div class="flex items-center gap-3">
+<span class="font-beb text-lg" style="color:#2D5016">✓</span>
+<span class="font-kar text-sm font-bold" style="color:#3D2010">Up to 6 accounts</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-beb text-lg" style="color:#2D5016">✓</span>
+<span class="font-kar text-sm font-bold" style="color:#3D2010">All Groover features</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-beb text-lg" style="color:#2D5016">✓</span>
+<span class="font-kar text-sm font-bold" style="color:#3D2010">Individual profiles</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-beb text-lg" style="color:#2D5016">✓</span>
+<span class="font-kar text-sm font-bold" style="color:#3D2010">Parental controls</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-beb text-lg" style="color:#2D5016">✓</span>
+<span class="font-kar text-sm font-bold" style="color:#3D2010">Priority support</span>
+</div>
+</div>
+<button class="btn-retro-green w-full py-3 text-lg">GET THE BAND PLAN</button>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SECTION DIVIDER -->
+<div class="section-divider"></div>
+
+<!-- TESTIMONIALS -->
+<section style="background:#2D5016;padding:80px 0;max-height:700px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-12">
+<h2 class="font-beb leading-none" style="font-size:clamp(40px,5vw,72px);color:#F5F0E0">WHAT THE<br><span style="color:#E8A020">FANS SAY</span></h2>
+</div>
+<div class="grid md:grid-cols-3 gap-6">
+<!-- Testimonial 1 -->
+<div class="p-8" style="background:rgba(245,240,224,0.08);border:3px solid rgba(232,160,32,0.4);box-shadow:4px 4px 0px rgba(200,98,42,0.4)">
+<div class="flex items-center gap-1 mb-4">
+<span class="font-beb text-lg" style="color:#E8A020">★★★★★</span>
+</div>
+<p class="font-kar text-base leading-relaxed mb-6 italic" style="color:rgba(245,240,224,0.85)">"Finally a streaming service that gets it. The Hi-Fi audio is incredible — I can hear details in my old vinyl rips I never noticed before. This is how music should sound."</p>
+<div class="flex items-center gap-3">
+<img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&amp;w=100&amp;auto=format&amp;fit=crop" alt="Dave M." class="w-12 h-12 object-cover" style="border:3px solid #C8622A">
+<div>
+<p class="font-beb text-base tracking-wide" style="color:#F5F0E0">Dave Morrison</p>
+<p class="font-kar text-xs font-bold" style="color:rgba(245,240,224,0.5)">Vinyl Collector · Austin, TX</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="p-8" style="background:rgba(200,98,42,0.15);border:3px solid rgba(200,98,42,0.5);box-shadow:4px 4px 0px rgba(232,160,32,0.4)">
+<div class="flex items-center gap-1 mb-4">
+<span class="font-beb text-lg" style="color:#E8A020">★★★★★</span>
+</div>
+<p class="font-kar text-base leading-relaxed mb-6 italic" style="color:rgba(245,240,224,0.85)">"The curated playlists are a revelation. Whoever makes them clearly has deep knowledge of the eras. I've discovered so many forgotten gems from the 70s soul scene."</p>
+<div class="flex items-center gap-3">
+<img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&amp;w=100&amp;auto=format&amp;fit=crop" alt="Sarah K." class="w-12 h-12 object-cover" style="border:3px solid #E8A020">
+<div>
+<p class="font-beb text-base tracking-wide" style="color:#F5F0E0">Sarah Kowalski</p>
+<p class="font-kar text-xs font-bold" style="color:rgba(245,240,224,0.5)">Music Teacher · Chicago, IL</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 3 -->
+<div class="p-8" style="background:rgba(245,240,224,0.08);border:3px solid rgba(232,160,32,0.4);box-shadow:4px 4px 0px rgba(200,98,42,0.4)">
+<div class="flex items-center gap-1 mb-4">
+<span class="font-beb text-lg" style="color:#E8A020">★★★★★</span>
+</div>
+<p class="font-kar text-base leading-relaxed mb-6 italic" style="color:rgba(245,240,224,0.85)">"Switched from the big names and never looked back. The radio stations alone are worth the price. Groovebox 70s FM has been playing in my kitchen every morning for 6 months."</p>
+<div class="flex items-center gap-3">
+<img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&amp;w=100&amp;auto=format&amp;fit=crop" alt="Tom R." class="w-12 h-12 object-cover" style="border:3px solid #C8622A">
+<div>
+<p class="font-beb text-base tracking-wide" style="color:#F5F0E0">Tom Reeves</p>
+<p class="font-kar text-xs font-bold" style="color:rgba(245,240,224,0.5)">Retired DJ · Nashville, TN</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Rating stats -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
+<div class="p-5 text-center" style="background:rgba(200,98,42,0.2);border:3px solid rgba(200,98,42,0.4)">
+<p class="font-beb text-4xl" style="color:#E8A020">4.9★</p>
+<p class="font-kar text-xs font-bold uppercase tracking-widest mt-1" style="color:rgba(245,240,224,0.5)">App Store Rating</p>
+</div>
+<div class="p-5 text-center" style="background:rgba(232,160,32,0.1);border:3px solid rgba(232,160,32,0.3)">
+<p class="font-beb text-4xl" style="color:#E8A020">2M+</p>
+<p class="font-kar text-xs font-bold uppercase tracking-widest mt-1" style="color:rgba(245,240,224,0.5)">5-Star Reviews</p>
+</div>
+<div class="p-5 text-center" style="background:rgba(200,98,42,0.2);border:3px solid rgba(200,98,42,0.4)">
+<p class="font-beb text-4xl" style="color:#E8A020">12M+</p>
+<p class="font-kar text-xs font-bold uppercase tracking-widest mt-1" style="color:rgba(245,240,224,0.5)">Active Listeners</p>
+</div>
+<div class="p-5 text-center" style="background:rgba(232,160,32,0.1);border:3px solid rgba(232,160,32,0.3)">
+<p class="font-beb text-4xl" style="color:#E8A020">98%</p>
+<p class="font-kar text-xs font-bold uppercase tracking-widest mt-1" style="color:rgba(245,240,224,0.5)">Would Recommend</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SECTION DIVIDER -->
+<div class="section-divider"></div>
+
+<!-- CTA / NEWSLETTER SECTION -->
+<section style="background:#F5F0E0;padding:80px 0;max-height:600px">
+<div class="max-w-4xl mx-auto px-6 text-center">
+<div class="p-12" style="background:#1E0E06;border:5px solid #C8622A;box-shadow:8px 8px 0px #C8622A">
+<!-- Decorative vinyl rings -->
+<div class="flex justify-center gap-4 mb-6">
+<div class="w-8 h-8 rounded-full" style="border:3px solid #C8622A;opacity:0.4"></div>
+<div class="w-6 h-6 rounded-full self-center" style="border:3px solid #E8A020;opacity:0.4"></div>
+<div class="w-10 h-10 rounded-full" style="border:3px solid #C8622A;opacity:0.4"></div>
+</div>
+<div class="inline-flex items-center gap-2 mb-6 px-4 py-2" style="background:rgba(200,98,42,0.2);border:3px solid rgba(200,98,42,0.5)">
+<span class="font-beb text-sm tracking-widest" style="color:#E8A020">♪ JOIN THE GROOVE ♪</span>
+</div>
+<h2 class="font-beb leading-none mb-4" style="font-size:clamp(36px,5vw,72px);color:#F5F0E0">START YOUR FREE<br><span style="color:#C8622A">30-DAY TRIAL</span><br>TODAY.</h2>
+<p class="font-kar text-lg leading-relaxed mb-8 max-w-xl mx-auto" style="color:rgba(245,240,224,0.7)">No credit card required. No commitments. Just 50 million tracks of pure, unadulterated musical bliss waiting for you.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+<input type="email" placeholder="your@email.com" class="retro-input px-5 py-3 text-base min-h-[52px] flex-1 max-w-sm">
+<button class="btn-retro px-8 py-3 text-xl min-h-[52px] whitespace-nowrap">▶ START FREE TRIAL</button>
+</div>
+<p class="font-kar text-sm font-bold" style="color:rgba(245,240,224,0.4)">No credit card · Cancel anytime · 30-day money-back guarantee</p>
+<!-- App badges -->
+<div class="flex flex-wrap justify-center gap-4 mt-8">
+<div class="flex items-center gap-3 px-5 py-3" style="background:rgba(245,240,224,0.08);border:3px solid rgba(245,240,224,0.2)">
+<span class="font-beb text-2xl" style="color:#F5F0E0">⬛</span>
+<div class="text-left">
+<p class="font-kar text-xs font-bold" style="color:rgba(245,240,224,0.5)">Download on the</p>
+<p class="font-beb text-base tracking-wide" style="color:#F5F0E0">APP STORE</p>
+</div>
+</div>
+<div class="flex items-center gap-3 px-5 py-3" style="background:rgba(245,240,224,0.08);border:3px solid rgba(245,240,224,0.2)">
+<span class="font-beb text-2xl" style="color:#F5F0E0">▶</span>
+<div class="text-left">
+<p class="font-kar text-xs font-bold" style="color:rgba(245,240,224,0.5)">Get it on</p>
+<p class="font-beb text-base tracking-wide" style="color:#F5F0E0">GOOGLE PLAY</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SECTION DIVIDER -->
+<div class="section-divider"></div>
+
+<!-- FOOTER -->
+<footer style="background:#1E0E06;padding:64px 0">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid md:grid-cols-5 gap-8 mb-10">
+<div class="md:col-span-2">
+<div class="flex items-center gap-3 mb-5">
+<div class="w-10 h-10 flex items-center justify-center" style="background:#C8622A;border:3px solid #E8A020">
+<span class="font-beb text-lg" style="color:#F5F0E0">GB</span>
+</div>
+<div>
+<span class="font-beb text-2xl tracking-wider" style="color:#F5F0E0">GROOVEBOX</span>
+<span class="block text-[9px] font-kar font-bold tracking-[0.3em] uppercase" style="color:#C8622A">Retro Music Streaming</span>
+</div>
+</div>
+<p class="font-kar text-sm leading-relaxed mb-5" style="color:rgba(245,240,224,0.4)">The home of retro music streaming. 50 million tracks, Hi-Fi lossless audio, and curated playlists that take you back to the golden age of music.</p>
+<div class="flex gap-3">
+<div class="w-9 h-9 flex items-center justify-center cursor-pointer" style="background:rgba(200,98,42,0.2);border:2px solid rgba(200,98,42,0.4)">
+<span class="font-beb text-sm" style="color:#C8622A">f</span>
+</div>
+<div class="w-9 h-9 flex items-center justify-center cursor-pointer" style="background:rgba(200,98,42,0.2);border:2px solid rgba(200,98,42,0.4)">
+<span class="font-beb text-sm" style="color:#C8622A">t</span>
+</div>
+<div class="w-9 h-9 flex items-center justify-center cursor-pointer" style="background:rgba(200,98,42,0.2);border:2px solid rgba(200,98,42,0.4)">
+<span class="font-beb text-sm" style="color:#C8622A">ig</span>
+</div>
+</div>
+</div>
+<div>
+<p class="font-beb text-base tracking-widest mb-4" style="color:#C8622A">DISCOVER</p>
+<div class="space-y-2">
+<a href="#" class="block font-kar text-sm transition-colors" style="color:rgba(245,240,224,0.4)">New Releases</a>
+<a href="#" class="block font-kar text-sm transition-colors" style="color:rgba(245,240,224,0.4)">Top Charts</a>
+<a href="#" class="block font-kar text-sm transition-colors" style="color:rgba(245,240,224,0.4)">Genres</a>
+<a href="#" class="block font-kar text-sm transition-colors" style="color:rgba(245,240,224,0.4)">Radio Stations</a>
+</div>
+</div>
+<div>
+<p class="font-beb text-base tracking-widest mb-4" style="color:#C8622A">ACCOUNT</p>
+<div class="space-y-2">
+<a href="#" class="block font-kar text-sm transition-colors" style="color:rgba(245,240,224,0.4)">Sign Up Free</a>
+<a href="#" class="block font-kar text-sm transition-colors" style="color:rgba(245,240,224,0.4)">Pricing Plans</a>
+<a href="#" class="block font-kar text-sm transition-colors" style="color:rgba(245,240,224,0.4)">Download App</a>
+<a href="#" class="block font-kar text-sm transition-colors" style="color:rgba(245,240,224,0.4)">Gift Cards</a>
+</div>
+</div>
+<div>
+<p class="font-beb text-base tracking-widest mb-4" style="color:#C8622A">FLOW NAV</p>
+<div class="space-y-2">
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/brutalist-architecture-firm" class="block font-kar text-sm" style="color:rgba(245,240,224,0.35)">← 01 Brutalist</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/pastel-wellness-app" class="block font-kar text-sm" style="color:rgba(245,240,224,0.35)">← 02 Wellness</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/neon-fintech-platform" class="block font-kar text-sm" style="color:rgba(245,240,224,0.35)">← 03 Fintech</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/organic-food-brand" class="block font-kar text-sm" style="color:rgba(245,240,224,0.35)">← 04 Organic</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/luxury-real-estate-agency" class="block font-kar text-sm" style="color:rgba(245,240,224,0.35)">← 07 Luxury</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/modern-medical-clinic" class="block font-kar text-sm" style="color:#E8A020">→ 09 Medical</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/vibrant-travel-agency" class="block font-kar text-sm" style="color:#E8A020">→ 10 Travel</a>
+</div>
+</div>
+</div>
+<div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style="border-top:3px solid rgba(200,98,42,0.3)">
+<p class="font-kar text-sm" style="color:rgba(245,240,224,0.25)">© 2024 GrooveBox Music Streaming. All rights reserved. Music is for everyone.</p>
+<div class="flex items-center gap-4">
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/luxury-real-estate-agency" class="font-kar text-xs transition-colors" style="color:rgba(245,240,224,0.3)">← Luxury Real Estate</a>
+<span class="font-beb text-xs" style="color:rgba(200,98,42,0.5)">|</span>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/modern-medical-clinic" class="font-kar text-xs" style="color:#C8622A">Next: Medical Clinic →</a>
+</div>
+</div>
+</div>
+</footer>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

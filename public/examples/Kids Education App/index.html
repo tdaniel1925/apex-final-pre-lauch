@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kids Education App - Exported from UXMagic Copilot">
+    <title>Kids Education App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+tailwind.config={theme:{extend:{colors:{
+'kid-red':'#E63946','kid-red-light':'#FFE8EA','kid-red-dark':'#C1121F',
+'kid-yellow':'#FFD60A','kid-yellow-light':'#FFF9D6','kid-yellow-dark':'#E6B800',
+'kid-blue':'#2196F3','kid-blue-light':'#E3F2FD','kid-blue-dark':'#1565C0',
+'kid-green':'#4CAF50','kid-green-light':'#E8F5E9','kid-green-dark':'#2E7D32',
+'kid-purple':'#9C27B0','kid-purple-light':'#F3E5F5','kid-orange':'#FF6B35',
+'kid-orange-light':'#FFF0EB','kid-bg':'#FFFEF7',
+'i1':'#5C6AC4','i1l':'#EEF0FF','i1d':'#2D2D3A',
+'f2':'#7DAF8A','f2l':'#EAF4EC','f2g':'#C9A84C','f2gl':'#F7EDD0','f2d':'#2A3240',
+'w3':'#FAF7F2','w3r':'#D4A5A5','w3t':'#C47C5A',
+'r4':'#C4B49A','r4g':'#2D5016','r4s':'#F5EFE4',
+'l5':'#4A6FA5','l5l':'#E8EEF7','l5d':'#1E2A3A',
+'e6':'#FDFAF6','e6t':'#D4B896','e6b':'#E8C4B8','e6e':'#2C1A0E',
+'ed7':'#F5A623','ed7l':'#FEF3DC','ed7s':'#4A90D9','ed7sl':'#E8F2FC',
+'t8':'#2E86AB','t8l':'#E0F0F7','t8s':'#E8D5B0','t8c':'#F4845F',
+'h9':'#E8614A','h9l':'#FDECEA','h9g':'#F5F3F0','h9d':'#1C1C1E',
+'c10':'#3D6B4F','c10l':'#E8F0EB','c10s':'#A8C5DA','c10a':'#DDD0B8','c10b':'#FAFAF7',
+'eo':'#C8622A','eol':'#FDF0E8','eod':'#1E0E06','eom':'#8B3A1A','eos':'#F5E6D3','eog':'#D4A853','eogl':'#FBF3DC','eob':'#FAF5EF',
+'hx':'#8B7355','hxl':'#F5F0E8','hxd':'#1A1410','hxm':'#5C4A32','hxs':'#EDE8DF','hxg':'#B8A898','hxc':'#2C2420','hxw':'#FAF8F5',
+},fontFamily:{
+'fredoka':['Fredoka One','cursive'],
+'quicksand':['Quicksand','sans-serif'],
+'heading':['Fredoka One','cursive'],
+'body':['Quicksand','sans-serif'],
+'pf':['"Playfair Display"','serif'],
+'cg':['"Cormorant Garamond"','serif'],
+'sg':['"Space Grotesk"','sans-serif'],
+'bar':['Barlow','sans-serif'],
+'barc':['"Barlow Condensed"','sans-serif'],
+'beb':['"Bebas Neue"','sans-serif'],
+'nun':['Nunito','sans-serif'],
+'lb':['"Libre Baskerville"','serif'],
+'man':['Manrope','sans-serif'],
+'lor':['Lora','serif'],
+'int':['Inter','sans-serif'],
+'lat':['Lato','sans-serif'],
+},borderRadius:{
+'kid':'20px',
+'kid-lg':'32px',
+'kid-xl':'48px',
+},boxShadow:{
+'sm2':'0 2px 8px rgba(0,0,0,0.06)',
+'md2':'0 8px 30px rgba(0,0,0,0.08)',
+'lg2':'0 20px 60px rgba(0,0,0,0.12)',
+'warm':'0 8px 30px rgba(139,115,85,0.18)',
+'warm-lg':'0 20px 60px rgba(139,115,85,0.15)',
+'kid-red':'0 6px 0px #C1121F',
+'kid-blue':'0 6px 0px #1565C0',
+'kid-yellow':'0 6px 0px #E6B800',
+'kid-green':'0 6px 0px #2E7D32',
+'kid-card':'0 8px 32px rgba(0,0,0,0.10)',
+}}}}
+
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+<!-- FLOW NAVIGATION BAR -->
+<div style="background:#1A1A2E;border-bottom:3px solid #FFD60A">
+<div class="overflow-x-auto no-sb">
+<div class="flex items-center gap-1.5 px-4 py-2.5 min-w-max">
+<span class="text-[10px] font-bold uppercase tracking-widest mr-2 flex-shrink-0 font-quicksand" style="color:rgba(255,214,10,0.6)">10 Design Styles:</span>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/brutalist-architecture-firm" class="flow-link" style="background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.12)">01 Brutalist</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/pastel-wellness-app" class="flow-link" style="background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.12)">02 Wellness</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/neon-fintech-platform" class="flow-link" style="background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.12)">03 Fintech</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/organic-food-brand" class="flow-link" style="background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.12)">04 Organic</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/minimal-saas-productivity-tool" class="flow-link" style="background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.12)">05 SaaS</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/kids-education-app" class="flow-link active" style="background:#FFD60A;color:#1A1A1A;border:1px solid #FFD60A">06 Kids ✦</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/luxury-real-estate-agency" class="flow-link" style="background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.12)">07 Luxury</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/retro-music-streaming" class="flow-link" style="background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.12)">08 Retro</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/modern-medical-clinic" class="flow-link" style="background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.12)">09 Medical</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/vibrant-travel-agency" class="flow-link" style="background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.12)">10 Travel</a>
+</div>
+</div>
+</div>
+
+<!-- MAIN NAVIGATION -->
+<nav style="background:white;border-bottom:3px solid #FFD60A;position:sticky;top:0;z-index:40;box-shadow:0 4px 0 rgba(255,214,10,0.2)">
+<div class="max-w-6xl mx-auto px-6 flex items-center justify-between" style="height:72px">
+<div class="flex items-center gap-3">
+<div style="width:44px;height:44px;background:linear-gradient(135deg,#E63946,#FF6B6B);border-radius:14px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 0 #C1121F">
+<span style="font-size:22px">🌟</span>
+</div>
+<div>
+<span class="font-heading text-2xl" style="color:#E63946;letter-spacing:0.5px">BrightMind</span>
+<span class="block font-body text-xs font-bold" style="color:#FFD60A;letter-spacing:1px;margin-top:-4px">KIDS LEARNING</span>
+</div>
+</div>
+<div class="hidden md:flex items-center gap-2">
+<a href="#subjects" class="nav-kid-link">Subjects</a>
+<a href="#how-it-works" class="nav-kid-link">How It Works</a>
+<a href="#pricing" class="nav-kid-link">Pricing</a>
+<a href="#reviews" class="nav-kid-link">Reviews</a>
+</div>
+<div class="flex items-center gap-3">
+<a href="#" class="nav-kid-link hidden md:block">Log In</a>
+<a href="#pricing" class="btn-red" style="font-size:15px;padding:10px 24px">Start Free! 🚀</a>
+</div>
+</div>
+</nav>
+
+<!-- HERO SECTION -->
+<section style="background:linear-gradient(160deg,#FFFEF7 0%,#FFF9D6 40%,#FFE8EA 100%);padding:64px 0 0;max-height:820px;overflow:hidden;position:relative">
+<!-- Decorative elements -->
+<div class="deco-circle" style="width:300px;height:300px;background:#E63946;top:-80px;right:-60px"></div>
+<div class="deco-circle" style="width:200px;height:200px;background:#2196F3;bottom:60px;left:-40px"></div>
+<div class="deco-circle" style="width:150px;height:150px;background:#FFD60A;top:40px;left:30%"></div>
+<span class="deco-star wiggle-star" style="top:80px;left:8%;color:#FFD60A">⭐</span>
+<span class="deco-star float-star" style="top:140px;right:12%;color:#E63946;font-size:18px">✦</span>
+<span class="deco-star" style="bottom:120px;right:8%;color:#2196F3;font-size:28px;animation:float-star 3s ease-in-out infinite">★</span>
+<span class="deco-star" style="top:60px;right:30%;color:#4CAF50;font-size:16px;animation:wiggle 2.5s ease-in-out infinite">✿</span>
+
+<div class="max-w-6xl mx-auto px-6 relative z-10">
+<div class="grid lg:grid-cols-2 gap-12 items-center">
+<div>
+<!-- Badge -->
+<div class="inline-flex items-center gap-2 mb-6 px-5 py-2.5" style="background:#FFD60A;border-radius:50px;box-shadow:0 4px 0 #E6B800">
+<span style="font-size:16px">🏆</span>
+<span class="font-heading text-sm" style="color:#1A1A1A">#1 Kids Learning App 2024</span>
+</div>
+
+<h1 class="font-heading mb-4" style="font-size:58px;line-height:1.1;color:#1A1A1A">
+Learning is
+<span style="color:#E63946"> Super</span>
+<br>
+<span style="color:#2196F3">Fun</span>
+<span style="color:#1A1A1A"> with</span>
+<br>
+<span style="color:#FFD60A;-webkit-text-stroke:2px #E6B800">BrightMind!</span>
+<span style="font-size:48px"> 🎉</span>
+</h1>
+
+<p class="font-body text-xl mb-8 font-semibold" style="color:#555;line-height:1.6;max-width:480px">
+Join <strong style="color:#E63946">2 million+ kids</strong> who love learning Math, Science, Reading &amp; more through exciting games and adventures! 🌈
+</p>
+
+<!-- Star Rating -->
+<div class="flex items-center gap-3 mb-8">
+<div class="star-rating">★★★★★</div>
+<span class="font-heading text-lg" style="color:#1A1A1A">4.9/5</span>
+<span class="font-body font-semibold text-sm" style="color:#888">(48,000+ reviews)</span>
+</div>
+
+<!-- CTA Buttons -->
+<div class="flex flex-wrap gap-4 mb-8">
+<a href="#pricing" class="btn-red" style="font-size:20px;padding:18px 40px">
+🚀 Start Learning FREE!
+</a>
+<a href="#how-it-works" class="btn-yellow" style="font-size:18px;padding:18px 36px">
+▶ Watch Demo
+</a>
+</div>
+
+<!-- Trust badges -->
+<div class="flex flex-wrap gap-3">
+<div class="badge" style="background:#E8F5E9;color:#2E7D32;border:2px solid #4CAF50">
+<span>✓</span> No Ads Ever
+</div>
+<div class="badge" style="background:#E3F2FD;color:#1565C0;border:2px solid #2196F3">
+<span>🔒</span> 100% Safe
+</div>
+<div class="badge" style="background:#FFE8EA;color:#C1121F;border:2px solid #E63946">
+<span>🎓</span> Teacher Approved
+</div>
+</div>
+</div>
+
+<!-- Hero Illustration / App Mockup -->
+<div class="relative flex justify-center items-end" style="padding-bottom:0">
+<!-- Phone mockup -->
+<div class="bounce-char relative" style="width:280px">
+<div style="background:white;border-radius:36px;padding:16px;box-shadow:0 20px 60px rgba(0,0,0,0.15);border:4px solid #FFD60A">
+<!-- Phone header -->
+<div style="background:linear-gradient(135deg,#E63946,#FF6B6B);border-radius:24px;padding:16px;margin-bottom:12px">
+<div class="flex items-center justify-between mb-3">
+<span class="font-heading text-white text-sm">Hi, Emma! 👋</span>
+<div style="background:rgba(255,255,255,0.25);border-radius:20px;padding:4px 10px">
+<span class="font-heading text-white text-xs">⭐ 1,240 pts</span>
+</div>
+</div>
+<div style="background:rgba(255,255,255,0.2);border-radius:16px;padding:10px">
+<p class="font-body text-white text-xs font-bold mb-2">Today's Progress</p>
+<div class="progress-track mb-1"><div class="progress-fill-yellow" style="width:72%"></div></div>
+<p class="font-body text-white text-xs">72% complete — Keep going! 🔥</p>
+</div>
+</div>
+<!-- Subject grid -->
+<div class="grid grid-cols-2 gap-2 mb-3">
+<div style="background:#FFE8EA;border-radius:16px;padding:12px;text-align:center;border:2px solid #E63946">
+<div style="font-size:24px;margin-bottom:4px">🔢</div>
+<p class="font-heading text-xs" style="color:#E63946">Math</p>
+<p class="font-body text-xs font-bold" style="color:#888">Level 8</p>
+</div>
+<div style="background:#E3F2FD;border-radius:16px;padding:12px;text-align:center;border:2px solid #2196F3">
+<div style="font-size:24px;margin-bottom:4px">🔬</div>
+<p class="font-heading text-xs" style="color:#2196F3">Science</p>
+<p class="font-body text-xs font-bold" style="color:#888">Level 5</p>
+</div>
+<div style="background:#E8F5E9;border-radius:16px;padding:12px;text-align:center;border:2px solid #4CAF50">
+<div style="font-size:24px;margin-bottom:4px">📚</div>
+<p class="font-heading text-xs" style="color:#4CAF50">Reading</p>
+<p class="font-body text-xs font-bold" style="color:#888">Level 11</p>
+</div>
+<div style="background:#F3E5F5;border-radius:16px;padding:12px;text-align:center;border:2px solid #9C27B0">
+<div style="font-size:24px;margin-bottom:4px">🎨</div>
+<p class="font-heading text-xs" style="color:#9C27B0">Art</p>
+<p class="font-body text-xs font-bold" style="color:#888">Level 3</p>
+</div>
+</div>
+<!-- Achievement badge -->
+<div style="background:linear-gradient(135deg,#FFD60A,#FFE566);border-radius:16px;padding:10px;display:flex;align-items:center;gap:10px;border:2px solid #E6B800">
+<span style="font-size:28px">🏅</span>
+<div>
+<p class="font-heading text-sm" style="color:#1A1A1A">New Badge Earned!</p>
+<p class="font-body text-xs font-bold" style="color:#888">Math Wizard ⭐⭐⭐</p>
+</div>
+</div>
+</div>
+<!-- Floating elements around phone -->
+<div class="bounce-char2 absolute" style="top:-20px;right:-30px;background:#2196F3;border-radius:50%;width:56px;height:56px;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 4px 0 #1565C0">🌟</div>
+<div class="float-star absolute" style="bottom:40px;left:-30px;background:#4CAF50;border-radius:50%;width:48px;height:48px;display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 4px 0 #2E7D32">🎯</div>
+<div class="wiggle-star absolute" style="top:60px;left:-20px;background:#FFD60A;border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 3px 0 #E6B800">✨</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<!-- Wave bottom -->
+<div style="margin-top:40px">
+<svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%">
+<path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#E63946"></path>
+</svg>
+</div>
+</section>
+
+<!-- STATS BAND -->
+<section style="background:#E63946;padding:28px 0">
+<div class="max-w-6xl mx-auto px-6">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="text-center">
+<p class="font-heading text-4xl text-white">2M+</p>
+<p class="font-body font-bold text-sm" style="color:rgba(255,255,255,0.8)">Happy Kids 🎉</p>
+</div>
+<div class="text-center">
+<p class="font-heading text-4xl text-white">500+</p>
+<p class="font-body font-bold text-sm" style="color:rgba(255,255,255,0.8)">Fun Lessons 📚</p>
+</div>
+<div class="text-center">
+<p class="font-heading text-4xl text-white">6</p>
+<p class="font-body font-bold text-sm" style="color:rgba(255,255,255,0.8)">Subjects 🌈</p>
+</div>
+<div class="text-center">
+<p class="font-heading text-4xl text-white">4.9★</p>
+<p class="font-body font-bold text-sm" style="color:rgba(255,255,255,0.8)">App Store Rating ⭐</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SUBJECTS SECTION -->
+<section id="subjects" style="background:#FFFEF7;padding:80px 0;max-height:900px">
+<div class="max-w-6xl mx-auto px-6">
+<div class="text-center mb-12">
+<div class="inline-block mb-4 px-5 py-2" style="background:#FFD60A;border-radius:50px;box-shadow:0 4px 0 #E6B800">
+<span class="font-heading text-sm" style="color:#1A1A1A">🎓 What We Teach</span>
+</div>
+<h2 class="font-heading mb-4" style="font-size:44px;color:#1A1A1A">
+Explore <span style="color:#E63946">Amazing</span> Subjects! 🌟
+</h2>
+<p class="font-body text-lg font-semibold" style="color:#666;max-width:520px;margin:0 auto">Every subject is packed with games, videos, and challenges that make learning feel like play!</p>
+</div>
+
+<div class="grid md:grid-cols-3 gap-6">
+<!-- Math -->
+<div class="subject-card subject-math">
+<div class="flex items-center gap-4 mb-4">
+<div style="width:60px;height:60px;background:#E63946;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 4px 0 #C1121F">🔢</div>
+<div>
+<h3 class="font-heading text-xl" style="color:#C1121F">Mathematics</h3>
+<p class="font-body text-sm font-bold" style="color:#888">Ages 4–14</p>
+</div>
+</div>
+<p class="font-body font-semibold mb-4" style="color:#555;line-height:1.6">From counting to algebra — make numbers your best friend through puzzles and adventures!</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="badge" style="background:white;color:#C1121F;border:2px solid #E63946;font-size:12px;padding:4px 12px">Addition</span>
+<span class="badge" style="background:white;color:#C1121F;border:2px solid #E63946;font-size:12px;padding:4px 12px">Fractions</span>
+<span class="badge" style="background:white;color:#C1121F;border:2px solid #E63946;font-size:12px;padding:4px 12px">Geometry</span>
+</div>
+<div class="progress-track"><div class="progress-fill-red" style="width:85%"></div></div>
+<p class="font-body text-xs font-bold mt-1" style="color:#888">85% of kids improve in 30 days!</p>
+</div>
+
+<!-- Science -->
+<div class="subject-card subject-science">
+<div class="flex items-center gap-4 mb-4">
+<div style="width:60px;height:60px;background:#2196F3;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 4px 0 #1565C0">🔬</div>
+<div>
+<h3 class="font-heading text-xl" style="color:#1565C0">Science</h3>
+<p class="font-body text-sm font-bold" style="color:#888">Ages 5–14</p>
+</div>
+</div>
+<p class="font-body font-semibold mb-4" style="color:#555;line-height:1.6">Explore the universe, animals, plants, and experiments that will blow your mind! 🚀</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="badge" style="background:white;color:#1565C0;border:2px solid #2196F3;font-size:12px;padding:4px 12px">Biology</span>
+<span class="badge" style="background:white;color:#1565C0;border:2px solid #2196F3;font-size:12px;padding:4px 12px">Physics</span>
+<span class="badge" style="background:white;color:#1565C0;border:2px solid #2196F3;font-size:12px;padding:4px 12px">Space</span>
+</div>
+<div class="progress-track"><div class="progress-fill-blue" style="width:78%"></div></div>
+<p class="font-body text-xs font-bold mt-1" style="color:#888">78% of kids love science more!</p>
+</div>
+
+<!-- Reading -->
+<div class="subject-card subject-reading">
+<div class="flex items-center gap-4 mb-4">
+<div style="width:60px;height:60px;background:#4CAF50;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 4px 0 #2E7D32">📚</div>
+<div>
+<h3 class="font-heading text-xl" style="color:#2E7D32">Reading</h3>
+<p class="font-body text-sm font-bold" style="color:#888">Ages 3–12</p>
+</div>
+</div>
+<p class="font-body font-semibold mb-4" style="color:#555;line-height:1.6">From ABCs to chapter books — build a love of reading with magical stories and phonics!</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="badge" style="background:white;color:#2E7D32;border:2px solid #4CAF50;font-size:12px;padding:4px 12px">Phonics</span>
+<span class="badge" style="background:white;color:#2E7D32;border:2px solid #4CAF50;font-size:12px;padding:4px 12px">Stories</span>
+<span class="badge" style="background:white;color:#2E7D32;border:2px solid #4CAF50;font-size:12px;padding:4px 12px">Spelling</span>
+</div>
+<div class="progress-track"><div class="progress-fill-green" style="width:91%"></div></div>
+<p class="font-body text-xs font-bold mt-1" style="color:#888">91% of kids read better in 60 days!</p>
+</div>
+
+<!-- Art -->
+<div class="subject-card subject-art">
+<div class="flex items-center gap-4 mb-4">
+<div style="width:60px;height:60px;background:#9C27B0;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 4px 0 #6A1B9A">🎨</div>
+<div>
+<h3 class="font-heading text-xl" style="color:#6A1B9A">Art &amp; Creativity</h3>
+<p class="font-body text-sm font-bold" style="color:#888">Ages 4–14</p>
+</div>
+</div>
+<p class="font-body font-semibold mb-4" style="color:#555;line-height:1.6">Unleash your inner artist! Draw, paint, and create amazing masterpieces step by step.</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="badge" style="background:white;color:#6A1B9A;border:2px solid #9C27B0;font-size:12px;padding:4px 12px">Drawing</span>
+<span class="badge" style="background:white;color:#6A1B9A;border:2px solid #9C27B0;font-size:12px;padding:4px 12px">Colors</span>
+<span class="badge" style="background:white;color:#6A1B9A;border:2px solid #9C27B0;font-size:12px;padding:4px 12px">Crafts</span>
+</div>
+<div class="progress-track"><div style="background:linear-gradient(90deg,#9C27B0,#CE93D8);height:100%;border-radius:50px;width:70%"></div></div>
+<p class="font-body text-xs font-bold mt-1" style="color:#888">70% of kids discover a new hobby!</p>
+</div>
+
+<!-- Music -->
+<div class="subject-card subject-music">
+<div class="flex items-center gap-4 mb-4">
+<div style="width:60px;height:60px;background:#FFD60A;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 4px 0 #E6B800">🎵</div>
+<div>
+<h3 class="font-heading text-xl" style="color:#E6B800">Music</h3>
+<p class="font-body text-sm font-bold" style="color:#888">Ages 4–12</p>
+</div>
+</div>
+<p class="font-body font-semibold mb-4" style="color:#555;line-height:1.6">Learn rhythm, notes, and instruments through songs and interactive music games!</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="badge" style="background:white;color:#E6B800;border:2px solid #FFD60A;font-size:12px;padding:4px 12px">Rhythm</span>
+<span class="badge" style="background:white;color:#E6B800;border:2px solid #FFD60A;font-size:12px;padding:4px 12px">Piano</span>
+<span class="badge" style="background:white;color:#E6B800;border:2px solid #FFD60A;font-size:12px;padding:4px 12px">Singing</span>
+</div>
+<div class="progress-track"><div class="progress-fill-yellow" style="width:65%"></div></div>
+<p class="font-body text-xs font-bold mt-1" style="color:#888">65% of kids play an instrument!</p>
+</div>
+
+<!-- Coding -->
+<div class="subject-card subject-coding">
+<div class="flex items-center gap-4 mb-4">
+<div style="width:60px;height:60px;background:#FF6B35;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 4px 0 #D4400A">💻</div>
+<div>
+<h3 class="font-heading text-xl" style="color:#D4400A">Coding</h3>
+<p class="font-body text-sm font-bold" style="color:#888">Ages 6–14</p>
+</div>
+</div>
+<p class="font-body font-semibold mb-4" style="color:#555;line-height:1.6">Build games and apps! Learn to code with fun block-based programming adventures.</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="badge" style="background:white;color:#D4400A;border:2px solid #FF6B35;font-size:12px;padding:4px 12px">Scratch</span>
+<span class="badge" style="background:white;color:#D4400A;border:2px solid #FF6B35;font-size:12px;padding:4px 12px">Python</span>
+<span class="badge" style="background:white;color:#D4400A;border:2px solid #FF6B35;font-size:12px;padding:4px 12px">Games</span>
+</div>
+<div class="progress-track"><div style="background:linear-gradient(90deg,#FF6B35,#FFAB8C);height:100%;border-radius:50px;width:80%"></div></div>
+<p class="font-body text-xs font-bold mt-1" style="color:#888">80% of kids build their first game!</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how-it-works" style="background:linear-gradient(135deg,#E3F2FD,#F3E5F5);padding:80px 0;max-height:800px">
+<div class="max-w-6xl mx-auto px-6">
+<div class="text-center mb-12">
+<div class="inline-block mb-4 px-5 py-2" style="background:#2196F3;border-radius:50px;box-shadow:0 4px 0 #1565C0">
+<span class="font-heading text-sm text-white">🎮 How It Works</span>
+</div>
+<h2 class="font-heading mb-4" style="font-size:44px;color:#1A1A1A">
+3 Easy Steps to <span style="color:#2196F3">Adventure!</span> 🗺️
+</h2>
+</div>
+
+<div class="grid md:grid-cols-3 gap-8">
+<!-- Step 1 -->
+<div class="text-center">
+<div class="relative inline-block mb-6">
+<div style="width:100px;height:100px;background:linear-gradient(135deg,#E63946,#FF6B6B);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto;box-shadow:0 8px 0 #C1121F;font-size:48px">🎯</div>
+<div style="position:absolute;top:-10px;right:-10px;width:36px;height:36px;background:#FFD60A;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 0 #E6B800">
+<span class="font-heading text-lg" style="color:#1A1A1A">1</span>
+</div>
+</div>
+<h3 class="font-heading text-2xl mb-3" style="color:#E63946">Pick Your Subject</h3>
+<p class="font-body font-semibold" style="color:#666;line-height:1.6">Choose from 6 amazing subjects. Your child picks what excites them most — learning starts with passion!</p>
+</div>
+
+<!-- Step 2 -->
+<div class="text-center">
+<div class="relative inline-block mb-6">
+<div style="width:100px;height:100px;background:linear-gradient(135deg,#2196F3,#64B5F6);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto;box-shadow:0 8px 0 #1565C0;font-size:48px">🎮</div>
+<div style="position:absolute;top:-10px;right:-10px;width:36px;height:36px;background:#FFD60A;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 0 #E6B800">
+<span class="font-heading text-lg" style="color:#1A1A1A">2</span>
+</div>
+</div>
+<h3 class="font-heading text-2xl mb-3" style="color:#2196F3">Play &amp; Learn</h3>
+<p class="font-body font-semibold" style="color:#666;line-height:1.6">Complete fun games, watch animated videos, and solve puzzles. Every lesson is an adventure!</p>
+</div>
+
+<!-- Step 3 -->
+<div class="text-center">
+<div class="relative inline-block mb-6">
+<div style="width:100px;height:100px;background:linear-gradient(135deg,#4CAF50,#81C784);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto;box-shadow:0 8px 0 #2E7D32;font-size:48px">🏆</div>
+<div style="position:absolute;top:-10px;right:-10px;width:36px;height:36px;background:#FFD60A;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 0 #E6B800">
+<span class="font-heading text-lg" style="color:#1A1A1A">3</span>
+</div>
+</div>
+<h3 class="font-heading text-2xl mb-3" style="color:#4CAF50">Earn Rewards!</h3>
+<p class="font-body font-semibold" style="color:#666;line-height:1.6">Collect stars, badges, and trophies! Parents get weekly progress reports to celebrate every win.</p>
+</div>
+</div>
+
+<!-- Achievement showcase -->
+<div class="mt-12 p-8" style="background:white;border-radius:28px;border:3px solid #FFD60A;box-shadow:0 8px 0 #E6B800">
+<div class="text-center mb-6">
+<h3 class="font-heading text-2xl" style="color:#1A1A1A">🏅 Collect Amazing Badges!</h3>
+</div>
+<div class="flex flex-wrap justify-center gap-4">
+<div class="text-center p-4" style="background:#FFE8EA;border-radius:20px;border:2px solid #E63946;min-width:90px">
+<div style="font-size:36px;margin-bottom:4px">🧮</div>
+<p class="font-heading text-xs" style="color:#E63946">Math Wizard</p>
+</div>
+<div class="text-center p-4" style="background:#E3F2FD;border-radius:20px;border:2px solid #2196F3;min-width:90px">
+<div style="font-size:36px;margin-bottom:4px">🚀</div>
+<p class="font-heading text-xs" style="color:#2196F3">Space Explorer</p>
+</div>
+<div class="text-center p-4" style="background:#E8F5E9;border-radius:20px;border:2px solid #4CAF50;min-width:90px">
+<div style="font-size:36px;margin-bottom:4px">📖</div>
+<p class="font-heading text-xs" style="color:#4CAF50">Bookworm</p>
+</div>
+<div class="text-center p-4" style="background:#F3E5F5;border-radius:20px;border:2px solid #9C27B0;min-width:90px">
+<div style="font-size:36px;margin-bottom:4px">🎨</div>
+<p class="font-heading text-xs" style="color:#9C27B0">Art Star</p>
+</div>
+<div class="text-center p-4" style="background:#FFF9D6;border-radius:20px;border:2px solid #FFD60A;min-width:90px">
+<div style="font-size:36px;margin-bottom:4px">🎵</div>
+<p class="font-heading text-xs" style="color:#E6B800">Music Maestro</p>
+</div>
+<div class="text-center p-4" style="background:#FFF0EB;border-radius:20px;border:2px solid #FF6B35;min-width:90px">
+<div style="font-size:36px;margin-bottom:4px">💻</div>
+<p class="font-heading text-xs" style="color:#D4400A">Code Hero</p>
+</div>
+<div class="text-center p-4" style="background:#FFE8EA;border-radius:20px;border:2px solid #E63946;min-width:90px">
+<div style="font-size:36px;margin-bottom:4px">⭐</div>
+<p class="font-heading text-xs" style="color:#E63946">Super Star</p>
+</div>
+<div class="text-center p-4" style="background:#E3F2FD;border-radius:20px;border:2px solid #2196F3;min-width:90px">
+<div style="font-size:36px;margin-bottom:4px">🔥</div>
+<p class="font-heading text-xs" style="color:#2196F3">On Fire!</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- REVIEWS / TESTIMONIALS -->
+<section id="reviews" style="background:#FFFEF7;padding:80px 0;max-height:900px">
+<div class="max-w-6xl mx-auto px-6">
+<div class="text-center mb-12">
+<div class="inline-block mb-4 px-5 py-2" style="background:#4CAF50;border-radius:50px;box-shadow:0 4px 0 #2E7D32">
+<span class="font-heading text-sm text-white">💬 What Families Say</span>
+</div>
+<h2 class="font-heading mb-4" style="font-size:44px;color:#1A1A1A">
+Kids &amp; Parents <span style="color:#4CAF50">Love</span> Us! ❤️
+</h2>
+<div class="flex items-center justify-center gap-3 mb-2">
+<div class="star-rating" style="font-size:28px">★★★★★</div>
+<span class="font-heading text-3xl" style="color:#1A1A1A">4.9 / 5</span>
+</div>
+<p class="font-body font-semibold" style="color:#888">Based on 48,000+ reviews on App Store &amp; Google Play</p>
+</div>
+
+<div class="grid md:grid-cols-3 gap-8">
+<!-- Review 1 -->
+<div>
+<div class="testimonial-bubble mb-8">
+<div class="star-rating mb-3" style="font-size:16px">★★★★★</div>
+<p class="font-body font-semibold" style="color:#444;line-height:1.7">"My daughter went from hating math to BEGGING to do more lessons! She's improved two grade levels in just 3 months. BrightMind is pure magic! 🌟"</p>
+</div>
+<div class="flex items-center gap-3 pl-4">
+<img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&amp;w=80&amp;auto=format&amp;fit=crop&amp;crop=face" alt="Sarah M." class="w-12 h-12 object-cover" style="border-radius:50%;border:3px solid #FFD60A">
+<div>
+<p class="font-heading text-base" style="color:#1A1A1A">Sarah M.</p>
+<p class="font-body text-sm font-bold" style="color:#888">Mom of Emma, age 8</p>
+</div>
+</div>
+</div>
+
+<!-- Review 2 -->
+<div>
+<div class="testimonial-bubble mb-8" style="border-color:#E63946;box-shadow:0 6px 0 #C1121F">
+<div style="position:absolute;bottom:-18px;left:28px;width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;border-top:18px solid #E63946"></div>
+<div class="star-rating mb-3" style="font-size:16px">★★★★★</div>
+<p class="font-body font-semibold" style="color:#444;line-height:1.7">"As a teacher, I recommend BrightMind to all my students' parents. The curriculum is perfectly aligned with school standards and the kids actually enjoy it! 🎓"</p>
+</div>
+<div class="flex items-center gap-3 pl-4">
+<img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&amp;w=80&amp;auto=format&amp;fit=crop&amp;crop=face" alt="Ms. Johnson" class="w-12 h-12 object-cover" style="border-radius:50%;border:3px solid #E63946">
+<div>
+<p class="font-heading text-base" style="color:#1A1A1A">Ms. Johnson</p>
+<p class="font-body text-sm font-bold" style="color:#888">3rd Grade Teacher</p>
+</div>
+</div>
+</div>
+
+<!-- Review 3 -->
+<div>
+<div class="testimonial-bubble mb-8" style="border-color:#2196F3;box-shadow:0 6px 0 #1565C0">
+<div style="position:absolute;bottom:-18px;left:28px;width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;border-top:18px solid #2196F3"></div>
+<div class="star-rating mb-3" style="font-size:16px">★★★★★</div>
+<p class="font-body font-semibold" style="color:#444;line-height:1.7">"My son has autism and BrightMind's patient, visual approach has been incredible for him. He's reading at grade level for the first time ever! Thank you! 💙"</p>
+</div>
+<div class="flex items-center gap-3 pl-4">
+<img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&amp;w=80&amp;auto=format&amp;fit=crop&amp;crop=face" alt="David K." class="w-12 h-12 object-cover" style="border-radius:50%;border:3px solid #2196F3">
+<div>
+<p class="font-heading text-base" style="color:#1A1A1A">David K.</p>
+<p class="font-body text-sm font-bold" style="color:#888">Dad of Liam, age 10</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Kids reviews row -->
+<div class="mt-10 p-6" style="background:linear-gradient(135deg,#FFF9D6,#FFE8EA);border-radius:28px;border:3px solid #FFD60A">
+<h3 class="font-heading text-xl text-center mb-6" style="color:#1A1A1A">What Kids Say 🧒👧</h3>
+<div class="grid md:grid-cols-3 gap-4">
+<div class="text-center p-4" style="background:white;border-radius:20px;border:2px solid #E63946">
+<div style="font-size:32px;margin-bottom:8px">😍</div>
+<p class="font-body font-bold text-sm mb-2" style="color:#444">"BrightMind is the BEST app ever! I love the math games!"</p>
+<p class="font-heading text-sm" style="color:#E63946">— Zoe, age 7</p>
+<div class="star-rating" style="font-size:14px;margin-top:4px">★★★★★</div>
+</div>
+<div class="text-center p-4" style="background:white;border-radius:20px;border:2px solid #2196F3">
+<div style="font-size:32px;margin-bottom:8px">🤩</div>
+<p class="font-body font-bold text-sm mb-2" style="color:#444">"I learned to code and made my own game! It's so cool!"</p>
+<p class="font-heading text-sm" style="color:#2196F3">— Marcus, age 11</p>
+<div class="star-rating" style="font-size:14px;margin-top:4px">★★★★★</div>
+</div>
+<div class="text-center p-4" style="background:white;border-radius:20px;border:2px solid #4CAF50">
+<div style="font-size:32px;margin-bottom:8px">🥰</div>
+<p class="font-body font-bold text-sm mb-2" style="color:#444">"I read 10 books this month because of BrightMind! Yay!"</p>
+<p class="font-heading text-sm" style="color:#4CAF50">— Lily, age 9</p>
+<div class="star-rating" style="font-size:14px;margin-top:4px">★★★★★</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- PRICING SECTION -->
+<section id="pricing" style="background:linear-gradient(160deg,#E8F5E9,#E3F2FD);padding:80px 0;max-height:1000px">
+<div class="max-w-5xl mx-auto px-6">
+<div class="text-center mb-12">
+<div class="inline-block mb-4 px-5 py-2" style="background:#E63946;border-radius:50px;box-shadow:0 4px 0 #C1121F">
+<span class="font-heading text-sm text-white">💰 Simple Pricing</span>
+</div>
+<h2 class="font-heading mb-4" style="font-size:44px;color:#1A1A1A">
+Pick Your <span style="color:#E63946">Adventure</span> Plan! 🗺️
+</h2>
+<p class="font-body text-lg font-semibold" style="color:#666">Start FREE — upgrade anytime! No hidden fees, cancel anytime.</p>
+</div>
+
+<div class="grid md:grid-cols-3 gap-6">
+<!-- Free Plan -->
+<div class="pricing-kid" style="border-color:#4CAF50;box-shadow:0 8px 0 #2E7D32">
+<div class="text-center mb-6">
+<div style="font-size:48px;margin-bottom:8px">🌱</div>
+<h3 class="font-heading text-2xl" style="color:#2E7D32">Starter</h3>
+<p class="font-body font-bold text-sm mb-4" style="color:#888">Perfect to try!</p>
+<div class="flex items-end justify-center gap-1 mb-1">
+<span class="font-heading" style="font-size:52px;color:#1A1A1A;line-height:1">$0</span>
+</div>
+<p class="font-body font-bold text-sm" style="color:#888">Forever FREE</p>
+</div>
+<div style="height:3px;background:#E8F5E9;border-radius:50px;margin-bottom:20px"></div>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-3">
+<div class="check-kid" style="background:#E8F5E9;color:#4CAF50">✓</div>
+<span class="font-body font-semibold text-sm" style="color:#444">3 subjects access</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="check-kid" style="background:#E8F5E9;color:#4CAF50">✓</div>
+<span class="font-body font-semibold text-sm" style="color:#444">50 lessons per month</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="check-kid" style="background:#E8F5E9;color:#4CAF50">✓</div>
+<span class="font-body font-semibold text-sm" style="color:#444">Basic badges &amp; rewards</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="check-kid" style="background:#E8F5E9;color:#4CAF50">✓</div>
+<span class="font-body font-semibold text-sm" style="color:#444">1 child profile</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="check-kid" style="background:#F5F5F5;color:#CCC">✗</div>
+<span class="font-body font-semibold text-sm" style="color:#CCC">Offline mode</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="check-kid" style="background:#F5F5F5;color:#CCC">✗</div>
+<span class="font-body font-semibold text-sm" style="color:#CCC">Parent reports</span>
+</li>
+</ul>
+<a href="#" class="btn-blue w-full justify-center" style="font-size:16px;padding:14px 24px">Start FREE! 🌱</a>
+</div>
+
+<!-- Explorer Plan (Featured) -->
+<div class="pricing-kid relative" style="border-color:#E63946;box-shadow:0 8px 0 #C1121F;transform:scale(1.04)">
+<div style="position:absolute;top:-16px;left:50%;transform:translateX(-50%);background:#FFD60A;border-radius:50px;padding:6px 20px;box-shadow:0 3px 0 #E6B800;white-space:nowrap">
+<span class="font-heading text-sm" style="color:#1A1A1A">⭐ Most Popular!</span>
+</div>
+<div class="text-center mb-6">
+<div style="font-size:48px;margin-bottom:8px">🚀</div>
+<h3 class="font-heading text-2xl" style="color:#E63946">Explorer</h3>
+<p class="font-body font-bold text-sm mb-4" style="color:#888">Best for families!</p>
+<div class="flex items-end justify-center gap-1 mb-1">
+<span class="font-heading" style="font-size:28px;color:#888;line-height:1.4">$</span>
+<span class="font-heading" style="font-size:52px;color:#E63946;line-height:1">9</span>
+<span class="font-heading" style="font-size:20px;color:#888;line-height:2.5">.99/mo</span>
+</div>
+<p class="font-body font-bold text-sm" style="color:#888">Billed monthly</p>
+</div>
+<div style="height:3px;background:#FFE8EA;border-radius:50px;margin-bottom:20px"></div>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-3">
+<div class="check-kid" style="background:#FFE8EA;color:#E63946">✓</div>
+<span class="font-body font-semibold text-sm" style="color:#444">All 6 subjects!</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="check-kid" style="background:#FFE8EA;color:#E63946">✓</div>
+<span class="font-body font-semibold text-sm" style="color:#444">Unlimited lessons</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="check-kid" style="background:#FFE8EA;color:#E63946">✓</div>
+<span class="font-body font-semibold text-sm" style="color:#444">All badges &amp; trophies</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="check-kid" style="background:#FFE8EA;color:#E63946">✓</div>
+<span class="font-body font-semibold text-sm" style="color:#444">Up to 3 child profiles</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="check-kid" style="background:#FFE8EA;color:#E63946">✓</div>
+<span class="font-body font-semibold text-sm" style="color:#444">Offline mode 📱</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="check-kid" style="background:#FFE8EA;color:#E63946">✓</div>
+<span class="font-body font-semibold text-sm" style="color:#444">Weekly parent reports</span>
+</li>
+</ul>
+<a href="#" class="btn-red w-full justify-center" style="font-size:16px;padding:14px 24px">Start 7-Day Free Trial! 🚀</a>
+</div>
+
+<!-- Family Plan -->
+<div class="pricing-kid" style="border-color:#2196F3;box-shadow:0 8px 0 #1565C0">
+<div class="text-center mb-6">
+<div style="font-size:48px;margin-bottom:8px">👨‍👩‍👧‍👦</div>
+<h3 class="font-heading text-2xl" style="color:#1565C0">Family</h3>
+<p class="font-body font-bold text-sm mb-4" style="color:#888">For big families!</p>
+<div class="flex items-end justify-center gap-1 mb-1">
+<span class="font-heading" style="font-size:28px;color:#888;line-height:1.4">$</span>
+<span class="font-heading" style="font-size:52px;color:#2196F3;line-height:1">14</span>
+<span class="font-heading" style="font-size:20px;color:#888;line-height:2.5">.99/mo</span>
+</div>
+<p class="font-body font-bold text-sm" style="color:#888">Billed monthly</p>
+</div>
+<div style="height:3px;background:#E3F2FD;border-radius:50px;margin-bottom:20px"></div>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-3">
+<div class="check-kid" style="background:#E3F2FD;color:#2196F3">✓</div>
+<span class="font-body font-semibold text-sm" style="color:#444">Everything in Explorer</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="check-kid" style="background:#E3F2FD;color:#2196F3">✓</div>
+<span class="font-body font-semibold text-sm" style="color:#444">Up to 6 child profiles</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="check-kid" style="background:#E3F2FD;color:#2196F3">✓</div>
+<span class="font-body font-semibold text-sm" style="color:#444">Live tutoring sessions</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="check-kid" style="background:#E3F2FD;color:#2196F3">✓</div>
+<span class="font-body font-semibold text-sm" style="color:#444">Priority support 24/7</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="check-kid" style="background:#E3F2FD;color:#2196F3">✓</div>
+<span class="font-body font-semibold text-sm" style="color:#444">Custom learning paths</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="check-kid" style="background:#E3F2FD;color:#2196F3">✓</div>
+<span class="font-body font-semibold text-sm" style="color:#444">Printable worksheets</span>
+</li>
+</ul>
+<a href="#" class="btn-blue w-full justify-center" style="font-size:16px;padding:14px 24px">Start 7-Day Free Trial! 👨‍👩‍👧‍👦</a>
+</div>
+</div>
+
+<!-- Guarantee -->
+<div class="mt-10 text-center p-6" style="background:white;border-radius:28px;border:3px solid #4CAF50;box-shadow:0 6px 0 #2E7D32">
+<div style="font-size:40px;margin-bottom:8px">🛡️</div>
+<h3 class="font-heading text-xl mb-2" style="color:#2E7D32">30-Day Money Back Guarantee!</h3>
+<p class="font-body font-semibold" style="color:#666">Not happy? Get a full refund — no questions asked! We're that confident your kids will love it. ❤️</p>
+</div>
+</div>
+</section>
+
+<!-- CTA SECTION -->
+<section style="background:linear-gradient(135deg,#E63946 0%,#FF6B6B 50%,#FFD60A 100%);padding:80px 0;max-height:500px;position:relative;overflow:hidden">
+<div class="deco-circle" style="width:250px;height:250px;background:white;top:-80px;right:-60px;opacity:0.08"></div>
+<div class="deco-circle" style="width:180px;height:180px;background:white;bottom:-60px;left:-40px;opacity:0.08"></div>
+<span style="position:absolute;top:30px;left:10%;font-size:32px;opacity:0.4;animation:wiggle 2s ease-in-out infinite">⭐</span>
+<span style="position:absolute;top:50px;right:15%;font-size:24px;opacity:0.4;animation:float-star 3s ease-in-out infinite">🌟</span>
+<span style="position:absolute;bottom:40px;left:20%;font-size:28px;opacity:0.4;animation:bounce-slow 3s ease-in-out infinite">✨</span>
+
+<div class="max-w-3xl mx-auto px-6 text-center relative z-10">
+<div style="font-size:64px;margin-bottom:16px">🎉</div>
+<h2 class="font-heading text-white mb-4" style="font-size:52px;line-height:1.1">
+Ready to Start the<br>Learning Adventure?
+</h2>
+<p class="font-body text-xl font-bold mb-8" style="color:rgba(255,255,255,0.9)">
+Join 2 million+ kids already learning with BrightMind! Start FREE today — no credit card needed! 🚀
+</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+<a href="#" class="btn-yellow" style="font-size:20px;padding:20px 48px;justify-content:center">
+🌟 Start FREE Today!
+</a>
+<a href="#" style="background:rgba(255,255,255,0.2);color:white;font-family:'Fredoka One',cursive;font-size:18px;padding:20px 40px;border-radius:50px;border:3px solid rgba(255,255,255,0.5);display:inline-flex;align-items:center;gap:8px;justify-content:center;transition:all 0.15s">
+📱 Download App
+</a>
+</div>
+<div class="flex flex-wrap items-center justify-center gap-6">
+<div class="flex items-center gap-2">
+<span style="font-size:20px">✓</span>
+<span class="font-body font-bold text-white">No credit card</span>
+</div>
+<div class="flex items-center gap-2">
+<span style="font-size:20px">✓</span>
+<span class="font-body font-bold text-white">Cancel anytime</span>
+</div>
+<div class="flex items-center gap-2">
+<span style="font-size:20px">✓</span>
+<span class="font-body font-bold text-white">100% kid-safe</span>
+</div>
+<div class="flex items-center gap-2">
+<span style="font-size:20px">✓</span>
+<span class="font-body font-bold text-white">No ads ever</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#1A1A2E;padding:56px 0">
+<div class="max-w-6xl mx-auto px-6">
+<div class="grid md:grid-cols-4 gap-8 mb-10">
+<div class="md:col-span-2">
+<div class="flex items-center gap-3 mb-4">
+<div style="width:44px;height:44px;background:linear-gradient(135deg,#E63946,#FF6B6B);border-radius:14px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 0 #C1121F">
+<span style="font-size:22px">🌟</span>
+</div>
+<div>
+<span class="font-heading text-2xl" style="color:#FFD60A">BrightMind</span>
+<span class="block font-body text-xs font-bold" style="color:rgba(255,255,255,0.4);letter-spacing:1px;margin-top:-4px">KIDS LEARNING</span>
+</div>
+</div>
+<p class="font-body font-semibold text-sm mb-4" style="color:rgba(255,255,255,0.5);line-height:1.7;max-width:300px">Making learning magical for kids ages 3–14. Safe, fun, and effective — trusted by 2 million+ families worldwide! 🌍</p>
+<div class="flex items-center gap-2 mb-3">
+<div class="star-rating" style="font-size:16px">★★★★★</div>
+<span class="font-body font-bold text-sm" style="color:rgba(255,255,255,0.6)">4.9/5 · 48K+ reviews</span>
+</div>
+<div class="flex gap-3">
+<div class="badge" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.15);font-size:12px">🍎 App Store</div>
+<div class="badge" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.15);font-size:12px">🤖 Google Play</div>
+</div>
+</div>
+<div>
+<p class="font-heading text-base mb-4" style="color:#FFD60A">Subjects</p>
+<div class="space-y-2">
+<a href="#subjects" class="block font-body font-semibold text-sm" style="color:rgba(255,255,255,0.5)">🔢 Mathematics</a>
+<a href="#subjects" class="block font-body font-semibold text-sm" style="color:rgba(255,255,255,0.5)">🔬 Science</a>
+<a href="#subjects" class="block font-body font-semibold text-sm" style="color:rgba(255,255,255,0.5)">📚 Reading</a>
+<a href="#subjects" class="block font-body font-semibold text-sm" style="color:rgba(255,255,255,0.5)">🎨 Art</a>
+<a href="#subjects" class="block font-body font-semibold text-sm" style="color:rgba(255,255,255,0.5)">🎵 Music</a>
+<a href="#subjects" class="block font-body font-semibold text-sm" style="color:rgba(255,255,255,0.5)">💻 Coding</a>
+</div>
+</div>
+<div>
+<p class="font-heading text-base mb-4" style="color:#FFD60A">Flow Navigation</p>
+<div class="space-y-2">
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/brutalist-architecture-firm" class="block font-body font-semibold text-sm" style="color:rgba(255,255,255,0.4)">← 01 Brutalist</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/pastel-wellness-app" class="block font-body font-semibold text-sm" style="color:rgba(255,255,255,0.4)">← 02 Wellness</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/neon-fintech-platform" class="block font-body font-semibold text-sm" style="color:rgba(255,255,255,0.4)">← 03 Fintech</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/organic-food-brand" class="block font-body font-semibold text-sm" style="color:rgba(255,255,255,0.4)">← 04 Organic</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/minimal-saas-productivity-tool" class="block font-body font-semibold text-sm" style="color:rgba(255,255,255,0.4)">← 05 SaaS</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/luxury-real-estate-agency" class="block font-body font-semibold text-sm" style="color:#FFD60A;font-weight:700">→ 07 Luxury</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/retro-music-streaming" class="block font-body font-semibold text-sm" style="color:#FFD60A;font-weight:700">→ 08 Retro</a>
+</div>
+</div>
+</div>
+<div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style="border-top:1px solid rgba(255,255,255,0.1)">
+<p class="font-body font-semibold text-xs" style="color:rgba(255,255,255,0.3)">© 2024 BrightMind Learning Inc. All rights reserved. COPPA Compliant · FERPA Certified · No Ads · No Data Selling</p>
+<div class="flex items-center gap-4">
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/minimal-saas-productivity-tool" class="font-body font-bold text-xs" style="color:rgba(255,255,255,0.4)">← SaaS Tool</a>
+<span class="font-body text-xs" style="color:rgba(255,255,255,0.2)">|</span>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/luxury-real-estate-agency" class="font-body font-bold text-xs" style="color:#FFD60A">Next: Luxury Real Estate →</a>
+</div>
+</div>
+</div>
+</footer>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

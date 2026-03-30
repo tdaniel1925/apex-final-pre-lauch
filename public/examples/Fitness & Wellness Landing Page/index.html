@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fitness & Wellness Landing Page - Exported from UXMagic Copilot">
+    <title>Fitness & Wellness Landing Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+tailwind.config={theme:{extend:{colors:{
+'i1':'#5C6AC4','i1l':'#EEF0FF','i1d':'#2D2D3A',
+'f2':'#7DAF8A','f2l':'#EAF4EC','f2g':'#C9A84C','f2gl':'#F7EDD0','f2d':'#2A3240',
+'w3':'#FAF7F2','w3r':'#D4A5A5','w3t':'#C47C5A',
+'r4':'#C4B49A','r4g':'#2D5016','r4s':'#F5EFE4',
+'l5':'#4A6FA5','l5l':'#E8EEF7','l5d':'#1E2A3A',
+'e6':'#FDFAF6','e6t':'#D4B896','e6b':'#E8C4B8','e6e':'#2C1A0E',
+'ed7':'#F5A623','ed7l':'#FEF3DC','ed7s':'#4A90D9','ed7sl':'#E8F2FC',
+'t8':'#2E86AB','t8l':'#E0F0F7','t8s':'#E8D5B0','t8c':'#F4845F',
+'h9':'#E8614A','h9l':'#FDECEA','h9g':'#F5F3F0','h9d':'#1C1C1E',
+'c10':'#3D6B4F','c10l':'#E8F0EB','c10s':'#A8C5DA','c10a':'#DDD0B8','c10b':'#FAFAF7',
+'eo':'#C8622A','eol':'#FDF0E8','eod':'#1E0E06','eom':'#8B3A1A','eos':'#F5E6D3','eog':'#D4A853','eogl':'#FBF3DC','eob':'#FAF5EF',
+'hx':'#8B7355','hxl':'#F5F0E8','hxd':'#1A1410','hxm':'#5C4A32','hxs':'#EDE8DF','hxg':'#B8A898','hxc':'#2C2420','hxw':'#FAF8F5',
+'brut-black':'#0A0A0A','brut-white':'#F5F5F0','brut-yellow':'#FFE500','brut-gray':'#1A1A1A','brut-mid':'#3A3A3A',
+'fit-orange':'#FF5722','fit-orangel':'#FBE9E7','fit-red':'#E53935','fit-dark':'#0F0F0F','fit-charcoal':'#1A1A2E','fit-lime':'#C6FF00','fit-limel':'#F4FFD6',
+},fontFamily:{
+'pf':['"Playfair Display"','serif'],
+'cg':['"Cormorant Garamond"','serif'],
+'sg':['"Space Grotesk"','sans-serif'],
+'sm':['"Space Mono"','monospace'],
+'bar':['Barlow','sans-serif'],
+'barc':['"Barlow Condensed"','sans-serif'],
+'beb':['"Bebas Neue"','sans-serif'],
+'nun':['Nunito','sans-serif'],
+'lb':['"Libre Baskerville"','serif'],
+'man':['Manrope','sans-serif'],
+'lor':['Lora','serif'],
+'int':['Inter','sans-serif'],
+'lat':['Lato','sans-serif'],
+},boxShadow:{
+'sm2':'0 2px 8px rgba(0,0,0,0.06)',
+'md2':'0 8px 30px rgba(0,0,0,0.08)',
+'lg2':'0 20px 60px rgba(0,0,0,0.12)',
+'warm':'0 8px 30px rgba(139,115,85,0.18)',
+'warm-lg':'0 20px 60px rgba(139,115,85,0.15)',
+'brut':'6px 6px 0px #0A0A0A',
+'brut-y':'6px 6px 0px #FFE500',
+'brut-hover':'3px 3px 0px #0A0A0A',
+'fit':'0 8px 40px rgba(255,87,34,0.25)',
+'fit-lg':'0 20px 60px rgba(255,87,34,0.3)',
+'fit-lime':'0 8px 30px rgba(198,255,0,0.3)',
+}}}}
+
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+<!-- FLOW NAVIGATION BAR -->
+<div class="fixed top-0 left-0 right-0 z-50" style="background:rgba(15,15,15,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06)">
+<div class="overflow-x-auto no-sb">
+<div class="flex items-center gap-2 px-6 py-3 min-w-max justify-center">
+<span class="font-nun text-[10px] font-bold uppercase tracking-widest mr-2" style="color:rgba(255,255,255,0.3)">Landing Pages:</span>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/healthcare-landing-page" class="nav-flow-link">01 Healthcare</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/fintech-landing-page" class="nav-flow-link">02 Fintech</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/online-education-landing-page" class="nav-flow-link">03 Education</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/real-estate-landing-page" class="nav-flow-link">04 Real Estate</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/fitness-wellness-landing-page" class="nav-flow-link active">05 Fitness ✦</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/travel-adventure-landing-page" class="nav-flow-link">06 Travel</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/food-delivery-landing-page" class="nav-flow-link">07 Food</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/legal-services-landing-page" class="nav-flow-link">08 Legal</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/automotive-landing-page" class="nav-flow-link">09 Auto</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/green-tech-landing-page" class="nav-flow-link">10 Green Tech</a>
+</div>
+</div>
+</div>
+
+<!-- MAIN NAVIGATION -->
+<nav class="fixed top-14 left-0 right-0 z-40">
+<div class="max-w-7xl mx-auto px-6 mt-4">
+<div class="fit-card rounded-xl px-8 py-4 flex items-center justify-between" style="background:rgba(15,15,15,0.9);border:1px solid rgba(255,255,255,0.08)">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:linear-gradient(135deg,#FF5722,#E53935)">
+<span class="font-beb text-white text-lg leading-none">F</span>
+</div>
+<span class="font-beb text-2xl tracking-widest" style="color:#F5F5F5">FORGE<span class="fit-grad-text">X</span></span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a href="#programs" class="nav-fit">Programs</a>
+<a href="#trainers" class="nav-fit">Trainers</a>
+<a href="#transformations" class="nav-fit">Results</a>
+<a href="#membership" class="nav-fit">Membership</a>
+</div>
+<div class="flex items-center gap-3">
+<a href="#" class="nav-fit hidden sm:block text-sm">Log In</a>
+<a href="#membership" class="btn-fit text-sm py-2.5 px-6">Join Now</a>
+</div>
+</div>
+</div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="relative pt-44 pb-0 overflow-hidden fit-hero-bg" style="max-height:1100px">
+<!-- Background Image Overlay -->
+<div class="absolute inset-0 z-0">
+<img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="Gym Background" class="w-full h-full object-cover opacity-20">
+<div class="absolute inset-0" style="background:linear-gradient(160deg,rgba(15,15,15,0.95) 0%,rgba(26,26,46,0.85) 50%,rgba(15,15,15,0.98) 100%)"></div>
+</div>
+
+<!-- Decorative Elements -->
+<div class="absolute top-32 right-0 w-96 h-96 rounded-full opacity-10" style="background:radial-gradient(circle,#FF5722,transparent);filter:blur(80px)"></div>
+<div class="absolute bottom-0 left-0 w-80 h-80 rounded-full opacity-10" style="background:radial-gradient(circle,#C6FF00,transparent);filter:blur(80px)"></div>
+
+<div class="max-w-7xl mx-auto px-6 relative z-10">
+<div class="grid lg:grid-cols-2 gap-12 items-center">
+<!-- Left: Text -->
+<div>
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8" style="background:rgba(198,255,0,0.1);border:1px solid rgba(198,255,0,0.25)">
+<span class="w-2 h-2 rounded-full animate-pulse" style="background:#C6FF00"></span>
+<span class="font-barc font-bold text-xs uppercase tracking-widest" style="color:#C6FF00">10,000+ Members Transformed</span>
+</div>
+<h1 class="font-beb text-7xl lg:text-8xl leading-none mb-6 tracking-wide" style="color:#F5F5F5">
+FORGE YOUR<br>
+<span class="fit-grad-text">BEST BODY</span><br>
+EVER
+</h1>
+<p class="font-bar text-lg leading-relaxed mb-10 max-w-lg" style="color:rgba(255,255,255,0.65)">
+Elite training programs, world-class coaches, and a community that pushes you beyond your limits. Your transformation starts today.
+</p>
+<div class="flex flex-col sm:flex-row items-center gap-4 mb-12">
+<a href="#membership" class="btn-fit text-base min-w-[200px] text-center">Start Free Trial</a>
+<a href="#programs" class="btn-fit-outline text-base min-w-[200px] flex items-center gap-2 justify-center">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+View Programs
+</a>
+</div>
+
+<!-- Stats Row -->
+<div class="grid grid-cols-3 gap-6 pt-8" style="border-top:1px solid rgba(255,255,255,0.08)">
+<div>
+<p class="font-beb text-4xl tracking-wide fit-grad-text">50K+</p>
+<p class="font-barc text-xs uppercase tracking-widest mt-1" style="color:rgba(255,255,255,0.45)">Active Members</p>
+</div>
+<div>
+<p class="font-beb text-4xl tracking-wide fit-grad-text">200+</p>
+<p class="font-barc text-xs uppercase tracking-widest mt-1" style="color:rgba(255,255,255,0.45)">Expert Trainers</p>
+</div>
+<div>
+<p class="font-beb text-4xl tracking-wide fit-grad-text">98%</p>
+<p class="font-barc text-xs uppercase tracking-widest mt-1" style="color:rgba(255,255,255,0.45)">Success Rate</p>
+</div>
+</div>
+</div>
+
+<!-- Right: Hero Visual -->
+<div class="relative h-[580px] hidden lg:block">
+<!-- Main Athlete Image -->
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="relative w-[340px] h-[520px] rounded-2xl overflow-hidden shadow-fit-lg float-slow">
+<img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="Athlete" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(15,15,15,0.7) 0%,transparent 60%)"></div>
+<div class="absolute bottom-6 left-6 right-6">
+<div class="fit-card rounded-xl p-4">
+<div class="flex items-center justify-between mb-2">
+<span class="font-barc font-bold text-xs uppercase tracking-widest" style="color:rgba(255,255,255,0.6)">Today's Workout</span>
+<span class="fit-tag-lime">Active</span>
+</div>
+<p class="font-beb text-xl tracking-wide" style="color:#F5F5F5">HIIT Cardio Blast</p>
+<div class="flex items-center gap-4 mt-3">
+<div class="flex items-center gap-1.5">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="#FF5722"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"></path></svg>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.6)">45 min</span>
+</div>
+<div class="flex items-center gap-1.5">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="#C6FF00"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"></path></svg>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.6)">580 cal</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Floating: Streak Card -->
+<div class="absolute top-[8%] right-[2%] fit-card rounded-2xl p-4 z-30 float-fast shadow-md2">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl flex items-center justify-center text-xl" style="background:rgba(255,87,34,0.2)">🔥</div>
+<div>
+<p class="font-barc font-bold text-sm tracking-wide" style="color:#F5F5F5">21 Day Streak</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">Keep it going!</p>
+</div>
+</div>
+</div>
+
+<!-- Floating: Progress Card -->
+<div class="absolute bottom-[18%] left-[0%] fit-card rounded-2xl p-4 z-30 float-med shadow-md2">
+<p class="font-barc font-bold text-xs uppercase tracking-widest mb-2" style="color:rgba(255,255,255,0.5)">Body Fat Progress</p>
+<div class="flex items-center gap-3 mb-2">
+<span class="font-beb text-2xl fit-lime-text">-8.4%</span>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">in 90 days</span>
+</div>
+<div class="prog-bar-fit w-36">
+<div class="prog-fill-lime" style="width:72%"></div>
+</div>
+</div>
+
+<!-- Floating: Rating -->
+<div class="absolute top-[45%] right-[0%] fit-card rounded-2xl p-3 z-30 float-slow">
+<div class="flex items-center gap-1 mb-1">
+<span style="color:#FF5722">★★★★★</span>
+</div>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.6)">4.9/5 App Rating</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Partner Logos Strip -->
+<div class="mt-20 py-8 relative z-10" style="border-top:1px solid rgba(255,255,255,0.06)">
+<div class="max-w-7xl mx-auto px-6">
+<p class="text-center font-barc text-xs uppercase tracking-widest mb-6" style="color:rgba(255,255,255,0.25)">Trusted by athletes from</p>
+<div class="flex flex-wrap items-center justify-center gap-10" style="opacity:0.3">
+<span class="font-beb text-xl tracking-widest text-white">NIKE</span>
+<span class="w-1 h-1 rounded-full bg-white opacity-30"></span>
+<span class="font-beb text-xl tracking-widest text-white">ADIDAS</span>
+<span class="w-1 h-1 rounded-full bg-white opacity-30"></span>
+<span class="font-beb text-xl tracking-widest text-white">UNDER ARMOUR</span>
+<span class="w-1 h-1 rounded-full bg-white opacity-30"></span>
+<span class="font-beb text-xl tracking-widest text-white">REEBOK</span>
+<span class="w-1 h-1 rounded-full bg-white opacity-30"></span>
+<span class="font-beb text-xl tracking-widest text-white">LULULEMON</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- WORKOUT PROGRAMS -->
+<section id="programs" class="py-24 fit-section-dark" style="max-height:1200px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col md:flex-row items-end justify-between mb-14 gap-6">
+<div>
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4" style="background:rgba(255,87,34,0.12);border:1px solid rgba(255,87,34,0.25)">
+<span class="font-barc font-bold text-xs uppercase tracking-widest" style="color:#FF8A65">Elite Training Programs</span>
+</div>
+<h2 class="font-beb text-5xl md:text-6xl tracking-wide" style="color:#F5F5F5">CHOOSE YOUR <span class="fit-grad-text">WEAPON</span></h2>
+</div>
+<a href="#" class="font-barc font-bold text-sm uppercase tracking-widest flex items-center gap-2" style="color:#FF5722">View All Programs <span>→</span></a>
+</div>
+
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Program 1 -->
+<div class="prog-card relative h-[420px]">
+<img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="Strength Training" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(15,15,15,0.95) 0%,rgba(15,15,15,0.3) 60%,transparent 100%)"></div>
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="fit-tag">Strength</span>
+</div>
+<div class="absolute bottom-6 left-6 right-6">
+<h3 class="font-beb text-3xl tracking-wide mb-2" style="color:#F5F5F5">IRON FORGE</h3>
+<p class="font-bar text-sm mb-4" style="color:rgba(255,255,255,0.65)">Build raw strength and muscle mass with progressive overload training.</p>
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1.5">
+<svg width="13" height="13" viewBox="0 0 24 24" fill="#FF5722"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"></path></svg>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.6)">12 Weeks</span>
+</div>
+<div class="flex items-center gap-1.5">
+<svg width="13" height="13" viewBox="0 0 24 24" fill="#FF5722"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path></svg>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.6)">2,840 enrolled</span>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<span class="intensity-dot" style="background:#FF5722"></span>
+<span class="intensity-dot" style="background:#FF5722"></span>
+<span class="intensity-dot" style="background:#FF5722"></span>
+<span class="intensity-dot" style="background:rgba(255,255,255,0.2)"></span>
+<span class="intensity-dot" style="background:rgba(255,255,255,0.2)"></span>
+</div>
+</div>
+<a href="#" class="btn-fit text-xs py-2.5 px-5 w-full text-center block">Start Program</a>
+</div>
+</div>
+
+<!-- Program 2 -->
+<div class="prog-card relative h-[420px]">
+<img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="HIIT" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(15,15,15,0.95) 0%,rgba(15,15,15,0.3) 60%,transparent 100%)"></div>
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="fit-tag-lime">Most Popular</span>
+</div>
+<div class="absolute bottom-6 left-6 right-6">
+<h3 class="font-beb text-3xl tracking-wide mb-2" style="color:#F5F5F5">BURN ZONE</h3>
+<p class="font-bar text-sm mb-4" style="color:rgba(255,255,255,0.65)">High-intensity interval training for maximum fat burn and cardiovascular power.</p>
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1.5">
+<svg width="13" height="13" viewBox="0 0 24 24" fill="#C6FF00"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"></path></svg>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.6)">8 Weeks</span>
+</div>
+<div class="flex items-center gap-1.5">
+<svg width="13" height="13" viewBox="0 0 24 24" fill="#C6FF00"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path></svg>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.6)">5,120 enrolled</span>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<span class="intensity-dot" style="background:#C6FF00"></span>
+<span class="intensity-dot" style="background:#C6FF00"></span>
+<span class="intensity-dot" style="background:#C6FF00"></span>
+<span class="intensity-dot" style="background:#C6FF00"></span>
+<span class="intensity-dot" style="background:rgba(255,255,255,0.2)"></span>
+</div>
+</div>
+<a href="#" class="btn-fit-lime text-xs py-2.5 px-5 w-full text-center block">Start Program</a>
+</div>
+</div>
+
+<!-- Program 3 -->
+<div class="prog-card relative h-[420px]">
+<img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="Yoga" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(15,15,15,0.95) 0%,rgba(15,15,15,0.3) 60%,transparent 100%)"></div>
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="fit-tag">Flexibility</span>
+</div>
+<div class="absolute bottom-6 left-6 right-6">
+<h3 class="font-beb text-3xl tracking-wide mb-2" style="color:#F5F5F5">FLOW STATE</h3>
+<p class="font-bar text-sm mb-4" style="color:rgba(255,255,255,0.65)">Yoga and mobility training to improve flexibility, balance, and mental clarity.</p>
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1.5">
+<svg width="13" height="13" viewBox="0 0 24 24" fill="#FF5722"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"></path></svg>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.6)">6 Weeks</span>
+</div>
+<div class="flex items-center gap-1.5">
+<svg width="13" height="13" viewBox="0 0 24 24" fill="#FF5722"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path></svg>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.6)">3,290 enrolled</span>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<span class="intensity-dot" style="background:#FF5722"></span>
+<span class="intensity-dot" style="background:#FF5722"></span>
+<span class="intensity-dot" style="background:rgba(255,255,255,0.2)"></span>
+<span class="intensity-dot" style="background:rgba(255,255,255,0.2)"></span>
+<span class="intensity-dot" style="background:rgba(255,255,255,0.2)"></span>
+</div>
+</div>
+<a href="#" class="btn-fit text-xs py-2.5 px-5 w-full text-center block">Start Program</a>
+</div>
+</div>
+
+<!-- Program 4 -->
+<div class="prog-card relative h-[420px]">
+<img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="CrossFit" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(15,15,15,0.95) 0%,rgba(15,15,15,0.3) 60%,transparent 100%)"></div>
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="fit-tag">CrossFit</span>
+</div>
+<div class="absolute bottom-6 left-6 right-6">
+<h3 class="font-beb text-3xl tracking-wide mb-2" style="color:#F5F5F5">ALPHA CROSS</h3>
+<p class="font-bar text-sm mb-4" style="color:rgba(255,255,255,0.65)">Functional fitness combining Olympic lifting, gymnastics, and metabolic conditioning.</p>
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1.5">
+<svg width="13" height="13" viewBox="0 0 24 24" fill="#FF5722"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"></path></svg>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.6)">16 Weeks</span>
+</div>
+<div class="flex items-center gap-1.5">
+<svg width="13" height="13" viewBox="0 0 24 24" fill="#FF5722"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path></svg>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.6)">1,980 enrolled</span>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<span class="intensity-dot" style="background:#FF5722"></span>
+<span class="intensity-dot" style="background:#FF5722"></span>
+<span class="intensity-dot" style="background:#FF5722"></span>
+<span class="intensity-dot" style="background:#FF5722"></span>
+<span class="intensity-dot" style="background:#FF5722"></span>
+</div>
+</div>
+<a href="#" class="btn-fit text-xs py-2.5 px-5 w-full text-center block">Start Program</a>
+</div>
+</div>
+
+<!-- Program 5 -->
+<div class="prog-card relative h-[420px]">
+<img src="https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="Nutrition" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(15,15,15,0.95) 0%,rgba(15,15,15,0.3) 60%,transparent 100%)"></div>
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="fit-tag">Nutrition</span>
+</div>
+<div class="absolute bottom-6 left-6 right-6">
+<h3 class="font-beb text-3xl tracking-wide mb-2" style="color:#F5F5F5">FUEL SYSTEM</h3>
+<p class="font-bar text-sm mb-4" style="color:rgba(255,255,255,0.65)">Personalized meal plans and nutrition coaching to optimize performance and recovery.</p>
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1.5">
+<svg width="13" height="13" viewBox="0 0 24 24" fill="#FF5722"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"></path></svg>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.6)">Ongoing</span>
+</div>
+<div class="flex items-center gap-1.5">
+<svg width="13" height="13" viewBox="0 0 24 24" fill="#FF5722"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path></svg>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.6)">4,560 enrolled</span>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<span class="intensity-dot" style="background:#FF5722"></span>
+<span class="intensity-dot" style="background:#FF5722"></span>
+<span class="intensity-dot" style="background:rgba(255,255,255,0.2)"></span>
+<span class="intensity-dot" style="background:rgba(255,255,255,0.2)"></span>
+<span class="intensity-dot" style="background:rgba(255,255,255,0.2)"></span>
+</div>
+</div>
+<a href="#" class="btn-fit text-xs py-2.5 px-5 w-full text-center block">Start Program</a>
+</div>
+</div>
+
+<!-- Program 6 -->
+<div class="prog-card relative h-[420px]">
+<img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="Mindfulness" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(15,15,15,0.95) 0%,rgba(15,15,15,0.3) 60%,transparent 100%)"></div>
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="fit-tag">Mind &amp; Body</span>
+</div>
+<div class="absolute bottom-6 left-6 right-6">
+<h3 class="font-beb text-3xl tracking-wide mb-2" style="color:#F5F5F5">ZENITH</h3>
+<p class="font-bar text-sm mb-4" style="color:rgba(255,255,255,0.65)">Meditation, breathwork, and recovery protocols for peak mental and physical performance.</p>
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1.5">
+<svg width="13" height="13" viewBox="0 0 24 24" fill="#FF5722"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"></path></svg>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.6)">4 Weeks</span>
+</div>
+<div class="flex items-center gap-1.5">
+<svg width="13" height="13" viewBox="0 0 24 24" fill="#FF5722"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path></svg>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.6)">2,100 enrolled</span>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<span class="intensity-dot" style="background:#FF5722"></span>
+<span class="intensity-dot" style="background:rgba(255,255,255,0.2)"></span>
+<span class="intensity-dot" style="background:rgba(255,255,255,0.2)"></span>
+<span class="intensity-dot" style="background:rgba(255,255,255,0.2)"></span>
+<span class="intensity-dot" style="background:rgba(255,255,255,0.2)"></span>
+</div>
+</div>
+<a href="#" class="btn-fit text-xs py-2.5 px-5 w-full text-center block">Start Program</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- TRANSFORMATION STORIES -->
+<section id="transformations" class="py-24 bg-fit-dark" style="max-height:1000px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-16">
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4" style="background:rgba(198,255,0,0.1);border:1px solid rgba(198,255,0,0.2)">
+<span class="font-barc font-bold text-xs uppercase tracking-widest" style="color:#C6FF00">Real Results, Real People</span>
+</div>
+<h2 class="font-beb text-5xl md:text-6xl tracking-wide mb-4" style="color:#F5F5F5">TRANSFORMATION <span class="fit-grad-text">STORIES</span></h2>
+<p class="font-bar text-lg max-w-2xl mx-auto" style="color:rgba(255,255,255,0.55)">These aren't stock photos. These are our members who committed and conquered.</p>
+</div>
+
+<div class="grid md:grid-cols-3 gap-6">
+<!-- Story 1 -->
+<div class="transform-card" style="background:rgba(255,255,255,0.03)">
+<div class="relative h-72 overflow-hidden rounded-t-2xl">
+<div class="grid grid-cols-2 h-full">
+<div class="relative overflow-hidden">
+<img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&amp;w=400&amp;auto=format&amp;fit=crop" alt="Before" class="w-full h-full object-cover grayscale">
+<div class="absolute bottom-3 left-3 px-2 py-1 rounded" style="background:rgba(0,0,0,0.7)">
+<span class="font-barc font-bold text-xs uppercase tracking-widest" style="color:rgba(255,255,255,0.7)">Before</span>
+</div>
+</div>
+<div class="relative overflow-hidden">
+<img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&amp;w=400&amp;auto=format&amp;fit=crop" alt="After" class="w-full h-full object-cover">
+<div class="absolute bottom-3 right-3 px-2 py-1 rounded" style="background:rgba(255,87,34,0.85)">
+<span class="font-barc font-bold text-xs uppercase tracking-widest text-white">After</span>
+</div>
+</div>
+</div>
+<div class="absolute top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full flex items-center justify-center z-10" style="background:#FF5722">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"></path></svg>
+</div>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-3 mb-4">
+<img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&amp;w=80&amp;auto=format&amp;fit=crop" alt="Marcus" class="w-10 h-10 rounded-full object-cover border-2" style="border-color:#FF5722">
+<div>
+<p class="font-barc font-bold text-sm tracking-wide" style="color:#F5F5F5">Marcus Thompson</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">Iron Forge Program · 16 weeks</p>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-3 mb-4">
+<div class="text-center p-2 rounded-lg" style="background:rgba(255,87,34,0.1)">
+<p class="font-beb text-xl fit-grad-text">-32</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">lbs lost</p>
+</div>
+<div class="text-center p-2 rounded-lg" style="background:rgba(255,87,34,0.1)">
+<p class="font-beb text-xl fit-grad-text">+18</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">lbs muscle</p>
+</div>
+<div class="text-center p-2 rounded-lg" style="background:rgba(255,87,34,0.1)">
+<p class="font-beb text-xl fit-grad-text">-9%</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">body fat</p>
+</div>
+</div>
+<p class="font-bar text-sm leading-relaxed" style="color:rgba(255,255,255,0.6)">"ForgeX completely changed my life. The coaches pushed me beyond what I thought was possible. Best investment I've ever made."</p>
+</div>
+</div>
+
+<!-- Story 2 -->
+<div class="transform-card" style="background:rgba(255,255,255,0.03)">
+<div class="relative h-72 overflow-hidden rounded-t-2xl">
+<div class="grid grid-cols-2 h-full">
+<div class="relative overflow-hidden">
+<img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&amp;w=400&amp;auto=format&amp;fit=crop" alt="Before" class="w-full h-full object-cover grayscale">
+<div class="absolute bottom-3 left-3 px-2 py-1 rounded" style="background:rgba(0,0,0,0.7)">
+<span class="font-barc font-bold text-xs uppercase tracking-widest" style="color:rgba(255,255,255,0.7)">Before</span>
+</div>
+</div>
+<div class="relative overflow-hidden">
+<img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&amp;w=400&amp;auto=format&amp;fit=crop" alt="After" class="w-full h-full object-cover">
+<div class="absolute bottom-3 right-3 px-2 py-1 rounded" style="background:rgba(255,87,34,0.85)">
+<span class="font-barc font-bold text-xs uppercase tracking-widest text-white">After</span>
+</div>
+</div>
+</div>
+<div class="absolute top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full flex items-center justify-center z-10" style="background:#FF5722">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"></path></svg>
+</div>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-3 mb-4">
+<img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&amp;w=80&amp;auto=format&amp;fit=crop" alt="Sofia" class="w-10 h-10 rounded-full object-cover border-2" style="border-color:#C6FF00">
+<div>
+<p class="font-barc font-bold text-sm tracking-wide" style="color:#F5F5F5">Sofia Martinez</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">Burn Zone + Flow State · 12 weeks</p>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-3 mb-4">
+<div class="text-center p-2 rounded-lg" style="background:rgba(198,255,0,0.08)">
+<p class="font-beb text-xl fit-lime-text">-24</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">lbs lost</p>
+</div>
+<div class="text-center p-2 rounded-lg" style="background:rgba(198,255,0,0.08)">
+<p class="font-beb text-xl fit-lime-text">+12</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">lbs muscle</p>
+</div>
+<div class="text-center p-2 rounded-lg" style="background:rgba(198,255,0,0.08)">
+<p class="font-beb text-xl fit-lime-text">-7%</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">body fat</p>
+</div>
+</div>
+<p class="font-bar text-sm leading-relaxed" style="color:rgba(255,255,255,0.6)">"I tried everything before ForgeX. The combination of HIIT and yoga was exactly what my body needed. I feel unstoppable now."</p>
+</div>
+</div>
+
+<!-- Story 3 -->
+<div class="transform-card" style="background:rgba(255,255,255,0.03)">
+<div class="relative h-72 overflow-hidden rounded-t-2xl">
+<div class="grid grid-cols-2 h-full">
+<div class="relative overflow-hidden">
+<img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?q=80&amp;w=400&amp;auto=format&amp;fit=crop" alt="Before" class="w-full h-full object-cover grayscale">
+<div class="absolute bottom-3 left-3 px-2 py-1 rounded" style="background:rgba(0,0,0,0.7)">
+<span class="font-barc font-bold text-xs uppercase tracking-widest" style="color:rgba(255,255,255,0.7)">Before</span>
+</div>
+</div>
+<div class="relative overflow-hidden">
+<img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?q=80&amp;w=400&amp;auto=format&amp;fit=crop" alt="After" class="w-full h-full object-cover">
+<div class="absolute bottom-3 right-3 px-2 py-1 rounded" style="background:rgba(255,87,34,0.85)">
+<span class="font-barc font-bold text-xs uppercase tracking-widest text-white">After</span>
+</div>
+</div>
+</div>
+<div class="absolute top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full flex items-center justify-center z-10" style="background:#FF5722">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"></path></svg>
+</div>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-3 mb-4">
+<img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&amp;w=80&amp;auto=format&amp;fit=crop" alt="James" class="w-10 h-10 rounded-full object-cover border-2" style="border-color:#FF5722">
+<div>
+<p class="font-barc font-bold text-sm tracking-wide" style="color:#F5F5F5">James Okafor</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">Alpha Cross Program · 20 weeks</p>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-3 mb-4">
+<div class="text-center p-2 rounded-lg" style="background:rgba(255,87,34,0.1)">
+<p class="font-beb text-xl fit-grad-text">-41</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">lbs lost</p>
+</div>
+<div class="text-center p-2 rounded-lg" style="background:rgba(255,87,34,0.1)">
+<p class="font-beb text-xl fit-grad-text">+22</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">lbs muscle</p>
+</div>
+<div class="text-center p-2 rounded-lg" style="background:rgba(255,87,34,0.1)">
+<p class="font-beb text-xl fit-grad-text">-12%</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">body fat</p>
+</div>
+</div>
+<p class="font-bar text-sm leading-relaxed" style="color:rgba(255,255,255,0.6)">"Alpha Cross is no joke. It broke me down and built me back up stronger. The community here is unlike anything I've experienced."</p>
+</div>
+</div>
+</div>
+
+<!-- Stats Banner -->
+<div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="text-center p-6 rounded-2xl" style="background:rgba(255,87,34,0.08);border:1px solid rgba(255,87,34,0.15)">
+<p class="font-beb text-4xl fit-grad-text mb-1">50K+</p>
+<p class="font-barc text-xs uppercase tracking-widest" style="color:rgba(255,255,255,0.45)">Transformations</p>
+</div>
+<div class="text-center p-6 rounded-2xl" style="background:rgba(255,87,34,0.08);border:1px solid rgba(255,87,34,0.15)">
+<p class="font-beb text-4xl fit-grad-text mb-1">4.9★</p>
+<p class="font-barc text-xs uppercase tracking-widest" style="color:rgba(255,255,255,0.45)">Average Rating</p>
+</div>
+<div class="text-center p-6 rounded-2xl" style="background:rgba(255,87,34,0.08);border:1px solid rgba(255,87,34,0.15)">
+<p class="font-beb text-4xl fit-grad-text mb-1">98%</p>
+<p class="font-barc text-xs uppercase tracking-widest" style="color:rgba(255,255,255,0.45)">Would Recommend</p>
+</div>
+<div class="text-center p-6 rounded-2xl" style="background:rgba(255,87,34,0.08);border:1px solid rgba(255,87,34,0.15)">
+<p class="font-beb text-4xl fit-grad-text mb-1">30 Days</p>
+<p class="font-barc text-xs uppercase tracking-widest" style="color:rgba(255,255,255,0.45)">Avg. Visible Results</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- QUOTE DIVIDER -->
+<section class="py-24 relative overflow-hidden" style="background:linear-gradient(135deg,#FF5722 0%,#E53935 100%);max-height:400px">
+<div class="absolute inset-0 opacity-10">
+<img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="bg" class="w-full h-full object-cover">
+</div>
+<div class="max-w-5xl mx-auto px-6 relative z-10 text-center">
+<p class="font-beb text-6xl md:text-8xl tracking-widest text-white opacity-10 mb-4">"</p>
+<h2 class="font-beb text-4xl md:text-6xl tracking-wide text-white leading-tight mb-6">
+THE ONLY BAD WORKOUT<br>IS THE ONE THAT DIDN'T HAPPEN
+</h2>
+<p class="font-barc font-bold text-sm uppercase tracking-widest" style="color:rgba(255,255,255,0.7)">— ForgeX Philosophy</p>
+</div>
+</section>
+
+<!-- TRAINER PROFILES -->
+<section id="trainers" class="py-24 fit-section-dark" style="max-height:1000px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-14">
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4" style="background:rgba(255,87,34,0.12);border:1px solid rgba(255,87,34,0.25)">
+<span class="font-barc font-bold text-xs uppercase tracking-widest" style="color:#FF8A65">World-Class Coaches</span>
+</div>
+<h2 class="font-beb text-5xl md:text-6xl tracking-wide mb-4" style="color:#F5F5F5">MEET YOUR <span class="fit-grad-text">TRAINERS</span></h2>
+<p class="font-bar text-lg max-w-2xl mx-auto" style="color:rgba(255,255,255,0.55)">Elite athletes and certified coaches who've dedicated their lives to helping you reach yours.</p>
+</div>
+
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Trainer 1 -->
+<div class="trainer-card">
+<div class="relative h-72 overflow-hidden rounded-t-2xl">
+<img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?q=80&amp;w=400&amp;auto=format&amp;fit=crop" alt="Coach Alex" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(15,15,15,0.9) 0%,transparent 60%)"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<div class="flex items-center gap-1 mb-1">
+<span style="color:#FF5722;font-size:12px">★★★★★</span>
+<span class="font-barc font-bold text-xs text-white ml-1">4.9</span>
+</div>
+</div>
+</div>
+<div class="p-5 rounded-b-2xl" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-top:none">
+<h3 class="font-beb text-xl tracking-wide mb-1" style="color:#F5F5F5">ALEX RIVERA</h3>
+<p class="font-barc font-bold text-xs uppercase tracking-widest mb-3" style="color:#FF5722">Strength &amp; Conditioning</p>
+<p class="font-bar text-xs leading-relaxed mb-4" style="color:rgba(255,255,255,0.55)">Former NFL strength coach with 15 years building elite athletes. NSCA-CSCS certified.</p>
+<div class="flex items-center justify-between text-xs">
+<span class="font-bar" style="color:rgba(255,255,255,0.45)">38 programs</span>
+<span class="font-bar" style="color:rgba(255,255,255,0.45)">12K clients</span>
+</div>
+</div>
+</div>
+
+<!-- Trainer 2 -->
+<div class="trainer-card">
+<div class="relative h-72 overflow-hidden rounded-t-2xl">
+<img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&amp;w=400&amp;auto=format&amp;fit=crop" alt="Coach Maya" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(15,15,15,0.9) 0%,transparent 60%)"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<div class="flex items-center gap-1 mb-1">
+<span style="color:#C6FF00;font-size:12px">★★★★★</span>
+<span class="font-barc font-bold text-xs text-white ml-1">5.0</span>
+</div>
+</div>
+</div>
+<div class="p-5 rounded-b-2xl" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-top:none">
+<h3 class="font-beb text-xl tracking-wide mb-1" style="color:#F5F5F5">MAYA CHEN</h3>
+<p class="font-barc font-bold text-xs uppercase tracking-widest mb-3" style="color:#C6FF00">HIIT &amp; Cardio Expert</p>
+<p class="font-bar text-xs leading-relaxed mb-4" style="color:rgba(255,255,255,0.55)">Olympic sprinter turned HIIT specialist. Creator of the Burn Zone methodology.</p>
+<div class="flex items-center justify-between text-xs">
+<span class="font-bar" style="color:rgba(255,255,255,0.45)">24 programs</span>
+<span class="font-bar" style="color:rgba(255,255,255,0.45)">18K clients</span>
+</div>
+</div>
+</div>
+
+<!-- Trainer 3 -->
+<div class="trainer-card">
+<div class="relative h-72 overflow-hidden rounded-t-2xl">
+<img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&amp;w=400&amp;auto=format&amp;fit=crop" alt="Coach Derek" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(15,15,15,0.9) 0%,transparent 60%)"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<div class="flex items-center gap-1 mb-1">
+<span style="color:#FF5722;font-size:12px">★★★★★</span>
+<span class="font-barc font-bold text-xs text-white ml-1">4.8</span>
+</div>
+</div>
+</div>
+<div class="p-5 rounded-b-2xl" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-top:none">
+<h3 class="font-beb text-xl tracking-wide mb-1" style="color:#F5F5F5">DEREK STONE</h3>
+<p class="font-barc font-bold text-xs uppercase tracking-widest mb-3" style="color:#FF5722">CrossFit &amp; Functional</p>
+<p class="font-bar text-xs leading-relaxed mb-4" style="color:rgba(255,255,255,0.55)">CrossFit Games competitor, Level 3 CF trainer. Specializes in functional movement.</p>
+<div class="flex items-center justify-between text-xs">
+<span class="font-bar" style="color:rgba(255,255,255,0.45)">19 programs</span>
+<span class="font-bar" style="color:rgba(255,255,255,0.45)">9K clients</span>
+</div>
+</div>
+</div>
+
+<!-- Trainer 4 -->
+<div class="trainer-card">
+<div class="relative h-72 overflow-hidden rounded-t-2xl">
+<img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&amp;w=400&amp;auto=format&amp;fit=crop" alt="Coach Priya" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(15,15,15,0.9) 0%,transparent 60%)"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<div class="flex items-center gap-1 mb-1">
+<span style="color:#C6FF00;font-size:12px">★★★★★</span>
+<span class="font-barc font-bold text-xs text-white ml-1">4.9</span>
+</div>
+</div>
+</div>
+<div class="p-5 rounded-b-2xl" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-top:none">
+<h3 class="font-beb text-xl tracking-wide mb-1" style="color:#F5F5F5">PRIYA NAIR</h3>
+<p class="font-barc font-bold text-xs uppercase tracking-widest mb-3" style="color:#C6FF00">Yoga &amp; Mindfulness</p>
+<p class="font-bar text-xs leading-relaxed mb-4" style="color:rgba(255,255,255,0.55)">500-hr RYT certified, sports psychologist. Bridges physical performance with mental mastery.</p>
+<div class="flex items-center justify-between text-xs">
+<span class="font-bar" style="color:rgba(255,255,255,0.45)">31 programs</span>
+<span class="font-bar" style="color:rgba(255,255,255,0.45)">15K clients</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="text-center mt-12">
+<a href="#" class="btn-fit-outline text-base inline-flex items-center gap-2">Meet All 200+ Trainers <span>→</span></a>
+</div>
+</div>
+</section>
+
+<!-- MEMBERSHIP PLANS -->
+<section id="membership" class="py-24 bg-fit-dark" style="max-height:1100px">
+<div class="max-w-6xl mx-auto px-6">
+<div class="text-center mb-16">
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4" style="background:rgba(255,87,34,0.12);border:1px solid rgba(255,87,34,0.25)">
+<span class="font-barc font-bold text-xs uppercase tracking-widest" style="color:#FF8A65">No Contracts. Cancel Anytime.</span>
+</div>
+<h2 class="font-beb text-5xl md:text-6xl tracking-wide mb-4" style="color:#F5F5F5">CHOOSE YOUR <span class="fit-grad-text">PLAN</span></h2>
+<p class="font-bar text-lg max-w-2xl mx-auto" style="color:rgba(255,255,255,0.55)">Start with a 7-day free trial. No credit card required. Cancel anytime.</p>
+</div>
+
+<div class="grid md:grid-cols-3 gap-7 items-center">
+<!-- Starter -->
+<div class="member-card p-8" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:24px">
+<div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:rgba(255,87,34,0.15)">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="#FF5722"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"></path></svg>
+</div>
+<h3 class="font-beb text-2xl tracking-wide mb-2" style="color:#F5F5F5">STARTER</h3>
+<p class="font-bar text-sm mb-6" style="color:rgba(255,255,255,0.5)">Perfect for beginners</p>
+<div class="flex items-baseline gap-1 mb-6">
+<span class="font-beb text-5xl tracking-wide" style="color:#F5F5F5">$19</span>
+<span class="font-bar" style="color:rgba(255,255,255,0.4)">/month</span>
+</div>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-3 font-bar text-sm" style="color:rgba(255,255,255,0.7)"><span style="color:#C6FF00" class="font-bold">✓</span> Access to 50+ beginner programs</li>
+<li class="flex items-center gap-3 font-bar text-sm" style="color:rgba(255,255,255,0.7)"><span style="color:#C6FF00" class="font-bold">✓</span> Basic nutrition guides</li>
+<li class="flex items-center gap-3 font-bar text-sm" style="color:rgba(255,255,255,0.7)"><span style="color:#C6FF00" class="font-bold">✓</span> Community forum access</li>
+<li class="flex items-center gap-3 font-bar text-sm" style="color:rgba(255,255,255,0.35)"><span class="opacity-30">✗</span> Live coaching sessions</li>
+<li class="flex items-center gap-3 font-bar text-sm" style="color:rgba(255,255,255,0.35)"><span class="opacity-30">✗</span> Personalized meal plans</li>
+<li class="flex items-center gap-3 font-bar text-sm" style="color:rgba(255,255,255,0.35)"><span class="opacity-30">✗</span> Progress analytics</li>
+</ul>
+<a href="#" class="btn-fit-outline w-full block text-center text-sm py-3">Start Free Trial</a>
+</div>
+
+<!-- Elite (Featured) -->
+<div class="member-card p-8 relative overflow-hidden transform md:scale-105" style="background:linear-gradient(135deg,#1A0A05,#2D1205);border:2px solid rgba(255,87,34,0.5);border-radius:24px;box-shadow:0 20px 60px rgba(255,87,34,0.25)">
+<div class="absolute top-0 right-0 text-white text-xs font-bold px-4 py-2 rounded-bl-2xl uppercase tracking-widest font-barc" style="background:linear-gradient(135deg,#FF5722,#E53935)">Most Popular</div>
+<div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:rgba(255,87,34,0.25)">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="#FF5722"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"></path></svg>
+</div>
+<h3 class="font-beb text-2xl tracking-wide mb-2" style="color:#F5F5F5">ELITE</h3>
+<p class="font-bar text-sm mb-6" style="color:rgba(255,255,255,0.6)">For serious athletes</p>
+<div class="flex items-baseline gap-1 mb-6">
+<span class="font-beb text-5xl tracking-wide fit-grad-text">$49</span>
+<span class="font-bar" style="color:rgba(255,255,255,0.4)">/month</span>
+</div>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-3 font-bar text-sm" style="color:rgba(255,255,255,0.85)"><span style="color:#C6FF00" class="font-bold">✓</span> Unlimited program access</li>
+<li class="flex items-center gap-3 font-bar text-sm" style="color:rgba(255,255,255,0.85)"><span style="color:#C6FF00" class="font-bold">✓</span> 4 live coaching sessions/mo</li>
+<li class="flex items-center gap-3 font-bar text-sm" style="color:rgba(255,255,255,0.85)"><span style="color:#C6FF00" class="font-bold">✓</span> Personalized meal plans</li>
+<li class="flex items-center gap-3 font-bar text-sm" style="color:rgba(255,255,255,0.85)"><span style="color:#C6FF00" class="font-bold">✓</span> Advanced progress analytics</li>
+<li class="flex items-center gap-3 font-bar text-sm" style="color:rgba(255,255,255,0.85)"><span style="color:#C6FF00" class="font-bold">✓</span> Offline workout downloads</li>
+<li class="flex items-center gap-3 font-bar text-sm" style="color:rgba(255,255,255,0.85)"><span style="color:#C6FF00" class="font-bold">✓</span> Priority support 24/7</li>
+</ul>
+<a href="#" class="btn-fit w-full block text-center text-sm py-3">Start Free Trial</a>
+</div>
+
+<!-- Pro Team -->
+<div class="member-card p-8" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:24px">
+<div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:rgba(198,255,0,0.12)">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="#C6FF00"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"></path></svg>
+</div>
+<h3 class="font-beb text-2xl tracking-wide mb-2" style="color:#F5F5F5">PRO TEAM</h3>
+<p class="font-bar text-sm mb-6" style="color:rgba(255,255,255,0.5)">For gyms &amp; teams</p>
+<div class="flex items-baseline gap-1 mb-6">
+<span class="font-beb text-5xl tracking-wide" style="color:#C6FF00">$29</span>
+<span class="font-bar" style="color:rgba(255,255,255,0.4)">/user/mo</span>
+</div>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-3 font-bar text-sm" style="color:rgba(255,255,255,0.7)"><span style="color:#C6FF00" class="font-bold">✓</span> Everything in Elite</li>
+<li class="flex items-center gap-3 font-bar text-sm" style="color:rgba(255,255,255,0.7)"><span style="color:#C6FF00" class="font-bold">✓</span> Team management dashboard</li>
+<li class="flex items-center gap-3 font-bar text-sm" style="color:rgba(255,255,255,0.7)"><span style="color:#C6FF00" class="font-bold">✓</span> Custom branded programs</li>
+<li class="flex items-center gap-3 font-bar text-sm" style="color:rgba(255,255,255,0.7)"><span style="color:#C6FF00" class="font-bold">✓</span> Group challenge tools</li>
+<li class="flex items-center gap-3 font-bar text-sm" style="color:rgba(255,255,255,0.7)"><span style="color:#C6FF00" class="font-bold">✓</span> API &amp; SSO integration</li>
+<li class="flex items-center gap-3 font-bar text-sm" style="color:rgba(255,255,255,0.7)"><span style="color:#C6FF00" class="font-bold">✓</span> Dedicated account manager</li>
+</ul>
+<a href="#" class="btn-fit-lime w-full block text-center text-sm py-3">Contact Sales</a>
+</div>
+</div>
+
+<!-- Guarantee Banner -->
+<div class="mt-10 p-6 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6" style="background:rgba(198,255,0,0.06);border:1px solid rgba(198,255,0,0.15)">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-full flex items-center justify-center text-2xl flex-shrink-0" style="background:rgba(198,255,0,0.15)">🛡️</div>
+<div>
+<p class="font-beb text-xl tracking-wide mb-1" style="color:#C6FF00">30-DAY MONEY-BACK GUARANTEE</p>
+<p class="font-bar text-sm" style="color:rgba(255,255,255,0.55)">Not satisfied? Get a full refund within 30 days. No questions asked. We're that confident.</p>
+</div>
+</div>
+<div class="flex items-center gap-6 flex-shrink-0">
+<div class="flex items-center gap-2">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="#C6FF00"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path></svg>
+<span class="font-bar text-sm" style="color:rgba(255,255,255,0.6)">No Credit Card</span>
+</div>
+<div class="flex items-center gap-2">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="#C6FF00"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path></svg>
+<span class="font-bar text-sm" style="color:rgba(255,255,255,0.6)">Cancel Anytime</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="py-24 relative overflow-hidden" style="background:linear-gradient(160deg,#0F0F0F 0%,#1A1A2E 100%);max-height:600px">
+<div class="absolute inset-0 z-0">
+<img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="CTA Background" class="w-full h-full object-cover opacity-10">
+</div>
+<div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-[600px] h-[600px] rounded-full opacity-15" style="background:radial-gradient(circle,#FF5722,transparent);filter:blur(100px)"></div>
+<div class="max-w-5xl mx-auto px-6 relative z-10 text-center">
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8" style="background:rgba(198,255,0,0.1);border:1px solid rgba(198,255,0,0.25)">
+<span class="w-2 h-2 rounded-full animate-pulse" style="background:#C6FF00"></span>
+<span class="font-barc font-bold text-xs uppercase tracking-widest" style="color:#C6FF00">Join 50,000+ Members Worldwide</span>
+</div>
+<h2 class="font-beb text-5xl md:text-7xl tracking-wide mb-6 leading-none" style="color:#F5F5F5">
+YOUR TRANSFORMATION<br><span class="fit-grad-text">STARTS NOW</span>
+</h2>
+<p class="font-bar text-xl leading-relaxed mb-10 max-w-2xl mx-auto" style="color:rgba(255,255,255,0.6)">
+Stop waiting for the perfect moment. The perfect moment is right now. Join ForgeX and become the strongest version of yourself.
+</p>
+<div class="flex flex-col sm:flex-row items-center gap-4 justify-center mb-10">
+<a href="#membership" class="btn-fit text-lg min-w-[220px] text-center">Start Free Trial</a>
+<a href="#programs" class="btn-fit-lime text-lg min-w-[220px] text-center">Browse Programs</a>
+</div>
+<div class="flex flex-wrap items-center justify-center gap-8">
+<div class="flex items-center gap-2">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="#C6FF00"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path></svg>
+<span class="font-bar text-sm" style="color:rgba(255,255,255,0.55)">7-Day Free Trial</span>
+</div>
+<div class="flex items-center gap-2">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="#C6FF00"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path></svg>
+<span class="font-bar text-sm" style="color:rgba(255,255,255,0.55)">No Credit Card Required</span>
+</div>
+<div class="flex items-center gap-2">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="#C6FF00"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path></svg>
+<span class="font-bar text-sm" style="color:rgba(255,255,255,0.55)">30-Day Money-Back Guarantee</span>
+</div>
+<div class="flex items-center gap-2">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="#C6FF00"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path></svg>
+<span class="font-bar text-sm" style="color:rgba(255,255,255,0.55)">Cancel Anytime</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="pt-20 pb-10" style="background:#0A0A0A;max-height:700px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid md:grid-cols-5 gap-10 mb-16">
+<!-- Brand -->
+<div class="col-span-1 md:col-span-2">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background:linear-gradient(135deg,#FF5722,#E53935)">
+<span class="font-beb text-white text-xl leading-none">F</span>
+</div>
+<span class="font-beb text-3xl tracking-widest" style="color:#F5F5F5">FORGE<span class="fit-grad-text">X</span></span>
+</div>
+<p class="font-bar text-sm leading-relaxed max-w-xs mb-6" style="color:rgba(255,255,255,0.4)">Transforming 50,000+ lives worldwide with elite training programs, world-class coaches, and a community that never quits. Your best body is waiting.</p>
+<div class="flex items-center gap-3">
+<a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-white text-xs font-bold font-barc" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1)">IG</a>
+<a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-white text-xs font-bold font-barc" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1)">TW</a>
+<a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-white text-xs font-bold font-barc" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1)">YT</a>
+<a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-white text-xs font-bold font-barc" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1)">TK</a>
+</div>
+</div>
+
+<!-- Programs -->
+<div>
+<h4 class="font-beb text-sm tracking-widest mb-6" style="color:#F5F5F5">Programs</h4>
+<ul class="space-y-3 font-bar text-sm" style="color:rgba(255,255,255,0.4)">
+<li><a href="#" class="hover:text-white transition-colors">Strength Training</a></li>
+<li><a href="#" class="hover:text-white transition-colors">HIIT &amp; Cardio</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Yoga &amp; Flexibility</a></li>
+<li><a href="#" class="hover:text-white transition-colors">CrossFit</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Nutrition Plans</a></li>
+</ul>
+</div>
+
+<!-- Company -->
+<div>
+<h4 class="font-beb text-sm tracking-widest mb-6" style="color:#F5F5F5">Company</h4>
+<ul class="space-y-3 font-bar text-sm" style="color:rgba(255,255,255,0.4)">
+<li><a href="#" class="hover:text-white transition-colors">About ForgeX</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Become a Trainer</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Press</a></li>
+</ul>
+</div>
+
+<!-- Support -->
+<div>
+<h4 class="font-beb text-sm tracking-widest mb-6" style="color:#F5F5F5">Support</h4>
+<ul class="space-y-3 font-bar text-sm" style="color:rgba(255,255,255,0.4)">
+<li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Cookie Policy</a></li>
+</ul>
+</div>
+</div>
+
+<div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style="border-top:1px solid rgba(255,255,255,0.06)">
+<p class="font-bar text-sm" style="color:rgba(255,255,255,0.25)">© 2024 ForgeX Fitness Inc. All rights reserved.</p>
+<div class="flex items-center gap-6">
+<a href="#" class="font-bar text-xs hover:opacity-70 transition-opacity" style="color:rgba(255,255,255,0.25)">Privacy</a>
+<a href="#" class="font-bar text-xs hover:opacity-70 transition-opacity" style="color:rgba(255,255,255,0.25)">Terms</a>
+<a href="#" class="font-bar text-xs hover:opacity-70 transition-opacity" style="color:rgba(255,255,255,0.25)">Cookies</a>
+</div>
+</div>
+
+<!-- Flow Navigation Footer -->
+<div class="mt-10 pt-8" style="border-top:1px solid rgba(255,255,255,0.04)">
+<p class="font-bar text-xs text-center mb-4 uppercase tracking-widest" style="color:rgba(255,255,255,0.15)">Explore All Landing Pages</p>
+<div class="flex flex-wrap items-center justify-center gap-3">
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/healthcare-landing-page" class="font-bar text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">01 Healthcare →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/fintech-landing-page" class="font-bar text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">02 Fintech →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/online-education-landing-page" class="font-bar text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">03 Education →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/real-estate-landing-page" class="font-bar text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">04 Real Estate →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/fitness-wellness-landing-page" class="font-bar text-xs font-bold px-3 py-1.5 rounded-full" style="background:rgba(255,87,34,0.2);color:#FF5722;border:1px solid rgba(255,87,34,0.4)">05 Fitness ✦</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/travel-adventure-landing-page" class="font-bar text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">06 Travel →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/food-delivery-landing-page" class="font-bar text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">07 Food →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/legal-services-landing-page" class="font-bar text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">08 Legal →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/automotive-landing-page" class="font-bar text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">09 Auto →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/green-tech-landing-page" class="font-bar text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">10 Green Tech →</a>
+</div>
+<p class="text-center font-bar text-xs mt-6" style="color:rgba(255,255,255,0.12)">Designed with Uxmagic.ai</p>
+</div>
+</div>
+</footer>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Healthcare Landing Page - Exported from UXMagic Copilot">
+    <title>Healthcare Landing Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+tailwind.config={theme:{extend:{colors:{
+'i1':'#5C6AC4','i1l':'#EEF0FF','i1d':'#2D2D3A',
+'f2':'#7DAF8A','f2l':'#EAF4EC','f2g':'#C9A84C','f2gl':'#F7EDD0','f2d':'#2A3240',
+'w3':'#FAF7F2','w3r':'#D4A5A5','w3t':'#C47C5A',
+'r4':'#C4B49A','r4g':'#2D5016','r4s':'#F5EFE4',
+'l5':'#4A6FA5','l5l':'#E8EEF7','l5d':'#1E2A3A',
+'e6':'#FDFAF6','e6t':'#D4B896','e6b':'#E8C4B8','e6e':'#2C1A0E',
+'ed7':'#F5A623','ed7l':'#FEF3DC','ed7s':'#4A90D9','ed7sl':'#E8F2FC',
+'t8':'#2E86AB','t8l':'#E0F0F7','t8s':'#E8D5B0','t8c':'#F4845F',
+'h9':'#E8614A','h9l':'#FDECEA','h9g':'#F5F3F0','h9d':'#1C1C1E',
+'c10':'#3D6B4F','c10l':'#E8F0EB','c10s':'#A8C5DA','c10a':'#DDD0B8','c10b':'#FAFAF7',
+'hc':'#2E86AB','hcl':'#E0F4F8','hcd':'#0D2B3E',
+'hg':'#3D9970','hgl':'#E6F5EE',
+},fontFamily:{
+'pf':['"Playfair Display"','serif'],
+'cg':['"Cormorant Garamond"','serif'],
+'sg':['"Space Grotesk"','sans-serif'],
+'bar':['Barlow','sans-serif'],
+'barc':['"Barlow Condensed"','sans-serif'],
+'beb':['"Bebas Neue"','sans-serif'],
+'nun':['Nunito','sans-serif'],
+'lb':['"Libre Baskerville"','serif'],
+'man':['Manrope','sans-serif'],
+'lor':['Lora','serif'],
+'int':['Inter','sans-serif'],
+'lat':['Lato','sans-serif'],
+},boxShadow:{
+'sm2':'0 2px 8px rgba(0,0,0,0.06)',
+'md2':'0 8px 30px rgba(0,0,0,0.08)',
+'lg2':'0 20px 60px rgba(0,0,0,0.12)',
+}}}}
+
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+<!-- FLOW NAVIGATION BAR -->
+<div style="background:#0D2B3E;border-bottom:1px solid rgba(255,255,255,0.1)">
+<div class="overflow-x-auto no-sb">
+<div class="flex items-center gap-1.5 px-4 py-2 min-w-max">
+<span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mr-2 flex-shrink-0 font-int">6 Landing Pages:</span>
+<a href="/api/copilot/prototype/5776e7d4-fc9f-4634-bb32-35324702b7e9/healthcare-landing-page" class="text-xs font-bold px-3 py-1.5 rounded-full font-int whitespace-nowrap" style="background:#2E86AB;color:#fff;border:1px solid #2E86AB">01 Healthcare</a>
+<a href="/api/copilot/prototype/5776e7d4-fc9f-4634-bb32-35324702b7e9/fintech-landing-page" class="text-xs font-bold px-3 py-1.5 rounded-full border border-gray-600 text-gray-300 hover:text-white font-int whitespace-nowrap transition-colors">02 Fintech</a>
+<a href="/api/copilot/prototype/5776e7d4-fc9f-4634-bb32-35324702b7e9/e-commerce-landing-page" class="text-xs font-bold px-3 py-1.5 rounded-full border border-gray-600 text-gray-300 hover:text-white font-int whitespace-nowrap transition-colors">03 E-Commerce</a>
+<a href="/api/copilot/prototype/5776e7d4-fc9f-4634-bb32-35324702b7e9/saas-landing-page" class="text-xs font-bold px-3 py-1.5 rounded-full border border-gray-600 text-gray-300 hover:text-white font-int whitespace-nowrap transition-colors">04 SaaS</a>
+<a href="/api/copilot/prototype/5776e7d4-fc9f-4634-bb32-35324702b7e9/food-restaurant-landing-page" class="text-xs font-bold px-3 py-1.5 rounded-full border border-gray-600 text-gray-300 hover:text-white font-int whitespace-nowrap transition-colors">05 Food &amp; Restaurant</a>
+<a href="/api/copilot/prototype/5776e7d4-fc9f-4634-bb32-35324702b7e9/real-estate-landing-page" class="text-xs font-bold px-3 py-1.5 rounded-full border border-gray-600 text-gray-300 hover:text-white font-int whitespace-nowrap transition-colors">06 Real Estate</a>
+</div>
+</div>
+</div>
+
+<!-- MAIN NAV -->
+<nav class="bg-white border-b border-gray-100 sticky top-0 z-40 shadow-sm2">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,#2E86AB,#3D9970)">
+<svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+</div>
+<span class="font-bold text-xl font-lor" style="color:#0D2B3E">MediCare<span style="color:#2E86AB">+</span></span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a href="#" class="text-sm font-medium text-gray-500 hover:text-hcd font-int transition-colors">Services</a>
+<a href="#" class="text-sm font-medium text-gray-500 hover:text-hcd font-int transition-colors">Doctors</a>
+<a href="#" class="text-sm font-medium text-gray-500 hover:text-hcd font-int transition-colors">About Us</a>
+<a href="#" class="text-sm font-medium text-gray-500 hover:text-hcd font-int transition-colors">Patient Portal</a>
+</div>
+<div class="flex items-center gap-3">
+<a href="#" class="hidden md:block text-sm font-medium text-gray-500 hover:text-hcd font-int transition-colors">Sign In</a>
+<button class="text-white text-sm font-semibold px-5 py-2.5 rounded-full font-int transition-colors min-h-[44px]" style="background:#2E86AB">Book Appointment</button>
+</div>
+</div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="relative overflow-hidden hc-dot-bg" style="background:linear-gradient(160deg,#E8F4F8 0%,#EAF5EE 40%,#F0F8FF 100%);padding-top:80px;padding-bottom:80px">
+<div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+<svg class="absolute -top-10 -right-20 w-[600px] h-[600px] opacity-[0.07]" viewBox="0 0 500 500" fill="none">
+<circle cx="250" cy="250" r="200" stroke="#2E86AB" stroke-width="1.5" fill="none"></circle>
+<circle cx="250" cy="250" r="150" stroke="#3D9970" stroke-width="1" fill="none"></circle>
+<circle cx="250" cy="250" r="100" stroke="#2E86AB" stroke-width="1" fill="none"></circle>
+<line x1="250" y1="50" x2="250" y2="450" stroke="#2E86AB" stroke-width="1"></line>
+<line x1="50" y1="250" x2="450" y2="250" stroke="#2E86AB" stroke-width="1"></line>
+</svg>
+<div class="absolute bottom-0 left-0 w-full h-24 pointer-events-none" style="background:linear-gradient(to top,rgba(255,255,255,0.8),transparent)"></div>
+</div>
+<div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">
+<!-- Left Content -->
+<div>
+<div class="inline-flex items-center gap-2 text-xs font-bold px-3 py-1.5 rounded-full mb-6 font-int uppercase tracking-wider" style="background:#E0F4F8;color:#2E86AB">
+<span class="w-1.5 h-1.5 rounded-full" style="background:#2E86AB"></span>
+Trusted by 50,000+ Patients
+</div>
+<h1 class="font-lor text-5xl lg:text-[64px] font-bold leading-tight mb-6" style="color:#0D2B3E">
+Your health,<br>our <em class="not-italic" style="color:#2E86AB">priority</em>.<br>Always.
+</h1>
+<p class="text-gray-500 text-lg leading-relaxed mb-8 max-w-md font-int">Compassionate, world-class healthcare at your fingertips. Book appointments, consult specialists, and manage your wellness — all in one trusted platform.</p>
+<div class="flex flex-col sm:flex-row gap-3 max-w-md mb-6">
+<input type="email" placeholder="Enter your email address" class="flex-1 px-4 py-3 rounded-full border border-gray-200 text-sm font-int focus:outline-none min-h-[44px]" style="border-color:#B8D9E8">
+<button class="text-white text-sm font-semibold px-6 py-3 rounded-full font-int transition-colors whitespace-nowrap min-h-[44px]" style="background:#2E86AB">Get Started Free</button>
+</div>
+<p class="text-xs text-gray-400 font-int mb-8">No insurance required · Free initial consultation</p>
+<div class="flex flex-wrap gap-6 pt-6 border-t border-gray-200">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style="background:#E6F5EE">
+<svg class="w-4 h-4" style="color:#3D9970" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+</div>
+<span class="text-sm font-medium text-gray-600 font-int">HIPAA Compliant</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style="background:#E0F4F8">
+<svg class="w-4 h-4" style="color:#2E86AB" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+</div>
+<span class="text-sm font-medium text-gray-600 font-int">256-bit Encrypted</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style="background:#E6F5EE">
+<svg class="w-4 h-4" style="color:#3D9970" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+</div>
+<span class="text-sm font-medium text-gray-600 font-int">24/7 Support</span>
+</div>
+</div>
+</div>
+<!-- Right: Dashboard Mockup -->
+<div class="relative hidden lg:block">
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="w-72 h-72 rounded-full blur-3xl opacity-40" style="background:#B8E0F0"></div>
+</div>
+<div class="relative bg-white rounded-2xl shadow-lg2 border border-gray-100 p-5 overflow-hidden">
+<!-- Header -->
+<div class="flex items-center justify-between mb-5">
+<div>
+<p class="text-xs text-gray-400 font-int">Good morning,</p>
+<p class="font-bold text-gray-800 font-lor">Sarah Johnson 👋</p>
+</div>
+<div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold font-int text-sm" style="background:linear-gradient(135deg,#2E86AB,#3D9970)">SJ</div>
+</div>
+<!-- Upcoming Appointment -->
+<div class="rounded-xl p-4 mb-4" style="background:linear-gradient(135deg,#0D2B3E,#1A4A6E)">
+<div class="flex items-start justify-between">
+<div>
+<p class="text-xs font-bold uppercase tracking-wider mb-1 font-int" style="color:#7EC8E3">Upcoming Appointment</p>
+<p class="text-white font-bold font-lor text-base">Dr. Emily Chen</p>
+<p class="text-sm font-int" style="color:#A8D5E8">Cardiologist · General Checkup</p>
+</div>
+<div class="text-right">
+<p class="text-white font-bold font-int text-sm">Tomorrow</p>
+<p class="text-sm font-int" style="color:#A8D5E8">10:30 AM</p>
+</div>
+</div>
+<div class="mt-3 flex items-center gap-2">
+<span class="text-xs font-bold px-2 py-1 rounded-full font-int" style="background:rgba(61,153,112,0.3);color:#7ECFA8">Confirmed</span>
+<span class="text-xs font-int" style="color:#A8D5E8">Room 204, Floor 2</span>
+</div>
+</div>
+<!-- Health Stats -->
+<div class="grid grid-cols-3 gap-2.5 mb-4">
+<div class="rounded-xl p-3 text-center" style="background:#E0F4F8">
+<p class="text-xs text-gray-500 font-int mb-1">Heart Rate</p>
+<p class="font-bold font-int" style="color:#2E86AB">72 bpm</p>
+<p class="text-xs font-int" style="color:#3D9970">Normal</p>
+</div>
+<div class="rounded-xl p-3 text-center bg-gray-50">
+<p class="text-xs text-gray-500 font-int mb-1">Blood Pressure</p>
+<p class="font-bold text-gray-800 font-int">120/80</p>
+<p class="text-xs font-int" style="color:#3D9970">Optimal</p>
+</div>
+<div class="rounded-xl p-3 text-center" style="background:#E6F5EE">
+<p class="text-xs text-gray-500 font-int mb-1">BMI</p>
+<p class="font-bold font-int" style="color:#3D9970">22.4</p>
+<p class="text-xs text-gray-500 font-int">Healthy</p>
+</div>
+</div>
+<!-- Recent Doctors -->
+<div class="space-y-2.5">
+<p class="text-xs font-bold text-gray-500 font-int uppercase tracking-wider">Your Care Team</p>
+<div class="flex items-center justify-between py-2 border-b border-gray-50">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold font-int flex-shrink-0" style="background:#2E86AB">EC</div>
+<div>
+<p class="text-xs font-semibold text-gray-700 font-int">Dr. Emily Chen</p>
+<p class="text-xs text-gray-400 font-int">Cardiologist</p>
+</div>
+</div>
+<span class="text-xs font-bold px-2 py-0.5 rounded-full font-int" style="background:#E6F5EE;color:#3D9970">Active</span>
+</div>
+<div class="flex items-center justify-between py-2">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold font-int flex-shrink-0" style="background:#3D9970">MR</div>
+<div>
+<p class="text-xs font-semibold text-gray-700 font-int">Dr. Mark Rivera</p>
+<p class="text-xs text-gray-400 font-int">General Physician</p>
+</div>
+</div>
+<span class="text-xs font-bold px-2 py-0.5 rounded-full font-int" style="background:#E0F4F8;color:#2E86AB">On Call</span>
+</div>
+</div>
+</div>
+<!-- Floating badges -->
+<div class="absolute -top-4 -right-4 bg-white rounded-xl shadow-md2 px-4 py-2.5 border border-gray-100">
+<p class="text-xs text-gray-400 font-int">Avg. wait time</p>
+<p class="font-bold font-lor" style="color:#0D2B3E">8 minutes</p>
+</div>
+<div class="absolute -bottom-4 -left-4 rounded-xl shadow-md2 px-4 py-2.5 text-white" style="background:#2E86AB">
+<p class="text-xs opacity-70 font-int">Specialists available</p>
+<p class="font-bold font-lor">120+ Doctors</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- STATS BAND -->
+<section class="bg-white py-12 border-b border-gray-100">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+<div>
+<p class="text-3xl font-bold font-lor mb-1" style="color:#2E86AB">50K+</p>
+<p class="text-sm text-gray-500 font-int">Patients Served</p>
+</div>
+<div>
+<p class="text-3xl font-bold font-lor mb-1" style="color:#3D9970">120+</p>
+<p class="text-sm text-gray-500 font-int">Specialist Doctors</p>
+</div>
+<div>
+<p class="text-3xl font-bold font-lor mb-1" style="color:#2E86AB">98%</p>
+<p class="text-sm text-gray-500 font-int">Patient Satisfaction</p>
+</div>
+<div>
+<p class="text-3xl font-bold font-lor mb-1" style="color:#3D9970">24/7</p>
+<p class="text-sm text-gray-500 font-int">Emergency Care</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SERVICES / FEATURES -->
+<section class="bg-white py-24">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-16">
+<p class="text-xs font-bold font-int tracking-widest uppercase mb-3" style="color:#2E86AB">Our Services</p>
+<h2 class="font-lor text-4xl lg:text-5xl font-bold mb-4" style="color:#0D2B3E">Comprehensive care<br>for every stage of life</h2>
+<p class="text-gray-500 text-lg max-w-xl mx-auto font-int">From preventive wellness to specialized treatment — we're with you every step of the way.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<!-- Card 1 -->
+<div class="bg-white border border-gray-100 rounded-2xl p-8 shadow-sm2 hover:shadow-md2 transition-shadow">
+<div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:#E0F4F8">
+<svg class="w-6 h-6" style="color:#2E86AB" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.069A1 1 0 0121 8.82v6.36a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+</div>
+<h3 class="font-lor text-xl font-bold mb-3" style="color:#0D2B3E">Telemedicine</h3>
+<p class="text-gray-500 text-sm leading-relaxed font-int">Consult with board-certified doctors from the comfort of your home. Video, phone, or chat — your choice.</p>
+<div class="mt-5 flex items-center gap-1.5 text-sm font-semibold font-int" style="color:#2E86AB">
+<span>Learn more</span>
+<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="border border-gray-100 rounded-2xl p-8 shadow-sm2 hover:shadow-md2 transition-shadow" style="background:linear-gradient(135deg,#E0F4F8,#E6F5EE)">
+<div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5 bg-white">
+<svg class="w-6 h-6" style="color:#3D9970" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+</div>
+<h3 class="font-lor text-xl font-bold mb-3" style="color:#0D2B3E">Health Records</h3>
+<p class="text-gray-500 text-sm leading-relaxed font-int">Secure, centralized digital health records accessible anytime. Share with any provider instantly.</p>
+<div class="mt-5 flex items-center gap-1.5 text-sm font-semibold font-int" style="color:#3D9970">
+<span>Learn more</span>
+<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-white border border-gray-100 rounded-2xl p-8 shadow-sm2 hover:shadow-md2 transition-shadow">
+<div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:#E6F5EE">
+<svg class="w-6 h-6" style="color:#3D9970" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+</div>
+<h3 class="font-lor text-xl font-bold mb-3" style="color:#0D2B3E">Preventive Care</h3>
+<p class="text-gray-500 text-sm leading-relaxed font-int">Personalized wellness plans, screenings, and vaccinations. Stay ahead of health issues before they arise.</p>
+<div class="mt-5 flex items-center gap-1.5 text-sm font-semibold font-int" style="color:#2E86AB">
+<span>Learn more</span>
+<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+</div>
+</div>
+</div>
+<!-- Second row of cards -->
+<div class="grid md:grid-cols-3 gap-8 mt-8">
+<div class="bg-white border border-gray-100 rounded-2xl p-8 shadow-sm2 hover:shadow-md2 transition-shadow">
+<div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:#E0F4F8">
+<svg class="w-6 h-6" style="color:#2E86AB" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+</div>
+<h3 class="font-lor text-xl font-bold mb-3" style="color:#0D2B3E">Lab &amp; Diagnostics</h3>
+<p class="text-gray-500 text-sm leading-relaxed font-int">Order lab tests online, get results digitally. Fast, accurate diagnostics with expert interpretation.</p>
+</div>
+<div class="bg-white border border-gray-100 rounded-2xl p-8 shadow-sm2 hover:shadow-md2 transition-shadow">
+<div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:#E6F5EE">
+<svg class="w-6 h-6" style="color:#3D9970" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+</div>
+<h3 class="font-lor text-xl font-bold mb-3" style="color:#0D2B3E">Mental Health</h3>
+<p class="text-gray-500 text-sm leading-relaxed font-int">Licensed therapists and psychiatrists available online. Confidential, compassionate mental wellness support.</p>
+</div>
+<div class="bg-white border border-gray-100 rounded-2xl p-8 shadow-sm2 hover:shadow-md2 transition-shadow">
+<div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:#E0F4F8">
+<svg class="w-6 h-6" style="color:#2E86AB" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18h.01M8 21h8a2 2 0 002-2v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2a2 2 0 002 2zm8-10a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+</div>
+<h3 class="font-lor text-xl font-bold mb-3" style="color:#0D2B3E">Specialist Network</h3>
+<p class="text-gray-500 text-sm leading-relaxed font-int">Access 120+ specialists across 30+ disciplines. Referrals made easy, second opinions available instantly.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="py-24" style="background:linear-gradient(135deg,#E8F4F8 0%,#EAF5EE 100%)">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid lg:grid-cols-2 gap-16 items-center">
+<div>
+<p class="text-xs font-bold font-int tracking-widest uppercase mb-3" style="color:#2E86AB">How It Works</p>
+<h2 class="font-lor text-4xl lg:text-5xl font-bold mb-8" style="color:#0D2B3E">Healthcare made<br>simple in 3 steps</h2>
+<div class="space-y-8">
+<div class="flex gap-5">
+<div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold font-int flex-shrink-0 mt-0.5 shadow-sm2" style="background:#2E86AB">1</div>
+<div>
+<h4 class="font-semibold font-lor text-lg mb-1.5" style="color:#0D2B3E">Create your health profile</h4>
+<p class="text-gray-500 text-sm font-int leading-relaxed">Enter your medical history, current medications, and health goals. Takes less than 5 minutes.</p>
+</div>
+</div>
+<div class="flex gap-5">
+<div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold font-int flex-shrink-0 mt-0.5 shadow-sm2" style="background:#3D9970">2</div>
+<div>
+<h4 class="font-semibold font-lor text-lg mb-1.5" style="color:#0D2B3E">Choose your doctor</h4>
+<p class="text-gray-500 text-sm font-int leading-relaxed">Browse verified specialists by specialty, availability, and patient reviews. Book instantly.</p>
+</div>
+</div>
+<div class="flex gap-5">
+<div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold font-int flex-shrink-0 mt-0.5 shadow-sm2" style="background:#2E86AB">3</div>
+<div>
+<h4 class="font-semibold font-lor text-lg mb-1.5" style="color:#0D2B3E">Get care, anywhere</h4>
+<p class="text-gray-500 text-sm font-int leading-relaxed">Attend your appointment via video or in-person. Receive prescriptions, referrals, and follow-up care digitally.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-white rounded-2xl p-6 shadow-sm2 border border-gray-100">
+<p class="text-3xl font-bold font-lor mb-1" style="color:#2E86AB">8 min</p>
+<p class="text-sm text-gray-500 font-int">Average wait time</p>
+</div>
+<div class="rounded-2xl p-6 shadow-sm2 text-white" style="background:#2E86AB">
+<p class="text-3xl font-bold font-lor mb-1">4.9★</p>
+<p class="text-sm opacity-80 font-int">Doctor rating avg.</p>
+</div>
+<div class="rounded-2xl p-6 shadow-sm2 text-white" style="background:#3D9970">
+<p class="text-3xl font-bold font-lor mb-1">30+</p>
+<p class="text-sm opacity-80 font-int">Medical specialties</p>
+</div>
+<div class="bg-white rounded-2xl p-6 shadow-sm2 border border-gray-100">
+<p class="text-3xl font-bold font-lor mb-1" style="color:#3D9970">99.2%</p>
+<p class="text-sm text-gray-500 font-int">Diagnosis accuracy</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- DOCTORS SECTION -->
+<section class="bg-white py-24">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-16">
+<p class="text-xs font-bold font-int tracking-widest uppercase mb-3" style="color:#2E86AB">Our Doctors</p>
+<h2 class="font-lor text-4xl lg:text-5xl font-bold mb-4" style="color:#0D2B3E">Meet our world-class<br>medical team</h2>
+<p class="text-gray-500 text-lg max-w-xl mx-auto font-int">Board-certified physicians with decades of experience, dedicated to your wellbeing.</p>
+</div>
+<div class="grid md:grid-cols-4 gap-6">
+<div class="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm2 hover:shadow-md2 transition-shadow">
+<div class="h-40 flex items-center justify-center" style="background:linear-gradient(135deg,#E0F4F8,#E6F5EE)">
+<div class="w-20 h-20 rounded-full flex items-center justify-center text-white text-2xl font-bold font-lor shadow-md2" style="background:linear-gradient(135deg,#2E86AB,#3D9970)">EC</div>
+</div>
+<div class="p-5">
+<h4 class="font-lor font-bold text-gray-800 mb-0.5">Dr. Emily Chen</h4>
+<p class="text-xs font-int mb-2" style="color:#2E86AB">Cardiologist</p>
+<p class="text-xs text-gray-500 font-int mb-3">15 years experience · Harvard Medical</p>
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold font-int" style="color:#3D9970">★ 4.9 (312 reviews)</span>
+<button class="text-xs font-bold px-3 py-1.5 rounded-full text-white font-int min-h-[32px]" style="background:#2E86AB">Book</button>
+</div>
+</div>
+</div>
+<div class="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm2 hover:shadow-md2 transition-shadow">
+<div class="h-40 flex items-center justify-center" style="background:linear-gradient(135deg,#E6F5EE,#E0F4F8)">
+<div class="w-20 h-20 rounded-full flex items-center justify-center text-white text-2xl font-bold font-lor shadow-md2" style="background:linear-gradient(135deg,#3D9970,#2E86AB)">MR</div>
+</div>
+<div class="p-5">
+<h4 class="font-lor font-bold text-gray-800 mb-0.5">Dr. Mark Rivera</h4>
+<p class="text-xs font-int mb-2" style="color:#3D9970">General Physician</p>
+<p class="text-xs text-gray-500 font-int mb-3">12 years experience · Johns Hopkins</p>
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold font-int" style="color:#3D9970">★ 4.8 (287 reviews)</span>
+<button class="text-xs font-bold px-3 py-1.5 rounded-full text-white font-int min-h-[32px]" style="background:#3D9970">Book</button>
+</div>
+</div>
+</div>
+<div class="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm2 hover:shadow-md2 transition-shadow">
+<div class="h-40 flex items-center justify-center" style="background:linear-gradient(135deg,#E0F4F8,#EEF0FF)">
+<div class="w-20 h-20 rounded-full flex items-center justify-center text-white text-2xl font-bold font-lor shadow-md2" style="background:linear-gradient(135deg,#2E86AB,#4A6FA5)">SP</div>
+</div>
+<div class="p-5">
+<h4 class="font-lor font-bold text-gray-800 mb-0.5">Dr. Sana Patel</h4>
+<p class="text-xs font-int mb-2" style="color:#2E86AB">Neurologist</p>
+<p class="text-xs text-gray-500 font-int mb-3">18 years experience · Mayo Clinic</p>
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold font-int" style="color:#3D9970">★ 5.0 (198 reviews)</span>
+<button class="text-xs font-bold px-3 py-1.5 rounded-full text-white font-int min-h-[32px]" style="background:#2E86AB">Book</button>
+</div>
+</div>
+</div>
+<div class="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm2 hover:shadow-md2 transition-shadow">
+<div class="h-40 flex items-center justify-center" style="background:linear-gradient(135deg,#E6F5EE,#EAF4EC)">
+<div class="w-20 h-20 rounded-full flex items-center justify-center text-white text-2xl font-bold font-lor shadow-md2" style="background:linear-gradient(135deg,#3D9970,#7DAF8A)">JW</div>
+</div>
+<div class="p-5">
+<h4 class="font-lor font-bold text-gray-800 mb-0.5">Dr. James Wu</h4>
+<p class="text-xs font-int mb-2" style="color:#3D9970">Pediatrician</p>
+<p class="text-xs text-gray-500 font-int mb-3">10 years experience · Stanford Med</p>
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold font-int" style="color:#3D9970">★ 4.9 (421 reviews)</span>
+<button class="text-xs font-bold px-3 py-1.5 rounded-full text-white font-int min-h-[32px]" style="background:#3D9970">Book</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="py-24" style="background:#F0F8FF">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-12">
+<h2 class="font-lor text-4xl font-bold" style="color:#0D2B3E">What our patients say</h2>
+</div>
+<div class="grid md:grid-cols-3 gap-6">
+<div class="bg-white rounded-2xl p-8 shadow-sm2 border border-gray-100">
+<div class="flex items-center gap-1 mb-4">
+<span class="text-amber-400 text-sm">★★★★★</span>
+</div>
+<p class="text-gray-600 text-sm leading-relaxed font-int mb-6">"MediCare+ changed how I think about healthcare. I got a specialist appointment in 2 hours — something that used to take weeks. The doctor was thorough, compassionate, and incredibly knowledgeable."</p>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold font-int flex-shrink-0" style="background:#2E86AB">LM</div>
+<div>
+<p class="text-sm font-semibold font-lor" style="color:#0D2B3E">Laura Martinez</p>
+<p class="text-xs text-gray-400 font-int">Patient since 2022</p>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-2xl p-8 shadow-sm2 border border-gray-100">
+<div class="flex items-center gap-1 mb-4">
+<span class="text-amber-400 text-sm">★★★★★</span>
+</div>
+<p class="text-gray-600 text-sm leading-relaxed font-int mb-6">"As a parent, having access to a pediatrician at 2am when my daughter had a fever was priceless. The telemedicine feature is seamless and the doctors are genuinely caring."</p>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold font-int flex-shrink-0" style="background:#3D9970">DK</div>
+<div>
+<p class="text-sm font-semibold font-lor" style="color:#0D2B3E">David Kim</p>
+<p class="text-xs text-gray-400 font-int">Patient since 2023</p>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-2xl p-8 shadow-sm2 border border-gray-100">
+<div class="flex items-center gap-1 mb-4">
+<span class="text-amber-400 text-sm">★★★★★</span>
+</div>
+<p class="text-gray-600 text-sm leading-relaxed font-int mb-6">"The digital health records feature alone is worth it. My entire medical history in one place, shareable with any doctor instantly. This is what modern healthcare should look like."</p>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold font-int flex-shrink-0" style="background:#2E86AB">AN</div>
+<div>
+<p class="text-sm font-semibold font-lor" style="color:#0D2B3E">Aisha Nkosi</p>
+<p class="text-xs text-gray-400 font-int">Patient since 2021</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- TRUST / CERTIFICATIONS -->
+<section class="bg-white py-16 border-t border-gray-100">
+<div class="max-w-7xl mx-auto px-6">
+<p class="text-center text-xs font-bold font-int tracking-widest uppercase mb-8 text-gray-400">Trusted, Certified &amp; Accredited By</p>
+<div class="flex flex-wrap items-center justify-center gap-8 md:gap-16">
+<div class="flex items-center gap-2 opacity-40 hover:opacity-70 transition-opacity">
+<div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:#E0F4F8">
+<svg class="w-4 h-4" style="color:#2E86AB" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+</div>
+<span class="text-sm font-bold text-gray-500 font-int">HIPAA Certified</span>
+</div>
+<div class="flex items-center gap-2 opacity-40 hover:opacity-70 transition-opacity">
+<div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:#E6F5EE">
+<svg class="w-4 h-4" style="color:#3D9970" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-2 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+</div>
+<span class="text-sm font-bold text-gray-500 font-int">Joint Commission</span>
+</div>
+<div class="flex items-center gap-2 opacity-40 hover:opacity-70 transition-opacity">
+<div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:#E0F4F8">
+<svg class="w-4 h-4" style="color:#2E86AB" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+</div>
+<span class="text-sm font-bold text-gray-500 font-int">SOC 2 Type II</span>
+</div>
+<div class="flex items-center gap-2 opacity-40 hover:opacity-70 transition-opacity">
+<div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:#E6F5EE">
+<svg class="w-4 h-4" style="color:#3D9970" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+</div>
+<span class="text-sm font-bold text-gray-500 font-int">WHO Compliant</span>
+</div>
+<div class="flex items-center gap-2 opacity-40 hover:opacity-70 transition-opacity">
+<div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:#E0F4F8">
+<svg class="w-4 h-4" style="color:#2E86AB" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+</div>
+<span class="text-sm font-bold text-gray-500 font-int">FDA Registered</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="py-24" style="background:linear-gradient(135deg,#0D2B3E 0%,#1A4A6E 50%,#0D3A2E 100%)">
+<div class="max-w-3xl mx-auto px-6 text-center">
+<div class="inline-flex items-center gap-2 text-xs font-bold px-3 py-1.5 rounded-full mb-6 font-int uppercase tracking-wider" style="background:rgba(46,134,171,0.3);color:#7EC8E3">
+<span class="w-1.5 h-1.5 rounded-full" style="background:#7EC8E3"></span>
+Start Your Health Journey Today
+</div>
+<h2 class="font-lor text-4xl lg:text-5xl font-bold text-white mb-4">Your health deserves<br>the best care.</h2>
+<p class="text-lg font-int mb-8" style="color:#A8D5E8">Join 50,000+ patients who trust MediCare+ for their healthcare needs. First consultation is always free.</p>
+<form onsubmit="return false" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mb-4">
+<input type="email" placeholder="Your email address" class="flex-1 px-4 py-3 rounded-full text-sm font-int focus:outline-none min-h-[44px]" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:white">
+<button type="submit" class="text-sm font-semibold px-6 py-3 rounded-full font-int transition-colors whitespace-nowrap min-h-[44px]" style="background:#2E86AB;color:white">Book Free Consultation</button>
+</form>
+<p class="text-xs font-int" style="color:rgba(168,213,232,0.7)">No credit card required · Cancel anytime · HIPAA compliant</p>
+<div class="mt-10 grid grid-cols-3 gap-6 max-w-lg mx-auto pt-8" style="border-top:1px solid rgba(255,255,255,0.1)">
+<div>
+<p class="text-2xl font-bold font-lor text-white mb-1">Free</p>
+<p class="text-xs font-int" style="color:#A8D5E8">First consultation</p>
+</div>
+<div>
+<p class="text-2xl font-bold font-lor text-white mb-1">24/7</p>
+<p class="text-xs font-int" style="color:#A8D5E8">Doctor availability</p>
+</div>
+<div>
+<p class="text-2xl font-bold font-lor text-white mb-1">5 min</p>
+<p class="text-xs font-int" style="color:#A8D5E8">To get started</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-16" style="background:#0D2B3E">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid md:grid-cols-5 gap-8 mb-10">
+<div class="md:col-span-2">
+<div class="flex items-center gap-2.5 mb-4">
+<div class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,#2E86AB,#3D9970)">
+<svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+</div>
+<span class="font-bold text-white font-lor text-lg">MediCare<span style="color:#2E86AB">+</span></span>
+</div>
+<p class="text-gray-400 text-sm font-int leading-relaxed mb-4">Compassionate, world-class healthcare accessible to everyone. Your health, our priority — always.</p>
+<div class="flex gap-3">
+<span class="text-xs font-bold px-2.5 py-1 rounded font-int" style="background:rgba(46,134,171,0.2);color:#7EC8E3">HIPAA</span>
+<span class="text-xs font-bold px-2.5 py-1 rounded font-int" style="background:rgba(61,153,112,0.2);color:#7ECFA8">SOC 2</span>
+<span class="text-xs font-bold px-2.5 py-1 rounded font-int" style="background:rgba(46,134,171,0.2);color:#7EC8E3">FDA</span>
+</div>
+</div>
+<div>
+<p class="text-white text-sm font-semibold font-int mb-4">Services</p>
+<div class="space-y-2">
+<a href="#" class="block text-gray-400 text-sm font-int hover:text-white transition-colors">Telemedicine</a>
+<a href="#" class="block text-gray-400 text-sm font-int hover:text-white transition-colors">Health Records</a>
+<a href="#" class="block text-gray-400 text-sm font-int hover:text-white transition-colors">Lab &amp; Diagnostics</a>
+<a href="#" class="block text-gray-400 text-sm font-int hover:text-white transition-colors">Mental Health</a>
+</div>
+</div>
+<div>
+<p class="text-white text-sm font-semibold font-int mb-4">Company</p>
+<div class="space-y-2">
+<a href="#" class="block text-gray-400 text-sm font-int hover:text-white transition-colors">About Us</a>
+<a href="#" class="block text-gray-400 text-sm font-int hover:text-white transition-colors">Our Doctors</a>
+<a href="#" class="block text-gray-400 text-sm font-int hover:text-white transition-colors">Careers</a>
+<a href="#" class="block text-gray-400 text-sm font-int hover:text-white transition-colors">Press</a>
+</div>
+</div>
+<div>
+<p class="text-white text-sm font-semibold font-int mb-4">Support</p>
+<div class="space-y-2">
+<a href="#" class="block text-gray-400 text-sm font-int hover:text-white transition-colors">Help Center</a>
+<a href="#" class="block text-gray-400 text-sm font-int hover:text-white transition-colors">Privacy Policy</a>
+<a href="#" class="block text-gray-400 text-sm font-int hover:text-white transition-colors">Terms of Service</a>
+<a href="#" class="block text-gray-400 text-sm font-int hover:text-white transition-colors">Contact Us</a>
+</div>
+</div>
+</div>
+<div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style="border-top:1px solid rgba(255,255,255,0.08)">
+<p class="text-gray-500 text-sm font-int">© 2024 MediCare+ Health Technologies. All rights reserved.</p>
+<div class="flex items-center gap-4">
+<a href="/api/copilot/prototype/5776e7d4-fc9f-4634-bb32-35324702b7e9/fintech-landing-page" class="text-gray-500 text-xs font-int hover:text-white transition-colors">Next: Fintech →</a>
+</div>
+</div>
+</div>
+</footer>
+
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Legal Services Landing Page - Exported from UXMagic Copilot">
+    <title>Legal Services Landing Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+tailwind.config={theme:{extend:{colors:{
+'i1':'#5C6AC4','i1l':'#EEF0FF','i1d':'#2D2D3A',
+'f2':'#7DAF8A','f2l':'#EAF4EC','f2g':'#C9A84C','f2gl':'#F7EDD0','f2d':'#2A3240',
+'w3':'#FAF7F2','w3r':'#D4A5A5','w3t':'#C47C5A',
+'r4':'#C4B49A','r4g':'#2D5016','r4s':'#F5EFE4',
+'l5':'#4A6FA5','l5l':'#E8EEF7','l5d':'#1E2A3A',
+'e6':'#FDFAF6','e6t':'#D4B896','e6b':'#E8C4B8','e6e':'#2C1A0E',
+'ed7':'#F5A623','ed7l':'#FEF3DC','ed7s':'#4A90D9','ed7sl':'#E8F2FC',
+'t8':'#2E86AB','t8l':'#E0F0F7','t8s':'#E8D5B0','t8c':'#F4845F',
+'h9':'#E8614A','h9l':'#FDECEA','h9g':'#F5F3F0','h9d':'#1C1C1E',
+'c10':'#3D6B4F','c10l':'#E8F0EB','c10s':'#A8C5DA','c10a':'#DDD0B8','c10b':'#FAFAF7',
+'eo':'#C8622A','eol':'#FDF0E8','eod':'#1E0E06','eom':'#8B3A1A','eos':'#F5E6D3','eog':'#D4A853','eogl':'#FBF3DC','eob':'#FAF5EF',
+'hx':'#8B7355','hxl':'#F5F0E8','hxd':'#1A1410','hxm':'#5C4A32','hxs':'#EDE8DF','hxg':'#B8A898','hxc':'#2C2420','hxw':'#FAF8F5',
+'brut-black':'#0A0A0A','brut-white':'#F5F5F0','brut-yellow':'#FFE500','brut-gray':'#1A1A1A','brut-mid':'#3A3A3A',
+'lx-navy':'#0F1C2E','lx-navym':'#1A2D45','lx-navyl':'#243650',
+'lx-gold':'#C9A84C','lx-goldl':'#F7EDD0','lx-goldd':'#9E7A2A',
+'lx-cream':'#FAF8F3','lx-creams':'#F2EDE3',
+'lx-slate':'#4A5568','lx-slatel':'#EDF2F7',
+},fontFamily:{
+'pf':['"Playfair Display"','serif'],
+'cg':['"Cormorant Garamond"','serif'],
+'sg':['"Space Grotesk"','sans-serif'],
+'sm':['"Space Mono"','monospace'],
+'bar':['Barlow','sans-serif'],
+'barc':['"Barlow Condensed"','sans-serif'],
+'beb':['"Bebas Neue"','sans-serif'],
+'nun':['Nunito','sans-serif'],
+'lb':['"Libre Baskerville"','serif'],
+'man':['Manrope','sans-serif'],
+'lor':['Lora','serif'],
+'int':['Inter','sans-serif'],
+'lat':['Lato','sans-serif'],
+},boxShadow:{
+'sm2':'0 2px 8px rgba(0,0,0,0.06)',
+'md2':'0 8px 30px rgba(0,0,0,0.08)',
+'lg2':'0 20px 60px rgba(0,0,0,0.12)',
+'warm':'0 8px 30px rgba(139,115,85,0.18)',
+'warm-lg':'0 20px 60px rgba(139,115,85,0.15)',
+'brut':'6px 6px 0px #0A0A0A',
+'brut-y':'6px 6px 0px #FFE500',
+'brut-hover':'3px 3px 0px #0A0A0A',
+'gold':'0 8px 30px rgba(201,168,76,0.25)',
+'gold-lg':'0 20px 60px rgba(201,168,76,0.2)',
+'navy':'0 8px 30px rgba(15,28,46,0.3)',
+}}}}
+
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+<!-- FLOW NAVIGATION BAR -->
+<div class="fixed top-0 left-0 right-0 z-50" style="background:rgba(15,28,46,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,168,76,0.15)">
+<div class="overflow-x-auto no-sb">
+<div class="flex items-center gap-2 px-6 py-3 min-w-max justify-center">
+<span class="font-nun text-[10px] font-bold uppercase tracking-widest mr-2" style="color:rgba(255,255,255,0.3)">Landing Pages:</span>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/healthcare-landing-page" class="nav-flow-link">01 Healthcare</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/fintech-landing-page" class="nav-flow-link">02 Fintech</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/online-education-landing-page" class="nav-flow-link">03 Education</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/real-estate-landing-page" class="nav-flow-link">04 Real Estate</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/fitness-wellness-landing-page" class="nav-flow-link">05 Fitness</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/travel-adventure-landing-page" class="nav-flow-link">06 Travel</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/food-delivery-landing-page" class="nav-flow-link">07 Food</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/legal-services-landing-page" class="nav-flow-link active">08 Legal ✦</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/automotive-landing-page" class="nav-flow-link">09 Auto</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/green-tech-landing-page" class="nav-flow-link">10 Green Tech</a>
+</div>
+</div>
+</div>
+
+<!-- MAIN NAVIGATION -->
+<nav class="fixed top-14 left-0 right-0 z-40">
+<div class="max-w-7xl mx-auto px-6 mt-4">
+<div class="lx-glass px-8 py-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 flex items-center justify-center" style="border:1.5px solid rgba(201,168,76,0.6)">
+<span class="font-cg text-lx-gold text-xl italic font-semibold leading-none">L</span>
+</div>
+<div>
+<span class="font-cg text-2xl tracking-widest text-white font-semibold">LEXARA</span>
+<span class="block font-lb text-[9px] uppercase tracking-[0.2em]" style="color:rgba(201,168,76,0.7)">Attorneys at Law</span>
+</div>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a href="#practice" class="nav-lx">Practice Areas</a>
+<a href="#attorneys" class="nav-lx">Our Attorneys</a>
+<a href="#results" class="nav-lx">Case Results</a>
+<a href="#contact" class="nav-lx">Contact</a>
+</div>
+<div class="flex items-center gap-3">
+<a href="#contact" class="nav-lx hidden sm:block text-sm">Free Consultation</a>
+<a href="#contact" class="btn-lx text-xs py-2.5 px-5">Get Help Now</a>
+</div>
+</div>
+</div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="relative pt-40 pb-0 overflow-hidden lx-hero-bg" style="max-height:1050px">
+<div class="absolute inset-0 z-0">
+<img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&amp;w=1800&amp;auto=format&amp;fit=crop" alt="Law Firm" class="w-full h-full object-cover opacity-15">
+<div class="absolute inset-0" style="background:linear-gradient(160deg,rgba(15,28,46,0.97) 0%,rgba(26,45,69,0.88) 50%,rgba(15,28,46,0.95) 100%)"></div>
+</div>
+
+<!-- Decorative Elements -->
+<div class="absolute top-20 right-0 w-[600px] h-[600px] rounded-full opacity-5" style="background:radial-gradient(circle,#C9A84C,transparent);filter:blur(80px)"></div>
+<div class="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full opacity-5" style="background:radial-gradient(circle,#C9A84C,transparent);filter:blur(80px)"></div>
+
+<!-- Decorative vertical lines -->
+<div class="absolute top-0 left-[20%] w-px h-full opacity-5" style="background:linear-gradient(180deg,transparent,#C9A84C,transparent)"></div>
+<div class="absolute top-0 right-[20%] w-px h-full opacity-5" style="background:linear-gradient(180deg,transparent,#C9A84C,transparent)"></div>
+
+<div class="max-w-7xl mx-auto px-6 relative z-10">
+<div class="grid lg:grid-cols-2 gap-16 items-center pt-10">
+<!-- Left: Text -->
+<div>
+<div class="inline-flex items-center gap-3 mb-8">
+<div class="lx-divider w-12"></div>
+<span class="font-lb text-xs uppercase tracking-[0.2em]" style="color:#C9A84C">Established 1987 · New York</span>
+<div class="lx-divider w-12"></div>
+</div>
+<h1 class="font-cg text-6xl lg:text-7xl leading-[1.05] mb-6 text-white font-semibold">
+Justice Is Not<br>
+Just a <span class="lx-gold-text italic">Promise.</span><br>
+It's Our Practice.
+</h1>
+<p class="font-lb text-base leading-relaxed mb-10 max-w-lg" style="color:rgba(255,255,255,0.6);font-weight:400">
+Lexara Law Firm has represented thousands of clients across corporate law, personal injury, family law, and criminal defense. With over 35 years of excellence, we fight for what you deserve.
+</p>
+
+<!-- CTA Buttons -->
+<div class="flex flex-col sm:flex-row gap-4 mb-12">
+<a href="#contact" class="btn-lx">Free Consultation</a>
+<a href="#practice" class="btn-lx-outline">Our Practice Areas</a>
+</div>
+
+<!-- Trust Badges -->
+<div class="grid grid-cols-3 gap-6 pt-8" style="border-top:1px solid rgba(255,255,255,0.08)">
+<div class="text-center">
+<p class="font-cg text-4xl font-semibold lx-gold-text">98%</p>
+<p class="font-lb text-xs uppercase tracking-widest mt-1" style="color:rgba(255,255,255,0.4)">Win Rate</p>
+</div>
+<div class="text-center">
+<p class="font-cg text-4xl font-semibold lx-gold-text">$2.4B</p>
+<p class="font-lb text-xs uppercase tracking-widest mt-1" style="color:rgba(255,255,255,0.4)">Recovered</p>
+</div>
+<div class="text-center">
+<p class="font-cg text-4xl font-semibold lx-gold-text">35+</p>
+<p class="font-lb text-xs uppercase tracking-widest mt-1" style="color:rgba(255,255,255,0.4)">Years Experience</p>
+</div>
+</div>
+</div>
+
+<!-- Right: Visual -->
+<div class="relative h-[560px] hidden lg:block">
+<!-- Main Image -->
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="relative w-[340px] h-[480px] overflow-hidden float-slow" style="border-radius:2px;border:1px solid rgba(201,168,76,0.25)">
+<img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&amp;w=700&amp;auto=format&amp;fit=crop" alt="Attorney" class="w-full h-full object-cover opacity-80">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(15,28,46,0.9) 0%,transparent 55%)"></div>
+<div class="absolute bottom-6 left-6 right-6">
+<div class="lx-glass p-4">
+<p class="font-lb text-xs uppercase tracking-widest mb-1" style="color:rgba(201,168,76,0.7)">Senior Partner</p>
+<p class="font-cg text-xl text-white font-semibold">Richard A. Lexara</p>
+<p class="font-lb text-xs mt-1" style="color:rgba(255,255,255,0.5)">35 Years · Corporate &amp; Litigation</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Floating: Award Badge -->
+<div class="absolute top-[6%] right-[0%] lx-card p-4 z-30 float-fast shadow-md2" style="border-radius:2px">
+<div class="flex items-center gap-3">
+<div class="lx-seal">
+<span class="font-cg text-lx-gold text-lg font-semibold leading-none">★</span>
+<span class="font-lb text-[8px] uppercase tracking-widest text-lx-gold leading-none mt-0.5">AV Rated</span>
+</div>
+<div>
+<p class="font-lb text-xs font-bold text-lx-navy">Martindale-Hubbell</p>
+<p class="font-lb text-xs" style="color:#9E7A2A">Preeminent Rating</p>
+</div>
+</div>
+</div>
+
+<!-- Floating: Case Won -->
+<div class="absolute bottom-[22%] left-[-5%] lx-card p-4 z-30 float-med shadow-md2" style="border-radius:2px">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 flex items-center justify-center" style="background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.3)">
+<span class="text-lx-gold text-lg">⚖</span>
+</div>
+<div>
+<p class="font-lb text-xs font-bold text-lx-navy">Case Won</p>
+<p class="font-cg text-base font-semibold" style="color:#C9A84C">$4.2M Verdict</p>
+</div>
+</div>
+</div>
+
+<!-- Floating: Consultation -->
+<div class="absolute top-[42%] right-[-2%] z-30 float-slow lx-card p-4 shadow-md2" style="border-radius:2px">
+<div class="flex items-center gap-2 mb-1">
+<span class="w-2 h-2 rounded-full" style="background:#34C759"></span>
+<span class="font-lb text-xs" style="color:#34C759">Available Now</span>
+</div>
+<p class="font-lb text-xs font-bold text-lx-navy">Free Consultation</p>
+<p class="font-lb text-xs" style="color:rgba(15,28,46,0.5)">Call: (212) 555-0190</p>
+</div>
+</div>
+</div>
+
+<!-- Bottom Bar: Accreditations -->
+<div class="mt-16 pb-8 relative z-10">
+<p class="font-lb text-xs uppercase tracking-[0.2em] mb-5 text-center" style="color:rgba(255,255,255,0.25)">Recognized By</p>
+<div class="flex flex-wrap items-center justify-center gap-10" style="opacity:0.35">
+<span class="font-cg text-lg tracking-widest text-white font-semibold">SUPER LAWYERS</span>
+<span class="lx-divider-v h-5 inline-block"></span>
+<span class="font-cg text-lg tracking-widest text-white font-semibold">BEST LAW FIRMS</span>
+<span class="lx-divider-v h-5 inline-block"></span>
+<span class="font-cg text-lg tracking-widest text-white font-semibold">AMERICAN BAR ASSOCIATION</span>
+<span class="lx-divider-v h-5 inline-block"></span>
+<span class="font-cg text-lg tracking-widest text-white font-semibold">CHAMBERS USA</span>
+<span class="lx-divider-v h-5 inline-block"></span>
+<span class="font-cg text-lg tracking-widest text-white font-semibold">US NEWS</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- PRACTICE AREAS -->
+<section id="practice" class="py-24 lx-section-cream" style="max-height:1100px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid lg:grid-cols-2 gap-16 items-start">
+<!-- Left: Header -->
+<div>
+<div class="flex items-center gap-3 mb-6">
+<div class="lx-divider w-10"></div>
+<span class="font-lb text-xs uppercase tracking-[0.2em] text-lx-gold">What We Do</span>
+</div>
+<h2 class="font-cg text-5xl md:text-6xl text-lx-navy font-semibold leading-tight mb-6">
+Our Practice<br><span class="italic lx-gold-text">Areas</span>
+</h2>
+<p class="font-lb text-base leading-relaxed mb-8" style="color:rgba(15,28,46,0.6)">
+From complex corporate litigation to personal injury claims, our team of specialized attorneys brings unmatched expertise to every case we take on.
+</p>
+<div class="p-6" style="background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.2);border-radius:2px">
+<p class="font-cg text-2xl italic text-lx-navy mb-2">"We don't just practice law — we pursue justice."</p>
+<p class="font-lb text-xs uppercase tracking-widest" style="color:#9E7A2A">— Richard A. Lexara, Founding Partner</p>
+</div>
+<div class="mt-8">
+<a href="#contact" class="btn-lx">Schedule Consultation</a>
+</div>
+</div>
+
+<!-- Right: Practice Area List -->
+<div class="space-y-3">
+<!-- Area 1 -->
+<div class="practice-card lx-card p-6 flex items-start gap-5">
+<div class="w-12 h-12 flex items-center justify-center flex-shrink-0" style="background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.25)">
+<span class="text-lx-gold text-xl">⚖</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between mb-1">
+<h3 class="font-cg text-xl font-semibold text-lx-navy">Corporate Law</h3>
+<span class="lx-tag">Top Practice</span>
+</div>
+<p class="font-lb text-sm leading-relaxed" style="color:rgba(15,28,46,0.6)">Mergers &amp; acquisitions, contract disputes, corporate governance, and business formation for Fortune 500 companies and startups alike.</p>
+</div>
+</div>
+
+<!-- Area 2 -->
+<div class="practice-card lx-card p-6 flex items-start gap-5">
+<div class="w-12 h-12 flex items-center justify-center flex-shrink-0" style="background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.25)">
+<span class="text-lx-gold text-xl">🏥</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between mb-1">
+<h3 class="font-cg text-xl font-semibold text-lx-navy">Personal Injury</h3>
+<span class="lx-tag">No Win, No Fee</span>
+</div>
+<p class="font-lb text-sm leading-relaxed" style="color:rgba(15,28,46,0.6)">Car accidents, medical malpractice, slip and fall, workplace injuries. We fight for maximum compensation on your behalf.</p>
+</div>
+</div>
+
+<!-- Area 3 -->
+<div class="practice-card lx-card p-6 flex items-start gap-5">
+<div class="w-12 h-12 flex items-center justify-center flex-shrink-0" style="background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.25)">
+<span class="text-lx-gold text-xl">👨‍👩‍👧</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between mb-1">
+<h3 class="font-cg text-xl font-semibold text-lx-navy">Family Law</h3>
+</div>
+<p class="font-lb text-sm leading-relaxed" style="color:rgba(15,28,46,0.6)">Divorce, child custody, adoption, prenuptial agreements, and domestic relations handled with compassion and discretion.</p>
+</div>
+</div>
+
+<!-- Area 4 -->
+<div class="practice-card lx-card p-6 flex items-start gap-5">
+<div class="w-12 h-12 flex items-center justify-center flex-shrink-0" style="background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.25)">
+<span class="text-lx-gold text-xl">🔒</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between mb-1">
+<h3 class="font-cg text-xl font-semibold text-lx-navy">Criminal Defense</h3>
+</div>
+<p class="font-lb text-sm leading-relaxed" style="color:rgba(15,28,46,0.6)">Aggressive defense for felony and misdemeanor charges, white-collar crime, DUI, and federal criminal matters.</p>
+</div>
+</div>
+
+<!-- Area 5 -->
+<div class="practice-card lx-card p-6 flex items-start gap-5">
+<div class="w-12 h-12 flex items-center justify-center flex-shrink-0" style="background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.25)">
+<span class="text-lx-gold text-xl">🏠</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between mb-1">
+<h3 class="font-cg text-xl font-semibold text-lx-navy">Real Estate Law</h3>
+</div>
+<p class="font-lb text-sm leading-relaxed" style="color:rgba(15,28,46,0.6)">Commercial and residential transactions, landlord-tenant disputes, zoning, and property litigation across New York.</p>
+</div>
+</div>
+
+<!-- Area 6 -->
+<div class="practice-card lx-card p-6 flex items-start gap-5">
+<div class="w-12 h-12 flex items-center justify-center flex-shrink-0" style="background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.25)">
+<span class="text-lx-gold text-xl">📋</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between mb-1">
+<h3 class="font-cg text-xl font-semibold text-lx-navy">Estate Planning</h3>
+</div>
+<p class="font-lb text-sm leading-relaxed" style="color:rgba(15,28,46,0.6)">Wills, trusts, probate, and estate administration. Protect your legacy and provide for your loved ones.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ATTORNEYS -->
+<section id="attorneys" class="py-24" style="background:#0F1C2E;max-height:1100px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-16">
+<div class="flex items-center justify-center gap-3 mb-4">
+<div class="lx-divider w-12"></div>
+<span class="font-lb text-xs uppercase tracking-[0.2em] text-lx-gold">Meet the Team</span>
+<div class="lx-divider w-12"></div>
+</div>
+<h2 class="font-cg text-5xl md:text-6xl text-white font-semibold mb-4">Our <span class="italic lx-gold-text">Attorneys</span></h2>
+<p class="font-lb text-base max-w-2xl mx-auto" style="color:rgba(255,255,255,0.55)">Each of our attorneys brings decades of specialized experience and an unwavering commitment to client success.</p>
+</div>
+
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Attorney 1 -->
+<div class="attorney-card">
+<div class="relative h-[320px] overflow-hidden" style="border-radius:2px 2px 0 0">
+<img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&amp;w=500&amp;auto=format&amp;fit=crop" alt="Richard Lexara" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(15,28,46,0.95) 0%,transparent 55%)"></div>
+<div class="absolute top-4 right-4">
+<span class="lx-tag" style="background:rgba(201,168,76,0.9);color:#0F1C2E;border:none">Founding Partner</span>
+</div>
+<div class="absolute bottom-4 left-4 right-4">
+<p class="font-lb text-xs uppercase tracking-widest mb-1" style="color:rgba(201,168,76,0.7)">Corporate Law</p>
+<h3 class="font-cg text-xl text-white font-semibold">Richard A. Lexara</h3>
+</div>
+</div>
+<div class="p-5" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-top:none;border-radius:0 0 2px 2px">
+<p class="font-lb text-xs leading-relaxed mb-3" style="color:rgba(255,255,255,0.5)">Harvard Law '88 · 35 years experience · Former US Attorney</p>
+<div class="flex items-center gap-2">
+<span class="stars text-xs">★★★★★</span>
+<span class="font-lb text-xs" style="color:rgba(255,255,255,0.4)">4.9 (312 reviews)</span>
+</div>
+</div>
+</div>
+
+<!-- Attorney 2 -->
+<div class="attorney-card">
+<div class="relative h-[320px] overflow-hidden" style="border-radius:2px 2px 0 0">
+<img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&amp;w=500&amp;auto=format&amp;fit=crop" alt="Sarah Chen" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(15,28,46,0.95) 0%,transparent 55%)"></div>
+<div class="absolute top-4 right-4">
+<span class="lx-tag" style="background:rgba(255,255,255,0.12);color:white;border-color:rgba(255,255,255,0.2)">Senior Partner</span>
+</div>
+<div class="absolute bottom-4 left-4 right-4">
+<p class="font-lb text-xs uppercase tracking-widest mb-1" style="color:rgba(201,168,76,0.7)">Personal Injury</p>
+<h3 class="font-cg text-xl text-white font-semibold">Sarah M. Chen</h3>
+</div>
+</div>
+<div class="p-5" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-top:none;border-radius:0 0 2px 2px">
+<p class="font-lb text-xs leading-relaxed mb-3" style="color:rgba(255,255,255,0.5)">Yale Law '95 · 28 years experience · $800M+ recovered</p>
+<div class="flex items-center gap-2">
+<span class="stars text-xs">★★★★★</span>
+<span class="font-lb text-xs" style="color:rgba(255,255,255,0.4)">5.0 (287 reviews)</span>
+</div>
+</div>
+</div>
+
+<!-- Attorney 3 -->
+<div class="attorney-card">
+<div class="relative h-[320px] overflow-hidden" style="border-radius:2px 2px 0 0">
+<img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&amp;w=500&amp;auto=format&amp;fit=crop" alt="Marcus Williams" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(15,28,46,0.95) 0%,transparent 55%)"></div>
+<div class="absolute top-4 right-4">
+<span class="lx-tag" style="background:rgba(255,255,255,0.12);color:white;border-color:rgba(255,255,255,0.2)">Partner</span>
+</div>
+<div class="absolute bottom-4 left-4 right-4">
+<p class="font-lb text-xs uppercase tracking-widest mb-1" style="color:rgba(201,168,76,0.7)">Criminal Defense</p>
+<h3 class="font-cg text-xl text-white font-semibold">Marcus J. Williams</h3>
+</div>
+</div>
+<div class="p-5" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-top:none;border-radius:0 0 2px 2px">
+<p class="font-lb text-xs leading-relaxed mb-3" style="color:rgba(255,255,255,0.5)">Columbia Law '00 · 23 years experience · 400+ acquittals</p>
+<div class="flex items-center gap-2">
+<span class="stars text-xs">★★★★★</span>
+<span class="font-lb text-xs" style="color:rgba(255,255,255,0.4)">4.8 (198 reviews)</span>
+</div>
+</div>
+</div>
+
+<!-- Attorney 4 -->
+<div class="attorney-card">
+<div class="relative h-[320px] overflow-hidden" style="border-radius:2px 2px 0 0">
+<img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&amp;w=500&amp;auto=format&amp;fit=crop" alt="Elena Rodriguez" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(15,28,46,0.95) 0%,transparent 55%)"></div>
+<div class="absolute top-4 right-4">
+<span class="lx-tag" style="background:rgba(255,255,255,0.12);color:white;border-color:rgba(255,255,255,0.2)">Partner</span>
+</div>
+<div class="absolute bottom-4 left-4 right-4">
+<p class="font-lb text-xs uppercase tracking-widest mb-1" style="color:rgba(201,168,76,0.7)">Family Law</p>
+<h3 class="font-cg text-xl text-white font-semibold">Elena V. Rodriguez</h3>
+</div>
+</div>
+<div class="p-5" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-top:none;border-radius:0 0 2px 2px">
+<p class="font-lb text-xs leading-relaxed mb-3" style="color:rgba(255,255,255,0.5)">NYU Law '03 · 20 years experience · Certified Mediator</p>
+<div class="flex items-center gap-2">
+<span class="stars text-xs">★★★★★</span>
+<span class="font-lb text-xs" style="color:rgba(255,255,255,0.4)">4.9 (241 reviews)</span>
+</div>
+</div>
+</div>
+</div>
+
+<!-- View All -->
+<div class="text-center mt-10">
+<a href="#contact" class="btn-lx-outline">View All 24 Attorneys</a>
+</div>
+</div>
+</section>
+
+<!-- CASE RESULTS -->
+<section id="results" class="py-24 lx-section-cream" style="max-height:900px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-16">
+<div class="flex items-center justify-center gap-3 mb-4">
+<div class="lx-divider w-12"></div>
+<span class="font-lb text-xs uppercase tracking-[0.2em] text-lx-gold">Our Track Record</span>
+<div class="lx-divider w-12"></div>
+</div>
+<h2 class="font-cg text-5xl md:text-6xl text-lx-navy font-semibold mb-4">Notable <span class="italic lx-gold-text">Case Results</span></h2>
+<p class="font-lb text-base max-w-2xl mx-auto" style="color:rgba(15,28,46,0.6)">Results that speak for themselves. Every number represents a client whose life we changed.</p>
+</div>
+
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+<!-- Result 1 - Featured -->
+<div class="lg:col-span-1 p-8 text-white relative overflow-hidden" style="background:linear-gradient(160deg,#0F1C2E,#1A2D45);border-radius:2px;border:1px solid rgba(201,168,76,0.2)">
+<div class="absolute top-0 right-0 w-32 h-32 opacity-5" style="background:radial-gradient(circle,#C9A84C,transparent)"></div>
+<span class="lx-tag mb-4 inline-block" style="background:rgba(201,168,76,0.15);color:#C9A84C">Personal Injury</span>
+<p class="font-cg text-5xl font-semibold lx-gold-text mb-2">$14.7M</p>
+<h3 class="font-cg text-xl text-white font-semibold mb-3">Medical Malpractice Verdict</h3>
+<p class="font-lb text-sm leading-relaxed" style="color:rgba(255,255,255,0.55)">Surgical error resulting in permanent disability. Secured maximum compensation including future care costs and lost earnings.</p>
+<div class="mt-5 pt-5" style="border-top:1px solid rgba(255,255,255,0.08)">
+<p class="font-lb text-xs uppercase tracking-widest" style="color:rgba(201,168,76,0.6)">Lead Attorney: Sarah M. Chen</p>
+</div>
+</div>
+
+<!-- Result 2 -->
+<div class="lx-card p-8">
+<span class="lx-tag mb-4 inline-block">Corporate Litigation</span>
+<p class="font-cg text-5xl font-semibold lx-gold-text mb-2">$8.3M</p>
+<h3 class="font-cg text-xl text-lx-navy font-semibold mb-3">Breach of Contract Settlement</h3>
+<p class="font-lb text-sm leading-relaxed" style="color:rgba(15,28,46,0.6)">Multi-party commercial dispute involving intellectual property theft and breach of partnership agreement. Settled pre-trial.</p>
+<div class="mt-5 pt-5" style="border-top:1px solid rgba(15,28,46,0.08)">
+<p class="font-lb text-xs uppercase tracking-widest" style="color:#9E7A2A">Lead Attorney: Richard A. Lexara</p>
+</div>
+</div>
+
+<!-- Result 3 -->
+<div class="lx-card p-8">
+<span class="lx-tag mb-4 inline-block">Criminal Defense</span>
+<p class="font-cg text-5xl font-semibold lx-gold-text mb-2">Not Guilty</p>
+<h3 class="font-cg text-xl text-lx-navy font-semibold mb-3">Federal Fraud Acquittal</h3>
+<p class="font-lb text-sm leading-relaxed" style="color:rgba(15,28,46,0.6)">Client faced 20-year federal sentence on securities fraud charges. Full acquittal on all counts after 6-week trial.</p>
+<div class="mt-5 pt-5" style="border-top:1px solid rgba(15,28,46,0.08)">
+<p class="font-lb text-xs uppercase tracking-widest" style="color:#9E7A2A">Lead Attorney: Marcus J. Williams</p>
+</div>
+</div>
+
+<!-- Result 4 -->
+<div class="lx-card p-8">
+<span class="lx-tag mb-4 inline-block">Personal Injury</span>
+<p class="font-cg text-5xl font-semibold lx-gold-text mb-2">$6.1M</p>
+<h3 class="font-cg text-xl text-lx-navy font-semibold mb-3">Wrongful Death Settlement</h3>
+<p class="font-lb text-sm leading-relaxed" style="color:rgba(15,28,46,0.6)">Trucking accident resulting in wrongful death. Negotiated landmark settlement for surviving family members.</p>
+<div class="mt-5 pt-5" style="border-top:1px solid rgba(15,28,46,0.08)">
+<p class="font-lb text-xs uppercase tracking-widest" style="color:#9E7A2A">Lead Attorney: Sarah M. Chen</p>
+</div>
+</div>
+
+<!-- Result 5 -->
+<div class="lx-card p-8">
+<span class="lx-tag mb-4 inline-block">Real Estate</span>
+<p class="font-cg text-5xl font-semibold lx-gold-text mb-2">$3.8M</p>
+<h3 class="font-cg text-xl text-lx-navy font-semibold mb-3">Commercial Property Dispute</h3>
+<p class="font-lb text-sm leading-relaxed" style="color:rgba(15,28,46,0.6)">Complex zoning and title dispute involving a 40-story Manhattan development. Resolved in client's favor within 8 months.</p>
+<div class="mt-5 pt-5" style="border-top:1px solid rgba(15,28,46,0.08)">
+<p class="font-lb text-xs uppercase tracking-widest" style="color:#9E7A2A">Lead Attorney: Richard A. Lexara</p>
+</div>
+</div>
+
+<!-- Result 6 -->
+<div class="lx-card p-8">
+<span class="lx-tag mb-4 inline-block">Family Law</span>
+<p class="font-cg text-5xl font-semibold lx-gold-text mb-2">Full Custody</p>
+<h3 class="font-cg text-xl text-lx-navy font-semibold mb-3">High-Profile Custody Case</h3>
+<p class="font-lb text-sm leading-relaxed" style="color:rgba(15,28,46,0.6)">International custody dispute involving assets in three countries. Secured full custody and $2.4M in child support.</p>
+<div class="mt-5 pt-5" style="border-top:1px solid rgba(15,28,46,0.08)">
+<p class="font-lb text-xs uppercase tracking-widest" style="color:#9E7A2A">Lead Attorney: Elena V. Rodriguez</p>
+</div>
+</div>
+</div>
+
+<!-- Stats Row -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="text-center p-6" style="background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.15);border-radius:2px">
+<p class="font-cg text-4xl font-semibold lx-gold-text mb-1">$2.4B+</p>
+<p class="font-lb text-xs uppercase tracking-widest" style="color:rgba(15,28,46,0.5)">Total Recovered</p>
+</div>
+<div class="text-center p-6" style="background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.15);border-radius:2px">
+<p class="font-cg text-4xl font-semibold lx-gold-text mb-1">12,400+</p>
+<p class="font-lb text-xs uppercase tracking-widest" style="color:rgba(15,28,46,0.5)">Cases Won</p>
+</div>
+<div class="text-center p-6" style="background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.15);border-radius:2px">
+<p class="font-cg text-4xl font-semibold lx-gold-text mb-1">98%</p>
+<p class="font-lb text-xs uppercase tracking-widest" style="color:rgba(15,28,46,0.5)">Success Rate</p>
+</div>
+<div class="text-center p-6" style="background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.15);border-radius:2px">
+<p class="font-cg text-4xl font-semibold lx-gold-text mb-1">35+</p>
+<p class="font-lb text-xs uppercase tracking-widest" style="color:rgba(15,28,46,0.5)">Years of Excellence</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- QUOTE DIVIDER -->
+<section class="py-20 relative overflow-hidden" style="background:linear-gradient(135deg,#C9A84C 0%,#9E7A2A 50%,#C9A84C 100%);max-height:300px">
+<div class="absolute inset-0 opacity-10">
+<img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="bg" class="w-full h-full object-cover">
+</div>
+<div class="max-w-5xl mx-auto px-6 relative z-10 text-center">
+<p class="font-cg text-8xl text-white opacity-15 leading-none mb-2">"</p>
+<h2 class="font-cg text-4xl md:text-5xl text-white font-semibold leading-tight mb-4 italic">
+The law is reason, free from passion.
+</h2>
+<p class="font-lb text-sm uppercase tracking-[0.2em]" style="color:rgba(255,255,255,0.7)">— Aristotle · The Foundation of Lexara's Practice</p>
+</div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="py-24" style="background:#0F1C2E;max-height:1000px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-16">
+<div class="flex items-center justify-center gap-3 mb-4">
+<div class="lx-divider w-12"></div>
+<span class="font-lb text-xs uppercase tracking-[0.2em] text-lx-gold">Client Voices</span>
+<div class="lx-divider w-12"></div>
+</div>
+<h2 class="font-cg text-5xl md:text-6xl text-white font-semibold mb-4">What Our <span class="italic lx-gold-text">Clients Say</span></h2>
+<p class="font-lb text-base max-w-2xl mx-auto" style="color:rgba(255,255,255,0.5)">Our greatest achievement is the trust our clients place in us. Here are their stories.</p>
+</div>
+
+<div class="grid md:grid-cols-3 gap-6">
+<!-- Testimonial 1 -->
+<div class="testimonial-card p-8" style="background:rgba(255,255,255,0.04);border:1px solid rgba(201,168,76,0.15);border-radius:2px">
+<div class="flex items-center gap-1 mb-5">
+<span class="stars">★★★★★</span>
+</div>
+<p class="font-cg text-xl italic text-white leading-relaxed mb-6">"After my accident, I was overwhelmed and didn't know where to turn. Sarah Chen and her team fought tirelessly for two years and secured a settlement that changed my family's life. I can never thank them enough."</p>
+<div class="lx-divider mb-5"></div>
+<div class="flex items-center gap-4">
+<img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&amp;w=80&amp;auto=format&amp;fit=crop" alt="David K" class="w-12 h-12 object-cover" style="border-radius:2px;border:1px solid rgba(201,168,76,0.3)">
+<div>
+<p class="font-cg text-base text-white font-semibold">David Kowalski</p>
+<p class="font-lb text-xs uppercase tracking-widest" style="color:rgba(201,168,76,0.6)">Personal Injury Client</p>
+<p class="font-lb text-xs mt-0.5" style="color:rgba(255,255,255,0.35)">Settlement: $4.2M · 2023</p>
+</div>
+</div>
+</div>
+
+<!-- Testimonial 2 -->
+<div class="testimonial-card p-8" style="background:rgba(255,255,255,0.04);border:1px solid rgba(201,168,76,0.15);border-radius:2px">
+<div class="flex items-center gap-1 mb-5">
+<span class="stars">★★★★★</span>
+</div>
+<p class="font-cg text-xl italic text-white leading-relaxed mb-6">"Richard Lexara handled our company's merger with absolute precision. His knowledge of corporate law is unparalleled. The deal closed on time, under budget, and with terms that exceeded our expectations."</p>
+<div class="lx-divider mb-5"></div>
+<div class="flex items-center gap-4">
+<img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&amp;w=80&amp;auto=format&amp;fit=crop" alt="James T" class="w-12 h-12 object-cover" style="border-radius:2px;border:1px solid rgba(201,168,76,0.3)">
+<div>
+<p class="font-cg text-base text-white font-semibold">James Thornton</p>
+<p class="font-lb text-xs uppercase tracking-widest" style="color:rgba(201,168,76,0.6)">CEO, Thornton Industries</p>
+<p class="font-lb text-xs mt-0.5" style="color:rgba(255,255,255,0.35)">Corporate Client · 2022</p>
+</div>
+</div>
+</div>
+
+<!-- Testimonial 3 -->
+<div class="testimonial-card p-8" style="background:rgba(255,255,255,0.04);border:1px solid rgba(201,168,76,0.15);border-radius:2px">
+<div class="flex items-center gap-1 mb-5">
+<span class="stars">★★★★★</span>
+</div>
+<p class="font-cg text-xl italic text-white leading-relaxed mb-6">"Marcus Williams is simply the best criminal defense attorney in New York. Facing federal charges was the most terrifying experience of my life. He was calm, strategic, and brilliant. Not guilty on all counts."</p>
+<div class="lx-divider mb-5"></div>
+<div class="flex items-center gap-4">
+<img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&amp;w=80&amp;auto=format&amp;fit=crop" alt="Anonymous" class="w-12 h-12 object-cover" style="border-radius:2px;border:1px solid rgba(201,168,76,0.3)">
+<div>
+<p class="font-cg text-base text-white font-semibold">Name Withheld</p>
+<p class="font-lb text-xs uppercase tracking-widest" style="color:rgba(201,168,76,0.6)">Criminal Defense Client</p>
+<p class="font-lb text-xs mt-0.5" style="color:rgba(255,255,255,0.35)">Federal Acquittal · 2023</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Review Summary -->
+<div class="mt-12 p-8 flex flex-col md:flex-row items-center justify-between gap-8" style="background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.15);border-radius:2px">
+<div class="text-center md:text-left">
+<p class="font-cg text-6xl font-semibold lx-gold-text mb-1">4.9</p>
+<div class="flex items-center gap-1 justify-center md:justify-start mb-2">
+<span class="stars text-lg">★★★★★</span>
+</div>
+<p class="font-lb text-xs uppercase tracking-widest" style="color:rgba(255,255,255,0.4)">Average Rating · 1,240+ Reviews</p>
+</div>
+<div class="lx-divider-v h-16 hidden md:block"></div>
+<div class="grid grid-cols-3 gap-8 text-center">
+<div>
+<p class="font-cg text-3xl text-white font-semibold">Google</p>
+<p class="font-lb text-xs mt-1" style="color:rgba(255,255,255,0.4)">4.9 · 680 reviews</p>
+</div>
+<div>
+<p class="font-cg text-3xl text-white font-semibold">Avvo</p>
+<p class="font-lb text-xs mt-1" style="color:rgba(255,255,255,0.4)">10.0 · 420 reviews</p>
+</div>
+<div>
+<p class="font-cg text-3xl text-white font-semibold">Yelp</p>
+<p class="font-lb text-xs mt-1" style="color:rgba(255,255,255,0.4)">4.8 · 140 reviews</p>
+</div>
+</div>
+<div class="lx-divider-v h-16 hidden md:block"></div>
+<a href="#contact" class="btn-lx whitespace-nowrap">Read All Reviews</a>
+</div>
+</div>
+</section>
+
+<!-- CONTACT / CONSULTATION -->
+<section id="contact" class="py-24 lx-section-cream" style="max-height:1000px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid lg:grid-cols-2 gap-16 items-start">
+<!-- Left: Info -->
+<div>
+<div class="flex items-center gap-3 mb-6">
+<div class="lx-divider w-10"></div>
+<span class="font-lb text-xs uppercase tracking-[0.2em] text-lx-gold">Get In Touch</span>
+</div>
+<h2 class="font-cg text-5xl md:text-6xl text-lx-navy font-semibold leading-tight mb-6">
+Your Case Deserves<br><span class="italic lx-gold-text">Expert Counsel.</span>
+</h2>
+<p class="font-lb text-base leading-relaxed mb-10" style="color:rgba(15,28,46,0.6)">
+Schedule your free, confidential consultation today. Our attorneys will review your case, explain your options, and outline a strategy — at no cost to you.
+</p>
+
+<!-- Contact Details -->
+<div class="space-y-5 mb-10">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 flex items-center justify-center flex-shrink-0" style="background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.25)">
+<span class="text-lx-gold text-sm">📞</span>
+</div>
+<div>
+<p class="font-lb text-xs uppercase tracking-widest mb-1" style="color:#9E7A2A">Phone</p>
+<p class="font-cg text-xl text-lx-navy font-semibold">(212) 555-0190</p>
+<p class="font-lb text-xs" style="color:rgba(15,28,46,0.5)">Available 24/7 for emergencies</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 flex items-center justify-center flex-shrink-0" style="background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.25)">
+<span class="text-lx-gold text-sm">📍</span>
+</div>
+<div>
+<p class="font-lb text-xs uppercase tracking-widest mb-1" style="color:#9E7A2A">Office</p>
+<p class="font-cg text-xl text-lx-navy font-semibold">350 Fifth Avenue, Suite 4200</p>
+<p class="font-lb text-xs" style="color:rgba(15,28,46,0.5)">New York, NY 10118 · Empire State Building</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 flex items-center justify-center flex-shrink-0" style="background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.25)">
+<span class="text-lx-gold text-sm">⏰</span>
+</div>
+<div>
+<p class="font-lb text-xs uppercase tracking-widest mb-1" style="color:#9E7A2A">Hours</p>
+<p class="font-cg text-xl text-lx-navy font-semibold">Mon–Fri: 8AM – 8PM</p>
+<p class="font-lb text-xs" style="color:rgba(15,28,46,0.5)">Sat: 9AM – 5PM · Emergency line 24/7</p>
+</div>
+</div>
+</div>
+
+<!-- Guarantee -->
+<div class="p-6" style="background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.2);border-radius:2px">
+<div class="flex items-center gap-3 mb-2">
+<span class="text-lx-gold text-lg">🛡</span>
+<p class="font-lb text-sm font-bold text-lx-navy uppercase tracking-widest">Attorney-Client Privilege</p>
+</div>
+<p class="font-lb text-sm leading-relaxed" style="color:rgba(15,28,46,0.6)">Everything you share with us is completely confidential. Your consultation is protected by attorney-client privilege from the first conversation.</p>
+</div>
+</div>
+
+<!-- Right: Form -->
+<div class="p-10" style="background:#0F1C2E;border-radius:2px;border:1px solid rgba(201,168,76,0.15)">
+<h3 class="font-cg text-3xl text-white font-semibold mb-2">Free Consultation</h3>
+<p class="font-lb text-sm mb-8" style="color:rgba(255,255,255,0.5)">Fill out the form below and an attorney will contact you within 2 hours.</p>
+
+<div class="space-y-4">
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="font-lb text-xs uppercase tracking-widest mb-2 block" style="color:rgba(201,168,76,0.7)">First Name</label>
+<input type="text" placeholder="John" class="lx-input">
+</div>
+<div>
+<label class="font-lb text-xs uppercase tracking-widest mb-2 block" style="color:rgba(201,168,76,0.7)">Last Name</label>
+<input type="text" placeholder="Smith" class="lx-input">
+</div>
+</div>
+<div>
+<label class="font-lb text-xs uppercase tracking-widest mb-2 block" style="color:rgba(201,168,76,0.7)">Email Address</label>
+<input type="email" placeholder="john@example.com" class="lx-input">
+</div>
+<div>
+<label class="font-lb text-xs uppercase tracking-widest mb-2 block" style="color:rgba(201,168,76,0.7)">Phone Number</label>
+<input type="tel" placeholder="(212) 555-0000" class="lx-input">
+</div>
+<div>
+<label class="font-lb text-xs uppercase tracking-widest mb-2 block" style="color:rgba(201,168,76,0.7)">Practice Area</label>
+<select class="lx-input" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);border-radius:2px;color:rgba(255,255,255,0.7);font-family:'Libre Baskerville',serif;font-size:14px;padding:14px 18px;width:100%;outline:none">
+<option value="" style="background:#0F1C2E">Select Practice Area</option>
+<option value="corporate" style="background:#0F1C2E">Corporate Law</option>
+<option value="injury" style="background:#0F1C2E">Personal Injury</option>
+<option value="family" style="background:#0F1C2E">Family Law</option>
+<option value="criminal" style="background:#0F1C2E">Criminal Defense</option>
+<option value="realestate" style="background:#0F1C2E">Real Estate Law</option>
+<option value="estate" style="background:#0F1C2E">Estate Planning</option>
+</select>
+</div>
+<div>
+<label class="font-lb text-xs uppercase tracking-widest mb-2 block" style="color:rgba(201,168,76,0.7)">Brief Description of Your Case</label>
+<textarea rows="4" placeholder="Please describe your legal matter briefly..." class="lx-input" style="resize:none"></textarea>
+</div>
+<button class="btn-lx w-full text-center mt-2">Request Free Consultation</button>
+<p class="font-lb text-xs text-center" style="color:rgba(255,255,255,0.3)">By submitting, you agree to our Privacy Policy. All information is confidential.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="pt-20 pb-10" style="background:#0A1520;max-height:700px">
+<div class="max-w-7xl mx-auto px-6">
+<!-- Accreditation Bar -->
+<div class="pb-12 mb-12" style="border-bottom:1px solid rgba(255,255,255,0.06)">
+<p class="text-center font-lb text-xs uppercase tracking-[0.2em] mb-6" style="color:rgba(255,255,255,0.2)">Memberships &amp; Accreditations</p>
+<div class="flex flex-wrap items-center justify-center gap-10" style="opacity:0.25">
+<span class="font-cg text-lg tracking-widest text-white font-semibold">AMERICAN BAR ASSOCIATION</span>
+<span class="lx-divider-v h-4 inline-block"></span>
+<span class="font-cg text-lg tracking-widest text-white font-semibold">NEW YORK STATE BAR</span>
+<span class="lx-divider-v h-4 inline-block"></span>
+<span class="font-cg text-lg tracking-widest text-white font-semibold">SUPER LAWYERS</span>
+<span class="lx-divider-v h-4 inline-block"></span>
+<span class="font-cg text-lg tracking-widest text-white font-semibold">MARTINDALE-HUBBELL</span>
+<span class="lx-divider-v h-4 inline-block"></span>
+<span class="font-cg text-lg tracking-widest text-white font-semibold">CHAMBERS USA</span>
+</div>
+</div>
+
+<div class="grid md:grid-cols-5 gap-10 mb-16">
+<!-- Brand -->
+<div class="col-span-1 md:col-span-2">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 flex items-center justify-center" style="border:1.5px solid rgba(201,168,76,0.5)">
+<span class="font-cg text-lx-gold text-2xl italic font-semibold leading-none">L</span>
+</div>
+<div>
+<span class="font-cg text-2xl tracking-widest text-white font-semibold">LEXARA</span>
+<span class="block font-lb text-[9px] uppercase tracking-[0.2em]" style="color:rgba(201,168,76,0.6)">Attorneys at Law</span>
+</div>
+</div>
+<p class="font-lb text-sm leading-relaxed max-w-xs mb-6" style="color:rgba(255,255,255,0.4)">Delivering justice with integrity, expertise, and unwavering dedication since 1987. Your trusted legal partner in New York.</p>
+<div class="flex items-center gap-3">
+<a href="#" class="w-9 h-9 flex items-center justify-center text-white text-xs font-bold font-lb" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:2px">LI</a>
+<a href="#" class="w-9 h-9 flex items-center justify-center text-white text-xs font-bold font-lb" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:2px">TW</a>
+<a href="#" class="w-9 h-9 flex items-center justify-center text-white text-xs font-bold font-lb" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:2px">FB</a>
+</div>
+</div>
+
+<!-- Practice -->
+<div>
+<h4 class="font-cg text-sm tracking-widest mb-6 text-white font-semibold uppercase">Practice Areas</h4>
+<ul class="space-y-3 font-lb text-sm" style="color:rgba(255,255,255,0.4)">
+<li><a href="#practice" class="hover:text-lx-gold transition-colors">Corporate Law</a></li>
+<li><a href="#practice" class="hover:text-lx-gold transition-colors">Personal Injury</a></li>
+<li><a href="#practice" class="hover:text-lx-gold transition-colors">Family Law</a></li>
+<li><a href="#practice" class="hover:text-lx-gold transition-colors">Criminal Defense</a></li>
+<li><a href="#practice" class="hover:text-lx-gold transition-colors">Estate Planning</a></li>
+</ul>
+</div>
+
+<!-- Firm -->
+<div>
+<h4 class="font-cg text-sm tracking-widest mb-6 text-white font-semibold uppercase">The Firm</h4>
+<ul class="space-y-3 font-lb text-sm" style="color:rgba(255,255,255,0.4)">
+<li><a href="#attorneys" class="hover:text-lx-gold transition-colors">Our Attorneys</a></li>
+<li><a href="#results" class="hover:text-lx-gold transition-colors">Case Results</a></li>
+<li><a href="#" class="hover:text-lx-gold transition-colors">About Lexara</a></li>
+<li><a href="#" class="hover:text-lx-gold transition-colors">Careers</a></li>
+<li><a href="#" class="hover:text-lx-gold transition-colors">News &amp; Insights</a></li>
+</ul>
+</div>
+
+<!-- Contact -->
+<div>
+<h4 class="font-cg text-sm tracking-widest mb-6 text-white font-semibold uppercase">Contact</h4>
+<ul class="space-y-3 font-lb text-sm" style="color:rgba(255,255,255,0.4)">
+<li><a href="#contact" class="hover:text-lx-gold transition-colors">Free Consultation</a></li>
+<li><a href="#" class="hover:text-lx-gold transition-colors">Client Portal</a></li>
+<li><a href="#" class="hover:text-lx-gold transition-colors">Pay Invoice</a></li>
+<li><a href="#" class="hover:text-lx-gold transition-colors">Privacy Policy</a></li>
+<li><a href="#" class="hover:text-lx-gold transition-colors">Terms of Service</a></li>
+</ul>
+</div>
+</div>
+
+<div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style="border-top:1px solid rgba(255,255,255,0.06)">
+<p class="font-lb text-xs" style="color:rgba(255,255,255,0.2)">© 2024 Lexara Law Firm LLP. All rights reserved. Attorney Advertising.</p>
+<p class="font-lb text-xs text-center" style="color:rgba(255,255,255,0.15)">Prior results do not guarantee a similar outcome. Lexara Law Firm LLP · New York, NY</p>
+</div>
+
+<!-- Flow Navigation Footer -->
+<div class="mt-10 pt-8" style="border-top:1px solid rgba(255,255,255,0.04)">
+<p class="font-lb text-xs text-center mb-4 uppercase tracking-widest" style="color:rgba(255,255,255,0.15)">Explore All Landing Pages</p>
+<div class="flex flex-wrap items-center justify-center gap-3">
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/healthcare-landing-page" class="font-lb text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">01 Healthcare →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/fintech-landing-page" class="font-lb text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">02 Fintech →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/online-education-landing-page" class="font-lb text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">03 Education →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/real-estate-landing-page" class="font-lb text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">04 Real Estate →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/fitness-wellness-landing-page" class="font-lb text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">05 Fitness →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/travel-adventure-landing-page" class="font-lb text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">06 Travel →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/food-delivery-landing-page" class="font-lb text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">07 Food →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/legal-services-landing-page" class="font-lb text-xs font-bold px-3 py-1.5" style="background:rgba(201,168,76,0.15);color:#C9A84C;border:1px solid rgba(201,168,76,0.3);border-radius:2px">08 Legal ✦</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/automotive-landing-page" class="font-lb text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">09 Auto →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/green-tech-landing-page" class="font-lb text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">10 Green Tech →</a>
+</div>
+<p class="text-center font-lb text-xs mt-6" style="color:rgba(255,255,255,0.12)">Designed with Uxmagic.ai</p>
+</div>
+</div>
+</footer>
+
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pastel Wellness App - Exported from UXMagic Copilot">
+    <title>Pastel Wellness App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+tailwind.config={theme:{extend:{colors:{
+'i1':'#5C6AC4','i1l':'#EEF0FF','i1d':'#2D2D3A',
+'f2':'#7DAF8A','f2l':'#EAF4EC','f2g':'#C9A84C','f2gl':'#F7EDD0','f2d':'#2A3240',
+'w3':'#FAF7F2','w3r':'#D4A5A5','w3t':'#C47C5A',
+'r4':'#C4B49A','r4g':'#2D5016','r4s':'#F5EFE4',
+'l5':'#4A6FA5','l5l':'#E8EEF7','l5d':'#1E2A3A',
+'e6':'#FDFAF6','e6t':'#D4B896','e6b':'#E8C4B8','e6e':'#2C1A0E',
+'ed7':'#F5A623','ed7l':'#FEF3DC','ed7s':'#4A90D9','ed7sl':'#E8F2FC',
+'t8':'#2E86AB','t8l':'#E0F0F7','t8s':'#E8D5B0','t8c':'#F4845F',
+'h9':'#E8614A','h9l':'#FDECEA','h9g':'#F5F3F0','h9d':'#1C1C1E',
+'c10':'#3D6B4F','c10l':'#E8F0EB','c10s':'#A8C5DA','c10a':'#DDD0B8','c10b':'#FAFAF7',
+'eo':'#C8622A','eol':'#FDF0E8','eod':'#1E0E06','eom':'#8B3A1A','eos':'#F5E6D3','eog':'#D4A853','eogl':'#FBF3DC','eob':'#FAF5EF',
+'hx':'#8B7355','hxl':'#F5F0E8','hxd':'#1A1410','hxm':'#5C4A32','hxs':'#EDE8DF','hxg':'#B8A898','hxc':'#2C2420','hxw':'#FAF8F5',
+'lav':'#C4B5E8','lavl':'#F0ECFB','lavd':'#7B5EA7','lavs':'#E8E2F8','lavp':'#9B7FD4',
+'pch':'#F5C4A8','pchl':'#FDF0E8','pchd':'#C47A50','pchs':'#FAE8D8','pchm':'#E8956A',
+'mint':'#B8E0D2','mintl':'#E8F7F3','mintd':'#4A9B7F',
+'rose':'#F0B8C8','rosel':'#FDE8EF','rosed':'#C4607A',
+'ws-bg':'#FDF8FF','ws-bg2':'#F8F0FF','ws-card':'#FFFFFF',
+},fontFamily:{
+'pf':['"Playfair Display"','serif'],
+'cg':['"Cormorant Garamond"','serif'],
+'sg':['"Space Grotesk"','sans-serif'],
+'bar':['Barlow','sans-serif'],
+'barc':['"Barlow Condensed"','sans-serif'],
+'beb':['"Bebas Neue"','sans-serif'],
+'nun':['Nunito','sans-serif'],
+'lb':['"Libre Baskerville"','serif'],
+'man':['Manrope','sans-serif'],
+'lor':['Lora','serif'],
+'int':['Inter','sans-serif'],
+'lat':['Lato','sans-serif'],
+},boxShadow:{
+'sm2':'0 2px 8px rgba(0,0,0,0.06)',
+'md2':'0 8px 30px rgba(0,0,0,0.08)',
+'lg2':'0 20px 60px rgba(0,0,0,0.12)',
+'warm':'0 8px 30px rgba(139,115,85,0.18)',
+'warm-lg':'0 20px 60px rgba(139,115,85,0.15)',
+'lav':'0 8px 32px rgba(196,181,232,0.35)',
+'lav-lg':'0 20px 60px rgba(196,181,232,0.25)',
+'pch':'0 8px 32px rgba(245,196,168,0.4)',
+'soft':'0 4px 24px rgba(155,127,212,0.18)',
+'float':'0 16px 48px rgba(155,127,212,0.22)',
+}}}}
+
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+<!-- FLOW NAVIGATION BAR -->
+<div style="background:linear-gradient(90deg,#F8F0FF,#FDF4F0);border-bottom:1px solid rgba(196,181,232,0.3)">
+<div class="overflow-x-auto no-sb">
+<div class="flex items-center gap-1.5 px-4 py-2.5 min-w-max">
+<span class="text-[10px] font-bold uppercase tracking-widest mr-2 flex-shrink-0 font-nun" style="color:rgba(155,127,212,0.5)">10 Design Styles:</span>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/brutalist-architecture-firm" class="nav-flow-link-ws">01 Brutalist</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/pastel-wellness-app" class="nav-flow-link-ws active">02 Wellness ✦</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/neon-fintech-platform" class="nav-flow-link-ws">03 Fintech</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/organic-food-brand" class="nav-flow-link-ws">04 Organic</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/minimal-saas-productivity-tool" class="nav-flow-link-ws">05 SaaS</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/kids-education-app" class="nav-flow-link-ws">06 Kids</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/luxury-real-estate-agency" class="nav-flow-link-ws">07 Luxury</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/retro-music-streaming" class="nav-flow-link-ws">08 Retro</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/modern-medical-clinic" class="nav-flow-link-ws">09 Medical</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/vibrant-travel-agency" class="nav-flow-link-ws">10 Travel</a>
+</div>
+</div>
+</div>
+
+<!-- MAIN NAVIGATION -->
+<nav style="background:rgba(253,248,255,0.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(196,181,232,0.2);position:sticky;top:0;z-index:40">
+<div class="max-w-6xl mx-auto px-6 h-18 flex items-center justify-between" style="height:72px">
+<!-- Logo -->
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 ws-purple-grad flex items-center justify-center" style="border-radius:12px">
+<span style="font-size:18px">🌸</span>
+</div>
+<div>
+<span class="font-pf text-xl font-semibold" style="color:#7B5EA7;letter-spacing:0.02em">Serenity</span>
+<span class="block text-[9px] font-nun font-bold uppercase tracking-widest" style="color:rgba(155,127,212,0.6);line-height:1;margin-top:1px">Mindfulness &amp; Wellness</span>
+</div>
+</div>
+<!-- Nav Links -->
+<div class="hidden md:flex items-center gap-8">
+<a href="#features" class="text-sm font-semibold font-nun transition-colors" style="color:rgba(123,94,167,0.65)">Features</a>
+<a href="#programs" class="text-sm font-semibold font-nun transition-colors" style="color:rgba(123,94,167,0.65)">Programs</a>
+<a href="#community" class="text-sm font-semibold font-nun transition-colors" style="color:rgba(123,94,167,0.65)">Community</a>
+<a href="#pricing" class="text-sm font-semibold font-nun transition-colors" style="color:rgba(123,94,167,0.65)">Pricing</a>
+</div>
+<!-- CTA -->
+<div class="flex items-center gap-3">
+<a href="#" class="hidden md:block text-sm font-bold font-nun px-5 py-2.5 transition-colors" style="color:#9B7FD4">Sign In</a>
+<a href="#download" class="pill-btn ws-purple-grad text-white text-sm font-bold px-6 py-2.5 font-nun min-h-[44px] flex items-center shadow-lav">Start Free Trial</a>
+</div>
+</div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="ws-full-grad relative overflow-hidden" style="max-height:900px;padding:80px 0 60px">
+<!-- Decorative blobs -->
+<div class="absolute pointer-events-none" style="top:-80px;right:-80px;width:500px;height:500px;background:radial-gradient(circle,rgba(196,181,232,0.25) 0%,transparent 70%);border-radius:50%"></div>
+<div class="absolute pointer-events-none" style="bottom:-60px;left:-60px;width:400px;height:400px;background:radial-gradient(circle,rgba(245,196,168,0.2) 0%,transparent 70%);border-radius:50%"></div>
+<div class="absolute pointer-events-none" style="top:30%;left:10%;width:200px;height:200px;background:radial-gradient(circle,rgba(184,224,210,0.2) 0%,transparent 70%);border-radius:50%"></div>
+
+<div class="max-w-6xl mx-auto px-6 relative z-10">
+<div class="grid lg:grid-cols-2 gap-16 items-center">
+<!-- Left: Hero Text -->
+<div>
+<div class="inline-flex items-center gap-2 mb-6 px-4 py-2" style="background:rgba(196,181,232,0.2);border-radius:99px;border:1.5px solid rgba(196,181,232,0.4)">
+<span style="font-size:14px">✨</span>
+<span class="text-xs font-bold font-nun tracking-wide" style="color:#9B7FD4">Over 2 million mindful moments daily</span>
+</div>
+<h1 class="font-pf mb-6 leading-tight" style="font-size:clamp(42px,5.5vw,68px);color:#4A3570;line-height:1.15">
+Find your calm.<br>
+<em class="not-italic" style="background:linear-gradient(135deg,#9B7FD4,#E8956A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Nurture your soul.</em>
+</h1>
+<p class="text-base leading-relaxed mb-8 max-w-lg font-nun" style="color:rgba(74,53,112,0.65);line-height:1.8">A gentle companion for your daily mindfulness practice. Guided meditations, breathwork, sleep stories, and mood tracking — all wrapped in a soft, beautiful experience.</p>
+<!-- CTA Buttons -->
+<div class="flex flex-wrap gap-4 mb-10">
+<a href="#download" class="pill-btn ws-purple-grad text-white font-bold px-8 py-4 font-nun text-sm shadow-lav min-h-[52px] flex items-center gap-2">
+<span>🍎</span> Download for iOS
+</a>
+<a href="#download" class="pill-btn font-bold px-8 py-4 font-nun text-sm min-h-[52px] flex items-center gap-2" style="background:white;color:#9B7FD4;border:2px solid rgba(196,181,232,0.5);box-shadow:0 4px 16px rgba(196,181,232,0.2)">
+<span>🤖</span> Get on Android
+</a>
+</div>
+<!-- Trust signals -->
+<div class="flex flex-wrap items-center gap-6">
+<div class="flex items-center gap-2">
+<div class="flex -space-x-2">
+<img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&amp;w=60&amp;auto=format&amp;fit=crop&amp;crop=face" alt="user" class="w-8 h-8 object-cover" style="border-radius:99px;border:2px solid white">
+<img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&amp;w=60&amp;auto=format&amp;fit=crop&amp;crop=face" alt="user" class="w-8 h-8 object-cover" style="border-radius:99px;border:2px solid white">
+<img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&amp;w=60&amp;auto=format&amp;fit=crop&amp;crop=face" alt="user" class="w-8 h-8 object-cover" style="border-radius:99px;border:2px solid white">
+</div>
+<span class="text-sm font-semibold font-nun" style="color:rgba(74,53,112,0.65)">2M+ happy users</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span style="color:#F5C4A8;font-size:14px">★★★★★</span>
+<span class="text-sm font-semibold font-nun" style="color:rgba(74,53,112,0.65)">4.9 App Store</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span style="font-size:14px">🏆</span>
+<span class="text-sm font-semibold font-nun" style="color:rgba(74,53,112,0.65)">App of the Year</span>
+</div>
+</div>
+</div>
+
+<!-- Right: App Mockup + Floating Cards -->
+<div class="relative flex justify-center" style="height:520px">
+<!-- Main phone mockup -->
+<div class="float-anim relative z-20" style="width:240px;height:480px;margin-top:20px">
+<div class="app-screen w-full h-full overflow-hidden" style="background:linear-gradient(160deg,#F0ECFB,#FDE8EF)">
+<img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="Wellness app" class="w-full h-full object-cover opacity-60">
+<div class="absolute inset-0 flex flex-col justify-end p-5" style="background:linear-gradient(to top,rgba(74,53,112,0.7) 0%,transparent 50%)">
+<div class="ws-card-float p-4 mb-3" style="background:rgba(255,255,255,0.92)">
+<p class="text-xs font-bold font-nun mb-1" style="color:#9B7FD4">Today's Meditation</p>
+<p class="font-pf text-base font-semibold" style="color:#4A3570">Morning Calm</p>
+<div class="flex items-center justify-between mt-2">
+<span class="text-xs font-nun" style="color:rgba(74,53,112,0.55)">10 min · Beginner</span>
+<div class="w-7 h-7 ws-purple-grad flex items-center justify-center" style="border-radius:99px">
+<span style="font-size:10px;color:white">▶</span>
+</div>
+</div>
+</div>
+<div class="flex gap-2">
+<div class="flex-1 p-3 text-center" style="background:rgba(255,255,255,0.85);border-radius:14px">
+<p class="text-lg font-bold font-nun" style="color:#9B7FD4">7</p>
+<p class="text-[10px] font-nun" style="color:rgba(74,53,112,0.6)">Day Streak</p>
+</div>
+<div class="flex-1 p-3 text-center" style="background:rgba(255,255,255,0.85);border-radius:14px">
+<p class="text-lg font-bold font-nun" style="color:#E8956A">85%</p>
+<p class="text-[10px] font-nun" style="color:rgba(74,53,112,0.6)">Mood Score</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Floating card 1: Mood -->
+<div class="ws-card-float float-anim2 absolute z-30 p-4" style="top:40px;left:0;width:160px">
+<div class="flex items-center gap-2 mb-2">
+<span style="font-size:20px">😌</span>
+<span class="text-xs font-bold font-nun" style="color:#4A3570">Feeling Calm</span>
+</div>
+<div class="h-1.5 w-full" style="background:rgba(196,181,232,0.3);border-radius:99px">
+<div class="h-full ws-purple-grad" style="width:75%;border-radius:99px"></div>
+</div>
+<p class="text-[10px] font-nun mt-1.5" style="color:rgba(74,53,112,0.5)">Mood tracked today ✓</p>
+</div>
+
+<!-- Floating card 2: Streak -->
+<div class="ws-card-float float-anim3 absolute z-30 p-4" style="top:80px;right:0;width:150px">
+<p class="text-[10px] font-bold font-nun uppercase tracking-wide mb-1" style="color:rgba(74,53,112,0.5)">Current Streak</p>
+<div class="flex items-end gap-1">
+<span class="font-pf text-3xl font-bold" style="color:#9B7FD4">21</span>
+<span class="text-sm font-nun mb-1" style="color:rgba(74,53,112,0.6)">days 🔥</span>
+</div>
+<p class="text-[10px] font-nun" style="color:rgba(74,53,112,0.45)">Keep it up, you're glowing!</p>
+</div>
+
+<!-- Floating card 3: Sleep -->
+<div class="ws-card-float float-anim absolute z-30 p-4" style="bottom:60px;right:-10px;width:155px">
+<p class="text-[10px] font-bold font-nun uppercase tracking-wide mb-2" style="color:rgba(74,53,112,0.5)">Last Night</p>
+<div class="flex items-center gap-2">
+<span style="font-size:20px">🌙</span>
+<div>
+<p class="font-pf text-lg font-semibold" style="color:#4A3570">7h 42m</p>
+<p class="text-[10px] font-nun" style="color:#9B7FD4">Deep sleep ↑ 12%</p>
+</div>
+</div>
+</div>
+
+<!-- Floating card 4: Breathe -->
+<div class="ws-card-float float-anim2 absolute z-30 p-3 text-center" style="bottom:80px;left:-10px;width:130px">
+<div class="w-12 h-12 ws-pch-grad flex items-center justify-center mx-auto mb-2" style="border-radius:99px">
+<span style="font-size:22px">🫁</span>
+</div>
+<p class="text-xs font-bold font-nun" style="color:#4A3570">Breathe</p>
+<p class="text-[10px] font-nun" style="color:rgba(74,53,112,0.5)">4-7-8 technique</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SOFT MARQUEE BAND -->
+<div class="ws-marquee-wrap py-4" style="background:linear-gradient(90deg,rgba(196,181,232,0.15),rgba(245,196,168,0.15));border-top:1px solid rgba(196,181,232,0.2);border-bottom:1px solid rgba(196,181,232,0.2)">
+<div class="ws-marquee-inner">
+<span class="font-pf text-2xl px-8 italic" style="color:rgba(155,127,212,0.5)">Breathe ✦</span>
+<span class="font-pf text-2xl px-8 italic" style="color:rgba(232,149,106,0.5)">Meditate ✦</span>
+<span class="font-pf text-2xl px-8 italic" style="color:rgba(155,127,212,0.5)">Rest ✦</span>
+<span class="font-pf text-2xl px-8 italic" style="color:rgba(184,224,210,0.7)">Reflect ✦</span>
+<span class="font-pf text-2xl px-8 italic" style="color:rgba(155,127,212,0.5)">Grow ✦</span>
+<span class="font-pf text-2xl px-8 italic" style="color:rgba(232,149,106,0.5)">Heal ✦</span>
+<span class="font-pf text-2xl px-8 italic" style="color:rgba(155,127,212,0.5)">Breathe ✦</span>
+<span class="font-pf text-2xl px-8 italic" style="color:rgba(232,149,106,0.5)">Meditate ✦</span>
+<span class="font-pf text-2xl px-8 italic" style="color:rgba(155,127,212,0.5)">Rest ✦</span>
+<span class="font-pf text-2xl px-8 italic" style="color:rgba(184,224,210,0.7)">Reflect ✦</span>
+<span class="font-pf text-2xl px-8 italic" style="color:rgba(155,127,212,0.5)">Grow ✦</span>
+<span class="font-pf text-2xl px-8 italic" style="color:rgba(232,149,106,0.5)">Heal ✦</span>
+</div>
+</div>
+
+<!-- STATS BAND -->
+<section style="background:white;padding:40px 0;max-height:200px">
+<div class="max-w-5xl mx-auto px-6">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-0">
+<div class="text-center px-6 py-4">
+<p class="font-pf text-4xl font-bold mb-1" style="color:#9B7FD4">2M+</p>
+<p class="text-xs font-nun font-bold uppercase tracking-widest" style="color:rgba(74,53,112,0.45)">Active Users</p>
+</div>
+<div class="text-center px-6 py-4" style="border-left:1px solid rgba(196,181,232,0.3)">
+<p class="font-pf text-4xl font-bold mb-1" style="color:#E8956A">500+</p>
+<p class="text-xs font-nun font-bold uppercase tracking-widest" style="color:rgba(74,53,112,0.45)">Guided Sessions</p>
+</div>
+<div class="text-center px-6 py-4" style="border-left:1px solid rgba(196,181,232,0.3)">
+<p class="font-pf text-4xl font-bold mb-1" style="color:#9B7FD4">4.9★</p>
+<p class="text-xs font-nun font-bold uppercase tracking-widest" style="color:rgba(74,53,112,0.45)">App Store Rating</p>
+</div>
+<div class="text-center px-6 py-4" style="border-left:1px solid rgba(196,181,232,0.3)">
+<p class="font-pf text-4xl font-bold mb-1" style="color:#E8956A">87%</p>
+<p class="text-xs font-nun font-bold uppercase tracking-widest" style="color:rgba(74,53,112,0.45)">Feel Less Stressed</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FEATURES SECTION -->
+<section id="features" style="background:#FDF8FF;padding:96px 0;max-height:1100px">
+<div class="max-w-6xl mx-auto px-6">
+<div class="text-center mb-16">
+<div class="inline-flex items-center gap-2 mb-5 px-4 py-2" style="background:rgba(196,181,232,0.2);border-radius:99px">
+<span style="font-size:14px">🌿</span>
+<span class="text-xs font-bold font-nun tracking-wide uppercase" style="color:#9B7FD4">Everything you need</span>
+</div>
+<h2 class="font-pf text-4xl lg:text-5xl mb-4" style="color:#4A3570;line-height:1.2">Your complete wellness<br><em class="not-italic" style="color:#9B7FD4">sanctuary</em></h2>
+<p class="text-base font-nun max-w-xl mx-auto" style="color:rgba(74,53,112,0.6);line-height:1.8">Every tool you need to build a sustainable mindfulness practice, beautifully designed for your daily life.</p>
+</div>
+
+<div class="grid md:grid-cols-3 gap-6">
+<!-- Feature 1 -->
+<div class="ws-card p-8 shadow-soft" style="border:1px solid rgba(196,181,232,0.2)">
+<div class="feat-icon ws-lav-grad mb-5">🧘</div>
+<h3 class="font-pf text-xl font-semibold mb-3" style="color:#4A3570">Guided Meditation</h3>
+<p class="text-sm font-nun leading-relaxed mb-5" style="color:rgba(74,53,112,0.6);line-height:1.8">Over 300 guided sessions from world-class teachers. From 3-minute stress relief to deep 45-minute journeys.</p>
+<div class="flex flex-wrap gap-2">
+<span class="pill-tag" style="background:rgba(196,181,232,0.2);color:#9B7FD4">Beginner</span>
+<span class="pill-tag" style="background:rgba(196,181,232,0.2);color:#9B7FD4">Advanced</span>
+<span class="pill-tag" style="background:rgba(196,181,232,0.2);color:#9B7FD4">Sleep</span>
+</div>
+</div>
+
+<!-- Feature 2 -->
+<div class="ws-card p-8 shadow-soft" style="border:1px solid rgba(245,196,168,0.3);background:linear-gradient(160deg,white,#FDF4F0)">
+<div class="feat-icon ws-pch-grad mb-5">🌬️</div>
+<h3 class="font-pf text-xl font-semibold mb-3" style="color:#4A3570">Breathwork</h3>
+<p class="text-sm font-nun leading-relaxed mb-5" style="color:rgba(74,53,112,0.6);line-height:1.8">Scientifically-backed breathing techniques to calm anxiety, boost energy, and improve focus in minutes.</p>
+<div class="flex flex-wrap gap-2">
+<span class="pill-tag" style="background:rgba(245,196,168,0.3);color:#C47A50">4-7-8</span>
+<span class="pill-tag" style="background:rgba(245,196,168,0.3);color:#C47A50">Box Breathing</span>
+<span class="pill-tag" style="background:rgba(245,196,168,0.3);color:#C47A50">Wim Hof</span>
+</div>
+</div>
+
+<!-- Feature 3 -->
+<div class="ws-card p-8 shadow-soft" style="border:1px solid rgba(184,224,210,0.3);background:linear-gradient(160deg,white,#F0FBF8)">
+<div class="feat-icon ws-mint-grad mb-5">🌙</div>
+<h3 class="font-pf text-xl font-semibold mb-3" style="color:#4A3570">Sleep Stories</h3>
+<p class="text-sm font-nun leading-relaxed mb-5" style="color:rgba(74,53,112,0.6);line-height:1.8">Drift into restful sleep with soothing narrated stories, nature soundscapes, and gentle sleep meditations.</p>
+<div class="flex flex-wrap gap-2">
+<span class="pill-tag" style="background:rgba(184,224,210,0.3);color:#4A9B7F">Stories</span>
+<span class="pill-tag" style="background:rgba(184,224,210,0.3);color:#4A9B7F">Soundscapes</span>
+<span class="pill-tag" style="background:rgba(184,224,210,0.3);color:#4A9B7F">ASMR</span>
+</div>
+</div>
+
+<!-- Feature 4 -->
+<div class="ws-card p-8 shadow-soft" style="border:1px solid rgba(240,184,200,0.3);background:linear-gradient(160deg,white,#FDF0F4)">
+<div class="feat-icon ws-rose-grad mb-5">📊</div>
+<h3 class="font-pf text-xl font-semibold mb-3" style="color:#4A3570">Mood Tracking</h3>
+<p class="text-sm font-nun leading-relaxed mb-5" style="color:rgba(74,53,112,0.6);line-height:1.8">Understand your emotional patterns with gentle daily check-ins and beautiful mood visualisations over time.</p>
+<div class="flex flex-wrap gap-2">
+<span class="pill-tag" style="background:rgba(240,184,200,0.3);color:#C4607A">Daily Log</span>
+<span class="pill-tag" style="background:rgba(240,184,200,0.3);color:#C4607A">Insights</span>
+<span class="pill-tag" style="background:rgba(240,184,200,0.3);color:#C4607A">Trends</span>
+</div>
+</div>
+
+<!-- Feature 5 -->
+<div class="ws-card p-8 shadow-soft" style="border:1px solid rgba(196,181,232,0.2)">
+<div class="feat-icon ws-lav-grad mb-5">📓</div>
+<h3 class="font-pf text-xl font-semibold mb-3" style="color:#4A3570">Mindful Journal</h3>
+<p class="text-sm font-nun leading-relaxed mb-5" style="color:rgba(74,53,112,0.6);line-height:1.8">Guided journaling prompts to cultivate gratitude, self-awareness, and clarity. Your private, safe space.</p>
+<div class="flex flex-wrap gap-2">
+<span class="pill-tag" style="background:rgba(196,181,232,0.2);color:#9B7FD4">Gratitude</span>
+<span class="pill-tag" style="background:rgba(196,181,232,0.2);color:#9B7FD4">Reflection</span>
+<span class="pill-tag" style="background:rgba(196,181,232,0.2);color:#9B7FD4">Goals</span>
+</div>
+</div>
+
+<!-- Feature 6 -->
+<div class="ws-card p-8 shadow-soft" style="border:1px solid rgba(245,196,168,0.3);background:linear-gradient(160deg,white,#FDF4F0)">
+<div class="feat-icon ws-pch-grad mb-5">🏆</div>
+<h3 class="font-pf text-xl font-semibold mb-3" style="color:#4A3570">Progress &amp; Streaks</h3>
+<p class="text-sm font-nun leading-relaxed mb-5" style="color:rgba(74,53,112,0.6);line-height:1.8">Celebrate your consistency with gentle streaks, milestones, and personalised insights on your wellness journey.</p>
+<div class="flex flex-wrap gap-2">
+<span class="pill-tag" style="background:rgba(245,196,168,0.3);color:#C47A50">Streaks</span>
+<span class="pill-tag" style="background:rgba(245,196,168,0.3);color:#C47A50">Badges</span>
+<span class="pill-tag" style="background:rgba(245,196,168,0.3);color:#C47A50">Stats</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- PROGRAMS SECTION -->
+<section id="programs" style="background:white;padding:96px 0;max-height:1000px">
+<div class="max-w-6xl mx-auto px-6">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-4">
+<div>
+<div class="inline-flex items-center gap-2 mb-5 px-4 py-2" style="background:rgba(245,196,168,0.2);border-radius:99px">
+<span style="font-size:14px">🌸</span>
+<span class="text-xs font-bold font-nun tracking-wide uppercase" style="color:#E8956A">Curated Programs</span>
+</div>
+<h2 class="font-pf text-4xl lg:text-5xl" style="color:#4A3570;line-height:1.2">Begin your journey<br><em class="not-italic" style="color:#9B7FD4">wherever you are</em></h2>
+</div>
+<a href="#" class="inline-flex items-center gap-2 text-sm font-bold font-nun" style="color:#9B7FD4">
+View all programs →
+</a>
+</div>
+
+<div class="grid md:grid-cols-4 gap-5">
+<!-- Program 1 -->
+<div class="ws-card overflow-hidden shadow-soft" style="border:1px solid rgba(196,181,232,0.2)">
+<div class="relative overflow-hidden" style="height:180px">
+<img src="https://images.unsplash.com/photo-1545389336-cf090694435e?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="Stress Relief" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(74,53,112,0.6) 0%,transparent 60%)"></div>
+<div class="absolute top-3 left-3 pill-tag" style="background:rgba(255,255,255,0.9);color:#9B7FD4;font-size:10px">7 Days</div>
+</div>
+<div class="p-5">
+<h3 class="font-pf text-lg font-semibold mb-1" style="color:#4A3570">Stress Relief</h3>
+<p class="text-xs font-nun mb-3" style="color:rgba(74,53,112,0.55);line-height:1.7">A gentle 7-day program to release tension and find inner peace.</p>
+<div class="flex items-center justify-between">
+<span class="text-xs font-nun font-bold" style="color:rgba(74,53,112,0.4)">🧘 12 sessions</span>
+<span class="pill-tag text-[10px]" style="background:rgba(196,181,232,0.2);color:#9B7FD4">Beginner</span>
+</div>
+</div>
+</div>
+
+<!-- Program 2 -->
+<div class="ws-card overflow-hidden shadow-soft" style="border:1px solid rgba(245,196,168,0.3)">
+<div class="relative overflow-hidden" style="height:180px">
+<img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="Better Sleep" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(74,53,112,0.6) 0%,transparent 60%)"></div>
+<div class="absolute top-3 left-3 pill-tag" style="background:rgba(255,255,255,0.9);color:#E8956A;font-size:10px">14 Days</div>
+<div class="absolute top-3 right-3 pill-tag" style="background:rgba(232,149,106,0.9);color:white;font-size:10px">Popular ✦</div>
+</div>
+<div class="p-5">
+<h3 class="font-pf text-lg font-semibold mb-1" style="color:#4A3570">Better Sleep</h3>
+<p class="text-xs font-nun mb-3" style="color:rgba(74,53,112,0.55);line-height:1.7">Transform your nights with sleep meditations and bedtime rituals.</p>
+<div class="flex items-center justify-between">
+<span class="text-xs font-nun font-bold" style="color:rgba(74,53,112,0.4)">🌙 20 sessions</span>
+<span class="pill-tag text-[10px]" style="background:rgba(245,196,168,0.3);color:#C47A50">All levels</span>
+</div>
+</div>
+</div>
+
+<!-- Program 3 -->
+<div class="ws-card overflow-hidden shadow-soft" style="border:1px solid rgba(184,224,210,0.3)">
+<div class="relative overflow-hidden" style="height:180px">
+<img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="Morning Ritual" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(74,53,112,0.6) 0%,transparent 60%)"></div>
+<div class="absolute top-3 left-3 pill-tag" style="background:rgba(255,255,255,0.9);color:#4A9B7F;font-size:10px">21 Days</div>
+</div>
+<div class="p-5">
+<h3 class="font-pf text-lg font-semibold mb-1" style="color:#4A3570">Morning Ritual</h3>
+<p class="text-xs font-nun mb-3" style="color:rgba(74,53,112,0.55);line-height:1.7">Start each day with intention through gentle movement and mindfulness.</p>
+<div class="flex items-center justify-between">
+<span class="text-xs font-nun font-bold" style="color:rgba(74,53,112,0.4)">☀️ 28 sessions</span>
+<span class="pill-tag text-[10px]" style="background:rgba(184,224,210,0.3);color:#4A9B7F">Intermediate</span>
+</div>
+</div>
+</div>
+
+<!-- Program 4 -->
+<div class="ws-card overflow-hidden shadow-soft" style="border:1px solid rgba(240,184,200,0.3)">
+<div class="relative overflow-hidden" style="height:180px">
+<img src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="Anxiety Relief" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(74,53,112,0.6) 0%,transparent 60%)"></div>
+<div class="absolute top-3 left-3 pill-tag" style="background:rgba(255,255,255,0.9);color:#C4607A;font-size:10px">30 Days</div>
+</div>
+<div class="p-5">
+<h3 class="font-pf text-lg font-semibold mb-1" style="color:#4A3570">Anxiety Relief</h3>
+<p class="text-xs font-nun mb-3" style="color:rgba(74,53,112,0.55);line-height:1.7">Evidence-based techniques to gently ease anxiety and build resilience.</p>
+<div class="flex items-center justify-between">
+<span class="text-xs font-nun font-bold" style="color:rgba(74,53,112,0.4)">💜 35 sessions</span>
+<span class="pill-tag text-[10px]" style="background:rgba(240,184,200,0.3);color:#C4607A">All levels</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- TESTIMONIALS SECTION -->
+<section id="community" style="background:linear-gradient(160deg,#F8F0FF,#FDF4F0,#F0F8FF);padding:96px 0;max-height:900px">
+<div class="max-w-6xl mx-auto px-6">
+<div class="text-center mb-14">
+<div class="inline-flex items-center gap-2 mb-5 px-4 py-2" style="background:rgba(196,181,232,0.2);border-radius:99px">
+<span style="font-size:14px">💬</span>
+<span class="text-xs font-bold font-nun tracking-wide uppercase" style="color:#9B7FD4">Real Stories</span>
+</div>
+<h2 class="font-pf text-4xl lg:text-5xl mb-4" style="color:#4A3570;line-height:1.2">Transforming lives,<br><em class="not-italic" style="color:#9B7FD4">one breath at a time</em></h2>
+<p class="text-base font-nun max-w-lg mx-auto" style="color:rgba(74,53,112,0.6)">Join over 2 million people who've found their calm with Serenity.</p>
+</div>
+
+<div class="grid md:grid-cols-3 gap-6 mb-10">
+<!-- Testimonial 1 -->
+<div class="testi-card">
+<div class="flex items-center gap-1 mb-4">
+<span style="color:#F5C4A8;font-size:14px">★★★★★</span>
+</div>
+<p class="text-sm font-nun leading-relaxed mb-5" style="color:rgba(74,53,112,0.75);line-height:1.8">"Serenity has completely changed my mornings. I used to wake up anxious every day — now I start with a 10-minute meditation and feel genuinely at peace. It's become my favourite part of the day."</p>
+<div class="flex items-center gap-3">
+<img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&amp;w=100&amp;auto=format&amp;fit=crop&amp;crop=face" alt="Emma" class="w-11 h-11 object-cover flex-shrink-0" style="border-radius:99px;border:2px solid rgba(196,181,232,0.4)">
+<div>
+<p class="font-pf text-base font-semibold" style="color:#4A3570">Emma Richardson</p>
+<p class="text-xs font-nun" style="color:rgba(74,53,112,0.45)">Yoga teacher · London</p>
+</div>
+</div>
+</div>
+
+<!-- Testimonial 2 -->
+<div class="testi-card" style="background:linear-gradient(160deg,white,#FDF4F0)">
+<div class="flex items-center gap-1 mb-4">
+<span style="color:#F5C4A8;font-size:14px">★★★★★</span>
+</div>
+<p class="text-sm font-nun leading-relaxed mb-5" style="color:rgba(74,53,112,0.75);line-height:1.8">"The sleep stories are absolutely magical. I used to lie awake for hours — now I'm asleep within 20 minutes. The app is so beautifully designed, it feels like a treat just opening it."</p>
+<div class="flex items-center gap-3">
+<img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&amp;w=100&amp;auto=format&amp;fit=crop&amp;crop=face" alt="Sofia" class="w-11 h-11 object-cover flex-shrink-0" style="border-radius:99px;border:2px solid rgba(245,196,168,0.5)">
+<div>
+<p class="font-pf text-base font-semibold" style="color:#4A3570">Sofia Marchetti</p>
+<p class="text-xs font-nun" style="color:rgba(74,53,112,0.45)">Designer · Milan</p>
+</div>
+</div>
+</div>
+
+<!-- Testimonial 3 -->
+<div class="testi-card" style="background:linear-gradient(160deg,white,#F0FBF8)">
+<div class="flex items-center gap-1 mb-4">
+<span style="color:#F5C4A8;font-size:14px">★★★★★</span>
+</div>
+<p class="text-sm font-nun leading-relaxed mb-5" style="color:rgba(74,53,112,0.75);line-height:1.8">"I was sceptical about meditation apps but Serenity won me over completely. The mood tracking helped me realise how much my stress was affecting me. I'm now 87 days into my streak!"</p>
+<div class="flex items-center gap-3">
+<img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&amp;w=100&amp;auto=format&amp;fit=crop&amp;crop=face" alt="Priya" class="w-11 h-11 object-cover flex-shrink-0" style="border-radius:99px;border:2px solid rgba(184,224,210,0.5)">
+<div>
+<p class="font-pf text-base font-semibold" style="color:#4A3570">Priya Sharma</p>
+<p class="text-xs font-nun" style="color:rgba(74,53,112,0.45)">Therapist · New York</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Review stats -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="text-center p-6" style="background:rgba(255,255,255,0.7);border-radius:20px;border:1px solid rgba(196,181,232,0.2)">
+<p class="font-pf text-3xl font-bold mb-1" style="color:#9B7FD4">4.9</p>
+<p class="text-xs font-nun font-bold uppercase tracking-wide" style="color:rgba(74,53,112,0.45)">App Store</p>
+</div>
+<div class="text-center p-6" style="background:rgba(255,255,255,0.7);border-radius:20px;border:1px solid rgba(245,196,168,0.3)">
+<p class="font-pf text-3xl font-bold mb-1" style="color:#E8956A">2M+</p>
+<p class="text-xs font-nun font-bold uppercase tracking-wide" style="color:rgba(74,53,112,0.45)">Downloads</p>
+</div>
+<div class="text-center p-6" style="background:rgba(255,255,255,0.7);border-radius:20px;border:1px solid rgba(184,224,210,0.3)">
+<p class="font-pf text-3xl font-bold mb-1" style="color:#4A9B7F">87%</p>
+<p class="text-xs font-nun font-bold uppercase tracking-wide" style="color:rgba(74,53,112,0.45)">Less Stressed</p>
+</div>
+<div class="text-center p-6" style="background:rgba(255,255,255,0.7);border-radius:20px;border:1px solid rgba(240,184,200,0.3)">
+<p class="font-pf text-3xl font-bold mb-1" style="color:#C4607A">92%</p>
+<p class="text-xs font-nun font-bold uppercase tracking-wide" style="color:rgba(74,53,112,0.45)">Better Sleep</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- PRICING SECTION -->
+<section id="pricing" style="background:white;padding:96px 0;max-height:900px">
+<div class="max-w-5xl mx-auto px-6">
+<div class="text-center mb-14">
+<div class="inline-flex items-center gap-2 mb-5 px-4 py-2" style="background:rgba(196,181,232,0.2);border-radius:99px">
+<span style="font-size:14px">💎</span>
+<span class="text-xs font-bold font-nun tracking-wide uppercase" style="color:#9B7FD4">Simple Pricing</span>
+</div>
+<h2 class="font-pf text-4xl lg:text-5xl mb-4" style="color:#4A3570;line-height:1.2">Invest in your<br><em class="not-italic" style="color:#9B7FD4">wellbeing</em></h2>
+<p class="text-base font-nun max-w-md mx-auto" style="color:rgba(74,53,112,0.6)">Start free, upgrade when you're ready. No pressure, just peace.</p>
+</div>
+
+<div class="grid md:grid-cols-3 gap-6">
+<!-- Free Plan -->
+<div class="ws-card p-8 shadow-soft" style="border:1px solid rgba(196,181,232,0.2)">
+<div class="mb-6">
+<p class="text-xs font-bold font-nun uppercase tracking-widest mb-2" style="color:rgba(74,53,112,0.45)">Free Forever</p>
+<div class="flex items-end gap-1 mb-1">
+<span class="font-pf text-4xl font-bold" style="color:#4A3570">$0</span>
+</div>
+<p class="text-sm font-nun" style="color:rgba(74,53,112,0.5)">Always free, no credit card</p>
+</div>
+<div class="soft-divider mb-6"></div>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-3 text-sm font-nun" style="color:rgba(74,53,112,0.7)"><span style="color:#9B7FD4">✓</span> 20 guided meditations</li>
+<li class="flex items-center gap-3 text-sm font-nun" style="color:rgba(74,53,112,0.7)"><span style="color:#9B7FD4">✓</span> Basic mood tracking</li>
+<li class="flex items-center gap-3 text-sm font-nun" style="color:rgba(74,53,112,0.7)"><span style="color:#9B7FD4">✓</span> 5 sleep stories</li>
+<li class="flex items-center gap-3 text-sm font-nun" style="color:rgba(74,53,112,0.7)"><span style="color:#9B7FD4">✓</span> Daily breathwork</li>
+<li class="flex items-center gap-3 text-sm font-nun" style="color:rgba(74,53,112,0.4)"><span style="color:rgba(74,53,112,0.3)">○</span> Unlimited programs</li>
+<li class="flex items-center gap-3 text-sm font-nun" style="color:rgba(74,53,112,0.4)"><span style="color:rgba(74,53,112,0.3)">○</span> Offline access</li>
+</ul>
+<a href="#" class="pill-btn block text-center font-bold py-3.5 font-nun text-sm" style="border:2px solid rgba(196,181,232,0.5);color:#9B7FD4">Get Started Free</a>
+</div>
+
+<!-- Premium Plan (Featured) -->
+<div class="relative p-8 shadow-float" style="background:linear-gradient(160deg,#9B7FD4,#7B5EA7);border-radius:24px">
+<div class="absolute -top-3 left-1/2 -translate-x-1/2 px-5 py-1.5 font-bold text-xs font-nun" style="background:linear-gradient(135deg,#E8956A,#F5C4A8);border-radius:99px;color:white;white-space:nowrap">✨ Most Popular</div>
+<div class="mb-6">
+<p class="text-xs font-bold font-nun uppercase tracking-widest mb-2" style="color:rgba(255,255,255,0.6)">Premium</p>
+<div class="flex items-end gap-1 mb-1">
+<span class="font-pf text-4xl font-bold text-white">$9.99</span>
+<span class="text-sm font-nun mb-2" style="color:rgba(255,255,255,0.6)">/month</span>
+</div>
+<p class="text-sm font-nun" style="color:rgba(255,255,255,0.6)">or $59.99/year (save 50%)</p>
+</div>
+<div style="height:1px;background:rgba(255,255,255,0.2);margin-bottom:24px"></div>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-3 text-sm font-nun text-white"><span style="color:#F5C4A8">✓</span> 500+ guided meditations</li>
+<li class="flex items-center gap-3 text-sm font-nun text-white"><span style="color:#F5C4A8">✓</span> Advanced mood insights</li>
+<li class="flex items-center gap-3 text-sm font-nun text-white"><span style="color:#F5C4A8">✓</span> 100+ sleep stories</li>
+<li class="flex items-center gap-3 text-sm font-nun text-white"><span style="color:#F5C4A8">✓</span> All programs unlocked</li>
+<li class="flex items-center gap-3 text-sm font-nun text-white"><span style="color:#F5C4A8">✓</span> Offline access</li>
+<li class="flex items-center gap-3 text-sm font-nun text-white"><span style="color:#F5C4A8">✓</span> Personalised AI coach</li>
+</ul>
+<a href="#" class="pill-btn block text-center font-bold py-3.5 font-nun text-sm" style="background:white;color:#9B7FD4">Start 7-Day Free Trial</a>
+</div>
+
+<!-- Family Plan -->
+<div class="ws-card p-8 shadow-soft" style="border:1px solid rgba(245,196,168,0.3)">
+<div class="mb-6">
+<p class="text-xs font-bold font-nun uppercase tracking-widest mb-2" style="color:rgba(74,53,112,0.45)">Family</p>
+<div class="flex items-end gap-1 mb-1">
+<span class="font-pf text-4xl font-bold" style="color:#4A3570">$14.99</span>
+<span class="text-sm font-nun mb-2" style="color:rgba(74,53,112,0.5)">/month</span>
+</div>
+<p class="text-sm font-nun" style="color:rgba(74,53,112,0.5)">Up to 6 family members</p>
+</div>
+<div class="soft-divider mb-6"></div>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-3 text-sm font-nun" style="color:rgba(74,53,112,0.7)"><span style="color:#E8956A">✓</span> Everything in Premium</li>
+<li class="flex items-center gap-3 text-sm font-nun" style="color:rgba(74,53,112,0.7)"><span style="color:#E8956A">✓</span> 6 individual profiles</li>
+<li class="flex items-center gap-3 text-sm font-nun" style="color:rgba(74,53,112,0.7)"><span style="color:#E8956A">✓</span> Kids' content library</li>
+<li class="flex items-center gap-3 text-sm font-nun" style="color:rgba(74,53,112,0.7)"><span style="color:#E8956A">✓</span> Family challenges</li>
+<li class="flex items-center gap-3 text-sm font-nun" style="color:rgba(74,53,112,0.7)"><span style="color:#E8956A">✓</span> Shared progress board</li>
+<li class="flex items-center gap-3 text-sm font-nun" style="color:rgba(74,53,112,0.7)"><span style="color:#E8956A">✓</span> Priority support</li>
+</ul>
+<a href="#" class="pill-btn block text-center font-bold py-3.5 font-nun text-sm" style="border:2px solid rgba(245,196,168,0.5);color:#E8956A">Start Free Trial</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- DOWNLOAD / CTA SECTION -->
+<section id="download" style="background:linear-gradient(160deg,#F8F0FF,#FDF4F0);padding:96px 0;max-height:700px;position:relative;overflow:hidden">
+<!-- Decorative blobs -->
+<div class="absolute pointer-events-none" style="top:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(196,181,232,0.2) 0%,transparent 70%);border-radius:50%"></div>
+<div class="absolute pointer-events-none" style="bottom:-80px;left:-80px;width:400px;height:400px;background:radial-gradient(circle,rgba(245,196,168,0.2) 0%,transparent 70%);border-radius:50%"></div>
+
+<div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+<div class="inline-flex items-center gap-2 mb-6 px-4 py-2" style="background:rgba(196,181,232,0.2);border-radius:99px">
+<span style="font-size:14px">🌸</span>
+<span class="text-xs font-bold font-nun tracking-wide uppercase" style="color:#9B7FD4">Begin Today</span>
+</div>
+<h2 class="font-pf text-4xl lg:text-6xl mb-5" style="color:#4A3570;line-height:1.15">
+Your journey to<br>
+<em class="not-italic" style="background:linear-gradient(135deg,#9B7FD4,#E8956A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">inner peace</em> starts now.
+</h2>
+<p class="text-base font-nun mb-10 max-w-xl mx-auto" style="color:rgba(74,53,112,0.6);line-height:1.8">Join over 2 million people who've discovered the transformative power of daily mindfulness. Your first 7 days are completely free.</p>
+
+<div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+<a href="#" class="pill-btn ws-purple-grad text-white font-bold px-10 py-4 font-nun text-sm shadow-lav min-h-[56px] flex items-center justify-center gap-3">
+<span style="font-size:20px">🍎</span>
+<div class="text-left">
+<div style="font-size:10px;opacity:0.8;letter-spacing:0.05em">Download on the</div>
+<div style="font-size:16px;font-weight:800">App Store</div>
+</div>
+</a>
+<a href="#" class="pill-btn font-bold px-10 py-4 font-nun text-sm min-h-[56px] flex items-center justify-center gap-3" style="background:white;color:#4A3570;border:2px solid rgba(196,181,232,0.4);box-shadow:0 4px 20px rgba(196,181,232,0.2)">
+<span style="font-size:20px">🤖</span>
+<div class="text-left">
+<div style="font-size:10px;opacity:0.6;letter-spacing:0.05em">Get it on</div>
+<div style="font-size:16px;font-weight:800">Google Play</div>
+</div>
+</a>
+</div>
+
+<!-- Email signup -->
+<div class="max-w-md mx-auto">
+<p class="text-sm font-nun mb-4" style="color:rgba(74,53,112,0.5)">Or get a download link sent to your email:</p>
+<form onsubmit="return false" class="flex gap-3">
+<input type="email" placeholder="your@email.com" class="ws-input flex-1 min-h-[52px]">
+<button type="submit" class="pill-btn ws-purple-grad text-white font-bold px-6 font-nun text-sm shadow-lav whitespace-nowrap min-h-[52px]">Send Link</button>
+</form>
+</div>
+
+<!-- App badges -->
+<div class="flex flex-wrap items-center justify-center gap-8 mt-10">
+<div class="flex items-center gap-2">
+<span style="font-size:20px">🏆</span>
+<div class="text-left">
+<p class="text-xs font-bold font-nun" style="color:#4A3570">App of the Year</p>
+<p class="text-[10px] font-nun" style="color:rgba(74,53,112,0.45)">Apple App Store 2024</p>
+</div>
+</div>
+<div style="width:1px;height:32px;background:rgba(196,181,232,0.4)"></div>
+<div class="flex items-center gap-2">
+<span style="font-size:20px">⭐</span>
+<div class="text-left">
+<p class="text-xs font-bold font-nun" style="color:#4A3570">Editor's Choice</p>
+<p class="text-[10px] font-nun" style="color:rgba(74,53,112,0.45)">Google Play Store</p>
+</div>
+</div>
+<div style="width:1px;height:32px;background:rgba(196,181,232,0.4)"></div>
+<div class="flex items-center gap-2">
+<span style="font-size:20px">🔒</span>
+<div class="text-left">
+<p class="text-xs font-bold font-nun" style="color:#4A3570">Privacy First</p>
+<p class="text-[10px] font-nun" style="color:rgba(74,53,112,0.45)">GDPR &amp; HIPAA compliant</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:linear-gradient(160deg,#2D1F4A,#1A1028);padding:64px 0">
+<div class="max-w-6xl mx-auto px-6">
+<div class="grid md:grid-cols-5 gap-8 mb-10">
+<div class="md:col-span-2">
+<div class="flex items-center gap-2.5 mb-5">
+<div class="w-9 h-9 ws-purple-grad flex items-center justify-center" style="border-radius:12px">
+<span style="font-size:18px">🌸</span>
+</div>
+<div>
+<span class="font-pf text-xl font-semibold text-white">Serenity</span>
+<span class="block text-[9px] font-nun font-bold uppercase tracking-widest mt-0.5" style="color:rgba(196,181,232,0.5)">Mindfulness &amp; Wellness</span>
+</div>
+</div>
+<p class="text-sm font-nun leading-relaxed mb-5" style="color:rgba(255,255,255,0.4);line-height:1.8">A gentle companion for your daily mindfulness practice. Find your calm, nurture your soul.</p>
+<div class="flex gap-3">
+<a href="#" class="w-9 h-9 flex items-center justify-center" style="background:rgba(196,181,232,0.15);border-radius:99px;color:rgba(196,181,232,0.6);font-size:14px">📸</a>
+<a href="#" class="w-9 h-9 flex items-center justify-center" style="background:rgba(196,181,232,0.15);border-radius:99px;color:rgba(196,181,232,0.6);font-size:14px">🐦</a>
+<a href="#" class="w-9 h-9 flex items-center justify-center" style="background:rgba(196,181,232,0.15);border-radius:99px;color:rgba(196,181,232,0.6);font-size:14px">▶️</a>
+</div>
+</div>
+<div>
+<p class="text-sm font-bold font-pf mb-4 text-white">Features</p>
+<div class="space-y-2.5">
+<a href="#" class="block text-sm font-nun transition-colors" style="color:rgba(255,255,255,0.4)">Meditation</a>
+<a href="#" class="block text-sm font-nun transition-colors" style="color:rgba(255,255,255,0.4)">Breathwork</a>
+<a href="#" class="block text-sm font-nun transition-colors" style="color:rgba(255,255,255,0.4)">Sleep Stories</a>
+<a href="#" class="block text-sm font-nun transition-colors" style="color:rgba(255,255,255,0.4)">Mood Tracking</a>
+</div>
+</div>
+<div>
+<p class="text-sm font-bold font-pf mb-4 text-white">Company</p>
+<div class="space-y-2.5">
+<a href="#" class="block text-sm font-nun transition-colors" style="color:rgba(255,255,255,0.4)">About Us</a>
+<a href="#" class="block text-sm font-nun transition-colors" style="color:rgba(255,255,255,0.4)">Blog</a>
+<a href="#" class="block text-sm font-nun transition-colors" style="color:rgba(255,255,255,0.4)">Press</a>
+<a href="#" class="block text-sm font-nun transition-colors" style="color:rgba(255,255,255,0.4)">Careers</a>
+</div>
+</div>
+<div>
+<p class="text-sm font-bold font-pf mb-4 text-white">Other Styles</p>
+<div class="space-y-2.5">
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/brutalist-architecture-firm" class="block text-sm font-nun transition-colors" style="color:rgba(255,255,255,0.4)">← Brutalist Arch</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/neon-fintech-platform" class="block text-sm font-nun transition-colors" style="color:rgba(255,255,255,0.4)">→ Neon Fintech</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/organic-food-brand" class="block text-sm font-nun transition-colors" style="color:rgba(255,255,255,0.4)">→ Organic Food</a>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/luxury-real-estate-agency" class="block text-sm font-nun transition-colors" style="color:rgba(255,255,255,0.4)">→ Luxury Real Estate</a>
+</div>
+</div>
+</div>
+<div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style="border-top:1px solid rgba(196,181,232,0.15)">
+<p class="text-sm font-nun" style="color:rgba(255,255,255,0.25)">© 2024 Serenity Wellness Inc. All rights reserved. Made with 💜 for your wellbeing.</p>
+<div class="flex items-center gap-4">
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/brutalist-architecture-firm" class="text-xs font-nun transition-colors" style="color:rgba(196,181,232,0.4)">← Brutalist</a>
+<span class="text-xs font-nun" style="color:rgba(196,181,232,0.3)">|</span>
+<a href="/api/copilot/prototype/d144236a-1ed3-4699-9a0e-edf03779eb8d/neon-fintech-platform" class="text-xs font-nun transition-colors" style="color:rgba(196,181,232,0.6)">Next: Neon Fintech →</a>
+</div>
+</div>
+</div>
+</footer>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>
