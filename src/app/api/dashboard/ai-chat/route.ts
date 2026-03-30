@@ -832,7 +832,7 @@ async function handleCreateMeetingRegistration(params: any, userId: string) {
     };
   }
 
-  const registrationUrl = `https://reachtheapex.net/${distributor.slug}/register/${slug}`;
+  const registrationUrl = `https://theapexway.net/${distributor.slug}/register/${slug}`;
 
   // Build success message based on location type
   let locationInfo = '';
@@ -986,7 +986,7 @@ async function handlePreviewMeetingInvitation(params: any, userId: string) {
     .eq('id', distributor.id)
     .single();
 
-  const registrationUrl = `https://reachtheapex.net/${dist?.slug}/register/${meeting.registration_slug}`;
+  const registrationUrl = `https://theapexway.net/${dist?.slug}/register/${meeting.registration_slug}`;
 
   // Format location details
   let locationDetails = '';
@@ -1131,7 +1131,7 @@ async function handleSendMeetingInvitations(params: any, userId: string) {
       .eq('id', distributor.id)
       .single();
 
-    const registrationUrl = `https://reachtheapex.net/${dist?.slug}/register/${meeting.registration_slug}`;
+    const registrationUrl = `https://theapexway.net/${dist?.slug}/register/${meeting.registration_slug}`;
 
     // Format location details
     let locationDetails = '';
@@ -1228,7 +1228,7 @@ async function handleGetMyLinks(userId: string) {
     };
   }
 
-  const baseUrl = 'https://reachtheapex.net';
+  const baseUrl = 'https://theapexway.net';
   const replicatedSite = `${baseUrl}/${distributor.slug}`;
   const enrollmentLink = `${baseUrl}/join/${distributor.slug}`;
   const meetingBase = `${baseUrl}/${distributor.slug}/register`;
@@ -1493,7 +1493,7 @@ async function handleViewTeamMemberDetails(params: any, userId: string) {
   if (member.email) message += `**Email:** ${member.email}\n`;
   if (member.phone) message += `**Phone:** ${member.phone}\n`;
   message += `**Team Size:** ${downlineCount || 0} ${downlineCount === 1 ? 'person' : 'people'}\n`;
-  message += `\n**Replicated Site:** https://reachtheapex.net/${member.slug}`;
+  message += `\n**Replicated Site:** https://theapexway.net/${member.slug}`;
 
   return {
     success: true,
@@ -1709,7 +1709,7 @@ async function handleViewEditMeetings(params: any, userId: string) {
 
     // Get registration count (placeholder - would need to query registrations table)
     message += `👥 Registrations: Coming soon\n`;
-    message += `🔗 https://reachtheapex.net/${distributor.slug}/register/${meeting.registration_slug}\n\n`;
+    message += `🔗 https://theapexway.net/${distributor.slug}/register/${meeting.registration_slug}\n\n`;
   });
 
   if (meetings.length > 5) {

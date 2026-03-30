@@ -121,7 +121,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<Provision
         model: NETWORK_MARKETING_VOICE_CONFIG.transcriber.model,
       },
       // Webhook for call events (SMS notifications, first call tracking)
-      serverUrl: `${process.env.NEXT_PUBLIC_APP_URL}/api/vapi/webhooks`,
+      serverUrl: `${process.env.NEXT_PUBLIC_APP_URL}/api/vapi/call-events`,
       serverUrlSecret: process.env.VAPI_WEBHOOK_SECRET,
     })
 

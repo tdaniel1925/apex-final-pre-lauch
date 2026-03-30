@@ -270,7 +270,7 @@ export function createApexEmailTemplate({
   <div class="email-wrapper">
     <!-- Header -->
     <div class="header">
-      <img src="https://reachtheapex.net/apex-logo.png" alt="Apex Affinity Group" class="logo" />
+      <img src="https://theapexway.net/apex-logo.png" alt="Apex Affinity Group" class="logo" />
       <div class="badge"><span class="star">★</span> Apex Affinity Group</div>
     </div>
 
@@ -290,7 +290,7 @@ export function createApexEmailTemplate({
       <p><strong>Apex Affinity Group</strong></p>
       <p>Changing the insurance industry. One agent at a time.</p>
       <p style="margin-top: 16px;">
-        <a href="https://reachtheapex.net">reachtheapex.net</a>
+        <a href="https://theapexway.net">theapexway.net</a>
       </p>
       <p style="margin-top: 16px; font-size: 11px; color: rgba(255,255,255,0.3);">
         © ${new Date().getFullYear()} Apex Affinity Group. All rights reserved.

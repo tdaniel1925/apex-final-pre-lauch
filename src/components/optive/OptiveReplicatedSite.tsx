@@ -2507,7 +2507,7 @@ export default function OptiveReplicatedSite({ distributor, isMainSite = false }
                       Questions? <a href="/live" style={{color: '#fbbf24', textDecoration: 'underline'}}>Watch our live event first</a>
                     </p>
                     <p style={{marginBottom: 0}}>
-                      Or email us: <a href="mailto:support@reachtheapex.net" style={{color: '#fbbf24', textDecoration: 'underline'}}>support@reachtheapex.net</a>
+                      Or email us: <a href="mailto:support@theapexway.net" style={{color: '#fbbf24', textDecoration: 'underline'}}>support@theapexway.net</a>
                     </p>
                   </div>
                 </div>

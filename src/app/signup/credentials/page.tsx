@@ -169,12 +169,12 @@ export default function CredentialsConfirmationPage() {
               </label>
               <div className="bg-white px-4 py-3 rounded-lg border border-gray-300">
                 <a
-                  href={`https://reachtheapex.net/${credentials.username}`}
+                  href={`https://theapexway.net/${credentials.username}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[#2B4C7E] hover:underline font-medium"
                 >
-                  reachtheapex.net/{credentials.username}
+                  theapexway.net/{credentials.username}
                 </a>
               </div>
             </div>

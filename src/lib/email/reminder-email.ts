@@ -3,7 +3,7 @@
 // Friendly reminder about webinar and signup times
 // =============================================
 
-const BASE_URL = 'https://reachtheapex.net';
+const BASE_URL = 'https://theapexway.net';
 
 export function buildReminderEmail(recipientName: string, senderName: string) {
   const firstName = recipientName.split(' ')[0];
@@ -25,7 +25,7 @@ export function buildReminderEmail(recipientName: string, senderName: string) {
         <!-- HEADER -->
         <tr>
           <td style="background:linear-gradient(135deg,#1a2f50 0%,#2B4C7E 100%);padding:36px 40px;text-align:center;">
-            <img src="https://reachtheapex.net/apex-logo-white.png" alt="Apex Affinity Group" style="height:90px;width:auto;" />
+            <img src="https://theapexway.net/apex-logo-white.png" alt="Apex Affinity Group" style="height:90px;width:auto;" />
             <div style="margin-top:16px;display:inline-block;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:999px;padding:5px 18px;">
               <span style="color:#93c5fd;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;">📅 Quick Reminder</span>
             </div>

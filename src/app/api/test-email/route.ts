@@ -27,7 +27,7 @@ export async function GET() {
         <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
           <tr>
             <td style="background: linear-gradient(135deg, #2B4C7E 0%, #1e3557 100%); padding: 40px 30px; text-align: center;">
-              <img src="https://reachtheapex.net/apex-logo-white.png" alt="Apex Affinity Group" style="height: 80px; width: auto; margin-bottom: 20px;">
+              <img src="https://theapexway.net/apex-logo-white.png" alt="Apex Affinity Group" style="height: 80px; width: auto; margin-bottom: 20px;">
               <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: bold;">Welcome to the Apex Family!</h1>
             </td>
           </tr>
@@ -71,7 +71,7 @@ export async function GET() {
               </table>
               <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 30px 0 20px 0;">Have questions? We're here to help! Reply to this email or contact us at:</p>
               <p style="color: #333333; font-size: 16px; line-height: 1.8; margin: 0 0 30px 0;">
-                <strong style="color: #2B4C7E;">📧 Email:</strong> <a href="mailto:support@reachtheapex.net" style="color: #2B4C7E; text-decoration: none;">support@reachtheapex.net</a><br>
+                <strong style="color: #2B4C7E;">📧 Email:</strong> <a href="mailto:support@theapexway.net" style="color: #2B4C7E; text-decoration: none;">support@theapexway.net</a><br>
                 <strong style="color: #2B4C7E;">📞 Phone:</strong> <a href="tel:281-600-4000" style="color: #2B4C7E; text-decoration: none;">281-600-4000</a>
               </p>
               <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 10px 0;">Welcome aboard!</p>
@@ -83,9 +83,9 @@ export async function GET() {
               <p style="color: #777777; font-size: 14px; margin: 0 0 10px 0;">You're receiving this email because you registered at Apex Affinity Group.</p>
               <p style="color: #777777; font-size: 14px; margin: 0 0 15px 0;">© 2026 Apex Affinity Group. All rights reserved.</p>
               <p style="margin: 0;">
-                <a href="https://reachtheapex.net" style="color: #2B4C7E; text-decoration: none; font-size: 14px; margin: 0 10px;">Visit Website</a>
+                <a href="https://theapexway.net" style="color: #2B4C7E; text-decoration: none; font-size: 14px; margin: 0 10px;">Visit Website</a>
                 <span style="color: #cccccc;">|</span>
-                <a href="https://reachtheapex.net/apex-vision" style="color: #2B4C7E; text-decoration: none; font-size: 14px; margin: 0 10px;">Our Vision</a>
+                <a href="https://theapexway.net/apex-vision" style="color: #2B4C7E; text-decoration: none; font-size: 14px; margin: 0 10px;">Our Vision</a>
               </p>
             </td>
           </tr>

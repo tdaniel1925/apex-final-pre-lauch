@@ -3,7 +3,7 @@
 // Sent to waitlist when signups go live
 // =============================================
 
-const BASE_URL = 'https://reachtheapex.net';
+const BASE_URL = 'https://theapexway.net';
 
 export function buildLaunchEmail(sourceSlug: string | null) {
   const signupUrl = sourceSlug

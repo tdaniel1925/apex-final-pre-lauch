@@ -141,7 +141,7 @@ export default function ThankYouContent() {
         {/* Apex Logo */}
         <div className="text-center mb-8">
           <Image
-            src="https://reachtheapex.net/apex-logo.png"
+            src="https://theapexway.net/apex-logo.png"
             alt="Apex Affinity Group"
             width={200}
             height={80}

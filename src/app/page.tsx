@@ -6,7 +6,7 @@ export default function Home() {
   const genericDistributor: Distributor = {
     id: '00000000-0000-0000-0000-000000000000',
     auth_user_id: null,
-    email: 'info@reachtheapex.net',
+    email: 'info@theapexway.net',
     first_name: 'Your',
     last_name: 'Success',
     slug: 'apex',

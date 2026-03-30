@@ -5,7 +5,7 @@
 
 export interface MemberNode {
   member_id: string;
-  enroller_id: string | null;
+  sponsor_id: string | null;
   [key: string]: unknown;
 }
 
@@ -17,7 +17,7 @@ export interface MemberWithLevel extends MemberNode {
  * Calculate matrix levels for all downline members
  *
  * Matrix Level Rules:
- * - Level 1: Direct enrollees (enroller_id = currentUserId)
+ * - Level 1: Direct enrollees (sponsor_id = currentUserId)
  * - Level 2: Enrollees of Level 1 members
  * - Level 3-5: Continue recursively
  *
@@ -61,7 +61,7 @@ export function calculateMatrixLevels(
     }
 
     // Find all members enrolled by this member
-    const children = allMembers.filter((m) => m.enroller_id === memberId);
+    const children = allMembers.filter((m) => m.sponsor_id === memberId);
 
     // Recursively assign next level to children
     children.forEach((child) => {
@@ -70,7 +70,7 @@ export function calculateMatrixLevels(
   }
 
   // Start with Level 1: Direct enrollees of current user
-  const directEnrollees = allMembers.filter((m) => m.enroller_id === currentUserId);
+  const directEnrollees = allMembers.filter((m) => m.sponsor_id === currentUserId);
 
   directEnrollees.forEach((enrollee) => {
     assignLevel(enrollee.member_id, 1);

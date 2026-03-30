@@ -26,7 +26,7 @@ export default function DistributorWelcomeEmail({
   username = 'username',
   password = 'password123',
   sponsorName = 'Apex Vision',
-  replicatedSiteUrl = 'https://reachtheapex.net/username',
+  replicatedSiteUrl = 'https://theapexway.net/username',
 }: DistributorWelcomeEmailProps) {
   return (
     <Html>
@@ -37,7 +37,7 @@ export default function DistributorWelcomeEmail({
           {/* Header with Logo and Blue Background */}
           <Section style={header}>
             <Img
-              src="https://reachtheapex.net/apex-logo-white.png"
+              src="https://theapexway.net/apex-logo-white.png"
               alt="Apex Affinity Group"
               style={logo}
             />
@@ -71,8 +71,8 @@ export default function DistributorWelcomeEmail({
               <Section style={credentialRow}>
                 <Text style={credentialLabel}>Login URL:</Text>
                 <Text style={credentialValue}>
-                  <Link href="https://reachtheapex.net/login" style={credentialLink}>
-                    https://reachtheapex.net/login
+                  <Link href="https://theapexway.net/login" style={credentialLink}>
+                    https://theapexway.net/login
                   </Link>
                 </Text>
               </Section>
@@ -179,8 +179,8 @@ export default function DistributorWelcomeEmail({
 
             <Text style={contactInfo}>
               <strong>📧 Email:</strong>{' '}
-              <Link href="mailto:support@reachtheapex.net" style={link}>
-                support@reachtheapex.net
+              <Link href="mailto:support@theapexway.net" style={link}>
+                support@theapexway.net
               </Link>
               <br />
               <strong>📞 Phone:</strong>{' '}
@@ -205,11 +205,11 @@ export default function DistributorWelcomeEmail({
             </Text>
             <Text style={footerText}>© 2026 Apex Affinity Group. All rights reserved.</Text>
             <Text style={footerLinks}>
-              <Link href="https://reachtheapex.net" style={footerLink}>
+              <Link href="https://theapexway.net" style={footerLink}>
                 Visit Website
               </Link>
               {' | '}
-              <Link href="https://reachtheapex.net/login" style={footerLink}>
+              <Link href="https://theapexway.net/login" style={footerLink}>
                 Login
               </Link>
             </Text>

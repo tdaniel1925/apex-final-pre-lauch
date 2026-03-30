@@ -113,7 +113,7 @@ export async function POST(request: NextRequest) {
       if (process.env.VERCEL_URL) {
         baseUrl = `https://${process.env.VERCEL_URL}`;
       } else {
-        baseUrl = 'https://reachtheapex.net'; // Production fallback
+        baseUrl = 'https://theapexway.net'; // Production fallback
       }
     }
 
@@ -137,7 +137,7 @@ export async function POST(request: NextRequest) {
           <!-- Logo Header -->
           <tr>
             <td style="padding: 40px 40px 20px; text-align: center; background-color: #ffffff; border-radius: 8px 8px 0 0;">
-              <img src="https://reachtheapex.net/apex-logo-email.png" alt="Apex Affinity Group" style="max-width: 250px; height: auto; display: block; margin: 0 auto;" />
+              <img src="https://theapexway.net/apex-logo-email.png" alt="Apex Affinity Group" style="max-width: 250px; height: auto; display: block; margin: 0 auto;" />
             </td>
           </tr>
 

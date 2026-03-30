@@ -212,7 +212,7 @@ export async function POST(
           <!-- Header -->
           <tr>
             <td align="center" bgcolor="#FFFFFF" style="padding: 30px 24px; background-color: #FFFFFF;">
-              <img src="https://reachtheapex.net/apex-logo.png" alt="Apex Affinity Group" width="320" style="display: block; max-width: 320px; height: auto;" />
+              <img src="https://theapexway.net/apex-logo.png" alt="Apex Affinity Group" width="320" style="display: block; max-width: 320px; height: auto;" />
             </td>
           </tr>
 
@@ -241,7 +241,7 @@ export async function POST(
               <p style="margin: 0 0 16px 0;">You can now log in to your Apex dashboard using your new email address.</p>
 
               <p style="margin: 24px 0; text-align: center;">
-                <a href="https://reachtheapex.net/login" style="display: inline-block; padding: 14px 32px; background-color: #2B4C7E; color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: 600;">
+                <a href="https://theapexway.net/login" style="display: inline-block; padding: 14px 32px; background-color: #2B4C7E; color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: 600;">
                   Log In to Apex
                 </a>
               </p>
@@ -249,7 +249,7 @@ export async function POST(
               <table width="100%" cellpadding="16" cellspacing="0" border="0" style="background-color: #fff3cd; border-left: 4px solid #ffc107; border-radius: 8px; margin: 24px 0;">
                 <tr>
                   <td>
-                    <p style="margin: 0;"><strong>🔒 Security Notice:</strong> If you did not request this change or have concerns, please contact support immediately at <a href="mailto:support@reachtheapex.net" style="color: #2B4C7E;">support@reachtheapex.net</a> or call <span style="color: #C7181F; font-weight: 700;">1 (832) 909-1715</span>.</p>
+                    <p style="margin: 0;"><strong>🔒 Security Notice:</strong> If you did not request this change or have concerns, please contact support immediately at <a href="mailto:support@theapexway.net" style="color: #2B4C7E;">support@theapexway.net</a> or call <span style="color: #C7181F; font-weight: 700;">1 (832) 909-1715</span>.</p>
                   </td>
                 </tr>
               </table>
@@ -265,7 +265,7 @@ export async function POST(
               <p style="margin: 0 0 8px 0; font-size: 14px; font-weight: 700; color: #ffffff;">Apex Affinity Group</p>
               <p style="margin: 0 0 8px 0; font-size: 13px; color: rgba(255,255,255,0.5);">Changing the insurance industry. One agent at a time.</p>
               <p style="margin: 16px 0 0 0; font-size: 13px;">
-                <a href="https://reachtheapex.net" style="color: #FF4C52; text-decoration: none;">reachtheapex.net</a>
+                <a href="https://theapexway.net" style="color: #FF4C52; text-decoration: none;">theapexway.net</a>
               </p>
               <p style="margin: 20px 0 0 0; font-size: 11px; color: rgba(255,255,255,0.4); line-height: 1.6;">
                 Apex Affinity Group<br>

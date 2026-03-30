@@ -34,7 +34,7 @@ export default async function SettingsPage() {
     .eq('auth_user_id', user.id)
     .single();
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://reachtheapex.net';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://theapexway.net';
 
   return (
     <div className="min-h-screen bg-slate-50">

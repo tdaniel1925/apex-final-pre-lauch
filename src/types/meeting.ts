@@ -217,7 +217,7 @@ export interface CreateMeetingResponse {
   success: true;
   data: {
     meeting: MeetingEvent;
-    registrationUrl: string; // Full URL: https://reachtheapex.net/[slug]/register/[meetingSlug]
+    registrationUrl: string; // Full URL: https://theapexway.net/[slug]/register/[meetingSlug]
   };
 }
 

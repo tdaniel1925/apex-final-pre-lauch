@@ -22,7 +22,7 @@ interface Props {
   notified: number;
 }
 
-const BASE_URL = 'https://reachtheapex.net';
+const BASE_URL = 'https://theapexway.net';
 
 export default function AdminWaitlistClient({ entries, total, pending, notified }: Props) {
   const [sending, setSending] = useState(false);

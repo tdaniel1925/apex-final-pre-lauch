@@ -29,7 +29,7 @@ export default function ProspectWelcomeEmail({
           {/* Header with Logo and Blue Background */}
           <Section style={header}>
             <Img
-              src="https://reachtheapex.net/apex-logo-white.png"
+              src="https://theapexway.net/apex-logo-white.png"
               alt="Apex Affinity Group"
               style={logo}
             />
@@ -95,8 +95,8 @@ export default function ProspectWelcomeEmail({
 
             <Text style={contactInfo}>
               <strong>📧 Email:</strong>{' '}
-              <Link href="mailto:support@reachtheapex.net" style={link}>
-                support@reachtheapex.net
+              <Link href="mailto:support@theapexway.net" style={link}>
+                support@theapexway.net
               </Link>
               <br />
               <strong>📞 Phone:</strong>{' '}
@@ -119,11 +119,11 @@ export default function ProspectWelcomeEmail({
             </Text>
             <Text style={footerText}>© 2026 Apex Affinity Group. All rights reserved.</Text>
             <Text style={footerLinks}>
-              <Link href="https://reachtheapex.net" style={footerLink}>
+              <Link href="https://theapexway.net" style={footerLink}>
                 Visit Website
               </Link>
               {' | '}
-              <Link href="https://reachtheapex.net/apex-vision" style={footerLink}>
+              <Link href="https://theapexway.net/apex-vision" style={footerLink}>
                 Our Vision
               </Link>
             </Text>

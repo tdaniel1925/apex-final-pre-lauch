@@ -359,7 +359,7 @@ async function sendNewRegistrationNotification({
       ` : ''}
 
       <p style="margin-top: 24px;">
-        <a href="https://reachtheapex.net/dashboard/autopilot" style="display: inline-block; background: #2c5aa0; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px;">View All Registrations</a>
+        <a href="https://theapexway.net/dashboard/autopilot" style="display: inline-block; background: #2c5aa0; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px;">View All Registrations</a>
       </p>
     `;
 

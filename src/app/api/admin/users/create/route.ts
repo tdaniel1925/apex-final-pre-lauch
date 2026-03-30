@@ -158,7 +158,7 @@ export async function POST(request: NextRequest) {
 
     // Send welcome email with login credentials
     try {
-      const loginUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://reachtheapex.net'}/login`;
+      const loginUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://theapexway.net'}/login`;
 
       const emailHtml = `
 <!DOCTYPE html>

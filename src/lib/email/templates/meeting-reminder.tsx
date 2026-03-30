@@ -50,7 +50,7 @@ export const MeetingReminderEmail = ({
           {/* Header with Apex Branding */}
           <Section style={header}>
             <Img
-              src="https://reachtheapex.net/apex-logo.png"
+              src="https://theapexway.net/apex-logo.png"
               alt="Apex Affinity Group"
               width="200"
               height="auto"

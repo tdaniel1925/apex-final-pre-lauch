@@ -43,7 +43,7 @@ export function createApexEmailTemplate({
           <tr>
             <td style="background-color: #0A1A3F; background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDAgTCAwIDUwIE0gMCAwIEwgNTAgMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDMpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4='); padding: 50px 24px; text-align: center;">
               <!-- Logo - Larger and Centered -->
-              <img src="https://reachtheapex.net/apex-logo.png" alt="Apex Affinity Group" style="max-width: 250px; height: auto; display: block; margin: 0 auto;" />
+              <img src="https://theapexway.net/apex-logo.png" alt="Apex Affinity Group" style="max-width: 250px; height: auto; display: block; margin: 0 auto;" />
             </td>
           </tr>
 
@@ -70,7 +70,7 @@ export function createApexEmailTemplate({
               <p style="margin: 0 0 8px; font-size: 14px; font-weight: 700; color: #ffffff;">Apex Affinity Group</p>
               <p style="margin: 0 0 8px; font-size: 13px; color: rgba(255,255,255,0.5);">Changing the insurance industry. One agent at a time.</p>
               <p style="margin: 16px 0 0; font-size: 13px;">
-                <a href="https://reachtheapex.net" style="color: #FF4C52; text-decoration: none;">reachtheapex.net</a>
+                <a href="https://theapexway.net" style="color: #FF4C52; text-decoration: none;">theapexway.net</a>
               </p>
               <p style="margin: 16px 0 0; font-size: 11px; color: rgba(255,255,255,0.3);">
                 © ${new Date().getFullYear()} Apex Affinity Group. All rights reserved.

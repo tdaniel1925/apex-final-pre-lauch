@@ -38,11 +38,11 @@ export function wrapEmailTemplate(
  * const emailHtml = wrapEmailTemplate(
  *   '<p>Your content here...</p>',
  *   'Email Subject',
- *   'https://reachtheapex.net/unsubscribe?token=xxx'
+ *   'https://theapexway.net/unsubscribe?token=xxx'
  * );
  *
  * await resend.emails.send({
- *   from: 'Apex <notifications@reachtheapex.net>',
+ *   from: 'Apex <notifications@theapexway.net>',
  *   to: 'user@example.com',
  *   subject: 'Email Subject',
  *   html: emailHtml,

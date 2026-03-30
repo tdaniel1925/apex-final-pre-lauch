@@ -13,7 +13,7 @@ export async function getMyLinks(context: ToolContext): Promise<ToolResult> {
   try {
     const { distributor } = context;
 
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://reachtheapex.net';
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://theapexway.net';
 
     const links = {
       replicatedSite: distributor.slug ? `${baseUrl}/${distributor.slug}` : `${baseUrl}/signup`,

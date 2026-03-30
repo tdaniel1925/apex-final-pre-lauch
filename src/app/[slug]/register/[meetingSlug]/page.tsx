@@ -81,7 +81,7 @@ export default async function MeetingRegistrationPage({ params }: PageProps) {
             This page is no longer available.
           </p>
           <a
-            href="https://reachtheapex.net"
+            href="https://theapexway.net"
             className="inline-block bg-[#2c5aa0] text-white px-6 py-3 rounded-lg hover:bg-[#234780] transition"
           >
             Visit Apex Affinity Group

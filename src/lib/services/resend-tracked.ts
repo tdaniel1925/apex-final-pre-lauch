@@ -52,7 +52,7 @@ export interface TrackedEmailParams {
  * Usage:
  * ```typescript
  * const result = await sendTrackedEmail({
- *   from: 'noreply@reachtheapex.net',
+ *   from: 'noreply@theapexway.net',
  *   to: user.email,
  *   subject: 'Welcome to Apex!',
  *   html: '<p>Welcome!</p>',

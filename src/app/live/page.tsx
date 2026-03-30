@@ -210,7 +210,7 @@ Apex Affinity Group isn't just another insurance organization — it's insurance
 Trips. Car allowances. Rank bonuses up to $30,000. Fast start bonuses in your first 90 days. This isn't a pitch — it's a plan.
 
 📅 ${nextEvent?.day || 'Tuesday'} at ${nextEvent?.time || '6:30 PM'} Central
-📍 https://reachtheapex.net/live
+📍 https://theapexway.net/live
 🔗 ${MEETING_LINK}
 
 No registration. Just show up. This could be the meeting that changes your trajectory.

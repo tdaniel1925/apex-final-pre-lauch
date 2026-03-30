@@ -230,7 +230,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Build registration URL
-    const registrationUrl = `https://reachtheapex.net/${distributor.slug}/register/${meeting.registration_slug}`;
+    const registrationUrl = `https://theapexway.net/${distributor.slug}/register/${meeting.registration_slug}`;
 
     // Add distributor slug to meeting for URL generation
     const meetingWithSlug = {
