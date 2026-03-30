@@ -128,7 +128,7 @@ export default function BulkSyncClient() {
         <h2 className="text-lg font-bold text-gray-900 mb-4">Summary</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="bg-blue-50 rounded-lg p-4">
-            <p className="text-sm text-blue-600 font-medium">Total Distributors</p>
+            <p className="text-sm text-blue-600 font-medium">Total Enrollees</p>
             <p className="text-3xl font-bold text-blue-900">{distributors.length}</p>
           </div>
 

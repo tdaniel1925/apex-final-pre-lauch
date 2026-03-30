@@ -379,7 +379,7 @@ export default function DashboardV2() {
                       <i className="ri-arrow-up-line text-xs"></i>+12
                     </span>
                   </div>
-                  <p className="text-xs text-neutral-500 mb-1">Total Distributors</p>
+                  <p className="text-xs text-neutral-500 mb-1">Total Enrollees</p>
                   <p className="font-heading font-extrabold text-2xl text-neutral-900">1,248</p>
                   <div className="mt-2 h-1 bg-neutral-100 rounded-full overflow-hidden">
                     <div className="h-full bg-blue-500 rounded-full metric-bar" style={{width:'62%'}}></div>

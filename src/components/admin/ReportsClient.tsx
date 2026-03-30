@@ -268,7 +268,7 @@ export default function ReportsClient({ distributors }: ReportsClientProps) {
       {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
         <div className="bg-white rounded-lg border border-gray-200 p-4">
-          <div className="text-sm font-medium text-gray-500">Total Distributors</div>
+          <div className="text-sm font-medium text-gray-500">Total Enrollees</div>
           <div className="text-2xl font-bold text-gray-900 mt-1">{distributors.length}</div>
           <div className="text-xs text-gray-500 mt-1">All time</div>
         </div>

@@ -170,7 +170,7 @@ export function TreeStats({ stats }: { stats: { totalDistributors: number; maxDe
   return (
     <div className="grid grid-cols-3 gap-3 mb-4">
       <div className="bg-white rounded-lg shadow p-3">
-        <p className="text-xs text-gray-600">Total Members</p>
+        <p className="text-xs text-gray-600">Total Enrollees</p>
         <p className="text-xl font-bold text-gray-900">{stats.totalDistributors}</p>
       </div>
       <div className="bg-white rounded-lg shadow p-3">

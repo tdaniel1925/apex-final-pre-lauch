@@ -166,7 +166,7 @@ export default async function AdminDashboardPage() {
       {/* Key Metrics Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 mb-4 lg:mb-6">
         <StatCard
-          title="Total Distributors"
+          title="Total Enrollees"
           value={totalDistributors || 0}
           subtitle={`${activeDistributors || 0} active, ${suspendedDistributors || 0} suspended`}
           icon={

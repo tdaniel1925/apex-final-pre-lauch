@@ -156,9 +156,9 @@ export default function ComplianceDashboard() {
 
         {/* Overview Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          {/* Total Distributors */}
+          {/* Total Enrollees */}
           <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
-            <div className="text-slate-400 text-sm mb-2">Total Distributors</div>
+            <div className="text-slate-400 text-sm mb-2">Total Enrollees</div>
             <div className="text-white text-3xl font-bold">
               {overview.overview.total_distributors}
             </div>
