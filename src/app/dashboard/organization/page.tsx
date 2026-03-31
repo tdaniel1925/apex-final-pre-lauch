@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 };
 
 // Fetch team members recursively
-async function getTeamTree(distributorId: string, depth: number = 0, maxDepth: number = 5) {
+async function getTeamTree(distributorId: string, depth: number = 0, maxDepth: number = 5): Promise<any[]> {
   if (depth >= maxDepth) return [];
 
   const supabase = await createClient();
