@@ -12,11 +12,9 @@ import { getCurrentDistributor } from '@/lib/auth/server';
 // =============================================
 export async function POST(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
   try {
-    const { id } = await params;
-
     const currentDist = await getCurrentDistributor();
     if (!currentDist) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -28,7 +26,7 @@ export async function POST(
     const { data: existing } = await supabase
       .from('crm_tasks')
       .select('id, status')
-      .eq('id', id)
+      .eq('id', params.id)
       .eq('distributor_id', currentDist.id)
       .single();
 
@@ -50,7 +48,7 @@ export async function POST(
         status: 'completed',
         completed_at: new Date().toISOString(),
       })
-      .eq('id', id)
+      .eq('id', params.id)
       .eq('distributor_id', currentDist.id)
       .select()
       .single();

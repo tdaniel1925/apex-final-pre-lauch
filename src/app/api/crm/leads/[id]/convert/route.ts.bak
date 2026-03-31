@@ -23,11 +23,9 @@ const convertLeadSchema = z.object({
 // =============================================
 export async function POST(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
   try {
-    const { id } = await params;
-
     const currentDist = await getCurrentDistributor();
     if (!currentDist) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -52,7 +50,7 @@ export async function POST(
     const { data: lead, error: leadError } = await supabase
       .from('crm_leads')
       .select('*')
-      .eq('id', id)
+      .eq('id', params.id)
       .eq('distributor_id', currentDist.id)
       .single();
 
@@ -103,7 +101,7 @@ export async function POST(
         converted_to_contact_id: contact.id,
         converted_at: new Date().toISOString(),
       })
-      .eq('id', id)
+      .eq('id', params.id)
       .eq('distributor_id', currentDist.id);
 
     if (updateError) {

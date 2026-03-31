@@ -1,8 +1,8 @@
 // =============================================
-// CRM Activities API - Single Activity Operations
-// GET: Get single activity
-// PUT: Update activity
-// DELETE: Delete activity
+// CRM Tasks API - Single Task Operations
+// GET: Get single task
+// PUT: Update task
+// DELETE: Delete task
 // =============================================
 
 import { NextRequest, NextResponse } from 'next/server';
@@ -14,25 +14,22 @@ import { z } from 'zod';
 // Validation Schemas
 // =============================================
 
-const updateActivitySchema = z.object({
-  activity_type: z.enum(['call', 'email', 'meeting', 'note', 'task_completed']).optional(),
-  subject: z.string().min(1).max(200).optional(),
+const updateTaskSchema = z.object({
+  title: z.string().min(1).max(200).optional(),
   description: z.string().optional().nullable(),
-  duration_minutes: z.number().int().min(0).optional().nullable(),
-  outcome: z.enum(['successful', 'no_answer', 'voicemail', 'scheduled_followup', 'not_interested']).optional().nullable(),
-  activity_date: z.string().datetime().optional(),
+  priority: z.enum(['low', 'medium', 'high', 'urgent']).optional(),
+  status: z.enum(['pending', 'in_progress', 'completed', 'cancelled']).optional(),
+  due_date: z.string().datetime().optional().nullable(),
 });
 
 // =============================================
-// GET /api/crm/activities/[id] - Get single activity
+// GET /api/crm/tasks/[id] - Get single task
 // =============================================
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
   try {
-    const { id } = await params;
-
     const currentDist = await getCurrentDistributor();
     if (!currentDist) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -40,34 +37,32 @@ export async function GET(
 
     const supabase = await createClient();
 
-    const { data: activity, error } = await supabase
-      .from('crm_activities')
+    const { data: task, error } = await supabase
+      .from('crm_tasks')
       .select('*')
-      .eq('id', id)
+      .eq('id', params.id)
       .eq('distributor_id', currentDist.id)
       .single();
 
-    if (error || !activity) {
-      return NextResponse.json({ error: 'Activity not found' }, { status: 404 });
+    if (error || !task) {
+      return NextResponse.json({ error: 'Task not found' }, { status: 404 });
     }
 
-    return NextResponse.json({ activity });
+    return NextResponse.json({ task });
   } catch (error) {
-    console.error('Unexpected error fetching activity:', error);
+    console.error('Unexpected error fetching task:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
 
 // =============================================
-// PUT /api/crm/activities/[id] - Update activity
+// PUT /api/crm/tasks/[id] - Update task
 // =============================================
 export async function PUT(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
   try {
-    const { id } = await params;
-
     const currentDist = await getCurrentDistributor();
     if (!currentDist) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -76,7 +71,7 @@ export async function PUT(
     const body = await request.json();
 
     // Validate request body
-    const validation = updateActivitySchema.safeParse(body);
+    const validation = updateTaskSchema.safeParse(body);
     if (!validation.success) {
       return NextResponse.json(
         { error: 'Validation failed', details: validation.error.errors },
@@ -88,49 +83,53 @@ export async function PUT(
 
     const supabase = await createClient();
 
-    // Verify activity exists and belongs to current distributor
+    // Verify task exists and belongs to current distributor
     const { data: existing } = await supabase
-      .from('crm_activities')
+      .from('crm_tasks')
       .select('id')
-      .eq('id', id)
+      .eq('id', params.id)
       .eq('distributor_id', currentDist.id)
       .single();
 
     if (!existing) {
-      return NextResponse.json({ error: 'Activity not found' }, { status: 404 });
+      return NextResponse.json({ error: 'Task not found' }, { status: 404 });
     }
 
-    // Update activity
-    const { data: activity, error } = await supabase
-      .from('crm_activities')
-      .update(updateData)
-      .eq('id', id)
+    // If marking as completed, set completed_at timestamp
+    const finalUpdateData = { ...updateData };
+    if (updateData.status === 'completed') {
+      finalUpdateData.completed_at = new Date().toISOString();
+    }
+
+    // Update task
+    const { data: task, error } = await supabase
+      .from('crm_tasks')
+      .update(finalUpdateData)
+      .eq('id', params.id)
       .eq('distributor_id', currentDist.id)
       .select()
       .single();
 
     if (error) {
-      console.error('Error updating activity:', error);
-      return NextResponse.json({ error: 'Failed to update activity' }, { status: 500 });
+      console.error('Error updating task:', error);
+      return NextResponse.json({ error: 'Failed to update task' }, { status: 500 });
     }
 
-    return NextResponse.json({ activity });
+    return NextResponse.json({ task });
   } catch (error) {
-    console.error('Unexpected error updating activity:', error);
+    console.error('Unexpected error updating task:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
 
 // =============================================
-// DELETE /api/crm/activities/[id] - Delete activity
+// DELETE /api/crm/tasks/[id] - Delete task
 // =============================================
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
   try {
-    const { id } = await params;
-
     const currentDist = await getCurrentDistributor();
     if (!currentDist) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -138,21 +137,21 @@ export async function DELETE(
 
     const supabase = await createClient();
 
-    // Delete activity (RLS will ensure it belongs to current distributor)
+    // Delete task (RLS will ensure it belongs to current distributor)
     const { error } = await supabase
-      .from('crm_activities')
+      .from('crm_tasks')
       .delete()
-      .eq('id', id)
+      .eq('id', params.id)
       .eq('distributor_id', currentDist.id);
 
     if (error) {
-      console.error('Error deleting activity:', error);
-      return NextResponse.json({ error: 'Failed to delete activity' }, { status: 500 });
+      console.error('Error deleting task:', error);
+      return NextResponse.json({ error: 'Failed to delete task' }, { status: 500 });
     }
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('Unexpected error deleting activity:', error);
+    console.error('Unexpected error deleting task:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

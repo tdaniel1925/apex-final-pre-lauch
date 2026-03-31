@@ -1,8 +1,8 @@
 // =============================================
-// CRM Contacts API - Single Contact Operations
-// GET: Get single contact
-// PUT: Update contact
-// DELETE: Delete contact
+// CRM Leads API - Single Lead Operations
+// GET: Get single lead
+// PUT: Update lead
+// DELETE: Delete lead
 // =============================================
 
 import { NextRequest, NextResponse } from 'next/server';
@@ -14,31 +14,27 @@ import { z } from 'zod';
 // Validation Schemas
 // =============================================
 
-const updateContactSchema = z.object({
+const updateLeadSchema = z.object({
   first_name: z.string().min(1).max(100).optional(),
   last_name: z.string().min(1).max(100).optional(),
   email: z.string().email().optional().nullable(),
   phone: z.string().max(20).optional().nullable(),
   company: z.string().max(200).optional().nullable(),
-  title: z.string().max(100).optional().nullable(),
-  contact_type: z.enum(['customer', 'prospect', 'partner', 'vendor']).optional(),
-  status: z.enum(['active', 'inactive', 'archived']).optional(),
-  lifetime_value: z.number().min(0).optional(),
-  last_purchase_date: z.string().datetime().optional().nullable(),
+  status: z.enum(['new', 'contacted', 'qualified', 'unqualified', 'converted', 'lost']).optional(),
+  source: z.enum(['website', 'referral', 'social_media', 'event', 'cold_call', 'email_campaign', 'other']).optional().nullable(),
+  interest_level: z.enum(['low', 'medium', 'high']).optional().nullable(),
   notes: z.string().optional().nullable(),
   tags: z.array(z.string()).optional().nullable(),
 });
 
 // =============================================
-// GET /api/crm/contacts/[id] - Get single contact
+// GET /api/crm/leads/[id] - Get single lead
 // =============================================
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
   try {
-    const { id } = await params;
-
     const currentDist = await getCurrentDistributor();
     if (!currentDist) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -46,34 +42,32 @@ export async function GET(
 
     const supabase = await createClient();
 
-    const { data: contact, error } = await supabase
-      .from('crm_contacts')
+    const { data: lead, error } = await supabase
+      .from('crm_leads')
       .select('*')
-      .eq('id', id)
+      .eq('id', params.id)
       .eq('distributor_id', currentDist.id)
       .single();
 
-    if (error || !contact) {
-      return NextResponse.json({ error: 'Contact not found' }, { status: 404 });
+    if (error || !lead) {
+      return NextResponse.json({ error: 'Lead not found' }, { status: 404 });
     }
 
-    return NextResponse.json({ contact });
+    return NextResponse.json({ lead });
   } catch (error) {
-    console.error('Unexpected error fetching contact:', error);
+    console.error('Unexpected error fetching lead:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
 
 // =============================================
-// PUT /api/crm/contacts/[id] - Update contact
+// PUT /api/crm/leads/[id] - Update lead
 // =============================================
 export async function PUT(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
   try {
-    const { id } = await params;
-
     const currentDist = await getCurrentDistributor();
     if (!currentDist) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -82,7 +76,7 @@ export async function PUT(
     const body = await request.json();
 
     // Validate request body
-    const validation = updateContactSchema.safeParse(body);
+    const validation = updateLeadSchema.safeParse(body);
     if (!validation.success) {
       return NextResponse.json(
         { error: 'Validation failed', details: validation.error.errors },
@@ -94,67 +88,65 @@ export async function PUT(
 
     const supabase = await createClient();
 
-    // Verify contact exists and belongs to current distributor
+    // Verify lead exists and belongs to current distributor
     const { data: existing } = await supabase
-      .from('crm_contacts')
+      .from('crm_leads')
       .select('id')
-      .eq('id', id)
+      .eq('id', params.id)
       .eq('distributor_id', currentDist.id)
       .single();
 
     if (!existing) {
-      return NextResponse.json({ error: 'Contact not found' }, { status: 404 });
+      return NextResponse.json({ error: 'Lead not found' }, { status: 404 });
     }
 
     // Check for duplicate email (if email is being updated)
     if (updateData.email) {
       const { data: duplicate } = await supabase
-        .from('crm_contacts')
+        .from('crm_leads')
         .select('id')
         .eq('distributor_id', currentDist.id)
         .eq('email', updateData.email)
-        .neq('id', id)
+        .neq('id', params.id)
         .single();
 
       if (duplicate) {
         return NextResponse.json(
-          { error: 'A contact with this email already exists' },
+          { error: 'A lead with this email already exists' },
           { status: 409 }
         );
       }
     }
 
-    // Update contact
-    const { data: contact, error } = await supabase
-      .from('crm_contacts')
+    // Update lead
+    const { data: lead, error } = await supabase
+      .from('crm_leads')
       .update(updateData)
-      .eq('id', id)
+      .eq('id', params.id)
       .eq('distributor_id', currentDist.id)
       .select()
       .single();
 
     if (error) {
-      console.error('Error updating contact:', error);
-      return NextResponse.json({ error: 'Failed to update contact' }, { status: 500 });
+      console.error('Error updating lead:', error);
+      return NextResponse.json({ error: 'Failed to update lead' }, { status: 500 });
     }
 
-    return NextResponse.json({ contact });
+    return NextResponse.json({ lead });
   } catch (error) {
-    console.error('Unexpected error updating contact:', error);
+    console.error('Unexpected error updating lead:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
 
 // =============================================
-// DELETE /api/crm/contacts/[id] - Delete contact
+// DELETE /api/crm/leads/[id] - Delete lead
 // =============================================
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
   try {
-    const { id } = await params;
-
     const currentDist = await getCurrentDistributor();
     if (!currentDist) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -162,22 +154,21 @@ export async function DELETE(
 
     const supabase = await createClient();
 
-    // Delete contact (RLS will ensure it belongs to current distributor)
-    // CASCADE will delete related activities and tasks
+    // Delete lead (RLS will ensure it belongs to current distributor)
     const { error } = await supabase
-      .from('crm_contacts')
+      .from('crm_leads')
       .delete()
-      .eq('id', id)
+      .eq('id', params.id)
       .eq('distributor_id', currentDist.id);
 
     if (error) {
-      console.error('Error deleting contact:', error);
-      return NextResponse.json({ error: 'Failed to delete contact' }, { status: 500 });
+      console.error('Error deleting lead:', error);
+      return NextResponse.json({ error: 'Failed to delete lead' }, { status: 500 });
     }
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('Unexpected error deleting contact:', error);
+    console.error('Unexpected error deleting lead:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

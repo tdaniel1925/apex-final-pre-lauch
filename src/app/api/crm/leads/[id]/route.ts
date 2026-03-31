@@ -32,9 +32,11 @@ const updateLeadSchema = z.object({
 // =============================================
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
+
     const currentDist = await getCurrentDistributor();
     if (!currentDist) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -45,7 +47,7 @@ export async function GET(
     const { data: lead, error } = await supabase
       .from('crm_leads')
       .select('*')
-      .eq('id', params.id)
+      .eq('id', id)
       .eq('distributor_id', currentDist.id)
       .single();
 
@@ -65,9 +67,11 @@ export async function GET(
 // =============================================
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
+
     const currentDist = await getCurrentDistributor();
     if (!currentDist) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -92,7 +96,7 @@ export async function PUT(
     const { data: existing } = await supabase
       .from('crm_leads')
       .select('id')
-      .eq('id', params.id)
+      .eq('id', id)
       .eq('distributor_id', currentDist.id)
       .single();
 
@@ -107,7 +111,7 @@ export async function PUT(
         .select('id')
         .eq('distributor_id', currentDist.id)
         .eq('email', updateData.email)
-        .neq('id', params.id)
+        .neq('id', id)
         .single();
 
       if (duplicate) {
@@ -122,7 +126,7 @@ export async function PUT(
     const { data: lead, error } = await supabase
       .from('crm_leads')
       .update(updateData)
-      .eq('id', params.id)
+      .eq('id', id)
       .eq('distributor_id', currentDist.id)
       .select()
       .single();
@@ -144,9 +148,11 @@ export async function PUT(
 // =============================================
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
+
     const currentDist = await getCurrentDistributor();
     if (!currentDist) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -158,7 +164,7 @@ export async function DELETE(
     const { error } = await supabase
       .from('crm_leads')
       .delete()
-      .eq('id', params.id)
+      .eq('id', id)
       .eq('distributor_id', currentDist.id);
 
     if (error) {
