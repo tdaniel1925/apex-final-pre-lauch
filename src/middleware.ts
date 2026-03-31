@@ -52,20 +52,10 @@ export async function middleware(request: NextRequest) {
 
     // ONLY check auth for admin/finance routes
     // DO NOT call getUser() for other routes - let server components handle their own auth
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-
-    // Debug logging (remove after testing)
-    if (request.nextUrl.pathname.startsWith('/admin') || request.nextUrl.pathname.startsWith('/finance')) {
-      console.log('Middleware check:', {
-        path: request.nextUrl.pathname,
-        hasUser: !!user,
-        userEmail: user?.email,
-        authError: authError?.message,
-      });
-    }
 
     // Protect finance routes - CFO/Admin only
     if (request.nextUrl.pathname.startsWith('/finance')) {
+      const { data: { user }, error: authError } = await supabase.auth.getUser();
       if (!user || authError) {
         console.log('Finance route: No user or auth error, redirecting to login');
         const redirectUrl = new URL('/login', request.url);
@@ -88,6 +78,7 @@ export async function middleware(request: NextRequest) {
 
     // Protect admin routes
     if (request.nextUrl.pathname.startsWith('/admin')) {
+      const { data: { user }, error: authError } = await supabase.auth.getUser();
       if (!user || authError) {
         console.log('Admin route: No user or auth error, redirecting to login');
         const redirectUrl = new URL('/login', request.url);
