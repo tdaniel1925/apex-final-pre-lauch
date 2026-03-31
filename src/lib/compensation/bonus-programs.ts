@@ -61,7 +61,7 @@ export function calculateRankBonus(
       newRank,
       bonusAmountCents: 0,
       qualified: false,
-      reason: `Not override qualified (need ${OVERRIDE_QUALIFICATION_MIN_CREDITS}+ personal credits)`,
+      reason: `Not override qualified (need ${OVERRIDE_QUALIFICATION_MIN_CREDITS}+ personal QV)`,
     };
   }
 

@@ -115,7 +115,7 @@ export default function SmartLookPage() {
                   <span style={{ fontSize: '56px', fontWeight: 800, color: '#ffffff' }}>$99</span>
                   <span style={{ fontSize: '20px', color: '#cbd5e1' }}>/month</span>
                 </div>
-                <p style={{ fontSize: '15px', color: '#94a3b8', margin: 0 }}>One price • All features included</p>
+                <p style={{ fontSize: '15px', color: '#94a3b8', margin: 0 }}>Compare to $250+/month • All features included</p>
               </div>
               <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
                 <Link

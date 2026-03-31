@@ -64,7 +64,7 @@ export interface OverrideResult {
  *   → If level not unlocked for rank → $0
  *
  * Override Qualification:
- * - Must have 50+ personal credits/month to earn overrides
+ * - Must have 50+ personal QV/month to earn overrides
  * - If below 50: seller commission still paid, overrides = $0
  *
  * @param member - Member receiving override
@@ -319,7 +319,7 @@ export function validateOverrides(
  * Check if member is override qualified
  *
  * From spec:
- * "Must generate 50+ personal credits/month to earn overrides and bonuses"
+ * "Must generate 50+ personal QV/month to earn overrides and bonuses"
  *
  * @param personalCreditsMonthly - Personal production credits for the month
  * @returns True if qualified for overrides

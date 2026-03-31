@@ -64,7 +64,7 @@ export interface RankEvaluationResult {
  * Evaluate Tech Ladder Rank
  *
  * From spec:
- * - Check personal + group credits against thresholds
+ * - Check personal + group QV (GQV) against thresholds
  * - Verify downline rank requirements (personally sponsored)
  * - Apply grace period (2 months) for demotions
  * - Apply rank lock (6 months) for new reps

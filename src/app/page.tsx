@@ -1,4 +1,4 @@
-import OptiveReplicatedSite from '@/components/optive/OptiveReplicatedSite';
+import ProfessionalHomepage from '@/components/homepage/ProfessionalHomepage';
 import type { Distributor } from '@/lib/types';
 
 export default function Home() {
@@ -6,14 +6,14 @@ export default function Home() {
   const genericDistributor: Distributor = {
     id: '00000000-0000-0000-0000-000000000000',
     auth_user_id: null,
-    email: 'info@reachtheapex.net',
+    email: 'info@theapexway.net',
     first_name: 'Your',
     last_name: 'Success',
     slug: 'apex',
     affiliate_code: 'APEX0000',
     phone: '281-600-4000',
     company_name: 'Apex Affinity Group',
-    bio: 'Join our team of successful insurance professionals. Build your business with proven systems, unlimited earning potential, and comprehensive support. No experience required - we provide complete training and resources.',
+    bio: 'Join our team of successful insurance professionals.',
     profile_photo_url: null,
     social_links: null,
     address_line1: null,
@@ -59,5 +59,5 @@ export default function Home() {
     updated_at: new Date().toISOString(),
   };
 
-  return <OptiveReplicatedSite distributor={genericDistributor} isMainSite={true} />;
+  return <ProfessionalHomepage distributor={genericDistributor} isMainSite={true} />;
 }

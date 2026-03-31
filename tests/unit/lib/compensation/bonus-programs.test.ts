@@ -37,11 +37,11 @@ describe('Bonus Programs', () => {
       expect(result.bonusAmountCents).toBe(100000); // $1,000
     });
 
-    it('should pay Elite bonus ($30,000) on first Elite promotion', () => {
-      const result = calculateRankBonus('member-3', 'elite', 'crown', true);
+    it('should pay Diamond Ambassador bonus ($18,000) on first Diamond Ambassador promotion', () => {
+      const result = calculateRankBonus('member-3', 'diamond_ambassador', 'ruby', true);
 
       expect(result.qualified).toBe(true);
-      expect(result.bonusAmountCents).toBe(3000000); // $30,000
+      expect(result.bonusAmountCents).toBe(1800000); // $18,000
     });
 
     it('should NOT pay bonus if not override qualified (<50 credits)', () => {
@@ -50,7 +50,7 @@ describe('Bonus Programs', () => {
       expect(result.qualified).toBe(false);
       expect(result.bonusAmountCents).toBe(0);
       expect(result.reason).toContain('Not override qualified');
-      expect(result.reason).toContain('50+ personal credits');
+      expect(result.reason).toContain('50+ personal QV');
     });
 
     it('should NOT pay bonus on re-qualification (already achieved rank)', () => {
@@ -63,12 +63,12 @@ describe('Bonus Programs', () => {
 
     it('should NOT pay bonus when re-promoted to previously achieved rank', () => {
       // Member was Elite, demoted, now back to Gold
-      const result = calculateRankBonus('member-6', 'gold', 'elite', true);
+      const result = calculateRankBonus('member-6', 'gold', 'diamond_ambassador', true);
 
       expect(result.qualified).toBe(false);
       expect(result.bonusAmountCents).toBe(0);
       expect(result.reason).toContain('Already achieved gold or higher');
-      expect(result.reason).toContain('highest: elite');
+      expect(result.reason).toContain('highest: diamond_ambassador');
     });
 
     it('should pay bonus when skipping ranks', () => {

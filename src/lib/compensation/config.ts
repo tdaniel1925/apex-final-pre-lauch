@@ -7,7 +7,7 @@
 // =============================================
 
 /**
- * Tech Ladder Ranks (9 ranks)
+ * Tech Ladder Ranks (7 ranks)
  * Order: Lowest to highest (for rank_value calculations)
  */
 export const TECH_RANKS = [
@@ -17,9 +17,7 @@ export const TECH_RANKS = [
   'gold',
   'platinum',
   'ruby',
-  'diamond',
-  'crown',
-  'elite',
+  'diamond_ambassador',
 ] as const;
 
 export type TechRank = (typeof TECH_RANKS)[number];
@@ -44,19 +42,19 @@ export type InsuranceRank = (typeof INSURANCE_RANKS)[number];
  * Tech Rank Requirements
  *
  * From spec:
- * - personal: Personal credits required per month
+ * - personal: personal QV required per month
  * - group: Group (team) credits required per month
- * - downline: Sponsored member rank requirements (OR conditions for Diamond/Elite)
+ * - downline: Sponsored member rank requirements (OR conditions for Diamond Ambassador)
  * - bonus: One-time rank advancement bonus (cents)
- * - overrideDepth: Number of override levels unlocked (1-5)
+ * - overrideDepth: Number of override levels unlocked (1-7)
  */
 export interface TechRankRequirements {
   name: TechRank;
-  personal: number; // Personal credits/month
-  group: number; // Group credits/month
+  personal: number; // personal QV/month
+  group: number; // group QV (GQV)/month
   downline?: DownlineRequirement | DownlineRequirement[]; // OR conditions
   bonus: number; // One-time rank bonus (cents)
-  overrideDepth: number; // 1-5 levels
+  overrideDepth: number; // 1-7 levels
 }
 
 export interface DownlineRequirement {
@@ -110,10 +108,10 @@ export const TECH_RANK_REQUIREMENTS: TechRankRequirements[] = [
     group: 30000,
     downline: { gold: 2 }, // 2 Golds sponsored
     bonus: 1200000, // $12,000
-    overrideDepth: 5, // L1-L5
+    overrideDepth: 6, // L1-L6
   },
   {
-    name: 'diamond',
+    name: 'diamond_ambassador',
     personal: 5000,
     group: 50000,
     downline: [
@@ -121,62 +119,43 @@ export const TECH_RANK_REQUIREMENTS: TechRankRequirements[] = [
       { platinum: 2 }, // 2 Platinums
     ],
     bonus: 1800000, // $18,000
-    overrideDepth: 5, // L1-L5
-  },
-  {
-    name: 'crown',
-    personal: 6000,
-    group: 75000,
-    downline: { platinum: 2, gold: 1 }, // 2 Plat + 1 Gold
-    bonus: 2200000, // $22,000
-    overrideDepth: 5, // L1-L5
-  },
-  {
-    name: 'elite',
-    personal: 8000,
-    group: 120000,
-    downline: [
-      { platinum: 3 }, // 3 Platinums OR
-      { diamond: 2 }, // 2 Diamonds
-    ],
-    bonus: 3000000, // $30,000
-    overrideDepth: 5, // L1-L5 + Leadership Pool
+    overrideDepth: 7, // L1-L7
   },
 ];
 
 /**
- * Ranked Override Schedules
+ * Ranked Override Schedules - 7 LEVELS
  *
- * Each rank has different override percentages for L1-L5.
+ * Each rank has different override percentages for L1-L7.
  * These are percentages of the OVERRIDE POOL, not the retail price.
  *
- * From spec:
- * - L1 is ALWAYS 30% for all ranks (Enroller Override Rule)
- * - Higher ranks unlock deeper levels with higher percentages
+ * From spec (comp-plan-7-levels.md):
+ * - L1 is ALWAYS 25% (uses enrollment tree - sponsor_id)
+ * - L2-L7 use matrix tree (matrix_parent_id)
+ * - Higher ranks unlock deeper levels
+ * - Breakage (unpaid %) goes 100% to Apex
  */
 export const RANKED_OVERRIDE_SCHEDULES: Record<
   TechRank,
-  [number, number, number, number, number]
+  [number, number, number, number, number, number, number]
 > = {
-  starter: [0.30, 0.0, 0.0, 0.0, 0.0], // L1 only
-  bronze: [0.30, 0.05, 0.0, 0.0, 0.0], // L1-L2
-  silver: [0.30, 0.10, 0.05, 0.0, 0.0], // L1-L3
-  gold: [0.30, 0.15, 0.10, 0.05, 0.0], // L1-L4
-  platinum: [0.30, 0.18, 0.12, 0.08, 0.03], // L1-L5
-  ruby: [0.30, 0.20, 0.15, 0.10, 0.05], // L1-L5 (higher %s)
-  diamond: [0.30, 0.22, 0.18, 0.12, 0.08], // L1-L5 (higher %s)
-  crown: [0.30, 0.25, 0.20, 0.15, 0.10], // L1-L5 (highest non-Elite)
-  elite: [0.30, 0.25, 0.20, 0.15, 0.10], // L1-L5 (same as Crown)
+  starter: [0.25, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], // L1 only - 75% breakage
+  bronze: [0.25, 0.20, 0.0, 0.0, 0.0, 0.0, 0.0], // L1-L2 - 55% breakage
+  silver: [0.25, 0.20, 0.18, 0.0, 0.0, 0.0, 0.0], // L1-L3 - 37% breakage
+  gold: [0.25, 0.20, 0.18, 0.15, 0.0, 0.0, 0.0], // L1-L4 - 22% breakage
+  platinum: [0.25, 0.20, 0.18, 0.15, 0.10, 0.0, 0.0], // L1-L5 - 12% breakage
+  ruby: [0.25, 0.20, 0.18, 0.15, 0.10, 0.07, 0.0], // L1-L6 - 5% breakage
+  diamond_ambassador: [0.25, 0.20, 0.18, 0.15, 0.10, 0.07, 0.05], // L1-L7 - 0% breakage (100% paid)
 };
 
 /**
  * Get override percentage for a specific rank and level
  * @param rank - Tech rank
- * @param level - Override level (1-5)
- * @returns Percentage (0.0-0.30) or 0 if level not unlocked
+ * @param level - Override level (1-7)
+ * @returns Percentage (0.0-0.25) or 0 if level not unlocked
  */
 export function getOverridePercentage(rank: TechRank, level: number): number {
-  if (level < 1 || level > 5) return 0;
+  if (level < 1 || level > 7) return 0;
   return RANKED_OVERRIDE_SCHEDULES[rank][level - 1];
 }
 
@@ -193,8 +172,8 @@ export function getRankValue(rank: TechRank): number {
  * Override Qualification - 50 Credit Minimum
  *
  * From spec:
- * "Must generate 50+ personal credits/month to earn overrides and bonuses"
- * If below 50 credits: seller commission still paid, but overrides = $0, bonuses = $0
+ * "Must generate 50+ personal QV/month to earn overrides and bonuses"
+ * If below 50 QV: seller commission still paid, but overrides = $0, bonuses = $0
  */
 export const OVERRIDE_QUALIFICATION_MIN_CREDITS = 50;
 
@@ -260,43 +239,42 @@ export const WATERFALL_CONFIG = {
 } as const;
 
 /**
- * Business Center Exception
+ * Business Center Exception - NEW 7-LEVEL SYSTEM
  *
- * From spec:
+ * From spec (comp-plan-7-levels.md):
  * Business Center $39/mo does NOT flow through standard waterfall.
  * Fixed dollar amounts:
- * - BotMakers: $11
- * - Apex: $8
- * - Rep (seller): $10
- * - Sponsor: $8
- * - Costs: $2
- * - Override Pool: NONE
+ * - BotMakers: $11 (30% flat)
+ * - Apex: $6 (flat)
+ * - COGS: $3.90 (paid to BotMakers separately, from bonus pool)
+ * - Rep (seller): $5 (flat)
+ * - Override Pool: $13.10 ($1.75 flat per level × 7 levels)
  * - Bonus Pool: NONE
  * - Leadership Pool: NONE
  * - Credits: 39 (fixed)
  */
 export const BUSINESS_CENTER_CONFIG = {
   PRICE_CENTS: 3900, // $39
-  BOTMAKERS_FEE_CENTS: 1100, // $11
-  APEX_TAKE_CENTS: 800, // $8
-  SELLER_COMMISSION_CENTS: 1000, // $10
-  SPONSOR_BONUS_CENTS: 800, // $8
-  COSTS_CENTS: 200, // $2
-  OVERRIDE_POOL_CENTS: 0, // No override pool
+  BOTMAKERS_FEE_CENTS: 1100, // $11 (30% flat)
+  APEX_TAKE_CENTS: 600, // $6 (flat)
+  COGS_CENTS: 390, // $3.90 (paid to BotMakers separately)
+  SELLER_COMMISSION_CENTS: 500, // $5 (flat)
+  OVERRIDE_POOL_CENTS: 1310, // $13.10 total override pool
+  OVERRIDE_PER_LEVEL_CENTS: 175, // $1.75 per level (flat)
   BONUS_POOL_CENTS: 0, // No bonus pool
   LEADERSHIP_POOL_CENTS: 0, // No leadership pool
   CREDITS: 39, // Fixed production credits
 } as const;
 
 /**
- * Leadership Pool (1.5%) - Elite Members Only
+ * Leadership Pool (1.5%) - Diamond Ambassador Members Only
  *
- * From spec:
- * - Leadership pool is divided among Elite members only
- * - Based on production points (personal + team credits)
- * - Proportional share: member's points / total Elite points
+ * From spec (comp-plan-7-levels.md):
+ * - Leadership pool is divided among Diamond Ambassador members only
+ * - Based on production points (personal + group QV)
+ * - Proportional share: member's points / total Diamond Ambassador points
  */
-export const LEADERSHIP_POOL_ELIGIBLE_RANK: TechRank = 'elite';
+export const LEADERSHIP_POOL_ELIGIBLE_RANK: TechRank = 'diamond_ambassador';
 
 /**
  * Bonus Pool (3.5%) - Rank Bonus Earners
@@ -317,13 +295,13 @@ export type ProductType = 'standard' | 'business_center';
  *
  * From spec:
  * "CRITICAL RULE: IF org_member.enroller_id == rep.member_id:
- *   → ALWAYS use L1 rate (30% of override pool)
+ *   → ALWAYS use L1 rate (25% of override pool)
  *   → Regardless of matrix position
  *   → Regardless of rep's rank"
  *
  * enroller_id is IMMUTABLE. Set at enrollment. Never changes.
  */
-export const ENROLLER_OVERRIDE_RATE = 0.30; // Always L1 (30%)
+export const ENROLLER_OVERRIDE_RATE = 0.25; // Always L1 (25%)
 
 /**
  * Insurance Cross-Credit
@@ -373,11 +351,11 @@ export async function getTechRankRequirementsAsync(): Promise<TechRankRequiremen
 /**
  * Get override schedule for a specific rank (async for future DB loading)
  * @param rank - Tech rank
- * @returns Override percentages for L1-L5
+ * @returns Override percentages for L1-L7
  */
 export async function getOverrideScheduleAsync(
   rank: TechRank
-): Promise<[number, number, number, number, number]> {
+): Promise<[number, number, number, number, number, number, number]> {
   // FUTURE: Load from database via config-loader
   return RANKED_OVERRIDE_SCHEDULES[rank];
 }
@@ -416,9 +394,7 @@ export const TECH_RANK_DISPLAY_NAMES: Record<TechRank, string> = {
   gold: 'Gold',
   platinum: 'Platinum',
   ruby: 'Ruby',
-  diamond: 'Diamond',
-  crown: 'Crown',
-  elite: 'Elite',
+  diamond_ambassador: 'Diamond Ambassador',
 };
 
 export const INSURANCE_RANK_DISPLAY_NAMES: Record<InsuranceRank, string> = {

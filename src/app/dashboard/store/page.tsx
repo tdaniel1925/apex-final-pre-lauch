@@ -8,6 +8,7 @@ import { createClient } from '@/lib/supabase/server';
 import { createServiceClient } from '@/lib/supabase/service';
 import { getAdminUser } from '@/lib/auth/admin';
 import StoreClient from '@/components/dashboard/StoreClient';
+import PulseProductCard from '@/components/dashboard/PulseProductCard';
 import { Package, CheckCircle, Clock } from 'lucide-react';
 
 export const metadata = {
@@ -78,6 +79,66 @@ export default async function StorePage() {
     return acc;
   }, {}) || {};
 
+  // Define Pulse Products (member pricing)
+  const pulseProducts = [
+    {
+      productSlug: 'pulsemarket' as const,
+      name: 'PulseMarket',
+      description: 'Social Media Marketing Automation & Content Creation',
+      memberPrice: 59,
+      retailPrice: 79,
+      qv: 59,
+      bv: 27.58,
+      features: [
+        'Unlimited social media posts',
+        'AI content generation',
+        'Multi-platform scheduling',
+      ],
+    },
+    {
+      productSlug: 'pulseflow' as const,
+      name: 'PulseFlow',
+      description: 'Professional Marketing Power with Weekly Email & SMS Campaigns',
+      memberPrice: 129,
+      retailPrice: 149,
+      qv: 129,
+      bv: 60.32,
+      features: [
+        'Everything in PulseMarket',
+        'Email marketing automation',
+        'SMS campaigns',
+      ],
+    },
+    {
+      productSlug: 'pulsedrive' as const,
+      name: 'PulseDrive',
+      description: 'Professional Marketing Power with AI Podcast Production',
+      memberPrice: 249,
+      retailPrice: 299,
+      qv: 249,
+      bv: 116.48,
+      features: [
+        'Everything in PulseFlow',
+        'AI podcast creation',
+        'Video content automation',
+      ],
+    },
+    {
+      productSlug: 'pulsecommand' as const,
+      name: 'PulseCommand',
+      description: 'Enterprise-Grade Marketing Automation with AI Avatar Videos',
+      memberPrice: 399,
+      retailPrice: 499,
+      qv: 399,
+      bv: 186.62,
+      features: [
+        'Everything in PulseDrive',
+        'AI avatar video creation',
+        'White-glove service',
+      ],
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-slate-50 p-6">
       <div className="max-w-7xl mx-auto">
@@ -87,6 +148,22 @@ export default async function StorePage() {
           <p className="text-slate-600 mt-1">
             Subscribe to tools and services to grow your business
           </p>
+        </div>
+
+        {/* Pulse Products Section */}
+        <div className="mb-12">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-2xl font-bold text-slate-900">Pulse Marketing Products</h2>
+            <span className="text-sm font-medium text-blue-700 bg-blue-100 px-3 py-1 rounded-full">
+              Member Pricing
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {pulseProducts.map((product) => (
+              <PulseProductCard key={product.productSlug} {...product} />
+            ))}
+          </div>
         </div>
 
         {/* Products by Category */}
