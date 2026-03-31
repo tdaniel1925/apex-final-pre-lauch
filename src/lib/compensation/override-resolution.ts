@@ -95,14 +95,15 @@ export function calculateOverride(
 
   // Business Center Exception
   if (sale.productType === 'business_center') {
-    // BC only pays $8 flat to direct sponsor (enroller)
+    // BC uses standard override pool distribution (no special sponsor bonus)
+    // Override pool is distributed via per-level overrides instead
     if (isEnroller) {
       return {
         memberId: member.memberId,
         memberTechRank: member.techRank,
-        amountCents: BUSINESS_CENTER_CONFIG.SPONSOR_BONUS_CENTS,
+        amountCents: 0, // Business Center uses per-level overrides, not sponsor bonus
         level: 1,
-        percentage: 0, // Fixed amount, not percentage
+        percentage: 0,
         rule: 'business_center',
         qualified: true,
       };

@@ -157,7 +157,7 @@ export function calculateWaterfall(
  * @returns Sponsor bonus in cents ($8)
  */
 export function getBusinessCenterSponsorBonus(): number {
-  return BUSINESS_CENTER_CONFIG.SPONSOR_BONUS_CENTS;
+  return 0; // Business Center uses per-level overrides, not sponsor bonus
 }
 
 /**
@@ -176,8 +176,8 @@ Business Center Waterfall (Fixed Split):
   BotMakers Fee:      ${format(result.botmakersFeeCents)}
   Apex Take:          ${format(result.apexTakeCents)}
   Seller Commission:  ${format(result.sellerCommissionCents)}
-  Sponsor Bonus:      ${format(BUSINESS_CENTER_CONFIG.SPONSOR_BONUS_CENTS)}
-  Costs:              ${format(BUSINESS_CENTER_CONFIG.COSTS_CENTS)}
+  Sponsor Bonus:      ${format(0)} (uses override pool)
+  Costs:              ${format(BUSINESS_CENTER_CONFIG.COGS_CENTS)}
   Override Pool:      ${format(result.overridePoolCents)} (none)
   Bonus Pool:         ${format(result.bonusPoolCents)} (none)
   Leadership Pool:    ${format(result.leadershipPoolCents)} (none)
@@ -224,8 +224,8 @@ export function validateWaterfall(result: WaterfallResult): WaterfallValidation 
       result.botmakersFeeCents +
       result.apexTakeCents +
       result.sellerCommissionCents +
-      BUSINESS_CENTER_CONFIG.SPONSOR_BONUS_CENTS +
-      BUSINESS_CENTER_CONFIG.COSTS_CENTS;
+      BUSINESS_CENTER_CONFIG.COGS_CENTS +
+      result.overridePoolCents;
 
     if (total !== result.priceCents) {
       errors.push(
