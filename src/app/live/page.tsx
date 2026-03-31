@@ -7,7 +7,7 @@ const MEETING_LINK = 'https://teams.microsoft.com/meet/26528832746280?p=Zh81sDMA
 
 // SPECIAL EVENT OVERRIDE - Set to null when no special event
 const SPECIAL_EVENT = {
-  date: '2026-03-24', // YYYY-MM-DD format
+  date: '2026-03-31', // YYYY-MM-DD format (TONIGHT)
   time: '18:30', // 24-hour format (6:30 PM = 18:30)
   title: 'Special CEO Interview - Bill Propper',
   description: 'Exclusive interview with our CEO Bill Propper discussing the Apex Vision, Revolutionary AI Technology, and Insurance Ladder to Success.'
