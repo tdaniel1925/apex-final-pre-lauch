@@ -57,7 +57,9 @@ export default function LiveEventsPage() {
 
       // Check for special event first
       if (SPECIAL_EVENT) {
-        const specialDate = new Date(SPECIAL_EVENT.date + 'T00:00:00');
+        // Parse the special event date string (YYYY-MM-DD)
+        const [year, month, day] = SPECIAL_EVENT.date.split('-').map(Number);
+        const specialDate = new Date(year, month - 1, day); // Month is 0-indexed
         const centralToday = new Date(centralTime.getFullYear(), centralTime.getMonth(), centralTime.getDate());
         const [eventHour, eventMinute] = SPECIAL_EVENT.time.split(':').map(Number);
 
