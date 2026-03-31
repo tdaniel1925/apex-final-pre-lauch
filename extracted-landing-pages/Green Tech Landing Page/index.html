@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Green Tech Landing Page - Exported from UXMagic Copilot">
+    <title>Green Tech Landing Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+tailwind.config={theme:{extend:{colors:{
+'i1':'#5C6AC4','i1l':'#EEF0FF','i1d':'#2D2D3A',
+'f2':'#7DAF8A','f2l':'#EAF4EC','f2g':'#C9A84C','f2gl':'#F7EDD0','f2d':'#2A3240',
+'w3':'#FAF7F2','w3r':'#D4A5A5','w3t':'#C47C5A',
+'r4':'#C4B49A','r4g':'#2D5016','r4s':'#F5EFE4',
+'l5':'#4A6FA5','l5l':'#E8EEF7','l5d':'#1E2A3A',
+'e6':'#FDFAF6','e6t':'#D4B896','e6b':'#E8C4B8','e6e':'#2C1A0E',
+'ed7':'#F5A623','ed7l':'#FEF3DC','ed7s':'#4A90D9','ed7sl':'#E8F2FC',
+'t8':'#2E86AB','t8l':'#E0F0F7','t8s':'#E8D5B0','t8c':'#F4845F',
+'h9':'#E8614A','h9l':'#FDECEA','h9g':'#F5F3F0','h9d':'#1C1C1E',
+'c10':'#3D6B4F','c10l':'#E8F0EB','c10s':'#A8C5DA','c10a':'#DDD0B8','c10b':'#FAFAF7',
+'eo':'#C8622A','eol':'#FDF0E8','eod':'#1E0E06','eom':'#8B3A1A','eos':'#F5E6D3','eog':'#D4A853','eogl':'#FBF3DC','eob':'#FAF5EF',
+'hx':'#8B7355','hxl':'#F5F0E8','hxd':'#1A1410','hxm':'#5C4A32','hxs':'#EDE8DF','hxg':'#B8A898','hxc':'#2C2420','hxw':'#FAF8F5',
+'brut-black':'#0A0A0A','brut-white':'#F5F5F0','brut-yellow':'#FFE500','brut-gray':'#1A1A1A','brut-mid':'#3A3A3A',
+'gt-green':'#2D7A4F','gt-greenl':'#E6F4ED','gt-greend':'#1A4A30','gt-lime':'#7EC850','gt-limel':'#F0FAE8','gt-sky':'#3AAFB9','gt-skyl':'#E3F7F9','gt-earth':'#8B6914','gt-earthl':'#FBF3DC','gt-dark':'#0F1F14','gt-mid':'#1C3526','gt-card':'#1E3D2A','gt-border':'#2A5038',
+},fontFamily:{
+'pf':['"Playfair Display"','serif'],
+'cg':['"Cormorant Garamond"','serif'],
+'sg':['"Space Grotesk"','sans-serif'],
+'sm':['"Space Mono"','monospace'],
+'bar':['Barlow','sans-serif'],
+'barc':['"Barlow Condensed"','sans-serif'],
+'beb':['"Bebas Neue"','sans-serif'],
+'nun':['Nunito','sans-serif'],
+'lb':['"Libre Baskerville"','serif'],
+'man':['Manrope','sans-serif'],
+'lor':['Lora','serif'],
+'int':['Inter','sans-serif'],
+'lat':['Lato','sans-serif'],
+},boxShadow:{
+'sm2':'0 2px 8px rgba(0,0,0,0.06)',
+'md2':'0 8px 30px rgba(0,0,0,0.08)',
+'lg2':'0 20px 60px rgba(0,0,0,0.12)',
+'warm':'0 8px 30px rgba(139,115,85,0.18)',
+'warm-lg':'0 20px 60px rgba(139,115,85,0.15)',
+'brut':'6px 6px 0px #0A0A0A',
+'brut-y':'6px 6px 0px #FFE500',
+'brut-hover':'3px 3px 0px #0A0A0A',
+'green-glow':'0 0 40px rgba(45,122,79,0.35)',
+'green-sm':'0 0 20px rgba(45,122,79,0.2)',
+}}}}
+
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+<!-- FLOW NAVIGATION BAR -->
+<div class="fixed top-0 left-0 right-0 z-50" style="background:rgba(15,31,20,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(126,200,80,0.08)">
+<div class="overflow-x-auto no-sb">
+<div class="flex items-center gap-2 px-6 py-3 min-w-max justify-center">
+<span class="font-barc text-[10px] font-bold uppercase tracking-widest mr-2" style="color:rgba(255,255,255,0.2)">Landing Pages:</span>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/healthcare-landing-page" class="nav-flow-link">01 Healthcare</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/fintech-landing-page" class="nav-flow-link">02 Fintech</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/online-education-landing-page" class="nav-flow-link">03 Education</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/real-estate-landing-page" class="nav-flow-link">04 Real Estate</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/fitness-wellness-landing-page" class="nav-flow-link">05 Fitness</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/travel-adventure-landing-page" class="nav-flow-link">06 Travel</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/food-delivery-landing-page" class="nav-flow-link">07 Food</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/legal-services-landing-page" class="nav-flow-link">08 Legal</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/automotive-landing-page" class="nav-flow-link">09 Auto</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/green-tech-landing-page" class="nav-flow-link active">10 Green Tech ✦</a>
+</div>
+</div>
+</div>
+
+<!-- MAIN NAVIGATION -->
+<nav class="fixed top-12 left-0 right-0 z-40">
+<div class="max-w-7xl mx-auto px-6 mt-4">
+<div class="gt-glass px-8 py-4 flex items-center justify-between" style="border-radius:6px">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 flex items-center justify-center" style="background:linear-gradient(135deg,#2D7A4F,#1A4A30);border-radius:4px">
+<span class="font-beb text-white text-xl leading-none">V</span>
+</div>
+<div>
+<span class="font-beb text-2xl tracking-[0.15em]" style="color:#E6F4ED">VERDANT</span>
+<span class="block font-barc text-[9px] uppercase tracking-[0.25em]" style="color:rgba(126,200,80,0.8)">Clean Energy Solutions</span>
+</div>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a href="#solutions" class="nav-gt">Solutions</a>
+<a href="#impact" class="nav-gt">Impact</a>
+<a href="#technology" class="nav-gt">Technology</a>
+<a href="#partners" class="nav-gt">Partners</a>
+</div>
+<div class="flex items-center gap-3">
+<a href="#solutions" class="nav-gt hidden sm:block text-sm">Learn More</a>
+<a href="#contact" class="btn-gt-lime text-xs py-2.5 px-5">Get Started</a>
+</div>
+</div>
+</div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="relative pt-36 pb-0 overflow-hidden gt-hero-bg" style="max-height:1050px">
+<!-- Background grid -->
+<div class="absolute inset-0 z-0 opacity-5" style="background-image:linear-gradient(rgba(126,200,80,0.2) 1px,transparent 1px),linear-gradient(90deg,rgba(126,200,80,0.2) 1px,transparent 1px);background-size:60px 60px"></div>
+<!-- Green glow -->
+<div class="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] opacity-15 pointer-events-none" style="background:radial-gradient(ellipse,#2D7A4F,transparent);filter:blur(80px)"></div>
+<div class="absolute bottom-0 right-0 w-[400px] h-[400px] opacity-10 pointer-events-none" style="background:radial-gradient(ellipse,#3AAFB9,transparent);filter:blur(60px)"></div>
+
+<div class="max-w-7xl mx-auto px-6 relative z-10">
+<!-- Top Badge -->
+<div class="flex justify-center mb-8">
+<div class="inline-flex items-center gap-3 px-5 py-2" style="background:rgba(45,122,79,0.15);border:1px solid rgba(126,200,80,0.3);border-radius:4px">
+<span class="w-1.5 h-1.5 rounded-full pulse-green" style="background:#7EC850"></span>
+<span class="font-barc text-xs font-bold uppercase tracking-[0.2em]" style="color:#7EC850">Carbon Neutral Since 2022 — Net Zero by 2030</span>
+</div>
+</div>
+
+<div class="text-center mb-12">
+<h1 class="font-beb leading-none tracking-[0.04em] mb-6" style="font-size:clamp(56px,9vw,130px);color:#E6F4ED">
+POWER THE<br><span class="gt-green-text">FUTURE</span>
+</h1>
+<p class="font-bar text-lg md:text-xl max-w-2xl mx-auto mb-10" style="color:rgba(230,244,237,0.55);font-weight:300;letter-spacing:0.02em">
+Verdant delivers cutting-edge solar, wind, and energy storage solutions that reduce carbon emissions and power communities with clean, affordable energy.
+</p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+<a href="#solutions" class="btn-gt-lime text-base px-10 py-4">Explore Solutions</a>
+<a href="#impact" class="btn-gt-outline text-base px-10 py-4">See Our Impact</a>
+</div>
+
+<!-- Environmental Stats Row -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-0 max-w-3xl mx-auto" style="border:1px solid #2A5038;border-radius:6px;overflow:hidden">
+<div class="px-8 py-5 text-center" style="border-right:1px solid #2A5038">
+<p class="gt-stat-num text-4xl" style="color:#7EC850">4.2<span style="color:#3AAFB9;font-size:1.4rem">M</span></p>
+<p class="font-barc text-xs uppercase tracking-widest mt-1" style="color:rgba(255,255,255,0.35)">Tons CO₂ Saved</p>
+</div>
+<div class="px-8 py-5 text-center" style="border-right:1px solid #2A5038">
+<p class="gt-stat-num text-4xl" style="color:#7EC850">18<span style="color:#3AAFB9;font-size:1.4rem">GW</span></p>
+<p class="font-barc text-xs uppercase tracking-widest mt-1" style="color:rgba(255,255,255,0.35)">Clean Energy</p>
+</div>
+<div class="px-8 py-5 text-center" style="border-right:1px solid #2A5038">
+<p class="gt-stat-num text-4xl" style="color:#7EC850">92<span style="color:#3AAFB9;font-size:1.4rem">K</span></p>
+<p class="font-barc text-xs uppercase tracking-widest mt-1" style="color:rgba(255,255,255,0.35)">Homes Powered</p>
+</div>
+<div class="px-8 py-5 text-center">
+<p class="gt-stat-num text-4xl" style="color:#7EC850">140<span style="color:#3AAFB9;font-size:1.4rem">+</span></p>
+<p class="font-barc text-xs uppercase tracking-widest mt-1" style="color:rgba(255,255,255,0.35)">Countries Served</p>
+</div>
+</div>
+</div>
+
+<!-- Hero Image -->
+<div class="relative mt-8 overflow-hidden" style="height:420px">
+<img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="Solar Farm" class="w-full h-full object-cover object-center opacity-80" style="mask-image:linear-gradient(to bottom,rgba(0,0,0,1) 0%,rgba(0,0,0,0.7) 70%,rgba(0,0,0,0) 100%);-webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,1) 0%,rgba(0,0,0,0.7) 70%,rgba(0,0,0,0) 100%)">
+<!-- Floating info cards -->
+<div class="absolute top-8 left-8 gt-glass p-4 z-20 float-leaf" style="border-radius:6px">
+<p class="font-barc text-xs uppercase tracking-widest mb-1" style="color:rgba(126,200,80,0.8)">Live Grid Output</p>
+<p class="font-beb text-xl tracking-wider" style="color:#E6F4ED">2.4 GW Active</p>
+<p class="font-bar text-xs mt-1" style="color:rgba(255,255,255,0.4)">↑ 12% vs last month</p>
+</div>
+<div class="absolute top-8 right-8 gt-glass p-4 z-20 float-leaf-2" style="border-radius:6px">
+<p class="font-barc text-xs uppercase tracking-widest mb-1" style="color:rgba(126,200,80,0.8)">Carbon Offset Today</p>
+<p class="font-beb text-xl tracking-wider" style="color:#E6F4ED">1,240 Tons</p>
+<p class="font-bar text-xs mt-1" style="color:rgba(255,255,255,0.4)">Equivalent to 270 cars off road</p>
+</div>
+</div>
+</div>
+
+<!-- Media bar -->
+<div class="py-8 relative z-10" style="border-top:1px solid rgba(255,255,255,0.05)">
+<p class="font-barc text-xs uppercase tracking-[0.25em] text-center mb-5" style="color:rgba(255,255,255,0.2)">Recognized By</p>
+<div class="flex flex-wrap items-center justify-center gap-10" style="opacity:0.3">
+<span class="font-beb text-base tracking-widest" style="color:#E6F4ED">WORLD ECONOMIC FORUM</span>
+<span class="gt-accent-line-v h-4 inline-block"></span>
+<span class="font-beb text-base tracking-widest" style="color:#E6F4ED">BLOOMBERG GREEN</span>
+<span class="gt-accent-line-v h-4 inline-block"></span>
+<span class="font-beb text-base tracking-widest" style="color:#E6F4ED">MIT ENERGY INITIATIVE</span>
+<span class="gt-accent-line-v h-4 inline-block"></span>
+<span class="font-beb text-base tracking-widest" style="color:#E6F4ED">UN CLIMATE COUNCIL</span>
+</div>
+</div>
+</section>
+
+<!-- SOLUTIONS OVERVIEW -->
+<section id="solutions" class="py-24" style="background:#0D1C12;max-height:1200px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
+<div>
+<div class="flex items-center gap-3 mb-4">
+<div class="gt-accent-line w-10"></div>
+<span class="font-barc text-xs uppercase tracking-[0.2em]" style="color:#7EC850">What We Build</span>
+</div>
+<h2 class="font-beb text-6xl md:text-7xl tracking-wider" style="color:#E6F4ED">OUR SOLUTIONS</h2>
+<p class="font-bar text-base mt-3" style="color:rgba(230,244,237,0.45);font-weight:300">Integrated clean energy systems for every scale — from homes to cities.</p>
+</div>
+<a href="#contact" class="font-barc text-sm font-bold uppercase tracking-widest hover:opacity-80 transition-opacity flex items-center gap-2" style="color:#7EC850">Request a Proposal <span>→</span></a>
+</div>
+
+<div class="grid md:grid-cols-3 gap-6">
+<!-- Solution 1: Solar -->
+<div class="sol-card">
+<div class="relative h-[240px] overflow-hidden" style="border-radius:8px 8px 0 0">
+<img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80&amp;w=700&amp;auto=format&amp;fit=crop" alt="Solar Energy" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(15,31,20,0.95) 0%,rgba(15,31,20,0.2) 60%,transparent 100%)"></div>
+<div class="absolute top-4 left-4"><span class="gt-tag">Solar Power</span></div>
+<div class="absolute bottom-4 left-4 right-4">
+<p class="font-beb text-2xl tracking-wider" style="color:#E6F4ED">SOLAR ARRAYS</p>
+</div>
+</div>
+<div class="p-6">
+<div class="grid grid-cols-3 gap-3 mb-5">
+<div class="text-center p-3" style="background:rgba(126,200,80,0.06);border:1px solid rgba(126,200,80,0.15);border-radius:4px">
+<p class="gt-stat-num text-xl" style="color:#7EC850">98<span style="color:#3AAFB9;font-size:0.75rem">%</span></p>
+<p class="font-barc text-[10px] uppercase tracking-wider mt-0.5" style="color:rgba(255,255,255,0.3)">Efficiency</p>
+</div>
+<div class="text-center p-3" style="background:rgba(126,200,80,0.06);border:1px solid rgba(126,200,80,0.15);border-radius:4px">
+<p class="gt-stat-num text-xl" style="color:#7EC850">25<span style="color:#3AAFB9;font-size:0.75rem">yr</span></p>
+<p class="font-barc text-[10px] uppercase tracking-wider mt-0.5" style="color:rgba(255,255,255,0.3)">Warranty</p>
+</div>
+<div class="text-center p-3" style="background:rgba(126,200,80,0.06);border:1px solid rgba(126,200,80,0.15);border-radius:4px">
+<p class="gt-stat-num text-xl" style="color:#7EC850">0<span style="color:#3AAFB9;font-size:0.75rem">CO₂</span></p>
+<p class="font-barc text-[10px] uppercase tracking-wider mt-0.5" style="color:rgba(255,255,255,0.3)">Emissions</p>
+</div>
+</div>
+<p class="font-bar text-sm leading-relaxed mb-5" style="color:rgba(230,244,237,0.45);font-weight:300">High-efficiency photovoltaic panels for residential, commercial, and utility-scale deployments. Smart monitoring included.</p>
+<div class="flex items-center justify-between">
+<div>
+<p class="font-barc text-xs uppercase tracking-widest mb-0.5" style="color:rgba(255,255,255,0.3)">From</p>
+<p class="font-beb text-2xl tracking-wider" style="color:#E6F4ED">$8,500</p>
+</div>
+<a href="#contact" class="btn-gt text-xs py-2.5 px-5">Get Quote</a>
+</div>
+</div>
+</div>
+
+<!-- Solution 2: Wind (Featured) -->
+<div class="sol-card" style="border-color:rgba(126,200,80,0.4);box-shadow:0 0 40px rgba(45,122,79,0.15)">
+<div class="gt-accent-line"></div>
+<div class="relative h-[240px] overflow-hidden" style="border-radius:0">
+<img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80&amp;w=700&amp;auto=format&amp;fit=crop" alt="Wind Energy" class="w-full h-full object-cover transition-transform duration-700">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(15,31,20,0.95) 0%,rgba(15,31,20,0.2) 60%,transparent 100%)"></div>
+<div class="absolute top-4 left-4 flex items-center gap-2">
+<span class="gt-tag">Wind Power</span>
+<span class="font-barc text-[10px] font-bold uppercase tracking-widest px-2 py-1" style="background:#2D7A4F;color:white;border-radius:3px">Most Popular</span>
+</div>
+<div class="absolute bottom-4 left-4 right-4">
+<p class="font-beb text-2xl tracking-wider" style="color:#E6F4ED">WIND TURBINES</p>
+</div>
+</div>
+<div class="p-6">
+<div class="grid grid-cols-3 gap-3 mb-5">
+<div class="text-center p-3" style="background:rgba(45,122,79,0.12);border:1px solid rgba(126,200,80,0.25);border-radius:4px">
+<p class="gt-stat-num text-xl" style="color:#7EC850">5<span style="color:#3AAFB9;font-size:0.75rem">MW</span></p>
+<p class="font-barc text-[10px] uppercase tracking-wider mt-0.5" style="color:rgba(255,255,255,0.3)">Per Unit</p>
+</div>
+<div class="text-center p-3" style="background:rgba(45,122,79,0.12);border:1px solid rgba(126,200,80,0.25);border-radius:4px">
+<p class="gt-stat-num text-xl" style="color:#7EC850">30<span style="color:#3AAFB9;font-size:0.75rem">yr</span></p>
+<p class="font-barc text-[10px] uppercase tracking-wider mt-0.5" style="color:rgba(255,255,255,0.3)">Lifespan</p>
+</div>
+<div class="text-center p-3" style="background:rgba(45,122,79,0.12);border:1px solid rgba(126,200,80,0.25);border-radius:4px">
+<p class="gt-stat-num text-xl" style="color:#7EC850">45<span style="color:#3AAFB9;font-size:0.75rem">%</span></p>
+<p class="font-barc text-[10px] uppercase tracking-wider mt-0.5" style="color:rgba(255,255,255,0.3)">Capacity</p>
+</div>
+</div>
+<p class="font-bar text-sm leading-relaxed mb-5" style="color:rgba(230,244,237,0.45);font-weight:300">Onshore and offshore wind turbines engineered for maximum yield. AI-driven pitch control optimizes output in real time.</p>
+<div class="flex items-center justify-between">
+<div>
+<p class="font-barc text-xs uppercase tracking-widest mb-0.5" style="color:rgba(255,255,255,0.3)">From</p>
+<p class="font-beb text-2xl tracking-wider" style="color:#E6F4ED">$2.1M</p>
+</div>
+<a href="#contact" class="btn-gt-lime text-xs py-2.5 px-5">Get Quote</a>
+</div>
+</div>
+</div>
+
+<!-- Solution 3: Storage -->
+<div class="sol-card">
+<div class="relative h-[240px] overflow-hidden" style="border-radius:8px 8px 0 0">
+<img src="https://images.unsplash.com/photo-1620714223084-8fcacc2dbe4d?q=80&amp;w=700&amp;auto=format&amp;fit=crop" alt="Energy Storage" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(15,31,20,0.95) 0%,rgba(15,31,20,0.2) 60%,transparent 100%)"></div>
+<div class="absolute top-4 left-4"><span class="gt-tag-sky">Storage</span></div>
+<div class="absolute bottom-4 left-4 right-4">
+<p class="font-beb text-2xl tracking-wider" style="color:#E6F4ED">GRID BATTERIES</p>
+</div>
+</div>
+<div class="p-6">
+<div class="grid grid-cols-3 gap-3 mb-5">
+<div class="text-center p-3" style="background:rgba(58,175,185,0.08);border:1px solid rgba(58,175,185,0.2);border-radius:4px">
+<p class="gt-stat-num text-xl" style="color:#3AAFB9">500<span style="color:#7EC850;font-size:0.75rem">kWh</span></p>
+<p class="font-barc text-[10px] uppercase tracking-wider mt-0.5" style="color:rgba(255,255,255,0.3)">Capacity</p>
+</div>
+<div class="text-center p-3" style="background:rgba(58,175,185,0.08);border:1px solid rgba(58,175,185,0.2);border-radius:4px">
+<p class="gt-stat-num text-xl" style="color:#3AAFB9">96<span style="color:#7EC850;font-size:0.75rem">%</span></p>
+<p class="font-barc text-[10px] uppercase tracking-wider mt-0.5" style="color:rgba(255,255,255,0.3)">Round-trip</p>
+</div>
+<div class="text-center p-3" style="background:rgba(58,175,185,0.08);border:1px solid rgba(58,175,185,0.2);border-radius:4px">
+<p class="gt-stat-num text-xl" style="color:#3AAFB9">20<span style="color:#7EC850;font-size:0.75rem">yr</span></p>
+<p class="font-barc text-[10px] uppercase tracking-wider mt-0.5" style="color:rgba(255,255,255,0.3)">Cycle Life</p>
+</div>
+</div>
+<p class="font-bar text-sm leading-relaxed mb-5" style="color:rgba(230,244,237,0.45);font-weight:300">Modular lithium-iron phosphate battery systems for grid stabilization, peak shaving, and 24/7 renewable delivery.</p>
+<div class="flex items-center justify-between">
+<div>
+<p class="font-barc text-xs uppercase tracking-widest mb-0.5" style="color:rgba(255,255,255,0.3)">From</p>
+<p class="font-beb text-2xl tracking-wider" style="color:#E6F4ED">$180K</p>
+</div>
+<a href="#contact" class="btn-gt text-xs py-2.5 px-5">Get Quote</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- IMPACT METRICS -->
+<section id="impact" class="py-24 relative overflow-hidden" style="background:#0F1F14;max-height:1100px">
+<div class="absolute inset-0 z-0 opacity-5" style="background-image:linear-gradient(rgba(126,200,80,0.3) 1px,transparent 1px),linear-gradient(90deg,rgba(126,200,80,0.3) 1px,transparent 1px);background-size:80px 80px"></div>
+<div class="max-w-7xl mx-auto px-6 relative z-10">
+<div class="text-center mb-16">
+<div class="flex items-center justify-center gap-3 mb-4">
+<div class="gt-accent-line w-12"></div>
+<span class="font-barc text-xs uppercase tracking-[0.2em]" style="color:#7EC850">Real World Results</span>
+<div class="gt-accent-line w-12"></div>
+</div>
+<h2 class="font-beb text-6xl tracking-wider mb-3" style="color:#E6F4ED">OUR IMPACT</h2>
+<p class="font-bar text-base" style="color:rgba(230,244,237,0.4);font-weight:300">Measurable change for the planet and communities we serve.</p>
+</div>
+
+<!-- Big Impact Numbers -->
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+<div class="stat-card p-8 text-center">
+<div class="w-14 h-14 mx-auto mb-4 flex items-center justify-center" style="background:rgba(126,200,80,0.1);border:1px solid rgba(126,200,80,0.25);border-radius:6px">
+<span style="font-size:24px">🌱</span>
+</div>
+<p class="gt-stat-num text-5xl mb-2" style="color:#7EC850">4.2M</p>
+<p class="font-barc text-sm uppercase tracking-wider mb-2" style="color:#E6F4ED">Tons CO₂ Avoided</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.35)">Equivalent to planting 190M trees</p>
+<div class="gt-progress mt-4"><div class="gt-progress-fill" style="width:84%"></div></div>
+<p class="font-barc text-xs mt-1" style="color:rgba(126,200,80,0.6)">84% of 2025 target</p>
+</div>
+<div class="stat-card p-8 text-center">
+<div class="w-14 h-14 mx-auto mb-4 flex items-center justify-center" style="background:rgba(58,175,185,0.1);border:1px solid rgba(58,175,185,0.25);border-radius:6px">
+<span style="font-size:24px">⚡</span>
+</div>
+<p class="gt-stat-num text-5xl mb-2" style="color:#3AAFB9">18 GW</p>
+<p class="font-barc text-sm uppercase tracking-wider mb-2" style="color:#E6F4ED">Clean Energy Installed</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.35)">Powering 12M+ households</p>
+<div class="gt-progress mt-4"><div class="gt-progress-fill" style="width:72%"></div></div>
+<p class="font-barc text-xs mt-1" style="color:rgba(126,200,80,0.6)">72% of 25 GW goal</p>
+</div>
+<div class="stat-card p-8 text-center">
+<div class="w-14 h-14 mx-auto mb-4 flex items-center justify-center" style="background:rgba(126,200,80,0.1);border:1px solid rgba(126,200,80,0.25);border-radius:6px">
+<span style="font-size:24px">🏘️</span>
+</div>
+<p class="gt-stat-num text-5xl mb-2" style="color:#7EC850">92K</p>
+<p class="font-barc text-sm uppercase tracking-wider mb-2" style="color:#E6F4ED">Homes Powered</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.35)">Across 140+ countries</p>
+<div class="gt-progress mt-4"><div class="gt-progress-fill" style="width:92%"></div></div>
+<p class="font-barc text-xs mt-1" style="color:rgba(126,200,80,0.6)">92% of 100K target</p>
+</div>
+<div class="stat-card p-8 text-center">
+<div class="w-14 h-14 mx-auto mb-4 flex items-center justify-center" style="background:rgba(58,175,185,0.1);border:1px solid rgba(58,175,185,0.25);border-radius:6px">
+<span style="font-size:24px">💧</span>
+</div>
+<p class="gt-stat-num text-5xl mb-2" style="color:#3AAFB9">3.8B</p>
+<p class="font-barc text-sm uppercase tracking-wider mb-2" style="color:#E6F4ED">Liters Water Saved</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.35)">vs. fossil fuel cooling</p>
+<div class="gt-progress mt-4"><div class="gt-progress-fill" style="width:63%"></div></div>
+<p class="font-barc text-xs mt-1" style="color:rgba(126,200,80,0.6)">63% of 6B target</p>
+</div>
+</div>
+
+<!-- Technology Feature Row -->
+<div id="technology" class="grid lg:grid-cols-2 gap-16 items-center">
+<div class="relative">
+<div class="relative overflow-hidden" style="border:1px solid #2A5038;border-radius:8px">
+<img src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Green Technology" class="w-full object-cover opacity-80" style="height:480px">
+<div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(15,31,20,0.4),transparent)"></div>
+<div class="absolute top-6 left-6 gt-glass p-3" style="border-radius:6px">
+<p class="font-barc text-[10px] uppercase tracking-widest mb-1" style="color:rgba(126,200,80,0.8)">System Status</p>
+<p class="font-beb text-lg tracking-wider" style="color:#E6F4ED">ALL SYSTEMS OPTIMAL</p>
+</div>
+<div class="absolute bottom-6 right-6 gt-glass p-3 text-right" style="border-radius:6px">
+<p class="font-barc text-[10px] uppercase tracking-widest mb-1" style="color:rgba(126,200,80,0.8)">Grid Efficiency</p>
+<p class="font-beb text-lg tracking-wider" style="color:#E6F4ED">99.7%</p>
+</div>
+</div>
+<div class="absolute -bottom-5 -right-5 p-5 z-20" style="background:#2D7A4F;border-radius:6px">
+<p class="font-beb text-3xl leading-none" style="color:#E6F4ED">AI</p>
+<p class="font-barc text-[10px] uppercase tracking-widest opacity-80" style="color:#E6F4ED">Optimized</p>
+</div>
+</div>
+
+<div>
+<div class="flex items-center gap-3 mb-6">
+<div class="gt-accent-line w-10"></div>
+<span class="font-barc text-xs uppercase tracking-[0.2em]" style="color:#7EC850">Technology</span>
+</div>
+<h2 class="font-beb text-5xl tracking-wider mb-4" style="color:#E6F4ED">VERDANT<br><span class="gt-green-text">INTELLIGENCE</span></h2>
+<p class="font-bar text-base mb-8" style="color:rgba(230,244,237,0.45);font-weight:300;line-height:1.7">Our proprietary AI platform continuously optimizes energy generation, storage, and distribution — maximizing output while minimizing waste.</p>
+
+<div class="space-y-0">
+<div class="py-4 flex items-start gap-5" style="border-bottom:1px solid rgba(42,80,56,0.8)">
+<div class="w-10 h-10 flex items-center justify-center flex-shrink-0" style="background:rgba(126,200,80,0.1);border:1px solid rgba(126,200,80,0.25);border-radius:4px">
+<span style="color:#7EC850;font-size:16px">☀️</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between mb-1">
+<h3 class="font-barc text-lg font-bold uppercase tracking-wider" style="color:#E6F4ED">Predictive Solar Tracking</h3>
+<span class="gt-tag text-[10px]">Patented</span>
+</div>
+<p class="font-bar text-sm" style="color:rgba(230,244,237,0.45);font-weight:300">ML models predict cloud cover and adjust panel angles 48 hours ahead for 23% more yield.</p>
+</div>
+</div>
+<div class="py-4 flex items-start gap-5" style="border-bottom:1px solid rgba(42,80,56,0.8)">
+<div class="w-10 h-10 flex items-center justify-center flex-shrink-0" style="background:rgba(126,200,80,0.1);border:1px solid rgba(126,200,80,0.25);border-radius:4px">
+<span style="color:#7EC850;font-size:16px">🔋</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between mb-1">
+<h3 class="font-barc text-lg font-bold uppercase tracking-wider" style="color:#E6F4ED">Smart Grid Balancing</h3>
+</div>
+<p class="font-bar text-sm" style="color:rgba(230,244,237,0.45);font-weight:300">Real-time load balancing across distributed storage nodes prevents blackouts and reduces waste.</p>
+</div>
+</div>
+<div class="py-4 flex items-start gap-5" style="border-bottom:1px solid rgba(42,80,56,0.8)">
+<div class="w-10 h-10 flex items-center justify-center flex-shrink-0" style="background:rgba(126,200,80,0.1);border:1px solid rgba(126,200,80,0.25);border-radius:4px">
+<span style="color:#7EC850;font-size:16px">🌐</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between mb-1">
+<h3 class="font-barc text-lg font-bold uppercase tracking-wider" style="color:#E6F4ED">Carbon Dashboard</h3>
+</div>
+<p class="font-bar text-sm" style="color:rgba(230,244,237,0.45);font-weight:300">Live carbon offset tracking with certified reporting for ESG compliance and sustainability goals.</p>
+</div>
+</div>
+<div class="py-4 flex items-start gap-5">
+<div class="w-10 h-10 flex items-center justify-center flex-shrink-0" style="background:rgba(126,200,80,0.1);border:1px solid rgba(126,200,80,0.25);border-radius:4px">
+<span style="color:#7EC850;font-size:16px">🛡️</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between mb-1">
+<h3 class="font-barc text-lg font-bold uppercase tracking-wider" style="color:#E6F4ED">Resilience Monitoring</h3>
+<span class="gt-tag-sky text-[10px]">24/7</span>
+</div>
+<p class="font-bar text-sm" style="color:rgba(230,244,237,0.45);font-weight:300">Continuous fault detection and automated failover keeps your energy supply uninterrupted.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- QUOTE DIVIDER -->
+<section class="py-20 relative overflow-hidden" style="background:linear-gradient(135deg,#1A4A30 0%,#2D7A4F 50%,#1A4A30 100%);max-height:280px">
+<div class="absolute inset-0 opacity-10">
+<img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="bg" class="w-full h-full object-cover">
+</div>
+<div class="absolute inset-0 opacity-5" style="background-image:linear-gradient(rgba(255,255,255,0.2) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.2) 1px,transparent 1px);background-size:40px 40px"></div>
+<div class="max-w-5xl mx-auto px-6 relative z-10 text-center">
+<h2 class="font-beb tracking-[0.06em] mb-4" style="font-size:clamp(32px,5vw,64px);color:#E6F4ED">THE EARTH DOESN'T NEED<br>SAVING. IT NEEDS PARTNERS.</h2>
+<p class="font-barc text-sm uppercase tracking-[0.3em]" style="color:rgba(230,244,237,0.6)">— The Verdant Mission</p>
+</div>
+</section>
+
+<!-- PARTNER LOGOS -->
+<section id="partners" class="py-24" style="background:#0D1C12;max-height:900px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-16">
+<div class="flex items-center justify-center gap-3 mb-4">
+<div class="gt-accent-line w-12"></div>
+<span class="font-barc text-xs uppercase tracking-[0.2em]" style="color:#7EC850">Trusted By Leaders</span>
+<div class="gt-accent-line w-12"></div>
+</div>
+<h2 class="font-beb text-6xl tracking-wider mb-3" style="color:#E6F4ED">OUR PARTNERS</h2>
+<p class="font-bar text-base" style="color:rgba(230,244,237,0.4);font-weight:300">Global corporations, governments, and utilities powering change with Verdant.</p>
+</div>
+
+<!-- Partner Grid -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+<div class="partner-logo flex flex-col items-center justify-center text-center" style="min-height:100px">
+<img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?q=80&amp;w=80&amp;auto=format&amp;fit=crop" alt="Partner" class="w-10 h-10 object-cover rounded mb-3 opacity-60">
+<span class="font-beb text-lg tracking-widest" style="color:rgba(230,244,237,0.5)">SIEMENS</span>
+<span class="font-barc text-[10px] uppercase tracking-widest mt-1" style="color:rgba(126,200,80,0.5)">Energy</span>
+</div>
+<div class="partner-logo flex flex-col items-center justify-center text-center" style="min-height:100px">
+<img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?q=80&amp;w=80&amp;auto=format&amp;fit=crop" alt="Partner" class="w-10 h-10 object-cover rounded mb-3 opacity-60">
+<span class="font-beb text-lg tracking-widest" style="color:rgba(230,244,237,0.5)">VESTAS</span>
+<span class="font-barc text-[10px] uppercase tracking-widest mt-1" style="color:rgba(126,200,80,0.5)">Wind</span>
+</div>
+<div class="partner-logo flex flex-col items-center justify-center text-center" style="min-height:100px">
+<img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?q=80&amp;w=80&amp;auto=format&amp;fit=crop" alt="Partner" class="w-10 h-10 object-cover rounded mb-3 opacity-60">
+<span class="font-beb text-lg tracking-widest" style="color:rgba(230,244,237,0.5)">TESLA</span>
+<span class="font-barc text-[10px] uppercase tracking-widest mt-1" style="color:rgba(126,200,80,0.5)">Storage</span>
+</div>
+<div class="partner-logo flex flex-col items-center justify-center text-center" style="min-height:100px">
+<img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?q=80&amp;w=80&amp;auto=format&amp;fit=crop" alt="Partner" class="w-10 h-10 object-cover rounded mb-3 opacity-60">
+<span class="font-beb text-lg tracking-widest" style="color:rgba(230,244,237,0.5)">ENEL</span>
+<span class="font-barc text-[10px] uppercase tracking-widest mt-1" style="color:rgba(126,200,80,0.5)">Grid</span>
+</div>
+<div class="partner-logo flex flex-col items-center justify-center text-center" style="min-height:100px">
+<img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?q=80&amp;w=80&amp;auto=format&amp;fit=crop" alt="Partner" class="w-10 h-10 object-cover rounded mb-3 opacity-60">
+<span class="font-beb text-lg tracking-widest" style="color:rgba(230,244,237,0.5)">ORSTED</span>
+<span class="font-barc text-[10px] uppercase tracking-widest mt-1" style="color:rgba(126,200,80,0.5)">Offshore</span>
+</div>
+<div class="partner-logo flex flex-col items-center justify-center text-center" style="min-height:100px">
+<img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?q=80&amp;w=80&amp;auto=format&amp;fit=crop" alt="Partner" class="w-10 h-10 object-cover rounded mb-3 opacity-60">
+<span class="font-beb text-lg tracking-widest" style="color:rgba(230,244,237,0.5)">NEXTERA</span>
+<span class="font-barc text-[10px] uppercase tracking-widest mt-1" style="color:rgba(126,200,80,0.5)">Utility</span>
+</div>
+<div class="partner-logo flex flex-col items-center justify-center text-center" style="min-height:100px">
+<img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?q=80&amp;w=80&amp;auto=format&amp;fit=crop" alt="Partner" class="w-10 h-10 object-cover rounded mb-3 opacity-60">
+<span class="font-beb text-lg tracking-widest" style="color:rgba(230,244,237,0.5)">IBERDROLA</span>
+<span class="font-barc text-[10px] uppercase tracking-widest mt-1" style="color:rgba(126,200,80,0.5)">Renewables</span>
+</div>
+<div class="partner-logo flex flex-col items-center justify-center text-center" style="min-height:100px">
+<img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?q=80&amp;w=80&amp;auto=format&amp;fit=crop" alt="Partner" class="w-10 h-10 object-cover rounded mb-3 opacity-60">
+<span class="font-beb text-lg tracking-widest" style="color:rgba(230,244,237,0.5)">SUNPOWER</span>
+<span class="font-barc text-[10px] uppercase tracking-widest mt-1" style="color:rgba(126,200,80,0.5)">Solar</span>
+</div>
+</div>
+
+<!-- Certifications Row -->
+<div class="p-8 flex flex-col md:flex-row items-center justify-between gap-8" style="background:#1E3D2A;border:1px solid #2A5038;border-radius:8px">
+<div class="text-center md:text-left">
+<p class="gt-stat-num text-5xl" style="color:#7EC850">ISO<span style="color:#3AAFB9;font-size:1.5rem"> 14001</span></p>
+<p class="font-bar text-xs mt-1" style="color:rgba(255,255,255,0.35)">Environmental Management Certified</p>
+</div>
+<div class="gt-accent-line-v h-12 hidden md:block"></div>
+<div class="grid grid-cols-3 gap-8 text-center">
+<div>
+<p class="font-beb text-xl tracking-wider" style="color:#E6F4ED">UN SDG</p>
+<p class="font-bar text-xs mt-1" style="color:rgba(126,200,80,0.7)">Goals 7, 13 Aligned</p>
+</div>
+<div>
+<p class="font-beb text-xl tracking-wider" style="color:#E6F4ED">LEED</p>
+<p class="font-bar text-xs mt-1" style="color:rgba(126,200,80,0.7)">Platinum Certified</p>
+</div>
+<div>
+<p class="font-beb text-xl tracking-wider" style="color:#E6F4ED">B CORP</p>
+<p class="font-bar text-xs mt-1" style="color:rgba(126,200,80,0.7)">Score: 142.4</p>
+</div>
+</div>
+<div class="gt-accent-line-v h-12 hidden md:block"></div>
+<a href="#contact" class="btn-gt-lime whitespace-nowrap px-8 py-3">Partner With Us</a>
+</div>
+</div>
+</section>
+
+<!-- CONTACT / CTA -->
+<section id="contact" class="py-24" style="background:#0F1F14;max-height:1000px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-16">
+<div class="flex items-center justify-center gap-3 mb-4">
+<div class="gt-accent-line w-12"></div>
+<span class="font-barc text-xs uppercase tracking-[0.2em]" style="color:#7EC850">Start Your Journey</span>
+<div class="gt-accent-line w-12"></div>
+</div>
+<h2 class="font-beb text-6xl tracking-wider mb-3" style="color:#E6F4ED">GO GREEN TODAY</h2>
+<p class="font-bar text-base" style="color:rgba(230,244,237,0.4);font-weight:300">Tell us about your energy needs and we'll design a custom clean energy solution.</p>
+</div>
+
+<div class="p-8 md:p-12" style="background:#1E3D2A;border:1px solid #2A5038;border-radius:8px">
+<div class="grid lg:grid-cols-2 gap-12 items-center">
+<div>
+<div class="flex items-center gap-3 mb-4">
+<div class="gt-accent-line w-8"></div>
+<span class="font-barc text-xs uppercase tracking-[0.2em]" style="color:#7EC850">Free Consultation</span>
+</div>
+<h3 class="font-beb text-4xl tracking-wider mb-3" style="color:#E6F4ED">YOUR CLEAN<br><span class="gt-green-text">ENERGY FUTURE</span></h3>
+<p class="font-bar text-sm mb-6" style="color:rgba(230,244,237,0.45);font-weight:300;line-height:1.7">Our energy engineers will assess your site, model your savings, and design a system that pays for itself. No obligation, no pressure.</p>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4" style="background:rgba(126,200,80,0.08);border:1px solid rgba(126,200,80,0.2);border-radius:4px">
+<p class="gt-stat-num text-2xl" style="color:#7EC850">$0</p>
+<p class="font-barc text-xs uppercase tracking-widest mt-1" style="color:rgba(255,255,255,0.35)">Consultation Fee</p>
+</div>
+<div class="p-4" style="background:rgba(126,200,80,0.08);border:1px solid rgba(126,200,80,0.2);border-radius:4px">
+<p class="gt-stat-num text-2xl" style="color:#7EC850">48hr</p>
+<p class="font-barc text-xs uppercase tracking-widest mt-1" style="color:rgba(255,255,255,0.35)">Proposal Turnaround</p>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="font-barc text-xs uppercase tracking-widest mb-2 block" style="color:rgba(126,200,80,0.7)">First Name</label>
+<input type="text" placeholder="Alex" class="gt-input">
+</div>
+<div>
+<label class="font-barc text-xs uppercase tracking-widest mb-2 block" style="color:rgba(126,200,80,0.7)">Last Name</label>
+<input type="text" placeholder="Green" class="gt-input">
+</div>
+</div>
+<div>
+<label class="font-barc text-xs uppercase tracking-widest mb-2 block" style="color:rgba(126,200,80,0.7)">Email Address</label>
+<input type="email" placeholder="alex@company.com" class="gt-input">
+</div>
+<div>
+<label class="font-barc text-xs uppercase tracking-widest mb-2 block" style="color:rgba(126,200,80,0.7)">Organization</label>
+<input type="text" placeholder="Your Company or Municipality" class="gt-input">
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="font-barc text-xs uppercase tracking-widest mb-2 block" style="color:rgba(126,200,80,0.7)">Solution Type</label>
+<select class="gt-input" style="background:rgba(255,255,255,0.04);border:1px solid rgba(126,200,80,0.2);color:rgba(230,244,237,0.7);font-family:'Barlow',sans-serif;font-size:14px;padding:13px 16px;width:100%;outline:none;border-radius:4px">
+<option style="background:#1E3D2A">Select Solution</option>
+<option style="background:#1E3D2A">Solar Arrays</option>
+<option style="background:#1E3D2A">Wind Turbines</option>
+<option style="background:#1E3D2A">Grid Batteries</option>
+<option style="background:#1E3D2A">Full System</option>
+</select>
+</div>
+<div>
+<label class="font-barc text-xs uppercase tracking-widest mb-2 block" style="color:rgba(126,200,80,0.7)">Scale</label>
+<select class="gt-input" style="background:rgba(255,255,255,0.04);border:1px solid rgba(126,200,80,0.2);color:rgba(230,244,237,0.7);font-family:'Barlow',sans-serif;font-size:14px;padding:13px 16px;width:100%;outline:none;border-radius:4px">
+<option style="background:#1E3D2A">Select Scale</option>
+<option style="background:#1E3D2A">Residential</option>
+<option style="background:#1E3D2A">Commercial</option>
+<option style="background:#1E3D2A">Utility / Grid</option>
+<option style="background:#1E3D2A">Municipal</option>
+</select>
+</div>
+</div>
+<button class="btn-gt-lime w-full py-4 text-base">Request Free Energy Assessment</button>
+<p class="font-bar text-xs text-center" style="color:rgba(255,255,255,0.25)">No commitment required. Our engineers respond within 48 hours with a custom proposal.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="pt-20 pb-10" style="background:#080F0A;max-height:700px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="gt-accent-line mb-16"></div>
+
+<div class="grid md:grid-cols-5 gap-10 mb-16">
+<div class="col-span-1 md:col-span-2">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 flex items-center justify-center" style="background:linear-gradient(135deg,#2D7A4F,#1A4A30);border-radius:4px">
+<span class="font-beb text-white text-2xl leading-none">V</span>
+</div>
+<div>
+<span class="font-beb text-2xl tracking-[0.15em]" style="color:#E6F4ED">VERDANT</span>
+<span class="block font-barc text-[9px] uppercase tracking-[0.25em]" style="color:rgba(126,200,80,0.7)">Clean Energy Solutions</span>
+</div>
+</div>
+<p class="font-bar text-sm leading-relaxed max-w-xs mb-6" style="color:rgba(255,255,255,0.35);font-weight:300">Accelerating the world's transition to clean, affordable, and sustainable energy for every community on Earth.</p>
+<div class="flex items-center gap-3">
+<a href="#" class="w-9 h-9 flex items-center justify-center font-barc text-xs font-bold" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.5);border-radius:4px">LI</a>
+<a href="#" class="w-9 h-9 flex items-center justify-center font-barc text-xs font-bold" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.5);border-radius:4px">TW</a>
+<a href="#" class="w-9 h-9 flex items-center justify-center font-barc text-xs font-bold" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.5);border-radius:4px">YT</a>
+</div>
+</div>
+
+<div>
+<h4 class="font-beb text-sm tracking-[0.15em] mb-6 uppercase" style="color:#E6F4ED">Solutions</h4>
+<ul class="space-y-3 font-bar text-sm" style="color:rgba(255,255,255,0.35);font-weight:300">
+<li><a href="#solutions" class="hover:text-gt-lime transition-colors" style="color:inherit">Solar Arrays</a></li>
+<li><a href="#solutions" class="hover:text-gt-lime transition-colors" style="color:inherit">Wind Turbines</a></li>
+<li><a href="#solutions" class="hover:text-gt-lime transition-colors" style="color:inherit">Grid Batteries</a></li>
+<li><a href="#technology" class="hover:text-gt-lime transition-colors" style="color:inherit">AI Platform</a></li>
+<li><a href="#contact" class="hover:text-gt-lime transition-colors" style="color:inherit">Custom Projects</a></li>
+</ul>
+</div>
+
+<div>
+<h4 class="font-beb text-sm tracking-[0.15em] mb-6 uppercase" style="color:#E6F4ED">Impact</h4>
+<ul class="space-y-3 font-bar text-sm" style="color:rgba(255,255,255,0.35);font-weight:300">
+<li><a href="#impact" class="hover:text-gt-lime transition-colors" style="color:inherit">Carbon Tracker</a></li>
+<li><a href="#impact" class="hover:text-gt-lime transition-colors" style="color:inherit">ESG Reports</a></li>
+<li><a href="#partners" class="hover:text-gt-lime transition-colors" style="color:inherit">Case Studies</a></li>
+<li><a href="#" class="hover:text-gt-lime transition-colors" style="color:inherit">Certifications</a></li>
+<li><a href="#" class="hover:text-gt-lime transition-colors" style="color:inherit">Blog</a></li>
+</ul>
+</div>
+
+<div>
+<h4 class="font-beb text-sm tracking-[0.15em] mb-6 uppercase" style="color:#E6F4ED">Company</h4>
+<ul class="space-y-3 font-bar text-sm" style="color:rgba(255,255,255,0.35);font-weight:300">
+<li><a href="#" class="hover:text-gt-lime transition-colors" style="color:inherit">About Verdant</a></li>
+<li><a href="#partners" class="hover:text-gt-lime transition-colors" style="color:inherit">Partners</a></li>
+<li><a href="#" class="hover:text-gt-lime transition-colors" style="color:inherit">Careers</a></li>
+<li><a href="#" class="hover:text-gt-lime transition-colors" style="color:inherit">Press</a></li>
+<li><a href="#contact" class="hover:text-gt-lime transition-colors" style="color:inherit">Contact</a></li>
+</ul>
+</div>
+</div>
+
+<div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style="border-top:1px solid rgba(255,255,255,0.05)">
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.2);font-weight:300">© 2025 Verdant Energy Group. All rights reserved.</p>
+<p class="font-bar text-xs text-center" style="color:rgba(255,255,255,0.15);font-weight:300">*Impact figures independently verified by Bureau Veritas. Updated quarterly.</p>
+</div>
+
+<!-- Flow Navigation Footer -->
+<div class="mt-10 pt-8" style="border-top:1px solid rgba(255,255,255,0.04)">
+<p class="font-barc text-xs text-center mb-4 uppercase tracking-widest" style="color:rgba(255,255,255,0.15)">Explore All Landing Pages</p>
+<div class="flex flex-wrap items-center justify-center gap-3">
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/healthcare-landing-page" class="font-barc text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">01 Healthcare →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/fintech-landing-page" class="font-barc text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">02 Fintech →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/online-education-landing-page" class="font-barc text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">03 Education →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/real-estate-landing-page" class="font-barc text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">04 Real Estate →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/fitness-wellness-landing-page" class="font-barc text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">05 Fitness →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/travel-adventure-landing-page" class="font-barc text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">06 Travel →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/food-delivery-landing-page" class="font-barc text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">07 Food →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/legal-services-landing-page" class="font-barc text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">08 Legal →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/automotive-landing-page" class="font-barc text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">09 Auto →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/green-tech-landing-page" class="font-barc text-xs font-bold px-3 py-1.5" style="background:rgba(45,122,79,0.2);color:#7EC850;border:1px solid rgba(126,200,80,0.3);border-radius:3px">10 Green Tech ✦</a>
+</div>
+<p class="text-center font-bar text-xs mt-6" style="color:rgba(255,255,255,0.12);font-weight:300">Designed with Uxmagic.ai</p>
+</div>
+</div>
+</footer>
+
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

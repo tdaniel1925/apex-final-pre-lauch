@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Food Delivery Landing Page - Exported from UXMagic Copilot">
+    <title>Food Delivery Landing Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+tailwind.config={theme:{extend:{colors:{
+'i1':'#5C6AC4','i1l':'#EEF0FF','i1d':'#2D2D3A',
+'f2':'#7DAF8A','f2l':'#EAF4EC','f2g':'#C9A84C','f2gl':'#F7EDD0','f2d':'#2A3240',
+'w3':'#FAF7F2','w3r':'#D4A5A5','w3t':'#C47C5A',
+'r4':'#C4B49A','r4g':'#2D5016','r4s':'#F5EFE4',
+'l5':'#4A6FA5','l5l':'#E8EEF7','l5d':'#1E2A3A',
+'e6':'#FDFAF6','e6t':'#D4B896','e6b':'#E8C4B8','e6e':'#2C1A0E',
+'ed7':'#F5A623','ed7l':'#FEF3DC','ed7s':'#4A90D9','ed7sl':'#E8F2FC',
+'t8':'#2E86AB','t8l':'#E0F0F7','t8s':'#E8D5B0','t8c':'#F4845F',
+'h9':'#E8614A','h9l':'#FDECEA','h9g':'#F5F3F0','h9d':'#1C1C1E',
+'c10':'#3D6B4F','c10l':'#E8F0EB','c10s':'#A8C5DA','c10a':'#DDD0B8','c10b':'#FAFAF7',
+'eo':'#C8622A','eol':'#FDF0E8','eod':'#1E0E06','eom':'#8B3A1A','eos':'#F5E6D3','eog':'#D4A853','eogl':'#FBF3DC','eob':'#FAF5EF',
+'hx':'#8B7355','hxl':'#F5F0E8','hxd':'#1A1410','hxm':'#5C4A32','hxs':'#EDE8DF','hxg':'#B8A898','hxc':'#2C2420','hxw':'#FAF8F5',
+'brut-black':'#0A0A0A','brut-white':'#F5F5F0','brut-yellow':'#FFE500','brut-gray':'#1A1A1A','brut-mid':'#3A3A3A',
+'fd-red':'#FF3B30','fd-redl':'#FFF0EF','fd-redd':'#C0392B',
+'fd-orange':'#FF6B35','fd-orangel':'#FFF3EE','fd-yellow':'#FFD60A','fd-yellowl':'#FFFBE6',
+'fd-dark':'#1A0A00','fd-mid':'#2D1A0A','fd-warm':'#F5F0E8',
+'fd-green':'#34C759','fd-greenl':'#EDFAF2',
+},fontFamily:{
+'pf':['"Playfair Display"','serif'],
+'cg':['"Cormorant Garamond"','serif'],
+'sg':['"Space Grotesk"','sans-serif'],
+'sm':['"Space Mono"','monospace'],
+'bar':['Barlow','sans-serif'],
+'barc':['"Barlow Condensed"','sans-serif'],
+'beb':['"Bebas Neue"','sans-serif'],
+'nun':['Nunito','sans-serif'],
+'lb':['"Libre Baskerville"','serif'],
+'man':['Manrope','sans-serif'],
+'lor':['Lora','serif'],
+'int':['Inter','sans-serif'],
+'lat':['Lato','sans-serif'],
+},boxShadow:{
+'sm2':'0 2px 8px rgba(0,0,0,0.06)',
+'md2':'0 8px 30px rgba(0,0,0,0.08)',
+'lg2':'0 20px 60px rgba(0,0,0,0.12)',
+'warm':'0 8px 30px rgba(139,115,85,0.18)',
+'warm-lg':'0 20px 60px rgba(139,115,85,0.15)',
+'brut':'6px 6px 0px #0A0A0A',
+'brut-y':'6px 6px 0px #FFE500',
+'brut-hover':'3px 3px 0px #0A0A0A',
+'fd':'0 8px 40px rgba(255,59,48,0.18)',
+'fd-lg':'0 20px 60px rgba(255,59,48,0.22)',
+'fd-warm':'0 8px 30px rgba(255,107,53,0.2)',
+}}}}
+
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+<!-- FLOW NAVIGATION BAR -->
+<div class="fixed top-0 left-0 right-0 z-50" style="background:rgba(26,10,0,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06)">
+<div class="overflow-x-auto no-sb">
+<div class="flex items-center gap-2 px-6 py-3 min-w-max justify-center">
+<span class="font-nun text-[10px] font-bold uppercase tracking-widest mr-2" style="color:rgba(255,255,255,0.3)">Landing Pages:</span>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/healthcare-landing-page" class="nav-flow-link">01 Healthcare</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/fintech-landing-page" class="nav-flow-link">02 Fintech</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/online-education-landing-page" class="nav-flow-link">03 Education</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/real-estate-landing-page" class="nav-flow-link">04 Real Estate</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/fitness-wellness-landing-page" class="nav-flow-link">05 Fitness</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/travel-adventure-landing-page" class="nav-flow-link">06 Travel</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/food-delivery-landing-page" class="nav-flow-link active">07 Food ✦</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/legal-services-landing-page" class="nav-flow-link">08 Legal</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/automotive-landing-page" class="nav-flow-link">09 Auto</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/green-tech-landing-page" class="nav-flow-link">10 Green Tech</a>
+</div>
+</div>
+</div>
+
+<!-- MAIN NAVIGATION -->
+<nav class="fixed top-14 left-0 right-0 z-40">
+<div class="max-w-7xl mx-auto px-6 mt-4">
+<div class="fd-glass px-8 py-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,#FF3B30,#FF6B35)">
+<span class="font-beb text-white text-lg leading-none">Q</span>
+</div>
+<span class="font-beb text-2xl tracking-widest text-white">QUICK<span class="fd-grad-text">BITE</span></span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a href="#how-it-works" class="nav-fd">How It Works</a>
+<a href="#restaurants" class="nav-fd">Restaurants</a>
+<a href="#features" class="nav-fd">Features</a>
+<a href="#zones" class="nav-fd">Delivery Zones</a>
+</div>
+<div class="flex items-center gap-3">
+<a href="#" class="nav-fd hidden sm:block text-sm">Sign In</a>
+<a href="#restaurants" class="btn-fd text-sm py-2.5 px-6">Order Now</a>
+</div>
+</div>
+</div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="relative pt-40 pb-0 overflow-hidden fd-hero-bg" style="max-height:1100px">
+<div class="absolute inset-0 z-0">
+<img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&amp;w=1800&amp;auto=format&amp;fit=crop" alt="Delicious Food" class="w-full h-full object-cover opacity-20">
+<div class="absolute inset-0" style="background:linear-gradient(160deg,rgba(26,10,0,0.97) 0%,rgba(45,26,10,0.85) 50%,rgba(61,26,0,0.92) 100%)"></div>
+</div>
+
+<!-- Decorative Blobs -->
+<div class="absolute top-20 right-0 w-[500px] h-[500px] rounded-full opacity-10" style="background:radial-gradient(circle,#FF3B30,transparent);filter:blur(80px)"></div>
+<div class="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full opacity-10" style="background:radial-gradient(circle,#FF6B35,transparent);filter:blur(80px)"></div>
+
+<div class="max-w-7xl mx-auto px-6 relative z-10">
+<div class="grid lg:grid-cols-2 gap-12 items-center pt-8">
+<!-- Left: Text -->
+<div>
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8" style="background:rgba(255,59,48,0.12);border:1px solid rgba(255,59,48,0.3)">
+<span class="w-2 h-2 rounded-full pulse-ring" style="background:#FF3B30"></span>
+<span class="font-barc font-bold text-xs uppercase tracking-widest" style="color:#FF6B35">500+ Restaurants · 30-Min Delivery</span>
+</div>
+<h1 class="font-beb text-7xl lg:text-8xl leading-none mb-6 tracking-wide text-white">
+HUNGRY?<br>
+<span class="fd-grad-text">WE'VE GOT</span><br>
+YOU COVERED
+</h1>
+<p class="font-bar text-lg leading-relaxed mb-10 max-w-lg" style="color:rgba(255,255,255,0.65)">
+Order from your favorite local restaurants and get fresh, hot food delivered to your door in 30 minutes or less. Guaranteed.
+</p>
+
+<!-- Address Input -->
+<div class="flex flex-col sm:flex-row gap-3 mb-10 max-w-xl">
+<div class="flex-1 flex items-center gap-3 px-5 py-4 rounded-xl" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15)">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="#FF6B35"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path></svg>
+<input type="text" placeholder="Enter your delivery address..." class="bg-transparent text-white text-sm font-bar w-full outline-none placeholder-white/40">
+</div>
+<button class="btn-fd text-sm py-4 px-8 whitespace-nowrap">Find Food</button>
+</div>
+
+<!-- Stats Row -->
+<div class="grid grid-cols-3 gap-6 pt-8" style="border-top:1px solid rgba(255,255,255,0.08)">
+<div>
+<p class="font-beb text-4xl tracking-wide fd-grad-text">500+</p>
+<p class="font-barc text-xs uppercase tracking-widest mt-1" style="color:rgba(255,255,255,0.45)">Restaurants</p>
+</div>
+<div>
+<p class="font-beb text-4xl tracking-wide fd-grad-text">28min</p>
+<p class="font-barc text-xs uppercase tracking-widest mt-1" style="color:rgba(255,255,255,0.45)">Avg Delivery</p>
+</div>
+<div>
+<p class="font-beb text-4xl tracking-wide fd-grad-text">4.8★</p>
+<p class="font-barc text-xs uppercase tracking-widest mt-1" style="color:rgba(255,255,255,0.45)">App Rating</p>
+</div>
+</div>
+</div>
+
+<!-- Right: Hero Visual -->
+<div class="relative h-[580px] hidden lg:block">
+<!-- Main Phone Mockup -->
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="relative w-[300px] h-[540px] rounded-[40px] overflow-hidden shadow-fd-lg float-slow" style="border:3px solid rgba(255,255,255,0.12)">
+<img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="Food App" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(26,10,0,0.9) 0%,transparent 55%)"></div>
+<div class="absolute bottom-6 left-5 right-5">
+<div class="fd-glass p-4">
+<div class="flex items-center justify-between mb-2">
+<span class="font-barc font-bold text-xs uppercase tracking-widest" style="color:rgba(255,255,255,0.6)">Your Order</span>
+<span class="fd-tag-green">On the Way</span>
+</div>
+<p class="font-beb text-lg tracking-wide text-white">Margherita Pizza</p>
+<div class="flex items-center justify-between mt-2">
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.55)">Arriving in 12 min</span>
+<span class="font-beb text-base fd-grad-text">$18.99</span>
+</div>
+<!-- Progress Bar -->
+<div class="mt-3 h-1.5 rounded-full" style="background:rgba(255,255,255,0.1)">
+<div class="h-1.5 rounded-full" style="width:70%;background:linear-gradient(90deg,#FF3B30,#FF6B35)"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Floating: Rating Card -->
+<div class="absolute top-[8%] right-[2%] fd-card p-4 z-30 float-fast shadow-md2">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl flex items-center justify-center text-xl" style="background:#FFF0EF">🍕</div>
+<div>
+<p class="font-barc font-bold text-sm tracking-wide text-fd-dark">Pizza Palace</p>
+<div class="flex items-center gap-1">
+<span class="stars text-xs">★★★★★</span>
+<span class="font-bar text-xs text-gray-500">4.9</span>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Floating: Delivery Time -->
+<div class="absolute bottom-[22%] left-[0%] fd-card p-4 z-30 float-med shadow-md2">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl flex items-center justify-center text-xl" style="background:#EDFAF2">🛵</div>
+<div>
+<p class="font-barc font-bold text-sm tracking-wide text-fd-dark">Express Delivery</p>
+<p class="font-bar text-xs text-fd-green font-bold">Only 28 min away!</p>
+</div>
+</div>
+</div>
+
+<!-- Floating: Discount -->
+<div class="absolute top-[42%] right-[0%] z-30 float-slow" style="background:linear-gradient(135deg,#FF3B30,#FF6B35);border-radius:14px;padding:12px 16px">
+<p class="font-beb text-2xl text-white leading-none">50%</p>
+<p class="font-barc text-xs text-white/80 uppercase tracking-widest">OFF First Order</p>
+</div>
+</div>
+</div>
+
+<!-- Food Category Chips -->
+<div class="mt-14 pb-8 relative z-10">
+<p class="font-barc font-bold text-xs uppercase tracking-widest mb-5" style="color:rgba(255,255,255,0.35)">Popular Categories</p>
+<div class="flex flex-wrap gap-3">
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-barc font-bold uppercase tracking-wide transition-all" style="background:linear-gradient(135deg,#FF3B30,#FF6B35);color:white">🍕 Pizza</button>
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-barc font-bold uppercase tracking-wide transition-all" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.12)">🍔 Burgers</button>
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-barc font-bold uppercase tracking-wide transition-all" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.12)">🍣 Sushi</button>
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-barc font-bold uppercase tracking-wide transition-all" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.12)">🌮 Tacos</button>
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-barc font-bold uppercase tracking-wide transition-all" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.12)">🍜 Noodles</button>
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-barc font-bold uppercase tracking-wide transition-all" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.12)">🥗 Salads</button>
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-barc font-bold uppercase tracking-wide transition-all" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.12)">🍰 Desserts</button>
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-barc font-bold uppercase tracking-wide transition-all" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.12)">☕ Coffee</button>
+</div>
+</div>
+</div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how-it-works" class="py-24" style="background:#FFF8F5;max-height:900px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-16">
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4" style="background:rgba(255,59,48,0.08);border:1px solid rgba(255,59,48,0.2)">
+<span class="font-barc font-bold text-xs uppercase tracking-widest text-fd-red">Simple &amp; Fast</span>
+</div>
+<h2 class="font-beb text-5xl md:text-6xl tracking-wide text-fd-dark mb-4">HOW IT <span class="fd-grad-text">WORKS</span></h2>
+<p class="font-bar text-lg max-w-2xl mx-auto text-gray-600">From craving to doorstep in 4 easy steps. No fuss, no hassle — just great food.</p>
+</div>
+
+<div class="grid md:grid-cols-4 gap-8 relative">
+<!-- Connector Line -->
+<div class="hidden md:block absolute top-7 left-[12%] right-[12%] h-0.5" style="background:linear-gradient(90deg,#FF3B30,#FF6B35,#FFD60A,#34C759)"></div>
+
+<!-- Step 1 -->
+<div class="flex flex-col items-center text-center relative">
+<div class="step-num mb-6 z-10">1</div>
+<div class="w-20 h-20 rounded-2xl flex items-center justify-center text-4xl mb-5 shadow-md2" style="background:white">📍</div>
+<h3 class="font-beb text-xl tracking-wide text-fd-dark mb-3">Set Your Location</h3>
+<p class="font-bar text-sm text-gray-500 leading-relaxed">Enter your delivery address and we'll show you all available restaurants nearby.</p>
+</div>
+
+<!-- Step 2 -->
+<div class="flex flex-col items-center text-center relative">
+<div class="step-num mb-6 z-10" style="background:linear-gradient(135deg,#FF6B35,#FFD60A)">2</div>
+<div class="w-20 h-20 rounded-2xl flex items-center justify-center text-4xl mb-5 shadow-md2" style="background:white">🍽️</div>
+<h3 class="font-beb text-xl tracking-wide text-fd-dark mb-3">Choose Your Meal</h3>
+<p class="font-bar text-sm text-gray-500 leading-relaxed">Browse menus from 500+ restaurants. Filter by cuisine, price, rating, or dietary needs.</p>
+</div>
+
+<!-- Step 3 -->
+<div class="flex flex-col items-center text-center relative">
+<div class="step-num mb-6 z-10" style="background:linear-gradient(135deg,#FFD60A,#FF9500)">3</div>
+<div class="w-20 h-20 rounded-2xl flex items-center justify-center text-4xl mb-5 shadow-md2" style="background:white">💳</div>
+<h3 class="font-beb text-xl tracking-wide text-fd-dark mb-3">Place Your Order</h3>
+<p class="font-bar text-sm text-gray-500 leading-relaxed">Checkout securely with card, Apple Pay, or Google Pay. Add special instructions for your order.</p>
+</div>
+
+<!-- Step 4 -->
+<div class="flex flex-col items-center text-center relative">
+<div class="step-num mb-6 z-10" style="background:linear-gradient(135deg,#34C759,#00C7BE)">4</div>
+<div class="w-20 h-20 rounded-2xl flex items-center justify-center text-4xl mb-5 shadow-md2" style="background:white">🛵</div>
+<h3 class="font-beb text-xl tracking-wide text-fd-dark mb-3">Track &amp; Enjoy</h3>
+<p class="font-bar text-sm text-gray-500 leading-relaxed">Watch your order in real-time on the map. Your rider will be at your door in 30 minutes or less.</p>
+</div>
+</div>
+
+<!-- Guarantee Banner -->
+<div class="mt-16 p-8 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6" style="background:linear-gradient(135deg,#FF3B30,#FF6B35)">
+<div class="flex items-center gap-5">
+<div class="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center text-3xl">⏱️</div>
+<div>
+<h3 class="font-beb text-2xl tracking-wide text-white">30-Minute Delivery Guarantee</h3>
+<p class="font-bar text-sm text-white/75">If your order takes longer than 30 minutes, your next delivery is FREE.</p>
+</div>
+</div>
+<a href="#restaurants" class="btn-fd-white text-sm py-3 px-8 whitespace-nowrap">Order Now</a>
+</div>
+</div>
+</section>
+
+<!-- RESTAURANT PARTNERS -->
+<section id="restaurants" class="py-24" style="background:#1A0A00;max-height:1200px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col md:flex-row items-end justify-between mb-14 gap-6">
+<div>
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4" style="background:rgba(255,59,48,0.12);border:1px solid rgba(255,59,48,0.25)">
+<span class="font-barc font-bold text-xs uppercase tracking-widest" style="color:#FF6B35">Top Rated Near You</span>
+</div>
+<h2 class="font-beb text-5xl md:text-6xl tracking-wide text-white">RESTAURANT <span class="fd-grad-text">PARTNERS</span></h2>
+</div>
+<a href="#" class="font-barc font-bold text-sm uppercase tracking-widest flex items-center gap-2 text-fd-red">View All 500+ Restaurants <span>→</span></a>
+</div>
+
+<!-- Filter Tabs -->
+<div class="flex gap-3 mb-10 overflow-x-auto no-sb pb-2">
+<button class="px-5 py-2 rounded-full font-barc font-bold text-sm uppercase tracking-wide whitespace-nowrap" style="background:linear-gradient(135deg,#FF3B30,#FF6B35);color:white">All</button>
+<button class="px-5 py-2 rounded-full font-barc font-bold text-sm uppercase tracking-wide whitespace-nowrap" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.1)">🍕 Pizza</button>
+<button class="px-5 py-2 rounded-full font-barc font-bold text-sm uppercase tracking-wide whitespace-nowrap" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.1)">🍔 Burgers</button>
+<button class="px-5 py-2 rounded-full font-barc font-bold text-sm uppercase tracking-wide whitespace-nowrap" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.1)">🍣 Sushi</button>
+<button class="px-5 py-2 rounded-full font-barc font-bold text-sm uppercase tracking-wide whitespace-nowrap" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.1)">🌮 Mexican</button>
+<button class="px-5 py-2 rounded-full font-barc font-bold text-sm uppercase tracking-wide whitespace-nowrap" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.1)">🍜 Asian</button>
+<button class="px-5 py-2 rounded-full font-barc font-bold text-sm uppercase tracking-wide whitespace-nowrap" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.1)">🥗 Healthy</button>
+</div>
+
+<!-- Restaurant Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Restaurant 1 - Featured -->
+<div class="rest-card lg:col-span-2 relative h-[280px]">
+<img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&amp;w=900&amp;auto=format&amp;fit=crop" alt="Pizza Palace" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to right,rgba(26,10,0,0.9) 0%,rgba(26,10,0,0.3) 60%,transparent 100%)"></div>
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="fd-tag" style="background:linear-gradient(135deg,#FF3B30,#FF6B35);color:white;border:none">🔥 Most Popular</span>
+</div>
+<div class="absolute bottom-6 left-6">
+<div class="flex items-center gap-2 mb-2">
+<span class="stars text-xs">★★★★★</span>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.6)">4.9 (2.1K reviews)</span>
+</div>
+<h3 class="font-beb text-3xl tracking-wide text-white mb-1">Pizza Palace</h3>
+<p class="font-bar text-sm mb-3" style="color:rgba(255,255,255,0.65)">Authentic Neapolitan pizza · Italian · $$ </p>
+<div class="flex items-center gap-4">
+<span class="flex items-center gap-1.5 font-bar text-xs" style="color:rgba(255,255,255,0.6)"><span class="text-fd-green">●</span> Open Now</span>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.6)">🛵 22 min · Free delivery</span>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.6)">Min $12</span>
+</div>
+</div>
+<div class="absolute bottom-6 right-6">
+<button class="btn-fd text-xs py-2.5 px-5">Order</button>
+</div>
+</div>
+
+<!-- Restaurant 2 -->
+<div class="rest-card relative h-[280px]">
+<img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="Burger Bros" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(26,10,0,0.9) 0%,transparent 55%)"></div>
+<div class="absolute top-4 left-4"><span class="fd-tag-yellow">New</span></div>
+<div class="absolute bottom-5 left-5 right-5">
+<div class="flex items-center gap-2 mb-1">
+<span class="stars text-xs">★★★★</span>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.6)">4.7 (890)</span>
+</div>
+<h3 class="font-beb text-2xl tracking-wide text-white">Burger Bros</h3>
+<div class="flex items-center justify-between mt-2">
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.55)">🛵 18 min · $1.99 delivery</span>
+<button class="btn-fd text-xs py-2 px-4">Order</button>
+</div>
+</div>
+</div>
+
+<!-- Restaurant 3 -->
+<div class="rest-card relative h-[280px]">
+<img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="Sushi Zen" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(26,10,0,0.9) 0%,transparent 55%)"></div>
+<div class="absolute top-4 left-4"><span class="fd-tag-green">Healthy</span></div>
+<div class="absolute bottom-5 left-5 right-5">
+<div class="flex items-center gap-2 mb-1">
+<span class="stars text-xs">★★★★★</span>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.6)">4.8 (1.4K)</span>
+</div>
+<h3 class="font-beb text-2xl tracking-wide text-white">Sushi Zen</h3>
+<div class="flex items-center justify-between mt-2">
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.55)">🛵 25 min · Free delivery</span>
+<button class="btn-fd text-xs py-2 px-4">Order</button>
+</div>
+</div>
+</div>
+
+<!-- Restaurant 4 -->
+<div class="rest-card relative h-[280px]">
+<img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="Taco Fiesta" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(26,10,0,0.9) 0%,transparent 55%)"></div>
+<div class="absolute top-4 left-4"><span class="fd-tag">Spicy 🌶️</span></div>
+<div class="absolute bottom-5 left-5 right-5">
+<div class="flex items-center gap-2 mb-1">
+<span class="stars text-xs">★★★★</span>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.6)">4.6 (670)</span>
+</div>
+<h3 class="font-beb text-2xl tracking-wide text-white">Taco Fiesta</h3>
+<div class="flex items-center justify-between mt-2">
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.55)">🛵 20 min · $0.99 delivery</span>
+<button class="btn-fd text-xs py-2 px-4">Order</button>
+</div>
+</div>
+</div>
+
+<!-- Restaurant 5 -->
+<div class="rest-card relative h-[280px]">
+<img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="Noodle House" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(26,10,0,0.9) 0%,transparent 55%)"></div>
+<div class="absolute top-4 left-4"><span class="fd-tag-yellow">50% OFF</span></div>
+<div class="absolute bottom-5 left-5 right-5">
+<div class="flex items-center gap-2 mb-1">
+<span class="stars text-xs">★★★★★</span>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.6)">4.9 (3.2K)</span>
+</div>
+<h3 class="font-beb text-2xl tracking-wide text-white">Noodle House</h3>
+<div class="flex items-center justify-between mt-2">
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.55)">🛵 15 min · Free delivery</span>
+<button class="btn-fd text-xs py-2 px-4">Order</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Stats Banner -->
+<div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="text-center p-6 rounded-2xl" style="background:rgba(255,59,48,0.08);border:1px solid rgba(255,59,48,0.15)">
+<p class="font-beb text-4xl fd-grad-text mb-1">500+</p>
+<p class="font-barc text-xs uppercase tracking-widest" style="color:rgba(255,255,255,0.45)">Restaurant Partners</p>
+</div>
+<div class="text-center p-6 rounded-2xl" style="background:rgba(255,59,48,0.08);border:1px solid rgba(255,59,48,0.15)">
+<p class="font-beb text-4xl fd-grad-text mb-1">2M+</p>
+<p class="font-barc text-xs uppercase tracking-widest" style="color:rgba(255,255,255,0.45)">Orders Delivered</p>
+</div>
+<div class="text-center p-6 rounded-2xl" style="background:rgba(255,59,48,0.08);border:1px solid rgba(255,59,48,0.15)">
+<p class="font-beb text-4xl fd-grad-text mb-1">28min</p>
+<p class="font-barc text-xs uppercase tracking-widest" style="color:rgba(255,255,255,0.45)">Avg Delivery Time</p>
+</div>
+<div class="text-center p-6 rounded-2xl" style="background:rgba(255,59,48,0.08);border:1px solid rgba(255,59,48,0.15)">
+<p class="font-beb text-4xl fd-grad-text mb-1">98%</p>
+<p class="font-barc text-xs uppercase tracking-widest" style="color:rgba(255,255,255,0.45)">On-Time Rate</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- APP FEATURES -->
+<section id="features" class="py-24" style="background:#FFF8F5;max-height:1100px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-16">
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4" style="background:rgba(255,59,48,0.08);border:1px solid rgba(255,59,48,0.2)">
+<span class="font-barc font-bold text-xs uppercase tracking-widest text-fd-red">Everything You Need</span>
+</div>
+<h2 class="font-beb text-5xl md:text-6xl tracking-wide text-fd-dark mb-4">APP <span class="fd-grad-text">FEATURES</span></h2>
+<p class="font-bar text-lg max-w-2xl mx-auto text-gray-600">Designed to make ordering food as easy and enjoyable as eating it.</p>
+</div>
+
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
+<!-- Feature 1 -->
+<div class="feat-card p-8 bg-white shadow-sm2" style="border:1px solid rgba(255,107,53,0.1)">
+<div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl mb-6" style="background:#FFF0EF">🗺️</div>
+<h3 class="font-beb text-xl tracking-wide text-fd-dark mb-3">Live Order Tracking</h3>
+<p class="font-bar text-sm text-gray-500 leading-relaxed">Watch your rider navigate to your door in real-time on an interactive map. Know exactly when your food arrives.</p>
+<div class="mt-5 flex items-center gap-2">
+<span class="fd-tag-green">Live</span>
+<span class="font-bar text-xs text-gray-400">GPS-powered tracking</span>
+</div>
+</div>
+
+<!-- Feature 2 -->
+<div class="feat-card p-8 bg-white shadow-sm2" style="border:1px solid rgba(255,107,53,0.1)">
+<div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl mb-6" style="background:#EDFAF2">🤖</div>
+<h3 class="font-beb text-xl tracking-wide text-fd-dark mb-3">AI Recommendations</h3>
+<p class="font-bar text-sm text-gray-500 leading-relaxed">Our smart algorithm learns your taste preferences and suggests meals you'll love every time you open the app.</p>
+<div class="mt-5 flex items-center gap-2">
+<span class="fd-tag-green">Smart</span>
+<span class="font-bar text-xs text-gray-400">Personalized for you</span>
+</div>
+</div>
+
+<!-- Feature 3 - Highlighted -->
+<div class="feat-card p-8 text-white" style="background:linear-gradient(160deg,#FF3B30,#FF6B35);border:none">
+<div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl mb-6" style="background:rgba(255,255,255,0.2)">⚡</div>
+<h3 class="font-beb text-xl tracking-wide text-white mb-3">30-Min Guarantee</h3>
+<p class="font-bar text-sm text-white/80 leading-relaxed">We guarantee your food arrives within 30 minutes. If it doesn't, your next order is completely free. No questions asked.</p>
+<div class="mt-5 flex items-center gap-2">
+<span class="px-3 py-1 rounded-full text-xs font-barc font-bold uppercase tracking-wide" style="background:rgba(255,255,255,0.2);color:white">Guaranteed</span>
+</div>
+</div>
+
+<!-- Feature 4 -->
+<div class="feat-card p-8 bg-white shadow-sm2" style="border:1px solid rgba(255,107,53,0.1)">
+<div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl mb-6" style="background:#FFFBE6">💰</div>
+<h3 class="font-beb text-xl tracking-wide text-fd-dark mb-3">Exclusive Deals &amp; Rewards</h3>
+<p class="font-bar text-sm text-gray-500 leading-relaxed">Earn QuickCoins on every order. Redeem for discounts, free delivery, and exclusive restaurant offers.</p>
+<div class="mt-5 flex items-center gap-2">
+<span class="fd-tag-yellow">Earn Rewards</span>
+<span class="font-bar text-xs text-gray-400">Every order counts</span>
+</div>
+</div>
+
+<!-- Feature 5 -->
+<div class="feat-card p-8 bg-white shadow-sm2" style="border:1px solid rgba(255,107,53,0.1)">
+<div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl mb-6" style="background:#FFF0EF">🔒</div>
+<h3 class="font-beb text-xl tracking-wide text-fd-dark mb-3">Secure Payments</h3>
+<p class="font-bar text-sm text-gray-500 leading-relaxed">Pay with card, Apple Pay, Google Pay, or cash. All transactions are encrypted and 100% secure.</p>
+<div class="mt-5 flex items-center gap-2">
+<span class="fd-tag">256-bit SSL</span>
+<span class="font-bar text-xs text-gray-400">Bank-level security</span>
+</div>
+</div>
+
+<!-- Feature 6 -->
+<div class="feat-card p-8 bg-white shadow-sm2" style="border:1px solid rgba(255,107,53,0.1)">
+<div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl mb-6" style="background:#EDFAF2">🌿</div>
+<h3 class="font-beb text-xl tracking-wide text-fd-dark mb-3">Dietary Filters</h3>
+<p class="font-bar text-sm text-gray-500 leading-relaxed">Filter by vegan, vegetarian, gluten-free, halal, and more. Find food that fits your lifestyle effortlessly.</p>
+<div class="mt-5 flex items-center gap-2">
+<span class="fd-tag-green">Inclusive</span>
+<span class="font-bar text-xs text-gray-400">20+ dietary filters</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- DELIVERY ZONES -->
+<section id="zones" class="py-24" style="background:#2D1A0A;max-height:1000px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid lg:grid-cols-2 gap-16 items-center">
+<!-- Left: Zone Info -->
+<div>
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6" style="background:rgba(255,59,48,0.12);border:1px solid rgba(255,59,48,0.25)">
+<span class="font-barc font-bold text-xs uppercase tracking-widest" style="color:#FF6B35">Expanding Every Month</span>
+</div>
+<h2 class="font-beb text-5xl md:text-6xl tracking-wide text-white mb-6">DELIVERY <span class="fd-grad-text">ZONES</span></h2>
+<p class="font-bar text-lg mb-10" style="color:rgba(255,255,255,0.6)">We currently deliver across 12 cities and are rapidly expanding. Check if we're in your area.</p>
+
+<!-- Zone List -->
+<div class="grid grid-cols-2 gap-4 mb-10">
+<div class="zone-badge" style="background:rgba(255,59,48,0.1);border:1px solid rgba(255,59,48,0.2)">
+<div class="flex items-center gap-3 mb-2">
+<span class="w-2.5 h-2.5 rounded-full" style="background:#FF3B30"></span>
+<span class="font-barc font-bold text-sm uppercase tracking-wide text-white">New York</span>
+</div>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">180+ restaurants · All 5 boroughs</p>
+</div>
+<div class="zone-badge" style="background:rgba(255,59,48,0.1);border:1px solid rgba(255,59,48,0.2)">
+<div class="flex items-center gap-3 mb-2">
+<span class="w-2.5 h-2.5 rounded-full" style="background:#FF3B30"></span>
+<span class="font-barc font-bold text-sm uppercase tracking-wide text-white">Los Angeles</span>
+</div>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">140+ restaurants · Greater LA</p>
+</div>
+<div class="zone-badge" style="background:rgba(255,59,48,0.1);border:1px solid rgba(255,59,48,0.2)">
+<div class="flex items-center gap-3 mb-2">
+<span class="w-2.5 h-2.5 rounded-full" style="background:#FF3B30"></span>
+<span class="font-barc font-bold text-sm uppercase tracking-wide text-white">Chicago</span>
+</div>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">95+ restaurants · City &amp; suburbs</p>
+</div>
+<div class="zone-badge" style="background:rgba(255,59,48,0.1);border:1px solid rgba(255,59,48,0.2)">
+<div class="flex items-center gap-3 mb-2">
+<span class="w-2.5 h-2.5 rounded-full" style="background:#FF3B30"></span>
+<span class="font-barc font-bold text-sm uppercase tracking-wide text-white">Houston</span>
+</div>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">80+ restaurants · Metro area</p>
+</div>
+<div class="zone-badge" style="background:rgba(255,107,53,0.08);border:1px solid rgba(255,107,53,0.15)">
+<div class="flex items-center gap-3 mb-2">
+<span class="w-2.5 h-2.5 rounded-full" style="background:#FF6B35"></span>
+<span class="font-barc font-bold text-sm uppercase tracking-wide text-white">Miami</span>
+</div>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">70+ restaurants · South Beach+</p>
+</div>
+<div class="zone-badge" style="background:rgba(255,107,53,0.08);border:1px solid rgba(255,107,53,0.15)">
+<div class="flex items-center gap-3 mb-2">
+<span class="w-2.5 h-2.5 rounded-full" style="background:#FF6B35"></span>
+<span class="font-barc font-bold text-sm uppercase tracking-wide text-white">San Francisco</span>
+</div>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">65+ restaurants · Bay Area</p>
+</div>
+<div class="zone-badge" style="background:rgba(255,214,10,0.06);border:1px solid rgba(255,214,10,0.15)">
+<div class="flex items-center gap-3 mb-2">
+<span class="w-2.5 h-2.5 rounded-full" style="background:#FFD60A"></span>
+<span class="font-barc font-bold text-sm uppercase tracking-wide text-white">Seattle</span>
+</div>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">Coming Q1 2025</p>
+</div>
+<div class="zone-badge" style="background:rgba(255,214,10,0.06);border:1px solid rgba(255,214,10,0.15)">
+<div class="flex items-center gap-3 mb-2">
+<span class="w-2.5 h-2.5 rounded-full" style="background:#FFD60A"></span>
+<span class="font-barc font-bold text-sm uppercase tracking-wide text-white">Boston</span>
+</div>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">Coming Q1 2025</p>
+</div>
+</div>
+
+<!-- Legend -->
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full" style="background:#FF3B30"></span>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">Active</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full" style="background:#FF6B35"></span>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">Expanding</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full" style="background:#FFD60A"></span>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">Coming Soon</span>
+</div>
+</div>
+</div>
+
+<!-- Right: Map Visual -->
+<div class="relative">
+<div class="rounded-2xl overflow-hidden shadow-fd-lg" style="border:2px solid rgba(255,59,48,0.2)">
+<img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Delivery Map" class="w-full h-[480px] object-cover opacity-60">
+<div class="absolute inset-0" style="background:linear-gradient(160deg,rgba(45,26,10,0.7) 0%,rgba(45,26,10,0.3) 100%)"></div>
+<!-- Map Pins -->
+<div class="absolute top-[20%] left-[35%] flex flex-col items-center">
+<div class="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold pulse-ring" style="background:#FF3B30">NY</div>
+</div>
+<div class="absolute top-[55%] left-[15%] flex flex-col items-center">
+<div class="w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold" style="background:#FF3B30">LA</div>
+</div>
+<div class="absolute top-[35%] left-[28%] flex flex-col items-center">
+<div class="w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold" style="background:#FF3B30">CH</div>
+</div>
+<div class="absolute top-[60%] left-[32%] flex flex-col items-center">
+<div class="w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold" style="background:#FF6B35">HO</div>
+</div>
+<div class="absolute top-[70%] left-[42%] flex flex-col items-center">
+<div class="w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold" style="background:#FF6B35">MI</div>
+</div>
+<!-- Overlay Info -->
+<div class="absolute bottom-5 left-5 right-5">
+<div class="fd-glass p-4 flex items-center justify-between">
+<div>
+<p class="font-barc font-bold text-xs uppercase tracking-widest mb-1" style="color:rgba(255,255,255,0.5)">Coverage Area</p>
+<p class="font-beb text-xl tracking-wide text-white">12 Cities · 630+ Restaurants</p>
+</div>
+<div class="text-right">
+<p class="font-beb text-2xl fd-grad-text">2M+</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">Customers Served</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Check Zone CTA -->
+<div class="mt-6 p-5 rounded-2xl flex items-center gap-4" style="background:rgba(255,59,48,0.1);border:1px solid rgba(255,59,48,0.2)">
+<div class="flex-1 flex items-center gap-3 px-4 py-3 rounded-xl" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1)">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="#FF6B35"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path></svg>
+<input type="text" placeholder="Enter your zip code..." class="bg-transparent text-white text-sm font-bar w-full outline-none placeholder-white/40">
+</div>
+<button class="btn-fd text-sm py-3 px-6 whitespace-nowrap">Check Zone</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- QUOTE DIVIDER -->
+<section class="py-20 relative overflow-hidden" style="background:linear-gradient(135deg,#FF3B30 0%,#FF6B35 50%,#FFD60A 100%);max-height:320px">
+<div class="absolute inset-0 opacity-10">
+<img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="bg" class="w-full h-full object-cover">
+</div>
+<div class="max-w-5xl mx-auto px-6 relative z-10 text-center">
+<p class="font-beb text-6xl md:text-8xl tracking-widest text-white opacity-10 mb-2">"</p>
+<h2 class="font-beb text-4xl md:text-5xl tracking-wide text-white leading-tight mb-4">
+LIFE IS TOO SHORT FOR BAD FOOD.<br>ORDER THE GOOD STUFF.
+</h2>
+<p class="font-barc font-bold text-sm uppercase tracking-widest" style="color:rgba(255,255,255,0.75)">— QuickBite Promise</p>
+</div>
+</section>
+
+<!-- APP DOWNLOAD + TESTIMONIALS -->
+<section class="py-24" style="background:#1A0A00;max-height:1100px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
+<!-- App Download -->
+<div>
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6" style="background:rgba(255,59,48,0.12);border:1px solid rgba(255,59,48,0.25)">
+<span class="font-barc font-bold text-xs uppercase tracking-widest" style="color:#FF6B35">Available on iOS &amp; Android</span>
+</div>
+<h2 class="font-beb text-5xl md:text-6xl tracking-wide text-white mb-6">GET THE <span class="fd-grad-text">APP</span></h2>
+<p class="font-bar text-lg mb-8" style="color:rgba(255,255,255,0.6)">Download QuickBite and get 50% off your first order. Join 2 million+ happy customers ordering smarter.</p>
+
+<!-- App Buttons -->
+<div class="flex flex-col sm:flex-row gap-4 mb-10">
+<a href="#" class="app-btn">
+<div class="w-10 h-10 rounded-xl flex items-center justify-center text-2xl" style="background:rgba(255,255,255,0.1)">🍎</div>
+<div>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">Download on the</p>
+<p class="font-barc font-bold text-base tracking-wide text-white">App Store</p>
+</div>
+</a>
+<a href="#" class="app-btn">
+<div class="w-10 h-10 rounded-xl flex items-center justify-center text-2xl" style="background:rgba(255,255,255,0.1)">▶️</div>
+<div>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">Get it on</p>
+<p class="font-barc font-bold text-base tracking-wide text-white">Google Play</p>
+</div>
+</a>
+</div>
+
+<!-- App Stats -->
+<div class="flex items-center gap-8">
+<div>
+<p class="font-beb text-3xl fd-grad-text">4.8★</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.45)">App Store Rating</p>
+</div>
+<div class="w-px h-10" style="background:rgba(255,255,255,0.1)"></div>
+<div>
+<p class="font-beb text-3xl fd-grad-text">2M+</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.45)">Downloads</p>
+</div>
+<div class="w-px h-10" style="background:rgba(255,255,255,0.1)"></div>
+<div>
+<p class="font-beb text-3xl fd-grad-text">50%</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.45)">First Order Off</p>
+</div>
+</div>
+</div>
+
+<!-- Phone Visual -->
+<div class="relative flex justify-center">
+<div class="relative w-[280px] h-[520px] rounded-[40px] overflow-hidden shadow-fd-lg float-slow" style="border:3px solid rgba(255,255,255,0.12)">
+<img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="App Screenshot" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(26,10,0,0.85) 0%,transparent 50%)"></div>
+<div class="absolute bottom-6 left-5 right-5">
+<div class="fd-glass p-4">
+<p class="font-barc font-bold text-xs uppercase tracking-widest mb-2" style="color:rgba(255,255,255,0.5)">Order Confirmed! 🎉</p>
+<p class="font-beb text-lg text-white">Spicy Ramen Bowl</p>
+<div class="flex items-center justify-between mt-2">
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.55)">Arriving in 22 min</span>
+<span class="font-beb text-base fd-grad-text">$14.99</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Badge -->
+<div class="absolute top-8 right-0 fd-card p-3 shadow-md2 float-fast">
+<div class="flex items-center gap-2">
+<span class="text-xl">🏆</span>
+<div>
+<p class="font-barc font-bold text-xs text-fd-dark">#1 Food App</p>
+<p class="font-bar text-xs text-gray-500">2024 Award</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Testimonials -->
+<div>
+<div class="text-center mb-12">
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4" style="background:rgba(255,214,10,0.1);border:1px solid rgba(255,214,10,0.2)">
+<span class="font-barc font-bold text-xs uppercase tracking-widest" style="color:#FFD60A">Real Customer Reviews</span>
+</div>
+<h2 class="font-beb text-4xl tracking-wide text-white">WHAT CUSTOMERS <span class="fd-yellow-text">SAY</span></h2>
+</div>
+
+<div class="grid md:grid-cols-3 gap-5">
+<!-- Review 1 -->
+<div class="p-6 rounded-2xl" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08)">
+<div class="flex items-center gap-1 mb-4">
+<span class="stars">★★★★★</span>
+</div>
+<p class="font-bar text-sm leading-relaxed mb-5" style="color:rgba(255,255,255,0.75)">"Ordered pizza at 7pm and it arrived in 24 minutes, still piping hot! The app is super easy to use and the tracking is spot on. QuickBite is my go-to now."</p>
+<div class="flex items-center gap-3">
+<img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&amp;w=80&amp;auto=format&amp;fit=crop" alt="Emma" class="w-10 h-10 rounded-full object-cover border-2" style="border-color:#FF3B30">
+<div>
+<p class="font-barc font-bold text-sm tracking-wide text-white">Emma Rodriguez</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.4)">New York · 120+ orders</p>
+</div>
+</div>
+</div>
+
+<!-- Review 2 -->
+<div class="p-6 rounded-2xl" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08)">
+<div class="flex items-center gap-1 mb-4">
+<span class="stars">★★★★★</span>
+</div>
+<p class="font-bar text-sm leading-relaxed mb-5" style="color:rgba(255,255,255,0.75)">"The restaurant selection is incredible. I can find literally any cuisine I want. The rewards program is also amazing — I've gotten 3 free deliveries already!"</p>
+<div class="flex items-center gap-3">
+<img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&amp;w=80&amp;auto=format&amp;fit=crop" alt="James" class="w-10 h-10 rounded-full object-cover border-2" style="border-color:#FF6B35">
+<div>
+<p class="font-barc font-bold text-sm tracking-wide text-white">James Park</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.4)">Los Angeles · 85+ orders</p>
+</div>
+</div>
+</div>
+
+<!-- Review 3 -->
+<div class="p-6 rounded-2xl" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08)">
+<div class="flex items-center gap-1 mb-4">
+<span class="stars">★★★★★</span>
+</div>
+<p class="font-bar text-sm leading-relaxed mb-5" style="color:rgba(255,255,255,0.75)">"As a vegan, I love the dietary filters. I can instantly find vegan options at every restaurant. The food always arrives fresh and the drivers are super friendly."</p>
+<div class="flex items-center gap-3">
+<img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&amp;w=80&amp;auto=format&amp;fit=crop" alt="Priya" class="w-10 h-10 rounded-full object-cover border-2" style="border-color:#34C759">
+<div>
+<p class="font-barc font-bold text-sm tracking-wide text-white">Priya Sharma</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.4)">Chicago · 200+ orders</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="pt-20 pb-10" style="background:#0D0500;max-height:700px">
+<div class="max-w-7xl mx-auto px-6">
+<!-- Partner Logos -->
+<div class="pb-12 mb-12" style="border-bottom:1px solid rgba(255,255,255,0.06)">
+<p class="text-center font-barc text-xs uppercase tracking-widest mb-6" style="color:rgba(255,255,255,0.2)">Featured In</p>
+<div class="flex flex-wrap items-center justify-center gap-10" style="opacity:0.25">
+<span class="font-beb text-xl tracking-widest text-white">TECHCRUNCH</span>
+<span class="w-1 h-1 rounded-full bg-white opacity-30"></span>
+<span class="font-beb text-xl tracking-widest text-white">FORBES</span>
+<span class="w-1 h-1 rounded-full bg-white opacity-30"></span>
+<span class="font-beb text-xl tracking-widest text-white">WIRED</span>
+<span class="w-1 h-1 rounded-full bg-white opacity-30"></span>
+<span class="font-beb text-xl tracking-widest text-white">BUSINESS INSIDER</span>
+<span class="w-1 h-1 rounded-full bg-white opacity-30"></span>
+<span class="font-beb text-xl tracking-widest text-white">THE VERGE</span>
+</div>
+</div>
+
+<div class="grid md:grid-cols-5 gap-10 mb-16">
+<!-- Brand -->
+<div class="col-span-1 md:col-span-2">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,#FF3B30,#FF6B35)">
+<span class="font-beb text-white text-xl leading-none">Q</span>
+</div>
+<span class="font-beb text-3xl tracking-widest text-white">QUICK<span class="fd-grad-text">BITE</span></span>
+</div>
+<p class="font-bar text-sm leading-relaxed max-w-xs mb-6" style="color:rgba(255,255,255,0.4)">Connecting hungry people with the best local restaurants. Fast, fresh, and always on time — guaranteed.</p>
+<div class="flex items-center gap-3">
+<a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-white text-xs font-bold font-barc" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1)">IG</a>
+<a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-white text-xs font-bold font-barc" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1)">FB</a>
+<a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-white text-xs font-bold font-barc" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1)">TW</a>
+<a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-white text-xs font-bold font-barc" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1)">TK</a>
+</div>
+</div>
+
+<!-- Order -->
+<div>
+<h4 class="font-beb text-sm tracking-widest mb-6 text-white">Order</h4>
+<ul class="space-y-3 font-bar text-sm" style="color:rgba(255,255,255,0.4)">
+<li><a href="#" class="hover:text-white transition-colors">Browse Restaurants</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Cuisines</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Deals &amp; Offers</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Gift Cards</a></li>
+<li><a href="#" class="hover:text-white transition-colors">QuickBite Pass</a></li>
+</ul>
+</div>
+
+<!-- Company -->
+<div>
+<h4 class="font-beb text-sm tracking-widest mb-6 text-white">Company</h4>
+<ul class="space-y-3 font-bar text-sm" style="color:rgba(255,255,255,0.4)">
+<li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Partner With Us</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Press</a></li>
+</ul>
+</div>
+
+<!-- Support -->
+<div>
+<h4 class="font-beb text-sm tracking-widest mb-6 text-white">Support</h4>
+<ul class="space-y-3 font-bar text-sm" style="color:rgba(255,255,255,0.4)">
+<li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Track Order</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+</ul>
+</div>
+</div>
+
+<div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style="border-top:1px solid rgba(255,255,255,0.06)">
+<p class="font-bar text-sm" style="color:rgba(255,255,255,0.25)">© 2024 QuickBite Inc. All rights reserved.</p>
+<div class="flex items-center gap-6">
+<a href="#" class="font-bar text-xs hover:opacity-70 transition-opacity" style="color:rgba(255,255,255,0.25)">Privacy</a>
+<a href="#" class="font-bar text-xs hover:opacity-70 transition-opacity" style="color:rgba(255,255,255,0.25)">Terms</a>
+<a href="#" class="font-bar text-xs hover:opacity-70 transition-opacity" style="color:rgba(255,255,255,0.25)">Cookies</a>
+</div>
+</div>
+
+<!-- Flow Navigation Footer -->
+<div class="mt-10 pt-8" style="border-top:1px solid rgba(255,255,255,0.04)">
+<p class="font-bar text-xs text-center mb-4 uppercase tracking-widest" style="color:rgba(255,255,255,0.15)">Explore All Landing Pages</p>
+<div class="flex flex-wrap items-center justify-center gap-3">
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/healthcare-landing-page" class="font-bar text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">01 Healthcare →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/fintech-landing-page" class="font-bar text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">02 Fintech →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/online-education-landing-page" class="font-bar text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">03 Education →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/real-estate-landing-page" class="font-bar text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">04 Real Estate →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/fitness-wellness-landing-page" class="font-bar text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">05 Fitness →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/travel-adventure-landing-page" class="font-bar text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">06 Travel →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/food-delivery-landing-page" class="font-bar text-xs font-bold px-3 py-1.5 rounded-full" style="background:rgba(255,59,48,0.2);color:#FF6B35;border:1px solid rgba(255,59,48,0.4)">07 Food ✦</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/legal-services-landing-page" class="font-bar text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">08 Legal →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/automotive-landing-page" class="font-bar text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">09 Auto →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/green-tech-landing-page" class="font-bar text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">10 Green Tech →</a>
+</div>
+<p class="text-center font-bar text-xs mt-6" style="color:rgba(255,255,255,0.12)">Designed with Uxmagic.ai</p>
+</div>
+</div>
+</footer>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

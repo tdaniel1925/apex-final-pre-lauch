@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Food & Restaurant Landing Page - Exported from UXMagic Copilot">
+    <title>Food & Restaurant Landing Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+tailwind.config={theme:{extend:{colors:{
+'i1':'#5C6AC4','i1l':'#EEF0FF','i1d':'#2D2D3A',
+'f2':'#7DAF8A','f2l':'#EAF4EC','f2g':'#C9A84C','f2gl':'#F7EDD0','f2d':'#2A3240',
+'w3':'#FAF7F2','w3r':'#D4A5A5','w3t':'#C47C5A',
+'r4':'#C4B49A','r4g':'#2D5016','r4s':'#F5EFE4',
+'l5':'#4A6FA5','l5l':'#E8EEF7','l5d':'#1E2A3A',
+'e6':'#FDFAF6','e6t':'#D4B896','e6b':'#E8C4B8','e6e':'#2C1A0E',
+'ed7':'#F5A623','ed7l':'#FEF3DC','ed7s':'#4A90D9','ed7sl':'#E8F2FC',
+'t8':'#2E86AB','t8l':'#E0F0F7','t8s':'#E8D5B0','t8c':'#F4845F',
+'h9':'#E8614A','h9l':'#FDECEA','h9g':'#F5F3F0','h9d':'#1C1C1E',
+'c10':'#3D6B4F','c10l':'#E8F0EB','c10s':'#A8C5DA','c10a':'#DDD0B8','c10b':'#FAFAF7',
+'eo':'#C8622A','eol':'#FDF0E8','eod':'#1E0E06','eom':'#8B3A1A','eos':'#F5E6D3','eog':'#D4A853','eogl':'#FBF3DC','eob':'#FAF5EF',
+},fontFamily:{
+'pf':['"Playfair Display"','serif'],
+'cg':['"Cormorant Garamond"','serif'],
+'sg':['"Space Grotesk"','sans-serif'],
+'bar':['Barlow','sans-serif'],
+'barc':['"Barlow Condensed"','sans-serif'],
+'beb':['"Bebas Neue"','sans-serif'],
+'nun':['Nunito','sans-serif'],
+'lb':['"Libre Baskerville"','serif'],
+'man':['Manrope','sans-serif'],
+'lor':['Lora','serif'],
+'int':['Inter','sans-serif'],
+'lat':['Lato','sans-serif'],
+},boxShadow:{
+'sm2':'0 2px 8px rgba(0,0,0,0.06)',
+'md2':'0 8px 30px rgba(0,0,0,0.08)',
+'lg2':'0 20px 60px rgba(0,0,0,0.12)',
+'warm':'0 8px 30px rgba(200,98,42,0.18)',
+'warm-lg':'0 20px 60px rgba(200,98,42,0.15)',
+}}}}
+
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+<!-- FLOW NAVIGATION BAR -->
+<div style="background:#1E0E06;border-bottom:2px solid #C8622A">
+<div class="overflow-x-auto no-sb">
+<div class="flex items-center gap-1.5 px-4 py-2 min-w-max">
+<span class="text-[10px] font-bold uppercase tracking-widest mr-2 flex-shrink-0 font-int" style="color:rgba(200,98,42,0.6)">6 Landing Pages:</span>
+<a href="/api/copilot/prototype/5776e7d4-fc9f-4634-bb32-35324702b7e9/healthcare-landing-page" class="text-xs font-bold px-3 py-1.5 rounded font-int whitespace-nowrap transition-colors" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.1)">01 Healthcare</a>
+<a href="/api/copilot/prototype/5776e7d4-fc9f-4634-bb32-35324702b7e9/fintech-landing-page" class="text-xs font-bold px-3 py-1.5 rounded font-int whitespace-nowrap transition-colors" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.1)">02 Fintech</a>
+<a href="/api/copilot/prototype/5776e7d4-fc9f-4634-bb32-35324702b7e9/e-commerce-landing-page" class="text-xs font-bold px-3 py-1.5 rounded font-int whitespace-nowrap transition-colors" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.1)">03 E-Commerce</a>
+<a href="/api/copilot/prototype/5776e7d4-fc9f-4634-bb32-35324702b7e9/saas-landing-page" class="text-xs font-bold px-3 py-1.5 rounded font-int whitespace-nowrap transition-colors" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.1)">04 SaaS</a>
+<a href="/api/copilot/prototype/5776e7d4-fc9f-4634-bb32-35324702b7e9/food-restaurant-landing-page" class="text-xs font-bold px-3 py-1.5 rounded font-int whitespace-nowrap" style="background:rgba(200,98,42,0.25);color:#E8956A;border:1px solid rgba(200,98,42,0.5)">05 Food &amp; Restaurant ✦</a>
+<a href="/api/copilot/prototype/5776e7d4-fc9f-4634-bb32-35324702b7e9/real-estate-landing-page" class="text-xs font-bold px-3 py-1.5 rounded font-int whitespace-nowrap transition-colors" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.1)">06 Real Estate</a>
+</div>
+</div>
+</div>
+
+<!-- ANNOUNCEMENT TICKER -->
+<div class="ticker-wrap py-2.5" style="background:linear-gradient(90deg,#C8622A,#8B3A1A)">
+<div class="ticker-inner">
+<span class="text-white text-xs font-semibold font-lat px-8 opacity-90">🍷 Now accepting reservations for the holiday season</span>
+<span class="text-white text-xs font-semibold font-lat px-8 opacity-90">⭐ Michelin Bib Gourmand 2024 — Best New Restaurant</span>
+<span class="text-white text-xs font-semibold font-lat px-8 opacity-90">🌿 Farm-to-table · Seasonal menu changes weekly</span>
+<span class="text-white text-xs font-semibold font-lat px-8 opacity-90">🎉 Private dining available for groups of 8–40</span>
+<span class="text-white text-xs font-semibold font-lat px-8 opacity-90">🍷 Now accepting reservations for the holiday season</span>
+<span class="text-white text-xs font-semibold font-lat px-8 opacity-90">⭐ Michelin Bib Gourmand 2024 — Best New Restaurant</span>
+<span class="text-white text-xs font-semibold font-lat px-8 opacity-90">🌿 Farm-to-table · Seasonal menu changes weekly</span>
+<span class="text-white text-xs font-semibold font-lat px-8 opacity-90">🎉 Private dining available for groups of 8–40</span>
+</div>
+</div>
+
+<!-- MAIN NAVIGATION -->
+<nav class="bg-eob border-b border-e6t border-opacity-30 sticky top-0 z-40 shadow-sm2">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 eo-grad rounded-full flex items-center justify-center flex-shrink-0 shadow-warm">
+<span class="text-white font-bold text-sm font-cg">E</span>
+</div>
+<div>
+<span class="font-cg text-xl font-bold tracking-wide" style="color:#1E0E06">Ember &amp; Oak</span>
+<span class="block text-xs font-lat tracking-widest uppercase" style="color:#C8622A;font-size:9px;letter-spacing:0.15em">Fine Dining · Est. 2018</span>
+</div>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a href="#menu" class="text-sm font-medium text-gray-600 nav-link font-lat">Menu</a>
+<a href="#story" class="text-sm font-medium text-gray-600 nav-link font-lat">Our Story</a>
+<a href="#experience" class="text-sm font-medium text-gray-600 nav-link font-lat">Experience</a>
+<a href="#events" class="text-sm font-medium text-gray-600 nav-link font-lat">Events</a>
+<a href="#contact" class="text-sm font-medium text-gray-600 nav-link font-lat">Contact</a>
+</div>
+<div class="flex items-center gap-3">
+<a href="tel:+15551234567" class="hidden md:flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-eo font-lat transition-colors">
+<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+(555) 123-4567
+</a>
+<a href="#reserve" class="eo-grad text-white text-sm font-semibold px-5 py-2.5 rounded-full font-lat hover:opacity-90 transition-opacity min-h-[44px] flex items-center shadow-warm">Reserve a Table</a>
+</div>
+</div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="relative overflow-hidden" style="max-height:780px">
+<div class="absolute inset-0 z-0">
+<img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&amp;w=2070&amp;auto=format&amp;fit=crop" alt="Ember &amp; Oak Restaurant" class="w-full h-full object-cover">
+<div class="hero-overlay absolute inset-0"></div>
+</div>
+<div class="relative z-10 max-w-7xl mx-auto px-6 py-28 lg:py-36">
+<div class="max-w-2xl">
+<div class="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full" style="background:rgba(212,168,83,0.2);border:1px solid rgba(212,168,83,0.4)">
+<span class="w-1.5 h-1.5 rounded-full bg-eog animate-pulse"></span>
+<span class="text-xs font-bold font-lat tracking-widest uppercase text-eog">Michelin Bib Gourmand 2024</span>
+</div>
+<h1 class="font-cg text-5xl lg:text-[78px] font-light text-white leading-[1.05] tracking-wide mb-6">
+Where fire meets<br><em class="not-italic font-semibold text-eog">flavour.</em>
+</h1>
+<p class="text-gray-300 text-lg leading-relaxed mb-10 max-w-lg font-lat font-light">Wood-fired cuisine crafted from the finest seasonal ingredients, sourced from local farms within 50 miles. An intimate dining experience in the heart of the city.</p>
+<div class="flex flex-wrap gap-4 mb-10">
+<a href="#reserve" class="eo-grad text-white text-sm font-bold px-8 py-4 rounded-full font-lat hover:opacity-90 transition-opacity min-h-[44px] shadow-warm-lg">Reserve Your Table</a>
+<a href="#menu" class="bg-white bg-opacity-10 text-white text-sm font-bold px-8 py-4 rounded-full font-lat hover:bg-opacity-20 transition-all min-h-[44px] border border-white border-opacity-30">View Menu</a>
+</div>
+<div class="flex flex-wrap gap-6 pt-6" style="border-top:1px solid rgba(255,255,255,0.15)">
+<div class="flex items-center gap-2">
+<div class="flex gap-0.5">
+<span class="star-filled text-sm">★★★★★</span>
+</div>
+<span class="text-white text-sm font-lat opacity-80">4.9 on OpenTable</span>
+</div>
+<div class="flex items-center gap-2">
+<svg class="w-4 h-4 text-eog" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+<span class="text-white text-sm font-lat opacity-80">Open Tue–Sun, 5pm–11pm</span>
+</div>
+<div class="flex items-center gap-2">
+<svg class="w-4 h-4 text-eog" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+<span class="text-white text-sm font-lat opacity-80">142 Oak Street, Downtown</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating award badge -->
+<div class="absolute bottom-8 right-8 hidden lg:block">
+<div class="badge-award rounded-2xl px-5 py-4 shadow-warm-lg text-center">
+<p class="text-white text-xs font-lat opacity-80 uppercase tracking-widest mb-1">Rated</p>
+<p class="text-white text-2xl font-bold font-cg">#1</p>
+<p class="text-white text-xs font-lat opacity-80">Best New Restaurant</p>
+<p class="text-white text-xs font-lat opacity-60">City Magazine 2024</p>
+</div>
+</div>
+</section>
+
+<!-- QUICK INFO BAND -->
+<section style="background:#1E0E06;padding:20px 0">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+<div class="flex flex-col items-center gap-1">
+<span class="text-eog text-xl">🌿</span>
+<p class="text-white text-xs font-lat font-bold uppercase tracking-wider">Farm-to-Table</p>
+<p class="text-gray-400 text-xs font-lat">Locally sourced ingredients</p>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="text-eog text-xl">🔥</span>
+<p class="text-white text-xs font-lat font-bold uppercase tracking-wider">Wood-Fired</p>
+<p class="text-gray-400 text-xs font-lat">Oak &amp; cherry wood ovens</p>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="text-eog text-xl">🍷</span>
+<p class="text-white text-xs font-lat font-bold uppercase tracking-wider">Curated Cellar</p>
+<p class="text-gray-400 text-xs font-lat">400+ wine selections</p>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="text-eog text-xl">👨‍🍳</span>
+<p class="text-white text-xs font-lat font-bold uppercase tracking-wider">Chef's Table</p>
+<p class="text-gray-400 text-xs font-lat">Exclusive 8-course experience</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- MENU HIGHLIGHTS SECTION -->
+<section id="menu" style="background:#FAF5EF;padding:80px 0;max-height:1100px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-14">
+<p class="text-eo text-xs font-bold font-lat tracking-widest uppercase mb-3" style="color:#C8622A">Seasonal Menu</p>
+<h2 class="font-cg text-4xl lg:text-5xl font-semibold mb-4" style="color:#1E0E06">Crafted with passion,<br>served with love.</h2>
+<p class="text-gray-500 text-lg max-w-xl mx-auto font-lat font-light">Our menu changes with the seasons, celebrating the finest produce at its peak. Every dish tells a story of land, fire, and craft.</p>
+</div>
+
+<!-- Menu Category Tabs -->
+<div class="flex justify-center gap-2 mb-10 flex-wrap">
+<button class="px-5 py-2 rounded-full text-sm font-bold font-lat transition-all" style="background:#C8622A;color:white">Starters</button>
+<button class="px-5 py-2 rounded-full text-sm font-bold font-lat transition-all bg-white text-gray-600 border border-gray-200 hover:border-eo">Mains</button>
+<button class="px-5 py-2 rounded-full text-sm font-bold font-lat transition-all bg-white text-gray-600 border border-gray-200 hover:border-eo">Desserts</button>
+<button class="px-5 py-2 rounded-full text-sm font-bold font-lat transition-all bg-white text-gray-600 border border-gray-200 hover:border-eo">Wine Pairings</button>
+</div>
+
+<div class="grid md:grid-cols-3 gap-8">
+<!-- Menu Card 1 -->
+<div class="bg-white rounded-2xl overflow-hidden shadow-sm2 card-hover menu-card">
+<div class="relative overflow-hidden" style="height:220px">
+<img src="https://images.unsplash.com/photo-1547592180-85f173990554?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Burrata &amp; Heirloom Tomato" class="menu-img w-full h-full object-cover">
+<div class="absolute top-3 left-3 bg-white bg-opacity-90 px-3 py-1 rounded-full">
+<span class="text-xs font-bold font-lat uppercase tracking-wider" style="color:#C8622A">Chef's Pick</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex items-start justify-between mb-2">
+<h3 class="font-cg text-xl font-semibold" style="color:#1E0E06">Burrata &amp; Heirloom Tomato</h3>
+<span class="font-cg text-lg font-bold ml-3 flex-shrink-0" style="color:#C8622A">$18</span>
+</div>
+<p class="text-gray-500 text-sm font-lat font-light leading-relaxed mb-4">Creamy burrata with roasted heirloom tomatoes, basil oil, aged balsamic, and fleur de sel. Served with grilled sourdough.</p>
+<div class="flex items-center gap-2">
+<span class="text-xs bg-eol px-2.5 py-1 rounded-full font-lat font-bold" style="color:#C8622A">Vegetarian</span>
+<span class="text-xs bg-eogl px-2.5 py-1 rounded-full font-lat font-bold" style="color:#8B6914">Gluten-Free</span>
+</div>
+</div>
+</div>
+
+<!-- Menu Card 2 -->
+<div class="bg-white rounded-2xl overflow-hidden shadow-sm2 card-hover menu-card">
+<div class="relative overflow-hidden" style="height:220px">
+<img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Wood-Fired Lamb Rack" class="menu-img w-full h-full object-cover">
+<div class="absolute top-3 left-3 bg-white bg-opacity-90 px-3 py-1 rounded-full">
+<span class="text-xs font-bold font-lat uppercase tracking-wider" style="color:#8B3A1A">Signature</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex items-start justify-between mb-2">
+<h3 class="font-cg text-xl font-semibold" style="color:#1E0E06">Wood-Fired Lamb Rack</h3>
+<span class="font-cg text-lg font-bold ml-3 flex-shrink-0" style="color:#C8622A">$52</span>
+</div>
+<p class="text-gray-500 text-sm font-lat font-light leading-relaxed mb-4">Heritage lamb rack, rosemary &amp; garlic crust, roasted root vegetables, red wine jus, and pomme purée.</p>
+<div class="flex items-center gap-2">
+<span class="text-xs bg-eol px-2.5 py-1 rounded-full font-lat font-bold" style="color:#C8622A">Signature Dish</span>
+</div>
+</div>
+</div>
+
+<!-- Menu Card 3 -->
+<div class="bg-white rounded-2xl overflow-hidden shadow-sm2 card-hover menu-card">
+<div class="relative overflow-hidden" style="height:220px">
+<img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Dark Chocolate Fondant" class="menu-img w-full h-full object-cover">
+<div class="absolute top-3 left-3 bg-white bg-opacity-90 px-3 py-1 rounded-full">
+<span class="text-xs font-bold font-lat uppercase tracking-wider" style="color:#D4A853">Dessert</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex items-start justify-between mb-2">
+<h3 class="font-cg text-xl font-semibold" style="color:#1E0E06">Dark Chocolate Fondant</h3>
+<span class="font-cg text-lg font-bold ml-3 flex-shrink-0" style="color:#C8622A">$16</span>
+</div>
+<p class="text-gray-500 text-sm font-lat font-light leading-relaxed mb-4">Valrhona 70% chocolate fondant with salted caramel centre, vanilla bean ice cream, and hazelnut praline.</p>
+<div class="flex items-center gap-2">
+<span class="text-xs bg-eol px-2.5 py-1 rounded-full font-lat font-bold" style="color:#C8622A">Guest Favourite</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="text-center mt-10">
+<a href="#" class="inline-flex items-center gap-2 border-2 font-bold px-8 py-3.5 rounded-full font-lat hover:opacity-80 transition-opacity min-h-[44px]" style="border-color:#C8622A;color:#C8622A">
+View Full Menu
+<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+</a>
+</div>
+</div>
+</section>
+
+<!-- OUR STORY SECTION -->
+<section id="story" style="background:white;padding:80px 0;max-height:900px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid lg:grid-cols-2 gap-16 items-center">
+<div>
+<p class="text-xs font-bold font-lat tracking-widest uppercase mb-3" style="color:#C8622A">Our Story</p>
+<h2 class="font-cg text-4xl lg:text-5xl font-semibold mb-6" style="color:#1E0E06">Born from a love of<br>fire and flavour.</h2>
+<p class="text-gray-600 text-base leading-relaxed font-lat mb-5 font-light">Chef Marcus Holloway spent a decade cooking in Lyon, Barcelona, and Tokyo before returning home with a singular vision: to create a restaurant that honours the land it sits on. Ember &amp; Oak opened in 2018 with eight tables and a wood-fired oven imported from Tuscany.</p>
+<p class="text-gray-600 text-base leading-relaxed font-lat mb-8 font-light">Today, we work with over 30 local farms and producers, changing our menu weekly to reflect what's at its absolute best. Every dish is a conversation between fire, season, and craft.</p>
+<div class="flex flex-wrap gap-8 mb-8">
+<div>
+<p class="text-3xl font-bold font-cg" style="color:#C8622A">30+</p>
+<p class="text-sm text-gray-500 font-lat">Local farm partners</p>
+</div>
+<div>
+<p class="text-3xl font-bold font-cg" style="color:#C8622A">6</p>
+<p class="text-sm text-gray-500 font-lat">Years of excellence</p>
+</div>
+<div>
+<p class="text-3xl font-bold font-cg" style="color:#C8622A">4.9★</p>
+<p class="text-sm text-gray-500 font-lat">Average guest rating</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?q=80&amp;w=200&amp;auto=format&amp;fit=crop" alt="Chef Marcus Holloway" class="w-14 h-14 rounded-full object-cover border-2 border-eog flex-shrink-0">
+<div>
+<p class="font-cg font-semibold text-base" style="color:#1E0E06">Chef Marcus Holloway</p>
+<p class="text-sm text-gray-500 font-lat">Executive Chef &amp; Co-Founder</p>
+<p class="text-xs font-lat italic text-gray-400">Formerly of Le Bernardin, NYC</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Restaurant interior" class="rounded-2xl object-cover w-full shadow-md2" style="height:220px">
+<img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Wood-fired cooking" class="rounded-2xl object-cover w-full shadow-md2 mt-8" style="height:220px">
+</div>
+</div>
+</div>
+</section>
+
+<!-- EXPERIENCE / FEATURES SECTION -->
+<section id="experience" style="background:#FAF5EF;padding:80px 0;max-height:900px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-14">
+<p class="text-xs font-bold font-lat tracking-widest uppercase mb-3" style="color:#C8622A">The Ember &amp; Oak Experience</p>
+<h2 class="font-cg text-4xl lg:text-5xl font-semibold mb-4" style="color:#1E0E06">More than a meal —<br>a memory.</h2>
+<p class="text-gray-500 text-lg max-w-xl mx-auto font-lat font-light">From intimate dinners to grand celebrations, we create experiences that linger long after the last bite.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="bg-white rounded-2xl p-8 shadow-sm2 card-hover">
+<div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 text-2xl" style="background:#FDF0E8">🕯️</div>
+<h3 class="font-cg text-xl font-semibold mb-3" style="color:#1E0E06">Intimate Dining Room</h3>
+<p class="text-gray-500 text-sm leading-relaxed font-lat font-light">Our 48-seat dining room is designed for connection. Warm candlelight, exposed brick, and the gentle crackle of the wood-fired oven set the scene.</p>
+<div class="mt-5 flex items-center gap-2 text-xs font-bold font-lat" style="color:#C8622A">
+<span>Learn more</span>
+<svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+</div>
+</div>
+<div class="bg-white rounded-2xl p-8 shadow-sm2 card-hover">
+<div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 text-2xl" style="background:#FDF0E8">👨‍🍳</div>
+<h3 class="font-cg text-xl font-semibold mb-3" style="color:#1E0E06">Chef's Table</h3>
+<p class="text-gray-500 text-sm leading-relaxed font-lat font-light">An exclusive 8-course tasting menu for up to 6 guests, seated at the kitchen pass. Watch every dish come to life and interact directly with Chef Marcus.</p>
+<div class="mt-5 flex items-center gap-2 text-xs font-bold font-lat" style="color:#C8622A">
+<span>Book Chef's Table</span>
+<svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+</div>
+</div>
+<div class="bg-white rounded-2xl p-8 shadow-sm2 card-hover">
+<div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 text-2xl" style="background:#FDF0E8">🍷</div>
+<h3 class="font-cg text-xl font-semibold mb-3" style="color:#1E0E06">Wine Programme</h3>
+<p class="text-gray-500 text-sm leading-relaxed font-lat font-light">Our sommelier has curated a cellar of 400+ labels from small-production vineyards across France, Italy, and the New World. Seasonal pairings available.</p>
+<div class="mt-5 flex items-center gap-2 text-xs font-bold font-lat" style="color:#C8622A">
+<span>Explore the cellar</span>
+<svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+</div>
+</div>
+<div class="bg-white rounded-2xl p-8 shadow-sm2 card-hover">
+<div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 text-2xl" style="background:#FDF0E8">🎂</div>
+<h3 class="font-cg text-xl font-semibold mb-3" style="color:#1E0E06">Private Events</h3>
+<p class="text-gray-500 text-sm leading-relaxed font-lat font-light">Celebrate life's milestones in our private dining room. Birthdays, anniversaries, corporate dinners — we handle every detail with care.</p>
+<div class="mt-5 flex items-center gap-2 text-xs font-bold font-lat" style="color:#C8622A">
+<span>Enquire now</span>
+<svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+</div>
+</div>
+<div class="bg-white rounded-2xl p-8 shadow-sm2 card-hover">
+<div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 text-2xl" style="background:#FDF0E8">🌾</div>
+<h3 class="font-cg text-xl font-semibold mb-3" style="color:#1E0E06">Farm Visits</h3>
+<p class="text-gray-500 text-sm leading-relaxed font-lat font-light">Join us for quarterly farm-to-table tours. Visit our partner farms, meet the growers, and enjoy a special harvest dinner under the open sky.</p>
+<div class="mt-5 flex items-center gap-2 text-xs font-bold font-lat" style="color:#C8622A">
+<span>See upcoming dates</span>
+<svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+</div>
+</div>
+<div class="bg-white rounded-2xl p-8 shadow-sm2 card-hover">
+<div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 text-2xl" style="background:#FDF0E8">🎓</div>
+<h3 class="font-cg text-xl font-semibold mb-3" style="color:#1E0E06">Cooking Classes</h3>
+<p class="text-gray-500 text-sm leading-relaxed font-lat font-light">Learn the secrets of wood-fired cooking with Chef Marcus. Monthly masterclasses for groups of up to 12. Includes a full dinner and wine pairing.</p>
+<div class="mt-5 flex items-center gap-2 text-xs font-bold font-lat" style="color:#C8622A">
+<span>Book a class</span>
+<svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- TESTIMONIALS SECTION -->
+<section style="background:#1E0E06;padding:80px 0;max-height:700px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-12">
+<p class="text-xs font-bold font-lat tracking-widest uppercase mb-3" style="color:rgba(212,168,83,0.7)">Guest Reviews</p>
+<h2 class="font-cg text-4xl lg:text-5xl font-semibold text-white">What our guests say</h2>
+</div>
+<div class="grid md:grid-cols-3 gap-6 mb-10">
+<div class="rounded-2xl p-8" style="background:rgba(200,98,42,0.1);border:1px solid rgba(200,98,42,0.2)">
+<div class="flex items-center gap-1 mb-4">
+<span class="star-filled text-sm">★★★★★</span>
+</div>
+<p class="text-sm leading-relaxed font-lat mb-6 font-light" style="color:rgba(255,255,255,0.8)">"The lamb rack was the finest piece of meat I've eaten in years. The wood-fired flavour is unlike anything else. We've already booked our anniversary dinner here."</p>
+<div class="flex items-center gap-3">
+<img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&amp;w=100&amp;auto=format&amp;fit=crop" alt="Emma Richardson" class="w-10 h-10 rounded-full object-cover flex-shrink-0">
+<div>
+<p class="text-sm font-bold font-cg text-white">Emma Richardson</p>
+<p class="text-xs font-lat" style="color:rgba(255,255,255,0.4)">Food Critic, The Daily</p>
+</div>
+</div>
+</div>
+<div class="rounded-2xl p-8" style="background:rgba(212,168,83,0.08);border:1px solid rgba(212,168,83,0.2)">
+<div class="flex items-center gap-1 mb-4">
+<span class="star-filled text-sm">★★★★★</span>
+</div>
+<p class="text-sm leading-relaxed font-lat mb-6 font-light" style="color:rgba(255,255,255,0.8)">"The Chef's Table experience was absolutely magical. Watching Marcus work is like watching an artist. The 8-course menu was a journey I'll never forget."</p>
+<div class="flex items-center gap-3">
+<img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&amp;w=100&amp;auto=format&amp;fit=crop" alt="James Whitfield" class="w-10 h-10 rounded-full object-cover flex-shrink-0">
+<div>
+<p class="text-sm font-bold font-cg text-white">James Whitfield</p>
+<p class="text-xs font-lat" style="color:rgba(255,255,255,0.4)">Regular Guest</p>
+</div>
+</div>
+</div>
+<div class="rounded-2xl p-8" style="background:rgba(200,98,42,0.1);border:1px solid rgba(200,98,42,0.2)">
+<div class="flex items-center gap-1 mb-4">
+<span class="star-filled text-sm">★★★★★</span>
+</div>
+<p class="text-sm leading-relaxed font-lat mb-6 font-light" style="color:rgba(255,255,255,0.8)">"We hosted our company dinner here and it was flawless. The private room, the service, the food — everything was perfect. Our team is still talking about it."</p>
+<div class="flex items-center gap-3">
+<img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&amp;w=100&amp;auto=format&amp;fit=crop" alt="Priya Mehta" class="w-10 h-10 rounded-full object-cover flex-shrink-0">
+<div>
+<p class="text-sm font-bold font-cg text-white">Priya Mehta</p>
+<p class="text-xs font-lat" style="color:rgba(255,255,255,0.4)">CEO, Meridian Group</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Review stats -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="rounded-xl p-5 text-center" style="background:rgba(200,98,42,0.12);border:1px solid rgba(200,98,42,0.2)">
+<p class="text-3xl font-bold font-cg" style="color:#E8956A">4.9</p>
+<p class="text-xs font-lat text-white opacity-60 mt-1">OpenTable Rating</p>
+</div>
+<div class="rounded-xl p-5 text-center" style="background:rgba(212,168,83,0.1);border:1px solid rgba(212,168,83,0.2)">
+<p class="text-3xl font-bold font-cg" style="color:#D4A853">2,400+</p>
+<p class="text-xs font-lat text-white opacity-60 mt-1">Happy Guests</p>
+</div>
+<div class="rounded-xl p-5 text-center" style="background:rgba(200,98,42,0.12);border:1px solid rgba(200,98,42,0.2)">
+<p class="text-3xl font-bold font-cg" style="color:#E8956A">98%</p>
+<p class="text-xs font-lat text-white opacity-60 mt-1">Would Return</p>
+</div>
+<div class="rounded-xl p-5 text-center" style="background:rgba(212,168,83,0.1);border:1px solid rgba(212,168,83,0.2)">
+<p class="text-3xl font-bold font-cg" style="color:#D4A853">#1</p>
+<p class="text-xs font-lat text-white opacity-60 mt-1">City Magazine 2024</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- RESERVATION CTA SECTION -->
+<section id="reserve" style="background:#FAF5EF;padding:80px 0;max-height:900px">
+<div class="max-w-6xl mx-auto px-6">
+<div class="grid lg:grid-cols-2 gap-16 items-center">
+<div>
+<p class="text-xs font-bold font-lat tracking-widest uppercase mb-3" style="color:#C8622A">Reservations</p>
+<h2 class="font-cg text-4xl lg:text-5xl font-semibold mb-5" style="color:#1E0E06">Reserve your table<br>tonight.</h2>
+<p class="text-gray-600 text-base leading-relaxed font-lat mb-8 font-light">We recommend booking at least 2 weeks in advance, especially for weekends and special occasions. Walk-ins are welcome based on availability.</p>
+<div class="space-y-4 mb-8">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 text-lg" style="background:#FDF0E8">📅</div>
+<div>
+<h4 class="font-lat font-bold text-gray-800 mb-0.5">Dinner Service</h4>
+<p class="text-sm text-gray-500 font-lat">Tuesday – Sunday, 5:00pm – 11:00pm</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 text-lg" style="background:#FDF0E8">🥂</div>
+<div>
+<h4 class="font-lat font-bold text-gray-800 mb-0.5">Sunday Brunch</h4>
+<p class="text-sm text-gray-500 font-lat">Sundays only, 11:00am – 3:00pm</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 text-lg" style="background:#FDF0E8">🎉</div>
+<div>
+<h4 class="font-lat font-bold text-gray-800 mb-0.5">Private Events</h4>
+<p class="text-sm text-gray-500 font-lat">Available any day for groups of 8–40</p>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4 p-4 rounded-2xl" style="background:white;border:1px solid rgba(200,98,42,0.15)">
+<div class="w-12 h-12 eo-grad rounded-xl flex items-center justify-center flex-shrink-0">
+<svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+</div>
+<div>
+<p class="text-xs text-gray-400 font-lat">Call us directly</p>
+<p class="font-cg font-bold text-lg" style="color:#1E0E06">(555) 123-4567</p>
+</div>
+</div>
+</div>
+
+<!-- Reservation Form -->
+<div class="bg-white rounded-2xl p-8 shadow-md2" style="border:1px solid rgba(200,98,42,0.12)">
+<h3 class="font-cg text-2xl font-semibold mb-6" style="color:#1E0E06">Make a Reservation</h3>
+<form onsubmit="return false" class="space-y-4">
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-xs font-bold text-gray-600 font-lat mb-1.5 uppercase tracking-wide">First Name</label>
+<input type="text" placeholder="Jane" class="res-input w-full px-4 py-3 rounded-xl border border-gray-200 text-sm font-lat focus:outline-none min-h-[44px]">
+</div>
+<div>
+<label class="block text-xs font-bold text-gray-600 font-lat mb-1.5 uppercase tracking-wide">Last Name</label>
+<input type="text" placeholder="Smith" class="res-input w-full px-4 py-3 rounded-xl border border-gray-200 text-sm font-lat focus:outline-none min-h-[44px]">
+</div>
+</div>
+<div>
+<label class="block text-xs font-bold text-gray-600 font-lat mb-1.5 uppercase tracking-wide">Email Address</label>
+<input type="email" placeholder="jane@example.com" class="res-input w-full px-4 py-3 rounded-xl border border-gray-200 text-sm font-lat focus:outline-none min-h-[44px]">
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-xs font-bold text-gray-600 font-lat mb-1.5 uppercase tracking-wide">Date</label>
+<input type="date" class="res-input w-full px-4 py-3 rounded-xl border border-gray-200 text-sm font-lat focus:outline-none min-h-[44px] bg-white">
+</div>
+<div>
+<label class="block text-xs font-bold text-gray-600 font-lat mb-1.5 uppercase tracking-wide">Time</label>
+<select class="res-input w-full px-4 py-3 rounded-xl border border-gray-200 text-sm font-lat focus:outline-none min-h-[44px] bg-white">
+<option>5:00 PM</option>
+<option>5:30 PM</option>
+<option>6:00 PM</option>
+<option>6:30 PM</option>
+<option>7:00 PM</option>
+<option>7:30 PM</option>
+<option>8:00 PM</option>
+<option>8:30 PM</option>
+<option>9:00 PM</option>
+</select>
+</div>
+</div>
+<div>
+<label class="block text-xs font-bold text-gray-600 font-lat mb-1.5 uppercase tracking-wide">Party Size</label>
+<select class="res-input w-full px-4 py-3 rounded-xl border border-gray-200 text-sm font-lat focus:outline-none min-h-[44px] bg-white">
+<option>1 Guest</option>
+<option>2 Guests</option>
+<option>3 Guests</option>
+<option>4 Guests</option>
+<option>5 Guests</option>
+<option>6 Guests</option>
+<option>7+ Guests (Private Dining)</option>
+</select>
+</div>
+<div>
+<label class="block text-xs font-bold text-gray-600 font-lat mb-1.5 uppercase tracking-wide">Special Requests</label>
+<textarea placeholder="Dietary requirements, special occasions, seating preferences..." class="res-input w-full px-4 py-3 rounded-xl border border-gray-200 text-sm font-lat focus:outline-none resize-none" rows="3"></textarea>
+</div>
+<button type="submit" class="w-full eo-grad text-white text-sm font-bold py-4 rounded-full font-lat hover:opacity-90 transition-opacity min-h-[44px] shadow-warm">Confirm Reservation</button>
+</form>
+<p class="text-xs text-gray-400 font-lat text-center mt-4">Confirmation sent to your email · Free cancellation up to 24 hours</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- EVENTS SECTION -->
+<section id="events" style="background:white;padding:80px 0;max-height:700px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-12">
+<p class="text-xs font-bold font-lat tracking-widest uppercase mb-3" style="color:#C8622A">Upcoming Events</p>
+<h2 class="font-cg text-4xl lg:text-5xl font-semibold mb-4" style="color:#1E0E06">Don't miss what's coming.</h2>
+</div>
+<div class="grid md:grid-cols-3 gap-6">
+<div class="rounded-2xl overflow-hidden shadow-sm2 card-hover border border-gray-100">
+<div class="relative" style="height:180px">
+<img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Wine Dinner" class="w-full h-full object-cover">
+<div class="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold font-lat" style="background:#C8622A;color:white">Dec 14</div>
+</div>
+<div class="p-6">
+<h3 class="font-cg text-xl font-semibold mb-2" style="color:#1E0E06">Burgundy Wine Dinner</h3>
+<p class="text-gray-500 text-sm font-lat font-light mb-4">A 6-course dinner paired with rare Burgundy vintages, hosted by our sommelier and a visiting vigneron from Beaune.</p>
+<div class="flex items-center justify-between">
+<span class="font-cg font-bold text-lg" style="color:#C8622A">$185 per person</span>
+<a href="#reserve" class="text-xs font-bold font-lat px-4 py-2 rounded-full" style="background:#FDF0E8;color:#C8622A">Book Now</a>
+</div>
+</div>
+</div>
+<div class="rounded-2xl overflow-hidden shadow-sm2 card-hover border border-gray-100">
+<div class="relative" style="height:180px">
+<img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Cooking Class" class="w-full h-full object-cover">
+<div class="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold font-lat" style="background:#D4A853;color:white">Dec 21</div>
+</div>
+<div class="p-6">
+<h3 class="font-cg text-xl font-semibold mb-2" style="color:#1E0E06">Holiday Cooking Masterclass</h3>
+<p class="text-gray-500 text-sm font-lat font-light mb-4">Learn to cook a festive 3-course menu with Chef Marcus. Perfect for gifting. Includes all ingredients, wine, and a recipe booklet.</p>
+<div class="flex items-center justify-between">
+<span class="font-cg font-bold text-lg" style="color:#C8622A">$120 per person</span>
+<a href="#reserve" class="text-xs font-bold font-lat px-4 py-2 rounded-full" style="background:#FDF0E8;color:#C8622A">Book Now</a>
+</div>
+</div>
+</div>
+<div class="rounded-2xl overflow-hidden shadow-sm2 card-hover border border-gray-100">
+<div class="relative" style="height:180px">
+<img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="New Year's Eve" class="w-full h-full object-cover">
+<div class="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold font-lat" style="background:#8B3A1A;color:white">Dec 31</div>
+<div class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-bold font-lat bg-white" style="color:#C8622A">Selling Fast</div>
+</div>
+<div class="p-6">
+<h3 class="font-cg text-xl font-semibold mb-2" style="color:#1E0E06">New Year's Eve Gala</h3>
+<p class="text-gray-500 text-sm font-lat font-light mb-4">Ring in 2025 with a 7-course tasting menu, champagne reception, live jazz, and midnight celebrations. Limited to 40 guests.</p>
+<div class="flex items-center justify-between">
+<span class="font-cg font-bold text-lg" style="color:#C8622A">$250 per person</span>
+<a href="#reserve" class="text-xs font-bold font-lat px-4 py-2 rounded-full" style="background:#FDF0E8;color:#C8622A">Book Now</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- NEWSLETTER / FINAL CTA -->
+<section style="background:linear-gradient(135deg,#1E0E06 0%,#3A1A0A 100%);padding:80px 0;max-height:500px">
+<div class="max-w-3xl mx-auto px-6 text-center">
+<div class="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full" style="background:rgba(212,168,83,0.15);border:1px solid rgba(212,168,83,0.3)">
+<span class="w-1.5 h-1.5 rounded-full bg-eog"></span>
+<span class="text-xs font-bold font-lat tracking-widest uppercase text-eog">Join Our Table</span>
+</div>
+<h2 class="font-cg text-4xl lg:text-5xl font-light text-white mb-4">Stay close to the kitchen.</h2>
+<p class="text-gray-400 text-lg font-lat mb-8 font-light">Subscribe for seasonal menu updates, exclusive event invitations, and stories from our kitchen and farm partners.</p>
+<form onsubmit="return false" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mb-4">
+<input type="email" placeholder="Your email address" class="flex-1 px-5 py-3.5 rounded-full text-sm font-lat focus:outline-none min-h-[44px]" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:white">
+<button type="submit" class="eo-grad text-white text-sm font-bold px-7 py-3.5 rounded-full font-lat hover:opacity-90 transition-opacity whitespace-nowrap min-h-[44px] shadow-warm">Subscribe</button>
+</form>
+<p class="text-xs font-lat" style="color:rgba(255,255,255,0.35)">No spam, ever. Unsubscribe anytime. We send 2 emails per month.</p>
+<div class="flex items-center justify-center gap-8 mt-10 flex-wrap">
+<div class="text-center">
+<p class="text-2xl font-bold font-cg text-eog">4.9★</p>
+<p class="text-xs font-lat text-gray-500 mt-0.5">OpenTable</p>
+</div>
+<div class="w-px h-10 bg-gray-700"></div>
+<div class="text-center">
+<p class="text-2xl font-bold font-cg text-eog">Bib Gourmand</p>
+<p class="text-xs font-lat text-gray-500 mt-0.5">Michelin 2024</p>
+</div>
+<div class="w-px h-10 bg-gray-700"></div>
+<div class="text-center">
+<p class="text-2xl font-bold font-cg text-eog">#1</p>
+<p class="text-xs font-lat text-gray-500 mt-0.5">City Magazine</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact" style="background:#0F0704;padding:64px 0">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid md:grid-cols-5 gap-8 mb-10">
+<div class="md:col-span-2">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 eo-grad rounded-full flex items-center justify-center flex-shrink-0">
+<span class="text-white font-bold text-sm font-cg">E</span>
+</div>
+<div>
+<span class="font-cg text-xl font-bold text-white tracking-wide">Ember &amp; Oak</span>
+<span class="block text-xs font-lat tracking-widest uppercase" style="color:#C8622A;font-size:9px;letter-spacing:0.15em">Fine Dining · Est. 2018</span>
+</div>
+</div>
+<p class="text-sm font-lat leading-relaxed mb-5 font-light" style="color:rgba(255,255,255,0.45)">Wood-fired cuisine crafted from the finest seasonal ingredients. An intimate dining experience in the heart of the city.</p>
+<div class="space-y-2">
+<div class="flex items-center gap-2">
+<svg class="w-4 h-4 flex-shrink-0" style="color:#C8622A" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+<span class="text-sm font-lat" style="color:rgba(255,255,255,0.5)">142 Oak Street, Downtown</span>
+</div>
+<div class="flex items-center gap-2">
+<svg class="w-4 h-4 flex-shrink-0" style="color:#C8622A" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+<span class="text-sm font-lat" style="color:rgba(255,255,255,0.5)">(555) 123-4567</span>
+</div>
+<div class="flex items-center gap-2">
+<svg class="w-4 h-4 flex-shrink-0" style="color:#C8622A" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+<span class="text-sm font-lat" style="color:rgba(255,255,255,0.5)">Tue–Sun, 5pm–11pm</span>
+</div>
+</div>
+</div>
+<div>
+<p class="text-sm font-bold font-cg mb-4 text-white tracking-wide">Dining</p>
+<div class="space-y-2">
+<a href="#menu" class="block text-sm font-lat transition-colors font-light" style="color:rgba(255,255,255,0.45)">Seasonal Menu</a>
+<a href="#experience" class="block text-sm font-lat transition-colors font-light" style="color:rgba(255,255,255,0.45)">Chef's Table</a>
+<a href="#experience" class="block text-sm font-lat transition-colors font-light" style="color:rgba(255,255,255,0.45)">Wine Programme</a>
+<a href="#events" class="block text-sm font-lat transition-colors font-light" style="color:rgba(255,255,255,0.45)">Sunday Brunch</a>
+</div>
+</div>
+<div>
+<p class="text-sm font-bold font-cg mb-4 text-white tracking-wide">Events</p>
+<div class="space-y-2">
+<a href="#events" class="block text-sm font-lat transition-colors font-light" style="color:rgba(255,255,255,0.45)">Private Dining</a>
+<a href="#events" class="block text-sm font-lat transition-colors font-light" style="color:rgba(255,255,255,0.45)">Cooking Classes</a>
+<a href="#events" class="block text-sm font-lat transition-colors font-light" style="color:rgba(255,255,255,0.45)">Farm Visits</a>
+<a href="#events" class="block text-sm font-lat transition-colors font-light" style="color:rgba(255,255,255,0.45)">Gift Vouchers</a>
+</div>
+</div>
+<div>
+<p class="text-sm font-bold font-cg mb-4 text-white tracking-wide">About</p>
+<div class="space-y-2">
+<a href="#story" class="block text-sm font-lat transition-colors font-light" style="color:rgba(255,255,255,0.45)">Our Story</a>
+<a href="#" class="block text-sm font-lat transition-colors font-light" style="color:rgba(255,255,255,0.45)">The Team</a>
+<a href="#" class="block text-sm font-lat transition-colors font-light" style="color:rgba(255,255,255,0.45)">Press</a>
+<a href="#" class="block text-sm font-lat transition-colors font-light" style="color:rgba(255,255,255,0.45)">Careers</a>
+</div>
+</div>
+</div>
+<div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style="border-top:1px solid rgba(200,98,42,0.2)">
+<p class="text-sm font-lat" style="color:rgba(255,255,255,0.3)">© 2024 Ember &amp; Oak Restaurant. All rights reserved.</p>
+<div class="flex items-center gap-4">
+<a href="/api/copilot/prototype/5776e7d4-fc9f-4634-bb32-35324702b7e9/saas-landing-page" class="text-xs font-lat transition-colors" style="color:rgba(255,255,255,0.35)">← SaaS</a>
+<a href="/api/copilot/prototype/5776e7d4-fc9f-4634-bb32-35324702b7e9/real-estate-landing-page" class="text-xs font-lat transition-colors" style="color:#E8956A">Next: Real Estate →</a>
+</div>
+</div>
+</div>
+</footer>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

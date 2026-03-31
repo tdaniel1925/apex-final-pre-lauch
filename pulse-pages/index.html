@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pulse Market — Compare All Tiers</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+:root { --accent: #1a1a18; }
+nav .nav-cta { background: #1a1a18; color: #fff; }
+.hero h1 { max-width: 560px; }
+.tier-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 1.5rem; }
+.tier-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-xl); padding: 1.5rem; display: flex; flex-direction: column; }
+.tier-card.featured { border: 2px solid #993C1D; }
+.tier-color { width: 32px; height: 4px; border-radius: 2px; margin-bottom: 1rem; }
+.tier-name { font-size: 18px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+.tier-level { font-size: 11px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 1rem; }
+.tier-price { font-size: 28px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+.tier-price span { font-size: 14px; font-weight: 400; color: var(--text2); }
+.tier-retail { font-size: 12px; color: var(--text3); margin-bottom: 1.25rem; }
+.tier-features { list-style: none; display: flex; flex-direction: column; gap: 7px; margin-bottom: 1.5rem; flex: 1; }
+.tier-features li { font-size: 13px; color: var(--text2); display: flex; align-items: flex-start; gap: 8px; line-height: 1.4; }
+.tier-features li::before { content: "—"; color: var(--text3); flex-shrink: 0; }
+.tier-btn { display: block; text-align: center; padding: 11px; border-radius: var(--radius-md); font-size: 14px; font-weight: 500; text-decoration: none; color: #fff; transition: opacity 0.15s; }
+.tier-btn:hover { opacity: 0.85; }
+.compare-table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; font-size: 13px; }
+.compare-table th { text-align: left; padding: 10px 12px; border-bottom: 0.5px solid var(--border); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text2); }
+.compare-table td { padding: 10px 12px; border-bottom: 0.5px solid var(--border); color: var(--text); vertical-align: middle; }
+.compare-table tr:last-child td { border-bottom: none; }
+.compare-table td:first-child { color: var(--text2); }
+.yes { color: #1D9E75; font-weight: 500; }
+.no { color: var(--text3); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">Pulse Market</a>
+  <ul class="nav-links">
+    <li><a href="pulse-market.html">Pulse Market</a></li>
+    <li><a href="pulseflow.html">PulseFlow</a></li>
+    <li><a href="pulsedrive.html">PulseDrive</a></li>
+    <li><a href="pulsecommand.html">PulseCommand</a></li>
+  </ul>
+  <a class="nav-cta" href="#">Get started</a>
+</nav>
+
+<div class="hero">
+  <h1>Pick the plan that matches where you are — and where you're going</h1>
+  <p>Every tier is built on the same AI marketing engine. Start where it makes sense. Upgrade when you're ready.</p>
+</div>
+
+<div class="section">
+  <div class="tier-grid">
+    <div class="tier-card">
+      <div class="tier-color" style="background:#1D9E75"></div>
+      <div class="tier-name">Pulse Market</div>
+      <div class="tier-level">Starter</div>
+      <div class="tier-price">$297 <span>/mo</span></div>
+      <div class="tier-retail">Retail $297/mo</div>
+      <ul class="tier-features">
+        <li>3 landing pages/mo</li>
+        <li>3 social posts/mo</li>
+        <li>AI-written copy</li>
+        <li>Live in 24 hours</li>
+      </ul>
+      <a class="tier-btn" href="pulse-market.html" style="background:#1D9E75">Learn more</a>
+    </div>
+    <div class="tier-card">
+      <div class="tier-color" style="background:#185FA5"></div>
+      <div class="tier-name">PulseFlow</div>
+      <div class="tier-level">Growth</div>
+      <div class="tier-price">$129 <span>/mo member</span></div>
+      <div class="tier-retail">Retail $149/mo</div>
+      <ul class="tier-features">
+        <li>5 landing pages/mo</li>
+        <li>60 social posts/mo</li>
+        <li>4 email campaigns/mo</li>
+        <li>2 blog articles/mo</li>
+        <li>Conversion tracking</li>
+      </ul>
+      <a class="tier-btn" href="pulseflow.html" style="background:#185FA5">Learn more</a>
+    </div>
+    <div class="tier-card featured">
+      <div class="tier-color" style="background:#993C1D"></div>
+      <div class="tier-name">PulseDrive</div>
+      <div class="tier-level">Professional</div>
+      <div class="tier-price">$219 <span>/mo member</span></div>
+      <div class="tier-retail">Retail $299/mo</div>
+      <ul class="tier-features">
+        <li>10 landing pages/mo</li>
+        <li>100 social posts/mo</li>
+        <li>8 email campaigns/mo</li>
+        <li>4 podcast episodes/mo</li>
+        <li>Short-form video clips</li>
+        <li>AI-cloned voice</li>
+      </ul>
+      <a class="tier-btn" href="pulsedrive.html" style="background:#993C1D">Learn more</a>
+    </div>
+    <div class="tier-card">
+      <div class="tier-color" style="background:#534AB7"></div>
+      <div class="tier-name">PulseCommand</div>
+      <div class="tier-level">Elite</div>
+      <div class="tier-price">$349 <span>/mo member</span></div>
+      <div class="tier-retail">Retail $499/mo</div>
+      <ul class="tier-features">
+        <li>Unlimited landing pages</li>
+        <li>150+ social posts/mo</li>
+        <li>AI avatar videos (HeyGen)</li>
+        <li>Podcast on 4 platforms</li>
+        <li>Custom domain + YouTube</li>
+        <li>White-glove onboarding</li>
+      </ul>
+      <a class="tier-btn" href="pulsecommand.html" style="background:#534AB7">Learn more</a>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <div class="section-label">Full comparison</div>
+  <h2>Everything side by side</h2>
+  <p class="sub">See exactly what's included in each tier.</p>
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th style="color:#1D9E75">Pulse Market</th>
+        <th style="color:#185FA5">PulseFlow</th>
+        <th style="color:#993C1D">PulseDrive</th>
+        <th style="color:#534AB7">PulseCommand</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Monthly price (member)</td><td>$297</td><td>$129</td><td>$219</td><td>$349</td></tr>
+      <tr><td>Retail price</td><td>$297</td><td>$149</td><td>$299</td><td>$499</td></tr>
+      <tr><td>Landing pages/mo</td><td>3</td><td>5</td><td>10</td><td>Unlimited</td></tr>
+      <tr><td>Social posts/mo</td><td>3</td><td>60</td><td>100</td><td>150+</td></tr>
+      <tr><td>Email campaigns/mo</td><td class="no">—</td><td>4</td><td>8</td><td>8+</td></tr>
+      <tr><td>Blog articles/mo</td><td class="no">—</td><td>2</td><td>2</td><td>4+</td></tr>
+      <tr><td>Conversion tracking</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+      <tr><td>AI-cloned voice</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+      <tr><td>Podcast episodes/mo</td><td class="no">—</td><td class="no">—</td><td>4</td><td>4+</td></tr>
+      <tr><td>Short-form video clips</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+      <tr><td>AI avatar videos (HeyGen)</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+      <tr><td>Podcast on Spotify/Apple/Amazon</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+      <tr><td>Custom branded domain</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+      <tr><td>YouTube channel management</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+      <tr><td>White-glove onboarding</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<footer>
+  <p>&copy; 2026 Pulse Market · AI Marketing Platform</p>
+</footer>
+
+</body>
+</html>

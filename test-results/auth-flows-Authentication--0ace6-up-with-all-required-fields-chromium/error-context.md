@@ -1,0 +1,344 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - img "Apex Affinity Group" [ref=e5]
+    - generic [ref=e6]:
+      - heading "Join Apex Affinity Group" [level=1] [ref=e7]
+      - paragraph [ref=e8]: Create your distributor account and start building your business
+    - generic [ref=e10]:
+      - generic [ref=e11]:
+        - paragraph [ref=e12]: You've been invited by
+        - paragraph [ref=e13]: Apex Vision
+      - generic [ref=e14]:
+        - generic [ref=e15]:
+          - generic [ref=e16]: Are you registering as an individual or business? *
+          - generic [ref=e17]:
+            - generic [ref=e18] [cursor=pointer]:
+              - radio "Personal I'm registering as an individual distributor" [checked] [ref=e19]
+              - generic [ref=e20]:
+                - generic [ref=e21]:
+                  - img [ref=e22]
+                  - generic [ref=e24]: Personal
+                - paragraph [ref=e25]: I'm registering as an individual distributor
+            - generic [ref=e26] [cursor=pointer]:
+              - radio "Business I'm registering as an agency or company" [ref=e27]
+              - generic [ref=e28]:
+                - generic [ref=e29]:
+                  - img [ref=e30]
+                  - generic [ref=e32]: Business
+                - paragraph [ref=e33]: I'm registering as an agency or company
+        - generic [ref=e34]:
+          - generic [ref=e35]:
+            - generic [ref=e36]: First Name *
+            - textbox "First Name *" [ref=e37]: Test
+          - generic [ref=e38]:
+            - generic [ref=e39]: Last Name *
+            - textbox "Last Name *" [ref=e40]: User
+        - generic [ref=e41]:
+          - generic [ref=e42]: Email *
+          - textbox "Email *" [ref=e43]: test-1774976119237@example.com
+        - generic [ref=e44]:
+          - generic [ref=e45]: Password *
+          - generic [ref=e46]:
+            - textbox "Password *" [ref=e47]: TestPass123!
+            - button "Show" [ref=e48]
+          - paragraph [ref=e56]: Very Strong
+        - generic [ref=e57]:
+          - generic [ref=e58]: Username *
+          - generic [ref=e59]:
+            - textbox "Username *" [ref=e60]: test-1774976119237
+            - generic [ref=e61]: ✓
+          - paragraph [ref=e62]: "Your referral link: reachtheapex.net/test-1774976119237"
+          - paragraph [ref=e63]: Use lowercase letters, numbers, and hyphens only (we'll auto-convert for you)
+        - generic [ref=e64]:
+          - generic [ref=e65]: Company Name (Optional)
+          - textbox "Company Name (Optional)" [ref=e66]:
+            - /placeholder: ""
+        - generic [ref=e67]:
+          - generic [ref=e68]: Phone Number *
+          - textbox "Phone Number *" [active] [ref=e69]:
+            - /placeholder: 555-123-4567
+          - paragraph [ref=e70]: Phone number is required
+          - paragraph [ref=e71]: Required for SMS notifications about meeting attendees
+        - generic [ref=e72]:
+          - heading "Mailing Address *" [level=3] [ref=e73]
+          - generic [ref=e74]:
+            - generic [ref=e75]: Street Address *
+            - textbox "Street Address *" [ref=e76]:
+              - /placeholder: 123 Main Street
+            - paragraph [ref=e77]: Street address is required
+          - generic [ref=e78]:
+            - generic [ref=e79]: Apartment, Suite, etc. (Optional)
+            - textbox "Apartment, Suite, etc. (Optional)" [ref=e80]:
+              - /placeholder: Apt 4B
+          - generic [ref=e81]:
+            - generic [ref=e82]:
+              - generic [ref=e83]: City *
+              - textbox "City *" [ref=e84]:
+                - /placeholder: Houston
+              - paragraph [ref=e85]: City is required
+            - generic [ref=e86]:
+              - generic [ref=e87]: State *
+              - combobox "State *" [ref=e88]:
+                - option "Select state..." [selected]
+                - option "AL"
+                - option "AK"
+                - option "AZ"
+                - option "AR"
+                - option "CA"
+                - option "CO"
+                - option "CT"
+                - option "DE"
+                - option "FL"
+                - option "GA"
+                - option "HI"
+                - option "ID"
+                - option "IL"
+                - option "IN"
+                - option "IA"
+                - option "KS"
+                - option "KY"
+                - option "LA"
+                - option "ME"
+                - option "MD"
+                - option "MA"
+                - option "MI"
+                - option "MN"
+                - option "MS"
+                - option "MO"
+                - option "MT"
+                - option "NE"
+                - option "NV"
+                - option "NH"
+                - option "NJ"
+                - option "NM"
+                - option "NY"
+                - option "NC"
+                - option "ND"
+                - option "OH"
+                - option "OK"
+                - option "OR"
+                - option "PA"
+                - option "RI"
+                - option "SC"
+                - option "SD"
+                - option "TN"
+                - option "TX"
+                - option "UT"
+                - option "VT"
+                - option "VA"
+                - option "WA"
+                - option "WV"
+                - option "WI"
+                - option "WY"
+              - paragraph [ref=e89]: Please select a valid US state
+            - generic [ref=e90]:
+              - generic [ref=e91]: ZIP Code *
+              - textbox "ZIP Code *" [ref=e92]:
+                - /placeholder: "77001"
+              - paragraph [ref=e93]: ZIP code is required
+          - paragraph [ref=e94]: 📍 Your mailing address is required for tax reporting (1099), ACH payouts, and compliance with regulations.
+        - generic [ref=e95]:
+          - generic [ref=e96]: Tell us about yourself (Optional)
+          - textbox "Tell us about yourself (Optional)" [ref=e97]:
+            - /placeholder: "Example: I'm a former teacher passionate about helping families protect what matters most..."
+          - paragraph [ref=e98]: This helps personalize your AI Voice Agent. Share 1-2 sentences about your background or interests. (Max 500 characters)
+        - generic [ref=e99]:
+          - generic [ref=e100]: Date of Birth *
+          - generic [ref=e101]:
+            - combobox [ref=e102]:
+              - option "Month" [selected]
+              - option "January"
+              - option "February"
+              - option "March"
+              - option "April"
+              - option "May"
+              - option "June"
+              - option "July"
+              - option "August"
+              - option "September"
+              - option "October"
+              - option "November"
+              - option "December"
+            - combobox [ref=e103]:
+              - option "Day" [selected]
+              - option "1"
+              - option "2"
+              - option "3"
+              - option "4"
+              - option "5"
+              - option "6"
+              - option "7"
+              - option "8"
+              - option "9"
+              - option "10"
+              - option "11"
+              - option "12"
+              - option "13"
+              - option "14"
+              - option "15"
+              - option "16"
+              - option "17"
+              - option "18"
+              - option "19"
+              - option "20"
+              - option "21"
+              - option "22"
+              - option "23"
+              - option "24"
+              - option "25"
+              - option "26"
+              - option "27"
+              - option "28"
+              - option "29"
+              - option "30"
+              - option "31"
+            - combobox [ref=e104]:
+              - option "Year" [selected]
+              - option "2008"
+              - option "2007"
+              - option "2006"
+              - option "2005"
+              - option "2004"
+              - option "2003"
+              - option "2002"
+              - option "2001"
+              - option "2000"
+              - option "1999"
+              - option "1998"
+              - option "1997"
+              - option "1996"
+              - option "1995"
+              - option "1994"
+              - option "1993"
+              - option "1992"
+              - option "1991"
+              - option "1990"
+              - option "1989"
+              - option "1988"
+              - option "1987"
+              - option "1986"
+              - option "1985"
+              - option "1984"
+              - option "1983"
+              - option "1982"
+              - option "1981"
+              - option "1980"
+              - option "1979"
+              - option "1978"
+              - option "1977"
+              - option "1976"
+              - option "1975"
+              - option "1974"
+              - option "1973"
+              - option "1972"
+              - option "1971"
+              - option "1970"
+              - option "1969"
+              - option "1968"
+              - option "1967"
+              - option "1966"
+              - option "1965"
+              - option "1964"
+              - option "1963"
+              - option "1962"
+              - option "1961"
+              - option "1960"
+              - option "1959"
+              - option "1958"
+              - option "1957"
+              - option "1956"
+              - option "1955"
+              - option "1954"
+              - option "1953"
+              - option "1952"
+              - option "1951"
+              - option "1950"
+              - option "1949"
+              - option "1948"
+              - option "1947"
+              - option "1946"
+              - option "1945"
+              - option "1944"
+              - option "1943"
+              - option "1942"
+              - option "1941"
+              - option "1940"
+              - option "1939"
+              - option "1938"
+              - option "1937"
+              - option "1936"
+              - option "1935"
+              - option "1934"
+              - option "1933"
+              - option "1932"
+              - option "1931"
+              - option "1930"
+              - option "1929"
+              - option "1928"
+              - option "1927"
+              - option "1926"
+              - option "1925"
+              - option "1924"
+              - option "1923"
+              - option "1922"
+              - option "1921"
+              - option "1920"
+              - option "1919"
+              - option "1918"
+              - option "1917"
+              - option "1916"
+              - option "1915"
+              - option "1914"
+              - option "1913"
+              - option "1912"
+              - option "1911"
+              - option "1910"
+              - option "1909"
+          - paragraph [ref=e105]: You must be at least 18 years old to register
+          - paragraph [ref=e106]: "Invalid input: expected string, received undefined"
+        - generic [ref=e107]:
+          - generic [ref=e108]: Social Security Number *
+          - generic [ref=e109]:
+            - textbox "Social Security Number *" [ref=e110]:
+              - /placeholder: XXX-XX-XXXX
+              - text: 609-02-8594
+            - button "Show" [ref=e111]
+          - generic [ref=e113]:
+            - img [ref=e114]
+            - generic [ref=e116]:
+              - paragraph [ref=e117]: "Why we collect your Social Security Number:"
+              - paragraph [ref=e118]: Federal law requires us to collect your SSN for tax reporting purposes (IRS Form 1099) and to comply with anti-money laundering regulations under the Bank Secrecy Act and USA PATRIOT Act. Your SSN is encrypted and stored securely and will only be used for required tax reporting and identity verification.
+        - generic [ref=e119]:
+          - generic [ref=e120]: Are you a licensed insurance agent? *
+          - generic [ref=e121]:
+            - generic [ref=e122] [cursor=pointer]:
+              - radio "Yes, I am licensed I hold an active insurance license and will provide documentation. I'll have access to all features including license management, advanced commissions, and client tools." [ref=e123]
+              - generic [ref=e124]:
+                - generic [ref=e125]:
+                  - img [ref=e126]
+                  - generic [ref=e128]: Yes, I am licensed
+                - paragraph [ref=e129]: I hold an active insurance license and will provide documentation. I'll have access to all features including license management, advanced commissions, and client tools.
+            - generic [ref=e130] [cursor=pointer]:
+              - radio "No, I am not licensed I will participate in referral and team-building activities. I'll have access to training materials, marketing tools, and team management features." [checked] [ref=e131]
+              - generic [ref=e132]:
+                - generic [ref=e133]:
+                  - img [ref=e134]
+                  - generic [ref=e136]: No, I am not licensed
+                - paragraph [ref=e137]: I will participate in referral and team-building activities. I'll have access to training materials, marketing tools, and team management features.
+          - paragraph [ref=e138]: 💡 This selection determines which features and tools will be available in your dashboard. You can change this later from your profile settings.
+        - button "Join Apex Today" [ref=e139]
+        - paragraph [ref=e140]:
+          - text: Already have an account?
+          - link "Sign In" [ref=e141] [cursor=pointer]:
+            - /url: /login
+    - paragraph [ref=e143]:
+      - text: Already have an account?
+      - link "Sign In" [ref=e144] [cursor=pointer]:
+        - /url: /login
+  - button "Open Next.js Dev Tools" [ref=e150] [cursor=pointer]:
+    - img [ref=e151]
+  - alert [ref=e154]
+```

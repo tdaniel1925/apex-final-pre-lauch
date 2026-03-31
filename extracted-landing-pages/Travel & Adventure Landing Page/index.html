@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Travel & Adventure Landing Page - Exported from UXMagic Copilot">
+    <title>Travel & Adventure Landing Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    
+tailwind.config={theme:{extend:{colors:{
+'i1':'#5C6AC4','i1l':'#EEF0FF','i1d':'#2D2D3A',
+'f2':'#7DAF8A','f2l':'#EAF4EC','f2g':'#C9A84C','f2gl':'#F7EDD0','f2d':'#2A3240',
+'w3':'#FAF7F2','w3r':'#D4A5A5','w3t':'#C47C5A',
+'r4':'#C4B49A','r4g':'#2D5016','r4s':'#F5EFE4',
+'l5':'#4A6FA5','l5l':'#E8EEF7','l5d':'#1E2A3A',
+'e6':'#FDFAF6','e6t':'#D4B896','e6b':'#E8C4B8','e6e':'#2C1A0E',
+'ed7':'#F5A623','ed7l':'#FEF3DC','ed7s':'#4A90D9','ed7sl':'#E8F2FC',
+'t8':'#2E86AB','t8l':'#E0F0F7','t8s':'#E8D5B0','t8c':'#F4845F',
+'h9':'#E8614A','h9l':'#FDECEA','h9g':'#F5F3F0','h9d':'#1C1C1E',
+'c10':'#3D6B4F','c10l':'#E8F0EB','c10s':'#A8C5DA','c10a':'#DDD0B8','c10b':'#FAFAF7',
+'eo':'#C8622A','eol':'#FDF0E8','eod':'#1E0E06','eom':'#8B3A1A','eos':'#F5E6D3','eog':'#D4A853','eogl':'#FBF3DC','eob':'#FAF5EF',
+'hx':'#8B7355','hxl':'#F5F0E8','hxd':'#1A1410','hxm':'#5C4A32','hxs':'#EDE8DF','hxg':'#B8A898','hxc':'#2C2420','hxw':'#FAF8F5',
+'brut-black':'#0A0A0A','brut-white':'#F5F5F0','brut-yellow':'#FFE500','brut-gray':'#1A1A1A','brut-mid':'#3A3A3A',
+'fit-orange':'#FF5722','fit-orangel':'#FBE9E7','fit-red':'#E53935','fit-dark':'#0F0F0F','fit-charcoal':'#1A1A2E','fit-lime':'#C6FF00','fit-limel':'#F4FFD6',
+'trv-sky':'#0EA5E9','trv-skyl':'#E0F2FE','trv-skyd':'#0369A1',
+'trv-sand':'#F59E0B','trv-sandl':'#FEF3C7','trv-sandd':'#B45309',
+'trv-ocean':'#0F4C75','trv-teal':'#0D9488','trv-teal-l':'#CCFBF1',
+'trv-coral':'#F97316','trv-coral-l':'#FFEDD5',
+'trv-dark':'#0A1628','trv-mid':'#112240','trv-light':'#F0F9FF',
+},fontFamily:{
+'pf':['"Playfair Display"','serif'],
+'cg':['"Cormorant Garamond"','serif'],
+'sg':['"Space Grotesk"','sans-serif'],
+'sm':['"Space Mono"','monospace'],
+'bar':['Barlow','sans-serif'],
+'barc':['"Barlow Condensed"','sans-serif'],
+'beb':['"Bebas Neue"','sans-serif'],
+'nun':['Nunito','sans-serif'],
+'lb':['"Libre Baskerville"','serif'],
+'man':['Manrope','sans-serif'],
+'lor':['Lora','serif'],
+'int':['Inter','sans-serif'],
+'lat':['Lato','sans-serif'],
+},boxShadow:{
+'sm2':'0 2px 8px rgba(0,0,0,0.06)',
+'md2':'0 8px 30px rgba(0,0,0,0.08)',
+'lg2':'0 20px 60px rgba(0,0,0,0.12)',
+'warm':'0 8px 30px rgba(139,115,85,0.18)',
+'warm-lg':'0 20px 60px rgba(139,115,85,0.15)',
+'brut':'6px 6px 0px #0A0A0A',
+'brut-y':'6px 6px 0px #FFE500',
+'brut-hover':'3px 3px 0px #0A0A0A',
+'trv':'0 8px 40px rgba(14,165,233,0.2)',
+'trv-lg':'0 20px 60px rgba(14,165,233,0.25)',
+'trv-warm':'0 8px 30px rgba(245,158,11,0.2)',
+}}}}
+
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#007bff">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="UXMagic Copilot">
+</head>
+<body>
+    
+
+<!-- FLOW NAVIGATION BAR -->
+<div class="fixed top-0 left-0 right-0 z-50" style="background:rgba(10,22,40,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06)">
+<div class="overflow-x-auto no-sb">
+<div class="flex items-center gap-2 px-6 py-3 min-w-max justify-center">
+<span class="font-nun text-[10px] font-bold uppercase tracking-widest mr-2" style="color:rgba(255,255,255,0.3)">Landing Pages:</span>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/healthcare-landing-page" class="nav-flow-link">01 Healthcare</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/fintech-landing-page" class="nav-flow-link">02 Fintech</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/online-education-landing-page" class="nav-flow-link">03 Education</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/real-estate-landing-page" class="nav-flow-link">04 Real Estate</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/fitness-wellness-landing-page" class="nav-flow-link">05 Fitness</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/travel-adventure-landing-page" class="nav-flow-link active">06 Travel ✦</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/food-delivery-landing-page" class="nav-flow-link">07 Food</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/legal-services-landing-page" class="nav-flow-link">08 Legal</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/automotive-landing-page" class="nav-flow-link">09 Auto</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/green-tech-landing-page" class="nav-flow-link">10 Green Tech</a>
+</div>
+</div>
+</div>
+
+<!-- MAIN NAVIGATION -->
+<nav class="fixed top-14 left-0 right-0 z-40">
+<div class="max-w-7xl mx-auto px-6 mt-4">
+<div class="trv-glass rounded-2xl px-8 py-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,#0EA5E9,#0369A1)">
+<span class="font-beb text-white text-lg leading-none">W</span>
+</div>
+<span class="font-beb text-2xl tracking-widest text-white">WANDER<span class="trv-grad-text">LUST</span></span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a href="#destinations" class="nav-trv">Destinations</a>
+<a href="#packages" class="nav-trv">Packages</a>
+<a href="#reviews" class="nav-trv">Reviews</a>
+<a href="#newsletter" class="nav-trv">Deals</a>
+</div>
+<div class="flex items-center gap-3">
+<a href="#" class="nav-trv hidden sm:block text-sm">Sign In</a>
+<a href="#packages" class="btn-trv text-sm py-2.5 px-6">Book Now</a>
+</div>
+</div>
+</div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="relative pt-40 pb-0 overflow-hidden trv-hero-bg" style="max-height:1100px">
+<!-- Background Image -->
+<div class="absolute inset-0 z-0">
+<img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&amp;w=1800&amp;auto=format&amp;fit=crop" alt="Mountain Adventure" class="w-full h-full object-cover opacity-25">
+<div class="absolute inset-0" style="background:linear-gradient(160deg,rgba(10,22,40,0.95) 0%,rgba(17,34,64,0.8) 50%,rgba(15,76,117,0.9) 100%)"></div>
+</div>
+
+<!-- Decorative Blobs -->
+<div class="absolute top-20 right-0 w-[500px] h-[500px] rounded-full opacity-10" style="background:radial-gradient(circle,#0EA5E9,transparent);filter:blur(80px)"></div>
+<div class="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full opacity-10" style="background:radial-gradient(circle,#F59E0B,transparent);filter:blur(80px)"></div>
+
+<div class="max-w-7xl mx-auto px-6 relative z-10">
+<div class="grid lg:grid-cols-2 gap-12 items-center pt-8">
+<!-- Left: Text -->
+<div>
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8" style="background:rgba(14,165,233,0.12);border:1px solid rgba(14,165,233,0.3)">
+<span class="w-2 h-2 rounded-full animate-pulse" style="background:#38BDF8"></span>
+<span class="font-barc font-bold text-xs uppercase tracking-widest" style="color:#38BDF8">500+ Destinations Worldwide</span>
+</div>
+<h1 class="font-beb text-7xl lg:text-8xl leading-none mb-6 tracking-wide text-white">
+YOUR NEXT<br>
+<span class="trv-grad-text">ADVENTURE</span><br>
+AWAITS
+</h1>
+<p class="font-bar text-lg leading-relaxed mb-10 max-w-lg" style="color:rgba(255,255,255,0.65)">
+Discover breathtaking destinations, curated travel packages, and unforgettable experiences crafted for the modern explorer.
+</p>
+<div class="flex flex-col sm:flex-row items-center gap-4 mb-12">
+<a href="#packages" class="btn-trv text-base min-w-[200px] text-center">Explore Packages</a>
+<a href="#destinations" class="btn-trv-outline text-base min-w-[200px] flex items-center gap-2 justify-center">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path></svg>
+View Destinations
+</a>
+</div>
+
+<!-- Stats Row -->
+<div class="grid grid-cols-3 gap-6 pt-8" style="border-top:1px solid rgba(255,255,255,0.08)">
+<div>
+<p class="font-beb text-4xl tracking-wide trv-grad-text">500+</p>
+<p class="font-barc text-xs uppercase tracking-widest mt-1" style="color:rgba(255,255,255,0.45)">Destinations</p>
+</div>
+<div>
+<p class="font-beb text-4xl tracking-wide trv-grad-text">120K+</p>
+<p class="font-barc text-xs uppercase tracking-widest mt-1" style="color:rgba(255,255,255,0.45)">Happy Travelers</p>
+</div>
+<div>
+<p class="font-beb text-4xl tracking-wide trv-grad-text">4.9★</p>
+<p class="font-barc text-xs uppercase tracking-widest mt-1" style="color:rgba(255,255,255,0.45)">Average Rating</p>
+</div>
+</div>
+</div>
+
+<!-- Right: Hero Visual -->
+<div class="relative h-[560px] hidden lg:block">
+<!-- Main Image -->
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="relative w-[340px] h-[500px] rounded-3xl overflow-hidden shadow-trv-lg float-slow" style="border:3px solid rgba(255,255,255,0.1)">
+<img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="Travel" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(10,22,40,0.8) 0%,transparent 60%)"></div>
+<div class="absolute bottom-6 left-6 right-6">
+<div class="trv-glass rounded-xl p-4">
+<div class="flex items-center justify-between mb-2">
+<span class="font-barc font-bold text-xs uppercase tracking-widest" style="color:rgba(255,255,255,0.6)">Featured Trip</span>
+<span class="trv-tag-gold">Hot Deal</span>
+</div>
+<p class="font-beb text-xl tracking-wide text-white">Santorini, Greece</p>
+<div class="flex items-center justify-between mt-2">
+<span class="font-bar text-sm" style="color:rgba(255,255,255,0.6)">7 Days · All Inclusive</span>
+<span class="font-beb text-lg trv-gold-text">$1,299</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Floating: Weather Card -->
+<div class="absolute top-[8%] right-[2%] trv-card rounded-2xl p-4 z-30 float-fast shadow-md2">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl flex items-center justify-center text-xl" style="background:rgba(245,158,11,0.2)">☀️</div>
+<div>
+<p class="font-barc font-bold text-sm tracking-wide text-white">Bali, Indonesia</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">28°C · Perfect weather</p>
+</div>
+</div>
+</div>
+
+<!-- Floating: Booking Card -->
+<div class="absolute bottom-[18%] left-[0%] trv-card rounded-2xl p-4 z-30 float-med shadow-md2">
+<p class="font-barc font-bold text-xs uppercase tracking-widest mb-2" style="color:rgba(255,255,255,0.5)">Just Booked</p>
+<div class="flex items-center gap-3">
+<div class="flex -space-x-2">
+<img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&amp;w=60&amp;auto=format&amp;fit=crop" class="w-7 h-7 rounded-full border-2 border-trv-mid object-cover" alt="user">
+<img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&amp;w=60&amp;auto=format&amp;fit=crop" class="w-7 h-7 rounded-full border-2 border-trv-mid object-cover" alt="user">
+<img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&amp;w=60&amp;auto=format&amp;fit=crop" class="w-7 h-7 rounded-full border-2 border-trv-mid object-cover" alt="user">
+</div>
+<div>
+<p class="font-bar text-xs text-white">+12 travelers today</p>
+<p class="font-bar text-xs" style="color:#38BDF8">Maldives package</p>
+</div>
+</div>
+</div>
+
+<!-- Floating: Rating -->
+<div class="absolute top-[45%] right-[0%] trv-card rounded-2xl p-3 z-30 float-slow">
+<div class="stars mb-1">★★★★★</div>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.6)">4.9/5 · 12K reviews</p>
+</div>
+</div>
+</div>
+
+<!-- Search Bar -->
+<div class="mt-16 pb-0 relative z-10">
+<div class="search-bar p-6 mx-auto max-w-5xl">
+<p class="font-barc font-bold text-xs uppercase tracking-widest text-trv-ocean mb-4">Find Your Perfect Trip</p>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="flex flex-col gap-1">
+<label class="font-barc font-bold text-xs uppercase tracking-widest text-gray-500">Destination</label>
+<div class="flex items-center gap-2 p-3 rounded-xl bg-gray-50 border border-gray-200">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="#0EA5E9"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path></svg>
+<input type="text" placeholder="Where to?" class="bg-transparent text-gray-700 text-sm font-bar w-full outline-none placeholder-gray-400">
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-barc font-bold text-xs uppercase tracking-widest text-gray-500">Check In</label>
+<div class="flex items-center gap-2 p-3 rounded-xl bg-gray-50 border border-gray-200">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="#0EA5E9"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"></path></svg>
+<input type="text" placeholder="Departure date" class="bg-transparent text-gray-700 text-sm font-bar w-full outline-none placeholder-gray-400">
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-barc font-bold text-xs uppercase tracking-widest text-gray-500">Travelers</label>
+<div class="flex items-center gap-2 p-3 rounded-xl bg-gray-50 border border-gray-200">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="#0EA5E9"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"></path></svg>
+<input type="text" placeholder="2 Adults" class="bg-transparent text-gray-700 text-sm font-bar w-full outline-none placeholder-gray-400">
+</div>
+</div>
+<button class="btn-trv text-sm py-3 px-6 flex items-center justify-center gap-2 rounded-xl">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
+Search
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- POPULAR DESTINATIONS -->
+<section id="destinations" class="py-24 trv-section-dark" style="max-height:1100px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col md:flex-row items-end justify-between mb-14 gap-6">
+<div>
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4" style="background:rgba(14,165,233,0.12);border:1px solid rgba(14,165,233,0.25)">
+<span class="font-barc font-bold text-xs uppercase tracking-widest" style="color:#38BDF8">Trending This Season</span>
+</div>
+<h2 class="font-beb text-5xl md:text-6xl tracking-wide text-white">POPULAR <span class="trv-grad-text">DESTINATIONS</span></h2>
+</div>
+<a href="#" class="font-barc font-bold text-sm uppercase tracking-widest flex items-center gap-2" style="color:#0EA5E9">View All 500+ Destinations <span>→</span></a>
+</div>
+
+<!-- Destination Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
+<!-- Large Card: Maldives -->
+<div class="dest-card md:col-span-2 md:row-span-2 relative h-[420px] md:h-auto">
+<img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Maldives" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(10,22,40,0.9) 0%,rgba(10,22,40,0.2) 60%,transparent 100%)"></div>
+<div class="absolute top-4 left-4"><span class="trv-tag-gold">Most Popular</span></div>
+<div class="absolute bottom-6 left-6 right-6">
+<div class="flex items-center gap-2 mb-2">
+<span class="stars text-xs">★★★★★</span>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.6)">4.9 (3.2K reviews)</span>
+</div>
+<h3 class="font-beb text-4xl tracking-wide text-white mb-1">Maldives</h3>
+<p class="font-bar text-sm mb-4" style="color:rgba(255,255,255,0.65)">Crystal waters, overwater bungalows &amp; pristine coral reefs</p>
+<div class="flex items-center justify-between">
+<div>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">From</span>
+<span class="font-beb text-2xl trv-gold-text ml-2">$2,499</span>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.5)"> / person</span>
+</div>
+<button class="btn-trv text-xs py-2.5 px-5">Explore</button>
+</div>
+</div>
+</div>
+
+<!-- Small Card: Santorini -->
+<div class="dest-card relative h-[200px]">
+<img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="Santorini" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(10,22,40,0.85) 0%,transparent 60%)"></div>
+<div class="absolute top-3 left-3"><span class="trv-tag">Europe</span></div>
+<div class="absolute bottom-4 left-4 right-4">
+<h3 class="font-beb text-2xl tracking-wide text-white">Santorini</h3>
+<div class="flex items-center justify-between mt-1">
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.6)">Greece · 7 days</span>
+<span class="font-beb text-base trv-gold-text">$1,299</span>
+</div>
+</div>
+</div>
+
+<!-- Small Card: Kyoto -->
+<div class="dest-card relative h-[200px]">
+<img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="Kyoto" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(10,22,40,0.85) 0%,transparent 60%)"></div>
+<div class="absolute top-3 left-3"><span class="trv-tag">Asia</span></div>
+<div class="absolute bottom-4 left-4 right-4">
+<h3 class="font-beb text-2xl tracking-wide text-white">Kyoto</h3>
+<div class="flex items-center justify-between mt-1">
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.6)">Japan · 10 days</span>
+<span class="font-beb text-base trv-gold-text">$1,899</span>
+</div>
+</div>
+</div>
+
+<!-- Small Card: Patagonia -->
+<div class="dest-card relative h-[200px]">
+<img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="Patagonia" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(10,22,40,0.85) 0%,transparent 60%)"></div>
+<div class="absolute top-3 left-3"><span class="trv-tag-coral">Adventure</span></div>
+<div class="absolute bottom-4 left-4 right-4">
+<h3 class="font-beb text-2xl tracking-wide text-white">Patagonia</h3>
+<div class="flex items-center justify-between mt-1">
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.6)">Argentina · 14 days</span>
+<span class="font-beb text-base trv-gold-text">$2,199</span>
+</div>
+</div>
+</div>
+
+<!-- Small Card: Bali -->
+<div class="dest-card relative h-[200px]">
+<img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="Bali" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(10,22,40,0.85) 0%,transparent 60%)"></div>
+<div class="absolute top-3 left-3"><span class="trv-tag">Asia</span></div>
+<div class="absolute bottom-4 left-4 right-4">
+<h3 class="font-beb text-2xl tracking-wide text-white">Bali</h3>
+<div class="flex items-center justify-between mt-1">
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.6)">Indonesia · 8 days</span>
+<span class="font-beb text-base trv-gold-text">$999</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- TRAVEL PACKAGES -->
+<section id="packages" class="py-24" style="background:#0A1628;max-height:1200px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-16">
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4" style="background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.25)">
+<span class="font-barc font-bold text-xs uppercase tracking-widest" style="color:#FCD34D">Handcrafted Experiences</span>
+</div>
+<h2 class="font-beb text-5xl md:text-6xl tracking-wide text-white mb-4">CURATED TRAVEL <span class="trv-gold-text">PACKAGES</span></h2>
+<p class="font-bar text-lg max-w-2xl mx-auto" style="color:rgba(255,255,255,0.55)">All-inclusive packages designed by expert travel curators for every type of adventurer.</p>
+</div>
+
+<div class="grid md:grid-cols-3 gap-7">
+<!-- Package 1 -->
+<div class="pkg-card" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08)">
+<div class="relative h-56 overflow-hidden rounded-t-2xl">
+<img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="Maldives Package" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(10,22,40,0.7) 0%,transparent 60%)"></div>
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="trv-tag-gold">Best Seller</span>
+</div>
+<div class="absolute bottom-4 right-4">
+<div class="trv-glass rounded-lg px-3 py-1.5">
+<span class="font-beb text-lg trv-gold-text">$2,499</span>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.5)"> /person</span>
+</div>
+</div>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-2 mb-3">
+<span class="stars text-xs">★★★★★</span>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">4.9 (1.8K)</span>
+</div>
+<h3 class="font-beb text-2xl tracking-wide text-white mb-2">Maldives Luxury Escape</h3>
+<p class="font-bar text-sm mb-4" style="color:rgba(255,255,255,0.55)">7 nights in an overwater villa with private pool, snorkeling, sunset cruises &amp; spa.</p>
+<div class="grid grid-cols-3 gap-2 mb-5">
+<div class="text-center p-2 rounded-lg" style="background:rgba(14,165,233,0.1)">
+<p class="font-beb text-base trv-grad-text">7</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.45)">Nights</p>
+</div>
+<div class="text-center p-2 rounded-lg" style="background:rgba(14,165,233,0.1)">
+<p class="font-beb text-base trv-grad-text">All</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.45)">Inclusive</p>
+</div>
+<div class="text-center p-2 rounded-lg" style="background:rgba(14,165,233,0.1)">
+<p class="font-beb text-base trv-grad-text">5★</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.45)">Resort</p>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 mb-5">
+<span class="font-bar text-xs px-2 py-1 rounded-full" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.5)">✈ Flights Included</span>
+<span class="font-bar text-xs px-2 py-1 rounded-full" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.5)">🍽 All Meals</span>
+<span class="font-bar text-xs px-2 py-1 rounded-full" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.5)">🤿 Activities</span>
+</div>
+<button class="btn-trv text-sm py-3 w-full">Book This Package</button>
+</div>
+</div>
+
+<!-- Package 2 (Featured) -->
+<div class="pkg-card relative" style="background:linear-gradient(160deg,#0D2137,#0F3A5A);border:2px solid rgba(14,165,233,0.4);box-shadow:0 20px 60px rgba(14,165,233,0.2)">
+<div class="absolute top-0 right-0 text-white text-xs font-bold px-4 py-2 rounded-bl-2xl uppercase tracking-widest font-barc" style="background:linear-gradient(135deg,#0EA5E9,#0369A1)">Editor's Pick</div>
+<div class="relative h-56 overflow-hidden rounded-t-2xl">
+<img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="Japan Package" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(10,22,40,0.7) 0%,transparent 60%)"></div>
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="trv-tag">Cultural</span>
+</div>
+<div class="absolute bottom-4 right-4">
+<div class="trv-glass rounded-lg px-3 py-1.5">
+<span class="font-beb text-lg trv-grad-text">$3,199</span>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.5)"> /person</span>
+</div>
+</div>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-2 mb-3">
+<span class="stars text-xs">★★★★★</span>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">5.0 (2.4K)</span>
+</div>
+<h3 class="font-beb text-2xl tracking-wide text-white mb-2">Japan Cherry Blossom Tour</h3>
+<p class="font-bar text-sm mb-4" style="color:rgba(255,255,255,0.65)">10 days through Tokyo, Kyoto &amp; Osaka during sakura season with a private guide.</p>
+<div class="grid grid-cols-3 gap-2 mb-5">
+<div class="text-center p-2 rounded-lg" style="background:rgba(14,165,233,0.15)">
+<p class="font-beb text-base trv-grad-text">10</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.45)">Nights</p>
+</div>
+<div class="text-center p-2 rounded-lg" style="background:rgba(14,165,233,0.15)">
+<p class="font-beb text-base trv-grad-text">4</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.45)">Cities</p>
+</div>
+<div class="text-center p-2 rounded-lg" style="background:rgba(14,165,233,0.15)">
+<p class="font-beb text-base trv-grad-text">VIP</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.45)">Guide</p>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 mb-5">
+<span class="font-bar text-xs px-2 py-1 rounded-full" style="background:rgba(14,165,233,0.1);color:#38BDF8;border:1px solid rgba(14,165,233,0.2)">✈ Flights Included</span>
+<span class="font-bar text-xs px-2 py-1 rounded-full" style="background:rgba(14,165,233,0.1);color:#38BDF8;border:1px solid rgba(14,165,233,0.2)">🏯 Ryokan Stays</span>
+<span class="font-bar text-xs px-2 py-1 rounded-full" style="background:rgba(14,165,233,0.1);color:#38BDF8;border:1px solid rgba(14,165,233,0.2)">🍣 Food Tours</span>
+</div>
+<button class="btn-trv text-sm py-3 w-full">Book This Package</button>
+</div>
+</div>
+
+<!-- Package 3 -->
+<div class="pkg-card" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08)">
+<div class="relative h-56 overflow-hidden rounded-t-2xl">
+<img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="Safari Package" class="w-full h-full object-cover">
+<div class="absolute inset-0" style="background:linear-gradient(to top,rgba(10,22,40,0.7) 0%,transparent 60%)"></div>
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="trv-tag-coral">Adventure</span>
+</div>
+<div class="absolute bottom-4 right-4">
+<div class="trv-glass rounded-lg px-3 py-1.5">
+<span class="font-beb text-lg trv-coral-text">$4,599</span>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.5)"> /person</span>
+</div>
+</div>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-2 mb-3">
+<span class="stars text-xs">★★★★★</span>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">4.8 (980)</span>
+</div>
+<h3 class="font-beb text-2xl tracking-wide text-white mb-2">Kenya Safari Adventure</h3>
+<p class="font-bar text-sm mb-4" style="color:rgba(255,255,255,0.55)">12 days in the Masai Mara witnessing the Great Migration with luxury tented camps.</p>
+<div class="grid grid-cols-3 gap-2 mb-5">
+<div class="text-center p-2 rounded-lg" style="background:rgba(249,115,22,0.1)">
+<p class="font-beb text-base trv-coral-text">12</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.45)">Nights</p>
+</div>
+<div class="text-center p-2 rounded-lg" style="background:rgba(249,115,22,0.1)">
+<p class="font-beb text-base trv-coral-text">3</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.45)">Parks</p>
+</div>
+<div class="text-center p-2 rounded-lg" style="background:rgba(249,115,22,0.1)">
+<p class="font-beb text-base trv-coral-text">Lux</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.45)">Camps</p>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 mb-5">
+<span class="font-bar text-xs px-2 py-1 rounded-full" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.5)">✈ Flights Included</span>
+<span class="font-bar text-xs px-2 py-1 rounded-full" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.5)">🦁 Game Drives</span>
+<span class="font-bar text-xs px-2 py-1 rounded-full" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.5)">🏕 Luxury Tents</span>
+</div>
+<button class="btn-trv text-sm py-3 w-full">Book This Package</button>
+</div>
+</div>
+</div>
+
+<!-- Stats Banner -->
+<div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="text-center p-6 rounded-2xl" style="background:rgba(14,165,233,0.08);border:1px solid rgba(14,165,233,0.15)">
+<p class="font-beb text-4xl trv-grad-text mb-1">120K+</p>
+<p class="font-barc text-xs uppercase tracking-widest" style="color:rgba(255,255,255,0.45)">Happy Travelers</p>
+</div>
+<div class="text-center p-6 rounded-2xl" style="background:rgba(14,165,233,0.08);border:1px solid rgba(14,165,233,0.15)">
+<p class="font-beb text-4xl trv-grad-text mb-1">500+</p>
+<p class="font-barc text-xs uppercase tracking-widest" style="color:rgba(255,255,255,0.45)">Destinations</p>
+</div>
+<div class="text-center p-6 rounded-2xl" style="background:rgba(14,165,233,0.08);border:1px solid rgba(14,165,233,0.15)">
+<p class="font-beb text-4xl trv-grad-text mb-1">98%</p>
+<p class="font-barc text-xs uppercase tracking-widest" style="color:rgba(255,255,255,0.45)">Satisfaction Rate</p>
+</div>
+<div class="text-center p-6 rounded-2xl" style="background:rgba(14,165,233,0.08);border:1px solid rgba(14,165,233,0.15)">
+<p class="font-beb text-4xl trv-grad-text mb-1">24/7</p>
+<p class="font-barc text-xs uppercase tracking-widest" style="color:rgba(255,255,255,0.45)">Travel Support</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- QUOTE DIVIDER -->
+<section class="py-20 relative overflow-hidden" style="background:linear-gradient(135deg,#0369A1 0%,#0EA5E9 50%,#0D9488 100%);max-height:350px">
+<div class="absolute inset-0 opacity-10">
+<img src="https://images.unsplash.com/photo-1488085061387-422e29b40080?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="bg" class="w-full h-full object-cover">
+</div>
+<div class="max-w-5xl mx-auto px-6 relative z-10 text-center">
+<p class="font-beb text-6xl md:text-8xl tracking-widest text-white opacity-10 mb-2">"</p>
+<h2 class="font-beb text-4xl md:text-5xl tracking-wide text-white leading-tight mb-4">
+THE WORLD IS A BOOK, AND THOSE WHO<br>DO NOT TRAVEL READ ONLY ONE PAGE
+</h2>
+<p class="font-barc font-bold text-sm uppercase tracking-widest" style="color:rgba(255,255,255,0.7)">— Saint Augustine</p>
+</div>
+</section>
+
+<!-- TRAVELER REVIEWS -->
+<section id="reviews" class="py-24 trv-section-dark" style="max-height:1000px">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-16">
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4" style="background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.2)">
+<span class="font-barc font-bold text-xs uppercase tracking-widest" style="color:#FCD34D">Real Stories, Real Travelers</span>
+</div>
+<h2 class="font-beb text-5xl md:text-6xl tracking-wide text-white mb-4">WHAT TRAVELERS <span class="trv-gold-text">SAY</span></h2>
+<p class="font-bar text-lg max-w-2xl mx-auto" style="color:rgba(255,255,255,0.55)">Over 12,000 verified reviews from adventurers who've explored the world with Wanderlust.</p>
+</div>
+
+<div class="grid md:grid-cols-3 gap-6">
+<!-- Review 1 -->
+<div class="rev-card p-7" style="background:rgba(255,255,255,0.04)">
+<div class="flex items-center gap-1 mb-4">
+<span class="stars">★★★★★</span>
+</div>
+<p class="font-bar text-sm leading-relaxed mb-6" style="color:rgba(255,255,255,0.75)">"The Maldives package was absolutely flawless. Every detail was taken care of — from the overwater villa to the sunset dolphin cruise. Wanderlust made our honeymoon unforgettable."</p>
+<div class="flex items-center gap-3">
+<img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&amp;w=80&amp;auto=format&amp;fit=crop" alt="Sarah" class="w-12 h-12 rounded-full object-cover border-2" style="border-color:#0EA5E9">
+<div>
+<p class="font-barc font-bold text-sm tracking-wide text-white">Sarah &amp; James Mitchell</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.45)">Maldives Luxury Escape · Honeymoon</p>
+</div>
+</div>
+<div class="mt-4 pt-4" style="border-top:1px solid rgba(255,255,255,0.06)">
+<div class="flex items-center gap-2">
+<img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?q=80&amp;w=200&amp;auto=format&amp;fit=crop" class="w-16 h-12 rounded-lg object-cover" alt="Maldives">
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.4)">Maldives, November 2024</span>
+</div>
+</div>
+</div>
+
+<!-- Review 2 -->
+<div class="rev-card p-7" style="background:rgba(255,255,255,0.04)">
+<div class="flex items-center gap-1 mb-4">
+<span class="stars">★★★★★</span>
+</div>
+<p class="font-bar text-sm leading-relaxed mb-6" style="color:rgba(255,255,255,0.75)">"Japan during cherry blossom season was a dream. The private guide was incredibly knowledgeable, the ryokan stays were magical, and the food tours were the highlight of my year."</p>
+<div class="flex items-center gap-3">
+<img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&amp;w=80&amp;auto=format&amp;fit=crop" alt="Marcus" class="w-12 h-12 rounded-full object-cover border-2" style="border-color:#F59E0B">
+<div>
+<p class="font-barc font-bold text-sm tracking-wide text-white">Marcus Chen</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.45)">Japan Cherry Blossom Tour · Solo</p>
+</div>
+</div>
+<div class="mt-4 pt-4" style="border-top:1px solid rgba(255,255,255,0.06)">
+<div class="flex items-center gap-2">
+<img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&amp;w=200&amp;auto=format&amp;fit=crop" class="w-16 h-12 rounded-lg object-cover" alt="Japan">
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.4)">Kyoto, April 2024</span>
+</div>
+</div>
+</div>
+
+<!-- Review 3 -->
+<div class="rev-card p-7" style="background:rgba(255,255,255,0.04)">
+<div class="flex items-center gap-1 mb-4">
+<span class="stars">★★★★★</span>
+</div>
+<p class="font-bar text-sm leading-relaxed mb-6" style="color:rgba(255,255,255,0.75)">"The Kenya Safari exceeded every expectation. Witnessing the Great Migration was life-changing. The luxury tented camps were stunning and the guides were world-class. 10/10 would do again."</p>
+<div class="flex items-center gap-3">
+<img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&amp;w=80&amp;auto=format&amp;fit=crop" alt="Amara" class="w-12 h-12 rounded-full object-cover border-2" style="border-color:#F97316">
+<div>
+<p class="font-barc font-bold text-sm tracking-wide text-white">Amara Osei</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.45)">Kenya Safari Adventure · Family</p>
+</div>
+</div>
+<div class="mt-4 pt-4" style="border-top:1px solid rgba(255,255,255,0.06)">
+<div class="flex items-center gap-2">
+<img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?q=80&amp;w=200&amp;auto=format&amp;fit=crop" class="w-16 h-12 rounded-lg object-cover" alt="Kenya">
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.4)">Masai Mara, August 2024</span>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Review Stats -->
+<div class="mt-10 p-8 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-8" style="background:rgba(14,165,233,0.06);border:1px solid rgba(14,165,233,0.15)">
+<div class="text-center md:text-left">
+<p class="font-beb text-6xl trv-grad-text mb-1">4.9</p>
+<div class="stars text-xl mb-1">★★★★★</div>
+<p class="font-bar text-sm" style="color:rgba(255,255,255,0.5)">Based on 12,400+ reviews</p>
+</div>
+<div class="flex-1 max-w-sm w-full">
+<div class="space-y-2">
+<div class="flex items-center gap-3">
+<span class="font-bar text-xs w-4 text-right" style="color:rgba(255,255,255,0.5)">5</span>
+<div class="flex-1 h-2 rounded-full" style="background:rgba(255,255,255,0.1)"><div class="h-2 rounded-full" style="width:88%;background:linear-gradient(90deg,#0EA5E9,#38BDF8)"></div></div>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">88%</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-bar text-xs w-4 text-right" style="color:rgba(255,255,255,0.5)">4</span>
+<div class="flex-1 h-2 rounded-full" style="background:rgba(255,255,255,0.1)"><div class="h-2 rounded-full" style="width:9%;background:linear-gradient(90deg,#0EA5E9,#38BDF8)"></div></div>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">9%</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-bar text-xs w-4 text-right" style="color:rgba(255,255,255,0.5)">3</span>
+<div class="flex-1 h-2 rounded-full" style="background:rgba(255,255,255,0.1)"><div class="h-2 rounded-full" style="width:2%;background:rgba(255,255,255,0.2)"></div></div>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">2%</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-bar text-xs w-4 text-right" style="color:rgba(255,255,255,0.5)">2</span>
+<div class="flex-1 h-2 rounded-full" style="background:rgba(255,255,255,0.1)"><div class="h-2 rounded-full" style="width:1%;background:rgba(255,255,255,0.2)"></div></div>
+<span class="font-bar text-xs" style="color:rgba(255,255,255,0.5)">1%</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-6 text-center">
+<div>
+<p class="font-beb text-3xl trv-grad-text mb-1">98%</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.45)">Would Recommend</p>
+</div>
+<div>
+<p class="font-beb text-3xl trv-grad-text mb-1">96%</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.45)">Book Again</p>
+</div>
+<div>
+<p class="font-beb text-3xl trv-grad-text mb-1">99%</p>
+<p class="font-bar text-xs" style="color:rgba(255,255,255,0.45)">On-Time Trips</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- NEWSLETTER SIGNUP -->
+<section id="newsletter" class="py-24 relative overflow-hidden" style="background:linear-gradient(160deg,#0A1628 0%,#112240 100%);max-height:600px">
+<div class="absolute inset-0 z-0">
+<img src="https://images.unsplash.com/photo-1488085061387-422e29b40080?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="Newsletter Background" class="w-full h-full object-cover opacity-10">
+</div>
+<div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-[600px] h-[400px] rounded-full opacity-15" style="background:radial-gradient(circle,#0EA5E9,transparent);filter:blur(100px)"></div>
+
+<div class="max-w-4xl mx-auto px-6 relative z-10 text-center">
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8" style="background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.25)">
+<span class="w-2 h-2 rounded-full animate-pulse" style="background:#FCD34D"></span>
+<span class="font-barc font-bold text-xs uppercase tracking-widest" style="color:#FCD34D">Exclusive Travel Deals &amp; Inspiration</span>
+</div>
+<h2 class="font-beb text-5xl md:text-6xl tracking-wide text-white mb-4 leading-tight">
+GET DEALS BEFORE<br><span class="trv-grad-text">EVERYONE ELSE</span>
+</h2>
+<p class="font-bar text-lg mb-10 max-w-xl mx-auto" style="color:rgba(255,255,255,0.6)">
+Join 80,000+ travelers receiving exclusive deals, destination guides, and early-bird offers straight to their inbox.
+</p>
+
+<!-- Email Form -->
+<div class="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto mb-8">
+<div class="flex-1 flex items-center gap-3 px-5 py-4 rounded-xl" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15)">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="rgba(255,255,255,0.4)"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg>
+<input type="email" placeholder="Enter your email address" class="bg-transparent text-white text-sm font-bar w-full outline-none placeholder-white/40">
+</div>
+<button class="btn-trv-gold text-sm py-4 px-8 whitespace-nowrap">Subscribe Now</button>
+</div>
+
+<div class="flex flex-wrap items-center justify-center gap-6">
+<div class="flex items-center gap-2">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="#38BDF8"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path></svg>
+<span class="font-bar text-sm" style="color:rgba(255,255,255,0.55)">No spam, ever</span>
+</div>
+<div class="flex items-center gap-2">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="#38BDF8"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path></svg>
+<span class="font-bar text-sm" style="color:rgba(255,255,255,0.55)">Unsubscribe anytime</span>
+</div>
+<div class="flex items-center gap-2">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="#38BDF8"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path></svg>
+<span class="font-bar text-sm" style="color:rgba(255,255,255,0.55)">Exclusive member deals</span>
+</div>
+</div>
+
+<!-- Social Proof -->
+<div class="mt-10 flex items-center justify-center gap-4">
+<div class="flex -space-x-3">
+<img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&amp;w=60&amp;auto=format&amp;fit=crop" class="w-9 h-9 rounded-full border-2 object-cover" style="border-color:#112240" alt="user">
+<img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&amp;w=60&amp;auto=format&amp;fit=crop" class="w-9 h-9 rounded-full border-2 object-cover" style="border-color:#112240" alt="user">
+<img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&amp;w=60&amp;auto=format&amp;fit=crop" class="w-9 h-9 rounded-full border-2 object-cover" style="border-color:#112240" alt="user">
+<img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&amp;w=60&amp;auto=format&amp;fit=crop" class="w-9 h-9 rounded-full border-2 object-cover" style="border-color:#112240" alt="user">
+<div class="w-9 h-9 rounded-full border-2 flex items-center justify-center text-xs font-bold font-barc" style="border-color:#112240;background:#0EA5E9;color:white">80K</div>
+</div>
+<p class="font-bar text-sm" style="color:rgba(255,255,255,0.5)">Join <span class="text-white font-bold">80,000+</span> travel enthusiasts</p>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="pt-20 pb-10" style="background:#060E1A;max-height:700px">
+<div class="max-w-7xl mx-auto px-6">
+<!-- Partner Logos -->
+<div class="pb-12 mb-12" style="border-bottom:1px solid rgba(255,255,255,0.06)">
+<p class="text-center font-barc text-xs uppercase tracking-widest mb-6" style="color:rgba(255,255,255,0.2)">Trusted by travelers from</p>
+<div class="flex flex-wrap items-center justify-center gap-10" style="opacity:0.25">
+<span class="font-beb text-xl tracking-widest text-white">EMIRATES</span>
+<span class="w-1 h-1 rounded-full bg-white opacity-30"></span>
+<span class="font-beb text-xl tracking-widest text-white">MARRIOTT</span>
+<span class="w-1 h-1 rounded-full bg-white opacity-30"></span>
+<span class="font-beb text-xl tracking-widest text-white">AIRBNB</span>
+<span class="w-1 h-1 rounded-full bg-white opacity-30"></span>
+<span class="font-beb text-xl tracking-widest text-white">BOOKING.COM</span>
+<span class="w-1 h-1 rounded-full bg-white opacity-30"></span>
+<span class="font-beb text-xl tracking-widest text-white">TRIPADVISOR</span>
+</div>
+</div>
+
+<div class="grid md:grid-cols-5 gap-10 mb-16">
+<!-- Brand -->
+<div class="col-span-1 md:col-span-2">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,#0EA5E9,#0369A1)">
+<span class="font-beb text-white text-xl leading-none">W</span>
+</div>
+<span class="font-beb text-3xl tracking-widest text-white">WANDER<span class="trv-grad-text">LUST</span></span>
+</div>
+<p class="font-bar text-sm leading-relaxed max-w-xs mb-6" style="color:rgba(255,255,255,0.4)">Crafting extraordinary travel experiences for 120,000+ adventurers worldwide. Your journey of a lifetime starts here.</p>
+<div class="flex items-center gap-3">
+<a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-white text-xs font-bold font-barc" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1)">IG</a>
+<a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-white text-xs font-bold font-barc" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1)">FB</a>
+<a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-white text-xs font-bold font-barc" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1)">TW</a>
+<a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-white text-xs font-bold font-barc" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1)">YT</a>
+</div>
+</div>
+
+<!-- Destinations -->
+<div>
+<h4 class="font-beb text-sm tracking-widest mb-6 text-white">Destinations</h4>
+<ul class="space-y-3 font-bar text-sm" style="color:rgba(255,255,255,0.4)">
+<li><a href="#" class="hover:text-white transition-colors">Maldives</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Japan</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Bali</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Santorini</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Kenya Safari</a></li>
+</ul>
+</div>
+
+<!-- Company -->
+<div>
+<h4 class="font-beb text-sm tracking-widest mb-6 text-white">Company</h4>
+<ul class="space-y-3 font-bar text-sm" style="color:rgba(255,255,255,0.4)">
+<li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Our Guides</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Press</a></li>
+</ul>
+</div>
+
+<!-- Support -->
+<div>
+<h4 class="font-beb text-sm tracking-widest mb-6 text-white">Support</h4>
+<ul class="space-y-3 font-bar text-sm" style="color:rgba(255,255,255,0.4)">
+<li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Travel Insurance</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+</ul>
+</div>
+</div>
+
+<div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style="border-top:1px solid rgba(255,255,255,0.06)">
+<p class="font-bar text-sm" style="color:rgba(255,255,255,0.25)">© 2024 Wanderlust Travel Inc. All rights reserved.</p>
+<div class="flex items-center gap-6">
+<a href="#" class="font-bar text-xs hover:opacity-70 transition-opacity" style="color:rgba(255,255,255,0.25)">Privacy</a>
+<a href="#" class="font-bar text-xs hover:opacity-70 transition-opacity" style="color:rgba(255,255,255,0.25)">Terms</a>
+<a href="#" class="font-bar text-xs hover:opacity-70 transition-opacity" style="color:rgba(255,255,255,0.25)">Cookies</a>
+</div>
+</div>
+
+<!-- Flow Navigation Footer -->
+<div class="mt-10 pt-8" style="border-top:1px solid rgba(255,255,255,0.04)">
+<p class="font-bar text-xs text-center mb-4 uppercase tracking-widest" style="color:rgba(255,255,255,0.15)">Explore All Landing Pages</p>
+<div class="flex flex-wrap items-center justify-center gap-3">
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/healthcare-landing-page" class="font-bar text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">01 Healthcare →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/fintech-landing-page" class="font-bar text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">02 Fintech →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/online-education-landing-page" class="font-bar text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">03 Education →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/real-estate-landing-page" class="font-bar text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">04 Real Estate →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/fitness-wellness-landing-page" class="font-bar text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">05 Fitness →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/travel-adventure-landing-page" class="font-bar text-xs font-bold px-3 py-1.5 rounded-full" style="background:rgba(14,165,233,0.2);color:#38BDF8;border:1px solid rgba(14,165,233,0.4)">06 Travel ✦</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/food-delivery-landing-page" class="font-bar text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">07 Food →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/legal-services-landing-page" class="font-bar text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">08 Legal →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/automotive-landing-page" class="font-bar text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">09 Auto →</a>
+<a href="/api/copilot/prototype/9e03b3e6-fb40-49a5-ab20-cd22f8817c43/green-tech-landing-page" class="font-bar text-xs font-bold px-3 py-1.5 transition-opacity" style="color:rgba(255,255,255,0.3)">10 Green Tech →</a>
+</div>
+<p class="text-center font-bar text-xs mt-6" style="color:rgba(255,255,255,0.12)">Designed with Uxmagic.ai</p>
+</div>
+</div>
+</footer>
+
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>
