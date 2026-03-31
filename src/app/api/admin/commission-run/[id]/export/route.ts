@@ -146,7 +146,9 @@ export async function GET(
     for (const earning of earnings) {
       const member = Array.isArray(earning.member) ? earning.member[0] : earning.member;
       const distributor = member?.distributor;
-      const email = Array.isArray(distributor) ? distributor[0]?.email : distributor?.email;
+      const email = Array.isArray(distributor)
+        ? (distributor[0] as any)?.email
+        : (distributor as any)?.email;
 
       const amount = (earning.final_amount_cents / 100).toFixed(2);
       const overrideLevel = earning.override_level || '';
