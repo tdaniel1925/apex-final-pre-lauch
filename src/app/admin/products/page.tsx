@@ -129,6 +129,9 @@ export default async function AdminProductsPage() {
                     Type
                   </th>
                   <th className="px-6 py-4 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">
+                    Onboarding
+                  </th>
+                  <th className="px-6 py-4 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">
                     Status
                   </th>
                   <th className="px-6 py-4 text-right text-xs font-semibold text-slate-700 uppercase tracking-wider">
@@ -192,6 +195,24 @@ export default async function AdminProductsPage() {
                         )}
                       </td>
                       <td className="px-6 py-4">
+                        {product.requires_onboarding ? (
+                          <div className="flex flex-col">
+                            <span className="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-blue-100 text-blue-800 w-fit">
+                              Required
+                            </span>
+                            {product.onboarding_duration_minutes && (
+                              <span className="text-xs text-slate-500 mt-1">
+                                {product.onboarding_duration_minutes} min
+                              </span>
+                            )}
+                          </div>
+                        ) : (
+                          <span className="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-gray-100 text-gray-800">
+                            Not Required
+                          </span>
+                        )}
+                      </td>
+                      <td className="px-6 py-4">
                         {product.is_active ? (
                           <span className="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-green-100 text-green-800">
                             Active
@@ -224,7 +245,7 @@ export default async function AdminProductsPage() {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan={7} className="px-6 py-12 text-center">
+                    <td colSpan={8} className="px-6 py-12 text-center">
                       <div className="flex flex-col items-center gap-3">
                         <Package className="w-12 h-12 text-slate-300" />
                         <p className="text-slate-500">No services yet</p>

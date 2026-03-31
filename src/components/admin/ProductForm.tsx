@@ -50,6 +50,11 @@ export default function ProductForm({ categories, product }: ProductFormProps) {
     // Media
     image_url: product?.image_url || '',
 
+    // Onboarding
+    requires_onboarding: product?.requires_onboarding ?? false,
+    onboarding_duration_minutes: product?.onboarding_duration_minutes?.toString() || '30',
+    onboarding_instructions: product?.onboarding_instructions || '',
+
     // Status
     is_active: product?.is_active ?? true,
     is_featured: product?.is_featured ?? false,
@@ -92,13 +97,17 @@ export default function ProductForm({ categories, product }: ProductFormProps) {
         wholesale_price_cents: Math.round(parseFloat(formData.wholesale_price) * 100),
         bv: parseInt(formData.bv) || 0,
         trial_days: parseInt(formData.trial_days) || 0,
+        onboarding_duration_minutes: parseInt(formData.onboarding_duration_minutes) || 30,
         is_digital: true,
         stock_status: 'in_stock',
       };
 
-      // Call API
-      const response = await fetch('/api/admin/products', {
-        method: 'POST',
+      // Call API (POST for new, PATCH for edit)
+      const url = product ? `/api/admin/products/${product.id}` : '/api/admin/products';
+      const method = product ? 'PATCH' : 'POST';
+
+      const response = await fetch(url, {
+        method,
         headers: {
           'Content-Type': 'application/json',
         },
@@ -108,7 +117,7 @@ export default function ProductForm({ categories, product }: ProductFormProps) {
       const result = await response.json();
 
       if (!response.ok) {
-        throw new Error(result.error || 'Failed to create product');
+        throw new Error(result.error || `Failed to ${product ? 'update' : 'create'} product`);
       }
 
       // Success - redirect to products list
@@ -411,6 +420,62 @@ export default function ProductForm({ categories, product }: ProductFormProps) {
         )}
       </div>
 
+      {/* Onboarding Settings */}
+      <div className="mt-8 space-y-6">
+        <h2 className="text-lg font-semibold text-slate-900">Onboarding Settings</h2>
+
+        <div className="flex items-center gap-4">
+          <label className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              name="requires_onboarding"
+              checked={formData.requires_onboarding}
+              onChange={handleChange}
+              className="w-4 h-4 text-slate-900 rounded focus:ring-slate-900"
+            />
+            <span className="text-sm font-medium text-slate-700">
+              Require onboarding session after purchase
+            </span>
+          </label>
+        </div>
+
+        {formData.requires_onboarding && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-2">
+                Session Duration (minutes)
+              </label>
+              <input
+                type="number"
+                name="onboarding_duration_minutes"
+                value={formData.onboarding_duration_minutes}
+                onChange={handleChange}
+                min="15"
+                max="120"
+                className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-900 focus:border-transparent"
+                placeholder="30"
+              />
+              <p className="text-xs text-slate-500 mt-1">Typical session length</p>
+            </div>
+
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium text-slate-700 mb-2">
+                Onboarding Instructions
+              </label>
+              <textarea
+                name="onboarding_instructions"
+                value={formData.onboarding_instructions}
+                onChange={handleChange}
+                rows={3}
+                className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-900 focus:border-transparent"
+                placeholder="Special instructions or topics to cover during onboarding..."
+              />
+              <p className="text-xs text-slate-500 mt-1">Internal notes for the onboarding team</p>
+            </div>
+          </div>
+        )}
+      </div>
+
       {/* Status */}
       <div className="mt-8 space-y-4">
         <h2 className="text-lg font-semibold text-slate-900">Status</h2>
@@ -462,7 +527,7 @@ export default function ProductForm({ categories, product }: ProductFormProps) {
           ) : (
             <>
               <Save className="w-4 h-4" />
-              Create Service
+              {product ? 'Update Service' : 'Create Service'}
             </>
           )}
         </button>

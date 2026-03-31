@@ -6,6 +6,8 @@
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { createServiceClient } from '@/lib/supabase/service';
+import { checkBusinessCenterSubscription } from '@/lib/subscription/check-business-center';
+import FeatureGate from '@/components/dashboard/FeatureGate';
 import GenealogyWithModal from '@/components/genealogy/GenealogyWithModal';
 import type { MemberNode } from '@/components/genealogy/TreeNodeCard';
 
@@ -164,6 +166,26 @@ export default async function UserGenealogyPage({ searchParams }: PageProps) {
     `)
     .eq('auth_user_id', user.id)
     .single();
+
+  // Check Business Center subscription status
+  if (userData) {
+    const businessCenterStatus = await checkBusinessCenterSubscription(userData.id);
+    const hasAccess = businessCenterStatus.hasSubscription ||
+                      businessCenterStatus.nagLevel === 'none' ||
+                      businessCenterStatus.nagLevel === 'soft';
+
+    if (!hasAccess) {
+      return (
+        <FeatureGate
+          featurePath="/dashboard/genealogy"
+          hasAccess={false}
+          daysWithout={businessCenterStatus.daysWithout}
+        >
+          <></>
+        </FeatureGate>
+      );
+    }
+  }
 
   if (userError || !userData) {
     // User data fetch failed - redirect to dashboard (they're already authenticated)

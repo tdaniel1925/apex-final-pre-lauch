@@ -158,14 +158,14 @@ export default function OverviewTab() {
               <span className="font-bold text-gray-900 text-lg">${(BUSINESS_CENTER_CONFIG.SELLER_COMMISSION_CENTS / 100).toFixed(2)}</span>
             </div>
 
-            <div className="flex justify-between items-center p-2 bg-purple-50 rounded">
-              <span className="text-gray-700 font-medium">Sponsor Bonus</span>
-              <span className="font-bold text-gray-900 text-lg">${(BUSINESS_CENTER_CONFIG.SPONSOR_BONUS_CENTS / 100).toFixed(2)}</span>
+            <div className="flex justify-between items-center p-2 bg-blue-50 rounded">
+              <span className="text-gray-700 font-medium">Override Pool</span>
+              <span className="font-bold text-gray-900 text-lg">${(BUSINESS_CENTER_CONFIG.OVERRIDE_POOL_CENTS / 100).toFixed(2)}</span>
             </div>
 
             <div className="flex justify-between items-center p-2 bg-red-50 rounded">
-              <span className="text-gray-700 font-medium">Corporate Expenses</span>
-              <span className="font-bold text-gray-900 text-lg">${(BUSINESS_CENTER_CONFIG.COSTS_CENTS / 100).toFixed(2)}</span>
+              <span className="text-gray-700 font-medium">Apex Take</span>
+              <span className="font-bold text-gray-900 text-lg">${(BUSINESS_CENTER_CONFIG.APEX_TAKE_CENTS / 100).toFixed(2)}</span>
             </div>
 
             <div className="border-t-2 border-gray-300 pt-3 mt-3">
@@ -175,8 +175,8 @@ export default function OverviewTab() {
                   ${((BUSINESS_CENTER_CONFIG.BOTMAKERS_FEE_CENTS +
                       BUSINESS_CENTER_CONFIG.APEX_TAKE_CENTS +
                       BUSINESS_CENTER_CONFIG.SELLER_COMMISSION_CENTS +
-                      BUSINESS_CENTER_CONFIG.SPONSOR_BONUS_CENTS +
-                      BUSINESS_CENTER_CONFIG.COSTS_CENTS) / 100).toFixed(2)}
+                      BUSINESS_CENTER_CONFIG.OVERRIDE_POOL_CENTS +
+                      BUSINESS_CENTER_CONFIG.COGS_CENTS) / 100).toFixed(2)}
                 </span>
               </div>
             </div>

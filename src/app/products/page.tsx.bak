@@ -1,0 +1,1042 @@
+'use client';
+
+import { useState } from 'react';
+import Link from 'next/link';
+import Script from 'next/script';
+
+type ContentType = 'landing' | 'social' | 'email' | 'video' | 'podcast';
+
+interface Example {
+  id: string;
+  title: string;
+  industry: string;
+  thumbnail: string;
+  liveUrl?: string; // For landing pages - link to live HTML
+  audioUrl?: string; // For podcasts - link to audio file
+  description: string;
+}
+
+const contentTabs = [
+  { id: 'landing' as ContentType, label: '📄 Landing Pages', icon: '📄' },
+  { id: 'social' as ContentType, label: '📱 Social Media', icon: '📱' },
+  { id: 'email' as ContentType, label: '✉️ Email', icon: '✉️' },
+  { id: 'video' as ContentType, label: '🎥 AI Video', icon: '🎥' },
+  { id: 'podcast' as ContentType, label: '🎙️ AI Podcast', icon: '🎙️' },
+];
+
+// Real landing pages from extracted designs
+const examples: Record<ContentType, Example[]> = {
+  landing: [
+    {
+      id: '1',
+      title: 'Luxury Real Estate Agency',
+      industry: 'Real Estate',
+      thumbnail: '/examples/screenshots/Luxury Real Estate Agency.jpg',
+      liveUrl: '/examples/Luxury Real Estate Agency/index.html',
+      description: 'Premium property showcase with elegant design',
+    },
+    {
+      id: '2',
+      title: 'Modern Medical Clinic',
+      industry: 'Healthcare',
+      thumbnail: '/examples/screenshots/Modern Medical Clinic.jpg',
+      liveUrl: '/examples/Modern Medical Clinic/index.html',
+      description: 'Clean healthcare provider landing page',
+    },
+    {
+      id: '3',
+      title: 'Neon Fintech Platform',
+      industry: 'Financial Services',
+      thumbnail: '/examples/screenshots/Neon Fintech Platform.jpg',
+      liveUrl: '/examples/Neon Fintech Platform/index.html',
+      description: 'Bold modern financial technology platform',
+    },
+    {
+      id: '4',
+      title: 'SaaS Productivity Tool',
+      industry: 'Technology',
+      thumbnail: '/examples/screenshots/Minimal SaaS Productivity Tool.jpg',
+      liveUrl: '/examples/Minimal SaaS Productivity Tool/index.html',
+      description: 'Minimal design for productivity software',
+    },
+    {
+      id: '5',
+      title: 'Organic Food Brand',
+      industry: 'Food & Beverage',
+      thumbnail: '/examples/screenshots/Organic Food Brand.jpg',
+      liveUrl: '/examples/Organic Food Brand/index.html',
+      description: 'Natural and eco-friendly food company',
+    },
+    {
+      id: '6',
+      title: 'Travel & Adventure',
+      industry: 'Travel',
+      thumbnail: '/examples/screenshots/Travel & Adventure Landing Page.jpg',
+      liveUrl: '/examples/Travel & Adventure Landing Page/index.html',
+      description: 'Exciting travel experiences and tours',
+    },
+    {
+      id: '7',
+      title: 'Fitness & Wellness',
+      industry: 'Health & Fitness',
+      thumbnail: '/examples/screenshots/Fitness & Wellness Landing Page.jpg',
+      liveUrl: '/examples/Fitness & Wellness Landing Page/index.html',
+      description: 'Gym and wellness center landing page',
+    },
+    {
+      id: '8',
+      title: 'Kids Education App',
+      industry: 'Education',
+      thumbnail: '/examples/screenshots/Kids Education App.jpg',
+      liveUrl: '/examples/Kids Education App/index.html',
+      description: 'Fun and engaging learning platform',
+    },
+    {
+      id: '9',
+      title: 'Legal Services',
+      industry: 'Legal',
+      thumbnail: '/examples/screenshots/Legal Services Landing Page.jpg',
+      liveUrl: '/examples/Legal Services Landing Page/index.html',
+      description: 'Professional law firm presentation',
+    },
+    {
+      id: '10',
+      title: 'Automotive Dealership',
+      industry: 'Automotive',
+      thumbnail: '/examples/screenshots/Automotive Landing Page.jpg',
+      liveUrl: '/examples/Automotive Landing Page/index.html',
+      description: 'Car sales and leasing platform',
+    },
+    {
+      id: '11',
+      title: 'Brutalist Architecture Firm',
+      industry: 'Architecture',
+      thumbnail: '/examples/screenshots/Brutalist Architecture Firm.jpg',
+      liveUrl: '/examples/Brutalist Architecture Firm/index.html',
+      description: 'Bold architectural design showcase',
+    },
+    {
+      id: '12',
+      title: 'Retro Music Streaming',
+      industry: 'Entertainment',
+      thumbnail: '/examples/screenshots/Retro Music Streaming.jpg',
+      liveUrl: '/examples/Retro Music Streaming/index.html',
+      description: 'Vintage-inspired music platform',
+    },
+  ],
+  social: [
+    {
+      id: 'tt1',
+      title: 'TikTok Video Post 1',
+      industry: 'Apex TikTok',
+      thumbnail: '/examples/social-posts/tiktok-post-1.png',
+      description: 'Full expanded TikTok video post from Apex Affinity Group',
+    },
+    {
+      id: 'tt2',
+      title: 'TikTok Video Post 2',
+      industry: 'Apex TikTok',
+      thumbnail: '/examples/social-posts/tiktok-post-2.png',
+      description: 'Complete TikTok post with engagement metrics and details',
+    },
+    {
+      id: 'tt4',
+      title: 'TikTok Video Post 3',
+      industry: 'Apex TikTok',
+      thumbnail: '/examples/social-posts/tiktok-post-4.png',
+      description: 'Expanded TikTok content showcasing viral engagement',
+    },
+    {
+      id: 'tt6',
+      title: 'TikTok Video Post 4',
+      industry: 'Apex TikTok',
+      thumbnail: '/examples/social-posts/tiktok-post-6.png',
+      description: 'Full TikTok post view with comments and interactions',
+    },
+  ],
+  email: [
+    {
+      id: '1',
+      title: 'Luxury Real Estate Listing',
+      industry: 'Real Estate',
+      thumbnail: '/examples/email-screenshots/real-estate-listing.png',
+      liveUrl: '/examples/emails/real-estate-listing.html',
+      description: '$4.95M waterfront property listing with amenities and virtual tour scheduling',
+    },
+    {
+      id: '2',
+      title: 'Financial Market Newsletter',
+      industry: 'Financial Services',
+      thumbnail: '/examples/email-screenshots/financial-newsletter.png',
+      liveUrl: '/examples/emails/financial-newsletter.html',
+      description: 'Q1 2024 market insights with performance stats and portfolio recommendations',
+    },
+    {
+      id: '3',
+      title: 'Healthcare Appointment Reminder',
+      industry: 'Healthcare',
+      thumbnail: '/examples/email-screenshots/healthcare-appointment.png',
+      liveUrl: '/examples/emails/healthcare-appointment.html',
+      description: 'Annual wellness checkup reminder with available appointment slots',
+    },
+    {
+      id: '4',
+      title: 'Business Coaching Webinar',
+      industry: 'Business Coaching',
+      thumbnail: '/examples/email-screenshots/coaching-webinar.png',
+      liveUrl: '/examples/emails/coaching-webinar.html',
+      description: 'Free live webinar registration - Scale Your Business to 7 Figures',
+    },
+  ],
+  video: [
+    {
+      id: '1',
+      title: 'Property Tour',
+      industry: 'Real Estate',
+      thumbnail: '/examples/video-property.jpg',
+      description: 'AI-generated walkthrough',
+    },
+    {
+      id: '2',
+      title: 'Testimonial',
+      industry: 'Coaching',
+      thumbnail: '/examples/video-testimonial.jpg',
+      description: 'Client success story',
+    },
+  ],
+  podcast: [
+    {
+      id: '1',
+      title: 'Botmakers AI: Revolutionizing Business Efficiency',
+      industry: 'AI & Technology',
+      thumbnail: '',
+      description: 'How AI is transforming business operations',
+      audioUrl: '/audios/Botmakers AI_ Revolutionizing Business Efficiency.mp3',
+    },
+    {
+      id: '2',
+      title: 'Mastering Prospect Follow-Up in Sales',
+      industry: 'Sales Strategy',
+      thumbnail: '',
+      description: 'Effective follow-up techniques that close deals',
+      audioUrl: '/audios/Mastering Prospect Follow-Up in Sales.mp3',
+    },
+    {
+      id: '3',
+      title: 'Mastering the Conversation: The Apex Way Podcast Episode',
+      industry: 'Communication',
+      thumbnail: '',
+      description: 'The art of meaningful business conversations',
+      audioUrl: '/audios/Mastering the Conversation_ The Apex Way Podcast Episode (3).mp3',
+    },
+    {
+      id: '4',
+      title: 'Trading Table Talk: Finance Meets Innovation',
+      industry: 'Finance',
+      thumbnail: '',
+      description: 'Where financial expertise meets cutting-edge innovation',
+      audioUrl: '/audios/Trading Table Talk_ Finance Meets Innovation.mp3',
+    },
+  ],
+};
+
+const comparisonData: Record<
+  ContentType,
+  {
+    features: Array<{ name: string; pulseMarket: string; pulseFlow: string; pulseDrive: string; pulseCommand: string; smartLook: string }>;
+  }
+> = {
+  landing: {
+    features: [
+      { name: 'Landing Pages per Month', pulseMarket: '3', pulseFlow: '5', pulseDrive: '10', pulseCommand: 'Unlimited', smartLook: 'N/A' },
+      { name: 'Templates Available', pulseMarket: '10 templates', pulseFlow: '15 templates', pulseDrive: '25 templates', pulseCommand: 'All (50+)', smartLook: 'N/A' },
+      { name: 'Custom Domain', pulseMarket: '✓', pulseFlow: '✓', pulseDrive: '✓', pulseCommand: '✓', smartLook: 'N/A' },
+      { name: 'A/B Testing', pulseMarket: '✗', pulseFlow: '✓', pulseDrive: '✓', pulseCommand: '✓', smartLook: 'N/A' },
+      { name: 'Lead Capture Forms', pulseMarket: '✓', pulseFlow: '✓', pulseDrive: '✓', pulseCommand: '✓', smartLook: 'N/A' },
+      { name: 'Analytics Dashboard', pulseMarket: 'Basic', pulseFlow: 'Advanced', pulseDrive: 'Advanced', pulseCommand: 'Enterprise', smartLook: '✓' },
+    ],
+  },
+  social: {
+    features: [
+      { name: 'Social Posts per Month', pulseMarket: '30', pulseFlow: '60', pulseDrive: '100', pulseCommand: 'Unlimited', smartLook: 'N/A' },
+      { name: 'Platforms', pulseMarket: '3 platforms', pulseFlow: '5 platforms', pulseDrive: 'All platforms', pulseCommand: 'All platforms', smartLook: 'N/A' },
+      { name: 'Scheduling', pulseMarket: '✓', pulseFlow: '✓', pulseDrive: '✓', pulseCommand: '✓', smartLook: 'N/A' },
+      { name: 'Hashtag Generator', pulseMarket: '✓', pulseFlow: '✓', pulseDrive: '✓', pulseCommand: '✓', smartLook: 'N/A' },
+      { name: 'Image Variations', pulseMarket: '1 per post', pulseFlow: '3 per post', pulseDrive: '5 per post', pulseCommand: 'Unlimited', smartLook: 'N/A' },
+      { name: 'Video Posts', pulseMarket: '✗', pulseFlow: '5/month', pulseDrive: '15/month', pulseCommand: 'Unlimited', smartLook: 'N/A' },
+    ],
+  },
+  email: {
+    features: [
+      { name: 'Email Campaigns per Month', pulseMarket: '2', pulseFlow: '4', pulseDrive: 'Unlimited', pulseCommand: 'Unlimited', smartLook: 'N/A' },
+      { name: 'Templates', pulseMarket: '10', pulseFlow: '25', pulseDrive: '50', pulseCommand: 'All (100+)', smartLook: 'N/A' },
+      { name: 'Automation Sequences', pulseMarket: '✗', pulseFlow: '3', pulseDrive: 'Unlimited', pulseCommand: 'Unlimited', smartLook: 'N/A' },
+      { name: 'CRM Integration', pulseMarket: '✗', pulseFlow: '✓', pulseDrive: '✓', pulseCommand: '✓', smartLook: 'N/A' },
+      { name: 'A/B Testing', pulseMarket: '✗', pulseFlow: '✓', pulseDrive: '✓', pulseCommand: '✓', smartLook: 'N/A' },
+      { name: 'Analytics', pulseMarket: 'Basic', pulseFlow: 'Advanced', pulseDrive: 'Advanced', pulseCommand: 'Enterprise', smartLook: '✓' },
+    ],
+  },
+  video: {
+    features: [
+      { name: 'AI Videos per Month', pulseMarket: '5', pulseFlow: '10', pulseDrive: '20', pulseCommand: 'Unlimited', smartLook: 'N/A' },
+      { name: 'Avatar Options', pulseMarket: '20 avatars', pulseFlow: '50 avatars', pulseDrive: '100 avatars', pulseCommand: '150+ avatars', smartLook: 'N/A' },
+      { name: 'Video Length', pulseMarket: 'Up to 2 min', pulseFlow: 'Up to 5 min', pulseDrive: 'Up to 10 min', pulseCommand: 'Unlimited', smartLook: 'N/A' },
+      { name: 'Languages', pulseMarket: '20', pulseFlow: '50', pulseDrive: '80', pulseCommand: '120+', smartLook: 'N/A' },
+      { name: 'Custom Avatar Clone', pulseMarket: '✗', pulseFlow: '✗', pulseDrive: '✗', pulseCommand: '✓', smartLook: 'N/A' },
+      { name: 'Background Music', pulseMarket: '✓', pulseFlow: '✓', pulseDrive: '✓', pulseCommand: '✓', smartLook: 'N/A' },
+    ],
+  },
+  podcast: {
+    features: [
+      { name: 'Podcast Episodes per Month', pulseMarket: '✗', pulseFlow: '✗', pulseDrive: '4', pulseCommand: 'Unlimited', smartLook: 'N/A' },
+      { name: 'Episode Length', pulseMarket: 'N/A', pulseFlow: 'N/A', pulseDrive: 'Up to 30 min', pulseCommand: 'Unlimited', smartLook: 'N/A' },
+      { name: 'Voice Options', pulseMarket: 'N/A', pulseFlow: 'N/A', pulseDrive: '15 voices', pulseCommand: '50+ voices', smartLook: 'N/A' },
+      { name: 'Script Generation', pulseMarket: 'N/A', pulseFlow: 'N/A', pulseDrive: '✓', pulseCommand: '✓', smartLook: 'N/A' },
+      { name: 'Background Music', pulseMarket: 'N/A', pulseFlow: 'N/A', pulseDrive: '✓', pulseCommand: '✓', smartLook: 'N/A' },
+      { name: 'Distribution', pulseMarket: 'N/A', pulseFlow: 'N/A', pulseDrive: 'Auto-Publish', pulseCommand: 'Full Distribution', smartLook: 'N/A' },
+    ],
+  },
+};
+
+export default function ProductsPage() {
+  const [activeTab, setActiveTab] = useState<ContentType>('landing');
+  const [selectedExample, setSelectedExample] = useState<Example | null>(null);
+
+  return (
+    <>
+      <Script src="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" />
+
+      <div style={{ fontFamily: 'Inter, -apple-system, sans-serif', background: '#ffffff', minHeight: '100vh', overflowX: 'hidden' }}>
+        {/* Fixed Header */}
+        <header
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            zIndex: 1000,
+            background: 'rgba(255, 255, 255, 0.95)',
+            backdropFilter: 'blur(10px)',
+            borderBottom: '1px solid #e2e8f0',
+            height: '80px',
+          }}
+        >
+          <div
+            style={{
+              maxWidth: '1400px',
+              margin: '0 auto',
+              padding: '0 24px',
+              height: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
+          >
+            <Link href="/" style={{ textDecoration: 'none' }}>
+              <img src="/apex-logo-full.png" alt="Apex Affinity Group" style={{ height: '60px' }} />
+            </Link>
+            <nav style={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
+              <Link href="/" style={{ color: '#64748b', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>
+                Home
+              </Link>
+              <Link href="/#opportunity" style={{ color: '#64748b', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>
+                Business Opportunity
+              </Link>
+              <Link href="/#how-it-works" style={{ color: '#64748b', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>
+                How It Works
+              </Link>
+              <Link href="/products" style={{ color: '#2B4C7E', textDecoration: 'none', fontSize: '15px', fontWeight: 600 }}>
+                AI Business Solutions
+              </Link>
+              <Link href="/#insurance" style={{ color: '#64748b', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>
+                Insurance Solutions
+              </Link>
+              <Link href="/#faq" style={{ color: '#64748b', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>
+                Support
+              </Link>
+              <Link
+                href="/get-started"
+                style={{
+                  background: '#2B4C7E',
+                  color: '#ffffff',
+                  padding: '12px 24px',
+                  borderRadius: '8px',
+                  textDecoration: 'none',
+                  fontSize: '15px',
+                  fontWeight: 600,
+                }}
+              >
+                Get Started
+              </Link>
+            </nav>
+          </div>
+        </header>
+
+        {/* Hero Section */}
+        <section
+          style={{
+            marginTop: '80px',
+            padding: '80px 24px 40px',
+            background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
+            color: '#ffffff',
+            textAlign: 'center',
+          }}
+        >
+          <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+            <h1
+              style={{
+                fontSize: '56px',
+                fontWeight: 900,
+                lineHeight: 1.1,
+                letterSpacing: '-0.02em',
+                marginBottom: '20px',
+              }}
+            >
+              Compare AI Business Solutions & See Examples
+            </h1>
+            <p style={{ fontSize: '22px', lineHeight: 1.6, color: '#cbd5e1', marginBottom: '0' }}>
+              Choose the right tier for your business. View real examples of what you'll create.
+            </p>
+          </div>
+        </section>
+
+        {/* Tabs */}
+        <section style={{ background: '#f8fafc', borderBottom: '2px solid #e2e8f0', position: 'sticky', top: '80px', zIndex: 999 }}>
+          <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 24px' }}>
+            <div style={{ display: 'flex', gap: '8px', overflowX: 'auto' }}>
+              {contentTabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  style={{
+                    padding: '20px 32px',
+                    background: activeTab === tab.id ? '#ffffff' : 'transparent',
+                    border: 'none',
+                    borderBottom: activeTab === tab.id ? '3px solid #2B4C7E' : '3px solid transparent',
+                    color: activeTab === tab.id ? '#2B4C7E' : '#64748b',
+                    fontSize: '16px',
+                    fontWeight: activeTab === tab.id ? 700 : 600,
+                    cursor: 'pointer',
+                    transition: 'all 0.2s',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Comparison Table */}
+        <section style={{ padding: '60px 24px', background: '#ffffff' }}>
+          <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+            {/* Table */}
+            <div style={{ overflowX: 'auto', marginBottom: '60px' }}>
+              <table
+                style={{
+                  width: '100%',
+                  borderCollapse: 'collapse',
+                  background: '#ffffff',
+                  boxShadow: '0 4px 24px rgba(0,0,0,0.08)',
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                }}
+              >
+                <thead>
+                  <tr style={{ background: '#f8fafc' }}>
+                    <th
+                      style={{
+                        padding: '20px 16px',
+                        textAlign: 'left',
+                        fontSize: '14px',
+                        fontWeight: 700,
+                        color: '#0f172a',
+                        borderBottom: '2px solid #e2e8f0',
+                        minWidth: '180px',
+                      }}
+                    >
+                      Feature
+                    </th>
+                    <th
+                      style={{
+                        padding: '20px 12px',
+                        textAlign: 'center',
+                        fontSize: '14px',
+                        fontWeight: 700,
+                        color: '#0f172a',
+                        borderBottom: '2px solid #e2e8f0',
+                        minWidth: '140px',
+                      }}
+                    >
+                      PulseMarket
+                      <div style={{ fontSize: '11px', color: '#64748b', fontWeight: 500, marginTop: '4px' }}>$59/mo</div>
+                    </th>
+                    <th
+                      style={{
+                        padding: '20px 12px',
+                        textAlign: 'center',
+                        fontSize: '14px',
+                        fontWeight: 700,
+                        color: '#0f172a',
+                        borderBottom: '2px solid #e2e8f0',
+                        background: 'rgba(43, 76, 126, 0.05)',
+                        minWidth: '140px',
+                      }}
+                    >
+                      PulseFlow
+                      <div style={{ fontSize: '11px', color: '#64748b', fontWeight: 500, marginTop: '4px' }}>$129/mo</div>
+                      <div
+                        style={{
+                          display: 'inline-block',
+                          background: '#10b981',
+                          color: '#ffffff',
+                          padding: '4px 8px',
+                          borderRadius: '6px',
+                          fontSize: '9px',
+                          fontWeight: 700,
+                          marginTop: '6px',
+                        }}
+                      >
+                        MOST POPULAR
+                      </div>
+                    </th>
+                    <th
+                      style={{
+                        padding: '20px 12px',
+                        textAlign: 'center',
+                        fontSize: '14px',
+                        fontWeight: 700,
+                        color: '#0f172a',
+                        borderBottom: '2px solid #e2e8f0',
+                        minWidth: '140px',
+                      }}
+                    >
+                      PulseDrive
+                      <div style={{ fontSize: '11px', color: '#64748b', fontWeight: 500, marginTop: '4px' }}>$219/mo</div>
+                    </th>
+                    <th
+                      style={{
+                        padding: '20px 12px',
+                        textAlign: 'center',
+                        fontSize: '14px',
+                        fontWeight: 700,
+                        color: '#0f172a',
+                        borderBottom: '2px solid #e2e8f0',
+                        minWidth: '140px',
+                      }}
+                    >
+                      PulseCommand
+                      <div style={{ fontSize: '11px', color: '#64748b', fontWeight: 500, marginTop: '4px' }}>$349/mo</div>
+                    </th>
+                    <th
+                      style={{
+                        padding: '20px 12px',
+                        textAlign: 'center',
+                        fontSize: '14px',
+                        fontWeight: 700,
+                        color: '#0f172a',
+                        borderBottom: '2px solid #e2e8f0',
+                        minWidth: '140px',
+                      }}
+                    >
+                      SmartLook XL
+                      <div style={{ fontSize: '11px', color: '#64748b', fontWeight: 500, marginTop: '4px' }}>$99/mo</div>
+                      <div style={{ fontSize: '9px', color: '#93c5fd', fontWeight: 600, marginTop: '4px' }}>Analytics</div>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {comparisonData[activeTab].features.map((feature, idx) => (
+                    <tr key={idx} style={{ background: idx % 2 === 0 ? '#ffffff' : '#f8fafc' }}>
+                      <td
+                        style={{
+                          padding: '16px',
+                          fontSize: '13px',
+                          fontWeight: 600,
+                          color: '#0f172a',
+                          borderBottom: '1px solid #e2e8f0',
+                        }}
+                      >
+                        {feature.name}
+                      </td>
+                      <td
+                        style={{
+                          padding: '16px 12px',
+                          fontSize: '13px',
+                          fontWeight: 500,
+                          color: '#64748b',
+                          textAlign: 'center',
+                          borderBottom: '1px solid #e2e8f0',
+                        }}
+                      >
+                        {feature.pulseMarket}
+                      </td>
+                      <td
+                        style={{
+                          padding: '16px 12px',
+                          fontSize: '13px',
+                          fontWeight: 500,
+                          color: '#0f172a',
+                          textAlign: 'center',
+                          borderBottom: '1px solid #e2e8f0',
+                          background: idx % 2 === 0 ? 'rgba(43, 76, 126, 0.02)' : 'rgba(43, 76, 126, 0.05)',
+                        }}
+                      >
+                        {feature.pulseFlow}
+                      </td>
+                      <td
+                        style={{
+                          padding: '16px 12px',
+                          fontSize: '13px',
+                          fontWeight: 500,
+                          color: '#64748b',
+                          textAlign: 'center',
+                          borderBottom: '1px solid #e2e8f0',
+                        }}
+                      >
+                        {feature.pulseDrive}
+                      </td>
+                      <td
+                        style={{
+                          padding: '16px 12px',
+                          fontSize: '13px',
+                          fontWeight: 500,
+                          color: '#64748b',
+                          textAlign: 'center',
+                          borderBottom: '1px solid #e2e8f0',
+                        }}
+                      >
+                        {feature.pulseCommand}
+                      </td>
+                      <td
+                        style={{
+                          padding: '16px 12px',
+                          fontSize: '13px',
+                          fontWeight: 500,
+                          color: '#94a3b8',
+                          textAlign: 'center',
+                          borderBottom: '1px solid #e2e8f0',
+                        }}
+                      >
+                        {feature.smartLook}
+                      </td>
+                    </tr>
+                  ))}
+                  {/* CTA Row */}
+                  <tr>
+                    <td style={{ padding: '20px 16px', background: '#f8fafc' }}></td>
+                    <td style={{ padding: '20px 12px', textAlign: 'center', background: '#f8fafc' }}>
+                      <Link
+                        href="/get-started?tier=pulsemarket"
+                        style={{
+                          display: 'inline-block',
+                          padding: '10px 20px',
+                          background: '#2B4C7E',
+                          color: '#ffffff',
+                          borderRadius: '8px',
+                          textDecoration: 'none',
+                          fontSize: '13px',
+                          fontWeight: 600,
+                          transition: 'transform 0.2s',
+                        }}
+                      >
+                        Get Started
+                      </Link>
+                    </td>
+                    <td style={{ padding: '20px 12px', textAlign: 'center', background: 'rgba(43, 76, 126, 0.05)' }}>
+                      <Link
+                        href="/get-started?tier=pulseflow"
+                        style={{
+                          display: 'inline-block',
+                          padding: '12px 24px',
+                          background: '#2B4C7E',
+                          color: '#ffffff',
+                          borderRadius: '8px',
+                          textDecoration: 'none',
+                          fontSize: '14px',
+                          fontWeight: 700,
+                          boxShadow: '0 4px 12px rgba(43, 76, 126, 0.3)',
+                          transition: 'transform 0.2s',
+                        }}
+                      >
+                        Get Started
+                      </Link>
+                    </td>
+                    <td style={{ padding: '20px 12px', textAlign: 'center', background: '#f8fafc' }}>
+                      <Link
+                        href="/get-started?tier=pulsedrive"
+                        style={{
+                          display: 'inline-block',
+                          padding: '10px 20px',
+                          background: '#2B4C7E',
+                          color: '#ffffff',
+                          borderRadius: '8px',
+                          textDecoration: 'none',
+                          fontSize: '13px',
+                          fontWeight: 600,
+                          transition: 'transform 0.2s',
+                        }}
+                      >
+                        Get Started
+                      </Link>
+                    </td>
+                    <td style={{ padding: '20px 12px', textAlign: 'center', background: '#f8fafc' }}>
+                      <Link
+                        href="/get-started?tier=pulsecommand"
+                        style={{
+                          display: 'inline-block',
+                          padding: '10px 20px',
+                          background: '#2B4C7E',
+                          color: '#ffffff',
+                          borderRadius: '8px',
+                          textDecoration: 'none',
+                          fontSize: '13px',
+                          fontWeight: 600,
+                          transition: 'transform 0.2s',
+                        }}
+                      >
+                        Schedule Demo
+                      </Link>
+                    </td>
+                    <td style={{ padding: '20px 12px', textAlign: 'center', background: '#f8fafc' }}>
+                      <Link
+                        href="/get-started?tier=smartlook"
+                        style={{
+                          display: 'inline-block',
+                          padding: '10px 20px',
+                          background: '#2B4C7E',
+                          color: '#ffffff',
+                          borderRadius: '8px',
+                          textDecoration: 'none',
+                          fontSize: '13px',
+                          fontWeight: 600,
+                          transition: 'transform 0.2s',
+                        }}
+                      >
+                        Get Started
+                      </Link>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            {/* Examples Section */}
+            <div>
+              <h2
+                style={{
+                  fontSize: '32px',
+                  fontWeight: 800,
+                  color: '#0f172a',
+                  marginBottom: '8px',
+                  textAlign: 'center',
+                }}
+              >
+                Real Examples
+              </h2>
+              <p style={{ fontSize: '16px', color: '#64748b', textAlign: 'center', marginBottom: '40px' }}>
+                {activeTab === 'podcast' ? 'Listen to AI-generated podcasts' : 'Click any example to view full size'}
+              </p>
+
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fill, minmax(min(280px, 100%), 1fr))',
+                  gap: '24px',
+                  width: '100%',
+                }}
+              >
+                {examples[activeTab].map((example) => (
+                  <div
+                    key={example.id}
+                    onClick={activeTab === 'podcast' ? undefined : () => setSelectedExample(example)}
+                    style={{
+                      background: '#ffffff',
+                      borderRadius: '16px',
+                      overflow: 'hidden',
+                      border: '2px solid #e2e8f0',
+                      cursor: activeTab === 'podcast' ? 'default' : 'pointer',
+                      transition: 'all 0.3s',
+                      boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
+                    }}
+                    onMouseEnter={(e) => {
+                      if (activeTab !== 'podcast') {
+                        e.currentTarget.style.transform = 'translateY(-4px)';
+                        e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.12)';
+                        e.currentTarget.style.borderColor = '#2B4C7E';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (activeTab !== 'podcast') {
+                        e.currentTarget.style.transform = 'translateY(0)';
+                        e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.04)';
+                        e.currentTarget.style.borderColor = '#e2e8f0';
+                      }
+                    }}
+                  >
+                    {/* Thumbnail Preview / Audio Player */}
+                    {activeTab === 'podcast' && example.audioUrl ? (
+                      <div
+                        style={{
+                          width: '100%',
+                          padding: '24px',
+                          background: 'linear-gradient(135deg, #2B4C7E 0%, #1a2f50 100%)',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          minHeight: '160px',
+                        }}
+                      >
+                        <div style={{ fontSize: '48px', marginBottom: '16px' }}>🎙️</div>
+                        <audio
+                          controls
+                          style={{
+                            width: '100%',
+                            borderRadius: '8px',
+                            outline: 'none',
+                          }}
+                        >
+                          <source src={example.audioUrl} type="audio/mpeg" />
+                          Your browser does not support the audio element.
+                        </audio>
+                      </div>
+                    ) : (
+                      <div
+                        style={{
+                          width: '100%',
+                          height: '200px',
+                          position: 'relative',
+                          overflow: 'hidden',
+                        }}
+                      >
+                        {example.thumbnail ? (
+                          <img
+                            src={example.thumbnail}
+                            alt={example.title}
+                            style={{
+                              width: '100%',
+                              height: '100%',
+                              objectFit: 'cover',
+                            }}
+                          />
+                        ) : (
+                          <div
+                            style={{
+                              width: '100%',
+                              height: '100%',
+                              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                              display: 'flex',
+                              flexDirection: 'column',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              padding: '24px',
+                              textAlign: 'center',
+                            }}
+                          >
+                            <div style={{ fontSize: '48px', marginBottom: '12px' }}>{contentTabs.find((t) => t.id === activeTab)?.icon}</div>
+                            <div style={{ fontSize: '14px', fontWeight: 600, color: '#ffffff', opacity: 0.9 }}>
+                              {example.industry}
+                            </div>
+                          </div>
+                        )}
+                        {activeTab === 'landing' && (
+                          <div
+                            style={{
+                              position: 'absolute',
+                              top: '12px',
+                              right: '12px',
+                              background: 'rgba(43, 76, 126, 0.95)',
+                              color: '#ffffff',
+                              padding: '8px 16px',
+                              borderRadius: '8px',
+                              fontSize: '12px',
+                              fontWeight: 700,
+                              letterSpacing: '0.5px',
+                              boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+                            }}
+                          >
+                            🔍 CLICK TO VIEW
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    {/* Info */}
+                    <div style={{ padding: '20px' }}>
+                      <div
+                        style={{
+                          fontSize: '11px',
+                          fontWeight: 700,
+                          color: '#64748b',
+                          textTransform: 'uppercase',
+                          letterSpacing: '0.5px',
+                          marginBottom: '8px',
+                        }}
+                      >
+                        {example.industry}
+                      </div>
+                      <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#0f172a', marginBottom: '8px' }}>
+                        {example.title}
+                      </h3>
+                      <p style={{ fontSize: '14px', color: '#64748b', lineHeight: 1.6, margin: 0 }}>{example.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer style={{ background: '#0f172a', color: '#cbd5e1', padding: '60px 24px 32px' }}>
+          <div style={{ maxWidth: '1400px', margin: '0 auto', textAlign: 'center' }}>
+            <img src="/apex-logo-white.png" alt="Apex Affinity Group" style={{ height: '60px', marginBottom: '32px' }} />
+            <div
+              style={{
+                borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+                paddingTop: '32px',
+                fontSize: '14px',
+              }}
+            >
+              © {new Date().getFullYear()} Apex Affinity Group. All rights reserved.
+            </div>
+          </div>
+        </footer>
+
+        {/* Example Modal */}
+        {selectedExample && (
+          <div
+            onClick={() => setSelectedExample(null)}
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: 'rgba(0, 0, 0, 0.95)',
+              zIndex: 10000,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '40px',
+            }}
+          >
+            <div
+              onClick={(e) => e.stopPropagation()}
+              style={{
+                background: '#ffffff',
+                borderRadius: '20px',
+                maxWidth: '1000px',
+                width: '100%',
+                maxHeight: '90vh',
+                overflow: 'auto',
+                position: 'relative',
+              }}
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setSelectedExample(null)}
+                style={{
+                  position: 'absolute',
+                  top: '20px',
+                  right: '20px',
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: '50%',
+                  background: '#ffffff',
+                  border: '2px solid #e2e8f0',
+                  fontSize: '24px',
+                  fontWeight: 700,
+                  color: '#64748b',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  zIndex: 10,
+                }}
+              >
+                ×
+              </button>
+
+              {/* Modal Content */}
+              <div style={{ padding: '40px' }}>
+                <div
+                  style={{
+                    fontSize: '12px',
+                    fontWeight: 700,
+                    color: '#64748b',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.5px',
+                    marginBottom: '12px',
+                  }}
+                >
+                  {selectedExample.industry}
+                </div>
+                <h2 style={{ fontSize: '36px', fontWeight: 900, color: '#0f172a', marginBottom: '12px' }}>
+                  {selectedExample.title}
+                </h2>
+                <p style={{ fontSize: '18px', color: '#64748b', marginBottom: '32px' }}>{selectedExample.description}</p>
+
+                {/* Content Preview */}
+                <div>
+                  {/* Full Screenshot - Scrollable */}
+                  <div
+                    style={{
+                      border: '3px solid #e2e8f0',
+                      borderRadius: '16px',
+                      overflow: 'auto',
+                      boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
+                      marginBottom: '24px',
+                      maxHeight: 'calc(90vh - 200px)',
+                      background: '#ffffff',
+                    }}
+                  >
+                    <img
+                      src={selectedExample.thumbnail}
+                      alt={selectedExample.title}
+                      style={{
+                        width: '100%',
+                        height: 'auto',
+                        display: 'block',
+                      }}
+                    />
+                  </div>
+                  {/* Action Button - Only for landing pages with live URLs */}
+                  {activeTab === 'landing' && selectedExample.liveUrl && (
+                    <div style={{ display: 'flex', gap: '16px', justifyContent: 'center' }}>
+                      <a
+                        href={selectedExample.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          padding: '16px 32px',
+                          background: '#2B4C7E',
+                          color: '#ffffff',
+                          borderRadius: '12px',
+                          textDecoration: 'none',
+                          fontSize: '16px',
+                          fontWeight: 700,
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '8px',
+                          boxShadow: '0 4px 12px rgba(43, 76, 126, 0.3)',
+                        }}
+                      >
+                        🌐 Open Live Interactive Page
+                        <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
+                        </svg>
+                      </a>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </>
+  );
+}

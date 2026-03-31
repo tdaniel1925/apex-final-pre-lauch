@@ -1,28 +1,33 @@
-# Commission System - Complete Guide
+# Commission System - Complete Guide (7-Level System)
 
 ## How Apex Commissions Work
 
-Apex uses a **dual-tree compensation system**:
-1. **Enrollment Tree** (L1 Override) - Who YOU personally enrolled
-2. **Matrix Tree** (L2-L5 Overrides) - Your position in the 5×7 forced matrix
+Apex uses a **dual-tree compensation system** with **7 ranks** and **7 override levels**:
+1. **Enrollment Tree** (L1 Override) - Who YOU personally enrolled (sponsor_id)
+2. **Matrix Tree** (L2-L7 Overrides) - Your position in the 5×7 forced matrix (matrix_parent_id)
 
 ### Quick Overview
 
 **You earn commissions from:**
 - Your personal sales (seller commission - 60% of BV)
-- Your team's sales through enrollment overrides (L1 - 30% of BV for direct enrollees)
-- Your team's sales through matrix overrides (L2-L5 - varies by rank, % of Override Pool)
-- Rank advancement bonuses (one-time)
-- Leadership bonuses (Elite rank only)
+- Your team's sales through enrollment overrides (L1 - 25% of override pool for direct enrollees)
+- Your team's sales through matrix overrides (L2-L7 - varies by rank, % of override pool)
+- Rank advancement bonuses (one-time, paid once per rank per lifetime)
+- Leadership pool (Diamond Ambassador rank only - 1.5% of total sales)
+- Bonus pool (equal share among all who earned rank bonuses that month - 3.5% of total sales)
 
-### CRITICAL: Understanding BV (Business Volume)
+### CRITICAL: Understanding QV and BV
 
-**BV (Business Volume) is the commission pool.** ALL commissions are calculated from BV, NOT retail price.
+**QV (Qualifying Volume)** is used for rank qualification:
+- Personal QV: Your direct sales volume
+- Team QV: Your + entire team's sales volume
+- Usually 100% of product price (e.g., $149 product = 149 QV)
 
-**Example: $149 Product**
-- BV = $69.39
+**BV (Business Volume)** is the commission pool after company deductions:
+- ALL commissions are calculated from BV, NOT retail price
+- Example: $149 product has $69.39 BV
 - Seller Commission: 60% of BV = $41.63
-- Override Pool: 40% of BV = $27.76 (distributed L1-L5)
+- Override Pool: 40% of BV = $27.76 (distributed L1-L7)
 
 **Note:** The exact BV calculation method is confidential company information.
 
@@ -46,10 +51,11 @@ Ask the AI: "Show me my personal sales commissions" or "What's my seller commiss
 ## Enrollment Override (L1)
 
 ### What It Is
-- 30% of BV on sales made by people YOU personally enrolled
+- 25% of override pool on sales made by people YOU personally enrolled
 - This is your "direct enrollment override"
 - Applies to ALL your direct enrollees (unlimited)
-- Paid from the Override Pool (40% of BV)
+- Uses enrollment tree (sponsor_id)
+- ALWAYS 25% regardless of your rank
 
 ### Example
 ```
@@ -57,120 +63,165 @@ You enroll Sarah
 Sarah sells PulseFlow at $149/month
 BV = $69.39
 Override Pool = 40% of $69.39 = $27.76
-Your L1 Override: 30% of BV = 30% of $69.39 = $20.82/month
+Your L1 Override: 25% of override pool = 25% of $27.76 = $6.94/month
 ```
 
 ### How to Check Your L1 Earnings
 Ask the AI: "Show me my enrollment overrides" or "What's my L1 override?"
 
-## Matrix Overrides (L2-L5)
+## Matrix Overrides (L2-L7)
 
 ### What Is the Matrix?
 The matrix is a 5×7 **forced matrix** with automatic spillover:
 - Each person can have up to 5 people on their first level
 - Goes 7 levels deep
 - When your 5 spots are filled, new enrollees "spill over" to the next available spot
+- Uses matrix tree (matrix_parent_id)
 
-### Matrix Override Percentages by Rank
+### Matrix Override Percentages by Rank (% of Override Pool)
 
-| Rank | L2 | L3 | L4 | L5 |
-|------|----|----|----|----|
-| **Bronze** | 0% | 0% | 0% | 0% |
-| **Silver** | 5% | 0% | 0% | 0% |
-| **Gold** | 5% | 3% | 0% | 0% |
-| **Platinum** | 5% | 3% | 2% | 0% |
-| **Diamond** | 5% | 3% | 2% | 1% |
-| **Double Diamond+** | 5% | 3% | 2% | 1% |
+| Rank | L1 | L2 | L3 | L4 | L5 | L6 | L7 | Total | Breakage |
+|------|----|----|----|----|----|----|----| ------|----------|
+| **Starter** | 25% | — | — | — | — | — | — | 25% | 75% |
+| **Bronze** | 25% | 20% | — | — | — | — | — | 45% | 55% |
+| **Silver** | 25% | 20% | 18% | — | — | — | — | 63% | 37% |
+| **Gold** | 25% | 20% | 18% | 15% | — | — | — | 78% | 22% |
+| **Platinum** | 25% | 20% | 18% | 15% | 10% | — | — | 88% | 12% |
+| **Ruby** | 25% | 20% | 18% | 15% | 10% | 7% | — | 95% | 5% |
+| **Diamond Ambassador** | 25% | 20% | 18% | 15% | 10% | 7% | 5% | 100% | 0% |
+
+**Key Points:**
+- Percentages are of the override pool (40% of BV), NOT retail price
+- L1 is ALWAYS 25% and uses enrollment tree
+- L2-L7 use matrix tree and vary by upline's rank
+- Breakage (unpaid %) goes 100% to Apex
+- Diamond Ambassador earns 100% of override pool (0% breakage)
 
 ### Example: Gold Rank Commission
 ```
+You are Gold rank (unlocks L1-L4)
+Override Pool per sale: 40% of $69.39 BV = $27.76
+
 Matrix Position:
-- You (Gold Rank - unlocks L1-L4)
-  - L2: 5 people (each sells PulseFlow $149 = $69.39 BV)
-  - L3: 25 people (each sells PulseFlow $149 = $69.39 BV)
+- L1 (enrollment): 5 people personally enrolled
+  Each sells PulseFlow: 5 × ($27.76 × 25%) = 5 × $6.94 = $34.70/month
 
-Override Pool per sale: 40% of $69.39 = $27.76
+- L2 (matrix): 5 people in matrix
+  Each sells PulseFlow: 5 × ($27.76 × 20%) = 5 × $5.55 = $27.75/month
 
-Your Matrix Overrides (from Override Pool):
-- L2: 5 × ($27.76 × 15%) = 5 × $4.16 = $20.80/month
-- L3: 25 × ($27.76 × 10%) = 25 × $2.78 = $69.50/month
-Total Matrix: $90.30/month
+- L3 (matrix): 25 people in matrix
+  Each sells PulseFlow: 25 × ($27.76 × 18%) = 25 × $5.00 = $125.00/month
 
-Note: L1 override is enrollment-based (30% of BV), not matrix-based
+- L4 (matrix): 125 people in matrix
+  Each sells PulseFlow: 125 × ($27.76 × 15%) = 125 × $4.16 = $520.00/month
+
+Total Override Income: $707.45/month
 ```
 
 ### How to Check Matrix Earnings
 Ask the AI: "Show me my matrix commissions" or "Break down my commissions by level"
 
-## Business Volume (BV) System
+## Product BV & QV Reference
 
-### What Is BV?
-**BV = The commission pool available after company deductions**
+### Standard Products
 
-BV is used for:
-1. **Volume Tracking**: Personal BV and Group BV for rank qualification
-2. **Commission Calculation**: All commissions are % of BV (not retail price)
+| Product | Member Price | Retail Price | QV | BV (Member) | BV (Retail) | Seller Earns (60% BV) |
+|---------|--------------|--------------|-----|-------------|-------------|----------------------|
+| PulseMarket | $59 | $79 | 59/79 | $27.58 | $36.94 | $16.55 / $22.16 |
+| PulseFlow | $129 | $149 | 129/149 | $60.32 | $69.65 | $36.19 / $41.79 |
+| PulseDrive | $249 | $299 | 249/299 | $116.48 | $139.83 | $69.89 / $83.90 |
+| PulseCommand | $399 | $499 | 399/499 | $186.62 | $233.37 | $111.97 / $140.02 |
+| SmartLook | $99 | $99 | 99 | $46.29 | $46.29 | $27.77 |
+| Business Center | $39 | — | 39 | $18.10 | — | $5.00 (fixed) |
 
-### BV Calculation
-**Standard Products:**
-```
-BV = (Retail Price × 0.70 × 0.70 × 0.95)
-```
+**Business Center Exception:**
+- Fixed commission amounts (not percentage-based)
+- Rep earns $5 flat
+- Override pool: $13.10 total ($1.75 per level × 7 levels)
+- All 7 levels earn $1.75 flat (regardless of rank)
 
-**Example Products:**
-- PulseGuard Retail ($79): BV = $36
-- PulseFlow Retail ($149): BV = $69
-- PulseDrive Retail ($299): BV = $139
-- PulseCommand Retail ($499): BV = $232
-- Business Center ($39): BV = $39 (fixed exception)
+### Personal QV vs Team QV
+- **Personal QV**: Sum of QV from YOUR direct sales only
+- **Team QV**: Personal QV + all downline QV (entire enrollment tree)
 
-### Personal BV vs Group BV
-- **Personal BV**: Sum of BV from YOUR direct sales
-- **Team BV**: Personal BV + all downline BV (entire enrollment tree)
-
-### Checking Your BV
+### Checking Your QV
 Ask the AI:
-- "What's my personal BV?"
-- "What's my team BV?"
+- "What's my personal QV?"
+- "What's my team QV?"
 - "Am I on track for my next rank?"
 
-## Rank Advancement Requirements
+## Rank Advancement Requirements (7 Ranks)
 
-### Bronze → Silver (3,000 Team BV)
-- Requirements: 3,000 Team BV
-- New Benefits: L2 matrix override (5%)
-- One-Time Bonus: $500
+### Starter (Default)
+- **Requirements:** None
+- **Override Levels:** L1 only (25%)
+- **Rank Bonus:** None
+- **Total Breakage:** 75% to Apex
 
-### Silver → Gold (5,000 Team BV)
-- Requirements: 5,000 Team BV
-- New Benefits: L2 (5%) + L3 (3%) matrix overrides
-- One-Time Bonus: $1,000
+### Bronze
+- **Requirements:** 150 personal QV, 300 team QV
+- **Override Levels:** L1-L2 (25%, 20%)
+- **Rank Bonus:** $250 (one-time)
+- **Total Breakage:** 55% to Apex
 
-### Gold → Platinum (10,000 Team BV)
-- Requirements: 10,000 Team BV + leadership qualifications
-- New Benefits: L2-L4 matrix overrides
-- One-Time Bonus: $2,500
+### Silver
+- **Requirements:** 500 personal QV, 1,500 team QV
+- **Override Levels:** L1-L3 (25%, 20%, 18%)
+- **Rank Bonus:** $1,000 (one-time)
+- **Total Breakage:** 37% to Apex
 
-### Platinum → Diamond (20,000 Team BV)
-- Requirements: 20,000 Team BV + advanced leadership qualifications
-- New Benefits: L2-L5 matrix overrides
-- One-Time Bonus: $5,000
+### Gold
+- **Requirements:** 1,200 personal QV, 5,000 team QV, **1 Bronze sponsored**
+- **Override Levels:** L1-L4 (25%, 20%, 18%, 15%)
+- **Rank Bonus:** $3,000 (one-time)
+- **Total Breakage:** 22% to Apex
 
-### Diamond → Double Diamond (40,000 Team BV)
-- Requirements: 40,000 Team BV + elite leadership qualifications
-- New Benefits: Increased percentages + leadership bonuses
-- One-Time Bonus: $10,000
+### Platinum
+- **Requirements:** 2,500 personal QV, 15,000 team QV, **2 Silvers sponsored**
+- **Override Levels:** L1-L5 (25%, 20%, 18%, 15%, 10%)
+- **Rank Bonus:** $7,500 (one-time)
+- **Total Breakage:** 12% to Apex
 
-### Beyond Double Diamond
-- **Triple Diamond**: 80,000 Team BV - $20,000 bonus
-- **Presidential**: 150,000 Team BV - $50,000 bonus
+### Ruby
+- **Requirements:** 4,000 personal QV, 30,000 team QV, **2 Golds sponsored**
+- **Override Levels:** L1-L6 (25%, 20%, 18%, 15%, 10%, 7%)
+- **Rank Bonus:** $12,000 (one-time)
+- **Total Breakage:** 5% to Apex
+
+### Diamond Ambassador
+- **Requirements:** 5,000 personal QV, 50,000 team QV, **(3 Golds OR 2 Platinums sponsored)**
+- **Override Levels:** L1-L7 (25%, 20%, 18%, 15%, 10%, 7%, 5%)
+- **Rank Bonus:** $18,000 (one-time)
+- **Leadership Pool:** 1.5% of total sales (proportional share)
+- **Total Breakage:** 0% (earns 100% of override pool)
+
+**Total Rank Bonuses Starter → Diamond Ambassador: $41,750**
+
+**Critical Notes:**
+- Bonuses paid **once per rank per lifetime** (re-qualification does NOT earn second bonus)
+- Downline rank requirements must be **personally SPONSORED** (via sponsor_id, not matrix spillover)
+- Promotions take effect on the 1st of the following month
+- 30-day grace period before payment level drops
+
+## Override Qualification - 50 QV Minimum
+
+**CRITICAL RULE:** You must generate 50+ personal QV per month to earn overrides and bonuses.
+
+**If below 50 QV:**
+- Seller commission: STILL PAID (60% of BV)
+- Overrides: $0 (not qualified)
+- Bonuses: $0 (not qualified)
+- Rank advancement: Not eligible
+
+Ask the AI: "Am I qualified for overrides this month?"
 
 ## When Are Commissions Paid?
 
 ### Commission Cycle
-- **Period**: Calendar month (1st - 31st)
-- **Processing**: First week of following month
-- **Payment**: Direct deposit or check
+- **Period**: Calendar month (1st - last day)
+- **Rank Evaluation**: End of month
+- **Promotions Effective**: 1st of following month
+- **Payment**: Monthly (direct deposit or check)
 - **Minimum Payout**: $50
 
 ### Checking Your Current Month
@@ -179,23 +230,28 @@ Ask the AI: "What are my commissions this month?"
 ## Understanding Your Commission Statement
 
 ### What's Included
-1. **Personal Sales (L1)**
-   - Who purchased
-   - Amount
-   - Your 30% override
+1. **Personal Sales (Seller Commission)**
+   - Your direct sales
+   - 60% of BV per product
+   - Total personal seller earnings
 
-2. **Matrix Overrides (L2-L5)**
-   - Level breakdown
+2. **L1 Enrollment Overrides (25%)**
+   - Sales from people YOU personally enrolled
+   - 25% of override pool per sale
+   - Breakdown by enrollee
+
+3. **Matrix Overrides (L2-L7)**
+   - Level breakdown (L2, L3, L4, L5, L6, L7)
    - Number of sales per level
-   - Override percentage
+   - Override percentage (varies by your rank)
    - Total per level
 
-3. **Bonuses**
-   - Rank advancement bonuses
-   - Leadership bonuses
-   - Special promotions
+4. **Bonuses**
+   - Rank advancement bonuses (one-time)
+   - Bonus pool share (if you earned a rank bonus that month)
+   - Leadership pool share (Diamond Ambassador only)
 
-4. **Deductions**
+5. **Deductions**
    - Processing fees (if applicable)
    - Chargebacks (rare)
 
@@ -205,24 +261,43 @@ Ask the AI: "Show me my commission breakdown" or "Give me a detailed commission 
 ## Maximizing Your Commissions
 
 ### Focus on Personal Enrollments (L1)
-- 30% override is your highest percentage
+- 25% of override pool = $6.94 per PulseFlow sale
 - Build a solid base of personal enrollees
 - These are YOUR customers/distributors
+- Goal: 5-10 active personal enrollees
 
 ### Build Depth in the Matrix
 - Help your team enroll others
 - Spillover benefits everyone
-- Higher ranks unlock more levels
+- Higher ranks unlock more levels (up to L7)
+- Each level multiplies your earning potential
 
-### Rank Advancement
-- Each rank unlocks new override levels
+### Rank Advancement Strategy
+- Each rank unlocks new override levels AND increases percentages
 - Focus on team building, not just personal sales
 - Track your progress: Ask me "How close am I to [rank]?"
+- Meet downline rank requirements (personally sponsor qualified members)
 
-### Stay Active
-- Maintain your own membership
-- Lead by example
-- Support your team's success
+### Maintain 50 QV Minimum
+- ALWAYS maintain 50+ personal QV monthly
+- Without it, you lose ALL overrides and bonuses
+- Stay active and lead by example
+
+## Bonus Pool & Leadership Pool
+
+### Bonus Pool (3.5% of Total Sales)
+- Divided EQUALLY among all members who earned rank bonuses that month
+- If 10 people hit new ranks: Each gets 1/10th of bonus pool
+- Example: $10,000 pool ÷ 10 people = $1,000 each
+- Paid monthly
+
+### Leadership Pool (1.5% of Total Sales)
+- Diamond Ambassador rank ONLY
+- Divided proportionally by production points (personal + team QV)
+- Formula: Your points ÷ Total Ambassador points × Leadership pool
+- Example: You have 60,000 points, total is 300,000 points, pool is $15,000
+  → You earn: 60,000 ÷ 300,000 × $15,000 = $3,000
+- Paid monthly
 
 ## Common Commission Questions
 
@@ -231,46 +306,56 @@ Possible reasons:
 - Team member canceled subscription
 - Temporary dip in new enrollments
 - Waiting for pending sales to process
+- Fell below 50 QV minimum (lost override qualification)
 
 Check by asking: "Show me my active team members"
 
 ### "When will I see my rank bonus?"
-- Paid in the month you qualify
+- Paid in the month AFTER you qualify
+- Promotions take effect on 1st of following month
 - Added to your regular commission payment
-- One-time payment
+- One-time payment per rank (lifetime)
 
 ### "How do I track my team's sales?"
 Ask the AI:
 - "Show me this month's team sales"
 - "Who's been most active this month?"
-- "What's my team's total BV?"
+- "What's my team's total QV?"
 
-### "What's the difference between BV and commissions?"
-- **BV** = Volume/points for rank qualification
-- **Commissions** = Actual dollars you earn
-- Different products may have different BV vs. commission ratios
+### "What's the difference between QV and BV?"
+- **QV** = Qualifying Volume for rank advancement (usually 100% of price)
+- **BV** = Business Volume for commission calculation (varies by product)
+- Example: $149 product = 149 QV, but only $69.39 BV
+
+### "What's the difference between enrollment tree and matrix tree?"
+- **Enrollment Tree** (sponsor_id): Who YOU personally enrolled → L1 override
+- **Matrix Tree** (matrix_parent_id): 5×7 forced matrix with spillover → L2-L7 overrides
+- NEVER mixed! Separate trees for different purposes
 
 ## Commission Boosting Strategies
 
 ### 1. The Personal Enrollment Focus
 - Enroll 5-10 personal members
-- Each brings $13.50/month L1 override
-- Goal: $100-$200/month passive from L1
+- Each brings ~$6.94/month L1 override (PulseFlow)
+- Goal: $35-$70/month passive from L1
 
 ### 2. The Matrix Builder
 - Help your L1 enrollees get their first 5
 - This builds your L2 depth
-- Unlock L2 overrides by reaching Silver rank
+- Unlock L2-L7 overrides by advancing ranks
+- Each level multiplies your income
 
 ### 3. The Rank Climber
-- Set rank goals (Silver → Gold → Platinum)
+- Set rank goals (Bronze → Silver → Gold → Platinum → Ruby → Diamond Ambassador)
 - Each rank unlocks more override levels
-- Focus on total team BV growth
+- Focus on total team QV growth
+- Meet downline rank requirements
 
 ### 4. The Duplication Master
 - Teach your team these same strategies
 - Your success multiplies as they succeed
-- Leadership bonuses kick in at higher ranks
+- Leadership bonuses kick in at Diamond Ambassador
+- Help team members hit ranks (earn bonus pool share)
 
 ## Tools to Track Commissions
 
@@ -281,6 +366,8 @@ Ask the AI:
 - "Am I on track to earn [$X]?"
 - "Show me my highest earners"
 - "What's my average monthly commission?"
+- "Am I qualified for overrides?" (50 QV check)
+- "How close am I to [rank]?"
 
 ### Dashboard Quick View
 - Top stats show current month commissions
@@ -305,6 +392,7 @@ Ask the AI:
 - "Why didn't I earn on [person's name] sale?"
 - "How do I increase my commissions?"
 - "What's the best strategy for my rank?"
+- "What's the difference between L1 and L2 overrides?"
 
 ### Commission Discrepancies?
 Contact support with:
@@ -316,24 +404,24 @@ Contact support with:
 ## Commission Growth Timeline
 
 ### Month 1-2: Foundation
-- Focus: Personal enrollments
-- Target: 3-5 L1 members
-- Expected: $40-$70/month
+- Focus: Personal enrollments (3-5 L1 members)
+- Rank: Starter → Bronze
+- Expected: $20-$50/month (seller + L1 overrides)
 
 ### Month 3-6: Building
-- Focus: Help L1 get their first enrollees
-- Target: Silver rank
-- Expected: $100-$300/month
+- Focus: Help L1 get their first enrollees, reach Silver/Gold
+- Rank: Bronze → Silver → Gold
+- Expected: $100-$300/month (L1-L4 overrides + rank bonuses)
 
 ### Month 6-12: Growth
-- Focus: Team duplication + Gold rank
-- Target: Consistent L2-L3 growth
-- Expected: $300-$1,000/month
+- Focus: Team duplication, Platinum/Ruby rank
+- Rank: Gold → Platinum → Ruby
+- Expected: $300-$1,000/month (L1-L6 overrides + bonus pool)
 
 ### Month 12+: Scale
-- Focus: Platinum+ ranks
-- Target: Leadership development
-- Expected: $1,000-$10,000+/month
+- Focus: Diamond Ambassador rank, leadership development
+- Rank: Ruby → Diamond Ambassador
+- Expected: $1,000-$10,000+/month (L1-L7 overrides + leadership pool)
 
 ## Success Mindset
 
@@ -343,11 +431,14 @@ Contact support with:
 3. Consistency beats intensity
 4. Small team, high activity > large team, no activity
 5. Your rank determines your earning potential
+6. Always maintain 50+ personal QV monthly
+7. Downline rank requirements = personally sponsored (not spillover)
 
 **Ask yourself weekly:**
 - "Did I enroll anyone new this week?"
 - "Did I help a team member get started?"
 - "Am I closer to my next rank?"
+- "Am I maintaining 50+ personal QV?"
 - "What's my plan for next week?"
 
 The AI can help you stay on track - just ask!

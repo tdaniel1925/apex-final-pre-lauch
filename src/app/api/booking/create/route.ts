@@ -1,12 +1,14 @@
 // =============================================
 // Create Booking API
 // Creates onboarding session after checkout
+// Integrates with Google Calendar for BotMakers
 // =============================================
 
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 import Stripe from 'stripe';
 import { sendBookingConfirmation } from '@/lib/email/onboarding';
+import { createCalendarEvent, isCalendarConfigured } from '@/lib/google-calendar/client';
 
 function getStripe() {
   if (!process.env.STRIPE_SECRET_KEY) {
@@ -49,12 +51,24 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Check if date is a weekend
+    // Check if date is Sunday (0) - Saturdays (6) are now allowed
     const dateObj = new Date(date + 'T00:00:00');
     const dayOfWeek = dateObj.getDay();
-    if (dayOfWeek === 0 || dayOfWeek === 6) {
+    if (dayOfWeek === 0) {
       return NextResponse.json(
-        { error: 'Cannot book on weekends' },
+        { error: 'Cannot book on Sundays' },
+        { status: 400 }
+      );
+    }
+
+    // Check if date is within 24 hours (minimum booking notice)
+    const now = new Date();
+    const minBookingDate = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+    const bookingDateTime = new Date(date + 'T' + time);
+
+    if (bookingDateTime < minBookingDate) {
+      return NextResponse.json(
+        { error: 'Bookings must be made at least 24 hours in advance' },
         { status: 400 }
       );
     }
@@ -116,6 +130,50 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Create Google Calendar event if configured
+    let googleCalendarEventId: string | null = null;
+    let meetingLink = 'https://meetings.dialpad.com/room/aicallers';
+
+    if (isCalendarConfigured()) {
+      try {
+        const sessionStartTime = new Date(date + 'T' + time);
+        const sessionEndTime = new Date(sessionStartTime.getTime() + 30 * 60 * 1000); // 30 minutes
+
+        // Get product names from order items
+        const productNames = order.order_items?.map((item: any) => item.product_name).join(', ') || 'Apex Products';
+
+        const calendarResult = await createCalendarEvent({
+          title: `Onboarding: ${customerName || 'Customer'} - ${productNames}`,
+          startTime: sessionStartTime,
+          endTime: sessionEndTime,
+          attendees: [
+            customerEmail || '',
+            'botmakers@theapexway.net',
+            // Add rep email if available
+          ].filter(Boolean),
+          description: `
+Client Onboarding Session
+
+Customer: ${customerName || 'Unknown'}
+Email: ${customerEmail || 'Unknown'}
+Phone: ${customerPhone || 'Not provided'}
+Products: ${productNames}
+
+Meeting Link: ${meetingLink}
+
+Please join the meeting at the scheduled time.
+          `.trim(),
+          location: meetingLink,
+        });
+
+        googleCalendarEventId = calendarResult.eventId;
+      } catch (error) {
+        console.error('Error creating Google Calendar event:', error);
+        // Continue with booking even if calendar creation fails
+        // Admin can manually add to calendar later
+      }
+    }
+
     // Create onboarding session
     const { data: newBooking, error: bookingError } = await supabase
       .from('onboarding_sessions')
@@ -126,12 +184,14 @@ export async function POST(request: NextRequest) {
         scheduled_date: date,
         scheduled_time: time,
         timezone: 'America/Chicago',
-        duration_minutes: 60,
+        duration_minutes: 30, // Updated to 30 minutes
+        zoom_link: meetingLink, // Store Dialpad link
         status: 'scheduled',
         customer_name: customerName || 'Unknown',
         customer_email: customerEmail || '',
         customer_phone: customerPhone || '',
         products_purchased: order.order_items,
+        session_notes: googleCalendarEventId ? `Google Calendar Event ID: ${googleCalendarEventId}` : null,
       })
       .select()
       .single();

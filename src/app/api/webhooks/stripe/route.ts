@@ -4,6 +4,8 @@ import { createServiceClient } from '@/lib/supabase/service';
 import { sendEmail } from '@/lib/email/resend';
 import { generateOrderReceiptHTML, generateOrderReceiptSubject } from '@/lib/email/order-receipt';
 import { calculateCreditedBV } from '@/lib/compliance/anti-frontloading';
+import { logProductSale, logSubscriptionPayment, logRefund } from '@/lib/transactions/log-transaction';
+import { handlePaymentMade } from '@/lib/fulfillment/auto-transitions';
 
 // Force dynamic rendering - prevent build-time analysis
 export const dynamic = 'force-dynamic';
@@ -53,6 +55,14 @@ export async function POST(request: NextRequest) {
     switch (event.type) {
       case 'checkout.session.completed':
         await handleCheckoutCompleted(event.data.object as Stripe.Checkout.Session);
+        break;
+
+      case 'invoice.payment_succeeded':
+        await handleInvoicePaymentSucceeded(event.data.object as Stripe.Invoice);
+        break;
+
+      case 'charge.refunded':
+        await handleChargeRefunded(event.data.object as Stripe.Charge);
         break;
 
       case 'customer.subscription.created':
@@ -178,6 +188,41 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
     }
 
     console.log('Order created successfully:', order.id);
+
+    // Log transaction to transactions table
+    let transactionId: string | undefined;
+    try {
+      const transaction = await logProductSale(
+        metadata.distributor_id,
+        (session.amount_total || 0) / 100, // Convert cents to dollars
+        metadata.product_id,
+        session.payment_intent as string,
+        {
+          order_id: order.id,
+          order_number: order.order_number,
+          product_name: productName,
+          bv_amount: parseInt(metadata.bv_amount),
+          is_subscription: session.mode === 'subscription',
+          customer_email: distributor?.email,
+          customer_name: distributor ? `${distributor.first_name} ${distributor.last_name}` : undefined,
+        }
+      );
+      transactionId = transaction?.id;
+    } catch (logError) {
+      console.error('Failed to log transaction:', logError);
+      // Don't fail the whole webhook if transaction logging fails
+    }
+
+    // Create fulfillment Kanban card for AI products
+    if (transactionId) {
+      try {
+        await handlePaymentMade(transactionId);
+        console.log('Fulfillment record created for transaction:', transactionId);
+      } catch (fulfillmentError) {
+        console.error('Failed to create fulfillment record:', fulfillmentError);
+        // Don't fail the whole webhook if fulfillment creation fails
+      }
+    }
 
     // Credit BV to distributor with anti-frontloading check
     if (metadata.is_personal_purchase === 'true') {
@@ -552,5 +597,100 @@ async function handleRetailCheckout(session: Stripe.Checkout.Session) {
     console.log('✅ Retail order created:', order.id);
   } catch (error) {
     console.error('❌ Error handling retail checkout:', error);
+  }
+}
+
+async function handleInvoicePaymentSucceeded(invoice: Stripe.Invoice) {
+  try {
+    const stripe = getStripe();
+    const supabase = createServiceClient();
+
+    // Get subscription details to find distributor_id
+    const invoiceData = invoice as any;
+    if (!invoiceData.subscription) {
+      console.log('Invoice not associated with subscription, skipping transaction log');
+      return;
+    }
+
+    const subscription = await stripe.subscriptions.retrieve(invoiceData.subscription as string);
+    const distributorId = subscription.metadata?.distributor_id;
+    const productSlug = subscription.metadata?.product_slug;
+
+    if (!distributorId) {
+      console.log('No distributor_id in subscription metadata, skipping transaction log');
+      return;
+    }
+
+    // Log subscription payment transaction
+    try {
+      await logSubscriptionPayment(
+        distributorId,
+        (invoiceData.amount_paid || 0) / 100, // Convert cents to dollars
+        productSlug || 'subscription',
+        invoiceData.payment_intent as string,
+        invoiceData.subscription as string,
+        {
+          invoice_id: invoiceData.id,
+          period_start: invoiceData.period_start,
+          period_end: invoiceData.period_end,
+          billing_reason: invoiceData.billing_reason,
+          customer_email: invoiceData.customer_email,
+        }
+      );
+
+      console.log('✅ Subscription payment transaction logged');
+    } catch (logError) {
+      console.error('Failed to log subscription payment transaction:', logError);
+      // Don't fail the webhook if transaction logging fails
+    }
+  } catch (error) {
+    console.error('Error handling invoice payment:', error);
+  }
+}
+
+async function handleChargeRefunded(charge: Stripe.Charge) {
+  try {
+    const supabase = createServiceClient();
+    const paymentIntentId = charge.payment_intent as string;
+
+    if (!paymentIntentId) {
+      console.log('No payment intent ID, skipping refund transaction log');
+      return;
+    }
+
+    // Find original transaction
+    const { data: originalTransaction } = await supabase
+      .from('transactions')
+      .select('*, distributor:distributors(first_name, last_name, email)')
+      .eq('stripe_payment_intent_id', paymentIntentId)
+      .single();
+
+    if (!originalTransaction) {
+      console.log('Original transaction not found, skipping refund transaction log');
+      return;
+    }
+
+    // Log refund transaction (negative amount)
+    try {
+      await logRefund(
+        originalTransaction.distributor_id,
+        charge.amount_refunded / 100, // Convert cents to dollars (logRefund will make it negative)
+        paymentIntentId,
+        originalTransaction.product_slug,
+        {
+          original_transaction_id: originalTransaction.id,
+          refund_reason: charge.refunds?.data[0]?.reason || 'unknown',
+          refund_id: charge.refunds?.data[0]?.id,
+          customer_email: charge.billing_details?.email,
+        }
+      );
+
+      console.log('✅ Refund transaction logged');
+    } catch (logError) {
+      console.error('Failed to log refund transaction:', logError);
+      // Don't fail the webhook if transaction logging fails
+    }
+  } catch (error) {
+    console.error('Error handling charge refund:', error);
   }
 }

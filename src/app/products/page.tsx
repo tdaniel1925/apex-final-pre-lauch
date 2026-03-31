@@ -386,7 +386,6 @@ const comparisonData: Record<
 export default function ProductsPage() {
   const [activeTab, setActiveTab] = useState<ContentType>('landing');
   const [selectedExample, setSelectedExample] = useState<Example | null>(null);
-  const [facebookSDKLoaded, setFacebookSDKLoaded] = useState(false);
 
   // Memoize randomized social posts so they don't re-shuffle on every render
   const randomizedSocialPosts = useMemo(() => {
@@ -395,37 +394,6 @@ export default function ProductsPage() {
 
   // Get the examples for the current tab (randomized for social)
   const currentExamples = activeTab === 'social' ? randomizedSocialPosts : examples[activeTab];
-
-  // Load Facebook SDK
-  useEffect(() => {
-    if (typeof window !== 'undefined' && !(window as any).FB) {
-      (window as any).fbAsyncInit = function() {
-        (window as any).FB.init({
-          xfbml: true,
-          version: 'v18.0'
-        });
-        setFacebookSDKLoaded(true);
-      };
-
-      const script = document.createElement('script');
-      script.async = true;
-      script.defer = true;
-      script.crossOrigin = 'anonymous';
-      script.src = 'https://connect.facebook.net/en_US/sdk.js';
-      document.body.appendChild(script);
-    } else if ((window as any).FB) {
-      setFacebookSDKLoaded(true);
-    }
-  }, []);
-
-  // Refresh Facebook embed when modal opens with a Facebook post
-  useEffect(() => {
-    if (selectedExample?.facebookUrl && facebookSDKLoaded && (window as any).FB) {
-      setTimeout(() => {
-        (window as any).FB.XFBML.parse();
-      }, 100);
-    }
-  }, [selectedExample, facebookSDKLoaded]);
 
   return (
     <>
@@ -464,6 +432,13 @@ export default function ProductsPage() {
               alignItems: 'center',
               gap: '40px'
             }}>
+              <a href="/" style={{
+                color: '#64748b',
+                textDecoration: 'none',
+                fontSize: '15px',
+                fontWeight: '500',
+                transition: 'color 0.2s'
+              }}>Home</a>
               <a href="/#opportunity" style={{
                 color: '#64748b',
                 textDecoration: 'none',
@@ -1180,7 +1155,7 @@ export default function ProductsPage() {
 
                 {/* Content Preview */}
                 <div>
-                  {activeTab === 'social' && selectedExample.facebookUrl ? (
+                  {activeTab === 'social' && selectedExample.thumbnail ? (
                     <div
                       style={{
                         border: '3px solid #e2e8f0',
@@ -1188,26 +1163,22 @@ export default function ProductsPage() {
                         overflow: 'hidden',
                         boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
                         background: '#ffffff',
-                        padding: '24px',
                         display: 'flex',
                         justifyContent: 'center',
-                        minHeight: '500px',
+                        alignItems: 'center',
+                        padding: '24px',
                       }}
                     >
-                      <div id="fb-root"></div>
-                      <div
-                        className="fb-post"
-                        data-href={selectedExample.facebookUrl}
-                        data-width="550"
-                        data-show-text="true"
-                      >
-                        <blockquote cite={selectedExample.facebookUrl} className="fb-xfbml-parse-ignore">
-                          <p>Loading Facebook post...</p>
-                          <a href={selectedExample.facebookUrl} target="_blank" rel="noopener noreferrer">
-                            View on Facebook
-                          </a>
-                        </blockquote>
-                      </div>
+                      <img
+                        src={selectedExample.thumbnail}
+                        alt={selectedExample.title}
+                        style={{
+                          maxWidth: '100%',
+                          height: 'auto',
+                          display: 'block',
+                          borderRadius: '8px',
+                        }}
+                      />
                     </div>
                   ) : activeTab === 'video' && selectedExample.videoUrl ? (
                     <div

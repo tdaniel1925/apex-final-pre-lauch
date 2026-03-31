@@ -12,7 +12,8 @@ interface BookingEmailData {
   customerEmail: string;
   bookingDate: string; // Formatted date (e.g., "Monday, March 25, 2026")
   bookingTime: string; // Formatted time (e.g., "2:00 PM")
-  zoomLink?: string; // Optional - only needed for reminders
+  meetingLink?: string; // Dialpad meeting link
+  repEmail?: string; // Rep's email address for CC
 }
 
 /**
@@ -63,21 +64,43 @@ export async function sendBookingConfirmation(
   data: BookingEmailData
 ): Promise<{ success: boolean; error?: string }> {
   try {
+    const meetingLink = data.meetingLink || 'https://meetings.dialpad.com/room/aicallers';
+
     const html = await loadTemplate('booking-confirmation.html', {
       email_title: 'Onboarding Session Confirmed',
       booking_date: data.bookingDate,
       booking_time: data.bookingTime,
+      meeting_link: meetingLink,
       unsubscribe_url: 'https://theapexway.net/unsubscribe',
     });
 
-    const result = await sendEmail({
+    // Send to customer
+    const customerResult = await sendEmail({
       to: data.customerEmail,
       subject: 'Your Onboarding Session is Confirmed!',
       html,
       from: 'Apex Affinity Group <support@theapexway.net>',
     });
 
-    return result;
+    // Send to rep if email provided
+    if (data.repEmail) {
+      await sendEmail({
+        to: data.repEmail,
+        subject: `Client Onboarding Scheduled: ${data.customerName}`,
+        html,
+        from: 'Apex Affinity Group <support@theapexway.net>',
+      });
+    }
+
+    // Send to BotMakers
+    await sendEmail({
+      to: 'botmakers@theapexway.net',
+      subject: `New Onboarding: ${data.customerName} - ${data.bookingDate} ${data.bookingTime}`,
+      html,
+      from: 'Apex Affinity Group <support@theapexway.net>',
+    });
+
+    return customerResult;
   } catch (error) {
     console.error('Error sending booking confirmation:', error);
     return {
@@ -93,16 +116,14 @@ export async function sendBookingConfirmation(
 export async function send24HourReminder(
   data: BookingEmailData
 ): Promise<{ success: boolean; error?: string }> {
-  if (!data.zoomLink) {
-    return { success: false, error: 'Zoom link required for reminder' };
-  }
-
   try {
+    const meetingLink = data.meetingLink || 'https://meetings.dialpad.com/room/aicallers';
+
     const html = await loadTemplate('booking-reminder-24h.html', {
       email_title: 'Your Session is Tomorrow!',
       booking_date: data.bookingDate,
       booking_time: data.bookingTime,
-      zoom_link: data.zoomLink,
+      meeting_link: meetingLink,
       unsubscribe_url: 'https://theapexway.net/unsubscribe',
     });
 
@@ -112,6 +133,16 @@ export async function send24HourReminder(
       html,
       from: 'Apex Affinity Group <support@theapexway.net>',
     });
+
+    // Also send to rep if provided
+    if (data.repEmail) {
+      await sendEmail({
+        to: data.repEmail,
+        subject: `Reminder: Client Session Tomorrow - ${data.customerName}`,
+        html,
+        from: 'Apex Affinity Group <support@theapexway.net>',
+      });
+    }
 
     return result;
   } catch (error) {
@@ -124,34 +155,74 @@ export async function send24HourReminder(
 }
 
 /**
- * Send 1-hour reminder email
+ * Send 4-hour reminder email
  */
-export async function send1HourReminder(
+export async function send4HourReminder(
   data: BookingEmailData
 ): Promise<{ success: boolean; error?: string }> {
-  if (!data.zoomLink) {
-    return { success: false, error: 'Zoom link required for reminder' };
-  }
-
   try {
-    const html = await loadTemplate('booking-reminder-1h.html', {
-      email_title: 'Your Session Starts in 1 Hour!',
+    const meetingLink = data.meetingLink || 'https://meetings.dialpad.com/room/aicallers';
+
+    const html = await loadTemplate('booking-reminder-4h.html', {
+      email_title: 'Your Session is in 4 Hours!',
       booking_date: data.bookingDate,
       booking_time: data.bookingTime,
-      zoom_link: data.zoomLink,
+      meeting_link: meetingLink,
       unsubscribe_url: 'https://theapexway.net/unsubscribe',
     });
 
     const result = await sendEmail({
       to: data.customerEmail,
-      subject: 'Starting Soon: Your Onboarding Session in 1 Hour',
+      subject: 'Reminder: Your Onboarding Session in 4 Hours',
       html,
       from: 'Apex Affinity Group <support@theapexway.net>',
     });
 
     return result;
   } catch (error) {
-    console.error('Error sending 1h reminder:', error);
+    console.error('Error sending 4h reminder:', error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Unknown error',
+    };
+  }
+}
+
+/**
+ * Send 15-minute reminder email
+ */
+export async function send15MinuteReminder(
+  data: BookingEmailData
+): Promise<{ success: boolean; error?: string }> {
+  try {
+    const meetingLink = data.meetingLink || 'https://meetings.dialpad.com/room/aicallers';
+
+    const html = await loadTemplate('booking-reminder-15m.html', {
+      email_title: 'Your Session Starts in 15 Minutes!',
+      booking_date: data.bookingDate,
+      booking_time: data.bookingTime,
+      meeting_link: meetingLink,
+      unsubscribe_url: 'https://theapexway.net/unsubscribe',
+    });
+
+    const result = await sendEmail({
+      to: data.customerEmail,
+      subject: 'Starting Soon: Your Onboarding Session in 15 Minutes',
+      html,
+      from: 'Apex Affinity Group <support@theapexway.net>',
+    });
+
+    // Also send to BotMakers for immediate alert
+    await sendEmail({
+      to: 'botmakers@theapexway.net',
+      subject: `Session Starting: ${data.customerName} - In 15 Minutes`,
+      html,
+      from: 'Apex Affinity Group <support@theapexway.net>',
+    });
+
+    return result;
+  } catch (error) {
+    console.error('Error sending 15m reminder:', error);
     return {
       success: false,
       error: error instanceof Error ? error.message : 'Unknown error',

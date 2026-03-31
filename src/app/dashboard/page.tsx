@@ -22,6 +22,7 @@ import CopyReferralButton from '@/components/dashboard/CopyReferralButton';
 import AIPhoneStats from '@/components/dashboard/AIPhoneStats';
 import RaceTo100Banner from '@/components/dashboard/RaceTo100Banner';
 import AIAssistantBanner from '@/components/dashboard/AIAssistantBanner';
+import AIRecommendations from '@/components/dashboard/AIRecommendations';
 import type { Distributor } from '@/lib/types';
 import { ArrowRight, Users, FileText, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
@@ -229,6 +230,9 @@ export default async function DashboardPage() {
 
           {/* AI Assistant Banner */}
           <AIAssistantBanner />
+
+          {/* AI Recommendations Widget */}
+          <AIRecommendations />
 
           {/* Training Audio Player */}
           <TrainingAudioPlayer />

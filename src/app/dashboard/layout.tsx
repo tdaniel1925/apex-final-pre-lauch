@@ -1,12 +1,14 @@
 // =============================================
 // Dashboard Layout
-// Includes sidebar navigation and AI chat
+// Includes sidebar navigation, AI chat, and Business Center nag
 // =============================================
 
 import Sidebar from '@/components/dashboard/Sidebar';
+import BusinessCenterNag from '@/components/dashboard/BusinessCenterNag';
 import { Toaster } from 'sonner';
 import { createClient } from '@/lib/supabase/server';
 import { createServiceClient } from '@/lib/supabase/service';
+import { checkBusinessCenterSubscription } from '@/lib/subscription/check-business-center';
 import { redirect } from 'next/navigation';
 
 export default async function DashboardLayout({
@@ -19,17 +21,23 @@ export default async function DashboardLayout({
   const { data: { user } } = await supabase.auth.getUser();
 
   let isLicensedAgent = true; // Default true
+  let distributorId: string | null = null;
+  let businessCenterStatus: Awaited<ReturnType<typeof checkBusinessCenterSubscription>> | null = null;
 
   if (user) {
     const serviceClient = createServiceClient();
     const { data: distributor } = await serviceClient
       .from('distributors')
-      .select('is_licensed_agent')
+      .select('id, is_licensed_agent')
       .eq('auth_user_id', user.id)
       .single();
 
     if (distributor) {
       isLicensedAgent = distributor.is_licensed_agent ?? true;
+      distributorId = distributor.id;
+
+      // Check Business Center subscription status
+      businessCenterStatus = await checkBusinessCenterSubscription(distributor.id);
     }
   }
 
@@ -38,6 +46,14 @@ export default async function DashboardLayout({
       <Toaster position="top-right" />
       <Sidebar isLicensedAgent={isLicensedAgent} />
       <main className="flex-1 pt-14 md:pt-0 min-w-0">
+        {/* Business Center Nag (Banner or Modal) */}
+        {businessCenterStatus && businessCenterStatus.nagLevel !== 'none' && distributorId && (
+          <BusinessCenterNag
+            nagLevel={businessCenterStatus.nagLevel}
+            daysWithout={businessCenterStatus.daysWithout}
+            distributorId={distributorId}
+          />
+        )}
         {children}
       </main>
     </div>

@@ -10,9 +10,9 @@ import { createClient } from '@/lib/supabase/server'
 import { createVapiAssistant, buyVapiPhoneNumber } from '@/lib/vapi/client'
 import { provisionDistributorPhoneNumber } from '@/lib/twilio/provisioning'
 import {
-  generateNetworkMarketingPrompt,
-  NETWORK_MARKETING_VOICE_CONFIG,
-} from '@/lib/vapi/prompts/network-marketing'
+  generateApexRepAgentPrompt,
+  APEX_REP_VOICE_CONFIG,
+} from '@/lib/vapi/prompts/apex-rep-agent'
 
 interface ProvisionRequest {
   distributorId: string
@@ -80,7 +80,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<Provision
     // Get distributor's info for prompt personalization
     const { data: distributor } = await supabase
       .from('distributors')
-      .select('slug, bio, phone, first_call_completed, business_center_tier')
+      .select('slug, email, phone, insurance_licensed')
       .eq('id', distributorId)
       .single()
 
@@ -88,16 +88,21 @@ export async function POST(request: NextRequest): Promise<NextResponse<Provision
       ? `${process.env.NEXT_PUBLIC_APP_URL}/${distributor.slug}`
       : `${process.env.NEXT_PUBLIC_APP_URL}/signup`
 
-    // Step 1: Generate personalized AI prompt with caller detection
-    const systemPrompt = generateNetworkMarketingPrompt({
-      firstName,
-      lastName,
+    const signupUrl = distributor?.slug
+      ? `${process.env.NEXT_PUBLIC_APP_URL}/signup?ref=${distributor.slug}`
+      : `${process.env.NEXT_PUBLIC_APP_URL}/signup`
+
+    // Step 1: Generate personalized AI prompt for Apex rep agent
+    const systemPrompt = generateApexRepAgentPrompt({
+      repFirstName: firstName,
+      repLastName: lastName,
+      repPhone: distributor?.phone || phone,
+      repEmail: distributor?.email || '',
+      repSlug: distributor?.slug || '',
       sponsorName,
       replicatedSiteUrl,
-      distributorPhone: distributor?.phone || phone, // For caller ID detection
-      distributorBio: distributor?.bio || undefined, // For Owner Mode personalization
-      firstCallCompleted: distributor?.first_call_completed || false, // Show welcome or not
-      businessCenterTier: distributor?.business_center_tier || 'free', // FREE vs PAID tier
+      signupUrl,
+      isLicensed: distributor?.insurance_licensed || false,
     })
 
     // Step 2: Create VAPI assistant with webhook
@@ -110,15 +115,15 @@ export async function POST(request: NextRequest): Promise<NextResponse<Provision
         systemPrompt,
       },
       voice: {
-        provider: NETWORK_MARKETING_VOICE_CONFIG.provider,
-        voiceId: NETWORK_MARKETING_VOICE_CONFIG.voiceId,
+        provider: APEX_REP_VOICE_CONFIG.provider,
+        voiceId: APEX_REP_VOICE_CONFIG.voiceId,
       },
-      firstMessage: NETWORK_MARKETING_VOICE_CONFIG.firstMessage,
-      firstMessageMode: NETWORK_MARKETING_VOICE_CONFIG.firstMessageMode,
-      recordingEnabled: NETWORK_MARKETING_VOICE_CONFIG.recordingEnabled,
+      firstMessage: APEX_REP_VOICE_CONFIG.firstMessage,
+      firstMessageMode: APEX_REP_VOICE_CONFIG.firstMessageMode,
+      recordingEnabled: APEX_REP_VOICE_CONFIG.recordingEnabled,
       transcriber: {
-        provider: NETWORK_MARKETING_VOICE_CONFIG.transcriber.provider,
-        model: NETWORK_MARKETING_VOICE_CONFIG.transcriber.model,
+        provider: APEX_REP_VOICE_CONFIG.transcriber.provider,
+        model: APEX_REP_VOICE_CONFIG.transcriber.model,
       },
       // Webhook for call events (SMS notifications, first call tracking)
       serverUrl: `${process.env.NEXT_PUBLIC_APP_URL}/api/vapi/call-events`,

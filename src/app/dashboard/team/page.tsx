@@ -6,7 +6,9 @@
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { createServiceClient } from '@/lib/supabase/service';
+import { checkBusinessCenterSubscription } from '@/lib/subscription/check-business-center';
 import { getAdminUser } from '@/lib/auth/admin';
+import FeatureGate from '@/components/dashboard/FeatureGate';
 import TeamStatsHeader from '@/components/team/TeamStatsHeader';
 import TeamMemberCard, { type TeamMemberData } from '@/components/team/TeamMemberCard';
 import TeamWithModal from '@/components/team/TeamWithModal';
@@ -68,6 +70,24 @@ export default async function TeamPage() {
           <p className="text-slate-600">Member record not found. Please contact support.</p>
         </div>
       </div>
+    );
+  }
+
+  // Check Business Center subscription status
+  const businessCenterStatus = await checkBusinessCenterSubscription(distributor.id);
+  const hasAccess = businessCenterStatus.hasSubscription ||
+                    businessCenterStatus.nagLevel === 'none' ||
+                    businessCenterStatus.nagLevel === 'soft';
+
+  if (!hasAccess) {
+    return (
+      <FeatureGate
+        featurePath="/dashboard/team"
+        hasAccess={false}
+        daysWithout={businessCenterStatus.daysWithout}
+      >
+        <></>
+      </FeatureGate>
     );
   }
 

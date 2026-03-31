@@ -60,6 +60,11 @@ export async function POST(request: NextRequest) {
         setup_instructions: body.setup_instructions || null,
         trial_days: body.trial_days || 0,
 
+        // Onboarding
+        requires_onboarding: body.requires_onboarding ?? false,
+        onboarding_duration_minutes: body.onboarding_duration_minutes || 30,
+        onboarding_instructions: body.onboarding_instructions || null,
+
         // Product type
         is_digital: body.is_digital ?? true,
         stock_status: body.stock_status || 'in_stock',

@@ -32,6 +32,9 @@ export async function PATCH(
       bv,
       is_subscription,
       subscription_interval,
+      requires_onboarding,
+      onboarding_duration_minutes,
+      onboarding_instructions,
       is_active,
       is_featured,
     } = body;
@@ -78,6 +81,9 @@ export async function PATCH(
       updates.is_subscription = is_subscription;
       updates.subscription_interval = is_subscription ? subscription_interval : null;
     }
+    if (requires_onboarding !== undefined) updates.requires_onboarding = requires_onboarding;
+    if (onboarding_duration_minutes !== undefined) updates.onboarding_duration_minutes = onboarding_duration_minutes;
+    if (onboarding_instructions !== undefined) updates.onboarding_instructions = onboarding_instructions;
     if (is_active !== undefined) updates.is_active = is_active;
     if (is_featured !== undefined) updates.is_featured = is_featured;
 

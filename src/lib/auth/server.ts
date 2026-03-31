@@ -26,3 +26,8 @@ export async function getCurrentUser() {
 
   return distributor;
 }
+
+/**
+ * Alias for getCurrentUser (for consistency)
+ */
+export const getCurrentDistributor = getCurrentUser;

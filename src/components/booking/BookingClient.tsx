@@ -3,7 +3,7 @@
 // =============================================
 // Booking Client Component
 // Calendar interface for scheduling onboarding sessions
-// 9am-7pm CT, Mon-Fri, 60-minute sessions
+// 9am-6pm CT, Mon-Sat, 30-minute sessions
 // =============================================
 
 import { useState, useEffect } from 'react';
@@ -29,8 +29,8 @@ export default function BookingClient() {
 
   while (businessDays.length < 30) {
     const dayOfWeek = currentDate.getDay();
-    // Skip weekends (0 = Sunday, 6 = Saturday)
-    if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+    // Skip Sundays only (0 = Sunday, Saturdays are now allowed)
+    if (dayOfWeek !== 0) {
       businessDays.push(currentDate.toISOString().split('T')[0]);
     }
     currentDate.setDate(currentDate.getDate() + 1);
@@ -118,10 +118,10 @@ export default function BookingClient() {
             <p className="text-lg text-slate-700">
               {formatTime(selectedTime || '')} Central Time
             </p>
-            <p className="text-sm text-slate-500 mt-2">Duration: 60 minutes</p>
+            <p className="text-sm text-slate-500 mt-2">Duration: 30 minutes</p>
           </div>
           <p className="text-slate-600 mb-4">
-            You'll receive a confirmation email with your session details and Zoom link.
+            You'll receive a confirmation email with your session details and Dialpad meeting link.
           </p>
           <p className="text-sm text-slate-500">
             Need to reschedule? Contact your representative or reply to the confirmation email.
@@ -145,7 +145,7 @@ export default function BookingClient() {
             Schedule Your Onboarding Session
           </h1>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Book a 60-minute session with our Onboarding Specialist to get started with your new AI-powered tools.
+            Book a 30-minute session with BotMakers to get started with your new AI-powered tools.
           </p>
         </div>
 
@@ -241,7 +241,7 @@ export default function BookingClient() {
                   {' at '}
                   {formatTime(selectedTime)} CT
                 </p>
-                <p className="text-sm text-slate-500 mt-2">Duration: 60 minutes</p>
+                <p className="text-sm text-slate-500 mt-2">Duration: 30 minutes</p>
               </div>
               <button
                 onClick={handleBooking}

@@ -10,6 +10,8 @@ import Anthropic from '@anthropic-ai/sdk';
 import { sendEmail } from '@/lib/email/resend';
 import fs from 'fs/promises';
 import path from 'path';
+import { checkChatbotLimit } from '@/lib/usage/limits';
+import { trackUsage } from '@/lib/usage/tracking';
 
 // Initialize Anthropic client
 const anthropic = new Anthropic({
@@ -1354,68 +1356,78 @@ async function handleRankProgressCheck(userId: string) {
     .eq('sponsor_id', member.distributor_id)
     .eq('status', 'active');
 
-  // Simple rank progression (you'll want to customize based on your comp plan)
+  // Tech Ladder Rank Requirements (7-level system)
+  // Source: src/lib/compensation/config.ts TECH_RANK_REQUIREMENTS
   const ranks = [
-    { name: 'Member', pvRequired: 0, gvRequired: 0, activeRequired: 0 },
-    { name: 'Bronze', pvRequired: 500, gvRequired: 2000, activeRequired: 3 },
-    { name: 'Silver', pvRequired: 500, gvRequired: 5000, activeRequired: 5 },
-    { name: 'Gold', pvRequired: 500, gvRequired: 10000, activeRequired: 10 },
-    { name: 'Platinum', pvRequired: 500, gvRequired: 25000, activeRequired: 15 },
-    { name: 'Diamond', pvRequired: 500, gvRequired: 50000, activeRequired: 25 },
+    { name: 'starter', displayName: 'Starter', qvRequired: 0, teamQvRequired: 0, downlineReq: null, bonus: 0 },
+    { name: 'bronze', displayName: 'Bronze', qvRequired: 150, teamQvRequired: 300, downlineReq: null, bonus: 250 },
+    { name: 'silver', displayName: 'Silver', qvRequired: 500, teamQvRequired: 1500, downlineReq: null, bonus: 1000 },
+    { name: 'gold', displayName: 'Gold', qvRequired: 1200, teamQvRequired: 5000, downlineReq: '1 Bronze sponsored', bonus: 3000 },
+    { name: 'platinum', displayName: 'Platinum', qvRequired: 2500, teamQvRequired: 15000, downlineReq: '2 Silvers sponsored', bonus: 7500 },
+    { name: 'ruby', displayName: 'Ruby', qvRequired: 4000, teamQvRequired: 30000, downlineReq: '2 Golds sponsored', bonus: 12000 },
+    { name: 'diamond_ambassador', displayName: 'Diamond Ambassador', qvRequired: 5000, teamQvRequired: 50000, downlineReq: '3 Golds OR 2 Platinums sponsored', bonus: 18000 },
   ];
 
-  const currentRankName = member.current_rank || 'Member';
+  const currentRankName = member.current_rank || 'starter';
   const currentRankIndex = ranks.findIndex(r => r.name === currentRankName);
   const nextRank = ranks[currentRankIndex + 1];
+  const currentRankDisplay = ranks[currentRankIndex]?.displayName || 'Starter';
 
   if (!nextRank) {
     return {
       success: true,
-      message: `🏆 Congratulations!\n\nYou're at the highest rank: ${currentRankName}\n\nKeep building and leading your team!`,
+      message: `🏆 Congratulations!\n\nYou're at the highest rank: ${currentRankDisplay}\n\nKeep building and leading your team!`,
     };
   }
 
-  const pv = member.personal_volume || 0;
-  const gv = member.group_volume || 0;
-  const ae = activeEnrollments || 0;
+  const personalQV = member.personal_volume || 0;
+  const teamQV = member.group_volume || 0;
 
-  const pvProgress = Math.min((pv / nextRank.pvRequired) * 100, 100);
-  const gvProgress = Math.min((gv / nextRank.gvRequired) * 100, 100);
-  const aeProgress = Math.min((ae / nextRank.activeRequired) * 100, 100);
+  const qvProgress = nextRank.qvRequired > 0 ? Math.min((personalQV / nextRank.qvRequired) * 100, 100) : 100;
+  const teamQvProgress = nextRank.teamQvRequired > 0 ? Math.min((teamQV / nextRank.teamQvRequired) * 100, 100) : 100;
 
-  const pvMet = pv >= nextRank.pvRequired;
-  const gvMet = gv >= nextRank.gvRequired;
-  const aeMet = ae >= nextRank.activeRequired;
+  const qvMet = personalQV >= nextRank.qvRequired;
+  const teamQvMet = teamQV >= nextRank.teamQvRequired;
 
-  const pvNeeded = Math.max(nextRank.pvRequired - pv, 0);
-  const gvNeeded = Math.max(nextRank.gvRequired - gv, 0);
-  const aeNeeded = Math.max(nextRank.activeRequired - ae, 0);
+  const qvNeeded = Math.max(nextRank.qvRequired - personalQV, 0);
+  const teamQvNeeded = Math.max(nextRank.teamQvRequired - teamQV, 0);
 
-  let message = `🏆 Rank Progress\n\n**Current Rank:** ${currentRankName}\n**Next Rank:** ${nextRank.name}\n\n`;
-  message += `**Requirements for ${nextRank.name}:**\n`;
-  message += `${pvMet ? '✅' : '⚠️'} Personal Volume: $${pv.toFixed(2)}/$${nextRank.pvRequired} (${pvProgress.toFixed(0)}%)\n`;
-  message += `${gvMet ? '✅' : '⚠️'} Team Volume: $${gv.toFixed(2)}/$${nextRank.gvRequired} (${gvProgress.toFixed(0)}%)\n`;
-  message += `${aeMet ? '✅' : '⚠️'} Active Enrollments: ${ae}/${nextRank.activeRequired} (${aeProgress.toFixed(0)}%)\n\n`;
+  let message = `🏆 Rank Progress\n\n**Current Rank:** ${currentRankDisplay}\n**Next Rank:** ${nextRank.displayName}\n**Rank Bonus:** $${nextRank.bonus.toLocaleString()} (one-time)\n\n`;
+  message += `**Requirements for ${nextRank.displayName}:**\n`;
+  message += `${qvMet ? '✅' : '⚠️'} Personal QV: ${personalQV}/${nextRank.qvRequired} QV (${qvProgress.toFixed(0)}%)\n`;
+  message += `${teamQvMet ? '✅' : '⚠️'} Team QV: ${teamQV}/${nextRank.teamQvRequired} QV (${teamQvProgress.toFixed(0)}%)\n`;
 
-  const overallProgress = (pvProgress + gvProgress + aeProgress) / 3;
+  if (nextRank.downlineReq) {
+    message += `⚠️ Downline Requirement: ${nextRank.downlineReq}\n`;
+  }
+  message += '\n';
+
+  const overallProgress = (qvProgress + teamQvProgress) / 2;
   message += `📊 Overall Progress: ${overallProgress.toFixed(0)}%\n\n`;
 
-  if (!pvMet || !gvMet || !aeMet) {
+  if (!qvMet || !teamQvMet) {
     message += `**You Need:**\n`;
-    if (!pvMet) message += `• $${pvNeeded.toFixed(2)} more personal volume\n`;
-    if (!gvMet) message += `• $${gvNeeded.toFixed(2)} more team volume\n`;
-    if (!aeMet) message += `• ${aeNeeded} more active enrollment${aeNeeded > 1 ? 's' : ''}\n`;
+    if (!qvMet) message += `• ${qvNeeded} more personal QV\n`;
+    if (!teamQvMet) message += `• ${teamQvNeeded} more team QV\n`;
+    if (nextRank.downlineReq) {
+      message += `• ${nextRank.downlineReq}\n`;
+    }
+  } else if (nextRank.downlineReq) {
+    message += `⚠️ Note: You've met QV requirements, but still need: ${nextRank.downlineReq}\n`;
   } else {
-    message += `🎉 You've met all requirements! Contact support to advance to ${nextRank.name}!`;
+    message += `🎉 You've met all requirements for ${nextRank.displayName}! Rank advancement happens automatically at month-end.`;
   }
 
   return {
     success: true,
     message,
     data: {
-      currentRank: currentRankName,
-      nextRank: nextRank.name,
+      currentRank: currentRankDisplay,
+      nextRank: nextRank.displayName,
       progress: overallProgress,
+      personalQV,
+      teamQV,
+      nextRankBonus: nextRank.bonus,
     },
   };
 }
@@ -2605,6 +2617,22 @@ export async function POST(request: NextRequest) {
       .eq('auth_user_id', user.id)
       .single();
 
+    // Check usage limits (20 messages/day for free tier, unlimited for Business Center)
+    if (distributor?.id) {
+      const usageCheck = await checkChatbotLimit(distributor.id);
+      if (!usageCheck.allowed) {
+        return NextResponse.json(
+          {
+            error: 'Usage limit reached',
+            message: usageCheck.reason,
+            limit: usageCheck.limit,
+            current: usageCheck.current,
+          },
+          { status: 429 }
+        );
+      }
+    }
+
     // Get sponsor info separately
     let sponsorInfo = null;
     if (distributor?.sponsor_id) {
@@ -2657,16 +2685,23 @@ VOICE AGENT CUSTOMIZATION:
 - Use the customize_voice_agent tool ONLY if user has PAID tier
 - If FREE tier user asks to customize: Explain they need to upgrade to Business Center ($39/month) first
 
-COMPENSATION PLAN (Tech Ladder):
-- Starter: 0 personal BV, 0 group BV → L1 overrides only
-- Bronze: 150 personal BV, 300 group BV → L1-L2 overrides, $250 rank bonus
-- Silver: 500 personal BV, 1500 group BV → L1-L3 overrides, $1,000 rank bonus
-- Gold: 1200 personal BV, 5000 group BV, 1 Bronze → L1-L4 overrides, $3,000 rank bonus
-- Platinum: 2000 personal BV, 15000 group BV, 2 Gold → L1-L5 overrides, $10,000 rank bonus
-- Ruby: 3000 personal BV, 30000 group BV, 3 Gold → L1-L5 overrides, $25,000 rank bonus
-- Diamond: 4000 personal BV, 60000 group BV, (3 Platinum OR 5 Gold) → L1-L5 overrides, $50,000 rank bonus
-- Crown: 5000 personal BV, 120000 group BV, (3 Diamond OR 5 Platinum) → L1-L5 overrides, $100,000 rank bonus
-- Elite: 6000 personal BV, 250000 group BV, 3 Crown → L1-L5 overrides, $250,000 rank bonus
+COMPENSATION PLAN (Tech Ladder - 7 RANKS, 7 LEVELS):
+- Starter: 0 personal QV, 0 team QV → L1 override only (25% of override pool)
+- Bronze: 150 personal QV, 300 team QV → L1-L2 overrides (25%, 20%), $250 rank bonus
+- Silver: 500 personal QV, 1,500 team QV → L1-L3 overrides (25%, 20%, 18%), $1,000 rank bonus
+- Gold: 1,200 personal QV, 5,000 team QV, 1 Bronze sponsored → L1-L4 overrides (25%, 20%, 18%, 15%), $3,000 rank bonus
+- Platinum: 2,500 personal QV, 15,000 team QV, 2 Silvers sponsored → L1-L5 overrides (25%, 20%, 18%, 15%, 10%), $7,500 rank bonus
+- Ruby: 4,000 personal QV, 30,000 team QV, 2 Golds sponsored → L1-L6 overrides (25%, 20%, 18%, 15%, 10%, 7%), $12,000 rank bonus
+- Diamond Ambassador: 5,000 personal QV, 50,000 team QV, (3 Golds OR 2 Platinums sponsored) → L1-L7 overrides (25%, 20%, 18%, 15%, 10%, 7%, 5%), $18,000 rank bonus
+
+CRITICAL OVERRIDE RULES:
+- L1 Override: 25% of override pool (uses enrollment tree - sponsor_id) - ALWAYS 25% regardless of rank
+- L2-L7 Overrides: Use matrix tree (matrix_parent_id) - percentages vary by upline's rank
+- Override Pool: 40% of BV (Business Volume)
+- Seller Commission: 60% of BV
+- Minimum Qualification: 50 QV personal monthly to earn overrides
+- Breakage (unpaid overrides): Goes 100% to Apex
+- Downline rank requirements: Must be personally SPONSORED (not just matrix spillover)
 
 ⛔ CONFIDENTIAL INFORMATION - NEVER DISCLOSE ⛔
 You MUST NEVER reveal how BV (Business Volume) is calculated from retail price. This is proprietary company information.
@@ -3049,6 +3084,13 @@ CONTEXT AWARENESS:
     // If no tool use, return the text response
     const textBlock = response.content.find((block) => block.type === 'text');
     const message = textBlock && textBlock.type === 'text' ? textBlock.text : 'I can help you with that!';
+
+    // Track usage (async, don't await to avoid slowing response)
+    if (distributor?.id) {
+      trackUsage(distributor.id, 'ai_chatbot_message', 1).catch((err) =>
+        console.error('Failed to track usage:', err)
+      );
+    }
 
     return NextResponse.json({ message });
   } catch (error) {

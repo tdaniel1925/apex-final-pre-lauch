@@ -54,7 +54,7 @@ export async function middleware(request: NextRequest) {
     // DO NOT call getUser() for other routes - let server components handle their own auth
 
     // Protect finance routes - CFO/Admin only
-    if (request.nextUrl.pathname.startsWith('/finance')) {
+    if (request.nextUrl.pathname.startsWith('/finance') || request.nextUrl.pathname.startsWith('/admin/finance')) {
       const { data: { user }, error: authError } = await supabase.auth.getUser();
       if (!user || authError) {
         console.log('Finance route: No user or auth error, redirecting to login');
@@ -63,16 +63,28 @@ export async function middleware(request: NextRequest) {
         return NextResponse.redirect(redirectUrl);
       }
 
-      // Check is_admin in distributors table
-      const { data: distributor, error: roleError } = await supabase
-        .from('distributors')
-        .select('is_admin, admin_role')
-        .eq('email', user.email)
-        .single();
+      // Check if user is in admins table (takes precedence)
+      const { data: adminRecord } = await supabase
+        .from('admins')
+        .select('id, role')
+        .eq('auth_user_id', user.id)
+        .maybeSingle();
 
-      if (roleError || !distributor || (!distributor.is_admin && !['cfo', 'admin'].includes(distributor.admin_role))) {
-        // Unauthorized - redirect to dashboard
-        return NextResponse.redirect(new URL('/dashboard', request.url));
+      // If user is in admins table, grant access
+      if (adminRecord) {
+        // Allow through
+      } else {
+        // Fall back to checking is_admin in distributors table
+        const { data: distributor, error: roleError } = await supabase
+          .from('distributors')
+          .select('is_admin, admin_role')
+          .eq('auth_user_id', user.id)
+          .maybeSingle();
+
+        if (roleError || !distributor || (!distributor.is_admin && !['cfo', 'admin'].includes(distributor.admin_role))) {
+          // Unauthorized - redirect to dashboard
+          return NextResponse.redirect(new URL('/dashboard', request.url));
+        }
       }
     }
 

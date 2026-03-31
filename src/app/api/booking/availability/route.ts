@@ -1,11 +1,12 @@
 // =============================================
 // Booking Availability API
 // Returns available time slots for a given date
-// 9am-7pm CT, Mon-Fri, 60-minute sessions
+// 9am-6pm CT, Mon-Sat, 30-minute sessions with 15-min buffer
 // =============================================
 
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
+import { getBookedSlots, isCalendarConfigured } from '@/lib/google-calendar/client';
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -27,32 +28,43 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  // Check if date is a weekend
   const dateObj = new Date(date + 'T00:00:00');
   const dayOfWeek = dateObj.getDay();
-  if (dayOfWeek === 0 || dayOfWeek === 6) {
+
+  // Check if date is Sunday (0) - Saturdays (6) are now allowed
+  if (dayOfWeek === 0) {
     return NextResponse.json({ slots: [] });
   }
 
-  // Generate all possible time slots (9am - 7pm CT, 60-minute intervals)
+  // Check if date is in the past or within 24 hours
+  const now = new Date();
+  const minBookingDate = new Date(now.getTime() + 24 * 60 * 60 * 1000); // 24 hours from now
+
+  if (dateObj < minBookingDate) {
+    return NextResponse.json({ slots: [] });
+  }
+
+  // Generate all possible time slots (9am - 6pm CT, 30-minute intervals with 15-min buffer)
+  // This creates slots at: 9:00, 9:45, 10:30, 11:15, 12:00, 12:45, 1:30, 2:15, 3:00, 3:45, 4:30, 5:15
   const allSlots = [
     '09:00:00',
-    '10:00:00',
-    '11:00:00',
+    '09:45:00',
+    '10:30:00',
+    '11:15:00',
     '12:00:00',
-    '13:00:00',
-    '14:00:00',
+    '12:45:00',
+    '13:30:00',
+    '14:15:00',
     '15:00:00',
-    '16:00:00',
-    '17:00:00',
-    '18:00:00',
-    '19:00:00', // 7pm
+    '15:45:00',
+    '16:30:00',
+    '17:15:00', // Last slot starts at 5:15pm, ends at 5:45pm
   ];
 
   try {
     const supabase = await createClient();
 
-    // Get existing bookings for this date
+    // Get existing bookings from database for this date
     const { data: bookings, error } = await supabase
       .from('onboarding_sessions')
       .select('scheduled_time')
@@ -67,10 +79,34 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Extract booked time slots
+    // Extract booked time slots from database
     const bookedTimes = new Set(
       bookings?.map((b) => b.scheduled_time) || []
     );
+
+    // Also check Google Calendar if configured
+    if (isCalendarConfigured()) {
+      try {
+        const startOfDay = new Date(date + 'T00:00:00');
+        const endOfDay = new Date(date + 'T23:59:59');
+        const calendarSlots = await getBookedSlots(startOfDay, endOfDay);
+
+        // Add Google Calendar booked times to our set
+        calendarSlots.forEach((slot) => {
+          const time = slot.toLocaleTimeString('en-US', {
+            hour12: false,
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            timeZone: 'America/Chicago',
+          });
+          bookedTimes.add(time);
+        });
+      } catch (error) {
+        // Log error but don't fail - fallback to database-only availability
+        console.error('Error checking Google Calendar availability:', error);
+      }
+    }
 
     // Filter out booked slots
     const availableSlots = allSlots.filter(
