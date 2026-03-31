@@ -267,9 +267,9 @@ export async function getTechRankRequirements(): Promise<TechRankRequirements[]>
  * Current: Returns hardcoded RANKED_OVERRIDE_SCHEDULES from config.ts
  * Future: Load from override_schedules table
  *
- * @returns Map of rank → override percentages [L1, L2, L3, L4, L5]
+ * @returns Map of rank → override percentages [L1, L2, L3, L4, L5, L6, L7]
  */
-export async function getOverrideSchedules(): Promise<Record<TechRank, [number, number, number, number, number]>> {
+export async function getOverrideSchedules(): Promise<Record<TechRank, [number, number, number, number, number, number, number]>> {
   // Check cache first
   if (isCacheValid(cache.overrideSchedules)) {
     return cache.overrideSchedules!.data;
