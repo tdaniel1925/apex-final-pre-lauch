@@ -432,75 +432,110 @@ export default function ProductsPage() {
       <Script src="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" />
 
       <div style={{ fontFamily: 'Inter, -apple-system, sans-serif', background: '#ffffff', minHeight: '100vh', overflowX: 'hidden' }}>
-        {/* Fixed Header */}
-        <header
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            zIndex: 1000,
-            background: 'rgba(255, 255, 255, 0.95)',
-            backdropFilter: 'blur(10px)',
-            borderBottom: '1px solid #e2e8f0',
-            height: '80px',
-          }}
-        >
-          <div
-            style={{
-              maxWidth: '1400px',
-              margin: '0 auto',
-              padding: '0 24px',
-              height: '100%',
+        {/* HEADER / NAVIGATION */}
+        <header style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          background: 'rgba(255, 255, 255, 0.95)',
+          backdropFilter: 'blur(10px)',
+          borderBottom: '1px solid #e2e8f0',
+          zIndex: 1000,
+          transition: 'all 0.3s ease'
+        }}>
+          <nav style={{
+            maxWidth: '1400px',
+            margin: '0 auto',
+            padding: '0 24px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            height: '72px'
+          }}>
+            {/* Logo */}
+            <a href="/" style={{ display: 'flex', alignItems: 'center' }}>
+              <img src="/apex-logo-full.png" alt="Apex Affinity Group" style={{ height: '48px' }} />
+            </a>
+
+            {/* Desktop Navigation */}
+            <div style={{
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'space-between',
-            }}
-          >
-            <Link href="/" style={{ textDecoration: 'none' }}>
-              <img src="/apex-logo-full.png" alt="Apex Affinity Group" style={{ height: '60px' }} />
-            </Link>
-            <nav style={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
-              <Link href="/" style={{ color: '#64748b', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>
-                Home
-              </Link>
-              <Link href="/#opportunity" style={{ color: '#64748b', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>
-                Business Opportunity
-              </Link>
-              <Link href="/#how-it-works" style={{ color: '#64748b', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>
-                How It Works
-              </Link>
-              <Link href="/products" style={{ color: '#2B4C7E', textDecoration: 'none', fontSize: '15px', fontWeight: 600 }}>
-                AI Business Solutions
-              </Link>
-              <Link href="/#insurance" style={{ color: '#64748b', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>
-                Insurance Solutions
-              </Link>
-              <Link href="/#faq" style={{ color: '#64748b', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>
-                Support
-              </Link>
-              <Link
-                href="/get-started"
-                style={{
-                  background: '#2B4C7E',
-                  color: '#ffffff',
-                  padding: '12px 24px',
-                  borderRadius: '8px',
-                  textDecoration: 'none',
-                  fontSize: '15px',
-                  fontWeight: 600,
-                }}
-              >
+              gap: '40px'
+            }}>
+              <a href="/#opportunity" style={{
+                color: '#64748b',
+                textDecoration: 'none',
+                fontSize: '15px',
+                fontWeight: '500',
+                transition: 'color 0.2s'
+              }}>Opportunity</a>
+              <a href="/products" style={{
+                color: '#2B4C7E',
+                textDecoration: 'none',
+                fontSize: '15px',
+                fontWeight: '600',
+                transition: 'color 0.2s'
+              }}>Products</a>
+              <a href="/#insurance" style={{
+                color: '#64748b',
+                textDecoration: 'none',
+                fontSize: '15px',
+                fontWeight: '500',
+                transition: 'color 0.2s'
+              }}>Insurance</a>
+              <a href="/#compensation" style={{
+                color: '#64748b',
+                textDecoration: 'none',
+                fontSize: '15px',
+                fontWeight: '500',
+                transition: 'color 0.2s'
+              }}>Compensation</a>
+              <a href="/#faq" style={{
+                color: '#64748b',
+                textDecoration: 'none',
+                fontSize: '15px',
+                fontWeight: '500',
+                transition: 'color 0.2s'
+              }}>FAQ</a>
+            </div>
+
+            {/* CTA Buttons */}
+            <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+              <a href="/login" style={{
+                padding: '10px 20px',
+                fontSize: '15px',
+                fontWeight: '500',
+                color: '#2B4C7E',
+                textDecoration: 'none',
+                border: '1px solid #cbd5e1',
+                borderRadius: '6px',
+                transition: 'all 0.2s',
+                background: 'transparent'
+              }}>
+                Login
+              </a>
+              <a href="/get-started" style={{
+                padding: '10px 24px',
+                fontSize: '15px',
+                fontWeight: '600',
+                color: '#ffffff',
+                textDecoration: 'none',
+                background: '#2B4C7E',
+                borderRadius: '6px',
+                transition: 'all 0.2s'
+              }}>
                 Get Started
-              </Link>
-            </nav>
-          </div>
+              </a>
+            </div>
+          </nav>
         </header>
 
         {/* Hero Section */}
         <section
           style={{
-            marginTop: '80px',
+            marginTop: '72px',
             padding: '80px 24px 40px',
             background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
             color: '#ffffff',
