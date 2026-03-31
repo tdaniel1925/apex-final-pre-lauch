@@ -48,22 +48,30 @@ export default function LiveEventsPage() {
   useEffect(() => {
     function checkLiveStatus() {
       const now = new Date();
-      const centralTime = new Date(now.toLocaleString('en-US', { timeZone: 'America/Chicago' }));
-      const dayOfWeek = centralTime.getDay();
-      const hours = centralTime.getHours();
-      const minutes = centralTime.getMinutes();
-      const seconds = centralTime.getSeconds();
+
+      // Get Central Time components properly
+      const centralTimeString = now.toLocaleString('en-US', { timeZone: 'America/Chicago' });
+      const centralDate = new Date(centralTimeString);
+      const dayOfWeek = centralDate.getDay();
+      const hours = centralDate.getHours();
+      const minutes = centralDate.getMinutes();
+      const seconds = centralDate.getSeconds();
       const currentMinutes = hours * 60 + minutes;
 
       // Check for special event first
       if (SPECIAL_EVENT) {
         // Parse the special event date string (YYYY-MM-DD)
         const [year, month, day] = SPECIAL_EVENT.date.split('-').map(Number);
-        const specialDate = new Date(year, month - 1, day); // Month is 0-indexed
-        const centralToday = new Date(centralTime.getFullYear(), centralTime.getMonth(), centralTime.getDate());
-        const [eventHour, eventMinute] = SPECIAL_EVENT.time.split(':').map(Number);
 
-        const isSpecialEventToday = specialDate.getTime() === centralToday.getTime();
+        // Create date for today in Central timezone using the converted date components
+        const todayYear = centralDate.getFullYear();
+        const todayMonth = centralDate.getMonth();
+        const todayDay = centralDate.getDate();
+
+        // Compare year, month, day directly
+        const isSpecialEventToday = (year === todayYear && month - 1 === todayMonth && day === todayDay);
+
+        const [eventHour, eventMinute] = SPECIAL_EVENT.time.split(':').map(Number);
 
         if (isSpecialEventToday) {
           const roomOpen = (eventHour * 60) - 30; // 30 minutes before event
@@ -108,10 +116,10 @@ export default function LiveEventsPage() {
             setNextEvent(specialEventDetails);
 
             // Calculate exact time until event starts
-            const nextEventDate = new Date(centralTime);
+            const nextEventDate = new Date(centralDate);
             nextEventDate.setHours(eventHour, eventMinute, 0, 0);
 
-            const msUntilEvent = nextEventDate.getTime() - centralTime.getTime();
+            const msUntilEvent = nextEventDate.getTime() - centralDate.getTime();
             const totalHours = Math.floor(msUntilEvent / (1000 * 60 * 60));
             const totalMinutes = Math.floor((msUntilEvent % (1000 * 60 * 60)) / (1000 * 60));
 
@@ -171,11 +179,11 @@ export default function LiveEventsPage() {
         setNextEvent(nextEventSchedule);
 
         // Calculate exact time until next event
-        const nextEventDate = new Date(centralTime);
+        const nextEventDate = new Date(centralDate);
         nextEventDate.setDate(nextEventDate.getDate() + nextEventDay);
         nextEventDate.setHours(18, 30, 0, 0); // 6:30 PM
 
-        const msUntilEvent = nextEventDate.getTime() - centralTime.getTime();
+        const msUntilEvent = nextEventDate.getTime() - centralDate.getTime();
         const totalHours = Math.floor(msUntilEvent / (1000 * 60 * 60));
         const totalMinutes = Math.floor((msUntilEvent % (1000 * 60 * 60)) / (1000 * 60));
 
