@@ -20,6 +20,11 @@ export default async function DashboardLayout({
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
+  // CRITICAL: Redirect if not authenticated
+  if (!user) {
+    redirect('/login');
+  }
+
   let isLicensedAgent = true; // Default true
   let distributorId: string | null = null;
   let businessCenterStatus: Awaited<ReturnType<typeof checkBusinessCenterSubscription>> | null = null;
