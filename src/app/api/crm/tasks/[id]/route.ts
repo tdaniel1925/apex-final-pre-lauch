@@ -100,7 +100,7 @@ export async function PUT(
     }
 
     // If marking as completed, set completed_at timestamp
-    const finalUpdateData = { ...updateData };
+    const finalUpdateData: any = { ...updateData };
     if (updateData.status === 'completed') {
       finalUpdateData.completed_at = new Date().toISOString();
     }
