@@ -2,9 +2,19 @@ import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { getReferrerCookie } from '@/lib/referral-tracking';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2026-01-28.clover',
-});
+// Lazy-load Stripe client to avoid build-time initialization
+let stripe: Stripe | null = null;
+function getStripeClient(): Stripe {
+  if (!stripe) {
+    if (!process.env.STRIPE_SECRET_KEY) {
+      throw new Error('STRIPE_SECRET_KEY is not configured');
+    }
+    stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+      apiVersion: '2026-01-28.clover',
+    });
+  }
+  return stripe;
+}
 
 const PRICE_IDS: Record<string, { retail: string; member: string }> = {
   pulsemarket: {
@@ -84,10 +94,12 @@ export async function POST(request: NextRequest) {
     };
 
     // If a promotion code was provided, add it (for member pricing)
+    const stripeClient = getStripeClient();
+
     if (promotionCode) {
       try {
         // Find the promotion code
-        const promoCodes = await stripe.promotionCodes.list({
+        const promoCodes = await stripeClient.promotionCodes.list({
           code: promotionCode,
           active: true,
           limit: 1,
@@ -106,7 +118,7 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    const session = await stripe.checkout.sessions.create(sessionParams);
+    const session = await stripeClient.checkout.sessions.create(sessionParams);
 
     return NextResponse.json({
       sessionId: session.id,
