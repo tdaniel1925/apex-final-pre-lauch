@@ -53,7 +53,7 @@ interface CacheEntry<T> {
 interface ConfigCache {
   techRanks: CacheEntry<readonly TechRank[]> | null;
   techRankRequirements: CacheEntry<TechRankRequirements[]> | null;
-  overrideSchedules: CacheEntry<Record<TechRank, [number, number, number, number, number]>> | null;
+  overrideSchedules: CacheEntry<Record<TechRank, [number, number, number, number, number, number, number]>> | null;
   waterfallConfig: CacheEntry<WaterfallConfig> | null;
   businessCenterConfig: CacheEntry<BusinessCenterConfig> | null;
 }
