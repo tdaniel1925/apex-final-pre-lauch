@@ -3,9 +3,9 @@
 import Link from 'next/link';
 import { CheckCircle, Calendar } from 'lucide-react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 
-export default function ProductPurchaseSuccessPage() {
+function ProductSuccessContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [redirecting, setRedirecting] = useState(false);
@@ -164,5 +164,27 @@ export default function ProductPurchaseSuccessPage() {
         </p>
       </div>
     </div>
+  );
+}
+
+// Loading fallback component
+function LoadingFallback() {
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800 flex items-center justify-center px-4">
+      <div className="max-w-2xl w-full bg-white rounded-xl shadow-2xl p-8 text-center">
+        <div className="flex justify-center mb-6">
+          <div className="w-20 h-20 border-4 border-slate-200 border-t-slate-900 rounded-full animate-spin"></div>
+        </div>
+        <p className="text-lg text-slate-700">Loading...</p>
+      </div>
+    </div>
+  );
+}
+
+export default function ProductPurchaseSuccessPage() {
+  return (
+    <Suspense fallback={<LoadingFallback />}>
+      <ProductSuccessContent />
+    </Suspense>
   );
 }
