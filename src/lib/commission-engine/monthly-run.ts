@@ -94,12 +94,12 @@ export async function executeMonthlyCommissionRun(
   console.log(`   Period: ${periodStart.toISOString()} to ${periodEnd.toISOString()}`);
   console.log(`   Dry Run: ${dryRun ? 'YES (no database writes)' : 'NO (will write to database)'}\n`);
 
+  let runId: string | undefined;
+
   try {
     // =============================================
     // STEP 1: Create Commission Run Record
     // =============================================
-
-    let runId: string;
 
     if (!dryRun) {
       const { data: existingRun } = await supabase
@@ -446,7 +446,7 @@ export async function executeMonthlyCommissionRun(
     console.error(`   Error: ${error instanceof Error ? error.message : String(error)}\n`);
 
     return {
-      run_id: runId!,
+      run_id: runId || 'failed-run',
       month,
       transactions_processed: 0,
       total_sales_amount: 0,
