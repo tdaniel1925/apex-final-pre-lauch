@@ -412,8 +412,8 @@ export async function getBusinessCenterConfig(): Promise<BusinessCenterConfig> {
       botmakersFeeCents: BUSINESS_CENTER_CONFIG.BOTMAKERS_FEE_CENTS,
       apexTakeCents: BUSINESS_CENTER_CONFIG.APEX_TAKE_CENTS,
       sellerCommissionCents: BUSINESS_CENTER_CONFIG.SELLER_COMMISSION_CENTS,
-      sponsorBonusCents: BUSINESS_CENTER_CONFIG.SPONSOR_BONUS_CENTS,
-      costsCents: BUSINESS_CENTER_CONFIG.COSTS_CENTS,
+      sponsorBonusCents: 0, // Not used for Business Center
+      costsCents: BUSINESS_CENTER_CONFIG.COGS_CENTS,
       overridePoolCents: BUSINESS_CENTER_CONFIG.OVERRIDE_POOL_CENTS,
       bonusPoolCents: BUSINESS_CENTER_CONFIG.BONUS_POOL_CENTS,
       leadershipPoolCents: BUSINESS_CENTER_CONFIG.LEADERSHIP_POOL_CENTS,
@@ -431,8 +431,8 @@ export async function getBusinessCenterConfig(): Promise<BusinessCenterConfig> {
       botmakersFeeCents: BUSINESS_CENTER_CONFIG.BOTMAKERS_FEE_CENTS,
       apexTakeCents: BUSINESS_CENTER_CONFIG.APEX_TAKE_CENTS,
       sellerCommissionCents: BUSINESS_CENTER_CONFIG.SELLER_COMMISSION_CENTS,
-      sponsorBonusCents: BUSINESS_CENTER_CONFIG.SPONSOR_BONUS_CENTS,
-      costsCents: BUSINESS_CENTER_CONFIG.COSTS_CENTS,
+      sponsorBonusCents: 0, // Not used for Business Center
+      costsCents: BUSINESS_CENTER_CONFIG.COGS_CENTS,
       overridePoolCents: BUSINESS_CENTER_CONFIG.OVERRIDE_POOL_CENTS,
       bonusPoolCents: BUSINESS_CENTER_CONFIG.BONUS_POOL_CENTS,
       leadershipPoolCents: BUSINESS_CENTER_CONFIG.LEADERSHIP_POOL_CENTS,
