@@ -201,7 +201,7 @@ export async function executeMonthlyCommissionRun(
     for (const transaction of transactions) {
       console.log(`   Processing transaction ${transaction.id} ($${transaction.amount})...`);
 
-      const distributor = transaction.distributor;
+      const distributor: any = transaction.distributor;
       if (!distributor || !distributor.member) {
         console.log(`     ⚠️  Skipping - no distributor/member data`);
         continue;
