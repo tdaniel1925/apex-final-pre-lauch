@@ -31,9 +31,12 @@ export const runtime = 'nodejs';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    // Await params (Next.js 15+ requirement)
+    const { id } = await params;
+
     // =============================================
     // 1. Authenticate Admin
     // =============================================
@@ -74,7 +77,7 @@ export async function GET(
     // 2. Get Commission Run Data
     // =============================================
 
-    const runId = params.id;
+    const runId = id;
 
     // Fetch all earnings for this run
     const { data: earnings, error: earningsError } = await supabase
