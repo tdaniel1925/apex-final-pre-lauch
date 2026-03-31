@@ -1,0 +1,17 @@
+<svg width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="400" fill="#f5f5f5"/>
+  <rect x="50" y="50" width="500" height="300" rx="8" fill="white" stroke="#f59e0b" stroke-width="3"/>
+  <rect x="50" y="50" width="500" height="25" fill="#fef3c7"/>
+  <text x="300" y="67" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#78350f" text-anchor="middle">⚠️ ACTION REQUIRED - ACCOUNT CANCELLATION</text>
+  <text x="300" y="110" font-size="50" text-anchor="middle">⏰</text>
+  <text x="300" y="150" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#1e293b" text-anchor="middle">Before You Go...</text>
+  <text x="300" y="175" font-family="Arial, sans-serif" font-size="13" fill="#64748b" text-anchor="middle">Your subscription ends tomorrow</text>
+  <rect x="70" y="195" width="460" height="70" rx="8" fill="#dc2626"/>
+  <text x="300" y="215" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#fef3c7" text-anchor="middle">FINAL OFFER - 24 HOURS ONLY</text>
+  <text x="300" y="240" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="white" text-anchor="middle">50% OFF</text>
+  <text x="300" y="258" font-family="Arial, sans-serif" font-size="14" fill="#fecaca" text-anchor="middle">For the Next 6 Months</text>
+  <text x="300" y="290" font-family="Arial, sans-serif" font-size="12" fill="#475569" text-anchor="middle">You've created 47 pieces of content</text>
+  <text x="300" y="308" font-family="Arial, sans-serif" font-size="12" fill="#475569" text-anchor="middle">Saved 38 hours • Worth $1,520 in value</text>
+  <rect x="180" y="320" width="240" height="35" rx="6" fill="#dc2626"/>
+  <text x="300" y="343" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white" text-anchor="middle">Claim 50% Off Now</text>
+</svg>

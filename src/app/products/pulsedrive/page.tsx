@@ -108,22 +108,10 @@ export default function PulseDrivePage() {
             </p>
             <div style={{ marginBottom: '40px' }}>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: '12px', justifyContent: 'center', marginBottom: '8px' }}>
-                <span style={{ fontSize: '64px', fontWeight: 800, color: '#ffffff' }}>$219</span>
+                <span style={{ fontSize: '64px', fontWeight: 800, color: '#ffffff' }}>$249</span>
                 <span style={{ fontSize: '20px', color: '#cbd5e1' }}>/month</span>
-                <span
-                  style={{
-                    fontSize: '14px',
-                    color: '#93c5fd',
-                    background: 'rgba(147, 197, 253, 0.1)',
-                    padding: '4px 12px',
-                    borderRadius: '12px',
-                    fontWeight: 600,
-                  }}
-                >
-                  Member Price
-                </span>
               </div>
-              <p style={{ fontSize: '15px', color: '#94a3b8', margin: 0 }}>Retail: $299/month</p>
+              <p style={{ fontSize: '15px', color: '#94a3b8', margin: 0 }}>Compare to $600+/month</p>
             </div>
             <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
               <Link
@@ -319,7 +307,7 @@ export default function PulseDrivePage() {
                 }}
               >
                 <div style={{ fontSize: '14px', color: '#93c5fd', marginBottom: '8px', fontWeight: 600 }}>
-                  Member Sale
+                  Your Commission
                 </div>
                 <div style={{ fontSize: '48px', fontWeight: 800, color: '#ffffff', marginBottom: '8px' }}>$61.17</div>
                 <div style={{ fontSize: '14px', color: '#cbd5e1' }}>per month, recurring</div>
@@ -334,7 +322,7 @@ export default function PulseDrivePage() {
                 }}
               >
                 <div style={{ fontSize: '14px', color: '#93c5fd', marginBottom: '8px', fontWeight: 600 }}>
-                  Retail Sale
+                  Potential Maximum
                 </div>
                 <div style={{ fontSize: '48px', fontWeight: 800, color: '#ffffff', marginBottom: '8px' }}>$83.51</div>
                 <div style={{ fontSize: '14px', color: '#cbd5e1' }}>per month, recurring</div>

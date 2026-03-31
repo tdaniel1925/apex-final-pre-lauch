@@ -119,10 +119,10 @@ export default function PulseCommandPage() {
             </p>
             <div style={{ marginBottom: '40px' }}>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: '12px', justifyContent: 'center', marginBottom: '8px' }}>
-                <span style={{ fontSize: '72px', fontWeight: 800, color: '#ffffff' }}>$349</span>
+                <span style={{ fontSize: '72px', fontWeight: 800, color: '#ffffff' }}>$399</span>
                 <span style={{ fontSize: '24px', color: '#cbd5e1' }}>/month</span>
               </div>
-              <p style={{ fontSize: '16px', color: '#94a3b8', margin: 0 }}>Retail: $499/month • Unlimited everything</p>
+              <p style={{ fontSize: '16px', color: '#94a3b8', margin: 0 }}>Compare to $1,000+/month • Unlimited everything</p>
             </div>
             <Link
               href="/get-started?product=pulsecommand"
@@ -279,7 +279,7 @@ export default function PulseCommandPage() {
                   border: '1px solid rgba(255, 255, 255, 0.1)',
                 }}
               >
-                <div style={{ fontSize: '16px', color: '#93c5fd', marginBottom: '12px', fontWeight: 600 }}>Member Sale</div>
+                <div style={{ fontSize: '16px', color: '#93c5fd', marginBottom: '12px', fontWeight: 600 }}>Your Commission</div>
                 <div style={{ fontSize: '56px', fontWeight: 800, color: '#ffffff', marginBottom: '8px' }}>$97.48</div>
                 <div style={{ fontSize: '16px', color: '#cbd5e1' }}>per month, recurring</div>
               </div>
@@ -292,7 +292,7 @@ export default function PulseCommandPage() {
                   border: '1px solid rgba(255, 255, 255, 0.1)',
                 }}
               >
-                <div style={{ fontSize: '16px', color: '#93c5fd', marginBottom: '12px', fontWeight: 600 }}>Retail Sale</div>
+                <div style={{ fontSize: '16px', color: '#93c5fd', marginBottom: '12px', fontWeight: 600 }}>Potential Maximum</div>
                 <div style={{ fontSize: '56px', fontWeight: 800, color: '#ffffff', marginBottom: '8px' }}>$139.37</div>
                 <div style={{ fontSize: '16px', color: '#cbd5e1' }}>per month, recurring</div>
               </div>

@@ -105,13 +105,15 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
                 fontWeight: '500',
                 transition: 'color 0.2s'
               }}>Opportunity</a>
-              <a href="#products" style={{
-                color: '#64748b',
-                textDecoration: 'none',
-                fontSize: '15px',
-                fontWeight: '500',
-                transition: 'color 0.2s'
-              }}>Products</a>
+              {!isMainSite && distributor.slug !== 'apex' && (
+                <a href="/products" style={{
+                  color: '#64748b',
+                  textDecoration: 'none',
+                  fontSize: '15px',
+                  fontWeight: '500',
+                  transition: 'color 0.2s'
+                }}>Products</a>
+              )}
               <a href="#insurance" style={{
                 color: '#64748b',
                 textDecoration: 'none',
@@ -232,7 +234,10 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
                 textTransform: 'uppercase',
                 marginBottom: '24px'
               }}>
-                Insurance Products • AI Technology • Career Path
+                {distributor.slug === 'apex' || isMainSite
+                  ? 'Insurance Products • AI Technology • Career Path'
+                  : `Building with ${distributor.first_name} ${distributor.last_name}`
+                }
               </div>
 
               {/* Headline */}
