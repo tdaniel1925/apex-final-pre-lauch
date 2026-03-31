@@ -9,8 +9,8 @@ const MEETING_LINK = 'https://teams.microsoft.com/meet/26528832746280?p=Zh81sDMA
 const SPECIAL_EVENT = {
   date: '2026-03-31', // YYYY-MM-DD format (TONIGHT)
   time: '18:30', // 24-hour format (6:30 PM = 18:30)
-  title: 'Special CEO Interview - Bill Propper',
-  description: 'Exclusive interview with our CEO Bill Propper discussing the Apex Vision, Revolutionary AI Technology, and Insurance Ladder to Success.'
+  title: 'Opportunity Presentation',
+  description: 'Learn about the business opportunity, compensation plan, and how to build your team with Apex Affinity Group.'
 };
 
 interface EventSchedule {
