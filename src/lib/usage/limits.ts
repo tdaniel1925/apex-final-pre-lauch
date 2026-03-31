@@ -5,7 +5,7 @@
 // =============================================
 
 import { getTodayUsage, getMonthlyUsage, UsageType } from './tracking';
-import { checkBusinessCenterAccess } from '@/lib/subscription/check-business-center';
+import { checkBusinessCenterSubscription } from '@/lib/subscription/check-business-center';
 
 // Free tier limits
 export const FREE_TIER_LIMITS = {
@@ -29,9 +29,9 @@ export async function checkChatbotLimit(
   distributorId: string
 ): Promise<UsageLimitCheck> {
   // Check if user has Business Center (unlimited)
-  const hasBusinessCenter = await checkBusinessCenterAccess(distributorId);
+  const businessCenterStatus = await checkBusinessCenterSubscription(distributorId);
 
-  if (hasBusinessCenter) {
+  if (businessCenterStatus.hasSubscription) {
     return {
       allowed: true,
       current: 0,
@@ -71,9 +71,9 @@ export async function checkVoiceLimit(
   minutesRequested: number = 1
 ): Promise<UsageLimitCheck> {
   // Check if user has Business Center (unlimited)
-  const hasBusinessCenter = await checkBusinessCenterAccess(distributorId);
+  const businessCenterStatus = await checkBusinessCenterSubscription(distributorId);
 
-  if (hasBusinessCenter) {
+  if (businessCenterStatus.hasSubscription) {
     return {
       allowed: true,
       current: 0,
