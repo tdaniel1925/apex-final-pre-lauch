@@ -9,16 +9,18 @@ import { getCurrentDistributor } from '@/lib/auth/server';
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
+
     const currentDist = await getCurrentDistributor();
     if (!currentDist) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const supabase = await createClient();
-    const recommendationId = params.id;
+    const recommendationId = id;
 
     // Update recommendation (only if it belongs to current distributor)
     const { error } = await supabase
