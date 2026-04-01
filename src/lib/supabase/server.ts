@@ -57,8 +57,8 @@ export async function createClient() {
               secure: process.env.NODE_ENV === 'production',
             });
           } catch (error) {
-            // Server component - cookie setting may fail
-            // This is expected and safe to ignore
+            // Log cookie setting failures - these may indicate session loss issues
+            console.error('[Supabase Server] Failed to set cookie:', name, error);
           }
         },
         remove(name: string, options: any) {
@@ -73,8 +73,8 @@ export async function createClient() {
               secure: process.env.NODE_ENV === 'production',
             });
           } catch (error) {
-            // Server component - cookie removal may fail
-            // This is expected and safe to ignore
+            // Log cookie removal failures
+            console.error('[Supabase Server] Failed to remove cookie:', name, error);
           }
         },
       },

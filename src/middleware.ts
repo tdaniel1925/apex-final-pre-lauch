@@ -20,6 +20,10 @@ export async function middleware(request: NextRequest) {
     request,
   });
 
+  // Determine if we're on the actual production domain (not Vercel preview)
+  const isActualProduction = process.env.VERCEL_ENV === 'production' &&
+    (request.nextUrl.hostname.includes('reachtheapex.net') || process.env.VERCEL_URL?.includes('reachtheapex.net'));
+
   try {
     const supabase = createServerClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -30,18 +34,34 @@ export async function middleware(request: NextRequest) {
             return request.cookies.get(name)?.value;
           },
           set(name: string, value: string, options: any) {
-            response.cookies.set({
-              name,
-              value,
-              ...options,
-            });
+            try {
+              response.cookies.set({
+                name,
+                value,
+                ...options,
+                // CRITICAL: Match server-side and client-side domain configuration
+                domain: isActualProduction ? '.reachtheapex.net' : undefined,
+                sameSite: 'lax',
+                secure: process.env.NODE_ENV === 'production',
+              });
+            } catch (error) {
+              console.error('[Middleware] Failed to set cookie:', name, error);
+            }
           },
           remove(name: string, options: any) {
-            response.cookies.set({
-              name,
-              value: '',
-              ...options,
-            });
+            try {
+              response.cookies.set({
+                name,
+                value: '',
+                ...options,
+                // CRITICAL: Match server-side and client-side domain configuration
+                domain: isActualProduction ? '.reachtheapex.net' : undefined,
+                sameSite: 'lax',
+                secure: process.env.NODE_ENV === 'production',
+              });
+            } catch (error) {
+              console.error('[Middleware] Failed to remove cookie:', name, error);
+            }
           },
         },
       }
@@ -49,7 +69,12 @@ export async function middleware(request: NextRequest) {
 
     // Refresh session for ALL routes (prevents users from getting kicked out)
     // This is lightweight and just refreshes the token if needed
-    await supabase.auth.getUser();
+    const { data: { user }, error: authError } = await supabase.auth.getUser();
+
+    // Log auth errors for debugging
+    if (authError) {
+      console.error('[Middleware] Auth error:', authError);
+    }
 
     // ONLY do authorization checks for admin/finance routes
     // Dashboard routes will do their own auth check in layout.tsx
