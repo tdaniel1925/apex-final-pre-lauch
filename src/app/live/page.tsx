@@ -262,56 +262,83 @@ See you there!`;
 
   return (
     <>
-      {/* Load Optive CSS for Header */}
+      {/* Load Fonts */}
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      <link href="https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
-      <link href="/optive/css/bootstrap.min.css" rel="stylesheet" media="screen" />
-      <link href="/optive/css/custom.css" rel="stylesheet" media="screen" />
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-      {/* Header Start - Same as marketing site */}
-      <header className="main-header">
-        <div className="header-sticky">
-          <nav className="navbar navbar-expand-lg">
-            <div className="container">
-              <a className="navbar-brand" href="/">
-                <img src="/apex-logo-full.png" alt="Apex Affinity Group" style={{height: '80px'}} />
-              </a>
+      {/* HEADER / NAVIGATION - Same as main site */}
+      <header style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        background: 'rgba(255, 255, 255, 0.95)',
+        backdropFilter: 'blur(10px)',
+        borderBottom: '1px solid #e2e8f0',
+        zIndex: 1000,
+        transition: 'all 0.3s ease'
+      }}>
+        <nav style={{
+          maxWidth: '1400px',
+          margin: '0 auto',
+          padding: '0 24px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          height: '72px'
+        }}>
+          {/* Logo */}
+          <a href="/" style={{ display: 'flex', alignItems: 'center' }}>
+            <img src="/apex-logo-full.png" alt="Apex Affinity Group" style={{ height: '48px' }} />
+          </a>
 
-              <button
-                className="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarNav"
-                aria-controls="navbarNav"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span className="navbar-toggler-icon"></span>
-              </button>
-
-              <div className="navbar-collapse main-menu" id="navbarNav">
-                <div className="nav-menu-wrapper">
-                  <ul className="navbar-nav mr-auto" id="menu">
-                    <li className="nav-item"><a className="nav-link" href="/#home">Home</a></li>
-                    <li className="nav-item"><a className="nav-link" href="/#opportunity">Opportunity</a></li>
-                    <li className="nav-item"><a className="nav-link" href="/#how-it-works">How It Works</a></li>
-                    <li className="nav-item"><a className="nav-link" href="/#products">AI Technology</a></li>
-                    <li className="nav-item"><a className="nav-link" href="/#insurance">Insurance</a></li>
-                    <li className="nav-item"><a className="nav-link" href="/#faq">FAQs</a></li>
-                    <li className="nav-item"><a className="nav-link active" href="/live">Events</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div className="navbar-toggle"></div>
-            </div>
-          </nav>
-          <div className="responsive-menu"></div>
-        </div>
+          {/* Desktop Navigation */}
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '40px'
+          }}>
+            <a href="/#opportunity" style={{
+              color: '#64748b',
+              textDecoration: 'none',
+              fontSize: '15px',
+              fontWeight: '500',
+              transition: 'color 0.2s'
+            }}>Opportunity</a>
+            <a href="/#insurance" style={{
+              color: '#64748b',
+              textDecoration: 'none',
+              fontSize: '15px',
+              fontWeight: '500',
+              transition: 'color 0.2s'
+            }}>Insurance</a>
+            <a href="/#products" style={{
+              color: '#64748b',
+              textDecoration: 'none',
+              fontSize: '15px',
+              fontWeight: '500',
+              transition: 'color 0.2s'
+            }}>AI Technology</a>
+            <a href="/#faq" style={{
+              color: '#64748b',
+              textDecoration: 'none',
+              fontSize: '15px',
+              fontWeight: '500',
+              transition: 'color 0.2s'
+            }}>FAQs</a>
+            <a href="/live" style={{
+              color: '#2B4C7E',
+              textDecoration: 'none',
+              fontSize: '15px',
+              fontWeight: '600',
+              transition: 'color 0.2s'
+            }}>Events</a>
+          </div>
+        </nav>
       </header>
-      {/* Header End */}
 
-      <div style={{ background: 'linear-gradient(135deg, #0F2045 0%, #1B3A7D 50%, #274693 100%)', minHeight: '100vh', paddingTop: '180px', paddingBottom: '80px' }}>
+      <div style={{ background: 'linear-gradient(135deg, #0F2045 0%, #1B3A7D 50%, #274693 100%)', minHeight: '100vh', paddingTop: '120px', paddingBottom: '80px' }}>
 
         <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
 
