@@ -183,24 +183,31 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
             width: '100%'
           }}>
             <div style={{
-              maxWidth: '800px'
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: '60px',
+              alignItems: 'center'
             }}>
-              {/* Eyebrow */}
+              {/* Left Column - Text Content */}
               <div style={{
-                display: 'inline-block',
-                padding: '6px 16px',
-                background: 'rgba(255, 255, 255, 0.1)',
-                border: '1px solid rgba(255, 255, 255, 0.2)',
-                borderRadius: '24px',
-                color: '#ffffff',
-                fontSize: '13px',
-                fontWeight: '600',
-                letterSpacing: '0.5px',
-                textTransform: 'uppercase',
-                marginBottom: '24px'
+                maxWidth: '600px'
               }}>
-                {getDistributorDisplayName()}
-              </div>
+                {/* Eyebrow */}
+                <div style={{
+                  display: 'inline-block',
+                  padding: '6px 16px',
+                  background: 'rgba(255, 255, 255, 0.1)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  borderRadius: '24px',
+                  color: '#ffffff',
+                  fontSize: '13px',
+                  fontWeight: '600',
+                  letterSpacing: '0.5px',
+                  textTransform: 'uppercase',
+                  marginBottom: '24px'
+                }}>
+                  {getDistributorDisplayName()}
+                </div>
 
               {/* Headline */}
               <h1 style={{
@@ -274,7 +281,39 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
                   Licensed or Unlicensed Welcome
                 </div>
               </div>
+              </div>
 
+              {/* Right Column - Vimeo Video */}
+              <div style={{
+                position: 'relative',
+                width: '100%',
+                maxWidth: '640px'
+              }}>
+                <div style={{
+                  position: 'relative',
+                  paddingBottom: '56.25%', // 16:9 aspect ratio
+                  height: 0,
+                  overflow: 'hidden',
+                  borderRadius: '16px',
+                  boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
+                  border: '2px solid rgba(255, 255, 255, 0.1)'
+                }}>
+                  <iframe
+                    src="https://player.vimeo.com/video/1178326225?h=5f884f9e7c&autoplay=0&loop=0&muted=0&title=1&byline=1&portrait=1"
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                      border: 0
+                    }}
+                    allow="autoplay; fullscreen; picture-in-picture"
+                    allowFullScreen
+                    title="Apex Affinity Group Introduction"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </section>
