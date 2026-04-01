@@ -211,7 +211,7 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
 
               {/* Headline */}
               <h1 style={{
-                fontSize: '64px',
+                fontSize: '48px',
                 fontWeight: '800',
                 color: '#ffffff',
                 lineHeight: '1.1',
