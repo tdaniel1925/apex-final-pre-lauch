@@ -123,62 +123,64 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
                       <li className="nav-item"><a className="nav-link" href="/#insurance">Insurance</a></li>
                       <li className="nav-item"><a className="nav-link" href="/#faq">FAQs</a></li>
                       <li className="nav-item"><a className="nav-link" href="/live">Events</a></li>
+                      {/* Login Button */}
+                      <li className="nav-item">
+                        <a
+                          className="nav-link"
+                          href="/login"
+                          style={{
+                            padding: '6px 16px',
+                            fontSize: '14px',
+                            fontWeight: '600',
+                            color: '#2B4C7E',
+                            textDecoration: 'none',
+                            background: 'transparent',
+                            border: '2px solid #2B4C7E',
+                            borderRadius: '6px',
+                            transition: 'all 0.2s',
+                            display: 'inline-block',
+                            marginLeft: '8px'
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.background = '#2B4C7E';
+                            e.currentTarget.style.color = '#ffffff';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.background = 'transparent';
+                            e.currentTarget.style.color = '#2B4C7E';
+                          }}
+                        >
+                          Login
+                        </a>
+                      </li>
+                      {/* Sign Up Button */}
+                      <li className="nav-item">
+                        <a
+                          className="nav-link"
+                          href={signupUrl}
+                          style={{
+                            padding: '6px 16px',
+                            fontSize: '14px',
+                            fontWeight: '600',
+                            color: '#ffffff',
+                            textDecoration: 'none',
+                            background: '#2B4C7E',
+                            borderRadius: '6px',
+                            transition: 'all 0.2s',
+                            display: 'inline-block',
+                            marginLeft: '4px'
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.background = '#1a2c4e';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.background = '#2B4C7E';
+                          }}
+                        >
+                          Sign Up
+                        </a>
+                      </li>
                     </ul>
-                    {/* Login Button */}
-                    <a
-                      href="/login"
-                      style={{
-                        padding: '12px 28px',
-                        fontSize: '15px',
-                        fontWeight: '600',
-                        color: '#2B4C7E',
-                        textDecoration: 'none',
-                        background: 'transparent',
-                        border: '2px solid #2B4C7E',
-                        borderRadius: '8px',
-                        transition: 'all 0.2s',
-                        display: 'inline-block',
-                        marginLeft: '24px'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.background = '#2B4C7E';
-                        e.currentTarget.style.color = '#ffffff';
-                        e.currentTarget.style.transform = 'translateY(-2px)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.background = 'transparent';
-                        e.currentTarget.style.color = '#2B4C7E';
-                        e.currentTarget.style.transform = 'translateY(0)';
-                      }}
-                    >
-                      Login
-                    </a>
-                    {/* Sign Up Button */}
-                    <a
-                      href={signupUrl}
-                      style={{
-                        padding: '12px 28px',
-                        fontSize: '15px',
-                        fontWeight: '600',
-                        color: '#ffffff',
-                        textDecoration: 'none',
-                        background: '#2B4C7E',
-                        borderRadius: '8px',
-                        transition: 'all 0.2s',
-                        display: 'inline-block',
-                        marginLeft: '12px'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.background = '#1a2c4e';
-                        e.currentTarget.style.transform = 'translateY(-2px)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.background = '#2B4C7E';
-                        e.currentTarget.style.transform = 'translateY(0)';
-                      }}
-                    >
-                      Sign Up
-                    </a>
                   </div>
                 </div>
                 <div className="navbar-toggle"></div>
@@ -197,7 +199,7 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
           alignItems: 'center',
           overflow: 'hidden',
           marginTop: '0',
-          paddingTop: '240px',
+          paddingTop: '280px',
           paddingBottom: '80px'
         }}>
           {/* Video Background */}
