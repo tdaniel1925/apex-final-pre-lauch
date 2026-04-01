@@ -109,12 +109,13 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
         <section id="home" style={{
           position: 'relative',
           height: '100vh',
-          minHeight: '700px',
+          minHeight: '800px',
           display: 'flex',
           alignItems: 'center',
           overflow: 'hidden',
-          marginTop: '-120px',
-          paddingTop: '240px'
+          marginTop: '-100px',
+          paddingTop: '100px',
+          paddingBottom: '80px'
         }}>
           {/* Video Background */}
           <div style={{
@@ -150,7 +151,7 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
             zIndex: 2,
             maxWidth: '1400px',
             margin: '0 auto',
-            padding: '120px 24px 0',
+            padding: '160px 24px 60px',
             width: '100%'
           }}>
             <div style={{
@@ -255,8 +256,7 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
 
         {/* WHAT IS APEX - Clarity Section */}
         <section id="opportunity" style={{
-          padding: '60px 24px',
-          paddingTop: '180px',
+          padding: '80px 24px',
           background: '#ffffff'
         }}>
           <div style={{
@@ -612,7 +612,7 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
 
         {/* THREE STAGES Section */}
         <section style={{
-          padding: '60px 24px',
+          padding: '80px 24px',
           background: '#f8fafc'
         }}>
           <div style={{
@@ -795,7 +795,7 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
 
         {/* HOW IT WORKS - Process */}
         <section style={{
-          padding: '60px 24px',
+          padding: '80px 24px',
           background: '#ffffff'
         }}>
           <div style={{
@@ -995,7 +995,7 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
 
         {/* PRODUCTS & INSURANCE Section */}
         <section id="products" style={{
-          padding: '60px 24px',
+          padding: '80px 24px',
           background: '#0f172a'
         }}>
           <div style={{
@@ -1347,7 +1347,7 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
 
         {/* COMPENSATION Preview */}
         <section id="compensation" style={{
-          padding: '60px 24px',
+          padding: '80px 24px',
           background: '#ffffff'
         }}>
           <div style={{
@@ -1549,7 +1549,7 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
 
         {/* FAQ Section */}
         <section id="faq" style={{
-          padding: '60px 24px',
+          padding: '80px 24px',
           background: '#f8fafc'
         }}>
           <div style={{
@@ -1763,7 +1763,7 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
 
         {/* FINAL CTA Section */}
         <section style={{
-          padding: '60px 24px',
+          padding: '80px 24px',
           background: 'linear-gradient(135deg, #1a2f50 0%, #2B4C7E 100%)',
           textAlign: 'center'
         }}>
