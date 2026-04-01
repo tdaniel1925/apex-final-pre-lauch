@@ -113,7 +113,7 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
           display: 'flex',
           alignItems: 'center',
           overflow: 'hidden',
-          marginTop: '120px'
+          paddingTop: '120px'
         }}>
           {/* Video Background */}
           <div style={{
