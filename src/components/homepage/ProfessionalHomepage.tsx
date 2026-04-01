@@ -13,7 +13,12 @@ import Script from 'next/script';
 import { formatPhoneForDisplay } from '@/lib/utils/format-phone';
 
 interface ProfessionalHomepageProps {
-  distributor: Distributor;
+  distributor: Distributor & {
+    member?: {
+      tech_rank: string | null;
+      insurance_rank: string | null;
+    } | null;
+  };
   isMainSite?: boolean;
 }
 
@@ -22,6 +27,29 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
   const [activeTab, setActiveTab] = useState<'ai' | 'insurance'>('ai');
 
   const signupUrl = distributor.slug === 'apex' ? '/signup' : `/signup?ref=${distributor.slug}`;
+
+  // Format distributor name with ranks for replicated sites
+  const getDistributorDisplayName = () => {
+    if (distributor.slug === 'apex' || isMainSite) {
+      return 'Insurance Products • AI Technology • Career Path';
+    }
+
+    const fullName = `${distributor.first_name} ${distributor.last_name}`;
+    const techRank = distributor.member?.tech_rank;
+    const insuranceRank = distributor.member?.insurance_rank;
+    const isLicensed = distributor.licensing_status !== 'non_licensed';
+
+    // Build rank display
+    let rankDisplay = '';
+    if (techRank) {
+      rankDisplay = techRank.toUpperCase();
+      if (insuranceRank && isLicensed) {
+        rankDisplay += ` • ${insuranceRank.toUpperCase()}`;
+      }
+    }
+
+    return rankDisplay ? `Building with ${fullName} - ${rankDisplay}` : `Building with ${fullName}`;
+  };
 
   useEffect(() => {
     setMounted(true);
@@ -171,10 +199,7 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
                 textTransform: 'uppercase',
                 marginBottom: '24px'
               }}>
-                {distributor.slug === 'apex' || isMainSite
-                  ? 'Insurance Products • AI Technology • Career Path'
-                  : `Building with ${distributor.first_name} ${distributor.last_name}`
-                }
+                {getDistributorDisplayName()}
               </div>
 
               {/* Headline */}

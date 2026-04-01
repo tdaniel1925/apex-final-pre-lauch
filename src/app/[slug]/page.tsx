@@ -80,11 +80,17 @@ export default async function DistributorPage({ params }: PageProps) {
     redirect(RESERVED_ROUTES[slug.toLowerCase()]);
   }
 
-  // Look up distributor
+  // Look up distributor with member data (including ranks)
   const supabase = await createClient();
   const { data: distributor, error } = await supabase
     .from('distributors')
-    .select('*')
+    .select(`
+      *,
+      member:members!members_distributor_id_fkey (
+        tech_rank,
+        insurance_rank
+      )
+    `)
     .eq('slug', slug)
     .single();
 
