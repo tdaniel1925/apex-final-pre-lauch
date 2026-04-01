@@ -14,6 +14,13 @@ export async function GET() {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
+    // TODO: Create ai_genealogy_recommendations table in database
+    // Temporarily return empty recommendations until table is created
+    return NextResponse.json({
+      recommendations: [],
+    });
+
+    /* Commented out until table exists
     const supabase = await createClient();
 
     // Get active recommendations (not dismissed, not completed)
@@ -42,6 +49,7 @@ export async function GET() {
     return NextResponse.json({
       recommendations: recommendations || [],
     });
+    */
   } catch (error: any) {
     console.error('Error in ai-recommendations route:', error);
     return NextResponse.json(

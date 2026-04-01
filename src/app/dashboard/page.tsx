@@ -22,7 +22,7 @@ import CopyReferralButton from '@/components/dashboard/CopyReferralButton';
 import AIPhoneStats from '@/components/dashboard/AIPhoneStats';
 import RaceTo100Banner from '@/components/dashboard/RaceTo100Banner';
 import AIAssistantBanner from '@/components/dashboard/AIAssistantBanner';
-import AIRecommendations from '@/components/dashboard/AIRecommendations';
+// import AIRecommendations from '@/components/dashboard/AIRecommendations'; // TODO: Create ai_genealogy_recommendations table
 import type { Distributor } from '@/lib/types';
 import { ArrowRight, Users, FileText, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
@@ -231,8 +231,8 @@ export default async function DashboardPage() {
           {/* AI Assistant Banner */}
           <AIAssistantBanner />
 
-          {/* AI Recommendations Widget */}
-          <AIRecommendations />
+          {/* AI Recommendations Widget - TODO: Create ai_genealogy_recommendations table */}
+          {/* <AIRecommendations /> */}
 
           {/* Training Audio Player */}
           <TrainingAudioPlayer />

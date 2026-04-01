@@ -16,8 +16,27 @@ export const metadata: Metadata = {
   description: 'AI-powered team analysis and strategic recommendations',
 };
 
+// Type definition for recommendation
+interface AIRecommendation {
+  id: string;
+  distributor_id: string;
+  recommendation_text: string;
+  recommendation_type: string;
+  priority: string;
+  action_items: string[];
+  dismissed: boolean;
+  completed: boolean;
+  generated_at: string;
+  created_at: string;
+}
+
 // Fetch recommendations server-side
-async function getRecommendations(distributorId: string) {
+async function getRecommendations(distributorId: string): Promise<AIRecommendation[]> {
+  // TODO: Create ai_genealogy_recommendations table in database
+  // Temporarily return empty array until table is created
+  return [];
+
+  /* Commented out until table exists
   const supabase = await createClient();
 
   // Get active recommendations from last 7 days
@@ -40,6 +59,7 @@ async function getRecommendations(distributorId: string) {
   }
 
   return recommendations || [];
+  */
 }
 
 export default async function AIInsightsPage() {
