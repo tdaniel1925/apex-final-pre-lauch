@@ -150,7 +150,7 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
             zIndex: 2,
             maxWidth: '1400px',
             margin: '0 auto',
-            padding: '75px 24px 0',
+            padding: '120px 24px 0',
             width: '100%'
           }}>
             <div style={{
@@ -256,7 +256,7 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
         {/* WHAT IS APEX - Clarity Section */}
         <section id="opportunity" style={{
           padding: '60px 24px',
-          paddingTop: '100px',
+          paddingTop: '180px',
           background: '#ffffff'
         }}>
           <div style={{
