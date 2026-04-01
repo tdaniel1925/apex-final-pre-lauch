@@ -1,0 +1,18 @@
+<svg width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="coachingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2B4C7E;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e3a5f;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" fill="#f5f5f5"/>
+  <rect x="50" y="50" width="500" height="300" rx="8" fill="white" stroke="#e2e8f0" stroke-width="2"/>
+  <rect x="50" y="50" width="500" height="80" rx="8" fill="url(#coachingGrad)"/>
+  <text x="300" y="95" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="white" text-anchor="middle">Scale to 7-Figures in 12 Months</text>
+  <circle cx="300" cy="180" r="50" fill="#fbbf24"/>
+  <text x="300" y="195" font-size="45" text-anchor="middle">🎯</text>
+  <text x="300" y="255" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1e293b" text-anchor="middle">Elite Coaching Program</text>
+  <text x="300" y="280" font-family="Arial, sans-serif" font-size="14" fill="#64748b" text-anchor="middle">Limited to 15 founders per cohort</text>
+  <rect x="200" y="295" width="200" height="40" rx="6" fill="#10b981"/>
+  <text x="300" y="320" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">Apply Now - $12,500</text>
+</svg>

@@ -124,6 +124,32 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
                       <li className="nav-item"><a className="nav-link" href="/#faq">FAQs</a></li>
                       <li className="nav-item"><a className="nav-link" href="/live">Events</a></li>
                     </ul>
+                    {/* Sign Up Button */}
+                    <a
+                      href={signupUrl}
+                      style={{
+                        padding: '12px 28px',
+                        fontSize: '15px',
+                        fontWeight: '600',
+                        color: '#ffffff',
+                        textDecoration: 'none',
+                        background: '#2B4C7E',
+                        borderRadius: '8px',
+                        transition: 'all 0.2s',
+                        display: 'inline-block',
+                        marginLeft: '24px'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = '#1a2c4e';
+                        e.currentTarget.style.transform = 'translateY(-2px)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = '#2B4C7E';
+                        e.currentTarget.style.transform = 'translateY(0)';
+                      }}
+                    >
+                      Sign Up
+                    </a>
                   </div>
                 </div>
                 <div className="navbar-toggle"></div>

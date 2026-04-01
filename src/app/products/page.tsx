@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Script from 'next/script';
 import PulseProductCheckoutButton from '@/components/PulseProductCheckoutButton';
@@ -191,67 +192,99 @@ const examples: Record<ContentType, Example[]> = {
   email: [
     {
       id: '1',
-      title: 'Welcome to Pulse - Get Started',
-      industry: 'Onboarding',
-      thumbnail: '/examples/email-screenshots/welcome-onboarding.png',
+      title: 'Welcome to ConvertKit - Get Started',
+      industry: 'SaaS Onboarding',
+      thumbnail: '/examples/email-screenshots/welcome-onboarding.svg',
       liveUrl: '/examples/emails/welcome-onboarding.html',
-      description: 'New user onboarding email with 3-step setup guide and helpful resources',
+      description: 'Creator platform onboarding with 3-step quick-start guide (5 min each) and social proof from 60,000+ users',
     },
     {
       id: '2',
-      title: 'PulseCommand Product Launch',
-      industry: 'Product Launch',
-      thumbnail: '/examples/email-screenshots/product-launch.png',
+      title: 'Workflow Automation Launch',
+      industry: 'SaaS Product Launch',
+      thumbnail: '/examples/email-screenshots/product-launch.svg',
       liveUrl: '/examples/emails/product-launch.html',
-      description: 'Announcing new product with features, pricing, and early-bird special offer',
+      description: 'Zapier-style automation feature launch with video demo, use cases, and early-bird pricing',
     },
     {
       id: '3',
-      title: 'Flash Sale: 40% Off All Plans',
-      industry: 'Promotional',
-      thumbnail: '/examples/email-screenshots/promotional-sale.png',
+      title: 'Black Friday E-commerce Sale',
+      industry: 'E-commerce Promotion',
+      thumbnail: '/examples/email-screenshots/promotional-sale.svg',
       liveUrl: '/examples/emails/promotional-sale.html',
-      description: '48-hour flash sale with urgency-driven design and tiered pricing display',
+      description: 'Site-wide Black Friday campaign with 60% discount, free shipping, and abandoned cart recovery strategy',
     },
     {
       id: '4',
-      title: 'The Growth Edge Newsletter',
-      industry: 'Newsletter',
-      thumbnail: '/examples/email-screenshots/newsletter-insights.png',
+      title: 'B2B Marketing Newsletter - Case Study',
+      industry: 'B2B Newsletter',
+      thumbnail: '/examples/email-screenshots/newsletter-insights.svg',
       liveUrl: '/examples/emails/newsletter-insights.html',
-      description: 'Monthly newsletter with AI marketing trends, stats, and actionable tips',
+      description: 'Weekly insights featuring DesignFlow case study ($127K MRR, 373% conversion increase) with actionable tips',
     },
     {
       id: '5',
-      title: 'AI Marketing Summit Invitation',
-      industry: 'Event',
-      thumbnail: '/examples/email-screenshots/event-invitation.png',
+      title: 'Free Masterclass Webinar Invitation',
+      industry: 'Webinar/Event',
+      thumbnail: '/examples/email-screenshots/event-invitation.svg',
       liveUrl: '/examples/emails/event-invitation.html',
-      description: 'VIP event invitation with agenda, speakers, and early-bird ticket pricing',
+      description: 'Lead magnet webinar with specific agenda, outcomes, and scarcity (50 spots remaining)',
     },
     {
       id: '6',
-      title: 'We Miss You - Come Back',
-      industry: 'Follow-Up',
-      thumbnail: '/examples/email-screenshots/follow-up-engagement.png',
+      title: 'Lead Nurture Sequence - Day 3',
+      industry: 'Lead Nurture',
+      thumbnail: '/examples/email-screenshots/follow-up-engagement.svg',
       liveUrl: '/examples/emails/follow-up-engagement.html',
-      description: 'Re-engagement email highlighting new features and offering 30% discount',
+      description: 'Email 2 of 5 series with DataSync case study (156% SQL growth) and free resources with UTM tracking',
     },
     {
       id: '7',
-      title: 'Last Chance - Account Cancellation',
+      title: 'SaaS Win-Back Campaign',
       industry: 'Re-engagement',
-      thumbnail: '/examples/email-screenshots/re-engagement-winback.png',
+      thumbnail: '/examples/email-screenshots/re-engagement-winback.svg',
       liveUrl: '/examples/emails/re-engagement-winback.html',
-      description: 'Win-back email with final 50% off offer before account cancellation',
+      description: 'TaskFlow 30-day inactive user campaign with 50% discount, account pause option, and personalized usage stats',
     },
     {
       id: '8',
-      title: 'Black Friday 2026 - 60% Off',
+      title: 'Thanksgiving Year-in-Review',
       industry: 'Seasonal/Holiday',
-      thumbnail: '/examples/email-screenshots/seasonal-holiday.png',
+      thumbnail: '/examples/email-screenshots/seasonal-holiday.svg',
       liveUrl: '/examples/emails/seasonal-holiday.html',
-      description: 'Black Friday sale email with lifetime deals and limited-time bonuses',
+      description: 'SalesPro B2B SaaS gratitude email with company metrics, user stats, free 3-month Pro upgrade, and 2027 roadmap',
+    },
+    {
+      id: '9',
+      title: 'Luxury Real Estate Listing',
+      industry: 'Real Estate',
+      thumbnail: '/examples/email-screenshots/real-estate-listing.svg',
+      liveUrl: '/examples/emails/real-estate-listing.html',
+      description: '$1.2M property listing with open house details, neighborhood info, 45-photo gallery, and 3D virtual tour',
+    },
+    {
+      id: '10',
+      title: 'Auto Insurance Renewal Notice',
+      industry: 'Insurance',
+      thumbnail: '/examples/email-screenshots/insurance-policy-renewal.svg',
+      liveUrl: '/examples/emails/insurance-policy-renewal.html',
+      description: 'Policy renewal with $247/year savings, improved coverage comparison, and carrier switch recommendation',
+    },
+    {
+      id: '11',
+      title: 'Scale to 7-Figures Coaching Program',
+      industry: 'Coaching/Education',
+      thumbnail: '/examples/email-screenshots/coaching-program.svg',
+      liveUrl: '/examples/emails/coaching-program.html',
+      description: 'High-ticket $12,500 coaching program with 5-module curriculum, 3 founder testimonials, and growth guarantee',
+    },
+    {
+      id: '12',
+      title: 'Cart Abandonment Recovery',
+      industry: 'E-commerce',
+      thumbnail: '/examples/email-screenshots/cart-abandonment.svg',
+      liveUrl: '/examples/emails/cart-abandonment.html',
+      description: 'StyleStore cart recovery with 2 items, 10% discount code, FREE shipping, 24-hour urgency, and stock scarcity',
     },
   ],
   video: [
@@ -383,7 +416,7 @@ const comparisonData: Record<
   },
 };
 
-export default function ProductsPage() {
+function ProductsPageContent({ distributorName }: { distributorName: string | null }) {
   const [activeTab, setActiveTab] = useState<ContentType>('landing');
   const [selectedExample, setSelectedExample] = useState<Example | null>(null);
 
@@ -395,9 +428,26 @@ export default function ProductsPage() {
   // Get the examples for the current tab (randomized for social)
   const currentExamples = activeTab === 'social' ? randomizedSocialPosts : examples[activeTab];
 
+  // Determine hero title based on whether this is a personalized page
+  const heroTitle = distributorName
+    ? (
+        <>
+          Compare AI Business Solutions from {distributorName} and{' '}
+          <span style={{ whiteSpace: 'nowrap' }}>Apex Affinity Group</span>
+        </>
+      )
+    : 'Compare AI Business Solutions & See Examples';
+
   return (
     <>
       <Script src="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" />
+
+      {/* Loading spinner animation */}
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+      `}} />
 
       <div style={{ fontFamily: 'Inter, -apple-system, sans-serif', background: '#ffffff', minHeight: '100vh', overflowX: 'hidden' }}>
         {/* HEADER / NAVIGATION */}
@@ -521,13 +571,13 @@ export default function ProductsPage() {
             <h1
               style={{
                 fontSize: '56px',
-                fontWeight: 900,
+                fontWeight: 700,
                 lineHeight: 1.1,
                 letterSpacing: '-0.02em',
                 marginBottom: '20px',
               }}
             >
-              Compare AI Business Solutions & See Examples
+              {heroTitle}
             </h1>
             <p style={{ fontSize: '22px', lineHeight: 1.6, color: '#cbd5e1', marginBottom: '0' }}>
               Choose the right tier for your business. View real examples of what you'll create.
@@ -552,7 +602,7 @@ export default function ProductsPage() {
                 Why You Need Pulse Products
               </h2>
               <p style={{ fontSize: '18px', color: '#64748b', lineHeight: 1.6, maxWidth: '700px', margin: '0 auto' }}>
-                Watch Trent Daniel explain how Pulse products revolutionize your business marketing and automation
+                AI Marketing Expert, Trent Daniel, explains how Pulse products revolutionize your business marketing and automation.
               </p>
             </div>
 
@@ -1202,9 +1252,69 @@ export default function ProductsPage() {
                         Your browser does not support the video tag.
                       </video>
                     </div>
+                  ) : activeTab === 'email' && selectedExample.liveUrl ? (
+                    <>
+                      {/* Email displayed directly in iframe - no preview friction */}
+                      <div
+                        style={{
+                          border: '3px solid #e2e8f0',
+                          borderRadius: '16px',
+                          overflow: 'hidden',
+                          boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
+                          background: '#ffffff',
+                          height: 'calc(90vh - 280px)',
+                        }}
+                      >
+                        <iframe
+                          src={selectedExample.liveUrl}
+                          title={selectedExample.title}
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            border: 'none',
+                            display: 'block',
+                          }}
+                        />
+                      </div>
+                      {/* Optional: Open in new tab button */}
+                      <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', marginTop: '24px' }}>
+                        <a
+                          href={selectedExample.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{
+                            padding: '12px 24px',
+                            background: 'transparent',
+                            color: '#2B4C7E',
+                            border: '2px solid #2B4C7E',
+                            borderRadius: '12px',
+                            textDecoration: 'none',
+                            fontSize: '14px',
+                            fontWeight: 600,
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '8px',
+                            transition: 'all 0.2s',
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.background = '#2B4C7E';
+                            e.currentTarget.style.color = '#ffffff';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.background = 'transparent';
+                            e.currentTarget.style.color = '#2B4C7E';
+                          }}
+                        >
+                          Open in New Tab
+                          <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
+                          </svg>
+                        </a>
+                      </div>
+                    </>
                   ) : (
                     <>
-                      {/* Full Screenshot - Scrollable */}
+                      {/* Full Screenshot - Scrollable (for landing pages) */}
                       <div
                         style={{
                           border: '3px solid #e2e8f0',
@@ -1226,7 +1336,7 @@ export default function ProductsPage() {
                           }}
                         />
                       </div>
-                      {/* Action Button - Only for landing pages with live URLs */}
+                      {/* Action Button - For landing pages with live URLs */}
                       {activeTab === 'landing' && selectedExample.liveUrl && (
                         <div style={{ display: 'flex', gap: '16px', justifyContent: 'center' }}>
                           <a
@@ -1295,5 +1405,43 @@ export default function ProductsPage() {
         )}
       </div>
     </>
+  );
+}
+
+// Wrapper component that handles search params
+function ProductsPageWithParams() {
+  const searchParams = useSearchParams();
+  const distributorName = searchParams.get('from');
+
+  return <ProductsPageContent distributorName={distributorName} />;
+}
+
+// Main export with Suspense boundary
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={
+      <div style={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: '#ffffff'
+      }}>
+        <div style={{ textAlign: 'center' }}>
+          <div style={{
+            width: '48px',
+            height: '48px',
+            border: '4px solid #e5e7eb',
+            borderTopColor: '#2B4C7E',
+            borderRadius: '50%',
+            animation: 'spin 1s linear infinite',
+            margin: '0 auto 16px'
+          }} />
+          <p style={{ color: '#64748b' }}>Loading...</p>
+        </div>
+      </div>
+    }>
+      <ProductsPageWithParams />
+    </Suspense>
   );
 }

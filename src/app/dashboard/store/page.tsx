@@ -252,14 +252,6 @@ export default async function StorePage() {
                             Access Service
                           </a>
                         </div>
-                      ) : product.slug === 'business-center' ? (
-                        <button
-                          type="button"
-                          disabled
-                          className="w-full px-4 py-2 bg-slate-400 text-white rounded-lg cursor-not-allowed font-medium"
-                        >
-                          Available April 1
-                        </button>
                       ) : (
                         <StoreClient
                           productId={product.id}

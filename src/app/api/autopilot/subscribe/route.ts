@@ -17,10 +17,11 @@ const subscribeSchema = z.object({
 
 /**
  * POST /api/autopilot/subscribe
- * Create Stripe Checkout session for autopilot subscription
+ * NOTE: As of 2026, ALL Autopilot tiers are FREE
+ * This endpoint now just updates the tier preference without charging
  *
- * @body {tier} - Subscription tier to subscribe to
- * @returns {url} - Stripe Checkout URL to redirect to
+ * @body {tier} - Subscription tier to select (all free)
+ * @returns {success: true} - Confirmation that tier was updated
  */
 export async function POST(request: NextRequest) {
   try {
@@ -37,7 +38,7 @@ export async function POST(request: NextRequest) {
         {
           success: false,
           error: 'Unauthorized',
-          message: 'You must be logged in to subscribe',
+          message: 'You must be logged in',
         },
         { status: 401 }
       );
@@ -52,7 +53,7 @@ export async function POST(request: NextRequest) {
         {
           success: false,
           error: 'Validation Error',
-          message: 'Invalid subscription tier',
+          message: 'Invalid tier selection',
           details: validation.error.issues,
         },
         { status: 400 }
@@ -80,37 +81,12 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Check if distributor already has an active subscription
-    const { data: existingSubscription } = await supabase
-      .from('autopilot_subscriptions')
-      .select('tier, status')
-      .eq('distributor_id', distributor.id)
-      .single();
-
-    if (existingSubscription && existingSubscription.status === 'active') {
-      return NextResponse.json(
-        {
-          success: false,
-          error: 'Already Subscribed',
-          message: `You already have an active ${existingSubscription.tier} subscription`,
-        },
-        { status: 400 }
-      );
-    }
-
-    // Create Stripe Checkout session
-    const checkoutUrl = await createAutopilotCheckoutSession(
-      distributor.id,
-      tier as AutopilotTier,
-      distributor.email
-    );
-
-    // Store pending subscription in database
-    await supabase.from('autopilot_subscriptions').upsert(
+    // Since everything is FREE, just update the tier preference directly
+    const { error: upsertError } = await supabase.from('autopilot_subscriptions').upsert(
       {
         distributor_id: distributor.id,
         tier,
-        status: 'trialing', // Will be updated by webhook
+        status: 'active', // All tiers are active and free
         updated_at: new Date().toISOString(),
       },
       {
@@ -118,9 +94,22 @@ export async function POST(request: NextRequest) {
       }
     );
 
+    if (upsertError) {
+      console.error('[Subscribe API] Error updating tier:', upsertError);
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'Database Error',
+          message: 'Failed to update tier preference',
+        },
+        { status: 500 }
+      );
+    }
+
     return NextResponse.json({
       success: true,
-      url: checkoutUrl,
+      message: `Successfully activated ${tier} tier (free)`,
+      tier,
     });
   } catch (error: any) {
     console.error('[Subscribe API] Error:', error);

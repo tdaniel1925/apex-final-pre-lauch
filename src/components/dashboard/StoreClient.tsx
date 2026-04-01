@@ -31,15 +31,14 @@ export default function StoreClient({
     setError(null);
 
     try {
-      // Call checkout API
-      const response = await fetch('/api/checkout', {
+      // Call Stripe checkout API for database products
+      const response = await fetch('/api/stripe/create-product-checkout', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          productId,
-          distributorId,
+          product_id: productId,
         }),
       });
 

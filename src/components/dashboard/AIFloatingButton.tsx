@@ -4,10 +4,11 @@
 // AI Floating Button Component
 // Modern floating action button that triggers the AI chat modal
 // Features: Sparkle icon, pulsing animation, tooltip on hover
+// UPDATED: Now uses AIChatModal directly (consolidated chatbot)
 // =============================================
 
 import { useState } from 'react';
-import AIModalChat from './AIModalChat';
+import AIChatModal from './AIChatModal';
 
 interface AIFloatingButtonProps {
   initialContext?: {
@@ -61,8 +62,8 @@ export default function AIFloatingButton({ initialContext }: AIFloatingButtonPro
         </div>
       </button>
 
-      {/* Modal Chat */}
-      <AIModalChat isOpen={isOpen} onClose={() => setIsOpen(false)} initialContext={initialContext} />
+      {/* AI Chat Modal - Consolidated chatbot implementation */}
+      <AIChatModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </>
   );
 }

@@ -2,14 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import { AutopilotSubscriptionCard } from '@/components/autopilot/AutopilotSubscriptionCard';
-import { AutopilotPricingCards } from '@/components/autopilot/AutopilotPricingCards';
-import { AutopilotUpgradeModal } from '@/components/autopilot/AutopilotUpgradeModal';
 import { AutopilotTier } from '@/lib/stripe/autopilot-products';
 import { toast } from 'sonner';
+import { CheckCircle2 } from 'lucide-react';
 
 /**
  * Autopilot Subscription Page
- * Manage autopilot subscription, view usage, and upgrade/downgrade plans
+ * NOTE: As of 2026, ALL Autopilot features are FREE for Apex members
+ * This page now just shows usage stats and confirms free access
  */
 export default function AutopilotSubscriptionPage() {
   const [subscription, setSubscription] = useState<any>(null);
@@ -178,52 +178,74 @@ export default function AutopilotSubscriptionPage() {
       <div className="max-w-6xl mx-auto space-y-8">
         {/* Page Header */}
         <div>
-          <h1 className="text-3xl font-bold mb-2">Autopilot Subscription</h1>
+          <h1 className="text-3xl font-bold mb-2">Autopilot - Free Access</h1>
           <p className="text-muted-foreground">
-            Manage your Lead Autopilot subscription and view usage limits
+            All Lead Autopilot features are now FREE for Apex members
           </p>
         </div>
 
-        {/* Current Subscription Card */}
+        {/* Free Announcement Card */}
+        <div className="bg-gradient-to-r from-green-50 to-blue-50 border-2 border-green-500 rounded-lg p-8">
+          <div className="flex items-start gap-4">
+            <CheckCircle2 className="w-12 h-12 text-green-600 flex-shrink-0" />
+            <div>
+              <h2 className="text-2xl font-bold text-slate-900 mb-2">
+                🎉 All Features Unlocked - No Cost!
+              </h2>
+              <p className="text-slate-700 text-lg mb-4">
+                Every Apex member now has unlimited access to:
+              </p>
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-slate-700">
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-600" />
+                  <span>Unlimited Email Invitations</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-600" />
+                  <span>Unlimited CRM Contacts</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-600" />
+                  <span>Unlimited SMS Messages</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-600" />
+                  <span>Unlimited Social Media Posts</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-600" />
+                  <span>Unlimited Event Flyers</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-600" />
+                  <span>Team Broadcasts & Training Library</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-600" />
+                  <span>AI Lead Scoring</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-600" />
+                  <span>Advanced Analytics Dashboard</span>
+                </li>
+              </ul>
+              <div className="mt-6 p-4 bg-white rounded-lg border border-green-200">
+                <p className="text-sm text-slate-600">
+                  <strong className="text-slate-900">No payment required.</strong> Start using all features immediately from your <a href="/dashboard/autopilot" className="text-blue-600 hover:underline font-semibold">Autopilot Dashboard</a>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Current Usage Card */}
         {subscription && (
           <AutopilotSubscriptionCard
             subscription={subscription}
             usage={usage}
-            onUpgrade={handleUpgrade}
-            onCancel={handleCancel}
-            onReactivate={handleReactivate}
-          />
-        )}
-
-        {/* Pricing Section */}
-        <div id="pricing-section" className="pt-8">
-          <div className="mb-6">
-            <h2 className="text-2xl font-bold mb-2">Available Plans</h2>
-            <p className="text-muted-foreground">
-              Choose the plan that fits your business needs
-            </p>
-          </div>
-
-          <AutopilotPricingCards
-            currentTier={subscription?.tier || 'free'}
-            onSubscribe={handleSubscribe}
-            isLoading={isLoading}
-          />
-        </div>
-
-        {/* Upgrade Modal */}
-        {selectedTier && subscription && (
-          <AutopilotUpgradeModal
-            isOpen={isUpgradeModalOpen}
-            onClose={() => {
-              setIsUpgradeModalOpen(false);
-              setSelectedTier(null);
-            }}
-            currentTier={subscription.tier}
-            targetTier={selectedTier}
-            daysRemainingInCycle={getDaysRemainingInCycle()}
-            onConfirm={handleConfirmUpgrade}
-            isLoading={isLoading}
+            onUpgrade={() => {}}
+            onCancel={() => {}}
+            onReactivate={() => {}}
           />
         )}
       </div>

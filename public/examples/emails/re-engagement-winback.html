@@ -3,28 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Last Chance - Your Account Will Be Cancelled Tomorrow</title>
+    <title>{{first_name}}, we noticed you haven't used TaskFlow in 30 days</title>
 </head>
 <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f5f5f5;">
     <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f5f5f5; padding: 40px 20px;">
         <tr>
             <td align="center">
-                <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border: 3px solid #f59e0b;">
-                    <!-- Urgent Warning Bar -->
-                    <tr>
-                        <td style="background-color: #fef3c7; padding: 15px; text-align: center; border-bottom: 2px solid #f59e0b;">
-                            <p style="margin: 0; color: #78350f; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">
-                                ⚠️ Action Required - Account Cancellation Scheduled
-                            </p>
-                        </td>
-                    </tr>
+                <!-- Preheader Text -->
+                <div style="display: none; max-height: 0px; overflow: hidden;">
+                    Your team completed 0 tasks in the last 30 days. We'd like to understand what happened and see if we can help. No pressure.
+                </div>
 
+                <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
                     <!-- Header -->
                     <tr>
                         <td style="padding: 50px 30px 30px; text-align: center;">
-                            <div style="font-size: 64px; margin-bottom: 20px;">⏰</div>
-                            <h1 style="color: #1e293b; margin: 0; font-size: 32px; font-weight: 800; letter-spacing: -1px; line-height: 1.3;">Before You Go...</h1>
-                            <p style="color: #64748b; margin: 15px 0 0; font-size: 16px;">Your subscription ends tomorrow. Here's one final offer.</p>
+                            <div style="font-size: 48px; margin-bottom: 20px;">👋</div>
+                            <h1 style="color: #1e293b; margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -1px; line-height: 1.3;">We Miss You, {{first_name}}</h1>
+                            <p style="color: #64748b; margin: 15px 0 0; font-size: 16px;">It's been 30 days since your team last logged in</p>
                         </td>
                     </tr>
 
@@ -32,122 +28,184 @@
                     <tr>
                         <td style="padding: 0 30px 40px;">
                             <p style="color: #475569; line-height: 1.8; font-size: 16px; margin: 0 0 25px;">
-                                We're sorry to see you go. Before your account is cancelled tomorrow, we wanted to reach out one last time with an exclusive offer designed specifically for users like you.
+                                Hi {{first_name}},
+                            </p>
+                            <p style="color: #475569; line-height: 1.8; font-size: 16px; margin: 0 0 30px;">
+                                I'm Alex, the founder of TaskFlow. I noticed your team ({{workspace_name}}) hasn't logged in for 30 days, and I wanted to personally reach out.
                             </p>
 
-                            <!-- Special Rescue Offer -->
-                            <div style="background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); padding: 35px; border-radius: 12px; text-align: center; margin-bottom: 30px; box-shadow: 0 8px 25px rgba(220, 38, 38, 0.3);">
-                                <p style="color: #fef3c7; margin: 0 0 10px; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px;">Final Offer - 24 Hours Only</p>
-                                <h2 style="color: #ffffff; margin: 0 0 15px; font-size: 42px; font-weight: 900;">50% OFF</h2>
-                                <p style="color: #fecaca; margin: 0 0 20px; font-size: 18px; font-weight: 700;">For the Next 6 Months</p>
-                                <div style="background-color: rgba(255, 255, 255, 0.15); padding: 15px 25px; border-radius: 8px; display: inline-block; margin-bottom: 10px;">
-                                    <p style="color: #ffffff; margin: 0; font-size: 16px; font-weight: 700;">
-                                        PulseFlow: <span style="text-decoration: line-through; opacity: 0.7;">$149</span> <span style="font-size: 24px; font-weight: 900;">$74.50</span>/mo
-                                    </p>
-                                </div>
-                                <p style="color: #fecaca; margin: 15px 0 0; font-size: 13px;">
-                                    Cancel anytime • Lock in this price forever
+                            <!-- Usage Recap -->
+                            <div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); padding: 25px; border-radius: 10px; margin-bottom: 30px; border-left: 4px solid #0284c7;">
+                                <h3 style="color: #0c4a6e; margin: 0 0 15px; font-size: 20px; font-weight: 800;">📊 Your Team's Activity</h3>
+                                <table width="100%" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td style="padding: 15px; background-color: #ffffff; border-radius: 8px; width: 48%; text-align: center;">
+                                            <p style="margin: 0; font-size: 32px; font-weight: 900; color: #2B4C7E;">{{total_tasks}}</p>
+                                            <p style="margin: 8px 0 0; font-size: 13px; color: #64748b; font-weight: 600;">Tasks Created</p>
+                                        </td>
+                                        <td style="width: 4%;"></td>
+                                        <td style="padding: 15px; background-color: #ffffff; border-radius: 8px; width: 48%; text-align: center;">
+                                            <p style="margin: 0; font-size: 32px; font-weight: 900; color: #10b981;">{{completed_tasks}}</p>
+                                            <p style="margin: 8px 0 0; font-size: 13px; color: #64748b; font-weight: 600;">Tasks Completed</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <p style="color: #475569; line-height: 1.7; font-size: 15px; margin: 20px 0 0;">
+                                    Your team was crushing it for {{active_days}} days. Then activity stopped on {{last_login_date}}. What happened?
                                 </p>
                             </div>
 
-                            <!-- Why Stay? -->
-                            <h3 style="color: #1e293b; margin: 0 0 20px; font-size: 24px; font-weight: 800;">What You'll Lose Tomorrow</h3>
+                            <!-- Common Reasons -->
+                            <h3 style="color: #1e293b; margin: 0 0 20px; font-size: 22px; font-weight: 800;">Here's What Usually Happens (And How We Can Help)</h3>
 
-                            <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 25px;">
-                                <tr>
-                                    <td style="padding: 20px; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 8px; border-left: 4px solid #f59e0b; margin-bottom: 15px;">
-                                        <table width="100%" cellpadding="0" cellspacing="0">
-                                            <tr>
-                                                <td style="width: 40px; vertical-align: top;">
-                                                    <div style="font-size: 28px;">💰</div>
-                                                </td>
-                                                <td>
-                                                    <h4 style="color: #78350f; margin: 0 0 8px; font-size: 17px; font-weight: 700;">Your ROI So Far</h4>
-                                                    <p style="color: #92400e; line-height: 1.6; font-size: 14px; margin: 0;">
-                                                        Based on your usage, Pulse has saved you approximately <strong>38 hours</strong> of work. That's worth <strong>$1,520</strong> at a modest $40/hr rate.
-                                                    </p>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
+                            <!-- Reason 1 -->
+                            <div style="margin-bottom: 20px;">
+                                <table width="100%" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td style="width: 40px; vertical-align: top; padding-top: 5px;">
+                                            <div style="font-size: 24px;">🤔</div>
+                                        </td>
+                                        <td style="padding-left: 15px;">
+                                            <h4 style="color: #2B4C7E; margin: 0 0 8px; font-size: 17px; font-weight: 700;">"The tool was too complex for my team"</h4>
+                                            <p style="color: #64748b; line-height: 1.6; font-size: 15px; margin: 0;">
+                                                We get it. We've added a <strong>Simple Mode</strong> that hides advanced features until you need them. Plus, I can schedule a free 30-min onboarding call for your team this week.
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
 
-                            <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 25px;">
-                                <tr>
-                                    <td style="padding: 20px; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border-radius: 8px; border-left: 4px solid #0284c7;">
-                                        <table width="100%" cellpadding="0" cellspacing="0">
-                                            <tr>
-                                                <td style="width: 40px; vertical-align: top;">
-                                                    <div style="font-size: 28px;">📊</div>
-                                                </td>
-                                                <td>
-                                                    <h4 style="color: #0c4a6e; margin: 0 0 8px; font-size: 17px; font-weight: 700;">Your Content Library</h4>
-                                                    <p style="color: #0369a1; line-height: 1.6; font-size: 14px; margin: 0;">
-                                                        You've created <strong>47 pieces of content</strong> worth thousands in value. All will be deleted permanently in 30 days.
-                                                    </p>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
+                            <!-- Reason 2 -->
+                            <div style="margin-bottom: 20px;">
+                                <table width="100%" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td style="width: 40px; vertical-align: top; padding-top: 5px;">
+                                            <div style="font-size: 24px;">💰</div>
+                                        </td>
+                                        <td style="padding-left: 15px;">
+                                            <h4 style="color: #2B4C7E; margin: 0 0 8px; font-size: 17px; font-weight: 700;">"It's not in our budget right now"</h4>
+                                            <p style="color: #64748b; line-height: 1.6; font-size: 15px; margin: 0;">
+                                                I understand. Would <strong>50% off for 3 months</strong> help? That's $24.50/month instead of $49. Or we can pause your account (free) for up to 90 days instead of cancelling.
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
 
+                            <!-- Reason 3 -->
+                            <div style="margin-bottom: 30px;">
+                                <table width="100%" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td style="width: 40px; vertical-align: top; padding-top: 5px;">
+                                            <div style="font-size: 24px;">🔧</div>
+                                        </td>
+                                        <td style="padding-left: 15px;">
+                                            <h4 style="color: #2B4C7E; margin: 0 0 8px; font-size: 17px; font-weight: 700;">"We needed a feature you don't have"</h4>
+                                            <p style="color: #64748b; line-height: 1.6; font-size: 15px; margin: 0;">
+                                                Tell me what you needed. We ship new features every 2 weeks based on user feedback. If it's on our roadmap, I'll give you early access.
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <!-- What's New -->
+                            <div style="background-color: #fef3c7; padding: 25px; border-radius: 10px; margin-bottom: 30px; border-left: 4px solid #f59e0b;">
+                                <h3 style="color: #78350f; margin: 0 0 15px; font-size: 20px; font-weight: 800;">✨ What's New Since You Left</h3>
+                                <ul style="margin: 0; padding: 0 0 0 20px; color: #475569; line-height: 2;">
+                                    <li><strong>AI Task Prioritization:</strong> Automatically sorts your to-do list by urgency</li>
+                                    <li><strong>Slack Integration 2.0:</strong> Create/update tasks without leaving Slack</li>
+                                    <li><strong>Mobile App Redesign:</strong> 3x faster and works offline</li>
+                                    <li><strong>Custom Workflows:</strong> Automate repetitive processes (no-code)</li>
+                                </ul>
+                            </div>
+
+                            <!-- Win-Back Offer -->
+                            <div style="background: linear-gradient(135deg, #2B4C7E 0%, #1e3a5f 100%); padding: 30px; border-radius: 12px; text-align: center; margin-bottom: 30px; box-shadow: 0 6px 20px rgba(43, 76, 126, 0.3);">
+                                <p style="color: #fbbf24; margin: 0 0 10px; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px;">Welcome Back Offer</p>
+                                <h2 style="color: #ffffff; margin: 0 0 10px; font-size: 36px; font-weight: 900;">50% Off for 3 Months</h2>
+                                <p style="color: #cbd5e1; margin: 0 0 20px; font-size: 16px;">
+                                    Just <strong>$24.50/month</strong> (normally $49/mo) • Plus free onboarding call
+                                </p>
+                                <a href="https://taskflow.example.com/reactivate?code={{reactivation_code}}&discount=WIN50" style="display: inline-block; background-color: #fbbf24; color: #1e293b; padding: 16px 40px; text-decoration: none; border-radius: 8px; font-size: 16px; font-weight: 800; box-shadow: 0 4px 12px rgba(251, 191, 36, 0.4);">
+                                    Reactivate My Account
+                                </a>
+                                <p style="color: #94a3b8; margin: 20px 0 0; font-size: 13px;">
+                                    Code: <strong style="color: #fbbf24;">WIN50</strong> • Valid for 7 days
+                                </p>
+                            </div>
+
+                            <!-- Alternative: Pause Instead of Cancel -->
+                            <div style="background-color: #f8fafc; padding: 25px; border-radius: 8px; border: 2px dashed #cbd5e1; margin-bottom: 30px;">
+                                <h4 style="color: #1e293b; margin: 0 0 15px; font-size: 18px; font-weight: 700;">🔄 Not Ready to Come Back? Pause Instead of Cancelling</h4>
+                                <p style="color: #64748b; line-height: 1.7; font-size: 15px; margin: 0 0 15px;">
+                                    We'll freeze your account for up to 90 days (no charge). All your data stays safe. You can reactivate anytime with one click.
+                                </p>
+                                <div style="text-align: center;">
+                                    <a href="https://taskflow.example.com/account/pause?user_id={{user_id}}" style="color: #2B4C7E; font-weight: 700; text-decoration: none; font-size: 15px;">
+                                        Pause My Account (Free) →
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Social Proof -->
+                            <div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 25px; border-radius: 10px; margin-bottom: 30px; border-left: 4px solid #16a34a;">
+                                <p style="color: #14532d; font-size: 16px; font-weight: 700; margin: 0 0 12px;">"I almost cancelled, then I gave it one more shot"</p>
+                                <p style="color: #475569; line-height: 1.7; font-size: 15px; margin: 0 0 15px;">
+                                    "I was overwhelmed in my first month and stopped logging in. Then I saw the win-back email and booked that free onboarding call. The TaskFlow team spent 45 minutes setting up custom workflows for my agency. Now we manage 40+ client projects effortlessly. Best decision I made."
+                                </p>
+                                <p style="color: #15803d; font-size: 14px; margin: 0; font-weight: 700;">
+                                    — Maria Gonzalez, Creative Director at BrandHive Agency
+                                </p>
+                            </div>
+
+                            <!-- CTA Buttons -->
                             <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 30px;">
                                 <tr>
-                                    <td style="padding: 20px; background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-radius: 8px; border-left: 4px solid #16a34a;">
-                                        <table width="100%" cellpadding="0" cellspacing="0">
-                                            <tr>
-                                                <td style="width: 40px; vertical-align: top;">
-                                                    <div style="font-size: 28px;">🚀</div>
-                                                </td>
-                                                <td>
-                                                    <h4 style="color: #14532d; margin: 0 0 8px; font-size: 17px; font-weight: 700;">Future Potential</h4>
-                                                    <p style="color: #15803d; line-height: 1.6; font-size: 14px; margin: 0;">
-                                                        Users who stay past 90 days average <strong>3.2x more leads</strong> and report <strong>$12,500 in additional revenue</strong> from Pulse-generated content.
-                                                    </p>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-
-                            <!-- CTA Button -->
-                            <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 30px;">
-                                <tr>
-                                    <td align="center" style="padding: 20px 0;">
-                                        <a href="#" style="display: inline-block; background-color: #dc2626; color: #ffffff; padding: 18px 50px; text-decoration: none; border-radius: 8px; font-size: 18px; font-weight: 800; box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);">
-                                            Claim 50% Off Now
+                                    <td align="center">
+                                        <a href="https://taskflow.example.com/reactivate?code={{reactivation_code}}&discount=WIN50" style="display: inline-block; background-color: #2B4C7E; color: #ffffff; padding: 16px 35px; text-decoration: none; border-radius: 8px; font-size: 16px; font-weight: 700; margin: 0 8px 10px; box-shadow: 0 4px 12px rgba(43, 76, 126, 0.3);">
+                                            Claim 50% Off Offer
+                                        </a>
+                                        <a href="https://calendly.taskflow.example.com/onboarding?user={{user_id}}" style="display: inline-block; background-color: #ffffff; color: #2B4C7E; padding: 16px 35px; text-decoration: none; border-radius: 8px; font-size: 16px; font-weight: 700; border: 2px solid #2B4C7E; margin: 0 8px 10px;">
+                                            Book Free Onboarding Call
                                         </a>
                                     </td>
                                 </tr>
                             </table>
 
-                            <!-- Countdown -->
-                            <div style="background-color: #fef3c7; padding: 20px; border-radius: 8px; text-align: center; border: 2px dashed #f59e0b; margin-bottom: 30px;">
-                                <p style="color: #78350f; line-height: 1.7; font-size: 15px; margin: 0; font-weight: 700;">
-                                    ⏰ <strong>This offer expires in 24 hours</strong><br/>
-                                    <span style="font-size: 13px; font-weight: 600;">After that, your account will be cancelled and this pricing will never be available again.</span>
-                                </p>
-                            </div>
-
-                            <!-- Alternative: Feedback -->
-                            <div style="background-color: #f8fafc; padding: 25px; border-radius: 8px; border: 1px solid #e2e8f0;">
-                                <h4 style="color: #1e293b; margin: 0 0 15px; font-size: 18px; font-weight: 700;">If You're Still Leaving...</h4>
-                                <p style="color: #64748b; line-height: 1.7; font-size: 15px; margin: 0 0 15px;">
-                                    We'd love to know why so we can improve. Take our 2-minute exit survey and we'll give you:
+                            <!-- Feedback Request -->
+                            <div style="background-color: #eff6ff; padding: 25px; border-radius: 8px; border-left: 3px solid #3b82f6; margin-bottom: 30px;">
+                                <h4 style="color: #1e40af; margin: 0 0 15px; font-size: 18px; font-weight: 700;">📝 Or Just Tell Us What Went Wrong</h4>
+                                <p style="color: #475569; line-height: 1.7; font-size: 15px; margin: 0 0 15px;">
+                                    If TaskFlow isn't the right fit, that's totally okay. But I'd love to know why so we can improve. Take our <strong>2-minute survey</strong> and we'll give you:
                                 </p>
                                 <ul style="margin: 0 0 15px; padding: 0 0 0 20px; color: #475569; line-height: 2;">
-                                    <li>60-day free access to all your content (after cancellation)</li>
-                                    <li>$50 Amazon gift card as a thank you</li>
-                                    <li>Priority re-activation if you change your mind</li>
+                                    <li>90-day free access to export all your data</li>
+                                    <li>$25 Amazon gift card as a thank you</li>
+                                    <li>Priority re-activation offer (if you change your mind)</li>
                                 </ul>
                                 <div style="text-align: center;">
-                                    <a href="#" style="color: #2B4C7E; font-weight: 700; text-decoration: none; font-size: 15px;">
-                                        Take Exit Survey (2 min) →
+                                    <a href="https://survey.taskflow.example.com/exit?user={{user_id}}" style="display: inline-block; background-color: #3b82f6; color: #ffffff; padding: 12px 30px; text-decoration: none; border-radius: 6px; font-size: 14px; font-weight: 700;">
+                                        Take 2-Min Survey (Get $25 Gift Card)
                                     </a>
                                 </div>
+                            </div>
+
+                            <!-- Personal Note -->
+                            <p style="color: #475569; line-height: 1.8; font-size: 16px; margin: 0;">
+                                Whatever you decide, I appreciate you giving TaskFlow a shot. If there's anything I can do personally to help, just reply to this email. I read every message.
+                            </p>
+                            <p style="color: #475569; line-height: 1.8; font-size: 16px; margin: 20px 0 0; font-weight: 600;">
+                                Alex Chen<br/>
+                                <span style="font-weight: 400; color: #64748b; font-size: 14px;">Founder & CEO, TaskFlow<br/>
+                                alex@taskflow.com</span>
+                            </p>
+
+                            <!-- P.S. -->
+                            <div style="background-color: #fef3c7; padding: 20px; border-radius: 8px; margin-top: 30px; border-left: 4px solid #f59e0b;">
+                                <p style="color: #78350f; line-height: 1.7; font-size: 15px; margin: 0; font-weight: 600;">
+                                    <strong>P.S.</strong> Your data is safe for 90 days even if you cancel. You won't lose your {{total_tasks}} tasks, {{total_projects}} projects, or {{total_files}} uploaded files. We've got your back.
+                                </p>
                             </div>
                         </td>
                     </tr>
@@ -155,15 +213,22 @@
                     <!-- Footer -->
                     <tr>
                         <td style="background-color: #f8fafc; padding: 30px; text-align: center; border-top: 1px solid #e2e8f0;">
-                            <p style="color: #64748b; font-size: 14px; margin: 0 0 10px;">
-                                <strong style="color: #1e293b;">Questions?</strong> Our team is standing by
+                            <p style="color: #64748b; font-size: 14px; margin: 0 0 15px; font-weight: 600;">
+                                TaskFlow - Project Management Built for Teams
                             </p>
-                            <p style="color: #64748b; font-size: 14px; margin: 0 0 15px;">
-                                📧 support@theapexway.net | 💬 Live Chat Available
-                            </p>
+                            <div style="margin-bottom: 15px;">
+                                <a href="https://taskflow.com/help?utm_source=email&utm_campaign=winback" style="color: #2B4C7E; text-decoration: none; margin: 0 10px; font-size: 13px; font-weight: 600;">Help Center</a>
+                                <span style="color: #cbd5e1;">|</span>
+                                <a href="https://taskflow.com/whats-new?utm_source=email&utm_campaign=winback" style="color: #2B4C7E; text-decoration: none; margin: 0 10px; font-size: 13px; font-weight: 600;">What's New</a>
+                                <span style="color: #cbd5e1;">|</span>
+                                <a href="https://taskflow.com/contact?utm_source=email&utm_campaign=winback" style="color: #2B4C7E; text-decoration: none; margin: 0 10px; font-size: 13px; font-weight: 600;">Contact Us</a>
+                                <span style="color: #cbd5e1;">|</span>
+                                <a href="https://taskflow.com/unsubscribe/{{subscriber_id}}" style="color: #64748b; text-decoration: none; margin: 0 10px; font-size: 13px;">Unsubscribe</a>
+                            </div>
                             <p style="color: #94a3b8; font-size: 11px; line-height: 1.6; margin: 0;">
-                                Your cancellation is scheduled for March 31, 2026<br/>
-                                © 2026 Apex Affinity Group. All rights reserved.
+                                TaskFlow Inc. • 1800 Mission St, San Francisco CA 94103<br/>
+                                Your account: {{workspace_name}} • Last login: {{last_login_date}}<br/>
+                                Win-back offer expires: {{offer_expiry_date}}
                             </p>
                         </td>
                     </tr>

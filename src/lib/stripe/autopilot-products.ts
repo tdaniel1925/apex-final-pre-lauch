@@ -64,51 +64,75 @@ export const AUTOPILOT_PRODUCTS: Record<AutopilotTier, AutopilotProduct> = {
   free: {
     tier: 'free',
     name: 'Free',
-    displayName: 'Free Tier',
-    description: 'Start tracking meeting invitations with basic features',
+    displayName: 'Apex Lead Autopilot (Free)',
+    description: 'Complete CRM, email invitations, social posting, and team collaboration - all free for Apex members',
     priceMonthly: 0,
     priceCents: 0,
     bvValue: 0, // No BV for free tier
     stripePriceId: '', // No Stripe price for free tier
     features: [
       {
-        name: 'Email Invitations',
-        description: '10 meeting invitations per month',
-        limit: 10,
+        name: 'Unlimited Email Invitations',
+        description: 'Send unlimited meeting invitations',
+        limit: -1,
         isIncluded: true,
       },
       {
-        name: 'Response Tracking',
-        description: 'Track opens and responses',
+        name: 'CRM System',
+        description: 'Unlimited contacts with full CRM features',
+        limit: -1,
         isIncluded: true,
       },
       {
-        name: 'Basic Analytics',
-        description: 'View invitation performance',
+        name: 'SMS Campaigns',
+        description: 'Unlimited SMS messages',
+        limit: -1,
         isIncluded: true,
       },
       {
         name: 'Social Media Posting',
-        description: 'Not included in free tier',
-        limit: 0,
-        isIncluded: false,
+        description: 'Unlimited social posts',
+        limit: -1,
+        isIncluded: true,
       },
       {
-        name: 'CRM & SMS',
-        description: 'Not included in free tier',
-        limit: 0,
-        isIncluded: false,
+        name: 'Event Flyers',
+        description: 'Unlimited custom event flyers',
+        limit: -1,
+        isIncluded: true,
+      },
+      {
+        name: 'Team Broadcasts',
+        description: 'Communicate with your downline',
+        limit: -1,
+        isIncluded: true,
+      },
+      {
+        name: 'Training Library',
+        description: 'Share training videos with your team',
+        limit: -1,
+        isIncluded: true,
+      },
+      {
+        name: 'AI Lead Scoring',
+        description: 'Automatic lead prioritization',
+        isIncluded: true,
+      },
+      {
+        name: 'Advanced Analytics',
+        description: 'Full performance dashboard',
+        isIncluded: true,
       },
     ],
     limits: {
-      emailInvites: 10,
-      smsMessages: 0,
-      crmContacts: 0,
-      socialPosts: 0,
-      eventFlyers: 0,
-      teamBroadcasts: 0,
-      trainingShares: 0,
-      meetings: -1, // Unlimited meeting tracking
+      emailInvites: -1, // Unlimited
+      smsMessages: -1, // Unlimited
+      crmContacts: -1, // Unlimited
+      socialPosts: -1, // Unlimited
+      eventFlyers: -1, // Unlimited
+      teamBroadcasts: -1, // Unlimited
+      trainingShares: -1, // Unlimited
+      meetings: -1, // Unlimited
     },
     hasFreeTrial: false,
     lookupKey: 'autopilot_free',
@@ -117,12 +141,12 @@ export const AUTOPILOT_PRODUCTS: Record<AutopilotTier, AutopilotProduct> = {
   social_connector: {
     tier: 'social_connector',
     name: 'Social Connector',
-    displayName: 'Social Connector',
-    description: 'Boost your reach with social media posting and custom event flyers',
-    priceMonthly: 39,
-    priceCents: 3900,
-    bvValue: 39, // 1:1 BV ratio - $39 = 39 BV
-    stripePriceId: process.env.STRIPE_AUTOPILOT_SOCIAL_PRICE_ID || '',
+    displayName: 'Social Connector (Free)',
+    description: 'Boost your reach with social media posting and custom event flyers - now free',
+    priceMonthly: 0,
+    priceCents: 0,
+    bvValue: 0, // FREE - No BV
+    stripePriceId: '', // FREE - No Stripe price needed
     features: [
       {
         name: 'Email Invitations',
@@ -176,12 +200,12 @@ export const AUTOPILOT_PRODUCTS: Record<AutopilotTier, AutopilotProduct> = {
   lead_autopilot_pro: {
     tier: 'lead_autopilot_pro',
     name: 'Lead Autopilot Pro',
-    displayName: 'Lead Autopilot Pro',
-    description: 'Complete CRM with SMS campaigns and AI-powered lead scoring',
-    priceMonthly: 79,
-    priceCents: 7900,
-    bvValue: 79, // 1:1 BV ratio - $79 = 79 BV
-    stripePriceId: process.env.STRIPE_AUTOPILOT_PRO_PRICE_ID || '',
+    displayName: 'Lead Autopilot Pro (Free)',
+    description: 'Complete CRM with SMS campaigns and AI-powered lead scoring - now free',
+    priceMonthly: 0,
+    priceCents: 0,
+    bvValue: 0, // FREE - No BV
+    stripePriceId: '', // FREE - No Stripe price needed
     features: [
       {
         name: 'Unlimited Email Invitations',
@@ -249,12 +273,12 @@ export const AUTOPILOT_PRODUCTS: Record<AutopilotTier, AutopilotProduct> = {
   team_edition: {
     tier: 'team_edition',
     name: 'Team Edition',
-    displayName: 'Team Edition',
-    description: 'Unlimited everything plus team collaboration and training library',
-    priceMonthly: 119,
-    priceCents: 11900,
-    bvValue: 119, // 1:1 BV ratio - $119 = 119 BV
-    stripePriceId: process.env.STRIPE_AUTOPILOT_TEAM_PRICE_ID || '',
+    displayName: 'Team Edition (Free)',
+    description: 'Unlimited everything plus team collaboration and training library - now free',
+    priceMonthly: 0,
+    priceCents: 0,
+    bvValue: 0, // FREE - No BV
+    stripePriceId: '', // FREE - No Stripe price needed
     features: [
       {
         name: 'Unlimited Everything',
@@ -345,9 +369,10 @@ export function getAllAutopilotProducts(): AutopilotProduct[] {
 
 /**
  * Helper to check if tier is paid
+ * NOTE: All Autopilot tiers are now FREE as of 2026
  */
 export function isPaidTier(tier: AutopilotTier): boolean {
-  return tier !== 'free';
+  return false; // All tiers are now free
 }
 
 /**
