@@ -9,6 +9,14 @@ import { createClient } from '@/lib/supabase/server';
 import type { Distributor } from '@/lib/types';
 import ProfessionalHomepage from '@/components/homepage/ProfessionalHomepage';
 
+// =============================================
+// Cache Configuration
+// =============================================
+// Force dynamic rendering to prevent edge caching of 404s
+// This ensures new distributors are immediately accessible
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 interface PageProps {
   params: Promise<{
     slug: string;
