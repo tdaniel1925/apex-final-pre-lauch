@@ -1,5 +1,5 @@
 import { notFound, redirect } from 'next/navigation';
-import { validateDistributorSlug, trackReferral } from '@/lib/referral-tracking';
+import { validateDistributorSlug } from '@/lib/referral-tracking';
 
 interface PageProps {
   params: Promise<{
@@ -18,15 +18,7 @@ export default async function ReferralProductsPage({ params }: PageProps) {
     notFound();
   }
 
-  // Track the referral (sets cookie)
-  const result = await trackReferral(slug);
-
-  if (!result.success) {
-    console.error('Failed to track referral:', result.error);
-    notFound();
-  }
-
   // Redirect to the main products page
-  // The referrer cookie is now set and will be used during checkout
+  // The referrer cookie was already set by middleware
   redirect('/products');
 }
