@@ -150,7 +150,7 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
             zIndex: 2,
             maxWidth: '1400px',
             margin: '0 auto',
-            padding: '55px 24px 0',
+            padding: '75px 24px 0',
             width: '100%'
           }}>
             <div style={{
