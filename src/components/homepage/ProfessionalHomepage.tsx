@@ -124,6 +124,35 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
                       <li className="nav-item"><a className="nav-link" href="/#faq">FAQs</a></li>
                       <li className="nav-item"><a className="nav-link" href="/live">Events</a></li>
                     </ul>
+                    {/* Login Button */}
+                    <a
+                      href="/login"
+                      style={{
+                        padding: '12px 28px',
+                        fontSize: '15px',
+                        fontWeight: '600',
+                        color: '#2B4C7E',
+                        textDecoration: 'none',
+                        background: 'transparent',
+                        border: '2px solid #2B4C7E',
+                        borderRadius: '8px',
+                        transition: 'all 0.2s',
+                        display: 'inline-block',
+                        marginLeft: '24px'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = '#2B4C7E';
+                        e.currentTarget.style.color = '#ffffff';
+                        e.currentTarget.style.transform = 'translateY(-2px)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = 'transparent';
+                        e.currentTarget.style.color = '#2B4C7E';
+                        e.currentTarget.style.transform = 'translateY(0)';
+                      }}
+                    >
+                      Login
+                    </a>
                     {/* Sign Up Button */}
                     <a
                       href={signupUrl}
@@ -137,7 +166,7 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
                         borderRadius: '8px',
                         transition: 'all 0.2s',
                         display: 'inline-block',
-                        marginLeft: '24px'
+                        marginLeft: '12px'
                       }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.background = '#1a2c4e';

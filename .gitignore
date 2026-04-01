@@ -49,3 +49,17 @@ next-env.d.ts
 *.backup
 *_OLD_BACKUP/
 *_BACKUP/
+NUL
+
+# Scripts and docs with secrets
+STRIPE_PRICE_IDS.md
+VERCEL_STRIPE_ENV_VARS*.txt
+*-stripe-*.js
+create-bc-product.js
+find-sella-hal.js
+get-stripe-session.js
+list-sella-or-hal.js
+move-demond-*.js
+search-distributor.js
+test-stripe-*.js
+test-stripe-*.sh
