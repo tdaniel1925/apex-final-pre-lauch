@@ -114,7 +114,7 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
           alignItems: 'center',
           overflow: 'hidden',
           marginTop: '0',
-          paddingTop: '200px',
+          paddingTop: '240px',
           paddingBottom: '80px'
         }}>
           {/* Video Background */}
