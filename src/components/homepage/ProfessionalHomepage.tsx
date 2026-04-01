@@ -313,52 +313,13 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
                 </div>
               </div>
 
-              {/* CTA Buttons */}
-              <div style={{
-                display: 'flex',
-                gap: '16px',
-                flexWrap: 'wrap'
-              }}>
-                <a href={signupUrl} style={{
-                  padding: '16px 32px',
-                  fontSize: '17px',
-                  fontWeight: '600',
-                  color: '#2B4C7E',
-                  textDecoration: 'none',
-                  background: '#ffffff',
-                  borderRadius: '8px',
-                  transition: 'all 0.2s',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px'
-                }}>
-                  Start Your Journey
-                  <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                  </svg>
-                </a>
-                <a href="#opportunity" style={{
-                  padding: '16px 32px',
-                  fontSize: '17px',
-                  fontWeight: '600',
-                  color: '#ffffff',
-                  textDecoration: 'none',
-                  background: 'rgba(255, 255, 255, 0.15)',
-                  border: '1px solid rgba(255, 255, 255, 0.3)',
-                  borderRadius: '8px',
-                  transition: 'all 0.2s',
-                  backdropFilter: 'blur(10px)'
-                }}>
-                  See How It Works
-                </a>
-              </div>
             </div>
           </div>
         </section>
 
         {/* WHAT IS APEX - Clarity Section */}
         <section id="opportunity" style={{
-          padding: '120px 24px',
+          padding: '60px 24px',
           background: '#ffffff'
         }}>
           <div style={{
@@ -714,7 +675,7 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
 
         {/* THREE STAGES Section */}
         <section style={{
-          padding: '120px 24px',
+          padding: '60px 24px',
           background: '#f8fafc'
         }}>
           <div style={{
@@ -897,7 +858,7 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
 
         {/* HOW IT WORKS - Process */}
         <section style={{
-          padding: '120px 24px',
+          padding: '60px 24px',
           background: '#ffffff'
         }}>
           <div style={{
@@ -1091,31 +1052,13 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
               marginTop: '64px',
               textAlign: 'center'
             }}>
-              <a href={signupUrl} style={{
-                padding: '16px 32px',
-                fontSize: '17px',
-                fontWeight: '600',
-                color: '#ffffff',
-                textDecoration: 'none',
-                background: '#2B4C7E',
-                borderRadius: '8px',
-                transition: 'all 0.2s',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px'
-              }}>
-                Start Your Journey Today
-                <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </a>
             </div>
           </div>
         </section>
 
         {/* PRODUCTS & INSURANCE Section */}
         <section id="products" style={{
-          padding: '120px 24px',
+          padding: '60px 24px',
           background: '#0f172a'
         }}>
           <div style={{
@@ -1467,7 +1410,7 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
 
         {/* COMPENSATION Preview */}
         <section id="compensation" style={{
-          padding: '120px 24px',
+          padding: '60px 24px',
           background: '#ffffff'
         }}>
           <div style={{
@@ -1664,35 +1607,12 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
             </div>
 
             {/* CTA */}
-            <div style={{
-              textAlign: 'center'
-            }}>
-              <a href="/compensation" style={{
-                padding: '16px 32px',
-                fontSize: '17px',
-                fontWeight: '600',
-                color: '#2B4C7E',
-                textDecoration: 'none',
-                background: 'transparent',
-                border: '2px solid #2B4C7E',
-                borderRadius: '8px',
-                transition: 'all 0.2s',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px'
-              }}>
-                View Full Compensation Plan
-                <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </a>
-            </div>
           </div>
         </section>
 
         {/* FAQ Section */}
         <section id="faq" style={{
-          padding: '120px 24px',
+          padding: '60px 24px',
           background: '#f8fafc'
         }}>
           <div style={{
@@ -1906,7 +1826,7 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
 
         {/* FINAL CTA Section */}
         <section style={{
-          padding: '120px 24px',
+          padding: '60px 24px',
           background: 'linear-gradient(135deg, #1a2f50 0%, #2B4C7E 100%)',
           textAlign: 'center'
         }}>
