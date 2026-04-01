@@ -65,7 +65,7 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
       <div className="professional-homepage" style={{ display: mounted ? 'block' : 'none' }}>
 
         {/* HEADER / NAVIGATION - Tall Bootstrap Header */}
-        <header className="main-header">
+        <header className="main-header" style={{ background: '#ffffff', boxShadow: '0 2px 10px rgba(0,0,0,0.1)' }}>
           <div className="header-sticky">
             <nav className="navbar navbar-expand-lg">
               <div className="container">
@@ -113,8 +113,8 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
           display: 'flex',
           alignItems: 'center',
           overflow: 'hidden',
-          marginTop: '-100px',
-          paddingTop: '100px',
+          marginTop: '0',
+          paddingTop: '140px',
           paddingBottom: '80px'
         }}>
           {/* Video Background */}
@@ -151,7 +151,7 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
             zIndex: 2,
             maxWidth: '1400px',
             margin: '0 auto',
-            padding: '160px 24px 60px',
+            padding: '0 24px 60px',
             width: '100%'
           }}>
             <div style={{
