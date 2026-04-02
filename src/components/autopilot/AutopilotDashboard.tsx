@@ -6,14 +6,9 @@
 // =====================================================
 
 import { useState } from 'react';
-import { Mail, MessageSquare, Image, Users, Megaphone, Sparkles, Calendar } from 'lucide-react';
+import { Mail, Megaphone, Calendar } from 'lucide-react';
 import { isAutopilotFreeTrial, getEffectiveTier } from '@/lib/config/autopilot';
 import { MeetingInvitationForm } from './MeetingInvitationForm';
-import { SocialPostComposer } from './SocialPostComposer';
-import { SocialPostsList } from './SocialPostsList';
-import { FlyerGenerator } from './FlyerGenerator';
-import { FlyerGallery } from './FlyerGallery';
-import { InvitationStats } from './InvitationStats';
 import MeetingsTab from './MeetingsTab';
 
 interface AutopilotDashboardProps {
@@ -21,7 +16,7 @@ interface AutopilotDashboardProps {
   autopilotTier: string;
 }
 
-type Tab = 'invitations' | 'meetings' | 'social' | 'flyers' | 'crm' | 'stats';
+type Tab = 'invitations' | 'meetings';
 
 export default function AutopilotDashboard({ distributorId, autopilotTier }: AutopilotDashboardProps) {
   const [activeTab, setActiveTab] = useState<Tab>('invitations');
@@ -44,34 +39,6 @@ export default function AutopilotDashboard({ distributorId, autopilotTier }: Aut
       icon: <Calendar className="w-4 h-4" />,
       description: 'Create event registration pages',
       enabled: true,
-    },
-    {
-      id: 'social' as Tab,
-      name: 'Social Posts',
-      icon: <MessageSquare className="w-4 h-4" />,
-      description: 'AI-powered social media content',
-      enabled: false,
-    },
-    {
-      id: 'flyers' as Tab,
-      name: 'Create Flyers',
-      icon: <Image className="w-4 h-4" />,
-      description: 'Professional marketing materials',
-      enabled: false,
-    },
-    {
-      id: 'crm' as Tab,
-      name: 'My Contacts',
-      icon: <Users className="w-4 h-4" />,
-      description: 'Manage your prospect database',
-      enabled: false,
-    },
-    {
-      id: 'stats' as Tab,
-      name: 'Statistics',
-      icon: <Sparkles className="w-4 h-4" />,
-      description: 'Track your performance',
-      enabled: false,
     },
   ];
 
@@ -176,85 +143,6 @@ export default function AutopilotDashboard({ distributorId, autopilotTier }: Aut
         )}
 
         {activeTab === 'meetings' && <MeetingsTab />}
-
-        {activeTab === 'social' && (
-          <div className="space-y-6">
-            <div>
-              <h2 className="text-xl font-bold text-slate-900 mb-2">Social Media Posts</h2>
-              <p className="text-slate-600 mb-6">
-                Create engaging social media content with AI assistance. Generate posts for Facebook, LinkedIn, Instagram, and more.
-              </p>
-            </div>
-
-            <SocialPostComposer />
-
-            <div className="border-t border-slate-200 pt-6">
-              <h3 className="text-lg font-semibold text-slate-900 mb-4">Your Recent Posts</h3>
-              <SocialPostsList />
-            </div>
-          </div>
-        )}
-
-        {activeTab === 'flyers' && (
-          <div className="space-y-6">
-            <div>
-              <h2 className="text-xl font-bold text-slate-900 mb-2">Marketing Flyers</h2>
-              <p className="text-slate-600 mb-6">
-                Create professional flyers and marketing materials with our AI-powered design tools.
-              </p>
-            </div>
-
-            <FlyerGenerator />
-
-            <div className="border-t border-slate-200 pt-6">
-              <h3 className="text-lg font-semibold text-slate-900 mb-4">Your Flyers</h3>
-              <FlyerGallery />
-            </div>
-          </div>
-        )}
-
-        {activeTab === 'crm' && (
-          <div className="space-y-6">
-            <div>
-              <h2 className="text-xl font-bold text-slate-900 mb-2">Contact Management</h2>
-              <p className="text-slate-600 mb-6">
-                Manage your prospects and contacts. Track interactions, set follow-up reminders, and organize your pipeline.
-              </p>
-            </div>
-
-            <div className="bg-white rounded-lg shadow-sm border p-8 text-center">
-              <Users className="w-16 h-16 text-blue-600 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-slate-900 mb-2">
-                CRM Contact Management
-              </h3>
-              <p className="text-slate-600 mb-6">
-                View and manage all your contacts, track lead scores, and organize your sales pipeline.
-              </p>
-              <a
-                href="/dashboard/autopilot/crm/contacts"
-                className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
-              >
-                Go to CRM
-                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </a>
-            </div>
-          </div>
-        )}
-
-        {activeTab === 'stats' && (
-          <div className="space-y-6">
-            <div>
-              <h2 className="text-xl font-bold text-slate-900 mb-2">Performance Statistics</h2>
-              <p className="text-slate-600 mb-6">
-                Track your Autopilot activity and see how your marketing efforts are performing.
-              </p>
-            </div>
-
-            <InvitationStats />
-          </div>
-        )}
       </div>
 
       {/* Quick Tips */}

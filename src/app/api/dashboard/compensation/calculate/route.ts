@@ -10,16 +10,6 @@ import { RANKED_OVERRIDE_SCHEDULES, TECH_RANK_REQUIREMENTS, type TechRank } from
 
 export const dynamic = 'force-dynamic';
 
-// Product data with credits (from calculator page)
-const products = [
-  { name: 'PulseGuard', memberPriceCents: 5900, retailPriceCents: 7900, memberBV: 18, retailBV: 24 },
-  { name: 'PulseFlow', memberPriceCents: 12900, retailPriceCents: 14900, memberBV: 65, retailBV: 75 },
-  { name: 'PulseDrive', memberPriceCents: 21900, retailPriceCents: 29900, memberBV: 110, retailBV: 150 },
-  { name: 'PulseCommand', memberPriceCents: 34900, retailPriceCents: 49900, memberBV: 175, retailBV: 250 },
-  { name: 'SmartLook', memberPriceCents: 9900, retailPriceCents: 9900, memberBV: 50, retailBV: 50 },
-  { name: 'Business Center', memberPriceCents: 3900, retailPriceCents: null, memberBV: 39, retailBV: null, type: 'business_center' as const },
-];
-
 interface CalculationRequest {
   personalSales: {
     member: number;
@@ -85,7 +75,28 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Find product
+    // Load products from database (FIXED: was hardcoded)
+    const { data: productsData, error: productsError } = await supabase
+      .from('products')
+      .select('name, slug, wholesale_price_cents, retail_price_cents, member_credits, retail_credits, is_active')
+      .eq('is_active', true);
+
+    if (productsError || !productsData) {
+      console.error('[COMPENSATION CALC] Failed to load products:', productsError);
+      return NextResponse.json({ error: 'Failed to load products' }, { status: 500 });
+    }
+
+    // Transform to expected format
+    const products = productsData.map((p) => ({
+      name: p.name,
+      memberPriceCents: p.wholesale_price_cents,
+      retailPriceCents: p.retail_price_cents,
+      memberBV: p.member_credits,
+      retailBV: p.retail_credits,
+      type: p.slug === 'custom-business-center' ? ('business_center' as const) : ('standard' as const),
+    }));
+
+    // Find product by name
     const product = products.find((p) => p.name === avgProductName);
     if (!product) {
       return NextResponse.json({ error: 'Invalid product name' }, { status: 400 });

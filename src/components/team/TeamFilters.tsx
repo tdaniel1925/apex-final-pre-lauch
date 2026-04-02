@@ -40,7 +40,11 @@ export default function TeamFilters({ members, onMemberClick }: TeamFiltersProps
 
   // Get unique ranks from members
   const availableRanks = useMemo(() => {
-    const ranks = new Set(members.map((m) => m.techRank.toLowerCase()));
+    const ranks = new Set(
+      members
+        .filter((m) => m.techRank && m.techRank !== null)
+        .map((m) => m.techRank.toLowerCase())
+    );
     return Array.from(ranks).sort(
       (a, b) => RANK_ORDER.indexOf(a) - RANK_ORDER.indexOf(b)
     );
@@ -62,7 +66,7 @@ export default function TeamFilters({ members, onMemberClick }: TeamFiltersProps
 
     // Rank filter
     if (rankFilter !== 'all') {
-      filtered = filtered.filter((m) => m.techRank.toLowerCase() === rankFilter);
+      filtered = filtered.filter((m) => m.techRank && m.techRank.toLowerCase() === rankFilter);
     }
 
     // Active status filter
@@ -88,9 +92,9 @@ export default function TeamFilters({ members, onMemberClick }: TeamFiltersProps
             new Date(a.enrollmentDate).getTime() - new Date(b.enrollmentDate).getTime();
           break;
         case 'rank':
-          comparison =
-            RANK_ORDER.indexOf(a.techRank.toLowerCase()) -
-            RANK_ORDER.indexOf(b.techRank.toLowerCase());
+          const aRank = a.techRank ? a.techRank.toLowerCase() : 'starter';
+          const bRank = b.techRank ? b.techRank.toLowerCase() : 'starter';
+          comparison = RANK_ORDER.indexOf(aRank) - RANK_ORDER.indexOf(bRank);
           break;
       }
 
@@ -160,8 +164,8 @@ export default function TeamFilters({ members, onMemberClick }: TeamFiltersProps
               className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-700 focus:border-transparent text-sm"
             >
               <option value="all">All Status</option>
-              <option value="active">Active (50+ credits)</option>
-              <option value="inactive">Inactive (&lt;50 credits)</option>
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
             </select>
           </div>
 

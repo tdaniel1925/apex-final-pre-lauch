@@ -8,6 +8,8 @@ import { createClient } from '@/lib/supabase/server';
 import { createServiceClient } from '@/lib/supabase/service';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import ChangeEmailForm from '@/components/settings/ChangeEmailForm';
+import ChangePasswordForm from '@/components/settings/ChangePasswordForm';
 
 export const metadata = {
   title: 'Settings - Apex Affinity Group',
@@ -76,11 +78,8 @@ export default async function SettingsPage() {
                       </p>
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-slate-500">Email Address</p>
+                      <p className="text-sm font-medium text-slate-500">Current Email Address</p>
                       <p className="text-slate-900 mt-1">{user.email}</p>
-                      <p className="text-xs text-slate-500 mt-1">
-                        Primary email for account notifications and login
-                      </p>
                     </div>
                     <div>
                       <p className="text-sm font-medium text-slate-500">Account Created</p>
@@ -93,6 +92,17 @@ export default async function SettingsPage() {
                       </p>
                     </div>
                   </div>
+                </CardContent>
+              </Card>
+
+              {/* Change Email */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Change Email Address</CardTitle>
+                  <CardDescription>Update your primary email address</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ChangeEmailForm currentEmail={user.email || ''} />
                 </CardContent>
               </Card>
 
@@ -374,28 +384,11 @@ export default async function SettingsPage() {
               {/* Password */}
               <Card>
                 <CardHeader>
-                  <CardTitle>Password</CardTitle>
-                  <CardDescription>Manage your account password</CardDescription>
+                  <CardTitle>Change Password</CardTitle>
+                  <CardDescription>Update your account password</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
-                    <div>
-                      <p className="text-sm text-slate-600 mb-4">
-                        Keep your account secure by using a strong, unique password
-                      </p>
-                      <button
-                        disabled
-                        className="px-4 py-2 bg-slate-200 text-slate-600 rounded-md text-sm font-medium cursor-not-allowed opacity-50"
-                      >
-                        Change Password
-                      </button>
-                    </div>
-                    <div className="mt-4 p-3 bg-slate-100 rounded-lg">
-                      <p className="text-xs text-slate-600">
-                        Password change functionality coming soon. Use password reset if needed.
-                      </p>
-                    </div>
-                  </div>
+                  <ChangePasswordForm />
                 </CardContent>
               </Card>
 

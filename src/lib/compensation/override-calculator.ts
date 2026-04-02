@@ -2,15 +2,15 @@
  * Tech Ladder Override Calculator - 7 LEVEL SYSTEM
  *
  * Implements the dual-tree override system:
- * 1. Enrollment Tree (sponsor_id) → 25% L1 override
+ * 1. Enrollment Tree (sponsor_id) → 30% L1 override (FIXED from 25%)
  * 2. Placement Matrix (matrix_parent_id) → L2-L7 depth overrides
  *
  * CRITICAL RULE: Enroller priority, no double-dipping!
- * - Check sponsor_id FIRST → Pay 25% L1 and STOP
+ * - Check sponsor_id FIRST → Pay 30% L1 and STOP
  * - Then check matrix_parent_id → Pay depth overrides L2-L7
  * - Each upline member paid ONCE per sale
  *
- * REF: comp-plan-7-levels.md
+ * REF: APEX_COMP_ENGINE_SPEC_FINAL.md Section 5
  *
  * @module lib/compensation/override-calculator
  */
@@ -91,13 +91,13 @@ export interface OverrideCalculationResult {
  * Override schedules for each Tech Ladder rank - 7 LEVEL SYSTEM
  *
  * CRITICAL: Dual-Tree System
- * - L1 = ENROLLMENT TREE (sponsor_id) - Always 25% for all ranks
+ * - L1 = ENROLLMENT TREE (sponsor_id) - Always 30% for all ranks (FIXED from 25%)
  * - L2-L7 = MATRIX TREE (matrix_parent_id) - Varies by rank
  *
- * Source of Truth: comp-plan-7-levels.md
+ * Source of Truth: APEX_COMP_ENGINE_SPEC_FINAL.md Section 5
  *
  * Key:
- * - [0] = L1 (25% for all ranks, from enrollment tree via sponsor_id)
+ * - [0] = L1 (30% for all ranks, from enrollment tree via sponsor_id)
  * - [1] = L2 (matrix tree via matrix_parent_id, varies by rank)
  * - [2] = L3 (matrix tree via matrix_parent_id, varies by rank)
  * - [3] = L4 (matrix tree via matrix_parent_id, varies by rank)
@@ -106,13 +106,13 @@ export interface OverrideCalculationResult {
  * - [6] = L7 (matrix tree via matrix_parent_id, varies by rank)
  */
 const OVERRIDE_SCHEDULES: Record<TechRank, number[]> = {
-  starter: [0.25, 0, 0, 0, 0, 0, 0],                      // L1: 25%, L2-L7: none
-  bronze: [0.25, 0.20, 0, 0, 0, 0, 0],                    // L1: 25%, L2: 20%, L3-L7: none
-  silver: [0.25, 0.20, 0.18, 0, 0, 0, 0],                 // L1: 25%, L2: 20%, L3: 18%, L4-L7: none
-  gold: [0.25, 0.20, 0.18, 0.15, 0, 0, 0],                // L1: 25%, L2: 20%, L3: 18%, L4: 15%, L5-L7: none
-  platinum: [0.25, 0.20, 0.18, 0.15, 0.10, 0, 0],         // L1: 25%, L2: 20%, L3: 18%, L4: 15%, L5: 10%, L6-L7: none
-  ruby: [0.25, 0.20, 0.18, 0.15, 0.10, 0.07, 0],          // L1: 25%, L2: 20%, L3: 18%, L4: 15%, L5: 10%, L6: 7%, L7: none
-  diamond_ambassador: [0.25, 0.20, 0.18, 0.15, 0.10, 0.07, 0.05], // L1: 25%, L2: 20%, L3: 18%, L4: 15%, L5: 10%, L6: 7%, L7: 5%
+  starter: [0.30, 0, 0, 0, 0, 0, 0],                      // L1: 30%, L2-L7: none
+  bronze: [0.30, 0.20, 0, 0, 0, 0, 0],                    // L1: 30%, L2: 20%, L3-L7: none
+  silver: [0.30, 0.20, 0.18, 0, 0, 0, 0],                 // L1: 30%, L2: 20%, L3: 18%, L4-L7: none
+  gold: [0.30, 0.20, 0.18, 0.15, 0, 0, 0],                // L1: 30%, L2: 20%, L3: 18%, L4: 15%, L5-L7: none
+  platinum: [0.30, 0.20, 0.18, 0.15, 0.10, 0, 0],         // L1: 30%, L2: 20%, L3: 18%, L4: 15%, L5: 10%, L6-L7: none
+  ruby: [0.30, 0.20, 0.18, 0.15, 0.10, 0.07, 0],          // L1: 30%, L2: 20%, L3: 18%, L4: 15%, L5: 10%, L6: 7%, L7: none
+  diamond_ambassador: [0.30, 0.20, 0.18, 0.15, 0.10, 0.07, 0.05], // L1: 30%, L2: 20%, L3: 18%, L4: 15%, L5: 10%, L6: 7%, L7: 5%
 };
 
 /**
@@ -175,14 +175,14 @@ export async function calculateOverridesForSale(
         const qualification = await checkOverrideQualificationWithRetail(sponsor.id);
 
         if (qualification.qualified) {
-          // Pay sponsor 25% of override pool (L1 enrollment)
-          const amount = overridePool * 0.25;
+          // Pay sponsor 30% of override pool (L1 enrollment) - FIXED from 25%
+          const amount = overridePool * 0.30;
 
           payments.push({
             upline_member_id: sponsorMember.member_id,
             upline_member_name: sponsorMember.full_name,
             override_type: 'L1_enrollment',
-            override_rate: 0.25,
+            override_rate: 0.30,
             override_amount: Number(amount.toFixed(2)),
             bv: sale.bv,
           });

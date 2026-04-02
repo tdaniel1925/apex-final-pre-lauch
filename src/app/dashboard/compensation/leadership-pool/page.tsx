@@ -73,7 +73,7 @@ export default function LeadershipPoolPage() {
             <h1 className="text-4xl font-bold mb-4">Leadership Pool</h1>
             <p className="text-xl text-slate-200 leading-relaxed">
               Exclusive opportunity for early leaders. 1,000 total shares allocated to pre-launch and Year 1 builders.
-              Share in 1.5% of company revenue with vesting schedules and rank requirements.
+              Share-based compensation with vesting schedules and rank requirements.
             </p>
           </div>
         </div>
@@ -81,11 +81,7 @@ export default function LeadershipPoolPage() {
 
       {/* Key Highlights */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 mb-12">
-        <div className="bg-white rounded-xl shadow-lg p-8 grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div className="text-center">
-            <div className="text-4xl font-bold text-slate-900 mb-2">1.5%</div>
-            <div className="text-sm text-slate-600 font-medium">of Company Revenue</div>
-          </div>
+        <div className="bg-white rounded-xl shadow-lg p-8 grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="text-center">
             <div className="text-4xl font-bold text-slate-900 mb-2">1,000</div>
             <div className="text-sm text-slate-600 font-medium">Total Shares Available</div>
@@ -114,7 +110,7 @@ export default function LeadershipPoolPage() {
               <div>
                 <h3 className="font-semibold text-blue-900 mb-2">Share in Company Growth</h3>
                 <p className="text-blue-800 leading-relaxed">
-                  The Leadership Pool is an exclusive program funded by company revenue to reward early leaders who help build
+                  The Leadership Pool is an exclusive program to reward early leaders who help build
                   the foundation of the company. This is distributed as <span className="font-bold">shares</span>, not percentages.
                 </p>
               </div>
@@ -158,13 +154,14 @@ export default function LeadershipPoolPage() {
               </h3>
               <div className="space-y-3 text-slate-700 text-sm">
                 <p><span className="font-semibold">Scenario:</span> You have 50 vested shares</p>
-                <p><span className="font-semibold">Company Revenue:</span> $1,000,000 this month</p>
+                <p><span className="font-semibold">Monthly Pool:</span> $15,000 (example)</p>
                 <div className="bg-white border border-slate-300 rounded p-3 space-y-1">
-                  <p>Pool Size (1.5% of $1M): <span className="font-bold">$15,000</span></p>
-                  <p>Your Share (50/1000): <span className="font-bold">5%</span></p>
+                  <p>Your Share Allocation: <span className="font-bold">50 shares</span></p>
+                  <p>Total Shares: <span className="font-bold">1,000</span></p>
+                  <p>Your Percentage (50/1000): <span className="font-bold">5%</span></p>
                   <p className="text-green-700 font-bold pt-2 border-t border-slate-200">Your Payment: $750</p>
                 </div>
-                <p className="text-xs text-slate-500">As company revenue grows, so does your monthly payment.</p>
+                <p className="text-xs text-slate-500">As the pool grows, so does your monthly payment.</p>
               </div>
             </div>
           </div>
@@ -397,9 +394,9 @@ export default function LeadershipPoolPage() {
               <div className="text-blue-800 space-y-2">
                 <p><span className="font-semibold">Background:</span> Joined Month 9 with 50 shares, 12-month vesting</p>
                 <p><span className="font-semibold">Month 15:</span> 50% vested (25 shares), Platinum rank</p>
-                <p><span className="font-semibold">Company revenue:</span> $2M/month → Leadership Pool = $30,000</p>
+                <p><span className="font-semibold">Monthly Pool:</span> $30,000 (example)</p>
                 <p className="font-bold text-blue-700 pt-2 border-t border-blue-200">
-                  Result: 25 shares / 1,000 total = 2.5% of pool = $750/month (grows as revenue grows)
+                  Result: 25 shares / 1,000 total = 2.5% of pool = $750/month (grows as pool grows)
                 </p>
               </div>
             </div>

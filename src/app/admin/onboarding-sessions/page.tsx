@@ -5,6 +5,8 @@
 
 import { requireAdmin } from '@/lib/auth/admin';
 import { createServiceClient } from '@/lib/supabase/service';
+import { createClient } from '@/lib/supabase/server';
+import OnboardingSessionsClient from '@/components/admin/OnboardingSessionsClient';
 
 export const metadata = {
   title: 'Onboarding Sessions - Admin',
@@ -15,6 +17,11 @@ export const revalidate = 30; // Refresh every 30 seconds
 export default async function OnboardingSessionsPage() {
   await requireAdmin();
   const supabase = createServiceClient();
+  const authSupabase = await createClient();
+
+  // Get current user ID for notes ownership
+  const { data: { user } } = await authSupabase.auth.getUser();
+  const currentUserId = user?.id || '';
 
   // Get all onboarding sessions with related data
   const { data: sessions, error } = await supabase
@@ -110,162 +117,12 @@ export default async function OnboardingSessionsPage() {
         </div>
       </div>
 
-      {/* Upcoming Sessions */}
-      <div className="bg-white rounded-lg shadow mb-6">
-        <div className="p-4 border-b border-gray-200">
-          <h2 className="text-lg font-bold text-gray-900">Upcoming Sessions</h2>
-        </div>
-
-        {upcomingSessions.length === 0 ? (
-          <div className="p-8 text-center text-gray-500">
-            No upcoming sessions scheduled
-          </div>
-        ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date & Time</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Customer</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Rep</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Products</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Contact</th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {upcomingSessions.map((session) => {
-                  const dateObj = new Date(session.scheduled_date + 'T' + session.scheduled_time);
-                  const customer = session.customer;
-                  const rep = session.rep;
-                  const products = session.products_purchased || [];
-
-                  return (
-                    <tr key={session.id} className="hover:bg-gray-50">
-                      <td className="px-4 py-3 whitespace-nowrap">
-                        <div className="text-sm font-medium text-gray-900">
-                          {dateObj.toLocaleDateString('en-US', {
-                            weekday: 'short',
-                            month: 'short',
-                            day: 'numeric',
-                          })}
-                        </div>
-                        <div className="text-sm text-gray-500">
-                          {dateObj.toLocaleTimeString('en-US', {
-                            hour: 'numeric',
-                            minute: '2-digit',
-                            timeZone: 'America/Chicago',
-                          })} CT
-                        </div>
-                      </td>
-                      <td className="px-4 py-3">
-                        <div className="text-sm font-medium text-gray-900">
-                          {session.customer_name || 'Unknown'}
-                        </div>
-                        <div className="text-sm text-gray-500">
-                          {session.customer_email}
-                        </div>
-                      </td>
-                      <td className="px-4 py-3 whitespace-nowrap">
-                        {rep && (
-                          <div className="text-sm text-gray-900">
-                            {rep.first_name} {rep.last_name}
-                          </div>
-                        )}
-                      </td>
-                      <td className="px-4 py-3">
-                        <div className="text-sm text-gray-900">
-                          {Array.isArray(products) && products.length > 0
-                            ? products.map((p: any) => p.product_name).join(', ')
-                            : 'N/A'}
-                        </div>
-                      </td>
-                      <td className="px-4 py-3 whitespace-nowrap">
-                        <span
-                          className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                            session.status === 'confirmed'
-                              ? 'bg-green-100 text-green-800'
-                              : 'bg-blue-100 text-blue-800'
-                          }`}
-                        >
-                          {session.status}
-                        </span>
-                      </td>
-                      <td className="px-4 py-3 whitespace-nowrap text-sm">
-                        {session.customer_email && (
-                          <a
-                            href={`mailto:${session.customer_email}`}
-                            className="text-blue-600 hover:text-blue-800 mr-2"
-                          >
-                            Email
-                          </a>
-                        )}
-                        {session.customer_phone && (
-                          <a
-                            href={`tel:${session.customer_phone}`}
-                            className="text-blue-600 hover:text-blue-800"
-                          >
-                            Call
-                          </a>
-                        )}
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-        )}
-      </div>
-
-      {/* Completed Sessions */}
-      {completedSessions.length > 0 && (
-        <div className="bg-white rounded-lg shadow">
-          <div className="p-4 border-b border-gray-200">
-            <h2 className="text-lg font-bold text-gray-900">Completed Sessions</h2>
-          </div>
-
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Customer</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Rep</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Notes</th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {completedSessions.slice(0, 10).map((session) => {
-                  const dateObj = new Date(session.scheduled_date + 'T' + session.scheduled_time);
-                  const rep = session.rep;
-
-                  return (
-                    <tr key={session.id} className="hover:bg-gray-50">
-                      <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
-                        {dateObj.toLocaleDateString('en-US', {
-                          month: 'short',
-                          day: 'numeric',
-                          year: 'numeric',
-                        })}
-                      </td>
-                      <td className="px-4 py-3 text-sm text-gray-900">
-                        {session.customer_name}
-                      </td>
-                      <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
-                        {rep && `${rep.first_name} ${rep.last_name}`}
-                      </td>
-                      <td className="px-4 py-3 text-sm text-gray-500">
-                        {session.completed_notes || 'No notes'}
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      )}
+      {/* Client Component with Interactive Features */}
+      <OnboardingSessionsClient
+        upcomingSessions={upcomingSessions}
+        completedSessions={completedSessions}
+        currentUserId={currentUserId}
+      />
     </div>
   );
 }

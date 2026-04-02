@@ -46,7 +46,7 @@ export default function TeamMemberCard({ member, onMemberClick }: TeamMemberCard
     elite: 'bg-indigo-100 text-indigo-700',
   };
 
-  const rankColor = rankColors[member.techRank.toLowerCase()] || 'bg-slate-100 text-slate-700';
+  const rankColor = rankColors[member.techRank?.toLowerCase() || 'starter'] || 'bg-slate-100 text-slate-700';
 
   return (
     <div
@@ -67,7 +67,7 @@ export default function TeamMemberCard({ member, onMemberClick }: TeamMemberCard
           <h3 className="font-semibold text-slate-900 text-lg truncate">{member.fullName}</h3>
           <div className="flex items-center gap-2 mt-1">
             <span className={`px-2 py-1 text-xs font-semibold rounded ${rankColor}`}>
-              {member.techRank}
+              {member.techRank || 'Starter'}
             </span>
             {member.repNumber && (
               <span className="text-xs text-slate-600">Rep #{member.repNumber}</span>

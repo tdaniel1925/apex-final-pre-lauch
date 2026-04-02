@@ -18,12 +18,9 @@ import DashboardTopCards from '@/components/dashboard/DashboardTopCards';
 import CompensationStatsWidget from '@/components/dashboard/CompensationStatsWidget';
 import ActivityFeed from '@/components/dashboard/ActivityFeed';
 import DashboardClient from '@/components/dashboard/DashboardClient';
-import CopyReferralButton from '@/components/dashboard/CopyReferralButton';
 import AIPhoneStats from '@/components/dashboard/AIPhoneStats';
 // import AIRecommendations from '@/components/dashboard/AIRecommendations'; // TODO: Create ai_genealogy_recommendations table
 import type { Distributor } from '@/lib/types';
-import { ArrowRight, Users, FileText, MessageCircle } from 'lucide-react';
-import Link from 'next/link';
 
 export const metadata = {
   title: 'Dashboard - Apex Affinity Group',
@@ -272,68 +269,6 @@ export default async function DashboardPage() {
             </div>
           )}
 
-          {/* Quick Actions - 4 Buttons */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-            {/* Enroll New Member */}
-            <Link
-              href={`/${dist.slug}`}
-              className="group bg-white rounded-lg shadow-md p-4 sm:p-6 border border-slate-200 hover:border-slate-400 hover:shadow-lg transition-all min-h-[120px] flex flex-col"
-            >
-              <div className="flex items-center justify-between">
-                <div className="p-2.5 sm:p-3 bg-slate-100 rounded-lg group-hover:bg-slate-200 transition-colors">
-                  <Users className="w-5 h-5 sm:w-6 sm:h-6 text-slate-700" />
-                </div>
-                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 group-hover:text-slate-600 transition-colors" />
-              </div>
-              <h3 className="mt-3 sm:mt-4 text-base sm:text-lg font-semibold text-slate-900">
-                Enroll New Member
-              </h3>
-              <p className="text-sm text-slate-600 mt-1">
-                Share your landing page
-              </p>
-            </Link>
-
-            {/* Share Referral Link */}
-            <CopyReferralButton slug={dist.slug} />
-
-            {/* View Compensation Plan */}
-            <Link
-              href="/compensation"
-              className="group bg-white rounded-lg shadow-md p-4 sm:p-6 border border-slate-200 hover:border-slate-400 hover:shadow-lg transition-all min-h-[120px] flex flex-col"
-            >
-              <div className="flex items-center justify-between">
-                <div className="p-2.5 sm:p-3 bg-slate-100 rounded-lg group-hover:bg-slate-200 transition-colors">
-                  <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-slate-700" />
-                </div>
-                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 group-hover:text-slate-600 transition-colors" />
-              </div>
-              <h3 className="mt-3 sm:mt-4 text-base sm:text-lg font-semibold text-slate-900">
-                View Compensation Plan
-              </h3>
-              <p className="text-sm text-slate-600 mt-1">
-                See earning potential
-              </p>
-            </Link>
-
-            {/* Contact Support */}
-            <Link
-              href="/support"
-              className="group bg-white rounded-lg shadow-md p-4 sm:p-6 border border-slate-200 hover:border-slate-400 hover:shadow-lg transition-all min-h-[120px] flex flex-col"
-            >
-              <div className="flex items-center justify-between">
-                <div className="p-2.5 sm:p-3 bg-slate-100 rounded-lg group-hover:bg-slate-200 transition-colors">
-                  <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 text-slate-700" />
-                </div>
-                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 group-hover:text-slate-600 transition-colors" />
-              </div>
-              <h3 className="mt-3 sm:mt-4 text-base sm:text-lg font-semibold text-slate-900">
-                Contact Support
-              </h3>
-              <p className="text-sm text-slate-600 mt-1">
-                Get help anytime
-              </p>
-            </Link>
-          </div>
 
           {/* Recent Activity Feed */}
           <div className="bg-white rounded-lg shadow-md border border-slate-200">

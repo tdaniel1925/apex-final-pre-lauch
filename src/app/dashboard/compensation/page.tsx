@@ -64,14 +64,14 @@ const compensationSections = [
     id: 'bonus-pool',
     title: 'Bonus Pool Programs',
     subtitle: 'Trip Incentives • Car Bonuses • Fast Start',
-    description: 'Funded by 3.5% of company revenue. Includes trip incentives, fast start bonuses, car allowances, quarterly contests, and enhanced rank bonuses.',
+    description: 'Includes trip incentives, fast start bonuses, car allowances, quarterly contests, and enhanced rank bonuses for high performers.',
     href: '/dashboard/compensation/bonus-pool',
     category: 'Incentives',
   },
   {
     id: 'leadership-pool',
     title: 'Leadership Pool',
-    subtitle: '1,000 Shares • 1.5% of Revenue',
+    subtitle: '1,000 Shares • Exclusive Program',
     description: 'Exclusive pool for early leaders. 1,000 total shares allocated during pre-launch through Year 1. Vesting schedules and rank requirements apply.',
     href: '/dashboard/compensation/leadership-pool',
     category: 'Leadership',
@@ -275,13 +275,13 @@ export default function CompensationOverviewPage() {
 {`graph LR
     A[Product Sale] --> B[Direct Commission<br/>27.9% to Seller]
     A --> C[Override Pool<br/>L1-L5 Upline]
-    A --> D[Bonus Pool<br/>3.5% of Revenue]
-    A --> E[Leadership Pool<br/>1.5% of Revenue]
+    A --> D[Bonus Pool<br/>Trips, Cars, Contests]
+    A --> E[Leadership Pool<br/>Early Leaders Only]
 
     B --> F[Immediate Payout]
     C --> G[Rank-Based Payouts]
-    D --> H[Trips, Cars, Fast Start]
-    E --> I[Early Leaders Only]
+    D --> H[Trip & Car Incentives]
+    E --> I[Share-Based Payouts]
 
     style A fill:#1e40af,stroke:#1e3a8a,color:#fff
     style B fill:#3b82f6,stroke:#2563eb,color:#fff

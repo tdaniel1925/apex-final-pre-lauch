@@ -113,26 +113,16 @@ export default function CommissionsPage() {
                 approximately 27.9% of the sale price as direct commission.
               </p>
               <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-                <h4 className="font-semibold text-slate-900 mb-2">Commission Breakdown</h4>
-                <div className="space-y-2 text-sm text-slate-700">
-                  <div className="flex justify-between">
-                    <span>Customer Payment</span>
-                    <span className="font-mono">100%</span>
+                <h4 className="font-semibold text-slate-900 mb-2">What You Earn</h4>
+                <div className="space-y-3 text-sm text-slate-700">
+                  <div className="flex justify-between items-center py-2">
+                    <span className="font-semibold">Your Direct Commission Rate:</span>
+                    <span className="text-2xl font-bold text-green-700">27.9%</span>
                   </div>
-                  <div className="flex justify-between border-t border-slate-300 pt-2 font-semibold">
-                    <span>Total Field Compensation</span>
-                    <span className="font-mono">44%</span>
-                  </div>
-                  <div className="flex justify-between text-green-700 font-semibold pl-4">
-                    <span>→ Your Direct Commission (60%)</span>
-                    <span className="font-mono">27.9%</span>
-                  </div>
-                  <div className="flex justify-between text-slate-600 pl-4">
-                    <span>→ Override Pool (40%)</span>
-                    <span className="font-mono">17.6%</span>
-                  </div>
-                  <div className="mt-3 pt-3 border-t border-slate-200 text-xs text-slate-600">
-                    <p>The override pool is distributed to your upline based on rank and qualification.</p>
+                  <div className="pt-3 border-t border-slate-200">
+                    <p className="text-slate-600 leading-relaxed">
+                      You earn 27.9% on every sale, paid immediately. This rate is the same for all reps regardless of rank. The remaining value goes to upline overrides and company programs.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -155,13 +145,13 @@ export default function CommissionsPage() {
                     <span>Your Commission</span>
                     <span className="font-mono">$10.00</span>
                   </div>
-                  <div className="flex justify-between text-slate-600">
+                  <div className="flex justify-between text-blue-700 font-semibold">
                     <span>Sponsor Receives</span>
                     <span className="font-mono">$8.00</span>
                   </div>
                 </div>
                 <div className="mt-3 text-xs text-slate-500">
-                  Note: Business Center has no override pool or bonus pool allocation
+                  Note: Business Center has a simplified fixed payout structure
                 </div>
               </div>
             </div>

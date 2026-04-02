@@ -116,6 +116,12 @@ export async function POST(request: NextRequest) {
       metadata.referrer_slug = referrerSlug;
     }
 
+    // Determine success URL based on product
+    let successUrl = `${siteUrl}/dashboard/store?success=true&session_id={CHECKOUT_SESSION_ID}`;
+    if (product.slug === 'businesscenter') {
+      successUrl = `${siteUrl}/dashboard/business-center/success?session_id={CHECKOUT_SESSION_ID}`;
+    }
+
     // Create Stripe checkout session
     const stripeClient = getStripeClient();
     const sessionParams: Stripe.Checkout.SessionCreateParams = {
@@ -127,7 +133,7 @@ export async function POST(request: NextRequest) {
         },
       ],
       mode: product.is_subscription ? 'subscription' : 'payment',
-      success_url: `${siteUrl}/dashboard/store?success=true&session_id={CHECKOUT_SESSION_ID}`,
+      success_url: successUrl,
       cancel_url: `${siteUrl}/dashboard/store?canceled=true`,
       customer_email: distributor.email,
       metadata,

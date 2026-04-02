@@ -52,32 +52,33 @@ export default async function StorePage() {
     redirect('/signup');
   }
 
+  /* Database products temporarily hidden - only showing Pulse products */
   // Fetch active products/services
-  const { data: products } = await serviceClient
-    .from('products')
-    .select(`
-      *,
-      category:product_categories(name, slug, description)
-    `)
-    .eq('is_active', true)
-    .order('display_order', { ascending: true });
+  // const { data: products } = await serviceClient
+  //   .from('products')
+  //   .select(`
+  //     *,
+  //     category:product_categories(name, slug, description)
+  //   `)
+  //   .eq('is_active', true)
+  //   .order('display_order', { ascending: true });
 
-  // Fetch user's current subscriptions/access
-  const { data: userAccess } = await serviceClient
-    .from('service_access')
-    .select('product_id, status, expires_at, is_trial')
-    .eq('distributor_id', distributor.id)
-    .eq('status', 'active');
+  // // Fetch user's current subscriptions/access
+  // const { data: userAccess } = await serviceClient
+  //   .from('service_access')
+  //   .select('product_id, status, expires_at, is_trial')
+  //   .eq('distributor_id', distributor.id)
+  //   .eq('status', 'active');
 
-  const accessMap = new Map(userAccess?.map(a => [a.product_id, a]) || []);
+  // const accessMap = new Map(userAccess?.map(a => [a.product_id, a]) || []);
 
-  // Group products by category
-  const productsByCategory = products?.reduce((acc: any, product: any) => {
-    const catName = product.category?.name || 'Other';
-    if (!acc[catName]) acc[catName] = [];
-    acc[catName].push(product);
-    return acc;
-  }, {}) || {};
+  // // Group products by category
+  // const productsByCategory = products?.reduce((acc: any, product: any) => {
+  //   const catName = product.category?.name || 'Other';
+  //   if (!acc[catName]) acc[catName] = [];
+  //   acc[catName].push(product);
+  //   return acc;
+  // }, {}) || {};
 
   // Define Pulse Products (member pricing)
   const pulseProducts = [
@@ -113,9 +114,9 @@ export default async function StorePage() {
       productSlug: 'pulsedrive' as const,
       name: 'PulseDrive',
       description: 'Professional Marketing Power with AI Podcast Production',
-      memberPrice: 249,
-      retailPrice: 299,
-      qv: 249,
+      memberPrice: 349,
+      retailPrice: 399,
+      qv: 349,
       bv: 116.48,
       features: [
         'Everything in PulseFlow',
@@ -166,8 +167,9 @@ export default async function StorePage() {
           </div>
         </div>
 
+        {/* Database products temporarily hidden - only showing Pulse products */}
         {/* Products by Category */}
-        {Object.entries(productsByCategory).map(([categoryName, categoryProducts]: [string, any]) => (
+        {/* {Object.entries(productsByCategory).map(([categoryName, categoryProducts]: [string, any]) => (
           <div key={categoryName} className="mb-12">
             <h2 className="text-2xl font-bold text-slate-900 mb-4">{categoryName}</h2>
 
@@ -182,7 +184,7 @@ export default async function StorePage() {
                     className="bg-white rounded-lg shadow-md border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow"
                   >
                     {/* Product Image */}
-                    {product.image_url ? (
+                    {/* {product.image_url ? (
                       <img
                         src={product.image_url}
                         alt={product.name}
@@ -192,10 +194,10 @@ export default async function StorePage() {
                       <div className="w-full h-48 bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center">
                         <Package className="w-16 h-16 text-white opacity-50" />
                       </div>
-                    )}
+                    )} */}
 
                     {/* Product Info */}
-                    <div className="p-6">
+                    {/* <div className="p-6">
                       <div className="flex items-start justify-between mb-3">
                         <h3 className="text-lg font-bold text-slate-900">{product.name}</h3>
                         {hasAccess && (
@@ -208,10 +210,10 @@ export default async function StorePage() {
 
                       <p className="text-sm text-slate-600 mb-4 line-clamp-3">
                         {product.description || 'No description available'}
-                      </p>
+                      </p> */}
 
                       {/* Pricing */}
-                      <div className="mb-4">
+                      {/* <div className="mb-4">
                         <div className="flex items-baseline gap-2">
                           <span className="text-2xl font-bold text-slate-900">
                             ${(product.wholesale_price_cents / 100).toFixed(0)}
@@ -225,18 +227,18 @@ export default async function StorePage() {
                         <p className="text-xs text-slate-500 mt-1">
                           Earn {product.bv || 0} BV credits
                         </p>
-                      </div>
+                      </div> */}
 
                       {/* Trial Info */}
-                      {product.trial_days > 0 && !hasAccess && (
+                      {/* {product.trial_days > 0 && !hasAccess && (
                         <div className="flex items-center gap-2 text-xs text-blue-700 bg-blue-50 px-3 py-2 rounded mb-4">
                           <Clock className="w-4 h-4" />
                           {product.trial_days} day free trial
                         </div>
-                      )}
+                      )} */}
 
                       {/* Action Button */}
-                      {hasAccess ? (
+                      {/* {hasAccess ? (
                         <div>
                           {accessInfo?.is_trial && (
                             <p className="text-xs text-orange-600 mb-2">
@@ -267,15 +269,15 @@ export default async function StorePage() {
               })}
             </div>
           </div>
-        ))}
+        ))} */}
 
         {/* Empty State */}
-        {products && products.length === 0 && (
+        {/* {products && products.length === 0 && (
           <div className="text-center py-12">
             <Package className="w-16 h-16 text-slate-300 mx-auto mb-4" />
             <p className="text-slate-500">No services available yet</p>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );

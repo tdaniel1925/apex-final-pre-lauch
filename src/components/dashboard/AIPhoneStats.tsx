@@ -81,32 +81,8 @@ export default function AIPhoneStats({ distributorId }: { distributorId: string 
   }
 
   if (!data?.isProvisioned) {
-    return (
-      <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-sm border border-blue-200 p-4 sm:p-6">
-        <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
-          <div className="flex-shrink-0">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-600 rounded-lg flex items-center justify-center">
-              <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-            </div>
-          </div>
-          <div className="flex-1 w-full">
-            <h3 className="text-base sm:text-lg font-semibold text-slate-900 mb-1">
-              Get Your AI Assistant
-            </h3>
-            <p className="text-slate-700 text-sm mb-3 sm:mb-4">
-              Upgrade to get your own AI phone number that answers calls 24/7,
-              builds excitement about Apex, and collects leads for you!
-            </p>
-            <Link
-              href="/dashboard/settings"
-              className="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-4 py-2.5 rounded-lg text-sm font-medium hover:bg-blue-700 transition min-h-[44px] w-full sm:w-auto"
-            >
-              Activate AI Assistant
-            </Link>
-          </div>
-        </div>
-      </div>
-    )
+    // Don't show anything if AI is not provisioned
+    return null
   }
 
   const timeRemaining = getTimeRemaining(data.trialExpiresAt)

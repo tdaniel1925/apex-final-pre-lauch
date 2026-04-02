@@ -11,6 +11,7 @@ import FeatureGate from '@/components/dashboard/FeatureGate';
 import Link from 'next/link';
 import { UserPlus, Search, Filter } from 'lucide-react';
 import LeadsTable from '@/components/crm/LeadsTable';
+import { checkBusinessCenterSubscription } from '@/lib/subscription/check-business-center';
 
 export const metadata: Metadata = {
   title: 'Leads | CRM | Apex Affinity Group',
@@ -28,21 +29,10 @@ export default async function LeadsListPage({
   }
 
   // Check Business Center access
-  const supabase = await createClient();
-  const { data: access } = await supabase
-    .from('service_access')
-    .select('is_active')
-    .eq('distributor_id', currentUser.id)
-    .eq('feature', '/dashboard/genealogy')
-    .single();
-
-  const hasAccess = access?.is_active || false;
-
-  // Calculate days without Business Center
-  const signupDate = new Date(currentUser.created_at);
-  const daysWithout = Math.floor((Date.now() - signupDate.getTime()) / (1000 * 60 * 60 * 24));
+  const bcStatus = await checkBusinessCenterSubscription(currentUser.id);
 
   // Fetch leads
+  const supabase = await createClient();
   let query = supabase
     .from('crm_leads')
     .select('*', { count: 'exact' })
@@ -71,8 +61,8 @@ export default async function LeadsListPage({
   return (
     <FeatureGate
       featurePath="/dashboard/crm/leads"
-      hasAccess={hasAccess}
-      daysWithout={daysWithout}
+      hasAccess={bcStatus.hasSubscription}
+      daysWithout={bcStatus.daysWithout}
     >
       <div className="min-h-screen bg-slate-50 p-8">
         <div className="max-w-7xl mx-auto">

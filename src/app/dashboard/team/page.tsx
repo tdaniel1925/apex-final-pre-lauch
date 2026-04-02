@@ -108,6 +108,7 @@ export default async function TeamPage() {
       email,
       slug,
       rep_number,
+      status,
       created_at,
       member:members!members_distributor_id_fkey (
         member_id,
@@ -158,7 +159,7 @@ export default async function TeamPage() {
       personalCreditsMonthly: memberData?.personal_credits_monthly || 0,
       personalEnrolleeCount: enrolleeCountMap[dist.id] || 0,
       enrollmentDate: memberData?.enrollment_date || dist.created_at,
-      isActive: (memberData?.personal_credits_monthly || 0) >= 50,
+      isActive: dist.status === 'active', // Member status, not volume-based
       overrideQualified: memberData?.override_qualified || false,
     };
   });

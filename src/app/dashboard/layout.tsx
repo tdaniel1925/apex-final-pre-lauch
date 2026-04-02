@@ -1,10 +1,11 @@
 // =============================================
 // Dashboard Layout
-// Includes sidebar navigation, AI chat, and Business Center nag
+// Includes sidebar navigation, AI Assistant modal, and Business Center nag
 // =============================================
 
 import Sidebar from '@/components/dashboard/Sidebar';
 import BusinessCenterNag from '@/components/dashboard/BusinessCenterNag';
+import AIAssistantButton from '@/components/business-center/AIAssistantButton';
 import { Toaster } from 'sonner';
 import { createClient } from '@/lib/supabase/server';
 import { createServiceClient } from '@/lib/supabase/service';
@@ -46,6 +47,11 @@ export default async function DashboardLayout({
     }
   }
 
+  // Determine if user has Business Center access for AI Assistant
+  const hasBusinessCenter = businessCenterStatus?.hasSubscription ||
+                            businessCenterStatus?.nagLevel === 'none' ||
+                            businessCenterStatus?.nagLevel === 'soft';
+
   return (
     <div className="flex min-h-screen bg-gray-50">
       <Toaster position="top-right" />
@@ -61,6 +67,9 @@ export default async function DashboardLayout({
         )}
         {children}
       </main>
+
+      {/* AI Assistant Floating Button - Only for Business Center subscribers */}
+      {hasBusinessCenter && <AIAssistantButton />}
     </div>
   );
 }

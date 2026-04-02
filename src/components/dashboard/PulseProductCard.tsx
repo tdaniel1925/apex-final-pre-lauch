@@ -85,11 +85,9 @@ export default function PulseProductCard({
 
       {/* Product Info */}
       <div className="p-6">
-        {/* Header */}
-        <div className="mb-4">
-          <h3 className="text-xl font-bold text-slate-900 mb-2">{name}</h3>
-          <p className="text-sm text-slate-600">{description}</p>
-        </div>
+        {/* Title and Description */}
+        <h3 className="text-xl font-bold text-slate-900 mb-2">{name}</h3>
+        <p className="text-sm text-slate-600 mb-4">{description}</p>
 
         {/* Pricing */}
         <div className="mb-4">

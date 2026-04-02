@@ -10,6 +10,7 @@ import { createClient } from '@/lib/supabase/server';
 import { getCurrentDistributor } from '@/lib/auth/server';
 import { redirect } from 'next/navigation';
 import FeatureGate from '@/components/dashboard/FeatureGate';
+import { checkBusinessCenterSubscription } from '@/lib/subscription/check-business-center';
 
 export const metadata: Metadata = {
   title: 'AI Team Insights | Apex Affinity Group',
@@ -69,19 +70,7 @@ export default async function AIInsightsPage() {
   }
 
   // Check Business Center access
-  const supabase = await createClient();
-  const { data: access } = await supabase
-    .from('service_access')
-    .select('is_active')
-    .eq('distributor_id', currentDist.id)
-    .eq('feature', '/dashboard/genealogy')
-    .single();
-
-  const hasAccess = access?.is_active || false;
-
-  // Calculate days without Business Center
-  const signupDate = new Date(currentDist.created_at);
-  const daysWithout = Math.floor((Date.now() - signupDate.getTime()) / (1000 * 60 * 60 * 24));
+  const bcStatus = await checkBusinessCenterSubscription(currentDist.id);
 
   const recommendations = await getRecommendations(currentDist.id);
 
@@ -92,8 +81,8 @@ export default async function AIInsightsPage() {
   return (
     <FeatureGate
       featurePath="/dashboard/ai-insights"
-      hasAccess={hasAccess}
-      daysWithout={daysWithout}
+      hasAccess={bcStatus.hasSubscription}
+      daysWithout={bcStatus.daysWithout}
     >
       <div className="min-h-screen bg-slate-50 p-8">
         <div className="max-w-6xl mx-auto">

@@ -9,6 +9,7 @@ import { createServiceClient } from '@/lib/supabase/service';
 import SalesTable from '@/components/dashboard/SalesTable';
 import SalesFilters from '@/components/dashboard/SalesFilters';
 import ExportButton from '@/components/dashboard/ExportButton';
+import { PendingDataDisclaimer } from '@/components/dashboard/PendingDataDisclaimer';
 import { DollarSign, ShoppingCart, TrendingUp, Package } from 'lucide-react';
 
 export const metadata = {
@@ -237,6 +238,9 @@ export default async function SalesHistoryPage({
           </div>
           <ExportButton data={salesData} filename="sales-history" type="sales" />
         </div>
+
+        {/* Pending Data Disclaimer */}
+        <PendingDataDisclaimer />
 
         {/* Summary Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

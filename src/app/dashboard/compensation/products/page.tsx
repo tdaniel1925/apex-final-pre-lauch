@@ -308,7 +308,7 @@ export default function ProductsPage() {
             predictable costs for essential business tools.
           </p>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
             <div className="text-center p-4 bg-green-50 rounded-lg border-2 border-green-200">
               <div className="text-3xl font-bold text-green-700">$10</div>
               <div className="text-sm text-slate-700 font-semibold">Your Commission</div>
@@ -316,14 +316,6 @@ export default function ProductsPage() {
             <div className="text-center p-4 bg-blue-50 rounded-lg border-2 border-blue-200">
               <div className="text-3xl font-bold text-blue-700">$8</div>
               <div className="text-sm text-slate-700 font-semibold">Sponsor Bonus</div>
-            </div>
-            <div className="text-center p-4 bg-slate-50 rounded-lg">
-              <div className="text-2xl font-bold text-blue-700">$8</div>
-              <div className="text-xs text-slate-600">Sponsor Bonus</div>
-            </div>
-            <div className="text-center p-4 bg-slate-50 rounded-lg">
-              <div className="text-2xl font-bold text-slate-900">$2</div>
-              <div className="text-xs text-slate-600">Costs</div>
             </div>
           </div>
 

@@ -146,8 +146,7 @@ export default function BonusPoolPage() {
 
             <h1 className="text-4xl font-bold mb-4">Bonus Pool Programs</h1>
             <p className="text-xl text-slate-200 leading-relaxed">
-              Funded by 3.5% of company revenue, the Bonus Pool drives trip incentives, fast start bonuses, car
-              allowances, quarterly contests, and enhanced rank bonuses.
+              The Bonus Pool funds trip incentives, fast start bonuses, car allowances, quarterly contests, and enhanced rank bonuses for top performers.
             </p>
           </div>
         </div>
@@ -157,16 +156,16 @@ export default function BonusPoolPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 mb-12">
         <div className="bg-white rounded-xl shadow-lg p-8 grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="text-center">
-            <div className="text-4xl font-bold text-slate-900 mb-2">3.5%</div>
-            <div className="text-sm text-slate-600 font-medium">of Company Revenue</div>
-          </div>
-          <div className="text-center">
             <div className="text-4xl font-bold text-slate-900 mb-2">7</div>
             <div className="text-sm text-slate-600 font-medium">Active Programs</div>
           </div>
           <div className="text-center">
             <div className="text-4xl font-bold text-slate-900 mb-2">$1K</div>
             <div className="text-sm text-slate-600 font-medium">Monthly Car Allowance (Dia+)</div>
+          </div>
+          <div className="text-center">
+            <div className="text-4xl font-bold text-slate-900 mb-2">50%</div>
+            <div className="text-sm text-slate-600 font-medium">Enhanced Rank Bonus Multiplier</div>
           </div>
         </div>
       </div>
@@ -182,51 +181,62 @@ export default function BonusPoolPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <div>
-                <h3 className="font-semibold text-blue-900 mb-2">Funded by Revenue, Not Override Savings</h3>
+                <h3 className="font-semibold text-blue-900 mb-2">Multiple Incentive Programs</h3>
                 <p className="text-blue-800 leading-relaxed">
-                  The Bonus Pool is funded by <span className="font-bold">3.5% of total company revenue</span> (after
-                  company operations and product costs). This is a separate allocation from the commission pool
-                  and override pool.
+                  The Bonus Pool funds a variety of incentive programs designed to reward performance, encourage growth, and recognize achievements at every level of the organization.
                 </p>
               </div>
             </div>
           </div>
 
           <div className="space-y-4">
-            <h3 className="font-semibold text-slate-900 text-lg">Revenue Allocation Breakdown</h3>
+            <h3 className="font-semibold text-slate-900 text-lg">Seven Ways to Earn</h3>
             <div className="bg-slate-50 border border-slate-200 rounded-lg p-6">
-              <div className="space-y-3 text-slate-700">
-                <div className="flex justify-between items-center pb-2 border-b border-slate-300">
-                  <span className="font-medium">Starting Point</span>
-                  <span className="font-bold">100%</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span>Company Operations</span>
-                  <span className="text-red-600 font-semibold">-30%</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="font-semibold text-green-700">Bonus Pool (3.5% of 49%)</span>
-                  <span className="font-bold text-green-600">1.7%</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span>Leadership Pool (1.5% of 49%)</span>
-                  <span className="font-semibold">0.7%</span>
-                </div>
-                <div className="flex justify-between items-center pb-2 border-b border-slate-300">
-                  <span>Commission Pool (95% of 49%)</span>
-                  <span className="font-semibold">46.6%</span>
-                </div>
-              </div>
+              <ul className="space-y-3 text-slate-700">
+                <li className="flex items-start">
+                  <svg className="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span><strong>Trip Incentives:</strong> All-expenses-paid destination trips for Gold achievers</span>
+                </li>
+                <li className="flex items-start">
+                  <svg className="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span><strong>Fast Start Bonuses:</strong> Cash bonuses for new reps in first 30 days</span>
+                </li>
+                <li className="flex items-start">
+                  <svg className="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span><strong>Car Allowances:</strong> Monthly vehicle payments for Platinum and above</span>
+                </li>
+                <li className="flex items-start">
+                  <svg className="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span><strong>Quarterly Contests:</strong> Top performers win cash prizes</span>
+                </li>
+                <li className="flex items-start">
+                  <svg className="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span><strong>Leadership Retreats:</strong> Annual events for Diamond and above</span>
+                </li>
+                <li className="flex items-start">
+                  <svg className="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span><strong>Enhanced Rank Bonuses:</strong> 50% multiplier for first-year achievers</span>
+                </li>
+                <li className="flex items-start">
+                  <svg className="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span><strong>Special Promotions:</strong> Periodic bonuses and contests</span>
+                </li>
+              </ul>
             </div>
-          </div>
-
-          <div className="mt-6 bg-amber-50 border-l-4 border-amber-400 p-6 rounded-r-lg">
-            <h3 className="font-semibold text-amber-900 mb-2">Additional Funding Source</h3>
-            <p className="text-amber-800 leading-relaxed">
-              <span className="font-bold">50% of ranked override savings</span> also flows into the incentive budget.
-              When lower-ranked reps don't use all 5 override levels, the saved override pool is split: 50% to Apex
-              operations, 50% to additional incentive programs.
-            </p>
           </div>
         </section>
 
