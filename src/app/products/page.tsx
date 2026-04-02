@@ -617,20 +617,22 @@ function ProductsPageContent({ distributorName }: { distributorName: string | nu
                 background: '#000000',
               }}
             >
-              <video
-                controls
-                playsInline
-                preload="metadata"
-                style={{
-                  width: '100%',
-                  height: 'auto',
-                  display: 'block',
-                  borderRadius: '20px',
-                }}
-              >
-                <source src="/videos/trent-pulse.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
+              <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
+                <iframe
+                  src="https://player.vimeo.com/video/1179720511?h=0&title=0&byline=0&portrait=0"
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    border: 'none',
+                  }}
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  allowFullScreen
+                  title="Trent Daniel - Pulse Products Explanation"
+                />
+              </div>
             </div>
 
             <div
