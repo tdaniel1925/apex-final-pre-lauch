@@ -66,7 +66,7 @@ export async function checkBusinessCenterSubscription(
   const { data: businessCenterProduct } = await supabase
     .from('products')
     .select('id')
-    .eq('slug', 'business-center')
+    .eq('slug', 'businesscenter')
     .single();
 
   if (!businessCenterProduct) {
