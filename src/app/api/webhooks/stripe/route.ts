@@ -6,6 +6,8 @@ import { generateOrderReceiptHTML, generateOrderReceiptSubject } from '@/lib/ema
 import { calculateCreditedBV } from '@/lib/compliance/anti-frontloading';
 import { logProductSale, logSubscriptionPayment, logRefund } from '@/lib/transactions/log-transaction';
 import { handlePaymentMade } from '@/lib/fulfillment/auto-transitions';
+import { propagateGroupVolume } from '@/lib/compensation/gv-propagation';
+import { createEstimatedEarnings } from '@/lib/compensation/estimate-earnings';
 
 // Force dynamic rendering - prevent build-time analysis
 export const dynamic = 'force-dynamic';
@@ -251,6 +253,41 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
           .eq('member_id', member.member_id);
 
         console.log(`✅ BV credited: ${credited_bv}/${baseBV}. ${reason}`);
+
+        // Propagate GV up sponsorship tree (REAL-TIME UPDATE)
+        // This updates team_credits_monthly for all upline members
+        // Commission calculation happens in monthly run, not here
+        try {
+          const gvResult = await propagateGroupVolume(metadata.distributor_id, credited_bv);
+          console.log(`✅ GV propagated to ${gvResult.upline_updated} upline members`);
+          if (gvResult.errors.length > 0) {
+            console.error('GV propagation errors:', gvResult.errors);
+          }
+        } catch (gvError) {
+          console.error('Failed to propagate GV:', gvError);
+          // Don't fail the whole webhook if GV propagation fails
+        }
+
+        // Create estimated earnings (REAL-TIME VISIBILITY)
+        // Shows pending commissions in dashboard before month-end validation
+        if (transactionId) {
+          try {
+            const estimateResult = await createEstimatedEarnings(
+              transactionId,
+              metadata.distributor_id,
+              supabase
+            );
+
+            if (estimateResult.success) {
+              console.log(`💰 Created ${estimateResult.count} estimated earnings entries`);
+            } else {
+              console.error('Estimate creation errors:', estimateResult.errors);
+            }
+          } catch (estimateError) {
+            console.error('Failed to create estimated earnings:', estimateError);
+            // Don't fail the whole webhook if estimate creation fails
+          }
+        }
       }
     }
 
@@ -507,52 +544,66 @@ async function handleRetailCheckout(session: Stripe.Checkout.Session) {
       console.log(`✅ Retail sale BV credited: ${totalCreditedBV}/${Math.round(totalBV / 100)}`);
       bvLog.forEach(log => console.log(`  ${log}`));
 
-      // Calculate commission based on TOTAL BV (not credited BV)
-      // Commission is 60% of total BV, regardless of anti-frontloading
-      const sellerCommission = Math.round(totalBV * 0.60);
+      // Propagate GV up sponsorship tree (REAL-TIME UPDATE)
+      // This updates team_credits_monthly for all upline members
+      // Commission calculation happens in MONTHLY RUN, not here in webhook
+      // Monthly run will:
+      //   1. Calculate waterfall (seller commission, override pool, bonus pool, etc.)
+      //   2. Check qualification (50 PV minimum + 70% retail compliance)
+      //   3. Calculate overrides L1-L7 based on rank
+      //   4. Apply compression for unqualified upline
+      //   5. Create earnings_ledger entries for all commissions
+      try {
+        const gvResult = await propagateGroupVolume(metadata.rep_distributor_id, totalCreditedBV);
+        console.log(`✅ GV propagated to ${gvResult.upline_updated} upline members`);
+        if (gvResult.errors.length > 0) {
+          console.error('GV propagation errors:', gvResult.errors);
+        }
+      } catch (gvError) {
+        console.error('Failed to propagate GV:', gvError);
+        // Don't fail the whole webhook if GV propagation fails
+      }
 
-      await supabase.from('earnings_ledger').insert({
-        member_id: sellerMember.member_id,
-        earning_type: 'commission',
-        base_amount_cents: sellerCommission,
-        final_amount_cents: sellerCommission,
-        source_order_id: order.id,
-        status: 'pending',
-        period_month: new Date().getMonth() + 1,
-        period_year: new Date().getFullYear(),
-      });
+      // Log transaction for retail sale
+      let retailTransactionId: string | undefined;
+      try {
+        const transaction = await logProductSale(
+          metadata.rep_distributor_id,
+          (session.amount_total || 0) / 100,
+          cart.items[0]?.product_id || 'retail-product',
+          session.payment_intent as string,
+          {
+            order_id: order.id,
+            order_number: order.order_number,
+            customer_email: customer.email,
+            customer_name: customer.full_name,
+            bv_amount: Math.round(totalBV / 100),
+            is_retail: true,
+          }
+        );
+        retailTransactionId = transaction?.id;
+        console.log('✅ Retail sale transaction logged:', retailTransactionId);
+      } catch (logError) {
+        console.error('Failed to log retail transaction:', logError);
+      }
 
-      // L1 Override (30% of 40% override pool)
-      const overridePool = Math.round(totalBV * 0.40);
-      const l1Override = Math.round(overridePool * 0.30);
+      // Create estimated earnings for retail sale (REAL-TIME VISIBILITY)
+      if (retailTransactionId) {
+        try {
+          const estimateResult = await createEstimatedEarnings(
+            retailTransactionId,
+            metadata.rep_distributor_id,
+            supabase
+          );
 
-      const { data: sponsor } = await supabase
-        .from('distributors')
-        .select('sponsor_id')
-        .eq('id', metadata.rep_distributor_id)
-        .single();
-
-      if (sponsor?.sponsor_id) {
-        const { data: l1Member } = await supabase
-          .from('members')
-          .select('member_id, personal_credits_monthly')
-          .eq('distributor_id', sponsor.sponsor_id)
-          .single();
-
-        if (l1Member && l1Member.personal_credits_monthly >= 50) {
-          await supabase.from('earnings_ledger').insert({
-            member_id: l1Member.member_id,
-            earning_type: 'override',
-            override_level: 1,
-            override_percentage: 0.30,
-            base_amount_cents: l1Override,
-            final_amount_cents: l1Override,
-            source_member_id: sellerMember.member_id,
-            source_order_id: order.id,
-            status: 'pending',
-            period_month: new Date().getMonth() + 1,
-            period_year: new Date().getFullYear(),
-          });
+          if (estimateResult.success) {
+            console.log(`💰 Created ${estimateResult.count} estimated earnings entries`);
+          } else {
+            console.error('Estimate creation errors:', estimateResult.errors);
+          }
+        } catch (estimateError) {
+          console.error('Failed to create estimated earnings for retail sale:', estimateError);
+          // Don't fail the whole webhook if estimate creation fails
         }
       }
     }

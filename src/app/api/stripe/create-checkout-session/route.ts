@@ -84,7 +84,7 @@ export async function POST(request: NextRequest) {
         },
       ],
       mode: 'subscription',
-      success_url: `${siteUrl}/products/success?session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${siteUrl}/products/success?session_id={CHECKOUT_SESSION_ID}&product=${productSlug}`,
       cancel_url: `${siteUrl}/products?canceled=true`,
       metadata,
       subscription_data: {

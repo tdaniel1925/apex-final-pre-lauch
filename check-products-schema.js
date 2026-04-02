@@ -1,33 +1,45 @@
-// Quick script to check products table schema
+require('dotenv').config({ path: '.env.local' });
 const { createClient } = require('@supabase/supabase-js');
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE_KEY
+);
 
-const supabase = createClient(supabaseUrl, supabaseKey);
+(async () => {
+  console.log('\n🔍 Checking products table schema...\n');
 
-async function checkProductsSchema() {
-  // Get products with credit columns
-  const { data: products, error: queryError } = await supabase
+  const { data, error } = await supabase
     .from('products')
-    .select('name, slug, wholesale_price_cents, retail_price_cents, credit_pct, member_credits, retail_credits')
-    .in('slug', ['pulseguard', 'pulseflow', 'pulsedrive', 'pulsecommand', 'smartlook', 'custom-business-center'])
-    .order('name');
+    .select('*')
+    .limit(1);
 
-  if (queryError) {
-    console.error('Query error:', queryError);
-  } else {
-    console.log('\n✅ Products with credit system:');
-    console.log('='.repeat(80));
-    console.table(products.map(p => ({
-      Name: p.name,
-      Wholesale: `$${(p.wholesale_price_cents / 100).toFixed(2)}`,
-      Retail: `$${(p.retail_price_cents / 100).toFixed(2)}`,
-      'Credit %': `${(p.credit_pct * 100).toFixed(0)}%`,
-      'Member Credits': p.member_credits,
-      'Retail Credits': p.retail_credits
-    })));
+  if (error) {
+    console.error('Error:', error);
+    return;
   }
-}
 
-checkProductsSchema();
+  if (data && data.length > 0) {
+    console.log('📋 Available columns:');
+    console.log(Object.keys(data[0]).join(', '));
+    console.log('\n📦 Sample product:');
+    console.log(JSON.stringify(data[0], null, 2));
+  }
+
+  // Now get all Pulse products
+  const { data: pulseProducts } = await supabase
+    .from('products')
+    .select('*')
+    .in('slug', ['pulsemarket', 'pulseflow', 'pulsedrive', 'pulsecommand']);
+
+  console.log('\n' + '='.repeat(80));
+  console.log('📊 All Pulse Products:\n');
+  
+  pulseProducts?.forEach(p => {
+    console.log(`${p.name} (${p.slug})`);
+    console.log(`  ID: ${p.id}`);
+    if (p.stripe_price_id) console.log(`  Stripe Price ID: ${p.stripe_price_id}`);
+    if (p.stripe_product_id) console.log(`  Stripe Product ID: ${p.stripe_product_id}`);
+    console.log('');
+  });
+})();

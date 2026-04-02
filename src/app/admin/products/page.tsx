@@ -1,31 +1,50 @@
+'use client';
+
 // =============================================
 // Admin Services Management Page
 // Manage service subscriptions for rep store
 // =============================================
 
-import { createServiceClient } from '@/lib/supabase/service';
+import { createClient } from '@/lib/supabase/client';
 import Link from 'next/link';
 import { Plus, Edit, Trash2, DollarSign, Package, RefreshCw } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
-export const metadata = {
-  title: 'Services - Admin - Apex Affinity Group',
-  description: 'Manage service subscriptions',
-};
+export default function AdminProductsPage() {
+  const [products, setProducts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
-export default async function AdminProductsPage() {
-  const serviceClient = createServiceClient();
+  useEffect(() => {
+    async function fetchProducts() {
+      const supabase = createClient();
+      const { data, error } = await supabase
+        .from('products')
+        .select(`
+          *,
+          category:product_categories(name, slug)
+        `)
+        .order('created_at', { ascending: false });
 
-  // Fetch products (services) with categories
-  const { data: products, error } = await serviceClient
-    .from('products')
-    .select(`
-      *,
-      category:product_categories(name, slug)
-    `)
-    .order('created_at', { ascending: false });
+      if (error) {
+        console.error('Error loading services:', error);
+      } else {
+        setProducts(data || []);
+      }
+      setLoading(false);
+    }
 
-  if (error) {
-    console.error('Error loading services:', error);
+    fetchProducts();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-slate-50 p-8 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-slate-200 border-t-slate-900 rounded-full animate-spin mx-auto"></div>
+          <p className="mt-4 text-slate-600">Loading services...</p>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -142,7 +161,11 @@ export default async function AdminProductsPage() {
               <tbody className="divide-y divide-slate-200">
                 {products && products.length > 0 ? (
                   products.map((product: any) => (
-                    <tr key={product.id} className="hover:bg-slate-50 transition-colors">
+                    <tr
+                      key={product.id}
+                      className="hover:bg-slate-50 transition-colors cursor-pointer"
+                      onClick={() => window.location.href = `/admin/products/${product.id}/edit`}
+                    >
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-3">
                           {product.image_url ? (
@@ -223,7 +246,7 @@ export default async function AdminProductsPage() {
                           </span>
                         )}
                       </td>
-                      <td className="px-6 py-4 text-right">
+                      <td className="px-6 py-4 text-right" onClick={(e) => e.stopPropagation()}>
                         <div className="flex items-center justify-end gap-2">
                           <Link
                             href={`/admin/products/${product.id}/edit`}

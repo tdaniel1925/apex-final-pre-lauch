@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
     const yesterdayStart = yesterday.toISOString();
     const yesterdayEndStr = yesterdayEnd.toISOString();
 
-    // Get new signups from yesterday
+    // Get new signups from yesterday (excluding test distributors)
     const { data: newSignups, error: signupsError } = await supabase
       .from('distributors')
       .select(`
@@ -58,6 +58,11 @@ export async function POST(request: NextRequest) {
       `)
       .gte('created_at', yesterdayStart)
       .lte('created_at', yesterdayEndStr)
+      .not('email', 'like', '%test%')
+      .not('email', 'like', '%demo%')
+      .not('email', 'like', '%dummy%')
+      .not('first_name', 'ilike', '%test%')
+      .not('last_name', 'ilike', '%test%')
       .order('created_at', { ascending: false });
 
     if (signupsError) {
@@ -65,22 +70,27 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Failed to fetch signups', details: signupsError }, { status: 500 });
     }
 
-    // Get total distributor count
+    // Get total distributor count (excluding test distributors)
     const { count: totalReps, error: countError } = await supabase
       .from('distributors')
-      .select('*', { count: 'exact', head: true });
+      .select('*', { count: 'exact', head: true })
+      .not('email', 'like', '%test%')
+      .not('email', 'like', '%demo%')
+      .not('email', 'like', '%dummy%')
+      .not('first_name', 'ilike', '%test%')
+      .not('last_name', 'ilike', '%test%');
 
     if (countError) {
       console.error('Error fetching total reps:', countError);
     }
 
-    // Count test users (users with 'test', 'demo', or 'dummy' in their name/email)
+    // Count test users separately (users with 'test', 'demo', or 'dummy' in their name/email)
     const { count: testReps } = await supabase
       .from('distributors')
       .select('*', { count: 'exact', head: true })
       .or('first_name.ilike.%test%,last_name.ilike.%test%,email.ilike.%test%,first_name.ilike.%dummy%,last_name.ilike.%dummy%,first_name.ilike.%demo%,last_name.ilike.%demo%');
 
-    // Calculate week-over-week growth
+    // Calculate week-over-week growth (excluding test distributors)
     const oneWeekAgo = new Date(yesterday);
     oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
     const twoWeeksAgo = new Date(oneWeekAgo);
@@ -90,13 +100,23 @@ export async function POST(request: NextRequest) {
       .from('distributors')
       .select('*', { count: 'exact', head: true })
       .gte('created_at', oneWeekAgo.toISOString())
-      .lt('created_at', yesterdayStart);
+      .lt('created_at', yesterdayStart)
+      .not('email', 'like', '%test%')
+      .not('email', 'like', '%demo%')
+      .not('email', 'like', '%dummy%')
+      .not('first_name', 'ilike', '%test%')
+      .not('last_name', 'ilike', '%test%');
 
     const { count: previousWeekSignups } = await supabase
       .from('distributors')
       .select('*', { count: 'exact', head: true })
       .gte('created_at', twoWeeksAgo.toISOString())
-      .lt('created_at', oneWeekAgo.toISOString());
+      .lt('created_at', oneWeekAgo.toISOString())
+      .not('email', 'like', '%test%')
+      .not('email', 'like', '%demo%')
+      .not('email', 'like', '%dummy%')
+      .not('first_name', 'ilike', '%test%')
+      .not('last_name', 'ilike', '%test%');
 
     const weekGrowth = lastWeekSignups! - previousWeekSignups!;
     const weekGrowthPercent = previousWeekSignups! > 0
@@ -105,12 +125,17 @@ export async function POST(request: NextRequest) {
     const weekGrowthDisplay = weekGrowth >= 0 ? `+${weekGrowthPercent}%` : `${weekGrowthPercent}%`;
     const weekGrowthColor = weekGrowth >= 0 ? '#28a745' : '#dc3545';
 
-    // Calculate month-to-date signups
+    // Calculate month-to-date signups (excluding test distributors)
     const firstOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
     const { count: mtdSignups } = await supabase
       .from('distributors')
       .select('*', { count: 'exact', head: true })
-      .gte('created_at', firstOfMonth.toISOString());
+      .gte('created_at', firstOfMonth.toISOString())
+      .not('email', 'like', '%test%')
+      .not('email', 'like', '%demo%')
+      .not('email', 'like', '%dummy%')
+      .not('first_name', 'ilike', '%test%')
+      .not('last_name', 'ilike', '%test%');
 
     // Get geographic breakdown (top state)
     const { data: stateData } = await supabase
@@ -215,12 +240,11 @@ export async function POST(request: NextRequest) {
       ? ['tdaniel@botmakers.ai']
       : [
           'bill.propper@3mark.com',
-          'johnathon.bunch@3mark.com',
-          'darrell.wolfe@3mark.com',
-          'russell.katz@3mark.com',
-          'brayna.propper@3mark.com',
-          'davidr@3mark.com',
           'betsyr@3mark.com',
+          'david.royse@3mark.com',
+          'darrell.wolfe@3mark.com',
+          'johnathon.bunch@3mark.com',
+          'russell.katz@3mark.com',
           'tdaniel@botmakers.ai',
         ];
 

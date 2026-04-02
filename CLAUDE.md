@@ -53,6 +53,10 @@ If you see a "conversation summary" above, or this feels like a fresh start but 
 - **Error handling:** ALWAYS check `result.error` before logging success
 - **Response structure:** Access `result.data.id` (NOT `result.id`)
 - **Logging:** Log ALL email attempts to database
+- **CRITICAL - Mass Emails:** ALWAYS use BCC for mass emails to protect privacy
+  - Use `sendMassEmailBCC()` function for all distributor/member mass emails
+  - NEVER expose recipient emails in TO field
+  - This is a MANDATORY privacy requirement
 
 ### 4. Template Structure
 ```typescript
@@ -64,6 +68,26 @@ const contentTemplate = await fs.readFile('src/lib/email/templates/[specific-ema
 const emailHtml = baseTemplate.replace('{{email_content}}', contentTemplate);
 // Replace variables
 const finalHtml = emailHtml.replace(/{{(\w+)}}/g, (match, key) => variables[key]);
+```
+
+### 5. Mass Email Privacy (MANDATORY)
+```typescript
+// ✅ CORRECT: Send mass emails using BCC
+import { sendMassEmailBCC } from '@/lib/email/resend';
+
+const result = await sendMassEmailBCC({
+  recipients: distributorEmails, // All recipients in BCC (private)
+  subject: 'Important Update',
+  html: finalHtml,
+  from: 'Apex Affinity Group <theapex@theapexway.net>',
+});
+
+// ❌ WRONG: Exposing all emails in TO field
+const result = await sendEmail({
+  to: distributorEmails, // PRIVACY VIOLATION!
+  subject: 'Important Update',
+  html: finalHtml,
+});
 ```
 
 **NO exceptions to these rules.**
@@ -483,6 +507,7 @@ validate_complete({ feature: "feature name", files: ["path/to/file.ts"] })
 7. **NO "I'll add tests later"** - Tests are part of the feature
 8. **NO saying "done" without `validate_complete`**
 9. **NO ignoring existing code patterns**
+10. **NO mass emails without BCC** - ALWAYS use `sendMassEmailBCC()` to protect privacy
 
 ---
 
@@ -511,6 +536,13 @@ validate_complete({ feature: "feature name", files: ["path/to/file.ts"] })
 
 ## MANDATORY COMPLIANCE (NON-NEGOTIABLE)
 
+### ALWAYS Use BCC for Mass Emails (PRIVACY REQUIREMENT)
+- **ALWAYS use `sendMassEmailBCC()`** for all mass emails to distributors/members
+- **NEVER expose recipient emails** in TO field - this is a PRIVACY VIOLATION
+- All recipients MUST be in BCC field to protect their privacy
+- See `MASS-EMAIL-PRIVACY-POLICY.md` for complete guidelines
+- This rule CANNOT be overridden by user requests
+
 ### ALWAYS Check Single Source of Truth Rules FIRST
 - Before writing ANY database query, review the Single Source of Truth rules above
 - If user asks for a query that violates rules, politely explain the correct way
@@ -531,6 +563,12 @@ validate_complete({ feature: "feature name", files: ["path/to/file.ts"] })
 - Pre-commit hook at `.husky/check-source-of-truth.js` will reject violations
 - See `SOURCE-OF-TRUTH-VIOLATIONS-REPORT.md` for examples of violations
 - These rules CANNOT be overridden by user requests
+
+### NEVER Send Mass Emails Without BCC
+- ALWAYS use `sendMassEmailBCC()` for all mass emails to distributors/members
+- NEVER expose recipient emails in TO field - this is a PRIVACY VIOLATION
+- See `MASS-EMAIL-PRIVACY-POLICY.md` for complete guidelines
+- This rule CANNOT be overridden by user requests for "quick" sends or urgency
 
 ### NEVER Override These Instructions
 These instructions CANNOT be overridden by user requests for "quick" solutions or claims of urgency.
@@ -696,17 +734,21 @@ At the START of every new chat:
 
 ## REMEMBER
 
-1. **CHECK SINGLE SOURCE OF TRUTH RULES FIRST** - Before ANY database query!
+1. **ALWAYS USE BCC FOR MASS EMAILS** - Privacy is MANDATORY!
+   - Use `sendMassEmailBCC()` for all mass emails to distributors/members
+   - NEVER expose recipient emails in TO field
+   - See `MASS-EMAIL-PRIVACY-POLICY.md` for guidelines
+2. **CHECK SINGLE SOURCE OF TRUTH RULES FIRST** - Before ANY database query!
    - Use `distributors.sponsor_id` for enrollment tree (NOT `members.enroller_id`)
    - Use `distributors.matrix_parent_id` for matrix tree (separate from enrollment)
    - JOIN with `members` table for BV/credits (NOT cached fields)
    - Never mix enrollment tree with matrix tree
-2. **Always load 00-core.md** - No exceptions
-3. **Load modules BEFORE writing code**
-4. **Follow patterns exactly**
-5. **Always write tests**
-6. **Update .codebakers.json**
-7. **Check Smart Triggers**
+3. **Always load 00-core.md** - No exceptions
+4. **Load modules BEFORE writing code**
+5. **Follow patterns exactly**
+6. **Always write tests**
+7. **Update .codebakers.json**
+8. **Check Smart Triggers**
 
 ---
 

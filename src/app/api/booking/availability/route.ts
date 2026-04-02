@@ -36,11 +36,11 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ slots: [] });
   }
 
-  // Check if date is in the past or within 24 hours
+  // Check if date is in the past
   const now = new Date();
-  const minBookingDate = new Date(now.getTime() + 24 * 60 * 60 * 1000); // 24 hours from now
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
-  if (dateObj < minBookingDate) {
+  if (dateObj < today) {
     return NextResponse.json({ slots: [] });
   }
 

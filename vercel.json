@@ -17,6 +17,10 @@
       "schedule": "0 2 * * *"
     },
     {
+      "path": "/api/cron/update-estimates",
+      "schedule": "0 2 * * *"
+    },
+    {
       "path": "/api/cron/daily-enrollment-report",
       "schedule": "0 11 * * *"
     },

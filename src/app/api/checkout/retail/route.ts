@@ -70,27 +70,79 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create Stripe line items
-    const lineItems = cart.items.map((item: any) => ({
-      price_data: {
-        currency: 'usd',
-        product_data: {
-          name: item.product_name,
+    // Fetch product details for subscription settings
+    const productSlugs = cart.items.map((item: any) => item.product_slug);
+    const { data: products, error: productsError } = await supabase
+      .from('products')
+      .select('slug, is_subscription, subscription_interval, subscription_interval_count')
+      .in('slug', productSlugs);
+
+    if (productsError) {
+      return NextResponse.json(
+        { error: 'Failed to fetch product details' },
+        { status: 500 }
+      );
+    }
+
+    // Map products by slug for quick lookup
+    const productMap = new Map(
+      (products || []).map(p => [p.slug, p])
+    );
+
+    // Create Stripe line items with proper subscription settings
+    const lineItems = cart.items.map((item: any) => {
+      const product = productMap.get(item.product_slug);
+
+      const lineItem: any = {
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: item.product_name,
+          },
+          unit_amount: item.retail_price_cents,
         },
-        unit_amount: item.retail_price_cents,
-        recurring: {
-          interval: 'month',
-        },
-      },
-      quantity: item.quantity,
-    }));
+        quantity: item.quantity,
+      };
+
+      // Add recurring if product is a subscription
+      if (product?.is_subscription) {
+        lineItem.price_data.recurring = {
+          interval: product.subscription_interval || 'month',
+          interval_count: product.subscription_interval_count || 1,
+        };
+      }
+
+      return lineItem;
+    });
+
+    // Determine checkout mode: 'subscription' if ALL items are subscriptions, otherwise 'payment'
+    const allSubscriptions = cart.items.every((item: any) => {
+      const product = productMap.get(item.product_slug);
+      return product?.is_subscription === true;
+    });
+
+    const hasAnySubscription = cart.items.some((item: any) => {
+      const product = productMap.get(item.product_slug);
+      return product?.is_subscription === true;
+    });
+
+    // Stripe doesn't allow mixing subscriptions with one-time payments
+    if (hasAnySubscription && !allSubscriptions) {
+      return NextResponse.json(
+        { error: 'Cannot mix subscription and one-time products in the same purchase. Please checkout separately.' },
+        { status: 400 }
+      );
+    }
 
     // Create Stripe Checkout Session
+    // Add product parameter if single item (for onboarding check)
+    const productParam = cart.items.length === 1 ? `&product=${cart.items[0].product_slug}` : '';
+
     const session = await stripe.checkout.sessions.create({
-      mode: 'subscription',
+      mode: allSubscriptions ? 'subscription' : 'payment',
       line_items: lineItems,
-      success_url: `${process.env.NEXT_PUBLIC_URL}/booking?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_URL}/${repSlug}/services`,
+      success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/api/checkout/redirect?session_id={CHECKOUT_SESSION_ID}${productParam}`,
+      cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/${repSlug}/services`,
       metadata: {
         cart_session_id: sessionId,
         rep_distributor_id: rep.id,

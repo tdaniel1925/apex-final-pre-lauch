@@ -4,11 +4,12 @@ import Link from 'next/link';
 import { CheckCircle, Calendar } from 'lucide-react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useEffect, useState, Suspense } from 'react';
+import CalComModal from '@/components/booking/CalComModal';
 
 function ProductSuccessContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const [redirecting, setRedirecting] = useState(false);
+  const [showBookingModal, setShowBookingModal] = useState(false);
   const [requiresOnboarding, setRequiresOnboarding] = useState(false);
   const [loading, setLoading] = useState(true);
   const [productName, setProductName] = useState('');
@@ -41,17 +42,17 @@ function ProductSuccessContent() {
     checkOnboarding();
   }, [productSlug]);
 
-  // Auto-redirect to booking page after 3 seconds for products requiring onboarding
+  // Auto-open booking modal for products requiring onboarding
   useEffect(() => {
-    if (requiresOnboarding && sessionId && !redirecting && !loading) {
+    if (requiresOnboarding && sessionId && !loading) {
+      // Auto-open modal after 1 second
       const timer = setTimeout(() => {
-        setRedirecting(true);
-        router.push(`/booking?session_id=${sessionId}`);
-      }, 3000);
+        setShowBookingModal(true);
+      }, 1000);
 
       return () => clearTimeout(timer);
     }
-  }, [requiresOnboarding, sessionId, redirecting, loading, router]);
+  }, [requiresOnboarding, sessionId, loading]);
 
   // Show loading state while checking onboarding requirement
   if (loading) {
@@ -95,16 +96,16 @@ function ProductSuccessContent() {
                 To get started with your new AI-powered tools, you'll need to schedule a 30-minute onboarding session with BotMakers.
               </p>
               <p className="text-sm text-slate-600 mb-4">
-                {redirecting ? 'Redirecting to booking page...' : 'You will be redirected in a moment...'}
+                Click below to schedule your session now, or you can do it later from your dashboard.
               </p>
               <div className="flex gap-4 justify-center">
-                <Link
-                  href={`/booking?session_id=${sessionId}`}
+                <button
+                  onClick={() => setShowBookingModal(true)}
                   className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors inline-flex items-center gap-2"
                 >
                   <Calendar className="w-5 h-5" />
                   Schedule Now
-                </Link>
+                </button>
                 <Link
                   href="/"
                   className="bg-slate-100 text-slate-900 px-6 py-3 rounded-lg hover:bg-slate-200 transition-colors"
@@ -163,6 +164,19 @@ function ProductSuccessContent() {
           </a>
         </p>
       </div>
+
+      {/* Cal.com Booking Modal */}
+      <CalComModal
+        isOpen={showBookingModal}
+        onClose={() => setShowBookingModal(false)}
+        calLink="botmakers/apex-affinity-group-onboarding"
+        prefillData={{
+          product: productName,
+          metadata: {
+            session_id: sessionId || '',
+          }
+        }}
+      />
     </div>
   );
 }

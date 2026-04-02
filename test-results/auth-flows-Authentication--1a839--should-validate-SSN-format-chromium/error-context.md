@@ -330,11 +330,6 @@
       - link "Sign In" [ref=e129] [cursor=pointer]:
         - /url: /login
   - button "Open Next.js Dev Tools" [ref=e135] [cursor=pointer]:
-    - generic [ref=e138]:
-      - text: Compiling
-      - generic [ref=e139]:
-        - generic [ref=e140]: .
-        - generic [ref=e141]: .
-        - generic [ref=e142]: .
-  - alert [ref=e143]
+    - img [ref=e136]
+  - alert [ref=e139]
 ```

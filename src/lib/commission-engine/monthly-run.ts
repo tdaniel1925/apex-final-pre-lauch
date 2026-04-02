@@ -15,10 +15,13 @@
  */
 
 import { createClient } from '@/lib/supabase/server';
+import { createServiceClient } from '@/lib/supabase/service';
 import { calculateWaterfall } from '@/lib/compensation/waterfall';
 import { calculateOverridesForSale, CompensationMember, Sale } from '@/lib/compensation/override-calculator';
 import { WATERFALL_CONFIG, BUSINESS_CENTER_CONFIG, RANKED_OVERRIDE_SCHEDULES, type TechRank } from '@/lib/compensation/config';
 import { checkOverrideQualificationWithRetail } from '@/lib/compliance/retail-validation';
+import type { SupabaseClient } from '@supabase/supabase-js';
+import { randomUUID } from 'crypto';
 
 // =============================================
 // TYPES
@@ -27,6 +30,7 @@ import { checkOverrideQualificationWithRetail } from '@/lib/compliance/retail-va
 export interface MonthlyCommissionRunParams {
   month: string; // Format: 'YYYY-MM'
   dryRun?: boolean; // If true, don't insert into database
+  supabaseClient?: SupabaseClient; // Optional: Pass client for non-Next.js contexts
 }
 
 export interface CommissionRunResult {
@@ -82,8 +86,8 @@ export interface CommissionLedgerEntry {
 export async function executeMonthlyCommissionRun(
   params: MonthlyCommissionRunParams
 ): Promise<CommissionRunResult> {
-  const { month, dryRun = false } = params;
-  const supabase = await createClient();
+  const { month, dryRun = false, supabaseClient } = params;
+  const supabase = supabaseClient || (await createClient());
 
   // Parse month
   const [year, monthNum] = month.split('-').map(Number);
@@ -113,10 +117,10 @@ export async function executeMonthlyCommissionRun(
         throw new Error(`Commission run for ${month} already exists (run_id: ${existingRun.run_id})`);
       }
 
-      // Generate a unique run_id for this commission run
-      runId = `RUN-${month}`;
+      // Generate a unique run_id for this commission run (UUID)
+      runId = randomUUID();
     } else {
-      runId = `DRY-RUN-${month}-${Date.now()}`;
+      runId = randomUUID(); // Use UUID for dry runs too
     }
 
     console.log(`   Run ID: ${runId}\n`);
@@ -147,7 +151,7 @@ export async function executeMonthlyCommissionRun(
             tech_rank,
             paying_rank,
             insurance_rank,
-            personal_qv_monthly,
+            personal_credits_monthly,
             override_qualified
           )
         )
@@ -275,7 +279,7 @@ export async function executeMonthlyCommissionRun(
         email: '', // Not needed
         tech_rank: member.tech_rank as TechRank,
         paying_rank: member.paying_rank as TechRank,
-        personal_qv_monthly: member.personal_qv_monthly || 0,
+        personal_qv_monthly: member.personal_credits_monthly || 0,
         override_qualified: member.override_qualified || false,
       };
 
@@ -288,8 +292,8 @@ export async function executeMonthlyCommissionRun(
         bv: bvAmount,
       };
 
-      // Calculate overrides
-      const overrideResult = await calculateOverridesForSale(sale, sellerMember);
+      // Calculate overrides (pass supabase client for non-Next.js contexts)
+      const overrideResult = await calculateOverridesForSale(sale, sellerMember, supabase);
 
       console.log(`     Override Pool: $${(bvAmount * 0.40).toFixed(2)}`);
       console.log(`     Overrides Paid: $${overrideResult.total_paid.toFixed(2)}`);

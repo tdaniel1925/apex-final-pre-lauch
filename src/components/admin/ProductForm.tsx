@@ -283,21 +283,64 @@ export default function ProductForm({ categories, product }: ProductFormProps) {
 
       {/* Subscription Settings */}
       <div className="mt-8 space-y-6">
-        <h2 className="text-lg font-semibold text-slate-900">Subscription Settings</h2>
+        <h2 className="text-lg font-semibold text-slate-900">Payment Type</h2>
 
-        <div className="flex items-center gap-4">
-          <label className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              name="is_subscription"
-              checked={formData.is_subscription}
-              onChange={handleChange}
-              className="w-4 h-4 text-slate-900 rounded focus:ring-slate-900"
-            />
-            <span className="text-sm font-medium text-slate-700">
-              This is a subscription service
-            </span>
-          </label>
+        {/* Payment Type Toggle */}
+        <div className="bg-slate-50 border-2 border-slate-200 rounded-lg p-4">
+          <p className="text-sm font-medium text-slate-700 mb-3">
+            How should customers be charged for this product?
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Subscription Option */}
+            <label className={`relative flex items-start p-4 cursor-pointer border-2 rounded-lg transition-all ${formData.is_subscription ? 'border-slate-900 bg-white' : 'border-slate-200 bg-white hover:border-slate-300'}`}>
+              <input
+                type="radio"
+                name="payment_type"
+                checked={formData.is_subscription}
+                onChange={() => setFormData(prev => ({ ...prev, is_subscription: true }))}
+                className="mt-1 w-4 h-4 text-slate-900 focus:ring-slate-900"
+              />
+              <div className="ml-3">
+                <div className="flex items-center gap-2">
+                  <span className="font-semibold text-slate-900">Subscription</span>
+                  <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-purple-100 text-purple-800">
+                    Recurring
+                  </span>
+                </div>
+                <p className="text-sm text-slate-600 mt-1">
+                  Customer pays monthly, quarterly, or annually
+                </p>
+                <p className="text-xs text-slate-500 mt-1">
+                  💡 Best for services, software, memberships
+                </p>
+              </div>
+            </label>
+
+            {/* One-Time Payment Option */}
+            <label className={`relative flex items-start p-4 cursor-pointer border-2 rounded-lg transition-all ${!formData.is_subscription ? 'border-slate-900 bg-white' : 'border-slate-200 bg-white hover:border-slate-300'}`}>
+              <input
+                type="radio"
+                name="payment_type"
+                checked={!formData.is_subscription}
+                onChange={() => setFormData(prev => ({ ...prev, is_subscription: false }))}
+                className="mt-1 w-4 h-4 text-slate-900 focus:ring-slate-900"
+              />
+              <div className="ml-3">
+                <div className="flex items-center gap-2">
+                  <span className="font-semibold text-slate-900">One-Time Payment</span>
+                  <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800">
+                    Single Charge
+                  </span>
+                </div>
+                <p className="text-sm text-slate-600 mt-1">
+                  Customer pays once and receives lifetime access
+                </p>
+                <p className="text-xs text-slate-500 mt-1">
+                  💡 Best for courses, ebooks, physical products
+                </p>
+              </div>
+            </label>
+          </div>
         </div>
 
         {formData.is_subscription && (

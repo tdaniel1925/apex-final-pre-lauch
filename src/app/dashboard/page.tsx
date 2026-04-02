@@ -14,14 +14,12 @@ import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { createServiceClient } from '@/lib/supabase/service';
 import { getAdminUser } from '@/lib/auth/admin';
-import TrainingAudioPlayer from '@/components/dashboard/TrainingAudioPlayer';
+import DashboardTopCards from '@/components/dashboard/DashboardTopCards';
 import CompensationStatsWidget from '@/components/dashboard/CompensationStatsWidget';
 import ActivityFeed from '@/components/dashboard/ActivityFeed';
 import DashboardClient from '@/components/dashboard/DashboardClient';
 import CopyReferralButton from '@/components/dashboard/CopyReferralButton';
 import AIPhoneStats from '@/components/dashboard/AIPhoneStats';
-import RaceTo100Banner from '@/components/dashboard/RaceTo100Banner';
-import AIAssistantBanner from '@/components/dashboard/AIAssistantBanner';
 // import AIRecommendations from '@/components/dashboard/AIRecommendations'; // TODO: Create ai_genealogy_recommendations table
 import type { Distributor } from '@/lib/types';
 import { ArrowRight, Users, FileText, MessageCircle } from 'lucide-react';
@@ -225,17 +223,11 @@ export default async function DashboardPage() {
             <p className="text-sm text-slate-600 mt-1">@{dist.slug}</p>
           </div>
 
-          {/* Race to 100 Banner */}
-          <RaceTo100Banner distributorId={dist.id} />
-
-          {/* AI Assistant Banner */}
-          <AIAssistantBanner />
+          {/* Dashboard Top Cards - 4-Card Grid */}
+          <DashboardTopCards distributorId={dist.id} />
 
           {/* AI Recommendations Widget - TODO: Create ai_genealogy_recommendations table */}
           {/* <AIRecommendations /> */}
-
-          {/* Training Audio Player */}
-          <TrainingAudioPlayer />
 
           {/* Compensation Stats - 4 Cards */}
           <CompensationStatsWidget

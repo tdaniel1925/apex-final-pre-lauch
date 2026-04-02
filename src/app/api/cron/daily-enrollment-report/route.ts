@@ -12,11 +12,13 @@ import { join } from 'path';
 
 // Executive email list
 const EXECUTIVE_EMAILS = [
-  'bill@3mark.com',
-  'russell.wolfe@3mark.com',
+  'bill.propper@3mark.com',
+  'betsyr@3mark.com',
+  'david.royse@3mark.com',
+  'darrell.wolfe@3mark.com',
+  'johnathon.bunch@3mark.com',
   'russell.katz@3mark.com',
   'tdaniel@botmakers.ai',
-  'johnathon.bunch@3mark.com',
 ];
 
 export async function GET(request: NextRequest) {
@@ -35,26 +37,46 @@ export async function GET(request: NextRequest) {
     const lastWeekStart = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
     const lastMonthStart = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
 
-    // Get enrollments for different time periods
+    // Get enrollments for different time periods (excluding test distributors)
     const { data: last24h, count: count24h } = await supabase
       .from('distributors')
       .select('first_name, last_name, email, created_at', { count: 'exact' })
       .gte('created_at', yesterday.toISOString())
+      .not('email', 'like', '%test%')
+      .not('email', 'like', '%demo%')
+      .not('email', 'like', '%dummy%')
+      .not('first_name', 'ilike', '%test%')
+      .not('last_name', 'ilike', '%test%')
       .order('created_at', { ascending: false });
 
     const { count: count7days } = await supabase
       .from('distributors')
       .select('*', { count: 'exact', head: true })
-      .gte('created_at', lastWeekStart.toISOString());
+      .gte('created_at', lastWeekStart.toISOString())
+      .not('email', 'like', '%test%')
+      .not('email', 'like', '%demo%')
+      .not('email', 'like', '%dummy%')
+      .not('first_name', 'ilike', '%test%')
+      .not('last_name', 'ilike', '%test%');
 
     const { count: count30days } = await supabase
       .from('distributors')
       .select('*', { count: 'exact', head: true })
-      .gte('created_at', lastMonthStart.toISOString());
+      .gte('created_at', lastMonthStart.toISOString())
+      .not('email', 'like', '%test%')
+      .not('email', 'like', '%demo%')
+      .not('email', 'like', '%dummy%')
+      .not('first_name', 'ilike', '%test%')
+      .not('last_name', 'ilike', '%test%');
 
     const { count: totalCount } = await supabase
       .from('distributors')
-      .select('*', { count: 'exact', head: true });
+      .select('*', { count: 'exact', head: true })
+      .not('email', 'like', '%test%')
+      .not('email', 'like', '%demo%')
+      .not('email', 'like', '%dummy%')
+      .not('first_name', 'ilike', '%test%')
+      .not('last_name', 'ilike', '%test%');
 
     // Calculate growth rate (7-day average)
     const avgDailyLast7Days = count7days ? (count7days / 7).toFixed(1) : '0';

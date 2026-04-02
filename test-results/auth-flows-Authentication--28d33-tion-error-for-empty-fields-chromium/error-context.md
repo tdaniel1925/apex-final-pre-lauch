@@ -28,11 +28,6 @@
       - link "Join Apex Today" [ref=e27] [cursor=pointer]:
         - /url: /signup
   - button "Open Next.js Dev Tools" [ref=e33] [cursor=pointer]:
-    - generic [ref=e36]:
-      - text: Compiling
-      - generic [ref=e37]:
-        - generic [ref=e38]: .
-        - generic [ref=e39]: .
-        - generic [ref=e40]: .
-  - alert [ref=e41]
+    - img [ref=e34]
+  - alert [ref=e37]
 ```

@@ -763,7 +763,7 @@ function ProductsPageContent({ distributorName }: { distributorName: string | nu
                       }}
                     >
                       PulseDrive
-                      <div style={{ fontSize: '11px', color: '#64748b', fontWeight: 500, marginTop: '4px' }}>$299/mo</div>
+                      <div style={{ fontSize: '11px', color: '#64748b', fontWeight: 500, marginTop: '4px' }}>$399/mo</div>
                     </th>
                     <th
                       style={{
@@ -869,7 +869,7 @@ function ProductsPageContent({ distributorName }: { distributorName: string | nu
                       <PulseProductCheckoutButton
                         productSlug="pulsedrive"
                         productName="PulseDrive"
-                        price={299}
+                        price={399}
                         className="inline-block px-5 py-2.5 bg-[#2B4C7E] text-white rounded-lg text-sm font-semibold hover:bg-[#1e3a5f] transition-all"
                       />
                     </td>

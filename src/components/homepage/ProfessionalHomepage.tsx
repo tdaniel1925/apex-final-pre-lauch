@@ -119,6 +119,7 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
                       <li className="nav-item"><a className="nav-link" href="/#home">Home</a></li>
                       <li className="nav-item"><a className="nav-link" href="/#opportunity">Opportunity</a></li>
                       <li className="nav-item"><a className="nav-link" href="/#how-it-works">How It Works</a></li>
+                      {/* <li className="nav-item"><a className="nav-link" href="/products">Products</a></li> */}
                       <li className="nav-item"><a className="nav-link" href="/#products">AI Technology</a></li>
                       <li className="nav-item"><a className="nav-link" href="/#insurance">Insurance</a></li>
                       <li className="nav-item"><a className="nav-link" href="/#faq">FAQs</a></li>

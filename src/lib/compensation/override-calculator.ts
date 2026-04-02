@@ -18,6 +18,7 @@
 import { createClient } from '@/lib/supabase/server';
 import { isQualifiedForOverrides, MINIMUM_BV_FOR_OVERRIDES } from './bv-calculator';
 import { checkOverrideQualificationWithRetail } from '@/lib/compliance/retail-validation';
+import type { SupabaseClient } from '@supabase/supabase-js';
 
 // =============================================
 // TYPES
@@ -29,7 +30,7 @@ export interface Member {
   email: string;
   tech_rank: TechRank;
   paying_rank: TechRank;  // Payment level (used for commission calculations)
-  personal_qv_monthly: number;
+  personal_qv_monthly: number; // Maps to personal_credits_monthly in DB
   override_qualified: boolean;
 }
 
@@ -46,7 +47,7 @@ export interface CompensationMember {
   email: string;
   tech_rank: TechRank;               // Current/display rank
   paying_rank: TechRank;             // Payment level (USED FOR COMMISSION RATES!)
-  personal_qv_monthly: number;  // members.personal_qv_monthly
+  personal_qv_monthly: number;  // Maps to members.personal_credits_monthly in DB
   override_qualified: boolean;        // members.override_qualified
 }
 
@@ -132,9 +133,10 @@ const OVERRIDE_POOL_PERCENTAGE = 0.40;
  */
 export async function calculateOverridesForSale(
   sale: Sale,
-  sellerMember: CompensationMember
+  sellerMember: CompensationMember,
+  supabaseClient?: SupabaseClient
 ): Promise<OverrideCalculationResult> {
-  const supabase = await createClient();
+  const supabase = supabaseClient || (await createClient());
 
   // Calculate total override pool (40% of BV)
   const overridePool = sale.bv * OVERRIDE_POOL_PERCENTAGE;
@@ -156,7 +158,7 @@ export async function calculateOverridesForSale(
           full_name,
           tech_rank,
           paying_rank,
-          personal_qv_monthly,
+          personal_credits_monthly,
           override_qualified
         )
       `)
@@ -187,9 +189,8 @@ export async function calculateOverridesForSale(
 
           // Mark sponsor as paid (no double-dipping!)
           paidUplineIds.add(sponsorMember.member_id);
-        } else {
-          console.log(`L1 override skipped for ${sponsorMember.full_name}: ${qualification.reason}`);
         }
+        // L1 override skipped due to qualification check
       }
     }
   }
@@ -213,7 +214,7 @@ export async function calculateOverridesForSale(
           full_name,
           tech_rank,
           paying_rank,
-          personal_qv_monthly,
+          personal_credits_monthly,
           override_qualified
         )
       `)
@@ -238,7 +239,6 @@ export async function calculateOverridesForSale(
 
     if (!qualification.qualified) {
       // COMPRESSION: Skip unqualified upline, move to next
-      console.log(`Matrix L${level + 1} override skipped for ${uplineMember.full_name}: ${qualification.reason}`);
       currentDistributorId = uplineDistributor.matrix_parent_id;
       level++;
       continue;

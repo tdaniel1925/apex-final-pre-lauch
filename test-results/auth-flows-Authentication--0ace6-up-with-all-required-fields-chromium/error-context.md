@@ -38,7 +38,7 @@
             - textbox "Last Name *" [ref=e40]: User
         - generic [ref=e41]:
           - generic [ref=e42]: Email *
-          - textbox "Email *" [ref=e43]: test-1774976119237@example.com
+          - textbox "Email *" [ref=e43]: test-1775139848029@example.com
         - generic [ref=e44]:
           - generic [ref=e45]: Password *
           - generic [ref=e46]:
@@ -48,9 +48,9 @@
         - generic [ref=e57]:
           - generic [ref=e58]: Username *
           - generic [ref=e59]:
-            - textbox "Username *" [ref=e60]: test-1774976119237
+            - textbox "Username *" [ref=e60]: test-1775139848029
             - generic [ref=e61]: ✓
-          - paragraph [ref=e62]: "Your referral link: reachtheapex.net/test-1774976119237"
+          - paragraph [ref=e62]: "Your referral link: reachtheapex.net/test-1775139848029"
           - paragraph [ref=e63]: Use lowercase letters, numbers, and hyphens only (we'll auto-convert for you)
         - generic [ref=e64]:
           - generic [ref=e65]: Company Name (Optional)
@@ -304,7 +304,7 @@
           - generic [ref=e109]:
             - textbox "Social Security Number *" [ref=e110]:
               - /placeholder: XXX-XX-XXXX
-              - text: 609-02-8594
+              - text: 630-43-0887
             - button "Show" [ref=e111]
           - generic [ref=e113]:
             - img [ref=e114]
@@ -339,6 +339,11 @@
       - link "Sign In" [ref=e144] [cursor=pointer]:
         - /url: /login
   - button "Open Next.js Dev Tools" [ref=e150] [cursor=pointer]:
-    - img [ref=e151]
-  - alert [ref=e154]
+    - generic [ref=e153]:
+      - text: Compiling
+      - generic [ref=e154]:
+        - generic [ref=e155]: .
+        - generic [ref=e156]: .
+        - generic [ref=e157]: .
+  - alert [ref=e158]
 ```
