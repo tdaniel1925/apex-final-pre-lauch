@@ -26,7 +26,11 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
   const [mounted, setMounted] = useState(false);
   const [activeTab, setActiveTab] = useState<'ai' | 'insurance'>('ai');
 
+  // URL helpers for replicated sites
+  const urlPrefix = isMainSite || distributor.slug === 'apex' ? '' : `/${distributor.slug}`;
   const signupUrl = distributor.slug === 'apex' ? '/signup' : `/signup?ref=${distributor.slug}`;
+  const productsUrl = `${urlPrefix}/products`;
+  const liveUrl = `${urlPrefix}/live`;
 
   // Format distributor name with ranks for replicated sites
   const getDistributorDisplayName = () => {
@@ -116,14 +120,14 @@ export default function ProfessionalHomepage({ distributor, isMainSite = false }
                 <div className="navbar-collapse main-menu" id="navbarNav">
                   <div className="nav-menu-wrapper">
                     <ul className="navbar-nav mr-auto" id="menu">
-                      <li className="nav-item"><a className="nav-link" href="/#home">Home</a></li>
-                      <li className="nav-item"><a className="nav-link" href="/#opportunity">Opportunity</a></li>
-                      <li className="nav-item"><a className="nav-link" href="/#how-it-works">How It Works</a></li>
-                      {/* <li className="nav-item"><a className="nav-link" href="/products">Products</a></li> */}
-                      <li className="nav-item"><a className="nav-link" href="/#products">AI Technology</a></li>
-                      <li className="nav-item"><a className="nav-link" href="/#insurance">Insurance</a></li>
-                      <li className="nav-item"><a className="nav-link" href="/#faq">FAQs</a></li>
-                      <li className="nav-item"><a className="nav-link" href="/live">Events</a></li>
+                      <li className="nav-item"><a className="nav-link" href={`${urlPrefix}/#home`}>Home</a></li>
+                      <li className="nav-item"><a className="nav-link" href={`${urlPrefix}/#opportunity`}>Opportunity</a></li>
+                      <li className="nav-item"><a className="nav-link" href={`${urlPrefix}/#how-it-works`}>How It Works</a></li>
+                      <li className="nav-item"><a className="nav-link" href={productsUrl}>Products</a></li>
+                      <li className="nav-item"><a className="nav-link" href={`${urlPrefix}/#products`}>AI Technology</a></li>
+                      <li className="nav-item"><a className="nav-link" href={`${urlPrefix}/#insurance`}>Insurance</a></li>
+                      <li className="nav-item"><a className="nav-link" href={`${urlPrefix}/#faq`}>FAQs</a></li>
+                      <li className="nav-item"><a className="nav-link" href={liveUrl}>Events</a></li>
                       {/* Login Button */}
                       <li className="nav-item">
                         <a
