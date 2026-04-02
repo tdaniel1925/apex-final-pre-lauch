@@ -983,7 +983,21 @@ function ProductsPageContent({ distributorName }: { distributorName: string | nu
                           overflow: 'hidden',
                         }}
                       >
-                        {example.thumbnail ? (
+                        {activeTab === 'email' && example.liveUrl ? (
+                          // For emails, show iframe preview instead of SVG thumbnail
+                          <iframe
+                            src={example.liveUrl}
+                            title={example.title}
+                            style={{
+                              width: '600px',
+                              height: '800px',
+                              border: 'none',
+                              transform: 'scale(0.33)',
+                              transformOrigin: 'top left',
+                              pointerEvents: 'none',
+                            }}
+                          />
+                        ) : example.thumbnail ? (
                           <img
                             src={example.thumbnail}
                             alt={example.title}
