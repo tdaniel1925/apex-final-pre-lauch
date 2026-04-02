@@ -16,9 +16,11 @@
 | **PulseFlow** | $129/month | $149/month | $36.03 | 129 credits |
 | **PulseDrive** | $349/month | $399/month | $97.48 | 349 credits |
 | **PulseCommand** | $399/month | $499/month | $111.41 | 399 credits |
-| **Business Center** | $39/month | N/A | $10.00 | 39 credits |
+| **Business Center** | $39/month | N/A | $0.00* | 39 credits |
 
 **Note:** All prices are monthly subscriptions. Commissions shown are what YOU earn when you personally sell.
+
+***Business Center pays NO commission to seller - only team override bonuses ($8 L1 + 7 levels deep)**
 
 ---
 
@@ -26,9 +28,10 @@
 
 ### Three Ways to Earn:
 
-1. **Direct Sales Commission** (27.9% on all products, 25.6% on Business Center)
+1. **Direct Sales Commission** (27.9% on Pulse products)
    - You earn this EVERY time you make a sale
    - Paid monthly, no minimums required
+   - **Note:** Business Center pays $0 commission to seller (team-only payouts)
 
 2. **Team Override Bonuses** (Up to 7 levels deep)
    - Earn bonuses when your TEAM makes sales
@@ -187,41 +190,49 @@
 ## 🏢 BUSINESS CENTER — $39/MONTH (SPECIAL RULES)
 
 ### What You Earn When YOU Sell:
-- **Your Commission:** $10.00 (fixed)
+- **NO direct commission on personal sales**
 - **Credits Earned:** 39
+- **You only earn when your TEAM subscribes**
 
 ### Team Override Bonuses (When Your Team Sells)
 
 **Business Center has DIFFERENT rules:**
-- **NO standard override pool**
-- **ONLY direct sponsor gets paid**
-- **Fixed $8 bonus** (not percentage-based)
+- **NO commission to seller**
+- **$8 fixed bonus to direct sponsor (L1)**
+- **7 levels of overrides** (based on your rank)
 
 | Level | Your Rank Required | Dollar Amount | Who This Is |
 |-------|-------------------|---------------|-------------|
 | **L1** | Any rank | $8.00 | People YOU personally enrolled |
-| **L2** | — | $0.00 | No L2 bonus on Business Center |
-| **L3** | — | $0.00 | No L3 bonus on Business Center |
-| **L4** | — | $0.00 | No L4 bonus on Business Center |
-| **L5** | — | $0.00 | No L5 bonus on Business Center |
-| **L6** | — | $0.00 | No L6 bonus on Business Center |
-| **L7** | — | $0.00 | No L7 bonus on Business Center |
+| **L2** | Bronze+ | $2.00 | Your team's team |
+| **L3** | Silver+ | $1.50 | Third level down |
+| **L4** | Gold+ | $1.00 | Fourth level down |
+| **L5** | Platinum+ | $0.75 | Fifth level down |
+| **L6** | Ruby+ | $0.50 | Sixth level down |
+| **L7** | Diamond+ | $0.25 | Seventh level down |
+
+**Maximum Total Override per Sale:** $14.00 (if you're Diamond+ and have all 7 levels producing)
 
 **Why Business Center is Different:**
 - Lower price point ($39 vs $59-$499)
-- Fixed split model (not waterfall)
-- Designed for mass adoption
+- Fixed dollar amounts (not percentages)
+- NO commission to seller (100% team-building focused)
+- Designed for mass adoption and team depth
 - Still earns you 39 credits toward rank advancement
 
 ### Real-World Example:
 
-**Scenario:** You have 100 people on Business Center
+**Scenario:** You're PLATINUM rank with a team of 200 people on Business Center
 
-- **Your Personal Sales:** 10 sales/month = $100.00
-- **L1 Sponsor Bonuses:** 90 team sales = $720.00
-- **TOTAL MONTHLY:** $820.00 from Business Center alone
+- **Your Personal Sales:** 10 sales/month = $0.00 (no commission to seller)
+- **L1 Direct Enrollees:** 20 team sales × $8.00 = $160.00
+- **L2 Overrides:** 30 team sales × $2.00 = $60.00
+- **L3 Overrides:** 40 team sales × $1.50 = $60.00
+- **L4 Overrides:** 50 team sales × $1.00 = $50.00
+- **L5 Overrides:** 60 team sales × $0.75 = $45.00
+- **TOTAL MONTHLY:** $375.00 from Business Center alone
 
-**Key Insight:** Business Center is a VOLUME play. Get lots of people using it!
+**Key Insight:** Business Center is a TEAM DEPTH play. You make NOTHING on personal sales, but EVERYTHING on building deep teams!
 
 ---
 
@@ -394,20 +405,25 @@ You earn L2 (25%): $6.01 (COMPRESSED from Sarah's position)
 - Immediate value (AI assistant, CRM, social media tools)
 - Sticky (people keep using it)
 
-**Volume Play:**
-- $10 commission per sale (25.6%)
-- $8 sponsor bonus (direct enrollees only)
+**TEAM DEPTH Play:**
+- $0 commission to seller (forces team building!)
+- $8 direct sponsor bonus (L1)
+- 7 levels of overrides (up to $14 total per sale)
 - 39 credits toward rank advancement
 
 ### The Math:
 
-**If you enroll 100 people on Business Center:**
-- Your commission: 10 sales × $10 = $100
-- Sponsor bonuses: 90 team × $8 = $720
-- **Total: $820/month residual**
-- **Plus: 390 credits toward rank!**
+**If you're PLATINUM with 200 team members on Business Center:**
+- Your personal sales: 10 × $0 = $0 (no seller commission)
+- L1 Direct enrollees: 20 × $8 = $160
+- L2 Overrides: 30 × $2 = $60
+- L3 Overrides: 40 × $1.50 = $60
+- L4 Overrides: 50 × $1.00 = $50
+- L5 Overrides: 60 × $0.75 = $45
+- **Total: $375/month residual**
+- **Plus: 7,800 credits toward rank!**
 
-**Strategy:** Get everyone on Business Center FIRST, then upsell to Pulse products!
+**Strategy:** Get everyone on Business Center FIRST, build DEEP teams, then upsell to Pulse products!
 
 ---
 
@@ -416,19 +432,19 @@ You earn L2 (25%): $6.01 (COMPRESSED from Sarah's position)
 ### Your First 30 Days
 
 **Week 1: Foundation**
-- Sign up 5 people for Business Center
-- Earn: $50 commission + $32 sponsor bonuses = $82
+- Sign up 5 people for Business Center (direct enrollees)
+- Earn: $0 commission (no seller pay) + $40 sponsor bonuses (5 × $8) = $40
 - Credits: 195 (halfway to Bronze!)
 
 **Week 2: Momentum**
 - Sign up 5 more Business Center + 2 PulseMarket
-- Earn: $50 + $32.96 + $48 = $130.96
+- Earn: $0 (BC) + $32.96 (PM) + $40 (BC sponsor) = $72.96
 - Credits: 313 total
 
 **Week 3: Duplication**
 - Train your team to duplicate
-- They sign up 10 people total
-- You earn: $80 in sponsor bonuses
+- They sign up 10 people total (L2)
+- You earn: $20 in L2 overrides (10 × $2, if Bronze+)
 - Credits: 390 total (from their sales)
 
 **Week 4: Bronze Rank!**
@@ -437,7 +453,7 @@ You earn L2 (25%): $6.01 (COMPRESSED from Sarah's position)
 - **Earn $250 rank bonus**
 - **Unlock L2 overrides**
 
-**Total First Month Income:** $542.96 + $250 bonus = $792.96
+**Total First Month Income:** $432.96 + $250 bonus = $682.96
 
 ---
 
@@ -445,12 +461,14 @@ You earn L2 (25%): $6.01 (COMPRESSED from Sarah's position)
 
 ### Q: Do I have to recruit to make money?
 
-**A:** No! You can earn great money just from personal sales:
+**A:** For Pulse products, NO! You can earn great money just from personal sales:
 - 10 PulseMarket sales = $164.80/month
 - 5 PulseFlow sales = $180.15/month
 - 3 PulseDrive sales = $292.44/month
 
-However, team building MULTIPLIES your income through overrides.
+**For Business Center, YES!** Business Center pays $0 to the seller - you ONLY earn when your team subscribes.
+
+However, team building MULTIPLIES your income through overrides on ALL products.
 
 ---
 
@@ -615,12 +633,12 @@ However, team building MULTIPLIES your income through overrides.
 **Month 3:** Those 25 each enroll 5 = 125 more
 **Total Team:** 155 people in 3 months
 
-**If all on Business Center:**
-- Your direct commissions: $50/month
-- Your L1 sponsor bonuses: $40/month (5 people)
-- Your L2 overrides: $200/month (25 people × $8)
-- Your L3 overrides: $1,000/month (125 people × $8)
-- **Total: $1,290/month residual**
+**If all on Business Center (and you're Silver rank):**
+- Your direct commissions: $0/month (BC pays no seller commission)
+- Your L1 sponsor bonuses: $40/month (5 people × $8)
+- Your L2 overrides: $50/month (25 people × $2)
+- Your L3 overrides: $187.50/month (125 people × $1.50)
+- **Total: $277.50/month residual**
 
 **This is the power of DUPLICATION!**
 
