@@ -1,0 +1,422 @@
+[
+  {
+    "company": "Columbus Life",
+    "product": "Explorer Plus UL",
+    "rates": {
+      "preassociate": 50,
+      "associate": 55,
+      "srassociate": 60,
+      "agent": 70,
+      "sragent": 80,
+      "mga": 90
+    }
+  },
+  {
+    "company": "Columbus Life",
+    "product": "Indexed Explorer UL",
+    "rates": {
+      "preassociate": 50,
+      "associate": 55,
+      "srassociate": 60,
+      "agent": 70,
+      "sragent": 80,
+      "mga": 90
+    }
+  },
+  {
+    "company": "Columbus Life",
+    "product": "Indexed Explorer Now UL",
+    "rates": {
+      "preassociate": 50,
+      "associate": 55,
+      "srassociate": 60,
+      "agent": 70,
+      "sragent": 80,
+      "mga": 90
+    }
+  },
+  {
+    "company": "Columbus Life",
+    "product": "Expedition SIUL",
+    "rates": {
+      "preassociate": 50,
+      "associate": 55,
+      "srassociate": 60,
+      "agent": 70,
+      "sragent": 80,
+      "mga": 90
+    }
+  },
+  {
+    "company": "Columbus Life",
+    "product": "Voyager UL",
+    "rates": {
+      "preassociate": 50,
+      "associate": 55,
+      "srassociate": 60,
+      "agent": 70,
+      "sragent": 80,
+      "mga": 90
+    }
+  },
+  {
+    "company": "Columbus Life",
+    "product": "Nautical Term 10, 15, 20 and 30",
+    "rates": {
+      "preassociate": 50,
+      "associate": 55,
+      "srassociate": 60,
+      "agent": 70,
+      "sragent": 80,
+      "mga": 90
+    }
+  },
+  {
+    "company": "Corebridge Partners Group",
+    "product": "QoL Max Accummulator + IUL",
+    "rates": {
+      "preassociate": 40,
+      "associate": 45,
+      "srassociate": 50,
+      "agent": 60,
+      "sragent": 70,
+      "mga": 80
+    }
+  },
+  {
+    "company": "Corebridge Partners Group",
+    "product": "QoL Guarantee Plus GUL II & QoL Value+ Protector III",
+    "rates": {
+      "preassociate": 40,
+      "associate": 45,
+      "srassociate": 50,
+      "agent": 60,
+      "sragent": 70,
+      "mga": 80
+    }
+  },
+  {
+    "company": "Corebridge Partners Group",
+    "product": "American Elite Whole Life (conversion only)",
+    "rates": {
+      "preassociate": 28,
+      "associate": 32,
+      "srassociate": 36,
+      "agent": 43,
+      "sragent": 51,
+      "mga": 58
+    }
+  },
+  {
+    "company": "Corebridge Partners Group",
+    "product": "QoL Flex Term 10 year",
+    "rates": {
+      "preassociate": 25,
+      "associate": 30,
+      "srassociate": 35,
+      "agent": 45,
+      "sragent": 55,
+      "mga": 65
+    }
+  },
+  {
+    "company": "Corebridge Partners Group",
+    "product": "QoL Flex Term 15-19 year",
+    "rates": {
+      "preassociate": 35,
+      "associate": 40,
+      "srassociate": 45,
+      "agent": 55,
+      "sragent": 65,
+      "mga": 75
+    }
+  },
+  {
+    "company": "Corebridge Partners Group",
+    "product": "QoL Flex Term 20-30 & 35 year",
+    "rates": {
+      "preassociate": 45,
+      "associate": 50,
+      "srassociate": 55,
+      "agent": 65,
+      "sragent": 75,
+      "mga": 85
+    }
+  },
+  {
+    "company": "F & G",
+    "product": "F & G Everlast IUL (Ages 0-17)",
+    "rates": {
+      "preassociate": 50,
+      "associate": 55,
+      "srassociate": 60,
+      "agent": 65,
+      "sragent": 70,
+      "mga": 75
+    }
+  },
+  {
+    "company": "F & G",
+    "product": "F & G Everlast IUL (Ages 18-80)",
+    "rates": {
+      "preassociate": 50,
+      "associate": 55,
+      "srassociate": 60,
+      "agent": 70,
+      "sragent": 80,
+      "mga": 90
+    }
+  },
+  {
+    "company": "F & G",
+    "product": "F & G Pathsetter IUL (Ages 0-17)",
+    "rates": {
+      "preassociate": 50,
+      "associate": 55,
+      "srassociate": 60,
+      "agent": 65,
+      "sragent": 70,
+      "mga": 75
+    }
+  },
+  {
+    "company": "F & G",
+    "product": "F & G Pathsetter IUL (Ages 18-80)",
+    "rates": {
+      "preassociate": 55,
+      "associate": 60,
+      "srassociate": 65,
+      "agent": 75,
+      "sragent": 85,
+      "mga": 95
+    }
+  },
+  {
+    "company": "F & G",
+    "product": "F & G ExecuDex IUL (Ages 18-60) no commissions paid ages 61+",
+    "rates": {
+      "preassociate": 55,
+      "associate": 60,
+      "srassociate": 65,
+      "agent": 75,
+      "sragent": 85,
+      "mga": 95
+    }
+  },
+  {
+    "company": "National Life Group",
+    "product": "Flex Life, Summit Life, Basic Secure & Survivor Life",
+    "rates": {
+      "preassociate": 40,
+      "associate": 45,
+      "srassociate": 50,
+      "agent": 60,
+      "sragent": 70,
+      "mga": 80
+    }
+  },
+  {
+    "company": "National Life Group",
+    "product": "TotalSecure Whole Life (Issue ages 0-69)",
+    "rates": {
+      "preassociate": 50,
+      "associate": 45,
+      "srassociate": 50,
+      "agent": 60,
+      "sragent": 70,
+      "mga": 80
+    }
+  },
+  {
+    "company": "National Life Group",
+    "product": "TotalSecure Whole Life (Issue ages (70-79)",
+    "rates": {
+      "preassociate": 28.33,
+      "associate": 31.88,
+      "srassociate": 35.42,
+      "agent": 42.5,
+      "sragent": 49.58,
+      "mga": 56.67
+    }
+  },
+  {
+    "company": "National Life Group",
+    "product": "TotalSecure Whole Life (Issue ages 80-85)",
+    "rates": {
+      "preassociate": 16.67,
+      "associate": 18.75,
+      "srassociate": 20.83,
+      "agent": 25,
+      "sragent": 29.17,
+      "mga": 33.33
+    }
+  },
+  {
+    "company": "National Life Group",
+    "product": "ART, 10 & 15 Year Term",
+    "rates": {
+      "preassociate": 33,
+      "associate": 38,
+      "srassociate": 42,
+      "agent": 50,
+      "sragent": 58,
+      "mga": 67
+    }
+  },
+  {
+    "company": "National Life Group",
+    "product": "20 & 30 Year Term",
+    "rates": {
+      "preassociate": 40,
+      "associate": 45,
+      "srassociate": 50,
+      "agent": 60,
+      "sragent": 70,
+      "mga": 80
+    }
+  },
+  {
+    "company": "North American",
+    "product": "Protection Builder IUL2",
+    "rates": {
+      "preassociate": 50,
+      "associate": 60,
+      "srassociate": 65,
+      "agent": 70,
+      "sragent": 75,
+      "mga": 80
+    }
+  },
+  {
+    "company": "North American",
+    "product": "Builder Plus 4 IUL",
+    "rates": {
+      "preassociate": 55,
+      "associate": 65,
+      "srassociate": 70,
+      "agent": 75,
+      "sragent": 80,
+      "mga": 85
+    }
+  },
+  {
+    "company": "North American",
+    "product": "Smart Builder 3 IUL",
+    "rates": {
+      "preassociate": 50,
+      "associate": 60,
+      "srassociate": 65,
+      "agent": 70,
+      "sragent": 75,
+      "mga": 80
+    }
+  },
+  {
+    "company": "North American",
+    "product": "10 Year Term",
+    "rates": {
+      "preassociate": 45,
+      "associate": 50,
+      "srassociate": 52.5,
+      "agent": 55,
+      "sragent": 57.5,
+      "mga": 60
+    }
+  },
+  {
+    "company": "North American",
+    "product": "15 Year Term",
+    "rates": {
+      "preassociate": 50,
+      "associate": 55,
+      "srassociate": 57.5,
+      "agent": 60,
+      "sragent": 62.5,
+      "mga": 65
+    }
+  },
+  {
+    "company": "North American",
+    "product": "20 & 30 Year Term",
+    "rates": {
+      "preassociate": 55,
+      "associate": 65,
+      "srassociate": 70,
+      "agent": 75,
+      "sragent": 80,
+      "mga": 85
+    }
+  },
+  {
+    "company": "United of Omaha ",
+    "product": "Index Universal Life Express",
+    "rates": {
+      "preassociate": 45,
+      "associate": 50,
+      "srassociate": 55,
+      "agent": 65,
+      "sragent": 75,
+      "mga": 85
+    }
+  },
+  {
+    "company": "United of Omaha ",
+    "product": "Final Expense Level Product (Ages 45-80)",
+    "rates": {
+      "preassociate": 56,
+      "associate": 60,
+      "srassociate": 65,
+      "agent": 73,
+      "sragent": 81,
+      "mga": 90
+    }
+  },
+  {
+    "company": "United of Omaha ",
+    "product": "Final Expense Level Product (Ages 81-85)",
+    "rates": {
+      "preassociate": 34,
+      "associate": 36,
+      "srassociate": 39,
+      "agent": 43,
+      "sragent": 48,
+      "mga": 55
+    }
+  },
+  {
+    "company": "United of Omaha ",
+    "product": "Final Expense Graded Product (Ages 45-80)",
+    "rates": {
+      "preassociate": 56.5,
+      "associate": 58,
+      "srassociate": 59.5,
+      "agent": 62.5,
+      "sragent": 66,
+      "mga": 70
+    }
+  },
+  {
+    "company": "United of Omaha ",
+    "product": "Term Life Express 10",
+    "rates": {
+      "preassociate": 40,
+      "associate": 45,
+      "srassociate": 50,
+      "agent": 60,
+      "sragent": 70,
+      "mga": 80
+    }
+  },
+  {
+    "company": "United of Omaha ",
+    "product": "Term Life Express 15, 20, 30",
+    "rates": {
+      "preassociate": 60,
+      "associate": 65,
+      "srassociate": 70,
+      "agent": 80,
+      "sragent": 90,
+      "mga": 100
+    }
+  }
+]

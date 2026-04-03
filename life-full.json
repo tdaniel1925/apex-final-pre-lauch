@@ -1,0 +1,375 @@
+[
+  {
+    "company": "",
+    "product": " ",
+    "preAssociate": "APEX LEVELS"
+  },
+  {
+    "company": "COMPANY",
+    "product": "PRODUCT",
+    "preAssociate": "PRE-ASSOCIATE",
+    "associate": "ASSOCIATE",
+    "srAssociate": " SENIOR ASSOCIATE",
+    "agent": "AGENT",
+    "srAgent": "SENIOR AGENT",
+    "mga": "MGA"
+  },
+  {
+    "company": "Columbus Life",
+    "product": "Explorer Plus UL",
+    "preAssociate": 50,
+    "associate": 55,
+    "srAssociate": 60,
+    "agent": 70,
+    "srAgent": 80,
+    "mga": 90
+  },
+  {
+    "company": "",
+    "product": "Indexed Explorer UL",
+    "preAssociate": 50,
+    "associate": 55,
+    "srAssociate": 60,
+    "agent": 70,
+    "srAgent": 80,
+    "mga": 90
+  },
+  {
+    "company": "",
+    "product": "Indexed Explorer Now UL",
+    "preAssociate": 50,
+    "associate": 55,
+    "srAssociate": 60,
+    "agent": 70,
+    "srAgent": 80,
+    "mga": 90
+  },
+  {
+    "company": "",
+    "product": "Expedition SIUL",
+    "preAssociate": 50,
+    "associate": 55,
+    "srAssociate": 60,
+    "agent": 70,
+    "srAgent": 80,
+    "mga": 90
+  },
+  {
+    "company": "",
+    "product": "Voyager UL",
+    "preAssociate": 50,
+    "associate": 55,
+    "srAssociate": 60,
+    "agent": 70,
+    "srAgent": 80,
+    "mga": 90
+  },
+  {
+    "company": "",
+    "product": "Nautical Term 10, 15, 20 and 30",
+    "preAssociate": 50,
+    "associate": 55,
+    "srAssociate": 60,
+    "agent": 70,
+    "srAgent": 80,
+    "mga": 90
+  },
+  {
+    "company": "Corebridge Partners Group",
+    "product": "QoL Max Accummulator + IUL ",
+    "preAssociate": 40,
+    "associate": 45,
+    "srAssociate": 50,
+    "agent": 60,
+    "srAgent": 70,
+    "mga": 80
+  },
+  {
+    "company": "",
+    "product": "QoL Guarantee Plus GUL II & QoL Value+ Protector III",
+    "preAssociate": 40,
+    "associate": 45,
+    "srAssociate": 50,
+    "agent": 60,
+    "srAgent": 70,
+    "mga": 80
+  },
+  {
+    "company": "",
+    "product": "American Elite Whole Life (conversion only)",
+    "preAssociate": 28,
+    "associate": 32,
+    "srAssociate": 36,
+    "agent": 43,
+    "srAgent": 51,
+    "mga": 58
+  },
+  {
+    "company": "",
+    "product": "QoL Flex Term 10 year",
+    "preAssociate": 25,
+    "associate": 30,
+    "srAssociate": 35,
+    "agent": 45,
+    "srAgent": 55,
+    "mga": 65
+  },
+  {
+    "company": "",
+    "product": "QoL Flex Term 15-19 year",
+    "preAssociate": 35,
+    "associate": 40,
+    "srAssociate": 45,
+    "agent": 55,
+    "srAgent": 65,
+    "mga": 75
+  },
+  {
+    "company": "",
+    "product": "QoL Flex Term 20-30 & 35 year",
+    "preAssociate": 45,
+    "associate": 50,
+    "srAssociate": 55,
+    "agent": 65,
+    "srAgent": 75,
+    "mga": 85
+  },
+  {
+    "company": "F & G",
+    "product": "F & G Everlast IUL (Ages 0-17)",
+    "preAssociate": 50,
+    "associate": 55,
+    "srAssociate": 60,
+    "agent": 65,
+    "srAgent": 70,
+    "mga": 75
+  },
+  {
+    "company": "",
+    "product": "F & G Everlast IUL (Ages 18-80)",
+    "preAssociate": 50,
+    "associate": 55,
+    "srAssociate": 60,
+    "agent": 70,
+    "srAgent": 80,
+    "mga": 90
+  },
+  {
+    "company": "",
+    "product": "F & G Pathsetter IUL (Ages 0-17)",
+    "preAssociate": 50,
+    "associate": 55,
+    "srAssociate": 60,
+    "agent": 65,
+    "srAgent": 70,
+    "mga": 75
+  },
+  {
+    "company": "",
+    "product": "F & G Pathsetter IUL (Ages 18-80)",
+    "preAssociate": 55,
+    "associate": 60,
+    "srAssociate": 65,
+    "agent": 75,
+    "srAgent": 85,
+    "mga": 95
+  },
+  {
+    "company": "",
+    "product": "F & G ExecuDex IUL (Ages 18-60) no commissions paid ages 61+",
+    "preAssociate": 55,
+    "associate": 60,
+    "srAssociate": 65,
+    "agent": 75,
+    "srAgent": 85,
+    "mga": 95
+  },
+  {
+    "company": "National Life Group",
+    "product": "Flex Life, Summit Life, Basic Secure & Survivor Life",
+    "preAssociate": 40,
+    "associate": 45,
+    "srAssociate": 50,
+    "agent": 60,
+    "srAgent": 70,
+    "mga": 80
+  },
+  {
+    "company": "",
+    "product": "TotalSecure Whole Life (Issue ages 0-69)",
+    "preAssociate": 50,
+    "associate": 45,
+    "srAssociate": 50,
+    "agent": 60,
+    "srAgent": 70,
+    "mga": 80
+  },
+  {
+    "company": "",
+    "product": "TotalSecure Whole Life (Issue ages (70-79)",
+    "preAssociate": 28.33,
+    "associate": 31.88,
+    "srAssociate": 35.42,
+    "agent": 42.5,
+    "srAgent": 49.58,
+    "mga": 56.67
+  },
+  {
+    "company": "",
+    "product": "TotalSecure Whole Life (Issue ages 80-85)",
+    "preAssociate": 16.67,
+    "associate": 18.75,
+    "srAssociate": 20.83,
+    "agent": 25,
+    "srAgent": 29.17,
+    "mga": 33.33
+  },
+  {
+    "company": "",
+    "product": "ART, 10 & 15 Year Term",
+    "preAssociate": 33,
+    "associate": 38,
+    "srAssociate": 42,
+    "agent": 50,
+    "srAgent": 58,
+    "mga": 67
+  },
+  {
+    "company": "",
+    "product": "20 & 30 Year Term",
+    "preAssociate": 40,
+    "associate": 45,
+    "srAssociate": 50,
+    "agent": 60,
+    "srAgent": 70,
+    "mga": 80
+  },
+  {
+    "company": "North American",
+    "product": "Protection Builder IUL2",
+    "preAssociate": 50,
+    "associate": 60,
+    "srAssociate": 65,
+    "agent": 70,
+    "srAgent": 75,
+    "mga": 80
+  },
+  {
+    "company": "",
+    "product": "Builder Plus 4 IUL",
+    "preAssociate": 55,
+    "associate": 65,
+    "srAssociate": 70,
+    "agent": 75,
+    "srAgent": 80,
+    "mga": 85
+  },
+  {
+    "company": "",
+    "product": "Smart Builder 3 IUL",
+    "preAssociate": 50,
+    "associate": 60,
+    "srAssociate": 65,
+    "agent": 70,
+    "srAgent": 75,
+    "mga": 80
+  },
+  {
+    "company": "",
+    "product": "10 Year Term",
+    "preAssociate": 45,
+    "associate": 50,
+    "srAssociate": 52.5,
+    "agent": 55,
+    "srAgent": 57.5,
+    "mga": 60
+  },
+  {
+    "company": "",
+    "product": "15 Year Term",
+    "preAssociate": 50,
+    "associate": 55,
+    "srAssociate": 57.5,
+    "agent": 60,
+    "srAgent": 62.5,
+    "mga": 65
+  },
+  {
+    "company": "",
+    "product": "20 & 30 Year Term",
+    "preAssociate": 55,
+    "associate": 65,
+    "srAssociate": 70,
+    "agent": 75,
+    "srAgent": 80,
+    "mga": 85
+  },
+  {
+    "company": "United of Omaha ",
+    "product": "Index Universal Life Express",
+    "preAssociate": 45,
+    "associate": 50,
+    "srAssociate": 55,
+    "agent": 65,
+    "srAgent": 75,
+    "mga": 85
+  },
+  {
+    "company": "",
+    "product": "Final Expense Level Product (Ages 45-80)",
+    "preAssociate": 56,
+    "associate": 60,
+    "srAssociate": 65,
+    "agent": 73,
+    "srAgent": 81,
+    "mga": 90
+  },
+  {
+    "company": "",
+    "product": "Final Expense Level Product (Ages 81-85)",
+    "preAssociate": 34,
+    "associate": 36,
+    "srAssociate": 39,
+    "agent": 43,
+    "srAgent": 48,
+    "mga": 55
+  },
+  {
+    "company": "",
+    "product": "Final Expense Graded Product (Ages 45-80)",
+    "preAssociate": 56.5,
+    "associate": 58,
+    "srAssociate": 59.5,
+    "agent": 62.5,
+    "srAgent": 66,
+    "mga": 70
+  },
+  {
+    "company": "",
+    "product": "Term Life Express 10",
+    "preAssociate": 40,
+    "associate": 45,
+    "srAssociate": 50,
+    "agent": 60,
+    "srAgent": 70,
+    "mga": 80
+  },
+  {
+    "company": "",
+    "product": "Term Life Express 15, 20, 30",
+    "preAssociate": 60,
+    "associate": 65,
+    "srAssociate": 70,
+    "agent": 80,
+    "srAgent": 90,
+    "mga": 100
+  },
+  {
+    "company": "Apex has made every reasonable effort to assure the accuracy of this information.   However, we make no warranties or guarantees to the accuracy of this information.  Apex is not responsible for outdated or inaccurate information.  All managers viewing this information are responsible for verifying all information by whatever means necessary.   ",
+    "product": ""
+  },
+  {
+    "company": "",
+    "product": " "
+  }
+]

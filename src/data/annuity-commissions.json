@@ -1,0 +1,869 @@
+[
+  {
+    "company": "American Equity",
+    "product": "IncomeShield 10 Option A (Ages 18-75)",
+    "rates": {
+      "newhire": 2.6,
+      "preassociate": 3,
+      "associate": 3.4,
+      "agent": 3.8,
+      "ga": 4.2,
+      "mga": 4.6
+    }
+  },
+  {
+    "company": "American Equity",
+    "product": "IncomeShield 7 Option A (Ages 18-75)",
+    "rates": {
+      "newhire": 1.6,
+      "preassociate": 2,
+      "associate": 2.4,
+      "agent": 2.8,
+      "ga": 3.2,
+      "mga": 3.6
+    }
+  },
+  {
+    "company": "American Equity",
+    "product": "Income Shield 9 - CA  Option A (Ages 18-75)",
+    "rates": {
+      "newhire": 2.6,
+      "preassociate": 3,
+      "associate": 3.4,
+      "agent": 3.8,
+      "ga": 4.2,
+      "mga": 4.6
+    }
+  },
+  {
+    "company": "American Equity",
+    "product": "AssetShield 10 Option U (Ages 18-75)",
+    "rates": {
+      "newhire": 4,
+      "preassociate": 4.5,
+      "associate": 5,
+      "agent": 5.5,
+      "ga": 6,
+      "mga": 6.5
+    }
+  },
+  {
+    "company": "American Equity",
+    "product": "AssetShield 5 Option U (Ages 18-75)",
+    "rates": {
+      "newhire": 1.65,
+      "preassociate": 2,
+      "associate": 2.35,
+      "agent": 2.7,
+      "ga": 3.1,
+      "mga": 3.4
+    }
+  },
+  {
+    "company": "American Equity",
+    "product": "AssetShield 7 Option U (Ages 18-75)",
+    "rates": {
+      "newhire": 2.4,
+      "preassociate": 2.75,
+      "associate": 3.1,
+      "agent": 3.45,
+      "ga": 3.85,
+      "mga": 4.15
+    }
+  },
+  {
+    "company": "American Equity",
+    "product": "AssetShield 9 Option U (Ages 18-75)",
+    "rates": {
+      "newhire": 4,
+      "preassociate": 4.5,
+      "associate": 5,
+      "agent": 5.5,
+      "ga": 6,
+      "mga": 6.5
+    }
+  },
+  {
+    "company": "American Equity",
+    "product": "AssetShield Bonus 9 & 10 Option U (Ages 18-75)",
+    "rates": {
+      "newhire": 4,
+      "preassociate": 4.5,
+      "associate": 5,
+      "agent": 5.5,
+      "ga": 6,
+      "mga": 6.5
+    }
+  },
+  {
+    "company": "American Equity",
+    "product": "BalanceShield Option U (Ages 18-75)",
+    "rates": {
+      "newhire": 4,
+      "preassociate": 4.5,
+      "associate": 5,
+      "agent": 5.5,
+      "ga": 6,
+      "mga": 6.5
+    }
+  },
+  {
+    "company": "American Equity",
+    "product": "EstateShield 10 Option U (Ages 40-75)",
+    "rates": {
+      "newhire": 4,
+      "preassociate": 4.5,
+      "associate": 5,
+      "agent": 5.5,
+      "ga": 6,
+      "mga": 6.5
+    }
+  },
+  {
+    "company": "American Equity",
+    "product": "IncomeShield 10 Option U (Ages 18-75)",
+    "rates": {
+      "newhire": 4.6,
+      "preassociate": 5,
+      "associate": 5.4,
+      "agent": 5.8,
+      "ga": 6.2,
+      "mga": 6.6
+    }
+  },
+  {
+    "company": "American Equity",
+    "product": "IncomeShield 7 Option U (Ages 40-75)",
+    "rates": {
+      "newhire": 2.6,
+      "preassociate": 3,
+      "associate": 3.4,
+      "agent": 3.8,
+      "ga": 4.2,
+      "mga": 4.6
+    }
+  },
+  {
+    "company": "American Equity",
+    "product": "IncomeShield 9 - CA Option U (Ages 18-75)",
+    "rates": {
+      "newhire": 4.6,
+      "preassociate": 5,
+      "associate": 5.4,
+      "agent": 5.8,
+      "ga": 6.2,
+      "mga": 6.6
+    }
+  },
+  {
+    "company": "American Equity",
+    "product": "SPIA 1- Year Certain Plus All Life Contingencies Payout",
+    "rates": {
+      "newhire": 1.8,
+      "preassociate": 2,
+      "associate": 2.2,
+      "agent": 2.4,
+      "ga": 2.6,
+      "mga": 2.8
+    }
+  },
+  {
+    "company": "American Equity",
+    "product": "SPIA Less Thans 10 Year Certain",
+    "rates": {
+      "newhire": 0.9,
+      "preassociate": 1,
+      "associate": 1.1,
+      "agent": 1.2,
+      "ga": 1.3,
+      "mga": 1.4
+    }
+  },
+  {
+    "company": "American Equity",
+    "product": "GuranteeShield 3 Option A (Ages 18-80)",
+    "rates": {
+      "newhire": 0.9,
+      "preassociate": 1,
+      "associate": 1.1,
+      "agent": 1.2,
+      "ga": 1.3,
+      "mga": 1.4
+    }
+  },
+  {
+    "company": "American Equity",
+    "product": "GuranteeShield 5 Option A (Ages 18-80)",
+    "rates": {
+      "newhire": 1.65,
+      "preassociate": 1.75,
+      "associate": 1.85,
+      "agent": 1.95,
+      "ga": 2.05,
+      "mga": 2.15
+    }
+  },
+  {
+    "company": "Corebridge Financial",
+    "product": "American Pathway Immediate Annuity Life Payout Options",
+    "rates": {
+      "newhire": 1,
+      "preassociate": 1.25,
+      "associate": 1.5,
+      "agent": 1.75,
+      "ga": 2,
+      "mga": 2.25
+    }
+  },
+  {
+    "company": "Corebridge Financial",
+    "product": "American Pathway Immediate Annuity Period #3",
+    "rates": {
+      "newhire": 1,
+      "preassociate": 1.25,
+      "associate": 1.5,
+      "agent": 1.75,
+      "ga": 2,
+      "mga": 2.25
+    }
+  },
+  {
+    "company": "Corebridge Financial",
+    "product": "American Pathway Immediate Annuity Period #2",
+    "rates": {
+      "newhire": 0.5,
+      "preassociate": 0.75,
+      "associate": 1,
+      "agent": 1.25,
+      "ga": 1.5,
+      "mga": 1.75
+    }
+  },
+  {
+    "company": "Corebridge Financial",
+    "product": "American Pathway Immediate Annuity Period #1",
+    "rates": {
+      "newhire": 0.7,
+      "preassociate": 0.8,
+      "associate": 0.9,
+      "agent": 1,
+      "ga": 1.1,
+      "mga": 1.2
+    }
+  },
+  {
+    "company": "Corebridge Financial",
+    "product": "American Pathway Deferred Income Annuity Life Payout Options",
+    "rates": {
+      "newhire": 2,
+      "preassociate": 2.25,
+      "associate": 2.5,
+      "agent": 2.75,
+      "ga": 3,
+      "mga": 3.25
+    }
+  },
+  {
+    "company": "Corebridge Financial",
+    "product": "American Pathway Deferred Income Annuity Period #3",
+    "rates": {
+      "newhire": 2,
+      "preassociate": 2.25,
+      "associate": 2.5,
+      "agent": 2.75,
+      "ga": 3,
+      "mga": 3.25
+    }
+  },
+  {
+    "company": "Corebridge Financial",
+    "product": "American Pathway Deferred Income Annuity Period #2",
+    "rates": {
+      "newhire": 1,
+      "preassociate": 1.25,
+      "associate": 1.5,
+      "agent": 1.75,
+      "ga": 2,
+      "mga": 2.25
+    }
+  },
+  {
+    "company": "Corebridge Financial",
+    "product": "American Pathway Deferred Income Annuity Period #1",
+    "rates": {
+      "newhire": 0.5,
+      "preassociate": 0.75,
+      "associate": 1,
+      "agent": 1.25,
+      "ga": 1.5,
+      "mga": 1.75
+    }
+  },
+  {
+    "company": "Corebridge Financial",
+    "product": "American Pathway Fixed 5 Annuity Ages 18-85",
+    "rates": {
+      "newhire": 2,
+      "preassociate": 2,
+      "associate": 2,
+      "agent": 2,
+      "ga": 2,
+      "mga": 2
+    }
+  },
+  {
+    "company": "Corebridge Financial",
+    "product": "American Pathway Fixed 7 Annuity",
+    "rates": {
+      "newhire": 2.5,
+      "preassociate": 2.5,
+      "associate": 2.5,
+      "agent": 2.5,
+      "ga": 2.5,
+      "mga": 2.5
+    }
+  },
+  {
+    "company": "Corebridge Financial",
+    "product": "American Pathway VisionMYG 4 Year Term Ages 18-75",
+    "rates": {
+      "newhire": 1.5,
+      "preassociate": 1.5,
+      "associate": 1.5,
+      "agent": 1.5,
+      "ga": 1.5,
+      "mga": 1.5
+    }
+  },
+  {
+    "company": "Corebridge Financial",
+    "product": "American Pathway VisionMYG 5 Year Term Ages 18-75",
+    "rates": {
+      "newhire": 2,
+      "preassociate": 2,
+      "associate": 2,
+      "agent": 2,
+      "ga": 2,
+      "mga": 2
+    }
+  },
+  {
+    "company": "Corebridge Financial",
+    "product": "American Pathway VisionMYG 6 Year Term Ages 18-75",
+    "rates": {
+      "newhire": 2,
+      "preassociate": 2,
+      "associate": 2,
+      "agent": 2,
+      "ga": 2,
+      "mga": 2
+    }
+  },
+  {
+    "company": "Corebridge Financial",
+    "product": "American Pathway VisionMYG 7 Year Term Ages 18-75",
+    "rates": {
+      "newhire": 2.5,
+      "preassociate": 2.5,
+      "associate": 2.5,
+      "agent": 2.5,
+      "ga": 2.5,
+      "mga": 2.5
+    }
+  },
+  {
+    "company": "Corebridge Financial",
+    "product": "American Pathway VisionMYG 10 Year Term Ages 18-75",
+    "rates": {
+      "newhire": 2.5,
+      "preassociate": 2.5,
+      "associate": 2.5,
+      "agent": 2.5,
+      "ga": 2.5,
+      "mga": 2.5
+    }
+  },
+  {
+    "company": "Corebridge Financial",
+    "product": "Assured Edge Income Achiever Option 1",
+    "rates": {
+      "newhire": 2.75,
+      "preassociate": 3,
+      "associate": 3.25,
+      "agent": 3.5,
+      "ga": 3.75,
+      "mga": 4
+    }
+  },
+  {
+    "company": "Corebridge Financial",
+    "product": "Assured Edge Income Achiever Option 2",
+    "rates": {
+      "newhire": 1.5,
+      "preassociate": 1.75,
+      "associate": 2,
+      "agent": 2.25,
+      "ga": 2.5,
+      "mga": 2.75
+    }
+  },
+  {
+    "company": "Corebridge Financial",
+    "product": "Assured Edge Income Achiever Option 3",
+    "rates": {
+      "newhire": 0.1,
+      "preassociate": 0.25,
+      "associate": 0.5,
+      "agent": 0.75,
+      "ga": 1,
+      "mga": 1.5
+    }
+  },
+  {
+    "company": "Corebridge Financial",
+    "product": "Assured Edge Income Achiever Option 4",
+    "rates": {
+      "newhire": 0.1,
+      "preassociate": 0.1,
+      "associate": 0.1,
+      "agent": 0.1,
+      "ga": 0.25,
+      "mga": 0.5
+    }
+  },
+  {
+    "company": "Corebridge Financial",
+    "product": "Power 10 Protector Option 1 Ages 18-75",
+    "rates": {
+      "newhire": 5,
+      "preassociate": 5.25,
+      "associate": 5.5,
+      "agent": 5.75,
+      "ga": 6,
+      "mga": 6.25
+    }
+  },
+  {
+    "company": "Corebridge Financial",
+    "product": "Power 10 Protector Option 2 Ages 18-75",
+    "rates": {
+      "newhire": 2.25,
+      "preassociate": 2.5,
+      "associate": 2.75,
+      "agent": 3,
+      "ga": 3.25,
+      "mga": 3.5
+    }
+  },
+  {
+    "company": "Corebridge Financial",
+    "product": "Power 10 Protector Option 3 Ages 18-75",
+    "rates": {
+      "newhire": 0.4,
+      "preassociate": 0.4,
+      "associate": 0.4,
+      "agent": 0.5,
+      "ga": 0.75,
+      "mga": 1
+    }
+  },
+  {
+    "company": "Corebridge Financial",
+    "product": "Power 7 Protector Option 1 Ages 18-80",
+    "rates": {
+      "newhire": 2.25,
+      "preassociate": 2.5,
+      "associate": 2.75,
+      "agent": 3,
+      "ga": 3.25,
+      "mga": 3.5
+    }
+  },
+  {
+    "company": "Corebridge Financial",
+    "product": "Power 7 Protector Option 2 Ages 18-80",
+    "rates": {
+      "newhire": 0.55,
+      "preassociate": 0.65,
+      "associate": 0.75,
+      "agent": 0.9,
+      "ga": 1.05,
+      "mga": 1.2
+    }
+  },
+  {
+    "company": "Corebridge Financial",
+    "product": "Power 5 Protector Option 1 Ages 18-80",
+    "rates": {
+      "newhire": 1.5,
+      "preassociate": 1.75,
+      "associate": 2,
+      "agent": 2.25,
+      "ga": 2.5,
+      "mga": 2.75
+    }
+  },
+  {
+    "company": "Corebridge Financial",
+    "product": "Power 5 Protector Option 2 Ages 18-80",
+    "rates": {
+      "newhire": 0.9,
+      "preassociate": 0.95,
+      "associate": 1,
+      "agent": 1.05,
+      "ga": 1.1,
+      "mga": 1.15
+    }
+  },
+  {
+    "company": "F & G",
+    "product": "FG Accumulator Plus 7 Ages 0-75",
+    "rates": {
+      "newhire": 2.25,
+      "preassociate": 2.75,
+      "associate": 3.25,
+      "agent": 3.75,
+      "ga": 4.25,
+      "mga": 4.75
+    }
+  },
+  {
+    "company": "F & G",
+    "product": "FG AccumulatorPlus 10 Ages 0-75",
+    "rates": {
+      "newhire": 4,
+      "preassociate": 4.5,
+      "associate": 5,
+      "agent": 5.5,
+      "ga": 6,
+      "mga": 6.5
+    }
+  },
+  {
+    "company": "F & G",
+    "product": "Prosperity Elite 7 Ages 0-70",
+    "rates": {
+      "newhire": 3,
+      "preassociate": 3.5,
+      "associate": 4,
+      "agent": 4.5,
+      "ga": 5,
+      "mga": 5.5
+    }
+  },
+  {
+    "company": "F & G",
+    "product": "Prosperity Elite 10 Ages 0-70",
+    "rates": {
+      "newhire": 4.5,
+      "preassociate": 5,
+      "associate": 5.5,
+      "agent": 6,
+      "ga": 6.5,
+      "mga": 7
+    }
+  },
+  {
+    "company": "F & G",
+    "product": "Prosperity Elite 14 Ages 0-70",
+    "rates": {
+      "newhire": 5,
+      "preassociate": 5.5,
+      "associate": 6,
+      "agent": 6.5,
+      "ga": 7,
+      "mga": 7.5
+    }
+  },
+  {
+    "company": "F & G",
+    "product": "Performance Pro Ages 0-75",
+    "rates": {
+      "newhire": 4.5,
+      "preassociate": 5,
+      "associate": 5.5,
+      "agent": 6,
+      "ga": 6.5,
+      "mga": 7
+    }
+  },
+  {
+    "company": "F & G",
+    "product": "Accelerator Plus 10 Ages 0-75",
+    "rates": {
+      "newhire": 4.5,
+      "preassociate": 5,
+      "associate": 5.5,
+      "agent": 6,
+      "ga": 6.5,
+      "mga": 7
+    }
+  },
+  {
+    "company": "F & G",
+    "product": "Accelerator Plus 14 Ages 0-75",
+    "rates": {
+      "newhire": 5.5,
+      "preassociate": 6,
+      "associate": 6.5,
+      "agent": 7,
+      "ga": 7.5,
+      "mga": 8
+    }
+  },
+  {
+    "company": "F & G",
+    "product": "F & G Power Accumulator 7 Ages 0-75",
+    "rates": {
+      "newhire": 2.25,
+      "preassociate": 2.75,
+      "associate": 3.25,
+      "agent": 3.75,
+      "ga": 4.25,
+      "mga": 4.75
+    }
+  },
+  {
+    "company": "F & G",
+    "product": "F & G Power Accumulator 10 Ages 0-75",
+    "rates": {
+      "newhire": 4,
+      "preassociate": 4.5,
+      "associate": 5,
+      "agent": 5.5,
+      "ga": 6,
+      "mga": 6.5
+    }
+  },
+  {
+    "company": "F & G",
+    "product": "F & G Flex Accumulator Ages 0-75",
+    "rates": {
+      "newhire": 4,
+      "preassociate": 4.5,
+      "associate": 5,
+      "agent": 5.5,
+      "ga": 6,
+      "mga": 6.5
+    }
+  },
+  {
+    "company": "F & G",
+    "product": "F & G Safe Income Advantage Ages 0-75",
+    "rates": {
+      "newhire": 4,
+      "preassociate": 4.5,
+      "associate": 5,
+      "agent": 5.5,
+      "ga": 6,
+      "mga": 6.5
+    }
+  },
+  {
+    "company": "F & G",
+    "product": "F & G 1-2-3 Ages 0-75",
+    "rates": {
+      "newhire": 4.25,
+      "preassociate": 4.75,
+      "associate": 5.25,
+      "agent": 5.75,
+      "ga": 6.25,
+      "mga": 6.75
+    }
+  },
+  {
+    "company": "F & G",
+    "product": "FG Guarantee-Platinum 3 Ages 0-79",
+    "rates": {
+      "newhire": 0.25,
+      "preassociate": 0.5,
+      "associate": 0.75,
+      "agent": 1,
+      "ga": 1.25,
+      "mga": 1.375
+    }
+  },
+  {
+    "company": "F & G",
+    "product": "FG Guarantee-Platinum 8 Ages 0-79",
+    "rates": {
+      "newhire": 1.25,
+      "preassociate": 1.375,
+      "associate": 1.5,
+      "agent": 1.625,
+      "ga": 1.75,
+      "mga": 1.875
+    }
+  },
+  {
+    "company": "F & G",
+    "product": "FG Guarantee-Platinum 7 Ages 0-79",
+    "rates": {
+      "newhire": 1.5,
+      "preassociate": 1.625,
+      "associate": 1.75,
+      "agent": 1.875,
+      "ga": 2,
+      "mga": 2.125
+    }
+  },
+  {
+    "company": "F & G",
+    "product": "FG Immediate Income Ages 0-89",
+    "rates": {
+      "newhire": 1,
+      "preassociate": 1.25,
+      "associate": 1.5,
+      "agent": 1.75,
+      "ga": 1.875,
+      "mga": 1.925
+    }
+  },
+  {
+    "company": "F & G",
+    "product": "FG Immediate Incoome with Life Ages 0-89",
+    "rates": {
+      "newhire": 1,
+      "preassociate": 1.25,
+      "associate": 1.5,
+      "agent": 1.75,
+      "ga": 1.875,
+      "mga": 1.925
+    }
+  },
+  {
+    "company": "National Life Group",
+    "product": "Flexible Premium Indexed Annuities",
+    "rates": {}
+  },
+  {
+    "company": "National Life Group",
+    "product": "Flex Secure Growth 10, Flex Secure Growth Bonus 10 & Flex Select Income 10 Ages 0-75 Standard payout",
+    "rates": {
+      "newhire": 3,
+      "preassociate": 4,
+      "associate": 5,
+      "agent": 6,
+      "ga": 6.25,
+      "mga": 6.5
+    }
+  },
+  {
+    "company": "National Life Group",
+    "product": "Flex Secure Growth 7 Ages 0-75 Standard payout",
+    "rates": {
+      "newhire": 2.4,
+      "preassociate": 3.3,
+      "associate": 4.35,
+      "agent": 5.4,
+      "ga": 5.55,
+      "mga": 5.7
+    }
+  },
+  {
+    "company": "National Life Group",
+    "product": "Flex Secure Growth 5 Ages 0-75 Standard payout",
+    "rates": {
+      "newhire": 1.5,
+      "preassociate": 2,
+      "associate": 2.5,
+      "agent": 3,
+      "ga": 3.12,
+      "mga": 3.25
+    }
+  },
+  {
+    "company": "National Life Group",
+    "product": "SecurePlus Gold Ages 0-75 Standard payout",
+    "rates": {
+      "newhire": 3.33,
+      "preassociate": 4,
+      "associate": 5,
+      "agent": 6,
+      "ga": 6.25,
+      "mga": 6.5
+    }
+  },
+  {
+    "company": "National Life Group",
+    "product": "Single Premium Indexed Annuities",
+    "rates": {}
+  },
+  {
+    "company": "National Life Group",
+    "product": "Zenith Growth 10, Growth Driver 10, Income Driver 10 & Zenith Income 10   Ages 0-75   Standard payout",
+    "rates": {
+      "newhire": 3.33,
+      "preassociate": 4,
+      "associate": 5,
+      "agent": 6,
+      "ga": 6.25,
+      "mga": 6.5
+    }
+  },
+  {
+    "company": "National Life Group",
+    "product": "Zenith Growth 5  Ages 0-75 Standard payout",
+    "rates": {
+      "newhire": 1.66,
+      "preassociate": 2,
+      "associate": 2.5,
+      "agent": 3,
+      "ga": 3.12,
+      "mga": 3.25
+    }
+  },
+  {
+    "company": "National Life Group",
+    "product": "SPIA",
+    "rates": {}
+  },
+  {
+    "company": "National Life Group",
+    "product": "Single Premium Deferred Annuity",
+    "rates": {
+      "newhire": 1.04,
+      "preassociate": 1.25,
+      "associate": 1.37,
+      "agent": 1.5,
+      "ga": 1.62,
+      "mga": 1.75
+    }
+  },
+  {
+    "company": "National Life Group",
+    "product": "RetireMax Secure 3 (all states except New York) Ages 0-80",
+    "rates": {
+      "newhire": 0.66,
+      "preassociate": 0.73,
+      "associate": 0.93,
+      "agent": 1.12,
+      "ga": 1.16,
+      "mga": 1.21
+    }
+  },
+  {
+    "company": "National Life Group",
+    "product": "RetireMax Secure 5 (all states except New York)  Ages 0-80",
+    "rates": {
+      "newhire": 0.93,
+      "preassociate": 1.12,
+      "associate": 1.35,
+      "agent": 1.55,
+      "ga": 1.7,
+      "mga": 1.8
+    }
+  },
+  {
+    "company": "National Life Group",
+    "product": "Green Mountain Freedom 5 (New York)  Ages 0-80",
+    "rates": {
+      "newhire": 0.93,
+      "preassociate": 1.12,
+      "associate": 1.35,
+      "agent": 1.55,
+      "ga": 1.7,
+      "mga": 1.8
+    }
+  }
+]
