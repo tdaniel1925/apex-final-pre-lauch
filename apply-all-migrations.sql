@@ -81,7 +81,7 @@ CREATE POLICY "Admins can view all onboarding sessions"
   USING (
     EXISTS (
       SELECT 1 FROM distributors
-      WHERE distributors.user_id = auth.uid()
+      WHERE distributors.auth_user_id = auth.uid()
       AND (distributors.is_admin = true OR distributors.is_master = true)
     )
   );
@@ -92,7 +92,7 @@ CREATE POLICY "Admins can update onboarding sessions"
   USING (
     EXISTS (
       SELECT 1 FROM distributors
-      WHERE distributors.user_id = auth.uid()
+      WHERE distributors.auth_user_id = auth.uid()
       AND (distributors.is_admin = true OR distributors.is_master = true)
     )
   );
@@ -102,7 +102,7 @@ CREATE POLICY "Reps can view their customer sessions"
   ON onboarding_sessions FOR SELECT
   USING (
     rep_distributor_id IN (
-      SELECT id FROM distributors WHERE user_id = auth.uid()
+      SELECT id FROM distributors WHERE auth_user_id = auth.uid()
     )
   );
 
@@ -181,7 +181,7 @@ TO authenticated
 USING (
   EXISTS (
     SELECT 1 FROM distributors d
-    WHERE d.user_id = auth.uid()
+    WHERE d.auth_user_id = auth.uid()
     AND (d.is_admin = true OR d.is_master = true)
   )
 );
@@ -193,7 +193,7 @@ TO authenticated
 WITH CHECK (
   EXISTS (
     SELECT 1 FROM distributors d
-    WHERE d.user_id = auth.uid()
+    WHERE d.auth_user_id = auth.uid()
     AND (d.is_admin = true OR d.is_master = true)
   )
 );
@@ -221,10 +221,97 @@ FOR EACH ROW
 EXECUTE FUNCTION update_fulfillment_notes_updated_at();
 
 -- =============================================
+-- STEP 5: MIGRATION 4 - CRM Activities Table
+-- =============================================
+CREATE TABLE IF NOT EXISTS public.crm_activities (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  distributor_id UUID NOT NULL REFERENCES public.distributors(id) ON DELETE CASCADE,
+
+  -- Activity details
+  activity_type TEXT NOT NULL CHECK (activity_type IN ('call', 'email', 'meeting', 'note')),
+  subject TEXT NOT NULL,
+  description TEXT,
+  activity_date TIMESTAMPTZ NOT NULL DEFAULT now(),
+  duration INTEGER, -- in minutes
+
+  -- Related records
+  contact_id UUID REFERENCES public.crm_contacts(id) ON DELETE SET NULL,
+
+  -- Metadata
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+-- Indexes
+CREATE INDEX IF NOT EXISTS idx_crm_activities_distributor ON public.crm_activities(distributor_id);
+CREATE INDEX IF NOT EXISTS idx_crm_activities_date ON public.crm_activities(activity_date DESC);
+CREATE INDEX IF NOT EXISTS idx_crm_activities_type ON public.crm_activities(activity_type);
+CREATE INDEX IF NOT EXISTS idx_crm_activities_contact ON public.crm_activities(contact_id);
+
+-- RLS Policies
+ALTER TABLE public.crm_activities ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Distributors can view own activities" ON public.crm_activities;
+CREATE POLICY "Distributors can view own activities"
+  ON public.crm_activities
+  FOR SELECT
+  USING (
+    distributor_id IN (
+      SELECT id FROM public.distributors WHERE auth_user_id = auth.uid()
+    )
+  );
+
+DROP POLICY IF EXISTS "Distributors can create own activities" ON public.crm_activities;
+CREATE POLICY "Distributors can create own activities"
+  ON public.crm_activities
+  FOR INSERT
+  WITH CHECK (
+    distributor_id IN (
+      SELECT id FROM public.distributors WHERE auth_user_id = auth.uid()
+    )
+  );
+
+DROP POLICY IF EXISTS "Distributors can update own activities" ON public.crm_activities;
+CREATE POLICY "Distributors can update own activities"
+  ON public.crm_activities
+  FOR UPDATE
+  USING (
+    distributor_id IN (
+      SELECT id FROM public.distributors WHERE auth_user_id = auth.uid()
+    )
+  );
+
+DROP POLICY IF EXISTS "Distributors can delete own activities" ON public.crm_activities;
+CREATE POLICY "Distributors can delete own activities"
+  ON public.crm_activities
+  FOR DELETE
+  USING (
+    distributor_id IN (
+      SELECT id FROM public.distributors WHERE auth_user_id = auth.uid()
+    )
+  );
+
+-- Updated timestamp trigger
+CREATE OR REPLACE FUNCTION update_crm_activities_updated_at()
+RETURNS TRIGGER AS $$
+BEGIN
+  NEW.updated_at = now();
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS update_crm_activities_updated_at ON public.crm_activities;
+CREATE TRIGGER update_crm_activities_updated_at
+  BEFORE UPDATE ON public.crm_activities
+  FOR EACH ROW
+  EXECUTE FUNCTION update_crm_activities_updated_at();
+
+-- =============================================
 -- ALL MIGRATIONS COMPLETE
 -- =============================================
 -- ✅ onboarding_sessions table created
 -- ✅ Business Center trial removed
 -- ✅ Fulfillment tracking added
 -- ✅ Fulfillment notes system created
+-- ✅ CRM Activities table created
 -- =============================================
