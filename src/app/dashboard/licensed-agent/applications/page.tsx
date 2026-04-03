@@ -110,12 +110,14 @@ export default async function SubmitApplicationPage() {
             </div>
 
             <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
-              <div className="flex-shrink-0 bg-orange-100 rounded-md p-2 mb-3">
-                <svg className="h-5 w-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                </svg>
+              <div className="flex items-center mb-3">
+                <div className="flex-shrink-0 bg-orange-100 rounded-md p-2">
+                  <svg className="h-5 w-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                  </svg>
+                </div>
+                <h3 className="ml-3 text-sm font-semibold text-gray-900">Universal Life</h3>
               </div>
-              <h3 className="text-sm font-semibold text-gray-900 mb-2">Universal Life</h3>
               <p className="text-xs text-gray-500">Flexible premium permanent life insurance with investment options</p>
             </div>
           </div>
