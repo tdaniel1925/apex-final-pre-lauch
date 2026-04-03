@@ -55,18 +55,21 @@ export function BusinessCenterBanner({
   if (dismissed) return null;
 
   const daysRemaining = 22 - daysWithout;
+  const trialExpired = daysRemaining <= 0;
 
   return (
-    <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-3 shadow-md">
+    <div className={`${trialExpired ? 'bg-gradient-to-r from-orange-500 to-red-500' : 'bg-gradient-to-r from-blue-600 to-blue-700'} text-white px-4 py-3 shadow-md`}>
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
         <div className="flex items-center gap-3 flex-1">
           <Clock className="w-5 h-5 flex-shrink-0" />
           <div className="flex-1">
             <p className="font-semibold text-sm">
-              Unlock Full Features with Business Center
+              {trialExpired ? 'Business Center Trial Expired' : 'Unlock Full Features with Business Center'}
             </p>
-            <p className="text-xs text-blue-100 mt-0.5">
-              {daysRemaining} days remaining in your trial. Get AI tools, CRM, and more for just $39/month.
+            <p className="text-xs text-white/90 mt-0.5">
+              {trialExpired
+                ? 'Subscribe now for $39/month to unlock AI tools, CRM, and more.'
+                : `${daysRemaining} days remaining in your trial. Get AI tools, CRM, and more for just $39/month.`}
             </p>
           </div>
         </div>
@@ -81,7 +84,7 @@ export function BusinessCenterBanner({
           </Link>
           <button
             onClick={handleDismiss}
-            className="p-2 hover:bg-blue-600 rounded-lg transition-colors"
+            className={`p-2 ${trialExpired ? 'hover:bg-orange-600' : 'hover:bg-blue-600'} rounded-lg transition-colors`}
             aria-label="Dismiss banner"
           >
             <X className="w-4 h-4" />
@@ -241,19 +244,14 @@ export function BusinessCenterModal({
 /**
  * Main BusinessCenterNag Component
  * Renders appropriate nag based on level
+ *
+ * NOTE: Always renders banner only - no blocking modals
  */
 export default function BusinessCenterNag({
   nagLevel,
   daysWithout,
   distributorId,
 }: BusinessCenterNagProps) {
-  if (nagLevel === 'soft') {
-    return <BusinessCenterBanner daysWithout={daysWithout} distributorId={distributorId} />;
-  }
-
-  if (nagLevel === 'hard') {
-    return <BusinessCenterModal daysWithout={daysWithout} distributorId={distributorId} />;
-  }
-
-  return null;
+  // ALWAYS show banner only - no blocking modals
+  return <BusinessCenterBanner daysWithout={daysWithout} distributorId={distributorId} />;
 }
