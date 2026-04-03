@@ -38,6 +38,12 @@ export async function POST(request: NextRequest) {
     }
 
     // Check if iPipeline SSO is enabled
+    console.log('[iPipeline SSO] Environment check:', {
+      IPIPELINE_SSO_ENABLED: process.env.IPIPELINE_SSO_ENABLED,
+      hasPrivateKey: !!process.env.IPIPELINE_SAML_PRIVATE_KEY,
+      hasCertificate: !!process.env.IPIPELINE_SAML_CERTIFICATE,
+    });
+
     if (process.env.IPIPELINE_SSO_ENABLED !== "true") {
       return NextResponse.json(
         { error: "iPipeline SSO integration is not enabled" },

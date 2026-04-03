@@ -1,119 +1,54 @@
-require('dotenv').config({ path: '.env.local' });
-const { createClient } = require('@supabase/supabase-js');
+import { createClient } from '@supabase/supabase-js';
+import 'dotenv/config';
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
-);
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
-// LIVE mode price IDs from .env.local
-const LIVE_PRICE_IDS = {
-  pulsemarket: {
-    retail: process.env.STRIPE_PULSEMARKET_RETAIL_PRICE_ID,
-    member: process.env.STRIPE_PULSEMARKET_MEMBER_PRICE_ID,
-  },
-  pulseflow: {
-    retail: process.env.STRIPE_PULSEFLOW_RETAIL_PRICE_ID,
-    member: process.env.STRIPE_PULSEFLOW_MEMBER_PRICE_ID,
-  },
-  pulsedrive: {
-    retail: process.env.STRIPE_PULSEDRIVE_RETAIL_PRICE_ID,
-    member: process.env.STRIPE_PULSEDRIVE_MEMBER_PRICE_ID,
-  },
-  pulsecommand: {
-    retail: process.env.STRIPE_PULSECOMMAND_RETAIL_PRICE_ID,
-    member: process.env.STRIPE_PULSECOMMAND_MEMBER_PRICE_ID,
-  },
-};
+const supabase = createClient(supabaseUrl, supabaseKey);
 
-async function updateDatabasePrices() {
-  console.log('\n🔍 Checking current database price IDs...\n');
+const updates = [
+  { slug: 'pulsemarket', price_id: 'price_1TIClI0s7Jg0EdCp8kq6nbox' },
+  { slug: 'pulseflow', price_id: 'price_1TIClI0s7Jg0EdCpLwhhiZuz' },
+  { slug: 'pulsedrive', price_id: 'price_1TIClJ0s7Jg0EdCpWY9OpdFh' },
+  { slug: 'pulsecommand', price_id: 'price_1TIClK0s7Jg0EdCpbAoW8JXA' },
+  { slug: 'smartlock', price_id: 'price_1TIClL0s7Jg0EdCp58wU2LyJ' },
+  { slug: 'businesscenter', price_id: 'price_1TIClL0s7Jg0EdCpywREFLha' },
+];
 
-  // First, check what's currently in the database
-  const { data: currentProducts, error: fetchError } = await supabase
-    .from('products')
-    .select('slug, name, stripe_price_id, stripe_price_id_retail, stripe_price_id_member')
-    .in('slug', ['pulsemarket', 'pulseflow', 'pulsedrive', 'pulsecommand']);
+async function updateDatabase() {
+  console.log('\n🔄 Updating database with Stripe LIVE price IDs...\n');
 
-  if (fetchError) {
-    console.error('❌ Error fetching products:', fetchError);
-    return;
-  }
-
-  console.log('📋 Current Database State:\n');
-  currentProducts.forEach(p => {
-    console.log(`${p.name} (${p.slug})`);
-    if (p.stripe_price_id) console.log(`  Main Price ID: ${p.stripe_price_id}`);
-    if (p.stripe_price_id_retail) console.log(`  Retail Price ID: ${p.stripe_price_id_retail}`);
-    if (p.stripe_price_id_member) console.log(`  Member Price ID: ${p.stripe_price_id_member}`);
-
-    // Check if it's TEST mode
-    const hasTestPrices =
-      (p.stripe_price_id && p.stripe_price_id.includes('price_1TGsv')) ||
-      (p.stripe_price_id_retail && p.stripe_price_id_retail.includes('price_1TGsv')) ||
-      (p.stripe_price_id_member && p.stripe_price_id_member.includes('price_1TGsv'));
-
-    if (hasTestPrices) {
-      console.log(`  ⚠️  WARNING: Contains TEST mode price IDs!`);
-    }
-    console.log('');
-  });
-
-  console.log('\n' + '='.repeat(80));
-  console.log('🔄 Updating to LIVE mode price IDs...\n');
-
-  let updateCount = 0;
-  let errorCount = 0;
-
-  for (const [slug, priceIds] of Object.entries(LIVE_PRICE_IDS)) {
+  for (const { slug, price_id } of updates) {
     try {
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from('products')
-        .update({
-          stripe_price_id_retail: priceIds.retail,
-          stripe_price_id_member: priceIds.member,
-          stripe_price_id: priceIds.member, // Default to member pricing
-        })
-        .eq('slug', slug);
+        .update({ stripe_price_id: price_id })
+        .eq('slug', slug)
+        .select();
 
       if (error) {
         console.error(`❌ Error updating ${slug}:`, error.message);
-        errorCount++;
       } else {
-        console.log(`✅ Updated ${slug}:`);
-        console.log(`   Retail: ${priceIds.retail}`);
-        console.log(`   Member: ${priceIds.member}`);
-        updateCount++;
+        console.log(`✅ Updated ${slug}: ${price_id}`);
       }
     } catch (err) {
-      console.error(`❌ Error updating ${slug}:`, err.message);
-      errorCount++;
+      console.error(`❌ Failed to update ${slug}:`, err.message);
     }
   }
 
-  console.log('\n' + '='.repeat(80));
-  console.log(`\n✅ Updated ${updateCount} products`);
-  if (errorCount > 0) {
-    console.log(`❌ ${errorCount} errors occurred`);
-  }
+  console.log('\n📊 Verifying updates...\n');
 
-  // Verify updates
-  console.log('\n🔍 Verifying updates...\n');
-  const { data: updatedProducts } = await supabase
+  const { data: products, error } = await supabase
     .from('products')
-    .select('slug, name, stripe_price_id_retail, stripe_price_id_member')
-    .in('slug', ['pulsemarket', 'pulseflow', 'pulsedrive', 'pulsecommand']);
+    .select('slug, name, stripe_price_id')
+    .order('slug');
 
-  updatedProducts.forEach(p => {
-    const isLiveRetail = p.stripe_price_id_retail && p.stripe_price_id_retail.startsWith('price_1THm');
-    const isLiveMember = p.stripe_price_id_member && p.stripe_price_id_member.startsWith('price_1THm');
-
-    console.log(`${p.name}:`);
-    console.log(`  Retail: ${p.stripe_price_id_retail} ${isLiveRetail ? '✅ LIVE' : '❌ TEST'}`);
-    console.log(`  Member: ${p.stripe_price_id_member} ${isLiveMember ? '✅ LIVE' : '❌ TEST'}`);
-  });
-
-  console.log('\n🎉 Database update complete!\n');
+  if (error) {
+    console.error('❌ Error fetching products:', error.message);
+  } else {
+    console.table(products);
+    console.log('\n✅ All products updated successfully!\n');
+  }
 }
 
-updateDatabasePrices().catch(console.error);
+updateDatabase().catch(console.error);
