@@ -303,7 +303,7 @@ export default function Sidebar({ isLicensedAgent = true }: SidebarProps) {
             { name: 'Rank Bonuses', href: '/dashboard/compensation/rank-bonuses' },
             { name: 'Bonus Pool', href: '/dashboard/compensation/bonus-pool' },
             { name: 'Leadership Pool', href: '/dashboard/compensation/leadership-pool' },
-            { name: 'Calculator', href: '/dashboard/compensation/calculator' },
+            { name: 'Calculator', href: '/dashboard/compensation-calculator' },
             { name: 'Glossary', href: '/dashboard/compensation/glossary' },
           ],
         },
