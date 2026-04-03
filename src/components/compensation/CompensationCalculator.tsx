@@ -88,6 +88,18 @@ const BC_OVERRIDES = {
 };
 
 export default function CompensationCalculator({ distributorName, currentRank }: CompensationCalculatorProps) {
+  // Normalize rank to match RANKS keys (handle lowercase, "affiliate", etc.)
+  const normalizeRank = (rank: string): keyof typeof RANKS => {
+    // Capitalize first letter
+    const normalized = rank.charAt(0).toUpperCase() + rank.slice(1).toLowerCase();
+    // Map "Affiliate" to "Starter" (default rank)
+    if (normalized === 'Affiliate') return 'Starter';
+    // Check if it's a valid rank
+    if (normalized in RANKS) return normalized as keyof typeof RANKS;
+    // Default to Starter
+    return 'Starter';
+  };
+
   // Personal Sales
   const [personalSales, setPersonalSales] = useState({
     pulsemarket: 0,
@@ -108,7 +120,7 @@ export default function CompensationCalculator({ distributorName, currentRank }:
     L7: { pulsemarket: 0, pulseflow: 0, pulsedrive: 0, pulsecommand: 0, businesscenter: 0 },
   });
 
-  const [selectedRank, setSelectedRank] = useState(currentRank);
+  const [selectedRank, setSelectedRank] = useState(normalizeRank(currentRank));
 
   // Calculate personal commission
   const calculatePersonalCommission = () => {
@@ -130,7 +142,8 @@ export default function CompensationCalculator({ distributorName, currentRank }:
 
   // Calculate team overrides
   const calculateTeamOverrides = () => {
-    const maxLevels = RANKS[selectedRank as keyof typeof RANKS].levels;
+    const rankKey = selectedRank as keyof typeof RANKS;
+    const maxLevels = RANKS[rankKey]?.levels || 1; // Default to 1 if rank not found
     let total = 0;
 
     // For each level we're qualified for
@@ -214,7 +227,7 @@ export default function CompensationCalculator({ distributorName, currentRank }:
           ))}
         </select>
         <p className="text-xs text-gray-500 mt-2">
-          Unlocked Levels: L1-L{RANKS[selectedRank as keyof typeof RANKS].levels}
+          Unlocked Levels: L1-L{RANKS[selectedRank as keyof typeof RANKS]?.levels || 1}
         </p>
       </div>
 
@@ -260,7 +273,7 @@ export default function CompensationCalculator({ distributorName, currentRank }:
           <div className="space-y-6">
             {(['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7'] as const).map((level) => {
               const levelNum = parseInt(level.substring(1));
-              const maxLevels = RANKS[selectedRank as keyof typeof RANKS].levels;
+              const maxLevels = RANKS[selectedRank as keyof typeof RANKS]?.levels || 1;
               const unlocked = levelNum <= maxLevels;
 
               return (
@@ -348,7 +361,7 @@ export default function CompensationCalculator({ distributorName, currentRank }:
               <p className="text-sm font-medium">Rank Bonus</p>
             </div>
             <p className="text-3xl font-bold">
-              ${RANKS[selectedRank as keyof typeof RANKS].bonus.toLocaleString()}
+              ${(RANKS[selectedRank as keyof typeof RANKS]?.bonus || 0).toLocaleString()}
             </p>
             <p className="text-xs mt-1">One-time payment</p>
           </div>
