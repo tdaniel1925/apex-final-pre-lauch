@@ -926,7 +926,7 @@ function ProductsPageContent({ distributorName }: { distributorName: string | nu
                       activeTab === 'podcast'
                         ? undefined
                         : activeTab === 'email'
-                        ? () => window.open(example.liveUrl, '_blank')
+                        ? () => window.open(`/email-preview?url=${encodeURIComponent(example.liveUrl || '')}&title=${encodeURIComponent(example.title)}`, '_blank')
                         : () => setSelectedExample(example)
                     }
                     style={{
