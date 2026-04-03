@@ -983,20 +983,33 @@ function ProductsPageContent({ distributorName }: { distributorName: string | nu
                           overflow: 'hidden',
                         }}
                       >
-                        {activeTab === 'email' && example.liveUrl ? (
-                          // For emails, show iframe preview instead of SVG thumbnail
-                          <iframe
-                            src={example.liveUrl}
-                            title={example.title}
+                        {activeTab === 'email' ? (
+                          // For email tab, show custom email card preview
+                          <div
                             style={{
-                              width: '600px',
-                              height: '800px',
-                              border: 'none',
-                              transform: 'scale(0.33)',
-                              transformOrigin: 'top left',
-                              pointerEvents: 'none',
+                              width: '100%',
+                              height: '100%',
+                              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                              display: 'flex',
+                              flexDirection: 'column',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              padding: '24px',
                             }}
-                          />
+                          >
+                            <div style={{ fontSize: '48px', marginBottom: '12px' }}>📧</div>
+                            <div
+                              style={{
+                                color: '#ffffff',
+                                fontSize: '14px',
+                                fontWeight: 600,
+                                textAlign: 'center',
+                                lineHeight: '1.5',
+                              }}
+                            >
+                              {example.industry}
+                            </div>
+                          </div>
                         ) : example.thumbnail ? (
                           <img
                             src={example.thumbnail}
