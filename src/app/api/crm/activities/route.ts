@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
     const validTypes = ['call', 'email', 'meeting', 'note'];
     if (!validTypes.includes(activity_type)) {
       return NextResponse.json(
-        { error: \`Invalid activity_type. Must be one of: \${validTypes.join(', ')}\` },
+        { error: `Invalid activity_type. Must be one of: ${validTypes.join(', ')}` },
         { status: 400 }
       );
     }
