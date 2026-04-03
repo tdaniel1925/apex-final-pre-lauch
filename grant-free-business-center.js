@@ -44,7 +44,7 @@ async function grantFreeBusinessCenter() {
     { type: 'email', value: 'sellag.sb@gmail.com', label: 'sellag.sb@gmail.com' },
     { type: 'email', value: 'phil@valorfs.com', label: 'phil@valorfs.com' },
     { type: 'email', value: 'fyifromcharles@gmail.com', label: 'fyifromcharles@gmail.com' },
-    { type: 'email', value: 'bartlt01@gmail.com', label: 'Taunya Bartlett (bartlt01@gmail.com)' },
+    { type: 'email', value: 'bartlt01@gmail.com', label: 'Tanya Bartlett (bartlt01@gmail.com)' },
     { type: 'email', value: 'anh@doanfs.com', label: 'Anh Doan (anh@doanfs.com)' },
     { type: 'full_name', first: 'donna', last: 'harvey', label: 'Donna Harvey' },
     { type: 'full_name', first: 'donna', last: 'potter', label: 'Donna Potter' }

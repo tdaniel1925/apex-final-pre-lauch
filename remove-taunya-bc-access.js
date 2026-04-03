@@ -5,24 +5,24 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-async function removeTaunyaAccess() {
-  console.log('🔍 Finding Taunya Bartlett...\n');
+async function removeTanyaAccess() {
+  console.log('🔍 Finding Tanya Bartlett...\n');
 
-  // Find Taunya
-  const { data: taunya, error: findError } = await supabase
+  // Find Tanya
+  const { data: tanya, error: findError } = await supabase
     .from('distributors')
     .select('id, first_name, last_name, email')
-    .ilike('first_name', 'taun%')
+    .ilike('first_name', 'tan%')
     .single();
 
-  if (findError || !taunya) {
-    console.log('❌ Could not find Taunya Bartlett');
+  if (findError || !tanya) {
+    console.log('❌ Could not find Tanya Bartlett');
     console.log('Error:', findError?.message);
     return;
   }
 
-  console.log(`✅ Found: ${taunya.first_name} ${taunya.last_name} (${taunya.email})`);
-  console.log(`   Distributor ID: ${taunya.id}\n`);
+  console.log(`✅ Found: ${tanya.first_name} ${tanya.last_name} (${tanya.email})`);
+  console.log(`   Distributor ID: ${tanya.id}\n`);
 
   // Get Business Center product
   const { data: bcProduct } = await supabase
@@ -38,16 +38,16 @@ async function removeTaunyaAccess() {
 
   console.log(`📦 Business Center Product ID: ${bcProduct.id}\n`);
 
-  // Check if Taunya has BC access
+  // Check if Tanya has BC access
   const { data: existingAccess } = await supabase
     .from('service_access')
     .select('*')
-    .eq('distributor_id', taunya.id)
+    .eq('distributor_id', tanya.id)
     .eq('product_id', bcProduct.id)
     .single();
 
   if (!existingAccess) {
-    console.log('ℹ️  Taunya does not have Business Center access (nothing to remove)');
+    console.log('ℹ️  Tanya does not have Business Center access (nothing to remove)');
     return;
   }
 
@@ -57,7 +57,7 @@ async function removeTaunyaAccess() {
   const { error: deleteError } = await supabase
     .from('service_access')
     .delete()
-    .eq('distributor_id', taunya.id)
+    .eq('distributor_id', tanya.id)
     .eq('product_id', bcProduct.id);
 
   if (deleteError) {
@@ -65,11 +65,11 @@ async function removeTaunyaAccess() {
     return;
   }
 
-  console.log('✅ SUCCESS! Taunya Bartlett\'s free Business Center access has been removed.');
+  console.log('✅ SUCCESS! Tanya Bartlett\'s free Business Center access has been removed.');
   console.log('   She will now need to pay $39/month to access Business Center.');
 }
 
-removeTaunyaAccess().then(() => {
+removeTanyaAccess().then(() => {
   console.log('\n✅ Complete');
   process.exit(0);
 }).catch(err => {
