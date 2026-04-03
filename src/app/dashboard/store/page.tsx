@@ -8,6 +8,7 @@ import { createClient } from '@/lib/supabase/server';
 import { createServiceClient } from '@/lib/supabase/service';
 import { getAdminUser } from '@/lib/auth/admin';
 import PulseProductCard from '@/components/dashboard/PulseProductCard';
+import BusinessCenterButton from '@/components/dashboard/BusinessCenterButton';
 import { Package, CheckCircle } from 'lucide-react';
 
 export const metadata = {
@@ -178,20 +179,7 @@ export default async function StorePage() {
               </div>
 
               {/* Right Side - CTA */}
-              <div className="flex-shrink-0">
-                <form action="/api/stripe/create-product-checkout" method="POST">
-                  <input type="hidden" name="product_id" value="528eea55-21f7-415b-a2ea-ab39b65d6101" />
-                  <button
-                    type="submit"
-                    className="bg-white text-blue-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-50 transition-colors shadow-lg hover:shadow-xl"
-                  >
-                    Purchase Business Center
-                  </button>
-                </form>
-                <p className="text-xs text-blue-100 mt-3 text-center">
-                  Secure checkout via Stripe
-                </p>
-              </div>
+              <BusinessCenterButton />
             </div>
           </div>
         </div>
