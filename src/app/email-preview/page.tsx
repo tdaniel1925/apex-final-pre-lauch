@@ -69,10 +69,11 @@ function EmailPreviewContent() {
       {/* Email iframe */}
       <div className="flex-1 bg-white m-6 rounded-lg shadow-2xl overflow-hidden">
         <iframe
-          src={emailUrl}
+          src={`/api/email-content?path=${encodeURIComponent(emailUrl)}`}
           title={title}
           className="w-full h-full border-none"
           style={{ minHeight: 'calc(100vh - 120px)' }}
+          sandbox="allow-same-origin"
         />
       </div>
     </div>
