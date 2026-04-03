@@ -11,7 +11,7 @@ import { getCurrentUser } from '@/lib/auth/server';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const currentUser = await getCurrentUser();
@@ -19,13 +19,14 @@ export async function GET(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
+    const { id } = await params;
     const supabase = await createClient();
 
     // Get task by ID (must belong to current user)
     const { data: task, error } = await supabase
       .from('crm_tasks')
       .select('*')
-      .eq('id', params.id)
+      .eq('id', id)
       .eq('distributor_id', currentUser.id)
       .single();
 
@@ -45,7 +46,7 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const currentUser = await getCurrentUser();
@@ -53,6 +54,7 @@ export async function PUT(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
+    const { id } = await params;
     const body = await request.json();
     const { title, description, priority, status, due_date, contact_id } = body;
 
@@ -77,7 +79,7 @@ export async function PUT(
         due_date: due_date || null,
         contact_id: contact_id || null,
       })
-      .eq('id', params.id)
+      .eq('id', id)
       .eq('distributor_id', currentUser.id)
       .select()
       .single();
@@ -102,7 +104,7 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const currentUser = await getCurrentUser();
@@ -110,13 +112,14 @@ export async function DELETE(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
+    const { id } = await params;
     const supabase = await createClient();
 
     // Delete task (must belong to current user)
     const { error } = await supabase
       .from('crm_tasks')
       .delete()
-      .eq('id', params.id)
+      .eq('id', id)
       .eq('distributor_id', currentUser.id);
 
     if (error) {
