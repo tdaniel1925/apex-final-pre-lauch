@@ -902,7 +902,7 @@ function ProductsPageContent({ distributorName }: { distributorName: string | nu
                 Real Examples
               </h2>
               <p style={{ fontSize: '16px', color: '#64748b', textAlign: 'center', marginBottom: '8px' }}>
-                {activeTab === 'podcast' ? 'Listen to AI-generated podcasts' : activeTab === 'video' ? 'Watch AI-generated videos (click to play)' : 'Click any example to view full size'}
+                {activeTab === 'podcast' ? 'Listen to AI-generated podcasts' : activeTab === 'video' ? 'Watch AI-generated videos (click to play)' : activeTab === 'email' ? 'Click any example to open in new tab' : 'Click any example to view full size'}
               </p>
               {activeTab === 'video' && (
                 <p style={{ fontSize: '14px', color: '#10b981', textAlign: 'center', marginBottom: '40px', fontWeight: 600 }}>
@@ -922,7 +922,13 @@ function ProductsPageContent({ distributorName }: { distributorName: string | nu
                 {currentExamples.map((example) => (
                   <div
                     key={example.id}
-                    onClick={activeTab === 'podcast' ? undefined : () => setSelectedExample(example)}
+                    onClick={
+                      activeTab === 'podcast'
+                        ? undefined
+                        : activeTab === 'email'
+                        ? () => window.open(example.liveUrl, '_blank')
+                        : () => setSelectedExample(example)
+                    }
                     style={{
                       background: '#ffffff',
                       borderRadius: '16px',
