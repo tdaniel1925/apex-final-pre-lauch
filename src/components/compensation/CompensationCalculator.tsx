@@ -217,7 +217,7 @@ export default function CompensationCalculator({ distributorName, currentRank }:
         <label className="block text-sm font-semibold text-gray-900 mb-3">Your Rank</label>
         <select
           value={selectedRank}
-          onChange={(e) => setSelectedRank(e.target.value)}
+          onChange={(e) => setSelectedRank(e.target.value as keyof typeof RANKS)}
           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg font-medium"
         >
           {Object.entries(RANKS).map(([key, rank]) => (
