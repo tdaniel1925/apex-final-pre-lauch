@@ -2,7 +2,6 @@
 
 import { X } from 'lucide-react';
 import { useState } from 'react';
-import Link from 'next/link';
 
 interface TrialBannerProps {
   trialEndsAt?: Date;
@@ -10,8 +9,39 @@ interface TrialBannerProps {
   subscriptionStatus?: 'active' | 'trialing' | 'canceled' | 'expired';
 }
 
+const BUSINESS_CENTER_PRODUCT_ID = '528eea55-21f7-415b-a2ea-ab39b65d6101';
+
 export default function TrialBanner({ trialEndsAt, hasAccess, subscriptionStatus }: TrialBannerProps) {
   const [dismissed, setDismissed] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubscribe = async () => {
+    try {
+      setIsLoading(true);
+      setError(null);
+
+      const response = await fetch('/api/stripe/create-product-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          product_id: BUSINESS_CENTER_PRODUCT_ID,
+        }),
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || 'Failed to create checkout session');
+      }
+
+      const { url } = await response.json();
+      window.location.href = url;
+    } catch (err: any) {
+      console.error('Checkout error:', err);
+      setError(err.message || 'Failed to start checkout. Please try again.');
+      setIsLoading(false);
+    }
+  };
 
   if (dismissed) return null;
 
@@ -46,12 +76,18 @@ export default function TrialBanner({ trialEndsAt, hasAccess, subscriptionStatus
           </div>
 
           <div className="flex items-center gap-3">
-            <Link
-              href="/dashboard/store"
-              className="px-4 py-2 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition-colors font-medium text-sm"
+            {error && (
+              <p className="text-sm text-white/90 bg-white/20 px-3 py-1 rounded">
+                {error}
+              </p>
+            )}
+            <button
+              onClick={handleSubscribe}
+              disabled={isLoading}
+              className="px-4 py-2 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition-colors font-medium text-sm disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isExpired ? 'Subscribe Now' : 'Unlock Now'}
-            </Link>
+              {isLoading ? 'Loading...' : (isExpired ? 'Subscribe Now' : 'Unlock Now')}
+            </button>
             <button
               onClick={() => setDismissed(true)}
               className="p-1 hover:bg-white/20 rounded transition-colors"
