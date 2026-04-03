@@ -7,9 +7,8 @@ import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { createServiceClient } from '@/lib/supabase/service';
 import { getAdminUser } from '@/lib/auth/admin';
-import StoreClient from '@/components/dashboard/StoreClient';
 import PulseProductCard from '@/components/dashboard/PulseProductCard';
-import { Package, CheckCircle, Clock } from 'lucide-react';
+import { Package, CheckCircle } from 'lucide-react';
 
 export const metadata = {
   title: 'Store - Apex Affinity Group',
@@ -51,33 +50,6 @@ export default async function StorePage() {
     // Otherwise, they need to complete signup
     redirect('/signup');
   }
-
-  // Fetch active products/services
-  const { data: products } = await serviceClient
-    .from('products')
-    .select(`
-      *,
-      category:product_categories(name, slug, description)
-    `)
-    .eq('is_active', true)
-    .order('display_order', { ascending: true });
-
-  // Fetch user's current subscriptions/access
-  const { data: userAccess } = await serviceClient
-    .from('service_access')
-    .select('product_id, status, expires_at, is_trial')
-    .eq('distributor_id', distributor.id)
-    .eq('status', 'active');
-
-  const accessMap = new Map(userAccess?.map(a => [a.product_id, a]) || []);
-
-  // Group products by category
-  const productsByCategory = products?.reduce((acc: any, product: any) => {
-    const catName = product.category?.name || 'Other';
-    if (!acc[catName]) acc[catName] = [];
-    acc[catName].push(product);
-    return acc;
-  }, {}) || {};
 
   // Define Pulse Products (member pricing)
   const pulseProducts = [
@@ -166,116 +138,63 @@ export default async function StorePage() {
           </div>
         </div>
 
-        {/* Products by Category */}
-        {Object.entries(productsByCategory).map(([categoryName, categoryProducts]: [string, any]) => (
-          <div key={categoryName} className="mb-12">
-            <h2 className="text-2xl font-bold text-slate-900 mb-4">{categoryName}</h2>
+        {/* Business Center - Horizontal Card */}
+        <div className="mb-12">
+          <h2 className="text-2xl font-bold text-slate-900 mb-4">Business Tools</h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {categoryProducts.map((product: any) => {
-                const hasAccess = accessMap.has(product.id);
-                const accessInfo = accessMap.get(product.id);
+          <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg shadow-lg overflow-hidden">
+            <div className="flex flex-col md:flex-row items-center justify-between p-8 gap-6">
+              {/* Left Side - Info */}
+              <div className="flex-1 text-white">
+                <div className="flex items-center gap-3 mb-3">
+                  <Package className="w-8 h-8" />
+                  <h3 className="text-2xl font-bold">Business Center</h3>
+                </div>
+                <p className="text-blue-100 mb-4 text-lg">
+                  Unlock powerful tools to manage your business: CRM, leads tracking, sales analytics, commission calculator, and more.
+                </p>
+                <div className="flex items-baseline gap-2 mb-4">
+                  <span className="text-4xl font-bold">$39</span>
+                  <span className="text-xl text-blue-100">/month</span>
+                </div>
+                <ul className="space-y-2 text-blue-50">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-5 h-5" />
+                    CRM & Contact Management
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-5 h-5" />
+                    Sales & Commission Tracking
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-5 h-5" />
+                    Lead Generation Tools
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-5 h-5" />
+                    Analytics Dashboard
+                  </li>
+                </ul>
+              </div>
 
-                return (
-                  <div
-                    key={product.id}
-                    className="bg-white rounded-lg shadow-md border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow"
+              {/* Right Side - CTA */}
+              <div className="flex-shrink-0">
+                <form action="/api/stripe/create-product-checkout" method="POST">
+                  <input type="hidden" name="product_id" value="528eea55-21f7-415b-a2ea-ab39b65d6101" />
+                  <button
+                    type="submit"
+                    className="bg-white text-blue-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-50 transition-colors shadow-lg hover:shadow-xl"
                   >
-                    {/* Product Image */}
-                    {product.image_url ? (
-                      <img
-                        src={product.image_url}
-                        alt={product.name}
-                        className="w-full h-48 object-cover"
-                      />
-                    ) : (
-                      <div className="w-full h-48 bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center">
-                        <Package className="w-16 h-16 text-white opacity-50" />
-                      </div>
-                    )}
-
-                    {/* Product Info */}
-                    <div className="p-6">
-                      <div className="flex items-start justify-between mb-3">
-                        <h3 className="text-lg font-bold text-slate-900">{product.name}</h3>
-                        {hasAccess && (
-                          <span className="flex items-center gap-1 text-xs font-medium text-green-700 bg-green-100 px-2 py-1 rounded">
-                            <CheckCircle className="w-3 h-3" />
-                            Active
-                          </span>
-                        )}
-                      </div>
-
-                      <p className="text-sm text-slate-600 mb-4 line-clamp-3">
-                        {product.description || 'No description available'}
-                      </p>
-
-                      {/* Pricing */}
-                      <div className="mb-4">
-                        <div className="flex items-baseline gap-2">
-                          <span className="text-2xl font-bold text-slate-900">
-                            ${(product.wholesale_price_cents / 100).toFixed(0)}
-                          </span>
-                          {product.is_subscription && (
-                            <span className="text-sm text-slate-600">
-                              / {product.subscription_interval}
-                            </span>
-                          )}
-                        </div>
-                        <p className="text-xs text-slate-500 mt-1">
-                          Earn {product.bv || 0} BV credits
-                        </p>
-                      </div>
-
-                      {/* Trial Info */}
-                      {product.trial_days > 0 && !hasAccess && (
-                        <div className="flex items-center gap-2 text-xs text-blue-700 bg-blue-50 px-3 py-2 rounded mb-4">
-                          <Clock className="w-4 h-4" />
-                          {product.trial_days} day free trial
-                        </div>
-                      )}
-
-                      {/* Action Button */}
-                      {hasAccess ? (
-                        <div>
-                          {accessInfo?.is_trial && (
-                            <p className="text-xs text-orange-600 mb-2">
-                              Trial ends {new Date(accessInfo.expires_at).toLocaleDateString()}
-                            </p>
-                          )}
-                          <a
-                            href={product.access_url || '#'}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block w-full text-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
-                          >
-                            Access Service
-                          </a>
-                        </div>
-                      ) : (
-                        <StoreClient
-                          productId={product.id}
-                          distributorId={distributor.id}
-                          productName={product.name}
-                          price={(product.wholesale_price_cents / 100).toFixed(0)}
-                          isSubscription={product.is_subscription}
-                        />
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
+                    Purchase Business Center
+                  </button>
+                </form>
+                <p className="text-xs text-blue-100 mt-3 text-center">
+                  Secure checkout via Stripe
+                </p>
+              </div>
             </div>
           </div>
-        ))}
-
-        {/* Empty State */}
-        {products && products.length === 0 && (
-          <div className="text-center py-12">
-            <Package className="w-16 h-16 text-slate-300 mx-auto mb-4" />
-            <p className="text-slate-500">No services available yet</p>
-          </div>
-        )}
+        </div>
       </div>
     </div>
   );
