@@ -63,6 +63,8 @@ export default async function LeadsListPage({
       featurePath="/dashboard/crm/leads"
       hasAccess={bcStatus.hasSubscription}
       daysWithout={bcStatus.daysWithout}
+      trialEndsAt={bcStatus.trialEndsAt}
+      subscriptionStatus={bcStatus.subscriptionStatus}
     >
       <div className="min-h-screen bg-slate-50 p-8">
         <div className="max-w-7xl mx-auto">

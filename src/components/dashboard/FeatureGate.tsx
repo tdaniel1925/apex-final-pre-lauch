@@ -12,6 +12,7 @@
 import { Lock, ArrowRight, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 import { BUSINESS_CENTER_BENEFITS, getFeatureName } from '@/lib/subscription/feature-gate';
+import TrialBanner from './TrialBanner';
 
 export interface FeatureGateProps {
   /** Feature path being gated */
@@ -22,6 +23,10 @@ export interface FeatureGateProps {
   daysWithout: number;
   /** Child content to render if has access */
   children: React.ReactNode;
+  /** Trial end date (if in trial) */
+  trialEndsAt?: Date;
+  /** Subscription status */
+  subscriptionStatus?: 'active' | 'trialing' | 'canceled' | 'expired';
 }
 
 /**
@@ -34,10 +39,20 @@ export default function FeatureGate({
   hasAccess,
   daysWithout,
   children,
+  trialEndsAt,
+  subscriptionStatus,
 }: FeatureGateProps) {
   // If has access, render children
   if (hasAccess) {
-    return <>{children}</>;
+    return (
+      <>
+        {/* Show trial banner if in trial */}
+        {subscriptionStatus === 'trialing' && trialEndsAt && (
+          <TrialBanner trialEndsAt={trialEndsAt} />
+        )}
+        {children}
+      </>
+    );
   }
 
   // Otherwise, show upgrade prompt
@@ -139,12 +154,16 @@ export function ServerFeatureGate({
   hasAccess,
   daysWithout,
   children,
+  trialEndsAt,
+  subscriptionStatus,
 }: FeatureGateProps) {
   return (
     <FeatureGate
       featurePath={featurePath}
       hasAccess={hasAccess}
       daysWithout={daysWithout}
+      trialEndsAt={trialEndsAt}
+      subscriptionStatus={subscriptionStatus}
     >
       {children}
     </FeatureGate>
