@@ -69,7 +69,7 @@ export default async function AnnuityCommissionsPage() {
 
       {/* Searchable Commission Grid */}
       <CommissionGrid
-        products={annuityData}
+        products={annuityData as any}
         levels={levels}
         type="annuity"
       />
