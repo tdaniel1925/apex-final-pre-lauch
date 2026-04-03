@@ -243,7 +243,7 @@ export default function CompensationCalculator({ distributorName, currentRank }:
             {Object.entries(PRODUCTS).map(([key, product]) => (
               <div key={key}>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  {product.name} (${product.memberPrice}/mo)
+                  {product.name} (${product.retailPrice}/mo)
                 </label>
                 <input
                   type="number"
