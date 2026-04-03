@@ -48,8 +48,8 @@ export default async function SmartOfficeV2Page() {
 
     serviceClient
       .from('smartoffice_sync_logs')
-      .select('completed_at, status, agents_synced, policies_synced')
-      .order('completed_at', { ascending: false })
+      .select('completed_at, status, agents_synced, policies_synced, created_at')
+      .order('created_at', { ascending: false })
       .limit(1)
       .maybeSingle(),
 
@@ -66,7 +66,12 @@ export default async function SmartOfficeV2Page() {
     unmappedAgents: (agentsResult.count || 0) - (mappedAgentsResult.count || 0),
     totalPolicies: policiesResult.count || 0,
     totalCommissions: commissionsResult.count || 0,
-    lastSync: lastSyncResult.data,
+    lastSync: lastSyncResult.data ? {
+      completed_at: lastSyncResult.data.completed_at,
+      status: lastSyncResult.data.status,
+      agents_synced: lastSyncResult.data.agents_synced || 0,
+      policies_synced: lastSyncResult.data.policies_synced || 0,
+    } : null,
   };
 
   const config = configResult.data;
