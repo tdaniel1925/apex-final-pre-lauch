@@ -35,7 +35,7 @@ export class IPipelineSAMLClient {
     // Also handle single-line PEM format (reformat to proper PEM with newlines every 64 chars)
     this.privateKey = this.formatPEM(process.env.IPIPELINE_SAML_PRIVATE_KEY || '', 'PRIVATE KEY');
     this.certificate = this.formatPEM(process.env.IPIPELINE_SAML_CERTIFICATE || '', 'CERTIFICATE');
-    this.entityId = process.env.IPIPELINE_ENTITY_ID || 'https://theapexway.net/saml/idp';
+    this.entityId = process.env.IPIPELINE_ENTITY_ID || 'https://reachtheapex.net/saml/idp';
     this.environment = (process.env.IPIPELINE_ENVIRONMENT as IPipelineEnvironment) || 'uat';
   }
 
@@ -297,7 +297,7 @@ export class IPipelineSAMLClient {
    * Generate IdP Metadata XML for sending to iPipeline
    */
   generateIdPMetadata(): string {
-    const ssoUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://theapexway.net';
+    const ssoUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://reachtheapex.net';
 
     return `<?xml version="1.0" encoding="UTF-8"?>
 <md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
@@ -321,7 +321,7 @@ export class IPipelineSAMLClient {
   </md:Organization>
   <md:ContactPerson contactType="technical">
     <md:Company>Apex Affinity Group</md:Company>
-    <md:EmailAddress>support@theapexway.net</md:EmailAddress>
+    <md:EmailAddress>support@reachtheapex.net</md:EmailAddress>
   </md:ContactPerson>
 </md:EntityDescriptor>`;
   }
