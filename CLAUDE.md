@@ -37,10 +37,12 @@ If you see a "conversation summary" above, or this feels like a fresh start but 
 
 **ALL system emails MUST follow these rules:**
 
-### 1. Email Domain
-- **ALWAYS use:** `@theapexway.net` domain for ALL emails
-- **NEVER use:** Any other domain (notifications@reachtheapex.net, etc.)
-- **Verified addresses:** `theapex@theapexway.net`, `support@theapexway.net`, `noreply@theapexway.net`
+### 1. Email Domains (TWO SEPARATE DOMAINS!)
+- **Email sending (FROM address):** `@theapexway.net` (verified in Resend)
+  - Use: `theapex@theapexway.net`, `support@theapexway.net`, `noreply@theapexway.net`
+- **Website links (in email body):** `https://reachtheapex.net` (production domain)
+  - All login buttons, dashboard links, store links must use `reachtheapex.net`
+  - NEVER use `theapexway.net` in URLs/links
 
 ### 2. Email Template
 - **ALWAYS use:** Base template at `src/lib/email/templates/base-email-template.html`
