@@ -9,8 +9,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { getTrainingByDay } from '@/lib/training/daily-training-content';
 
-export default function TrainingPage({ params }: { params: { day: string } }) {
-  const day = parseInt(params.day);
+export default async function TrainingPage({ params }: { params: Promise<{ day: string }> }) {
+  const { day: dayParam } = await params;
+  const day = parseInt(dayParam);
 
   if (isNaN(day) || day < 1 || day > 30) {
     notFound();
