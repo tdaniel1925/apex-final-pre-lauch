@@ -1,0 +1,9 @@
+#!/bin/bash
+printf "price_1TIClH0s7Jg0EdCpmtyGm6q9" | vercel env add STRIPE_PULSEMARKET_RETAIL_PRICE_ID production
+printf "price_1TIClI0s7Jg0EdCp8kq6nbox" | vercel env add STRIPE_PULSEMARKET_MEMBER_PRICE_ID production
+printf "price_1TIClI0s7Jg0EdCpVfybCJyT" | vercel env add STRIPE_PULSEFLOW_RETAIL_PRICE_ID production
+printf "price_1TIClI0s7Jg0EdCpLwhhiZuz" | vercel env add STRIPE_PULSEFLOW_MEMBER_PRICE_ID production
+printf "price_1TIClJ0s7Jg0EdCpiCqXwgel" | vercel env add STRIPE_PULSEDRIVE_RETAIL_PRICE_ID production
+printf "price_1TIClJ0s7Jg0EdCpWY9OpdFh" | vercel env add STRIPE_PULSEDRIVE_MEMBER_PRICE_ID production
+printf "price_1TIClJ0s7Jg0EdCpUo41hli0" | vercel env add STRIPE_PULSECOMMAND_RETAIL_PRICE_ID production
+printf "price_1TIClK0s7Jg0EdCpbAoW8JXA" | vercel env add STRIPE_PULSECOMMAND_MEMBER_PRICE_ID production

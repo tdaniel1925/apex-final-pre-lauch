@@ -87,15 +87,56 @@ export async function checkBusinessCenterSubscription(
     .eq('status', 'active')
     .single();
 
-  // 5. Has active subscription - no nag needed
+  // 5. Check if service access exists
   if (serviceAccess) {
+    // Check if trial has expired
+    if (serviceAccess.is_trial && serviceAccess.trial_ends_at) {
+      const trialEndDate = new Date(serviceAccess.trial_ends_at);
+      const now = new Date();
+
+      if (now > trialEndDate) {
+        // Trial expired - update status and block access
+        await supabase
+          .from('service_access')
+          .update({ status: 'expired' })
+          .eq('distributor_id', distributorId)
+          .eq('product_id', businessCenterProduct.id);
+
+        const daysExpired = Math.floor(
+          (now.getTime() - trialEndDate.getTime()) / (1000 * 60 * 60 * 24)
+        );
+
+        return {
+          hasSubscription: false,
+          daysWithout: daysExpired,
+          nagLevel: 'hard',
+          subscriptionStatus: 'expired',
+          trialEndsAt: trialEndDate,
+        };
+      }
+
+      // Trial still active
+      const daysRemaining = Math.ceil(
+        (trialEndDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24)
+      );
+
+      return {
+        hasSubscription: true,
+        daysWithout: 0,
+        nagLevel: daysRemaining <= 3 ? 'soft' : 'none', // Show reminder in last 3 days
+        subscriptionStatus: 'trialing',
+        expiresAt: serviceAccess.expires_at ? new Date(serviceAccess.expires_at) : undefined,
+        trialEndsAt: trialEndDate,
+      };
+    }
+
+    // Paid subscription active
     return {
       hasSubscription: true,
       daysWithout: 0,
       nagLevel: 'none',
-      subscriptionStatus: serviceAccess.is_trial ? 'trialing' : 'active',
+      subscriptionStatus: 'active',
       expiresAt: serviceAccess.expires_at ? new Date(serviceAccess.expires_at) : undefined,
-      trialEndsAt: serviceAccess.trial_ends_at ? new Date(serviceAccess.trial_ends_at) : undefined,
     };
   }
 
