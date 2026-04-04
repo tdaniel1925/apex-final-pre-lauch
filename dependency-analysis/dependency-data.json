@@ -1,0 +1,3411 @@
+{
+  "totalFiles": 974,
+  "totalDependencies": 1466,
+  "circularDependencies": [
+    [
+      "components/organization/OrganizationTable.tsx",
+      "components/organization/OrganizationRow.tsx"
+    ]
+  ],
+  "orphanFiles": [
+    "app/[slug]/live/page.tsx",
+    "app/[slug]/not-found.tsx",
+    "app/about/page.tsx",
+    "app/admin/commission-run/page.tsx",
+    "app/admin/downloads/page.tsx",
+    "app/admin/fulfillment/kanban/page.tsx",
+    "app/admin/ledger/page.tsx",
+    "app/admin/loading.tsx",
+    "app/admin/support/page.tsx",
+    "app/admin/transactions/page.tsx",
+    "app/ai-employee/page.tsx",
+    "app/api/admin/create-cart-table/route.ts",
+    "app/api/admin/run-migrations/route.ts",
+    "app/api/admin/seed-products/route.ts",
+    "app/api/alerts/photo-warning/route.ts",
+    "app/api/apps/pulsefollow/route.ts",
+    "app/api/cron/nurture-send/route.ts",
+    "app/api/dashboard/ai-chat/tools/tool-definitions.ts",
+    "app/api/debug-stripe/route.ts",
+    "app/api/email-content/route.ts",
+    "app/api/invites/send/route.ts",
+    "app/api/test-email/route.ts",
+    "app/api/training/generate-script/route.ts",
+    "app/cart/page.tsx",
+    "app/checkout/page.tsx",
+    "app/dashboard/ai-assistant/AIAssistantClient.tsx",
+    "app/dashboard/ai-assistant/page.tsx",
+    "app/dashboard/business-center/ai-nurture/page.tsx",
+    "app/dashboard/downloads/page.tsx",
+    "app/dashboard/genealogy/loading.tsx",
+    "app/dashboard/loading.tsx",
+    "app/dashboard/support/page.tsx",
+    "app/dashboard/support/tickets/[id]/page.tsx",
+    "app/dashboard/support/tickets/page.tsx",
+    "app/email-preview/page.tsx",
+    "app/genealogy-v2/page.tsx",
+    "app/live/page.tsx",
+    "app/matrix-v2/page.tsx",
+    "app/one-pager/page.tsx",
+    "app/products/page.backup.tsx",
+    "app/products/pulsecommand/page.tsx",
+    "app/products/pulsedrive/page.tsx",
+    "app/products/pulseflow/page.tsx",
+    "app/products/pulsemarket/page.tsx",
+    "app/products/smartlook/page.tsx",
+    "app/profile-v2/page.tsx",
+    "app/reports-v2/page.tsx",
+    "app/showcase/page.tsx",
+    "app/signup/credentials/page.tsx",
+    "app/signup/welcome/page.tsx",
+    "app/welcome/page.tsx",
+    "components/DashboardSwitcher.tsx",
+    "components/admin/NewDistributorForm.tsx",
+    "components/admin/TemplateManager.tsx",
+    "components/admin/TerminologyLegend.tsx",
+    "components/agentpulse/AgentPulseSidebarBanner.tsx",
+    "components/agentpulse/ComingSoonBanner.tsx",
+    "components/cart/CartIcon.tsx",
+    "components/dashboard-v2/ChatHeader.tsx",
+    "components/dashboard-v2/QuickActionBar.tsx",
+    "components/dashboard-v2/SlidingSidebar.tsx",
+    "components/dashboard-v2/chat/ButtonGrid.tsx",
+    "components/dashboard-v2/chat/ChartCard.tsx",
+    "components/dashboard-v2/chat/MatrixVisualization.tsx",
+    "components/dashboard-v2/chat/StatCard.tsx",
+    "components/dashboard-v2/chat/TeamMemberCard.tsx",
+    "components/dashboard/AIAssistantBanner.tsx",
+    "components/dashboard/AIAssistantCard.tsx",
+    "components/dashboard/AIRecommendations.tsx",
+    "components/dashboard/CEOVideoSection.tsx",
+    "components/dashboard/CopyReferralButton.tsx",
+    "components/dashboard/QuickActions.tsx",
+    "components/dashboard/RaceTo100Banner.tsx",
+    "components/dashboard/RecentAICallsWidget.tsx",
+    "components/dashboard/ReferralLink.tsx",
+    "components/dashboard/SlugChangeForm.tsx",
+    "components/dashboard/StoreClient.tsx",
+    "components/dashboard/TrainingAudioPlayer.tsx",
+    "components/dashboard/UsageLimitModal.tsx",
+    "components/forms/ProspectSignupForm.tsx",
+    "components/genealogy/GenealogyPageSkeleton.tsx",
+    "components/marketing/AboutStats.tsx",
+    "components/marketing/CompanyLogos.tsx",
+    "components/marketing/FAQ.tsx",
+    "components/marketing/Footer.tsx",
+    "components/marketing/GettingStarted.tsx",
+    "components/marketing/StatsSection.tsx",
+    "components/marketing/Testimonials.tsx",
+    "components/marketing/WhyApex.tsx",
+    "components/race-to-100/ConfettiCelebration.tsx",
+    "components/team/TeamPageSkeleton.tsx",
+    "components/waitlist/WaitlistScreen.tsx",
+    "db/schema.ts",
+    "emails/DistributorWelcomeEmail.tsx",
+    "hooks/useAIChatSessions.ts",
+    "hooks/useUserContext.ts",
+    "lib/compensation/qv-bv-calculator.ts",
+    "lib/compensation/types.ts",
+    "lib/design-system.ts",
+    "lib/email/apex-email-template-v2.ts",
+    "lib/email/apex-email-template.ts",
+    "lib/email/logo-url.ts",
+    "lib/email/reminder-email.ts",
+    "lib/email/send-template-email.ts",
+    "lib/email/templates/base-email-template.tsx",
+    "lib/genealogy/tree-utils.ts",
+    "lib/matrix/level-calculator.ts",
+    "lib/profile/validation-notification-fix.ts",
+    "lib/supabase/middleware.ts",
+    "lib/utils/user-helpers.ts",
+    "lib/vapi/assistants.ts",
+    "middleware.ts",
+    "types/vitest.d.ts"
+  ],
+  "mostDependent": [
+    {
+      "file": "components/admin/DistributorDetailView.tsx",
+      "count": 14
+    },
+    {
+      "file": "components/admin/SmartOfficeClient.tsx",
+      "count": 12
+    },
+    {
+      "file": "app/api/signup/route.ts",
+      "count": 10
+    },
+    {
+      "file": "app/dashboard/page.tsx",
+      "count": 9
+    },
+    {
+      "file": "app/admin/compensation-settings/page.tsx",
+      "count": 8
+    },
+    {
+      "file": "app/api/webhooks/stripe/route.ts",
+      "count": 8
+    },
+    {
+      "file": "app/dashboard/business-center/page.tsx",
+      "count": 8
+    },
+    {
+      "file": "app/dashboard/team/page.tsx",
+      "count": 8
+    },
+    {
+      "file": "components/admin/smartoffice/developer-tools.tsx",
+      "count": 8
+    },
+    {
+      "file": "components/autopilot/SocialPostComposer.tsx",
+      "count": 8
+    },
+    {
+      "file": "app/api/admin/matrix/create-and-place/route.ts",
+      "count": 7
+    },
+    {
+      "file": "app/dashboard-v3/page.tsx",
+      "count": 7
+    },
+    {
+      "file": "app/dashboard/profile/page.tsx",
+      "count": 7
+    },
+    {
+      "file": "components/dashboard/AIChatModal.tsx",
+      "count": 7
+    },
+    {
+      "file": "app/api/dashboard/ai-chat/route.ts",
+      "count": 6
+    },
+    {
+      "file": "app/dashboard/commissions/page.tsx",
+      "count": 6
+    },
+    {
+      "file": "app/dashboard/genealogy/page.tsx",
+      "count": 6
+    },
+    {
+      "file": "app/dashboard/layout.tsx",
+      "count": 6
+    },
+    {
+      "file": "app/dashboard/sales/page.tsx",
+      "count": 6
+    },
+    {
+      "file": "app/dashboard/settings/page.tsx",
+      "count": 6
+    }
+  ],
+  "mostDependedUpon": [
+    {
+      "file": "lib/supabase/server.ts",
+      "count": 244
+    },
+    {
+      "file": "lib/supabase/service.ts",
+      "count": 177
+    },
+    {
+      "file": "lib/auth/admin.ts",
+      "count": 103
+    },
+    {
+      "file": "lib/types/index.ts",
+      "count": 74
+    },
+    {
+      "file": "components/ui/button.tsx",
+      "count": 46
+    },
+    {
+      "file": "lib/auth/server.ts",
+      "count": 41
+    },
+    {
+      "file": "lib/supabase/client.ts",
+      "count": 23
+    },
+    {
+      "file": "components/ui/card.tsx",
+      "count": 22
+    },
+    {
+      "file": "lib/subscription/check-business-center.ts",
+      "count": 17
+    },
+    {
+      "file": "lib/compensation/config.ts",
+      "count": 16
+    },
+    {
+      "file": "components/dashboard/FeatureGate.tsx",
+      "count": 14
+    },
+    {
+      "file": "lib/utils.ts",
+      "count": 14
+    },
+    {
+      "file": "lib/email/resend.ts",
+      "count": 13
+    },
+    {
+      "file": "lib/smartoffice/types.ts",
+      "count": 13
+    },
+    {
+      "file": "components/ui/badge.tsx",
+      "count": 12
+    },
+    {
+      "file": "types/meeting.ts",
+      "count": 11
+    },
+    {
+      "file": "lib/admin/matrix-manager.ts",
+      "count": 10
+    },
+    {
+      "file": "lib/autopilot/invitation-helpers.ts",
+      "count": 10
+    },
+    {
+      "file": "lib/stripe/autopilot-products.ts",
+      "count": 9
+    },
+    {
+      "file": "lib/stripe/autopilot-helpers.ts",
+      "count": 8
+    }
+  ],
+  "dependencyTree": {
+    "app/(dashboard)/autopilot/crm/contacts/page.tsx": [
+      "components/autopilot/crm/ContactList.tsx",
+      "lib/auth/server.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/(dashboard)/autopilot/flyers/page.tsx": [
+      "components/autopilot/FlyerGallery.tsx",
+      "components/autopilot/FlyerGenerator.tsx"
+    ],
+    "app/(dashboard)/autopilot/invitations/page.tsx": [
+      "components/autopilot/InvitationList.tsx",
+      "components/autopilot/InvitationStats.tsx",
+      "components/autopilot/MeetingInvitationForm.tsx",
+      "components/ui/button.tsx",
+      "components/ui/card.tsx"
+    ],
+    "app/(dashboard)/autopilot/social/page.tsx": [
+      "components/autopilot/SocialPostComposer.tsx",
+      "components/autopilot/SocialPostsList.tsx"
+    ],
+    "app/(dashboard)/autopilot/subscription/page.tsx": [
+      "components/autopilot/AutopilotSubscriptionCard.tsx",
+      "lib/stripe/autopilot-products.ts"
+    ],
+    "app/(dashboard)/autopilot/team/activity/page.tsx": [
+      "components/autopilot/team/DownlineActivityFeed.tsx"
+    ],
+    "app/(dashboard)/autopilot/team/broadcasts/page.tsx": [
+      "components/autopilot/team/BroadcastComposer.tsx",
+      "components/autopilot/team/BroadcastList.tsx",
+      "components/ui/button.tsx"
+    ],
+    "app/(dashboard)/autopilot/team/training/page.tsx": [
+      "components/autopilot/team/TrainingShareForm.tsx",
+      "components/autopilot/team/TrainingSharesList.tsx",
+      "components/ui/button.tsx"
+    ],
+    "app/[slug]/live/page.tsx": [],
+    "app/[slug]/not-found.tsx": [],
+    "app/[slug]/page.tsx": [
+      "components/homepage/ProfessionalHomepage.tsx",
+      "lib/supabase/server.ts",
+      "lib/types/index.ts"
+    ],
+    "app/[slug]/products/page.tsx": [
+      "lib/referral-tracking.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/[slug]/register/[meetingSlug]/page.tsx": [
+      "components/MeetingRegistrationForm.tsx",
+      "lib/supabase/service.ts"
+    ],
+    "app/[slug]/services/actions.ts": [],
+    "app/[slug]/services/page.tsx": [
+      "app/[slug]/services/wrapper.tsx",
+      "components/services/ServicePageClient.tsx",
+      "lib/supabase/server.ts"
+    ],
+    "app/[slug]/services/wrapper.tsx": [
+      "app/[slug]/services/actions.ts"
+    ],
+    "app/about/page.tsx": [],
+    "app/actions/auth.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/admin/activity/page.tsx": [
+      "components/admin/ActivityLogClient.tsx",
+      "lib/auth/admin.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/admin/ai-assistant/page.tsx": [
+      "components/admin/AIAssistantTestInterface.tsx",
+      "lib/auth/admin.ts"
+    ],
+    "app/admin/autopilot/page.tsx": [
+      "components/admin/AutopilotOverview.tsx",
+      "components/admin/InvitationSettingsToggle.tsx",
+      "lib/auth/admin.ts"
+    ],
+    "app/admin/business-card-templates/page.tsx": [
+      "components/admin/CanvasBuilder.tsx",
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/admin/commission-run/page.tsx": [],
+    "app/admin/commissions/page.tsx": [
+      "lib/auth/admin.ts"
+    ],
+    "app/admin/compensation-settings/page.tsx": [
+      "components/admin/compensation/BonusProgramToggles.tsx",
+      "components/admin/compensation/OverrideScheduleEditor.tsx",
+      "components/admin/compensation/OverviewTab.tsx",
+      "components/admin/compensation/TechRankEditor.tsx",
+      "components/admin/compensation/VersionHistory.tsx",
+      "components/admin/compensation/WaterfallEditor.tsx",
+      "components/ui/button.tsx",
+      "components/ui/tabs.tsx"
+    ],
+    "app/admin/compliance/page.tsx": [
+      "lib/supabase/client.ts"
+    ],
+    "app/admin/debug-data/page.tsx": [
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/admin/downloads/page.tsx": [],
+    "app/admin/email-templates/page.tsx": [
+      "components/admin/EmailTemplatesManager.tsx",
+      "lib/auth/admin.ts"
+    ],
+    "app/admin/emails/page.tsx": [
+      "components/admin/EmailManagementSystem.tsx",
+      "lib/auth/admin.ts"
+    ],
+    "app/admin/enrollment-tree/page.tsx": [
+      "components/admin/EnrollmentTreeView.tsx",
+      "lib/admin/enrollment-tree-manager.ts",
+      "lib/auth/admin.ts"
+    ],
+    "app/admin/event-templates/page.tsx": [
+      "components/admin/TemplatesList.tsx",
+      "lib/auth/admin.ts"
+    ],
+    "app/admin/events/[id]/page.tsx": [
+      "components/admin/EventForm.tsx",
+      "lib/supabase/server.ts"
+    ],
+    "app/admin/events/new/page.tsx": [
+      "components/admin/EventForm.tsx"
+    ],
+    "app/admin/events/page.tsx": [
+      "components/ui/button.tsx",
+      "lib/auth/admin.ts"
+    ],
+    "app/admin/finance/dashboard/FinanceDashboardClient.tsx": [
+      "lib/supabase/client.ts",
+      "lib/utils/format.ts"
+    ],
+    "app/admin/finance/dashboard/page.tsx": [
+      "app/admin/finance/dashboard/FinanceDashboardClient.tsx",
+      "lib/auth/admin.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/admin/fulfillment/kanban/page.tsx": [],
+    "app/admin/genealogy/page.tsx": [
+      "components/genealogy/GenealogyControls.tsx",
+      "components/genealogy/TreeView.tsx",
+      "lib/auth/admin.ts",
+      "lib/genealogy/tree-service.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/admin/hierarchy/HierarchyCanvasClient.tsx": [
+      "components/admin/hierarchy/HierarchyCanvas.tsx"
+    ],
+    "app/admin/hierarchy/page.tsx": [
+      "app/admin/hierarchy/HierarchyCanvasClient.tsx",
+      "lib/auth/admin.ts"
+    ],
+    "app/admin/integrations/[id]/page.tsx": [
+      "components/admin/IntegrationForm.tsx",
+      "lib/auth/admin.ts",
+      "lib/integrations/encryption.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/admin/integrations/bulk-sync/BulkSyncClient.tsx": [],
+    "app/admin/integrations/bulk-sync/page.tsx": [
+      "app/admin/integrations/bulk-sync/BulkSyncClient.tsx",
+      "lib/auth/admin.ts"
+    ],
+    "app/admin/integrations/new/page.tsx": [
+      "components/admin/IntegrationForm.tsx",
+      "lib/auth/admin.ts"
+    ],
+    "app/admin/integrations/page.tsx": [
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/admin/integrations/product-mappings/import/page.tsx": [
+      "components/admin/BulkImportClient.tsx",
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/admin/integrations/product-mappings/page.tsx": [
+      "components/admin/ProductMappingsClient.tsx",
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/admin/layout.tsx": [
+      "components/admin/AIAssistantChat.tsx",
+      "components/admin/AdminSidebar.tsx",
+      "lib/auth/admin.ts"
+    ],
+    "app/admin/ledger/page.tsx": [],
+    "app/admin/loading.tsx": [],
+    "app/admin/matrix/debug/page.tsx": [
+      "lib/admin/matrix-manager.ts",
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/admin/matrix/page.tsx": [
+      "components/admin/MatrixView.tsx",
+      "lib/admin/matrix-manager.ts",
+      "lib/auth/admin.ts"
+    ],
+    "app/admin/onboarding-sessions/page.tsx": [
+      "components/admin/OnboardingSessionsClient.tsx",
+      "lib/auth/admin.ts",
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/admin/page.tsx": [
+      "components/admin/StatCard.tsx",
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/admin/payouts/page.tsx": [
+      "components/admin/PayoutBatchesTable.tsx",
+      "components/admin/TriggerCommissionRunButton.tsx",
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/admin/products/[id]/edit/page.tsx": [
+      "components/admin/ProductForm.tsx",
+      "lib/supabase/service.ts"
+    ],
+    "app/admin/products/new/page.tsx": [
+      "components/admin/ProductForm.tsx",
+      "lib/supabase/service.ts"
+    ],
+    "app/admin/products/page.tsx": [
+      "lib/supabase/client.ts"
+    ],
+    "app/admin/prospects/page.tsx": [
+      "lib/supabase/client.ts"
+    ],
+    "app/admin/recurring-events/page.tsx": [
+      "components/admin/RecurringEventsList.tsx",
+      "lib/auth/admin.ts"
+    ],
+    "app/admin/reports/page.tsx": [
+      "components/admin/ReportsClient.tsx",
+      "lib/auth/admin.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/admin/services/page.tsx": [
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts",
+      "types/service-tracking.ts"
+    ],
+    "app/admin/settings/page.tsx": [
+      "components/admin/SettingsClient.tsx",
+      "lib/auth/admin.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/admin/smartoffice-v2/page.tsx": [
+      "components/admin/SmartOfficeV2Client.tsx",
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/admin/smartoffice/agents/[id]/page.tsx": [
+      "components/admin/smartoffice/AgentDetailClient.tsx",
+      "lib/auth/admin.ts"
+    ],
+    "app/admin/smartoffice/agents/page.tsx": [
+      "components/admin/smartoffice/AgentsClient.tsx",
+      "lib/auth/admin.ts"
+    ],
+    "app/admin/smartoffice/page.tsx": [
+      "components/admin/SmartOfficeClient.tsx",
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/admin/smartoffice/policies/page.tsx": [
+      "components/admin/smartoffice/PoliciesClient.tsx",
+      "lib/auth/admin.ts"
+    ],
+    "app/admin/social-content/page.tsx": [
+      "components/admin/SocialContentManager.tsx",
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/admin/support/page.tsx": [],
+    "app/admin/training-audio/page.tsx": [
+      "components/training/AdminTrainingClient.tsx",
+      "lib/auth/admin.ts"
+    ],
+    "app/admin/training/page.tsx": [
+      "lib/supabase/client.ts"
+    ],
+    "app/admin/transactions/page.tsx": [],
+    "app/admin/users/page.tsx": [
+      "components/admin/AdminUsersClient.tsx",
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/admin/waitlist/page.tsx": [
+      "components/admin/AdminWaitlistClient.tsx",
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/ai-employee/page.tsx": [],
+    "app/api/activity-feed/route.ts": [
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts",
+      "lib/types/index.ts"
+    ],
+    "app/api/admin/add-test-column/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/admin/ai-assistant/route.ts": [
+      "lib/admin/ai-assistant-prompt.ts",
+      "lib/admin/command-executor.ts",
+      "lib/admin/entity-resolver.ts",
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/business-card-templates/[id]/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/check-status/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/admin/cleanup-orphaned-users/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/commission-run/[id]/export/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/admin/commission-run/execute/route.ts": [
+      "lib/commission-engine/monthly-run.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/admin/commissions/override-chain/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/admin/commissions/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/admin/commissions/run/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/compensation/bonus-pool/route.ts": [
+      "lib/compensation/bonus-programs.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/compensation/clawback/route.ts": [
+      "lib/compensation/clawback-processor.ts"
+    ],
+    "app/api/admin/compensation/config/[id]/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/compensation/config/export/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/compensation/config/history/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/compensation/config/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/compensation/config/test/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/compensation/bonus-programs.ts",
+      "lib/compensation/override-resolution.ts",
+      "lib/compensation/rank.ts",
+      "lib/compensation/waterfall.ts"
+    ],
+    "app/api/admin/compensation/leadership-pool/route.ts": [
+      "lib/compensation/bonus-programs.ts",
+      "lib/compensation/config.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/compliance/non-compliant/route.ts": [
+      "lib/compliance/anti-frontloading.ts",
+      "lib/compliance/retail-validation.ts"
+    ],
+    "app/api/admin/compliance/overview/route.ts": [
+      "lib/compliance/anti-frontloading.ts",
+      "lib/compliance/retail-validation.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/create-cart-table/route.ts": [],
+    "app/api/admin/daily-report/route.ts": [
+      "lib/email/resend.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/admin/downloads/[id]/route.ts": [
+      "lib/admin/audit-logger.ts",
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/downloads/route.ts": [
+      "lib/admin/audit-logger.ts",
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/email-templates/[id]/route.ts": [
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts",
+      "lib/types/email.ts",
+      "lib/types/index.ts"
+    ],
+    "app/api/admin/email-templates/generate/route.ts": [
+      "lib/email/template-variables.ts",
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts",
+      "lib/types/email.ts",
+      "lib/types/index.ts"
+    ],
+    "app/api/admin/email-templates/route.ts": [
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts",
+      "lib/types/email.ts",
+      "lib/types/index.ts"
+    ],
+    "app/api/admin/event-templates/[id]/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/admin/event-templates/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/admin/events/[id]/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/admin/events/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/admin/fulfillment-notes/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/admin/integrations/[id]/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/integrations/encryption.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/integrations/[id]/test-connection/route.ts": [
+      "lib/auth/admin.ts"
+    ],
+    "app/api/admin/integrations/product-mappings/[id]/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/integrations/product-mappings/bulk-import/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/integrations/product-mappings/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/integrations/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/integrations/encryption.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/integrations/sync-user/route.ts": [
+      "lib/integrations/user-sync/service.ts",
+      "lib/supabase/server.ts",
+      "lib/types/index.ts"
+    ],
+    "app/api/admin/ledger/route.ts": [
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/matrix/available-parents/route.ts": [
+      "lib/admin/matrix-manager.ts",
+      "lib/auth/admin.ts"
+    ],
+    "app/api/admin/matrix/available-positions/route.ts": [
+      "lib/admin/matrix-manager.ts",
+      "lib/auth/admin.ts"
+    ],
+    "app/api/admin/matrix/create-and-place/route.ts": [
+      "lib/admin/matrix-manager.ts",
+      "lib/auth/admin.ts",
+      "lib/email/campaign-service.ts",
+      "lib/supabase/service.ts",
+      "lib/types/index.ts",
+      "lib/utils/slug-client.ts",
+      "lib/utils/slug.ts"
+    ],
+    "app/api/admin/matrix/level/[level]/route.ts": [
+      "lib/admin/matrix-manager.ts",
+      "lib/auth/admin.ts"
+    ],
+    "app/api/admin/matrix/place-existing/route.ts": [
+      "lib/admin/matrix-manager.ts",
+      "lib/auth/admin.ts"
+    ],
+    "app/api/admin/matrix/place/route.ts": [
+      "lib/admin/matrix-manager.ts",
+      "lib/auth/admin.ts"
+    ],
+    "app/api/admin/matrix/route.ts": [
+      "lib/admin/matrix-manager.ts",
+      "lib/auth/admin.ts"
+    ],
+    "app/api/admin/matrix/tree/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/admin/matrix/unplaced-reps/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/onboarding-sessions/update-stage/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/admin/onboarding/update-stage/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts",
+      "lib/types/fulfillment.ts"
+    ],
+    "app/api/admin/payouts/[id]/approve/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/payouts/[id]/generate-ach/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/products/[id]/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/products/route.ts": [
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/prospects/[id]/convert/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/prospects/[id]/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/prospects/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/recurring-events/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/admin/run-migrations/route.ts": [],
+    "app/api/admin/seed-products/route.ts": [],
+    "app/api/admin/services/alerts/[id]/acknowledge/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/rate-limit.ts",
+      "lib/services/tracking.ts"
+    ],
+    "app/api/admin/services/budget/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/rate-limit.ts",
+      "lib/services/tracking.ts",
+      "types/service-tracking.ts"
+    ],
+    "app/api/admin/services/collect-platform/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/rate-limit.ts",
+      "lib/services/supabase-usage.ts",
+      "lib/services/vercel-usage.ts"
+    ],
+    "app/api/admin/services/usage/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/rate-limit.ts",
+      "lib/supabase/service.ts",
+      "types/service-tracking.ts"
+    ],
+    "app/api/admin/settings/[key]/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/admin/settings/bulk-update/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/admin/settings/invitation-restrictions/route.ts": [
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/settings/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/admin/smartoffice/agents/[id]/route.ts": [
+      "lib/smartoffice/types.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/smartoffice/agents/route.ts": [
+      "lib/smartoffice/types.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/smartoffice/commissions/route.ts": [
+      "lib/smartoffice/types.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/smartoffice/create-agent/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/smartoffice/create-agent-service.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/smartoffice/policies/[id]/route.ts": [
+      "lib/smartoffice/types.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/smartoffice/policies/route.ts": [
+      "lib/smartoffice/types.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/smartoffice/reports/route.ts": [
+      "lib/smartoffice/types.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/smartoffice/stats/route.ts": [
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/smartoffice/sync/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/smartoffice/sync-service.ts"
+    ],
+    "app/api/admin/social-content/[id]/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/social-content/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/support/tickets/[id]/route.ts": [
+      "lib/admin/audit-logger.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/support/tickets/route.ts": [
+      "lib/admin/audit-logger.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/test-email/route.ts": [
+      "lib/email/resend.ts",
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts",
+      "lib/types/index.ts"
+    ],
+    "app/api/admin/test-enrollment-report/route.ts": [
+      "lib/email/resend.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/admin/upload-social-content/route.ts": [
+      "lib/auth/admin.ts"
+    ],
+    "app/api/admin/upload-template-asset/route.ts": [
+      "lib/auth/admin.ts"
+    ],
+    "app/api/admin/users/create/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/services/resend-tracked.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/users/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/admin/waitlist/send/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/email/launch-email.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/ai-chat/sessions/[id]/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/ai-chat/sessions/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/ai/analyze-photo/route.ts": [
+      "lib/types/index.ts"
+    ],
+    "app/api/ai/enhance-photo/route.ts": [
+      "lib/types/index.ts"
+    ],
+    "app/api/ai/rewrite-bio/route.ts": [
+      "lib/types/index.ts"
+    ],
+    "app/api/alerts/photo-warning/route.ts": [],
+    "app/api/apps/nurture/campaigns/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/apps/nurture/generate/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/apps/nurture/launch/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/apps/pulsefollow/route.ts": [],
+    "app/api/auth/forgot-password/route.ts": [
+      "lib/supabase/service.ts"
+    ],
+    "app/api/auth/reset-password/route.ts": [
+      "lib/rate-limit.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/auth/signin/route.ts": [
+      "lib/types/index.ts"
+    ],
+    "app/api/auth/signout/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/autopilot/attend/[invitationId]/route.ts": [
+      "lib/sms/send-attendance-notification.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/autopilot/cancel/route.ts": [
+      "lib/stripe/autopilot-helpers.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/autopilot/crm/contacts/[id]/notes/route.ts": [
+      "lib/auth/server.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/autopilot/crm/contacts/[id]/route.ts": [
+      "lib/auth/server.ts",
+      "lib/autopilot/lead-scoring.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/autopilot/crm/contacts/route.ts": [
+      "lib/auth/server.ts",
+      "lib/autopilot/lead-scoring.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/autopilot/crm/pipeline/route.ts": [
+      "lib/auth/server.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/autopilot/crm/sms/campaign/route.ts": [
+      "lib/auth/server.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/autopilot/crm/tasks/[id]/route.ts": [
+      "lib/auth/server.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/autopilot/crm/tasks/route.ts": [
+      "lib/auth/server.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/autopilot/events/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/autopilot/flyers/[id]/download/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/autopilot/flyers/[id]/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/autopilot/flyers/route.ts": [
+      "lib/autopilot/flyer-generator.ts",
+      "lib/autopilot/flyer-templates.ts",
+      "lib/stripe/autopilot-helpers.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/autopilot/flyers/templates/route.ts": [
+      "lib/autopilot/flyer-templates.ts"
+    ],
+    "app/api/autopilot/invitations/[id]/resend/route.ts": [
+      "lib/autopilot/invitation-helpers.ts",
+      "lib/email/send-meeting-invitation.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/autopilot/invitations/[id]/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/autopilot/invitations/bulk/route.ts": [
+      "lib/autopilot/constants.ts",
+      "lib/autopilot/invitation-helpers.ts",
+      "lib/email/send-meeting-invitation.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/autopilot/invitations/preview/route.ts": [
+      "lib/autopilot/invitation-helpers.ts",
+      "lib/email/templates/meeting-invitation.tsx",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/autopilot/invitations/route.ts": [
+      "lib/autopilot/invitation-helpers.ts",
+      "lib/email/send-meeting-invitation.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/autopilot/invitations/test/route.ts": [
+      "lib/autopilot/invitation-helpers.ts",
+      "lib/email/resend.ts",
+      "lib/email/templates/meeting-invitation.tsx",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/autopilot/reactivate/route.ts": [
+      "lib/stripe/autopilot-helpers.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/autopilot/respond/[invitationId]/route.ts": [
+      "lib/autopilot/invitation-helpers.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/autopilot/social/posts/[id]/post-now/route.ts": [
+      "lib/autopilot/social-integrations.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/autopilot/social/posts/[id]/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/autopilot/social/posts/route.ts": [
+      "lib/stripe/autopilot-helpers.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/autopilot/subscribe/route.ts": [
+      "lib/stripe/autopilot-helpers.ts",
+      "lib/stripe/autopilot-products.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/autopilot/subscription/route.ts": [
+      "lib/stripe/autopilot-helpers.ts",
+      "lib/stripe/autopilot-products.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/autopilot/team/broadcasts/[id]/route.ts": [
+      "lib/autopilot/team-helpers.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/autopilot/team/broadcasts/route.ts": [
+      "lib/autopilot/team-helpers.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/autopilot/team/downline/activity/route.ts": [
+      "lib/autopilot/team-helpers.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/autopilot/team/training/share/route.ts": [
+      "lib/autopilot/team-helpers.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/autopilot/team/training/shared/[id]/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/autopilot/team/training/shared/route.ts": [
+      "lib/autopilot/team-helpers.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/autopilot/track/open/[invitationId]/route.ts": [
+      "lib/supabase/service.ts"
+    ],
+    "app/api/booking/availability/route.ts": [
+      "lib/google-calendar/client.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/booking/create/route.ts": [
+      "lib/email/onboarding.ts",
+      "lib/google-calendar/client.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/cart/add/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/cart/clear/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/cart/remove/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/cart/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/cart/update/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/check-slug/route.ts": [
+      "lib/supabase/service.ts"
+    ],
+    "app/api/checkout/redirect/route.ts": [
+      "lib/supabase/service.ts"
+    ],
+    "app/api/checkout/retail/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/checkout/route.ts": [
+      "lib/supabase/service.ts"
+    ],
+    "app/api/claim-states/route.ts": [
+      "lib/supabase/service.ts",
+      "lib/types/index.ts"
+    ],
+    "app/api/crm/activities/[id]/route.ts": [
+      "lib/auth/server.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/crm/activities/route.ts": [
+      "lib/auth/server.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/crm/contacts/[id]/route.ts": [
+      "lib/auth/server.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/crm/contacts/route.ts": [
+      "lib/auth/server.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/crm/leads/[id]/convert/route.ts": [
+      "lib/auth/server.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/crm/leads/[id]/route.ts": [
+      "lib/auth/server.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/crm/leads/route.ts": [
+      "lib/auth/server.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/crm/tasks/[id]/complete/route.ts": [
+      "lib/auth/server.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/crm/tasks/[id]/route.ts": [
+      "lib/auth/server.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/crm/tasks/route.ts": [
+      "lib/auth/server.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/cron/ai-genealogy-analysis/route.ts": [
+      "lib/ai/genealogy-analyzer.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/cron/cleanup-events/route.ts": [
+      "lib/supabase/service.ts"
+    ],
+    "app/api/cron/collect-platform-usage/route.ts": [
+      "lib/services/supabase-usage.ts",
+      "lib/services/vercel-usage.ts"
+    ],
+    "app/api/cron/daily-enrollment-report/route.ts": [
+      "lib/email/resend.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/cron/generate-recurring-events/route.ts": [
+      "lib/supabase/service.ts"
+    ],
+    "app/api/cron/nurture-send/route.ts": [],
+    "app/api/cron/onboarding-reminders/route.ts": [
+      "lib/email/onboarding.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/cron/process-clawbacks/route.ts": [
+      "lib/compensation/clawback-processor.ts"
+    ],
+    "app/api/cron/send-nurture-emails/route.ts": [
+      "lib/email/nurture/business-center-templates.ts"
+    ],
+    "app/api/cron/sync-failed-sites/route.ts": [
+      "lib/integrations/user-sync/service.ts",
+      "lib/supabase/service.ts",
+      "lib/types/index.ts"
+    ],
+    "app/api/cron/update-estimates/route.ts": [
+      "lib/compensation/update-estimates.ts"
+    ],
+    "app/api/dashboard/ai-calls/route.ts": [
+      "lib/logger.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/dashboard/ai-chat/proactive-messages/route.ts": [
+      "lib/chatbot/activity-monitor.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/dashboard/ai-chat/route.ts": [
+      "lib/email/resend.ts",
+      "lib/supabase/server.ts",
+      "lib/usage/limits.ts",
+      "lib/usage/tracking.ts",
+      "lib/utils/date-parser.ts",
+      "lib/vapi/prompts/network-marketing.ts"
+    ],
+    "app/api/dashboard/ai-chat/tools/index.ts": [
+      "app/api/dashboard/ai-chat/tools/links.ts",
+      "app/api/dashboard/ai-chat/tools/team.ts",
+      "app/api/dashboard/ai-chat/utils/types.ts"
+    ],
+    "app/api/dashboard/ai-chat/tools/links.ts": [
+      "app/api/dashboard/ai-chat/utils/logger.ts",
+      "app/api/dashboard/ai-chat/utils/types.ts"
+    ],
+    "app/api/dashboard/ai-chat/tools/team.ts": [
+      "app/api/dashboard/ai-chat/utils/logger.ts",
+      "app/api/dashboard/ai-chat/utils/types.ts"
+    ],
+    "app/api/dashboard/ai-chat/tools/tool-definitions.ts": [],
+    "app/api/dashboard/ai-chat/utils/logger.ts": [
+      "lib/logger.ts"
+    ],
+    "app/api/dashboard/ai-chat/utils/types.ts": [],
+    "app/api/dashboard/ai-recommendations/[id]/complete/route.ts": [
+      "lib/auth/server.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/dashboard/ai-recommendations/[id]/dismiss/route.ts": [
+      "lib/auth/server.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/dashboard/ai-recommendations/route.ts": [
+      "lib/auth/server.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/dashboard/compensation/calculate/route.ts": [
+      "lib/compensation/config.ts",
+      "lib/compensation/waterfall.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/dashboard/downline/route.ts": [
+      "lib/supabase/server.ts",
+      "middleware/org-validation.ts"
+    ],
+    "app/api/dashboard/downloads/[id]/track/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/dashboard/downloads/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/dashboard/matrix-position/route.ts": [
+      "lib/supabase/server.ts",
+      "middleware/org-validation.ts"
+    ],
+    "app/api/dashboard/nurture-campaigns/[id]/status/route.ts": [
+      "lib/auth/server.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/dashboard/nurture-campaigns/check-limit/route.ts": [
+      "lib/auth/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/dashboard/nurture-campaigns/create/route.ts": [
+      "lib/auth/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/dashboard/nurture-campaigns/route.ts": [
+      "lib/auth/server.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/dashboard/team/route.ts": [
+      "lib/supabase/server.ts",
+      "middleware/org-validation.ts"
+    ],
+    "app/api/dashboard/usage-stats/route.ts": [
+      "lib/auth/server.ts",
+      "lib/usage/tracking.ts"
+    ],
+    "app/api/dashboard/user-context/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/debug-stripe/route.ts": [],
+    "app/api/debug/journey-status/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/email-content/route.ts": [],
+    "app/api/first-48-hours/update/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/fulfillment/kanban/route.ts": [
+      "lib/fulfillment/auto-transitions.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/fulfillment/update-stage/route.ts": [
+      "lib/fulfillment/notifications.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/init-profile/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/integrations/ipipeline/metadata/route.ts": [
+      "lib/integrations/ipipeline/saml.ts"
+    ],
+    "app/api/integrations/ipipeline/sso/route.ts": [
+      "lib/auth/server.ts",
+      "lib/integrations/ipipeline/saml.ts",
+      "lib/integrations/ipipeline/types.ts"
+    ],
+    "app/api/invites/send/route.ts": [],
+    "app/api/journey/add-to-list/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/journey/complete-media/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/journey/complete-step/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/journey/get-list/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/journey/mark-contacted/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/journey/progress/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/journey/remove-from-list/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/journey/steps/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/journey/update-person/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/licensed-agent/winflex-sso/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/matrix/hybrid/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/matrix/place/route.ts": [
+      "lib/matrix/placement.ts",
+      "lib/types/index.ts"
+    ],
+    "app/api/payments/create-subscription/route.ts": [
+      "lib/supabase/service.ts"
+    ],
+    "app/api/products/onboarding-check/route.ts": [
+      "lib/supabase/service.ts"
+    ],
+    "app/api/profile/comprehensive/route.ts": [
+      "lib/services/profile-sync-service.ts",
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts",
+      "lib/validation/profile-schemas.ts"
+    ],
+    "app/api/profile/licensing-status/route.ts": [
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts",
+      "lib/types/index.ts"
+    ],
+    "app/api/profile/notifications/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/profile/onboarding/route.ts": [
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts",
+      "lib/types/index.ts"
+    ],
+    "app/api/profile/password/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/profile/payment/route.ts": [
+      "lib/profile/validation.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/profile/personal/route.ts": [
+      "lib/supabase/server.ts",
+      "lib/utils/format-phone.ts"
+    ],
+    "app/api/profile/referrer/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/profile/resend-welcome/route.ts": [
+      "lib/email/campaign-service.ts",
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts",
+      "lib/types/email.ts",
+      "lib/types/index.ts"
+    ],
+    "app/api/profile/sessions/[sessionId]/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/profile/sessions/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/profile/tax/documents/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/profile/tax/route.ts": [
+      "lib/profile/validation.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/profile/tax/w9/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/profile/update/route.ts": [
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts",
+      "lib/types/index.ts"
+    ],
+    "app/api/profile/upload-photo/route.ts": [
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts",
+      "lib/types/index.ts"
+    ],
+    "app/api/prospects/route.ts": [
+      "emails/ProspectWelcomeEmail.tsx",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/public/meetings/[id]/calendar/route.ts": [
+      "lib/calendar/ics-generator.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/public/meetings/[id]/details/route.ts": [
+      "lib/supabase/service.ts",
+      "types/meeting.ts"
+    ],
+    "app/api/public/meetings/[id]/register/route.ts": [
+      "lib/services/resend-tracked.ts",
+      "lib/supabase/service.ts",
+      "lib/utils/date.ts",
+      "lib/validators/meeting-schemas.ts",
+      "types/meeting.ts"
+    ],
+    "app/api/race-to-100/chat/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/rep/meetings/[id]/registrations/[regId]/route.ts": [
+      "lib/supabase/server.ts",
+      "lib/validators/meeting-schemas.ts",
+      "types/meeting.ts"
+    ],
+    "app/api/rep/meetings/[id]/registrations/route.ts": [
+      "lib/supabase/server.ts",
+      "lib/validators/meeting-schemas.ts",
+      "types/meeting.ts"
+    ],
+    "app/api/rep/meetings/[id]/route.ts": [
+      "lib/supabase/server.ts",
+      "lib/utils/meeting-slug-generator.ts",
+      "lib/validators/meeting-schemas.ts",
+      "types/meeting.ts"
+    ],
+    "app/api/rep/meetings/route.ts": [
+      "lib/supabase/server.ts",
+      "lib/utils/meeting-slug-generator.ts",
+      "lib/validators/meeting-schemas.ts",
+      "types/meeting.ts"
+    ],
+    "app/api/settings/change-email/route.ts": [
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/settings/change-password/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/signup/provision-ai/route.ts": [
+      "lib/supabase/server.ts",
+      "lib/twilio/provisioning.ts",
+      "lib/vapi/client.ts",
+      "lib/vapi/prompts/apex-rep-agent.ts"
+    ],
+    "app/api/signup/route.ts": [
+      "lib/email/campaign-service.ts",
+      "lib/integrations/user-sync/service.ts",
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts",
+      "lib/types/index.ts",
+      "lib/utils/date-validation.ts",
+      "lib/utils/ein.ts",
+      "lib/utils/slug.ts",
+      "lib/utils/ssn.ts",
+      "lib/validations/signup.ts"
+    ],
+    "app/api/slugs/check/route.ts": [
+      "lib/types/index.ts",
+      "lib/utils/slug.ts"
+    ],
+    "app/api/stripe/create-checkout-session/route.ts": [
+      "lib/referral-tracking.ts"
+    ],
+    "app/api/stripe/create-product-checkout/route.ts": [
+      "lib/referral-tracking.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/support/tickets/[id]/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/support/tickets/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/support/upload/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/test-email/route.ts": [],
+    "app/api/test-profile/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/test/db/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/training/content/[id]/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/training/content/route.ts": [
+      "lib/auth/admin.ts",
+      "lib/supabase/server.ts",
+      "types/training.ts"
+    ],
+    "app/api/training/episodes/[id]/route.ts": [
+      "lib/auth/server.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/training/episodes/route.ts": [
+      "lib/auth/server.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/api/training/gamification/badges/route.ts": [
+      "lib/supabase/server.ts",
+      "types/training.ts"
+    ],
+    "app/api/training/gamification/leaderboard/route.ts": [
+      "lib/supabase/server.ts",
+      "types/training.ts"
+    ],
+    "app/api/training/gamification/stats/route.ts": [
+      "lib/supabase/server.ts",
+      "types/training.ts"
+    ],
+    "app/api/training/generate-audio/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/training/generate-music/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/training/generate-script/route.ts": [],
+    "app/api/training/mix-audio/route.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "app/api/training/progress/route.ts": [
+      "lib/supabase/server.ts",
+      "types/training.ts"
+    ],
+    "app/api/training/subscription/route.ts": [
+      "lib/supabase/server.ts",
+      "types/training.ts"
+    ],
+    "app/api/transactions/log/route.ts": [
+      "lib/supabase/service.ts"
+    ],
+    "app/api/update-slug/route.ts": [
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/vapi/call-events/route.ts": [
+      "lib/logger.ts",
+      "lib/supabase/server.ts",
+      "lib/twilio/sms.ts",
+      "lib/vapi/sms-templates.ts",
+      "lib/vapi/webhook-security.ts"
+    ],
+    "app/api/waitlist/route.ts": [
+      "lib/supabase/service.ts"
+    ],
+    "app/api/webhooks/agentpulse/route.ts": [
+      "lib/integrations/webhooks/helpers.ts"
+    ],
+    "app/api/webhooks/calcom/route.ts": [
+      "lib/email/resend.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/api/webhooks/integrations/[platform]/route.ts": [
+      "lib/integrations/webhooks/process-sale.ts",
+      "lib/integrations/webhooks/verify-signature.ts",
+      "lib/supabase/service.ts",
+      "lib/types/index.ts"
+    ],
+    "app/api/webhooks/jordyn/route.ts": [
+      "lib/integrations/webhooks/helpers.ts"
+    ],
+    "app/api/webhooks/stripe-autopilot/route.ts": [
+      "lib/db/autopilot-subscription-queries.ts",
+      "lib/stripe/autopilot-products.ts"
+    ],
+    "app/api/webhooks/stripe-refund/route.ts": [
+      "lib/compensation/clawback-processor.ts"
+    ],
+    "app/api/webhooks/stripe/route.ts": [
+      "lib/compensation/estimate-earnings.ts",
+      "lib/compensation/gv-propagation.ts",
+      "lib/compliance/anti-frontloading.ts",
+      "lib/email/order-receipt.ts",
+      "lib/email/resend.ts",
+      "lib/fulfillment/auto-transitions.ts",
+      "lib/supabase/service.ts",
+      "lib/transactions/log-transaction.ts"
+    ],
+    "app/auth/confirm/page.tsx": [
+      "components/ui/button.tsx",
+      "lib/supabase/client.ts"
+    ],
+    "app/autopilot/respond/thank-you/ThankYouContent.tsx": [
+      "components/ui/button.tsx",
+      "components/ui/card.tsx",
+      "lib/autopilot/invitation-helpers.ts"
+    ],
+    "app/autopilot/respond/thank-you/page.tsx": [
+      "app/autopilot/respond/thank-you/ThankYouContent.tsx"
+    ],
+    "app/booking/page.tsx": [
+      "components/booking/BookingClient.tsx"
+    ],
+    "app/cart/page.tsx": [],
+    "app/checkout/page.tsx": [],
+    "app/dashboard-v2/page.tsx": [
+      "app/template-v2.css"
+    ],
+    "app/dashboard-v3/page.tsx": [
+      "components/dashboard/DashboardClient.tsx",
+      "components/dashboard/DashboardV3Client.tsx",
+      "components/dashboard/Road500Banner.tsx",
+      "lib/enrollees/enrollee-counter.ts",
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts",
+      "lib/types/index.ts"
+    ],
+    "app/dashboard/agentpulse/agentpilot/page.tsx": [
+      "components/agentpulse/CountdownTimer.tsx",
+      "components/agentpulse/WaitlistForm.tsx",
+      "lib/supabase/server.ts"
+    ],
+    "app/dashboard/agentpulse/leadloop/page.tsx": [
+      "components/agentpulse/CountdownTimer.tsx",
+      "components/agentpulse/WaitlistForm.tsx",
+      "lib/supabase/server.ts"
+    ],
+    "app/dashboard/agentpulse/page.tsx": [
+      "components/agentpulse/CountdownTimer.tsx",
+      "components/agentpulse/ModuleCard.tsx",
+      "components/agentpulse/TierComparison.tsx",
+      "components/agentpulse/WaitlistForm.tsx",
+      "lib/supabase/server.ts"
+    ],
+    "app/dashboard/agentpulse/policyping/page.tsx": [
+      "components/agentpulse/CountdownTimer.tsx",
+      "components/agentpulse/WaitlistForm.tsx",
+      "lib/supabase/server.ts"
+    ],
+    "app/dashboard/agentpulse/pulsefollow/page.tsx": [
+      "components/agentpulse/CountdownTimer.tsx",
+      "components/agentpulse/WaitlistForm.tsx",
+      "lib/supabase/server.ts"
+    ],
+    "app/dashboard/agentpulse/pulseinsight/page.tsx": [
+      "components/agentpulse/CountdownTimer.tsx",
+      "components/agentpulse/WaitlistForm.tsx",
+      "lib/supabase/server.ts"
+    ],
+    "app/dashboard/agentpulse/warmline/page.tsx": [
+      "components/agentpulse/CountdownTimer.tsx",
+      "components/agentpulse/WaitlistForm.tsx",
+      "lib/supabase/server.ts"
+    ],
+    "app/dashboard/ai-assistant/AIAssistantClient.tsx": [],
+    "app/dashboard/ai-assistant/page.tsx": [],
+    "app/dashboard/ai-calls/AICallsClient.tsx": [],
+    "app/dashboard/ai-calls/page.tsx": [
+      "app/dashboard/ai-calls/AICallsClient.tsx",
+      "components/dashboard/FeatureGate.tsx",
+      "lib/subscription/check-business-center.ts",
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/dashboard/ai-insights/page.tsx": [
+      "components/dashboard/FeatureGate.tsx",
+      "lib/auth/server.ts",
+      "lib/subscription/check-business-center.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/dashboard/apps/leadloop/page.tsx": [
+      "components/apps/LeadLoopBoard.tsx",
+      "lib/supabase/server.ts"
+    ],
+    "app/dashboard/apps/nurture/page.tsx": [
+      "components/apps/NurtureApp.tsx",
+      "lib/supabase/server.ts"
+    ],
+    "app/dashboard/apps/policyping/page.tsx": [
+      "components/apps/PolicyPingDashboard.tsx",
+      "lib/supabase/server.ts"
+    ],
+    "app/dashboard/apps/pulsefollow/page.tsx": [
+      "components/apps/PulseFollowDemo.tsx",
+      "lib/supabase/server.ts"
+    ],
+    "app/dashboard/autopilot/page.tsx": [
+      "components/autopilot/AutopilotDashboard.tsx",
+      "lib/auth/admin.ts",
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/dashboard/business-center/ai-nurture/page.tsx": [],
+    "app/dashboard/business-center/page.tsx": [
+      "components/dashboard/BenefitCard.tsx",
+      "components/dashboard/FAQItem.tsx",
+      "components/dashboard/UsageStats.tsx",
+      "components/dashboard/UseCase.tsx",
+      "lib/auth/admin.ts",
+      "lib/subscription/check-business-center.ts",
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/dashboard/business-center/success/page.tsx": [
+      "components/business-center/VimeoEmbed.tsx",
+      "lib/supabase/server.ts"
+    ],
+    "app/dashboard/claim-the-states/page.tsx": [
+      "app/api/claim-states/route.ts",
+      "components/claim-states/StateDetailModal.tsx",
+      "components/claim-states/USMap.tsx"
+    ],
+    "app/dashboard/commissions/page.tsx": [
+      "components/dashboard/CommissionsTable.tsx",
+      "components/dashboard/ExportButton.tsx",
+      "components/dashboard/PendingDataDisclaimer.tsx",
+      "components/dashboard/SalesFilters.tsx",
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/dashboard/compensation-calculator/page.tsx": [
+      "components/compensation/CompensationCalculator.tsx",
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/dashboard/compensation/bonus-pool/page.tsx": [
+      "lib/supabase/client.ts"
+    ],
+    "app/dashboard/compensation/calculator/page.tsx": [
+      "lib/supabase/client.ts"
+    ],
+    "app/dashboard/compensation/commissions/page.tsx": [
+      "lib/supabase/client.ts"
+    ],
+    "app/dashboard/compensation/glossary/page.tsx": [
+      "lib/supabase/client.ts"
+    ],
+    "app/dashboard/compensation/insurance-ladder/page.tsx": [
+      "lib/supabase/client.ts"
+    ],
+    "app/dashboard/compensation/leadership-pool/page.tsx": [
+      "lib/supabase/client.ts"
+    ],
+    "app/dashboard/compensation/overrides/page.tsx": [
+      "lib/supabase/client.ts"
+    ],
+    "app/dashboard/compensation/page.tsx": [
+      "lib/supabase/client.ts"
+    ],
+    "app/dashboard/compensation/products/page.tsx": [
+      "lib/supabase/client.ts"
+    ],
+    "app/dashboard/compensation/rank-bonuses/page.tsx": [
+      "lib/supabase/client.ts"
+    ],
+    "app/dashboard/compensation/tech-ladder/page.tsx": [
+      "components/MermaidDiagram.tsx",
+      "lib/supabase/client.ts"
+    ],
+    "app/dashboard/crm/activities/new/page.tsx": [
+      "components/crm/NewActivityForm.tsx",
+      "components/dashboard/FeatureGate.tsx",
+      "lib/auth/server.ts",
+      "lib/subscription/check-business-center.ts"
+    ],
+    "app/dashboard/crm/activities/page.tsx": [
+      "components/dashboard/FeatureGate.tsx",
+      "lib/auth/server.ts",
+      "lib/subscription/check-business-center.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/dashboard/crm/contacts/new/page.tsx": [
+      "components/crm/NewContactForm.tsx",
+      "components/dashboard/FeatureGate.tsx",
+      "lib/auth/server.ts",
+      "lib/subscription/check-business-center.ts"
+    ],
+    "app/dashboard/crm/contacts/page.tsx": [
+      "components/dashboard/FeatureGate.tsx",
+      "lib/auth/server.ts",
+      "lib/subscription/check-business-center.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/dashboard/crm/leads/new/page.tsx": [
+      "components/crm/NewLeadForm.tsx",
+      "components/dashboard/FeatureGate.tsx",
+      "lib/auth/server.ts",
+      "lib/subscription/check-business-center.ts"
+    ],
+    "app/dashboard/crm/leads/page.tsx": [
+      "components/crm/LeadsTable.tsx",
+      "components/dashboard/FeatureGate.tsx",
+      "lib/auth/server.ts",
+      "lib/subscription/check-business-center.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/dashboard/crm/page.tsx": [
+      "components/dashboard/FeatureGate.tsx",
+      "lib/auth/server.ts",
+      "lib/subscription/check-business-center.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/dashboard/crm/tasks/[id]/page.tsx": [
+      "components/crm/ViewEditTaskForm.tsx",
+      "components/dashboard/FeatureGate.tsx",
+      "lib/auth/server.ts",
+      "lib/subscription/check-business-center.ts"
+    ],
+    "app/dashboard/crm/tasks/new/page.tsx": [
+      "components/crm/NewTaskForm.tsx",
+      "components/dashboard/FeatureGate.tsx",
+      "lib/auth/server.ts",
+      "lib/subscription/check-business-center.ts"
+    ],
+    "app/dashboard/crm/tasks/page.tsx": [
+      "components/dashboard/FeatureGate.tsx",
+      "lib/auth/server.ts",
+      "lib/subscription/check-business-center.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/dashboard/downloads/page.tsx": [],
+    "app/dashboard/first-48-hours/page.tsx": [
+      "components/first-48-hours/First48HoursClient.tsx",
+      "lib/supabase/server.ts"
+    ],
+    "app/dashboard/genealogy/loading.tsx": [],
+    "app/dashboard/genealogy/page.tsx": [
+      "components/dashboard/FeatureGate.tsx",
+      "components/genealogy/GenealogyWithModal.tsx",
+      "components/genealogy/TreeNodeCard.tsx",
+      "lib/subscription/check-business-center.ts",
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/dashboard/layout.tsx": [
+      "components/business-center/AIAssistantButton.tsx",
+      "components/dashboard/BusinessCenterNag.tsx",
+      "components/dashboard/Sidebar.tsx",
+      "lib/subscription/check-business-center.ts",
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/dashboard/licensed-agent/annuity-commissions/page.tsx": [
+      "components/licensed-agent/CommissionGrid.tsx",
+      "data/annuity-commissions.json",
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/dashboard/licensed-agent/applications/page.tsx": [
+      "components/integrations/IPipelineLauncher.tsx",
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/dashboard/licensed-agent/compliance/page.tsx": [
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/dashboard/licensed-agent/life-commissions/page.tsx": [
+      "components/licensed-agent/CommissionGrid.tsx",
+      "data/life-commissions.json",
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/dashboard/licensed-agent/marketing/page.tsx": [
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/dashboard/licensed-agent/page.tsx": [
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/dashboard/licensed-agent/quotes/page.tsx": [
+      "components/licensed-agent/WinflexSSOButton.tsx",
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/dashboard/licensed-agent/training/page.tsx": [
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/dashboard/loading.tsx": [],
+    "app/dashboard/matrix-v2/page.tsx": [
+      "components/matrix/HybridMatrixView.tsx",
+      "lib/supabase/server.ts"
+    ],
+    "app/dashboard/matrix/MatrixCanvasClient.tsx": [
+      "components/admin/hierarchy/HierarchyCanvas.tsx"
+    ],
+    "app/dashboard/matrix/[id]/page.tsx": [
+      "components/dashboard/MatrixChildrenUser.tsx",
+      "components/dashboard/SponsorLineageUser.tsx",
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts",
+      "lib/types/index.ts"
+    ],
+    "app/dashboard/matrix/page.tsx": [
+      "app/dashboard/matrix/MatrixCanvasClient.tsx",
+      "lib/supabase/server.ts"
+    ],
+    "app/dashboard/my-clients/page.tsx": [
+      "lib/supabase/server.ts"
+    ],
+    "app/dashboard/organization/page.tsx": [
+      "components/organization/OrganizationTable.tsx",
+      "lib/auth/server.ts",
+      "lib/supabase/server.ts"
+    ],
+    "app/dashboard/page.tsx": [
+      "components/dashboard/AIPhoneStats.tsx",
+      "components/dashboard/ActivityFeed.tsx",
+      "components/dashboard/CompensationStatsWidget.tsx",
+      "components/dashboard/DashboardClient.tsx",
+      "components/dashboard/DashboardTopCards.tsx",
+      "lib/auth/admin.ts",
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts",
+      "lib/types/index.ts"
+    ],
+    "app/dashboard/profile/components/ProfileSidebar.tsx": [
+      "types/profile.ts"
+    ],
+    "app/dashboard/profile/components/tabs/NotificationsTab.tsx": [
+      "lib/profile/validation.ts"
+    ],
+    "app/dashboard/profile/components/tabs/PaymentInfoTab.tsx": [
+      "lib/profile/validation.ts",
+      "types/profile.ts"
+    ],
+    "app/dashboard/profile/components/tabs/PersonalInfoTab.tsx": [
+      "lib/profile/validation.ts",
+      "lib/utils/format-phone.ts",
+      "types/profile.ts"
+    ],
+    "app/dashboard/profile/components/tabs/ReferralInfoTab.tsx": [
+      "types/profile.ts"
+    ],
+    "app/dashboard/profile/components/tabs/SecurityTab.tsx": [
+      "lib/profile/validation.ts",
+      "types/profile.ts"
+    ],
+    "app/dashboard/profile/components/tabs/TaxInfoTab.tsx": [
+      "lib/profile/validation.ts",
+      "types/profile.ts"
+    ],
+    "app/dashboard/profile/page.tsx": [
+      "components/dashboard/ProfileEditForm.tsx",
+      "components/ui/avatar.tsx",
+      "components/ui/badge.tsx",
+      "components/ui/card.tsx",
+      "components/ui/tabs.tsx",
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/dashboard/race-to-100/page.tsx": [
+      "components/race-to-100/RaceTo100ModalClient.tsx",
+      "lib/supabase/server.ts"
+    ],
+    "app/dashboard/road-to-500/page.tsx": [
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/dashboard/sales/page.tsx": [
+      "components/dashboard/ExportButton.tsx",
+      "components/dashboard/PendingDataDisclaimer.tsx",
+      "components/dashboard/SalesFilters.tsx",
+      "components/dashboard/SalesTable.tsx",
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/dashboard/settings/page.tsx": [
+      "components/settings/ChangeEmailForm.tsx",
+      "components/settings/ChangePasswordForm.tsx",
+      "components/ui/card.tsx",
+      "components/ui/tabs.tsx",
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/dashboard/social-media/page.tsx": [
+      "components/dashboard/ReferralLinkGenerator.tsx",
+      "components/dashboard/SocialShareCard.tsx",
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/dashboard/store/page.tsx": [
+      "components/dashboard/BusinessCenterButton.tsx",
+      "components/dashboard/PulseProductCard.tsx",
+      "lib/auth/admin.ts",
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/dashboard/support/page.tsx": [],
+    "app/dashboard/support/tickets/[id]/page.tsx": [],
+    "app/dashboard/support/tickets/page.tsx": [],
+    "app/dashboard/team/loading.tsx": [
+      "components/team/TeamLoadingSkeleton.tsx"
+    ],
+    "app/dashboard/team/page.tsx": [
+      "components/dashboard/FeatureGate.tsx",
+      "components/team/TeamMemberCard.tsx",
+      "components/team/TeamStatsHeader.tsx",
+      "components/team/TeamWithModal.tsx",
+      "lib/auth/admin.ts",
+      "lib/subscription/check-business-center.ts",
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/dashboard/tools/insurance-calculator/page.tsx": [
+      "lib/calculators/insurance-ladder-calculator.ts"
+    ],
+    "app/dashboard/tools/tech-calculator/page.tsx": [
+      "lib/calculators/tech-ladder-calculator.ts",
+      "lib/compensation/config.ts"
+    ],
+    "app/dashboard/training/page.tsx": [
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/dashboard/training/videos/page.tsx": [
+      "components/training/VideoPlayer.tsx",
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/dashboard/upgrade/page.tsx": [
+      "components/payments/SquarePaymentForm.tsx",
+      "lib/supabase/server.ts"
+    ],
+    "app/debug/page.tsx": [
+      "lib/supabase/server.ts"
+    ],
+    "app/email-preview/page.tsx": [],
+    "app/forgot-password/page.tsx": [
+      "components/forms/ForgotPasswordForm.tsx"
+    ],
+    "app/genealogy-v2/page.tsx": [],
+    "app/globals.css": [],
+    "app/invites/page.tsx": [
+      "components/invites/InviteForm.tsx"
+    ],
+    "app/layout.tsx": [
+      "app/globals.css"
+    ],
+    "app/live/[invitationId]/page.tsx": [
+      "lib/supabase/server.ts"
+    ],
+    "app/live/page.tsx": [],
+    "app/login/actions.ts": [
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "app/login/page.tsx": [
+      "components/forms/LoginForm.tsx"
+    ],
+    "app/matrix-v2/page.tsx": [],
+    "app/one-pager/page.tsx": [],
+    "app/page-professional.tsx": [
+      "components/homepage/ProfessionalHomepage.tsx",
+      "lib/types/index.ts"
+    ],
+    "app/page.tsx": [
+      "components/homepage/ProfessionalHomepage.tsx",
+      "lib/types/index.ts"
+    ],
+    "app/preview/page.tsx": [
+      "components/homepage/ProfessionalHomepage.tsx",
+      "lib/types/index.ts"
+    ],
+    "app/products/[slug]/page.tsx": [
+      "lib/supabase/server.ts"
+    ],
+    "app/products/page.backup.tsx": [],
+    "app/products/page.tsx": [
+      "components/PulseProductCheckoutButton.tsx"
+    ],
+    "app/products/pulsecommand/page.tsx": [],
+    "app/products/pulsedrive/page.tsx": [],
+    "app/products/pulseflow/page.tsx": [],
+    "app/products/pulsemarket/page.tsx": [],
+    "app/products/smartlook/page.tsx": [],
+    "app/products/success/page.tsx": [
+      "components/booking/CalComModal.tsx"
+    ],
+    "app/profile-v2/page.tsx": [],
+    "app/reports-v2/page.tsx": [],
+    "app/reset-password/page.tsx": [
+      "components/forms/ResetPasswordForm.tsx"
+    ],
+    "app/services/page.tsx": [
+      "lib/supabase/server.ts"
+    ],
+    "app/showcase/page.tsx": [],
+    "app/signup/credentials/page.tsx": [],
+    "app/signup/page.tsx": [
+      "components/forms/SignupForm.tsx",
+      "lib/supabase/server.ts"
+    ],
+    "app/signup/welcome/page.tsx": [],
+    "app/template-v2.css": [],
+    "app/training/[day]/page.tsx": [
+      "lib/training/daily-training-content.ts"
+    ],
+    "app/welcome/page.tsx": [],
+    "components/DashboardSwitcher.tsx": [],
+    "components/ErrorBoundary.tsx": [],
+    "components/MeetingRegistrationForm.tsx": [
+      "lib/utils/date.ts"
+    ],
+    "components/MermaidDiagram.tsx": [],
+    "components/PulseProductCheckoutButton.tsx": [],
+    "components/admin/AIAssistantChat.tsx": [
+      "components/admin/ChatMessage.tsx",
+      "components/admin/CommandConfirmation.tsx"
+    ],
+    "components/admin/AIAssistantTestInterface.tsx": [
+      "components/admin/ChatMessage.tsx",
+      "components/admin/CommandConfirmation.tsx"
+    ],
+    "components/admin/AIBusinessCenterManagement.tsx": [
+      "lib/supabase/client.ts"
+    ],
+    "components/admin/ActivityLogClient.tsx": [
+      "components/ui/button.tsx"
+    ],
+    "components/admin/ActivityLogPanel.tsx": [],
+    "components/admin/AddProductButton.tsx": [
+      "components/admin/AddProductModal.tsx"
+    ],
+    "components/admin/AddProductModal.tsx": [],
+    "components/admin/AddRepModal.tsx": [
+      "lib/types/index.ts"
+    ],
+    "components/admin/AdminSidebar-old-flat.tsx": [
+      "app/actions/auth.ts"
+    ],
+    "components/admin/AdminSidebar.tsx": [
+      "app/actions/auth.ts"
+    ],
+    "components/admin/AdminUsersClient.tsx": [
+      "components/ui/button.tsx"
+    ],
+    "components/admin/AdminWaitlistClient.tsx": [],
+    "components/admin/AutopilotOverview.tsx": [
+      "lib/config/autopilot.ts"
+    ],
+    "components/admin/BulkImportClient.tsx": [],
+    "components/admin/CanvasBuilder.tsx": [],
+    "components/admin/ChatMessage.tsx": [],
+    "components/admin/CommandConfirmation.tsx": [],
+    "components/admin/CommissionBreakdownChart.tsx": [],
+    "components/admin/CommissionDetailView.tsx": [
+      "components/admin/CommissionBreakdownChart.tsx",
+      "components/admin/OverrideChainModal.tsx",
+      "lib/types/index.ts"
+    ],
+    "components/admin/DistributorDetailView.tsx": [
+      "components/admin/ActivityLogPanel.tsx",
+      "components/admin/EnrolleeStats.tsx",
+      "components/admin/MatrixChildren.tsx",
+      "components/admin/MatrixPositionManager.tsx",
+      "components/admin/NotesPanel.tsx",
+      "components/admin/PasswordResetModal.tsx",
+      "components/admin/PersonalDownline.tsx",
+      "components/admin/ReplicatedSitesPanel.tsx",
+      "components/admin/SponsorLineage.tsx",
+      "components/admin/TeamStatistics.tsx",
+      "components/common/index.ts",
+      "components/dashboard/ResendWelcomeButton.tsx",
+      "lib/auth/admin.ts",
+      "lib/types/index.ts"
+    ],
+    "components/admin/DistributorsTable.tsx": [
+      "lib/types/index.ts"
+    ],
+    "components/admin/EditProductModal.tsx": [],
+    "components/admin/EmailManagementSystem.tsx": [
+      "components/admin/email-system/CustomizeTemplateTab.tsx",
+      "components/admin/email-system/SendEmailTab.tsx"
+    ],
+    "components/admin/EmailTemplatesManager.tsx": [
+      "lib/types/email.ts"
+    ],
+    "components/admin/EnrolleeStats.tsx": [],
+    "components/admin/EnrollmentTreeView.tsx": [
+      "lib/admin/enrollment-tree-manager.ts"
+    ],
+    "components/admin/EventForm.tsx": [
+      "components/ui/button.tsx"
+    ],
+    "components/admin/IntegrationForm.tsx": [
+      "lib/integrations/encryption.ts"
+    ],
+    "components/admin/InvitationSettingsToggle.tsx": [],
+    "components/admin/KanbanCard.tsx": [],
+    "components/admin/KanbanColumn.tsx": [
+      "components/admin/KanbanCard.tsx",
+      "lib/types/fulfillment.ts"
+    ],
+    "components/admin/MatrixChildren.tsx": [
+      "lib/types/index.ts"
+    ],
+    "components/admin/MatrixPositionManager.tsx": [
+      "lib/types/index.ts"
+    ],
+    "components/admin/MatrixView.tsx": [
+      "components/admin/AddRepModal.tsx",
+      "lib/admin/matrix-manager.ts",
+      "lib/types/index.ts"
+    ],
+    "components/admin/NewDistributorForm.tsx": [],
+    "components/admin/NoteItem.tsx": [
+      "lib/types/fulfillment.ts",
+      "lib/utils/date-format.ts"
+    ],
+    "components/admin/NotesPanel.tsx": [
+      "lib/auth/admin.ts"
+    ],
+    "components/admin/OnboardingKanban.tsx": [
+      "components/admin/KanbanCard.tsx",
+      "components/admin/KanbanColumn.tsx",
+      "components/admin/OrderDetailsModal.tsx",
+      "lib/types/fulfillment.ts"
+    ],
+    "components/admin/OnboardingSessionsClient.tsx": [
+      "components/admin/OnboardingKanban.tsx",
+      "components/admin/OrderDetailsModal.tsx",
+      "lib/types/fulfillment.ts"
+    ],
+    "components/admin/OrderDetailsModal.tsx": [
+      "components/admin/NoteItem.tsx",
+      "lib/types/fulfillment.ts",
+      "lib/utils/date-format.ts"
+    ],
+    "components/admin/OverrideChainModal.tsx": [],
+    "components/admin/PasswordResetModal.tsx": [],
+    "components/admin/PayoutBatchesTable.tsx": [],
+    "components/admin/PersonalDownline.tsx": [
+      "lib/types/index.ts"
+    ],
+    "components/admin/ProductForm.tsx": [],
+    "components/admin/ProductMappingModal.tsx": [],
+    "components/admin/ProductMappingsClient.tsx": [
+      "components/admin/ProductMappingModal.tsx"
+    ],
+    "components/admin/ProductsTable.tsx": [
+      "components/admin/EditProductModal.tsx"
+    ],
+    "components/admin/RecurringEventsList.tsx": [
+      "components/ui/button.tsx"
+    ],
+    "components/admin/ReplicatedSitesPanel.tsx": [
+      "lib/types/index.ts"
+    ],
+    "components/admin/ReportsClient.tsx": [
+      "components/ui/button.tsx"
+    ],
+    "components/admin/SSNViewer.tsx": [
+      "components/ui/button.tsx"
+    ],
+    "components/admin/SettingsClient.tsx": [
+      "components/ui/button.tsx"
+    ],
+    "components/admin/SmartOfficeClient.tsx": [
+      "components/admin/smartoffice/developer-tools.tsx",
+      "components/ui/badge.tsx",
+      "components/ui/button.tsx",
+      "components/ui/card.tsx",
+      "components/ui/dialog.tsx",
+      "components/ui/input.tsx",
+      "components/ui/label.tsx",
+      "components/ui/progress.tsx",
+      "components/ui/select.tsx",
+      "components/ui/switch.tsx",
+      "components/ui/table.tsx",
+      "components/ui/tabs.tsx"
+    ],
+    "components/admin/SmartOfficeV2Client.tsx": [
+      "components/ui/badge.tsx",
+      "components/ui/button.tsx",
+      "components/ui/card.tsx",
+      "components/ui/tabs.tsx"
+    ],
+    "components/admin/SocialContentManager.tsx": [],
+    "components/admin/SponsorLineage.tsx": [
+      "lib/types/index.ts"
+    ],
+    "components/admin/StatCard.tsx": [],
+    "components/admin/TeamStatistics.tsx": [
+      "lib/types/index.ts"
+    ],
+    "components/admin/TemplateManager.tsx": [],
+    "components/admin/TemplatesList.tsx": [
+      "components/ui/button.tsx"
+    ],
+    "components/admin/TerminologyLegend.tsx": [],
+    "components/admin/TriggerCommissionRunButton.tsx": [],
+    "components/admin/compensation/BonusProgramToggles.tsx": [
+      "components/ui/button.tsx"
+    ],
+    "components/admin/compensation/OverrideScheduleEditor.tsx": [
+      "components/ui/button.tsx"
+    ],
+    "components/admin/compensation/OverviewTab.tsx": [
+      "lib/compensation/config.ts"
+    ],
+    "components/admin/compensation/TechRankEditor.tsx": [
+      "components/ui/button.tsx"
+    ],
+    "components/admin/compensation/VersionHistory.tsx": [
+      "components/ui/button.tsx"
+    ],
+    "components/admin/compensation/WaterfallEditor.tsx": [
+      "components/ui/button.tsx",
+      "lib/compensation/config.ts"
+    ],
+    "components/admin/email-system/CustomizeTemplateTab.tsx": [
+      "components/admin/email-system/EmailPreview.tsx"
+    ],
+    "components/admin/email-system/EmailPreview.tsx": [],
+    "components/admin/email-system/RecipientSelector.tsx": [],
+    "components/admin/email-system/SendEmailTab.tsx": [
+      "components/admin/email-system/EmailPreview.tsx",
+      "components/admin/email-system/RecipientSelector.tsx"
+    ],
+    "components/admin/hierarchy/HierarchyCanvas.tsx": [
+      "components/admin/hierarchy/MatrixNode.tsx",
+      "components/admin/hierarchy/NodeDetailPanel.tsx"
+    ],
+    "components/admin/hierarchy/MatrixNode.tsx": [],
+    "components/admin/hierarchy/NodeDetailPanel.tsx": [],
+    "components/admin/hierarchy/index.ts": [
+      "components/admin/hierarchy/HierarchyCanvas.tsx",
+      "components/admin/hierarchy/MatrixNode.tsx",
+      "components/admin/hierarchy/NodeDetailPanel.tsx"
+    ],
+    "components/admin/smartoffice/AgentDetailClient.tsx": [
+      "lib/smartoffice/types.ts"
+    ],
+    "components/admin/smartoffice/AgentsClient.tsx": [
+      "components/admin/smartoffice/DataTable.tsx",
+      "components/admin/smartoffice/FilterBar.tsx",
+      "lib/smartoffice/types.ts"
+    ],
+    "components/admin/smartoffice/DataTable.tsx": [],
+    "components/admin/smartoffice/FilterBar.tsx": [],
+    "components/admin/smartoffice/PoliciesClient.tsx": [],
+    "components/admin/smartoffice/developer-tools.tsx": [
+      "components/ui/badge.tsx",
+      "components/ui/button.tsx",
+      "components/ui/card.tsx",
+      "components/ui/input.tsx",
+      "components/ui/separator.tsx",
+      "components/ui/tabs.tsx",
+      "components/ui/textarea.tsx",
+      "lib/utils.ts"
+    ],
+    "components/agentpulse/AgentPulseSidebarBanner.tsx": [],
+    "components/agentpulse/ComingSoonBanner.tsx": [],
+    "components/agentpulse/CountdownTimer.tsx": [],
+    "components/agentpulse/ModuleCard.tsx": [],
+    "components/agentpulse/TierComparison.tsx": [],
+    "components/agentpulse/WaitlistForm.tsx": [],
+    "components/apps/LeadLoopBoard.tsx": [],
+    "components/apps/NurtureApp.tsx": [],
+    "components/apps/PolicyPingDashboard.tsx": [],
+    "components/apps/PulseFollowDemo.tsx": [],
+    "components/autopilot/AutopilotDashboard.tsx": [
+      "components/autopilot/MeetingInvitationForm.tsx",
+      "components/autopilot/MeetingsTab.tsx",
+      "lib/config/autopilot.ts"
+    ],
+    "components/autopilot/AutopilotPricingCards.tsx": [
+      "components/ui/badge.tsx",
+      "components/ui/button.tsx",
+      "components/ui/card.tsx",
+      "lib/stripe/autopilot-products.ts"
+    ],
+    "components/autopilot/AutopilotSubscriptionCard.tsx": [
+      "components/ui/badge.tsx",
+      "components/ui/button.tsx",
+      "components/ui/card.tsx",
+      "components/ui/progress.tsx",
+      "lib/stripe/autopilot-products.ts"
+    ],
+    "components/autopilot/AutopilotUpgradeModal.tsx": [
+      "components/ui/badge.tsx",
+      "components/ui/button.tsx",
+      "components/ui/dialog.tsx",
+      "lib/stripe/autopilot-products.ts"
+    ],
+    "components/autopilot/CreateMeetingModal.tsx": [
+      "components/autopilot/RegistrationPagePreviewModal.tsx",
+      "lib/utils/meeting-slug-generator.ts"
+    ],
+    "components/autopilot/EditMeetingModal.tsx": [
+      "types/meeting.ts"
+    ],
+    "components/autopilot/EditableInvitationPreview.tsx": [
+      "components/ui/button.tsx",
+      "components/ui/dialog.tsx"
+    ],
+    "components/autopilot/FlyerGallery.tsx": [
+      "components/ui/button.tsx",
+      "components/ui/card.tsx"
+    ],
+    "components/autopilot/FlyerGenerator.tsx": [
+      "components/ui/alert.tsx",
+      "components/ui/button.tsx",
+      "components/ui/card.tsx",
+      "components/ui/input.tsx",
+      "components/ui/label.tsx",
+      "components/ui/textarea.tsx"
+    ],
+    "components/autopilot/InvitationList.tsx": [
+      "components/ui/badge.tsx",
+      "components/ui/button.tsx",
+      "components/ui/card.tsx",
+      "lib/autopilot/invitation-helpers.ts"
+    ],
+    "components/autopilot/InvitationPreviewModal.tsx": [
+      "components/ui/button.tsx",
+      "components/ui/dialog.tsx"
+    ],
+    "components/autopilot/InvitationStats.tsx": [
+      "components/ui/card.tsx",
+      "lib/autopilot/invitation-helpers.ts"
+    ],
+    "components/autopilot/MeetingCard.tsx": [
+      "components/autopilot/EditMeetingModal.tsx",
+      "types/meeting.ts"
+    ],
+    "components/autopilot/MeetingInvitationForm.tsx": [
+      "components/autopilot/EditableInvitationPreview.tsx",
+      "components/autopilot/InvitationPreviewModal.tsx",
+      "components/ui/button.tsx",
+      "components/ui/card.tsx",
+      "lib/autopilot/constants.ts"
+    ],
+    "components/autopilot/MeetingsList.tsx": [
+      "components/autopilot/MeetingCard.tsx",
+      "types/meeting.ts"
+    ],
+    "components/autopilot/MeetingsTab.tsx": [
+      "components/autopilot/CreateMeetingModal.tsx",
+      "components/autopilot/MeetingsList.tsx",
+      "types/meeting.ts"
+    ],
+    "components/autopilot/RegistrationPagePreviewModal.tsx": [
+      "components/MeetingRegistrationForm.tsx",
+      "components/ui/button.tsx",
+      "components/ui/dialog.tsx"
+    ],
+    "components/autopilot/SocialPostComposer.tsx": [
+      "components/ui/alert.tsx",
+      "components/ui/button.tsx",
+      "components/ui/card.tsx",
+      "components/ui/checkbox.tsx",
+      "components/ui/input.tsx",
+      "components/ui/label.tsx",
+      "components/ui/textarea.tsx",
+      "lib/autopilot/social-helpers.ts"
+    ],
+    "components/autopilot/SocialPostsList.tsx": [
+      "components/ui/badge.tsx",
+      "components/ui/button.tsx",
+      "components/ui/card.tsx",
+      "lib/autopilot/social-helpers.ts"
+    ],
+    "components/autopilot/crm/ContactList.tsx": [],
+    "components/autopilot/team/BroadcastComposer.tsx": [
+      "components/ui/button.tsx",
+      "components/ui/card.tsx"
+    ],
+    "components/autopilot/team/BroadcastList.tsx": [
+      "components/ui/badge.tsx",
+      "components/ui/button.tsx",
+      "components/ui/card.tsx"
+    ],
+    "components/autopilot/team/DownlineActivityFeed.tsx": [
+      "components/ui/badge.tsx",
+      "components/ui/card.tsx"
+    ],
+    "components/autopilot/team/TrainingShareForm.tsx": [
+      "components/ui/button.tsx",
+      "components/ui/card.tsx"
+    ],
+    "components/autopilot/team/TrainingSharesList.tsx": [
+      "components/ui/badge.tsx",
+      "components/ui/card.tsx",
+      "components/ui/tabs.tsx"
+    ],
+    "components/booking/BookingClient.tsx": [],
+    "components/booking/CalComModal.tsx": [],
+    "components/business-center/AIAssistantButton.tsx": [
+      "components/business-center/AIAssistantModal.tsx"
+    ],
+    "components/business-center/AIAssistantModal.tsx": [],
+    "components/business-center/VimeoEmbed.tsx": [],
+    "components/cart/CartIcon.tsx": [],
+    "components/chatbot/AudioPlayer.tsx": [],
+    "components/chatbot/InteractiveListBuilder.tsx": [],
+    "components/chatbot/PresentationDeckViewer.tsx": [
+      "components/ui/button.tsx",
+      "components/ui/card.tsx"
+    ],
+    "components/chatbot/VideoPlayer.tsx": [],
+    "components/claim-states/StateDetailModal.tsx": [],
+    "components/claim-states/USMap.tsx": [
+      "lib/us-map-data.ts"
+    ],
+    "components/common/FeatureGate.tsx": [
+      "lib/features/access-control.ts",
+      "lib/features/useFeatureAccess.ts"
+    ],
+    "components/common/LicensingStatusBadge.tsx": [
+      "lib/features/access-control.ts"
+    ],
+    "components/common/index.ts": [
+      "components/common/FeatureGate.tsx",
+      "components/common/LicensingStatusBadge.tsx"
+    ],
+    "components/compensation/CompensationCalculator.tsx": [],
+    "components/crm/LeadsTable.tsx": [],
+    "components/crm/NewActivityForm.tsx": [],
+    "components/crm/NewContactForm.tsx": [],
+    "components/crm/NewLeadForm.tsx": [],
+    "components/crm/NewTaskForm.tsx": [],
+    "components/crm/ViewEditTaskForm.tsx": [],
+    "components/dashboard-v2/ChatHeader.tsx": [],
+    "components/dashboard-v2/QuickActionBar.tsx": [],
+    "components/dashboard-v2/SlidingSidebar.tsx": [],
+    "components/dashboard-v2/chat/ButtonGrid.tsx": [],
+    "components/dashboard-v2/chat/ChartCard.tsx": [],
+    "components/dashboard-v2/chat/MatrixVisualization.tsx": [],
+    "components/dashboard-v2/chat/StatCard.tsx": [],
+    "components/dashboard-v2/chat/TeamMemberCard.tsx": [],
+    "components/dashboard/AIAssistantBanner.tsx": [],
+    "components/dashboard/AIAssistantCard.tsx": [],
+    "components/dashboard/AIChatModal.tsx": [
+      "components/MermaidDiagram.tsx",
+      "components/chatbot/AudioPlayer.tsx",
+      "components/chatbot/InteractiveListBuilder.tsx",
+      "components/chatbot/VideoPlayer.tsx",
+      "components/dashboard/AIToolsAccordion.tsx",
+      "lib/ai-copilot/tools-reference.ts",
+      "lib/chatbot/parse-media.tsx"
+    ],
+    "components/dashboard/AIFloatingButton.tsx": [
+      "components/dashboard/AIChatModal.tsx"
+    ],
+    "components/dashboard/AIPhoneStats.tsx": [],
+    "components/dashboard/AIRecommendations.tsx": [],
+    "components/dashboard/AIToolsAccordion.tsx": [
+      "lib/ai-copilot/tools-reference.ts"
+    ],
+    "components/dashboard/AccordionProfileForm.tsx": [
+      "components/dashboard/ProfilePhotoCropper.tsx",
+      "lib/types/index.ts"
+    ],
+    "components/dashboard/ActivityFeed.tsx": [
+      "app/api/activity-feed/route.ts"
+    ],
+    "components/dashboard/AudioPlayerCard.tsx": [],
+    "components/dashboard/BenefitCard.tsx": [],
+    "components/dashboard/BusinessCardDesigner.tsx": [
+      "lib/business-card-templates.ts"
+    ],
+    "components/dashboard/BusinessCenterButton.tsx": [],
+    "components/dashboard/BusinessCenterNag.tsx": [
+      "lib/subscription/feature-gate.ts"
+    ],
+    "components/dashboard/CEOVideoSection.tsx": [],
+    "components/dashboard/CardDesignerForm.tsx": [
+      "components/dashboard/CardPreviewRenderer.tsx"
+    ],
+    "components/dashboard/CardPreviewRenderer.tsx": [],
+    "components/dashboard/CommissionsTable.tsx": [],
+    "components/dashboard/CompensationStatsWidget.tsx": [],
+    "components/dashboard/ContentCard.tsx": [],
+    "components/dashboard/CopyReferralButton.tsx": [],
+    "components/dashboard/DashboardClient.tsx": [
+      "components/onboarding/OnboardingModal.tsx",
+      "lib/types/index.ts"
+    ],
+    "components/dashboard/DashboardLayoutClient.tsx": [
+      "components/ErrorBoundary.tsx",
+      "components/dashboard/AIChatModal.tsx",
+      "components/dashboard/Sidebar.tsx"
+    ],
+    "components/dashboard/DashboardTopCards.tsx": [
+      "components/dashboard/AudioPlayerCard.tsx",
+      "components/dashboard/RaceTo100Card.tsx",
+      "components/dashboard/VideoTrainingCard.tsx"
+    ],
+    "components/dashboard/DashboardV3Client.tsx": [
+      "lib/types/index.ts"
+    ],
+    "components/dashboard/ExportButton.tsx": [],
+    "components/dashboard/FAQItem.tsx": [],
+    "components/dashboard/FeatureGate.tsx": [
+      "components/dashboard/TrialBanner.tsx",
+      "lib/subscription/feature-gate.ts"
+    ],
+    "components/dashboard/LicensingStatusManager.tsx": [
+      "components/common/index.ts",
+      "lib/types/index.ts"
+    ],
+    "components/dashboard/MatrixChildrenUser.tsx": [
+      "lib/types/index.ts"
+    ],
+    "components/dashboard/PasswordChangeForm.tsx": [
+      "lib/supabase/client.ts"
+    ],
+    "components/dashboard/PendingDataDisclaimer.tsx": [],
+    "components/dashboard/PersonalTeam.tsx": [
+      "lib/types/index.ts"
+    ],
+    "components/dashboard/ProfileEditForm.tsx": [
+      "components/dashboard/ProfilePhotoCropper.tsx",
+      "lib/types/index.ts",
+      "lib/validation/profile-schemas.ts"
+    ],
+    "components/dashboard/ProfileForm.tsx": [
+      "lib/types/index.ts"
+    ],
+    "components/dashboard/ProfilePhotoCropper.tsx": [],
+    "components/dashboard/ProgressBar.tsx": [],
+    "components/dashboard/PulseProductCard.tsx": [],
+    "components/dashboard/QRCodeGenerator.tsx": [],
+    "components/dashboard/QuickActions.tsx": [],
+    "components/dashboard/RaceTo100Banner.tsx": [],
+    "components/dashboard/RaceTo100Card.tsx": [],
+    "components/dashboard/RecentAICallsWidget.tsx": [],
+    "components/dashboard/ReferralLink.tsx": [],
+    "components/dashboard/ReferralLinkGenerator.tsx": [],
+    "components/dashboard/ResendWelcomeButton.tsx": [],
+    "components/dashboard/Road500Banner.tsx": [
+      "components/dashboard/Road500BannerClient.tsx",
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "components/dashboard/Road500BannerClient.tsx": [],
+    "components/dashboard/SalesFilters.tsx": [],
+    "components/dashboard/SalesTable.tsx": [],
+    "components/dashboard/Sidebar.tsx": [
+      "app/actions/auth.ts",
+      "lib/supabase/client.ts"
+    ],
+    "components/dashboard/SlugChangeForm.tsx": [],
+    "components/dashboard/SocialMediaHub.tsx": [
+      "components/dashboard/ContentCard.tsx",
+      "components/dashboard/QRCodeGenerator.tsx"
+    ],
+    "components/dashboard/SocialShareCard.tsx": [],
+    "components/dashboard/SponsorLineageUser.tsx": [
+      "lib/types/index.ts"
+    ],
+    "components/dashboard/StoreClient.tsx": [],
+    "components/dashboard/TeamStatisticsUser.tsx": [
+      "lib/types/index.ts"
+    ],
+    "components/dashboard/TrainingAudioPlayer.tsx": [],
+    "components/dashboard/TrialBanner.tsx": [],
+    "components/dashboard/UsageLimitModal.tsx": [],
+    "components/dashboard/UsageStats.tsx": [
+      "components/dashboard/ProgressBar.tsx"
+    ],
+    "components/dashboard/UseCase.tsx": [],
+    "components/dashboard/VideoTrainingCard.tsx": [],
+    "components/first-48-hours/First48HoursClient.tsx": [],
+    "components/forms/ForgotPasswordForm.tsx": [],
+    "components/forms/LoginForm.tsx": [
+      "app/login/actions.ts"
+    ],
+    "components/forms/ProspectSignupForm.tsx": [],
+    "components/forms/ResetPasswordForm.tsx": [],
+    "components/forms/SignupForm.tsx": [
+      "lib/utils/date-validation.ts",
+      "lib/utils/ein.ts",
+      "lib/utils/format-phone.ts",
+      "lib/utils/slug-client.ts",
+      "lib/utils/ssn.ts",
+      "lib/validations/signup.ts"
+    ],
+    "components/genealogy/CompensationTreeView.tsx": [
+      "components/genealogy/TreeNodeCard.tsx"
+    ],
+    "components/genealogy/GenealogyControls.tsx": [
+      "lib/types/index.ts"
+    ],
+    "components/genealogy/GenealogyPageSkeleton.tsx": [],
+    "components/genealogy/GenealogyWithModal.tsx": [
+      "components/genealogy/CompensationTreeView.tsx",
+      "components/genealogy/TreeNodeCard.tsx"
+    ],
+    "components/genealogy/TreeNodeCard.tsx": [],
+    "components/genealogy/TreeView.tsx": [
+      "lib/genealogy/tree-service.ts"
+    ],
+    "components/homepage/ApexHomepageV2.tsx": [
+      "lib/types/index.ts",
+      "lib/utils/format-phone.ts"
+    ],
+    "components/homepage/ProfessionalHomepage.tsx": [
+      "lib/types/index.ts",
+      "lib/utils/format-phone.ts"
+    ],
+    "components/integrations/IPipelineLauncher.tsx": [
+      "components/ui/button.tsx",
+      "components/ui/dialog.tsx",
+      "components/ui/select.tsx",
+      "lib/integrations/ipipeline/types.ts"
+    ],
+    "components/invites/InviteForm.tsx": [],
+    "components/licensed-agent/CommissionGrid.tsx": [],
+    "components/licensed-agent/WinflexSSOButton.tsx": [],
+    "components/marketing/AboutStats.tsx": [],
+    "components/marketing/CTASection.tsx": [
+      "components/ui/button.tsx"
+    ],
+    "components/marketing/ChooseYourPath.tsx": [
+      "components/ui/button.tsx"
+    ],
+    "components/marketing/CompanyLogos.tsx": [],
+    "components/marketing/FAQ.tsx": [],
+    "components/marketing/Footer.tsx": [],
+    "components/marketing/GettingStarted.tsx": [],
+    "components/marketing/Header.tsx": [
+      "components/ui/button.tsx"
+    ],
+    "components/marketing/Hero.tsx": [
+      "components/ui/button.tsx"
+    ],
+    "components/marketing/Services.tsx": [
+      "components/ui/button.tsx"
+    ],
+    "components/marketing/StatsSection.tsx": [],
+    "components/marketing/Testimonials.tsx": [],
+    "components/marketing/WhyApex.tsx": [],
+    "components/matrix/HybridMatrixView.tsx": [],
+    "components/matrix/MatrixLevelView.tsx": [
+      "components/matrix/MatrixNodeCard.tsx"
+    ],
+    "components/matrix/MatrixNodeCard.tsx": [],
+    "components/matrix/MatrixWithModal.tsx": [
+      "components/matrix/MatrixLevelView.tsx",
+      "components/matrix/MatrixNodeCard.tsx"
+    ],
+    "components/onboarding/OnboardingModal.tsx": [
+      "components/onboarding/OnboardingStep1Welcome.tsx",
+      "components/onboarding/OnboardingStep2Photo.tsx",
+      "components/onboarding/OnboardingStep4Team.tsx",
+      "components/onboarding/OnboardingStep5NextSteps.tsx",
+      "lib/types/index.ts"
+    ],
+    "components/onboarding/OnboardingStep1Welcome.tsx": [
+      "lib/types/index.ts"
+    ],
+    "components/onboarding/OnboardingStep2Photo.tsx": [
+      "lib/types/index.ts"
+    ],
+    "components/onboarding/OnboardingStep3Licensing.tsx": [
+      "lib/types/index.ts"
+    ],
+    "components/onboarding/OnboardingStep3Profile.tsx": [
+      "lib/types/index.ts"
+    ],
+    "components/onboarding/OnboardingStep4Team.tsx": [
+      "lib/types/index.ts"
+    ],
+    "components/onboarding/OnboardingStep4Website.tsx": [
+      "lib/types/index.ts"
+    ],
+    "components/onboarding/OnboardingStep5NextSteps.tsx": [
+      "lib/types/index.ts"
+    ],
+    "components/optive/OptiveReplicatedSite.tsx": [
+      "lib/types/index.ts",
+      "lib/utils/format-phone.ts"
+    ],
+    "components/organization/OrganizationFilters.tsx": [],
+    "components/organization/OrganizationRow.tsx": [
+      "components/organization/OrganizationTable.tsx"
+    ],
+    "components/organization/OrganizationTable.tsx": [
+      "components/organization/OrganizationFilters.tsx",
+      "components/organization/OrganizationRow.tsx"
+    ],
+    "components/payments/SquarePaymentForm.tsx": [],
+    "components/race-to-100/CoachChat.tsx": [
+      "components/chatbot/AudioPlayer.tsx",
+      "components/chatbot/InteractiveListBuilder.tsx",
+      "components/chatbot/VideoPlayer.tsx"
+    ],
+    "components/race-to-100/ConfettiCelebration.tsx": [],
+    "components/race-to-100/ProgressTracker.tsx": [],
+    "components/race-to-100/RaceTo100Client.tsx": [
+      "components/race-to-100/CoachChat.tsx",
+      "components/race-to-100/ProgressTracker.tsx",
+      "components/race-to-100/StepChecklist.tsx"
+    ],
+    "components/race-to-100/RaceTo100Modal.tsx": [
+      "components/race-to-100/CoachChat.tsx",
+      "components/race-to-100/ProgressTracker.tsx",
+      "components/race-to-100/RaceToolsAccordion.tsx",
+      "components/race-to-100/StepChecklist.tsx",
+      "lib/race-to-100/tools-reference.ts"
+    ],
+    "components/race-to-100/RaceTo100ModalClient.tsx": [
+      "components/ErrorBoundary.tsx",
+      "components/race-to-100/RaceTo100Modal.tsx"
+    ],
+    "components/race-to-100/RaceToolsAccordion.tsx": [
+      "lib/race-to-100/tools-reference.ts"
+    ],
+    "components/race-to-100/StepChecklist.tsx": [],
+    "components/replicated/ReplicatedSite.tsx": [
+      "components/common/index.ts",
+      "lib/types/index.ts"
+    ],
+    "components/services/CartDrawer.tsx": [],
+    "components/services/ServicePageClient.tsx": [
+      "components/services/CartDrawer.tsx"
+    ],
+    "components/settings/ChangeEmailForm.tsx": [],
+    "components/settings/ChangePasswordForm.tsx": [],
+    "components/team/TeamFilters.tsx": [
+      "components/team/TeamMemberCard.tsx"
+    ],
+    "components/team/TeamLoadingSkeleton.tsx": [],
+    "components/team/TeamMemberCard.tsx": [],
+    "components/team/TeamPageSkeleton.tsx": [],
+    "components/team/TeamStatsHeader.tsx": [],
+    "components/team/TeamWithModal.tsx": [
+      "components/team/TeamFilters.tsx",
+      "components/team/TeamMemberCard.tsx"
+    ],
+    "components/training/AdminTrainingClient.tsx": [
+      "components/training/CreateEpisodeModal.tsx"
+    ],
+    "components/training/AudioPlayer.tsx": [],
+    "components/training/CreateEpisodeModal.tsx": [],
+    "components/training/TrainingDashboardClient.tsx": [
+      "components/training/AudioPlayer.tsx"
+    ],
+    "components/training/VideoPlayer.tsx": [],
+    "components/ui/alert.tsx": [],
+    "components/ui/avatar.tsx": [
+      "lib/utils.ts"
+    ],
+    "components/ui/badge.tsx": [
+      "lib/utils.ts"
+    ],
+    "components/ui/button.tsx": [
+      "lib/utils.ts"
+    ],
+    "components/ui/card.tsx": [
+      "lib/utils.ts"
+    ],
+    "components/ui/chart.tsx": [
+      "lib/utils.ts"
+    ],
+    "components/ui/checkbox.tsx": [],
+    "components/ui/dialog.tsx": [
+      "components/ui/button.tsx",
+      "lib/utils.ts"
+    ],
+    "components/ui/dropdown-menu.tsx": [
+      "lib/utils.ts"
+    ],
+    "components/ui/input.tsx": [],
+    "components/ui/label.tsx": [],
+    "components/ui/progress.tsx": [
+      "lib/utils.ts"
+    ],
+    "components/ui/select.tsx": [
+      "lib/utils.ts"
+    ],
+    "components/ui/separator.tsx": [
+      "lib/utils.ts"
+    ],
+    "components/ui/switch.tsx": [
+      "lib/utils.ts"
+    ],
+    "components/ui/table.tsx": [
+      "lib/utils.ts"
+    ],
+    "components/ui/tabs.tsx": [
+      "lib/utils.ts"
+    ],
+    "components/ui/textarea.tsx": [],
+    "components/waitlist/WaitlistScreen.tsx": [],
+    "contexts/DistributorContext.tsx": [
+      "lib/types/index.ts"
+    ],
+    "data/annuity-commissions.json": [],
+    "data/life-commissions.json": [],
+    "db/schema.ts": [],
+    "emails/DistributorWelcomeEmail.tsx": [],
+    "emails/ProspectWelcomeEmail.tsx": [],
+    "hooks/useAIChatSessions.ts": [],
+    "hooks/useUser.ts": [
+      "lib/supabase/client.ts",
+      "lib/types/index.ts"
+    ],
+    "hooks/useUserContext.ts": [],
+    "lib/admin/activity-logger.ts": [
+      "lib/supabase/service.ts"
+    ],
+    "lib/admin/ai-assistant-prompt.ts": [
+      "lib/admin/ai-conversation-context.ts",
+      "lib/admin/ai-shortcuts.ts",
+      "lib/admin/ai-system-knowledge.ts"
+    ],
+    "lib/admin/ai-conversation-context.ts": [],
+    "lib/admin/ai-database-access.ts": [
+      "lib/supabase/service.ts"
+    ],
+    "lib/admin/ai-shortcuts.ts": [],
+    "lib/admin/ai-system-knowledge.ts": [],
+    "lib/admin/audit-logger.ts": [
+      "lib/supabase/service.ts"
+    ],
+    "lib/admin/command-executor.ts": [
+      "lib/admin/ai-database-access.ts",
+      "lib/admin/entity-resolver.ts",
+      "lib/supabase/service.ts"
+    ],
+    "lib/admin/enrollment-tree-manager.ts": [
+      "lib/supabase/service.ts",
+      "lib/types/index.ts"
+    ],
+    "lib/admin/entity-resolver.ts": [
+      "lib/supabase/service.ts",
+      "lib/types/index.ts"
+    ],
+    "lib/admin/matrix-manager.ts": [
+      "lib/supabase/service.ts",
+      "lib/types/index.ts"
+    ],
+    "lib/admin/rbac.ts": [
+      "lib/supabase/service.ts"
+    ],
+    "lib/ai-copilot/tools-reference.ts": [],
+    "lib/ai/genealogy-analyzer.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "lib/auth/admin.ts": [
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "lib/auth/server.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "lib/autopilot/constants.ts": [],
+    "lib/autopilot/flyer-generator.ts": [
+      "lib/autopilot/flyer-templates.ts"
+    ],
+    "lib/autopilot/flyer-templates.ts": [],
+    "lib/autopilot/invitation-helpers.ts": [
+      "lib/autopilot/constants.ts",
+      "lib/stripe/autopilot-helpers.ts",
+      "lib/supabase/service.ts"
+    ],
+    "lib/autopilot/lead-scoring.ts": [],
+    "lib/autopilot/social-helpers.ts": [],
+    "lib/autopilot/social-integrations.ts": [
+      "lib/autopilot/social-helpers.ts"
+    ],
+    "lib/autopilot/team-helpers.ts": [
+      "lib/stripe/autopilot-helpers.ts",
+      "lib/supabase/service.ts"
+    ],
+    "lib/business-card-templates.ts": [],
+    "lib/calculators/insurance-ladder-calculator.ts": [],
+    "lib/calculators/tech-ladder-calculator.ts": [
+      "lib/compensation/config.ts"
+    ],
+    "lib/calendar/ics-generator.ts": [
+      "types/meeting.ts"
+    ],
+    "lib/chatbot/activity-monitor.ts": [
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "lib/chatbot/parse-media.tsx": [
+      "components/chatbot/AudioPlayer.tsx",
+      "components/chatbot/VideoPlayer.tsx"
+    ],
+    "lib/commission-engine/monthly-run.ts": [
+      "lib/compensation/config.ts",
+      "lib/compensation/override-calculator.ts",
+      "lib/compensation/waterfall.ts",
+      "lib/compliance/retail-validation.ts",
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "lib/commission-engine/qualification-check.ts": [
+      "lib/compensation/config.ts",
+      "lib/supabase/server.ts"
+    ],
+    "lib/compensation/bonus-programs.ts": [
+      "lib/compensation/config.ts",
+      "lib/compensation/rank.ts"
+    ],
+    "lib/compensation/bv-calculator.ts": [],
+    "lib/compensation/clawback-processor.ts": [],
+    "lib/compensation/config-loader.ts": [
+      "lib/compensation/config.ts",
+      "lib/supabase/client.ts"
+    ],
+    "lib/compensation/config.ts": [],
+    "lib/compensation/estimate-earnings.ts": [
+      "lib/compensation/config.ts",
+      "lib/compensation/types/estimated-earnings.ts"
+    ],
+    "lib/compensation/gv-propagation.ts": [
+      "lib/supabase/service.ts"
+    ],
+    "lib/compensation/override-calculator.ts": [
+      "lib/compensation/bv-calculator.ts",
+      "lib/compliance/retail-validation.ts",
+      "lib/supabase/server.ts"
+    ],
+    "lib/compensation/override-resolution.ts": [
+      "lib/compensation/config.ts",
+      "lib/compensation/waterfall.ts"
+    ],
+    "lib/compensation/qv-bv-calculator.ts": [],
+    "lib/compensation/rank.ts": [
+      "lib/compensation/config.ts"
+    ],
+    "lib/compensation/run-lock.ts": [
+      "lib/supabase/service.ts"
+    ],
+    "lib/compensation/types.ts": [],
+    "lib/compensation/types/estimated-earnings.ts": [],
+    "lib/compensation/update-estimates.ts": [
+      "lib/compensation/config.ts",
+      "lib/compensation/types/estimated-earnings.ts",
+      "lib/supabase/service.ts"
+    ],
+    "lib/compensation/waterfall.ts": [
+      "lib/compensation/config.ts"
+    ],
+    "lib/compliance/anti-frontloading.ts": [],
+    "lib/compliance/email-alerts.ts": [
+      "lib/email/resend.ts"
+    ],
+    "lib/compliance/index.ts": [
+      "lib/compliance/anti-frontloading.ts",
+      "lib/compliance/retail-validation.ts"
+    ],
+    "lib/compliance/retail-validation.ts": [],
+    "lib/config/autopilot.ts": [],
+    "lib/data/queries.ts": [
+      "lib/compensation/config.ts",
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "lib/db/autopilot-subscription-queries.ts": [
+      "lib/stripe/autopilot-products.ts",
+      "lib/supabase/service.ts"
+    ],
+    "lib/design-system.ts": [],
+    "lib/email/apex-email-template-v2.ts": [],
+    "lib/email/apex-email-template.ts": [],
+    "lib/email/campaign-service.ts": [
+      "lib/email/resend.ts",
+      "lib/email/template-variables.ts",
+      "lib/supabase/service.ts",
+      "lib/types/email.ts",
+      "lib/types/index.ts"
+    ],
+    "lib/email/email-transaction.ts": [
+      "lib/supabase/service.ts"
+    ],
+    "lib/email/launch-email.ts": [],
+    "lib/email/logo-url.ts": [],
+    "lib/email/nurture/business-center-templates.ts": [],
+    "lib/email/onboarding.ts": [
+      "lib/email/resend.ts"
+    ],
+    "lib/email/order-receipt.ts": [],
+    "lib/email/reminder-email.ts": [],
+    "lib/email/resend.ts": [],
+    "lib/email/send-meeting-invitation.ts": [
+      "lib/autopilot/invitation-helpers.ts",
+      "lib/email/resend.ts",
+      "lib/email/templates/meeting-invitation.tsx",
+      "lib/email/templates/meeting-reminder.tsx"
+    ],
+    "lib/email/send-template-email.ts": [],
+    "lib/email/send-training-email.ts": [
+      "lib/email/templates/training-content.tsx",
+      "lib/supabase/server.ts",
+      "types/training.ts"
+    ],
+    "lib/email/template-variables.ts": [
+      "lib/types/index.ts"
+    ],
+    "lib/email/template-wrapper.ts": [],
+    "lib/email/templates/base-email-template.tsx": [],
+    "lib/email/templates/meeting-invitation.tsx": [],
+    "lib/email/templates/meeting-reminder.tsx": [],
+    "lib/email/templates/training-content.tsx": [
+      "types/training.ts"
+    ],
+    "lib/enrollees/enrollee-counter.ts": [
+      "lib/supabase/service.ts"
+    ],
+    "lib/features/access-control.ts": [],
+    "lib/features/useFeatureAccess.ts": [
+      "contexts/DistributorContext.tsx",
+      "lib/features/access-control.ts"
+    ],
+    "lib/fulfillment/auto-transitions.ts": [
+      "lib/fulfillment/notifications.ts",
+      "lib/supabase/service.ts"
+    ],
+    "lib/fulfillment/notifications.ts": [
+      "lib/email/resend.ts",
+      "lib/supabase/service.ts"
+    ],
+    "lib/genealogy/tree-service.ts": [
+      "lib/supabase/service.ts",
+      "lib/types/index.ts"
+    ],
+    "lib/genealogy/tree-utils.ts": [],
+    "lib/google-calendar/client.ts": [],
+    "lib/insurance/placement-service.ts": [
+      "lib/supabase/service.ts"
+    ],
+    "lib/integrations/encryption.ts": [],
+    "lib/integrations/ipipeline/saml.ts": [
+      "lib/integrations/ipipeline/types.ts"
+    ],
+    "lib/integrations/ipipeline/types.ts": [],
+    "lib/integrations/user-sync/service.ts": [
+      "lib/supabase/service.ts",
+      "lib/types/index.ts"
+    ],
+    "lib/integrations/webhooks/helpers.ts": [
+      "lib/supabase/service.ts"
+    ],
+    "lib/integrations/webhooks/process-sale.ts": [
+      "lib/supabase/service.ts",
+      "lib/types/index.ts"
+    ],
+    "lib/integrations/webhooks/verify-signature.ts": [],
+    "lib/logger.ts": [],
+    "lib/matrix/level-calculator.ts": [],
+    "lib/matrix/placement-algorithm.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "lib/matrix/placement.ts": [
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts",
+      "lib/types/index.ts"
+    ],
+    "lib/middleware/admin-auth.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "lib/profile/validation-notification-fix.ts": [],
+    "lib/profile/validation.ts": [],
+    "lib/race-to-100/tools-reference.ts": [],
+    "lib/rate-limit.ts": [],
+    "lib/referral-tracking.ts": [
+      "lib/supabase/client.ts"
+    ],
+    "lib/services/openai-tracked.ts": [
+      "lib/services/tracking.ts",
+      "types/service-tracking.ts"
+    ],
+    "lib/services/profile-sync-service.ts": [
+      "lib/supabase/service.ts",
+      "lib/validation/profile-schemas.ts"
+    ],
+    "lib/services/redis-tracked.ts": [
+      "lib/services/tracking.ts",
+      "types/service-tracking.ts"
+    ],
+    "lib/services/resend-tracked.ts": [
+      "lib/email/template-wrapper.ts",
+      "lib/services/tracking.ts",
+      "types/service-tracking.ts"
+    ],
+    "lib/services/supabase-usage.ts": [
+      "lib/supabase/service.ts"
+    ],
+    "lib/services/tracking.ts": [
+      "lib/supabase/service.ts",
+      "types/service-tracking.ts"
+    ],
+    "lib/services/vercel-usage.ts": [
+      "lib/supabase/service.ts"
+    ],
+    "lib/smartoffice/client.ts": [
+      "lib/smartoffice/types.ts",
+      "lib/smartoffice/xml-parser.ts",
+      "lib/supabase/service.ts"
+    ],
+    "lib/smartoffice/create-agent-service.ts": [
+      "lib/smartoffice/client.ts",
+      "lib/smartoffice/types.ts",
+      "lib/supabase/service.ts"
+    ],
+    "lib/smartoffice/custom-queries.ts": [],
+    "lib/smartoffice/index.ts": [
+      "lib/smartoffice/client.ts",
+      "lib/smartoffice/custom-queries.ts",
+      "lib/smartoffice/sync-service.ts",
+      "lib/smartoffice/types.ts",
+      "lib/smartoffice/xml-parser.ts"
+    ],
+    "lib/smartoffice/sync-service.ts": [
+      "lib/smartoffice/client.ts",
+      "lib/smartoffice/types.ts",
+      "lib/supabase/service.ts"
+    ],
+    "lib/smartoffice/types.ts": [],
+    "lib/smartoffice/xml-parser.ts": [
+      "lib/smartoffice/types.ts"
+    ],
+    "lib/sms/send-attendance-notification.ts": [
+      "lib/twilio/client.ts"
+    ],
+    "lib/stripe/autopilot-helpers.ts": [
+      "lib/stripe/autopilot-products.ts",
+      "lib/supabase/service.ts"
+    ],
+    "lib/stripe/autopilot-products.ts": [],
+    "lib/subscription/check-business-center.ts": [
+      "lib/supabase/service.ts"
+    ],
+    "lib/subscription/feature-gate.ts": [],
+    "lib/supabase/client.ts": [],
+    "lib/supabase/middleware.ts": [],
+    "lib/supabase/server.ts": [],
+    "lib/supabase/service-with-logging.ts": [
+      "lib/supabase/service.ts"
+    ],
+    "lib/supabase/service.ts": [],
+    "lib/training/daily-training-content.ts": [],
+    "lib/transactions/log-transaction.ts": [
+      "lib/supabase/service.ts"
+    ],
+    "lib/twilio/a2p-helpers.ts": [
+      "lib/twilio/client.ts"
+    ],
+    "lib/twilio/client.ts": [],
+    "lib/twilio/provisioning.ts": [
+      "lib/twilio/a2p-helpers.ts",
+      "lib/twilio/client.ts"
+    ],
+    "lib/twilio/sms.ts": [],
+    "lib/types/email.ts": [],
+    "lib/types/fulfillment.ts": [],
+    "lib/types/index.ts": [],
+    "lib/us-map-data.ts": [],
+    "lib/usage/limits.ts": [
+      "lib/subscription/check-business-center.ts",
+      "lib/usage/tracking.ts"
+    ],
+    "lib/usage/tracking.ts": [
+      "lib/supabase/server.ts",
+      "lib/supabase/service.ts"
+    ],
+    "lib/utils.ts": [],
+    "lib/utils/date-format.ts": [],
+    "lib/utils/date-parser.ts": [],
+    "lib/utils/date-validation.ts": [],
+    "lib/utils/date.ts": [],
+    "lib/utils/ein.ts": [],
+    "lib/utils/format-phone.ts": [],
+    "lib/utils/format.ts": [],
+    "lib/utils/meeting-slug-generator.ts": [
+      "lib/supabase/service.ts"
+    ],
+    "lib/utils/slug-client.ts": [
+      "lib/validations/signup.ts"
+    ],
+    "lib/utils/slug.ts": [
+      "lib/supabase/server.ts",
+      "lib/validations/signup.ts"
+    ],
+    "lib/utils/ssn.ts": [],
+    "lib/utils/user-helpers.ts": [],
+    "lib/validation/profile-schemas.ts": [],
+    "lib/validations/signup.ts": [
+      "lib/utils/date-validation.ts",
+      "lib/utils/ein.ts",
+      "lib/utils/ssn.ts"
+    ],
+    "lib/validators/meeting-schemas.ts": [],
+    "lib/vapi/assistants.ts": [],
+    "lib/vapi/client.ts": [],
+    "lib/vapi/prompts/apex-rep-agent.ts": [],
+    "lib/vapi/prompts/network-marketing.ts": [],
+    "lib/vapi/sms-templates.ts": [],
+    "lib/vapi/webhook-security.ts": [
+      "lib/logger.ts"
+    ],
+    "middleware.ts": [],
+    "middleware/org-validation.ts": [
+      "lib/supabase/server.ts"
+    ],
+    "types/meeting.ts": [],
+    "types/profile.ts": [],
+    "types/service-tracking.ts": [],
+    "types/training.ts": [],
+    "types/vitest.d.ts": []
+  }
+}

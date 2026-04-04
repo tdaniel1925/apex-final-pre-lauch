@@ -19,7 +19,12 @@
     "verify:stage-1": "node scripts/verify-stage-1.js",
     "seed:master": "tsx scripts/seed-master.ts",
     "seed:emails": "tsx scripts/seed-email-templates.ts",
-    "test:email": "tsx scripts/test-email.ts"
+    "test:email": "tsx scripts/test-email.ts",
+    "analyze:deps": "tsx scripts/analyze-dependencies.ts",
+    "deps:graph": "madge --image dependency-graph.svg src",
+    "deps:circular": "madge --circular src",
+    "deps:api": "madge --image api-graph.svg src/app/api",
+    "deps:components": "madge --image components-graph.svg src/components"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.80.0",
@@ -78,6 +83,7 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@elevenlabs/elevenlabs-js": "^2.41.1",
     "@playwright/test": "^1.58.2",
     "@tailwindcss/postcss": "^4",
     "@testing-library/jest-dom": "^6.9.1",
@@ -91,10 +97,13 @@
     "@vitejs/plugin-react": "^5.1.4",
     "@vitest/ui": "^4.0.18",
     "dotenv": "^17.3.1",
+    "elevenlabs": "^1.59.0",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "jsdom": "^29.0.0",
+    "madge": "^8.0.0",
     "mammoth": "^1.12.0",
+    "say": "^0.16.0",
     "shadcn": "^3.8.5",
     "tailwindcss": "^4",
     "tsx": "^4.21.0",
