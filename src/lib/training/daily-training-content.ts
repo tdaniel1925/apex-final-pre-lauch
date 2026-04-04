@@ -20,7 +20,7 @@ export const dailyTrainings: DailyTraining[] = [
     title: "The Compound Effect of 5 Contacts a Day",
     category: 'prospecting',
     duration: '2:04',
-    script: `Good morning!
+    script: `Welcome to another Apex Affinity Group Morning Moment!
 
 Most reps fail because they make contacts when they "feel like it."
 
@@ -56,7 +56,7 @@ See you tomorrow.`,
     title: "Where to Find Qualified Prospects",
     category: 'prospecting',
     duration: '2:10',
-    script: `Good morning!
+    script: `Welcome to another Apex Affinity Group Morning Moment!
 
 Yesterday you reached out to 5 people. Today, let's talk about WHERE to find the right prospects.
 
@@ -92,7 +92,7 @@ See you tomorrow.`,
     title: "The 3-Second Approach That Works",
     category: 'prospecting',
     duration: '2:05',
-    script: `Good morning!
+    script: `Welcome to another Apex Affinity Group Morning Moment!
 
 You've been finding prospects. Now let's talk about the OPENING LINE.
 
