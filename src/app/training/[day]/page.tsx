@@ -32,10 +32,14 @@ export default async function TrainingPage({ params }: { params: Promise<{ day: 
       <header className="bg-white border-b border-slate-200 shadow-sm">
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="https://reachtheapex.net" className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center text-white font-bold text-xl">
-              A
-            </div>
-            <span className="font-bold text-slate-900 text-lg">Apex Affinity Group</span>
+            <Image
+              src="/apex-logo.png"
+              alt="Apex Affinity Group"
+              width={180}
+              height={50}
+              className="h-12 w-auto"
+              priority
+            />
           </Link>
           <Link
             href="/dashboard"
