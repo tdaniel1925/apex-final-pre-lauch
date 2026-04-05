@@ -8,129 +8,31 @@
         "responseMode": "responseNode",
         "options": {}
       },
-      "id": "webhook-trigger",
-      "name": "Webhook Trigger",
+      "id": "1",
+      "name": "Webhook",
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [240, 300],
-      "webhookId": "new-distributor-onboarding"
+      "webhookId": "new-distributor"
     },
     {
       "parameters": {
         "respondWith": "json",
-        "responseBody": "={{ {\"success\": true, \"message\": \"Onboarding workflow started\"} }}"
+        "responseBody": "={{ { \"message\": \"Workflow started\" } }}"
       },
-      "id": "respond-immediately",
-      "name": "Respond Immediately",
+      "id": "2",
+      "name": "Respond",
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1,
       "position": [460, 300]
     },
     {
       "parameters": {
-        "method": "GET",
-        "url": "=https://brejvdvzwshroxkkhmzy.supabase.co/rest/v1/distributors?id=eq.{{ $json.distributorId }}&select=*,sponsor:distributors!sponsor_id(first_name,last_name,slug)",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "supabaseApi",
+        "method": "POST",
+        "url": "https://reachtheapex.net/api/email/send-welcome",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
-            {
-              "name": "Prefer",
-              "value": "return=representation"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "get-distributor-details",
-      "name": "Get Distributor Details",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [680, 300],
-      "credentials": {
-        "supabaseApi": {
-          "name": "Supabase Production"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "jsCode": "const dist = $input.first().json[0];\n\nif (!dist) {\n  throw new Error('Distributor not found');\n}\n\nconst sponsorName = dist.sponsor \n  ? `${dist.sponsor.first_name} ${dist.sponsor.last_name}`\n  : 'Direct';\n\nreturn [{\n  json: {\n    distributorId: dist.id,\n    firstName: dist.first_name,\n    lastName: dist.last_name,\n    fullName: `${dist.first_name} ${dist.last_name}`,\n    email: dist.email,\n    phone: dist.phone,\n    slug: dist.slug,\n    city: dist.city,\n    state: dist.state,\n    licensingStatus: dist.licensing_status,\n    sponsorName: sponsorName,\n    sponsorSlug: dist.sponsor ? dist.sponsor.slug : null,\n    registrationType: dist.registration_type,\n    createdAt: dist.created_at\n  }\n}];"
-      },
-      "id": "prepare-data",
-      "name": "Prepare Distributor Data",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [900, 300]
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "=https://reachtheapex.net/api/email/send-welcome",
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"distributorId\": \"{{ $json.distributorId }}\",\n  \"email\": \"{{ $json.email }}\",\n  \"firstName\": \"{{ $json.firstName }}\",\n  \"lastName\": \"{{ $json.lastName }}\",\n  \"licensingStatus\": \"{{ $json.licensingStatus }}\"\n}",
-        "options": {}
-      },
-      "id": "send-welcome-email",
-      "name": "Send Welcome Email",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [1120, 200]
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "=https://reachtheapex.net/api/integrations/create-replicated-sites",
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"distributorId\": \"{{ $json.distributorId }}\"\n}",
-        "options": {}
-      },
-      "id": "create-replicated-sites",
-      "name": "Create Replicated Sites",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [1120, 320]
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "=https://reachtheapex.net/api/signup/provision-ai",
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"distributorId\": \"{{ $json.distributorId }}\",\n  \"firstName\": \"{{ $json.firstName }}\",\n  \"lastName\": \"{{ $json.lastName }}\",\n  \"phone\": \"{{ $json.phone }}\",\n  \"sponsorSlug\": \"{{ $json.sponsorSlug }}\"\n}",
-        "options": {}
-      },
-      "id": "provision-ai-phone",
-      "name": "Provision AI Phone",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [1120, 440]
-    },
-    {
-      "parameters": {
-        "jsCode": "const dist = $input.first().json;\n\nconst messages = {\n  facebook: `🎉 Welcome ${dist.fullName} from ${dist.city}, ${dist.state}!\\n\\nThey just joined the Apex Affinity Group family as a ${dist.licensingStatus === 'licensed' ? 'licensed agent' : 'distributor'}.\\n\\nLet's show them some love! 💙\\n\\n#ApexFamily #NetworkMarketing #Welcome`,\n  \n  twitter: `🌟 Big news! ${dist.fullName} from ${dist.state} is now part of the Apex movement!\\n\\nWelcome to the family! 🚀\\n\\n#ApexFamily #NewMember`,\n  \n  linkedin: `We're excited to welcome ${dist.fullName} from ${dist.city}, ${dist.state} to the Apex Affinity Group!\\n\\n${dist.licensingStatus === 'licensed' ? 'As a licensed insurance professional' : 'As a new distributor'}, they're ready to make an impact.\\n\\nWelcome aboard! 👏\\n\\n#ApexAffinity #TeamGrowth`\n};\n\nreturn [{\n  json: {\n    ...dist,\n    socialMessages: messages\n  }\n}];"
-      },
-      "id": "format-social-posts",
-      "name": "Format Social Media Posts",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [1120, 560]
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "https://api.resend.com/emails",
-        "authentication": "none",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Authorization",
-              "value": "Bearer re_N7WUE23T_FuSdXfAbD7WodviGa3nJnPtw"
-            },
             {
               "name": "Content-Type",
               "value": "application/json"
@@ -139,74 +41,164 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"from\": \"Apex Affinity Group <theapex@theapexway.net>\",\n  \"to\": [\"tdaniel@botmakers.ai\", \"tavaresdavis81@gmail.com\"],\n  \"subject\": \"New Distributor: {{ $json.fullName }} ({{ $json.state }})\",\n  \"html\": \"<div style='font-family:Arial,sans-serif;padding:20px'><h2 style='color:#2c5aa0'>New Distributor Signup</h2><p><strong>Name:</strong> {{ $json.fullName }}</p><p><strong>Email:</strong> {{ $json.email }}</p><p><strong>Phone:</strong> {{ $json.phone }}</p><p><strong>Location:</strong> {{ $json.city }}, {{ $json.state }}</p><p><strong>Licensing:</strong> {{ $json.licensingStatus }}</p><p><strong>Sponsor:</strong> {{ $json.sponsorName }}</p><p><strong>Slug:</strong> {{ $json.slug }}</p></div>\"\n}",
-        "options": {}
+        "jsonBody": "={{ { \"distributorId\": $json.body.distributorId } }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
       },
-      "id": "notify-admin-team",
-      "name": "Notify Admin Team",
+      "id": "3",
+      "name": "Send Welcome Email",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [1120, 680]
+      "position": [680, 180],
+      "continueOnFail": true
     },
     {
       "parameters": {
-        "jsCode": "// Placeholder for Facebook posting\n// You'll configure this with Facebook credentials later\nconst message = $input.first().json.socialMessages.facebook;\n\nconsole.log('Facebook post:', message);\n\nreturn [{\n  json: {\n    platform: 'facebook',\n    message: message,\n    posted: false,\n    note: 'Configure Facebook Page credentials to enable'\n  }\n}];"
+        "method": "GET",
+        "url": "=https://brejvdvzwshroxkkhmzy.supabase.co/rest/v1/distributors?id=eq.{{ $json.body.distributorId }}&select=*,sponsor:distributors!sponsor_id(first_name,last_name)",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJyZWp2ZHZ6d3Nocm94a2tobXp5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEzMDA2NDQsImV4cCI6MjA4Njg3NjY0NH0.iz4K36Vd3HxXqyQLGga6z23Au8qe3FkUaVN9vPCcHzo"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJyZWp2ZHZ6d3Nocm94a2tobXp5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEzMDA2NDQsImV4cCI6MjA4Njg3NjY0NH0.iz4K36Vd3HxXqyQLGga6z23Au8qe3FkUaVN9vPCcHzo"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
       },
-      "id": "post-to-facebook",
-      "name": "Post to Facebook (Placeholder)",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [1340, 520]
+      "id": "4",
+      "name": "Get Distributor",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [680, 300],
+      "continueOnFail": true
     },
     {
       "parameters": {
-        "jsCode": "// Placeholder for Twitter posting\n// You'll configure this with Twitter credentials later\nconst message = $input.first().json.socialMessages.twitter;\n\nconsole.log('Twitter post:', message);\n\nreturn [{\n  json: {\n    platform: 'twitter',\n    message: message,\n    posted: false,\n    note: 'Configure Twitter/X credentials to enable'\n  }\n}];"
+        "jsCode": "const webhook = $('Webhook').item.json.body;\nconst raw = $input.first().json;\nconst dist = Array.isArray(raw) ? raw[0] : raw;\n\nif (!dist) throw new Error('Distributor not found');\n\nconst sponsor = Array.isArray(dist.sponsor) && dist.sponsor.length > 0 ? dist.sponsor[0] : dist.sponsor;\nconst sponsorName = sponsor ? `${sponsor.first_name} ${sponsor.last_name}` : 'Apex Vision';\n\nreturn [{\n  json: {\n    distributorId: webhook.distributorId,\n    firstName: webhook.firstName,\n    lastName: webhook.lastName,\n    email: webhook.email,\n    phone: dist.phone || '',\n    slug: dist.slug,\n    sponsorName: sponsorName,\n    replicatedSiteUrl: `https://reachtheapex.net/${dist.slug}`\n  }\n}];"
       },
-      "id": "post-to-twitter",
-      "name": "Post to Twitter (Placeholder)",
+      "id": "5",
+      "name": "Prepare Data",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [1340, 640]
+      "position": [900, 300]
     },
     {
       "parameters": {
-        "jsCode": "// Placeholder for LinkedIn posting\n// You'll configure this with LinkedIn credentials later\nconst message = $input.first().json.socialMessages.linkedin;\n\nconsole.log('LinkedIn post:', message);\n\nreturn [{\n  json: {\n    platform: 'linkedin',\n    message: message,\n    posted: false,\n    note: 'Configure LinkedIn Company Page credentials to enable'\n  }\n}];"
+        "method": "POST",
+        "url": "https://reachtheapex.net/api/signup/provision-ai",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ {\n  \"distributorId\": $json.distributorId,\n  \"firstName\": $json.firstName,\n  \"lastName\": $json.lastName,\n  \"phone\": $json.phone\n} }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 30000
+        }
       },
-      "id": "post-to-linkedin",
-      "name": "Post to LinkedIn (Placeholder)",
+      "id": "6",
+      "name": "Provision AI Phone",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1120, 380],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const d = $input.first().json;\n\nconst fb = `🎉 Welcome ${d.firstName} ${d.lastName} to Apex Affinity Group! Excited to have you on the team under ${d.sponsorName}. Let's reach the apex together! 🚀`;\n\nconst tw = `Welcome ${d.firstName} ${d.lastName} to @ApexAffinity! 🎉 Sponsored by ${d.sponsorName}. #ApexAffinity #NetworkMarketing #Insurance`;\n\nconst li = `We're thrilled to welcome ${d.firstName} ${d.lastName} to Apex Affinity Group! ${d.firstName} joins us under the sponsorship of ${d.sponsorName}. We're excited to support your journey in building a successful insurance business. Welcome to the team!\\n\\nReplicated Site: ${d.replicatedSiteUrl}`;\n\nreturn [{\n  json: {\n    newMember: `${d.firstName} ${d.lastName}`,\n    sponsor: d.sponsorName,\n    siteUrl: d.replicatedSiteUrl,\n    facebook: fb,\n    twitter: tw,\n    linkedIn: li\n  }\n}];"
+      },
+      "id": "7",
+      "name": "Social Media Posts",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [1340, 760]
+      "position": [1120, 220]
     }
   ],
   "connections": {
-    "Webhook Trigger": {
-      "main": [[{"node": "Respond Immediately", "type": "main", "index": 0}]]
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send Welcome Email",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Distributor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     },
-    "Respond Immediately": {
-      "main": [[{"node": "Get Distributor Details", "type": "main", "index": 0}]]
+    "Get Distributor": {
+      "main": [
+        [
+          {
+            "node": "Prepare Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     },
-    "Get Distributor Details": {
-      "main": [[{"node": "Prepare Distributor Data", "type": "main", "index": 0}]]
-    },
-    "Prepare Distributor Data": {
-      "main": [[
-        {"node": "Send Welcome Email", "type": "main", "index": 0},
-        {"node": "Create Replicated Sites", "type": "main", "index": 0},
-        {"node": "Provision AI Phone", "type": "main", "index": 0},
-        {"node": "Format Social Media Posts", "type": "main", "index": 0},
-        {"node": "Notify Admin Team", "type": "main", "index": 0}
-      ]]
-    },
-    "Format Social Media Posts": {
-      "main": [[
-        {"node": "Post to Facebook (Placeholder)", "type": "main", "index": 0},
-        {"node": "Post to Twitter (Placeholder)", "type": "main", "index": 0},
-        {"node": "Post to LinkedIn (Placeholder)", "type": "main", "index": 0}
-      ]]
+    "Prepare Data": {
+      "main": [
+        [
+          {
+            "node": "Provision AI Phone",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Social Media Posts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
+  "pinData": {},
   "settings": {
     "executionOrder": "v1"
-  }
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-04-05T20:00:00.000Z",
+  "versionId": "1"
 }
