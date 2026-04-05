@@ -10,14 +10,14 @@ import { checkBusinessCenterSubscription } from './check-business-center';
 // Define usage limits for free tier
 export const CRM_LIMITS = {
   FREE: {
-    LEADS: 50,
-    CONTACTS: 100,
-    TASKS: 20,
+    leads: 50,
+    contacts: 100,
+    tasks: 20,
   },
   BUSINESS_CENTER: {
-    LEADS: -1, // unlimited
-    CONTACTS: -1, // unlimited
-    TASKS: -1, // unlimited
+    leads: -1, // unlimited
+    contacts: -1, // unlimited
+    tasks: -1, // unlimited
   },
 };
 
@@ -66,9 +66,9 @@ export async function getCRMUsageLimits(distributorId: string): Promise<CRMUsage
       canAddLead: true,
       canAddContact: true,
       canAddTask: true,
-      leadsRemaining: CRM_LIMITS.FREE.LEADS,
-      contactsRemaining: CRM_LIMITS.FREE.CONTACTS,
-      tasksRemaining: CRM_LIMITS.FREE.TASKS,
+      leadsRemaining: CRM_LIMITS.FREE.leads,
+      contactsRemaining: CRM_LIMITS.FREE.contacts,
+      tasksRemaining: CRM_LIMITS.FREE.tasks,
     };
   }
 
