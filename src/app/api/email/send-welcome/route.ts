@@ -51,8 +51,17 @@ export async function POST(request: NextRequest) {
     const result = await enrollInCampaign(distributor as Distributor);
 
     if (!result.success) {
+      console.error('enrollInCampaign failed:', {
+        distributorId,
+        error: result.error,
+        distributorData: {
+          id: distributor.id,
+          email: distributor.email,
+          licensing_status: distributor.licensing_status,
+        },
+      });
       return NextResponse.json(
-        { success: false, error: result.error },
+        { success: false, error: result.error || 'Failed to create email campaign' },
         { status: 500 }
       );
     }

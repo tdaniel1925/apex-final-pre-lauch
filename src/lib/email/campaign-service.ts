@@ -23,23 +23,56 @@ export async function enrollInCampaign(
   try {
     const serviceClient = createServiceClient();
 
-    // Create campaign record
-    const { data: campaign, error: campaignError } = await serviceClient
+    // Check if campaign already exists
+    const { data: existingCampaign } = await serviceClient
       .from('email_campaigns')
-      .insert({
-        distributor_id: distributor.id,
-        licensing_status: distributor.licensing_status,
-        current_step: 0,
-        is_active: true,
-        started_at: new Date().toISOString(),
-        next_email_scheduled_for: null, // Will be set after welcome email
-      })
-      .select()
+      .select('id')
+      .eq('distributor_id', distributor.id)
       .single();
 
-    if (campaignError) {
-      console.error('Failed to create email campaign:', campaignError);
-      return { success: false, error: 'Failed to enroll in campaign' };
+    let campaign;
+
+    if (existingCampaign) {
+      // Campaign exists - reset it to step 0
+      const { data: updatedCampaign, error: updateError } = await serviceClient
+        .from('email_campaigns')
+        .update({
+          current_step: 0,
+          is_active: true,
+          started_at: new Date().toISOString(),
+          next_email_scheduled_for: null,
+        })
+        .eq('id', existingCampaign.id)
+        .select()
+        .single();
+
+      if (updateError) {
+        console.error('Failed to update existing campaign:', updateError);
+        return { success: false, error: 'Failed to update campaign' };
+      }
+
+      campaign = updatedCampaign;
+    } else {
+      // Create new campaign record
+      const { data: newCampaign, error: campaignError } = await serviceClient
+        .from('email_campaigns')
+        .insert({
+          distributor_id: distributor.id,
+          licensing_status: distributor.licensing_status,
+          current_step: 0,
+          is_active: true,
+          started_at: new Date().toISOString(),
+          next_email_scheduled_for: null,
+        })
+        .select()
+        .single();
+
+      if (campaignError) {
+        console.error('Failed to create email campaign:', campaignError);
+        return { success: false, error: 'Failed to enroll in campaign' };
+      }
+
+      campaign = newCampaign;
     }
 
     // Get welcome email template (sequence_order = 0)
