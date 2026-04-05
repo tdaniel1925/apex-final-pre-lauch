@@ -191,43 +191,19 @@ export default async function BusinessCenterPage() {
             />
 
             <BenefitCard
-              icon={<BarChart3 className="w-12 h-12 text-blue-600" />}
-              title="Advanced Reports & Analytics"
-              description="Detailed sales reports, commission breakdowns, team performance metrics, and more."
-              free="Basic only"
+              icon={<Network className="w-12 h-12 text-blue-600" />}
+              title="Lead Autopilot"
+              description="Send bulk meeting invitations, create event pages, and track RSVPs automatically."
+              free="Limited"
               unlimited="✓ Full Access"
             />
 
             <BenefitCard
-              icon={<Network className="w-12 h-12 text-blue-600" />}
-              title="Interactive Genealogy with AI Insights"
-              description="See your entire organization with AI-powered recommendations on who to help and how."
-              free="Tree view only"
-              unlimited="✓ Full Interactive + AI"
-            />
-
-            <BenefitCard
               icon={<Layers className="w-12 h-12 text-blue-600" />}
-              title="Interactive Matrix View"
-              description="Visualize your 5×7 matrix placement with drag-and-drop interactivity and insights."
-              free="Tree view only"
-              unlimited="✓ Full Interactive"
-            />
-
-            <BenefitCard
-              icon={<GraduationCap className="w-12 h-12 text-blue-600" />}
-              title="Priority Training & Support"
-              description="Get faster responses and priority access to training materials and webinars."
-              free="Standard"
-              unlimited="✓ Priority"
-            />
-
-            <BenefitCard
-              icon={<Zap className="w-12 h-12 text-blue-600" />}
-              title="API Access (Coming Soon)"
-              description="Integrate Business Center data with your own tools and workflows."
-              free="None"
-              unlimited="✓ Coming Soon"
+              title="AI Lead Nurture"
+              description="Create personalized 7-week email campaigns for prospects with AI-generated content."
+              free="3 campaigns"
+              unlimited="∞ Unlimited"
             />
           </div>
         </div>
@@ -284,19 +260,15 @@ export default async function BusinessCenterPage() {
               </li>
               <li className="flex items-center">
                 <Check className="w-5 h-5 text-green-600 mr-2 flex-shrink-0" />
-                Full CRM System
+                Full CRM System (Unlimited Leads & Contacts)
               </li>
               <li className="flex items-center">
                 <Check className="w-5 h-5 text-green-600 mr-2 flex-shrink-0" />
-                Advanced Reports
+                Lead Autopilot & Meeting Invitations
               </li>
               <li className="flex items-center">
                 <Check className="w-5 h-5 text-green-600 mr-2 flex-shrink-0" />
-                Interactive Genealogy + Matrix
-              </li>
-              <li className="flex items-center">
-                <Check className="w-5 h-5 text-green-600 mr-2 flex-shrink-0" />
-                Priority Support
+                Unlimited AI Lead Nurture Campaigns
               </li>
             </ul>
             {!bcStatus.hasSubscription ? (

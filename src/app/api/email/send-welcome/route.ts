@@ -101,14 +101,16 @@ export async function POST(request: NextRequest) {
     }
 
     // Render email template with distributor data
-    const renderedHtml = renderEmailTemplate(template.body_html, distributor as Distributor);
-    const renderedSubject = renderEmailTemplate(template.subject, distributor as Distributor);
+    const rendered = renderEmailTemplate(
+      { subject: template.subject, body: template.body_html },
+      distributor as Distributor
+    );
 
     // Send email via Resend
     const result = await sendEmail({
       to: distributor.email,
-      subject: renderedSubject,
-      html: renderedHtml,
+      subject: rendered.subject,
+      html: rendered.body,
       from: 'Apex Affinity Group <theapex@theapexway.net>',
     });
 

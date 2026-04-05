@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Plus, Mail, Calendar, User, TrendingUp, Pause, Play, X } from 'lucide-react';
+import HelpSection from '@/components/business-center/HelpSection';
 
 interface NurtureCampaign {
   id: string;
@@ -151,6 +152,26 @@ export default function AILeadNurturePage() {
             Create personalized 7-week email campaigns for your prospects
           </p>
         </div>
+
+        {/* Help Section */}
+        <HelpSection
+          title="How AI Lead Nurture Works"
+          description="AI Lead Nurture automatically sends a personalized 7-week email sequence to your prospects. Each email builds rapport, shares valuable content, and keeps you top-of-mind until they're ready to take action."
+          steps={[
+            'Enter your prospect\'s basic information (name, email, interests)',
+            'AI generates 7 personalized emails tailored to their interests and background',
+            'Emails are sent automatically once per week for 7 weeks',
+            'Track engagement and follow up when prospects show interest',
+          ]}
+          tips={[
+            'Add personal details (hobbies, birthday, kids) for more personalized emails',
+            'Free tier: 3 active campaigns. Business Center: Unlimited campaigns',
+            'Emails include your contact info and encourage prospects to reach out',
+            'Campaigns can be paused or cancelled at any time',
+          ]}
+          collapsible={true}
+          defaultExpanded={false}
+        />
 
         {/* Campaign Limit Banner */}
         {campaignLimit && (

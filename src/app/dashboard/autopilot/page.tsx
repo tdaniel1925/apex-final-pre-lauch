@@ -8,6 +8,7 @@ import { createServiceClient } from '@/lib/supabase/service';
 import { redirect } from 'next/navigation';
 import AutopilotDashboard from '@/components/autopilot/AutopilotDashboard';
 import { getAdminUser } from '@/lib/auth/admin';
+import HelpSection from '@/components/business-center/HelpSection';
 
 export const metadata = {
   title: 'Lead Autopilot - Apex Affinity Group',
@@ -67,6 +68,26 @@ export default async function AutopilotPage() {
             AI-powered tools to grow your business and engage prospects
           </p>
         </div>
+
+        {/* Help Section */}
+        <HelpSection
+          title="How Lead Autopilot Works"
+          description="Lead Autopilot helps you invite prospects to meetings, generate marketing materials, and manage your contacts—all in one place. Choose a tool below to get started."
+          steps={[
+            'Create a meeting event with date, time, and location details',
+            'Send bulk email invitations to your contact list with one click',
+            'Generate custom flyers and social media posts to promote your event',
+            'Track RSVPs and follow up with prospects automatically',
+          ]}
+          tips={[
+            'Start by creating a meeting event—this becomes the foundation for invitations and marketing materials',
+            'Import contacts from a CSV file or add them manually to build your prospect list',
+            'Personalize invitation emails with merge tags like {firstName} and {meetingDate}',
+            'Share generated flyers on social media to attract new prospects',
+          ]}
+          collapsible={true}
+          defaultExpanded={true}
+        />
 
         {/* Dashboard */}
         <AutopilotDashboard

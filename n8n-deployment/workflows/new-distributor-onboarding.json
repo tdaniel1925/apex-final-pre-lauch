@@ -29,7 +29,7 @@
     {
       "parameters": {
         "method": "GET",
-        "url": "=https://brejvdvzwshroxkkhmzy.supabase.co/rest/v1/distributors?id=eq.{{ $json.body.distributorId }}&select=*,sponsor:distributors!sponsor_id(first_name,last_name,slug)",
+        "url": "=https://brejvdvzwshroxkkhmzy.supabase.co/rest/v1/distributors?id=eq.{{ $json.distributorId }}&select=*,sponsor:distributors!sponsor_id(first_name,last_name,slug)",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "supabaseApi",
         "sendHeaders": true,

@@ -33,6 +33,42 @@ If you see a "conversation summary" above, or this feels like a fresh start but 
 
 ---
 
+## 🚨 CRITICAL DOMAIN RULES (READ THIS FIRST!)
+
+**⚠️ THE APEX PLATFORM HAS TWO DOMAINS - DO NOT MIX THEM UP!**
+
+### Production Domain (Website/App):
+```
+✅ ALWAYS USE: https://reachtheapex.net
+- Main website
+- Login pages
+- Dashboard
+- Store
+- Replicated sites
+- ALL user-facing URLs
+```
+
+### Email Domain (FROM addresses only):
+```
+✅ ALWAYS USE: @theapexway.net
+- Email FROM addresses only
+- theapex@theapexway.net
+- support@theapexway.net
+- noreply@theapexway.net
+```
+
+### THE RULE:
+```
+✅ Email FROM: @theapexway.net
+✅ Links IN emails: https://reachtheapex.net
+❌ NEVER use theapexway.net for URLs/links
+❌ NEVER use reachtheapex.net for email FROM addresses
+```
+
+**This is MANDATORY. No exceptions. Add this to memory NOW.**
+
+---
+
 ## 📧 EMAIL SYSTEM RULES (MANDATORY)
 
 **ALL system emails MUST follow these rules:**
