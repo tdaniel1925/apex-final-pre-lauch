@@ -15,7 +15,7 @@ import type { EmailTemplate } from '@/lib/types/email';
  */
 export async function enrollInCampaign(
   distributor: Distributor,
-  options?: { temporaryPassword?: string }
+  options?: { temporaryPassword?: string; sponsor_name?: string; sponsor_email?: string }
 ): Promise<{
   success: boolean;
   error?: string;
@@ -89,12 +89,23 @@ export async function enrollInCampaign(
       return { success: false, error: 'Welcome email template not found' };
     }
 
-    // Send welcome email (with temporary password if provided)
+    // Send welcome email (with extra variables)
+    const extraVariables: any = {};
+    if (options?.temporaryPassword) {
+      extraVariables.temporary_password = options.temporaryPassword;
+    }
+    if (options?.sponsor_name) {
+      extraVariables.sponsor_name = options.sponsor_name;
+    }
+    if (options?.sponsor_email) {
+      extraVariables.sponsor_email = options.sponsor_email;
+    }
+
     const sendResult = await sendCampaignEmail(
       distributor,
       template,
       campaign.id,
-      options?.temporaryPassword ? { temporary_password: options.temporaryPassword } : undefined
+      Object.keys(extraVariables).length > 0 ? extraVariables : undefined
     );
 
     if (!sendResult.success) {
