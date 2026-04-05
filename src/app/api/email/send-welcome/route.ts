@@ -167,7 +167,7 @@ export async function POST(request: NextRequest) {
         .eq('id', campaign.id);
     }
 
-    console.log(`✅ Welcome email sent to ${distributor.email} (${result.data?.id})`);
+    console.log(`✅ Welcome email sent to ${distributor.email} (${result.id})`);
 
     return NextResponse.json({
       success: true,
