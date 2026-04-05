@@ -127,7 +127,7 @@ export async function POST(request: NextRequest) {
       distributor_id: distributor.id,
       template_id: template.id,
       campaign_id: campaign.id,
-      resend_email_id: result.data?.id || null,
+      resend_email_id: result.id || null,
       sent_at: new Date().toISOString(),
       status: 'sent',
       recipient_email: distributor.email,
@@ -172,7 +172,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       message: 'Welcome email sent successfully',
-      emailId: result.data?.id,
+      emailId: result.id,
     });
   } catch (error) {
     console.error('Error sending welcome email:', error);
