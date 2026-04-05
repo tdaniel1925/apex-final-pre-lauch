@@ -48,7 +48,7 @@ export async function enrollInCampaign(
 
       if (updateError) {
         console.error('Failed to update existing campaign:', updateError);
-        return { success: false, error: 'Failed to update campaign' };
+        return { success: false, error: `Failed to update campaign: ${updateError.message || JSON.stringify(updateError)}` };
       }
 
       campaign = updatedCampaign;
@@ -69,7 +69,7 @@ export async function enrollInCampaign(
 
       if (campaignError) {
         console.error('Failed to create email campaign:', campaignError);
-        return { success: false, error: 'Failed to enroll in campaign' };
+        return { success: false, error: `Failed to create campaign: ${campaignError.message || JSON.stringify(campaignError)}` };
       }
 
       campaign = newCampaign;
@@ -86,7 +86,10 @@ export async function enrollInCampaign(
 
     if (templateError || !template) {
       console.error('Welcome email template not found:', templateError);
-      return { success: false, error: 'Welcome email template not found' };
+      return {
+        success: false,
+        error: `Template not found for licensing_status="${distributor.licensing_status}": ${templateError?.message || 'No template exists'}`
+      };
     }
 
     // Send welcome email (with extra variables)
