@@ -28,10 +28,10 @@ export async function POST(request: NextRequest) {
 
     const serviceClient = createServiceClient();
 
-    // Get full distributor data with sponsor info
+    // Get distributor data
     const { data: distributor, error: distError } = await serviceClient
       .from('distributors')
-      .select('*, sponsor:distributors!sponsor_id(first_name, last_name, email)')
+      .select('*')
       .eq('id', distributorId)
       .single();
 
@@ -43,11 +43,22 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Build sponsor name from sponsor data
-    const sponsor = distributor.sponsor as any;
-    const sponsorName = sponsor
-      ? `${sponsor.first_name} ${sponsor.last_name}`
-      : 'Apex Vision';
+    // Get sponsor data separately (to avoid ambiguous foreign key joins)
+    let sponsorName = 'Apex Vision';
+    let sponsorEmail = 'support@theapexway.net';
+
+    if (distributor.sponsor_id) {
+      const { data: sponsor } = await serviceClient
+        .from('distributors')
+        .select('first_name, last_name, email')
+        .eq('id', distributor.sponsor_id)
+        .single();
+
+      if (sponsor) {
+        sponsorName = `${sponsor.first_name} ${sponsor.last_name}`;
+        sponsorEmail = sponsor.email;
+      }
+    }
 
     // Use EXISTING enrollInCampaign function - it does everything:
     // - Gets template from email_templates table
@@ -56,7 +67,7 @@ export async function POST(request: NextRequest) {
     // - Logs to email_sends and email_campaigns tables
     const result = await enrollInCampaign(distributor as Distributor, {
       sponsor_name: sponsorName,
-      sponsor_email: sponsor?.email || 'support@theapexway.net',
+      sponsor_email: sponsorEmail,
     } as any);
 
     if (!result.success) {
