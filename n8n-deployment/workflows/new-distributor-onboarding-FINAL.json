@@ -64,7 +64,7 @@
     {
       "parameters": {
         "method": "GET",
-        "url": "=https://brejvdvzwshroxkkhmzy.supabase.co/rest/v1/distributors?id=eq.{{ $json.body.distributorId }}&select=*",
+        "url": "=https://brejvdvzwshroxkkhmzy.supabase.co/rest/v1/distributors?id=eq.{{ $json.body.distributorId }}&select=*,sponsor:distributors!sponsor_id(first_name,last_name,slug)",
         "authentication": "none",
         "sendHeaders": true,
         "headerParameters": {
@@ -96,10 +96,10 @@
     },
     {
       "parameters": {
-        "jsCode": "// Get data from webhook\nconst webhookData = $('Webhook Trigger').item.json.body;\n\n// Get distributor data from Supabase\nconst distributorArray = $('Get Distributor Details').item.json;\nconst distributor = Array.isArray(distributorArray) ? distributorArray[0] : distributorArray;\n\nif (!distributor || !distributor.phone) {\n  throw new Error('Distributor data or phone not found');\n}\n\nreturn [{\n  json: {\n    distributorId: webhookData.distributorId,\n    firstName: webhookData.firstName,\n    lastName: webhookData.lastName,\n    phone: distributor.phone\n  }\n}];"
+        "jsCode": "// Get data from webhook\nconst webhookData = $('Webhook Trigger').item.json.body;\n\n// Get distributor data from Supabase\nconst distributorArray = $('Get Distributor Details').item.json;\nconst distributor = Array.isArray(distributorArray) ? distributorArray[0] : distributorArray;\n\nif (!distributor) {\n  throw new Error('Distributor data not found');\n}\n\n// Handle sponsor as array or object\nconst sponsor = Array.isArray(distributor.sponsor) && distributor.sponsor.length > 0 \n  ? distributor.sponsor[0] \n  : distributor.sponsor;\n\nconst sponsorName = sponsor \n  ? `${sponsor.first_name} ${sponsor.last_name}`\n  : 'Apex Vision';\n\nreturn [{\n  json: {\n    distributorId: webhookData.distributorId,\n    firstName: webhookData.firstName,\n    lastName: webhookData.lastName,\n    email: webhookData.email,\n    phone: distributor.phone || '',\n    slug: distributor.slug,\n    sponsorName: sponsorName,\n    replicatedSiteUrl: `https://reachtheapex.net/${distributor.slug}`\n  }\n}];"
       },
-      "id": "prepare-phone-data",
-      "name": "Prepare Phone Data",
+      "id": "prepare-data",
+      "name": "Prepare Data",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [920, 300]
@@ -137,8 +137,18 @@
       "name": "Provision AI Phone",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [1140, 300],
+      "position": [1140, 400],
       "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get prepared data\nconst data = $('Prepare Data').item.json;\n\nconst facebookPost = `🎉 Welcome ${data.firstName} ${data.lastName} to Apex Affinity Group! Excited to have you on the team under ${data.sponsorName}. Let's reach the apex together! 🚀`;\n\nconst twitterPost = `Welcome ${data.firstName} ${data.lastName} to @ApexAffinity! 🎉 Sponsored by ${data.sponsorName}. #ApexAffinity #NetworkMarketing #Insurance`;\n\nconst linkedInPost = `We're thrilled to welcome ${data.firstName} ${data.lastName} to Apex Affinity Group! ${data.firstName} joins us under the sponsorship of ${data.sponsorName}. We're excited to support your journey in building a successful insurance business. Welcome to the team!\\n\\nReplicated Site: ${data.replicatedSiteUrl}`;\n\nreturn [{\n  json: {\n    newMemberName: `${data.firstName} ${data.lastName}`,\n    sponsorName: data.sponsorName,\n    replicatedSiteUrl: data.replicatedSiteUrl,\n    facebook: facebookPost,\n    twitter: twitterPost,\n    linkedIn: linkedInPost\n  }\n}];"
+      },
+      "id": "format-social-media",
+      "name": "Format Social Media Posts",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1140, 200]
     }
   ],
   "connections": {
@@ -167,18 +177,23 @@
       "main": [
         [
           {
-            "node": "Prepare Phone Data",
+            "node": "Prepare Data",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Prepare Phone Data": {
+    "Prepare Data": {
       "main": [
         [
           {
             "node": "Provision AI Phone",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Format Social Media Posts",
             "type": "main",
             "index": 0
           }
@@ -193,6 +208,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-04-05T19:00:00.000Z",
-  "versionId": "1"
+  "updatedAt": "2026-04-05T19:15:00.000Z",
+  "versionId": "2"
 }
