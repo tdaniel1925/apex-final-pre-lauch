@@ -1,0 +1,198 @@
+{
+  "name": "New Distributor Onboarding - FINAL",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "new-distributor",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300],
+      "webhookId": "new-distributor-onboarding"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ {\"message\": \"Workflow started\"} }}"
+      },
+      "id": "respond-immediately",
+      "name": "Respond Immediately",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [470, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://reachtheapex.net/api/email/send-welcome",
+        "authentication": "none",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": []
+        },
+        "specifyBody": "json",
+        "jsonBody": "={{ {\"distributorId\": $json.body.distributorId} }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "send-welcome-email",
+      "name": "Send Welcome Email",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [700, 100],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "=https://brejvdvzwshroxkkhmzy.supabase.co/rest/v1/distributors?id=eq.{{ $json.body.distributorId }}&select=*",
+        "authentication": "none",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJyZWp2ZHZ6d3Nocm94a2tobXp5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEzMDA2NDQsImV4cCI6MjA4Njg3NjY0NH0.iz4K36Vd3HxXqyQLGga6z23Au8qe3FkUaVN9vPCcHzo"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJyZWp2ZHZ6d3Nocm94a2tobXp5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEzMDA2NDQsImV4cCI6MjA4Njg3NjY0NH0.iz4K36Vd3HxXqyQLGga6z23Au8qe3FkUaVN9vPCcHzo"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "get-distributor-details",
+      "name": "Get Distributor Details",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [700, 300],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get data from webhook\nconst webhookData = $('Webhook Trigger').item.json.body;\n\n// Get distributor data from Supabase\nconst distributorArray = $('Get Distributor Details').item.json;\nconst distributor = Array.isArray(distributorArray) ? distributorArray[0] : distributorArray;\n\nif (!distributor || !distributor.phone) {\n  throw new Error('Distributor data or phone not found');\n}\n\nreturn [{\n  json: {\n    distributorId: webhookData.distributorId,\n    firstName: webhookData.firstName,\n    lastName: webhookData.lastName,\n    phone: distributor.phone\n  }\n}];"
+      },
+      "id": "prepare-phone-data",
+      "name": "Prepare Phone Data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [920, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://reachtheapex.net/api/signup/provision-ai",
+        "authentication": "none",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": []
+        },
+        "specifyBody": "json",
+        "jsonBody": "={{ {\n  \"distributorId\": $json.distributorId,\n  \"firstName\": $json.firstName,\n  \"lastName\": $json.lastName,\n  \"phone\": $json.phone\n} }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 30000
+        }
+      },
+      "id": "provision-ai-phone",
+      "name": "Provision AI Phone",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1140, 300],
+      "continueOnFail": true
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Respond Immediately",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send Welcome Email",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Distributor Details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Distributor Details": {
+      "main": [
+        [
+          {
+            "node": "Prepare Phone Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Phone Data": {
+      "main": [
+        [
+          {
+            "node": "Provision AI Phone",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2026-04-05T19:00:00.000Z",
+  "versionId": "1"
+}
