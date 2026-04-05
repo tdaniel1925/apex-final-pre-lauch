@@ -100,12 +100,12 @@ export async function getCRMUsageLimits(distributorId: string): Promise<CRMUsage
     hasBusinessCenter: false,
     limits,
     usage,
-    canAddLead: usage.leads < limits.LEADS,
-    canAddContact: usage.contacts < limits.CONTACTS,
-    canAddTask: usage.tasks < limits.TASKS,
-    leadsRemaining: Math.max(0, limits.LEADS - usage.leads),
-    contactsRemaining: Math.max(0, limits.CONTACTS - usage.contacts),
-    tasksRemaining: Math.max(0, limits.TASKS - usage.tasks),
+    canAddLead: usage.leads < limits.leads,
+    canAddContact: usage.contacts < limits.contacts,
+    canAddTask: usage.tasks < limits.tasks,
+    leadsRemaining: Math.max(0, limits.leads - usage.leads),
+    contactsRemaining: Math.max(0, limits.contacts - usage.contacts),
+    tasksRemaining: Math.max(0, limits.tasks - usage.tasks),
   };
 }
 
