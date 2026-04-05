@@ -61,50 +61,25 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create email campaign record
-    const { data: campaign, error: campaignError } = await serviceClient
-      .from('email_campaigns')
-      .insert({
-        distributor_id: distributor.id,
-        licensing_status: distributor.licensing_status,
-        current_step: 0,
-        is_active: true,
-        started_at: new Date().toISOString(),
-        next_email_scheduled_for: null,
-      })
-      .select()
-      .single();
+    // Simple welcome email (no campaign tracking for now)
+    const subject = `Welcome to Apex Affinity Group, ${firstName}!`;
+    const body = `
+      <h1>Welcome to Apex Affinity Group!</h1>
+      <p>Hi ${firstName},</p>
+      <p>Thank you for joining Apex Affinity Group. We're excited to have you on board!</p>
+      <p><strong>Your Account Details:</strong></p>
+      <ul>
+        <li>Name: ${firstName} ${lastName}</li>
+        <li>Email: ${email}</li>
+        <li>Status: ${licensingStatus}</li>
+        <li>Replicated Site: https://reachtheapex.net/${distributor.slug}</li>
+      </ul>
+      <p>Get started by logging in to your dashboard:</p>
+      <p><a href="https://reachtheapex.net/dashboard">Go to Dashboard</a></p>
+      <p>Best regards,<br>The Apex Team</p>
+    `;
 
-    if (campaignError) {
-      console.error('Failed to create email campaign:', campaignError);
-      return NextResponse.json(
-        { success: false, error: 'Failed to create email campaign' },
-        { status: 500 }
-      );
-    }
-
-    // Get welcome email template (sequence_order = 0)
-    const { data: template, error: templateError } = await serviceClient
-      .from('email_templates')
-      .select('*')
-      .eq('licensing_status', distributor.licensing_status)
-      .eq('sequence_order', 0)
-      .eq('is_active', true)
-      .single();
-
-    if (templateError || !template) {
-      console.error('Welcome email template not found:', templateError);
-      return NextResponse.json(
-        { success: false, error: 'Welcome email template not found' },
-        { status: 404 }
-      );
-    }
-
-    // Render email template with distributor data
-    const rendered = renderEmailTemplate(
-      { subject: template.subject, body: template.body_html },
-      distributor as Distributor
-    );
+    const rendered = { subject, body };
 
     // Send email via Resend
     const result = await sendEmail({
@@ -122,50 +97,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Log email sent
-    await serviceClient.from('email_logs').insert({
-      distributor_id: distributor.id,
-      template_id: template.id,
-      campaign_id: campaign.id,
-      resend_email_id: result.id || null,
-      sent_at: new Date().toISOString(),
-      status: 'sent',
-      recipient_email: distributor.email,
-    });
-
-    // Calculate next email date (if there is a step 1)
-    const { data: nextTemplate } = await serviceClient
-      .from('email_templates')
-      .select('delay_days')
-      .eq('licensing_status', distributor.licensing_status)
-      .eq('sequence_order', 1)
-      .eq('is_active', true)
-      .single();
-
-    if (nextTemplate) {
-      const nextEmailDate = new Date();
-      nextEmailDate.setDate(nextEmailDate.getDate() + nextTemplate.delay_days);
-
-      // Update campaign with next email date
-      await serviceClient
-        .from('email_campaigns')
-        .update({
-          current_step: 1,
-          next_email_scheduled_for: nextEmailDate.toISOString(),
-          last_email_sent_at: new Date().toISOString(),
-          total_emails_sent: 1,
-        })
-        .eq('id', campaign.id);
-    } else {
-      // No more emails in sequence
-      await serviceClient
-        .from('email_campaigns')
-        .update({
-          last_email_sent_at: new Date().toISOString(),
-          total_emails_sent: 1,
-        })
-        .eq('id', campaign.id);
-    }
+    // Simple logging (no campaign tracking for now)
 
     console.log(`✅ Welcome email sent to ${distributor.email} (${result.id})`);
 
