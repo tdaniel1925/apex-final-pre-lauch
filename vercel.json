@@ -21,10 +21,6 @@
       "schedule": "0 2 * * *"
     },
     {
-      "path": "/api/cron/daily-enrollment-report",
-      "schedule": "0 11 * * *"
-    },
-    {
       "path": "/api/cron/sync-failed-sites",
       "schedule": "0 */6 * * *"
     },
