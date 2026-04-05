@@ -17,10 +17,20 @@
    - Select "Import from File"
    - Choose: `new-distributor-onboarding.json`
 
-4. **Activate workflow:**
+4. **Configure Social Media Credentials:**
+   - **BEFORE activating**, set up API credentials for auto-posting
+   - See: `SOCIAL-MEDIA-API-SETUP.md` for complete guide
+   - Required:
+     - Facebook Page Access Token
+     - LinkedIn OAuth 2.0
+     - Twitter/X OAuth 2.0
+     - Instagram Business Account ID
+     - TikTok OAuth 2.0 (optional - requires approval)
+
+5. **Activate workflow:**
    - Toggle "Active" switch (top right)
 
-5. **Copy webhook URL:**
+6. **Copy webhook URL:**
    - It will be: `https://botmakersbqst.app.n8n.cloud/webhook/new-distributor`
 
 ---
@@ -72,7 +82,12 @@ curl -X POST https://botmakersbqst.app.n8n.cloud/webhook/new-distributor \
 4. **Get Distributor** - Fetches full data + sponsor from Supabase
 5. **Prepare Data** - Extracts sponsor name, builds URLs
 6. **Provision AI Phone** - Creates VAPI assistant with personalized prompt
-7. **Social Media Posts** - Generates Facebook/Twitter/LinkedIn posts
+7. **Social Media Posts** - Generates posts for all 5 platforms
+8. **Post to Facebook** - Auto-posts to Facebook Page
+9. **Post to LinkedIn** - Auto-posts to LinkedIn Company Page
+10. **Post to X (Twitter)** - Auto-posts to Twitter/X
+11. **Post to Instagram** - Auto-posts to Instagram Business Account
+12. **Post to TikTok** - Auto-posts to TikTok Business Account
 
 ---
 
@@ -119,6 +134,13 @@ Generates ready-to-post content:
 - Check "Prepare Data" node has all required fields
 - Verify sponsor name is being fetched correctly
 - Look at "Social Media Posts" node output
+
+**Social media posts failing to publish?**
+- Check API credentials are configured in n8n
+- Verify tokens haven't expired (Facebook: 60 days)
+- For Instagram: Ensure image URL is valid
+- For TikTok: Ensure video URL is valid and Content Posting API is approved
+- Check node error messages for specific platform issues
 
 ---
 

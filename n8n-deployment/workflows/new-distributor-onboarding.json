@@ -133,13 +133,140 @@
     },
     {
       "parameters": {
-        "jsCode": "const d = $input.first().json;\n\nconst fb = `🎉 Welcome ${d.firstName} ${d.lastName} to Apex Affinity Group! Excited to have you on the team under ${d.sponsorName}. Let's reach the apex together! 🚀`;\n\nconst tw = `Welcome ${d.firstName} ${d.lastName} to @ApexAffinity! 🎉 Sponsored by ${d.sponsorName}. #ApexAffinity #NetworkMarketing #Insurance`;\n\nconst li = `We're thrilled to welcome ${d.firstName} ${d.lastName} to Apex Affinity Group! ${d.firstName} joins us under the sponsorship of ${d.sponsorName}. We're excited to support your journey in building a successful insurance business. Welcome to the team!\\n\\nReplicated Site: ${d.replicatedSiteUrl}`;\n\nreturn [{\n  json: {\n    newMember: `${d.firstName} ${d.lastName}`,\n    sponsor: d.sponsorName,\n    siteUrl: d.replicatedSiteUrl,\n    facebook: fb,\n    twitter: tw,\n    linkedIn: li\n  }\n}];"
+        "jsCode": "const d = $input.first().json;\n\n// Facebook - Friendly, emoji-rich, longer format\nconst facebook = `🎉 Welcome ${d.firstName} ${d.lastName} to Apex Affinity Group! 🎉\n\nWe're excited to have you on the team under the sponsorship of ${d.sponsorName}! ${d.firstName} is ready to build a successful insurance business and help others reach financial freedom.\n\nLet's reach the apex together! 🚀\n\nLearn more: ${d.replicatedSiteUrl}\n\n#ApexAffinity #NewTeamMember #InsuranceBusiness #FinancialFreedom #NetworkMarketing`;\n\n// LinkedIn - Professional, detailed, business-focused\nconst linkedIn = `We're thrilled to welcome ${d.firstName} ${d.lastName} to Apex Affinity Group!\n\n${d.firstName} joins us under the sponsorship of ${d.sponsorName} and is ready to embark on an exciting journey in the insurance and financial services industry.\n\nAt Apex Affinity Group, we're committed to:\n✅ Providing comprehensive training and support\n✅ Building a collaborative team environment\n✅ Helping our members achieve financial independence\n✅ Delivering exceptional value to our clients\n\nWelcome to the team, ${d.firstName}! We're excited to support your success.\n\nReplicated Site: ${d.replicatedSiteUrl}\n\n#ApexAffinity #Insurance #FinancialServices #TeamGrowth #Welcome`;\n\n// X (Twitter) - Short, hashtags, 280 char limit\nconst x = `🎉 Welcome ${d.firstName} ${d.lastName} to @ApexAffinity!\n\nSponsored by ${d.sponsorName}\n\nReady to reach the apex! 🚀\n\n${d.replicatedSiteUrl}\n\n#ApexAffinity #Insurance #NewMember #FinancialFreedom`;\n\n// Instagram - Visual, emoji-heavy, hashtag-rich\nconst instagram = `🎉✨ WELCOME TO THE TEAM! ✨🎉\n\n${d.firstName} ${d.lastName} just joined Apex Affinity Group under ${d.sponsorName}! 🙌\n\nWe're SO excited to have you on this journey! 💼🚀\n\nReady to build something amazing? Let's go! 💪\n\n👉 ${d.replicatedSiteUrl}\n\n#ApexAffinity #WelcomeToTheTeam #NewMember #Insurance #FinancialFreedom #NetworkMarketing #Success #DreamBig #TeamWork #BusinessOpportunity #entrepreneur #sidehustle #financialindependence`;\n\n// TikTok - Casual, trending, short, hashtag-heavy\nconst tiktok = `Welcome to Apex! 🎉\n\n${d.firstName} ${d.lastName} just joined the team! 🙌\n\nSponsored by: ${d.sponsorName}\n\nReady to level up? 🚀💰\n\nLink in bio! 👆\n\n#ApexAffinity #NewMember #Insurance #FinancialFreedom #SideHustle #PassiveIncome #BusinessOpportunity #MLM #NetworkMarketing #FinTok #MoneyTok #entrepreneur #success #teamwork #welcome`;\n\nreturn [{\n  json: {\n    newMember: `${d.firstName} ${d.lastName}`,\n    sponsor: d.sponsorName,\n    siteUrl: d.replicatedSiteUrl,\n    facebook: facebook,\n    linkedIn: linkedIn,\n    x: x,\n    instagram: instagram,\n    tiktok: tiktok\n  }\n}];"
       },
       "id": "7",
       "name": "Social Media Posts",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [1120, 220]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v18.0/{{ $credentials.pageId }}/feed",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { \"message\": $json.facebook, \"access_token\": $credentials.accessToken } }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "8",
+      "name": "Post to Facebook",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1340, 80],
+      "continueOnFail": true,
+      "notes": "Requires: Facebook Page Access Token\nSetup: https://developers.facebook.com/apps/"
+    },
+    {
+      "parameters": {
+        "resource": "post",
+        "text": "={{ $json.linkedIn }}",
+        "additionalFields": {}
+      },
+      "id": "9",
+      "name": "Post to LinkedIn",
+      "type": "n8n-nodes-base.linkedIn",
+      "typeVersion": 1,
+      "position": [1340, 180],
+      "continueOnFail": true,
+      "notes": "Requires: LinkedIn OAuth credentials\nSetup in n8n: Settings > Credentials > LinkedIn OAuth2 API"
+    },
+    {
+      "parameters": {
+        "resource": "tweet",
+        "operation": "create",
+        "text": "={{ $json.x }}",
+        "additionalFields": {}
+      },
+      "id": "10",
+      "name": "Post to X (Twitter)",
+      "type": "n8n-nodes-base.twitter",
+      "typeVersion": 2,
+      "position": [1340, 280],
+      "continueOnFail": true,
+      "notes": "Requires: Twitter API v2 OAuth 2.0\nSetup: https://developer.twitter.com/en/portal/dashboard"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v18.0/{{ $credentials.instagramAccountId }}/media",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { \"caption\": $json.instagram, \"image_url\": \"https://reachtheapex.net/og-image.png\", \"access_token\": $credentials.accessToken } }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "11",
+      "name": "Post to Instagram",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1340, 380],
+      "continueOnFail": true,
+      "notes": "Requires: Instagram Business Account + Facebook Access Token\nSetup: https://developers.facebook.com/docs/instagram-api/"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://open.tiktokapis.com/v2/post/publish/video/init/",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { \"post_info\": { \"title\": $json.tiktok, \"privacy_level\": \"PUBLIC_TO_EVERYONE\", \"disable_duet\": false, \"disable_comment\": false, \"disable_stitch\": false, \"video_cover_timestamp_ms\": 1000 }, \"source_info\": { \"source\": \"PULL_FROM_URL\", \"video_url\": \"https://reachtheapex.net/welcome-video.mp4\" } } }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "12",
+      "name": "Post to TikTok",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1340, 480],
+      "continueOnFail": true,
+      "notes": "Requires: TikTok Developer Account + OAuth 2.0\nSetup: https://developers.tiktok.com/"
     }
   ],
   "connections": {
@@ -185,6 +312,37 @@
           },
           {
             "node": "Social Media Posts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Social Media Posts": {
+      "main": [
+        [
+          {
+            "node": "Post to Facebook",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Post to LinkedIn",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Post to X (Twitter)",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Post to Instagram",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Post to TikTok",
             "type": "main",
             "index": 0
           }
