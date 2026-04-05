@@ -469,60 +469,32 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Step 8: Enroll in email campaign and send welcome email
-    const enrollResult = await enrollInCampaign(distributor as Distributor);
+    // Step 8: Trigger n8n post-signup automation workflow (non-blocking)
+    // This handles: welcome email, replicated sites, AI phone, social media posts, admin notifications
+    const n8nWebhookUrl = process.env.N8N_WEBHOOK_NEW_DISTRIBUTOR;
 
-    if (!enrollResult.success) {
-      // Log error but don't fail signup - email can be sent manually later
-      console.error('Email campaign enrollment failed:', enrollResult.error);
+    if (n8nWebhookUrl) {
+      // Fire and forget - don't wait for n8n response
+      fetch(n8nWebhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          distributorId: distributor.id,
+          email: distributor.email,
+          firstName: distributor.first_name,
+          lastName: distributor.last_name,
+        }),
+      }).catch(err => {
+        // Log error but don't fail signup - workflow can be triggered manually
+        console.error('[Signup] n8n webhook trigger failed:', err);
+      });
+
+      console.log('[Signup] n8n onboarding workflow triggered for:', distributor.id);
+    } else {
+      console.warn('[Signup] N8N_WEBHOOK_NEW_DISTRIBUTOR not configured - skipping automation');
     }
 
-    // Step 8.5: Create replicated sites on external platforms
-    // This runs asynchronously and errors are logged but don't fail signup
-    try {
-      console.log('[Signup] Creating replicated sites for distributor:', distributor.id);
-      await createReplicatedSites(distributor.id);
-    } catch (replicationError) {
-      // Log error but don't fail signup - sites can be created manually later
-      console.error('[Signup] Replicated site creation failed:', replicationError);
-    }
-
-    // Step 8.6: Provision AI phone number asynchronously
-    // This runs in the background and errors are logged but don't fail signup
-    let aiPhoneProvisioned = false;
-    try {
-      console.log('[Signup] Provisioning AI phone for distributor:', distributor.id);
-
-      // Call provisioning API
-      const provisionResponse = await fetch(
-        `${process.env.NEXT_PUBLIC_APP_URL}/api/signup/provision-ai`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            distributorId: distributor.id,
-            firstName: distributor.first_name,
-            lastName: distributor.last_name,
-            phone: distributor.phone || '',
-            sponsorSlug: data.sponsor_slug,
-          }),
-        }
-      );
-
-      const provisionResult = await provisionResponse.json();
-
-      if (provisionResult.success) {
-        console.log('[Signup] AI phone provisioned successfully:', provisionResult.phoneNumber);
-        aiPhoneProvisioned = true;
-      } else {
-        console.error('[Signup] AI phone provisioning failed:', provisionResult.error);
-      }
-    } catch (aiProvisionError) {
-      // Log error but don't fail signup - AI can be provisioned manually later
-      console.error('[Signup] AI phone provisioning error:', aiProvisionError);
-    }
-
-    // Step 9: Return success with redirect to welcome page if AI was provisioned
+    // Step 9: Return success immediately (n8n handles rest in background)
     return NextResponse.json(
       {
         success: true,
@@ -533,10 +505,6 @@ export async function POST(request: NextRequest) {
             position: distributor.matrix_position,
             depth: distributor.matrix_depth,
           },
-          aiPhoneProvisioned,
-          redirectUrl: aiPhoneProvisioned
-            ? `/signup/welcome?distributorId=${distributor.id}`
-            : undefined,
         },
         message: 'Account created successfully! Welcome to Apex Affinity Group.',
       } as ApiResponse,

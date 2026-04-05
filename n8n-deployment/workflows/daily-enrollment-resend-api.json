@@ -1,0 +1,126 @@
+{
+  "name": "Daily Enrollment Report",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 9 * * *"
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Every Day at 9 AM",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://brejvdvzwshroxkkhmzy.supabase.co/rest/v1/distributors",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "select",
+              "value": "id,slug,first_name,last_name,email,phone,created_at,sponsor:distributors!sponsor_id(first_name,last_name,slug)"
+            },
+            {
+              "name": "created_at",
+              "value": "gte.{{ $now.minus({ days: 1 }).startOf('day').toISO() }}"
+            },
+            {
+              "name": "created_at",
+              "value": "lt.{{ $now.startOf('day').toISO() }}"
+            },
+            {
+              "name": "order",
+              "value": "created_at.desc"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Prefer",
+              "value": "return=representation"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "query-signups",
+      "name": "Query New Signups",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [450, 300],
+      "credentials": {
+        "supabaseApi": {
+          "name": "Supabase Production"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const signups = $input.all();\n\nif (!signups || signups.length === 0) {\n  return [{\n    json: {\n      subject: 'Daily Enrollment Report - No new signups',\n      html: '<div style=\"font-family:Arial,sans-serif;padding:20px\"><h2 style=\"color:#2c5aa0\">Daily Enrollment Report</h2><p>No new signups yesterday.</p></div>',\n      count: 0\n    }\n  }];\n}\n\nconst rows = signups.map(item => {\n  const signup = item.json;\n  const signupDate = new Date(signup.created_at);\n  const sponsorName = signup.sponsor ? `${signup.sponsor.first_name} ${signup.sponsor.last_name}` : 'Direct';\n  \n  return `\n    <tr>\n      <td style=\"padding:12px;border:1px solid #ddd\">${signupDate.toLocaleString()}</td>\n      <td style=\"padding:12px;border:1px solid #ddd\">${signup.first_name} ${signup.last_name}</td>\n      <td style=\"padding:12px;border:1px solid #ddd\">${signup.email}</td>\n      <td style=\"padding:12px;border:1px solid #ddd\">${signup.phone || 'N/A'}</td>\n      <td style=\"padding:12px;border:1px solid #ddd\">${signup.slug}</td>\n      <td style=\"padding:12px;border:1px solid #ddd\">${sponsorName}</td>\n    </tr>\n  `;\n}).join('');\n\nconst html = `\n<!DOCTYPE html>\n<html>\n<body style=\"font-family:Arial,sans-serif;padding:20px\">\n  <div style=\"max-width:800px;margin:0 auto;background:#fff;border-radius:8px;box-shadow:0 2px 4px rgba(0,0,0,0.1);overflow:hidden\">\n    <div style=\"background:#2c5aa0;padding:30px;text-align:center\">\n      <h1 style=\"color:#fff;margin:0;font-size:24px\">Daily Enrollment Report</h1>\n      <p style=\"color:#fff;margin:10px 0 0\">${new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>\n    </div>\n    <div style=\"padding:30px;border-bottom:2px solid #eee;text-align:center\">\n      <div style=\"display:inline-block;background:#e7f3ff;border-radius:8px;padding:20px 40px\">\n        <div style=\"font-size:48px;font-weight:bold;color:#2c5aa0\">${signups.length}</div>\n        <div style=\"font-size:14px;color:#495057\">NEW SIGNUPS YESTERDAY</div>\n      </div>\n    </div>\n    <div style=\"padding:30px\">\n      <h2 style=\"color:#212529;font-size:18px;margin:0 0 20px\">Enrollment Details</h2>\n      <table style=\"width:100%;border-collapse:collapse;font-size:14px\">\n        <thead>\n          <tr style=\"background:#f8f9fa\">\n            <th style=\"padding:12px;border:1px solid #ddd;text-align:left\">Date/Time</th>\n            <th style=\"padding:12px;border:1px solid #ddd;text-align:left\">Name</th>\n            <th style=\"padding:12px;border:1px solid #ddd;text-align:left\">Email</th>\n            <th style=\"padding:12px;border:1px solid #ddd;text-align:left\">Phone</th>\n            <th style=\"padding:12px;border:1px solid #ddd;text-align:left\">Slug</th>\n            <th style=\"padding:12px;border:1px solid #ddd;text-align:left\">Sponsor</th>\n          </tr>\n        </thead>\n        <tbody>\n          ${rows}\n        </tbody>\n      </table>\n    </div>\n    <div style=\"background:#f8f9fa;padding:20px;text-align:center;border-top:1px solid #ddd\">\n      <p style=\"color:#6c757d;font-size:12px;margin:0\">Automated report from n8n</p>\n    </div>\n  </div>\n</body>\n</html>\n`;\n\nreturn [{\n  json: {\n    subject: `Daily Enrollment Report - ${signups.length} new signup${signups.length !== 1 ? 's' : ''}`,\n    html: html,\n    count: signups.length\n  }\n}];"
+      },
+      "id": "format-email",
+      "name": "Format Email HTML",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.resend.com/emails",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"from\": \"Apex Reports <theapex@theapexway.net>\",\n  \"to\": [\"admin@theapexway.net\"],\n  \"subject\": \"{{ $json.subject }}\",\n  \"html\": {{ JSON.stringify($json.html) }}\n}",
+        "options": {}
+      },
+      "id": "send-email",
+      "name": "Send Email via Resend API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [850, 300],
+      "credentials": {
+        "httpHeaderAuth": {
+          "name": "Resend API"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Every Day at 9 AM": {
+      "main": [[{"node": "Query New Signups", "type": "main", "index": 0}]]
+    },
+    "Query New Signups": {
+      "main": [[{"node": "Format Email HTML", "type": "main", "index": 0}]]
+    },
+    "Format Email HTML": {
+      "main": [[{"node": "Send Email via Resend API", "type": "main", "index": 0}]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

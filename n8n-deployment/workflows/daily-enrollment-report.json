@@ -1,0 +1,147 @@
+{
+  "name": "Daily Enrollment Report",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 9 * * *"
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT \n  d.id,\n  d.slug,\n  d.first_name,\n  d.last_name,\n  d.email,\n  d.phone,\n  d.created_at,\n  s.first_name as sponsor_first_name,\n  s.last_name as sponsor_last_name,\n  s.slug as sponsor_slug\nFROM distributors d\nLEFT JOIN distributors s ON d.sponsor_id = s.id\nWHERE d.created_at >= CURRENT_DATE - INTERVAL '1 day'\n  AND d.created_at < CURRENT_DATE\nORDER BY d.created_at DESC"
+      },
+      "id": "query-new-signups",
+      "name": "Query New Signups",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.4,
+      "position": [450, 300],
+      "credentials": {
+        "postgres": {
+          "id": "supabase-production",
+          "name": "Supabase Production"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const signups = $input.all();\n\nif (!signups || signups.length === 0) {\n  return [{\n    json: {\n      subject: 'Daily Enrollment Report - No new signups',\n      html: `\n        <h2 style=\"color: #2c5aa0;\">Daily Enrollment Report</h2>\n        <p style=\"color: #495057;\">No new signups yesterday.</p>\n        <p style=\"color: #6c757d; font-size: 14px;\">Report date: ${new Date().toLocaleDateString()}</p>\n      `,\n      count: 0\n    }\n  }];\n}\n\nconst rows = signups.map(signup => {\n  const data = signup.json;\n  const signupDate = new Date(data.created_at);\n  return `\n    <tr>\n      <td style=\"padding: 12px; border: 1px solid #dee2e6;\">${signupDate.toLocaleString()}</td>\n      <td style=\"padding: 12px; border: 1px solid #dee2e6;\">${data.first_name} ${data.last_name}</td>\n      <td style=\"padding: 12px; border: 1px solid #dee2e6;\">${data.email}</td>\n      <td style=\"padding: 12px; border: 1px solid #dee2e6;\">${data.phone || 'N/A'}</td>\n      <td style=\"padding: 12px; border: 1px solid #dee2e6;\">${data.slug}</td>\n      <td style=\"padding: 12px; border: 1px solid #dee2e6;\">${data.sponsor_first_name ? `${data.sponsor_first_name} ${data.sponsor_last_name}` : 'Direct'}</td>\n    </tr>\n  `;\n}).join('');\n\nconst html = `\n<!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n</head>\n<body style=\"font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f8f9fa; margin: 0; padding: 20px;\">\n  <div style=\"max-width: 800px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); overflow: hidden;\">\n    \n    <!-- Header -->\n    <div style=\"background-color: #2c5aa0; padding: 30px; text-align: center;\">\n      <h1 style=\"color: #ffffff; margin: 0; font-size: 24px; font-weight: 600;\">Daily Enrollment Report</h1>\n      <p style=\"color: #ffffff; margin: 10px 0 0 0; opacity: 0.9;\">${new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>\n    </div>\n    \n    <!-- Summary -->\n    <div style=\"padding: 30px; border-bottom: 2px solid #e9ecef;\">\n      <div style=\"text-align: center;\">\n        <div style=\"display: inline-block; background-color: #e7f3ff; border-radius: 8px; padding: 20px 40px;\">\n          <div style=\"font-size: 48px; font-weight: bold; color: #2c5aa0; margin-bottom: 5px;\">${signups.length}</div>\n          <div style=\"font-size: 14px; color: #495057; text-transform: uppercase; letter-spacing: 1px;\">New Signups Yesterday</div>\n        </div>\n      </div>\n    </div>\n    \n    <!-- Table -->\n    <div style=\"padding: 30px;\">\n      <h2 style=\"color: #212529; font-size: 18px; margin: 0 0 20px 0;\">Enrollment Details</h2>\n      <table style=\"width: 100%; border-collapse: collapse; font-size: 14px;\">\n        <thead>\n          <tr style=\"background-color: #f8f9fa;\">\n            <th style=\"padding: 12px; border: 1px solid #dee2e6; text-align: left; color: #495057; font-weight: 600;\">Date/Time</th>\n            <th style=\"padding: 12px; border: 1px solid #dee2e6; text-align: left; color: #495057; font-weight: 600;\">Name</th>\n            <th style=\"padding: 12px; border: 1px solid #dee2e6; text-align: left; color: #495057; font-weight: 600;\">Email</th>\n            <th style=\"padding: 12px; border: 1px solid #dee2e6; text-align: left; color: #495057; font-weight: 600;\">Phone</th>\n            <th style=\"padding: 12px; border: 1px solid #dee2e6; text-align: left; color: #495057; font-weight: 600;\">Slug</th>\n            <th style=\"padding: 12px; border: 1px solid #dee2e6; text-align: left; color: #495057; font-weight: 600;\">Sponsor</th>\n          </tr>\n        </thead>\n        <tbody>\n          ${rows}\n        </tbody>\n      </table>\n    </div>\n    \n    <!-- Footer -->\n    <div style=\"background-color: #f8f9fa; padding: 20px; text-align: center; border-top: 1px solid #dee2e6;\">\n      <p style=\"color: #6c757d; font-size: 12px; margin: 0;\">This is an automated report from n8n workflow automation</p>\n      <p style=\"color: #6c757d; font-size: 12px; margin: 5px 0 0 0;\">\n        <a href=\"https://n8n.reachtheapex.net\" style=\"color: #2c5aa0; text-decoration: none;\">View in n8n</a> | \n        <a href=\"https://reachtheapex.net/admin\" style=\"color: #2c5aa0; text-decoration: none;\">Admin Dashboard</a>\n      </p>\n    </div>\n    \n  </div>\n</body>\n</html>\n`;\n\nreturn [{\n  json: {\n    subject: `Daily Enrollment Report - ${signups.length} new signup${signups.length !== 1 ? 's' : ''}`,\n    html: html,\n    count: signups.length\n  }\n}];"
+      },
+      "id": "format-email",
+      "name": "Format Email HTML",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "fromEmail": "theapex@theapexway.net",
+        "toEmail": "admin@theapexway.net",
+        "subject": "={{ $json.subject }}",
+        "emailType": "html",
+        "html": "={{ $json.html }}"
+      },
+      "id": "send-email",
+      "name": "Send Email",
+      "type": "n8n-nodes-base.resend",
+      "typeVersion": 1,
+      "position": [850, 300],
+      "credentials": {
+        "resendApi": {
+          "id": "resend-apex",
+          "name": "Resend - Apex"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const emailResult = $input.first().json;\nconst reportData = $('Format Email HTML').first().json;\n\nreturn [{\n  json: {\n    success: true,\n    signupCount: reportData.count,\n    emailSent: true,\n    emailId: emailResult.id,\n    timestamp: new Date().toISOString()\n  }\n}];"
+      },
+      "id": "log-success",
+      "name": "Log Success",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1050, 300]
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Query New Signups",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Query New Signups": {
+      "main": [
+        [
+          {
+            "node": "Format Email HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Email HTML": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Email": {
+      "main": [
+        [
+          {
+            "node": "Log Success",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "saveExecutionProgress": true,
+    "saveDataSuccessExecution": "all",
+    "saveDataErrorExecution": "all",
+    "saveDataManualExecutions": true
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "name": "Reports",
+      "id": "reports"
+    },
+    {
+      "name": "Daily",
+      "id": "daily"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2026-04-04T00:00:00.000Z",
+  "versionId": "1"
+}
